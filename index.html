@@ -17,31 +17,116 @@
     />
     <link rel="stylesheet" href="style/style.css" />
   </head>
+
   <body>
     <nav class="navbar navbar-light bg-light">
-      <div class="ml-auto d-flex">
-        <!-- Titolo centrato -->
+      <div class="ml-auto d-flex align-items-center">
         <div class="title-center">NoTIP<span class="dollar">$</span>we</div>
-        <!-- Bottoni a destra -->
-        <div class="d-flex">
-          <button class="button"><span>About Us</span></button>
-          <button class="button"><span>Contact</span></button>
+        <button class="menu-toggle ml-3">☰</button>
+        <div class="nav-buttons">
+          <button class="button-nav"><span>About Us</span></button>
+          <button class="button-nav"><span>Contact</span></button>
         </div>
       </div>
     </nav>
-    <div
-      class="main-card d-flex justify-content-center align-items-center text-center"
-    >
-      <h1>
-        Questo è il sito per tutta la documentazione riguardante il progetto
-        affidato a <span class="highlight">NoTIP$we</span>
-      </h1>
+
+    <div id="sidebar" class="sidebar">
+      <button class="close-btn">&times;</button>
+      <a href="#">About Us</a>
+      <a href="#">Contact</a>
+      <a href="#">Progetto</a>
+      <a href="#">Documentazione</a>
     </div>
+
+    <div id="overlay" class="overlay"></div>
+
+    <div class="container-card d-flex mx-auto">
+      <div
+        class="main-card d-flex justify-content-center align-items-center text-center"
+      >
+        <h1>
+          Questo è il sito per tutta la documentazione riguardante il progetto
+          affidato a <span class="highlight">NoTIP$we</span>
+        </h1>
+      </div>
+      <div
+        class="main-card-img d-flex justify-content-center align-items-center"
+      >
+        <img src="assets/avatar.png" alt="Logo Gruppo NoTIPswe" />
+      </div>
+    </div>
+
     <grid class="grid-layout">
-      <button class="button-scelte"><span>PB</span></button>
-      <button class="button-scelte"><span>RTB</span></button>
-      <button class="button-scelte"><span>Candidatura</span></button>
-      <button class="button-scelte"><span>Diapositive</span></button>
+      <div class="dropdown">
+        <button class="button-scelte"><span>PB</span></button>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+      </div>
+      <div class="dropdown">
+        <button class="button-scelte"><span>RTB</span></button>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+      </div>
+
+      <div class="dropdown">
+        <button class="button-scelte"><span>Candidatura</span></button>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+      </div>
+
+      <div class="dropdown">
+        <button class="button-scelte"><span>Diapositive</span></button>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+      </div>
     </grid>
+    <div class="collaborazione text-center">
+      <h2>In Collaborazione con</h2>
+      <div class="collaborazione-img mx-auto">
+        <img src="assets/70019.png" alt="Logo-unipd" />
+      </div>
+    </div>
+
+    <script>
+      const menuBtn = document.querySelector(".menu-toggle");
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+      const closeBtn = document.querySelector(".close-btn");
+
+      menuBtn.addEventListener("click", () => {
+        sidebar.classList.add("active");
+        overlay.classList.add("active");
+      });
+
+      closeBtn.addEventListener("click", () => {
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
+      });
+
+      overlay.addEventListener("click", () => {
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
+      });
+    </script>
+    <footer class="mx-auto text-center">
+      <small
+        >Email:
+        <a class="email" href="mailto:notip.swe@gmail.com"
+          >notip.swe@gmail.com</a
+        ></small
+      >
+    </footer>
   </body>
 </html>
