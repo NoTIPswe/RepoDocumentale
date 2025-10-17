@@ -78,7 +78,7 @@ body {
   --btn-shadow: 0 2px 10px 0 var(--btn-shadow-color);
   --hover-btn-color: rgb(255, 131, 93);
   --default-btn-color: rgb(41, 41, 41);
-  --font-size: 1.2rem;
+  --font-size: 1.1rem;
   --font-weight: 600;
   --font-family: 'JetBrains Mono', monospace;
 }
@@ -103,7 +103,7 @@ body {
 
 .button-nav {
   box-sizing: border-box;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: var(--btn-padding);
   display: flex;
   align-items: center;
