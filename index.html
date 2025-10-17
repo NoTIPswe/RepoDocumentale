@@ -16,49 +16,38 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" href="./style/navbar.css" />
   </head>
 
   <body>
-    <nav class="navbar navbar-light bg-light">
-      <div class="ml-auto d-flex align-items-center">
-        <div class="title-center">NoTIP<span class="dollar">$</span>we</div>
-        <button class="menu-toggle ml-3">☰</button>
-        <div class="nav-buttons">
-          <button class="button-nav"><span>About Us</span></button>
-          <button class="button-nav"><span>Contact</span></button>
-        </div>
-      </div>
-    </nav>
-
-    <div id="sidebar" class="sidebar">
-      <button class="close-btn">&times;</button>
-      <a href="#">About Us</a>
-      <a href="#">Contact</a>
-      <a href="#">Progetto</a>
-      <a href="#">Documentazione</a>
-    </div>
-
-    <div id="overlay" class="overlay"></div>
-
+    <div id="navbar"></div>
+    <script>
+      fetch("navbar.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("navbar").innerHTML = data;
+        });
+    </script>
+    <script src="./js/navbar.js"></script>
     <div class="container-card d-flex mx-auto">
       <div
         class="main-card d-flex justify-content-center align-items-center text-center"
       >
-        <h1>
+        <h2>
           Questo è il sito per tutta la documentazione riguardante il progetto
-          affidato a <span class="highlight">NoTIP$we</span>
-        </h1>
+          affidato a NoTIP$we
+        </h2>
       </div>
       <div
         class="main-card-img d-flex justify-content-center align-items-center"
       >
-        <img src="assets/avatar.png" alt="Logo Gruppo NoTIPswe" />
+        <img src="assets/unnamed.jpg" alt="Logo Gruppo NoTIPswe" />
       </div>
     </div>
 
     <grid class="grid-layout">
       <div class="dropdown">
-        <button class="button-scelte"><span>PB</span></button>
+        <button disabled class="button-scelte"><span>PB</span></button>
         <div class="dropdown-content"><a href="#"> opzione 1</a></div>
         <div class="dropdown-content"><a href="#"> opzione 1</a></div>
         <div class="dropdown-content"><a href="#"> opzione 1</a></div>
@@ -66,16 +55,7 @@
         <div class="dropdown-content"><a href="#"> opzione 1</a></div>
       </div>
       <div class="dropdown">
-        <button class="button-scelte"><span>RTB</span></button>
-        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
-        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
-        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
-        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
-        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
-      </div>
-
-      <div class="dropdown">
-        <button class="button-scelte"><span>Candidatura</span></button>
+        <button disabled class="button-scelte"><span>RTB</span></button>
         <div class="dropdown-content"><a href="#"> opzione 1</a></div>
         <div class="dropdown-content"><a href="#"> opzione 1</a></div>
         <div class="dropdown-content"><a href="#"> opzione 1</a></div>
@@ -84,7 +64,16 @@
       </div>
 
       <div class="dropdown">
-        <button class="button-scelte"><span>Diapositive</span></button>
+        <button disabled class="button-scelte"><span>Candidatura</span></button>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+        <div class="dropdown-content"><a href="#"> opzione 1</a></div>
+      </div>
+
+      <div class="dropdown">
+        <button disabled class="button-scelte"><span>Diapositive</span></button>
         <div class="dropdown-content"><a href="#"> opzione 1</a></div>
         <div class="dropdown-content"><a href="#"> opzione 1</a></div>
         <div class="dropdown-content"><a href="#"> opzione 1</a></div>
@@ -99,27 +88,6 @@
       </div>
     </div>
 
-    <script>
-      const menuBtn = document.querySelector(".menu-toggle");
-      const sidebar = document.getElementById("sidebar");
-      const overlay = document.getElementById("overlay");
-      const closeBtn = document.querySelector(".close-btn");
-
-      menuBtn.addEventListener("click", () => {
-        sidebar.classList.add("active");
-        overlay.classList.add("active");
-      });
-
-      closeBtn.addEventListener("click", () => {
-        sidebar.classList.remove("active");
-        overlay.classList.remove("active");
-      });
-
-      overlay.addEventListener("click", () => {
-        sidebar.classList.remove("active");
-        overlay.classList.remove("active");
-      });
-    </script>
     <footer class="mx-auto text-center">
       <small
         >Email:
