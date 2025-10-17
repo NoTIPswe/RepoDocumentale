@@ -3,7 +3,7 @@
   --accent2: #7a2d64;
   --link: #c03e6b;
   --shadow: rgba(192, 62, 107, 0.05);
-  --bg: #eceff1;
+  --bg: #dbdbdb;
   --bg2: #494949;
   --bg3: #ff893b;
   --border: #444;
@@ -17,20 +17,6 @@
   --font-family: 'JetBrains Mono', monospace;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg: #efefef;
-    --bg2: #dbdbdb;
-    --header: #000000;
-    --border: #444;
-    --fg: #000;
-    --link: #5e9fff;
-  }
-
-  .arrow-icon {
-    filter: brightness(0) !important;
-  }
-}
 
 body {
   background: var(--bg) !important;
@@ -335,6 +321,7 @@ a, a:visited, a:hover, a:active{
 .avatar-container {
   background-color: var(--card-bg);
   height: 300px;
+  width: 320px;
   padding: 20px;
   border-radius: 10px;
   display: flex;
@@ -371,6 +358,8 @@ a, a:visited, a:hover, a:active{
   font-size: 1.5rem;
   font-weight: 700;
   text-align: center;
+  height: 100px;
+  width: 200px;
   
 }
 

@@ -1,21 +1,3 @@
-:root {
-  --accent: #ff3b7f;
-  --accent2: #7a2d64;
-  --link: #c03e6b;
-  --shadow: rgba(192, 62, 107, 0.05);
-  --bg: #eceff1;
-  --bg2: #494949;
-  --bg3: #ff893b;
-  --border: #444;
-  --header: #d3d3d3;
-  --hover-btn-color: rgb(255, 131, 93);
-  --fg: #000000;
-  --text-color: #141414;
-  --card-bg: #ffffff; 
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  --accent: #ff6b6b; 
-  --font-family: 'JetBrains Mono', monospace;
-}
 
 .overlay {
   position: fixed;
