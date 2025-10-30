@@ -1,0 +1,11 @@
+title: Glossario
+changelog:
+  - version: 1
+    date: "2025-10-30"
+    authors:
+      - Francesco Marcon
+      - Matteo Mantoan
+    verifiers: 
+      - Leonardo Preo
+    description: >
+        Prima versione del glossario, con implemetazione di automatismi e primi termini

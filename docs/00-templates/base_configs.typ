@@ -1,3 +1,5 @@
+#import "../01-living_documents/esterno/glossario/termini_glossario.typ" as glossary-terms
+
 #let project-email = "notip.swe@gmail.com"
 #let project-url = "https://notipswe.github.io/"
 #let project_name = link(project-url, [NoTIP])
@@ -40,7 +42,18 @@
   v(1fr)
 }
 
-#let apply-base-configs(doc) = {
+#let apply-base-configs(doc, glossary-highlighted: true) = {
+  
+  // apply the regex only if we want to (not in the glossary)
+  // nested if because of the scope 
+  show regex(glossary-terms.terms.keys().map(k => "\b" + k + "\b").join("|")): t => {
+    if glossary-highlighted {
+      [_#t#sub("G")_]
+    } else {
+      t
+    }
+  }
+
   set par(justify: true)
 
   show "NoTIP": it => link(project-url, it)

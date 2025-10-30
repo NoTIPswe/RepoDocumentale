@@ -121,9 +121,10 @@
   front-info: (),
   changelog: (),
   scope: "",
+  glossary-highlighted: true,
   content,
 ) = {
-  show: base.apply-base-configs
+  show: base.apply-base-configs.with(glossary-highlighted: glossary-highlighted)
 
   // Settings
   set page(margin: (top: margin-top, x: margin-x, bottom: margin-bottom), paper: "a4")
