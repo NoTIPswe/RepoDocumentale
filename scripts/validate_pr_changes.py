@@ -99,7 +99,7 @@ def compare_models(base_json_path: str, pr_json_path: str, changed_files_path: s
         pr_version = pr_doc["latest_version"]
         version_has_changed = pr_version != base_version
 
-        doc_title = pr_doc["title"]
+        doc_title = pr_doc["metadata"]["title"]
 
         if content_has_changed:
             logging.info(f"[*] Content changed for: {doc_title}")
