@@ -47,7 +47,7 @@ jobs:
 
       - name: Get changed files
         run: |
-          BASE_COMMIT=$(git merge-base ${{ github.base_ref }} HEAD)
+          BASE_COMMIT=$(git merge-base origin/${{ github.base_ref }} HEAD)
           git diff --name-only ${BASE_COMMIT} HEAD > changed_files.txt
           echo "Changed files:"
           cat changed_files.txt
