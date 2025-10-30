@@ -35,12 +35,6 @@ jobs:
           ref: ${{ github.base_ref }}
           path: 'base_checkout'
 
-      - name: Debug - show branches
-        run: |
-          git branch -a 
-          git show-ref
-        working-directory: base_checkout
-
       - name: Generate base model
         run: |
           python base_checkout/scripts/validate_pr_changes.py generate \
@@ -53,6 +47,7 @@ jobs:
 
       - name: Get changed files
         run: |
+          git fetch origin ${{github.base_ref}} --depth=1
           BASE_COMMIT=$(git merge-base ${{ github.base_ref }} HEAD)
           git diff --name-only ${BASE_COMMIT} HEAD > changed_files.txt
           echo "Changed files:"
