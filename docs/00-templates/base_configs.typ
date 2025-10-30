@@ -1,3 +1,5 @@
+#import "../01-living_documents/esterno/glossario/termini_glossario.typ" as glossary-terms
+
 #let project-email = "notip.swe@gmail.com"
 #let project-url = "https://notipswe.github.io/"
 #let project_name = link(project-url, [NoTIP])
@@ -41,6 +43,11 @@
 }
 
 #let apply-base-configs(doc) = {
+  
+  show regex(glossary-terms.terms.keys().map(k => "\b" + k + "\b").join("|")): t => [
+    _#t#sub("G")_
+  ]
+
   set par(justify: true)
 
   show "NoTIP": it => link(project-url, it)
