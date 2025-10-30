@@ -99,7 +99,7 @@ def compare_models(base_json_path: str, pr_json_path: str, changed_files_path: s
         pr_version = pr_doc["latest_version"]
         version_has_changed = pr_version != base_version
 
-        doc_title = pr_doc["title"]
+        doc_title = pr_doc["metadata"]["title"]
 
         if content_has_changed:
             logging.info(f"[*] Content changed for: {doc_title}")
@@ -130,17 +130,19 @@ def compare_models(base_json_path: str, pr_json_path: str, changed_files_path: s
                 validation_errors.append(err)
 
     if validation_errors:
-        logging.error("\n" + "=" * 30 + " VALIDATION FAILED " + "=" * 30)
+        logging.error("=" * 30 + " VALIDATION FAILED " + "=" * 30)
         for err in validation_errors:
             logging.error(f"  - {err}")
         logging.error("=" * 80)
         sys.exit(1)
     else:
-        logging.info("\n" + "=" * 30 + " VALIDATION SUCCESSFUL " + "=" * 30)
+        logging.info("=" * 30 + " VALIDATION SUCCESSFUL " + "=" * 30)
         logging.info("All document versioning rules passed.")
 
 
 def main():
+    setup_logging()
+
     parser = argparse.ArgumentParser(description="Generate or compare document models.")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
