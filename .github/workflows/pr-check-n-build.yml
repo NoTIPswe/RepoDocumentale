@@ -9,51 +9,75 @@ permissions:
   contents: read
 
 jobs:
-  validate-and-build:
+  base-model:
     runs-on: ubuntu-latest
     steps:
-      - name: Install Typst
-        uses: typst-community/setup-typst@v3
+      - name: Checkout base branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha || github.base_ref }}
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: "3.10"
+          cache: "pip"
 
       - name: Install Python dependencies
-        run: pip install pyyaml jsonschema
-
-      - name: Checkout PR branch
-        uses: actions/checkout@v4
-        with:
-          # We need fetch-depth: 0 to get all history for git diff
-          fetch-depth: 0
-
-      - name: Checkout base branch
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.base_ref }}
-          path: 'base_checkout'
+        run: |
+          pip install pyyaml jsonschema
 
       - name: Generate base model
         run: |
-          python base_checkout/scripts/validate_pr_changes.py generate \
+          python scripts/validate_pr_changes.py generate \
             --output base-model.json
+
+      - name: Upload base model
+        uses: actions/upload-artifact@v4
+        with:
+          name: base-model
+          path: base-model.json
+          retention-days: 1
+
+  validate-and-build:
+    runs-on: ubuntu-latest
+    needs: base-model
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          pip install pyyaml jsonschema
+
+      - name: Download base model
+        uses: actions/download-artifact@v4
+        with:
+          name: base-model
+
+      - name: Get changed files
+        run: |
+          BASE_COMMIT=$(git merge-base origin/${{ github.base_ref }} HEAD)
+          git diff --name-only "$BASE_COMMIT" HEAD > changed_files.txt
+          echo "Changed files:"
+          cat changed_files.txt
 
       - name: Generate PR model
         run: |
           python scripts/validate_pr_changes.py generate \
             --output pr-model.json
 
-      - name: Get changed files
-        run: |
-          git fetch origin ${{github.base_ref}} --depth=1
-          BASE_COMMIT=$(git merge-base ${{ github.base_ref }} HEAD)
-          git diff --name-only ${BASE_COMMIT} HEAD > changed_files.txt
-          echo "Changed files:"
-          cat changed_files.txt
-        shell: bash
-      
+      - name: Install Typst
+        uses: typst-community/setup-typst@v3
+
       - name: Validate document changes
         run: |
           python scripts/validate_pr_changes.py compare \
@@ -62,8 +86,9 @@ jobs:
             changed_files.txt
 
       - name: Build docs from PR
+        if: always()
         run: python scripts/build_docs.py --outdir dist/docs
-      
+
       - name: Upload Build Artifacts (PDFs)
         if: always()
         uses: actions/upload-artifact@v4
