@@ -35,6 +35,12 @@ jobs:
           ref: ${{ github.base_ref }}
           path: 'base_checkout'
 
+      - name: Debug - show branches
+        run: |
+          git branch -a 
+          git show-ref
+        working-directory: base_checkout
+
       - name: Generate base model
         run: |
           python base_checkout/scripts/validate_pr_changes.py generate \
