@@ -9,9 +9,10 @@
   title: "",
   subtitle: none,
   date: none,
+  glossary-highlighted: true,
   body,
 ) = {
-  show: base-configs.apply-base-configs
+  show: base-configs.apply-base-configs.with(glossary-highlighted: glossary-highlighted)
 
   let current-section = state("current-section", "")
 

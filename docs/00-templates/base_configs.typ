@@ -42,11 +42,17 @@
   v(1fr)
 }
 
-#let apply-base-configs(doc) = {
+#let apply-base-configs(doc, glossary-highlighted: true) = {
   
-  show regex(glossary-terms.terms.keys().map(k => "\b" + k + "\b").join("|")): t => [
-    _#t#sub("G")_
-  ]
+  // apply the regex only if we want to (not in the glossary)
+  // nested if because of the scope 
+  show regex(glossary-terms.terms.keys().map(k => "\b" + k + "\b").join("|")): t => {
+    if glossary-highlighted {
+      [_#t#sub("G")_]
+    } else {
+      t
+    }
+  }
 
   set par(justify: true)
 

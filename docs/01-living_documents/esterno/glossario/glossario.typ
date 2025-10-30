@@ -5,14 +5,16 @@
 
 #let letter-of = (s) => upper(s.slice(0, 1))
 #let entries = terms.pairs().sorted(key: e => lower(e.at(0)))
-#let render-entry = (term, def) => [*#term*, #def]
+#let render-entry = (term, def) => [*#term*: #def]
 
+#let capitalize-first = (s) => s.replace(regex("^[[:alpha:]]"), m => upper(m.text))
 
 #base-document.apply-base-document(
   title: metadata.title,
   abstract: "Documento che permette di chiarificare la terminologia adoperata all'interno della documentazione del gruppo",
   changelog: metadata.changelog,
   scope: base-document.INTERNAL_SCOPE,
+  glossary-highlighted: false
 )[
 
   = Introduzione
@@ -24,7 +26,7 @@
 
   #{
     for i in range(0, entries.len()) {
-      let term = entries.at(i).at(0)
+      let term = capitalize-first(entries.at(i).at(0))
       let def = entries.at(i).at(1)
       let letter = letter-of(term)
       

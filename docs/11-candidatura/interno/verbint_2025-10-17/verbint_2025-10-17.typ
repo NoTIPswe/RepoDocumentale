@@ -20,6 +20,7 @@
     ),
   ),
   abstract: "Durante la riunione, il gruppo NoTIP ha discusso le regole per la gestione dei documenti, la pianificazione Scrum e la rendicontazione delle attività.",
+  glossary-highlighted: true,
   changelog: metadata.changelog,
 )[
   Con il presente documento si attesta che in data *17 Ottobre 2025* si è tenuta una riunione interna del gruppo _NoTIP_, svoltasi in modalità virtuale sul server Discord ufficiale del gruppo.\
@@ -33,8 +34,7 @@
 ][
   == Discussione sul versionamento e pubblicazione verbali
   Il primo punto affrontato ha riguardato la definizione delle modalità di versionamento e pubblicazione dei verbali, al fine di garantire un processo ordinato e tracciabile per la gestione della documentazione ufficiale del gruppo.\
-  È stato concordato che:
-  Ogni commit dovrà essere *atomico*, cioè riguardare un solo documento per volta, evitando modifiche simultanee a file diversi.\
+  È stato concordato che ogni commit dovrà essere *atomico*, cioè riguardare un solo documento per volta, evitando modifiche simultanee a file diversi.\
 
   L’editor incaricato della redazione del verbale dovrà seguire rigorosamente il template ufficiale del gruppo, impostando la versione del documento. \
   E' stato proposto, provvisoriamente, l'utilizzo del versionamento in modo *sequenziale* (v1, v2, ...).\
