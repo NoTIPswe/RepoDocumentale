@@ -37,8 +37,8 @@ jobs:
 
       - name: Generate base model
         run: |
-          python base_checkout/scripts/validate_pr_changes.py generate \
-            --output base-model.json
+          cd base_checkout && python scripts/validate_pr_changes.py generate \
+            --output ../base-model.json && cd ..
 
       - name: Generate PR model
         run: |
