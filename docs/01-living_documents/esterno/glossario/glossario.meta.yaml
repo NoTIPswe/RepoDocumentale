@@ -6,6 +6,6 @@ changelog:
       - Francesco Marcon
       - Matteo Mantoan
     verifiers: 
-      - test
+      - Leonardo Preo
     description: >
         Prima versione del glossario, con implemetazione di automatismi e primi termini
