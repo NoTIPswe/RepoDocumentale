@@ -3,114 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pagina in Lavorazione</title>
-
-    <style>
-      /* Impostazioni globali per centrare tutto */
-      body,
-      html {
-        height: 100%;
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Helvetica, Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #1a1a2e; /* Sfondo scuro */
-        color: #e0e0e0; /* Colore testo chiaro */
-      }
-
-      /* Il contenitore per la GIF e il testo */
-      .container {
-        text-align: center;
-        background-color: #162447; /* Sfondo del box */
-        padding: 30px 40px;
-        border-radius: 15px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-        border: 1px solid #1f4068;
-      }
-
-      /* Stile per la GIF */
-      .maintenance-gif {
-        max-width: 500px; /* Limita la larghezza della GIF */
-        width: 100%;
-        height: auto;
-        border-radius: 10px; /* Angoli arrotondati */
-        margin-bottom: 20px; /* Spazio tra GIF e titolo */
-      }
-
-      /* Stile per il titolo */
-      h1 {
-        margin: 0;
-        font-size: 2.5em; /* Dimensione grande per il titolo */
-        color: #ffffff; /* Bianco acceso per il titolo */
-        font-weight: 700;
-      }
-
-      /* Stile per il testo secondario */
-      p {
-        margin-top: 10px;
-        font-size: 1.1em;
-        color: #b3c5e0; /* Colore più tenue per il sottotitolo */
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <img
-        src="assets/kirby.gif"
-        alt="Pagina in lavorazione"
-        class="maintenance-gif"
-      />
-      <h1>Pagina in lavorazione</h1>
-      <p>
-        Goditi questo kirby che cade mentre lavoro alla Pagina. Torna presto!
-      </p>
-    </div>
-  </body>
-</html>
-
-<!--<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Us</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap"
       rel="stylesheet"
     />
-
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="./style/style.css" />
-    <link rel="stylesheet" href="./style/navbar.css" />
+    <link rel="stylesheet" href="./style/about.css" />
   </head>
-  <body class="about">
-    <div id="navbar"></div>
-    <script>
-      fetch("navbar.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.getElementById("navbar").innerHTML = data;
-        });
-    </script>
-    <script src="./js/navbar.js"></script>
-    <div class="main-card-about d-flex text-center">
-      <h1 class="aboutus-title">Chi siamo</h1>
-    </div>
-    <div class="main-card-about-h2 d-flex mx-auto text-center">
-      <h2>
-        Siamo un gruppo di 7 studenti, con tanta voglia di imparare e crescere
-        programmando, cerchiamo a tutti i costi di evitare l'utilizzo di AI ed
-        eseguiamo test in produzione gratuitamente
-      </h2>
-    </div>
-    <grid class="grid-github">
+  <body>
+    <header>
+      <div class="logo">
+        <h2>NoTIP Docs</h2>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="aboutus.html">About</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h2>Chi siamo</h2>
+        <p>
+          Siamo 7 studenti di Informatica all'Università di Padova, con tanta
+          voglia di imparare e super simpatici.
+        </p>
+      </div>
+      <img src="assets/dev.gif" alt="logo NoTIP" id="hero-image" />
+    </section>
+    <div class="grid-github">
       <div class="avatar-container">
         <a href="https://github.com/Scafu" target="_blank">
           <img
@@ -184,12 +113,26 @@
           <span>Alessandro Contarini</span>
         </a>
       </div>
-    </grid>
-
-    <script>
-      window.addEventListener("load", () => {
-        document.body.classList.add("loaded");
-      });
-    </script>
+    </div>
+    <footer>
+      <div class="footer-container">
+        <div>
+          <h4>Dove Trovarci</h4>
+          <div class="socials">
+            <a
+              href="https://github.com/NoTipSwe"
+              data-icon="github"
+              aria-label="vai su GitHub"
+            ></a>
+            <a
+              href="mailto:Notip.swe@gmail.com"
+              data-icon="email"
+              aria-label="manda Email"
+            ></a>
+          </div>
+        </div>
+      </div>
+      <p style="text-align: center; margin-top: 2rem">© 2025 NoTIP Group.</p>
+    </footer>
   </body>
-</html>-->
+</html>
