@@ -26,7 +26,7 @@
   La riunione ha avuto inizio alle ore *21:00* e si è conclusa alle ore *22:20*.\
   Si prevede di:
   #list(
-    [Scegliere i nome e il logo del gruppo],
+    [Scegliere il nome e il logo del gruppo],
     [Discutere sui capitolati di progetto],
     [Definire la tipologia di scrittura dei verbali],
     [Organizzare generalmente il lavoro del gruppo nel breve termine],
@@ -35,7 +35,7 @@
 ][
   == Scelta del nome e del logo del gruppo
   Il primo punto all’ordine del giorno ha riguardato la definizione dell'identità visiva e nominale del gruppo.\
-  Dopo un breve confronto tra diverse proposte, il gruppo ha deciso all’unanimità di adottare il nome *“NoTIP - No Test In Production”*, ritenendo il nome accattivante, ma anche divertente.
+  Dopo un breve confronto tra diverse proposte, il gruppo ha deciso all’unanimità di adottare il nome *“NoTIP - No Tests In Production”*, ritenendo il nome accattivante, ma anche divertente.
   Contestualmente, è stato scelto il logo ufficiale del gruppo, elaborato in coerenza con il nome selezionato, e approvato anch’esso all’unanimità.\
   Per quanto riguarda le comunicazioni esterne, il gruppo ha stabilito di utilizzare la seguente email ufficiale:
   *#link("mailto:notip.swe@gmail.com")[#base.project-email]*.
