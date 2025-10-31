@@ -25,7 +25,6 @@
   "template Typst": "Modello predefinito scritto in linguaggio Typst, utilizzato per standardizzare la struttura grafica e formale dei documenti del gruppo",
   "Typst": "Linguaggio di composizione testuale per la creazione di documenti strutturati, caratterizzato da una sintassi chiara e moderna, alternativo a LaTeX e adatto all’automazione della documentazione",
   "version control": "Sistema che consente di registrare, monitorare e gestire le modifiche al codice sorgente o ai documenti di progetto nel tempo, garantendo tracciabilità e collaborazione",
-  "way of working": "Documento che definisce regole, strumenti e modalità operative condivise all’interno del gruppo per garantire coerenza e produttività",
   "Agile": "Insieme di principi e pratiche di sviluppo software basate su iterazioni brevi, feedback continui e collaborazione costante tra i membri del team",
   "cowork": "Sessione di lavoro condiviso tra i membri del gruppo, svolta in contemporanea per favorire la collaborazione e la produttività",
   "foglio elettronico": "Documento digitale strutturato in celle che consente di organizzare, calcolare e visualizzare dati in forma tabellare, ad esempio tramite software come Google Sheets",
