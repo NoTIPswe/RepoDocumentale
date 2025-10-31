@@ -44,9 +44,7 @@
 
 #let apply-base-configs(doc, glossary-highlighted: true) = {
   
-  // apply the regex only if we want to (not in the glossary)
-  // nested if because of the scope 
-  show regex(glossary-terms.terms.keys().map(k => "\b" + k + "\b").join("|")): t => {
+  show regex("(?i)" + glossary-terms.terms.keys().map(k => "\b" + k + "\b").join("|")): t => {
     if glossary-highlighted {
       [_#t#sub("G")_]
     } else {
