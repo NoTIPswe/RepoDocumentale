@@ -13,7 +13,7 @@
   title: metadata.title,
   abstract: "Documento che permette di chiarificare la terminologia adoperata all'interno della documentazione del gruppo",
   changelog: metadata.changelog,
-  scope: base-document.INTERNAL_SCOPE,
+  scope: base-document.EXTERNAL_SCOPE,
   glossary-highlighted: false
 )[
 
