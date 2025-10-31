@@ -1,5 +1,13 @@
 title: Lettera di candidatura
 changelog:
+  - version: 2
+    date: "2025-10-31"
+    authors:
+      - Francesco Marcon
+    verifiers:
+      - Team NoTIP
+    description: >
+      Aggiunta link ai documenti
   - version: 1
     date: "2025-10-31"
     authors:
