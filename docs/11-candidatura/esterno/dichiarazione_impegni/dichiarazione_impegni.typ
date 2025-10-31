@@ -74,7 +74,7 @@ sviluppo del prodotto.
 == Analista
 Il ruolo dell’Analista è di fondamentale importanza nella fase iniziale del
 progetto, durante la quale egli è responsabile dell’*analisi dei requisiti* e della  definizione delle *specifiche del sistema*. \
-Il suo lavoro è essenziale per il corretto svolgimento del progetto poichè, traducendo le esigenze e le aspettative dell’azienda proponente in requisiti ben definiti, consente a progettisti e programmatori di proseguire in modo efficace con il loro lavoro. \
+Il suo lavoro è essenziale per il corretto svolgimento del progetto poiché, traducendo le esigenze e le aspettative dell’azienda proponente in requisiti ben definiti, consente a progettisti e programmatori di proseguire in modo efficace con il loro lavoro. \
 Nelle fasi successive, l’impegno dell’Analista tende a ridursi, mantenendo la
 disponibilità per eventuali aggiornamenti derivanti da nuovi confronti con la
 proponente.
