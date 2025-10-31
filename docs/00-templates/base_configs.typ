@@ -54,7 +54,7 @@
 
   set par(justify: true)
 
-  show "NoTIP": it => link(project-url, it)
+  show "NoTIP": it => link(project-url, text(fill:black)[#it]) 
   set text(lang: "it", font: serif-font)
   show raw: set text(font: mono-font)
 
