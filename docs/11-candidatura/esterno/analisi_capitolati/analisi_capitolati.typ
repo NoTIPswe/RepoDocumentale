@@ -70,7 +70,7 @@
   Abbiamo trovato inoltre il progetto stimolante per l’elevato grado di innovazione e per l’applicazione dell’AI a processi concreti, come la gestione documentale intelligente.\
   Anche l’utilizzo di tecnologie moderne, come AWS, Ruby on Rails, Angular e sistemi OCR avanzati, è stato valutato positivamente per la sua pronunciata attualità architetturale ed approccio, ancora una volta, particolarmente orientato al futuro.\
   Durante il confronto effettuato con Eggon, sono emersi diversi aspetti positivi che hanno contribuito a valorizzare ulteriormente il capitolato. L’azienda si è mostrata molto disponibile e collaborativa, evidenziando fin da subito un approccio molto più orientato alla crescita reciproca.\
-  In particolare, il gruppo ha apprezzato la flessibilità tecnologica proposta, chiarendo che non rappresentano vincoli rigidi, l’approccio incentrato sull’apprendimento del processo e la forte attenzione al supporto formativo. Tutto ciò è consultabile in modo più dettagliato nel verbale esterno pubblicato ad esso dedicato.
+  In particolare, il gruppo ha apprezzato la flessibilità tecnologica proposta, chiarendo che non rappresentano vincoli rigidi, l’approccio incentrato sull’apprendimento del processo e la forte attenzione al supporto formativo. Tutto ciò è consultabile in modo più dettagliato nel #link("https://notipswe.github.io/docs/11-candidatura/esterno/verbest_2025-10-25.pdf")[verbale esterno] pubblicato ad esso dedicato.
   L’incontro ha quindi lasciato una valutazione complessivamente molto positiva, facendo percepire l’azienda come un collaboratore disponibile ed attento alla crescita degli studenti.\
   == Contro
   Nonostante il feedback positivo del team nei confronti di tale capitolato, _NoTIP_ riconosce che la sfida lanciata da Eggon è assai ambiziosa, in particolare ritenuta al di sopra delle possibilità attuali del gruppo.\
@@ -94,7 +94,7 @@
   Il *Capitolato C7*: *“Sistema di acquisizione dati da sensori”*, proposto da _M31_, propone la sfida della realizzazione di un sistema distribuito per l’acquisizione, la gestione e la visualizzazione di dati provenienti da sensori Bluetooth Low Energy (BLE), con particolare attenzione allo sviluppo dell’infrastruttura Cloud. \
   == Pro
   Il gruppo si è dimostrato caldamente interessato alla proposta fin dalla presentazione. E’ stato trovato particolarmente stimolante per la struttura architetturale ben definita e precisa nel capitolato di progetto fornito, per diversi livelli che sono richiesti di realizzare (sensori, gateway, Cloud) e della gestione multi-tenant. Anche l’utilizzo di tecnologie moderne, come Nest.js e Kubernetes, è stato valutato positivamente, poiché riflettono un contesto realistico e professionale. \
-  Durante l’incontro tenutosi con _M31_, sono emersi numerosi aspetti positivi che hanno confermato l’interesse del gruppo verso il capitolato. L’azienda si è mostrata molto chiara, disponibile e aperta al dialogo, dimostrando fin da subito un atteggiamento di supporto nei confronti degli studenti. Apprezzata è stata la flessibilità tecnologica dimostrata. In particolare i vari punti che sono stati toccati durante l’incontro sono disponibili e consultabili nel verbale esterno ad esso associato. \
+  Durante l’incontro tenutosi con _M31_, sono emersi numerosi aspetti positivi che hanno confermato l’interesse del gruppo verso il capitolato. L’azienda si è mostrata molto chiara, disponibile e aperta al dialogo, dimostrando fin da subito un atteggiamento di supporto nei confronti degli studenti. Apprezzata è stata la flessibilità tecnologica dimostrata. In particolare i vari punti che sono stati toccati durante l’incontro sono disponibili e consultabili nel #link("https://notipswe.github.io/docs/11-candidatura/esterno/verbest_2025-10-24.pdf")[verbale esterno] ad esso associato. \
   Nel complesso, l’incontro ha lasciato un’impressione molto positiva che ha ulteriormente arricchito l’interesse presente fin dall’inizio.\
   == Contro
   _NoTIP_ è consapevole delle richieste dell’azienda e che molti dei requisiti siano di difficile esecuzione, ma, grazie alla disponibilità dimostrata da parte dell’azienda alla contrattazione e al supporto da parte di professionisti, ritiene di essere in grado di andare a realizzare efficacemente tale capitolato. \
@@ -125,6 +125,5 @@
   == Considerazioni
   Sempre riguardo a questi ultimi, anche le richieste riguardanti i requisiti dei test sono particolarmente rigide ed ambiziose.
   Detto ciò il gruppo ha deciso quindi di non proseguire con la candidatura per il capitolato C9.
-
 
 ]

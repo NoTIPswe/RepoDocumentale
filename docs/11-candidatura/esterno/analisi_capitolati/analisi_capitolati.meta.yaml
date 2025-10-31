@@ -1,5 +1,14 @@
 title: Analisi dei capitolati
 changelog:
+  - version: 2
+    date: "2025-10-31"
+    authors:
+      - Alessandro Mazzariol
+    verifiers: 
+      - Francesco Marcon
+    description: >
+        Aggiunti link al sito nei capitolati C5 e C7
+
   - version: 1
     date: "2025-10-27"
     authors:
