@@ -30,7 +30,7 @@
   "Agile": "Insieme di principi e pratiche di sviluppo software basate su iterazioni brevi, feedback continui e collaborazione costante tra i membri del team",
   "cowork": "Sessione di lavoro condiviso tra i membri del gruppo, svolta in contemporanea per favorire la collaborazione e la produttività",
   "foglio elettronico": "Documento digitale strutturato in celle che consente di organizzare, calcolare e visualizzare dati utili al gruppo",
-  "Google Docs": "Piattaforma cloud per la creazione, modifica e condivisione collaborativa di documenti testuali in tempo reale, per andare raccogliere idee",
+  "Google Docs": "Piattaforma cloud per la creazione, modifica e condivisione collaborativa di documenti testuali in tempo reale per raccogliere idee",
   "appalto": "Termine usato in senso figurato per indicare l’assegnazione di un capitolato a un gruppo, a seguito della selezione da parte dell’azienda proponente",
   "audit": "Attività di analisi e verifica sistematica su codice, processi o documentazione per valutarne qualità e conformità",
   "Living Document": "Documento in evoluzione continua, aggiornato man mano che processi e decisioni cambiano; mantiene storia e contesto nel tempo",
