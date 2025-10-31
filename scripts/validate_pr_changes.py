@@ -81,10 +81,12 @@ def compare_models(base_json_path: str, pr_json_path: str, changed_files_path: s
     validation_errors = []
 
     for key in added_docs:
-        logging.info(f"[+] Document Added: {pr_map[key]['title']} ({key})")
+        logging.info(f"[+] Document Added: {pr_map[key]["metadata"]["title"]} ({key})")
 
     for key in removed_docs:
-        logging.warning(f"[!] Document Removed: {base_map[key]['title']} ({key})")
+        logging.warning(
+            f"[!] Document Removed: {base_map[key]["metadata"]["title"]} ({key})"
+        )
 
     logging.info("\nChecking common documents for modifications...")
     for key in common_docs:

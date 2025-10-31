@@ -9,6 +9,7 @@
   front-info: (),
   abstract: "",
   changelog: (),
+  glossary-highlighted: true,
   odg,
   discussion,
   other,
@@ -19,6 +20,7 @@
     changelog: changelog,
     scope: scope,
     front-info: front-info,
+    glossary-highlighted: glossary-highlighted
   )[
 
     = Info e ordine del giorno
