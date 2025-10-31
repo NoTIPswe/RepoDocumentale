@@ -5,7 +5,7 @@
     *#text*
   ],
   stroke: none,
-  inset: (top: 1.3cm, bottom: 0.8cm),
+  inset: (top: 0.7cm, bottom: 0.5cm),
 )
 
 #base.apply-base-configs(glossary-highlighted: false)[
@@ -58,7 +58,7 @@
   - L’azienda si è dimostrata chiara, disponibile e aperta al dialogo, anche durante l’incontro conoscitivo, nel quale si è riscontrato un reciproco interesse e soddisfacimento tra le parti.
   - L’utilizzo di *tecnologie moderne* è stato valutato positivamente dal team poiché riflette un *contesto realistico e professionale*.
   - Il team, grazie alla *disponibilità* dimostrata da parte dell’azienda alla *contrattazione* e al supporto da parte di professionisti, ritiene di essere in grado di realizzare efficacemente tale capitolato.
-  \ 
+  \
   Per eventuali approfondimenti si rimanda all'#link("https://notipswe.github.io/docs/11-candidatura/esterno/analisi_capitolati.pdf", [analisi dei capitolati]) redatta dal gruppo.
 
   #v(0.8cm)
@@ -66,7 +66,7 @@
   Ringraziamo nuovamente per la Vostra disponibilità, \
   cordiali saluti.
 
-  #v(1.0cm)
+  #v(0.5cm)
   Padova, 31 ottobre 2025, \
 
   *Team NoTIP*
