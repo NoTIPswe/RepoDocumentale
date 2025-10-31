@@ -105,6 +105,16 @@
   pagebreak()
 }
 
+#let table_list() = context {
+  let tab = query(figure.where(kind: table))
+
+  if tab.len() > 0 {
+    outline(title: "Indice delle tabelle", target: figure.where(kind: table))
+
+    pagebreak()
+  }
+}
+
 #let figure_list() = context {
   let figs = query(figure.where(kind: image))
 
@@ -131,9 +141,8 @@
   set document(title: title)
   set text(lang: "it", size: font-size-base, font: base.serif-font)
   set par(justify: true)
-
+  show link: set text(fill: blue)
   set figure(numbering: "1.", gap: 0.5em)
-
   set heading(numbering: "1.")
 
   // Content
@@ -157,6 +166,8 @@
   toc()
 
   figure_list()
+
+  table_list()
 
   content
 }
