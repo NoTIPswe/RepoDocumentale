@@ -124,7 +124,7 @@
   - documenti non modificati non hanno avanzato versioni;
   - la struttura della repository è corretta;
 
-  Inoltre, viene fornito dall'auotmazione un archivio .zip dei file pdf compilati per la verifica della resa grafica da parte del verificatore.
+  Inoltre, viene fornito dall'automazione un archivio .zip dei file pdf compilati per la verifica della resa grafica da parte del verificatore.
 
   Ogni PR relativa a un documento viene esaminata manualmente verificando:
   - Corretta esecuzione delle automazioni di verifica automatica (in ogni caso bloccanti per il sistema)
