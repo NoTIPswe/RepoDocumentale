@@ -1,0 +1,12 @@
+title: Lettera di candidatura
+changelog:
+  - version: 1
+    date: "2025-10-31"
+    authors:
+      - Valerio Solito
+      - Alessandro Contarini
+      - Francesco Marcon
+    verifiers:
+      - Team NoTIP
+    description: >
+      Prima versione della lettera di candidatura
