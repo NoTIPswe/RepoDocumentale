@@ -10,6 +10,7 @@
 
 #base.apply-base-configs(glossary-highlighted: false)[
 
+  #show link: set text(fill: blue)
 
   #grid(
     columns: (1fr, 5cm),
@@ -42,7 +43,7 @@
   candidatura per la realizzazione del capitolato *C7*, intitolato
   *"Sistema di acquisizione dati da sensori"*, proposto dall’azienda *M31*.
 
-  Come specificato nel documento di _dichiarazione degli impegni_, il gruppo ha
+  Come specificato nel documento di #link("https://notipswe.github.io/docs/11-candidatura/esterno/dichiarazione_impegni.pdf", [dichiarazione degli impegni]), il gruppo ha
   stimato un costo totale per la realizzazione del progetto di *Euro 12.940* e
   ha fissato come termine ultimo di consegna il *21 marzo 2026*.
 
@@ -57,6 +58,8 @@
   - L’azienda si è dimostrata chiara, disponibile e aperta al dialogo, anche durante l’incontro conoscitivo, nel quale si è riscontrato un reciproco interesse e soddisfacimento tra le parti.
   - L’utilizzo di *tecnologie moderne* è stato valutato positivamente dal team poiché riflette un *contesto realistico e professionale*.
   - Il team, grazie alla *disponibilità* dimostrata da parte dell’azienda alla *contrattazione* e al supporto da parte di professionisti, ritiene di essere in grado di realizzare efficacemente tale capitolato.
+  \ 
+  Per eventuali approfondimenti si rimanda all'#link("https://notipswe.github.io/docs/11-candidatura/esterno/analisi_capitolati.pdf", [analisi dei capitolati]) redatta dal gruppo.
 
   #v(0.8cm)
 
