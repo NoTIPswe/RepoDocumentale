@@ -1,5 +1,13 @@
 title: Glossario
 changelog:
+  - version: 2
+    date: "2025-10-31"
+    authors:
+      - Francesco Marcon
+    verifiers: 
+      - Matteo Mantoan
+    description: >
+        Aggiunta nuovi termini e cambiamenti minori
   - version: 1
     date: "2025-10-30"
     authors:
