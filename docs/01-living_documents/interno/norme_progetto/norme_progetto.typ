@@ -67,7 +67,7 @@
   === Tecnologie adoperate
   Per la stesura della documentazione il team NoTIP utilizza prevalentemente due tecnologie:
   - GitHub - specialmente il meccanismo di pull request per la verifica e l'approvazione dei documenti;
-  - Typst - un linguaggio di typesetting moderno, alternativa particolarmente valida a LaTeX. Ha una sintassi di scripting che richiama quella dei linguaggi di programmazione ed è particolarmente integrabile con automazioni richieste dall'approcio docs-as-code adottato.
+  - Typst - un linguaggio di typesetting moderno, alternativa particolarmente valida a LaTeX. Ha una sintassi di scripting che richiama quella dei linguaggi di programmazione ed è particolarmente integrabile con automazioni richieste dall'approccio docs-as-code adottato.
 
   === Attività
   Riguardo le attività, quelle che delineeranno ogni singolo processo sono:
@@ -76,7 +76,7 @@
   - *Manutenzione* - una volta che il documento è stato scritto può venire modificato e migliorato;
   - *Distribuzione* - pubblicazione dei documenti alla visione di tutti gli stakeholders.
 
-  === Struttura della repositoty
+  === Struttura della repository
   La repository documentale adotta una struttura semantica che replica il sito NoTIP, garantendo coerenza tra navigazione locale e pubblicazione.
 
   Il primo livello della repository contiene:
@@ -86,7 +86,7 @@
   - `site/` - file sorgenti del sito web statico NoTIP.
 
   La struttura della directory `docs` è la seguente:
-  - `00-templates/` - templates che vengono utilizzati ed importati in ogni singolo documenti che compone la documentazione. Al suo interno i template hanno struttura gerarchica. Alla base si specificano le configurazioni di base comuni a tutti i documenti, mentre altri sono maggiormente specializzati in base al caso d'uso (per documenti, verbali, diari di bordo, ...);
+  - `00-templates/` - templates che vengono utilizzati ed importati in ogni singolo documento che compone la documentazione. Al suo interno i template hanno struttura gerarchica. Alla base si specificano le configurazioni di base comuni a tutti i documenti, mentre altri sono maggiormente specializzati in base al caso d'uso (per documenti, verbali, diari di bordo, ...);
   - `01-living_documents/` - documenti destinati ad evolvere nel corso del tempo, con fine del ciclo di vita paragonabile a quella del progetto stesso;
   - `xx-{milestone_n}`, dove `xx` $>= 11$ - contenente tutti i documenti riguardanti la specifica milestone. Al suo interno la struttura presenta:
 

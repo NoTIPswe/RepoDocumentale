@@ -33,7 +33,7 @@
 
   == Recap delle varie Task assegnate ai componenti del gruppo
   Il gruppo ha deciso di affidarsi per la gestione del progetto a GitHub Projects, data la familiarità confermata dai vari componenti del gruppo.
-  Per finalizzare la decisione è stata indotta una sessione di cowork per la realizzare il sistema di gesione del progetto in data Lunedì 27 Ottobre alle ore 15:00.
+  Per finalizzare la decisione è stata indotta una sessione di cowork per la realizzare il sistema di gestione del progetto in data Lunedì 27 Ottobre alle ore 15:00.
 ][
 
   = Note aggiuntive
