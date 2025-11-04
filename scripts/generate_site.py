@@ -22,7 +22,8 @@ def setup_logging():
 
 def copy_static_assets(source_dir, dest_dir):
     """Copies all files from the source site directory to the destination."""
-    logging.info(f"Copying static assets from '{source_dir}' to '{dest_dir}'...")
+    logging.info(
+        f"Copying static assets from '{source_dir}' to '{dest_dir}'...")
     if not os.path.isdir(source_dir):
         logging.critical(f"Source site directory '{source_dir}' not found.")
         sys.exit(1)
@@ -69,58 +70,44 @@ def _subgroup_sort_key(subgroup_name: str) -> int:
     return order.get(subgroup_name, 99)  # Fallback
 
 
-def html_table_rows_from_docmodel(
-    document_model: List[docs_lib.Document], docs_folder: str
-) -> str:
-    """Generates HTML table rows for documents contained in document_model."""
-    grouped_docs = defaultdict(lambda: defaultdict(list))
+def html_table_rows_from_docmodel(document_model: List[docs_lib.Document], docs_folder: str):
+    grouped_docs = defaultdict(list)
+
     for doc in document_model:
         try:
-            group_dir_name = Path(doc.source).parts[1]
-            grouped_docs[group_dir_name][doc.subgroup].append(doc)
-        except IndexError:
-            logging.warning(f"Could not parse group from doc source: {doc.source}")
+            subgroup = doc.subgroup.lower()
+            grouped_docs[subgroup].append(doc)
+        except AttributeError:
+            logging.warning(f"Doc senza subgroup: {doc.source}")
 
-    if not grouped_docs:
-        return "<p>No documents found.</p>"
-
-    html_lines = []
-
-    sorted_groups = sorted(grouped_docs.keys(), key=_group_sort_key)
-
-    for group_name in sorted_groups:
-        subgroups = grouped_docs[group_name]
-        sorted_subgroups = sorted(subgroups.keys(), key=_subgroup_sort_key)
-        for subgroup_name in sorted_subgroups:
-            docs_list = subgroups[subgroup_name]
-            for doc in sorted(
-                docs_list, key=lambda d: d.last_modified_date, reverse=True
-            ):
-                link_path = posixpath.join(docs_folder, doc.output)
-                title = doc.metadata.get("title", "Untitled")
-                version = doc.latest_version
-                doc_type = subgroup_name.capitalize()
-                doc_date = doc.last_modified_date
-
-                # 2° Version
-                row_html = f"""
-                <tr>
-                    <td>{title}</td>
-                    <td>v{version}</td>
-                    <td>{doc_type}</td>
-                    <td>{doc_date}
-                    <td id="download-td">
+    html_blocks = {}
+    for subgroup in ["esterno", "interno", "slides"]:
+        docs_list = grouped_docs.get(subgroup, [])
+        rows = []
+        for doc in sorted(docs_list, key=lambda d: d.last_modified_date, reverse=True):
+            link_path = posixpath.join(docs_folder, doc.output)
+            title = doc.metadata.get("title", "Untitled")
+            version = doc.latest_version
+            doc_date = doc.last_modified_date
+            row_html = f"""
+            <tr>
+                <td>{title}</td>
+                <td>v{version}</td>
+                <td>{doc_date}</td>
+                <td id="download-td">
                     <a href="{link_path}" target="_blank" rel="noopener noreferrer" class="preview-link">
-                    <span class="icon" data-icon="visibility"></span><span>Preview</span>
+                        <span class="icon" data-icon="visibility"></span><span>Preview</span>
                     </a>
-                        <a href="{link_path}" class="btn-download" download>
-                            <span class="icon" data-icon="download"></span>Download
-                        </a>
-                    </td>
-                </tr>
-                """
-                html_lines.append(row_html)
-    return "\n".join(html_lines)
+                    <a href="{link_path}" class="btn-download" download>
+                        <span class="icon" data-icon="download"></span>Download
+                    </a>
+                </td>
+            </tr>
+            """
+            rows.append(row_html)
+        html_blocks[subgroup.upper()] = "\n".join(rows)
+
+    return html_blocks
 
 
 def generate_group_cards(template_path, output_path, docs_folder="docs"):
@@ -168,9 +155,10 @@ def populate_template(template_path, output_path, html_blocks):
 
     # Replace each marker like <!--PB_LIST_MARKER-->
     for marker, html_snippet in html_blocks.items():
-        placeholder = f"<!--{marker}_LIST_MARKER-->"
+        placeholder = f"<!--{marker}-->"
         if placeholder in template_content:
-            template_content = template_content.replace(placeholder, html_snippet)
+            template_content = template_content.replace(
+                placeholder, html_snippet)
             logging.info(f"Injected HTML for marker: {marker}")
         else:
             logging.warning(f"Marker '{placeholder}' not found in template.")
@@ -229,9 +217,15 @@ def main():
         filtered_docs = [
             d for d in document_model if group_name.lower() in d.source.lower()
         ]
-        html_rows = html_table_rows_from_docmodel(filtered_docs, args.docs_folder)
+        html_rows_blocks = html_table_rows_from_docmodel(
+            filtered_docs, args.docs_folder)
         output_file = os.path.join(args.outdir, f"{group_name.lower()}.html")
-        html_blocks = {"GROUP": display_name, "DOCUMENTS": html_rows}
+        html_blocks = {
+            "GROUP": display_name,
+            "DOCUMENTS_LIST_ESTERNI": html_rows_blocks.get("ESTERNO", ""),
+            "DOCUMENTS_LIST_INTERNI": html_rows_blocks.get("INTERNO", ""),
+            "DOCUMENTS_LIST_SLIDES": html_rows_blocks.get("SLIDES", "")
+        }
         populate_template(template_file, output_file, html_blocks)
         logging.info(f"{display_name}.html generated in path: {output_file}")
 
