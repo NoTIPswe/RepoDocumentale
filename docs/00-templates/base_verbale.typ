@@ -13,7 +13,7 @@
 
   #{
     if discussion != "" [
-      *Discussione:*  \
+      *Dibattito:*  \
       #discussion  \
     ]
 
@@ -54,7 +54,7 @@
     = Info e ordine del giorno
     #odg
 
-    = Dibattito
+    = Discussione
     #discussion
 
     #other
