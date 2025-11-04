@@ -1,6 +1,15 @@
 title: Norme di Progetto
 changelog:
-  - version: 1
+  - version: 1.1
+    date: "2025-11-04"
+    authors:
+      - Leonardo Preo
+    verifiers:
+      -
+    description: >
+        Modifica ciclo di vita del documento - nuova tecnica di versionamento.
+        Inserimento spiegazione commit nei branch di sviluppo e aggiornamento processo di verifica.
+  - version: 1.0
     date: "2025-10-31"
     authors:
       - Leonardo Preo

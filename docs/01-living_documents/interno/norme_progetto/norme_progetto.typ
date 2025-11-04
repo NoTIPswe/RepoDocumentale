@@ -112,9 +112,17 @@
 
   #ref(<ciclo_vita_docs>) mostra graficamente il ciclo di vita dei documenti.
 
-  I documenti sono versionati tramite numeri di versione incrementali (non versionamento semantico). Ogni versione deve essere _verificata_ prima di essere pubblicata. Un documento avanza di versione solo quando il suo contenuto viene modificato. Ogni pubblicazione fa avanzare un documento al più di una sola versione.
+  Il processo di verifica e pubblicazione dei documenti avviene tramite *pull request (PR)*, che rappresentano il meccanismo formale di revisione e approvazione.  
+  Ogni documento è sviluppato all’interno di un branch dedicato e segue un sistema di versionamento **semantico semplificato (SemVer)** nel formato `x.y`.
 
-  Un documento pubblicato sul sito web NoTIP è quindi sempre da considerarsi verificato.
+  - **x (major)** indica la versione verificata e pubblicata. Ogni merge su `main` corrisponde a un avanzamento della major version.  
+  - **y (minor)** indica la versione di sviluppo nel branch `doc-{nome_doc}`. Ogni minor rappresenta un insieme coerente di modifiche apportate dagli autori.
+
+  Come regola generale (*rule of thumb*), una minor deve contenere un numero congruo di modifiche, tali da poter essere riassunte in modo chiaro nel changelog.  
+  Il documento nasce con **versione 0.1**, e non vengono utilizzate *patch versions*: ogni commit di modifica nel branch fa avanzare la minor version (es. 0.1 → 0.2 → 0.3).  
+  Ogni minor è rappresentata da un **singolo commit**.
+
+  Un documento è considerato *verificato e pubblicato* solo dopo il merge su `main`, corrispondente al passaggio di major version (es. 0.3 → 1.0).
 
   === Verifica dei documenti
   La verifica dei documenti avviene tramite pull request ed è svolta da un *Verificatore* diverso dall’autore, in modo da garantire indipendenza di giudizio e tracciabilità dell’esito.
@@ -137,7 +145,12 @@
   - Coerenza dei metadati;
   - Assenza di file inutili (es. build).
 
-  Solo dopo esito positivo della verifica il Verificatore modifica il changelog del documento attraverso un commit e approva la PR, consentendo il merge su main. In caso contrario registra le non conformità direttamente nella PR e il documento rimane in stato non verificato, notificando l'autore delle eventuali *correzioni* da apportare.
+  Se la verifica ha esito positivo:
+  - il verificatore **aggiorna esclusivamente il changelog**, inserendo una nuova riga con il proprio nome e ruolo *verificatore*;
+  - il verificatore inserisce nella nuova riga la versione aggiornata, passando da `x.y` a `x+1.0`;
+  - approva la PR e ne consente il merge su `main`.
+
+  In caso di esito negativo, il verificatore segnala le modifiche richieste direttamente nella PR, che rimane aperta fino all’adeguamento da parte degli autori.
 
   === Strategia di branching
 
@@ -158,11 +171,13 @@
   )
 
   === Strategia di commit
-  Per garantire tracciabilità e revisioni puntuali, ogni commit deve riguardare *un solo documento* e il messaggio deve seguire la convenzione:
+  Ogni commit deve riguardare *un solo documento* e rappresentare una singola minor version coerente.  
+  Il messaggio del commit segue la convenzione:
   #align(center)[`doc-{nome_doc}-v{versione_attuale_doc}`]
-  così da legare in modo univoco modifica e versione. Un documento è considerato validato e pubblicato solo quando è presente nel branch main, cioè quando ha superato la verifica tramite pull request ed è stato reso disponibile sul sito.
+  così da legare in modo univoco modifica e versione.
 
-  Le versioni presenti unicamente su `branch doc-{…}` restano invece in stato di *bozza/non validato*.
+  Le modifiche all’interno di un branch `doc-{…}` sono considerate **non verificate** fino al merge su `main`.  
+  Il commit del verificatore, che promuove la versione a *major*, conclude la PR e marca il documento come *verificato e pubblicato*.
 
   === Nomenclatura dei documenti
   Il nome del documento (diverso dal titolo!) è il nome della cartella di documento, del principale file Typst e del file contentente i metadati ad esso associati.
