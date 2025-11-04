@@ -4,7 +4,7 @@ import logging
 import shutil
 import argparse
 import posixpath
-from pathlib import Path, PurePosixPath
+from pathlib import Path
 from collections import defaultdict
 from typing import List
 import docs_lib
@@ -22,8 +22,7 @@ def setup_logging():
 
 def copy_static_assets(source_dir, dest_dir):
     """Copies all files from the source site directory to the destination."""
-    logging.info(
-        f"Copying static assets from '{source_dir}' to '{dest_dir}'...")
+    logging.info(f"Copying static assets from '{source_dir}' to '{dest_dir}'...")
     if not os.path.isdir(source_dir):
         logging.critical(f"Source site directory '{source_dir}' not found.")
         sys.exit(1)
@@ -42,8 +41,7 @@ def copy_static_assets(source_dir, dest_dir):
             shutil.copy2(source_item, dest_item)
 
 
-''' unused
-def _format_group_name(group_dir_name: str) -> str:
+def format_group_name(group_dir_name: str) -> str:
     """Formats 'XX-name_with_underscores' -> 'Name With Underscores'"""
     try:
         name_part = group_dir_name.split("-", 1)[1]
@@ -52,7 +50,6 @@ def _format_group_name(group_dir_name: str) -> str:
     except Exception:
         logging.warning(f"Could not format group name: {group_dir_name}")
         return group_dir_name
-'''
 
 
 def _group_sort_key(group_dir_name: str):
@@ -82,8 +79,7 @@ def html_table_rows_from_docmodel(
             group_dir_name = Path(doc.source).parts[1]
             grouped_docs[group_dir_name][doc.subgroup].append(doc)
         except IndexError:
-            logging.warning(
-                f"Could not parse group from doc source: {doc.source}")
+            logging.warning(f"Could not parse group from doc source: {doc.source}")
 
     if not grouped_docs:
         return "<p>No documents found.</p>"
@@ -97,7 +93,9 @@ def html_table_rows_from_docmodel(
         sorted_subgroups = sorted(subgroups.keys(), key=_subgroup_sort_key)
         for subgroup_name in sorted_subgroups:
             docs_list = subgroups[subgroup_name]
-            for doc in sorted(docs_list, key=lambda d: d.last_modified_date, reverse=True):
+            for doc in sorted(
+                docs_list, key=lambda d: d.last_modified_date, reverse=True
+            ):
                 link_path = posixpath.join(docs_folder, doc.output)
                 title = doc.metadata.get("title", "Untitled")
                 version = doc.latest_version
@@ -125,15 +123,6 @@ def html_table_rows_from_docmodel(
     return "\n".join(html_lines)
 
 
-def format_group_name(group_name: str) -> str:
-    """In case we have acronymns we have to put here the complete name"""
-    mapping = {
-        "rtb": "Requirements and Technology Baseline (RTB)",
-        "pb": "Product Baseline (PB)"
-    }
-    return mapping.get(group_name.lower(), group_name.capitalize())
-
-
 def generate_group_cards(template_path, output_path, docs_folder="docs"):
     """
     This function generates the category cards from folder names inside `docs`,
@@ -150,22 +139,21 @@ def generate_group_cards(template_path, output_path, docs_folder="docs"):
 
     html_snippet = ""
     for single_folder in groups_folders:
-        group_name = single_folder.split("-", 1)[1].replace("_", " ")
-        display_name = format_group_name(group_name)
-        href_name = group_name.lower().replace(
-            " ", "_") + ".html"
+        display_name = format_group_name(single_folder)
+        href_name = display_name.lower().replace(" ", "_") + ".html"
         num_docs = len(list((docs_path / single_folder).rglob("*.pdf")))
         folder_path = docs_path / single_folder
         documents_word = "Documenti" if num_docs != 1 else "Documento"
-        html_snippet += f'''
+        html_snippet += f"""
         <a class="group-card" href="{href_name}">
             <h3>{display_name}</h3>
             <p class="doc-count">{num_docs} {documents_word}</p>
         </a>
-        '''
+        """
     template_content = Path(template_path).read_text(encoding="utf-8")
     populated_content = template_content.replace(
-        "<!--GROUPS_LIST_MARKER-->", html_snippet)
+        "<!--GROUPS_LIST_MARKER-->", html_snippet
+    )
     Path(output_path).write_text(populated_content, encoding="utf-8")
 
 
@@ -182,8 +170,7 @@ def populate_template(template_path, output_path, html_blocks):
     for marker, html_snippet in html_blocks.items():
         placeholder = f"<!--{marker}_LIST_MARKER-->"
         if placeholder in template_content:
-            template_content = template_content.replace(
-                placeholder, html_snippet)
+            template_content = template_content.replace(placeholder, html_snippet)
             logging.info(f"Injected HTML for marker: {marker}")
         else:
             logging.warning(f"Marker '{placeholder}' not found in template.")
@@ -197,12 +184,15 @@ def main():
     parser = argparse.ArgumentParser(
         description="Generate the static site with document links."
     )
-    parser.add_argument("--site-dir", default="site",
-                        help="Directory dei template del sito.")
-    parser.add_argument("--outdir", default="dist",
-                        help="Directory di output del sito.")
-    parser.add_argument("--docs-folder", default="docs",
-                        help="Sottocartella dei PDF compilati.")
+    parser.add_argument(
+        "--site-dir", default="site", help="Directory dei template del sito."
+    )
+    parser.add_argument(
+        "--outdir", default="dist", help="Directory di output del sito."
+    )
+    parser.add_argument(
+        "--docs-folder", default="docs", help="Sottocartella dei PDF compilati."
+    )
     args = parser.parse_args()
     document_model = docs_lib.discover_documents("docs")
     logging.info(f"Found {len(document_model)} documents.")
@@ -221,33 +211,27 @@ def main():
     generate_group_cards(
         template_path=home_template,
         output_path=home_output,
-        docs_folder=os.path.join(args.outdir, "docs")
+        docs_folder=os.path.join(args.outdir, "docs"),
     )
 
     template_file = os.path.join(args.site_dir, "template_document.html")
 
     docs_path = Path(args.docs_folder)
 
-    # This not take anything related with 00 milestone
     group_folders = [
-        f for f in sorted(docs_path.iterdir())
+        f
+        for f in sorted(docs_path.iterdir())
         if f.is_dir() and "-" in f.name and not f.name.startswith("00-")
     ]
-    # For every
     for folder in group_folders:
         group_name = folder.name.split("-", 1)[1]
-        display_name = format_group_name(group_name)
+        display_name = format_group_name(folder.name)
         filtered_docs = [
             d for d in document_model if group_name.lower() in d.source.lower()
         ]
-        html_rows = html_table_rows_from_docmodel(
-            filtered_docs, args.docs_folder)
-        output_file = os.path.join(
-            args.outdir, f"{group_name.lower()}.html")
-        html_blocks = {
-            "GROUP": display_name,
-            "DOCUMENTS": html_rows
-        }
+        html_rows = html_table_rows_from_docmodel(filtered_docs, args.docs_folder)
+        output_file = os.path.join(args.outdir, f"{group_name.lower()}.html")
+        html_blocks = {"GROUP": display_name, "DOCUMENTS": html_rows}
         populate_template(template_file, output_file, html_blocks)
         logging.info(f"{display_name}.html generated in path: {output_file}")
 
