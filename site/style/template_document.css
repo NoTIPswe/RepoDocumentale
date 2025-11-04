@@ -35,19 +35,19 @@ body {
   }
   .doc-table th:nth-child(1),
   .doc-table td:nth-child(1) {
-    width: 40%; /* Titolo */
+    width: 40%;
   }
   .doc-table th:nth-child(2),
   .doc-table td:nth-child(2) {
-    width: 15%; /* Versione */
+    width: 15%;
   }
   .doc-table th:nth-child(3),
   .doc-table td:nth-child(3) {
-    width: 20%; /* Ultima Modifica */
+    width: 20%;
   }
   .doc-table th:nth-child(4),
   .doc-table td:nth-child(4) {
-    width: 100%; /* Azioni download/preview */
+    width: 100%;
   }
   .btn-download {
     background-color: var(--secondary-dark);
