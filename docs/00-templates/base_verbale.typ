@@ -3,6 +3,34 @@
 #let INTERNAL_SCOPE = base-document.INTERNAL_SCOPE
 #let EXTERNAL_SCOPE = base-document.EXTERNAL_SCOPE
 
+#let report-point(
+  discussion_point: "",
+  discussion: "",
+  decisions: "",
+  actions: (),
+) = [
+  == #discussion_point
+
+  #{
+    if discussion != "" [
+      *Discussione:*  \
+      #discussion  \
+    ]
+
+    if decisions != "" [
+      *Decisioni:*  \
+      #decisions  \
+    ]
+
+    if actions.len() > 0 [
+      *Azioni da intraprendere:*  \
+      #list(
+        ..actions.map(a => link(a.url, a.desc))
+      )
+    ]
+  }
+]
+
 #let apply-base-verbale(
   date: "",
   scope: "",
@@ -26,7 +54,7 @@
     = Info e ordine del giorno
     #odg
 
-    = Discussione
+    = Dibattito
     #discussion
 
     #other
