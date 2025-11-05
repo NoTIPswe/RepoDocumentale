@@ -1,0 +1,43 @@
+title: Lettera di presentazione
+
+changelog:
+
+  - version: "1.0"
+    date: "2025-11-05"
+    verifiers:
+      - Matteo Mantoan
+  - version: "0.5"
+    date: "2025-11-05"
+    authors:
+      - Valerio Solito
+      - Alessandro Contarini
+    description: >
+      Inserimento link ai documenti.
+  - version: "0.4"
+    date: "2025-11-05"
+    authors:
+      - Valerio Solito
+      - Alessandro Contarini
+    description: >
+      Redazione contenuto della lettera di presentazione - Documentazione attività svolte dal team
+  - version: "0.3"
+    date: "2025-11-05"
+    authors:
+      - Valerio Solito
+      - Alessandro Contarini
+    description: >
+      Redazione contenuto della lettera di presentazione - Incontro conoscitivo
+  - version: "0.2"
+    date: "2025-11-05"
+    authors:
+      - Valerio Solito
+      - Alessandro Contarini
+    description: >
+      Redazione contenuto della lettera di presentazione - Candidatura capitolato e impegno dichiarato
+  - version: "0.1"
+    date: "2025-11-05"
+    authors:
+      - Valerio Solito
+      - Alessandro Contarini
+    description: >
+      Creazione del documento - Lettera di presentazione
