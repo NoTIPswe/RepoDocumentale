@@ -46,7 +46,7 @@
   Come specificato nel documento di #link("https://notipswe.github.io/docs/11-candidatura/esterno/dichiarazione_impegni.pdf", [dichiarazione degli impegni]), il gruppo ha stimato un costo totale per la realizzazione del progetto di *Euro 12.940* e
   ha fissato come termine ultimo di consegna il *21 marzo 2026*.
 
-  Viene evidenziato inoltre lo svolgersi dell'*incontro conoscitivo* svoltosi il 24 Ottobre 2025 con l'azienda M31. Il colloquio è risultato complessivamente positivo per entrambe le parti, mettendo in luce la disponibilità della proponente nel chiarire i dubbi sollevati dal team.
+  Viene evidenziato inoltre lo svolgersi dell'*incontro conoscitivo* svoltosi il 24 ottobre 2025 con l'azienda M31. Il colloquio è risultato complessivamente positivo per entrambe le parti, mettendo in luce la disponibilità della proponente nel chiarire i dubbi sollevati dal team.
 
   Per eventuali approfondimenti riguardo ai punti di forza che hanno portato NoTIP alla scelta di questo capitolato, si rimanda all'#link("https://notipswe.github.io/docs/11-candidatura/esterno/analisi_capitolati.pdf", [analisi dei capitolati]) redatta dal gruppo e al #link("https://notipswe.github.io/docs/11-candidatura/esterno/verbest_2025-10-24.pdf", [verbale esterno]) dell'incontro conoscitivo svolto.
 
