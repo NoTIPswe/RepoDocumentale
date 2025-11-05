@@ -21,7 +21,7 @@ jobs:
           python-version: '3.13'
 
       - name: Install Python dependencies
-        run: pip install pyyaml jsonschema
+        run: pip install pyyaml jsonschema packaging
 
       - name: Checkout PR branch
         uses: actions/checkout@v4
