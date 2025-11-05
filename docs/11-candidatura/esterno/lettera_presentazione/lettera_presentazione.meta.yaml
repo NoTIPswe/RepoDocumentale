@@ -1,5 +1,16 @@
 title: Lettera di presentazione
 changelog:
+  - version: 5
+    date: "2025-11-05"
+    authors:
+      - Valerio Solito
+      - Alessandro Contarini
+    verifiers:
+      - "a"
+    description: >
+      Inserimento link ai documenti.
+      Modifica del ciclo di vita del documento - nuova tecnica di versionamento (0.5).
+
   - version: 4
     date: "2025-11-05"
     authors:
