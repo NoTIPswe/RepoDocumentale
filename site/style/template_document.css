@@ -92,6 +92,22 @@ body {
   .doc-table tr {
     border-bottom: 1px solid var(--secondary-light);
   }
+  .doc-table th:nth-child(1),
+  .doc-table td:nth-child(1) {
+    width: 40%;
+  }
+  .doc-table th:nth-child(2),
+  .doc-table td:nth-child(2) {
+    width: 15%;
+  }
+  .doc-table th:nth-child(3),
+  .doc-table td:nth-child(3) {
+    width: 20%;
+  }
+  .doc-table th:nth-child(4),
+  .doc-table td:nth-child(4) {
+    width: 100%;
+  }
   .btn-download {
     background-color: var(--secondary-light);
     color: var(--text-light);
