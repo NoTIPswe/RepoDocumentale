@@ -36,9 +36,9 @@
 
   #base-report.report-point(
     discussion_point: [Rotazione dei ruoli],
-    discussion: [ 
+    discussion: [
       Durante la revisione che il Professore ha fornito riguardo al nostro operato è emersa una mancanza per quanto riguarda le modalità e i criteri che regolano la rotazione rei ruoli. \
-      E' stato inoltre discusso come andare a dividere le ore nei vari ruoli tra le persone del gruppo, in modo da poter garantire una copertura adeguata alle esigenze che il gruppo ha comunicato.  
+      E' stato inoltre discusso come andare a dividere le ore nei vari ruoli tra le persone del gruppo, in modo da poter garantire una copertura adeguata alle esigenze che il gruppo ha comunicato.
     ],
     decisions: [
       La dichiarazione di impegni includerà una tabella riepilogativa con persone, ore e ruolo. Le ore saranno suddivise in modo equo tra i membri, seguendo quanto riportato nella issue di riferimento.
@@ -46,16 +46,16 @@
     actions: (
       (
         desc: "Rifinitura dichiarazione di impegni",
-        url: "https://github.com/NoTIPswe/NoTIPswe.github.io/issues/37"
+        url: "https://github.com/NoTIPswe/NoTIPswe.github.io/issues/37",
       ),
-    )
+    ),
   )
 
   #base-report.report-point(
     discussion_point: [Miglioramento del sistema di versionamento],
     discussion: [
       Il gruppo ha approfondito la necessità di rivedere il sistema di versionamento, introducendo nuove convenzioni rispetto a quelle finora adottate, poiché ritenute non del tutto corrette. \
-      Durante la riunione sono state discusse diverse ipotesi, con l’obiettivo di rendere il sistema di versionamento più coerente ed efficace, in linea con le indicazioni fornite dal professore. 
+      Durante la riunione sono state discusse diverse ipotesi, con l’obiettivo di rendere il sistema di versionamento più coerente ed efficace, in linea con le indicazioni fornite dal professore.
     ],
     decisions: [
       - Le pull request (PR) restano il meccanismo principale di verifica.
@@ -67,9 +67,9 @@
     actions: (
       (
         desc: "Adattamento automazioni nuovo versionamento",
-        url: "https://github.com/NoTIPswe/NoTIPswe.github.io/issues/41"
+        url: "https://github.com/NoTIPswe/NoTIPswe.github.io/issues/41",
       ),
-    )
+    ),
   )
 
   #base-report.report-point(
@@ -79,26 +79,26 @@
     ],
     decisions: [
       Abbiamo deciso di andare a dividerci in gruppi per poter lavorare parallelamente sul miglioramento dei documenti, ottimizzando i tempi d'esecuzione. \
-      Andremo ad intervenire attivamente sulla struttura ed il contenuto di: 
+      Andremo ad intervenire attivamente sulla struttura ed il contenuto di:
       - Lettera di presentazione
-      - Dichiarazione d'impegni 
-      - Verbali interni 
-      Per maggiori informazioni circa le specifiche attività visitare le issue che seguiranno: 
+      - Dichiarazione d'impegni
+      - Verbali interni
+      Per maggiori informazioni circa le specifiche attività visitare le issue che seguiranno.
     ],
     actions: (
       (
         desc: "Modifica lettera di presentazione",
-        url: "https://github.com/NoTIPswe/NoTIPswe.github.io/issues/36"
+        url: "https://github.com/NoTIPswe/NoTIPswe.github.io/issues/36",
       ),
       (
         desc: "Rifinitura dichiarazione di impegni",
-        url: "https://github.com/NoTIPswe/NoTIPswe.github.io/issues/37"
+        url: "https://github.com/NoTIPswe/NoTIPswe.github.io/issues/37",
       ),
       (
         desc: "Ristrutturazione verbali",
-        url: "https://github.com/NoTIPswe/NoTIPswe.github.io/issues/38"
+        url: "https://github.com/NoTIPswe/NoTIPswe.github.io/issues/38",
       ),
-    )
+    ),
   )
 
 ][
