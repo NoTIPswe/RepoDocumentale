@@ -1,5 +1,15 @@
 title: Lettera di presentazione
 changelog:
+  - version: 3
+    date: "2025-11-05"
+    authors:
+      - Valerio Solito
+      - Alessandro Contarini
+    verifiers:
+      - "a"
+    description: >
+      Redazione contenuto della lettera di presentazione - Incontro conoscitivo. (0.3)
+
   - version: 2
     date: "2025-11-05"
     authors:

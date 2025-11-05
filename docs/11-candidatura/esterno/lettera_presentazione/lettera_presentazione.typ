@@ -45,4 +45,6 @@
   stimato un costo totale per la realizzazione del progetto di *Euro 12.940* e
   ha fissato come termine ultimo di consegna il *21 marzo 2026*.
 
+  Viene evidenziato inoltre lo svolgersi dell'*incontro conoscitivo* svoltosi il 24 Ottobre 2025 con l'azienda M31. Il colloquio è risultato complessivamente positivo per entrambe le parti, mettendo in luce la disponibilità della proponente nel chiarire i dubbi sollevati dal team.
+
 ]
