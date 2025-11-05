@@ -1,6 +1,9 @@
 title: Dichiarazione degli impegni
 changelog:
-
+  - version: "1.0"
+    date: "2025-11-05"
+    verifiers:
+      - Alessandro Mazzariol
   - version: "0.5"
     date: "2025-11-05"
     authors:
