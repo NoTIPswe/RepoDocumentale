@@ -1,5 +1,15 @@
 title: Lettera di presentazione
 changelog:
+  - version: 4
+    date: "2025-11-05"
+    authors:
+      - Valerio Solito
+      - Alessandro Contarini
+    verifiers:
+      - "a"
+    description: >
+      Redazione contenuto della lettera di presentazione - Documentazione attività svolte dal team. (0.4)
+
   - version: 3
     date: "2025-11-05"
     authors:

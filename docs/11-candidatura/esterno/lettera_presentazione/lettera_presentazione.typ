@@ -47,4 +47,8 @@
 
   Viene evidenziato inoltre lo svolgersi dell'*incontro conoscitivo* svoltosi il 24 Ottobre 2025 con l'azienda M31. Il colloquio è risultato complessivamente positivo per entrambe le parti, mettendo in luce la disponibilità della proponente nel chiarire i dubbi sollevati dal team.
 
+  Per eventuali approfondimenti riguardo ai punti di forza che hanno portato NoTIP alla scelta di questo capitolato, si rimanda all'analisi dei capitolati redatta dal gruppo e al verbale esterno dell'incontro conoscitivo svolto.
+
+  Qualora si desiderasse consultare ulteriore documentazione relativa alle attività svolte dal team, si invita a visionare la repo documentale e il sito web ad essa associato.
+
 ]
