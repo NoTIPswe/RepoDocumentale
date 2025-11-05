@@ -96,6 +96,44 @@
     
     #v(1.8em)
 
+    = Ruoli
+    == Responsabile
+    La maggior parte delle ore pianificate per il Responsabile sarà concentrata nella fase iniziale del progetto, durante la quale egli avrà il compito di *coordinare le attività* introduttive del team. \
+    Con l’avanzare del progetto, pur mantenendo la sua importanza, il Responsabile dedicherà progressivamente meno ore, focalizzandosi principalmente sul controllo dell’efficacia del prodotto rispetto agli obiettivi stabiliti e sulla gestione della comunicazione tra il team e gli stakeholder.
 
+    == Amministratore
+
+    L'Amministratore dovrà assicurare l’efficienza e la corretta
+    configurazione delle procedure, degli strumenti e delle tecnologie a supporto del *Way of Working* del team. \
+    Per questo, tale figura sarà attiva all’inizio del progetto principalmente per impostare ed ottimizzare il Way of Working. Successivamente, sposterà la sua attenzione verso la manutenzione ed il controllo dell’efficienza dello
+    sviluppo del prodotto.
+
+    == Analista
+    Il ruolo dell’Analista è di fondamentale importanza nella fase iniziale del
+    progetto, durante la quale egli è responsabile dell’*analisi dei requisiti* e della  definizione delle *specifiche del sistema*. \
+    Il suo lavoro è essenziale per il corretto svolgimento del progetto poiché, traducendo le esigenze e le aspettative dell’azienda proponente in requisiti ben definiti, consente a progettisti e programmatori di proseguire in modo efficace con il loro lavoro. \
+    Nelle fasi successive, l’impegno dell’Analista tende a ridursi, mantenendo la
+    disponibilità per eventuali aggiornamenti derivanti da nuovi confronti con la
+    proponente.
+
+
+    == Progettista
+    Il ruolo del Progettista diventa centrale nella fase successiva all’analisi
+    dei requisiti, durante la quale è responsabile della definizione dell’*architettura del sistema* e delle scelte progettuali che guideranno la fase di sviluppo del prodotto. \
+    Con il progredire del progetto, l’impegno del Progettista tende a ridursi,
+    focalizzandosi specialmente sul ruolo di supporto ai programmatori per chiarimenti o modifiche architetturali che dovessero emergere durante l’implementazione.
+
+    == Programmatore
+    Il Programmatore è responsabile dello *sviluppo del software* e collabora strettamente con il Progettista per garantire che le implementazioni realizzate rispecchino le scelte architetturali definite.\
+    A questa figura è stato assegnato un numero significativo di ore, al fine di consentire una corretta realizzazione delle soluzioni progettuali, oltre a favorire un adeguato apprendimento e consolidamento delle tecnologie adottate nel progetto.
+
+    == Verificatore
+    Il Verificatore ha il compito di garantire che il progetto, nella sua
+    interezza, sia realizzato in modo *efficace ed efficiente*. Per questo motivo è una figura presente per tutta la durata del progetto, con un impegno più intenso nelle fasi di sviluppo e test. \
+    Egli è responsabile del controllo di qualità dei prodotti intermedi e finali del progetto, svolgendo attività di verifica mirate ad assicurare la corretta esecuzione delle attività e un risultato soddisfacente per il cliente.
+
+    = Costo e Consegna
+    Come già evidenziato dalla @tab:costi il costo previsto per la realizzazione del progetto è di *12.940 Euro.* \
+    Viene dunque fissata come data di consegna del progetto il giorno *21 Marzo 2026. *
 
 ]
