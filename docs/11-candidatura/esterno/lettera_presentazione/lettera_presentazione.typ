@@ -58,7 +58,7 @@
   cordiali saluti.
 
   #v(0.5cm)
-  Padova, 31 ottobre 2025, \
+  Padova, 5 novembre 2025, \
 
   *Team NoTIP*
 
