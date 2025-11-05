@@ -1,5 +1,13 @@
 title: Verbale Interno 2025-10-17
 changelog:
+  - version: 2
+    date: "2025-11-05"
+    authors:
+      - Francesco Marcon
+    verifiers: 
+      - "Matteo Mantoan"
+    description: >
+      Aggiustamenti di forma e struttura (1.1)
   - version: 1
     date: "2025-10-25"
     authors:
@@ -7,4 +15,4 @@ changelog:
     verifiers: 
       - "Mario de Pasquale"
     description: >
-      Prima versione del Verbale Interno 17/10
+      Prima versione del Verbale Interno 17/10 (0.1)

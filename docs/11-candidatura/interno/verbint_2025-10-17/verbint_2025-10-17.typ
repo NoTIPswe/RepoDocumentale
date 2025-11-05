@@ -31,61 +31,64 @@
     [Rendicontazione delle ore di lavoro],
   )\
 ][
-  == Discussione sul versionamento e pubblicazione verbali
-  Il primo punto affrontato ha riguardato la definizione delle modalità di versionamento e pubblicazione dei verbali, al fine di garantire un processo ordinato e tracciabile per la gestione della documentazione ufficiale del gruppo.\
-  È stato concordato che:
-  Ogni commit dovrà essere *atomico*, cioè riguardare un solo documento per volta, evitando modifiche simultanee a file diversi.\
 
-  L’editor incaricato della redazione del verbale dovrà seguire rigorosamente il template ufficiale del gruppo, impostando la versione del documento. \
-  E' stato proposto, provvisoriamente, l'utilizzo del versionamento in modo *sequenziale* (v1, v2, ...).\
-
-  La pubblicazione di un documento dovrà avvenire mediante *pull request* (PR) verso il branch principale (main), utilizzando il proprio account personale GitHub.\
-
-  Ogni PR dovrà essere *revisionata* e approvata prima del merge.\
-
-
-  Le PR dovranno essere redatte con il seguente formato:
-  #block(
-    width: 100%,
-    inset: 0.6em,
-    stroke: 0.5pt + gray,
-    fill: luma(240),
-    radius: 4pt,
-  )[
-    `[autore]`
-    #linebreak()
-    `edits: [descrizione sintetica delle modifiche o changelog del documento]`
-  ]
-  L’amministratore (in qualità di verificatore) avrà il compito di controllare la correttezza formale e contenutistica del verbale.\
-  Nel caso in cui il documento non risultasse conforme, l’amministratore potrà:
-  #list(
-    [segnalare i problemi tramite commento sulla PR],
-    [modificare direttamente la PR per correggere piccoli errori (previa verifica dei permessi)],
+  #base-report.report-point(
+    discussion_point: [Discussione sul versionamento e pubblicazione verbali],
+    discussion: [
+      Definizione delle modalità di *versionamento* e *pubblicazione* dei verbali interni del gruppo, per garantire tracciabilità e uniformità della documentazione.
+    ],
+    decisions: [
+      È stato concordato che ogni commit dovrà essere atomico, riguardando un solo documento per volta, al fine di evitare modifiche parallele su file diversi. \
+      L’editor incaricato della redazione dovrà attenersi al template ufficiale del gruppo e impostare correttamente la versione del documento secondo una numerazione sequenziale (v1, v2, …). \
+      La pubblicazione dei verbali avverrà tramite pull request (PR) verso il branch principale (main), utilizzando l’account personale GitHub di ciascun membro. \
+      Ogni PR dovrà essere *revisionata* e *approvata* prima del merge, redatta nel seguente formato:
+      #block(
+        width: 100%,
+        inset: 0.6em,
+        stroke: 0.5pt + gray,
+        fill: luma(240),
+        radius: 4pt,
+      )[
+        `[autore]`
+        #linebreak()
+        `edits: [descrizione sintetica delle modifiche o changelog del documento]`
+      ]
+      L’amministratore, in qualità di verificatore, avrà il compito di controllare la correttezza formale e contenutistica del verbale. In caso di non conformità, potrà segnalare le problematiche tramite commento sulla PR o, per errori minori, intervenire direttamente previa verifica dei permessi. \
+      Qualora sia necessaria una revisione sostanziale, l’editor dovrà presentare una nuova PR correttiva. \
+      Una volta *approvata*, la PR verrà unita al branch principale e il verbale aggiornato sarà automaticamente pubblicato sul sito ufficiale del gruppo tramite automazione.
+    ],
+    actions: ()
   )
 
-  In caso di revisione richiesta, l’editor dovrà creare una nuova PR correttiva.\
-  Una volta approvata, la PR verrà unita al branch principale e il verbale aggiornato sarà *automaticamente pubblicato* sul sito ufficiale del gruppo, tramite una automazione.
+  \
 
-  == Applicazione della metodologia Scrum e Sprint Planning
-  Il secondo punto ha riguardato la definizione pratica dell’applicazione del metodo *Scrum* nel contesto del progetto.
-  È stato stabilito che:
-  #list(
-    [La durata di ogni sprint sarà di due settimane solari, consentendo un equilibrio tra pianificazione e flessibilità],
-    [All’inizio di ogni sprint, durante la fase di planning, verrà valutata la disponibilità dei membri per determinare chi assumerà il ruolo di *Scrum Master*. \
-      Tale ruolo verrà rotato ad ogni ciclo, in modo da garantire un’equa distribuzione delle responsabilità e delle opportunità di gestione.],
+  #base-report.report-point(
+    discussion_point: [Metodologia Scrum e Sprint Planning],
+    discussion: [
+      È stata esaminata il modo in cui andare ad applicare la metodologia Scrum e la pianificazione sprint nel contesto del progetto
+    ],
+    decisions: [
+      Il gruppo ha stabilito che la durata di ciascuno sprint sarà di *due settimane solari*, al fine di bilanciare la pianificazione strategica con la necessaria flessibilità operativa. \
+      All’inizio di ogni sprint, durante la fase di planning, verrà valutata la disponibilità dei membri del gruppo per l’assegnazione del ruolo di Scrum Master. Tale ruolo sarà oggetto di rotazione ad ogni ciclo, così da garantire una distribuzione equa delle responsabilità e delle esperienze gestionali. \
+      Questa impostazione è da considerarsi *provvisoria*: la versione definitiva sarà concordata con l’azienda proponente per garantire coerenza con le metodologie adottate in ambito progettuale.
+    ],
+    actions: ()
   )
 
-  Il gruppo ha sottolineato che questa impostazione è da considerarsi provvisoria: la decisione definitiva verrà presa in accordo con l’azienda proponente, per allineare il metodo di lavoro interno a quello richiesto dal contesto progettuale.
+  \
 
-  == Rendicontazione delle ore
-  Il terzo punto ha riguardato le modalità di rendicontazione delle ore di lavoro.
-  Si è deciso che:
-  #list(
-    [In ogni verbale di riunione verranno riportati in modo esplicito l’ora di inizio e l’ora di fine dell’incontro, così da rendere immediata la tracciabilità del tempo dedicato alle attività organizzative.],
-    [Per ogni task completato, l’autore dovrà indicare nel commit il numero di ore impiegate per la realizzazione del lavoro.],
+  #base-report.report-point(
+    discussion_point: [Rendicontazione delle ore di lavoro],
+    discussion: [
+      Il gruppo ha esaminato le modalità di rendicontazione delle *ore* dedicate alle attività progettuali, con l’intento di assicurare trasparenza e tracciabilità del tempo di lavoro.
+    ],
+    decisions: [
+      È stato deciso che in ogni verbale verranno riportate in modo esplicito l’*ora di inizio* e l’*ora di fine* della riunione, al fine di rendere immediatamente verificabile il tempo dedicato alle attività organizzative. \
+      Per ogni task completato, l’autore dovrà indicare nel commit il numero di ore impiegate per la realizzazione del lavoro. \
+      Tale modalità permetterà al gruppo di mantenere una rendicontazione accurata e verificabile, favorendo un monitoraggio continuo dell’impegno di ciascun membro e una più efficace pianificazione delle attività future.
+    ],
+    actions: ()
   )
-
-  Questa scelta ci auguriamo che consentirà al gruppo di mantenere una rendicontazione precisa e verificabile del tempo dedicato da ciascun membro, favorendo la trasparenza e una migliore pianificazione.
 ][
   = Esiti e decisioni finali
   La riunione si è conclusa dopo aver affrontato tutti i punti all’ordine del giorno.\
