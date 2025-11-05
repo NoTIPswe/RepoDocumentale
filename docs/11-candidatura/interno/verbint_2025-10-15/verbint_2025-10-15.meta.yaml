@@ -1,5 +1,13 @@
 title: Verbale Interno 2025-10-15
 changelog:
+  - version: 2
+    date: "2025-11-05"
+    authors:
+      - Francesco Marcon
+    verifiers: 
+      - "Matteo Mantoan"
+    description: >
+      Piccoli cambiamenti di struttura e forma
   - version: 1
     date: "2025-10-25"
     authors:
