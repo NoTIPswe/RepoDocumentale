@@ -1,5 +1,17 @@
 title: Verbale Interno 2025-10-17
 changelog:
+
+  - version: "2.0"
+    date: "2025-11-05"
+    verifiers:
+      - Matteo Mantoan
+  - version: "1.1"
+    date: "2025-11-05"
+    authors:
+      - Francesco Marcon
+    description: >
+      Nuova struttura punti: discussione, decisioni, azioni
+
   - version: "1.0"
     date: "2025-10-25"
     verifiers:
