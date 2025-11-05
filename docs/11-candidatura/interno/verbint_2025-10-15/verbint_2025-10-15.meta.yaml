@@ -7,7 +7,7 @@ changelog:
     verifiers: 
       - "Matteo Mantoan"
     description: >
-      Piccoli cambiamenti di struttura e forma
+      Piccoli cambiamenti di struttura e forma (1.1)
   - version: 1
     date: "2025-10-25"
     authors:
@@ -15,4 +15,4 @@ changelog:
     verifiers: 
       - "Mario de Pasquale"
     description: >
-      Prima versione del Verbale Interno 15/10
+      Prima versione del Verbale Interno 15/10 (0.1)
