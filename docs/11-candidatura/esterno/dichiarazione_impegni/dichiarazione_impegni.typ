@@ -47,4 +47,55 @@
         ) 
         
     } <tab:costi>
+
+    #pagebreak()
+    Di seguito viene visualizzata la tabella delle suddivione delle ore per ogni componente del team:
+        
+    #figure(
+      numbering: "1",
+      caption: [Ore di ciascun componente del team per ciascun ruolo],
+      [
+        // testo più piccolo e senza sillabazione (evita "Progetti-sta" ecc.)
+        #set text(size: 9pt)
+
+        #table(
+          // prima colonna più larga; le altre uguali
+          columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+          // allinea la prima a sinistra e i numeri al centro
+          align: (left, center, center, center, center, center, center, center),
+          inset: 0.6em,
+          
+
+          table.header(
+            [], [*Responsabile*], [*Amministratore*], [*Analista*],
+            [*Progettista*], [*Programmatore*], [*Verificatore*], [*Totale*],
+          ),
+
+          [Alessandro \ Contarini], [6],  [9],  [12], [20], [24], [20], [91],
+          [Francesco \ Marcon],     [11], [8],  [11], [19], [23], [19], [91],
+          [Alessandro \ Mazzariol], [7],  [9],  [12], [20], [24], [19], [91],
+          [Leonardo \ Preo],        [8],  [9],  [11], [20], [24], [19], [91],
+          [Valerio \ Solito],       [11], [8],  [11], [19], [23], [19], [91],
+          [Matteo \ Mantoan],       [7],  [9],  [12], [20], [24], [19], [91],
+          [Mario de\ Pasquale],    [11], [8],  [11], [19], [23], [19], [91],
+        )
+      ]
+    )<tab:ruoli>
+    #v(0.2em)
+
+    Si osserva che la *rotazione dei ruoli* verrà definita durante ogni sprint planning. In questa fase, a ciascun membro del team verrà assegnato uno o più ruoli in base al numero di ore produttive che potrà dedicare allo sprint. La durata tipica di uno sprint sarà di circa due settimane.
+
+    #v(1.4em)
+    Di seguito è riportato un grafico a torta (@fig:percentuali) rappresentativo dei dati precedentemente illustrati. Tale rappresentazione risulta utile per comprendere in modo immediato la distribuzione percentuale delle ore assegnate a ciascun ruolo nella realizzazione del progetto.
+    
+    #figure(
+        numbering: "1",
+        image("./assets/ore.png", width: 75%),
+        caption: [Divisione percentuale delle ore per ruolo],
+    ) <fig:percentuali>
+    
+    #v(1.8em)
+
+
+
 ]
