@@ -1,5 +1,13 @@
 title: Dichiarazione degli impegni
 changelog:
+  - version: "0.2"
+    date: "2025-11-05"
+    authors:
+      - Valerio Solito
+      - Alessandro Contarini
+    description: >
+      Redazione del contenuto della dichiarazione degli impegni - Scelta capitolato e preventivo costi per ruolo.
+
   - version: "0.1"
     date: "2025-11-05"
     authors:
