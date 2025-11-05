@@ -1,0 +1,11 @@
+title: Lettera di presentazione
+changelog:
+  - version: 1
+    date: "2025-11-05"
+    authors:
+      - Valerio Solito
+      - Alessandro Contarini
+    verifiers:
+      - "a"
+    description: >
+      Creazione del documento - Lettera di presentazione. (0.1)
