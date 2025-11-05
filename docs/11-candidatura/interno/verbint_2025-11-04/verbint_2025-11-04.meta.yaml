@@ -1,5 +1,13 @@
 title: Verbale Interno 2025-11-04
 changelog:
+  - version: 2
+    date: "2025-11-05"
+    authors:
+      - Francesco Marcon
+    verifiers: 
+      - "a"
+    description: >
+      Modifiche minori di forma.
   - version: 1
     date: "2025-11-04"
     authors:
@@ -7,4 +15,4 @@ changelog:
     verifiers: 
       - "a"
     description: >
-      Prima versione del Verbale Interno 04/11
+      Prima versione del Verbale Interno 04/11.

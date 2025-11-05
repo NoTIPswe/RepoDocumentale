@@ -38,7 +38,7 @@
     discussion_point: [Rotazione dei ruoli],
     discussion: [ 
       Durante la revisione che il Professore ha fornito riguardo al nostro operato è emersa una mancanza per quanto riguarda le modalità e i criteri che regolano la rotazione rei ruoli. \
-      E' stato inoltre discusso come andare a dividere le ore nei vari ruoli tra le persone del gruppo. 
+      E' stato inoltre discusso come andare a dividere le ore nei vari ruoli tra le persone del gruppo, in modo da poter garantire una copertura adeguata alle esigenze che il gruppo ha comunicato.  
     ],
     decisions: [
       La dichiarazione di impegni includerà una tabella riepilogativa con persone, ore e ruolo. Le ore saranno suddivise in modo equo tra i membri, seguendo quanto riportato nella issue di riferimento.
@@ -54,8 +54,8 @@
   #base-report.report-point(
     discussion_point: [Miglioramento del sistema di versionamento],
     discussion: [
-      Il gruppo ha approfondito la necessità di riadattare il sistema di versionamento, introducendo convenzioni diverse da quelle finora adottate, le quali sono state valutate come non del tutto corrette. \
-      Nel corso della riunone sono state varie le ipotesi che il gruppo ha formulato, per cercare di evolvere in modo corretto e coerente, rispetto alle delucidazioni del professore, il versionamento. 
+      Il gruppo ha approfondito la necessità di rivedere il sistema di versionamento, introducendo nuove convenzioni rispetto a quelle finora adottate, poiché ritenute non del tutto corrette. \
+      Durante la riunione sono state discusse diverse ipotesi, con l’obiettivo di rendere il sistema di versionamento più coerente ed efficace, in linea con le indicazioni fornite dal professore. 
     ],
     decisions: [
       - Le pull request (PR) restano il meccanismo principale di verifica.
@@ -75,7 +75,7 @@
   #base-report.report-point(
     discussion_point: [Modifica dei documenti],
     discussion: [
-      Sono state esaminate le modifiche richieste dal docente sui documenti principali del progetto e discusso su come andare ad attuarle in modo corretto.
+      Sono state analizzate le modifiche richieste dal docente sui principali documenti del progetto e si è discusso sulle modalità più appropriate per intervenire correggendo.
     ],
     decisions: [
       Abbiamo deciso di andare a dividerci in gruppi per poter lavorare parallelamente sul miglioramento dei documenti, ottimizzando i tempi d'esecuzione. \
