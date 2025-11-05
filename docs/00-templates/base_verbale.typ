@@ -9,21 +9,24 @@
   decisions: "",
   actions: (),
 ) = [
+
+  #set list(tight: true)
+
   == #discussion_point
 
   #{
     if discussion != "" [
-      *Dibattito:*  \
-      #discussion  \
+      #heading(level: 5, outlined:false, numbering: none)[Dibattito:]
+      #discussion
     ]
 
     if decisions != "" [
-      *Decisioni:*  \
-      #decisions  \
+      #heading(level: 5, outlined:false, numbering: none)[Decisioni:]
+      #decisions 
     ]
 
     if actions.len() > 0 [
-      *Azioni da intraprendere:*  \
+      #heading(level: 5, outlined:false, numbering: none)[Azioni da intraprendere:]
       #list(
         ..actions.map(a => link(a.url, a.desc))
       )
