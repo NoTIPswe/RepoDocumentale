@@ -1,3 +1,22 @@
+#!/usr/bin/env python3
+
+"""
+Script for generating and comparing document models for CI/CD.
+
+This script can be run in two modes:
+1. 'generate': Discovers documents using 'docs_lib' and saves the
+   model as a JSON file.
+2. 'compare': Compares two JSON models (a 'base' and a 'pr') against
+   a list of changed files to enforce versioning rules.
+
+Versioning Rules (SemVer X.Y):
+- A new document's changelog must start with version "0.1".
+- If a document's content (.typ files) is modified, its version
+  in the PR MUST be greater (>) than the version in 'base'.
+- If a document's content is NOT modified, its version
+  must be identical (==) to the version in 'base'.
+"""
+
 import sys
 import logging
 import json
@@ -6,6 +25,7 @@ from dataclasses import asdict, is_dataclass
 from typing import List, Dict, Set
 import os
 from docs_lib import discover_documents
+from packaging.version import Version, InvalidVersion
 
 
 def setup_logging():
@@ -81,7 +101,28 @@ def compare_models(base_json_path: str, pr_json_path: str, changed_files_path: s
     validation_errors = []
 
     for key in added_docs:
-        logging.info(f"[+] Document Added: {pr_map[key]["metadata"]["title"]} ({key})")
+        pr_doc = pr_map[key]
+        doc_title = pr_doc.get("metadata", {}).get("title", key)
+        logging.info(f"[+] Document Added: {doc_title} ({key})")
+
+        changelog = pr_doc.get("metadata", {}).get("changelog", [])
+
+        if not changelog:
+            err = (
+                f"FAIL: New document '{doc_title}' ({key}) has an empty changelog. "
+                f"This should not happen."
+            )
+            validation_errors.append(err)
+            continue
+
+        first_entry = changelog[-1]
+        initial_version_str = first_entry.get("version")
+        if initial_version_str != "0.1":
+            err = (
+                f"FAIL: New document '{doc_title}' ({key}) must have an "
+                f"initial version of '0.1', but its first version is '{initial_version_str}'."
+            )
+            validation_errors.append(err)
 
     for key in removed_docs:
         logging.warning(
@@ -92,34 +133,43 @@ def compare_models(base_json_path: str, pr_json_path: str, changed_files_path: s
     for key in common_docs:
         base_doc = base_map[key]
         pr_doc = pr_map[key]
+        doc_title = pr_doc["metadata"]["title"]
+
+        try:
+            base_version_str = base_doc["latest_version"]
+            pr_version_str = pr_doc["latest_version"]
+            base_version = Version(base_version_str)
+            pr_version = Version(pr_version_str)
+        except InvalidVersion as e:
+            err = f"FAIL: '{doc_title}' ({key}) has an invalid version format: {e}"
+            logging.error(err)
+            validation_errors.append(err)
+            continue
 
         all_doc_files = {pr_doc["source"]} | set(pr_doc["subfiles"])
-
         content_has_changed = any(f in changed_files for f in all_doc_files)
 
-        base_version = base_doc["latest_version"]
-        pr_version = pr_doc["latest_version"]
         version_has_changed = pr_version != base_version
-
-        doc_title = pr_doc["metadata"]["title"]
 
         if content_has_changed:
             logging.info(f"[*] Content changed for: {doc_title}")
             if not version_has_changed:
                 err = (
                     f"FAIL: '{doc_title}' ({key}) was modified, "
-                    f"but its version was not bumped. (Is v{base_version})"
+                    f"but its version was not bumped. (Is v{base_version_str})"
                 )
                 validation_errors.append(err)
-            elif pr_version != base_version + 1:
+
+            elif pr_version <= base_version:
                 err = (
-                    f"FAIL: '{doc_title}' ({key}) version must be incremented by "
-                    f"exactly 1. (Base: v{base_version}, PR: v{pr_version})"
+                    f"FAIL: '{doc_title}' ({key}) version must be bumped. "
+                    f"The PR version (v{pr_version_str}) is not greater "
+                    f"than the base version (v{base_version_str})."
                 )
                 validation_errors.append(err)
             else:
                 logging.info(
-                    f"    OK: Version correctly bumped: v{base_version} -> v{pr_version}"
+                    f"    OK: Version correctly bumped: v{base_version_str} -> v{pr_version_str}"
                 )
 
         else:
@@ -127,7 +177,7 @@ def compare_models(base_json_path: str, pr_json_path: str, changed_files_path: s
             if version_has_changed:
                 err = (
                     f"FAIL: '{doc_title}' ({key}) had no content changes, "
-                    f"but its version was bumped. (Base: v{base_version}, PR: v{pr_version})"
+                    f"but its version was bumped. (Base: v{base_version_str}, PR: v{pr_version_str})"
                 )
                 validation_errors.append(err)
 
@@ -143,6 +193,8 @@ def compare_models(base_json_path: str, pr_json_path: str, changed_files_path: s
 
 
 def main():
+    setup_logging()
+
     parser = argparse.ArgumentParser(description="Generate or compare document models.")
     subparsers = parser.add_subparsers(dest="command", required=True)
 

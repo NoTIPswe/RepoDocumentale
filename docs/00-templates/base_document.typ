@@ -84,16 +84,28 @@
     columns: (auto, auto, auto, auto, 1fr),
     align: (center + horizon, left + horizon, left + horizon, left + horizon, left),
 
-    table.header[Versione][Data][Autori][Verificatori][Descrizione],
+    table.header[Versione][Data][Persone][Ruolo][Descrizione],
 
     ..changelog
-      .map(c => (
-        str(c.version),
-        c.date,
-        formatNamesForChangelog(c.authors),
-        formatNamesForChangelog(c.verifiers),
-        c.description,
-      ))
+      .map(c => {
+        let version = c.version
+        let date = c.date
+        let people
+        let role
+        let description
+
+        if "authors" in c {
+          people = formatNamesForChangelog(c.authors)
+          role = if c.authors.len() == 1 { "Autore" } else { "Autori" }
+          description = c.description
+        } else if "verifiers" in c {
+          people = formatNamesForChangelog(c.verifiers)
+          role = if c.verifiers.len() == 1 { "Verificatore" } else { "Verificatori" }
+          description = [Verifica e pubblicazione]
+        }
+
+        return (version, date, people, role, description)
+      })
       .flatten(),
   )
 
@@ -148,8 +160,8 @@
   // Content
   front-matter(
     title: title,
-    version: changelog.map(v => v.version).sorted().last(),
-    last-modified-date: changelog.map(v => v.date).sorted().last(),
+    version: changelog.at(0).version,
+    last-modified-date: changelog.at(0).date,
     front-info: front-info,
     abstract: abstract,
     scope: scope,

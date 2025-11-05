@@ -8,6 +8,7 @@ from pathlib import Path
 from jsonschema import validate, ValidationError
 from dataclasses import dataclass
 from typing import List, Dict, Set, Optional
+from packaging.version import Version, InvalidVersion
 
 META_SCHEMA_PATH = ".schemas/meta.schema.json"
 GROUP_DIR_REGEX = re.compile(r"^(01-|[1-9][0-9]-)")
@@ -23,7 +24,7 @@ class Document:
     meta_path: str
     metadata: Dict
     subfiles: Set[str]
-    latest_version: int
+    latest_version: str
     last_modified_date: str
 
 
@@ -259,24 +260,30 @@ def _validate_with_schema(data: Dict, schema_path: str, file_path: str) -> bool:
         return False
 
 
-def _validate_version_sequence(versions: List[int], path: str, title: str) -> bool:
-    """Validates that a list of versions is sorted and has no gaps (business logic)."""
+def _validate_version_sequence(versions: List[str], path: str, title: str) -> bool:
+    """
+    Validates that a list of SemVer (X.Y) strings is sorted descending.
+    (Sostituisce la vecchia funzione che validava interi)
+    """
     if not versions:
         return True
-    if versions != sorted(versions, reverse=True):
+
+    parsed_versions: List[Version] = []
+    for v_str in versions:
+        try:
+            parsed_versions.append(Version(v_str))
+        except InvalidVersion:
+            logging.error(
+                f"Changelog logic error for '{title}': Version '{v_str}' in '{path}' is not a valid X.Y format."
+            )
+            return False
+
+    if parsed_versions != sorted(parsed_versions, reverse=True):
         logging.error(
-            f"Changelog logic error for '{title}': Versions in '{path}' are not sorted descending. Found: {versions}"
+            f"Changelog logic error for '{title}': Versions in '{path}' are not sorted descending."
         )
+        logging.error(f"  Found:    {[str(v) for v in parsed_versions]}")
         return False
 
-    n = len(versions)
-    expected = list(range(n, 0, -1))
-    if versions != expected:
-        logging.error(
-            f"Changelog logic error for '{title}': Versions in '{path}' have gaps or are not sequential."
-        )
-        logging.error(f"  Expected: {expected}")
-        logging.error(f"  Found:    {versions}")
-        return False
-
+    logging.debug(f"Version sequence for '{title}' is valid and sorted descending.")
     return True
