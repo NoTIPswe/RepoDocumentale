@@ -1,5 +1,12 @@
 title: Dichiarazione degli impegni
 changelog:
+
+  - version: "0.5"
+    date: "2025-11-05"
+    authors:
+      - Matteo Mantoan
+    description: >
+      Riorganizzazione documento, ritocco tabella ore ruolo-persona.
   - version: "0.4"
     date: "2025-11-05"
     authors:
@@ -7,7 +14,6 @@ changelog:
       - Alessandro Contarini
     description: >
       Definizione dei ruoli, preventivo finale e data consegna.
-
   - version: "0.3"
     date: "2025-11-05"
     authors:
@@ -15,7 +21,6 @@ changelog:
       - Alessandro Contarini
     description: >
       Distribuzione ore di ciascun componente del team per ciascun ruolo.
-  
   - version: "0.2"
     date: "2025-11-05"
     authors:
@@ -23,7 +28,6 @@ changelog:
       - Alessandro Contarini
     description: >
       Scelta capitolato e preventivo costi per ruolo.
-
   - version: "0.1"
     date: "2025-11-05"
     authors:
