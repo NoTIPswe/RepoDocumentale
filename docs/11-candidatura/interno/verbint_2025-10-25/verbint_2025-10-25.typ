@@ -29,7 +29,7 @@
   #list(
     [Decisione del Capitolato a cui candidarsi],
     [Recap delle varie Task assegnate ai componenti del gruppo],
-  )\
+  )
 ][
 
   #base-report.report-point(
@@ -69,10 +69,8 @@
   In aggiunta è stata creata una Task con completamento nei successivi giorni che riguarda la produzione della documentazione collegata all'utilizzo dei vari automatismi.
 
   = Esiti e decisioni finali
-  La riunione si è conclusa dopo aver affrontato tutti i punti all’ordine del giorno.\
-  Il gruppo ha scelto democraticamente il capitolato per cui competere\
-  La prossima riunione non è ancora stata programmata.\
-  Il prossimo Ordine del Giorno non è ancora stato deciso.\
+  La riunione si è conclusa dopo aver affrontato tutti i punti all’ordine del giorno. Il gruppo ha scelto democraticamente il capitolato per cui competere. \
+  La prossima riunione non è ancora stata programmata ed il prossimo ordine del giorno non è ancora stato deciso.\
 
   La seduta si è svolta in un clima costruttivo e di piena collaborazione.
 ]
