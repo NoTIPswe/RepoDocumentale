@@ -1,10 +1,12 @@
 title: Diario di Bordo 2025-10-27
 changelog:
-  - version: 1
+  - version: "1.0"
+    date: "2025-10-26"
+    verifiers:
+      - "Matteo Mantoan"
+  - version: "0.1"
     date: "2025-10-26"
     authors:
       - Valerio Solito
-    verifiers:
-      - Matteo Mantoan
     description: >
-      Prima versione del primo diario di bordo
+      Creazione del diario di Bordo

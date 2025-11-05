@@ -1,12 +1,14 @@
 title: Norme di Progetto
 changelog:
-  - version: 1
+  - version: "1.0"
+    date: "2025-10-31"
+    verifiers:
+      - Alessandro Mazzariol
+  - version: "0.1"
     date: "2025-10-31"
     authors:
       - Leonardo Preo
       - Matteo Mantoan
       - Francesco Marcon
-    verifiers:
-      - Alessandro Mazzariol
     description: >
         Prima versione delle Norme di Progetto

@@ -1,10 +1,12 @@
 title: Verbale Interno 2025-10-25
 changelog:
-  - version: 1
+  - version: "1.0"
+    date: "2025-10-26"
+    verifiers:
+      - Mario De Pasquale
+  - version: "0.1"
     date: "2025-10-26"
     authors:
       - Alessandro Mazzariol
-    verifiers:
-      - Mario De Pasquale
     description: >
-      Verbale Interno avvenuto in data 25 Ottobre 2025 alle ore 10:00
+      Creazione verbale interno 25 Ottobre 2025

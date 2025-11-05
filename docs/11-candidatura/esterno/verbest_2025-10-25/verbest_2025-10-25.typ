@@ -12,7 +12,7 @@
         Francesco Marcon \
         Leonardo Preo \
         Matteo Mantoan \
-        Mario de Pasquale \
+        Mario De Pasquale \
         Valerio Solito \
         Alessandro Contarini \
       ],

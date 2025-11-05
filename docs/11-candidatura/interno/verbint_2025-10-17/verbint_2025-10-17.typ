@@ -13,7 +13,7 @@
         Francesco Marcon \
         Valerio Solito \
         Leonardo Preo \
-        Mario de Pasquale \
+        Mario De Pasquale \
         Alessandro Mazzariol \
         Matteo Mantoan \
       ],

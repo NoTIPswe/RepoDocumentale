@@ -128,6 +128,12 @@ def _process_document_dir(
     """
     Given a valid document directory path, validates it and returns a Document object if valid.
     """
+    # TODO:
+    # - check date sequence: each must be >= than prev version
+    # - there must be at least a minor between two majors
+    # - must contain 0.1 as first (move logic from validate_pr script)
+    # - verifier not in authors of minor versions being verified
+
     doc_name = doc_dir_path.name
     logging.debug(f"Processing potential document: '{doc_name}'")
 
