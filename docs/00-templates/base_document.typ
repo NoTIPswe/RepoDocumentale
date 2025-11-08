@@ -76,8 +76,20 @@
 #let render-changelog(changelog) = {
   heading(level: 1, outlined: false, numbering: none)[Changelog]
 
-  let formatNamesForChangelog(names) = {
-    names.map(n => n.split(" ").join("\n")).sorted().join(",\n")
+  let formatName(name) = {
+    let parts = name.split(" ")
+
+    if parts.len() < 2 {
+      return parts
+    }
+
+    let others = parts.slice(0, -1)
+    let last = parts.last()
+    others.join(" ") + "\n" + last
+  }
+
+  let formatNames(names) = {
+    names.map(n => formatName(n)).sorted().join(",\n")
   }
 
   table(
@@ -90,8 +102,8 @@
       .map(c => (
         str(c.version),
         c.date,
-        formatNamesForChangelog(c.authors),
-        c.verifier.split(" ").join("\n"),
+        formatNames(c.authors),
+        formatName(c.verifier),
         c.description,
       ))
       .flatten(),
