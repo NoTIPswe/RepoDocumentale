@@ -14,70 +14,35 @@
             "type": "array",
             "minItems": 1,
             "items": {
-                "description": "A single entry in the changelog. Must be either a Major (X.0) or Minor (X.Y) release.",
-                "oneOf": [
-                    {
-                        "$comment": "Schema for a MAJOR release (e.g., 1.0, 2.0, 0.0)",
-                        "type": "object",
-                        "properties": {
-                            "version": {
-                                "type": "string",
-                                "description": "The major version number (must end in .0).",
-                                "pattern": "^(0|[1-9]\\d*)\\.0$"
-                            },
-                            "date": {
-                                "type": "string",
-                                "format": "date",
-                                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                                "description": "The date of the update (e.g., \"2025-10-19\")."
-                            },
-                            "verifiers": {
-                                "type": "array",
-                                "description": "The person(s) who verified and approved this major version.",
-                                "items": {
-                                    "type": "string",
-                                    "minLength": 1
-                                },
-                                "minItems": 1
-                            }
-                        },
-                        "required": ["version", "date", "verifiers"],
-                        "additionalProperties": false
+                "description": "A single entry in the changelog. Must have the following fields.",
+                "properties": {
+                    "version": {
+                        "description": "The full SemVer version number.",
+                        "type": "string",
+                        "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$"
                     },
-                    {
-                        "$comment": "Schema for a MINOR release (e.g., 1.1, 2.57, 0.1)",
-                        "type": "object",
-                        "properties": {
-                            "version": {
-                                "type": "string",
-                                "description": "The minor version number (must not end in .0).",
-                                "pattern": "^(0|[1-9]\\d*)\\.([1-9]\\d*)$"
-                            },
-                            "date": {
-                                "type": "string",
-                                "format": "date",
-                                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                                "description": "The date of the update (e.g., \"2025-10-19\")."
-                            },
-                            "authors": {
-                                "type": "array",
-                                "description": "The person(s) who contributed to this minor version.",
-                                "items": {
-                                    "type": "string",
-                                    "minLength": 1
-                                },
-                                "minItems": 1
-                            },
-                            "description": {
-                                "type": "string",
-                                "description": "A description of the changes made in this version.",
-                                "minLength": 1
-                            }
-                        },
-                        "required": ["version", "date", "authors", "description"],
-                        "additionalProperties": false
+                    "date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "authors": {
+                        "description": "The person (one or more) who contributed to this version.",
+                        "type": "array",
+                        "items": { "type": "string", "minLength": 1 },
+                        "minItems": 1
+                    },
+                    "verifiers": {
+                        "description": "The person (one or more) who verified and approved this version.",
+                        "type": "array",
+                        "items": { "type": "string", "minLength": 1 },
+                        "minItems": 1
+                    },
+                    "description": {
+                        "type": "string",
+                        "minLength": 1
                     }
-                ]
+                },
+                "required": ["version", "date", "authors", "verifiers", "description"]
             }
         }
     },

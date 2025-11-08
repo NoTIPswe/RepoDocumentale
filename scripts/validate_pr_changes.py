@@ -10,7 +10,7 @@ This script can be run in two modes:
    a list of changed files to enforce versioning rules.
 
 Versioning Rules (SemVer X.Y):
-- A new document's changelog must start with version "0.1".
+- A new document's changelog must start with version "0.0.1".
 - If a document's content (.typ files) is modified, its version
   in the PR MUST be greater (>) than the version in 'base'.
 - If a document's content is NOT modified, its version
@@ -117,10 +117,10 @@ def compare_models(base_json_path: str, pr_json_path: str, changed_files_path: s
 
         first_entry = changelog[-1]
         initial_version_str = first_entry.get("version")
-        if initial_version_str != "0.1":
+        if initial_version_str != "0.0.1":
             err = (
                 f"FAIL: New document '{doc_title}' ({key}) must have an "
-                f"initial version of '0.1', but its first version is '{initial_version_str}'."
+                f"initial version of '0.0.1', but its first version is '{initial_version_str}'."
             )
             validation_errors.append(err)
 
