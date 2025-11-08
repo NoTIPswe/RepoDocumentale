@@ -14,14 +14,14 @@ changelog:
       - Matteo Mantoan
     verifier: Leonardo Preo
     description: >
-        Prima versione stabile.
+      Prima versione stabile
   - version: "0.1.0"
     date: "2025-10-31"
     authors:
       - Francesco Marcon
     verifier: Matteo Mantoan
     description: >
-        Aggiunta nuovi termini.
+        Aggiunta nuovi termini
   - version: "0.0.1"
     date: "2025-10-30"
     authors:
@@ -29,4 +29,4 @@ changelog:
       - Matteo Mantoan
     verifier: Leonardo Preo
     description: >
-        Prima bozza, implemetazione di automatismi e primi termini.
+        Prima bozza, implemetazione di automatismi e primi termini
