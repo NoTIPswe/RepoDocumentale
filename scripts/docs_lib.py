@@ -174,7 +174,7 @@ def _process_document_dir(
     versions = [c["version"] for c in changelog]
     if not _validate_version_sequence(versions, meta_path_str, doc_name):
         return None
-    
+
     if not _validate_version_logic(changelog, meta_path_str, doc_name):
         return None
 
@@ -295,43 +295,38 @@ def _validate_version_sequence(versions: List[str], path: str, title: str) -> bo
     logging.debug(f"Version sequence for '{title}' is valid and sorted descending.")
     return True
 
-def _validate_version_logic(changelog: List[Dict], path: str, title: str) :
+
+def _validate_version_logic(changelog: List[Dict], path: str, title: str):
     """
-        Check the logic in the changelog: 
-        - a newer version must be more recent (date stand point)
-        - the author should not be in the verifier section
+    Check the logic in the changelog:
+    - a newer version must be more recent (date stand point)
+    - the author should not be in the verifier section
     """
 
     reversed_changelog = list(reversed(changelog))
     last_date = None
 
-    for i, entry  in enumerate(reversed_changelog): 
+    for i, entry in enumerate(reversed_changelog):
         authors = set(entry.get("authors", []))
         verifier: str = entry.get("verifier", "")
 
-        overlap = authors.intersection(set(verifier))
+        overlap = authors.intersection([verifier])
 
-        if overlap: 
-            logging.error(
-                f"Changelog logic error for {title} in {path}."
-            )
+        if overlap:
+            logging.error(f"Changelog logic error for {title} in {path}.")
             logging.error(
                 f" - the version: '{entry['version']}' seems to have the same author and verifier -> {list(overlap)}."
             )
             return False
 
-        try: 
-            current_date = datetime.strptime(entry['date'], "%Y-%m-%d").date()
-        except ValueError: 
-            logging.error(
-                f"Invalid date format '{entry['date']}' in '{path}'."
-            )
+        try:
+            current_date = datetime.strptime(entry["date"], "%Y-%m-%d").date()
+        except ValueError:
+            logging.error(f"Invalid date format '{entry['date']}' in '{path}'.")
             return False
-        
-        if last_date and current_date < last_date: 
-            logging.error(
-                f"Changelog logic error for {title} in {path}."
-            )
+
+        if last_date and current_date < last_date:
+            logging.error(f"Changelog logic error for {title} in {path}.")
             logging.error(
                 f" - the date: '{entry['date']}' the version '{entry['version']}' has an older date than the previous one -> '{current_date}' < '{last_date}'."
             )
@@ -339,7 +334,5 @@ def _validate_version_logic(changelog: List[Dict], path: str, title: str) :
 
         last_date = current_date
 
-    logging.debug(
-        f"Changelog logic (dates and roles) for {title} is valid."
-    )
+    logging.debug(f"Changelog logic (dates and roles) for {title} is valid.")
     return True
