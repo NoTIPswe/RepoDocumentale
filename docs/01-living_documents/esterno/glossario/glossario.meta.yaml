@@ -1,36 +1,32 @@
 title: Glossario
-
 changelog:
-  - version: "3.0"
-    date: "2025-11-08"
-    verifiers:
-      - Matteo Mantoan
-  - version: "2.1"
+  - version: "1.1.1"
     date: "2025-11-07"
     authors:
       - Francesco Marcon
+    verifier: Matteo Mantoan
     description: >
-        Cambiamento ordinamento termini glossario e tolti indici numerici
-        
-  - version: "2.0"
-    date: "2025-10-31"
-    verifiers: 
-      - Matteo Mantoan
-  - version: "1.1"
+        Cambiamento ordinamento termini e tolti indici numerici
+  - version: "1.0.0"
     date: "2025-10-31"
     authors:
       - Francesco Marcon
+      - Matteo Mantoan
+    verifier: Leonardo Preo
     description: >
-        Aggiunta nuovi termini e cambiamenti minori
-
-  - version: "1.0"
-    date: "2025-10-30"
-    verifiers: 
-      - Leonardo Preo
-  - version: "0.1"
+        Prima versione stabile.
+  - version: "0.1.0"
+    date: "2025-10-31"
+    authors:
+      - Francesco Marcon
+    verifier: Matteo Mantoan
+    description: >
+        Aggiunta nuovi termini.
+  - version: "0.0.1"
     date: "2025-10-30"
     authors:
       - Francesco Marcon
       - Matteo Mantoan
+    verifier: Leonardo Preo
     description: >
-        Prima versione del glossario, con implemetazione di automatismi e primi termini
+        Prima bozza, implemetazione di automatismi e primi termini.

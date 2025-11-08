@@ -1,23 +1,30 @@
 title: Analisi dei capitolati
 changelog:
-  - version: "2.0"
-    date: "2025-10-31"
-    verifiers:
-      - Francesco Marcon
-  - version: "1.1"
+  - version: "1.0.1"
     date: "2025-10-31"
     authors:
       - Alessandro Mazzariol
+    verifier: Francesco Marcon
     description: >
         Aggiunti link al sito nei capitolati C5 e C7
-
-  - version: "1.0"
-    date: "2025-10-27"
-    verifiers:
-      - Leonardo Preo
-  - version: "0.1"
+  - version: "1.0.0"
     date: "2025-10-27"
     authors:
       - Francesco Marcon
+    verifier: Leonardo Preo
     description: >
-      Prima versione dell'Analisi dei Capitolati
+      Versione stabile
+  - version: "0.1.0"
+    date: "2025-10-27"
+    authors:
+      - Francesco Marcon
+    verifier: Matteo Mantoan
+    description: >
+      Stesura del documento.
+  - version: "0.0.1"
+    date: "2025-10-27"
+    authors:
+      - Francesco Marcon
+    verifier: Leonardo Preo
+    description: >
+      Prima bozza Analisi dei Capitolati.

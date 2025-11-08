@@ -76,36 +76,36 @@
 #let render-changelog(changelog) = {
   heading(level: 1, outlined: false, numbering: none)[Changelog]
 
-  let formatNamesForChangelog(names) = {
-    names.map(n => n.split(" ").join("\n")).sorted().join(",\n")
+  let formatName(name) = {
+    let parts = name.split(" ")
+
+    if parts.len() < 2 {
+      return parts
+    }
+
+    let others = parts.slice(0, -1)
+    let last = parts.last()
+    others.join(" ") + "\n" + last
+  }
+
+  let formatNames(names) = {
+    names.map(n => formatName(n)).sorted().join(",\n")
   }
 
   table(
     columns: (auto, auto, auto, auto, 1fr),
     align: (center + horizon, left + horizon, left + horizon, left + horizon, left),
 
-    table.header[Versione][Data][Persone][Ruolo][Descrizione],
+    table.header[Versione][Data][Autori][Verificatore][Descrizione],
 
     ..changelog
-      .map(c => {
-        let version = c.version
-        let date = c.date
-        let people
-        let role
-        let description
-
-        if "authors" in c {
-          people = formatNamesForChangelog(c.authors)
-          role = if c.authors.len() == 1 { "Autore" } else { "Autori" }
-          description = c.description
-        } else if "verifiers" in c {
-          people = formatNamesForChangelog(c.verifiers)
-          role = if c.verifiers.len() == 1 { "Verificatore" } else { "Verificatori" }
-          description = [Verifica e pubblicazione]
-        }
-
-        return (version, date, people, role, description)
-      })
+      .map(c => (
+        str(c.version),
+        c.date,
+        formatNames(c.authors),
+        formatName(c.verifier),
+        c.description,
+      ))
       .flatten(),
   )
 

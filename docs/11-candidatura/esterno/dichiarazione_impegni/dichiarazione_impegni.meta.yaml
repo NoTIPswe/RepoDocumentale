@@ -1,41 +1,50 @@
 title: Dichiarazione degli impegni
 changelog:
-  - version: "1.0"
+  - version: "1.0.0"
     date: "2025-11-05"
-    verifiers:
-      - Alessandro Mazzariol
-  - version: "0.5"
+    authors:
+      - Valerio Solito
+      - Alessandro Contarini
+    verifier: Alessandro Mazzariol
+    description: >
+      Prima versione stabile 
+  - version: "0.4.0"
     date: "2025-11-05"
     authors:
       - Matteo Mantoan
+    verifier: Francesco Marcon
     description: >
       Riorganizzazione documento, ritocco tabella ore ruolo-persona.
-  - version: "0.4"
+  - version: "0.3.0"
     date: "2025-11-05"
     authors:
       - Valerio Solito
       - Alessandro Contarini
+    verifier: Leonardo Preo
     description: >
       Definizione dei ruoli, preventivo finale e data consegna.
-  - version: "0.3"
+  - version: "0.2.0"
     date: "2025-11-05"
     authors:
       - Valerio Solito
       - Alessandro Contarini
+    verifier: Mario De Pasquale
     description: >
       Distribuzione ore di ciascun componente del team per ciascun ruolo.
-  - version: "0.2"
+  - version: "0.1.0"
     date: "2025-11-05"
     authors:
       - Valerio Solito
       - Alessandro Contarini
+    verifier: Leonardo Preo
     description: >
       Scelta capitolato e preventivo costi per ruolo.
-  - version: "0.1"
+  - version: "0.0.1"
     date: "2025-11-05"
     authors:
       - Valerio Solito
       - Alessandro Contarini
+    verifier: Matteo Mantoan
     description: >
-      Creazione del documento.
+      Prima bozza del documento.
 

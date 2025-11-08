@@ -9,6 +9,7 @@ from jsonschema import validate, ValidationError
 from dataclasses import dataclass
 from typing import List, Dict, Set, Optional
 from packaging.version import Version, InvalidVersion
+from datetime import datetime
 
 META_SCHEMA_PATH = ".schemas/meta.schema.json"
 GROUP_DIR_REGEX = re.compile(r"^(01-|[1-9][0-9]-)")
@@ -130,9 +131,7 @@ def _process_document_dir(
     """
     # TODO:
     # - check date sequence: each must be >= than prev version
-    # - there must be at least a minor between two majors
-    # - must contain 0.1 as first (move logic from validate_pr script)
-    # - verifier not in authors of minor versions being verified
+    # - there must be at least a minor or a patch between two majors
 
     doc_name = doc_dir_path.name
     logging.debug(f"Processing potential document: '{doc_name}'")
@@ -174,6 +173,9 @@ def _process_document_dir(
 
     versions = [c["version"] for c in changelog]
     if not _validate_version_sequence(versions, meta_path_str, doc_name):
+        return None
+
+    if not _validate_version_logic(changelog, meta_path_str, doc_name):
         return None
 
     try:
@@ -268,8 +270,7 @@ def _validate_with_schema(data: Dict, schema_path: str, file_path: str) -> bool:
 
 def _validate_version_sequence(versions: List[str], path: str, title: str) -> bool:
     """
-    Validates that a list of SemVer (X.Y) strings is sorted descending.
-    (Sostituisce la vecchia funzione che validava interi)
+    Validates that a list of SemVer (X.Y.Z) strings is sorted descending.
     """
     if not versions:
         return True
@@ -280,7 +281,7 @@ def _validate_version_sequence(versions: List[str], path: str, title: str) -> bo
             parsed_versions.append(Version(v_str))
         except InvalidVersion:
             logging.error(
-                f"Changelog logic error for '{title}': Version '{v_str}' in '{path}' is not a valid X.Y format."
+                f"Changelog logic error for '{title}': Version '{v_str}' in '{path}' is not a valid X.Y.Z format."
             )
             return False
 
@@ -292,4 +293,46 @@ def _validate_version_sequence(versions: List[str], path: str, title: str) -> bo
         return False
 
     logging.debug(f"Version sequence for '{title}' is valid and sorted descending.")
+    return True
+
+
+def _validate_version_logic(changelog: List[Dict], path: str, title: str):
+    """
+    Check the logic in the changelog:
+    - a newer version must be more recent (date stand point)
+    - the author should not be in the verifier section
+    """
+
+    reversed_changelog = list(reversed(changelog))
+    last_date = None
+
+    for i, entry in enumerate(reversed_changelog):
+        authors = set(entry.get("authors", []))
+        verifier: str = entry.get("verifier", "")
+
+        overlap = authors.intersection([verifier])
+
+        if overlap:
+            logging.error(f"Changelog logic error for {title} in {path}.")
+            logging.error(
+                f" - the version: '{entry['version']}' seems to have the same author and verifier -> {list(overlap)}."
+            )
+            return False
+
+        try:
+            current_date = datetime.strptime(entry["date"], "%Y-%m-%d").date()
+        except ValueError:
+            logging.error(f"Invalid date format '{entry['date']}' in '{path}'.")
+            return False
+
+        if last_date and current_date < last_date:
+            logging.error(f"Changelog logic error for {title} in {path}.")
+            logging.error(
+                f" - the date: '{entry['date']}' the version '{entry['version']}' has an older date than the previous one -> '{current_date}' < '{last_date}'."
+            )
+            return False
+
+        last_date = current_date
+
+    logging.debug(f"Changelog logic (dates and roles) for {title} is valid.")
     return True

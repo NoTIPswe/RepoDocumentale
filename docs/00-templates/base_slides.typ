@@ -9,7 +9,7 @@
   title: "",
   subtitle: none,
   date: none,
-  glossary-highlighted: true,
+  glossary-highlighted: false,
   body,
 ) = {
   show: base-configs.apply-base-configs.with(glossary-highlighted: glossary-highlighted)
