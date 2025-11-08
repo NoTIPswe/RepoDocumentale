@@ -307,9 +307,9 @@ def _validate_version_logic(changelog: List[Dict], path: str, title: str) :
 
     for i, entry  in enumerate(reversed_changelog): 
         authors = set(entry.get("authors", []))
-        verifiers = set(entry.get("verifiers", []))
+        verifier: str = entry.get("verifier", "")
 
-        overlap = authors.intersection(verifiers)
+        overlap = authors.intersection(set(verifier))
 
         if overlap: 
             logging.error(

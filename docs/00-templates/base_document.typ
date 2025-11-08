@@ -91,7 +91,7 @@
         str(c.version),
         c.date,
         formatNamesForChangelog(c.authors),
-        formatNamesForChangelog(c.verifiers),
+        c.verifier.split(" ").join("\n"),
         c.description,
       ))
       .flatten(),

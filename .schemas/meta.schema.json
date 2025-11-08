@@ -23,7 +23,9 @@
                     },
                     "date": {
                         "type": "string",
-                        "format": "date"
+                        "format": "date",
+                        "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                        "description": "The date of the update (e.g., \"2025-10-19\")."
                     },
                     "authors": {
                         "description": "The person (one or more) who contributed to this version.",
@@ -32,17 +34,16 @@
                         "minItems": 1
                     },
                     "verifiers": {
-                        "description": "The person (one or more) who verified and approved this version.",
-                        "type": "array",
-                        "items": { "type": "string", "minLength": 1 },
-                        "minItems": 1
+                        "description": "The person who verified and approved this version.",
+                        "type": "string",
+                        "minLength": 1
                     },
                     "description": {
                         "type": "string",
                         "minLength": 1
                     }
                 },
-                "required": ["version", "date", "authors", "verifiers", "description"]
+                "required": ["version", "date", "authors", "description"]
             }
         }
     },
