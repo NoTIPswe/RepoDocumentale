@@ -1,12 +1,17 @@
 title: Glossario
 
 changelog:
+  - version: "3.0"
+    date: "2025-11-08"
+    verifiers:
+      - Matteo Mantoan
   - version: "2.1"
     date: "2025-11-07"
     authors:
       - Francesco Marcon
     description: >
         Cambiamento ordinamento termini glossario e tolti indici numerici
+        
   - version: "2.0"
     date: "2025-10-31"
     verifiers: 
