@@ -17,6 +17,11 @@
                 "Alessandro Contarini",
                 "Leonardo Preo"
             ]
+        },
+        "toBeDefined": {
+            "description": "A constant value representing a not-yet-defined person",
+            "type": "string",
+            "const": "TBD"
         }
     },
 
@@ -62,8 +67,7 @@
                             },
                             {
                                 "comment": "Option 2: The 'Not Assigned' placeholder string.",
-                                "type": "string",
-                                "const": "TBD"
+                                "$ref": "#/$defs/toBeDefined"
                             }
                         ]
                     },
