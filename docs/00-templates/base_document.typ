@@ -84,28 +84,16 @@
     columns: (auto, auto, auto, auto, 1fr),
     align: (center + horizon, left + horizon, left + horizon, left + horizon, left),
 
-    table.header[Versione][Data][Persone][Ruolo][Descrizione],
+    table.header[Versione][Data][Autori][Verificatore][Descrizione],
 
     ..changelog
-      .map(c => {
-        let version = c.version
-        let date = c.date
-        let people
-        let role
-        let description
-
-        if "authors" in c {
-          people = formatNamesForChangelog(c.authors)
-          role = if c.authors.len() == 1 { "Autore" } else { "Autori" }
-          description = c.description
-        } else if "verifiers" in c {
-          people = formatNamesForChangelog(c.verifiers)
-          role = if c.verifiers.len() == 1 { "Verificatore" } else { "Verificatori" }
-          description = [Verifica e pubblicazione]
-        }
-
-        return (version, date, people, role, description)
-      })
+      .map(c => (
+        str(c.version),
+        c.date,
+        formatNamesForChangelog(c.authors),
+        formatNamesForChangelog(c.verifiers),
+        c.description,
+      ))
       .flatten(),
   )
 
