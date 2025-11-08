@@ -3,6 +3,23 @@
     "title": "Document Metadata Schema",
     "description": "Defines the structure for *.meta.yaml files.",
     "type": "object",
+
+    "$defs": {
+        "authorizedUser": {
+            "description": "An authorized user who can author or verify.",
+            "type": "string",
+            "enum": [
+                "Matteo Mantoan",
+                "Francesco Marcon",
+                "Alessandro Mazzariol",
+                "Valerio Solito",
+                "Mario De Pasquale",
+                "Alessandro Contarini",
+                "Leonardo Preo"
+            ]
+        }
+    },
+
     "properties": {
         "title": {
             "description": "The official title of the document.",
@@ -30,23 +47,36 @@
                     "authors": {
                         "description": "The person (one or more) who contributed to this version.",
                         "type": "array",
-                        "items": { "type": "string", "minLength": 1 },
-                        "minItems": 1
+                        "items": {
+                            "$ref": "#/$defs/authorizedUser"
+                        },
+                        "minItems": 1,
+                        "uniqueItems": true
                     },
-                    "verifiers": {
+                    "verifier": {
                         "description": "The person who verified and approved this version.",
-                        "type": "string",
-                        "minLength": 1
+                        "oneOf": [
+                            {
+                                "comment": "Option 1: An authorized user from the list.",
+                                "$ref": "#/$defs/authorizedUser"
+                            },
+                            {
+                                "comment": "Option 2: The 'Not Assigned' placeholder string.",
+                                "type": "string",
+                                "const": "TBD"
+                            }
+                        ]
                     },
                     "description": {
                         "type": "string",
                         "minLength": 1
                     }
                 },
-                "required": ["version", "date", "authors", "description"]
+                "required": ["version", "date", "authors", "verifier", "description"],
+                "additionalProperties": false 
             }
         }
     },
-    "required": ["title", "changelog"]
+    "required": ["title", "changelog"],
+    "additionalProperties": false 
 }
-
