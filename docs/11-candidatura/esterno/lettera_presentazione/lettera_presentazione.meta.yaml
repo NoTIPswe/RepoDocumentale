@@ -15,7 +15,7 @@ changelog:
       - Alessandro Contarini
     verifier: Matteo Mantoan
     description: >
-      Inserimento link ai documenti.
+      Inserimento link ai documenti
   - version: "0.3.0"
     date: "2025-11-05"
     authors:
