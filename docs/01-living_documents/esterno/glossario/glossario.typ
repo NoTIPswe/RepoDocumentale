@@ -17,7 +17,7 @@
   glossary-highlighted: false
 )[
 
-  = Introduzione
+  #heading(level: 1, numbering: none)[Introduzione]
   Il documento di *glossario* nasce con lo scopo di andare a chiarire tutte i possibili dubbi e ambiguità che possono nascere nella terminologia utilizzata all'interno della documentazione di NoTIP. \
   Verranno esposte di seguito tutti quei termini che, come gruppo, consideriamo potenzialmente fraintendibili o di cui, semplicemente, preferiamo esplicitare il significato. \
   Lo stile che abbiamo deciso di adoperare all'interno della documentazione è il seguente: 
@@ -32,7 +32,7 @@
       
       if i == 0 or not letter-of(entries.at(i - 1).at(0)) == letter [
         #pagebreak()
-        = #letter
+        #heading(level: 1, numbering: none)[#letter]
       ]
       
       render-entry(term, def)

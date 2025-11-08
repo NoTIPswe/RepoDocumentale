@@ -21,9 +21,9 @@
   // F
   "foglio elettronico": "Documento digitale strutturato in celle che consente di organizzare, calcolare e visualizzare dati utili al gruppo",
   // G
-  "Git": "Sistema di controllo versione distribuito che consente di tracciare le modifiche al codice sorgente e lavorare in modo collaborativo su progetti software",
-  "GitHub": "Piattaforma di hosting per repository Git che consente la collaborazione, la revisione del codice e la gestione dei progetti tramite pull request e issue tracking",
   "GitHub Projects": "Strumento integrato in GitHub per la gestione dei progetti, che consente di pianificare, assegnare e monitorare task in modo collaborativo tramite board e workflow personalizzabili",
+  "GitHub": "Piattaforma di hosting per repository Git che consente la collaborazione, la revisione del codice e la gestione dei progetti tramite pull request e issue tracking",
+  "Git": "Sistema di controllo versione distribuito che consente di tracciare le modifiche al codice sorgente e lavorare in modo collaborativo su progetti software",
   "Google Docs": "Piattaforma cloud per la creazione, modifica e condivisione collaborativa di documenti testuali in tempo reale per raccogliere idee",
   // H
   // I
@@ -44,25 +44,25 @@
   // N
   // O
   // P
-  "PR": "Abbreviazione di pull request. Utilizzata comunemente per indicare la richiesta di revisione o integrazione nel flusso di lavoro Git",
   "pull-request": "Richiesta di integrazione di modifiche da un branch secondario al branch principale di un repository. Permette la revisione del codice prima dell’unione definitiva",
+  "PR": "Abbreviazione di pull request. Utilizzata comunemente per indicare la richiesta di revisione o integrazione nel flusso di lavoro Git",
   // Q
   // R
-  "repository": "Archivio centralizzato che può contiene solitamente codice sorgente, la documentazione e la cronologia delle versioni di un progetto",
   "repository documentale": "Archivio centralizzato che contiene documenti, file e versioni, utilizzato per la gestione e la conservazione della documentazione di progetto",
+  "repository": "Archivio centralizzato che può contiene solitamente codice sorgente, la documentazione e la cronologia delle versioni di un progetto",
   // TODO: "rule of thumb"
   // S
   "scripting": "Automazione di attività ripetitive tramite script eseguibili (build, pubblicazione, verifica, generazione documenti)",
-  "Scrum": "Framework di sviluppo Agile basato su iterazioni (sprint) e ruoli definiti, volto a migliorare la collaborazione e la gestione del lavoro di gruppo",
   "Scrum Master": "Membro del team con il compito di facilitare l’applicazione del metodo Scrum, rimuovere ostacoli e promuovere buone pratiche di lavoro collaborativo",
-  "sprint": "Periodo di tempo prefissato, tipicamente di una o due settimane, durante il quale il team di sviluppo lavora su un insieme definito di attività",
+  "Scrum": "Framework di sviluppo Agile basato su iterazioni (sprint) e ruoli definiti, volto a migliorare la collaborazione e la gestione del lavoro di gruppo",
   "Sprint Planning": "Fase iniziale di ogni sprint in cui il team definisce gli obiettivi e pianifica le attività da completare",
+  "sprint": "Periodo di tempo prefissato, tipicamente di una o due settimane, durante il quale il team di sviluppo lavora su un insieme definito di attività",
   "stakeholders": "Persone o entità interessate al progetto, che possono influenzarlo o esserne influenzate, come clienti, utenti, sviluppatori e sponsor",
   "struttura semantica": "Organizzazione di directory e file che esprime il significato (ruolo, ambito, stato) oltre al semplice contenimento",
   // T
   "task": "Unità di lavoro specifica e delimitata, generalmente associata a una singola attività o obiettivo da completare",
-  "template": "Struttura predefinita utilizzata come modello per la redazione uniforme dei documenti del progetto",
   "template Typst": "Modello predefinito scritto in linguaggio Typst, utilizzato per standardizzare la struttura grafica e formale dei documenti del gruppo",
+  "template": "Struttura predefinita utilizzata come modello per la redazione uniforme dei documenti del progetto",
   "Typst": "Linguaggio di composizione testuale per la creazione di documenti strutturati, caratterizzato da una sintassi chiara e moderna, alternativo a LaTeX e adatto all’automazione della documentazione",
   // U
   // V
