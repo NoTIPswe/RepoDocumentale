@@ -1,0 +1,17 @@
+title: Diario di Bordo 2025-11-10
+changelog:
+  - version: "1.0.0"
+    date: "2025-11-09"
+    authors:
+      - Alessandro Mazzariol
+    verifier: "Matteo Mantoan"
+    description: >
+      Prima versione stabile
+
+  - version: "0.0.1"
+    date: "2025-11-09"
+    authors:
+      - Alessandro Mazzariol
+    verifier: "Matteo Mantoan"
+    description: >
+      Creazione del diario di Bordo
