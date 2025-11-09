@@ -1,4 +1,4 @@
-#import "../01-living_documents/esterno/glossario/termini_glossario.typ" as glossary-terms
+#import "../01-living_documents/docest/glossario/termini_glossario.typ" as glossary-terms
 
 #let project-email = "notip.swe@gmail.com"
 #let project-url = "https://notipswe.github.io/"
@@ -43,7 +43,6 @@
 }
 
 #let apply-base-configs(doc, glossary-highlighted: true) = {
-  
   show regex("(?i)" + glossary-terms.terms.keys().map(k => "\b" + k + "\b").join("|")): t => {
     if glossary-highlighted {
       [_#t#sub("G")_]
@@ -54,7 +53,7 @@
 
   set par(justify: true)
 
-  show "NoTIP": it => link(project-url, text(fill:black)[#it]) 
+  show "NoTIP": it => link(project-url, text(fill: black)[#it])
   set text(lang: "it", font: serif-font)
   show raw: set text(font: mono-font)
 

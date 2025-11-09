@@ -1,21 +1,14 @@
 import logging
 import os
-import re
 import yaml
 import json
 import jsonschema
 import sys
 from pathlib import Path
 from datetime import date
-from . import model
+from . import model, configs
 from typing import List, FrozenSet, Any
 from packaging.version import Version, InvalidVersion
-
-VALID_GROUP_REGEX = re.compile(r"^(01-|[1-9][0-9]-)")
-IGNORED_GROUPS = frozenset({"00-templates"})
-VALID_SUBGROUPS = frozenset({"interno", "esterno", "slides", "verbint"})
-VALID_DOC_NAME_REGEX = re.compile(r"^\S+$")
-EXPECTED_FIRST_VERSION = Version("0.0.1")
 
 
 class DocumentValidationError(Exception):
@@ -36,7 +29,7 @@ def discover_documents(
         depth = len(relative_path.parts)
 
         if depth == 0:
-            dirnames[:] = [d for d in dirnames if d not in IGNORED_GROUPS]
+            dirnames[:] = [d for d in dirnames if d not in configs.IGNORED_GROUPS]
             continue
         if depth == 3:
             documents.append(discover_single_document(dirpath, meta_schema_path))
@@ -92,7 +85,7 @@ def discover_single_document(
 
 def _validate_doc_name(doc_dir_path: Path) -> None:
     doc_name = doc_dir_path.name
-    if not VALID_DOC_NAME_REGEX.match(doc_name):
+    if not configs.VALID_DOC_NAME_REGEX.match(doc_name):
         raise DocumentValidationError(f"Non-conforming document name: '{doc_name}'.")
 
 
@@ -129,16 +122,16 @@ def _get_doc_meta_path(doc_dir_path: Path) -> Path:
 
 def _get_doc_group(doc_dir_path: Path) -> str:
     group = doc_dir_path.parent.parent.name
-    if not VALID_GROUP_REGEX.match(group):
+    if not configs.VALID_GROUP_REGEX.match(group):
         raise DocumentValidationError(f"Non-conforming group name: '{group}'")
     return group
 
 
 def _get_doc_subgroup(doc_dir_path: Path) -> str:
     subgroup = doc_dir_path.parent.name
-    if subgroup not in VALID_SUBGROUPS:
+    if subgroup not in configs.VALID_SUBGROUPS:
         raise DocumentValidationError(
-            f"Non-conforming subgroup: '{subgroup}'. Must be one of {VALID_SUBGROUPS}."
+            f"Non-conforming subgroup: '{subgroup}'. Must be one of {configs.VALID_SUBGROUPS}."
         )
     return subgroup
 
@@ -188,9 +181,9 @@ def _validate_against_schema(raw_data: Any, schema_path: Path) -> None:
 
 def _validate_first_version_present(changelog: List[Any]) -> None:
     first_version = Version(changelog[-1]["version"])
-    if first_version != EXPECTED_FIRST_VERSION:
+    if first_version != configs.EXPECTED_FIRST_VERSION:
         raise DocumentValidationError(
-            f"First version must be {EXPECTED_FIRST_VERSION}, but was {first_version}"
+            f"First version must be {configs.EXPECTED_FIRST_VERSION}, but was {first_version}"
         )
 
 

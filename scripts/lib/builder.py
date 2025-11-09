@@ -18,7 +18,12 @@ def build_all(
     fonts_dir_path: Path,
 ) -> None:
     docs_model = scanner.discover_documents(docs_dir_path, meta_schema_path)
+    build_from_docs_model(docs_model, output_dir_path, fonts_dir_path)
 
+
+def build_from_docs_model(
+    docs_model: List[model.Document], output_dir_path: Path, fonts_dir_path: Path
+):
     for doc in docs_model:
         _build_doc(doc, output_dir_path, fonts_dir_path, BuildMode.COMPILE)
 

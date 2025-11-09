@@ -1,7 +1,7 @@
 import typer
 from pathlib import Path
 from . import defaults
-from lib import builder
+from lib import site_generator
 
 
 app = typer.Typer(help="Statically generate the repo's site.")
@@ -17,9 +17,11 @@ def site(
 ):
     """Builds all docs and statically generates the site."""
 
-    builder.build_all(
+    site_generator.generate_site(
+        site_dir_path=site_dir_path,
         docs_dir_path=docs_dir_path,
         fonts_dir_path=fonts_dir_path,
-        output_dir_path=output_dir_path / defaults.DOCS_OUTPUT_DIR_NAME,
+        site_output_dir_path=output_dir_path,
+        docs_output_dir_path=output_dir_path / defaults.DOCS_OUTPUT_DIR_NAME,
         meta_schema_path=meta_schema_path,
     )
