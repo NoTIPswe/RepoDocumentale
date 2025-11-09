@@ -122,16 +122,18 @@ def _get_doc_meta_path(doc_dir_path: Path) -> Path:
 
 def _get_doc_group(doc_dir_path: Path) -> str:
     group = doc_dir_path.parent.parent.name
-    if not configs.VALID_GROUP_REGEX.match(group):
-        raise DocumentValidationError(f"Non-conforming group name: '{group}'")
+    if group not in configs.VALID_GROUPS:
+        raise DocumentValidationError(
+            f"Non-conforming group name: '{group}'. Must be on of {configs.VALID_GROUPS}"
+        )
     return group
 
 
 def _get_doc_subgroup(doc_dir_path: Path) -> str:
     subgroup = doc_dir_path.parent.name
-    if subgroup not in configs.VALID_SUBGROUPS:
+    if subgroup not in configs.VALID_SUBGROUPS_ORDERED:
         raise DocumentValidationError(
-            f"Non-conforming subgroup: '{subgroup}'. Must be one of {configs.VALID_SUBGROUPS}."
+            f"Non-conforming subgroup: '{subgroup}'. Must be one of {configs.VALID_SUBGROUPS_ORDERED}."
         )
     return subgroup
 

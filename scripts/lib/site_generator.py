@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import List, DefaultDict, Dict
+from typing import List, DefaultDict, Dict, Tuple
 from . import builder, scanner, model, configs
 from collections import defaultdict
 import logging
@@ -161,10 +161,8 @@ def _generate_group_template(
     group_docs: List[model.Document],
     docs_output_dir_rel_path: Path,
 ):
-    grouped_docs_by_subgroup = _group_docs_by_subgroup(group_docs)
-
     tables = ""
-    for subgroup, docs in grouped_docs_by_subgroup.items():
+    for subgroup, docs in _group_docs_by_subgroup(group_docs):
         tables += _generate_subgroup_table(subgroup, docs, docs_output_dir_rel_path)
 
     replacements = {
@@ -181,10 +179,13 @@ def _generate_group_template(
 
 def _group_docs_by_subgroup(
     docs: List[model.Document],
-) -> DefaultDict[str, List[model.Document]]:
-    grouped_docs: DefaultDict[str, List[model.Document]] = defaultdict(list)
-    for doc in docs:
-        grouped_docs[doc.subgroup].append(doc)
+) -> List[Tuple[str, List[model.Document]]]:
+    grouped_docs: List[Tuple[str, List[model.Document]]] = []
+    for subgroup in configs.VALID_SUBGROUPS_ORDERED:
+        subgroup_docs = [d for d in docs if d.subgroup == subgroup]
+        if not len(subgroup_docs) == 0:
+            grouped_docs.append((subgroup, subgroup_docs))
+
     return grouped_docs
 
 

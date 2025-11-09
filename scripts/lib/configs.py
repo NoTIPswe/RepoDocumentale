@@ -16,22 +16,24 @@ INDEX_HTML_GROUPS_LIST_MARKER = "<!--GROUP_LIST_MARKER-->"
 GROUPS_HTML_GROUP_TITLE_MARKER = "<!--GROUP_TITLE_MARKER-->"
 GROUPS_HTML_TABLES_MARKER = "<!--GROUP_TABLES_MARKER-->"
 
-VALID_GROUP_REGEX = re.compile(r"^(01-|[1-9][0-9]-)")
-VALID_GROUPS = frozenset({"01-living_documents", "11-candidatura"})
+VALID_GROUPS = frozenset(
+    {
+        "01-living_documents",
+        "11-candidatura",
+    }
+)
 GROUP_TO_TITLE = {
     "01-living_documents": "Living Documents",
     "11-candidatura": "Candidatura",
 }
 
-VALID_SUBGROUPS = frozenset(
-    {
-        "docint",
-        "docest",
-        "verbint",
-        "verbest",
-        "slides",
-    }
-)
+VALID_SUBGROUPS_ORDERED = [
+    "docest",
+    "docint",
+    "verbest",
+    "verbint",
+    "slides",
+]
 SUBGROUP_TO_TITLE = {
     "docint": "Documentazione Interna",
     "docest": "Documentazione Esterna",
