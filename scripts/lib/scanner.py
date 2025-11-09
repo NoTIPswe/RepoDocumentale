@@ -13,7 +13,7 @@ from packaging.version import Version, InvalidVersion
 
 VALID_GROUP_REGEX = re.compile(r"^(01-|[1-9][0-9]-)")
 IGNORED_GROUPS = frozenset({"00-templates"})
-VALID_SUBGROUPS = frozenset({"interno", "esterno", "slides"})
+VALID_SUBGROUPS = frozenset({"interno", "esterno", "slides", "verbint"})
 VALID_DOC_NAME_REGEX = re.compile(r"^\S+$")
 EXPECTED_FIRST_VERSION = Version("0.0.1")
 
@@ -24,7 +24,10 @@ class DocumentValidationError(Exception):
     pass
 
 
-def discover_documents(docs_dir_path: Path, schema_path: Path) -> List[model.Document]:
+def discover_documents(
+    docs_dir_path: Path,
+    meta_schema_path: Path,
+) -> List[model.Document]:
     logging.debug(f"Starting documents discovery in {docs_dir_path}")
     documents: List[model.Document] = []
     for dirpath_str, dirnames, _ in os.walk(docs_dir_path, topdown=True):
@@ -36,14 +39,17 @@ def discover_documents(docs_dir_path: Path, schema_path: Path) -> List[model.Doc
             dirnames[:] = [d for d in dirnames if d not in IGNORED_GROUPS]
             continue
         if depth == 3:
-            documents.append(discover_single_document(dirpath, schema_path))
+            documents.append(discover_single_document(dirpath, meta_schema_path))
             dirnames[:] = []
             continue
     logging.info(f"Discovery complete. Found {len(documents)} documents.")
     return documents
 
 
-def discover_single_document(doc_dir_path: Path, schema_path: Path) -> model.Document:
+def discover_single_document(
+    doc_dir_path: Path,
+    meta_schema_path: Path,
+) -> model.Document:
     """
     Validates and parses a single document.
     Catches all validation errors and provides a single, rich error message.
@@ -55,7 +61,7 @@ def discover_single_document(doc_dir_path: Path, schema_path: Path) -> model.Doc
 
         source_path = _get_doc_source_path(doc_dir_path)
         meta_path = _get_doc_meta_path(doc_dir_path)
-        raw_metadata = _get_doc_metadata(meta_path, schema_path)
+        raw_metadata = _get_doc_metadata(meta_path, meta_schema_path)
         changelog = [
             _changelog_entry_from_raw_meta(e) for e in raw_metadata["changelog"]
         ]
@@ -74,9 +80,7 @@ def discover_single_document(doc_dir_path: Path, schema_path: Path) -> model.Doc
         return doc
 
     except DocumentValidationError as e:
-        logging.critical(
-            f"Document at '{doc_dir_path}' is invalid.\n" f"       Reason: {e}"
-        )
+        logging.critical(f"Document at '{doc_dir_path}' is invalid: {e}")
         sys.exit(1)
     except (yaml.YAMLError, json.JSONDecodeError) as e:
         logging.critical(f"Could not parse file for '{doc_dir_path}': {e}")

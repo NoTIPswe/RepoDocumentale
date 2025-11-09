@@ -1,6 +1,6 @@
 import typer
 from pathlib import Path
-from . import build
+from . import defaults
 from lib import builder
 
 app = typer.Typer(help="Watch (like in `typst watch`) documents with hot-reload.")
@@ -8,10 +8,10 @@ app = typer.Typer(help="Watch (like in `typst watch`) documents with hot-reload.
 
 @app.command("doc")
 def watch_doc(
-    doc_dir: Path,
-    output_dir: Path = build.DEFAULT_OUTPUT_DIR,
-    schema_path: Path = build.DEFAULT_SCHEMA_PATH,
-    font_path: Path = build.DEFAULT_FONT_PATH,
+    doc_dir_path: Path,
+    output_dir_path: Path = defaults.DOCS_OUTPUT_DIR_PATH,
+    meta_schema_path: Path = defaults.META_SCHEMA_PATH,
+    fonts_dir_path: Path = defaults.FONTS_DIR_PATH,
 ):
     """Watches (like `typst watch`) a specific doc with hot-reload."""
-    builder.watch_doc(doc_dir, output_dir, schema_path, font_path)
+    builder.watch_doc(doc_dir_path, output_dir_path, meta_schema_path, fonts_dir_path)
