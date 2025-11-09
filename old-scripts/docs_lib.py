@@ -142,17 +142,6 @@ def _process_document_dir(
     meta_path_str = str(meta_path).replace(os.path.sep, "/")
     source_path_str = str(source_path).replace(os.path.sep, "/")
 
-    if not meta_path.exists():
-        logging.error(
-            f"Validation failed for '{doc_dir_path}': Missing '{meta_path.name}'"
-        )
-        return None
-    if not source_path.exists():
-        logging.error(
-            f"Validation failed for '{doc_dir_path}': Missing '{source_path.name}'"
-        )
-        return None
-
     loader = LocalFileLoader()
     meta_content = loader.get_content(meta_path_str)
     if meta_content is None:

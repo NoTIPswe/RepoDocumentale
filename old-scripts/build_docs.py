@@ -22,6 +22,8 @@ def setup_logging():
 def compile_document(doc: docs_lib.Document, output_dir: str):
     """Compiles a single, validated Document object."""
 
+    # TODO pass scope: "Interno" or "Esterno" based on implicit metadata
+
     source_dir = os.path.dirname(doc.source) or "."
     meta_path_relative = os.path.relpath(doc.meta_path, start=source_dir)
     complete_output_path = os.path.join(output_dir, doc.output)
