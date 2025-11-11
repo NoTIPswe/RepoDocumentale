@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import List, DefaultDict, Dict, Tuple
-from . import builder, scanner, model, configs
+
+from . import builder, docs_factory, model, configs, local_scanner
 from collections import defaultdict
 import logging
 import sys
@@ -18,7 +19,10 @@ def generate_site(
 ) -> None:
     logging.debug("Building all documents.")
 
-    docs_model = scanner.discover_documents(docs_dir_path, meta_schema_path)
+    scanner = local_scanner.LocalScanner(meta_schema_path)
+    raw_docs = scanner.discover_all_docs(docs_dir_path)
+    docs_model = docs_factory.create_documents(raw_docs)
+
     builder.build_from_docs_model(docs_model, docs_output_dir_path, fonts_dir_path)
 
     logging.debug("Generating static site.")
@@ -202,7 +206,7 @@ def _generate_subgroup_table(
         key=configs.SUBGROUP_TO_SORTING_KEY[subgroup],
         reverse=True,
     ):
-        doc_pdf_path = docs_output_dir_rel_path / doc.output_path
+        doc_pdf_path = docs_output_dir_rel_path / doc.output_rel_path
         row_html = _populate_table_row(doc, doc_pdf_path)
         table_rows += row_html
 

@@ -20,16 +20,15 @@ class ChangelogEntry:
 class Document:
     """A single document along with all its metadata."""
 
+    # Unique identifier
+    doc_dir_path: Path
+    subfiles_paths: FrozenSet[Path]
+
+    # Metadata
     title: str
     changelog: List[ChangelogEntry]
-
-    source_path: Path
-    meta_path: Path
-
     group: str
     subgroup: str
-
-    subfiles: FrozenSet[Path]
 
     @property
     def latest_version(self) -> Version:
@@ -40,8 +39,16 @@ class Document:
         return self.changelog[0].date
 
     @property
-    def output_path(self) -> Path:
+    def output_rel_path(self) -> Path:
         relative_parent = self.source_path.parent.parent.relative_to(
             self.source_path.parent.parent.parent.parent
         )
         return relative_parent / f"{self.source_path.stem}.pdf"
+
+    @property
+    def source_path(self) -> Path:
+        return self.doc_dir_path / f"{self.doc_dir_path.name}.typ"
+
+    @property
+    def meta_path(self) -> Path:
+        return self.doc_dir_path / f"{self.doc_dir_path.name}.meta.yaml"

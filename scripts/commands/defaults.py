@@ -1,5 +1,6 @@
 from pathlib import Path
 
+REPO_ROOT_PATH = Path(".")
 DOCS_DIR_PATH = Path("docs")
 SITE_DIR_PATH = Path("site")
 

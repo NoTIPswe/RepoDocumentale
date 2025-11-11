@@ -4,7 +4,8 @@ import logging
 import os
 from enum import Enum
 from typing import List
-from . import scanner, model
+
+from . import docs_factory, model, local_scanner
 from pathlib import Path
 
 
@@ -17,7 +18,9 @@ def build_all(
     meta_schema_path: Path,
     fonts_dir_path: Path,
 ) -> None:
-    docs_model = scanner.discover_documents(docs_dir_path, meta_schema_path)
+    scanner = local_scanner.LocalScanner(meta_schema_path)
+    raw_docs = scanner.discover_all_docs(docs_dir_path)
+    docs_model = docs_factory.create_documents(raw_docs)
     build_from_docs_model(docs_model, output_dir_path, fonts_dir_path)
 
 
@@ -36,8 +39,9 @@ def build_doc(
     meta_schema_path: Path,
     fonts_dir_path: Path,
 ) -> None:
-    doc_model = scanner.discover_single_document(doc_dir_path, meta_schema_path)
-
+    scanner = local_scanner.LocalScanner(meta_schema_path)
+    raw_doc = scanner.discover_doc(doc_dir_path)
+    doc_model = docs_factory.create_document(raw_doc)
     _build_doc(doc_model, output_dir_path, fonts_dir_path, BuildMode.COMPILE)
 
     logging.info(f"Build Finished. {doc_dir_path.name} built.")
@@ -49,8 +53,9 @@ def watch_doc(
     meta_schema_path: Path,
     fonts_dir_path: Path,
 ) -> None:
-    doc_model = scanner.discover_single_document(doc_dir_path, meta_schema_path)
-
+    scanner = local_scanner.LocalScanner(meta_schema_path)
+    raw_doc = scanner.discover_doc(doc_dir_path)
+    doc_model = docs_factory.create_document(raw_doc)
     _build_doc(doc_model, output_dir_path, fonts_dir_path, BuildMode.WATCH)
 
 
@@ -61,7 +66,7 @@ def _build_doc(
     mode: BuildMode,
 ) -> None:
 
-    complete_output_path = os.path.join(output_dir_path, doc.output_path)
+    complete_output_path = os.path.join(output_dir_path, doc.output_rel_path)
     os.makedirs(os.path.dirname(complete_output_path), exist_ok=True)
 
     logging.debug(
@@ -96,10 +101,10 @@ def _exec_typst_cli(doc: model.Document, command: List[str]):
         if proc.stderr != "":
             logging.warning(f"WARNINGS: {proc.stderr}")
 
-        logging.info(f"SUCCESS: '{doc.output_path}' built successfully.")
+        logging.info(f"SUCCESS: '{doc.output_rel_path}' built successfully.")
     except subprocess.CalledProcessError as e:
         logging.error(
-            f"FAILURE: Compiling '{doc.output_path}' failed.\n--- START typst ERROR ---\n{e.stderr.strip()}\n--- END typst ERROR ---"
+            f"FAILURE: Compiling '{doc.output_rel_path}' failed.\n--- START typst ERROR ---\n{e.stderr.strip()}\n--- END typst ERROR ---"
         )
         sys.exit(1)
     except FileNotFoundError:

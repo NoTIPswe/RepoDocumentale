@@ -48,3 +48,5 @@ SUBGROUP_TO_SORTING_KEY: Dict[str, Callable[[model.Document], str]] = {
     "verbest": lambda d: d.source_path.name,
     "slides": lambda d: d.source_path.name,
 }
+
+TBD_VERIFIER = "TBD"
