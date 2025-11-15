@@ -1,5 +1,5 @@
-#import "../../../00-templates/base_configs.typ" as base
-#import "../../../00-templates/base_verbale.typ" as base-report
+#import "../../00-templates/base_configs.typ" as base
+#import "../../00-templates/base_verbale.typ" as base-report
 
 #let metadata = yaml(sys.inputs.meta-path)
 

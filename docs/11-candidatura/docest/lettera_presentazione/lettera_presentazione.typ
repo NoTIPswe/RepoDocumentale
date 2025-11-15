@@ -1,4 +1,4 @@
-#import "../../../00-templates/base_configs.typ" as base
+#import "../../00-templates/base_configs.typ" as base
 
 #let oggetto(text) = block(
   align(center)[

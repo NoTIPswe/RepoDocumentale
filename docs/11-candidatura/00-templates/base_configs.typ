@@ -1,4 +1,4 @@
-#import "../01-living_documents/docest/glossario/termini_glossario.typ" as glossary-terms
+#import "../docest/glossario/termini_glossario.typ" as glossary-terms
 
 #let project-email = "notip.swe@gmail.com"
 #let project-url = "https://notipswe.github.io/"
@@ -19,7 +19,7 @@
   grid(
     columns: (auto, 1fr, auto), align: center + horizon
   )[
-    #image("assets/logo_unipd.png", fit: "contain", height: 1.5cm)
+    #image("../../00-templates/assets/logo.png", fit: "contain", height: 1.5cm)
 
   ][][
     #align(right)[
@@ -33,7 +33,7 @@
   line(length: 100%, stroke: 1.5pt + color-primary)
   v(1fr)
   grid(columns: (auto, 1fr, auto), align: center + horizon)[
-    #image("assets/logo.png", fit: "contain", height: 0.7cm)
+    #image("../../00-templates/assets/logo.png", fit: "contain", height: 0.7cm)
   ][
     #text(10pt, font: serif-font, weight: 400)[ #project_name — #project-email ]
   ][

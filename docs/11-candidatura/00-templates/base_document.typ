@@ -20,7 +20,7 @@
 ) = {
   // Logo
   align(top + center)[
-    #image("assets/logo.png", width: 70%)
+    #image("../../00-templates/assets/logo.png", width: 70%)
   ]
 
   // Title

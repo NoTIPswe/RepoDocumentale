@@ -1,5 +1,5 @@
-#import "../../../01-living_documents/termini_glossario.typ": terms
-#import "../../../00-templates/base_document.typ" as base-document 
+#import "termini_glossario.typ": terms
+#import "../../00-templates/base_document.typ" as base-document 
 
 #let metadata = yaml(sys.inputs.meta-path)
 

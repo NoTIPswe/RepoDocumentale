@@ -28,14 +28,12 @@ class LocalScanner(scanner.Scanner):
         docs: List[scanner.RawDocument] = []
 
         for root, dirs, _ in os.walk(docs_dir_path, topdown=True):
+            
+            dirs[:] = [d for d in dirs if d not in configs.IGNORED_GROUPS]
+
             dir_path = Path(root)
             relative_path = dir_path.relative_to(docs_dir_path)
             depth = len(relative_path.parts)
-
-            # Check for the root directory depth 0 or 1?
-            if depth == 0:
-                dirs[:] = [d for d in dirs if d not in configs.IGNORED_GROUPS]
-                continue
 
             # We only care about 3rd-level directories (group/subgroup/doc)
             if depth == 3:

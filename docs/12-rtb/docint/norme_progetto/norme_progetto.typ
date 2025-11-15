@@ -1,4 +1,4 @@
-#import "../../../00-templates/base_document.typ" as base-document
+#import "../../00-templates/base_document.typ" as base-document
 
 #let metadata = yaml(sys.inputs.meta-path)
 

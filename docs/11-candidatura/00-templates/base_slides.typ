@@ -30,9 +30,9 @@
     let max_width = calc.max(title_width, subtitle_width)
     align(center + horizon)[
       #grid(columns: (auto, 1fr, auto), align: center)[
-        #image("assets/logo_unipd.png", height: 3cm)
+        #image("../../00-templates/assets/logo_unipd.png", height: 3cm)
       ][][
-        #image("assets/logo.png", height: 3cm)
+        #image("../../00-templates/assets/logo.png", height: 3cm)
       ]
       #v(1em)
       #line(length: max_width + 20%, stroke: 4pt + base-configs.color-primary)
