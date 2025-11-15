@@ -20,11 +20,13 @@ VALID_GROUPS = frozenset(
     {
         "01-living_documents",
         "11-candidatura",
+        "12-rtb",
     }
 )
 GROUP_TO_TITLE = {
     "01-living_documents": "Living Documents",
     "11-candidatura": "Candidatura",
+    "12-rtb": "RTB",
 }
 
 VALID_SUBGROUPS_ORDERED = [

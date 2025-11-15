@@ -88,7 +88,7 @@ def _generate_index_group_cards(
 ) -> str:
     html_cards = ""
 
-    for group_name, docs in grouped_docs.items():
+    for group_name, docs in sorted(grouped_docs.items()):
         group_displayed_name = configs.GROUP_TO_TITLE[group_name]
         group_page_path = _group_name_to_page_path(group_name)
 

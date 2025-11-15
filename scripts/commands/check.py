@@ -1,6 +1,9 @@
 import typer
 from pathlib import Path
 from . import defaults
+from lib import checker
+
+
 
 app = typer.Typer(help="Run validation checks on the repository.")
 
@@ -18,5 +21,4 @@ def check_pr(
     - Verifies that changed documents have advanced their version.
     - If --merge-ready, checks for 'TBD' verifiers.
     """
-    print("Unimplemented!")
-    exit(1)
+    checker.pr_check(repo_root_path, base_branch, docs_dir, meta_schema_path, merge_ready)
