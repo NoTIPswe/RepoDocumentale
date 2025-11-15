@@ -3,7 +3,6 @@ from packaging.version import Version
 from typing import Dict, Callable
 from . import model
 
-IGNORED_GROUPS = frozenset({"00-templates"})
 VALID_DOC_NAME_REGEX = re.compile(r"^\S+$")
 
 EXPECTED_FIRST_VERSION = Version("0.0.1")
@@ -16,6 +15,7 @@ INDEX_HTML_GROUPS_LIST_MARKER = "<!--GROUP_LIST_MARKER-->"
 GROUPS_HTML_GROUP_TITLE_MARKER = "<!--GROUP_TITLE_MARKER-->"
 GROUPS_HTML_TABLES_MARKER = "<!--GROUP_TABLES_MARKER-->"
 
+IGNORED_GROUPS = {"00-common_assets"}
 VALID_GROUPS_ORDERED = [
     "01-living_documents",  # TODO remove
     "11-candidatura",

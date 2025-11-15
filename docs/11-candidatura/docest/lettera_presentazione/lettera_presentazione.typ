@@ -25,7 +25,7 @@
       *NoTIP* \
       Gruppo 12 \
       #link("mailto:notip.swe@gmail.com")[#raw("notip.swe@gmail.com")]
-      #image("../../../00-templates/assets/logo.png", width: 3.8cm)
+      #image("../../../00-common_assets/logo.png", width: 3.8cm)
     ],
   )
 

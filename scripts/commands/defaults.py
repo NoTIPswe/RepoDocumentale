@@ -8,7 +8,7 @@ SITE_OUTPUT_DIR_PATH = Path("dist")
 DOCS_OUTPUT_DIR_NAME = "docs"
 DOCS_OUTPUT_DIR_PATH = SITE_OUTPUT_DIR_PATH / DOCS_OUTPUT_DIR_NAME
 
-FONTS_DIR_PATH = Path("docs/00-templates/assets/fonts")
+FONTS_DIR_PATH = Path("docs/00-common_assets/fonts")
 
 META_SCHEMA_PATH = Path(".schemas/meta.schema.json")
 
