@@ -21,7 +21,7 @@ jobs:
           python-version: '3.13'
 
       - name: Install Python dependencies
-        run: pip install pyyaml jsonschema packaging
+        run: pip install -r scripts/requirements.txt
 
       - name: Checkout PR branch
         uses: actions/checkout@v4
@@ -33,7 +33,7 @@ jobs:
         run: |
           python3 do check pr
 
-      - name: Build doccs from PR
+      - name: Build docs from PR
         run: |
           python3 do build all
       
