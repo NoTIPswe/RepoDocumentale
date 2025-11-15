@@ -4,7 +4,6 @@ from . import defaults
 from lib import checker
 
 
-
 app = typer.Typer(help="Run validation checks on the repository.")
 
 
@@ -12,7 +11,7 @@ app = typer.Typer(help="Run validation checks on the repository.")
 def check_pr(
     repo_root_path: Path = defaults.REPO_ROOT_PATH,
     base_branch: str = defaults.BASE_BRANCH,
-    docs_dir: Path = defaults.DOCS_DIR_PATH,
+    docs_dir_path: Path = defaults.DOCS_DIR_PATH,
     meta_schema_path: Path = defaults.META_SCHEMA_PATH,
     merge_ready: bool = False,
 ):
@@ -21,4 +20,12 @@ def check_pr(
     - Verifies that changed documents have advanced their version.
     - If --merge-ready, checks for 'TBD' verifiers.
     """
-    checker.pr_check(repo_root_path, base_branch, docs_dir, meta_schema_path, merge_ready)
+    checker.pr_check(
+        repo_root_path,
+        base_branch,
+        docs_dir_path,
+        meta_schema_path,
+        merge_ready,
+        defaults.DOCS_DIR_PATH,
+        defaults.META_SCHEMA_PATH,
+    )

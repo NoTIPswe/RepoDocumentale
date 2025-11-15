@@ -1,4 +1,4 @@
-from typing import List, FrozenSet
+from typing import Tuple, FrozenSet
 from pathlib import Path
 from datetime import date
 from packaging.version import Version
@@ -26,7 +26,7 @@ class Document:
 
     # Metadata
     title: str
-    changelog: List[ChangelogEntry]
+    changelog: Tuple[ChangelogEntry, ...]
     group: str
     subgroup: str
 

@@ -35,6 +35,9 @@ VALID_SUBGROUPS_ORDERED = [
     "verbest",
     "verbint",
     "slides",
+    # TODO remove
+    "esterno",
+    "interno",
 ]
 SUBGROUP_TO_TITLE = {
     "docint": "Documentazione Interna",
@@ -42,6 +45,9 @@ SUBGROUP_TO_TITLE = {
     "verbint": "Verbali Interni",
     "verbest": "Verbali Esterni",
     "slides": "Slides",
+    # TODO remove
+    "esterno": "Documentazione Interna",
+    "interno": "Documentazione Interna",
 }
 SUBGROUP_TO_SORTING_KEY: Dict[str, Callable[[model.Document], str]] = {
     "docint": lambda d: d.last_modified_date.strftime("%Y-%m-%d"),
@@ -49,6 +55,9 @@ SUBGROUP_TO_SORTING_KEY: Dict[str, Callable[[model.Document], str]] = {
     "verbint": lambda d: d.source_path.name,
     "verbest": lambda d: d.source_path.name,
     "slides": lambda d: d.source_path.name,
+    # TODO remove
+    "esterno": lambda d: d.last_modified_date.strftime("%Y-%m-%d"),
+    "interno": lambda d: d.last_modified_date.strftime("%Y-%m-%d"),
 }
 
 TBD_VERIFIER = "TBD"

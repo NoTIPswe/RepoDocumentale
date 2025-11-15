@@ -21,8 +21,6 @@ def create_documents(raw_docs: List[scanner.RawDocument]) -> List[model.Document
 def create_document(raw_doc: scanner.RawDocument) -> model.Document:
     """
     Validates a RawDocument and parses it into a final Document model.
-    This is the "fail-fast" factory. It performs all business logic
-    validation for a single document.
     """
     logging.debug(f"Validating and creating doc from: {raw_doc.document_dir_path}")
 
@@ -48,7 +46,7 @@ def create_document(raw_doc: scanner.RawDocument) -> model.Document:
             doc_dir_path=raw_doc.document_dir_path,
             subfiles_paths=raw_doc.subfiles_paths,
             title=raw_meta["title"],
-            changelog=changelog,
+            changelog=tuple(changelog),
             group=group,
             subgroup=subgroup,
         )
