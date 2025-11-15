@@ -12,6 +12,12 @@ jobs:
   validate-and-build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          # We need fetch-depth: 0 to get all history for git diff
+          fetch-depth: 0
+
       - name: Install Typst
         uses: typst-community/setup-typst@v3
 
@@ -22,12 +28,6 @@ jobs:
 
       - name: Install Python dependencies
         run: pip install -r scripts/requirements.txt
-
-      - name: Checkout PR branch
-        uses: actions/checkout@v4
-        with:
-          # We need fetch-depth: 0 to get all history for git diff
-          fetch-depth: 0
 
       - name: Validate document changes
         run: |
