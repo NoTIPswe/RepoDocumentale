@@ -22,7 +22,9 @@ class Document:
 
     # Unique identifier
     doc_dir_path: Path
-    subfiles_paths: FrozenSet[Path]
+    subfiles_paths: FrozenSet[
+        Path
+    ]  # TODO remove: now a document has changed if anything has changed inside its dir
 
     # Metadata
     title: str

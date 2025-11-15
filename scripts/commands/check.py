@@ -11,8 +11,6 @@ app = typer.Typer(help="Run validation checks on the repository.")
 def check_pr(
     repo_root_path: Path = defaults.REPO_ROOT_PATH,
     base_branch: str = defaults.BASE_BRANCH,
-    docs_dir_path: Path = defaults.DOCS_DIR_PATH,
-    meta_schema_path: Path = defaults.META_SCHEMA_PATH,
     merge_ready: bool = False,
 ):
     """
@@ -21,11 +19,9 @@ def check_pr(
     - If --merge-ready, checks for 'TBD' verifiers.
     """
     checker.pr_check(
-        repo_root_path,
-        base_branch,
-        docs_dir_path,
-        meta_schema_path,
-        merge_ready,
-        defaults.DOCS_DIR_PATH,
-        defaults.META_SCHEMA_PATH,
+        repo_root_path=repo_root_path,
+        rel_docs_dir_path=defaults.DOCS_DIR_PATH,
+        rel_meta_schema_path=defaults.META_SCHEMA_PATH,
+        base_branch=base_branch,
+        merge_ready=merge_ready,
     )

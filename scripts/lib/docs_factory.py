@@ -72,7 +72,7 @@ def _validate_doc_name(doc_dir_path: Path) -> None:
 
 
 def _validate_group(candidate_group: str) -> str:
-    if candidate_group not in configs.VALID_GROUPS:
+    if candidate_group not in configs.VALID_GROUPS_ORDERED:
         raise FactoryError(f"Non-conforming group name: '{candidate_group}'")
     return candidate_group
 

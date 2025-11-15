@@ -14,7 +14,6 @@ class LocalScanner(scanner.Scanner):
 
     def __init__(self, schema_path: Path):
         self._schema_path = schema_path
-        # The schema is a critical dependency. We fail fast if it's not readable.
         try:
             self._raw_schema_content = self._schema_path.read_text(encoding="utf-8")
         except Exception as e:
@@ -28,7 +27,7 @@ class LocalScanner(scanner.Scanner):
         docs: List[scanner.RawDocument] = []
 
         for root, dirs, _ in os.walk(docs_dir_path, topdown=True):
-            
+
             dirs[:] = [d for d in dirs if d not in configs.IGNORED_GROUPS]
 
             dir_path = Path(root)
@@ -70,7 +69,7 @@ class LocalScanner(scanner.Scanner):
 
         return scanner.RawDocument(
             raw_meta=raw_meta_content,
-            raw_meta_schema=self._raw_schema_content,  # Pass raw string
+            raw_meta_schema=self._raw_schema_content,
             document_dir_path=doc_dir_path,
             subfiles_paths=subfiles,
             candidate_group=doc_dir_path.parent.parent.name,

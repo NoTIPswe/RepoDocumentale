@@ -16,13 +16,12 @@ INDEX_HTML_GROUPS_LIST_MARKER = "<!--GROUP_LIST_MARKER-->"
 GROUPS_HTML_GROUP_TITLE_MARKER = "<!--GROUP_TITLE_MARKER-->"
 GROUPS_HTML_TABLES_MARKER = "<!--GROUP_TABLES_MARKER-->"
 
-VALID_GROUPS = frozenset(
-    {
-        "01-living_documents",
-        "11-candidatura",
-        "12-rtb",
-    }
-)
+VALID_GROUPS_ORDERED = [
+    "01-living_documents",  # TODO remove
+    "11-candidatura",
+    "12-rtb",
+]
+
 GROUP_TO_TITLE = {
     "01-living_documents": "Living Documents",
     "11-candidatura": "Candidatura",
@@ -35,9 +34,8 @@ VALID_SUBGROUPS_ORDERED = [
     "verbest",
     "verbint",
     "slides",
-    # TODO remove
-    "esterno",
-    "interno",
+    "esterno",  # TODO remove
+    "interno",  # TODO remove
 ]
 SUBGROUP_TO_TITLE = {
     "docint": "Documentazione Interna",
@@ -45,9 +43,8 @@ SUBGROUP_TO_TITLE = {
     "verbint": "Verbali Interni",
     "verbest": "Verbali Esterni",
     "slides": "Slides",
-    # TODO remove
-    "esterno": "Documentazione Interna",
-    "interno": "Documentazione Interna",
+    "esterno": "Documentazione Interna",  # TODO remove
+    "interno": "Documentazione Interna",  # TODO remove
 }
 SUBGROUP_TO_SORTING_KEY: Dict[str, Callable[[model.Document], str]] = {
     "docint": lambda d: d.last_modified_date.strftime("%Y-%m-%d"),
@@ -55,9 +52,8 @@ SUBGROUP_TO_SORTING_KEY: Dict[str, Callable[[model.Document], str]] = {
     "verbint": lambda d: d.source_path.name,
     "verbest": lambda d: d.source_path.name,
     "slides": lambda d: d.source_path.name,
-    # TODO remove
-    "esterno": lambda d: d.last_modified_date.strftime("%Y-%m-%d"),
-    "interno": lambda d: d.last_modified_date.strftime("%Y-%m-%d"),
+    "esterno": lambda d: d.last_modified_date.strftime("%Y-%m-%d"),  # TODO remove
+    "interno": lambda d: d.last_modified_date.strftime("%Y-%m-%d"),  # TODO remove
 }
 
 TBD_VERIFIER = "TBD"
