@@ -15,7 +15,10 @@ INDEX_HTML_GROUPS_LIST_MARKER = "<!--GROUP_LIST_MARKER-->"
 GROUPS_HTML_GROUP_TITLE_MARKER = "<!--GROUP_TITLE_MARKER-->"
 GROUPS_HTML_TABLES_MARKER = "<!--GROUP_TABLES_MARKER-->"
 
-IGNORED_GROUPS = {"00-common_assets"}
+IGNORED_GROUPS = {
+    "00-common_assets",
+    "00-templates",  # TODO remove
+}
 VALID_GROUPS_ORDERED = [
     "01-living_documents",  # TODO remove
     "11-candidatura",

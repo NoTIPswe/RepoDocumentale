@@ -12,4 +12,4 @@ FONTS_DIR_PATH = Path("docs/00-common_assets/fonts")
 
 META_SCHEMA_PATH = Path(".schemas/meta.schema.json")
 
-BASE_BRANCH = "main"
+BASE_BRANCH = "origin/main"
