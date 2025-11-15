@@ -46,7 +46,7 @@ def _check_changes_only_last_dir(git_docs_diffs: git_comparer.GitDocsDiffs):
     )
 
     for p in all_changed_doc_dir_paths:
-        if not p.is_relative_to(last_dir):
+        if last_dir not in p.parts:
             logging.error(
                 f"There are changes relative to an older baseline: {p}. "
                 f"Changes are only permitted in the latest baseline {last_dir}."
