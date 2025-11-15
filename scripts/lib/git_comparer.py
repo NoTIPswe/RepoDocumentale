@@ -143,7 +143,9 @@ def _get_modified_docs(
     commit = repo.commit(revision)
 
     modified_docs_paths: set[Path] = {
-        repo_root_path / path for path in git_common_paths if commit.diff(paths=[path])
+        repo_root_path / path
+        for path in git_common_paths
+        if commit.diff(None, paths=[path])
     }
 
     return modified_docs_paths
