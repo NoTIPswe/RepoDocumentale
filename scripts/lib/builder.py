@@ -5,7 +5,7 @@ import os
 from enum import Enum
 from typing import List
 
-from . import docs_factory, model, local_scanner
+from . import docs_factory, model, local_scanner, git_comparer
 from pathlib import Path
 
 
@@ -57,6 +57,25 @@ def watch_doc(
     raw_doc = scanner.discover_doc(doc_dir_path)
     doc_model = docs_factory.create_document(raw_doc)
     _build_doc(doc_model, output_dir_path, fonts_dir_path, BuildMode.WATCH)
+
+
+def build_changes(
+    repo_root_path: Path,
+    rel_docs_dir_path: Path,
+    rel_meta_schema_path: Path,
+    rel_fonts_dir_path: Path,
+    revision: str,
+    ouptut_dir_path: Path,
+) -> None:
+    diff = git_comparer.compare_against_revision(
+        repo_root_path, revision, rel_docs_dir_path, rel_meta_schema_path
+    )
+    docs_to_build = [c.local_document for c in diff.created] + [
+        m.local_document for m in diff.modified
+    ]
+    build_from_docs_model(
+        docs_to_build, ouptut_dir_path, repo_root_path / rel_fonts_dir_path
+    )
 
 
 def _build_doc(

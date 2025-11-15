@@ -30,10 +30,16 @@ def build_doc(
 
 @app.command("changes")
 def build_changes(
-    docs_dir_path: Path = defaults.DOCS_DIR_PATH,
-    base_branch: str = defaults.BASE_BRANCH,
+    repo_root_path: Path = defaults.REPO_ROOT_PATH,
     output_dir_path: Path = defaults.DOCS_OUTPUT_DIR_PATH,
-    meta_schema_path: Path = defaults.META_SCHEMA_PATH,
-    fonts_dir_path: Path = defaults.FONTS_DIR_PATH,
+    base_revision: str = defaults.BASE_BRANCH,
 ):
-    """Builds docs that changed against the base branch."""
+    """Builds docs that changed against some base revision."""
+    builder.build_changes(
+        repo_root_path,
+        defaults.DOCS_DIR_PATH,
+        defaults.META_SCHEMA_PATH,
+        defaults.FONTS_DIR_PATH,
+        base_revision,
+        output_dir_path,
+    )

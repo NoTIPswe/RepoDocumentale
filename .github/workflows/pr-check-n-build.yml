@@ -35,7 +35,7 @@ jobs:
 
       - name: Build docs from PR
         run: |
-          python3 do build all
+          python3 do build changes
       
       - name: Upload Build Artifacts (PDFs)
         if: always()

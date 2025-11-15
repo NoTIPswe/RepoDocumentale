@@ -34,7 +34,6 @@ class LocalScanner(scanner.Scanner):
             relative_path = dir_path.relative_to(docs_dir_path)
             depth = len(relative_path.parts)
 
-            # We only care about 3rd-level directories (group/subgroup/doc)
             if depth == 3:
                 docs.append(self.discover_doc(dir_path))
                 dirs[:] = []
@@ -44,7 +43,7 @@ class LocalScanner(scanner.Scanner):
                 dirs[:] = []
                 continue
 
-        logging.info(f"Local discovery complete. Found {len(docs)} documents.")
+        logging.debug(f"Local discovery complete. Found {len(docs)} documents.")
         return docs
 
     def discover_doc(self, doc_dir_path: Path) -> scanner.RawDocument:
