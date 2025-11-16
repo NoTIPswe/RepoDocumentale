@@ -32,7 +32,7 @@ jobs:
         uses: typst-community/setup-typst@v3
 
       - name: Generate static site
-        run: python do generate site
+        run: python scripts/do.py generate site
 
       - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v3

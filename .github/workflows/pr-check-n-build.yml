@@ -31,11 +31,11 @@ jobs:
 
       - name: Validate document changes
         run: |
-          python3 do check pr
+          python3 scripts/do.py check pr
 
       - name: Build docs from PR
         run: |
-          python3 do build changes
+          python3 scripts/do.py build changes
       
       - name: Upload Build Artifacts (PDFs)
         if: always()
