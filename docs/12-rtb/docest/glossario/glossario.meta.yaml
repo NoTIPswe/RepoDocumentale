@@ -1,7 +1,7 @@
 title: Glossario
 changelog:
   - version: "1.0.0"
-    date: "2025-10-31"
+    date: "2025-11-07"
     authors:
       - Francesco Marcon
       - Matteo Mantoan
@@ -9,7 +9,7 @@ changelog:
     description: >
       Prima versione stabile
   - version: "0.2.0"
-    date: "2025-11-07"
+    date: "2025-10-31"
     authors:
       - Francesco Marcon
     verifier: Matteo Mantoan
