@@ -33,9 +33,6 @@ jobs:
       - name: Install Typst
         uses: typst-community/setup-typst@v3
 
-      - name: Build Typst documents
-        run: python do build all
-
       - name: Generate static site
         run: python do generate site
 
