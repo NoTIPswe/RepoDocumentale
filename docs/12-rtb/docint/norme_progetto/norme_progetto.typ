@@ -254,7 +254,7 @@
   L'*assegnazione dei ruoli* verrà definita durante ogni sprint planning.
   In questa fase, a ciascun membro del team verranno assegnati uno o più ruoli in base ai seguenti principi:
   - *Sprint planning*: stima del tempo richiesto per ruolo dai task in base agli obbiettivi dello sprint, dipendenti dalla componente del progetto in sviluppo;
-  - *Disponibilità personale*: numero di ore produttive che la persona potrà dedicare allo sprint, generalmente tra le 20 e le 40;
+  - *Disponibilità personale*: numero di ore produttive che la persona potrà dedicare allo sprint, generalmente tra le 7 e le 15;
   - *Monitoraggio ore produttive*: il Responsabile aggiorna la rotazione dei ruoli. Valuterà il numero di ore ricoperte dalla persona per ogni ruolo in passato, monitorando il rispetto dei principi qui elencati e ripartendo eventuali carichi distribuiti non equamente;
   - *Assegnazione basata sulle competenze*: per velocizzare il progresso del progetto, nelle fasi iniziali è possibile che ai componenti del gruppo vengano assegnati ruoli nei quali hanno più esperienza, dando quindi priorità a chi possiede competenze pregresse in determinati task. Nonostante ciò, tutti i componenti del gruppo dovranno svolgere, a parità di ruolo, un numero simile di ore, come riportato nella `Dichiarazione di Impegni`.
 

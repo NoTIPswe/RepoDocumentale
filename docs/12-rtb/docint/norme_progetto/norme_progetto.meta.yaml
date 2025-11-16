@@ -1,11 +1,19 @@
 title: Norme di Progetto
 changelog:
+  - version: "0.4.1"
+    date: "2025-11-16"
+    authors:
+      - Leonardo Preo
+      - Mario De Pasquale
+    verifier: TBD
+    description: >
+        Aggiustamento ore produttive per sprint
   - version: "0.4.0"
     date: "2025-11-16"
     authors:
       - Leonardo Preo
       - Mario De Pasquale
-    verifier:
+    verifier: TBD
     description: >
         Aggiunta specifica criteri rotazione dei ruoli
   - version: "0.3.1"
