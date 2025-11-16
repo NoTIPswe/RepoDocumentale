@@ -1,0 +1,78 @@
+#let terms = (
+  // A
+  "Agile": "Insieme di principi e pratiche di sviluppo software basate su iterazioni brevi, feedback continui e collaborazione costante tra i membri del team",
+  "appalto": "Termine usato in senso figurato per indicare l’assegnazione di un capitolato a un gruppo, a seguito della selezione da parte dell’azienda proponente",
+  "audit": "Attività di analisi e verifica sistematica su codice, processi o documentazione per valutarne qualità e conformità",
+  "automazione": "Procedura o insieme di strumenti che consentono l’esecuzione automatica di attività ripetitive, come la pubblicazione di documenti o la build del progetto",
+  // B
+  "branch": "Linea di sviluppo indipendente all’interno di un repository Git, utilizzata per lavorare su nuove funzionalità o correzioni senza influenzare il codice principale",
+  // C
+  "CI/CD": "Insieme di pratiche e strumenti per integrazione continua e distribuzione continua, a supporto di build, test e release automatici",
+  "commit": "Operazione con cui si registrano modifiche in un sistema di controllo versione (come Git). Deve essere atomico, cioè riguardare un singolo cambiamento coerente",
+  "convention over configuration": "Principio di progettazione secondo cui scelte predefinite e convenzioni riducono la necessità di configurazioni esplicite, semplificando lo sviluppo",
+  "cowork": "Sessione di lavoro condiviso tra i membri del gruppo, svolta in contemporanea per favorire la collaborazione e la produttività",
+  // D
+  "deliverable": "Prodotto intermedio o finale (documento, artefatto, versione) consegnato come risultato di attività pianificate",
+  "directory di documento": "Cartella dedicata alla raccolta e organizzazione dei file di un singolo documento all’interno della struttura del progetto",
+  "Discord": "Piattaforma di comunicazione online che permette chat vocali, testuali e video, utilizzata per coordinare le attività e tenere riunioni virtuali del gruppo",
+  "docs-as-code": "Approccio utilizzato per la gestione documentale attraverso codice",
+  // E
+  "editor": "Membro del gruppo incaricato della redazione o modifica di un documento all’interno del progetto",
+  // F
+  "foglio elettronico": "Documento digitale strutturato in celle che consente di organizzare, calcolare e visualizzare dati utili al gruppo",
+  // G
+  "GitHub Projects": "Strumento integrato in GitHub per la gestione dei progetti, che consente di pianificare, assegnare e monitorare task in modo collaborativo tramite board e workflow personalizzabili",
+  "GitHub": "Piattaforma di hosting per repository Git che consente la collaborazione, la revisione del codice e la gestione dei progetti tramite pull request e issue tracking",
+  "Git": "Sistema di controllo versione distribuito che consente di tracciare le modifiche al codice sorgente e lavorare in modo collaborativo su progetti software",
+  "Google Docs": "Piattaforma cloud per la creazione, modifica e condivisione collaborativa di documenti testuali in tempo reale per raccogliere idee",
+  // H
+  // I
+  "ISO 8601": "Standard internazionale per rappresentare date e orari in formato non ambiguo (es. yyyy-mm-dd)",
+  "ISO/IEC 12207:1995": "Standard internazionale che definisce i processi del ciclo di vita del software (primari, di supporto, organizzativi) come riferimento metodologico",
+  "issue": "Segnalazione, proposta o attività da gestita all’interno di un repository GitHub",
+  // J
+  // K
+  // L
+  "LaTeX": "Linguaggio utilizzato per la creazione di documenti scientifici e tecnici, basato su markup testuale e altamente personalizzabile",
+  "linee guida": "Indicazioni operative e stilistiche che regolano la redazione, il formato e il contenuto dei documenti del progetto",
+  "Living Document": "Documento in evoluzione continua, aggiornato man mano che processi e decisioni cambiano; mantiene storia e contesto nel tempo",
+  // M
+  "main": "Branch principale di un repository Git, che contiene la versione stabile e ufficiale del progetto",
+  "merge": "Operazione con cui si uniscono le modifiche di un branch secondario nel branch principale, dopo approvazione e revisione",
+  "metadati": "Dati che descrivono altri dati o documenti (es. autore, versione, data, ambito, collocazione), usati per organizzazione e automazioni",
+  "milestone": "Punto di controllo pianificato che segna un traguardo verificabile; scandisce avanzamento e rilasci",
+  // N
+  // O
+  // P
+  "pull-request": "Richiesta di integrazione di modifiche da un branch secondario al branch principale di un repository. Permette la revisione del codice prima dell’unione definitiva",
+  "PR": "Abbreviazione di pull request. Utilizzata comunemente per indicare la richiesta di revisione o integrazione nel flusso di lavoro Git",
+  // Q
+  // R
+  "repository documentale": "Archivio centralizzato che contiene documenti, file e versioni, utilizzato per la gestione e la conservazione della documentazione di progetto",
+  "repository": "Archivio centralizzato che può contiene solitamente codice sorgente, la documentazione e la cronologia delle versioni di un progetto",
+  // TODO: "rule of thumb"
+  // S
+  "scripting": "Automazione di attività ripetitive tramite script eseguibili (build, pubblicazione, verifica, generazione documenti)",
+  "Scrum Master": "Membro del team con il compito di facilitare l’applicazione del metodo Scrum, rimuovere ostacoli e promuovere buone pratiche di lavoro collaborativo",
+  "Scrum": "Framework di sviluppo Agile basato su iterazioni (sprint) e ruoli definiti, volto a migliorare la collaborazione e la gestione del lavoro di gruppo",
+  "Sprint Planning": "Fase iniziale di ogni sprint in cui il team definisce gli obiettivi e pianifica le attività da completare",
+  "sprint": "Periodo di tempo prefissato, tipicamente di una o due settimane, durante il quale il team di sviluppo lavora su un insieme definito di attività",
+  "stakeholders": "Persone o entità interessate al progetto, che possono influenzarlo o esserne influenzate, come clienti, utenti, sviluppatori e sponsor",
+  "struttura semantica": "Organizzazione di directory e file che esprime il significato (ruolo, ambito, stato) oltre al semplice contenimento",
+  // T
+  "task": "Unità di lavoro specifica e delimitata, generalmente associata a una singola attività o obiettivo da completare",
+  "template Typst": "Modello predefinito scritto in linguaggio Typst, utilizzato per standardizzare la struttura grafica e formale dei documenti del gruppo",
+  "template": "Struttura predefinita utilizzata come modello per la redazione uniforme dei documenti del progetto",
+  "Typst": "Linguaggio di composizione testuale per la creazione di documenti strutturati, caratterizzato da una sintassi chiara e moderna, alternativo a LaTeX e adatto all’automazione della documentazione",
+  // U
+  // V
+  "Verificatore": "Ruolo responsabile della revisione indipendente di documenti/artefatti per garantirne conformità, qualità e tracciabilità",
+  "version control": "Sistema che consente di registrare, monitorare e gestire le modifiche al codice sorgente o ai documenti di progetto nel tempo, garantendo tracciabilità e collaborazione",
+  "versionamento": "Processo di gestione e numerazione progressiva delle versioni dei documenti o del codice per garantire tracciabilità e ordine",
+  // W
+  "Way of Working": "Documento o insieme di pratiche che descrive le modalità operative, gli strumenti e le regole adottate dal team per collaborare in modo efficace e coerente",
+  // X
+  // Y
+  "YAML": "Formato di serializzazione leggibile da umani, usato per file di metadati e configurazione (es. .meta.yaml)",
+  // Z
+)

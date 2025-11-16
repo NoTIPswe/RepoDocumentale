@@ -1,0 +1,11 @@
+[project]
+name = "NoTIP-Tooling"
+version = "0.1.0"
+description = "NoTIP unified document tooling CLI."
+dependencies = [
+    "pyyaml",
+    "jsonschema",
+    "typer",
+    "gitpython",
+    "packaging",
+]

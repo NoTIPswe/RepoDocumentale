@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NoTIP Group Project Documentation</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/template_document.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <h2 class="notip">NoTIP Docs</h2>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="aboutus.html">About</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <div class="breadcrumbs">
+        <a href="index.html">Home</a>
+        <span>&gt;</span>
+        <span><!--GROUP_TITLE_MARKER--></span>
+      </div>
+
+      <h1><!--GROUP_TITLE_MARKER--></h1>
+      <div class="search-bar">
+        <span class="icon">&#128269;</span>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Ricerca in <!--GROUP_TITLE_MARKER-->..."
+        />
+      </div>
+
+      <!--GROUP_TABLES_MARKER-->
+
+    <footer>
+      <div class="footer-container">
+        <div>
+          <h4>Dove Trovarci</h4>
+          <div class="socials">
+            <a
+              href="https://github.com/NoTipSwe"
+              data-icon="github"
+              aria-label="vai su GitHub"
+            ></a>
+            <a
+              href="mailto:Notip.swe@gmail.com"
+              data-icon="email"
+              aria-label="manda Email"
+            ></a>
+          </div>
+        </div>
+      </div>
+      <p style="text-align: center; margin-top: 2rem">© 2025 NoTIP Group.</p>
+    </footer>
+    <script>
+      document
+        .getElementById("searchInput")
+        .addEventListener("keyup", function () {
+          const filter = this.value.toLowerCase();
+          const rows = document.querySelectorAll(".doc-table tbody tr");
+          rows.forEach((row) => {
+            const text = row.textContent.toLowerCase();
+            row.style.display = text.includes(filter) ? "" : "none";
+          });
+        });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const table = document.querySelector(".doc-table");
+        const ths = table.querySelectorAll("th");
+        const tbody = table.querySelector("tbody");
+        const baseOrder = ["interno", "esterno", "slides"];
+        let currentStartIndex = 0;
+        ths.forEach((th, idx) => {
+          if (th.textContent.trim().toLowerCase() === "utilizzo") {
+            th.style.cursor = "pointer";
+            th.addEventListener("click", () => {
+              const rows = Array.from(tbody.querySelectorAll("tr"));
+              const grouped = {};
+              rows.forEach((row) => {
+                const type = row.children[idx].innerText.trim().toLowerCase();
+                if (!grouped[type]) grouped[type] = [];
+                grouped[type].push(row);
+              });
+              const rotatedOrder = [
+                ...baseOrder.slice(currentStartIndex),
+                ...baseOrder.slice(0, currentStartIndex),
+              ];
+              currentStartIndex = (currentStartIndex + 1) % baseOrder.length;
+              tbody.innerHTML = "";
+              rotatedOrder.forEach((type) => {
+                if (grouped[type]) {
+                  grouped[type].forEach((row) => tbody.appendChild(row));
+                }
+              });
+            });
+          }
+        });
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const table = document.querySelector(".doc-table");
+        const ths = table.querySelectorAll("th");
+        const tbody = table.querySelector("tbody");
+        let sortDirection = 1;
+        ths.forEach((th, idx) => {
+          if (th.dataset.column === "date") {
+            th.style.cursor = "pointer";
+            th.addEventListener("click", () => {
+              const rows = Array.from(tbody.querySelectorAll("tr"));
+              rows.sort((a, b) => {
+                const dateA = new Date(a.children[idx].textContent.trim());
+                const dateB = new Date(b.children[idx].textContent.trim());
+                return (dateA - dateB) * sortDirection;
+              });
+              sortDirection *= -1;
+              tbody.innerHTML = "";
+              rows.forEach((row) => tbody.appendChild(row));
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
