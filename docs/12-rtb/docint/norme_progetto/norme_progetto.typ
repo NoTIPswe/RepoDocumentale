@@ -233,9 +233,11 @@
 
   Essa comprende, in particolare, la definizione dei ruoli, la pianificazione delle attività e il monitoraggio dell’avanzamento.
 
-  === Definizione dei ruoli
+  === Pianificazione
 
-  Al momento della stesura del presente documento, il gruppo ha definito i seguenti ruoli previsti:
+  ==== Assegnazione ruoli
+
+  Al fine di separare le attività da svolgere per ambito di competenza, il gruppo ha definito i seguenti ruoli previsti:
 
   - *Responsabile* - coordina il gruppo di lavoro per tutta la durata del progetto, pianificando le attività, gestendo tempi, costi e rischi, e rappresentando il team NoTIP verso l'esterno;
 
@@ -249,10 +251,12 @@
 
   - *Verificatore* - controlla la qualità e la correttezza dei prodotti e dei processi, assicurando che le attività rispettino gli standard stabiliti e documentando risultati.
 
-
-  Ogni componente del gruppo ricoprirà ciascun ruolo in misura equivalente nel corso del progetto, al fine di garantire una distribuzione equa delle responsabilità e delle competenze.
-
-  La modalità di assegnazione effettiva dei ruoli non è ancora stata formalmente stabilita; si prevede che tale compito venga affidato al Responsabile di progetto.
+  L'*assegnazione dei ruoli* verrà definita durante ogni sprint planning.
+  In questa fase, a ciascun membro del team verranno assegnati uno o più ruoli in base ai seguenti principi:
+  - *Sprint planning*: stima del tempo richiesto per ruolo dai task in base agli obbiettivi dello sprint, dipendenti dalla componente del progetto in sviluppo;
+  - *Disponibilità personale*: numero di ore produttive che la persona potrà dedicare allo sprint, generalmente tra le 7 e le 15;
+  - *Monitoraggio ore produttive*: il Responsabile aggiorna la rotazione dei ruoli. Valuterà il numero di ore ricoperte dalla persona per ogni ruolo in passato, monitorando il rispetto dei principi qui elencati e ripartendo eventuali carichi distribuiti non equamente;
+  - *Assegnazione basata sulle competenze*: per velocizzare il progresso del progetto, nelle fasi iniziali è possibile che ai componenti del gruppo vengano assegnati ruoli nei quali hanno più esperienza, dando quindi priorità a chi possiede competenze pregresse in determinati task. Nonostante ciò, tutti i componenti del gruppo dovranno svolgere, a parità di ruolo, un numero simile di ore, come riportato nella `Dichiarazione di Impegni`.
 
   === Strumenti di gestione
 
