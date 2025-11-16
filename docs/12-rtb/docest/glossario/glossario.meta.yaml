@@ -1,12 +1,5 @@
 title: Glossario
 changelog:
-  - version: "1.1.1"
-    date: "2025-11-07"
-    authors:
-      - Francesco Marcon
-    verifier: Matteo Mantoan
-    description: >
-        Cambiamento ordinamento termini e tolti indici numerici
   - version: "1.0.0"
     date: "2025-10-31"
     authors:
@@ -15,6 +8,13 @@ changelog:
     verifier: Leonardo Preo
     description: >
       Prima versione stabile
+  - version: "0.2.0"
+    date: "2025-11-07"
+    authors:
+      - Francesco Marcon
+    verifier: Matteo Mantoan
+    description: >
+        Cambiamento ordinamento termini e tolti indici numerici
   - version: "0.1.0"
     date: "2025-10-31"
     authors:
