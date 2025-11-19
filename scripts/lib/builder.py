@@ -103,7 +103,7 @@ def _build_doc(
         "--input",
         f"meta-path={meta_path_relative}",
         "--root",
-        ".",
+        str(doc.source_path.parent.parent.parent.parent),
         "--ignore-system-fonts",
         f"--font-path={fonts_dir_path}",
     ]

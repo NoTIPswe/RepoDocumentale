@@ -7,10 +7,11 @@ Repository che contiene sito e documentazione del Gruppo 12 del primo lotto dell
 L'interfaccia pubblica della documentazione è il nostro sito: [notipswe.github.io](https://notipswe.github.io)
 
 
-## Uso del tool `do`
+## Uso del tool `notipdo`
 
-`do` è il tool che permette di eseguire tutte le operazioni necessarie alla scrittura, compilazione, pubblicazione e verifica dei documenti.
+`notipdo` è il tool che permette di eseguire tutte le operazioni necessarie alla scrittura, compilazione, pubblicazione e verifica dei documenti.
 
 - Necessario Python 3.13+ (preferibile un [virtual environment](https://docs.python.org/3.14/library/sys_path_init.html#sys-path-init-virtual-environments))
 - Installa le dipendenze tramite `pip install -r scripts/requirements.txt`
-- Esegui `python do --help`
+- Installa il tool tramite `pip install -e scripts`
+- Esegui `notipdo --help`
