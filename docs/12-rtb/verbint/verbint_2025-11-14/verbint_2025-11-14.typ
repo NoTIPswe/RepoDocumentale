@@ -37,13 +37,13 @@
       L'idea era di lavorare su ciò già scritto all'interno delle Norme di Progetto e della Dichiarazione di Impegni, facendo in modo che, mediamente, ogni componente del gruppo svolga le stesse ore degli altri in ogni ruolo.
     ],
     decisions: [
-      - Si rielabora ciò già riportato nella *Dichiarazione di Impegni*, specificando i criteri per la rotazione a all'inizio di ogni sprint nelle *Norme di Progetto*.
-      - Creazione ed assegnamento del task 
+      - Si rielabora ciò già riportato nella *Dichiarazione di Impegni*, specificando i criteri per la rotazione all'inizio di ogni sprint nelle *Norme di Progetto*.
+      - Creazione ed assegnamento del task
     ],
     actions: (
       (
         desc: "Rotazione ruoli - redazione criteri specifici",
-        url: "https://github.com/NoTIPswe/NoTIPswe.github.io/issues/53"
+        url: "https://github.com/NoTIPswe/NoTIPswe.github.io/issues/53",
       ),
     ),
   )
@@ -57,7 +57,7 @@
     decisions: [
       Dalla discussione si decide di chiedere all'azienda M31, che funge anche da *mentore* nei confronti del gruppo, con lo scopo di utilizzare dei tool per la gestione del progetto che poi trovino applicazioni nell'ambito lavorativo. Si ricercano quindi tecnologie e tecniche normalmente utilizzate in ambito aziendale.
     ],
-    actions: ()
+    actions: (),
   )
 
   #base-report.report-point(
@@ -75,7 +75,7 @@
       - Il gruppo si impegna alla lettura e comprensione da parte di ogni componente del capitolato, in modo da presentarsi il più preparati possibile all'incontro
       - Si richiede un'introduzione all'analisi dei requisiti, con indicazioni generali atte allo svolgimento di questa.
     ],
-    actions: ()
+    actions: (),
   )
 ][
   = Esiti e decisioni finali
