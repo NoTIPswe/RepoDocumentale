@@ -1,0 +1,25 @@
+title: Verbale Esterno 2025-10-24 (M31)
+changelog:
+  - version: "1.0.0"
+    date: "2025-11-20"
+    authors:
+      - Alessandro Contarini
+    verifier: TBD
+    description: >
+      Versione stabile verbale
+
+  - version: "0.1.0"
+    date: "2025-11-19"
+    authors:
+      - Alessandro Contarini
+    verifier: TBD
+    description: >
+      Redazione contenuto del verbale
+
+  - version: "0.0.1"
+    date: "2025-11-19"
+    authors:
+      - Alessandro Contarini
+    verifier: TBD
+    description: >
+      Prima versione del Verbale Esterno post incontro con l'azienda proponente M31
