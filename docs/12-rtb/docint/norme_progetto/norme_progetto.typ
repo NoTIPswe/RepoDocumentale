@@ -125,32 +125,26 @@
 
   Un documento è considerato *verificato* solo dopo il merge su `main`, che sancisce il passaggio di stato e l'eventuale avanzamento della *major version*.
 
-  === Verifica dei documenti
-  La verifica dei documenti avviene tramite pull request ed è svolta da un *Verificatore* diverso dall’autore, in modo da garantire indipendenza di giudizio e tracciabilità dell’esito.
+ === Verifica dei documenti
+  La verifica dei documenti avviene tramite *Pull Request (PR)* e coinvolge sia controlli automatici (CI/CD) che una revisione umana, garantendo qualità e tracciabilità.
 
-  All'apertura della PR una automazione verifica che tutti i documenti compilino correttamente e fa alcuni check semantici, come:
-  - documenti non modificati non hanno avanzato versioni;
-  - la struttura della repository è corretta;
+  All'apertura o modifica di una PR, una pipeline automatica esegue una serie di controlli bloccanti tramite lo script `checker.py` e il workflow di GitHub:
+  - *Compilazione*: Verifica che tutti i documenti e i relativi sorgenti Typst compilino senza errori.
+  - *Validazione del Versionamento*: I documenti modificati devono presentare un numero di versione superiore rispetto alla controparte nel branch `main`.
+  - *Integrità Storica*: Le modifiche sono consentite esclusivamente nella directory della milestone corrente (l'ultima in ordine cronologico), preservando la baseline delle milestone precedenti da modifiche accidentali.
+  - *Generazione Anteprima*: Il sistema costruisce e rende disponibile come *artifact* un archivio contenente i PDF compilati, facilitando l'ispezione visiva.
 
-  Inoltre, viene fornito dall'automazione un archivio .zip dei file pdf compilati per la verifica della resa grafica da parte del verificatore.
-
-  Ogni PR relativa a un documento viene esaminata manualmente verificando:
-  - Corretta esecuzione delle automazioni di verifica automatica (in ogni caso bloccanti per il sistema)
-  - Corretto posizionamento nella repository;
-  - Conformità al template Typst previsto;
-  - Corretto stile di scrittura;
-  - Completezza delle sezioni obbligatorie;
-  - Coerenza di nome;
-  - Coerenza di versione;
-  - Coerenza dei metadati;
-  - Assenza di file inutili (es. build).
+  Ogni PR viene successivamente esaminata manualmente da un *Verificatore* (diverso dall'autore), che scarica l'anteprima e controlla:
+  - Conformità al template Typst e alle norme tipografiche;
+  - Correttezza dello stile di scrittura e completezza dei contenuti;
+  - Coerenza dei metadati (titoli, date, liste autori);
+  - Assenza di file non necessari.
 
   Se la verifica ha esito positivo:
-  - il verificatore *aggiorna esclusivamente il changelog*, inserendo una nuova riga con il proprio nome e ruolo *verificatore*;
-  - il verificatore inserisce nella nuova riga la versione aggiornata, passando da `x.y` a `x+1.0`;
-  - approva la PR e ne consente il merge su `main`.
+  - Il verificatore richiede (o esegue) la rimozione del placeholder "TBD" dal campo `verifier` nel changelog, inserendo il proprio nome. Questo passaggio è cruciale poiché l'automazione impedisce il merge se sono presenti verificatori "TBD";
+  - Approva la PR, sancendo il consolidamento delle modifiche e della nuova versione nel branch `main`.
 
-  In caso di esito negativo, il verificatore segnala le modifiche richieste direttamente nella PR, che rimane aperta fino all’adeguamento da parte degli autori.
+  In caso di esito negativo, il verificatore segnala le modifiche richieste direttamente nella PR, che rimane aperta fino alla risoluzione dei commenti.
 
   === Strategia di branching
 
