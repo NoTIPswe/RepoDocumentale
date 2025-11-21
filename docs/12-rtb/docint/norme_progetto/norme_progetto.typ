@@ -76,33 +76,34 @@
   - *Manutenzione* - una volta che il documento è stato scritto può venire modificato e migliorato;
   - *Distribuzione* - pubblicazione dei documenti alla visione di tutti gli stakeholders.
 
-  === Struttura della repository
-  La repository documentale adotta una struttura semantica che replica il sito NoTIP, garantendo coerenza tra navigazione locale e pubblicazione.
+  === Struttura del repository
+  Il repository documentale adotta un'organizzazione semantica che rispecchia la struttura del sito NoTIP, assicurando piena coerenza tra la navigazione locale e la versione pubblicata.
 
-  Il primo livello della repository contiene:
-  - `.schemas/` - schemi per la validazione dei file `yaml` contenuti in `docs`;
-  - `docs/` - file sorgenti dei documenti, vedi sotto;
-  - `scripts/` - script Python adottati per l'automazione;
-  - `site/` - file sorgenti del sito web statico NoTIP.
+  Il livello root del repository contiene:
+  - `.schemas/` - schemi per la validazione formale dei file `yaml` presenti in `docs`;
+  - `docs/` - directory contenente i files sorgenti della documentazione (dettagliati a seguire);
+  - `scripts/` - directory contenente gli script Python utilizzati per i processi di automazione;
+  - `site/` - directory contenente i files sorgenti del sito web statico NoTIP.
 
-  La struttura della directory `docs` è la seguente:
-  - `00-templates/` - templates che vengono utilizzati ed importati in ogni singolo documento che compone la documentazione. Al suo interno i template hanno struttura gerarchica. Alla base si specificano le configurazioni di base comuni a tutti i documenti, mentre altri sono maggiormente specializzati in base al caso d'uso (per documenti, verbali, diari di bordo, ...);
-  - `01-living_documents/` - documenti destinati ad evolvere nel corso del tempo, con fine del ciclo di vita paragonabile a quella del progetto stesso;
-  - `xx-{milestone_n}`, dove `xx` $>= 11$ - contenente tutti i documenti riguardanti la specifica milestone. Al suo interno la struttura presenta:
+  La struttura della directory `docs/` è organizzata come segue:
+  - `00-common_assets/` - directory dedicata all'archiviazione centralizzata degli asset (es. immagini) condivisi tra più documenti, al fine di evitare ridondanze nelle cartelle `assets/` specifiche per singolo documento;
+  - `xx-{milestone_n}`, dove `xx` $>= 11$ - directory contenente tutta la documentazione relativa alla specifica milestone, ulteriormente suddivisa per facilitarne l'accesso,
 
-  Ogni directory figlia di `docs` rappresenta un _group_. Ogni _group_ ha struttura fissa formata dai seguenti tre _subgroup_:
-  - `interno/` - documenti ad uso interno, il cui unico destinatario è il team NoTIP;
-  - `esterno/` - documenti ad uso esterno, i cui destinatari sono tutti gli stakeholders del progetto;
-  - `slides/` - presentazioni.
+  Ogni sottocartella di `docs/`, esclusa `00-common_assets/`, costituisce un group. Ogni group presenta una struttura fissa, che può essere composta dai seguenti subgroup:
+  - `docint/` - documentazione a uso interno, destinata esclusivamente al team NoTIP;
+  - `docest/` - documentazione a uso esterno, destinata a tutti gli stakeholder del progetto;
+  - `verbint/` - verbali di riunioni interne (in presenza o da remoto), riepilogativi dei punti discussi e delle decisioni operative assunte;
+  - `verbest/` - verbali di incontri esterni (con azienda proponente o professori), riportanti lo svolgimento della riunione e le decisioni concordate. Prevedono una sezione finale con firma che attesti l'ufficialità del documento;
+  - `slides/` - presentazioni di supporto per i diari di bordo, strutturate per evidenziare i punti chiave della discussione.
 
-  La posizione dei documenti nella gerarchia fornisce metadati impliciti e abilita automazioni secondo la pratica convention over configuration.
+  La posizione dei file nella gerarchia fornisce metadati impliciti e abilita l'automazione secondo il paradigma convention over configuration.
 
-  Ogni documento si trova all'interno di un _group_ e di un _subgroup_. Viene utilizzata una singola directory per documento (directory di documento) con un nome rappresentativo, di seguito detto `{nome_documento}`. Al suo interno:
-  - `{nome_documento}.meta.yaml` contiene i metadati del documento. Esso segue una forma definita in `.schemas/meta.schema.json`;
-  - `{nome_documento}.typ` è il file principale che verrà compilato per generare il documento.
-  - [opzionale] una directory `{assets/}` contenente gli assets specifici del documento;
-  - [opzionale] uno o più _subfiles_ `.typ`, ossia file Typst non direttamente compilati ma importati dal file principale del documento. Si incoraggia la divisione in più _subfiles_ per i documenti di dimensione importante.
-
+  Ogni documento è collocato all'interno di uno specifico group e subgroup. Si utilizza una directory dedicata per ogni documento (di seguito `{nome_documento}`), contenente:
+  - `{nome_documento}.meta.yaml` - metadati del documento, conformi allo schema definito in `.schemas/meta.schema.json`;
+  - `{nome_documento}.typ` - file sorgente principale per la compilazione del documento;
+  - [opzionale] una directory `assets/` contenente le risorse specifiche del documento;
+  - [opzionale] uno o più subfiles `.typ`, ovvero file Typst importati nel principale ma non compilati singolarmente. La modularizzazione è raccomandata per documenti di grandi dimensioni.
+  
   === Ciclo di vita e versionamento dei documenti
   #figure(
     image("assets/ciclo_vita_docs.jpg"),

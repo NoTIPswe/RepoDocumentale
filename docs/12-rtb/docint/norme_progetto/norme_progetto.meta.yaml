@@ -1,5 +1,12 @@
 title: Norme di Progetto
 changelog:
+  - version: "0.5.0"
+    date: "2025-11-21"
+    authors:
+      - Francesco Marcon
+    verifier: TBD
+    description: >
+      Aggiornamento in seguito al cambiamento di versione e struttura della repo
   - version: "0.4.1"
     date: "2025-11-16"
     authors:
