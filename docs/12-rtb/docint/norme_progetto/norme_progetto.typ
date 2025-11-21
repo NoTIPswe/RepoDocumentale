@@ -111,19 +111,19 @@
     placement: top,
   ) <ciclo_vita_docs>
 
+  Il processo di verifica e pubblicazione dei documenti avviene tramite *pull request* (PR), che rappresentano il meccanismo formale di revisione e approvazione.
+  Ogni documento è sviluppato all’interno di un branch dedicato al singolo documento e segue il sistema di versionamento *SemVer (Semantic Versioning)* nel formato `x.y.z`.
+
+  - *x (major)* identifica il raggiungimento di una *Baseline* di progetto. L'incremento della major version (es. `0.x.y` $arrow$ `1.0.0`) avviene esclusivamente in corrispondenza di questi rilasci formali. Sebbene il branch `main` contenga sempre la versione più recente e consultabile del documento, la pubblicazione ufficiale coincide con lo scatto della major.
+  - *y (minor)* indica l'introduzione di nuovi contenuti, la riscrittura di sezioni o modifiche sostanziali alla struttura che aggiungono o rimuovono informazioni rilevanti per il lettore (es. `0.3.1` $arrow$ `0.4.0`).
+  - *z (patch)* indica correzioni, aggiustamenti o modifiche minori che non alterano la sostanza del documento (es. correzione refusi, sostituzione immagini o aggiustamenti di valori, come in `0.4.0` $arrow$ `0.4.1`).
+
   #ref(<ciclo_vita_docs>) mostra graficamente il ciclo di vita dei documenti.
 
-  Il processo di verifica e pubblicazione dei documenti avviene tramite *pull request (PR)*, che rappresentano il meccanismo formale di revisione e approvazione.
-  Ogni documento è sviluppato all’interno di un branch dedicato e segue un sistema di versionamento *semantico semplificato (SemVer)* nel formato `x.y`.
+  Come rule of thumb, ogni avanzamento di versione deve corrispondere a un insieme di modifiche congruo, tale da poter essere descritto chiaramente nel changelog. In particolare, l'autore/i di una determinata modifica andranno, all'apertura di una PR, a "porporre" quello che per lui risulta essere lo scatto consono ai cambiamenti apportati al documento. In fase di verifica, il verificatore, si occuperà di andare ad assicurarsi che lo scatto rispetti le norme che il NoTIP si è dato nell'attuale documento.
+  Il documento nasce solitamente come bozza iniziale in versione `0.0.1`. Ogni iterazione di modifica nel branch di sviluppo comporta un avanzamento della patch o della minor version in base all'entità del cambiamento.
 
-  - *x (major)* indica la versione verificata e pubblicata. Ogni merge su `main` corrisponde a un avanzamento della major version.
-  - *y (minor)* indica la versione di sviluppo nel branch `doc-{nome_doc}`. Ogni minor rappresenta un insieme coerente di modifiche apportate dagli autori.
-
-  Come rule of thumb, una minor deve contenere un numero congruo di modifiche, tali da poter essere riassunte in modo chiaro nel changelog.
-  Il documento nasce con *versione 0.1*, e non vengono utilizzate *patch versions*: ogni commit di modifica nel branch fa avanzare la minor version (es. 0.1 → 0.2 → 0.3).
-  Ogni minor è rappresentata da un *singolo commit*.
-
-  Un documento è considerato *verificato e pubblicato* solo dopo il merge su `main`, corrispondente al passaggio di major version (es. 0.3 → 1.0).
+  Un documento è considerato *verificato* solo dopo il merge su `main`, che sancisce il passaggio di stato e l'eventuale avanzamento della *major version*.
 
   === Verifica dei documenti
   La verifica dei documenti avviene tramite pull request ed è svolta da un *Verificatore* diverso dall’autore, in modo da garantire indipendenza di giudizio e tracciabilità dell’esito.
