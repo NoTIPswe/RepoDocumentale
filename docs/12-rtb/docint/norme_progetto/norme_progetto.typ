@@ -177,7 +177,7 @@
   === Nomenclatura dei documenti
   Il nome del documento (diverso dal titolo) è il nome della cartella di documento, del principale file Typst e del file contentente i metadati ad esso associati.
 
-  Per tutti i documenti viene lasciata nomenclatura libera, con il solo vincolo di usare lo `snake_case`. Esempi: `norme_progetto`, `glossario` .
+  Per tutti i documenti viene lasciata nomenclatura libera, con il solo vincolo di usare lo Snake Case. Esempi: `norme_progetto`, `glossario` .
 
   Fanno eccezione verbali e diari di bordo, con una data che viene riportata in coda al nome, nel formato `yyyy-mm-dd`, in modo da non alterare l'ordine alfabetico interno alle directory, che ci prefiggiamo di preservare.
   In particolare, i principali tipi di documenti verranno nominati come segue:
