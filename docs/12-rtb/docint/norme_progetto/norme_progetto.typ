@@ -103,7 +103,7 @@
   - `{nome_documento}.typ` - file sorgente principale per la compilazione del documento;
   - [opzionale] una directory `assets/` contenente le risorse specifiche del documento;
   - [opzionale] uno o più subfiles `.typ`, ovvero file Typst importati nel principale ma non compilati singolarmente. La modularizzazione è raccomandata per documenti di grandi dimensioni.
-  
+
   === Ciclo di vita e versionamento dei documenti
   #figure(
     image("assets/ciclo_vita_docs.jpg"),
@@ -125,7 +125,7 @@
 
   Un documento è considerato *verificato* solo dopo il merge su `main`, che sancisce il passaggio di stato e l'eventuale avanzamento della *major version*.
 
- === Verifica dei documenti
+  === Verifica dei documenti
   La verifica dei documenti avviene tramite *Pull Request (PR)* e coinvolge sia controlli automatici (CI/CD) che una revisione umana, garantendo qualità e tracciabilità.
 
   All'apertura o modifica di una PR, una pipeline automatica esegue una serie di controlli bloccanti tramite lo script `checker.py` e il workflow di GitHub:
@@ -150,7 +150,7 @@
 
   La *strategia di branching* adottata prevede l’utilizzo di un branch per ogni documento, sia in fase di creazione sia in fase di modifica, così da isolare le variazioni e semplificare la verifica.
 
-  I branch seguono la convenzione:
+  La nominazione dei branch segue la convenzione:
   #align(center)[`doc-{nome_doc}`]
   (ad es. doc-analisi_requisiti, doc-verbint_2025-10-15, doc-norme_progetto) e rimangono attivi solo per il tempo necessario alla lavorazione. Una volta effettuato il merge su main, il branch viene chiuso ed eliminato. Nel caso in cui fosse necessario apportare ulteriori modifiche allo stesso documento, viene semplicemente ricreato un nuovo branch con la stessa convenzione.
 
@@ -165,18 +165,19 @@
   )
 
   === Strategia di commit
-  Ogni commit deve riguardare *un solo documento* e rappresentare una singola minor version coerente.
-  Il messaggio del commit segue la convenzione:
-  #align(center)[`doc-{nome_doc}-v{versione_attuale_doc}`]
-  così da legare in modo univoco modifica e versione.
+  Ogni commit deve riguardare *un solo documento* e rappresentare un singolo avanzamento di versione (*Minor* o *Patch*), garantendo l'atomicità delle modifiche.
 
-  Le modifiche all’interno di un branch `doc-{…}` sono considerate *non verificate* fino al merge su `main`.
-  Il commit del verificatore, che promuove la versione a *major*, conclude la PR e marca il documento come *verificato e pubblicato*.
+  Il messaggio di commit deve seguire tassativamente la convenzione:
+  #align(center)[`doc-{nome_doc}-v{versione_semver}`]
+  legando in modo univoco il set di modifiche alla versione dichiarata (es. `doc-norme-v0.4.1`).
+
+  Le modifiche all’interno di un branch `doc-{…}` sono considerate *non verificate* fintanto che il campo `verifier` nel changelog riporta "TBD".
+  Il commit del verificatore, che sostituisce il "TBD" con il proprio nome, sancisce il superamento della verifica. Il successivo merge su `main` rende il documento disponibile, mantenendo la versione corrente; il passaggio a *Major version* avverrà esclusivamente in occasione di un rilascio di Baseline.
 
   === Nomenclatura dei documenti
-  Il nome del documento (diverso dal titolo!) è il nome della cartella di documento, del principale file Typst e del file contentente i metadati ad esso associati.
+  Il nome del documento (diverso dal titolo) è il nome della cartella di documento, del principale file Typst e del file contentente i metadati ad esso associati.
 
-  Per tutti i documenti viene lasciata nomenclatura libera, con il solo vincolo di usare lo  `snake_case`. Esempi: `norme_progetto`, `glossario` .
+  Per tutti i documenti viene lasciata nomenclatura libera, con il solo vincolo di usare lo `snake_case`. Esempi: `norme_progetto`, `glossario` .
 
   Fanno eccezione verbali e diari di bordo, con una data che viene riportata in coda al nome, nel formato `yyyy-mm-dd`, in modo da non alterare l'ordine alfabetico interno alle directory, che ci prefiggiamo di preservare.
   In particolare, i principali tipi di documenti verranno nominati come segue:
@@ -186,28 +187,16 @@
     [`ddb_yyyy-mm-dd` - diario di bordo],
   )
 
-
   === Struttura dei documenti
   I documenti sono scritti a partire da dei template realizzati in precedenza che hanno lo scopo di fornire una struttura prestabilita coerente e di facile riutilizzo.
   I template in questione sono:
   #list(
-    [`base_configs.typ` \
-      Definisce la *configurazione di base* comune a tutti i documenti: font, colori, riferimenti del progetto (nome, sito, email) e soprattutto le funzioni per impostare header e pagina. \
-      Possiamo considerarlo come le fondamenta su cui si appoggiano gli altri template, così da avere stile e metadati coerenti in tutta la documentazione.],
-    [`base_document.typ`\
-      È il template generale per i *documenti testuali* (interni o esterni). \
-      Imposta margini, dimensioni dei caratteri, frontespizio con titolo, versione, data, ambito, abstract e informazioni aggiuntive, e poi il corpo del documento con stile uniforme.],
-    [`base_verbale.typ`\
-      È il template da seguire per la redazione dei *verbali* (interni o esterni). \
-      Imposta una serie di sezioni standard per i verbali, e permette di aggiungere contenuto aggiuntivo.],
-    [`base_slides.typ`\
-      Definisce il layout delle *presentazioni* (formato 16:9), con titolo grande, sottotitolo/data opzionali e margini preimpostati. \
-      Applica le configurazioni base e fornisce una struttura di pagina già pronta per slide di milestone o diari di bordo.],
-    [`base_ddb.typ`\
-      È un template specifico per il *Diario di Bordo*: importa la base delle slide e genera automaticamente una presentazione con titolo “Diario di Bordo”, numero di sprint e data. \
-      Prevede le sezioni standard (risultati, obiettivi/attività, problemi) così che ogni ddb abbia la stessa forma e possa essere confrontato nel tempo.],
+    [`base_configs.typ`: definisce la *configurazione di base* comune a tutti i documenti: font, colori, riferimenti del progetto (nome, sito, email) e soprattutto le funzioni per impostare header e pagina. Possiamo considerarlo come le fondamenta su cui si appoggiano gli altri template, così da avere stile e metadati coerenti in tutta la documentazione.],
+    [`base_document.typ`: è il template generale per i *documenti testuali* (interni o esterni). Imposta margini, dimensioni dei caratteri, frontespizio con titolo, versione, data, ambito, abstract e informazioni aggiuntive, e poi il corpo del documento con stile uniforme.],
+    [`base_verbale.typ`: è il template da seguire per la redazione dei *verbali* (interni o esterni). Imposta una serie di sezioni standard per i verbali, e permette di aggiungere contenuto aggiuntivo.],
+    [`base_slides.typ`: definisce il layout delle *presentazioni* (formato 16:9), con titolo grande, sottotitolo/data opzionali e margini preimpostati. Applica le configurazioni base e fornisce una struttura di pagina già pronta per slide di milestone o diari di bordo.],
+    [`base_ddb.typ`: è un template specifico per il *Diario di Bordo*: importa la base delle slide e genera automaticamente una presentazione con titolo “Diario di Bordo”, numero di sprint e data. Prevede le sezioni standard (risultati, obiettivi/attività, problemi) così che ogni ddb abbia la stessa forma e possa essere confrontato nel tempo.],
   )
-
 
   #pagebreak()
 
