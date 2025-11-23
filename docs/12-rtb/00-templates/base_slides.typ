@@ -61,6 +61,8 @@
     },
   )
 
+  set align(horizon)
+
   context {
     set text(font: base-configs.serif-font, size: 20pt, lang: "it")
     set par(justify: false, leading: 0.6em)
