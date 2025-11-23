@@ -1,0 +1,20 @@
+title: Verbale Interno 2025-11-07
+
+changelog:
+
+  - version: "1.0.0"
+    date: "2025-11-07"
+    verifiers:
+      - ""
+  - version: "0.1.0"
+    date: "2025-11-07"
+    authors:
+      - Mario De Pasquale
+    description: >
+      Modifiche minori per l'indentazione sul primo punto
+  - version: "0.0.1"
+    date: "2025-11-07"
+    authors:
+      - Mario De Pasquale
+    description: >
+      Prima versione del Verbale Interno 2025-11-07
