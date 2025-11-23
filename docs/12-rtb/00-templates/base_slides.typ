@@ -60,6 +60,7 @@
       base-configs.default-header(title: title, section: section-title)
     },
   )
+  set align(horizon)
 
   context {
     set text(font: base-configs.serif-font, size: 20pt, lang: "it")
