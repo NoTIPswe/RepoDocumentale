@@ -11,10 +11,13 @@
   - Setup (sofferto\*) tool di gestione di progetto: Jira
 ][
   // obiettivi
-  - Stesura del Way of Working aggiornato: documentazione e gestione di progetto
-  - Analisi dello stato dell'arte e ricerca delle tecnologie
+  - Aggiornamento del Way of Working: documentazione, ruoli e gestione di progetto
+  #v(1em)
   - Timeline ragionata per le milestone del progetto
-  - Prima stesura dell'analisi dei requisiti
+  - Prima stesura del Piano di Progetto
+  #v(1em)
+  - Analisi dello stato dell'arte e ricerca delle tecnologie
+  - Brainstorming sull'analisi dei requisiti e prima stesura
 ][
   // difficoltà riscontrate
   - Scelta e setup del tool di gestione di progetto
