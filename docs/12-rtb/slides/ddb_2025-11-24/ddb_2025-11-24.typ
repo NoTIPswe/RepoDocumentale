@@ -2,7 +2,7 @@
 
 #base-ddb.apply-base-ddb(
   sprint: 1,
-  date: "23/10/2025",
+  date: "2025-11-24",
 )[
   // risultati
   - Inizio primo sprint ufficiale e rendicontazione ore
