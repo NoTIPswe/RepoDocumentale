@@ -1,5 +1,49 @@
 #import "../../00-templates/base_document.typ" as base-document
 
+#let attivita(
+  title: "",
+  descrizione: [],
+  scopo: [],
+  input: [],
+  output: [],
+  ruoli: [],
+  wow: [],
+  razionale: none,
+) = {
+
+  heading(level: 3, title)
+  
+  v(0.3em)
+
+  heading(level: 4, outlined: false, "Descrizione")
+  v(0.15em)
+  pad(left: 1em, top: 0.5em, bottom: 0.5em)[
+    #grid(
+      columns: (auto, 1fr),
+      gutter: 1em,
+      row-gutter: 0.8em,
+      
+      text(style: "italic")[Scopo:], scopo,
+      text(style: "italic")[Input:], input,
+      text(style: "italic")[Output:], output,
+      text(style: "italic")[Ruoli:], ruoli
+    )
+  ]
+
+  v(0.5em)
+
+  heading(level: 4, outlined: false, "Way of Working")
+  v(0.15em)
+  wow
+
+  if razionale != none {
+    heading(level: 4, outlined: false, "Spiegazione delle scelte")
+    v(0.15em)
+    razionale
+  }
+  v(0.5em)
+}
+
 #let metadata = yaml(sys.inputs.meta-path)
 
 #base-document.apply-base-document(
@@ -64,138 +108,242 @@
 
   Il *processo di documentazione* ha lo scopo di registrare informazioni che derivano da un processo o ciclo di vita. La documentazione ha l'obiettivo di tracciare storicamente ed in modo preciso tutte le decisioni intraprese durante lo svolgimento del progetto.
 
+  === Attività del processo
+  In accordo con quanto definito dallo standard ISO/IEC 12207, il rocesso di documentazione si articola in quattro attività fondamentali, declinate nel contesto operativo di NoTIP come segue:
+
+  - *Pianificazione* \
+    Fase preliminare in cui si identifica la necessità di un documento in relazione alla Milestone corrente. In questo step si stabiliscono i destinatari (interni o esterni), si seleziona il template corretto e si definisce la struttura informativa necessaria per soddisfare gli obiettivi di progetto.
+
+  - *Stesura* \
+    È l'attività operativa di redazione, svolta in modalità collaborativa utilizzando Typst. L'adozione dei template predefiniti permette agli autori di concentrarsi sui contenuti tecnici piuttosto che sulla formattazione, garantendo coerenza stilistica sin dalla prima bozza.
+
+  - *Manutenzione* \
+    Gestione del documento come Living Document. Questa attività prevede l'aggiornamento costante dei contenuti per riflettere l'evoluzione dei requisiti o del software, la correzione di errori e il versionamento incrementale, assicurando che la documentazione resti allineata allo stato dell'arte del progetto.
+
+  - *Distribuzione* \
+    Il processo finale attraverso il quale il documento viene reso ufficialmente disponibile agli stakeholder. Nel workflow di NoTIP, questo passaggio coincide con l'approvazione della Pull Request e la conseguente pubblicazione automatizzata (tramite CI/CD) sul sito web di progetto.
+
   === Tecnologie adoperate
   Per la stesura della documentazione il team NoTIP utilizza prevalentemente due tecnologie:
   - GitHub - specialmente il meccanismo di pull request per la verifica e l'approvazione dei documenti;
-  - Typst - un linguaggio di typesetting moderno, alternativa particolarmente valida a LaTeX. Ha una sintassi di scripting che richiama quella dei linguaggi di programmazione ed è particolarmente integrabile con automazioni richieste dall'approccio docs-as-code adottato.
+  - Typst - un linguaggio di typesetting moderno, alternativa particolarmente valida a LaTeX. Ha una sintassi di scripting che richiama quella dei linguaggi di programmazione ed è particolarmente integrabile con automazioni richieste dall'approccio docs-as-code adottato;
+  - Jira - un software per la gestione dei task che centralizza l'assegnazione delle attività e permette di monitorare l'avanzamento dei lavori dell'intero team.
 
-  === Attività
-  Riguardo le attività, quelle che delineeranno ogni singolo processo sono:
-  - *Pianificazione* - definire in che modo il documento dovrà essere strutturato e che informazioni dovrà contenere;
-  - *Stesura* - il documento viene effettivamente scritto inserendo le informazioni d'interesse;
-  - *Manutenzione* - una volta che il documento è stato scritto può venire modificato e migliorato;
-  - *Distribuzione* - pubblicazione dei documenti alla visione di tutti gli stakeholders.
+  #attivita(
+    title: "Struttura del repository",
+    descrizione: [
+      
+    ],
+    scopo: [Organizzare i file in modo semantico per garantire la coerenza con il sito web e abilitare automazioni di controllo e pubblicazione automatica.],
+    input: [Nuovi documenti, Assets, Script],
+    output: [Repository strutturato, Gerarchia file validata],
+    ruoli: [Tutti i membri del team],
+    wow: [
+      Il repository documentale adotta un'organizzazione semantica che rispecchia la struttura del sito NoTIP, assicurando piena coerenza tra la navigazione locale e la versione pubblicata.
 
-  === Struttura del repository
-  Il repository documentale adotta un'organizzazione semantica che rispecchia la struttura del sito NoTIP, assicurando piena coerenza tra la navigazione locale e la versione pubblicata.
+      Il livello root del repository contiene:
+      - `.schemas/` - schemi per la validazione formale dei file `yaml` presenti in `docs`;
+      - `docs/` - directory contenente i files sorgenti della documentazione (dettagliati a seguire);
+      - `scripts/` - directory contenente gli script Python utilizzati per i processi di automazione;
+      - `site/` - directory contenente i files sorgenti del sito web statico NoTIP.
 
-  Il livello root del repository contiene:
-  - `.schemas/` - schemi per la validazione formale dei file `yaml` presenti in `docs`;
-  - `docs/` - directory contenente i files sorgenti della documentazione (dettagliati a seguire);
-  - `scripts/` - directory contenente gli script Python utilizzati per i processi di automazione;
-  - `site/` - directory contenente i files sorgenti del sito web statico NoTIP.
+      La struttura della directory `docs/` è organizzata come segue:
+      - `00-common_assets/` - directory dedicata all'archiviazione centralizzata degli asset (es. immagini) condivisi tra più documenti, al fine di evitare ridondanze nelle cartelle `assets/` specifiche per singolo documento;
+      - `xx-{milestone_n}`, dove `xx` $>= 11$ - directory contenente tutta la documentazione relativa alla specifica milestone, ulteriormente suddivisa per facilitarne l'accesso,
 
-  La struttura della directory `docs/` è organizzata come segue:
-  - `00-common_assets/` - directory dedicata all'archiviazione centralizzata degli asset (es. immagini) condivisi tra più documenti, al fine di evitare ridondanze nelle cartelle `assets/` specifiche per singolo documento;
-  - `xx-{milestone_n}`, dove `xx` $>= 11$ - directory contenente tutta la documentazione relativa alla specifica milestone, ulteriormente suddivisa per facilitarne l'accesso,
+      Ogni sottocartella di `docs/`, esclusa `00-common_assets/`, costituisce un group. Ogni group presenta una struttura fissa, che può essere composta dai seguenti subgroup:
+      - `docint/` - documentazione a uso interno, destinata esclusivamente al team NoTIP;
+      - `docest/` - documentazione a uso esterno, destinata a tutti gli stakeholder del progetto;
+      - `verbint/` - verbali di riunioni interne (in presenza o da remoto), riepilogativi dei punti discussi e delle decisioni operative assunte;
+      - `verbest/` - verbali di incontri esterni (con azienda proponente o professori), riportanti lo svolgimento della riunione e le decisioni concordate. Prevedono una sezione finale con firma che attesti l'ufficialità del documento;
+      - `slides/` - presentazioni di supporto per i diari di bordo, strutturate per evidenziare i punti chiave della discussione.
 
-  Ogni sottocartella di `docs/`, esclusa `00-common_assets/`, costituisce un group. Ogni group presenta una struttura fissa, che può essere composta dai seguenti subgroup:
-  - `docint/` - documentazione a uso interno, destinata esclusivamente al team NoTIP;
-  - `docest/` - documentazione a uso esterno, destinata a tutti gli stakeholder del progetto;
-  - `verbint/` - verbali di riunioni interne (in presenza o da remoto), riepilogativi dei punti discussi e delle decisioni operative assunte;
-  - `verbest/` - verbali di incontri esterni (con azienda proponente o professori), riportanti lo svolgimento della riunione e le decisioni concordate. Prevedono una sezione finale con firma che attesti l'ufficialità del documento;
-  - `slides/` - presentazioni di supporto per i diari di bordo, strutturate per evidenziare i punti chiave della discussione.
+      La posizione dei file nella gerarchia fornisce metadati impliciti e abilita l'automazione secondo il paradigma convention over configuration.
 
-  La posizione dei file nella gerarchia fornisce metadati impliciti e abilita l'automazione secondo il paradigma convention over configuration.
+      Ogni documento è collocato all'interno di uno specifico group e subgroup. Si utilizza una directory dedicata per ogni documento (di seguito `{nome_documento}`), contenente:
+      - `{nome_documento}.meta.yaml` - metadati del documento, conformi allo schema definito in `.schemas/meta.schema.json`;
+      - `{nome_documento}.typ` - file sorgente principale per la compilazione del documento;
+      - [opzionale] una directory `assets/` contenente le risorse specifiche del documento;
+      - [opzionale] uno o più subfiles `.typ`, ovvero file Typst importati nel principale ma non compilati singolarmente. La modularizzazione è raccomandata per documenti di grandi dimensioni.
+    ],
+    razionale: [
+      *Perché l'organizzazione semantica?* Il repository documentale adotta un'organizzazione semantica per ordinare chiaramente i documenti e le baseline, oltre che per rispecchiare la struttura del sito NoTIP, garantendo fruibilità anche attraverso la repository, assicurando piena coerenza tra la navigazione locale e la versione pubblicata. L'organizzazione semantica inoltre ci ha permesso di implementare delle automazioni in modo migliore.
 
-  Ogni documento è collocato all'interno di uno specifico group e subgroup. Si utilizza una directory dedicata per ogni documento (di seguito `{nome_documento}`), contenente:
-  - `{nome_documento}.meta.yaml` - metadati del documento, conformi allo schema definito in `.schemas/meta.schema.json`;
-  - `{nome_documento}.typ` - file sorgente principale per la compilazione del documento;
-  - [opzionale] una directory `assets/` contenente le risorse specifiche del documento;
-  - [opzionale] uno o più subfiles `.typ`, ovvero file Typst importati nel principale ma non compilati singolarmente. La modularizzazione è raccomandata per documenti di grandi dimensioni.
-
-  === Ciclo di vita e versionamento dei documenti
-  #figure(
-    image("assets/ciclo_vita_docs.jpg"),
-    caption: [Rappresentazione grafica ciclo di vita dei documenti],
-    placement: top,
-  ) <ciclo_vita_docs>
-
-  Il processo di verifica e pubblicazione dei documenti avviene tramite *pull request* (PR), che rappresentano il meccanismo formale di revisione e approvazione.
-  Ogni documento è sviluppato all’interno di un branch dedicato al singolo documento e segue il sistema di versionamento *SemVer (Semantic Versioning)* nel formato `x.y.z`.
-
-  - *x (major)* identifica il raggiungimento di una *Baseline* di progetto. L'incremento della major version (es. `0.x.y` $arrow$ `1.0.0`) avviene esclusivamente in corrispondenza di questi rilasci formali. Sebbene il branch `main` contenga sempre la versione più recente e consultabile del documento, la pubblicazione ufficiale coincide con lo scatto della major.
-  - *y (minor)* indica l'introduzione di nuovi contenuti, la riscrittura di sezioni o modifiche sostanziali alla struttura che aggiungono o rimuovono informazioni rilevanti per il lettore (es. `0.3.1` $arrow$ `0.4.0`).
-  - *z (patch)* indica correzioni, aggiustamenti o modifiche minori che non alterano la sostanza del documento (es. correzione refusi, sostituzione immagini o aggiustamenti di valori, come in `0.4.0` $arrow$ `0.4.1`).
-
-  #ref(<ciclo_vita_docs>) mostra graficamente il ciclo di vita dei documenti.
-
-  Come rule of thumb, ogni avanzamento di versione deve corrispondere a un insieme di modifiche congruo, tale da poter essere descritto chiaramente nel changelog. In particolare, l'autore/i di una determinata modifica andranno, all'apertura di una PR, a "porporre" quello che per lui risulta essere lo scatto consono ai cambiamenti apportati al documento. In fase di verifica, il verificatore, si occuperà di andare ad assicurarsi che lo scatto rispetti le norme che il NoTIP si è dato nell'attuale documento.
-  Il documento nasce solitamente come bozza iniziale in versione `0.0.1`. Ogni iterazione di modifica nel branch di sviluppo comporta un avanzamento della patch o della minor version in base all'entità del cambiamento.
-
-  Un documento è considerato *verificato* solo dopo il merge su `main`, che sancisce il passaggio di stato e l'eventuale avanzamento della *major version*.
-
-  === Verifica dei documenti
-  La verifica dei documenti avviene tramite *Pull Request (PR)* e coinvolge sia controlli automatici (CI/CD) che una revisione umana, garantendo qualità e tracciabilità.
-
-  All'apertura o modifica di una PR, una pipeline automatica esegue una serie di controlli bloccanti tramite lo script `checker.py` e il workflow di GitHub:
-  - *Compilazione*: Verifica che tutti i documenti e i relativi sorgenti Typst compilino senza errori.
-  - *Validazione del Versionamento*: I documenti modificati devono presentare un numero di versione superiore rispetto alla controparte nel branch `main`.
-  - *Integrità Storica*: Le modifiche sono consentite esclusivamente nella directory della milestone corrente (l'ultima in ordine cronologico), preservando la baseline delle milestone precedenti da modifiche accidentali.
-  - *Generazione Anteprima*: Il sistema costruisce e rende disponibile come *artifact* un archivio contenente i PDF compilati, facilitando l'ispezione visiva.
-
-  Ogni PR viene successivamente esaminata manualmente da un *Verificatore* (diverso dall'autore), che scarica l'anteprima e controlla:
-  - Conformità al template Typst e alle norme tipografiche;
-  - Correttezza dello stile di scrittura e completezza dei contenuti;
-  - Coerenza dei metadati (titoli, date, liste autori);
-  - Assenza di file non necessari.
-
-  Se la verifica ha esito positivo:
-  - Il verificatore richiede (o esegue) la rimozione del placeholder "TBD" dal campo `verifier` nel changelog, inserendo il proprio nome. Questo passaggio è cruciale poiché l'automazione impedisce il merge se sono presenti verificatori "TBD";
-  - Approva la PR, sancendo il consolidamento delle modifiche e della nuova versione nel branch `main`.
-
-  In caso di esito negativo, il verificatore segnala le modifiche richieste direttamente nella PR, che rimane aperta fino alla risoluzione dei commenti.
-
-  === Strategia di branching
-
-  La *strategia di branching* adottata prevede l’utilizzo di un branch per ogni documento, sia in fase di creazione sia in fase di modifica, così da isolare le variazioni e semplificare la verifica.
-
-  La nominazione dei branch segue la convenzione:
-  #align(center)[`doc-{nome_doc}`]
-  (ad es. doc-analisi_requisiti, doc-verbint_2025-10-15, doc-norme_progetto) e rimangono attivi solo per il tempo necessario alla lavorazione. Una volta effettuato il merge su main, il branch viene chiuso ed eliminato. Nel caso in cui fosse necessario apportare ulteriori modifiche allo stesso documento, viene semplicemente ricreato un nuovo branch con la stessa convenzione.
-
-  Questo modello assicura tracciabilità, pulizia della storia e integrazione controllata tramite pull request.
-
-  Accanto ai branch documentali sono previsti *branch tematici* per altre attività:
-  #list(
-    [`automation-{XXX}` - per CI/CD e scripting],
-    [`style-{XXX}` - per modifiche globali di stile],
-    [`site-{XXX}` - per interventi sul sito],
-    [`misc-{XXX}` - per attività residuali],
+      *In che modo l'organizzazione semantica aiuta le automazioni?* La posizione dei file nella gerarchia fornisce metadati impliciti e abilita l'automazione secondo il paradigma convention over configuration.
+    ]
   )
 
-  === Strategia di commit
-  Ogni commit deve riguardare *un solo documento* e rappresentare un singolo avanzamento di versione (*Minor* o *Patch*), garantendo l'atomicità delle modifiche.
+  #attivita(
+    title: "Ciclo di vita e versionamento dei documenti",
+    scopo: [Regolamentare l'evoluzione temporale dei documenti e garantire la tracciabilità delle modifiche attraverso un versionamento standardizzato.],
+    input: [Bozza documento, Richiesta di modifica (Issue)],
+    output: [Documento verificato, Nuova versione rilasciata],
+    ruoli: [Autore, Verificatore],
+    wow: [
+      #figure(
+        image("assets/ciclo_vita_docs.jpg"),
+        caption: [Rappresentazione grafica ciclo di vita dei documenti],
+        placement: top,
+      ) <ciclo_vita_docs>
 
-  Il messaggio di commit deve seguire tassativamente la convenzione:
-  #align(center)[`doc-{nome_doc}-v{versione_semver}`]
-  legando in modo univoco il set di modifiche alla versione dichiarata (es. `doc-norme-v0.4.1`).
+      Il processo di verifica e pubblicazione dei documenti avviene tramite *pull request* (PR), che rappresentano il meccanismo formale di revisione e approvazione.
+      Ogni documento è sviluppato all’interno di un branch dedicato al singolo documento e segue il sistema di versionamento *SemVer (Semantic Versioning)* nel formato `x.y.z`.
 
-  Le modifiche all’interno di un branch `doc-{…}` sono considerate *non verificate* fintanto che il campo `verifier` nel changelog riporta "TBD".
-  Il commit del verificatore, che sostituisce il "TBD" con il proprio nome, sancisce il superamento della verifica. Il successivo merge su `main` rende il documento disponibile, mantenendo la versione corrente; il passaggio a *Major version* avverrà esclusivamente in occasione di un rilascio di Baseline.
+      - *x (major)* identifica il raggiungimento di una *Baseline* di progetto. L'incremento della major version (es. `0.x.y` $arrow$ `1.0.0`) avviene esclusivamente in corrispondenza di questi rilasci formali. Sebbene il branch `main` contenga sempre la versione più recente e consultabile del documento, la pubblicazione ufficiale coincide con lo scatto della major.
+      - *y (minor)* indica l'introduzione di nuovi contenuti, la riscrittura di sezioni o modifiche sostanziali alla struttura che aggiungono o rimuovono informazioni rilevanti per il lettore (es. `0.3.1` $arrow$ `0.4.0`).
+      - *z (patch)* indica correzioni, aggiustamenti o modifiche minori che non alterano la sostanza del documento (es. correzione refusi, sostituzione immagini o aggiustamenti di valori, come in `0.4.0` $arrow$ `0.4.1`).
 
-  === Nomenclatura dei documenti
-  Il nome del documento (diverso dal titolo) è il nome della cartella di documento, del principale file Typst e del file contentente i metadati ad esso associati.
+      #ref(<ciclo_vita_docs>) mostra graficamente il ciclo di vita dei documenti.
 
-  Per tutti i documenti viene lasciata nomenclatura libera, con il solo vincolo di usare lo Snake Case. Esempi: `norme_progetto`, `glossario` .
+      Come rule of thumb, ogni avanzamento di versione deve corrispondere a un insieme di modifiche congruo, tale da poter essere descritto chiaramente nel changelog. In particolare, l'autore/i di una determinata modifica andranno, all'apertura di una PR, a "porporre" quello che per lui risulta essere lo scatto consono ai cambiamenti apportati al documento. In fase di verifica, il verificatore, si occuperà di andare ad assicurarsi che lo scatto rispetti le norme che il NoTIP si è dato nell'attuale documento.
+      Il documento nasce solitamente come bozza iniziale in versione `0.0.1`. Ogni iterazione di modifica nel branch di sviluppo comporta un avanzamento della patch o della minor version in base all'entità del cambiamento.
 
-  Fanno eccezione verbali e diari di bordo, con una data che viene riportata in coda al nome, nel formato `yyyy-mm-dd`, in modo da non alterare l'ordine alfabetico interno alle directory, che ci prefiggiamo di preservare.
-  In particolare, i principali tipi di documenti verranno nominati come segue:
-  #list(
-    [`verbint_yyyy-mm-dd` - verbale interno],
-    [`verbest_yyyy-mm-dd` - verbale esterno],
-    [`ddb_yyyy-mm-dd` - diario di bordo],
+      Un documento è considerato *verificato* solo dopo il merge su `main`, che sancisce il passaggio di stato e l'eventuale avanzamento della *major version*.
+    ],
+    razionale: [
+      *Perché legare la Major Version alle Baseline?* Sebbene il branch `main` contenga sempre la versione più recente e consultabile, abbiamo scelto questo vincolo per evidenziare i rilasci formali. Questo permette agli stakeholder di distinguere immediatamente una versione consolidata da una versione di sviluppo incrementale.
+
+      *Qual è il criterio per gli avanzamenti di versione?* Adottiamo una "rule of thumb" basata sulla rilevanza: ogni avanzamento deve corrispondere a un insieme di modifiche congruo, tale da poter essere descritto chiaramente nel changelog. Questo evita la frammentazione eccessiva (micro-versioning) e assicura che ogni scatto di versione porti valore informativo reale.
+
+      *Perché pubblicare in main anche versioni non visibili sul sito?* La scelta di includere versioni non visibili sul sito nasce dalla volontà di offrire un archivio completo, permettendo a terzi di accedere a qualsiasi iterazione del progetto, indipendentemente dal suo stato di pubblicazione attuale.
+    ]
   )
 
-  === Struttura dei documenti
-  I documenti sono scritti a partire da dei template realizzati in precedenza che hanno lo scopo di fornire una struttura prestabilita coerente e di facile riutilizzo.
-  I template in questione sono:
-  #list(
-    [`base_configs.typ`: definisce la *configurazione di base* comune a tutti i documenti: font, colori, riferimenti del progetto (nome, sito, email) e soprattutto le funzioni per impostare header e pagina. Possiamo considerarlo come le fondamenta su cui si appoggiano gli altri template, così da avere stile e metadati coerenti in tutta la documentazione.],
-    [`base_document.typ`: è il template generale per i *documenti testuali* (interni o esterni). Imposta margini, dimensioni dei caratteri, frontespizio con titolo, versione, data, ambito, abstract e informazioni aggiuntive, e poi il corpo del documento con stile uniforme.],
-    [`base_verbale.typ`: è il template da seguire per la redazione dei *verbali* (interni o esterni). Imposta una serie di sezioni standard per i verbali, e permette di aggiungere contenuto aggiuntivo.],
-    [`base_slides.typ`: definisce il layout delle *presentazioni* (formato 16:9), con titolo grande, sottotitolo/data opzionali e margini preimpostati. Applica le configurazioni base e fornisce una struttura di pagina già pronta per slide di milestone o diari di bordo.],
-    [`base_ddb.typ`: è un template specifico per il *Diario di Bordo*: importa la base delle slide e genera automaticamente una presentazione con titolo “Diario di Bordo”, numero di sprint e data. Prevede le sezioni standard (risultati, obiettivi/attività, problemi) così che ogni ddb abbia la stessa forma e possa essere confrontato nel tempo.],
+  #attivita(
+    title: "Verifica dei documenti",
+    scopo: [Garantire che ogni modifica al repository soddisfi gli standard di qualità, correttezza formale e tracciabilità prima di essere integrata.],
+    input: [Pull Request (PR) aperta, Documento creato/modificato],
+    output: [PR approvata e mergiata (Documento Verificato) o Richiesta di modifiche],
+    ruoli: [Verificatore, Sistema (CI/CD)],
+    wow: [
+      La verifica dei documenti avviene tramite *Pull Request (PR)* e coinvolge sia controlli automatici (CI/CD) che una revisione umana, garantendo qualità e tracciabilità.
+
+      All'apertura o modifica di una PR, una pipeline automatica esegue una serie di controlli bloccanti tramite lo script `checker.py` e il workflow di GitHub:
+      - *Compilazione*: Verifica che tutti i documenti e i relativi sorgenti Typst compilino senza errori.
+      - *Validazione del Versionamento*: I documenti modificati devono presentare un numero di versione superiore rispetto alla controparte nel branch `main`.
+      - *Integrità Storica*: Le modifiche sono consentite esclusivamente nella directory della milestone corrente (l'ultima in ordine cronologico), preservando la baseline delle milestone precedenti da modifiche accidentali.
+      - *Generazione Anteprima*: Il sistema costruisce e rende disponibile come *artifact* un archivio contenente i PDF compilati, facilitando l'ispezione visiva.
+
+      Ogni PR viene successivamente esaminata manualmente da un *Verificatore* (diverso dall'autore), che scarica l'anteprima e controlla:
+      - Conformità al template Typst e alle norme tipografiche;
+      - Correttezza dello stile di scrittura e completezza dei contenuti;
+      - Coerenza dei metadati (titoli, date, liste autori);
+      - Assenza di file non necessari.
+
+      Se la verifica ha esito positivo:
+      - Il verificatore richiede (o esegue) la rimozione del placeholder "TBD" dal campo `verifier` nel changelog, inserendo il proprio nome. Questo passaggio è cruciale poiché l'automazione impedisce il merge se sono presenti verificatori "TBD";
+      - Approva la PR, sancendo il consolidamento delle modifiche e della nuova versione nel branch `main`.
+
+      In caso di esito negativo, il verificatore segnala le modifiche richieste direttamente nella PR, che rimane aperta fino alla risoluzione dei commenti.
+    ],
+    razionale: [
+      *Perché il vincolo sull'Integrità Storica?* Bloccare le modifiche alle directory delle milestone passate serve a proteggere le Baseline da modifiche non volontarie che comprometterebbero l'integrità della documentazione. Vogliamo garantire che, una volta chiusa una fase, i documenti consegnati rimangano "congelati" e non subiscano modifiche accidentali mentre si lavora alla fase successiva.
+
+      *Perché il meccanismo del "TBD"?* La rimozione manuale del "TBD" costringe il verificatore a interagire col file sorgente, agendo come una "firma digitale" esplicita. Questo impedisce approvazioni superficiali e garantisce che il nome del responsabile della verifica sia permanentemente tracciato nella storia del file.
+
+      *A cosa serve l'artifact dell'anteprima?* Permette al verificatore di controllare il risultato finale (PDF) immediatamente, senza dover scaricare il branch di lavoro e configurare l'ambiente di compilazione locale, velocizzando notevolmente il processo di review.
+    ]
+  )
+
+  #attivita(
+    title: "Strategia di branching",
+    scopo: [Isolare le modifiche in ambienti di lavoro dedicati per semplificare la verifica e mantenere una cronologia del repository pulita e tracciabile.],
+    input: [Necessità di modifica o creazione di un artefatto],
+    output: [Branch di lavoro attivo],
+    ruoli: [Tutti i membri del team],
+    wow: [
+      La *strategia di branching* adottata prevede l’utilizzo di un branch per ogni documento, sia in fase di creazione sia in fase di modifica, così da isolare le variazioni e semplificare la verifica.
+
+      La nominazione dei branch segue la convenzione:
+      #align(center)[`doc-{nome_doc}`]
+      (ad es. doc-analisi_requisiti, doc-verbint_2025-10-15, doc-norme_progetto) e rimangono attivi solo per il tempo necessario alla lavorazione. Una volta effettuato il merge su main, il branch viene chiuso ed eliminato. Nel caso in cui fosse necessario apportare ulteriori modifiche allo stesso documento, viene semplicemente ricreato un nuovo branch con la stessa convenzione.
+
+      Questo modello assicura tracciabilità, pulizia della storia e integrazione controllata tramite pull request.
+
+      Accanto ai branch documentali sono previsti *branch tematici* per altre attività:
+      #list(
+        [`automation-{XXX}` - per CI/CD e scripting],
+        [`style-{XXX}` - per modifiche globali di stile],
+        [`site-{XXX}` - per interventi sul sito],
+        [`misc-{XXX}` - per attività residuali],
+      )
+    ],
+    razionale: [
+      *Perché un branch per ogni documento?* Isolare le variazioni a livello di singolo documento semplifica drasticamente l'attività del verificatore, che non si trova a dover gestire conflitti o modifiche eterogenee nella stessa PR.
+
+      *Perché questa strategia di "usa e getta"?* Questo modello assicura tracciabilità e pulizia della storia. Eliminare il branch dopo il merge evita l'accumulo di branch obsoleti e garantisce un'integrazione controllata tramite Pull Request focalizzate su un singolo contesto.
+    ]
+  )
+
+  #attivita(
+    title: "Strategia di commit",
+    scopo: [Garantire l'atomicità delle modifiche e una tracciabilità univoca tra lo stato dei file nel repository e il loro versionamento documentale.],
+    input: [Modifiche in stage],
+    output: [Commit strutturato],
+    ruoli: [Autore, Verificatore],
+    wow: [
+      Ogni commit deve riguardare *un solo documento* e rappresentare un singolo avanzamento di versione (*Minor* o *Patch*).
+
+      Il messaggio di commit deve seguire tassativamente la convenzione:
+      #align(center)[`doc-{nome_doc}-v{versione_semver}`]
+      legando in modo univoco il set di modifiche alla versione proposta dall'autore delle modifiche (es. `doc-norme-v0.2.1`).
+
+      Le modifiche all’interno di un branch `doc-{…}` sono considerate *non verificate* fintanto che il campo `verifier` nel changelog riporta "TBD".
+      Il commit del verificatore, che sostituisce il "TBD" con il proprio nome, sancisce il superamento della verifica. Il successivo merge su `main` rende il documento disponibile, mantenendo la versione corrente; il passaggio a Major version avverrà esclusivamente in occasione di un rilascio di Baseline.
+    ],
+    razionale: [
+      *Perché questo formato di messaggio?* Questa convenzione permette di associare immediatamente uno snapshot della storia di Git a una specifica versione SemVer, facilitando operazioni di rollback o audit.
+
+      *Come viene gestito il rilascio?* Il successivo merge su `main` rende il documento disponibile, mantenendo la versione corrente. Come visto in precedenza, il passaggio a Major version è un evento distinto che avverrà esclusivamente in occasione di un rilascio di Baseline.
+    ]
+  )
+
+  #attivita(
+    title: "Nomenclatura dei documenti",
+    scopo: [Definire uno standard di denominazione univoco per garantire ordine, reperibilità e coerenza all'interno della Repository.],
+    input: [Nuovo documento da creare],
+    output: [Files e directory nominati correttamente],
+    ruoli: [Tutti i membri del team],
+    wow: [
+      Il nome del documento (diverso dal titolo) è il nome della cartella di documento, del principale file Typst e del file contentente i metadati ad esso associati.
+
+      Per tutti i documenti viene lasciata nomenclatura libera, con il solo vincolo di usare lo Snake Case. Esempi: `norme_progetto`, `glossario` .
+
+      Fanno eccezione verbali e diari di bordo, con una data che viene riportata in coda al nome, nel formato `yyyy-mm-dd`, in modo da non alterare l'ordine alfabetico interno alle directory, che ci prefiggiamo di preservare.
+      In particolare, i principali tipi di documenti verranno nominati come segue:
+      #list(
+        [`verbint_yyyy-mm-dd` - verbale interno],
+        [`verbest_yyyy-mm-dd` - verbale esterno],
+        [`ddb_yyyy-mm-dd` - diario di bordo],
+      )
+    ],
+    razionale: [
+      *Perché il formato data in coda?* Inserire la data nel formato ISO `yyyy-mm-dd` alla fine del nome permette di sfruttare l'ordinamento alfabetico nativo dei file system per ottenere automaticamente un ordinamento cronologico, preservando l'ordine all'interno delle directory e sfruttandolo per le automazioni create.
+    ]
+  )
+
+  #attivita(
+    title: "Struttura dei documenti",
+    scopo: [Fornire una struttura prestabilita coerente e di facile riutilizzo per ogni tipologia di documento, garantendo uniformità visiva e strutturale.],
+    input: [Scelta della tipologia di documento],
+    output: [File .typ inizializzato con il template corretto],
+    ruoli: [Tutti i membri del team],
+    wow: [
+      I documenti sono scritti a partire da dei template realizzati in precedenza che hanno lo scopo di fornire una struttura prestabilita coerente e di facile riutilizzo.
+      I template in questione sono:
+      #list(
+        [`base_configs.typ`: definisce la *configurazione di base* comune a tutti i documenti: font, colori, riferimenti del progetto (nome, sito, email) e soprattutto le funzioni per impostare header e pagina. Possiamo considerarlo come le fondamenta su cui si appoggiano gli altri template, così da avere stile e metadati coerenti in tutta la documentazione.],
+        [`base_document.typ`: è il template generale per i *documenti testuali* (interni o esterni). Imposta margini, dimensioni dei caratteri, frontespizio con titolo, versione, data, ambito, abstract e informazioni aggiuntive, e poi il corpo del documento con stile uniforme.],
+        [`base_verbale.typ`: è il template da seguire per la redazione dei *verbali* (interni o esterni). Imposta una serie di sezioni standard per i verbali, e permette di aggiungere contenuto aggiuntivo.],
+        [`base_slides.typ`: definisce il layout delle *presentazioni* (formato 16:9), con titolo grande, sottotitolo/data opzionali e margini preimpostati. Applica le configurazioni base e fornisce una struttura di pagina già pronta per slide di milestone o diari di bordo.],
+        [`base_ddb.typ`: è un template specifico per il *Diario di Bordo*: importa la base delle slide e genera automaticamente una presentazione con titolo “Diario di Bordo”, numero di sprint e data. Prevede le sezioni standard (risultati, obiettivi/attività, problemi) così che ogni ddb abbia la stessa forma e possa essere confrontato nel tempo.],
+      )
+    ],
+    razionale: [
+      *Perché utilizzare template rigidi?* L'uso di template centralizzati garantisce che ogni documento prodotto dal gruppo rispetti automaticamente lo stile grafico e le convenzioni stabilite, riducendo il carico di lavoro ed eventuali errori in fase di formattazione, da parte dell'autore.
+
+      *Perché un template specifico per i Diari di Bordo?* `base_ddb.typ` prevede sezioni fisse (risultati, obiettivi/attività, problemi) per imporre una struttura identica a ogni iterazione, rendendo i diari facilmente confrontabili nel tempo per analizzare l'andamento del progetto.
+    ]
   )
 
   #pagebreak()
@@ -244,7 +392,7 @@
 
   === Strumenti di gestione
 
-  Per le attività di gestione e coordinamento, il gruppo ha deciso di adottare *Git* e *GitHub* come strumenti di riferimento.
+  Per le attività di gestione e coordinamento, il gruppo ha deciso di adottare *Git* e *GitHub* come strumenti di riferimento, oltre che a *Jira* per la gestione centralizzata dei task da eseguire.
 
   In particolare, è stata pianificata l’applicazione delle issue per la gestione e l’assegnazione delle attività, nonché per la pianificazione di sprint e milestone.
   Tuttavia, al momento della stesura, tale modalità non risulta ancora implementata operativamente.
