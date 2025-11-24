@@ -7,6 +7,14 @@ changelog:
     verifier: TBD
     description: >
       Versione stabile verbale
+  
+  - version: "0.1.1"
+    date: "2025-11-19"
+    authors:
+      - Alessandro Contarini
+    verifier: TBD
+    description: >
+      Correzione errore ortografico
 
   - version: "0.1.0"
     date: "2025-11-19"
