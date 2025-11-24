@@ -1,12 +1,16 @@
 #let terms = (
   // A
   "Agile": "Insieme di principi e pratiche di sviluppo software basate su iterazioni brevi, feedback continui e collaborazione costante tra i membri del team",
+  "artifact": "File o insieme di file generato automaticamente da un processo di build o verifica (es. il PDF compilato da una automazione), pronto per essere controllato o distribuito",
+  "asset": "Risorsa digitale statica (es. immagini, diagrammi, loghi) inclusa nella documentazione o nel software",
   "appalto": "Termine usato in senso figurato per indicare l’assegnazione di un capitolato a un gruppo, a seguito della selezione da parte dell’azienda proponente",
   "audit": "Attività di analisi e verifica sistematica su codice, processi o documentazione per valutarne qualità e conformità",
   "automazione": "Procedura o insieme di strumenti che consentono l’esecuzione automatica di attività ripetitive, come la pubblicazione di documenti o la build del progetto",
   // B
+  "baseline": "Versione stabile e approvata di un prodotto (documento o software) che funge da punto di partenza ufficiale per lo sviluppo successivo",
   "branch": "Linea di sviluppo indipendente all’interno di un repository Git, utilizzata per lavorare su nuove funzionalità o correzioni senza influenzare il codice principale",
   // C
+  "changelog": "Registro cronologico delle modifiche apportate al progetto, solitamente associato alle versioni rilasciate, per tracciare l'evoluzione del prodotto",
   "CI/CD": "Insieme di pratiche e strumenti per integrazione continua e distribuzione continua, a supporto di build, test e release automatici",
   "commit": "Operazione con cui si registrano modifiche in un sistema di controllo versione (come Git). Deve essere atomico, cioè riguardare un singolo cambiamento coerente",
   "convention over configuration": "Principio di progettazione secondo cui scelte predefinite e convenzioni riducono la necessità di configurazioni esplicite, semplificando lo sviluppo",
@@ -48,6 +52,7 @@
   // O
   // P
   "Patch": "Il terzo numero nella notazione SemVer (X.Y.Z). Viene incrementato per correzioni minori, come errori di battitura o piccoli aggiustamenti che non alterano in alcun modo la struttura principale del documento.",
+  "pipeline": "Sequenza automatizzata di processi (script) eseguiti da un sistema CI/CD per compilare, testare e verificare il codice o la documentazione",
   "pull-request": "Richiesta di integrazione di modifiche da un branch secondario al branch principale di un repository. Permette la revisione del codice prima dell’unione definitiva",
   "PR": "Abbreviazione di pull request. Utilizzata comunemente per indicare la richiesta di revisione o integrazione nel flusso di lavoro Git",
   // Q
