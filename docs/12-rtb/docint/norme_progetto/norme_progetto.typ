@@ -121,7 +121,7 @@
     Gestione del documento come Living Document. Questa attività prevede l'aggiornamento costante dei contenuti per riflettere l'evoluzione dei requisiti o del software, la correzione di errori e il versionamento incrementale, assicurando che la documentazione resti allineata allo stato dell'arte del progetto.
 
   - *Distribuzione* \
-    Il processo finale attraverso il quale il documento viene reso ufficialmente disponibile agli stakeholder. Nel workflow di NoTIP, questo passaggio coincide con l'approvazione della Pull Request e la conseguente pubblicazione automatizzata (tramite CI/CD) sul sito web di progetto.
+    Il processo finale attraverso il quale il documento viene reso ufficialmente disponibile agli stakeholder. Nel workflow di NoTIP, questo passaggio coincide con il raggiungimento di una milestone dove, in seguito al processo di validazione della documentazione, avviene la conseguente pubblicazione sul sito web di progetto.
 
   === Tecnologie adoperate
   Per la stesura della documentazione il team NoTIP utilizza prevalentemente due tecnologie:
@@ -267,7 +267,7 @@
       Ogni branch deve essere creato sempre a partire dal ramo `main` aggiornato (`git pull origin main`). È vietato lavorare direttamente su `main` o creare branch a partire da altri branch in lavorazione (salvo casi eccezionali concordati).
 
       *2. Nomenclatura * \
-      Il nome del branch deve essere composto rigorosamente in minuscolo (*kebab-case*) secondo la tipologia di task:
+      Il nome del branch deve essere composto rigorosamente in minuscolo secondo la tipologia di task:
       - *Documenti*: `doc-{nome_documento}`, deve corrispondere esattamente al nome della cartella del documento (es. `doc-analisi_requisiti`, `doc-verbint_2024-11-20`).
       - *Automazione*: `automation-{descrizione_breve}`, per script e CI/CD (es. `automation-fix-pdf-build`).
       - *Stile*: `style-{descrizione_breve}`, per modifiche ai template o layout (es. `style-update-font`).
