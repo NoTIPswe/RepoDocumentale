@@ -141,16 +141,19 @@
     wow: [
       Il repository documentale adotta un'organizzazione semantica che rispecchia la struttura del sito NoTIP, assicurando piena coerenza tra la navigazione locale e la versione pubblicata.
 
+      *1. Livello root * \
       Il livello root del repository contiene:
       - `.schemas/` - schemi per la validazione formale dei file `yaml` presenti in `docs`;
       - `docs/` - directory contenente i files sorgenti della documentazione (dettagliati a seguire);
       - `scripts/` - directory contenente gli script Python utilizzati per i processi di automazione;
       - `site/` - directory contenente i files sorgenti del sito web statico NoTIP.
 
+      *2. Milestone * \
       La struttura della directory `docs/` è organizzata come segue:
       - `00-common_assets/` - directory dedicata all'archiviazione centralizzata degli asset (es. immagini) condivisi tra più documenti, al fine di evitare ridondanze nelle cartelle `assets/` specifiche per singolo documento;
       - `xx-{milestone_n}`, dove `xx` $>= 11$ - directory contenente tutta la documentazione relativa alla specifica milestone, ulteriormente suddivisa per facilitarne l'accesso,
 
+      *3. Classificazione del documento (subgroups)* \
       Ogni sottocartella di `docs/`, esclusa `00-common_assets/`, costituisce un group. Ogni group presenta una struttura fissa, che può essere composta dai seguenti subgroup:
       - `docint/` - documentazione a uso interno, destinata esclusivamente al team NoTIP;
       - `docest/` - documentazione a uso esterno, destinata a tutti gli stakeholder del progetto;
@@ -158,8 +161,7 @@
       - `verbest/` - verbali di incontri esterni (con azienda proponente o professori), riportanti lo svolgimento della riunione e le decisioni concordate. Prevedono una sezione finale con firma che attesti l'ufficialità del documento;
       - `slides/` - presentazioni di supporto per i diari di bordo, strutturate per evidenziare i punti chiave della discussione.
 
-      La posizione dei file nella gerarchia fornisce metadati impliciti e abilita l'automazione secondo il paradigma convention over configuration.
-
+      *4. Singolo documento * \
       Ogni documento è collocato all'interno di uno specifico group e subgroup. Si utilizza una directory dedicata per ogni documento (di seguito `{nome_documento}`), contenente:
       - `{nome_documento}.meta.yaml` - metadati del documento, conformi allo schema definito in `.schemas/meta.schema.json`;
       - `{nome_documento}.typ` - file sorgente principale per la compilazione del documento;
@@ -189,16 +191,22 @@
       Il processo di verifica e pubblicazione dei documenti avviene tramite *pull request* (PR), che rappresentano il meccanismo formale di revisione e approvazione.
       Ogni documento è sviluppato all’interno di un branch dedicato al singolo documento e segue il sistema di versionamento *SemVer (Semantic Versioning)* nel formato `x.y.z`.
 
+      *1. Standard di versionamento * \
       - *x (major)* identifica il raggiungimento di una *Baseline* di progetto. L'incremento della major version (es. `0.x.y` $arrow$ `1.0.0`) avviene esclusivamente in corrispondenza di questi rilasci formali. Sebbene il branch `main` contenga sempre la versione più recente e consultabile del documento, la pubblicazione ufficiale coincide con lo scatto della major.
       - *y (minor)* indica l'introduzione di nuovi contenuti, la riscrittura di sezioni o modifiche sostanziali alla struttura che aggiungono o rimuovono informazioni rilevanti per il lettore (es. `0.3.1` $arrow$ `0.4.0`).
       - *z (patch)* indica correzioni, aggiustamenti o modifiche minori che non alterano la sostanza del documento (es. correzione refusi, sostituzione immagini o aggiustamenti di valori, come in `0.4.0` $arrow$ `0.4.1`).
 
+      *2. Workflow operativo * \
+      Come rule of thumb, ogni avanzamento di versione deve corrispondere a un insieme di modifiche congruo, tale da poter essere descritto chiaramente nel changelog. In particolare, l'autore/i di una determinata modifica andranno, all'apertura di una PR, a "porporre" quello che per lui risulta essere lo scatto consono ai cambiamenti apportati al documento. In fase di verifica, il verificatore, si occuperà di andare ad assicurarsi che lo scatto rispetti le norme che il NoTIP si è dato nell'attuale documento.
+
       #ref(<ciclo_vita_docs>) mostra graficamente il ciclo di vita dei documenti.
 
-      Come rule of thumb, ogni avanzamento di versione deve corrispondere a un insieme di modifiche congruo, tale da poter essere descritto chiaramente nel changelog. In particolare, l'autore/i di una determinata modifica andranno, all'apertura di una PR, a "porporre" quello che per lui risulta essere lo scatto consono ai cambiamenti apportati al documento. In fase di verifica, il verificatore, si occuperà di andare ad assicurarsi che lo scatto rispetti le norme che il NoTIP si è dato nell'attuale documento.
-      Il documento nasce solitamente come bozza iniziale in versione `0.0.1`. Ogni iterazione di modifica nel branch di sviluppo comporta un avanzamento della patch o della minor version in base all'entità del cambiamento.
-
-      Un documento è considerato *verificato* solo dopo il merge su `main`, che sancisce il passaggio di stato e l'eventuale avanzamento della *major version*.
+      *3. Stati di un documento * \
+      Il numero di versione riflette lo stato di maturità del documento all'interno del repository:
+      - *Bozza Iniziale*: Ogni nuovo documento nasce in versione `0.0.1`;
+      - *Sviluppo*: Durante le iterazioni nel branch dedicato, la versione avanza (patch/minor) in base alle modifiche;
+      - *Verificato*: Lo stato si ottiene solo dopo il merge su `main`. Questo sancisce il consolidamento delle modifiche;
+      - *Rilasciato*: Coincide con lo scatto della Major Version e la pubblicazione ufficiale della Baseline.
     ],
     razionale: [
       *Perché legare la Major Version alle Baseline?* Sebbene il branch `main` contenga sempre la versione più recente e consultabile, abbiamo scelto questo vincolo per evidenziare i rilasci formali. Questo permette agli stakeholder di distinguere immediatamente una versione consolidata da una versione di sviluppo incrementale.
@@ -218,23 +226,24 @@
     wow: [
       La verifica dei documenti avviene tramite *Pull Request (PR)* e coinvolge sia controlli automatici (CI/CD) che una revisione umana, garantendo qualità e tracciabilità.
 
+      *1. Pipeline di validazione * \
       All'apertura o modifica di una PR, una pipeline automatica esegue una serie di controlli bloccanti tramite lo script `checker.py` e il workflow di GitHub:
       - *Compilazione*: Verifica che tutti i documenti e i relativi sorgenti Typst compilino senza errori.
       - *Validazione del Versionamento*: I documenti modificati devono presentare un numero di versione superiore rispetto alla controparte nel branch `main`.
       - *Integrità Storica*: Le modifiche sono consentite esclusivamente nella directory della milestone corrente (l'ultima in ordine cronologico), preservando la baseline delle milestone precedenti da modifiche accidentali.
-      - *Generazione Anteprima*: Il sistema costruisce e rende disponibile come *artifact* un archivio contenente i PDF compilati, facilitando l'ispezione visiva.
+      - *Generazione Anteprima*: Il sistema costruisce e rende disponibile come artifact un archivio contenente i PDF compilati, facilitando l'ispezione visiva.
 
-      Ogni PR viene successivamente esaminata manualmente da un *Verificatore* (diverso dall'autore), che scarica l'anteprima e controlla:
+      *2. Revisione umana (verificatore) *
+      Ogni PR viene successivamente esaminata manualmente da un Verificatore (diverso dall'autore), che scarica l'anteprima e controlla:
       - Conformità al template Typst e alle norme tipografiche;
       - Correttezza dello stile di scrittura e completezza dei contenuti;
       - Coerenza dei metadati (titoli, date, liste autori);
       - Assenza di file non necessari.
 
-      Se la verifica ha esito positivo:
-      - Il verificatore richiede (o esegue) la rimozione del placeholder "TBD" dal campo `verifier` nel changelog, inserendo il proprio nome. Questo passaggio è cruciale poiché l'automazione impedisce il merge se sono presenti verificatori "TBD";
-      - Approva la PR, sancendo il consolidamento delle modifiche e della nuova versione nel branch `main`.
-
-      In caso di esito negativo, il verificatore segnala le modifiche richieste direttamente nella PR, che rimane aperta fino alla risoluzione dei commenti.
+      *3. Finalizzazione e firma * \
+      L'approvazione non è un semplice click, ma richiede un'azione esplicita sul file sorgente:
+      - *Esito Positivo*: Il verificatore *deve* richiedere (o eseguire) la rimozione il placeholder TBD dal changelog inserendo il proprio nome. Questo agisce come firma digitale (l'automazione blocca il merge se rileva ancora TBD); solo dopo approva la PR su GitHub, sancendo il consolidamento delle modifiche e della nuova versione nel branch `main`.
+      - *Esito Negativo*: Il verificatore segnala le correzioni necessarie direttamente nella PR, bloccando l'avanzamento fino alla risoluzione.
     ],
     razionale: [
       *Perché il vincolo sull'Integrità Storica?* Bloccare le modifiche alle directory delle milestone passate serve a proteggere le Baseline da modifiche non volontarie che comprometterebbero l'integrità della documentazione. Vogliamo garantire che, una volta chiusa una fase, i documenti consegnati rimangano "congelati" e non subiscano modifiche accidentali mentre si lavora alla fase successiva.
@@ -252,21 +261,22 @@
     output: [Branch di lavoro attivo],
     ruoli: [Tutti i membri del team],
     wow: [
-      La *strategia di branching* adottata prevede l’utilizzo di un branch per ogni documento, sia in fase di creazione sia in fase di modifica, così da isolare le variazioni e semplificare la verifica.
+      Ogni membro del team deve attenersi ai seguenti passaggi per ogni nuova attività:
 
-      La nominazione dei branch segue la convenzione:
-      #align(center)[`doc-{nome_doc}`]
-      (ad es. doc-analisi_requisiti, doc-verbint_2025-10-15, doc-norme_progetto) e rimangono attivi solo per il tempo necessario alla lavorazione. Una volta effettuato il merge su main, il branch viene chiuso ed eliminato. Nel caso in cui fosse necessario apportare ulteriori modifiche allo stesso documento, viene semplicemente ricreato un nuovo branch con la stessa convenzione.
+      *1. Creazione * \
+      Ogni branch deve essere creato sempre a partire dal ramo `main` aggiornato (`git pull origin main`). È vietato lavorare direttamente su `main` o creare branch a partire da altri branch in lavorazione (salvo casi eccezionali concordati).
 
-      Questo modello assicura tracciabilità, pulizia della storia e integrazione controllata tramite pull request.
+      *2. Nomenclatura * \
+      Il nome del branch deve essere composto rigorosamente in minuscolo (*kebab-case*) secondo la tipologia di task:
+      - *Documenti*: `doc-{nome_documento}`, deve corrispondere esattamente al nome della cartella del documento (es. `doc-analisi_requisiti`, `doc-verbint_2024-11-20`).
+      - *Automazione*: `automation-{descrizione_breve}`, per script e CI/CD (es. `automation-fix-pdf-build`).
+      - *Stile*: `style-{descrizione_breve}`, per modifiche ai template o layout (es. `style-update-font`).
+      - *Sito Web*: `site-{descrizione_breve}`, per modifiche al sito statico (es. `site-add-download-section`).
+      - *Varie*: `misc-{descrizione_breve}`, per attività residuali (es. `misc-fix-typo-readme`).
 
-      Accanto ai branch documentali sono previsti *branch tematici* per altre attività:
-      #list(
-        [`automation-{XXX}` - per CI/CD e scripting],
-        [`style-{XXX}` - per modifiche globali di stile],
-        [`site-{XXX}` - per interventi sul sito],
-        [`misc-{XXX}` - per attività residuali],
-      )
+      *3. Chiusura * \
+      I branch sono "effimeri". Una volta che la relativa Pull Request è stata approvata e mergiata, il branch locale e remoto deve essere eliminato immediatamente.
+      Per modifiche successive allo stesso documento, si riparte dal punto 1 creando un nuovo branch con lo stesso nome.
     ],
     razionale: [
       *Perché un branch per ogni documento?* Isolare le variazioni a livello di singolo documento semplifica drasticamente l'attività del verificatore, che non si trova a dover gestire conflitti o modifiche eterogenee nella stessa PR.
@@ -284,12 +294,14 @@
     wow: [
       Ogni commit deve riguardare *un solo documento* e rappresentare un singolo avanzamento di versione (*Minor* o *Patch*).
 
+      *1. Convenzione di messaggio * \
       Il messaggio di commit deve seguire tassativamente la convenzione:
       #align(center)[`doc-{nome_doc}-v{versione_semver}`]
       legando in modo univoco il set di modifiche alla versione proposta dall'autore delle modifiche (es. `doc-norme-v0.2.1`).
 
-      Le modifiche all’interno di un branch `doc-{…}` sono considerate *non verificate* fintanto che il campo `verifier` nel changelog riporta "TBD".
-      Il commit del verificatore, che sostituisce il "TBD" con il proprio nome, sancisce il superamento della verifica. Il successivo merge su `main` rende il documento disponibile, mantenendo la versione corrente; il passaggio a Major version avverrà esclusivamente in occasione di un rilascio di Baseline.
+      *2. Commit di verifica * \ 
+      Le modifiche, all’interno di un branch `doc-{…}`, sono considerate *non verificate* fintanto che il campo `verifier` nel changelog riporta "TBD".
+      Il commit che sostituisce il "TBD" con il proprio nome sancisce il superamento della verifica. Il successivo merge su `main` rende il documento disponibile, mantenendo la versione corrente; il passaggio a Major version avverrà esclusivamente in occasione di un rilascio di Baseline.
     ],
     razionale: [
       *Perché questo formato di messaggio?* Questa convenzione permette di associare immediatamente uno snapshot della storia di Git a una specifica versione SemVer, facilitando operazioni di rollback o audit.
@@ -305,11 +317,13 @@
     output: [Files e directory nominati correttamente],
     ruoli: [Tutti i membri del team],
     wow: [
-      Il nome del documento (diverso dal titolo) è il nome della cartella di documento, del principale file Typst e del file contentente i metadati ad esso associati.
+      L'assegnazione dei nomi dei documenti (diversi dal titolo) non è arbitraria ma segue regole rigide per mantenere l'integrità del repository.
 
+      *1. Sintassi generale * \
       Per tutti i documenti viene lasciata nomenclatura libera, con il solo vincolo di usare lo Snake Case. Esempi: `norme_progetto`, `glossario` .
 
-      Fanno eccezione verbali e diari di bordo, con una data che viene riportata in coda al nome, nel formato `yyyy-mm-dd`, in modo da non alterare l'ordine alfabetico interno alle directory, che ci prefiggiamo di preservare.
+      *2. Pattern cronologici * \
+      Per documenti che si ripetono nel tempo, è obbligatorio inserire la data nel formato ISO (`yyyy-mm-dd`) in coda al nome. Ciò permette di non alterare l'ordine interno alle directory, che ci prefiggiamo di preservare.
       In particolare, i principali tipi di documenti verranno nominati come segue:
       #list(
         [`verbint_yyyy-mm-dd` - verbale interno],
