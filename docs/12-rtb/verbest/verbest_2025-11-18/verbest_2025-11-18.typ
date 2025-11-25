@@ -38,7 +38,7 @@
       L’obiettivo principale del progetto riguarda la realizzazione dell’*infrastruttura cloud* e la definizione di un *sistema multitenant* sicuro.
     ],
     decisions: [
-      Abbiamo deciso di sviluppare un’infrastruttura cloud robusta, con forte attenzione alla sicurezza, multitenancy e gestione degli accessi.
+      Sviluppare un’infrastruttura cloud robusta, con forte attenzione alla sicurezza, multitenancy e gestione degli accessi.
     ],
   )
 
@@ -62,9 +62,9 @@
       - *Utente finale*: non interagisce direttamente con il sistema, ma usufruisce del servizio tramite i clienti.
     ],
     decisions: [
-      Abbiamo deciso di definire tre categorie di Attori:
-      1. *Admin god-mode* con pieno controllo della piattaforma.\
-      2. *Utenti tenant* che accedono a funzionalità e API limitate.\
+      Definire tre categorie di utenti:
+      1. *Amministratore globale* con pieno controllo della piattaforma.\
+      2. *Utenti tenant* che accedono a funzionalità e API.\
       3. *Utente finale*, che non utilizza direttamente la piattaforma ma ne beneficia indirettamente.
     ],
   )
@@ -75,7 +75,7 @@
       M31 dichiara di non voler mantenere a lungo informazioni destinate a perdere rapidamente di valore. Si preferisce pertanto l'utilizzo di un *database*, il cui unico scopo è di agire come *buffer* per la conservazione temporanea dei dati.
     ],
     decisions: [
-      Come suggerito da M31, abbiamo deciso di memorizzare dati per un breve periodo di tempo.
+      Memorizzare dati per un breve periodo di tempo: 7-10 giorni.
     ],
   )
 
@@ -105,7 +105,7 @@
       L’azienda vuole un documento che sintetizzi altre soluzioni esistenti, utile solo come *riferimento* concettuale per la progettazione. 
     ],
     decisions: [
-      Abbiamo deciso di studiare e analizzare soluzioni esistenti al fine di capire i concetti fondamentali e di redigere un documento contenente riferimenti agli esempi analizzati, descrivendo così i concetti appresi.
+      Studiare e analizzare soluzioni esistenti al fine di capire i concetti fondamentali e di redigere un documento contenente riferimenti agli esempi analizzati, descrivendo così i concetti appresi.
     ],
   )
 
@@ -175,7 +175,7 @@
       - *Disponibilità via email* per dubbi o necessità di ulteriori incontri (#link("mailto:swe@m31.com")[#raw("swe@m31.com")]).
     ],
     decisions: [
-      Definizione di un calendario stabile:
+      Definire un calendario stabile:
       - un incontro settimanale per supporto tecnico/organizzativo;\
       - uno ogni due settimane per confrontarsi come cliente e presentare domande, stato di avanzamento e pianificazione delle attività.
     ],
