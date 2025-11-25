@@ -44,6 +44,7 @@
   "Living Document": "Documento in evoluzione continua, aggiornato man mano che processi e decisioni cambiano; mantiene storia e contesto nel tempo",
   // M
   "main": "Branch principale di un repository Git, che contiene la versione stabile e ufficiale del progetto",
+  "Major": "Il primo numero nella notazione SemVer (X.Y.Z). Identifica il raggiungimento di una Baseline di progetto e viene incrementato esclusivamente in corrispondenza di rilasci formali.",
   "merge": "Operazione con cui si uniscono le modifiche di un branch secondario nel branch principale, dopo approvazione e revisione",
   "metadati": "Dati che descrivono altri dati o documenti (es. autore, versione, data, ambito, collocazione), usati per organizzazione e automazioni",
   "milestone": "Punto di controllo pianificato che segna un traguardo verificabile; scandisce avanzamento e rilasci",
