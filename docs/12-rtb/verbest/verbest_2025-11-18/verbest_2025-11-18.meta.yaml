@@ -1,13 +1,21 @@
 title: Verbale Esterno 2025-10-24 (M31)
 changelog:
   - version: "1.0.0"
-    date: "2025-11-20"
+    date: "2025-11-25"
     authors:
       - Alessandro Contarini
     verifier: TBD
     description: >
       Versione stabile verbale
   
+  - version: "0.2.0"
+    date: "2025-11-25"
+    authors:
+      - Alessandro Contarini
+    verifier: TBD
+    description: >
+      Ristrutturazione contenuto
+
   - version: "0.1.1"
     date: "2025-11-19"
     authors:
