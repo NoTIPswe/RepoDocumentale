@@ -1,5 +1,19 @@
 title: Analisi dei Requisiti
 changelog:
+  - version: "0.2.0"
+    date: "2025-11-26"
+    authors:
+      - Leonardo Preo
+    verifier: TBD
+    description: >
+        Inserimento sezioni 2.1 - Obiettivi del Prodotto, 2.2 - Architettura del Sistema
+  - version: "0.1.0"
+    date: "2025-11-26"
+    authors:
+      - Leonardo Preo
+    verifier: TBD
+    description: >
+        Stesura Introduzione
   - version: "0.0.1"
     date: "2025-11-26"
     authors:
