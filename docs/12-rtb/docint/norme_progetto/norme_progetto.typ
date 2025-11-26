@@ -109,7 +109,7 @@
   Il *processo di documentazione* ha lo scopo di registrare informazioni che derivano da un processo o ciclo di vita. La documentazione ha l'obiettivo di tracciare storicamente ed in modo preciso tutte le decisioni intraprese durante lo svolgimento del progetto.
 
   === Attività del processo
-  In accordo con quanto definito dallo standard ISO/IEC 12207, il rocesso di documentazione si articola in quattro attività fondamentali, declinate nel contesto operativo di NoTIP come segue:
+  In accordo con quanto definito dallo standard ISO/IEC 12207, il processo di documentazione si articola in quattro attività fondamentali, declinate nel contesto operativo di NoTIP come segue:
 
   - *Pianificazione* \
     Fase preliminare in cui si identifica la necessità di un documento in relazione alla Milestone corrente. In questo step si stabiliscono i destinatari (interni o esterni), si seleziona il template corretto e si definisce la struttura informativa necessaria per soddisfare gli obiettivi di progetto.
@@ -124,7 +124,7 @@
     Il processo finale attraverso il quale il documento viene reso ufficialmente disponibile agli stakeholder. Nel workflow di NoTIP, questo passaggio coincide con il raggiungimento di una milestone dove, in seguito al processo di validazione della documentazione, avviene la conseguente pubblicazione sul sito web di progetto.
 
   === Tecnologie adoperate
-  Per la stesura della documentazione il team NoTIP utilizza prevalentemente due tecnologie:
+  Per la stesura della documentazione il team NoTIP utilizza prevalentemente tre tecnologie:
   - GitHub - specialmente il meccanismo di pull request per la verifica e l'approvazione dei documenti;
   - Typst - un linguaggio di typesetting moderno, alternativa particolarmente valida a LaTeX. Ha una sintassi di scripting che richiama quella dei linguaggi di programmazione ed è particolarmente integrabile con automazioni richieste dall'approccio docs-as-code adottato;
   - Jira - un software per la gestione dei task che centralizza l'assegnazione delle attività e permette di monitorare l'avanzamento dei lavori dell'intero team.
@@ -144,22 +144,22 @@
       *1. Livello root * \
       Il livello root del repository contiene:
       - `.schemas/` - schemi per la validazione formale dei file `yaml` presenti in `docs`;
-      - `docs/` - directory contenente i files sorgenti della documentazione (dettagliati a seguire);
+      - `docs/` - directory contenente i file sorgenti della documentazione (dettagliati a seguire);
       - `scripts/` - directory contenente gli script Python utilizzati per i processi di automazione;
-      - `site/` - directory contenente i files sorgenti del sito web statico NoTIP.
+      - `site/` - directory contenente i file sorgenti del sito web statico NoTIP.
 
-      *2. Milestone * \
+      *3. Divisione per baseline (groups) * \
       La struttura della directory `docs/` è organizzata come segue:
       - `00-common_assets/` - directory dedicata all'archiviazione centralizzata degli asset (es. immagini) condivisi tra più documenti, al fine di evitare ridondanze nelle cartelle `assets/` specifiche per singolo documento;
-      - `xx-{milestone_n}`, dove `xx` $>= 11$ - directory contenente tutta la documentazione relativa alla specifica milestone, ulteriormente suddivisa per facilitarne l'accesso,
+      - `xx-{milestone_n}`, dove `xx` $>= 11$ - directory contenente tutta la documentazione relativa alla specifica baseline, ulteriormente suddivisa per facilitarne l'accesso,
 
-      *3. Classificazione del documento (subgroups)* \
+      *3. Classificazione del documento (subgroups) * \
       Ogni sottocartella di `docs/`, esclusa `00-common_assets/`, costituisce un group. Ogni group presenta una struttura fissa, che può essere composta dai seguenti subgroup:
       - `docint/` - documentazione a uso interno, destinata esclusivamente al team NoTIP;
       - `docest/` - documentazione a uso esterno, destinata a tutti gli stakeholder del progetto;
       - `verbint/` - verbali di riunioni interne (in presenza o da remoto), riepilogativi dei punti discussi e delle decisioni operative assunte;
       - `verbest/` - verbali di incontri esterni (con azienda proponente o professori), riportanti lo svolgimento della riunione e le decisioni concordate. Prevedono una sezione finale con firma che attesti l'ufficialità del documento;
-      - `slides/` - presentazioni di supporto per i diari di bordo, strutturate per evidenziare i punti chiave della discussione.
+      - `slides/` - presentazioni a supporto degli incontri con la proponente, degli aggiornamenti periodici (diari di bordo) e delle revisioni di progetto (RTB e PB).
 
       *4. Singolo documento * \
       Ogni documento è collocato all'interno di uno specifico group e subgroup. Si utilizza una directory dedicata per ogni documento (di seguito `{nome_documento}`), contenente:
@@ -197,7 +197,7 @@
       - *z (patch)* indica correzioni, aggiustamenti o modifiche minori che non alterano la sostanza del documento (es. correzione refusi, sostituzione immagini o aggiustamenti di valori, come in `0.4.0` $arrow$ `0.4.1`).
 
       *2. Workflow operativo * \
-      Come rule of thumb, ogni avanzamento di versione deve corrispondere a un insieme di modifiche congruo, tale da poter essere descritto chiaramente nel changelog. In particolare, l'autore/i di una determinata modifica andranno, all'apertura di una PR, a "porporre" quello che per lui risulta essere lo scatto consono ai cambiamenti apportati al documento. In fase di verifica, il verificatore, si occuperà di andare ad assicurarsi che lo scatto rispetti le norme che il NoTIP si è dato nell'attuale documento.
+      Come rule of thumb, ogni avanzamento di versione deve corrispondere a un insieme di modifiche congruo, tale da poter essere descritto chiaramente nel changelog. In particolare, l'autore/i di una determinata modifica andranno, all'apertura di una PR, a "proporre" quello che per lui risulta essere lo scatto consono ai cambiamenti apportati al documento. In fase di verifica, il verificatore, si occuperà di andare ad assicurarsi che lo scatto rispetti le norme che NoTIP si è dato nell'attuale documento.
 
       #ref(<ciclo_vita_docs>) mostra graficamente il ciclo di vita dei documenti.
 
@@ -281,7 +281,7 @@
     razionale: [
       *Perché un branch per ogni documento?* Isolare le variazioni a livello di singolo documento semplifica drasticamente l'attività del verificatore, che non si trova a dover gestire conflitti o modifiche eterogenee nella stessa PR.
 
-      *Perché questa strategia di "usa e getta"?* Questo modello assicura tracciabilità e pulizia della storia. Eliminare il branch dopo il merge evita l'accumulo di branch obsoleti e garantisce un'integrazione controllata tramite Pull Request focalizzate su un singolo contesto.
+      *Perché questa strategia di "usa e getta"?* Questo modello assicura tracciabilità e pulizia della storia, allineandosi ai principi di #link("https://trunkbaseddevelopment.com/")[Trunk Based Development]. Eliminare il branch dopo il merge evita l'accumulo di branch obsoleti e garantisce un'integrazione controllata tramite Pull Request focalizzate su un singolo contesto.
     ]
   )
 
