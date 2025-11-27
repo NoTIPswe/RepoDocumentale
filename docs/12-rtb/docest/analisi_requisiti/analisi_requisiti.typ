@@ -76,12 +76,12 @@
   === Amministratore di Sistema (God User)
   - Competenze tecniche avanzate
   - Gestisce configurazione globale, tenant, infrastruttura
-  - Gestisce gateway
+  - Pre-configura gateway
   - Accede a metriche e log completi del sistema
 
   === Amministratore Tenant
   - Competenze tecniche medio-alte
-  - Gestisce sensori e utenti del proprio tenant
+  - Gestisce gateway, sensori e utenti del proprio tenant
   - Configura alert e visualizza dati del tenant
   
   === Utente Finale
@@ -125,10 +125,86 @@
     [Utente Finale], [Consulta dati tramite dashboard e API],
     [Sistema Esterno], [Applicazione terza parte che integra via API], // SECONDARIO???
     [Gateway Simulato], [Componente software che genera e invia dati (da sviluppare)],
-    [Sistema Monitoring], [Prometheus/Grafana per metriche (attore secondario)]
   )
 
   == Diagrammi e Descrizioni Casi d'Uso
+  === UC1 - Gestione Multi-Tenant
+  ==== UC1.1 - Creazione Tenant
+  ==== UC1.2 - Configurazione Tenant
+  ===== UC1.2.1 - Assegnazione Quote Risorse
+  ===== UC1.2.2 - Configurazione Permessi Globali Tenant
+  ==== UC1.3 - Sospensione Tenant
+  ==== UC1.4 - Eliminazione Tenant
+  === UC2 - Gestione Gateway
+  ==== UC2.1 - Attivazione Gateway Pre-Configurato
+  ==== UC2.2 - Configurazione (Setting) Gateway
+  ===== UC2.2.1 - Associazione Sensori a Gateway
+  ===== UC2.2.2 - Configurazione Frequenza Invio Dati
+  ==== UC2.3 - Visualizzazione Stato Gateway
+  ==== UC2.4 - Disattivazione Temporanea Gateway
+  ==== UC2.5 - Richiesta Rimozione Gateway
+  === UC3 - Gestione Sensori Simulati
+  ==== UC3.1 - Registrazione Sensore
+  ==== UC3.2 - Configurazione Parametri Sensore
+  ===== UC3.2.1 - Modifica Range Valori Sensore
+  ===== UC3.2.2 - Modifica Frequenza Campionamento
+  ===== UC3.2.3 - Definizione Soglie Alert
+  ==== UC3.3 - Attivazione/Disattivazione Sensore
+  ==== UC3.4 - Visualizzazione Sensori Registrati
+  ==== UC3.5 - Eliminazione Sensore
+  === UC4 - Simulazione e Invio Dati
+  ==== UC4.1 - Generazione Dati Simulati
+  ==== UC4.2 - Invio Dati al Sistema
+  ==== UC4.3 - Gestione Buffer Locale (Opzionale Raccomandato)
+  ==== UC4.4 - Ricezione Comandi dal Sistema
+  ==== UC4.5 - Simulazione Anomalie - Debug Mode (Opzionale)
+  === UC5 - API di Query (On-Demand)
+  ==== UC5.1 - Autenticazione Client API
+  ==== UC5.2 - Richiesta Dati Storici
+  ==== UC5.3 - Filtraggio per Gateway
+  ==== UC5.4 - Filtraggio per Sensore
+  ==== UC5.5 - Filtraggio per Range Temporale
+  ==== UC5.6 - Aggregazione Dati (Opzionale)
+  ==== UC5.7 - Export Dati (Opzionale)
+  === UC6 - API di Streaming
+  ==== UC6.1 - Apertura Connesione Stream
+  ==== UC6.2 - Ricezione Dati Real-Time
+  ==== UC6.3 - Applicazione Filtri Stream (Opzionale)
+  ==== UC6.4 - Chiusura Stream
+  === UC7 - Interfaccia Utente Console Web
+  ==== UC7.1 - Login Utente
+  ==== UC7.2 - Autenticazione Multi-Fattore (Opzionale)
+  ==== UC7.3 - Visualizzazione Dashboard (Opzionale)
+  ==== UC7.4 - Configurazione Filtri Dashboard
+  ==== UC7.5 - Visualizzazione Storico Dati
+  ==== UC7.6 - Gestione Gateway (Console)
+  ==== UC7.7 - Gestione Sensori (Console)
+  ==== UC7.8 - Gestione Utenti (Console)
+  ==== UC7.9 - Visualizzazione Log Audit (Console - Opzionale)
+  === UC8 - Gestione Utenti e Permessi
+  ==== UC8.1 - Creazione Utente
+  ==== UC8.2 - Modifica Permessi Utente
+  ==== UC8.3 - Disattivazione Utente
+  ==== UC8.4 - Reset Password
+  ==== UC8.5 - Visualizzazione Profilo Utente
+  === UC9 - Eventi e Notifiche (Opzionale)
+  ==== UC9.1 - Configurazione Regole Alert
+  ==== UC9.2 - Ricezione Notifica Alert
+  ==== UC9.3 - Visualizzazione Storico Alert
+  ==== UC9.4 - Acknowledge Alert
+  ==== UC9.5 - Risoluzione Alert
+  === UC10 - Monitoraggio Sistema
+  ==== UC10.1 - Visualizzazione Metriche Sistema
+  ==== UC10.2 - Configurazione Alert Infrastrutturali
+  ==== UC10.3 - Visualizzazione Log Applicativi (Opzionale)
+  === UC11 - Audit e Tracciamento (Opzionale)
+  ==== UC11.1 - Consultazione Log Audit
+  ==== UC11.2 - Esportazione Log Audit
+  === UC12 - Integrazione Sistemi Esterni (Opzionale)
+  ==== UC12.1 - Generazione API Key
+  ==== UC12.2 - Revoca API Key
+  ==== UC12.3 - Configurazione Webhook (Opzionale)
+  ==== UC12.4 - Test Integrazione
   
   = Requisiti
   == Requisiti Funzionali
