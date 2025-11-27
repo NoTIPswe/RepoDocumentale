@@ -1,0 +1,25 @@
+title: Diario di Bordo 2025-11-17
+changelog:
+  - version: "1.0.0"
+    date: "2025-11-16"
+    authors:
+      - Alessandro Contarini
+    verifier: TBD
+    description: >
+      Prima versione stabile
+
+  - version: "0.1.0"
+    date: "2025-11-15"
+    authors:
+      - Alessandro Contarini
+    verifier: TBD
+    description: >
+      Redazione contenuto
+
+  - version: "0.0.1"
+    date: "2025-11-15"
+    authors:
+      - Alessandro Contarini
+    verifier: TBD
+    description: >
+      Creazione del diario di Bordo
