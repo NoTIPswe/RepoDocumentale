@@ -114,9 +114,22 @@
   - PoC con infrastruttura locale (es: simulatore e comunicazione), MVP con deployment cloud
   - Test automatici (e non) con coverage minimo da concordare
   - Documentazione completa (tecnica, architetturale, utente)
+
   = Casi d'Uso
   == Attori del Sistema
-  == DIagrammi e Descrizioni Casi d'Uso
+  #table(
+    columns: (1fr, 2fr),
+    [Attore], [Descrizione],
+    [Amministratore Sistema], [Gestisce gateway, tenant, infrastruttura globale, monitoraggio],
+    [Amministratore Tenant], [Gestisce sensori, utenti all'interno del tenant],
+    [Utente Finale], [Consulta dati tramite dashboard e API],
+    [Sistema Esterno], [Applicazione terza parte che integra via API], // SECONDARIO???
+    [Gateway Simulato], [Componente software che genera e invia dati (da sviluppare)],
+    [Sistema Monitoring], [Prometheus/Grafana per metriche (attore secondario)]
+  )
+
+  == Diagrammi e Descrizioni Casi d'Uso
+  
   = Requisiti
   == Requisiti Funzionali
   == Requisiti Qualitativi
