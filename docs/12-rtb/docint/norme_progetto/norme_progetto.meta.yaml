@@ -4,7 +4,7 @@ changelog:
     date: "2025-11-21"
     authors:
       - Francesco Marcon
-    verifier: TBD
+    verifier: Matteo Mantoan
     description: >
       Aggiornamento in seguito al cambiamento di versione e struttura della repo
   - version: "0.4.1"

@@ -151,7 +151,7 @@
       *3. Divisione per baseline (groups) * \
       La struttura della directory `docs/` è organizzata come segue:
       - `00-common_assets/` - directory dedicata all'archiviazione centralizzata degli asset (es. immagini) condivisi tra più documenti, al fine di evitare ridondanze nelle cartelle `assets/` specifiche per singolo documento;
-      - `xx-{milestone_n}`, dove `xx` $>= 11$ - directory contenente tutta la documentazione relativa alla specifica baseline, ulteriormente suddivisa per facilitarne l'accesso,
+      - `xx-{milestone_n}`, dove `xx` $>= 11$ - directory contenente tutta la documentazione relativa alla specifica baseline, ulteriormente suddivisa per facilitarne l'accesso.
 
       *3. Classificazione del documento (subgroups) * \
       Ogni sottocartella di `docs/`, esclusa `00-common_assets/`, costituisce un group. Ogni group presenta una struttura fissa, che può essere composta dai seguenti subgroup:
