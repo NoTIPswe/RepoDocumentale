@@ -40,27 +40,26 @@
       Il gruppo ha discusso lo standard *ISO 12207 del 1997* ed ha raggiunto una decisione condivisa tra tutti i membri su quali punti dello standard inserire nel workflow.\
     ],
     decisions: [
-      Il gruppo si è allineato ed ha definito le serie di attività che verranno rispettate ed eseguite seguendo lo standard *ISO 12207 del 1997*:
-        >*Primary life cycle process*
-          -5.2 Supply
-          -5.3 Development
-          -5.4 Operation
-            -del punto 5.4 verrà solo eseguita la fase dell’ operational testing;
-            Operational testing verrà eseguito durante il ciclo di sviluppo del progetto ma non ne verranno descritte le proprieta’ nelle norme di progetto
-        >*Supporting life cycle process*
-          -6.1 Documentation
-          -6.2 Configuration Management
-          -6.3 Quality Assurance
-          -6.4 Verification
-          -6.5 Validation
-          -6.6 Joint Review
-          -6.7 Audit
-          -6.8 Problem Resolution
-        >*Organizational life cycle process*
-          -7.1 Management
-          -7.2 Infrastructure
-          -7.3 Improvement
-          -7.4 Training
+      Il gruppo si è allineato ed ha definito le serie di attività che verranno rispettate ed eseguite seguendo lo standard *ISO 12207 del 1997*:\
+        *Primary life cycle process*\
+        #h(1em)5.2 Supply\
+        #h(1em)5.3 Development\
+        #h(1em)5.4 Operation\
+        #h(2em)del punto 5.4 verrà solo eseguita la fase dell’ operational testing; Operational testing verrà eseguito durante il ciclo di sviluppo del progetto ma non ne verranno descritte le proprieta’ nelle norme di progetto
+        *Supporting life cycle process*\
+        #h(1em)6.1 Documentation\
+        #h(1em)6.2 Configuration Management\
+        #h(1em)6.3 Quality Assurance\
+        #h(1em)6.4 Verification\
+        #h(1em)6.5 Validation\
+        #h(1em)6.6 Joint Review\
+        #h(1em)6.7 Audit\
+        #h(1em)6.8 Problem Resolution\
+        *Organizational life cycle process*\
+        #h(1em)7.1 Management\
+        #h(1em)7.2 Infrastructure\
+        #h(1em)7.3 Improvement\
+        #h(1em)7.4 Training\
     ],
     actions: (),
   )
@@ -122,7 +121,6 @@
   Il gruppo ha deciso che il prossimo diario di bordo sarà sostenuto da Francesco Marcon.
 
   = Esiti e decisioni finali
-  La riunione si è conclusa alle ore 17:30, dopo aver definito in modo condiviso tutti i punti dell'ODG.
-  Ogni singolo punto dell'OdG è stato discusso in maniera collaborativa ed in modo produttivo, dove ognuno ha espresso i propri pareri riguardo ogni singolo punto dell'ordine del giorno.
-
+  La riunione si è conclusa alle ore 17:30.
+  Nella riunione il gruppo ha avuto modo di poter discutere approfonditamente di ogni singolo punto dell'OdG in maniera collaborativa ed in modo produttivo, dove ognuno ha potuto esprimere i propri pareri riguardo i diversi argomenti trattati.
 ]
