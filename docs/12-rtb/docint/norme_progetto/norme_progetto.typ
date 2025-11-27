@@ -148,7 +148,7 @@
       - `scripts/` - directory contenente gli script Python utilizzati per i processi di automazione;
       - `site/` - directory contenente i file sorgenti del sito web statico NoTIP.
 
-      *3. Divisione per baseline (groups) * \
+      *2. Divisione per baseline (groups) * \
       La struttura della directory `docs/` è organizzata come segue:
       - `00-common_assets/` - directory dedicata all'archiviazione centralizzata degli asset (es. immagini) condivisi tra più documenti, al fine di evitare ridondanze nelle cartelle `assets/` specifiche per singolo documento;
       - `xx-{milestone_n}`, dove `xx` $>= 11$ - directory contenente tutta la documentazione relativa alla specifica baseline, ulteriormente suddivisa per facilitarne l'accesso.
