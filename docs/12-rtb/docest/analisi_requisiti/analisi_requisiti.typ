@@ -31,6 +31,7 @@
 
   === Riferimenti Informativi
   - T05 - Analisi dei Requisiti
+  - Documentazione tecnologie di riferimento (Node.js, Nest.js, Kubernetes, MongoDB, PostgreSQL, NATS/Kafka)
   
   = Descrizione del Prodotto
   == Obiettivi del Prodotto
@@ -61,25 +62,58 @@
   - Persistenza configurazione (commissioning)
 
   === Cloud Layer (Piattaforma Centrale)
-    Cuore del sistema, include:
-    - API Gateway: autenticazione, autorizzazione, rate limiting
-    - Data Ingestion Service: ricezione e validazione dati da gateway
-    - Data Storage: persistenza multi-tenant (MongoDB/PostgreSQL)
-    - Query API: accesso on-demand a dati storici
-    - Streaming API: distribuzione real-time via WebSocket/SSE
-    - Web Console: interfaccia amministrazione e visualizzazione
-    - Event Management: alert configurabili e notifiche (opzionale)
-    - Monitoring: Prometheus + Grafana per metriche sistema
+  Cuore del sistema, include:
+  - API Gateway: autenticazione, autorizzazione, rate limiting
+  - Data Ingestion Service: ricezione e validazione dati da gateway
+  - Data Storage: persistenza multi-tenant (MongoDB/PostgreSQL)
+  - Query API: accesso on-demand a dati storici
+  - Streaming API: distribuzione real-time via WebSocket/SSE
+  - Web Console: interfaccia amministrazione e visualizzazione
+  - Event Management: alert configurabili e notifiche (opzionale)
+  - Monitoring: Prometheus + Grafana per metriche sistema
 
   == Caratteristiche degli Utenti
   === Amministratore di Sistema (God User)
+  - Competenze tecniche avanzate
+  - Gestisce configurazione globale, tenant, infrastruttura
+  - Gestisce gateway
+  - Accede a metriche e log completi del sistema
+
   === Amministratore Tenant
+  - Competenze tecniche medio-alte
+  - Gestisce sensori e utenti del proprio tenant
+  - Configura alert e visualizza dati del tenant
+  
   === Utente Finale
+  - Competenze tecniche base-medie
+  - Consulta dati via dashboard o API
+  - Non richiede conoscenze infrastrutturali
+
   === Sviluppatore/Sistema Esterno 
+  - Integra applicazioni tramite API
+  - Richiede documentazione tecnica dettagliata
+  
   == Vincoli e Assunzioni
   === Vincoli Tecnologici
+  - Backend: Node.js con Nest.js (TypeScript) o Go per componenti critici
+  - Message Broker: NATS o Apache Kafka
+  - Database: MongoDB (dati non strutturati) e PostgreSQL (dati strutturati)
+  - Caching: Redis
+  - Orchestrazione: Kubernetes su Google Cloud Platform
+  - Frontend: Angular (SPA)
+  - Version Control: Git/GitHub
+
   === Vincoli di Sicurezza
+  - Comunicazione cifrata (TLS)
+  - Autenticazione: JWT, OAuth2, mTLS
+  - Segregazione dati tenant (logica e fisica)
+  - Certificati digitali per gateway
+
   === Vincoli di Progetto
+  - Sensori e gateway fisici non realizzati (solo simulazione)
+  - PoC con infrastruttura locale (es: simulatore e comunicazione), MVP con deployment cloud
+  - Test automatici (e non) con coverage minimo da concordare
+  - Documentazione completa (tecnica, architetturale, utente)
   = Casi d'Uso
   == Attori del Sistema
   == DIagrammi e Descrizioni Casi d'Uso

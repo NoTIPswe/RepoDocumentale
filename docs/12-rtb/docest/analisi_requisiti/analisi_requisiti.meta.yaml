@@ -1,5 +1,12 @@
 title: Analisi dei Requisiti
 changelog:
+  - version: "0.3.0"
+    date: "2025-11-27"
+    authors:
+      - Leonardo Preo
+    verifier: TBD
+    description: >
+        Inserimento sezioni 2.3 - Caratteristiche degli Utenti, 2.4 - Vincoli e Assunzioni
   - version: "0.2.0"
     date: "2025-11-26"
     authors:
