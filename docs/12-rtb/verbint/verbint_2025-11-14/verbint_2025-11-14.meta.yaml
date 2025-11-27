@@ -1,0 +1,16 @@
+title: Verbale Interno 2025-10-15
+changelog:
+  - version: "1.0.0"
+    date: "2025-11-19"
+    authors:
+      - Leonardo Preo
+    verifier: "Alessandro Mazzariol"
+    description: >
+      Versione stabile verbale
+  - version: "0.0.1"
+    date: "2025-11-14"
+    authors:
+      - Leonardo Preo
+    verifier: Alessandro Mazzariol
+    description: >
+      Prima stesura verbale

@@ -1,8 +1,6 @@
 name: "Deploy: Build & Publish Site to GitHub Pages"
 
 on:
-  schedule:
-    - cron: '0 4 * * 1,4'
   workflow_dispatch:
 
 jobs:
@@ -28,15 +26,13 @@ jobs:
           python-version: '3.13'
 
       - name: Install Python dependencies
-        run: pip install pyyaml jsonschema packaging
+        run: pip install -r scripts/requirements.txt
+
       - name: Install Typst
         uses: typst-community/setup-typst@v3
 
-      - name: Build Typst documents
-        run: python scripts/build_docs.py --outdir dist/docs
-
       - name: Generate static site
-        run: python scripts/generate_site.py --site-dir site --outdir dist --docs-folder docs
+        run: python scripts/do.py generate site
 
       - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v3

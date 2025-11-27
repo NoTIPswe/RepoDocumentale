@@ -1,0 +1,18 @@
+[project]
+name = "notipdo"
+version = "0.1.0"
+description = "NoTIP unified document tooling CLI."
+dependencies = [
+    "pyyaml",
+    "jsonschema",
+    "typer",
+    "gitpython",
+    "packaging",
+]
+
+[project.scripts]
+notipdo = "do:app"
+
+[tool.setuptools]
+py-modules = ["do"]
+packages = ["commands", "lib"]

@@ -12,6 +12,12 @@ jobs:
   validate-and-build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          # We need fetch-depth: 0 to get all history for git diff
+          fetch-depth: 0
+
       - name: Install Typst
         uses: typst-community/setup-typst@v3
 
@@ -21,47 +27,15 @@ jobs:
           python-version: '3.13'
 
       - name: Install Python dependencies
-        run: pip install pyyaml jsonschema packaging
+        run: pip install -r scripts/requirements.txt
 
-      - name: Checkout PR branch
-        uses: actions/checkout@v4
-        with:
-          # We need fetch-depth: 0 to get all history for git diff
-          fetch-depth: 0
-
-      - name: Checkout base branch
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.base_ref }}
-          path: 'base_checkout'
-
-      - name: Generate base model
-        run: |
-          cd base_checkout && python scripts/validate_pr_changes.py generate \
-            --output ../base-model.json && cd ..
-
-      - name: Generate PR model
-        run: |
-          python scripts/validate_pr_changes.py generate \
-            --output pr-model.json
-
-      - name: Get changed files
-        run: |
-          BASE_COMMIT=$(git merge-base origin/${{ github.base_ref }} HEAD)
-          git diff --name-only ${BASE_COMMIT} HEAD > changed_files.txt
-          echo "Changed files:"
-          cat changed_files.txt
-        shell: bash
-      
       - name: Validate document changes
         run: |
-          python scripts/validate_pr_changes.py compare \
-            base-model.json \
-            pr-model.json \
-            changed_files.txt
+          python3 scripts/do.py check pr
 
       - name: Build docs from PR
-        run: python scripts/build_docs.py --outdir dist/docs
+        run: |
+          python3 scripts/do.py build changes
       
       - name: Upload Build Artifacts (PDFs)
         if: always()
@@ -69,15 +43,4 @@ jobs:
         with:
           name: pr-docs-preview
           path: dist/docs/
-          retention-days: 7
-
-      - name: Upload Validation Artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: validation-artifacts
-          path: |
-            pr-model.json
-            base-model.json
-            changed_files.txt
           retention-days: 7
