@@ -1,5 +1,12 @@
 title: Glossario
 changelog:
+  - version: "1.1.0"
+    date: "2025-11-22"
+    authors:
+      - Francesco Marcon
+    verifier: Leonardo Preo
+    description: >
+      Termini post aggiornamento versionamento e struttura repo
   - version: "1.0.0"
     date: "2025-11-07"
     authors:
