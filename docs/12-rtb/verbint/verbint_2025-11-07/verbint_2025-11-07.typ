@@ -44,7 +44,7 @@
         >*Primary life cycle process*
           -5.2 Supply
           -5.3 Development
-          -5.4 Operation(??)
+          -5.4 Operation
             -del punto 5.4 verrà solo eseguita la fase dell’ operational testing;
             Operational testing verrà eseguito durante il ciclo di sviluppo del progetto ma non ne verranno descritte le proprieta’ nelle norme di progetto
         >*Supporting life cycle process*
@@ -54,7 +54,7 @@
           -6.4 Verification
           -6.5 Validation
           -6.6 Joint Review
-          -6.7 Audit (??)
+          -6.7 Audit
           -6.8 Problem Resolution
         >*Organizational life cycle process*
           -7.1 Management
@@ -122,7 +122,7 @@
   Il gruppo ha deciso che il prossimo diario di bordo sarà sostenuto da Francesco Marcon.
 
   = Esiti e decisioni finali
-  La riunione si è conclusa alle ore 17:30, dopo aver definito in modo condiviso!!!!!!!!!!!!!!! Progetto, Struttura del documento, Definition of Done, Aggiornamento metodo di Versionamento.
+  La riunione si è conclusa alle ore 17:30, dopo aver definito in modo condiviso tutti i punti dell'ODG.
   Ogni singolo punto dell'OdG è stato discusso in maniera collaborativa ed in modo produttivo, dove ognuno ha espresso i propri pareri riguardo ogni singolo punto dell'ordine del giorno.
 
 ]
