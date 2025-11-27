@@ -108,10 +108,13 @@ def _build_doc(
         f"--font-path={fonts_dir_path}",
     ]
 
-    _exec_typst_cli(doc, command)
+    if mode == BuildMode.COMPILE:
+        _launch_typst_subprocesses(doc, command)
+    elif mode == BuildMode.WATCH:
+        _exec_typst_watch(command)
 
 
-def _exec_typst_cli(doc: model.Document, command: List[str]):
+def _launch_typst_subprocesses(doc: model.Document, command: List[str]):
     try:
         proc = subprocess.run(
             command, capture_output=True, text=True, encoding="utf-8", check=True
@@ -129,3 +132,7 @@ def _exec_typst_cli(doc: model.Document, command: List[str]):
     except FileNotFoundError:
         logging.critical("Typst command not found. Is it installed and in your PATH?")
         sys.exit(1)
+
+
+def _exec_typst_watch(command: List[str]):
+    os.execvp(command[0], command)
