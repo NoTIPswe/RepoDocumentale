@@ -123,35 +123,62 @@
     [Amministratore Sistema], [Gestisce gateway, tenant, infrastruttura globale, monitoraggio],
     [Amministratore Tenant], [Gestisce sensori, utenti all'interno del tenant],
     [Utente Finale], [Consulta dati tramite dashboard e API],
-    [Sistema Esterno], [Applicazione terza parte che integra via API], // SECONDARIO???
+    [Sistema Esterno], [Applicazione terza parte che integra via API],
     [Gateway Simulato], [Componente software che genera e invia dati (da sviluppare)],
   )
 
   == Diagrammi e Descrizioni Casi d'Uso
   === UC1 - Gestione Multi-Tenant
   ==== UC1.1 - Creazione Tenant
+  ===== UC1.1.1 - Assegnazione Nome Tenant
+  ===== UC1.1.2 - Configurazione Parametri Iniziali
+  ===== UC1.1.3 - Creazione Utente Amministratore Tenant
   ==== UC1.2 - Configurazione Tenant
   ===== UC1.2.1 - Assegnazione Quote Risorse
   ===== UC1.2.2 - Configurazione Permessi Globali Tenant
   ==== UC1.3 - Sospensione Tenant
+  ===== UC1.3.1 - Notifica Amministratore Tenant
+  ===== UC1.3.2 - Blocco Accesso ai Servizi
   ==== UC1.4 - Eliminazione Tenant
+  ===== UC1.4.1 - Backup Dati Tenant
+  ===== UC1.4.2 - Rimozione Risorse Associate
   === UC2 - Gestione Gateway
   ==== UC2.1 - Attivazione Gateway Pre-Configurato
+  ===== UC2.1.1 - Verifica Identità Gateway
+  ===== UC2.1.2 - Associazione a Tenant
+  ===== UC2.1.3 - Conferma Attivazione
   ==== UC2.2 - Configurazione (Setting) Gateway
   ===== UC2.2.1 - Associazione Sensori a Gateway
   ===== UC2.2.2 - Configurazione Frequenza Invio Dati
+  ===== UC2.2.3 - Configurazione Parametri di Sicurezza
   ==== UC2.3 - Visualizzazione Stato Gateway
+  ===== UC2.3.1 - Stato Connessione
+  ===== UC2.3.2 - Ultimo Invio Dati
+  ===== UC2.3.3 - Elenco Sensori Associati
   ==== UC2.4 - Disattivazione Temporanea Gateway
+  ===== UC2.4.1 - Conferma Disattivazione
+  ===== UC2.4.2 - Notifica al Sistema
   ==== UC2.5 - Richiesta Rimozione Gateway
+  ===== UC2.5.1 - Conferma Rimozione
+  ===== UC2.5.2 - Eliminazione Dati Associati
   === UC3 - Gestione Sensori Simulati
   ==== UC3.1 - Registrazione Sensore
+  ===== UC3.1.1 - Selezione Tipo Sensore
+  ===== UC3.1.2 - Assegnazione ID Unico
+  ===== UC3.1.3 - Associazione a Gateway
   ==== UC3.2 - Configurazione Parametri Sensore
   ===== UC3.2.1 - Modifica Range Valori Sensore
   ===== UC3.2.2 - Modifica Frequenza Campionamento
   ===== UC3.2.3 - Definizione Soglie Alert
   ==== UC3.3 - Attivazione/Disattivazione Sensore
+  ===== UC3.3.1 - Conferma Stato Attivazione
   ==== UC3.4 - Visualizzazione Sensori Registrati
+  ===== UC3.4.1 - Elenco Sensori per Gateway
+  ===== UC3.4.2 - Filtraggio per Tipo Sensore
+  ===== UC3.4.3 - Stato Attivazione Sensore
   ==== UC3.5 - Eliminazione Sensore
+  ===== UC3.5.1 - Conferma Eliminazione
+  ===== UC3.5.2 - Rimozione Dati Associati
   === UC4 - Simulazione e Invio Dati
   ==== UC4.1 - Generazione Dati Simulati
   ==== UC4.2 - Invio Dati al Sistema
@@ -175,7 +202,7 @@
   ==== UC7.1 - Login Utente
   ==== UC7.2 - Autenticazione Multi-Fattore (Opzionale)
   ==== UC7.3 - Visualizzazione Dashboard (Opzionale)
-  ==== UC7.4 - Configurazione Filtri Dashboard
+  ==== UC7.4 - Configurazione Filtri Dashboard (Opzionale)
   ==== UC7.5 - Visualizzazione Storico Dati
   ==== UC7.6 - Gestione Gateway (Console)
   ==== UC7.7 - Gestione Sensori (Console)
@@ -185,7 +212,7 @@
   ==== UC8.1 - Creazione Utente
   ==== UC8.2 - Modifica Permessi Utente
   ==== UC8.3 - Disattivazione Utente
-  ==== UC8.4 - Reset Password
+  ==== UC8.4 - Reset Password Utente
   ==== UC8.5 - Visualizzazione Profilo Utente
   === UC9 - Eventi e Notifiche (Opzionale)
   ==== UC9.1 - Configurazione Regole Alert
