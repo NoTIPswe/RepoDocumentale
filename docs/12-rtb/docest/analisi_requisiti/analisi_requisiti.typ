@@ -143,24 +143,25 @@
   ===== UC1.4.1 - Backup Dati Tenant
   ===== UC1.4.2 - Rimozione Risorse Associate
   === UC2 - Gestione Gateway
-  ==== UC2.1 - Attivazione Gateway Pre-Configurato
-  ===== UC2.1.1 - Verifica Identità Gateway
-  ===== UC2.1.2 - Associazione a Tenant
-  ===== UC2.1.3 - Conferma Attivazione
-  ==== UC2.2 - Configurazione (Setting) Gateway
-  ===== UC2.2.1 - Associazione Sensori a Gateway
-  ===== UC2.2.2 - Configurazione Frequenza Invio Dati
-  ===== UC2.2.3 - Configurazione Parametri di Sicurezza
-  ==== UC2.3 - Visualizzazione Stato Gateway
-  ===== UC2.3.1 - Stato Connessione
-  ===== UC2.3.2 - Ultimo Invio Dati
-  ===== UC2.3.3 - Elenco Sensori Associati
-  ==== UC2.4 - Disattivazione Temporanea Gateway
-  ===== UC2.4.1 - Conferma Disattivazione
-  ===== UC2.4.2 - Notifica al Sistema
-  ==== UC2.5 - Richiesta Rimozione Gateway
-  ===== UC2.5.1 - Conferma Rimozione
-  ===== UC2.5.2 - Eliminazione Dati Associati
+  ==== UC2.1 - Registrazione Nuovo Gateway (Provisioning)
+  ==== UC2.2 - Attivazione Gateway Pre-Configurato
+  ===== UC2.2.1 - Verifica Identità Gateway
+  ===== UC2.2.2 - Associazione a Tenant
+  ===== UC2.2.3 - Conferma Attivazione
+  ==== UC2.3 - Configurazione (Setting) Gateway
+  ===== UC2.3.1 - Associazione Sensori a Gateway
+  ===== UC2.3.2 - Configurazione Frequenza Invio Dati
+  ===== UC2.3.3 - Configurazione Parametri di Sicurezza
+  ==== UC2.4 - Visualizzazione Stato Gateway
+  ===== UC2.4.1 - Stato Connessione
+  ===== UC2.4.2 - Ultimo Invio Dati
+  ===== UC2.4.3 - Elenco Sensori Associati
+  ==== UC2.5 - Disattivazione Temporanea Gateway
+  ===== UC2.5.1 - Conferma Disattivazione
+  ===== UC2.5.2 - Notifica al Sistema
+  ==== UC2.6 - Richiesta Rimozione Gateway
+  ===== UC2.6.1 - Conferma Rimozione
+  ===== UC2.6.2 - Eliminazione Dati Associati
   === UC3 - Gestione Sensori Simulati
   ==== UC3.1 - Registrazione Sensore
   ===== UC3.1.1 - Selezione Tipo Sensore
@@ -200,20 +201,20 @@
   ==== UC6.4 - Chiusura Stream
   === UC7 - Interfaccia Utente Console Web
   ==== UC7.1 - Login Utente
-  ==== UC7.2 - Autenticazione Multi-Fattore (Opzionale)
-  ==== UC7.3 - Visualizzazione Dashboard (Opzionale)
-  ==== UC7.4 - Configurazione Filtri Dashboard (Opzionale)
-  ==== UC7.5 - Visualizzazione Storico Dati
-  ==== UC7.6 - Gestione Gateway (Console)
-  ==== UC7.7 - Gestione Sensori (Console)
-  ==== UC7.8 - Gestione Utenti (Console)
-  ==== UC7.9 - Visualizzazione Log Audit (Console - Opzionale)
+  ==== UC7.2 - Logout Utente
+  ==== UC7.3 - Recupero Password
+  ==== UC7.4 - Autenticazione Multi-Fattore (Opzionale)
+  ==== UC7.5 - Visualizzazione Dashboard (Opzionale)
+  ==== UC7.6 - Configurazione Filtri Dashboard (Opzionale)
+  ==== UC7.7 - Visualizzazione Storico Dati
   === UC8 - Gestione Utenti e Permessi
   ==== UC8.1 - Creazione Utente
   ==== UC8.2 - Modifica Permessi Utente
   ==== UC8.3 - Disattivazione Utente
   ==== UC8.4 - Reset Password Utente
   ==== UC8.5 - Visualizzazione Profilo Utente
+  ==== UC8.6 - Modifica Profilo Utente
+  ==== UC8.7 - Eliminazione Utente
   === UC9 - Eventi e Notifiche (Opzionale)
   ==== UC9.1 - Configurazione Regole Alert
   ==== UC9.2 - Ricezione Notifica Alert
@@ -222,6 +223,8 @@
   ==== UC9.5 - Risoluzione Alert
   === UC10 - Monitoraggio Sistema
   ==== UC10.1 - Visualizzazione Metriche Sistema
+  ===== UC10.1.1 - Rilevamento Gateway Offline
+  ===== UC10.1.2 - Rilevamento Sensori Non Rispondenti // da capire perchè noi abbiamo una simulazione
   ==== UC10.2 - Configurazione Alert Infrastrutturali
   ==== UC10.3 - Visualizzazione Log Applicativi (Opzionale)
   === UC11 - Audit e Tracciamento (Opzionale)
