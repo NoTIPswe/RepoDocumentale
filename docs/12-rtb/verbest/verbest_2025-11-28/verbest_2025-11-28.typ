@@ -31,20 +31,18 @@
   #base-report.report-point(
     discussion_point: [Ridefinizione degli attori e del perimetro utenza],
     discussion: [
-      Il gruppo ha sollevato dubbi sulla pertinenza dell'attore "Utente Finale", inteso come paziente o utilizzatore ultimo dei dati forniti dall'applicativo prodotto dal gruppo, all'interno dei diagrammi use case. È stato osservato che la gestione dell'identità dell'utente finale dovrebbe ricadere, in linea di principio, sull'applicazione che cliente (Tenant) fornisce all'utente finale per interfacciarsi con i dati e non sul sistema di acquisizione dati. Si è discusso inoltre di come rappresentare l'entità che consuma i dati via API.
+      Il gruppo ha concordato sull'esclusione dell'attore "utente finale" (paziente) dai diagrammi use case, in quanto la sua gestione ricade sull'applicazione del cliente (tenant) e non sul sistema di acquisizione dati.
+      
+      Per quanto riguarda gli utenti del sistema, al momento vengono identificati due attori principali: l'amministratore e l'utente del enant. È emerso il dubbio se sia necessario o corretto suddividere ulteriormente l'attore "utente del tenant" in due figure distinte ("amministratore tenant" e "utilizzatore dati/sistema esterno") o mantenere un'unica entità.
     ],
     decisions: [
-      - Esclusione dell'utente finale: L'attore "utente finale" viene ufficialmente rimosso dal modello dei requisiti, in quanto non direttamente collegato con l'obiettivo di sviluppo dell'applicativo.
+      - Esclusione dell'utente finale: l'attore "utente finale" viene rimosso dal modello dei requisiti.
 
-      - Gerarchia amministrativa: vengono confermati due livelli di amministrazione:
-
-          - Amministratore di Sistema (God User): gestisce l'infrastruttura globale e i Tenant.
-
-          - Amministratore del Tenant: gestisce i propri di dati, sensori e le configurazioni specifiche ad essi legati.
-
-      - Introduzione del "Sistema Esterno": viene formalizzato l'attore "Sistema Esterno" (o Applicazione Terza) per rappresentare il software che si interfaccia alle API (REST/Streaming) per il prelevamento dei dati e la loro gestione nei confronti degli utilizzatori finali.
+      - Definizione attuale degli attori: si confermano provvisoriamente solo due livelli di utenza:
+          - Amministratore di Sistema: gestisce l'infrastruttura globale.
+          - Utente del Tenant: figura che rappresenta l'interazione del cliente con il sistema.
     ], 
-    actions: ()
+    actions: ()   // Richiesta del ricevimento al Prof. Cardin
   )
 
   #base-report.report-point(
@@ -76,14 +74,16 @@
   )
 
   #base-report.report-point(
-    discussion_point: [Modellazione dei confini del Sistema],
+    discussion_point: [Modellazione dei confini del Sistema e ruolo del Gateway],
     discussion: [
-      Sono stati analizzati aspetti formali della modellazione UML. In particolare, ci si è interrogati se il "Gateway Simulato", essendo un software sviluppato dal gruppo, debba essere interno al sistema o un attore esterno.
+      Si è discusso se considerare il "Gateway Simulato" (sviluppato dal gruppo) come parte interna del sistema o come un'entità esterna. È stato chiarito che, ai fini della modellazione UML del backend/applicativo, il Gateway rappresenta una fonte dati esterna.
     ],
     decisions: [
-      - Il Sistema non è un attore nei diagrammi use case.
+      - Confini del sistema: Il "Sistema" nei diagrammi Use Case comprende esclusivamente l'applicativo di gestione e le API (Backend + Frontend), escludendo i sensori e il gateway.
 
-      - Ruolo del gateway: nel contesto dell'acquisizione dati, il gateway agisce come attore durante l'invio di telemetrie. Nel contesto della configurazione remota, agisce come destinatario. Questa dualità verrà riflessa nell'architettura logica.
+      - Ruolo del Gateway: Il Gateway viene modellato come attore esterno.
+        - In fase di acquisizione: agisce attivamente inviando le telemetrie al sistema.
+        - In fase di configurazione: agisce passivamente ricevendo comandi dal sistema.
     ],
     actions: ()
   )
