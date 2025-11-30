@@ -4,9 +4,10 @@ changelog:
     date: "2025-11-28"
     authors:
       - Leonardo Preo
+      - Alessandro Contarini
     verifier: TBD
     description: >
-        Modifica Utenti Sistema e Attori
+        Modifica Utenti Sistema e Attori, tracciamento
   - version: "0.0.1"
     date: "2025-11-27"
     authors:

@@ -2,6 +2,8 @@
 
 #let metadata = yaml(sys.inputs.meta-path)
 
+#show figure.where(kind: table): set block(breakable: true)
+
 #base-document.apply-base-document(
   title: metadata.title,
   abstract: "Documento relativo all'Analisi dei Requisiti condotta dal Gruppo NoTIP per la realizzazione del progetto Sistema di Acquisizione Dati da Sensori BLE",
@@ -244,6 +246,39 @@
   == Requisiti di Sicurezza
   = Tracciamento Requisiti
   == Tracciamento Fonte - Requisiti
+    === Requisiti Funzionali
+	#figure(
+	  table(
+	      columns: (1fr, 4fr),
+	      inset: 0.8em,
+	      table.header([],[],[*Fonte*], [*Requisiti derivati*]),
+
+	      [UC1.1], [RF-01: il sistema deve permettere la creazione di un tenant],
+	      [UC1.2], [RF-02: il sistema deve permettere la configurazione generale di un tenant],
+	      [UC1.2.1], [RF-03: L'admin deve poter assegnare le quote di risorse ai tenant],
+	      [UC1.2.2], [RF-04: il sistema deve gestire i permessi globali del tenant],
+	      [UC1.3], [RF-05: il sistema deve permettere la sospensione di un tenant],
+	      [UC1.4], [RF-06: il sistema deve permettere l'eliminazione di un tenant],
+	      [UC2.1], [RF-07: il sistema deve permettere l’attivazione di gateway pre-configurati],
+	      [UC2.2], [RF-08: deve essere possibile configurare i parametri del gateway],
+	      [UC2.2.1], [RF-09: il sistema deve consentire l’associazione sensori–gateway.],
+	      [UC2.2.2], [RF-10: il sistema deve permettere la configurazione della frequenza di invio dati],
+	      [UC2.3], [RF-11: deve essere possibile visualizzare lo stato operativo dei gateway],
+	      [UC2.4], [RF-12: il sistema deve permettere di disattivare temporaneamente un gateway],
+	      [UC2.5], [RF-13: il sistema deve permettere la rimozione di un gateway],
+	      [UC3.1], [RF-14: Deve essere possibile registrare un nuovo sensore (simulato)],
+	      [UC3.2], [RF-15: Configurazione generale dei parametri del sensore],
+	      [UC3.2.1], [RF-16: Modifica del range di valori generati (in modo che siano in un intervallo "realistico")],
+	      [UC3.2.2], [RF-17: Deve essere possibile modificare la frequenza di campionamento],
+	      [UC3.2.3], [RF-18: Impostare delle soglie per attivazione alert],
+	      [UC3.3], [RF-19: Possibilità di attivare/disattivare un sensore],
+	      [UC3.4], [RF-20: Visualizzare elenco sensori],
+	      [UC3.5], [RF-21: Deve essere possibile eliminare un sensore registrato],
+	      
+	  ),
+	  caption: [per ogni fonte (UC, vincolo, capitolato), i requisiti generati]
+	) <tab:FonteRequisiti>
+
   == Tracciamento Requisito - Fonte
   == Riepilogo Requisiti per Categoria
 
