@@ -122,163 +122,235 @@
   #table(
     columns: (1fr, 2fr),
     [Attore], [Descrizione],
-    [Amministratore Sistema], [Gestisce gateway, tenant, infrastruttura globale, monitoraggio],
-    [Amministratore Tenant], [Gestisce sensori, utenti all'interno del tenant],
-    [Utente Finale], [Consulta dati tramite dashboard e API],
-    [Sistema Esterno], [Applicazione terza parte che integra via API],
-    [Gateway Simulato], [Componente software che genera e invia dati (da sviluppare)],
+    [Amministratore Sistema], [(Super Admin) Personale di M31. Unico abilitato a creare nuovi Tenant e ad effettuare il provisioning fisico/logico dei Gateway.],
+    [Amministratore Tenant], [Il cliente di M31. Gestisce i propri utenti, configura i sensori, imposta gli alert e visualizza i dati del proprio Tenant.],
+    [Utente Visualizzatore], [Utente semplice del Tenant che può solo visualizzare dashboard e dati senza permessi di modifica.],
+    [Sistema Esterno], [Software di terze parti sviluppato dal cliente che interroga le API del sistema per ottenere dati storici o stream real-time.],
+    [Gateway Simulato], [Componente software che simula il comportamento del dispositivo fisico, inviando dati telematici al Cloud.],
+    [Scheduler],[Attore non umano che esegue compiti automatici.]
   )
 
   == Diagrammi e Descrizioni Casi d'Uso
-  === UC1 - Gestione Multi-Tenant
-  ==== UC1.1 - Creazione Tenant
-  ===== UC1.1.1 - Assegnazione Nome Tenant
-  ===== UC1.1.2 - Configurazione Parametri Iniziali
-  ===== UC1.1.3 - Creazione Utente Amministratore Tenant
-  ==== UC1.2 - Configurazione Tenant
-  ===== UC1.2.1 - Assegnazione Quote Risorse
-  ===== UC1.2.2 - Configurazione Permessi Globali Tenant
-  ==== UC1.3 - Sospensione Tenant
-  ===== UC1.3.1 - Notifica Amministratore Tenant
-  ===== UC1.3.2 - Blocco Accesso ai Servizi
-  ==== UC1.4 - Eliminazione Tenant
-  ===== UC1.4.1 - Backup Dati Tenant
-  ===== UC1.4.2 - Rimozione Risorse Associate
-  === UC2 - Gestione Gateway
-  ==== UC2.1 - Registrazione Nuovo Gateway (Provisioning)
-  ==== UC2.2 - Attivazione Gateway Pre-Configurato
-  ===== UC2.2.1 - Verifica Identità Gateway
-  ===== UC2.2.2 - Associazione a Tenant
-  ===== UC2.2.3 - Conferma Attivazione
-  ==== UC2.3 - Configurazione (Setting) Gateway
-  ===== UC2.3.1 - Associazione Sensori a Gateway
-  ===== UC2.3.2 - Configurazione Frequenza Invio Dati
-  ===== UC2.3.3 - Configurazione Parametri di Sicurezza
-  ==== UC2.4 - Visualizzazione Stato Gateway
-  ===== UC2.4.1 - Stato Connessione
-  ===== UC2.4.2 - Ultimo Invio Dati
-  ===== UC2.4.3 - Elenco Sensori Associati
-  ==== UC2.5 - Disattivazione Temporanea Gateway
-  ===== UC2.5.1 - Conferma Disattivazione
-  ===== UC2.5.2 - Notifica al Sistema
-  ==== UC2.6 - Richiesta Rimozione Gateway
-  ===== UC2.6.1 - Conferma Rimozione
-  ===== UC2.6.2 - Eliminazione Dati Associati
-  === UC3 - Gestione Sensori Simulati
-  ==== UC3.1 - Registrazione Sensore
-  ===== UC3.1.1 - Selezione Tipo Sensore
-  ===== UC3.1.2 - Assegnazione ID Unico
-  ===== UC3.1.3 - Associazione a Gateway
-  ==== UC3.2 - Configurazione Parametri Sensore
-  ===== UC3.2.1 - Modifica Range Valori Sensore
-  ===== UC3.2.2 - Modifica Frequenza Campionamento
-  ===== UC3.2.3 - Definizione Soglie Alert
-  ==== UC3.3 - Attivazione/Disattivazione Sensore
-  ===== UC3.3.1 - Conferma Stato Attivazione
-  ==== UC3.4 - Visualizzazione Sensori Registrati
-  ===== UC3.4.1 - Elenco Sensori per Gateway
-  ===== UC3.4.2 - Filtraggio per Tipo Sensore
-  ===== UC3.4.3 - Stato Attivazione Sensore
-  ==== UC3.5 - Eliminazione Sensore
-  ===== UC3.5.1 - Conferma Eliminazione
-  ===== UC3.5.2 - Rimozione Dati Associati
-  === UC4 - Simulazione e Invio Dati
-  ==== UC4.1 - Generazione Dati Simulati
-  ==== UC4.2 - Invio Dati al Sistema
-  ==== UC4.3 - Gestione Buffer Locale (Opzionale Raccomandato)
-  ==== UC4.4 - Ricezione Comandi dal Sistema
-  ==== UC4.5 - Simulazione Anomalie - Debug Mode (Opzionale)
-  === UC5 - API di Query (On-Demand)
-  ==== UC5.1 - Autenticazione Client API
-  ==== UC5.2 - Richiesta Dati Storici
-  ==== UC5.3 - Filtraggio per Gateway
-  ==== UC5.4 - Filtraggio per Sensore
-  ==== UC5.5 - Filtraggio per Range Temporale
-  ==== UC5.6 - Aggregazione Dati (Opzionale)
-  ==== UC5.7 - Export Dati (Opzionale)
-  === UC6 - API di Streaming
-  ==== UC6.1 - Apertura Connesione Stream
-  ==== UC6.2 - Ricezione Dati Real-Time
-  ==== UC6.3 - Applicazione Filtri Stream (Opzionale)
-  ==== UC6.4 - Chiusura Stream
-  === UC7 - Interfaccia Utente Console Web
-  ==== UC7.1 - Login Utente
-  ==== UC7.2 - Logout Utente
-  ==== UC7.3 - Recupero Password
-  ==== UC7.4 - Autenticazione Multi-Fattore (Opzionale)
-  ==== UC7.5 - Visualizzazione Dashboard (Opzionale)
-  ==== UC7.6 - Configurazione Filtri Dashboard (Opzionale)
-  ==== UC7.7 - Visualizzazione Storico Dati
-  === UC8 - Gestione Utenti e Permessi
-  ==== UC8.1 - Creazione Utente
-  ==== UC8.2 - Modifica Permessi Utente
-  ==== UC8.3 - Disattivazione Utente
-  ==== UC8.4 - Reset Password Utente
-  ==== UC8.5 - Visualizzazione Profilo Utente
-  ==== UC8.6 - Modifica Profilo Utente
-  ==== UC8.7 - Eliminazione Utente
-  === UC9 - Eventi e Notifiche (Opzionale)
-  ==== UC9.1 - Configurazione Regole Alert
-  ==== UC9.2 - Ricezione Notifica Alert
-  ==== UC9.3 - Visualizzazione Storico Alert
-  ==== UC9.4 - Acknowledge Alert
-  ==== UC9.5 - Risoluzione Alert
-  === UC10 - Monitoraggio Sistema
-  ==== UC10.1 - Visualizzazione Metriche Sistema
-  ===== UC10.1.1 - Rilevamento Gateway Offline
-  ===== UC10.1.2 - Rilevamento Sensori Non Rispondenti // da capire perchè noi abbiamo una simulazione
-  ==== UC10.2 - Configurazione Alert Infrastrutturali
-  ==== UC10.3 - Visualizzazione Log Applicativi (Opzionale)
-  === UC11 - Audit e Tracciamento (Opzionale)
-  ==== UC11.1 - Consultazione Log Audit
-  ==== UC11.2 - Esportazione Log Audit
-  === UC12 - Integrazione Sistemi Esterni (Opzionale)
-  ==== UC12.1 - Generazione API Key
-  ==== UC12.2 - Revoca API Key
-  ==== UC12.3 - Configurazione Webhook (Opzionale)
-  ==== UC12.4 - Test Integrazione
+  === UC1 - Creazione Tenant
+  ==== UC1.1 - Inserimento Nome Tenant (include)
+  ==== UC1.2 - Configurazione Parametri Iniziali (include)
+  ==== UC1.3 - Creazione Utente Amministratore Tenant (include)
+  ==== UC1.4 - Allocazione Storage/DB/Namespace (include) // solo se è l'admin a decidere esplicitamente Namespace X
+  === UC2 - Configurazione Tenant
+  ==== UC2.1 - Modifica Quote Risorse
+  ==== UC2.2 - Configurazione Permessi Globali Tenant
+  ==== UC2.3 - Configurazione Opzioni di Sicurezza (opzionale)
+  === UC3 - Sospensione Tenant
+  ==== UC3.1 - Avvia Sospensione Tenant (include)
+  ==== UC3.2 - Blocco Accesso ai Servizi (include)
+  ==== UC3.3 - Notifica Amministratore Tenant (extends)
+  ==== UC3.4 - Archiviazione Stato Tenant (freeze risorse) (include)
+  === UC4 - Eliminazione Tenant
+  ==== UCC4.1 - Backup Dati Tenant (include)
+  ==== UCC4.2 - Conferma Eliminazione Tenant (include)
+  ==== UCC4.3 - Rimozione Risorse Associate (include)
+  ==== UCC4.4 - Notifica e Audit dell'Operazione (include)
+  === UC5 - Provisioning Sicuro e Registrazione Gateway
+  ==== UC5.1 - Generazione GatewayID (include)
+  ==== UC5.2 - Generazione Coppia di Chiavi (include)
+  ==== UC5.3 - Creazione CSR (certificato) (include)
+  ==== UC5.4 - Firma Certificato da CA Interna (include)
+  ==== UC5.5 - Distribuzione Credenziali al Gateway (include)
+  ==== UC5.6 - Registrazione Gateway nel Sistema (include)
+  ==== UC5.7 - Verifica Provisioning (include)
+  === UC6 - Attivazione Gateway Pre-Provisionato
+  ==== UC6.1 - Verifica Identità Gateway (include)
+  ==== UC6.2 - Associazione a Tenant (include)
+  ==== UC6.3 - Conferma Attivazione  (include)
+  ==== UC6.4 - Notifica Stato Attivazione al Tenant (extends)
+  === UC7 - Configurazione Gateway
+  ==== UC7.1 - Associazione Sensori a Gateway (include)
+  ==== UC7.2 - Configurazione Frequenza Invio Dati (include)
+  ==== UC7.3 - Configurazione Parametri di Sicurezza (include)
+  ==== UC7.4 - Aggiornamento Firmware Gateway (opzionale) (extends)
+  ==== UC7.5 - Versioning Configurazioni/Rollback (opzionale) (extends)
+  === UC8 - Visualizzazione Stato Gateway
+  ==== UC8.1 - Stato Connessione
+  ==== UC8.2 - Ultimo Invio Dati
+  ==== UC8.3 - Elenco Sensori Associati
+  ==== UC8.4 - Metadati Provisioning
+  === UC9 - Disattivazione Temporanea Gateway
+  ==== UC9.1 - Richiesta Disattivazione (include)
+  ==== UC9.2 - Conferma Disattivazione e blocco trasmissione dati (include)
+  ==== UC9.3 - Log/Notifica al Sistema e Tenant (include)
+  === UC10 - Richiesta Rimozione Gateway
+  ==== UC10.1 - Conferma Rimozione (double-confirm) (include)
+  ==== UC10.2 - Eliminazione Dati Associati al Gateway (include)
+  ==== UC10.3 - Revoca certificato e Invalidazione GatewayID (include)
+  ==== UC10.4 - Audit della Rimozione (include)
+  === UC11 - Registrazione Sensore
+  ==== UC11.1 - Selezione Tipo Sensore (include)
+  ==== UC11.2 - Assegnazione SensorID Univoco (include)
+  ==== UC11.3 - Associazione a Gateway (include)
+  ==== UC11.4 - Persistenza Metadati Sensore (include)
+  === UC12 - Configurazione Parametri Sensore
+  ==== UC12.1 - Impostazione Range Valori Misurati (include)
+  ==== UC12.2 - Modifica Frequenza Campionamento (include)
+  ==== UC12.3 - Definizione Soglie Alert (include)
+  ==== UC12.4 - Calibrazione/Offset (opzionale) (include)
+  === UC13 - Attivazione/Disattivazione Sensore
+  ==== UC13.1 - Abilita/Disabilita (include)
+  ==== UC13.2 - Conferma Stato Attivazione (check di reachability) (include)
+  === UC14 - Visualizzazione Sensori Registrati
+  ==== UC14.1 - Elenco Sensori per Gateway (include)
+  ==== UC14.2 - Filtraggio per Tipo Sensore/Stato/Tenant (include)
+  ==== UC14.3 - Stato Attivazione Sensore e Metadati (include)
+  === UC15 - Eliminazione Sensore
+  ==== UC15.1 - Conferma Eliminazione (include)
+  ==== UC15.2 - Rimozione Dati Associati (include)
+  ==== UC15.3 - Audit dell'Eliminazione (include)
+  // da capire se togliere macrosezione: non capisco se è un vero caso d'uso o un sottoinsieme di altri
+  === UC16 - Simulazione e Invio Dati
+  ==== UC16.1 - Configurazione Dati Simulati
+  ===== UC16.1.1 - Selezione Pattern/Modello
+  ===== UC16.1.2 - Mappatura Sensori - Tipi di Dati
+  ==== UC16.2 - Generazione Dati Simulati
+  ===== UC16.2.1 - Generazione Campioni al Rate Configurato (include)
+  ===== UC16.2.2 - Timestamping e Sequencing (ordering) (include)
+  ==== UC16.3 - Invio Dati al Sistema (Cloud)
+  ===== UC16.3.1 - Trasmissione via HTTPS/MQTT con TLS (include)
+  ===== UC16.3.2 - Conferma Ricezione/ACK (include/extends)
+  ==== UC16.4 - Gestione Buffer Locale (Opzionale Raccomandato)
+  ===== UC16.4.1 - Buffering su perdita di Connessione (include)
+  ===== UC16.4.2 - Retry/Backpressure Policy (include)
+  ===== UC16.4.3 - Pulizia buffer dopo forward (include)
+  ==== UC16.5 - Ricezione Comandi dal Sistema
+  ===== UC16.5.1 - Ricezione Configurazioni Remote (include)
+  ===== UC16.5.2 - Conferma Applicazione Configurazione (include)
+  ===== UC16.5.3 - Supporto Flag Debug e Simulazione Risposte (Opzionale) (extends)
+  ==== UC16.6 - Simulazione Anomalie (Opzionale)
+  ===== UC16.6.1 - Genera Spike/drop/Outlier
+  ===== UC16.6.2 - Genera Latency/Packet Loss
+  ===== UC16.6.3 - Segnala Evento di Anomalia al Cloud
+
+  === UC17 - Autenticazione Client API
+  ==== UC17.1 - Login/API Token (JWT/OAuth2) (include)
+  ==== UC17.2 - Validazione Token e Ruoli (include)
+  ==== UC17.3 - Rotazione Token/Revoca (opzionale) (extends)
+  === UC18 - Richiesta Dati Storici
+  ==== UC18.1 - Filtraggio per Gateway (include)
+  ==== UC18.2 - Filtraggio per Sensore (include)
+  ==== UC18.3 - Filtraggio per Range Temporale (include)
+  ==== UC18.4 - Paginazione e Limiti (limit/offset) (include)
+  ==== UC18.5 - Aggregazione Dati (Opzionale)
+  ==== UC18.6 - Formati di Risposta (JSON/CSV) (include)
+  ==== UC18.7 - Export Dati (Opzionale)
+  === UC19 - Rate Limiting e QoS sulle API // solo se admin può deciderlo
+  ==== UC19.1 - Verifica Quota Client (include)
+
+  === UC20 - Apertura Connesione Stream
+  ==== UC20.1 - Handshake / Autenticazione mTLS o token (include)
+  ==== UC20.2 - Subscribe a Gateway/Sensore/Topic (include)
+  === UC21 - Ricezione Dati Real-Time
+  ==== UC21.1 - Stream dei messaggi (pub/sub) (include)
+  ==== UC21.2 - Delivery Semantics (at least once / at most once) (configurabile)
+  === UC22 - Applicazione Filtri Stream (Opzionale)
+  ==== UC22.1 - Filtra per tipo Sensore/Soglia Valore
+  ==== UC22.2 - Aggregazione Dati on Stream
+  === UC23 - Chiusura Stream
+  ==== UC23.1 - Disconnessione Client/Chiusura Server (include)
+  ==== UC23.2 - Pulizia sottoscrizioni (include)
+
+  === UC24 - Login Utente
+  ==== UC24.1 - Inserimento Credenziali (include)
+  ==== UC24.2 - Captcha/Protezioni (Opzionale)
+  === UC25 - Logout Utente
+  ==== UC25.1 - Invalidazione Sessione (include)
+  === UC26 - Recupero Password
+  ==== UC26.1 - Richiesta Reset (include)
+  ==== UC26.2 - Verifica Token Reset (include)
+  ==== UC26.3 - Impostazione Nuova Password (include)
+  === UC27 - Autenticazione Multi-Fattore (Opzionale)
+  ==== UC27.1 - Configura MFA (include opzionale)
+  ==== UC27.2 - Verifica MFA al login (include opzionale)
+  === UC28 - Visualizzazione Dashboard 
+  ==== UC28.1 - Overview metriche (gateways online, errori, throughput)
+  ==== UC28.2 - Widgets real-time (streaming charts) (desiderabile)
+  ==== UC28.3 - Drilldown su gateway/sensore
+  === UC29 - Configurazione Filtri Dashboard (Opzionale)
+  ==== UC29.1 - Save/Load layout dashboard
+  === UC30 - Visualizzazione Storico Dati
+  ==== UC30.1 - Selezione gateway/sensore/range
+  ==== UC30.2 - Export grafici/dati
+  === UC31 - Provisioning Gateway via UI
+  ==== UC31.1 - Avvia Provisioning (richiama UC2.1) (include)
+  ==== UC31.2 - Visualizza Certificati e Gateway ID (include)
+  ==== UC31.3 - Assegna Gateway a Tenant (include)
+ 
+  === UC32 - Creazione Utente
+  ==== UC32.1 - Inserimento dati personali e ruolo (include)
+  ==== UC32.2 - Invio invito email (extends)
+  === UC33 - Modifica Permessi Utente
+  === UC34 - Disattivazione Utente
+  === UC35 - Reset Password Utente
+  === UC36 - Visualizzazione Profilo Utente
+  === UC37 - Modifica Profilo Utente
+  === UC38 - Eliminazione Utente
+
+  === UC39 - Configurazione Regole Alert
+  ==== UC39.1 - Creazione Regola (include)
+  ==== UC39.2 - Configurazione canali di notifica (include)
+  === UC40 - Rilevazione ed Invio Notifica Alert
+  ==== UC40.1 - Generazione Evento Alert (sorgente: UC4.6, UC10) (include)
+  ==== UC40.2 - Inoltro su canali configurati (include)
+  === UC41 - Visualizzazione Storico Alert
+  ==== UC41.1 - Filtro per Tipo (include)
+  === UC42 - Acknowledge Alert
+  === UC43 - Risoluzione Alert
+
+  === UC44 - Visualizzazione Metriche Sistema
+  ==== UC44.1 - Metriche di throughput (include)
+  ==== UC44.2 - Rilevamento Gateway Offline
+  ==== UC44.3 - Rilevamento Sensori Non Rispondenti
+  === UC45 - Configurazione Alert Infrastrutturali
+  === UC46 - Visualizzazione Log Applicativi (Opzionale)
+  === UC47 - Accesso Audit e Tracciamento (Opzionale)
+  ==== UC47.1 - Consultazione Log Audit
+  ==== UC47.2 - Esportazione Log Audit
+ 
+  === UC48 - Generazione API Key
+  === UC49 - Revoca API Key
+  === UC50 - Configurazione Webhook (Opzionale)
+  === UC51 - Test Integrazione
+  
+  === UC52 - Creazione Backup
+  ==== UC52.1 - Configura periodicità (include)
+  ==== UC52.2 - Esecuzione Snapshot DB/Storage (include)
+  === UC53 - Ripristino da Backup
+  ==== UC53.1 - Seleziona Snapshot, verifica integrità (include)
+  ==== UC53.2 - Esegui restore (include)
+  === UC54 - Configurazione Politiche di Retention Dati
   
   = Requisiti
   == Requisiti Funzionali
+  #table(
+    columns: (auto, auto, 4fr, 1fr),
+    [Codice], [Importanza], [Descrizione], [Fonte],
+    [RFO1], [Obbligatorio], [Il sistema deve permettere la creazione di un nuovo Tenant], [UC1.1, C7 RQ3],
+    [RFO2], [Obbligatorio], [Il sistema, creando un nuovo Tenant, deve richiedere l'inserimento di un Nome univoco], [UC1.1.1],
+    [RFO3], [Obbligatorio], [Il sistema deve associare un utente Amministratore al momento della creazione del Tenant.], [UC1.1.3, C7 Sez. 2.3],
+    [RFO4], [Obbligatorio], [Il sistema deve permettere la creazione di un nuovo Tenant], [UC1.1, C7 RQ3],
+    [RFO5], [Obbligatorio], [Il sistema deve permettere la creazione di un nuovo Tenant], [UC1.1, C7 RQ3],
+    [RFO6], [Obbligatorio], [Il sistema deve permettere la creazione di un nuovo Tenant], [UC1.1, C7 RQ3],
+    [RFO7], [Obbligatorio], [Il sistema deve permettere la creazione di un nuovo Tenant], [UC1.1, C7 RQ3],
+    [RFO8], [Obbligatorio], [Il sistema deve permettere la creazione di un nuovo Tenant], [UC1.1, C7 RQ3],
+    [RFO9], [Obbligatorio], [Il sistema deve permettere la creazione di un nuovo Tenant], [UC1.1, C7 RQ3],
+    [RFO10], [Obbligatorio], [Il sistema deve permettere la creazione di un nuovo Tenant], [UC1.1, C7 RQ3],
+    [RFO11], [Obbligatorio], [Il sistema deve permettere la creazione di un nuovo Tenant], [UC1.1, C7 RQ3],
+    [RFO12], [Obbligatorio], [Il sistema deve permettere la creazione di un nuovo Tenant], [UC1.1, C7 RQ3],
+    [RFO13], [Obbligatorio], [Il sistema deve permettere la creazione di un nuovo Tenant], [UC1.1, C7 RQ3],
+  )
   == Requisiti Qualitativi
   == Requisiti di Vincolo
   == Requisiti di Prestazione
   == Requisiti di Sicurezza
   = Tracciamento Requisiti
   == Tracciamento Fonte - Requisiti
-    === Requisiti Funzionali
-	#figure(
-	  table(
-	      columns: (1fr, 4fr),
-	      inset: 0.8em,
-	      table.header([],[],[*Fonte*], [*Requisiti derivati*]),
-
-	      [UC1.1], [RF-01: il sistema deve permettere la creazione di un tenant],
-	      [UC1.2], [RF-02: il sistema deve permettere la configurazione generale di un tenant],
-	      [UC1.2.1], [RF-03: L'admin deve poter assegnare le quote di risorse ai tenant],
-	      [UC1.2.2], [RF-04: il sistema deve gestire i permessi globali del tenant],
-	      [UC1.3], [RF-05: il sistema deve permettere la sospensione di un tenant],
-	      [UC1.4], [RF-06: il sistema deve permettere l'eliminazione di un tenant],
-	      [UC2.1], [RF-07: il sistema deve permettere l’attivazione di gateway pre-configurati],
-	      [UC2.2], [RF-08: deve essere possibile configurare i parametri del gateway],
-	      [UC2.2.1], [RF-09: il sistema deve consentire l’associazione sensori–gateway.],
-	      [UC2.2.2], [RF-10: il sistema deve permettere la configurazione della frequenza di invio dati],
-	      [UC2.3], [RF-11: deve essere possibile visualizzare lo stato operativo dei gateway],
-	      [UC2.4], [RF-12: il sistema deve permettere di disattivare temporaneamente un gateway],
-	      [UC2.5], [RF-13: il sistema deve permettere la rimozione di un gateway],
-	      [UC3.1], [RF-14: Deve essere possibile registrare un nuovo sensore (simulato)],
-	      [UC3.2], [RF-15: Configurazione generale dei parametri del sensore],
-	      [UC3.2.1], [RF-16: Modifica del range di valori generati (in modo che siano in un intervallo "realistico")],
-	      [UC3.2.2], [RF-17: Deve essere possibile modificare la frequenza di campionamento],
-	      [UC3.2.3], [RF-18: Impostare delle soglie per attivazione alert],
-	      [UC3.3], [RF-19: Possibilità di attivare/disattivare un sensore],
-	      [UC3.4], [RF-20: Visualizzare elenco sensori],
-	      [UC3.5], [RF-21: Deve essere possibile eliminare un sensore registrato],
-	      
-	  ),
-	  caption: [per ogni fonte (UC, vincolo, capitolato), i requisiti generati]
-	) <tab:FonteRequisiti>
-
   == Tracciamento Requisito - Fonte
   == Riepilogo Requisiti per Categoria
 

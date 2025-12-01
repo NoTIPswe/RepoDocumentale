@@ -7,7 +7,7 @@ changelog:
       - Alessandro Contarini
     verifier: TBD
     description: >
-        Modifica Utenti Sistema e Attori, tracciamento
+        Modifica Utenti Sistema e Attori, aggiornamento UC, inserimento requisiti
   - version: "0.0.1"
     date: "2025-11-27"
     authors:
