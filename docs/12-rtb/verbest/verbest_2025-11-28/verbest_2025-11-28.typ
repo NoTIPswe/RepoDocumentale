@@ -31,9 +31,9 @@
   #base-report.report-point(
     discussion_point: [Ridefinizione degli attori e del perimetro utenza],
     discussion: [
-      Il gruppo ha concordato sull'esclusione dell'attore "utente finale" (paziente) dai diagrammi use case, in quanto la sua gestione ricade sull'applicazione del cliente (tenant) e non sul sistema di acquisizione dati.
+      ll gruppo ha considerato l'esclusione degli utenti del tenant dai diagrammi degli use case, in quanto la gestione delle richieste di quest'ultimi risulterebbe essere compito del client del tenant e non direttamente dell'applicativo sviluppato. 
       
-      Per quanto riguarda gli utenti del sistema, al momento vengono identificati due attori principali: l'amministratore e l'utente del enant. È emerso il dubbio se sia necessario o corretto suddividere ulteriormente l'attore "utente del tenant" in due figure distinte ("amministratore tenant" e "utilizzatore dati/sistema esterno") o mantenere un'unica entità.
+      Per quanto riguarda gli utenti del sistema, al momento vengono identificati 2 attori principali: l'amministratore del sistema e l'amministratore del tenant. Durante l'incontro è però emerso un dubbio riguardo la necessità/correttezza di inserire anche altri attori, quali l'utente del tenant e/o il client esterno. Nel primo caso sarebbe necessario la distinzione dall'amministratore del tenant e la creazione di una nuova tipologia di utente.
     ],
     decisions: [
       Conferme:
@@ -41,7 +41,7 @@
         - Amministratore del Tenant, figura specifica che gestisce l'istanza del cliente.
       
       In discussione:
-        - Riguardo gli utenti visualizzatori (utente finale) è emerso il dubbio se fosse corretto escluderli o ridurli interamente alla figura dell'Amministratore del Tenant.
+        - Riguardo gli utenti visualizzatori (utente del tenant) è emerso il dubbio se fosse corretto escluderli o ridurli interamente alla figura dell'Amministratore del Tenant.
       
       _Nota: La decisione finale è bloccata in attesa di un consulto specifico con il Prof. Cardin._
     ], 
