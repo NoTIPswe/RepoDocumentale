@@ -4,7 +4,7 @@ changelog:
     date: "2025-12-01"
     authors:
       - Mario De Pasquale
-    verifier: TBD
+    verifier: Leonardo Preo
     description: >
       Prima versione stabile
 
@@ -12,6 +12,6 @@ changelog:
     date: "2025-12-01"
     authors:
       - Mario De Pasquale
-    verifier: TBD
+    verifier: Leonardo Preo
     description: >
       Creazione del diario di Bordo
