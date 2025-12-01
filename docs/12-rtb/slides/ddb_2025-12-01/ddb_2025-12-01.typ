@@ -4,13 +4,10 @@
   sprint: 1,
   date: "01/12/2025",
 )[
-  // risultati
   - Stilata una prima bozza dell'analisi dei requisiti
 ][
-  // obiettivi
   - Definire più approfonditamente l'analisi dei requisiti
-  - Iniziare effettivamente ad usare jira come tool di gestione di progetto
+  - Iniziare effettivamente ad usare Jira come tool di gestione di progetto
 ][
-  // difficoltà riscontrate
   - Capire la granularità di definizione dei casi d'uso e la definizione degli attori
 ]
