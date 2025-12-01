@@ -36,9 +36,9 @@
       Per quanto riguarda gli utenti del sistema, al momento vengono identificati due attori principali: l'amministratore e l'utente del enant. È emerso il dubbio se sia necessario o corretto suddividere ulteriormente l'attore "utente del tenant" in due figure distinte ("amministratore tenant" e "utilizzatore dati/sistema esterno") o mantenere un'unica entità.
     ],
     decisions: [
-      - Esclusione dell'utente finale: l'attore "utente finale" viene rimosso dal modello dei requisiti.
+      - Esclusione dell'utente finale dal modello dei requisiti.
 
-      - Definizione attuale degli attori: si confermano provvisoriamente solo due livelli di utenza:
+      - La definizione attuale degli attori conferma, provvisoriamente, solo due livelli di utenza:
           - Amministratore di Sistema: gestisce l'infrastruttura globale.
           - Utente del Tenant: figura che rappresenta l'interazione del cliente con il sistema.
     ], 
@@ -51,11 +51,11 @@
       È stato necessario chiarire il confine di responsabilità tra _M31_ (Gestore Piattaforma) e il cliente (Tenant) riguardo ai gateway. La discussione ha evidenziato la differenza tra l'atto di registrare un gateway nel sistema (provisioning) e l'atto di dirgli cosa fare (configurazione). È emersa inoltre la necessità tecnica che il gateway non sia solo un trasmettitore passivo, ma possa ricevere comandi complessi dal cloud, che sia in grado quindi di comprendere ed eseguire correttamente.
     ],
     decisions: [
-      - Responsabilità del provisioning: spetta esclusivamente all'amministratore di sistema. È l'unica figura che può autorizzare l'ingresso di un nuovo gateway fisico/simulato nell'infrastruttura e associarlo a un tenant in maniera univoca.
+      - Responsabilità del provisioning spetta esclusivamente all'amministratore di sistema. È l'unica figura che può autorizzare l'ingresso di un nuovo gateway fisico/simulato nell'infrastruttura e associarlo a un tenant in maniera univoca.
 
-      - Autonomia nella configurazione: l'amministratore del tenant ha il controllo sui parametri operativi: quali sensori attivare, frequenze di campionamento e soglie di allarme.
+      - L'amministratore del tenant ha autonomia sulla configurazione dei parametri operativi: quali sensori attivare, frequenze di campionamento e soglie di allarme.
 
-      - Comunicazione bidirezionale: viene definito come requisito fondamentale la capacità del cloud di inviare configurazioni aggiornate al gateway (es. cambio frequenza di invio) in tempo reale, senza richiedere interventi manuali sul dispositivo.
+      - Comunicazione bidirezionale è requisito fondamentale, in quanto viene richiesta la capacità del cloud di inviare configurazioni aggiornate al gateway (es. cambio frequenza di invio) in tempo reale, senza richiedere interventi manuali sul dispositivo.
     ],
     actions: ()
   )
@@ -66,9 +66,9 @@
       Si è discusso se operazioni critiche come lo spegnimento o la rimozione di un gateway richiedessero la necessità dell'intervendo da parte dell'amministratore di sistema. L'azienda ha specificato che il sistema deve garantire agilità operativa al cliente.
     ], 
     decisions: [
-      - Sospensione temporanea: l'admin tenant deve poter sospendere l'invio dati o disconnettere logicamente un gateway (es. per malfunzionamento sensori simulati) in autonomia.
+      - L'admin tenant può sospendere temporaneamente l'invio dati o disconnettere logicamente un gateway (es. per malfunzionamento sensori simulati) in autonomia.
 
-      - Revoca/Eliminazione: l'Admin tenant può rimuovere un gateway dal proprio inventario.
+      - L'Admin tenant può revocare o eliminare un gateway dal proprio inventario.
     ], 
     actions: ()
   )
@@ -79,11 +79,12 @@
       Si è discusso se considerare il "Gateway Simulato" (sviluppato dal gruppo) come parte interna del sistema o come un'entità esterna. È stato chiarito che, ai fini della modellazione UML del backend/applicativo, il Gateway rappresenta una fonte dati esterna.
     ],
     decisions: [
-      - Confini del sistema: Il "Sistema" nei diagrammi Use Case comprende esclusivamente l'applicativo di gestione e le API (Backend + Frontend), escludendo i sensori e il gateway.
+      - Il "Sistema" nei diagrammi Use Case comprende esclusivamente l'applicativo di gestione e le API (Backend + Frontend), escludendo i sensori e il gateway.
 
-      - Ruolo del Gateway: Il Gateway viene modellato come attore esterno.
-        - In fase di acquisizione: agisce attivamente inviando le telemetrie al sistema.
-        - In fase di configurazione: agisce passivamente ricevendo comandi dal sistema.
+      - Il Gateway viene modellato come attore esterno al sistema cloud. Il comportamento è duale e varia in base alla fase operativa:
+        - In fase di acquisizione, agisce attivamente inviando le telemetrie al sistema.
+        - In fase di configurazione, agisce passivamente ricevendo comandi dal sistema.
+        _Nota: Le specifiche dettagliate di tali interazioni saranno oggetto di approfondimento durante l'analisi dei requisiti._
     ],
     actions: ()
   )
