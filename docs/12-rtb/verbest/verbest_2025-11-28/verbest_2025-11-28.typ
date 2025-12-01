@@ -36,13 +36,21 @@
       Per quanto riguarda gli utenti del sistema, al momento vengono identificati due attori principali: l'amministratore e l'utente del enant. È emerso il dubbio se sia necessario o corretto suddividere ulteriormente l'attore "utente del tenant" in due figure distinte ("amministratore tenant" e "utilizzatore dati/sistema esterno") o mantenere un'unica entità.
     ],
     decisions: [
-      - Esclusione dell'utente finale dal modello dei requisiti.
-
-      - La definizione attuale degli attori conferma, provvisoriamente, solo due livelli di utenza:
-          - Amministratore di Sistema: gestisce l'infrastruttura globale.
-          - Utente del Tenant: figura che rappresenta l'interazione del cliente con il sistema.
+      Conferme:
+        - Amministratore di Sistema, il quale gestisce l'infrastruttura globale.
+        - Amministratore del Tenant, figura specifica che gestisce l'istanza del cliente.
+      
+      In discussione:
+        - Riguardo gli utenti visualizzatori (utente finale) è emerso il dubbio se fosse corretto escluderli o ridurli interamente alla figura dell'Amministratore del Tenant.
+      
+      _Nota: La decisione finale è bloccata in attesa di un consulto specifico con il Prof. Cardin._
     ], 
-    actions: ()   // Richiesta del ricevimento al Prof. Cardin
+    actions: (
+      (
+        desc: "Sportello con il Prof. Cardin",
+        url: "https://notipswe.atlassian.net/browse/NT-50"
+      ),
+    )
   )
 
   #base-report.report-point(
