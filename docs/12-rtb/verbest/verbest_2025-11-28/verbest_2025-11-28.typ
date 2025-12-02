@@ -104,7 +104,8 @@
   = Approvazione aziendale
   La presente sezione certifica che il verbale è stato esaminato e approvato dai rappresentanti di _M31_.
   L’avvenuta approvazione è formalmente confermata dalle firme riportate di seguito dei referenti aziendali.
+  \ \
   #align(right)[
-    //#image("", width: 40%)
+    #image("./assets/sign.png", width: 35%)
   ]
 ]

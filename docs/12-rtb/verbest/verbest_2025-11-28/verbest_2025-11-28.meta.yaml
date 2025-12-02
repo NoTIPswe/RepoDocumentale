@@ -1,5 +1,12 @@
 title: Verbale Esterno 2025-11-28 (M31)
 changelog:
+  - version: "1.0.1"
+    date: "2025-12-02"
+    authors:
+      - Francesco Marcon
+    verifier: TBD
+    description: >
+      Versione stabile
   - version: "1.0.0"
     date: "2025-12-01"
     authors:
