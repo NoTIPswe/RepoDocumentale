@@ -1,4 +1,4 @@
-title: Analisi dei Requisiti
+title: Specifica dei Requisiti
 changelog:
   - version: "0.1.0"
     date: "2025-11-28"
@@ -7,7 +7,7 @@ changelog:
       - Alessandro Contarini
     verifier: TBD
     description: >
-        Modifica Utenti Sistema e Attori, inizio stesura UC
+        Modifica Utenti Sistema e Attori, inizio stesura UC. Rinominazione file
   - version: "0.0.1"
     date: "2025-11-27"
     authors:
