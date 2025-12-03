@@ -5,7 +5,7 @@ changelog:
     authors:
       - Leonardo Preo
       - Alessandro Contarini
-    verifier: TBD
+    verifier: Valerio Solito
     description: >
         Modifica Utenti Sistema e Attori, inizio stesura UC. Rinominazione file
   - version: "0.0.1"
