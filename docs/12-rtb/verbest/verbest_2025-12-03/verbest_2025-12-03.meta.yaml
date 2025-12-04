@@ -1,5 +1,13 @@
 title: Verbale Esterno 2025-12-03 (M31)
 changelog:
+  - version: "0.1.0"
+    date: "2025-12-04"
+    authors:
+      - Alessandro Mazzariol
+    verifier: TBD
+    description: >
+      Correzione sezione 3.3
+
   - version: "0.0.1"
     date: "2025-12-03"
     authors:
