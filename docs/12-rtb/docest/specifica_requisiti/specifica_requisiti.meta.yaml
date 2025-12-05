@@ -1,4 +1,4 @@
-title: Analisi dei Requisiti
+title: Specifica dei Requisiti
 changelog:
   - version: "0.2.0"
     date: "2025-12-04"
@@ -11,9 +11,10 @@ changelog:
     date: "2025-12-03"
     authors:
       - Leonardo Preo
-    verifier: TBD
+      - Alessandro Contarini
+    verifier: Valerio Solito
     description: >
-        Modifica Utenti Sistema e Attori
+        Modifica Utenti Sistema e Attori, inizio stesura UC. Rinominazione file
   - version: "0.0.1"
     date: "2025-11-27"
     authors:
