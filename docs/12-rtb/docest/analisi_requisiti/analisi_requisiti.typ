@@ -127,15 +127,15 @@
 
   == Diagrammi e Descrizioni Casi d'Uso
 
-  #include "UCs/uc1.typ"
-  #include "UCs/uc2.typ"
-  #include "UCs/uc3.typ"
-  #include "UCs/uc4.typ"
-  #include "UCs/uc5.typ"
-  #include "UCs/uc6.typ"
-  #include "UCs/uc7.typ"
-  #include "UCs/uc8.typ"
-  #include "UCs/uc9.typ"
+  #include "UCs/uc01.typ"
+  #include "UCs/uc02.typ"
+  #include "UCs/uc03.typ"
+  #include "UCs/uc04.typ"
+  #include "UCs/uc05.typ"
+  #include "UCs/uc06.typ"
+  #include "UCs/uc07.typ"
+  #include "UCs/uc08.typ"
+  #include "UCs/uc09.typ"
   #include "UCs/uc10.typ"
   #include "UCs/uc11.typ"
   #include "UCs/uc12.typ"
@@ -190,15 +190,15 @@
     [Utente del Simulatore], [Operatore tecnico (Sviluppatore o Tester) che configura ed esegue il software di simulazione per generare traffico dati, testare il carico o iniettare anomalie.],
   )
 
-  #include "UCs/ucs1.typ"
-  #include "UCs/ucs2.typ"
-  #include "UCs/ucs3.typ"
-  #include "UCs/ucs4.typ"
-  #include "UCs/ucs5.typ"
-  #include "UCs/ucs6.typ"
-  #include "UCs/ucs7.typ"
-  #include "UCs/ucs8.typ"
-  #include "UCs/ucs9.typ"
+  #include "UCs/ucs01.typ"
+  #include "UCs/ucs02.typ"
+  #include "UCs/ucs03.typ"
+  #include "UCs/ucs04.typ"
+  #include "UCs/ucs05.typ"
+  #include "UCs/ucs06.typ"
+  #include "UCs/ucs07.typ"
+  #include "UCs/ucs08.typ"
+  #include "UCs/ucs09.typ"
 
   = Requisiti
   == Requisiti Funzionali
