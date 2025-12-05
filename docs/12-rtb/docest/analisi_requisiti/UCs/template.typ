@@ -50,7 +50,7 @@
     // Creiamo un blocco che contiene sia il testo che la label
     // block(below: 1em) aggiunge spazio dopo il titolo
     block(below: 1em)[
-      === UC#n - #title
+      === UCS#n - #title
       #label(lbl-str)
     ]
   }
@@ -66,7 +66,7 @@
     let lbl-str = "UCS" + str(n-main) + "." + str(n-sub)
     
     block(below: 0.8em)[
-      ==== UC#n-main.#n-sub - #title
+      ==== UCS#n-main.#n-sub - #title
       #label(lbl-str)
     ]
   }
