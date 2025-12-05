@@ -1,6 +1,6 @@
 #import "template.typ": *
 
-#ucs_sub("Generazione Spike/Drop/Outlier")
+#ucs_main("Generazione Spike/Drop/Outlier")
   *Attore principale:* Utente del Simulatore\
   *Pre-condizioni:* \
   - L'Utente è nel pannello Anomalie (vedi [@UCS3[UCS3,]]).\
