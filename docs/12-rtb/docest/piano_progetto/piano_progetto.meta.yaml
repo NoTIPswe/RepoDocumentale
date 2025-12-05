@@ -1,0 +1,17 @@
+title: Piano di Progetto
+changelog:
+  - version: "0.1.0"
+    date: "2025-12-05"
+    authors:
+      - Alessandro Mazzariol
+    verifier: TBD
+    description: >
+        Aggiunta sezione Sprint 1 e 2
+
+  - version: "0.0.1"
+    date: "2025-12-03"
+    authors:
+      - Alessandro Mazzariol
+    verifier: TBD
+    description: >
+        Prima stesura del Piano di Progetto
