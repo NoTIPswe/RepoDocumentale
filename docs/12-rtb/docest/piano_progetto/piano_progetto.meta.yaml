@@ -1,9 +1,17 @@
 title: Piano di Progetto
 changelog:
-  - version: "0.0.1"
+  - version: "0.0.2"
     date: "2025-12-03"
     authors:
       - Alessandro Mazzariol
     verifier: TBD
+    description: >
+        Fix di errori ortografici vari
+        
+  - version: "0.0.1"
+    date: "2025-12-03"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Valerio Solito
     description: >
         Prima stesura del Piano di Progetto

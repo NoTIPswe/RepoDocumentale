@@ -1,6 +1,6 @@
 #import "../../00-templates/base_document.typ" as base-document
 
-#let metadata = yaml("piano_progetto.meta.yaml")
+#let metadata = yaml(sys.inputs.meta-path)
 
 #base-document.apply-base-document(
   title: metadata.title,
@@ -20,11 +20,11 @@
 
   = Analisi e gestione dei rischi
   == Introduzione
-  Questa sezione analizza i possibili rischi che il gruppo potrebbe incontrare durante lo svolgimento delle attività. Un'analisi accurata permette di prevenire difficoltà nella pianificazione delle attività, ritardi nelle scadenza stabilite e un eventuale aumento dei costi di produzione, oltre a garantire la realizzazione di un prodotto che soddisfi le attese del Cliente.
+  Questa sezione analizza i possibili rischi che il gruppo potrebbe incontrare durante lo svolgimento delle attività. Un'analisi accurata permette di prevenire difficoltà nella pianificazione delle attività, ritardi nelle scadenze stabilite e un eventuale aumento dei costi di produzione, oltre a garantire la realizzazione di un prodotto che soddisfi le attese del Cliente.
 
   L'analisi e gestione dei rischi si suddivide in 4 fasi:
   - *Identificazione*: individuare i possibili rischi legati ad un'attività nel contesto a cui ci si sta riferendo, che potrebbe essere incluso anche nella sfera personale.
-  - *Analisi*: valutazione della probabilità di occorrenza e delle potenziali conseguenze dei rischi individuati sulle tempistiche e sull'impatto sullo sviluppo.
+  - *Analisi*: valutazione della probabilità di occorrenza e delle potenziali conseguenze dei rischi individuati sulle tempistiche e sullo sviluppo.
   - *Pianificazione*: pianificazione di azioni da intraprendere per mitigare o prevenire gli eventuali rischi analizzati.
   - *Controllo*: monitoraggio continuo delle attività fissate per poter rilevare il prima possibile la presenza di un rischio e applicare le procedure di mitigazione definite precedentemente.\
   Nell'analisi, ogni rischio è identificato tramite acronimo della tipologia di appartenenza e numero incrementale.
@@ -65,7 +65,7 @@
         [Descrizione],
         [Risulta altamente improbabile che il codice scritto dal gruppo possa essere privo di errori alla prima esecuzione],
 
-        [Mitigazione], [],
+        [Mitigazione], [da definirsi],
 
         [Probabilità], [Alto],
         [Impatto prestazionale], [Medio],
@@ -83,7 +83,7 @@
         [Codice], [RO1],
         [Nome], [Mancato rispetto delle scadenze stabilite],
         [Descrizione],
-        [Durante lo sviluppo del prodotto possono verificarsi ritardi rispetto al conseguimento delle task fissate, i quali comportanto un prolungamento dei tempi di consegna e blocco delle attività successive.],
+        [Durante lo sviluppo del prodotto possono verificarsi ritardi rispetto al conseguimento delle task fissate, i quali comportano un prolungamento dei tempi di consegna e blocco delle attività successive.],
 
         [Mitigazione],
         [Il gruppo è consapevole che i ritardi sono possibili e si impegna in modo responsabile affinchè non avvengano, tuttavia qualora non si riuscisse ad evitarli, essi devono essere comunicati tempestivamente e giustificati in modo adeguato senza compromettere le attività degli altri componenti del gruppo. Qualora il ritardo causasse un disagio generale, tale da compromettere i tempi di consegna, il Gruppo organizzerà il prima possibile una riunione con _M31_ per rinegoziare le richieste.],
@@ -107,7 +107,7 @@
         [Data la partecipazione dei componenti del Gruppo ad altri corsi universitari oltre a quello di Ingegneria del Software, è dunque altamente probabile che vi siano possibili indisponibilità momentanee derivante da attvità legate a questi corsi, inoltre non sono da escludere indisponibilità per attività al di fuori della sfera accademica.],
 
         [Mitigazione],
-        [Il componente che si ritrova in tale situazione, comunicherà tempestivamente agli altri componenti la problematica e una possibile stima del tempo che la problematica occupa, qualora fosse necessario, il lavoro che il componente doveva fare verrà suddiviso tra gli altri componenti del gruppo. Appena risolta la problematica, il componente si impegnerà a recuperare le ore perse.],
+        [Il componente che si ritrova in tale situazione dovrà comunicare tempestivamente agli altri componenti la problematica e una possibile stima del tempo che la problematica occupa e, qualora fosse necessario, il lavoro che il componente doveva fare verrà suddiviso tra gli altri componenti del gruppo. Appena risolta la problematica, il componente si impegnerà a recuperare le ore perse.],
 
         [Probabilità], [Media],
         [Impatto prestazionale], [Medio],
@@ -222,10 +222,10 @@
   } <tab:Sprint1-costi>
 
   === Rischi incontrati
-  Durante questo sprint il gruppo ha avuto difficoltà nel capire come organizzarsi il lavoro tra i vari componenti, come si può evincere dalla @tab:Sprint1-ore-effettive, ci sono componenti che non hanno impiegato più di un'ora nel fare le mansioni, questo sia a causa del rischio *RP1*, sia per l'inesperienza generale.
+  Durante questo sprint il gruppo ha avuto difficoltà nel capire come organizzare il lavoro tra i vari componenti e, come si può evincere dalla @tab:Sprint1-ore-effettive, ci sono componenti che non hanno impiegato più di un'ora nel fare le mansioni, questo sia a causa del rischio *RP1*, sia per l'inesperienza generale.
 
   === Retrospettiva
-  Questo Sprint è stato dedicato nel risolvere questioni importanti come il trasferimento del workflow su Jira, e la prima stesura dei documenti più importanti, tutte le attività previste sono state comunque eseguite senza ritardi.
+  Questo Sprint è stato dedicato nel risolvere questioni importanti come il trasferimento del workflow su Jira, e la prima stesura dei documenti più importanti. Tutte le attività previste sono state comunque eseguite senza ritardi.
 
   === Sprint 2
   Inizio: *02-12-2025* \
@@ -234,7 +234,7 @@
   Giorni di ritardo: \
 
   === Informazioni generali e attività pianificate
-  In questo periodo il Gruppo ha lavorato in modo sparso, ma comunque organizzato, con l'obiettivo di risolvere i problemi sorti durante il periodo di candidatura.
+  In questo periodo il gruppo rispetto al periodo precedente si è suddiviso equamente le task.
 
   In particolare, le attività fissate in questo periodo sono:
   - Prima stesura Piano di Progetto (PDP).
