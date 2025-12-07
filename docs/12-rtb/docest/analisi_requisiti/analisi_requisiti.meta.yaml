@@ -1,5 +1,14 @@
 title: Analisi dei Requisiti
 changelog:
+  - version: "0.3.0"
+    date: "2025-12-14"
+    authors:
+      - Leonardo Preo
+      - Alessandro Contarini
+      - Mario De Pasquale
+    verifier: TBD
+    description: >
+        Specifica dei requisiti - inserimento diagrammi UC
   - version: "0.2.0"
     date: "2025-12-07"
     authors:
