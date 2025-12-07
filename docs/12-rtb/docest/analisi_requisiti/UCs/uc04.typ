@@ -4,14 +4,14 @@
   *Attore principale:* Amministratore Sistema\
   *Pre-condizioni:* \
   - Il Tenant è in stato "Attivo".
-  - L'Amministratore ha i privilegi per sospendere il servizio.\
+  - L'Amministratore di Sistema ha effettuato il login ed è autenticato.\
   *Post-condizioni:* \
   - Il Tenant passa allo stato "Sospeso".
   - L'accesso ai servizi è bloccato e le risorse congelate.\
   *Scenario principale:* \
   + L'Amministratore seleziona il Tenant da sospendere.
-  + L'Amministratore preme il pulsante di sospensione.
-  + Il Sistema mostra un prompt di conferma con le conseguenze dell'azione.
+  + L'Amministratore richiede la sospensione del servizio.
+  + Il Sistema richiede conferma evidenziando le conseguenze.
   + L'Amministratore conferma l'operazione.
   + Il Sistema *blocca l'accesso ai servizi* (invalida sessioni e API Key).
   + Il Sistema *archivia lo stato delle risorse* (spegne i container per risparmiare risorse).

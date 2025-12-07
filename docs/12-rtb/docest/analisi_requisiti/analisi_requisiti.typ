@@ -40,12 +40,13 @@
   Il sistema si propone di risolvere le sfide dell'acquisizione e gestione dati in contesti IoT distribuiti, fornendo:
   1. *Scalabilità*: gestione di decine/centinaia di gateway e migliaia di sensori
   2. *Sicurezza*: isolamento multi-tenant, cifratura end-to-end, autenticazione robusta
-  3. *Affidabilità*: tolleranza ai guasti, buffering sincronizzazione
+  3. *Affidabilità*: tolleranza ai guasti, nessuna perdita di dati
   4. *Flessibilità*: supporto sensori eterogenei, API estensibili, integrazioni esterne
   5. *Usabilità*: interfaccia intuitiva per configurazione e monitoraggio
 
   == Architettura del Sistema
-  Il sistema è organizzato su tre livelli logici:
+  Il sistema è organizzato su tre livelli logici: Field Layer (Sensori BLE), Edge Layer (Gateway) e Cloud Layer (Piattaforma Centrale).\
+  Nel nostro caso si andrà a simulare i primi due livelli, attraverso un simulatore di Gateway, permettendo lo sviluppo ed il testing della piattaforma Cloud.
 
   === Field Layer (Sensori BLE)
   Dispositivi periferici non oggetto del progetto, utilizzati come riferimento per la simulazione. \

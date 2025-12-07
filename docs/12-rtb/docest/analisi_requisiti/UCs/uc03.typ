@@ -8,7 +8,7 @@
   *Post-condizioni:* \
   - Le configurazioni del Tenant sono state aggiornate.\
   *Scenario principale:* \
-  + L'Amministratore seleziona un Tenant dalla lista.
+  + L'Amministratore seleziona il Tenant a cui apportare modifiche.
   + L'Amministratore modifica le quote risorse $arrow$ Vedi [@UC3.1[UC3.1,]].
   + L'Amministratore configura i permessi globali $arrow$ Vedi [@UC3.2[UC3.2,]].
   + (Opzionale) L'Amministratore configura le opzioni di sicurezza $arrow$ Vedi [@UC3.3[UC3.3,]].
@@ -28,17 +28,17 @@
   #uc_sub("Modifica Quote Risorse")
   *Attore principale:* Amministratore Sistema\
   *Pre-condizioni:* \
-  - Pannello di configurazione Tenant aperto.\
+  - Procedura di configurazione Tenant in corso.\
   *Post-condizioni:* \
   - Nuovi limiti di risorse applicati.\
   *Scenario principale:* \
-  + L'Amministratore modifica i valori massimi di risorse utilizzabili (es. Storage, N. Gateway).\
+  + L'Amministratore modifica i valori massimi di risorse utilizzabili (es. Storage).\
   *Trigger:* Aggiornamento del piano contrattuale del cliente.\
 
   #uc_sub("Configurazione Permessi Globali Tenant")
   *Attore principale:* Amministratore Sistema\
   *Pre-condizioni:* \
-  - Pannello di configurazione Tenant aperto.\
+  - Procedura di configurazione Tenant in corso.\
   *Post-condizioni:* \
   - Permessi aggiornati.\
   *Scenario principale:* \
@@ -48,9 +48,9 @@
   #uc_sub("Configurazione Opzioni di Sicurezza")
   *Attore principale:* Amministratore Sistema\
   *Pre-condizioni:* \
-  - Pannello di configurazione Tenant aperto.\
+  - Procedura di configurazione Tenant in corso.\
   *Post-condizioni:* \
   - Policy di sicurezza applicate.\
   *Scenario principale:* \
   + L'Amministratore imposta regole di sicurezza avanzate (es. MFA obbligatoria, IP whitelist).\
-  *Trigger:* Richiesta di maggiore sicurezza o compliance.\
+  *Trigger:* Instaurazione o cambiamento di obblighi contrattuali di sicurezza.\

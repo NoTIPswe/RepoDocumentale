@@ -4,8 +4,7 @@
 *Attore principale:* Amministratore Sistema\
 *Pre-condizioni:* \
 - Il Sistema è attivo e raggiungibile.
-- L'Amministratore di Sistema ha effettuato il login ed è autenticato.
-- L'Amministratore di Sistema si trova nella sezione di gestione dei Tenant.\
+- L'Amministratore di Sistema ha effettuato il login ed è autenticato.\
 *Post-condizioni:* \
 - Un nuovo Tenant è stato creato correttamente nel sistema.
 - Le risorse (database, storage) sono state allocate.
@@ -49,7 +48,7 @@
 *Post-condizioni:* \
 - Il Sistema riceve la configurazione dei limiti e delle quote per il Tenant.\
 *Scenario principale:* \
-+ L'Amministratore di Sistema imposta i parametri operativi iniziali (es. numero massimo di Gateway, limiti di storage o banda).\
++ L'Amministratore di Sistema imposta i parametri operativi iniziali (limiti di storage o banda).\
 *Trigger:* L'Amministratore di Sistema deve definire i vincoli contrattuali o tecnici per il nuovo Tenant.\
 
 #uc_sub("Creazione Utente Amministratore Tenant")

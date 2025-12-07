@@ -1,6 +1,6 @@
 #import "template.typ": *
 
-#uc_main("Dati Tenant Non Validi")
+#uc_main("Errore Dati Tenant Non Validi")
   *Attore principale:* Amministratore Sistema\
   *Pre-condizioni:* \
   - L'Amministratore sta inserendo o modificando i dati di un Tenant.\

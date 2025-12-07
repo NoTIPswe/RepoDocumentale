@@ -30,5 +30,5 @@
   *Scenario principale:* \
   + Il Sistema mostra un avviso di irreversibilità.
   + L'Amministratore seleziona se eseguire un backup preventivo dei dati.
-  + L'Amministratore inserisce il nome del tenant per confermare definitivamente l'operazione.\
+  + L'Amministratore conferma definitivamente l'operazione.\
   *Trigger:* Necessità di autorizzare l'operazione distruttiva.\
