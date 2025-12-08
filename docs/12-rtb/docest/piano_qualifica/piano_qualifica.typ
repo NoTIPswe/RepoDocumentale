@@ -1,5 +1,7 @@
 #import "../../00-templates/base_document.typ" as base-document
+
 #let metadata = yaml(sys.inputs.meta-path)
+
 #base-document.apply-base-document(
   title: metadata.title,
   abstract: "Il documento descrive le metodologie di controllo qualità applicate al progetto, includendo l'utilizzo di metriche di monitoraggio e pianificazione di test. L'obiettivo è assicurare la conformità del prodotto finale alle specifiche di sicurezza ed efficienza richieste per il sistema distribuito e l'architettura Cloud.",
@@ -46,7 +48,7 @@
     - #link("https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf")[Standard ISO/IEC 12207:1995] – Software Life Cycle Processes
     - #link("https://it.wikipedia.org/wiki/ISO/IEC_9126")[Standard ISO/IEC 9126] – Software Engineering - Product Quality
     - Materiale didattico: 
-      - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T0.pdf")[Slide T7] - Qualità di prodotto
+      - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T07.pdf")[Slide T7] - Qualità di prodotto
       - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T08.pdf")[Slide T8] - Qualità di processo
       - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T09.pdf")[Slide T9] - Verifica e Validazione
     
@@ -62,7 +64,7 @@
 
     - Approccio Quantitativo: per evitare valutazioni soggettive, utilizziamo metriche oggettive. Ogni metrica ha due soglie di riferimento: un valore accettabile e un valore ottimale;
 
-    - Iterazione e Miglioramento: sfruttiamo le retrospettive di fine sprint per analizzare i dati raccolti: se i numeri si discostano dagli obiettivi, applichiamo il ciclo PDCA, precedentemente citato, per cercare di correggere nello sprint successivo.
+    - Iterazione e Miglioramento: sfruttiamo le retrospettive di fine sprint per analizzare i dati raccolti e, se i numeri si discostano dagli obiettivi, allora applicando il ciclo PDCA, cerchiamo di correggere nel successivo sprint.
 
   = Qualità di processo
   == Processi primari
