@@ -154,7 +154,7 @@
   set text(lang: "it", size: font-size-base, font: base.serif-font)
   set par(justify: true)
   show link: set text(fill: blue)
-  set figure(numbering: "1.", gap: 0.5em)
+  set figure(numbering: "1", gap: 0.5em)
   set heading(numbering: "1.")
 
   // Content
