@@ -1,5 +1,13 @@
 title: Verbale Esterno 2025-12-03 (M31)
 changelog:
+  - version: "1.0.0"
+    date: "2025-12-09"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Valerio Solito
+    description: >
+      Prima versione stabile
+
   - version: "0.1.0"
     date: "2025-12-04"
     authors:
