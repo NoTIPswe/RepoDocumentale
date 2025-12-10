@@ -1,7 +1,14 @@
-title: Specifica dei Requisiti
+title: Analisi dei Requisiti
 changelog:
+  - version: "0.2.0"
+    date: "2025-12-07"
+    authors:
+      - Leonardo Preo
+    verifier: Matteo Mantoan
+    description: >
+        Resi UC indipendenti da UI
   - version: "0.1.0"
-    date: "2025-11-28"
+    date: "2025-12-03"
     authors:
       - Leonardo Preo
       - Alessandro Contarini
