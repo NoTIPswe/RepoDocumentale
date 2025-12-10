@@ -4,7 +4,7 @@ changelog:
     date: "2025-12-07"
     authors:
       - Leonardo Preo
-    verifier: TBD
+    verifier: Matteo Mantoan
     description: >
         Resi UC indipendenti da UI
   - version: "0.1.0"
