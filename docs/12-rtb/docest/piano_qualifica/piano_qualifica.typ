@@ -29,7 +29,7 @@
   block(
     breakable: false,
     [
-      #heading(level: 4, numbering: none, outlined: false)[#cod]
+      #heading(level: 4, numbering: none, outlined: false)[#cod - #name]
 
       *Motivazione valore accettabile:*
       #acceplable
