@@ -27,8 +27,8 @@
   Il gruppo in apertura dell'incontro ha sottoposto al rappresentante dell'azienda una lista di quesiti che durante l'incontro sarebbero stati discussi.
 ][
   #base-report.report-point(
-    discussion_point: [I dati decriptati sono accessibili dall'amministratore che attua l'impersonazione?],
-    discussion: [L'Azienda conferma che il processo di impersonazione e la relativa visualizzazione dei dati decriptati dipendono dall'approvazione del cliente. Deve quindi rimanere possibile che l'amministratore, durante il processo di impersonazione, non possa avere accesso ai dati in chiaro.],
+    discussion_point: [I dati decriptati sono accessibili dall'amministratore che attua l'impersonificazione?],
+    discussion: [L'Azienda conferma che il processo di impersonificazione e la relativa visualizzazione dei dati decriptati dipendono dall'approvazione del cliente. Deve quindi rimanere possibile che l'amministratore, durante il processo di impersonificazione, non possa avere accesso ai dati in chiaro.],
     decisions: [Il Gruppo ha deciso quindi di continuare con l'idea di gerarchia già presente e di sistemare le casistiche suggerite.],
     actions: ((desc: "Aggiustamenti UC", url: "https://notipswe.atlassian.net/browse/NT-101"),),
   )
@@ -42,15 +42,13 @@
     discussion: [Di default il blocco delle porte fisiche dovrebbe essere attivo al fine di prevenire accessi non autorizzate, lo stesso vale anche per la cifratura del buffer.],
   )
   #base-report.report-point(
-    discussion_point: [L'aggiunta e successiva rimozione di un sensore dal database è una procedura automatica?],
-    discussion: [È ragionevole supporre che se il gateway invia dati al cloud, la configurazione locale riguardo ai sensori associati sia già registrata nel database del sistema, deve essere automatica la procedura di inserimento nel database previa comunicazione da parte del gateway dei propri dati locali.
-      La policy proposta dall'azienda per il mantenimento dei dati di sensori e la loro possibile disattivazione è di 7 giorni, trascorsi i quali i dati associati ai sensori vengono rimossi dal database.
-      Inoltre il gateway deve essere capace di poter filtrare e ignorare un determinato sensore che è stato disabilitato.],
+    discussion_point: [Gestione del ciclo di vita dei sensori (registrazione e rimozione)],
+    discussion: [È ragionevole supporre che se, il gateway trasmette dati al cloud, la configurazione dei sensori associati sia già registrata nel database del sistema. Di conseguenza, la procedura di inserimento nel database deve avvenire automaticamente, previa comunicazione dei dati locali da parte del gateway. L'Azienda propone una retention policy di 7 giorni: trascorso tale periodo, i dati associati ai sensori vengono rimossi dal database. Infine, il gateway deve essere in grado di filtrare ed ignorare i dati provenienti da sensori disabilitati.],
     decisions: [Il Gruppo ha deciso di seguire la strada proposta dall'Azienda usando la policy dei 7 giorni proposta, questa decisione verrà poi riflessa nel sistema che verrà sviluppato.],
   )
   #base-report.report-point(
     discussion_point: [Applicativo singolo o specifico per utente e amministratore?],
-    discussion: [Nel contesto del progetto è conveniente sviluppare un applicativo singolo rendendo efficiente la gerarchia di utenti ipotizzata. Ritornando all'impersonazione è ragionevole avere un form per l'admin in cui inserisce i dati dell'utente da impersonare, in seguito, l'admin avrà il numero di privilegi limitati a quelli dell'utente scelto, l'Azienda propone come oggetto di studio il tool open source KeyCloak che potrebbe risultare utile.],
+    discussion: [Nel contesto del progetto è conveniente sviluppare un applicativo singolo rendendo efficiente la gerarchia di utenti ipotizzata. Ritornando all'impersonificazione è ragionevole avere un form per l'admin in cui inserisce i dati dell'utente da impersonare, in seguito, l'admin avrà il numero di privilegi limitati a quelli dell'utente scelto, l'Azienda propone come oggetto di studio il tool open source KeyCloak che potrebbe risultare utile.],
     decisions: [Il Gruppo ha deciso di prendersi del tempo per vedere le varie alternative, tra cui KeyCloak, al fine di scegliere il metodo più adatto al contesto di sviluppo],
   )
   #base-report.report-point(
@@ -60,12 +58,12 @@
   )
   #base-report.report-point(
     discussion_point: [Le impostazioni del simulatore vengono impostate tramite file di configurazione? Oppure tramite interfaccia dall'amministratore?],
-    discussion: [Ci si aspetta che ogni gateway abbia la propria configurazione di default con cui viene creato, la quale possa essere sovrascritta tramite interfaccia dall'amministratore, è prevedibile che il file di configurazione sia un semplice JSON.],
+    discussion: [Si prevede che ogni gateway sia dotato di una configurazione predefinita all'atto della sua creazione. Tale configurazione potrà essere sovrascritta dall'amministratore tramite interfaccia. È ragionevole supporre che il file di configurazione sia in formato JSON.],
     decisions: [Il Gruppo ha deciso che utilizzerà file di configurazione JSON per il proprio prodotto.],
   )
   #base-report.report-point(
     discussion_point: [Che tipo di connessione tra cloud e simulatore del gateway è richiesta?],
-    discussion: [Se si usano Nats e Jetstream si possono configurare i parametri, nel contesto del progetto deve essere possibile configurare la connessione, ad esempio configurando l'utilizzo di meccanismi di risposta (ACK) e non. Tuttavia è ragionevole pensare che nel nostro ambiente di sviluppo sia richiesta un qualche tipo di conferma ricezione. Dal punto di vista del cloud deve essere possibile inviare una sorta di PING per verificare lo stato di attività del gateway. ],
+    discussion: [Se si usano Nats e Jetstream si possono configurare i parametri, nel contesto del progetto deve essere possibile configurare la connessione, ad esempio configurando l'utilizzo di meccanismi di risposta (ACK) e non, tuttavia è ragionevole aspettarsi che nel nostro ambiente di sviluppo sia richiesta un qualche tipo di conferma ricezione. Dal punto di vista del cloud deve essere possibile inviare una sorta di PING per verificare lo stato di attività del gateway. ],
     decisions: [Il Gruppo ha deciso che inizierà a vedere in tempo utile le tecnologie proposte nel capitolato in modo da implementare le richieste discusse.],
   )
   = Epilogo della riunione
