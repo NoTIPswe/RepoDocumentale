@@ -3,19 +3,12 @@ title: Verbale Interno 2025-11-07
 changelog:
 
   - version: "1.0.0"
-    date: "2025-11-27"
+    date: "2025-12-11"
     authors:
       - Mario De Pasquale
-    verifier: Leonardo Preo
+    verifier: TBD
     description: >
-      Versione stabile verbale
-  - version: "0.3.0"
-    date: "2025-11-27"
-    authors:
-      - Mario De Pasquale
-    verifier: Leonardo Preo
-    description: >
-      Modifiche minori per l'indentazione sul primo punto
+      Modifiche minori per l'indentazione del punto 2.1 e 2.4
   - version: "0.2.0"
     date: "2025-11-27"
     authors:

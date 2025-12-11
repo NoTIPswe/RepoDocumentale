@@ -45,7 +45,7 @@
         #h(1em)5.2 Supply\
         #h(1em)5.3 Development\
         #h(1em)5.4 Operation\
-        #h(2em)del punto 5.4 verrà solo eseguita la fase dell’ operational testing; Operational testing verrà eseguito durante il ciclo di sviluppo del progetto ma non ne verranno descritte le proprieta’ nelle norme di progetto
+        #h(2em)del punto 5.4 verrà solo eseguita la fase dell’ operational testing; Operational testing verrà eseguito durante il ciclo di sviluppo del progetto ma non ne verranno descritte le proprieta’ nelle norme di progetto\
         *Supporting life cycle process*\
         #h(1em)6.1 Documentation\
         #h(1em)6.2 Configuration Management\
@@ -67,7 +67,7 @@
   #base-report.report-point(
     discussion_point: [Struttura del documento],
     discussion: [
-      Discussione su come impostare la struttura del documento.
+      In vista della futura creazione di molti documenti, scritti da membri diversi del gruppo, fondamentali all'avanzamento del progetto didattico si è dedicato del tempo per poter discutere la struttura di essi ed averli tutti coerenti l'uno con l'altro.
     ],
     decisions: [
       Il gruppo ha deciso all'unanimità di utilizzare una struttura con un indice leggero in cui ogni processo/attività al suo interno ha una struttura fissa.
@@ -78,11 +78,11 @@
   #base-report.report-point(
     discussion_point: [Definition of Done],
     discussion: [
-      La discussione di questo punto porta il gruppo a prendere una decisione sulla definizione di Done.
+      La discussione di questo punto è stata fondamentale per poter prendere una decisione definitiva che allineasse tutti i componenti del gruppo sulla definition of Done.
     ],
     decisions: [
-      Darci un euristica di base per la definizione di Done in generale, per quanto vogliamo essere sicuri che quest'attività non venga più toccata in futuro.
-      La Definition of Done viene intesa atomicamente per singolo task e va modellata dipendentemente dalla tipologia di task.
+      Il gruppo dopo un'approfondita discussione ha deciso che per la definizione di Done è fondamentale darci un euristica di base, quindi definire un'insieme di strategie, tecniche e procedimenti per poter definire Done un task, per poi non doverla più toccare in futuro.
+      La Definition of Done viene intesa in maniera atomica per singolo task e si è deciso che la definition of Done va modellata dipendentemente dalla tipologia di task.
     ],
     actions: (),
   )
@@ -93,18 +93,20 @@
       Il gruppo dopo un ulteriore riflessione con il docente, ha ritenuto che il metodo di Versionamento non è ancora adeguato ed in questo punto si è deciso di riprendere l'argomento e definire un metodo di versionamento definitivo.
     ],
     decisions: [
-      Il gruppo dopo una lunga discussione ha ritenuto che il metodo migliore di versionamento da applicare a i nostri documenti e verbali è il seguente:
-        >X.Y.Z
-          -con X -> major
-            -L’aggiornamento della major si riferisce ad una modifica sostanziale del documento o modifica della struttura di esso.
-          -con Y -> minor
-            -L’aggiornamento della minor si riferisce a modifiche non sostanziali del documento.
-          -con Z -> patch
-            -L’aggiornamento della patch si riferisce a modifiche per errori di battitura.
+      Il gruppo dopo una lunga discussione ha ritenuto che il metodo migliore di versionamento da applicare a i nostri documenti e verbali è il seguente:\
+        *X.Y.Z*\
+        #h(1em)con *X -> major*\
+        #h(2em)L’aggiornamento della major si riferisce ad una modifica sostanziale del documento o modifica della struttura di esso.\
+        #h(1em)con *Y -> minor*\
+        #h(2em)L’aggiornamento della minor si riferisce a modifiche non sostanziali del documento.\
+        #h(1em)con *Z -> patch*\
+        #h(2em)L’aggiornamento della patch si riferisce a modifiche per errori di battitura.\
 
-        Tutti i documenti partono dalla versione 0.0.1 e dopo la successiva verifica e deploy passa alla versione 1.0.0, i documenti saranno pubblicati e integrati nel ramo Main quando saranno considerati stabili; ovvero che essi raggiungano almeno la versione 1.0.0 .
+        Tutti i documenti e verbali dal momento della loro stesura partono dalla versione 0.0.1, ogni avanzamento di versione successivo dovrà corrispondere ad un insieme di modifiche tali che possano essere descritte nel changelog.\
+        Solo dopo che il documento o il verbale in questione sia considerato valido alla pubblicazione allora esso potrà passare alla versione 1.0.0 e verrà considerato nella sua prima versione stabile.\
+        Appena i documenti passeranno alla loro prima versione stabile, verranno pubblicati e integrati nel ramo Main.\
         Successivamente all’integrazione nel ramo Main i documenti potranno essere ulteriormente modificati; 
-        L’autore continuerà a modificare il documento, per ogni aggiornamento di patch, minor e major eseguirà un commit e quando si riterrà soddisfatto eseguirà una PR dove si esporranno i cambiamenti i quali verranno verificati da un unico verificatore.
+        L’autore continuerà a modificarlo e per ogni aggiornamento di patch, minor e major eseguirà un commit, quando si riterrà soddisfatto eseguirà una PR dove si esporranno i cambiamenti nel changelog i quali verranno verificati da un unico verificatore.
     ],
     actions: (),
   )
@@ -121,6 +123,5 @@
   Il gruppo ha deciso che il prossimo diario di bordo sarà sostenuto da Francesco Marcon.
 
   = Esiti e decisioni finali
-  La riunione si è conclusa alle ore 17:30.
   Nella riunione il gruppo ha avuto modo di poter discutere approfonditamente di ogni singolo punto dell'OdG in maniera collaborativa ed in modo produttivo, dove ognuno ha potuto esprimere i propri pareri riguardo i diversi argomenti trattati.
 ]
