@@ -258,26 +258,56 @@
   )
 
   === Verifica
-  // Metriche di testing e copertura
-  // - MP12: Code Coverage
-  // - MP13: Test Success Rate
-  //
-  // NUOVE METRICHE AGGIUNTE:
-  // - MP28: Test Automation Percentage
-  //   Formula: (Test automatizzati) / (Test totali) × 100
-  //   Accettabile: ≥ 70%
-  //   Ottimale: ≥ 85%
-  //   Utilità: Sostenibilità regressione continua
+  #metrics-table(
+    (
+      (cod: [*MP15*], name: [Code Coverage], acceptable: [≥ 80%], optimal: [≥ 90%]),
+      (cod: [*MP16*], name: [Test Success Rate], acceptable: [100%], optimal: [100%]),
+      (cod: [*MP17*], name: [Test Automation Percentage], acceptable: [≥70%], optimal: [≥85%]),
+    ),
+    caption: [Soglie metriche processo di Verifica],
+  )
+
+  #heading(level: 4, numbering: none, outlined: false)[Motivazioni delle soglie]
+
+  #metrics-description(
+    [MP15],
+    [Code Coverage],
+    [In ogni progetto è importante mantenere una percentuale di code coverage alta, ≥ 80% è una convenzione spesso usata, affinchè si possa garantire che il codice scritto sia stato effettivamente testato per la sua maggioranza.],
+    [L'ottimo non è stato posto al 100% sia per avere una stima più realistica e sia per evitare che il team sia troppo influenzato a raggiungere il 100% di code coverage, creando così test che non controllano il codice nella maniera corretta.],
+    note: [L'obiettivo è avere un code coverage quanto più vicino al 100% nelle sezioni critiche del codice e dell'80% per quanto riguarda il restante codice.],
+  )
+
+  #metrics-description(
+    [MP16],
+    [Test Success Rate],
+    [Trattandosi di un sistema che gestisce dati sensibili ci si prefissa di avere una percentuale del 100%, perchè ogni bug potrebbe essere pericoloso in un sistema di questo tipo.],
+    [Il valore ottimo coincide con l'accettabile, in quanto non sono tollerati test falliti in branch principali.],
+    note: [Qualsiasi test fallito indica regressioni o bug che devono essere risolti immediatamente prima di procedere con ulteriore sviluppo],
+  )
+
+  #metrics-description(
+    [MP17],
+    [Test Automation Percentage],
+    [È importante che una parte considerevole dei test da eseguire sul sistema siano automatizzati, così da garantire automaticamente che la parte più importante di tutto il codice sia stata testata in maniera veloce ed efficace.],
+    [L'85% è un valore ottimo ragionevole, permettendo esecuzioni frequenti senza costi significativi. Il restante 15% per test di usabilità per l'eventuale interfaccia grafica e per altre verifiche che potrebbero essere necessarie.],
+    note: [Il 100% di automazione non è considerato un obiettivo perchè potrebbe anche introdurre dei test instabili o avere una fase di test eccessivamente lunga.],
+  )
 
   === Gestione della Configurazione
-  // NUOVA SEZIONE AGGIUNTA
-  //
-  // - MP29: Commit Message Quality Score
-  //   Valutazione aderenza a convenzioni (0-10)
-  //   Accettabile: ≥ 7/10
-  //   Ottimale: ≥ 9/10
-  //   Utilità: Tracciabilità storico modifiche
-  //    Pensare a come valutare la qualità dei commit
+
+  #metrics-table(
+    (
+      (cod: [*MP18*], name: [Commit Message Quality Score], acceptable: [7/10], optimal: [9/10]),
+    ),
+    caption: [Soglie metriche processo di Gestione della Configurazione],
+  )
+  #metrics-description(
+    [MP18],
+    [Commit Message Quality Score],
+    [Abbiamo optato per un valore accettabile 7/10, perché la qualità del commit deve essere almeno sopra la sufficienza per garantire chiarezza del messaggio, oltre per permettere in alcuni casi di risalire ad errori introdotti con recenti commit.],
+    [Un punteggio ≥ 9/10 è ottimale, indicando commit messages esemplari che documentano completamente sia il "cosa" che il "perché" delle modifiche. Questo facilita enormemente debugging futuro, code review, e onboarding di nuovi sviluppatori.],
+    note: [Template di commit messages e linee guida chiare nelle Norme di Progetto sono essenziali per raggiungere punteggi alti.],
+  )
 
   === Gestione della Qualità
 
