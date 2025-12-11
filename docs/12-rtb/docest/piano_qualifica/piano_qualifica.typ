@@ -8,7 +8,7 @@
     table(
       columns: (auto, auto, auto, auto),
       align: center + horizon,
-      inset: 8pt,
+      inset: 6pt,
       table.header(
         text(12pt)[*Codice*], text(12pt)[*Metrica*], text(12pt)[*Valore Accettabile*], text(12pt)[*Valore Ottimale*]
       ),
@@ -29,7 +29,9 @@
   block(
     breakable: false,
     [
+      #v(0.5em)
       #heading(level: 4, numbering: none, outlined: false)[#cod - #name]
+      #v(0.5em)
 
       *Motivazione valore accettabile:*
       #acceplable
@@ -111,8 +113,6 @@
   - Approccio Quantitativo: per evitare valutazioni soggettive, utilizziamo metriche oggettive. Ogni metrica ha due soglie di riferimento: un valore accettabile e un valore ottimale;
 
   - Iterazione e Miglioramento: sfruttiamo le retrospettive di fine sprint per analizzare i dati raccolti e, se i numeri si discostano dagli obiettivi, allora applicando il ciclo PDCA, cerchiamo di correggere nel successivo sprint.
-
-  = Qualità di processo
 
   == Processi primari
 
@@ -230,23 +230,23 @@
 
   == Processi di supporto
   === Documentazione
-  
+
   #metrics-table(
     (
       (cod: [*MP13*], name: [Indice di Gulpease], acceptable: [≥ 60], optimal: [≥ 80]),
       (cod: [*MP14*], name: [Correttezza Ortografica], acceptable: [0 errori], optimal: [0 errori]),
     ),
-    caption: [Soglie metriche processo di Documentazione]
+    caption: [Soglie metriche processo di Documentazione],
   )
 
   #heading(level: 4, numbering: none, outlined: false)[Motivazioni delle soglie]
-  
+
   #metrics-description(
     [MP13],
     [Indice di Gulpease],
     [Un indice ≥ 60 garantisce che la documentazione sia comprensibile per lettori con istruzione media, appropriato per documentazione tecnica rivolta a professionisti del settore. Questo livello bilancia precisione terminologica e chiarezza espositiva.],
     [Un indice ≥ 80 indica documentazione molto accessibile, comprensibile anche per lettori con istruzione base.],
-    note: [L'indice di Gulpease non è sempre necessario massimizzarlo, ma va interpretato considerando il tipo di documento in esame: manuali utente dovrebbero cercare di raggiungere valori più alti (≥75), mentre documentazione più tecnica si appresterà ad avere valori più bassi (≥55) data la natura tecnica del contenuto.]
+    note: [L'indice di Gulpease non è sempre necessario massimizzarlo, ma va interpretato considerando il tipo di documento in esame: manuali utente dovrebbero cercare di raggiungere valori più alti (≥75), mentre documentazione più tecnica si appresterà ad avere valori più bassi (≥55) data la natura tecnica del contenuto.],
   )
 
   #metrics-description(
@@ -254,7 +254,7 @@
     [Correttezza Ortografica],
     [Zero errori ortografici è l'unico valore accettabile per documentazione professionale.],
     [Il valore ottimo coincide con l'accettabile: zero errori, in quanto la documentazione formale destinata agli stakeholder deve essere priva errori di battitura o refusi da versioni precedenti, in modo da riflettere la professionalità del gruppo e dei processi dallo stesso impiegati.],
-    note: [La presenza di errori indica processi di quality assurance inadeguati che devono essere rafforzati.]
+    note: [La presenza di errori indica processi di quality assurance inadeguati che devono essere rafforzati.],
   )
 
   === Verifica
@@ -280,38 +280,87 @@
   //    Pensare a come valutare la qualità dei commit
 
   === Gestione della Qualità
-  // - MP14: Quality Metrics Satisfied
-  //
-  // NUOVA METRICA AGGIUNTA:
-  // - MP31: Quality Gate Pass Rate
-  //   Formula: (Build che superano quality gate) / (Build totali) × 100
-  //   Accettabile: ≥ 85%
-  //   Ottimale: ≥ 95%
-  //   Utilità: Monitoraggio automatico qualità pipeline CI/CD
+
+  #metrics-table(
+    (
+      (cod: [*MP19*], name: [Quality Metrics Satisfied], acceptable: [≥ 80%], optimal: [≥ 100%]),
+      (cod: [*MP20*], name: [Quality Gate Pass Rate], acceptable: [≥ 85%], optimal: [≥ 95%]),
+    ),
+    caption: [Soglie metriche Gestione della Qualità],
+  )
+
+  #heading(level: 4, numbering: none, outlined: false)[Motivazioni delle soglie]
+
+  #metrics-description(
+    [MP19],
+    [Quality Metrics Satisfied],
+    [Un valore ≥ 80% di metriche soddisfatte rappresenta un buon livello qualitativo generale, permettendo un margine del 20% per metriche particolarmente difficili da soddisfare completamente. Sotto questa soglia il progetto ha problemi di qualità.],
+    [Avere soddisfazione del 100% significa che tutte le metriche definite sono soddisfatte. Questo livello dimostra eccellenza complessiva nella gestione della qualità.],
+    note: [Questa metrica dovrebbe essere calcolata pesando correttamente le varie metriche, dove quelle critiche dovrebbero avere peso maggiore di metriche meno critiche.],
+  )
+
+  #metrics-description(
+    [MP20],
+    [Quality Gate Pass Rate],
+    [Indica che la maggior parte del codice proposto rispetta gli standard minimi di sicurezza e manutenibilità. Un 15% di fallimenti è concesso per permettere iterazioni veloci e feedback loop rapidi dalla CI senza imporre un perfezionismo prematuro.],
+    [Un tasso ≥ 95% testimonia un'elevata maturità del team nell'eseguire verifiche locali prima del push sul repository. Indica un processo di integrazione fluido, dove la CI fallisce solamente raramente.],
+    note: [Il valore va interpretato con attenzione: un pass rate costantemente al 100% potrebbe indicare controlli troppo lassi, mentre un valore troppo basso suggerisce la necessità di rivedere la configurazione dei gate o di migliorare la formazione del team sui test locali.],
+  )
 
   == Processi organizzativi
+
   === Gestione dei Processi
-  // - MP15: Time Efficiency
-  //
-  // NUOVE METRICHE AGGIUNTE:
-  //
-  // - MP32: Sprint Velocity Stability
-  //   Deviazione standard della velocity negli ultimi 3 sprint
-  //   Accettabile: ≤ 20%
-  //   Ottimale: ≤ 10%
-  //   Utilità: Prevedibilità pianificazione
-  //
-  // - MP33: Meeting Efficiency Index
-  //   Formula: (Decisioni prese) / (Ore di meeting) × 100
-  //   Accettabile: ≥ 2 decisioni/ora
-  //   Ottimale: ≥ 3 decisioni/ora
-  //   Utilità: Evita meeting improduttivi
-  //
-  // - MP34: Issue Resolution Time
-  //   Tempo medio tra apertura e chiusura issue (per priorità)
-  //   Accettabile: Alta ≤ 3 giorni, Media ≤ 7 giorni, Bassa ≤ 14 giorni
-  //   Ottimale: Alta ≤ 1 giorno, Media ≤ 3 giorni, Bassa ≤ 7 giorni
-  //   Utilità: Responsività del team
+
+  #metrics-table(
+    (
+      (cod: [*MP21*], name: [Time Efficiency], acceptable: [≥ 60%], optimal: [100%]),
+      (cod: [*MP22*], name: [Sprint Velocity Stability], acceptable: [≤ 30%], optimal: [≤ 10%]),
+      (cod: [*MP23*], name: [Meeting Efficiency Index], acceptable: [≥ 2 dec./ora], optimal: [≥ 5 dec./ora]),
+      (
+        cod: [*MP24*],
+        name: [PR Resolution Time],
+        acceptable: [≤ 3gg],
+        optimal: [≤ 1gg],
+      ),
+    ),
+    caption: [Soglie metriche Gestione dei Processi],
+  )
+
+  #heading(level: 4, numbering: none, outlined: false)[Motivazioni delle soglie]
+
+  #metrics-description(
+    [MP21],
+    [Time Efficiency],
+    [Il minimo accettabile per garantire un avanzamento accettabile del progetto. Scendere sotto questa soglia indica una dispersione eccessiva di risorse in attività non produttive.],
+    [Indica uno scenario di efficienza assoluta in cui sono stati eliminati tutti i tempi morti, le riunioni superflue e le attività a non-valore aggiunto.],
+    note: [Per calcolare la metrica, è necessario distinguere nel tracciamento le ore "produttive" da quelle "organizzative/di palestra".],
+  )
+
+  #metrics-description(
+    [MP22],
+    [Sprint Velocity Stability],
+    [Una deviazione standard ≤ 30% della media è accettabile, permettendo una certa variabilità naturale tra sprint dovuta alla complessità variabile delle task, impegni dei membri del gruppo o eventi imprevisti.],
+    [≤ 10% di deviazione è ottimale, indicando velocity altamente prevedibile. Questo livello si raggiunge con: stime accurate, team stabile, scope ben definito, e impedimenti gestiti efficacemente. Facilita enormemente commitment e pianificazione di release.],
+    note: [Variabilità > 20% rende la pianificazione inaffidabile. Dovrebbe però migliorare naturalmente con il passare del tempo, stabilizzandosi su valori tendenti all'ottimo.],
+  )
+
+  #metrics-description(
+    [MP23],
+    [Meeting Efficiency Index],
+    [≥ 2 decisioni/ora è accettabile per meeting produttivi. Riconosce che alcune discussioni richiedono tempo per esplorare alternative prima di decidere. Meeting sotto questa soglia tendono ad essere troppo poco produttivi.],
+    [≥ 5 decisioni/ora è ottimale, indicando meeting altamente focalizzati con agenda chiara e partecipanti preparati. Questo livello massimizza il valore del tempo speso.],
+    note: [Preparazione dell'agenda con decisioni da prendere, condividere materiale pre-lettura e documentare decisioni prese.],
+  )
+
+  #metrics-description(
+    [MP24],
+    [PR Resolution Time],
+    [Un tempo di merge ≤ 3 giorni è accettabile. Garantisce che il codice o un documento non rimanga bloccato troppo a lungo, riducendo il rischio di conflitti di merge complessi.],
+    [Un tempo ≤ 1 giorno è ottimale. Indica un processo di Code Review estremamente efficiente e una cultura di team che prioritizza il processo di revisione rispetto all'inizio di nuove task, favorendo il Continuous Integration.],
+    note: [Un tempo di risoluzione breve garantisce che la correzione o l'aggiunta avvenga mentre la memoria dell'autore è ancora fresca. Inoltre è raccomandata l'apertura di PR più piccole e focalizzate per migliorare l'efficacia e la velocità della verifica],
+  )
+
+  #pagebreak()
 
   = Qualità di prodotto
   == Funzionalità
