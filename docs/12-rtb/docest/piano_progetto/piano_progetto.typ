@@ -1,6 +1,6 @@
 #import "../../00-templates/base_document.typ" as base-document
 
-#let metadata = yaml("piano_progetto.meta.yaml")
+#let metadata = yaml(sys.inputs.meta-path)
 
 #base-document.apply-base-document(
   title: metadata.title,
@@ -18,9 +18,12 @@
   I termini presenti nel Glossario sono contrassegnati nel testo da una lettera "G" posta a pedice (es. parola#sub[G]).
   == Riferimenti
   === Riferimenti normativi
-  - Capitolato d'appalto C7: Sistema di acquisizione dati da sensori BLE (M31)\
+  - Capitolato d'appalto C7 Sistema di acquisizione dati da sensori BLE (M31) \
     https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
-
+  - Piano di Qualifica \
+    https://notipswe.github.io/docs/12-rtb/docest/piano_qualifica.pdf
+  - Analisi dei Requisiti \
+    https://notipswe.github.io/docs/12-rtb/docest/analisi_requisiti.pdf
   - Norme di Progetto \
     https://notipswe.github.io/docs/12-rtb/docint/norme_progetto.pdf
   === Riferimenti informativi
@@ -76,7 +79,8 @@
         [Descrizione],
         [Risulta altamente improbabile che il codice scritto dal gruppo possa essere privo di errori alla prima esecuzione],
 
-        [Mitigazione], [da definirsi],
+        [Mitigazione],
+        [Il gruppo farà affidamento su numerosi test durante lo sviluppo per garantire il funzionamento del prodotto. Qualora il gruppo non riuscisse ad andare avanti chiedera supporto all'Azienda proponente.],
 
         [Probabilità], [Alto],
         [Impatto prestazionale], [Medio],
