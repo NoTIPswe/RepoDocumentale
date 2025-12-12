@@ -44,8 +44,7 @@
       *Primary life cycle process*\
       #h(1em)5.2 Supply\
       #h(1em)5.3 Development\
-      #h(1em)5.4 Operation\
-      #h(2em)del punto 5.4 verrà solo eseguita la fase dell’ operational testing; Operational testing verrà eseguito durante il ciclo di sviluppo del progetto ma non ne verranno descritte le proprieta’ nelle norme di progetto\
+      #h(1em)5.4 Operation, del quale verrà eseguita solamente la fase di Opeational Testing.\
       *Supporting life cycle process*\
       #h(1em)6.1 Documentation\
       #h(1em)6.2 Configuration Management\
