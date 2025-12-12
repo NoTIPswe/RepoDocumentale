@@ -1,6 +1,6 @@
 #import "../../00-templates/base_document.typ" as base-document
 
-#let metadata = yaml(sys.inputs.meta-path)
+#let metadata = yaml("piano_progetto.meta.yaml")
 
 #base-document.apply-base-document(
   title: metadata.title,
@@ -10,13 +10,24 @@
 )[
   = Introduzione
   == Scopo del documento
-  Il presente documento ha lo scopo di definire, descrivere e tracciare le attività svolte e da svolgere nell'ambito della realizzazione del progetto "Sistema di Acquisizione Dati da Sensori BLE" proposto da M32 S.r.l (capitolato C7).
+  Il presente documento ha lo scopo di definire, descrivere e tracciare le attività svolte e da svolgere nell'ambito della realizzazione del progetto "Sistema di Acquisizione Dati da Sensori BLE" proposto da M31 S.r.l (capitolato C7).
   Il documento fornisce un'analisi complessiva delle attività, coprendo in particolare, la stima del tempo previsto ed effettivo e i potenziali rischi che il gruppo potrebbe affrontare.
 
   == Glossario
+  Il #link("https://notipswe.github.io/docs/12-rtb/docest/glossario.pdf")[Glossario] è un documento soggetto a continuo aggiornamento per l'intera durata del progetto; il suo scopo è definire la terminologia tecnica per garantire una comprensione chiara e univoca dei contenuti.
+  I termini presenti nel Glossario sono contrassegnati nel testo da una lettera "G" posta a pedice (es. parola#sub[G]).
   == Riferimenti
   === Riferimenti normativi
+  - Capitolato d'appalto C7: Sistema di acquisizione dati da sensori BLE (M31)\
+    https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+
+  - Norme di Progetto \
+    https://notipswe.github.io/docs/12-rtb/docint/norme_progetto.pdf
   === Riferimenti informativi
+  - Ciclo di via del Software \
+    https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf
+  - Gestione di Progetto\
+    https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf
 
   = Analisi e gestione dei rischi
   == Introduzione
