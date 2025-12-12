@@ -1,11 +1,11 @@
 title: Piano di Qualifica 
 changelog:
   - version: "0.1.0"
-    date: "2025-12-11"
+    date: "2025-12-12"
     authors:
       - Francesco Marcon
       - Valerio Solito
-    verifier: TBD
+    verifier: Matteo Mantoan
     description: >
       Metriche processi primari
   - version: "0.0.1"
