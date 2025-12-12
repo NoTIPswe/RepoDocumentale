@@ -7,7 +7,7 @@ changelog:
       - Valerio Solito
     verifier: Matteo Mantoan
     description: >
-      Metriche processi primari
+      Metriche qualità di processo
   - version: "0.0.1"
     date: "2025-12-05"
     authors:
