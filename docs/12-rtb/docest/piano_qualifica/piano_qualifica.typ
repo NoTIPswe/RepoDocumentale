@@ -477,7 +477,7 @@
   #metrics-description(
     [MQ04],
     [Branch Coverage],
-    [≥ 60% è accettabile in quanto testare tutti i branch possibili complesso. Questo livello garantisce che un livello sufficiente delle decisioni logiche sia verificata.],
+    [≥ 60% è accettabile in quanto testare tutti i branch possibili risulta complesso. Questo livello garantisce che un livello sufficiente delle decisioni logiche sia verificata.],
     [Un valore ≥ 80% è ottimale e rappresenta un'eccellente copertura, riducendo drasticamente i bug di logica condizionale e migliora la confidenza nel comportamento del codice in tutte le circostanze.],
     note: [Focus particolare dovrebbe essere dato a: business logic critica, gestione errori, e validazione input.],
   )
