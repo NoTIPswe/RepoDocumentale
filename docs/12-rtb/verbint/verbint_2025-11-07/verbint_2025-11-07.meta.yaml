@@ -6,6 +6,7 @@ changelog:
     date: "2025-12-11"
     authors:
       - Mario De Pasquale
+      - Francesco Marcon
     verifier: TBD
     description: >
       Modifiche minori per l'indentazione del punto 2.1 e 2.4

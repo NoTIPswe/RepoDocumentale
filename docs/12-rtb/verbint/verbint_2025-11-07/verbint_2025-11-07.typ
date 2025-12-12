@@ -41,25 +41,25 @@
     ],
     decisions: [
       Il gruppo si è allineato ed ha definito le serie di attività che verranno rispettate ed eseguite seguendo lo standard *ISO 12207 del 1997*:\
-        *Primary life cycle process*\
-        #h(1em)5.2 Supply\
-        #h(1em)5.3 Development\
-        #h(1em)5.4 Operation\
-        #h(2em)del punto 5.4 verrà solo eseguita la fase dell’ operational testing; Operational testing verrà eseguito durante il ciclo di sviluppo del progetto ma non ne verranno descritte le proprieta’ nelle norme di progetto\
-        *Supporting life cycle process*\
-        #h(1em)6.1 Documentation\
-        #h(1em)6.2 Configuration Management\
-        #h(1em)6.3 Quality Assurance\
-        #h(1em)6.4 Verification\
-        #h(1em)6.5 Validation\
-        #h(1em)6.6 Joint Review\
-        #h(1em)6.7 Audit\
-        #h(1em)6.8 Problem Resolution\
-        *Organizational life cycle process*\
-        #h(1em)7.1 Management\
-        #h(1em)7.2 Infrastructure\
-        #h(1em)7.3 Improvement\
-        #h(1em)7.4 Training\
+      *Primary life cycle process*\
+      #h(1em)5.2 Supply\
+      #h(1em)5.3 Development\
+      #h(1em)5.4 Operation\
+      #h(2em)del punto 5.4 verrà solo eseguita la fase dell’ operational testing; Operational testing verrà eseguito durante il ciclo di sviluppo del progetto ma non ne verranno descritte le proprieta’ nelle norme di progetto\
+      *Supporting life cycle process*\
+      #h(1em)6.1 Documentation\
+      #h(1em)6.2 Configuration Management\
+      #h(1em)6.3 Quality Assurance\
+      #h(1em)6.4 Verification\
+      #h(1em)6.5 Validation\
+      #h(1em)6.6 Joint Review\
+      #h(1em)6.7 Audit\
+      #h(1em)6.8 Problem Resolution\
+      *Organizational life cycle process*\
+      #h(1em)7.1 Management\
+      #h(1em)7.2 Infrastructure\
+      #h(1em)7.3 Improvement\
+      #h(1em)7.4 Training\
     ],
     actions: (),
   )
@@ -81,32 +81,27 @@
       La discussione di questo punto è stata fondamentale per poter prendere una decisione definitiva che allineasse tutti i componenti del gruppo sulla definition of Done.
     ],
     decisions: [
-      Il gruppo dopo un'approfondita discussione ha deciso che per la definizione di Done è fondamentale darci un euristica di base, quindi definire un'insieme di strategie, tecniche e procedimenti per poter definire Done un task, per poi non doverla più toccare in futuro.
+      Il gruppo, a seguito di un'approfondita discussione ha deciso che per la definizione di Done è fondamentale darci un euristica di base, quindi definire un'insieme di strategie, tecniche e procedimenti per poter definire Done un task.\
       La Definition of Done viene intesa in maniera atomica per singolo task e si è deciso che la definition of Done va modellata dipendentemente dalla tipologia di task.
     ],
     actions: (),
   )
 
-    #base-report.report-point(
+  #base-report.report-point(
     discussion_point: [Aggiornamento metodo di Versionamento],
     discussion: [
       Il gruppo dopo un ulteriore riflessione con il docente, ha ritenuto che il metodo di Versionamento non è ancora adeguato ed in questo punto si è deciso di riprendere l'argomento e definire un metodo di versionamento definitivo.
     ],
     decisions: [
-      Il gruppo dopo una lunga discussione ha ritenuto che il metodo migliore di versionamento da applicare a i nostri documenti e verbali è il seguente:\
-        *X.Y.Z*\
-        #h(1em)con *X -> major*\
-        #h(2em)L’aggiornamento della major si riferisce ad una modifica sostanziale del documento o modifica della struttura di esso.\
-        #h(1em)con *Y -> minor*\
-        #h(2em)L’aggiornamento della minor si riferisce a modifiche non sostanziali del documento.\
-        #h(1em)con *Z -> patch*\
-        #h(2em)L’aggiornamento della patch si riferisce a modifiche per errori di battitura.\
+      Il gruppo dopo una lunga discussione ha ritenuto che il metodo migliore di versionamento da applicare a i nostri documenti e verbali è *X.Y.Z*:
+      - *X - major*, l’aggiornamento della major riferisce all'approvazione ed all'entrata effettiva del documento in baseline.
+      - *Y - minor*, l’aggiornamento della minor si riferisce a modifiche non sostanziali del documento, sia con aggiunte .
+      - *Z - patch*, l’aggiornamento della patch si riferisce a modifiche minori, come errori di battitura.
 
-        Tutti i documenti e verbali dal momento della loro stesura partono dalla versione 0.0.1, ogni avanzamento di versione successivo dovrà corrispondere ad un insieme di modifiche tali che possano essere descritte nel changelog.\
-        Solo dopo che il documento o il verbale in questione sia considerato valido alla pubblicazione allora esso potrà passare alla versione 1.0.0 e verrà considerato nella sua prima versione stabile.\
-        Appena i documenti passeranno alla loro prima versione stabile, verranno pubblicati e integrati nel ramo Main.\
-        Successivamente all’integrazione nel ramo Main i documenti potranno essere ulteriormente modificati; 
-        L’autore continuerà a modificarlo e per ogni aggiornamento di patch, minor e major eseguirà un commit, quando si riterrà soddisfatto eseguirà una PR dove si esporranno i cambiamenti nel changelog i quali verranno verificati da un unico verificatore.
+      Tutti i documenti dal momento della loro stesura partono dalla versione 0.0.1. Ogni avanzamento di versione successivo dovrà corrispondere ad un insieme di modifiche tali che possano essere descritte nel changelog.\
+      Successivamente all’integrazione nel ramo main i documenti potranno essere ulteriormente modificati su un branch dedicato e, non appena l'autore si riterrà soddisfatto, aprirà una PR dove si esporrà i cambiamenti ed una proposta di scatto di versione nel changelog. Le modifiche verranno verificati da un unico verificatore.
+      
+      Solo dal momento in cui il documento in questione viene considerato approvato, quindi valido per la pubblicazione, esso potrà passare alla versione 1.0.0 (o alla major successiva) e verrà considerato in versione stabile.\
     ],
     actions: (),
   )
