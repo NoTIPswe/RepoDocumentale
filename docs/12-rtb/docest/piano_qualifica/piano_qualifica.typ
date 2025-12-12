@@ -22,7 +22,7 @@
 #let metrics-description(
   cod,
   name,
-  acceplable,
+  acceptable,
   optimal,
   note: none,
 ) = {
@@ -34,7 +34,7 @@
       #v(0.5em)
 
       *Motivazione valore accettabile:*
-      #acceplable
+      #acceptable
 
       *Motivazione valore ottimo:*
       #optimal
@@ -56,7 +56,7 @@
 )[
   = Introduzione
   == Scopo del documento
-  Il presente Piano di Qualifica definisce le strategie, le metodologie e le metriche adottate dal gruppo per garantire la qualità del prodotto software e l'efficienza dei processi di sviluppo. Esso costituisce il riferimento principale per le attività di:
+  Il presente Piano di Qualifica definisce le strategie, le metodologie e le metriche adottate dal gruppo per garantire la qualità del prodotto software e l'efficienza dei processi del progetto. Esso costituisce il riferimento principale per le attività di:
   - Verifica: accertarsi che il prodotto stia venendo costruito a regola d'arte.
   - Validazione: accertarsi che si stia costruendo il prodotto giusto rispetto alle attese del proponente.
 
@@ -133,12 +133,12 @@
     caption: [Soglie metriche processo di Fornitura],
   )
 
-  #heading(level: 4, numbering: none, outlined: false)[Motivazioni delle soglie]
+  #heading(level: 4, outlined: false)[Motivazioni delle soglie]
 
   #metrics-description(
     [MP01],
     [Earned Value],
-    [Il valore accettabile minimo è zero poiché l'EV rappresenta il valore del lavoro completato. Non può essere negativo per definizione e valori molto bassi rispetto al pianificato indicano ritardi nell'esecuzione, tuttavia non invalidanti dal punto di vista metrico.],
+    [Il valore accettabile minimo è zero poiché l'EV rappresenta il valore del lavoro completato. Non può essere negativo per definizione e valori molto bassi rispetto al pianificato indicano ritardi nell'esecuzione, tuttavia non sono invalidanti dal punto di vista metrico.],
     [Il valore ottimo corrisponde esattamente al Planned Value (EV = PV), indicando che il lavoro completato coincide o eccede addirittura con quello pianificato. Questo significa che il progetto procede esattamente nei tempi previsti, senza ritardi.],
     note: [L'EV deve essere calcolato a intervalli regolari (es. fine sprint) per tracciare l'andamento del progetto. Variazioni significative richiedono analisi delle cause e potenziali azioni correttive.],
   )
@@ -215,7 +215,7 @@
     caption: [Soglie metriche processo di Sviluppo],
   )
 
-  #heading(level: 4, numbering: none, outlined: false)[Motivazioni delle soglie]
+  #heading(level: 4, outlined: false)[Motivazioni delle soglie]
 
   #metrics-description(
     [MP10],
@@ -239,7 +239,7 @@
     caption: [Soglie metriche processo di Documentazione],
   )
 
-  #heading(level: 4, numbering: none, outlined: false)[Motivazioni delle soglie]
+  #heading(level: 4, outlined: false)[Motivazioni delle soglie]
 
   #metrics-description(
     [MP13],
@@ -267,7 +267,7 @@
     caption: [Soglie metriche processo di Verifica],
   )
 
-  #heading(level: 4, numbering: none, outlined: false)[Motivazioni delle soglie]
+  #heading(level: 4, outlined: false)[Motivazioni delle soglie]
 
   #metrics-description(
     [MP15],
@@ -319,7 +319,7 @@
     caption: [Soglie metriche Gestione della Qualità],
   )
 
-  #heading(level: 4, numbering: none, outlined: false)[Motivazioni delle soglie]
+  #heading(level: 4, outlined: false)[Motivazioni delle soglie]
 
   #metrics-description(
     [MP19],
@@ -334,7 +334,7 @@
     [Quality Gate Pass Rate],
     [Indica che la maggior parte del codice proposto rispetta gli standard minimi di sicurezza e manutenibilità. Un 15% di fallimenti è concesso per permettere iterazioni veloci e feedback loop rapidi dalla CI senza imporre un perfezionismo prematuro.],
     [Un tasso ≥ 95% testimonia un'elevata maturità del team nell'eseguire verifiche locali prima del push sul repository. Indica un processo di integrazione fluido, dove la CI fallisce solamente raramente.],
-    note: [Il valore va interpretato con attenzione: un pass rate costantemente al 100% potrebbe indicare controlli troppo lassi, mentre un valore troppo basso suggerisce la necessità di rivedere la configurazione dei gate o di migliorare la formazione del team sui test locali.],
+    note: [Il valore va interpretato con attenzione: un pass rate costantemente al 100% potrebbe indicare controlli troppo laschi, mentre un valore troppo basso suggerisce la necessità di rivedere la configurazione dei gate o di migliorare la formazione del team sui test locali.],
   )
 
   == Processi organizzativi
@@ -356,7 +356,7 @@
     caption: [Soglie metriche Gestione dei Processi],
   )
 
-  #heading(level: 4, numbering: none, outlined: false)[Motivazioni delle soglie]
+  #heading(level: 4, outlined: false)[Motivazioni delle soglie]
 
   #metrics-description(
     [MP21],
