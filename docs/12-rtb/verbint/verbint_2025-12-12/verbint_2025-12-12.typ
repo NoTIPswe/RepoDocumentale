@@ -39,7 +39,7 @@
       La discussione verte sulla modellazione dell'impersonificazione nei casi d'uso. Si è valutata la necessità di introdurre un'impostazione a livello di tenant che autorizzi esplicitamente l'accesso da parte dell'amministratore di sistema per le operazioni di impersonificazione.
     ],
     decisions: [
-      Si stabilisce che l'amministratore di sistema sarà trattato come attore nel casi d'uso, ma esterno alla gerarchia degli utenti ipotizzata. Verranno aggiunti i casi d'uso relativi all'abilitazione dell'accesso (lato tenant) e all'impersonificazione vera e propria (lato amministratore).
+      Si stabilisce che l'amministratore di sistema sarà trattato come attore nei casi d'uso, ma esterno alla gerarchia degli utenti ipotizzata. Verranno aggiunti i casi d'uso relativi all'abilitazione dell'accesso (lato tenant) e all'impersonificazione vera e propria (lato amministratore).
     ],
     actions: (
       (
@@ -84,7 +84,7 @@
   #base-report.report-point(
     discussion_point: [Documenti affidati al ruolo di Responsabile.],
     discussion: [
-      Sussistono dubbi in merito all'assegnazione della responsabilità di redazione per alcuni documenti specifici. Il confronto con la documentazione di progetti altrui non ha fornito chiarimenti definitivi per il Gruppo.
+      Sussistono dubbi in merito all'assegnazione della responsabilità di redazione per alcuni documenti specifici.
     ],
     decisions: [
       Il Gruppo ha deciso che provvederà a chiedere al Docente di riferimento per risolvere il problema.
@@ -92,12 +92,12 @@
   )
   #base-report.report-point(
     discussion_point: [Differenza tra approvazione e verifica.],
-    discussion: [Si è definita la distinzione formale tra i due processi: la verifica si concentra sulla correttenza sintattica e formale; l'approvazione valida i contenuti, implica la conoscenza approfondita del documento e ne autorizza il rilascio in corrispenda delle milestone.],
-    decisions: [Il Gruppo formalizzerà queste defininizioni all'interno delle Norme di Progetto.],
+    discussion: [Si è definita la distinzione formale tra i due processi: la verifica si concentra sulla correttenza sintattica e formale; l'approvazione valida i contenuti, implica la conoscenza approfondita del documento e ne autorizza il rilascio in corrispondenza delle milestone.],
+    decisions: [Il Gruppo formalizzerà queste defininizioni all'interno delle #link("https://notipswe.github.io/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto].],
   )
   #base-report.report-point(
     discussion_point: [Gestione delle metriche all'interno dei documenti del progetto.],
-    discussion: [Si è discusso della collocazione delle metriche nella documentazione. L'ipotesi prevalente prevede di inserire la definizione delle metriche nelle Norme di Progetto, riservando al Piano di Qualifica la specifica delle soglie di accettazione e dei valori attesi.],
+    discussion: [Si è discusso della collocazione delle metriche nella documentazione. L'ipotesi prevalente prevede di inserire la definizione delle metriche nelle #link("https://notipswe.github.io/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto], riservando al Piano di Qualifica la specifica delle soglie di accettazione con le relative motivazioni e i valori attesi.],
     decisions: [Prima di procedere, il Gruppo chiederà chiarimenti al Docente di riferimento.],
   )
 ][
