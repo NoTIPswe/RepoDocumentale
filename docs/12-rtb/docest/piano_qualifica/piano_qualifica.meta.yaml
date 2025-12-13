@@ -4,7 +4,7 @@ changelog:
     date: "2025-12-13"
     authors:
       - Francesco Marcon
-    verifier: TBD
+    verifier: Valerio Solito
     description: >
       Aggiornamento e aggiunta MQ04, MQ08
   - version: "0.2.0"
