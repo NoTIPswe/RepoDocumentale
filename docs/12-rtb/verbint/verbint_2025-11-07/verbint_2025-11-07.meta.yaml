@@ -1,0 +1,33 @@
+title: Verbale Interno 2025-11-07
+
+changelog:
+
+  - version: "0.3.0"
+    date: "2025-12-11"
+    authors:
+      - Mario De Pasquale
+      - Francesco Marcon
+    verifier: Matteo Mantoan
+    description: >
+      Modifiche minori per l'indentazione del punto 2.1 e 2.4
+  - version: "0.2.0"
+    date: "2025-11-27"
+    authors:
+      - Mario De Pasquale
+    verifier: Leonardo Preo
+    description: >
+      Modifiche minori per la conclusione del verbale
+  - version: "0.1.0"
+    date: "2025-11-07"
+    authors:
+      - Mario De Pasquale
+    verifier: Leonardo Preo
+    description: >
+      Modifiche minori per l'indentazione sul primo punto
+  - version: "0.0.1"
+    date: "2025-11-07"
+    authors:
+      - Mario De Pasquale
+    verifier: Leonardo Preo
+    description: >
+      Prima versione del Verbale Interno 2025-11-07
