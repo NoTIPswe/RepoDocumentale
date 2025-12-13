@@ -80,7 +80,7 @@
         [Risulta altamente improbabile che il codice scritto dal gruppo possa essere privo di errori alla prima esecuzione],
 
         [Mitigazione],
-        [Il gruppo farà affidamento su numerosi test durante lo sviluppo per garantire il funzionamento del prodotto. Qualora il gruppo non riuscisse ad andare avanti chiedera supporto all'Azienda proponente.],
+        [Il gruppo farà affidamento su numerosi test durante lo sviluppo per garantire il funzionamento del prodotto. Qualora il gruppo non riuscisse ad andare avanti chiederà supporto all'Azienda proponente.],
 
         [Probabilità], [Alto],
         [Impatto prestazionale], [Medio],
