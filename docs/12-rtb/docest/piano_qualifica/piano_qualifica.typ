@@ -26,25 +26,35 @@
   optimal,
   note: none,
 ) = {
+  v(0.5em)
+  heading(level: 4, numbering: none, outlined: false)[#cod - #name]
+  v(0.5em)
+
   block(
     breakable: false,
     [
-      #v(0.5em)
-      #heading(level: 4, numbering: none, outlined: false)[#cod - #name]
-      #v(0.5em)
-
       *Motivazione valore accettabile:*
       #acceptable
-
-      *Motivazione valore ottimo:*
-      #optimal
-
-      #if note != none [
-        *Note di utilizzo:*
-        #note
-      ]
     ],
   )
+
+  block(
+    breakable: false,
+    [
+      *Motivazione valore ottimo:*
+      #optimal
+    ],
+  )
+
+  if note != none [
+    #block(
+      breakable: false,
+      [
+        *Note di utilizzo:*
+        #note
+      ],
+    )
+  ]
   v(0.5em)
 }
 
@@ -130,7 +140,7 @@
       (cod: [*MP08*], name: [Time Estimate At Completion], acceptable: [≥ 0], optimal: [≤ Durata pianificata]),
       (cod: [*MP09*], name: [Budget Burn Rate], acceptable: [≤ BAC/Giorni totali], optimal: [Costante]),
     ),
-    caption: [Soglie metriche processo di Fornitura],
+    caption: [Soglie metriche Fornitura di processo],
   )
 
   #heading(level: 4, outlined: false)[Motivazioni delle soglie]
@@ -212,7 +222,7 @@
     (
       (cod: [*MP10*], name: [Requirements Stability Index], acceptable: [≥ 70%], optimal: [100%]),
     ),
-    caption: [Soglie metriche processo di Sviluppo],
+    caption: [Soglie metriche Sviluppo di processo],
   )
 
   #heading(level: 4, outlined: false)[Motivazioni delle soglie]
@@ -236,7 +246,7 @@
       (cod: [*MP13*], name: [Indice di Gulpease], acceptable: [≥ 60], optimal: [≥ 80]),
       (cod: [*MP14*], name: [Correttezza Ortografica], acceptable: [0 errori], optimal: [0 errori]),
     ),
-    caption: [Soglie metriche processo di Documentazione],
+    caption: [Soglie metriche Documentazione di processo],
   )
 
   #heading(level: 4, outlined: false)[Motivazioni delle soglie]
@@ -263,8 +273,9 @@
       (cod: [*MP15*], name: [Code Coverage], acceptable: [≥ 80%], optimal: [≥ 90%]),
       (cod: [*MP16*], name: [Test Success Rate], acceptable: [100%], optimal: [100%]),
       (cod: [*MP17*], name: [Test Automation Percentage], acceptable: [≥70%], optimal: [≥85%]),
+      (cod: [*MP18*], name: [Bugs Trend], acceptable: [Costante], optimal: [Decrescente]),
     ),
-    caption: [Soglie metriche processo di Verifica],
+    caption: [Soglie metriche Verifica di processo],
   )
 
   #heading(level: 4, outlined: false)[Motivazioni delle soglie]
@@ -293,16 +304,24 @@
     note: [Il 100% di automazione non è considerato un obiettivo perchè potrebbe anche introdurre dei test instabili o avere una fase di test eccessivamente lunga.],
   )
 
+  #metrics-description(
+    [MP18],
+    [Bugs Trend],
+    [Un trend costante è accettabile durante le fasi centrali di sviluppo. Indica che il team riesce a risolvere i difetti con la stessa velocità con cui ne vengono scoperti di nuovi, mantenendo il debito tecnico sotto controllo.],
+    [Un trend decrescente è ottimo, in quanto significa che il numero totale di bug aperti diminuisce progressivamente, indicando che il prodotto sta diventando maggiormente stabile.],
+    note: [Metrica introdotta su suggerimento dell'azienda proponente. È necessario indagare le cause dell'andamento di questa metrica durante la retrospettiva e attuare azioni correttive nello sprint successivo.],
+  )
+
   === Gestione della Configurazione
 
   #metrics-table(
     (
-      (cod: [*MP18*], name: [Commit Message Quality Score], acceptable: [7/10], optimal: [9/10]),
+      (cod: [*MP19*], name: [Commit Message Quality Score], acceptable: [7/10], optimal: [9/10]),
     ),
-    caption: [Soglie metriche processo di Gestione della Configurazione],
+    caption: [Soglie metriche Gestione della Configurazione di processo],
   )
   #metrics-description(
-    [MP18],
+    [MP19],
     [Commit Message Quality Score],
     [Abbiamo optato per un valore accettabile 7/10, perché la qualità del commit deve essere almeno sopra la sufficienza per garantire chiarezza del messaggio, oltre per permettere in alcuni casi di risalire ad errori introdotti con recenti commit.],
     [Un punteggio ≥ 9/10 è ottimale, indicando commit messages esemplari che documentano completamente sia il "cosa" che il "perché" delle modifiche. Questo facilita enormemente debugging futuro, code review, e onboarding di nuovi sviluppatori.],
@@ -313,8 +332,8 @@
 
   #metrics-table(
     (
-      (cod: [*MP19*], name: [Quality Metrics Satisfied], acceptable: [≥ 80%], optimal: [≥ 100%]),
-      (cod: [*MP20*], name: [Quality Gate Pass Rate], acceptable: [≥ 85%], optimal: [≥ 95%]),
+      (cod: [*MP20*], name: [Quality Metrics Satisfied], acceptable: [≥ 80%], optimal: [≥ 100%]),
+      (cod: [*MP21*], name: [Quality Gate Pass Rate], acceptable: [≥ 85%], optimal: [≥ 95%]),
     ),
     caption: [Soglie metriche Gestione della Qualità],
   )
@@ -322,7 +341,7 @@
   #heading(level: 4, outlined: false)[Motivazioni delle soglie]
 
   #metrics-description(
-    [MP19],
+    [MP20],
     [Quality Metrics Satisfied],
     [Un valore ≥ 80% di metriche soddisfatte rappresenta un buon livello qualitativo generale, permettendo un margine del 20% per metriche particolarmente difficili da soddisfare completamente. Sotto questa soglia il progetto ha problemi di qualità.],
     [Avere soddisfazione del 100% significa che tutte le metriche definite sono soddisfatte. Questo livello dimostra eccellenza complessiva nella gestione della qualità.],
@@ -330,7 +349,7 @@
   )
 
   #metrics-description(
-    [MP20],
+    [MP21],
     [Quality Gate Pass Rate],
     [Indica che la maggior parte del codice proposto rispetta gli standard minimi di sicurezza e manutenibilità. Un 15% di fallimenti è concesso per permettere iterazioni veloci e feedback loop rapidi dalla CI senza imporre un perfezionismo prematuro.],
     [Un tasso ≥ 95% testimonia un'elevata maturità del team nell'eseguire verifiche locali prima del push sul repository. Indica un processo di integrazione fluido, dove la CI fallisce solamente raramente.],
@@ -343,11 +362,11 @@
 
   #metrics-table(
     (
-      (cod: [*MP21*], name: [Time Efficiency], acceptable: [≥ 60%], optimal: [100%]),
-      (cod: [*MP22*], name: [Sprint Velocity Stability], acceptable: [≤ 30%], optimal: [≤ 10%]),
-      (cod: [*MP23*], name: [Meeting Efficiency Index], acceptable: [≥ 2 dec./ora], optimal: [≥ 5 dec./ora]),
+      (cod: [*MP22*], name: [Time Efficiency], acceptable: [≥ 60%], optimal: [100%]),
+      (cod: [*MP23*], name: [Sprint Velocity Stability], acceptable: [≤ 30%], optimal: [≤ 10%]),
+      (cod: [*MP24*], name: [Meeting Efficiency Index], acceptable: [≥ 2 dec./ora], optimal: [≥ 5 dec./ora]),
       (
-        cod: [*MP24*],
+        cod: [*MP25*],
         name: [PR Resolution Time],
         acceptable: [≤ 3gg],
         optimal: [≤ 1gg],
@@ -359,7 +378,7 @@
   #heading(level: 4, outlined: false)[Motivazioni delle soglie]
 
   #metrics-description(
-    [MP21],
+    [MP22],
     [Time Efficiency],
     [Il minimo accettabile per garantire un avanzamento accettabile del progetto. Scendere sotto questa soglia indica una dispersione eccessiva di risorse in attività non produttive.],
     [Indica uno scenario di efficienza assoluta in cui sono stati eliminati tutti i tempi morti, le riunioni superflue e le attività a non-valore aggiunto.],
@@ -367,7 +386,7 @@
   )
 
   #metrics-description(
-    [MP22],
+    [MP23],
     [Sprint Velocity Stability],
     [Una deviazione standard ≤ 30% della media è accettabile, permettendo una certa variabilità naturale tra sprint dovuta alla complessità variabile delle task, impegni dei membri del gruppo o eventi imprevisti.],
     [≤ 10% di deviazione è ottimale, indicando velocity altamente prevedibile. Questo livello si raggiunge con: stime accurate, team stabile, scope ben definito, e impedimenti gestiti efficacemente. Facilita enormemente commitment e pianificazione di release.],
@@ -375,7 +394,7 @@
   )
 
   #metrics-description(
-    [MP23],
+    [MP24],
     [Meeting Efficiency Index],
     [≥ 2 decisioni/ora è accettabile per meeting produttivi. Riconosce che alcune discussioni richiedono tempo per esplorare alternative prima di decidere. Meeting sotto questa soglia tendono ad essere troppo poco produttivi.],
     [≥ 5 decisioni/ora è ottimale, indicando meeting altamente focalizzati con agenda chiara e partecipanti preparati. Questo livello massimizza il valore del tempo speso.],
@@ -383,7 +402,7 @@
   )
 
   #metrics-description(
-    [MP24],
+    [MP25],
     [PR Resolution Time],
     [Un tempo di merge ≤ 3 giorni è accettabile. Garantisce che il codice o un documento non rimanga bloccato troppo a lungo, riducendo il rischio di conflitti di merge complessi.],
     [Un tempo ≤ 1 giorno è ottimale. Indica un processo di Code Review estremamente efficiente e una cultura di team che prioritizza il processo di revisione rispetto all'inizio di nuove task, favorendo il Continuous Integration.],
@@ -393,72 +412,235 @@
   #pagebreak()
 
   = Qualità di prodotto
+
+  La qualità del prodotto costituisce il traguardo fondamentale del progetto. Questa la possiamo intendere come la capacità del software rilasciato di rispondere puntualmente alle necessità degli stakeholder e di operare con robustezza in ambiente di produzione. Un livello qualitativo elevato non si raggiunge in maniera casuale, ma è la diretta conseguenza del rigore metodologico applicato ai processi.
+
+  Per garantire una valutazione oggettiva e strutturata, il gruppo ha adottato come framework di riferimento lo standard ISO/IEC 9126. Secondo tale modello, l'eccellenza del software si misura attraverso il soddisfacimento delle seguenti caratteristiche:
+
+  - *Funzionalità*, per coprire integralmente i requisiti espressi;
+  - *Affidabilità*, per assicurare continuità di servizio senza malfunzionamenti;
+  - *Usabilità*, per garantire un'interazione intuitiva;
+  - *Efficienza*, per ottimizzare l'uso delle risorse;
+  - *Manutenibilità*, per facilitare l'evoluzione futura del codice;
+  - *Portabilità*, per permettere l'esecuzione in ambienti diversi
+
   == Funzionalità
-  // Copertura requisiti
-  // - MQ01: Requisiti Obbligatori Soddisfatti
-  // - MQ02: Requisiti Desiderabili Soddisfatti
-  // - MQ03: Requisiti Opzionali Soddisfatti
+
+  #metrics-table(
+    (
+      (cod: [*MQ01*], name: [Requisiti Obbligatori Soddisfatti], acceptable: [100%], optimal: [100%]),
+      (cod: [*MQ02*], name: [Requisiti Desiderabili Soddisfatti], acceptable: [0%], optimal: [100%]),
+      (cod: [*MQ03*], name: [Requisiti Opzionali Soddisfatti], acceptable: [0%], optimal: [100%]),
+    ),
+    caption: [Soglie metriche Funzionalità del prodotto],
+  )
+
+  #heading(level: 4, numbering: none, outlined: false)[Motivazioni delle soglie]
+
+  #metrics-description(
+    [MQ01],
+    [Requisiti Obbligatori Soddisfatti],
+    [L'unico valore accettabile è 100%. I requisiti obbligatori rappresentano funzionalità contrattualmente vincolanti e essenziali per l'utilizzo base del sistema, richieste esplicitamente dallo stakeholder. Non implementare anche un solo requisito obbligatorio rende il prodotto non conforme e non accettabile dal committente.],
+    [Il valore ottimo coincide con l'accettabile.],
+    note: [Problemi nell'implementazione di requisiti obbligatori dovranno avere priorità massima e potranno richiedere riallocazione urgente di ore e ruoli.],
+  )
+
+  #metrics-description(
+    [MQ02],
+    [Requisiti Desiderabili Soddisfatti],
+    [0% è tecnicamente accettabile poiché questi requisiti non sono essenziali per l'accettazione del prodotto. Tuttavia, anche a seguito degli incontri tenuti con la proponente, l'implementazione di una parte di essi è altamente consigliata e aggiunge valore al prodotto.],
+    [100% rappresenta un prodotto completo e ricco di funzionalità che supera le aspettative minime. Questo livello dovrebbe essere perseguito se il progetto ha risorse e tempo sufficienti dopo aver completato tutti i requisiti obbligatori.],
+    note: [La prioritizzazione dei requisiti desiderabili dovrebbe basarsi su: feedback del committente, rapporto valore/costo di implementazione e dipendenze con altri requisiti.],
+  )
+
+  #metrics-description(
+    [MQ03],
+    [Requisiti Opzionali Soddisfatti],
+    [0% risulta essere accettabile, in quanto i requisiti opzionali rappresentano dei "nice-to-have" da considerare solamente dopo aver completato obbligatori e desiderabili. Non implementarli non rende il prodotto incompleto rispetto alle richieste.],
+    [100% rappresenta un prodotto estremamente completo, ma questo livello difficilmente raggiungibile senza un notevole sforzo economicamente.],
+    note: [La loro implementazione non dovrebbe mai sottrarre risorse a requisiti di priorità superiore durante lo sviluppo della versione corrente.],
+  )
 
   == Affidabilità
-  // - MQ04: Branch Coverage
-  // - MQ05: Statement Coverage
-  // - MQ06: Failure Density
+
+  #metrics-table(
+    (
+      (cod: [*MQ04*], name: [Branch Coverage], acceptable: [≥ 60%], optimal: [≥ 80%]),
+      (cod: [*MQ05*], name: [Statement Coverage], acceptable: [≥ 70%], optimal: [≥ 90%]),
+      (cod: [*MQ06*], name: [Failure Density], acceptable: [≤ 0.5], optimal: [≤ 0.1]),
+    ),
+    caption: [Soglie metriche Affidabilità del prodotto],
+  )
+
+  #heading(level: 4, numbering: none, outlined: false)[Motivazioni delle soglie]
+
+  #metrics-description(
+    [MQ04],
+    [Branch Coverage],
+    [≥ 60% è accettabile in quanto testare tutti i branch possibili risulta complesso. Questo livello garantisce che un livello sufficiente delle decisioni logiche sia verificata.],
+    [Un valore ≥ 80% è ottimale e rappresenta un'eccellente copertura, riducendo drasticamente i bug di logica condizionale e migliora la confidenza nel comportamento del codice in tutte le circostanze.],
+    note: [Focus particolare dovrebbe essere dato a: business logic critica, gestione errori, e validazione input.],
+  )
+
+  #metrics-description(
+    [MQ05],
+    [Statement Coverage],
+    [Un valore ≥ 70% garantisce che la maggioranza delle istruzioni sia stata eseguita almeno una volta durante i test, riducendo il rischio di bug nascosti in codice non verificato.],
+    [≥ 90% è ottimale e dimostra una test suite molto completa. Il 10% non coperto può giustificarsi per: codice di gestione errori estremi, codice legacy non critico, o sezioni in attesa di rimozione.],
+    note: [Deve essere affiancata da branch coverage e test di qualità che verifichino comportamenti attesi, non solo l'esecuzione di linee.],
+  )
+
+  #metrics-description(
+    [MQ06],
+    [Failure Density],
+    [Un valore ≤ 0.5 failure/KLOC è accettabile per software in fase di stabilizzazione. Corrisponde mediamente a 1 bug ogni 2000 linee di codice.],
+    [≤ 0.1 failure/KLOC è ottimale e rappresenta software di altissima qualità, tipico di software a seguito di estensive sessioni di testing e bug-fixing.],
+    note: [È cruciale distinguere failure per severity: un bug critico (crash, data loss) ha impatto molto maggiore di uno cosmetico (typo in UI).],
+  )
 
   == Usabilità
-  // - MQ07: Time on Task
-  // - MQ08: Error Rate
-  //
-  // Da gestire solamente quando avremo idea di come il prodotto finale verrà utilizzato
+  #metrics-table(
+    (
+      (cod: [*MQ07*], name: [Time on Task], acceptable: [≤ 60 sec], optimal: [≤ 30 sec]),
+      (cod: [*MQ08*], name: [Error Rate], acceptable: [≤ 5%], optimal: [≤ 2%]),
+    ),
+    caption: [Soglie metriche Usabilità del prodotto],
+  )
+
+  #heading(level: 4, numbering: none, outlined: false)[Motivazioni delle soglie]
+
+  #metrics-description(
+    [MQ07],
+    [Time on Task],
+    [Dal momento in cui l'utente impiega un tempo ≤ 60 secondi per eseguire task standard, viene considerato accettabile. Oltre questo tempo, l'utente può percepire il sistema come lento o inefficiente. ],
+    [≤ 30 secondi è ottimale e indica un'interfaccia altamente efficiente e intuitiva.],
+    note: [Misurare con utenti reali o rappresentativi del target. Definire task specifici e misurabili (es. "creare un nuovo gateway e associare 3 sensori"). Task complesse possono giustificare tempi maggiori. Questa metrica diventa rilevante solo quando l'interfaccia è sufficientemente sviluppata.],
+  )
+
+  #metrics-description(
+    [MQ08],
+    [Error Rate],
+    [≤ 5% è accettabile, riconoscendo che alcuni errori utente sono inevitabili. Questo margine tollera una certa curva di apprendimento e situazioni ambigue nell'interfaccia.],
+    [≤ 2% è ottimale e indica un'interfaccia estremamente intuitiva dove gli errori sono rari. Si raggiunge con: design patterns consolidati, validazione input efficace, feedback chiari e prevenzione degli errori.],
+    note: [Errori frequenti in task specifici indicano problemi di design localizzati. È quindi utile andare ad analizzare quali task generano più errori e perché.],
+  )
 
   == Efficienza
-  // - MQ09: Response Time
-  // Da gestire solamente quando avremo idea di come il prodotto finale verrà utilizzato
+
+  #metrics-table(
+    (
+      (cod: [*MQ09*], name: [Response Time], acceptable: [≤ 2 sec], optimal: [≤ 1 sec]),
+    ),
+    caption: [Soglie metriche Efficienza del prodotto],
+  )
+
+  #heading(level: 4, numbering: none, outlined: false)[Motivazioni delle soglie]
+
+  #metrics-description(
+    [MQ09],
+    [Response Time],
+    [≤ 2 secondi è il limite accettabile secondo standard di usabilità (Nielsen). Oltre questo tempo, l'utente percepisce attesa significativa.],
+    [Un valore ≤ 1 secondo è ottimale e fornisce un'esperienza fluida senza attese percepite. Mantiene il flusso di lavoro dell'utente ininterrotto.],
+    note: [Operazioni complesse possono giustificare tempi > 2s. Potrebbe aiutare aggiungere degli indicatori di progresso, per dare un feedback diretto all'utilizzatore.],
+  )
 
   == Manutenibilità
-  // - MQ10: Code Smells
-  // - MQ11: Coefficient of Coupling -> non so come farla
-  // - MQ12: Cyclomatic Complexity
-  //
-  // NUOVE METRICHE AGGIUNTE:
-  //
-  // - MQ25: Code Duplication Percentage
-  //   Formula: (Linee duplicate) / (Linee totali) × 100
-  //   Accettabile: ≤ 5%
-  //   Ottimale: ≤ 3%
-  //   Utilità: Riduce debito tecnico
+
+  #metrics-table(
+    (
+      (cod: [*MQ10*], name: [Code Smells], acceptable: [≤ 10], optimal: [≤ 5]),
+      (cod: [*MQ11*], name: [Coefficient of Coupling], acceptable: [≤ 0.4], optimal: [≤ 0.2]),
+      (cod: [*MQ12*], name: [Cyclomatic Complexity], acceptable: [≤ 20], optimal: [≤ 10]),
+      (cod: [*MQ13*], name: [Code Duplication Percentage], acceptable: [≤ 5%], optimal: [≤ 3%]),
+    ),
+    caption: [Soglie metriche Manutenibilità del prodotto],
+  )
+
+  #heading(level: 4, numbering: none, outlined: false)[Motivazioni delle soglie]
+
+  #metrics-description(
+    [MQ10],
+    [Code Smells],
+    [≤ 10 code smell/KLOC consente la presenza di alcuni problemi di design non critici, senza compromettere significativamente la manutenibilità complessiva.],
+    [≤ 5 code smell/KLOC indica codice ben strutturato e facilmente manutenibile; richiede revisione costante e refactoring Mirato per mantenere livelli elevati di qualità.],
+    note: [Strumenti come SonarQube individuano automaticamente code smell. Prioritizzare la correzione nelle aree critiche o soggette a frequenti modifiche. Gli smell temporanei devono essere documentati e risolti nei successivamente.],
+  )
+
+  #metrics-description(
+    [MQ11],
+    [Coefficient of Coupling],
+    [≤ 0.4 indica accoppiamento moderato e gestibile. Permette interdipendenze necessarie per funzionalità del sistema mantenendo architettura sufficientemente modulare per modifiche localizzate senza effetti a cascata eccessivi.],
+    [Un valore ≤ 0.2 rappresenta sistema disaccoppiato, coeso internamente e con poche dipendenze esterne. Ideale per manutenibilità, in quanto modifiche a un componente hanno impatto minimo su altri.],
+    note: [Accoppiamento alto rende il sistema fragile. ],
+  )
+
+  #metrics-description(
+    [MQ12],
+    [Cyclomatic Complexity],
+    [≤ 20 per metodo/funzione indica codice complesso ma ancora comprensibile e testabile. Oltre questa soglia, codice diventa difficile da capire e richiede numero eccessivo di test per coprire tutti i percorsi logici.],
+    [≤ 10 indica codice semplice, lineare, facile da leggere, testare e manutenere. Questo dovrebbe essere l'obiettivo per la maggior parte delle funzioni. Metodi più complessi dovrebbero essere refactored in funzioni più piccole e coese.],
+    note: [Complessità > 20 richiede refactoring urgente: estrarre metodi, usare polimorfismo invece di condizionali (Strategy/State patterns), semplificare logica booleana. La complessità correla fortemente con probabilità di bug e effort di manutenzione.],
+  )
+
+  #metrics-description(
+    [MQ13],
+    [Code Duplication Percentage],
+    [≤ 5% è accettabile, riconoscendo che piccole duplicazioni possono essere tollerabili se ben giustificate (es. performance critiche, isolamento di contesti). Duplicazioni limitate non compromettono gravemente la manutenibilità.],
+    [≤ 3% è ottimale e indica codice ben fattorizzato seguendo principio DRY. Questo livello minimizza effort di manutenzione e rischio di inconsistenze quando si correggono bug in codice duplicato.],
+    note: [Tool come SonarQube rilevano duplicazioni automaticamente. Soluzione: estrarre codice comune in funzioni riutilizzabili, usare Template Method o Strategy pattern per gestire variazioni. Duplicazioni legittime (es. test fixtures) dovrebbero essere escluse dal calcolo.],
+  )
 
   == Portabilità
-  // NUOVA SEZIONE AGGIUNTA (RILEVANTE PER CLOUD)
-  //
-  // - MQ27: Container Image Size
-  //   Dimensione immagini Docker prodotte
-  //   Accettabile: ≤ 500 MB
-  //   Ottimale: ≤ 200 MB
-  //   Utilità: Velocità deployment e costi storage
-  //  -> ci pensiamo
+
+  #metrics-table(
+    (
+      (cod: [*MQ14*], name: [Container Image Size], acceptable: [≤ 500 MB], optimal: [≤ 200 MB]),
+    ),
+    caption: [Soglie metriche Portabilità del prodotto],
+  )
+
+  #heading(level: 4, numbering: none, outlined: false)[Motivazioni delle soglie]
+
+  #metrics-description(
+    [MQ14],
+    [Container Image Size],
+    [Un valore ≤ 500 MB è accettabile, permettendo l'inclusione di runtime e librerie necessarie ma mantenendo deployment relativamente rapidi e storage gestibili.],
+    [≤ 200 MB è ottimale e tipicamente raggiungibile con base images leggere, garantendo deployment veloci e cold start rapidi in ambiente cloud.],
+  )
 
   == Sicurezza
-  // NUOVA SEZIONE AGGIUNTA (CRITICA PER IL PROGETTO)
-  //  -> da vedere come fare
-  //
-  // - MQ30: Authentication Success Rate
-  //   Formula: (Autenticazioni corrette) / (Tentativi totali) × 100
-  //   Accettabile: ≥ 98% (considerando errori utente)
-  //   Ottimale: ≥ 99.5%
-  //   Utilità: Robustezza provisioning gateway
-  //
-  // - MQ31: Encryption Coverage
-  //   Formula: (Dati sensibili crittografati) / (Dati sensibili totali) × 100
-  //   Accettabile: 100%
-  //   Ottimale: 100%
-  //   Utilità: Compliance GDPR
+
+  #metrics-table(
+    (
+      (cod: [*MQ15*], name: [Authentication Success Rate], acceptable: [≥ 98%], optimal: [≥ 99.5%]),
+      (cod: [*MQ16*], name: [Encryption Coverage], acceptable: [100%], optimal: [100%]),
+    ),
+    caption: [Soglie metriche Sicurezza del prodotto],
+  )
+
+  #heading(level: 4, numbering: none, outlined: false)[Motivazioni delle soglie]
+
+  #metrics-description(
+    [MQ15],
+    [Authentication Success Rate],
+    [≥ 98% è accettabile per il sistema di provisioning gateway, considerando che 2% di failure può derivare da errori utente legittimi. Success rate inferiore può indicare problemi nel meccanismo di autenticazione.],
+    [≥ 99.5% è ottimale e indica sistema robusto e affidabile dove quasi tutti i tentativi legittimi hanno successo. Failure residui coprono edge case.],
+    note: [Fondamentale distinguere tra failure legittimi (credenziali errate) e tecnici (servizio down, timeout).],
+  )
+
+  #metrics-description(
+    [MQ16],
+    [Encryption Coverage],
+    [Tutti i dati sensibili devono essere crittografati sia in storage che durante le comunicazioni, quindi 100% è l'unico valore accettabile.],
+    [Il valore ottimo coincide con l'accettabile. Trattando potenziali dati sensibili, la mancata crittografia espone a rischi non solo legali ma anche di reputazione.],
+  )
+
+  #pagebreak()
 
   = Metodi di testing
-
+  // Da completare successivamente
 
   = Cruscotto di valutazione
+  // Da completare successivamente
 
 ]
-
-// Aggiungere misurazioni di numero di bug tra sprint (sono aumentati? perché?)
-

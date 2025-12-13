@@ -1,5 +1,12 @@
 title: Piano di Qualifica 
 changelog:
+  - version: "0.2.0"
+    date: "2025-12-12"
+    authors:
+      - Francesco Marcon
+    verifier: Valerio Solito
+    description: >
+      Metriche qualità di prodotto
   - version: "0.1.0"
     date: "2025-12-12"
     authors:
@@ -7,7 +14,7 @@ changelog:
       - Valerio Solito
     verifier: Matteo Mantoan
     description: >
-      Metriche processi primari
+      Metriche qualità di processo
   - version: "0.0.1"
     date: "2025-12-05"
     authors:
