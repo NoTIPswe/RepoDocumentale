@@ -5,7 +5,7 @@ import os
 from enum import Enum
 from typing import List
 
-from . import docs_factory, model, local_scanner, git_comparer
+from . import docs_factory, model, local_scanner, git_comparer, configs
 from pathlib import Path
 
 
@@ -22,6 +22,21 @@ def build_all(
     raw_docs = scanner.discover_all_docs(docs_dir_path)
     docs_model = docs_factory.create_documents(raw_docs)
     build_from_docs_model(docs_model, output_dir_path, fonts_dir_path)
+
+def build_baseline(
+    docs_dir_path: Path,
+    output_dir_path: Path,
+    meta_schema_path: Path,
+    fonts_dir_path: Path,
+) -> None:
+    scanner = local_scanner.LocalScanner(meta_schema_path)
+    raw_docs = scanner.discover_all_docs(docs_dir_path)
+    docs_model = docs_factory.create_documents(raw_docs)
+
+    latest_baseline_docs = [doc for doc in docs_model if doc.group == configs.VALID_GROUPS_ORDERED[-1]]
+
+    build_from_docs_model(latest_baseline_docs, output_dir_path, fonts_dir_path)
+
 
 
 def build_from_docs_model(
