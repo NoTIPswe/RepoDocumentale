@@ -1,9 +1,17 @@
 title: Verbale Esterno 2025-12-10 (M31)
 changelog:
+  - version: "0.1.0"
+    date: "2025-12-13"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Francesco Marcon
+    description: >
+      Aggiunta sottosezione Decisioni e aggiustamenti di sottoparagrafi
+
   - version: "0.0.1"
     date: "2025-12-10"
     authors:
       - Alessandro Mazzariol
     verifier: Francesco Marcon
     description: >
-      Prima bozza del verbale 
+      Prima bozza del verbale
