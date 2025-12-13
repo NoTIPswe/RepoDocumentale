@@ -1,6 +1,6 @@
 #import "../../00-templates/base_verbale.typ" as base-report
 
-#let metadata = yaml(sys.inputs.meta-path)
+#let metadata = yaml("verbest_2025-12-10.meta.yaml")
 #base-report.apply-base-verbale(
   date: "2025-12-10",
   scope: base-report.EXTERNAL_SCOPE,
@@ -40,6 +40,7 @@
   #base-report.report-point(
     discussion_point: [In termini di sicurezza nel gateway come funziona il blocco delle porte fisiche e la cifratura nel buffer?],
     discussion: [Di default il blocco delle porte fisiche dovrebbe essere attivo al fine di prevenire accessi non autorizzati, lo stesso vale anche per la cifratura del buffer.],
+    decisions: [Il Gruppo ha deciso di proseguire per questa strada, mantenendo il buffer cifrato e il blocco delle porte.],
   )
   #base-report.report-point(
     discussion_point: [UC10: Gestione dell'aggiornamento firmware dei Gateway.],
@@ -74,7 +75,7 @@
   )
   #base-report.report-point(
     discussion_point: [UCS02: Che tipo di connessione tra cloud e simulatore del gateway è richiesta?],
-    discussion: [Se si usano Nats e Jetstream si possono configurare i parametri, nel contesto del progetto deve essere possibile configurare la connessione, ad esempio configurando l'utilizzo di meccanismi di risposta (ACK) e non, tuttavia è ragionevole aspettarsi che nel nostro ambiente di sviluppo sia richiesta un qualche tipo di conferma ricezione. Dal punto di vista del cloud deve essere possibile inviare una sorta di PING per verificare lo stato di attività del gateway. ],
+    discussion: [L'adozione di NATS e JetStream consente una gestione flessibile dei parametri di rete. Nel contesto del progetto, è necessario che la connessione sia configurabile, prevedendo ad esempio la gestione dei meccanismi di riscontro (ACK). Tuttavia, per l'ambiente di sviluppo in oggetto, si assume che sarà richiesta la conferma di ricezione di messaggi. Inoltre, lato cloud, deve essere implementato un meccanismo di heartbeat (o PING) per verificare lo stato di attività del gateway.],
     decisions: [Il Gruppo ha deciso che inizierà a vedere in tempo utile le tecnologie proposte nel capitolato in modo da implementare le richieste discusse.],
   )
   = Epilogo della riunione
