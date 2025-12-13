@@ -2,12 +2,12 @@ title: Verbale Interno 2025-11-07
 
 changelog:
 
-  - version: "1.0.0"
+  - version: "0.3.0"
     date: "2025-12-11"
     authors:
       - Mario De Pasquale
       - Francesco Marcon
-    verifier: TBD
+    verifier: Matteo Mantoan
     description: >
       Modifiche minori per l'indentazione del punto 2.1 e 2.4
   - version: "0.2.0"
