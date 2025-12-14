@@ -6,6 +6,16 @@ description: 'Sets up Python, Typst, and installs project dependencies.'
 runs:
   using: "composite"
   steps:
+    - name: Install Hunspell
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y hunspell
+      shell: bash
+
+    - name: Install typstyle
+      run: cargo install typstyle --locked
+      shell: bash
+
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -14,6 +24,7 @@ runs:
 
     - name: Install Typst
       uses: typst-community/setup-typst@v3
+
 
     - name: Install Python dependencies
       run: pip install -r notipdo/requirements.txt
