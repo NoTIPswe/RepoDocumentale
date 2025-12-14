@@ -3,6 +3,7 @@ from pathlib import Path
 REPO_ROOT_PATH = Path(".")
 DOCS_DIR_PATH = Path("docs")
 SITE_DIR_PATH = Path("site")
+HUNSPELL_DIR_PATH = Path(".hunspell")
 
 SITE_OUTPUT_DIR_PATH = Path("dist")
 DOCS_OUTPUT_DIR_NAME = "docs"

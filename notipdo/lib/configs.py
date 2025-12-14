@@ -51,3 +51,14 @@ SUBGROUP_TO_SORTING_KEY: Dict[str, Callable[[model.Document], str]] = {
 }
 
 TBD_VERIFIER = "TBD"
+
+HUNSPELL_DICTS = {"en_US", "it_IT"}
+HUNSPELL_IGNORE_FILE = "ignore"
+
+TYPSTYLE_CONF = [
+    "--line-width",
+    "120",
+    "--indent-width",
+    "2",
+    "--wrap-text",
+]

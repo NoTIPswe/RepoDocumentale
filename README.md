@@ -11,6 +11,7 @@ L'interfaccia pubblica della documentazione è il nostro sito: [notipswe.github.
 
 `notipdo` è il tool che permette di eseguire tutte le operazioni necessarie alla scrittura, compilazione, pubblicazione e verifica dei documenti.
 
+- \[Opzionale, necessario per spellcheck e formatting] Installa [`hunspell`](https://github.com/hunspell/hunspell) e [`typstyle`](https://github.com/typstyle-rs/typstyle).
 - Necessario Python 3.13+ (preferibile un [virtual environment](https://docs.python.org/3.14/library/sys_path_init.html#sys-path-init-virtual-environments))
 - Installa le dipendenze tramite `pip install -r notipdo/requirements.txt`
 - Installa il tool tramite `pip install -e notipdo/`

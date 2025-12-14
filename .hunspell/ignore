@@ -1,0 +1,42 @@
+# Aziende
+NoTIP
+M31
+
+# cognomi
+Solito
+Mantoan
+Marcon
+Preo
+Mazzariol
+Contarini
+De
+Pasquale
+
+# tecnologie
+Typst
+LaTeX
+repo
+GitHub
+Jira
+SemVer
+
+# terminologia SWE
+IEC
+RTB
+TBD
+changelog
+
+# parole non in dizionario
+possiede
+versionamento
+modularizzazione
+
+# fix per apostrofi (vedi https://github.com/hunspell/hunspell/issues/641 ancora aperta)
+Dell
+dell
+Sull
+sull
+Nell
+nell
+Dall
+dall

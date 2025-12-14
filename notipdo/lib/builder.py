@@ -23,6 +23,7 @@ def build_all(
     docs_model = docs_factory.create_documents(raw_docs)
     build_from_docs_model(docs_model, output_dir_path, fonts_dir_path)
 
+
 def build_baseline(
     docs_dir_path: Path,
     output_dir_path: Path,
@@ -33,10 +34,11 @@ def build_baseline(
     raw_docs = scanner.discover_all_docs(docs_dir_path)
     docs_model = docs_factory.create_documents(raw_docs)
 
-    latest_baseline_docs = [doc for doc in docs_model if doc.group == configs.VALID_GROUPS_ORDERED[-1]]
+    latest_baseline_docs = [
+        doc for doc in docs_model if doc.group == configs.VALID_GROUPS_ORDERED[-1]
+    ]
 
     build_from_docs_model(latest_baseline_docs, output_dir_path, fonts_dir_path)
-
 
 
 def build_from_docs_model(

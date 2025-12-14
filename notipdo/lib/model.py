@@ -39,11 +39,11 @@ class Document:
         return self.changelog[0].date
 
     @property
-    def output_rel_path(self) -> Path:
+    def output_rel_path(self, extension: str = "pdf") -> Path:
         relative_parent = self.source_path.parent.parent.relative_to(
             self.source_path.parent.parent.parent.parent
         )
-        return relative_parent / f"{self.source_path.stem}.pdf"
+        return relative_parent / f"{self.source_path.stem}.{extension}"
 
     @property
     def source_path(self) -> Path:
