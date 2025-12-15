@@ -1,4 +1,4 @@
-name: "PR Checks: Validate & Preview"
+name: "PR Checks: Check Mergeability"
 
 on:
   workflow_dispatch:
