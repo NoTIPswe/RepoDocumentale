@@ -16,6 +16,16 @@ def build_all(
     """Builds all documents."""
     builder.build_all(docs_dir_path, output_dir_path, meta_schema_path, fonts_dir_path)
 
+@app.command("baseline")
+def build_baseline(
+    docs_dir_path: Path = defaults.DOCS_DIR_PATH,
+    output_dir_path: Path = defaults.DOCS_OUTPUT_DIR_PATH,
+    meta_schema_path: Path = defaults.META_SCHEMA_PATH,
+    fonts_dir_path: Path = defaults.FONTS_DIR_PATH,
+):
+    """Builds all the docs of the latest baseline."""
+    builder.build_baseline(docs_dir_path, output_dir_path, meta_schema_path, fonts_dir_path)
+
 
 @app.command("doc")
 def build_doc(

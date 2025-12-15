@@ -17,22 +17,14 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Checkout code from 'main'
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.13'
-
-      - name: Install Python dependencies
-        run: pip install -r scripts/requirements.txt
-
-      - name: Install Typst
-        uses: typst-community/setup-typst@v3
+      - name: Setup Environment
+        uses: ./.github/actions/setup-docs-env
 
       - name: Generate static site
-        run: python scripts/do.py generate site
+        run: notipdo generate site
 
       - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v3

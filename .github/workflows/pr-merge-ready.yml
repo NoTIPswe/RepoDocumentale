@@ -1,8 +1,6 @@
 name: "PR Checks: Validate & Preview"
 
 on:
-  pull_request:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -21,18 +19,6 @@ jobs:
       - name: Setup Environment
         uses: ./.github/actions/setup-docs-env
 
-      - name: Validate document changes (without --merge-ready)
+      - name: Validate document changes with --merge-ready
         run: |
-          notipdo check pr
-
-      - name: Build docs from PR
-        run: |
-          notipdo build changes
-      
-      - name: Upload Build Artifacts (PDFs)
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: pr-docs-preview
-          path: dist/docs/
-          retention-days: 7
+          notipdo check pr --merge-ready
