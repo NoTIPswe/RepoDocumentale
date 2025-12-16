@@ -99,7 +99,7 @@
       imprevisti e la definizione delle specifiche. È necessario aggiornare il Piano di Progetto per evitare il
       ripetersi di simili situazioni di stallo.
 
-      Oltre a ciò è stato discusso di come proseguire la stesura del documento. È emers
+      Oltre a ciò è stato discusso di come proseguire la stesura del documento.
     ],
     decisions: [
       A seguito della discussione, il gruppo ha deciso di procedere come segue:
@@ -185,7 +185,7 @@
   = Esiti e decisioni finali
   La Sprint Review è da considerarsi essersi eseguita con successo, in quanto il gruppo è stato in grado di evidenziare
   vari punti su cui concentrarsi all'interno della la necessità di una revisione qualitativa dell'approccio all'analisi
-  dei requisiti. Il gruppo ha ri-pianificato le attività bloccate spostandole nel prossimo Sprint, con l'obiettivo
+  dei requisiti. Il gruppo ha ripianificato le attività bloccate spostandole nel prossimo Sprint, con l'obiettivo
   prioritario di validare la profondità dei casi d'uso con il proponente/docente e consolidare la documentazione
   normativa e di pianificazione.
 ]
