@@ -30,7 +30,12 @@
     discussion_point: [I dati decriptati sono accessibili dall'amministratore che attua l'impersonificazione?],
     discussion: [L'Azienda conferma che il processo di impersonificazione e la relativa visualizzazione dei dati decriptati dipendono dall'approvazione del cliente. Deve quindi rimanere possibile che l'amministratore, durante il processo di impersonificazione, non possa avere accesso ai dati in chiaro.],
     decisions: [Il Gruppo ha deciso di mantenere l'architettura gerarchica ipotizzata e di raffinare i casi d'uso per gestire queste specificità.],
-    actions: ((desc: "Revisione Casi d'Uso UC", url: "https://notipswe.atlassian.net/browse/NT-101"),),
+    actions: (
+      (
+        desc: "Revisione Casi d'Uso UC",
+        url: "https://notipswe.atlassian.net/browse/NT-101",
+      ),
+    ),
   )
   #base-report.report-point(
     discussion_point: [UC1.4: Gestione della scalabilità orizzontale.],
@@ -87,5 +92,8 @@
   = Approvazione Aziendale
   La presente sezione certifica che il verbale è stato esaminato e approvato dai rappresentanti di _M31_.
   L’avvenuta approvazione è formalmente confermata dalle firme riportate di seguito dei referenti Aziendali.
+  #align(right)[
+    #image("assets/sign.png")
+  ]
 ]
 
