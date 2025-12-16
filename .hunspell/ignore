@@ -13,23 +13,39 @@ De
 Pasquale
 
 # tecnologie
+Atlassian
 Typst
 LaTeX
 repo
 GitHub
+github
 Jira
 SemVer
+BLE
+pdf
 
 # terminologia SWE
 IEC
 RTB
+rtb
 TBD
 changelog
+PDP
+RO
+RO1
+RP1
+RT1
+RT2
+C7
 
 # parole non in dizionario
 possiede
 versionamento
 modularizzazione
+docest
+docint
+attività
+affinchè
 
 # fix per apostrofi (vedi https://github.com/hunspell/hunspell/issues/641 ancora aperta)
 Dell
@@ -40,3 +56,7 @@ Nell
 nell
 Dall
 dall
+D
+d
+L
+l
