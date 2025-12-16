@@ -27,11 +27,13 @@ IEC
 RTB
 TBD
 changelog
+UC
 
 # parole non in dizionario
 possiede
 versionamento
 modularizzazione
+ripianificato
 
 # fix per apostrofi (vedi https://github.com/hunspell/hunspell/issues/641 ancora aperta)
 Dell
