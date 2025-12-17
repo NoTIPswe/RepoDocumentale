@@ -46,6 +46,7 @@ UCS02
 possiede
 versionamento
 modularizzazione
+ripianificato
 sovrascritta
 
 # fix per apostrofi (vedi https://github.com/hunspell/hunspell/issues/641 ancora aperta)
