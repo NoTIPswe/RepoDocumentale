@@ -4,9 +4,9 @@ changelog:
     date: "2025-12-16"
     authors:
       - Alessandro Mazzariol
-    verifier: TBD
+    verifier: Francesco Marcon
     description: >
-      Prima versione stabile
+      Approvazione - Prima versione stabile
 
   - version: "0.1.0"
     date: "2025-12-13"
