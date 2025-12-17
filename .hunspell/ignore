@@ -14,6 +14,8 @@ Contarini
 De
 Pasquale
 Pirlog
+Mobaraki
+Moones
 
 # tecnologie
 Typst
@@ -27,7 +29,7 @@ JSON
 JetStream
 KeyCloak
 NATS
-
+MQTT
 
 # terminologia SWE
 IEC
@@ -41,6 +43,9 @@ UC10
 UC16
 UCS01
 UCS02
+POC
+Frontend
+MVP
 
 # parole non in dizionario
 possiede
@@ -48,6 +53,7 @@ versionamento
 modularizzazione
 ripianificato
 sovrascritta
+sufficente
 
 # fix per apostrofi (vedi https://github.com/hunspell/hunspell/issues/641 ancora aperta)
 Dell
