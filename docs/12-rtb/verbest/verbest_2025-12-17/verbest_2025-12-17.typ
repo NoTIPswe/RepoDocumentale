@@ -56,8 +56,8 @@
     discussion_point: [Revisione Timeline e pianificazione Milestone interne.],
     discussion: [
       È stata presentata la nuova strategia di pianificazione temporale. Per mitigare il rischio di disallineamenti
-      futuri, il gruppo deciso di introdurre delle *milestone interne* volte a frazionare maggiormente il lavoro tra le
-      scadenze ufficiali imposte dal corso. È stata successivamente presentata la nuova timeline prevista, da cui
+      futuri, il gruppo ha deciso di introdurre delle *milestone interne* volte a frazionare maggiormente il lavoro tra
+      le scadenze ufficiali imposte dal corso. È stata successivamente presentata la nuova timeline prevista, da cui
       abbiamo ricevuto conferma che le scadenze proposte si allineano correttamente con le loro aspettative.
     ],
     decisions: [
@@ -86,29 +86,29 @@
     ],
     decisions: [
       Il gruppo decide quindi di aggiornare il Piano di Qualifica secondo i seguenti punti:
-      - Revisione di alcune metriche ostiche da misurare;
+      - Revisione di alcune metriche complesse da misurare;
       - Revisione delle soglie di accettazione;
       - Focalizzazione sull'MVP per l'applicazione rigorosa delle metriche discusse.
     ],
-    // actions: (
-    //   (
-    //     desc: "Palestra su Conventionnal Commit",
-    //     url: "a"
-    //   ),
-    //   (
-    //     desc: "Rivedere le metriche Criticate",
-    //     url: "a"
-    //   ),
-    // ),
+    actions: (
+      (
+        desc: "Approfondimento Conventional Commits",
+        url: "https://notipswe.atlassian.net/browse/NT-213",
+      ),
+      (
+        desc: "Piano di Qualifica v0.4.0 - Revisione delle metriche",
+        url: "https://notipswe.atlassian.net/browse/NT-210",
+      ),
+    ),
   )
 
   #base-report.report-point(
     discussion_point: [Analisi dei Rischi e Piano di Progetto.],
     discussion: [
       Su specifica richiesta del referente aziendale, riflettendo quello che avviene in contesti professionali e
-      lavorativi, è stato richiesto di presentare la sezione del Piano di Progetto relativa al all'Analisi dei Rischi.
-      Il gruppo ha presentato la matrice dei rischi individuati, analizzandone probabilità, impatto e le relative
-      strategie di mitigazione previste.
+      lavorativi, è stato richiesto di presentare la sezione del Piano di Progetto relativa all'Analisi dei Rischi. Il
+      gruppo ha presentato la matrice dei rischi individuati, analizzandone probabilità, impatto e le relative strategie
+      di mitigazione previste.
     ],
     decisions: [
       L'Azienda ha confermato la validità dell'analisi svolta, ritenendo i rischi identificati coerenti con la natura
@@ -134,4 +134,24 @@
       validazione architetturale e tecnologica.
     ],
   )
+
+  = Epilogo della riunione
+  L'incontro si è concluso con esito positivo: il confronto ha permesso di chiarire i dubbi riguardanti la
+  documentazione e fornendo inoltre al gruppo una direzione precisa per lo sviluppo del POC.
+
+  In vista della imminente pausa natalizia, il gruppo _NoTIP_ desidera ringraziare l'Azienda per il supporto e la guida
+  forniti in questa prima fase di progetto. Cogliamo l'occasione per augurare a tutto il team di _M31_, e in particolare
+  a Cristian Pirlog e Moones Mobaraki, i nostri auguri di Buone Feste.
+
+  Le attività di coordinamento riprenderanno via e-mail per definire la data del prossimo incontro, previsto per
+  l'inizio di gennaio 2026.
+
+  #pagebreak()
+
+  = Approvazione Aziendale
+  La presente sezione certifica che il verbale è stato esaminato e approvato dai rappresentanti di _M31_. L’avvenuta
+  approvazione è formalmente confermata dalle firme riportate di seguito dei referenti Aziendali.
+  // #align(right)[
+  //   #image("./assets/sign.png")
+  // ]
 ]
