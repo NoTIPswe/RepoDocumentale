@@ -131,7 +131,6 @@
       - Analisi preliminare e stesura dei metodi di testing (attività opzionale).
     ],
     actions: (
-      // da inserire nuovo task
       (
         desc: "Piano di Qualifica v0.3.0 - Palestra per sezione Testing",
         url: "https://notipswe.atlassian.net/browse/NT-146",
@@ -182,12 +181,11 @@
       avere obiettivi chiari e verificabili nel breve periodo, per avere un riscontro frequente sulla qualità del lavoro
       svolto.
     ],
-    actions: (
-      // da definire
-    ),
   )
 
 ][
+
+  #pagebreak()
 
   = Esiti e decisioni finali
   La Sprint Review è da considerarsi conclusa con successo, in quanto il gruppo è stato in grado di evidenziare vari

@@ -6,7 +6,7 @@ changelog:
       - Francesco Marcon
     verifier: TBD
     description: >
-      Stesura in modo più formale dei contenuti delle bozze verificate
+      Stesura in modo più formale, aggiunta di task
   - version: "0.0.1"
     date: "2025-12-15"
     authors:
