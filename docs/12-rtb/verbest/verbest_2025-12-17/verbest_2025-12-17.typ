@@ -76,7 +76,7 @@
         realistico in contesti agili, dove i requisiti sono soggetti a cambiamenti frequenti ("mondo reale" vs "mondo
         ideale").
       - *Soglie di accettazione*, È stato notato che definire soglie di accettazione meramente "superiori allo 0%" non è
-        indice di qualità realmente sufficente.
+        indice di qualità realmente sufficiente.
       - *Qualità dei commit*, in riferimento alla metrica associata, l'azienda consiglia l'adozione dello standard
         *Conventional Commits* per garantire ordine e leggibilità nella history del progetto.
       - *Usabilità vs Funzionalità*, In questa fase iniziale, le metriche di usabilità sono considerate secondarie
