@@ -1,3 +1,5 @@
+# Non mettiamo più di una parola con diversa capitalization
+
 # Aziende
 NoTIP
 M31
@@ -11,6 +13,7 @@ Mazzariol
 Contarini
 De
 Pasquale
+Pirlog
 
 # tecnologie
 Typst
@@ -20,6 +23,12 @@ GitHub
 Jira
 SemVer
 SonarQube
+ACK
+JSON
+JetStream
+KeyCloak
+NATS
+
 
 # terminologia SWE
 IEC
@@ -84,6 +93,13 @@ T8
 T9
 TEAC
 UI
+UC
+UCS
+UC1
+UC10
+UC16
+UCS01
+UCS02
 
 # parole non in dizionario
 possiede
@@ -93,6 +109,8 @@ ciclomatica
 Prioritizzare
 manutenibile
 riallocazione
+ripianificato
+sovrascritta
 
 # fix per apostrofi (vedi https://github.com/hunspell/hunspell/issues/641 ancora aperta)
 Dell
