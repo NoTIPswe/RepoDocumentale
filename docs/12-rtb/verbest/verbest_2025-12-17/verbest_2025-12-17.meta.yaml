@@ -1,5 +1,12 @@
 title: Verbale Esterno 2025-12-17 (M31)
 changelog:
+  - version: "1.0.0"
+    date: "2025-12-19"
+    authors:
+      - Francesco Marcon
+    verifier: TBD
+    description: >
+      Modifiche minori ed approvazione aziendale
   - version: "0.0.1"
     date: "2025-12-17"
     authors:
