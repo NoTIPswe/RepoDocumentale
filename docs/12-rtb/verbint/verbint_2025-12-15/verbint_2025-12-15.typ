@@ -20,37 +20,38 @@
       ],
     ),
   ),
-  abstract: "Verbale della riunione interna di Sprint Review dello Sprint 2. L'incontro si è concentrato principalmente sull'analisi delle criticità emerse nella stesura dell'Analisi dei Requisiti, sulla conseguente ri-pianificazione delle attività e sulla definizione degli obiettivi per il prossimo Sprint.",
+  abstract: "Verbale della riunione interna di Sprint Review dello Sprint 2. La sessione ha vertito sull'analisi critica dei blocchi emersi durante la stesura dell'Analisi dei Requisiti, determinando una ri-pianificazione delle attività e la definizione puntuale degli obiettivi per il prossimo ciclo di lavoro.",
   changelog: metadata.changelog,
 )[
-  In data *15 dicembre 2025*, alle ore *16:45*, si è svolta una riunione interna del gruppo NoTIP in modalità virtuale
-  sul server *Discord* ufficiale del team. La riunione si è conclusa alle ore *18:05*.
 
-  L'ordine del giorno, essendo la cerimonia di Sprint Review, prevede di discutere circa:
-  - Analisi attività previste e criticità bloccanti nel precedente sprint;
-  - Revisione strumenti di automatizzazione;
-  - Aggiornamento Norme di Progetto e definizione milestone interne;
-  - Criticità nell'Analisi dei Requisiti;
-  - Pianificazione del prossimo Sprint.
+  In data *15 dicembre 2025*, alle ore *16:45*, si è svolta una riunione interna del gruppo NoTIP in modalità telematica
+  sul server *Discord* ufficiale del team. L'incontro è terminato alle ore *18:05*.
+
+  L'ordine del giorno, in occasione della Sprint Review, prevede:
+  - Analisi delle attività svolte e gestione delle criticità bloccanti nel precedente Sprint;
+  - Revisione e approvazione degli strumenti di automatizzazione;
+  - Aggiornamento delle Norme di Progetto e formalizzazione delle milestone interne;
+  - Discussione approfondita sulle problematiche dell'Analisi dei Requisiti;
+  - Pianificazione operativa del prossimo Sprint.
+
 ][
 
   #base-report.report-point(
     discussion_point: [Sprint Review: criticità Analisi dei Requisiti e rinvio rilascio.],
     discussion: [
-      L'obiettivo dello sprint era raggiungere una versione semi-definitiva (secondo programma v0.4.0) dell'#link(
+      L'obiettivo primario dello Sprint era il consolidamento dell'#link(
         "https://notipswe.github.io/docs/12-rtb/docest/analisi_requisiti.pdf",
-      )[Analisi dei Requisiti].
+      )[Analisi dei Requisiti] in una versione stabile (v0.4.0).
 
-      Durante la lavorazione, è emerso che alcuni Casi d'Uso (UC), considerati in precedenza stabili e sul punto di
-      essere formalizzati, non possedevano il livello di profondità e dettaglio necessario. Questa mancanza ha impedito
-      la corretta definizione dei requisiti collegati, ritardando il proseguimento del documento. Durante la
-      discussione, il gruppo ha discusso, usando tempo di palestra, riguardo il livello di dettaglio richiesto,
-      raggiungendo un accordo finale.
+      In fase di stesura, è emerso che diversi Casi d'Uso (UC), inizialmente ritenuti maturi e stabili, mancavano del
+      necessario livello di dettaglio. Questa mancanza ha impedito la corretta derivazione dei requisiti, causando uno
+      ritardo nelle tempistiche di redazione previste. Il gruppo ha deciso di dedicare, durante la riunione, una piccola
+      sessione di confronto per definire univocamente il livello di granularità richiesto per la descrizione degli UC.
     ],
     decisions: [
-      Si decide di non rilasciare la v0.3.0 e la v0.4.0 programmate per questo sprint, rinviando i task al prossimo
-      ciclo, dandone priorità maggiore. È stato stabilito di chiedere un rapido chiarimento al docente Cardin, a seguito
-      della lezione di domani, per confermare la correttezza della nuova profondità di analisi ipotizzata.
+      Si deciso di rinviare i rilasci di v0.3.0 e v0.4.0, riallocando i relativi task nel prossimo Sprint con priorità
+      maggiore. È stato inoltre stabilito di richiedere un confronto mirato con il prof. Cardin al termine della
+      prossima lezione, al fine di validare l'adeguatezza della profondità di analisi ora ipotizzata.
     ],
     actions: (
       (
@@ -83,109 +84,113 @@
   #base-report.report-point(
     discussion_point: [Revisione tool di automatizzazione.],
     discussion: [
-      È stato presentato dall'Amministratore il lavoro svolto sui nuovi strumenti per automatizzare i processi di
+      È stato presentato dall'Amministratore il lavoro svolto sui nuovi strumenti per l'automazione di processi di
       verifica.
     ],
     decisions: [
-      Il gruppo approva l'integrazione dei nuovi tool nel flusso di lavoro per supportare le attività di verifica
-      continua.
+      Il gruppo approva l'integrazione dei nuovi strumenti nel workflow operativo, al fine di efficientare quanto più
+      possibile le attività di verifica.
     ],
   )
 
   #base-report.report-point(
     discussion_point: [Aggiornamento Piano di Progetto.],
     discussion: [
-      Il blocco riscontrato sull'Analisi dei Requisiti evidenzia la necessità di normare meglio la gestione degli
-      imprevisti e la definizione delle specifiche. È necessario aggiornare il Piano di Progetto per evitare il
-      ripetersi di simili situazioni di stallo.
+      Le difficoltà riscontrate nell'Analisi dei Requisiti hanno evidenziato l'esigenza di formalizzare con maggior
+      rigore la gestione dei rischi e la specifica dei requisiti. Si rende necessario un aggiornamento del Piano di
+      Progetto per mitigare il rischio di futuri blocchi operativi.
 
-      Oltre a ciò è stato discusso di come proseguire la stesura del documento.
+      Contestualmente, si è discusso l'approccio operativo per la prosecuzione del documento.
     ],
     decisions: [
-      A seguito della discussione, il gruppo ha deciso di procedere come segue:
-      - Aggiornare il consuntivo dello Sprint 2;
-      - Creazione dello Sprint 3 definendo una pianificazione dettagliata;
+      A seguito del confronto, si decide di:
+      - Finalizzare il consuntivo dello Sprint 2;
+      - Istituire lo Sprint 3 con una pianificazione dettagliata delle attività.
     ],
     actions: (
-      // da inserire nuovo task
+      (
+        desc: "Piano di Progetto v0.3.0 - Aggiornamento Sprint 2 e Aggiunta Sprint 3",
+        url: "https://notipswe.atlassian.net/browse/NT-195",
+      ),
     ),
   )
 
   #base-report.report-point(
     discussion_point: [Aggiornamento Piano di Qualifica.],
     discussion: [
-      Il gruppo ha discusso di quanto trattato fino a quel momento all'interno del Piano di Qualifica. In particolare è
-      stata evidenziata la necessità di andare a rivedere le metriche formalizzate finora, andando a valutare in modo
-      critico l'effettiva possibilità di utilizzo. In particolare il gruppo vuole quindi assicurarsi che le metriche
-      finora individuate rispondano ad esigenze concrete (es. utilità effettiva nelle Review) ed abbiamo un buon
-      rapporto Complessità di gestione/Valore aggiunto, evitando quindi rallentamenti inutili.
+      Dall'analisi dello stato attuale del Piano di Qualifica è emersa la necessità di una revisione critica delle
+      metriche finora adottate. Il gruppo intende verificare che le metriche selezionate offrano un reale valore
+      informativo (es. efficacia durante le Review) e presentino un trade-off favorevole tra costo di gestione e
+      utilità, eliminando quelle che costituiscono un mero onere burocratico, favorendo metriche efficaci ed efficienti
+      nel contesto del progetto.
     ],
     decisions: [
-      Il/I membro/i del gruppo che nel successivo periodo aggiorneranno il Piano di Qualifica procederanno nel seguente
-      ordine:
-      - Assicurarsi che le metriche siano valore aggiunto e non un fardello;
-      - Definire una possibile struttura del Cruscotto di Valutazione (Come strutturarlo nel documento? Che contenuti
-        inserire?);
-      - Approfondire i metodi di testing, iniziandone la stesura (opzionale).
+      I responsabili dell'aggiornamento del Piano di Qualifica procederanno secondo i seguenti step:
+      - Validazione delle metriche in base al valore aggiunto apportato al processo;
+      - Progettazione della struttura del Cruscotto di Valutazione (organizzazione e contenuti);
+      - Analisi preliminare e stesura dei metodi di testing (attività opzionale).
     ],
     actions: (
-      // da inserire nuovo task
+      (
+        desc: "Piano di Qualifica v0.3.0 - Palestra per sezione Testing",
+        url: "https://notipswe.atlassian.net/browse/NT-146",
+      ),
     ),
   )
 
   #base-report.report-point(
     discussion_point: [Aggiornamento Norme di Progetto.],
     discussion: [
-      Nel prossimo sprint sarà necessario andare ad aggiornare le Norme di Progetto in quanto, nello sprint appena
-      concluso, sono state evidenziate varie contenuti che non erano stati effettivamente normati.
+      L'esperienza maturata nell'ultimo periodo ha portato alla luce lacune normative che richiedono un aggiornamento
+      del documento Norme di Progetto nel prossimo Sprint.
     ],
     decisions: [
-      Il prossimo sprint si prevede di andare ad inserire le seguenti sezioni previste dalle Norme di Progetto:
-      - Definizione dei Processi Primari, andando a definire Fornitura e Sviluppo in modo completo (per quanto possibile
-        allo stato attuale) e Gestione di Configurazione
-      - Aggiunta della definizione delle Metriche, una volta confermate nel Piano di Qualifica.
+      Nello Sprint 3 verranno integrate le seguenti sezioni:
+      - Formalizzazione dei Processi Primari: definizione puntuale dei processi di Fornitura, Sviluppo (compatibilmente
+        con lo stato avanzamento lavori) e Gestione della Configurazione;
+      - Inserimento e definizione delle Metriche, subordinata alla loro approvazione nel Piano di Qualifica.
     ],
     actions: (
-      // da inserire nuovo task
+      (
+        desc: "Norme di Progetto - v0.6.0",
+        url: "https://notipswe.atlassian.net/browse/NT-67",
+      ),
     ),
   )
 
   #base-report.report-point(
     discussion_point: [Rotazione dei ruoli.],
     discussion: [
-      Il gruppo si è poi dedicato discutere l'assegnazione dei ruoli da assegnare ai membri del gruppo, cercando di
-      bilanciare il carico di lavoro a seconda degli impegni di ognuno nel prossimo periodo.
+      Si è proceduto alla definizione dei ruoli per il prossimo periodo, bilanciando il carico di lavoro in funzione
+      della disponibilità oraria dichiarata dai singoli membri.
     ],
     decisions: [
-      I ruoli sono stati assegnati rispettando i vincoli di disponibilità dati dal gruppo.
+      L'assegnazione dei ruoli è stata ufficializzata nel rispetto dei vincoli di disponibilità emersi.
     ],
-    actions: (
-      // Da definire
-    ),
   )
 
   #base-report.report-point(
-    discussion_point: [Definizione di Milestone intermedie],
+    discussion_point: [Definizione di Milestone intermedie.],
     discussion: [
-      È emersa la necessità di suddividere il periodo lavorativo che precede la RTB in milestone interne aggiuntive.
-      Rispetto alle uniche due scadenze imposte esternamente dal progetto, si è discusso di introdurre obiettivi a grana
-      più fine e con scadenze ravvicinate. Questo approccio mira a monitorare il progresso con maggiore precisione,
-      evitando che blocchi operativi (come quelli riscontrati sui casi d'uso).
+      Per gestire meglio il lavoro verso la RTB, è emersa la necessità di fissare delle scadenze interne intermedie.
+      Questo approccio permette di controllare meglio i progressi e di accorgersi subito di eventuali blocchi (come
+      quello avvenuto sui casi d'uso), evitando di accumulare ritardi.
     ],
     decisions: [
-      Si decide di formalizzare l'uso di milestone interne per scandire il progetto fino al raggiungimento della RTB.
-      Tali milestone dovranno avere obiettivi relativamente contenuti e verificabili nel breve periodo per garantire un
-      feedback rapido sulla qualità del lavoro.
+      Si decide di stabilire delle milestone interne che scandiscano il lavoro fino alla RTB. Queste scadenze dovranno
+      avere obiettivi chiari e verificabili nel breve periodo, per avere un riscontro frequente sulla qualità del lavoro
+      svolto.
     ],
-    actions: (
-      // da definire
-    ),
   )
+
 ][
+
+  #pagebreak()
+
   = Esiti e decisioni finali
   La Sprint Review è da considerarsi conclusa con successo, in quanto il gruppo è stato in grado di evidenziare vari
   punti su cui concentrarsi, in particolare la necessità di una revisione qualitativa dell'approccio all'analisi dei
-  requisiti. Il gruppo ha ripianificato le attività bloccate spostandole nel prossimo Sprint, con l'obiettivo
-  prioritario di validare la profondità dei casi d'uso con il proponente/docente e consolidare la documentazione
-  normativa e di pianificazione.
+  requisiti. Le attività rimaste in sospeso sono state ripianificate nel prossimo Sprint, ponendo come priorità assoluta
+  la validazione della profondità dei casi d'uso e l'aggiornamento della documentazione.
+
 ]
