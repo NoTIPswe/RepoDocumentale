@@ -225,7 +225,7 @@ def _check_doc_spelling(
                 [
                     "hunspell",
                     "-d",
-                    ",".join(configs.HUNSPELL_DICTS),
+                    ",".join(map(lambda d: str(hunspell_dir_path / d), configs.HUNSPELL_DICTS)),
                     "-p",
                     str(hunspell_dir_path / configs.HUNSPELL_IGNORE_FILE),
                     "-l",
