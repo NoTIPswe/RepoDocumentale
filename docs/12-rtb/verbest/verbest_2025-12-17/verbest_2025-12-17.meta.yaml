@@ -4,7 +4,7 @@ changelog:
     date: "2025-12-19"
     authors:
       - Francesco Marcon
-    verifier: TBD
+    verifier: Alessandro Mazzariol
     description: >
       Modifiche minori ed approvazione aziendale
   - version: "0.0.1"
