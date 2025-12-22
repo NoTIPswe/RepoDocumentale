@@ -18,12 +18,16 @@ Mobaraki
 Moones
 
 # tecnologie
+Atlassian
 Typst
 LaTeX
 repo
 GitHub
+github
 Jira
 SemVer
+BLE
+pdf
 SonarQube
 ACK
 JSON
@@ -35,8 +39,16 @@ MQTT
 # terminologia SWE
 IEC
 RTB
+rtb
 TBD
 changelog
+PDP
+RO
+RO1
+RP1
+RT1
+RT2
+C7
 BAC
 BLE
 C7
@@ -110,6 +122,10 @@ MVP
 possiede
 versionamento
 modularizzazione
+docest
+docint
+attività
+affinchè
 ciclomatica
 Prioritizzare
 manutenibile
@@ -130,3 +146,7 @@ Nell
 nell
 Dall
 dall
+D
+d
+L
+l
