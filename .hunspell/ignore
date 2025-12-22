@@ -3,6 +3,7 @@
 # Aziende
 NoTIP
 M31
+Atlassian
 
 # cognomi
 Solito
@@ -16,6 +17,7 @@ Pasquale
 Pirlog
 Mobaraki
 Moones
+McCabe
 
 # tecnologie
 Typst
@@ -31,6 +33,13 @@ JetStream
 KeyCloak
 NATS
 MQTT
+Acknowledgement
+Cowork
+Subfiles
+YAML
+yaml
+typ
+IoT
 
 # terminologia SWE
 IEC
@@ -120,6 +129,7 @@ sufficiente
 efficientare
 riallocando
 ripianificate
+yyyy
 
 # fix per apostrofi (vedi https://github.com/hunspell/hunspell/issues/641 ancora aperta)
 Dell
