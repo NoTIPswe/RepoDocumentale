@@ -39,6 +39,8 @@ VERSION 5.1.0 (13/10/2020)
 SET UTF-8
 TRY aioertnsclmdpgubzfvhàq'ACMSkBGPLxEyRTVòIODNwFéùèìjUZKHWJYQXÙÀÒÈÌÉ
 # Nota: non presenti nel dizionario: ÙÀÒÈÌÉ, vanno aggiunte alla TRY rigenerata
+WORDCHARS '
+
 
 MAP 5
 MAP aàAÀ
