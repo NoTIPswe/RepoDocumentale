@@ -1,19 +1,17 @@
 name: "PR Checks: Check Mergeability"
 
 on:
-  workflow_dispatch:
-
-permissions:
-  contents: read
+  pull_request_review:
+    types: [submitted]
 
 jobs:
   check-mergeability:
+    if: github.event.review.state == 'approved'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout PR branch
         uses: actions/checkout@v4
         with:
-          # We need fetch-depth: 0 to get all history for git diff
           fetch-depth: 0
 
       - name: Setup Environment
@@ -22,3 +20,11 @@ jobs:
       - name: Validate document changes with --merge-ready
         run: |
           notipdo check pr --merge-ready
+
+      - name: Add merge-ready label
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          gh pr edit "$PR_NUMBER" --add-label "merge-ready"
