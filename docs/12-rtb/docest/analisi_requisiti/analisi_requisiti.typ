@@ -1,4 +1,5 @@
 #import "../../00-templates/base_document.typ" as base-document
+#import "uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #let metadata = yaml(sys.inputs.meta-path)
 
@@ -12,10 +13,13 @@
 )[
   = Introduzione
   == Scopo del Documento
-  Il presente documento descrive i risultati del processo di analisi dei requisiti per il progetto "Sistema di Acquisizione Dati da Sensori BLE" proposto da M31 S.r.l. (capitolato C7). L'analisi è stata condotta attraverso lo studio approfondito del capitolato, il confronto con il proponente e la discussione tra gli analisti del gruppo.
+  Il presente documento descrive i risultati del processo di analisi dei requisiti per il progetto "Sistema di
+  Acquisizione Dati da Sensori BLE" proposto da M31 S.r.l. (capitolato C7). L'analisi è stata condotta attraverso lo
+  studio approfondito del capitolato, il confronto con il proponente e la discussione tra gli analisti del gruppo.
 
   == Scopo del Prodotto
-  Il sistema ha l'obiettivo di fornire un'infrastruttura cloud scalabile e sicura per la raccolta, gestione e distribuzione di dati provenienti da sensori Bluetooth Low Energy (BLE) distribuiti. \
+  Il sistema ha l'obiettivo di fornire un'infrastruttura cloud scalabile e sicura per la raccolta, gestione e
+  distribuzione di dati provenienti da sensori Bluetooth Low Energy (BLE) distribuiti. \
   Il sistema deve garantire:
   - Acquisizione dati da sensori eterogenei tramite gateway simulati
   - Gestione multi-tenant con segregazione completa dei dati
@@ -34,7 +38,7 @@
   === Riferimenti Informativi
   - T05 - Analisi dei Requisiti
   - Documentazione tecnologie di riferimento (Node.js, Nest.js, Kubernetes, MongoDB, PostgreSQL, NATS/Kafka)
-  
+
   = Descrizione del Prodotto
   == Obiettivi del Prodotto
   Il sistema si propone di risolvere le sfide dell'acquisizione e gestione dati in contesti IoT distribuiti, fornendo:
@@ -45,8 +49,10 @@
   5. *Usabilità*: interfaccia intuitiva per configurazione e monitoraggio
 
   == Architettura del Sistema
-  Il sistema è organizzato su tre livelli logici: Field Layer (Sensori BLE), Edge Layer (Gateway) e Cloud Layer (Piattaforma Centrale).\
-  Nel nostro caso si andrà a simulare i primi due livelli, attraverso un simulatore di Gateway, permettendo lo sviluppo ed il testing della piattaforma Cloud.
+  Il sistema è organizzato su tre livelli logici: Field Layer (Sensori BLE), Edge Layer (Gateway) e Cloud Layer
+  (Piattaforma Centrale).\
+  Nel nostro caso si andrà a simulare i primi due livelli, attraverso un simulatore di Gateway, permettendo lo sviluppo
+  ed il testing della piattaforma Cloud.
 
   === Field Layer (Sensori BLE)
   Dispositivi periferici non oggetto del progetto, utilizzati come riferimento per la simulazione. \
@@ -86,12 +92,12 @@
   - Competenze tecniche medio-alte
   - Gestisce gateway, sensori e utenti del proprio tenant
   - Configura alert e visualizza dati del tenant
-  
+
   === Utente del Tenant
   - Competenze tecniche base-medie
   - Consulta dati via dashboard
   - Non richiede conoscenze infrastrutturali
-  
+
   == Vincoli e Assunzioni
   === Vincoli Tecnologici
   - Backend: Node.js con Nest.js (TypeScript) o Go per componenti critici
@@ -119,87 +125,48 @@
   #table(
     columns: (1fr, 2fr),
     [Attore], [Descrizione],
-    [Amministratore Sistema], [(Super Admin) Personale di M31. Unico abilitato a creare nuovi Tenant e ad effettuare il provisioning fisico/logico dei Gateway.],
-    [Amministratore Tenant], [Il cliente di M31. Gestisce i propri utenti, configura i sensori, imposta gli alert e visualizza i dati del proprio Tenant.],
-    [Utente del Tenant], [Utente semplice del Tenant che può solo visualizzare dashboard e dati senza permessi di modifica.],
-    [Utente non Autenticato],[Utente generico non ancora autenticato dal sistema.],
-    [Client Esterno], [Software di terze parti sviluppato dal cliente che interroga le API del sistema per ottenere dati storici o stream real-time.],
+    [Amministratore Sistema],
+    [(Super Admin) Personale di M31. Unico abilitato a creare nuovi Tenant e ad effettuare il provisioning fisico/logico
+      dei Gateway.],
+
+    [Amministratore Tenant],
+    [Il cliente di M31. Gestisce i propri utenti, configura i sensori, imposta gli alert e visualizza i dati del proprio
+      Tenant.],
+
+    [Utente del Tenant],
+    [Utente semplice del Tenant che può solo visualizzare dashboard e dati senza permessi di modifica.],
+
+    [Utente non Autenticato], [Utente generico non ancora autenticato dal sistema.],
+    [Client Esterno],
+    [Software di terze parti sviluppato dal cliente che interroga le API del sistema per ottenere dati storici o stream
+      real-time.],
   )
 
   == Diagrammi e Descrizioni Casi d'Uso
 
-  #include "UCs/uc01.typ"
-  #include "UCs/uc02.typ"
-  #include "UCs/uc03.typ"
-  #include "UCs/uc04.typ"
-  #include "UCs/uc05.typ"
-  #include "UCs/uc06.typ"
-  #include "UCs/uc07.typ"
-  #include "UCs/uc08.typ"
-  #include "UCs/uc09.typ"
-  #include "UCs/uc10.typ"
-  #include "UCs/uc11.typ"
-  #include "UCs/uc12.typ"
-  #include "UCs/uc13.typ"
-  #include "UCs/uc14.typ"
-  #include "UCs/uc15.typ"
-  #include "UCs/uc16.typ"
-  #include "UCs/uc17.typ"
-  #include "UCs/uc18.typ"
-  #include "UCs/uc19.typ"
-  #include "UCs/uc20.typ"
-  #include "UCs/uc21.typ"
-  #include "UCs/uc22.typ"
-  #include "UCs/uc23.typ"
-  #include "UCs/uc24.typ"
-  #include "UCs/uc25.typ"
-  #include "UCs/uc26.typ"
-  #include "UCs/uc27.typ"
-  #include "UCs/uc28.typ"
-  #include "UCs/uc29.typ"
-  #include "UCs/uc30.typ"
-  #include "UCs/uc31.typ"
-  #include "UCs/uc32.typ"
-  #include "UCs/uc33.typ"
-  #include "UCs/uc34.typ"
-  #include "UCs/uc35.typ"
-  #include "UCs/uc36.typ"
-  #include "UCs/uc37.typ"
-  #include "UCs/uc38.typ"
-  #include "UCs/uc39.typ"
-  #include "UCs/uc40.typ"
-  #include "UCs/uc41.typ"
-  #include "UCs/uc42.typ"
-  #include "UCs/uc43.typ"
-  #include "UCs/uc44.typ"
-  #include "UCs/uc45.typ"
-  #include "UCs/uc46.typ"
-  #include "UCs/uc47.typ"
-  #include "UCs/uc48.typ"
-  #include "UCs/uc49.typ"
-  #include "UCs/uc50.typ"
-  #include "UCs/uc51.typ"
-  #include "UCs/uc52.typ"
-  
+  // Per informazioni sull'uso di `uc` vedi la documentazione allegata alla funzione
+
+  #include "uc/login.typ"
+  #include "uc/err_cred_errate.typ"
+  #include "uc/setup_totp.typ"
+
+  // Utilizzare queste "dichiarazioni" per far compilare gli use case che includono
+  #uc(system: CLOUD_SYS, id: "ins_otp")
+
   = Casi d'Uso - Parte B: Simulatore Gateway
   == Attori del Sistema
   == Digrammi e Descrizioni Casi d'Uso
   #table(
     columns: (1fr, 2fr),
     [Attore], [Descrizione],
-    [Sistema Cloud], [Piattaforma esterna (rispetto al simulatore) che riceve i dati inviati dal gateway simulato e trasmette comandi di configurazione remota.],
-    [Utente del Simulatore], [Operatore tecnico (Sviluppatore o Tester) che configura ed esegue il software di simulazione per generare traffico dati, testare il carico o iniettare anomalie.],
-  )
+    [Sistema Cloud],
+    [Piattaforma esterna (rispetto al simulatore) che riceve i dati inviati dal gateway simulato e trasmette comandi di
+      configurazione remota.],
 
-  #include "UCs/ucs01.typ"
-  #include "UCs/ucs02.typ"
-  #include "UCs/ucs03.typ"
-  #include "UCs/ucs04.typ"
-  #include "UCs/ucs05.typ"
-  #include "UCs/ucs06.typ"
-  #include "UCs/ucs07.typ"
-  #include "UCs/ucs08.typ"
-  #include "UCs/ucs09.typ"
+    [Utente del Simulatore],
+    [Operatore tecnico (Sviluppatore o Tester) che configura ed esegue il software di simulazione per generare traffico
+      dati, testare il carico o iniettare anomalie.],
+  )
 
   = Requisiti
   == Requisiti Funzionali

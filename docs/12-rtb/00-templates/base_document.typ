@@ -7,7 +7,7 @@
 #let margin-x = 2cm
 #let margin-bottom = 2cm
 
-#let font-size-base = 12pt
+#let font-size-base = 11pt
 #let font-size-title = 30pt
 
 #let front-matter(
@@ -91,6 +91,10 @@
   let formatNames(names) = {
     names.map(n => formatName(n)).sorted().join(",\n")
   }
+
+  show table.cell: set text(size: 10pt)
+  show table.cell.where(x: 0): set text(size: 12pt)
+  show table.cell.where(y: 0): set text(size: 12pt)
 
   table(
     columns: (auto, auto, auto, auto, 1fr),
