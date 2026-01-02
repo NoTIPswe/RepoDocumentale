@@ -1,0 +1,27 @@
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+
+#uc(
+  id: "ins_otp",
+  system: CLOUD_SYS,
+  title: "Inserimento OTP",
+  level: 1,
+  prim-actors: CA.non-authd-usr,
+  preconds: (
+    "Le credenziali primarie sono state validate",
+    "Il sistema è in attesa del codice di verifica temporaneo",
+  ),
+  postconds: (
+    "L'attore primario ha inserito un codice OTP",
+  ),
+  trigger: "Necessità di fornire il secondo fattore di autenticazione",
+  main-scen: (
+    (descr: "L'attore primario inserisce il codice numerico nel sistema", ep: "OtpErrato"),
+  ),
+  alt-scen: (
+    (
+      ep: "OtpErrato",
+      cond: "L'OTP inserito non viene riconosciuto come valido dal sistema",
+      uc: "err_otp_errato",
+    ),
+  ),
+)

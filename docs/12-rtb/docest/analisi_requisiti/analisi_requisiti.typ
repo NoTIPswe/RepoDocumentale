@@ -149,9 +149,24 @@
   #include "uc/login.typ"
   #include "uc/err_cred_errate.typ"
   #include "uc/setup_totp.typ"
+  #include "uc/login_2fa.typ"
+  #include "uc/ins_otp.typ"
+  #include "uc/err_otp_errato.typ"
+  #include "uc/recupero_password.typ"
+  #include "uc/err_account_inesistente.typ"
+  #include "uc/cambio_password.typ"
+  #include "uc/ins_conf_password.typ"
+  #include "uc/err_campi_diversi.typ"
+  #include "uc/err_password_invalida.typ"
+  #include "uc/modifica_mail_account.typ"
+  #include "uc/ins_conf_mail.typ"
+  #include "uc/err_mail_non_valida.typ"
+  #include "uc/err_mail_gia_registrata.typ"
+  #include "uc/modifica_password_account.typ"
+  #include "uc/logout.typ"
 
   // Utilizzare queste "dichiarazioni" per far compilare gli use case che includono
-  #uc(system: CLOUD_SYS, id: "ins_otp")
+  // #uc(system: CLOUD_SYS, id: "ins_otp")
 
   = Casi d'Uso - Parte B: Simulatore Gateway
   == Attori del Sistema

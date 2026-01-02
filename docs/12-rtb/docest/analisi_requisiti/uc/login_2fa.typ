@@ -1,0 +1,21 @@
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+
+#uc(
+  id: "login_2fa",
+  system: CLOUD_SYS,
+  title: "Login 2FA",
+  level: 1,
+  prim-actors: CA.non-authd-usr,
+  preconds: (
+    "L'attore primario ha fornito correttamente le credenziali primarie",
+    "Il tenant a cui l'account relativo alle credenziali afferisce richiede 2FA",
+  ),
+  postconds: (
+    "L'attore primario è autenticato e riconosciuto correttamente",
+  ),
+  trigger: "Policy opzionale di sicurezza che richiede un secondo fattore di autenticazione per completare l'accesso",
+  main-scen: (
+    (descr: "Il sistema richiede l'inserimento del codice OTP"),
+    (descr: "L'attore primario inserisce il codice", inc: "ins_otp"),
+  ),
+)
