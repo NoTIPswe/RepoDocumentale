@@ -7,14 +7,13 @@
   level: 1,
   prim-actors: CA.non-authd-usr,
   preconds: (
-    "L'attore primario si trova in una sezione dedicata all'autenticazione",
-    "L'attore primario ha fornito delle credenziali non corrette",
+    "L'attore sta eseguendo una procedura di autenticazione",
+    "L'attore ha fornito delle credenziali non corrette",
   ),
-  postconds: ("L'attore primario viene informato del mancato accesso ed invitato a tentare nuovamente",),
-  trigger: "L'attore primario ha inserito delle credenziali non valide",
+  postconds: ("Viene negato l'accesso al sistema", "L'attore viene informato dell'errore"),
+  trigger: "L'attore ha inserito delle credenziali non valide",
   main-scen: (
-    (descr: "L'attore primario ha inserito email e/o password e/o OTP errata/e"),
-    (descr: "L'attore primario viene informato del problema in fase di autenticazione"),
+    (descr: "L'attore viene informato del problema in fase di autenticazione"),
   ),
 )
 

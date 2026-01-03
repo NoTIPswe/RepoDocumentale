@@ -11,11 +11,12 @@
     "Il sistema è in attesa del codice di verifica temporaneo",
   ),
   postconds: (
-    "L'attore primario ha inserito un codice OTP",
+    "L'attore ha inserito un codice OTP valido",
   ),
   trigger: "Necessità di fornire il secondo fattore di autenticazione",
   main-scen: (
-    (descr: "L'attore primario inserisce il codice numerico nel sistema", ep: "OtpErrato"),
+    (descr: "L'attore inserisce il codice numerico nel sistema", ep: "OtpErrato"),
+    (descr: "Viene ", ep: "OtpErrato"),
   ),
   alt-scen: (
     (

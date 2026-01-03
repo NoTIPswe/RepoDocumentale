@@ -147,6 +147,8 @@
   // Per informazioni sull'uso di `uc` vedi la documentazione allegata alla funzione
 
   #include "uc/login.typ"
+  #include "uc/ins_mail.typ"
+  #include "uc/ins_pw.typ"
   #include "uc/err_cred_errate.typ"
   #include "uc/setup_totp.typ"
   #include "uc/login_2fa.typ"
@@ -164,9 +166,36 @@
   #include "uc/err_mail_gia_registrata.typ"
   #include "uc/modifica_password_account.typ"
   #include "uc/logout.typ"
+  #include "uc/lista_gateway.typ"
+  #include "uc/visualizzazione_singolo_gateway.typ"
+  #include "uc/visualizzazione_nome_gateway.typ"
+  #include "uc/visualizzazione_stato_gateway.typ"
+  #include "uc/visualizzazione_dettagli_gateway.typ"
+  #include "uc/visualizzazione_time_ultimo_invio.typ"
+  #include "uc/visualizzazione_lista_sensori.typ"
+  #include "uc/visualizzazione_singolo_sensore.typ"
+  #include "uc/visualizzazione_id_sensore.typ"
+  #include "uc/visualizzazione_time_ultimo_invio_sensore.typ"
+  #include "uc/visualizzazione_dati_stream.typ"
+  #include "uc/visualizzazione_tabellare_dati_stream.typ"
+  #include "uc/visualizzazione_grafico_dati_stream.typ"
+  #include "uc/filtraggio_gateway.typ"
+  #include "uc/filtraggio_singolo_gateway.typ"
+  #include "uc/filtraggio_sensore.typ"
+  #include "uc/filtraggio_singolo_sensore.typ"
+  #include "uc/filtraggio_intervallo_temporale.typ"
+  #include "uc/err_dati_non_disponibili.typ"
+  #include "uc/esportazione_dati.typ"
+  #include "uc/alert_gateway_irraggiungibile.typ"
+  #include "uc/alert_sensore_fuori_range.typ"
+  #include "uc/visualizzazione_valore_dato_registrato.typ"  
+  #include "uc/visualizzazione_range_accettato.typ"
+  #include "uc/visualizzazione_timestamp_dato_irregolare.typ"
+  #include "uc/visualizzazione_storico_alert.typ"
+  #include "uc/visualizzazione_singolo_alert.typ"
 
   // Utilizzare queste "dichiarazioni" per far compilare gli use case che includono
-  // #uc(system: CLOUD_SYS, id: "ins_otp")
+  // #uc(system: CLOUD_SYS, id: "visualizzazione_timestamp_dato_irregolare")
 
   = Casi d'Uso - Parte B: Simulatore Gateway
   == Attori del Sistema

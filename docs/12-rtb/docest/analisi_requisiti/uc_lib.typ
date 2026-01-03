@@ -19,6 +19,13 @@
   cloud: "Sistema Cloud",
 )
 
+// Render UC tag
+#let tag-uc(uc-id) = context {
+  let label = label("UC:" + uc-id)
+  let title = query(label).first().body
+  text(fill: blue)[#ref(label, supplement: "")] + " " + link(label)[#title]
+}
+
 #let uc-counter = counter("uc")
 #let ucs-counter = counter("ucs")
 
@@ -66,6 +73,7 @@
  * 2 -> UCx.y    (Figlio)
  * 3 -> UCx.y.z  (Nipote)
  *
+ * - gen-parent: (string) [Opzionale] L'ID del padre dello use case nella gerarchia di generalizzazioni
  * - prim-actors: (string | array) Uno o più attori primari (Usa costanti CA/SA).
  * - sec-actors: (string | array) [Opzionale] Uno o più attori secondari.
  * - preconds: (string | array) Lista delle precondizioni. Verranno renderizzate come elenco puntato.
@@ -91,6 +99,7 @@
   id: none,
   level: 1,
   title: "Untitled",
+  gen-parent: none,
   prim-actors: (),
   sec-actors: (),
   preconds: (),
@@ -105,105 +114,120 @@
     ucs-counter.step(level: level)
   }
 
-  context {
-    let target-counter = if system == CLOUD_SYS { uc-counter } else { ucs-counter }
-    let prefix = if system == CLOUD_SYS { "UC" } else { "UCS" }
+  block(breakable: false)[
+    #context {
+      let target-counter = if system == CLOUD_SYS { uc-counter } else { ucs-counter }
+      let prefix = if system == CLOUD_SYS { "UC" } else { "UCS" }
 
-    let all-nums = target-counter.get()
-    let current-nums = all-nums.slice(0, count: level)
-    let uc-num-str = prefix + current-nums.map(str).join(".")
+      let all-nums = target-counter.get()
+      let current-nums = all-nums.slice(0, count: level)
+      let uc-num-str = prefix + current-nums.map(str).join(".")
 
-    let anchor = if id != none { label("UC:" + id) } else { none }
+      let anchor = if id != none { label("UC:" + id) } else { none }
 
-    let inclusions = main-scen
-      .map(step => step.at("inc", default: none))
-      .filter(inc => inc != none)
-      .map(inc => ref(supplement: "", label("UC:" + inc)))
+      let inclusions = main-scen
+        .map(step => step.at("inc", default: none))
+        .filter(inc => inc != none)
+        .map(inc => tag-uc(inc))
 
-    let extensions = alt-scen.map(alt => alt.uc).map(alt => ref(supplement: "", label("UC:" + alt)))
+      let extensions = alt-scen.map(alt => alt.uc).map(alt => tag-uc(alt))
 
-    [
-      #heading(title, level: 2 + level, numbering: (..nums) => uc-num-str + ".") #anchor
-    ]
-
-    grid(
-      columns: (auto, 1fr),
-      column-gutter: 1em,
-      row-gutter: 0.8em,
-
-      [*Attori primari*],
-      [#if type(prim-actors) == array { prim-actors.join(", ") } else { prim-actors }],
-
-      ..if sec-actors != () and sec-actors != none {
-        (
-          [*Attori secondari*],
-          [#if type(sec-actors) == array { sec-actors.join(", ") } else { sec-actors }],
-        )
-      } else { () },
-
-      [*Precondizioni*],
-      [#if type(preconds) == array { list(..preconds) } else { list(preconds) } ],
-
-      [*Postcondizioni*],
-      [#if type(postconds) == array { list(..postconds) } else { list(postconds) } ],
-
-      ..if trigger != none {
-        (
-          [*Trigger*],
-          [#trigger],
-        )
-      },
-
-      [*Scenario Principale*],
       [
-        #if main-scen.len() > 0 {
-          enum(..main-scen.map(step => {
-            step.descr
-            if step.at("inc", default: none) != none {
-              linebreak()
-              "Include: " + ref(supplement: "", label("UC:" + step.inc))
-            }
-            if step.at("ep", default: none) != none {
-              linebreak()
-              "EP: " + step.ep
-            }
-          }))
-        } else {
-          emph("Nessun passo definito.")
-        }
-      ],
+        #heading(title, level: 2 + level, numbering: (..nums) => uc-num-str + ".") #anchor
+      ]
 
-      ..if alt-scen.len() > 0 {
-        (
-          [*Scenari alternativi*],
-          [
-            #list(..alt-scen.map(ext => [
-              Extension Point: #ext.ep \
-              Condition: #ext.cond \
-              Extension: #ref(supplement: "", label("UC:" + ext.uc))
-            ]))
-          ],
-        )
-      } else { () },
+      show table.cell.where(y: 0): text.with(weight: "thin")
+      set table(
+        fill: (x, y) => if calc.even(y) {
+          gray.lighten(80%)
+        },
+        stroke: 0.5pt + gray.darken(50%),
+      )
+      table(
+        columns: (auto, 1fr),
+        inset: 0.75em,
 
-      ..if inclusions.len() > 0 {
-        (
-          [*Inclusioni*],
-          [
-            #list(..inclusions)
-          ],
-        )
-      },
+        ..if gen-parent != none {
+          (
+            [*Generalizza*],
+            [#tag-uc(gen-parent)],
+          )
+        },
 
-      ..if extensions.len() > 0 {
-        (
-          [*Estensioni*],
-          [
-            #list(..extensions)
-          ],
-        )
-      },
-    )
-  }
+        [*Attori primari*],
+        [#if type(prim-actors) == array { prim-actors.join(", ") } else { prim-actors }],
+
+        ..if sec-actors != () and sec-actors != none {
+          (
+            [*Attori secondari*],
+            [#if type(sec-actors) == array { sec-actors.join(", ") } else { sec-actors }],
+          )
+        } else { () },
+
+        [*Precondizioni*],
+        [#if type(preconds) == array { list(..preconds) } else { list(preconds) } ],
+
+        [*Postcondizioni*],
+        [#if type(postconds) == array { list(..postconds) } else { list(postconds) } ],
+
+        ..if trigger != none {
+          (
+            [*Trigger*],
+            [#trigger],
+          )
+        },
+
+        [*Scenario Principale*],
+        [
+          #if main-scen.len() > 0 {
+            enum(..main-scen.map(step => {
+              step.descr
+              if step.at("inc", default: none) != none {
+                linebreak()
+                "Include: " + tag-uc(step.inc)
+              }
+              if step.at("ep", default: none) != none {
+                linebreak()
+                "EP: " + step.ep
+              }
+            }))
+          } else {
+            emph("Nessun passo definito.")
+          }
+        ],
+
+        ..if alt-scen.len() > 0 {
+          (
+            [*Scenari alternativi*],
+            [
+              #list(..alt-scen.map(ext => [
+                EP: #ext.ep \
+                Condition: #ext.cond \
+                UC: #tag-uc(ext.uc)
+              ]))
+            ],
+          )
+        } else { () },
+
+        ..if inclusions.len() > 0 {
+          (
+            [*Inclusioni*],
+            [
+              #list(..inclusions)
+            ],
+          )
+        },
+
+        ..if extensions.len() > 0 {
+          (
+            [*Estensioni*],
+            [
+              #list(..extensions)
+            ],
+          )
+        },
+      )
+    }
+  ]
 }
 
