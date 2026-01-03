@@ -193,9 +193,18 @@
   #include "uc/visualizzazione_timestamp_dato_irregolare.typ"
   #include "uc/visualizzazione_storico_alert.typ"
   #include "uc/visualizzazione_singolo_alert.typ"
+  #include "uc/visualizzazione_timestamp_emissione_alert.typ"
+  #include "uc/visualizzazione_tipo_alert.typ"
+  #include "uc/visualizzazione_hardware_interessato.typ"
+  #include "uc/visualizzazione_dettagli_singolo_alert.typ"
+  #include "uc/visualizzazione_dettagli_alert_gateway_irraggiungibile.typ"
+  #include "uc/visualizzazione_dettagli_alert_sensore_fuori_range.typ"
+  #include "uc/modifica_impostazioni_notifica_alert_email.typ"
+  #include "uc/modifica_nome_gateway.typ"
+  #include "uc/err_nome_gateway_duplicato.typ"
 
   // Utilizzare queste "dichiarazioni" per far compilare gli use case che includono
-  // #uc(system: CLOUD_SYS, id: "visualizzazione_timestamp_dato_irregolare")
+  // #uc(system: CLOUD_SYS, id: "err_nome_gateway_duplicato")
 
   = Casi d'Uso - Parte B: Simulatore Gateway
   == Attori del Sistema

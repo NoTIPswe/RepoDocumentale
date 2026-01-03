@@ -7,6 +7,7 @@
   level: 2,
   prim-actors: CA.tenant-usr,
   preconds: (
+    "L’attore primario si trova nella sezione dedicata agli alert",
     "L’attore primario sta visualizzando lo storico degli alert",
   ),
   postconds: (
