@@ -11,7 +11,7 @@
     "L’attore primario ha inserito una mail non valida secondo le politiche di sicurezza",
   ),
   postconds: (
-    "La mail inserita viene rifiutata",
+    "La password inserita viene rifiutata",
   ),
   trigger: "L’attore ha fornito una password non valida/abbastanza sicura",
   main-scen: (
