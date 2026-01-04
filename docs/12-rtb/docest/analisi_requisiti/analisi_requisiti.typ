@@ -1,7 +1,7 @@
 #import "../../00-templates/base_document.typ" as base-document
-#import "uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, tag-uc, uc
 
-#let metadata = yaml(sys.inputs.meta-path)
+#let metadata = yaml("analisi_requisiti.meta.yaml")
 
 #show figure.where(kind: table): set block(breakable: true)
 
@@ -188,7 +188,7 @@
   #include "uc/esportazione_dati.typ"
   #include "uc/alert_gateway_irraggiungibile.typ"
   #include "uc/alert_sensore_fuori_range.typ"
-  #include "uc/visualizzazione_valore_dato_registrato.typ"  
+  #include "uc/visualizzazione_valore_dato_registrato.typ"
   #include "uc/visualizzazione_range_accettato.typ"
   #include "uc/visualizzazione_timestamp_dato_irregolare.typ"
   #include "uc/visualizzazione_storico_alert.typ"
@@ -220,32 +220,364 @@
     [Operatore tecnico (Sviluppatore o Tester) che configura ed esegue il software di simulazione per generare traffico
       dati, testare il carico o iniettare anomalie.],
   )
-
+  \
+  \
   = Requisiti
+  Qui di seguito verranno definiti i requisiti che sono stati individuati dal Team e raggruppati nelle seguenti
+  categorie:
+  - Funzionali: sono i requisiti che esprimono funzionalità che il sistema deve eseguire, a seguito della richiesta o
+    dell'azione di un utente;
+
+  - Qualitativi: sono i requisiti che devono essere soddisfatti per accertare la qualità del prodotto realizzato dal
+    Team;
+
+  - Vincolo: sono i requisiti tecnologici necessari per il funzionamento del prodotto;
+
+  - Prestazione: sono i requisiti che definiscono i parametri di efficienza e reattività del sistema;
+
+  - Sicurezza: sono i requisiti che stabiliscono le misure di protezione necessarie per garantire l'integrità, la
+    riservatezza e la disponibilità dei dati del sistema;
+
   == Requisiti Funzionali
   #table(
-    columns: (auto, auto, 4fr, 1fr),
+    columns: (auto, auto, 2fr, 1fr),
     [Codice], [Importanza], [Descrizione], [Fonte],
+    [R-1-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere all'utente non autenticato di effettuare il login.],
+    [#tag-uc("login")],
+
+    [R-2-F],
+    [Obbligatorio],
+    [Il Sistema, durante il login, deve permettere all'utente non autenticato di inserire una mail per autenticarsi.],
+    [#tag-uc("ins_mail")],
+
+    [R-3-F],
+    [Obbligatorio],
+    [Il Sistema, durante il login, deve permettere all'utente non autenticato di inserire la password per
+      autenticarsi.],
+    [#tag-uc("ins_pw")],
+
+    [R-4-F],
+    [Obbligatorio],
+    [Il Sistema deve notificare l'utente non autenticato in seguito ad un tenativo di autenticazione non andato a buon
+      fine.],
+    [#tag-uc("err_cred_errate")],
+
+    [R-5-F],
+    [Desiderabile],
+    [Il Sistema deve permettere all'utente non autenticato di effettuare la configurazione iniziale del TOTP in modo da
+      garantire il login 2FA.],
+    [#tag-uc("setup_totp")],
+
+    [R-6-F],
+    [Desiderabile],
+    [Il Sistema deve permettere all'utente non autenticato di effettuare il login 2FA],
+    [#tag-uc("login_2fa")],
+
+    [R-7-F],
+    [Desiderabile],
+    [Il Sistema deve permettere all'utente di inserire il codice numerico nel Sistema],
+    [#tag-uc("ins_otp")],
+
+    [R-8-F],
+    [Desiderabile],
+    [Il Sistema deve notificare l'utente non autenticato in seguito ad un inserimento errato del codice OTP nel Sistema.
+    ],
+    [#tag-uc("err_otp_errato")],
+
+    [R-9-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere all'utente non autenticato di recuperare la password persa/dimenticata.],
+    [#tag-uc("recupero_password")],
+
+    [R-10-F],
+    [Obbligatorio],
+    [Il Sistema deve notificare all'utente non autenticato di aver inserito un email non associata ad un account nel
+      Sistema.],
+    [#tag-uc("err_account_inesistente")],
+
+    [R-11-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere all'utente non autenticato di cambiare la password nel Sistema.],
+    [#tag-uc("cambio_password")],
+
+    [R-12-F],
+    [Obbligatorio],
+    [Il Sistema, durante la procedura di cambio password, deve permettere all'utente non autenticato di inserire la
+      nuova password nel Sistema e confermarla.],
+    [#tag-uc("ins_conf_password")],
+
+    [R-13-F],
+    [Obbligatorio],
+    [Il Sistema deve notificare all'utente non autenticato di aver inserito un valore diverso da quello inserito
+      precedentemente.],
+    [#tag-uc("err_campi_diversi")],
+
+    [R-14-F],
+    [Obbligatorio],
+    [Il Sistema deve notificare all'utente non autenticato di aver inserito una password non valida.],
+    [#tag-uc("err_password_invalida")],
+
+    [R-15-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere all'Utente Autenticato di modificare la propria mail],
+    [#tag-uc("modifica_mail_account")],
+
+    [R-16-F],
+    [Obbligatorio],
+    [Il Sistema, durante la procedura di modifica mail dell'account, deve permettere all'Utente autenticato di inserire
+      e confermare la nuova mail.],
+    [#tag-uc("ins_conf_mail")],
+
+    [R-17-F],
+    [Obbligatorio],
+    [Il Sistema, in fase di registrazione di una mail, deve notificare all'Utente autenticato di aver inserito una mail
+      non valida.],
+    [#tag-uc("err_mail_non_valida")],
+
+    [R-18-F],
+    [Obbligatorio],
+    [Il Sistema deve notificare all'utente autenticato di aver inserito un email già associata ad un altro account],
+    [#tag-uc("err_mail_gia_registrata")],
+
+    [R-19-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere all'utente autenticato di poter modificare la password del proprio account.],
+    [#tag-uc("modifica_password_account")],
+
+    [R-20-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere all'utente autenticato di poter eseguire il logout dal Sistema.],
+    [#tag-uc("logout")],
+
+    [R-21-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant User di visualizzare i Gateway appartenenti al proprio Tenant.],
+    [#tag-uc("lista_gateway")],
+
+    [R-22-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant User di visualizzare un singolo Gateway nella lista.],
+    [#tag-uc("visualizzazione_singolo_gateway")],
+
+    [R-23-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant User di visualizzare il nome di un Gateway.],
+    [#tag-uc("visualizzazione_nome_gateway")],
+
+    [R-24-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant User di visualizzare lo stato di un Gateway.],
+    [#tag-uc("visualizzazione_stato_gateway")],
+
+    [R-25-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant User di visualizzare nome, stato, ultimo timestamp dati inviati ed i sensori
+      del Gateway.],
+    [#tag-uc("visualizzazione_dettagli_gateway")],
+
+    [R-26-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant User di visualizzare il timestamp dell'ultimo invio dati di un Gateway.],
+    [
+      /*Visualizzazione time ultimo invio (gateway) dà problemi e anche ultimo invio sensore perchè non riesce a differenziarli*/
+    ],
+
+    [R-27-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant User di visualizzare i sensori associati ad un gateway.],
+    [#tag-uc("visualizzazione_lista_sensori")],
+
+    [R-28-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant User di visualizzare un singolo sensore dalla lista dei sensori. Di tale
+      sensore interessa visualizzare l'ID e il timestamp dell'ultimo invio dati],
+    [#tag-uc("visualizzazione_singolo_sensore")],
+
+    [R-29-F],
+    [Obbligatorio],
+    [Dopo che il Tenant User ha selezionato un singolo sensore da visualizzare, il Sistema deve permettere di visionare
+      il timestamp dell'ultimo invio dati.],
+    [
+      /*tag-uc("visualizzazione_time_ultimo_invio_sensore")*/
+    ],
+
+    [R-30-F],
+    [Obbligatorio],
+    [Dopo che il Tenant User ha selezionato un singolo sensore da visualizzare, il Sistema deve permettere di visionare
+      l'ID associato al sensore.],
+    [#tag-uc("visualizzazione_id_sensore")],
+
+    [R-31-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant User di visualizzare i dati sullo Stream.],
+    [#tag-uc("visualizzazione_dati_stream")],
+
+    [R-32-F],
+    [Desiderabile],
+    [Il Sistema deve permettere al Tenant User di visualizzare lo Stream di dati in tabella.],
+    [#tag-uc("visualizzazione_tabellare_dati_stream")],
+
+    [R-33-F],
+    [Desiderabile],
+    [Il Sistema deve permettere al Tenant User di visualizzare lo Stream di dati su grafici.],
+    [#tag-uc("visualizzazione_grafico_dati_stream")],
+
+    [R-34-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant User di filtrare i dati per soli Gateway.],
+    [#tag-uc("filtraggio_gateway"), #tag-uc("filtraggio_singolo_gateway")],
+
+    [R-35-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant User di filtrare i dati per soli sensori.],
+    [#tag-uc("filtraggio_sensore"), #tag-uc("filtraggio_singolo_sensore")],
+
+    [R-36-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant User di visualizzare i dati relativi ad uno specifico intervallo temporale.],
+    [#tag-uc("filtraggio_intervallo_temporale")],
+
+    [R-37-F],
+    [Obbligatorio],
+    [Il Sistema deve notificare al Tenant User della non disponibilità dei dati (non temporaneamente disponibili o
+      inesistenti).],
+    [#tag-uc("err_dati_non_disponibili")],
+
+    [R-38-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant User di poter esportare i dati che sta visualizzando.],
+    [#tag-uc("esportazione_dati")],
+
+    [R-39-F],
+    [Obbligatorio],
+    [Il Sistema deve notificare il Tenant User dell'irraggiungibilità di un gateway. Inoltre deve anche permettere di
+      visualizzare il nome e il timestamp dell'ultimo invio dati di tale gateway.],
+    [#tag-uc("visualizzazione_nome_gateway"), #tag-uc(
+        "alert_gateway_irraggiungibile",
+      )/* forse bisognerebbe inserire anche il primo uc che da problemi con typst*/
+    ],
+
+    [R-40-F],
+    [Obbligatorio],
+    [Il Sistema deve notificare il Tenant User delle irregolarità presenti nelle misurazioni di un sensore. Inoltre deve
+      permettere di visualizzare l'ID, il valore del dato registrato, il range accettato e il timestamp di registrazione
+      del dato irregolare del sensore in questione.],
+    [#tag-uc("alert_sensore_fuori_range")],
+
+    [R-41-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al tenant User di visyalizzare il dato fuori range registrato.],
+    [#tag-uc("visualizzazione_valore_dato_registrato")],
+
+    [R-42-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant User di visualizzare il valore del range accettato dal Sistema.],
+    [#tag-uc("visualizzazione_range_accettato")],
+
+    [R-43-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant User di visualizzare il timestamp della registrazione del dato fuori range.],
+    [#tag-uc("visualizzazione_timestamp_dato_irregolare")],
+
+    [R-44-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant User di visualizzare la lista degli alert registrati.],
+    [#tag-uc("visualizzazione_storico_alert")],
+
+    [R-45-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant User di visualizzare i dettagli di un singolo alert.],
+    [#tag-uc("visualizzazione_singolo_alert")],
+
+    [R-46-F],
+    [Obbligatorio],
+    [Il Sistema deve mostrare il tipo di alert scelto dal Tenant User],
+    [#tag-uc("visualizzazione_tipo_alert")],
+
+    [R-47-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant User di visualizzare l'Hardware interessato dall'alert.],
+    [#tag-uc("visualizzazione_hardware_interessato")],
+
+    [R-48-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant User di visualizzare il timestamp dell'emissione dell'alert.],
+    [#tag-uc("visualizzazione_timestamp_emissione_alert")],
+
+    [R-49-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant User di visualizzare i dettagli di un alert selezionato.],
+    [#tag-uc("visualizzazione_dettagli_singolo_alert")],
+
+    [R-50-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant User di visualizzare i dettagli di un alert Gateway non raggiungibile.],
+    [#tag-uc("visualizzazione_dettagli_alert_gateway_irraggiungibile")],
+
+    [R-51-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant User di visualizzare i dettagli di un sensore fuori range.],
+    [#tag-uc("visualizzazione_dettagli_alert_sensore_fuori_range")],
+
+    [R-52-F],
+    [Desiderabile],
+    [Il Sistema deve permettere al Tenant User di attivare/disattivare la ricezione di alert via email.],
+    [#tag-uc("modifica_impostazioni_notifica_alert_email")],
+
+    [R-53-F],
+    [Desiderabile],
+    [Il Sistema deve permettere al Tenant Admin di modificare il nome di un Gateway che possiede.],
+    [#tag-uc("modifica_nome_gateway")],
+
+    [R-54-F],
+    [Obbligatorio],
+    [Il Sisteme deve notificare al Tenant Admin di aver inserito un nome già presente nella lista.],
+    [#tag-uc("err_nome_gateway_duplicato")],
   )
+
   == Requisiti Qualitativi
   #table(
     columns: (auto, auto, 4fr, 1fr),
     [Codice], [Importanza], [Descrizione], [Fonte],
+    [], [], [], [],
+    [], [], [], [],
+    [], [], [], [],
+    [], [], [], [],
+    [], [], [], [],
   )
   == Requisiti di Vincolo
   #table(
     columns: (auto, auto, 4fr, 1fr),
     [Codice], [Importanza], [Descrizione], [Fonte],
+    [], [], [], [],
+    [], [], [], [],
+    [], [], [], [],
+    [], [], [], [],
+    [], [], [], [],
+    [], [], [], [],
   )
   == Requisiti di Prestazione
   #table(
     columns: (auto, auto, 4fr, 1fr),
     [Codice], [Importanza], [Descrizione], [Fonte],
+    [], [], [], [],
+    [], [], [], [],
+    [], [], [], [],
+    [], [], [], [],
+    [], [], [], [],
   )
   == Requisiti di Sicurezza
   #table(
     columns: (auto, auto, 4fr, 1fr),
     [Codice], [Importanza], [Descrizione], [Fonte],
+    [R-1-S], [Obbligatoria], [], [],
+    [], [], [], [],
+    [], [], [], [],
+    [], [], [], [],
+    [], [], [], [],
+    [], [], [], [],
   )
   = Tracciamento Requisiti
   == Tracciamento Fonte - Requisiti
