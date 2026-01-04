@@ -16,7 +16,7 @@
   trigger: "Necessità di fornire il secondo fattore di autenticazione",
   main-scen: (
     (descr: "L'attore inserisce il codice numerico nel sistema", ep: "OtpErrato"),
-    (descr: "Viene ", ep: "OtpErrato"),
+    (descr: "L'attore viene informato della correttezza del codice inserito"),
   ),
   alt-scen: (
     (
