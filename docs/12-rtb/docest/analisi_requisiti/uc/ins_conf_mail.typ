@@ -20,7 +20,7 @@
     ),
     (
       descr: "L’attore primario conferma l’indirizzo mail reinserendolo nel campo apposito",
-      ep: "MailDiverse",
+      ep: "FallimentoValidazione",
     ),
   ),
   alt-scen: (
@@ -35,7 +35,7 @@
       uc: "err_mail_gia_registrata",
     ),
     (
-      ep: "MailDiverse",
+      ep: "FallimentoValidazione",
       cond: "L’attore primario inserisce due valori diversi nei due campi",
       uc: "err_campi_diversi",
     ),

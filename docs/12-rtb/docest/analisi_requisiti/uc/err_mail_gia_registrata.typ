@@ -3,17 +3,22 @@
 #uc(
   id: "err_mail_gia_registrata",
   system: CLOUD_SYS,
-  title: "Errore - Mail già registrata",
+  title: "Errore - Mail Duplicata",
   level: 1,
   prim-actors: (CA.authd-usr,),
   preconds: (
-    "L’attore primario inserisce una mail già registrata dove ne serve una “vergine”",
+    "L’attore ha inserito una mail già registrata all'interno del Tenant",
   ),
   postconds: (
-    "La mail inserita viene rifiutata",
+    "L’indirizzo mail non viene memorizzato",
   ),
-  trigger: "Inserimento di una mail già associata ad un account",
+  trigger: "Una mail fornita dall'attore in fase di creazione di un utente è già presente nel Tenant",
   main-scen: (
-    (descr: "L’attore primario viene notificato che l’email inserita è già associata ad un altro account"),
+    (
+      descr: "L’attore viene notificato che la mail è già presente all'interno del Tenant",
+    ),
+    (
+      descr: "L'attore viene invitato ad inserirne una nuova",
+    ),
   ),
 )
