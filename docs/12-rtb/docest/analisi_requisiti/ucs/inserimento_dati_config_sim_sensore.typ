@@ -17,15 +17,15 @@
   main-scen: (
     (
       descr: "L’attore principale seleziona il tipo di sensore",
-      inc: "selezione_tipo_sensore_simulato"
+      inc: "selezione_tipo_sensore_simulato",
     ),
     (
       descr: "L’attore inserisce il range di generazione dei dati",
-      inc: "inserimento_range_generazione_dati"
+      inc: "inserimento_range_generazione_dati",
     ),
     (
       descr: "L’attore seleziona l’algoritmo di generazione dei dati",
-      inc: "selezione_algoritmo_generazione_dati_sensore"
+      inc: "selezione_algoritmo_generazione_dati_sensore",
     ),
     // bookamrk - ancora non li sappiamo
   ),

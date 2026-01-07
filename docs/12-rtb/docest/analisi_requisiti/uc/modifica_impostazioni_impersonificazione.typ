@@ -14,7 +14,9 @@
   ),
   trigger: "L’attore vuole modificare le impostazioni di impersonificazione relative al Tenant",
   main-scen: (
-    (descr: "L’attore abilita o disabilita la facoltà dell'Amministratore di Sistema di accedere come (“impersonare”) un utente del tenant"),
+    (
+      descr: "L’attore abilita o disabilita la facoltà dell'Amministratore di Sistema di accedere come (“impersonare”) un utente del tenant",
+    ),
     (descr: "Le modifiche vengono salvate"),
     (descr: "L’Attore viene notificato del buon esito dell’operazione"),
   ),

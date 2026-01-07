@@ -18,7 +18,7 @@
   main-scen: (
     (
       descr: "L’attore inserisce i dati relativi alla configurazione della simulazione del sensore",
-      inc: "inserimento_dati_config_sim_sensore"
+      inc: "inserimento_dati_config_sim_sensore",
     ),
     (descr: "L’attore principale conferma la creazione del sensore"),
     (descr: "L’attore viene informato del successo della creazione del sensore simulato"),

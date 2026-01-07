@@ -16,19 +16,19 @@
   main-scen: (
     (
       descr: "L’attore visualizza l’identificativo del sensore",
-      inc: "visualizzazione_identificativo_sensore"
+      inc: "visualizzazione_identificativo_sensore",
     ),
     (
       descr: "L’attore visualizza il tipo di sensore",
-      inc: "visualizzazione_tipo_sensore_simulato"
+      inc: "visualizzazione_tipo_sensore_simulato",
     ),
     (
       descr: "L’attore visualizza il range di generazione dei dati",
-      inc: "visualizzazione_range_generazione_dati"
+      inc: "visualizzazione_range_generazione_dati",
     ),
     (
       descr: "L’attore visualizza l’algoritmo di generazione dei dati",
-      inc: "visualizzazione_algoritmo_generazione_dati"
+      inc: "visualizzazione_algoritmo_generazione_dati",
     ),
     // bookmark - ancora non li sappiamo tutti
   ),

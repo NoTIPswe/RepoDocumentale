@@ -17,11 +17,11 @@
   main-scen: (
     (
       descr: "L’attore visualizza la data di creazione del Gateway simulato",
-      inc: "visualizzazione_data_creazione_simulazione"
+      inc: "visualizzazione_data_creazione_simulazione",
     ),
     (
       descr: "L’attore visualizza l’ID di fabbrica del Gateway simulato",
-      inc: "visualizzazione_id_fabbrica_simulazione"
+      inc: "visualizzazione_id_fabbrica_simulazione",
     ),
   ),
 )

@@ -34,6 +34,6 @@
       descr: "L’attore visualizza l’intervallo minimo di sospensione pre-eliminazione",
       inc: "visualizzazione_intervallo_sospensione_tenant",
     ),
-    // bookmark - ulteriori campi 
+    // bookmark - ulteriori campi
   ),
 )

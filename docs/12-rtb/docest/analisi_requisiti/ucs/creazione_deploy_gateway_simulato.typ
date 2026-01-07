@@ -17,19 +17,19 @@
     (descr: "L’attore avvia la procedura di creazione"),
     (
       descr: "L’attore inserisce i dati relativi alla configurazione della simulazione",
-      inc: "inserimento_dati_config_sim_gateway"
+      inc: "inserimento_dati_config_sim_gateway",
     ),
     (descr: "L’attore conferma l’operazione di creazione"),
     (
       descr: "L’attore viene informato del successo dell’operazione",
-      ep: "ErroreDeploy"
+      ep: "ErroreDeploy",
     ),
   ),
   alt-scen: (
     (
       ep: "ErroreDeploy",
       cond: "Errore di sistema nella creazione dell’istanza",
-      uc: "err_deploy_gateway_simulato"
+      uc: "err_deploy_gateway_simulato",
     ),
   ),
 )

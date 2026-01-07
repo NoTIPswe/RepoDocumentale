@@ -1,7 +1,7 @@
 #import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
-  id: "onboarding_gateway",   // bookmark - use case o diagramma di attività
+  id: "onboarding_gateway", // bookmark - use case o diagramma di attività
   system: CLOUD_SYS,
   title: "Provisioning Gateway - Onboarding",
   level: 1,
@@ -22,7 +22,9 @@
       descr: "Il Gateway contatta il sistema attraverso un canale di comunicazione predefinito allegando le proprie credenziali di fabbrica",
       ep: "CredenzialiNonRiconosciute",
     ),
-    (descr: "Il Gateway riceve un pacchetto di provisioning contenente le informazioni necessarie alla comunicazione autenticata e sicura"),
+    (
+      descr: "Il Gateway riceve un pacchetto di provisioning contenente le informazioni necessarie alla comunicazione autenticata e sicura",
+    ),
   ),
   alt-scen: (
     (

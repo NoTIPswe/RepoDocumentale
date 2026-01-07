@@ -140,6 +140,11 @@
     [Client Esterno],
     [Software di terze parti sviluppato dal cliente che interroga le API del sistema per ottenere dati storici o stream
       real-time.],
+    [Gateway non Provisionato],
+    [Dispositivo hardware fisico non ancora configurato nel sistema; non è associato ad alcun Tenant e non può ancora trasmettere dati validi.],
+
+    [Gateway Provisionato],
+    [Dispositivo hardware correttamente configurato, associato a un Tenant specifico e abilitato alla ricezione e all'invio dei dati dai sensori verso la piattaforma.]
   )
 
   == Diagrammi e Descrizioni Casi d'Uso
@@ -303,7 +308,7 @@
   #include "ucs/visualizzazione_singolo_gateway_simulato.typ"
 
   #uc(system: SIM_SYS, id: "visualizzazione_data_creazione_simulazione") // level 3
-  
+
   #include "ucs/visualizzazione_id_fabbrica_simulazione.typ"
   #include "ucs/visualizzazione_configurazione_simulazione_gateway.typ"
   #include "ucs/visualizzazione_chiave_fabbrica_simulazione.typ"
@@ -319,8 +324,8 @@
   #include "ucs/eliminazione_gateway_simulato.typ"
   #include "ucs/eliminazione_sensore_simulato.typ"
   #include "ucs/creazione_deploy_gateway_simulato.typ"
-  
-  #uc(system: SIM_SYS, id: "inserimento_dati_config_sim_gateway")   // bookmark - da capire quali saranno effettivamente 
+
+  #uc(system: SIM_SYS, id: "inserimento_dati_config_sim_gateway") // bookmark - da capire quali saranno effettivamente
 
   #include "ucs/err_deploy_gateway_simulato.typ"
   #include "ucs/creazione_sensore_gateway_simulato.typ"
@@ -328,8 +333,12 @@
   #include "ucs/selezione_tipo_sensore_simulato.typ"
   #include "ucs/selezione_algoritmo_generazione_dati_sensore.typ"
   #include "ucs/inserimento_range_generazione_dati.typ"
-  
+  #include "ucs/creazione_gateway_multipli_default.typ"
+  #include "ucs/comando_anomalia_degrado_rete.typ"
+  #include "ucs/comando_anomalia_disconnessione_temporanea.typ"
+  #include "ucs/comando_anomalia_outliers_misurazioni.typ"
 
+  // mancano quelli a fine doc google che sono da riadattare
 
   == Attori del Sistema
   == Digrammi e Descrizioni Casi d'Uso

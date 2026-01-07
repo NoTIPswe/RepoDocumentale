@@ -17,11 +17,11 @@
   main-scen: (
     (
       descr: "L’attore visualizza l’identificativo del sensore",
-      inc: "visualizzazione_identificativo_sensore"
+      inc: "visualizzazione_identificativo_sensore",
     ),
     (
       descr: "L’attore visualizza il tipo di sensore",
-      inc: "visualizzazione_tipo_sensore_simulato"
+      inc: "visualizzazione_tipo_sensore_simulato",
     ),
   ),
 )

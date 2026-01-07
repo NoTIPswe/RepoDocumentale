@@ -16,11 +16,11 @@
   main-scen: (
     (
       descr: "L’attore visualizza l’ID di fabbrica del Gateway simulato",
-      inc: "visualizzazione_id_fabbrica_simulazione"
+      inc: "visualizzazione_id_fabbrica_simulazione",
     ),
     (
       descr: "L’attore visualizza la chiave di fabbrica del Gateway simulato",
-      inc: "visualizzazione_chiave_fabbrica_simulazione"
+      inc: "visualizzazione_chiave_fabbrica_simulazione",
     ),
     // bookmark - non sappiamo ancora cosa altro visualizzare
   ),

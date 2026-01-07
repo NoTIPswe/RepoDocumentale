@@ -27,6 +27,8 @@
       inc: "inserimento_credenziali_fabbrica_gateway",
     ),
     (descr: "L’attore conferma l’operazione"),
-    (descr: "L’attore viene notificato dell’avvenuta connessione del gateway non appena il dispositivo contatta il Cloud e riceve le credenziali"),
+    (
+      descr: "L’attore viene notificato dell’avvenuta connessione del gateway non appena il dispositivo contatta il Cloud e riceve le credenziali",
+    ),
   ),
 )

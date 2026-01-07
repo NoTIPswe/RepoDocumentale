@@ -22,7 +22,7 @@
 
 // Secondary actors
 #let CSA = (
-  auth-server: "Auth Server"
+  auth-server: "Auth Server",
 )
 
 // Render UC tag

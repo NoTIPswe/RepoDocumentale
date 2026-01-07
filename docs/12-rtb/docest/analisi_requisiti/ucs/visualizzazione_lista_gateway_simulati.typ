@@ -16,7 +16,7 @@
   main-scen: (
     (
       descr: "L’attore visualizza la lista dei gateway simulati",
-      inc: "visualizzazione_singolo_gateway_simulato"
+      inc: "visualizzazione_singolo_gateway_simulato",
     ),
   ),
 )

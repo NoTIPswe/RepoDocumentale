@@ -16,7 +16,7 @@
   main-scen: (
     (
       descr: "L’attore visualizza la lista dei sensori simulati relativi al gateway selezionato",
-      inc: "visualizzazione_singolo_sensore_simulato"
+      inc: "visualizzazione_singolo_sensore_simulato",
     ),
   ),
 )

@@ -11,7 +11,7 @@
   ),
   postconds: (
     "I log di audit del Tenant selezionato sono visualizzati correttamente",
-    "I log visualizzati non includono dati sensibili",  // bookmark - da vedere se mantenere
+    "I log visualizzati non includono dati sensibili", // bookmark - da vedere se mantenere
   ),
   trigger: "Si desidera consultare i log di audit relativi ad un Tenant",
   main-scen: (
