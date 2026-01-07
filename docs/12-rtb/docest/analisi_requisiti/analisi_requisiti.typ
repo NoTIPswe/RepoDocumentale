@@ -274,11 +274,33 @@
   #include "uc/inserimento_anagrafica_tenant.typ"
   #include "uc/err_interno_creazione_tenant.typ"
   #include "uc/selezione_tenant.typ"
+  #include "uc/sospensione_tenant.typ"
+  #include "uc/riattivazione_tenant.typ"
+  #include "uc/eliminazione_tenant.typ"
+  #include "uc/conferma_eliminazione_tenant.typ"
+  #include "uc/impersonificazione_utente_tenant.typ"
+  #include "uc/registrazione_associazione_gateway.typ"
+  #include "uc/inserimento_credenziali_fabbrica_gateway.typ"
+  #include "uc/creazione_utente_amministratore_tenant.typ"
+  #include "uc/visualizzazione_log_audit_sysadmin.typ"
+  #include "uc/esportazione_log_audit_tenant_sysadmin.typ"
+  #include "uc/monitoraggio_performance_sistema.typ"
+  #include "uc/monitoraggio_latenza.typ"
+  #include "uc/monitoraggio_volumi_traffico.typ"
+  #include "uc/monitoraggio_storage.typ"
+  #include "uc/onboarding_gateway.typ"
+  #include "uc/err_auth_gateway_fabbrica.typ"
+  #include "uc/invio_dati_crittografati_cloud.typ"
+  #include "uc/instaurazione_connessione_sicura.typ"
+  #include "uc/err_autenticazione_gateway.typ"
 
   // Utilizzare queste "dichiarazioni" per far compilare gli use case che includono
   #uc(system: CLOUD_SYS, id: "err_range_invalido")
 
   = Casi d'Uso - Parte B: Simulatore Gateway
+
+
+
   == Attori del Sistema
   == Digrammi e Descrizioni Casi d'Uso
   #table(
