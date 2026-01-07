@@ -1,7 +1,7 @@
 #import "../uc_lib.typ": CA, CLOUD_SYS, uc
 
 #uc(
-  id: "ins_conf_mail",
+  id: "inserimento_conferma_mail",
   system: CLOUD_SYS,
   title: "Inserimento e Conferma Mail",
   level: 1,

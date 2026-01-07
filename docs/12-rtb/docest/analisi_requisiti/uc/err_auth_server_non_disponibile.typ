@@ -1,0 +1,22 @@
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, CSA
+
+#uc(
+  id: "err_auth_server_non_disponibile",
+  system: CLOUD_SYS,
+  title: "Auth Server non disponibile",
+  level: 1,
+  prim-actors: CA.api-client,
+  sec-actors: CSA.auth-server,
+  preconds: (
+    "L’attore primario ha richiesto l’autenticazione al sistema",
+    "L’Auth Server non è raggiungibile o risponde con un errore interno",
+  ),
+  postconds: (
+    "L’autenticazione non va a buon fine e all’attore primario viene notificato un errore interno",
+  ),
+  trigger: "L’Auth Server non è disponibile a seguito di un errore interno o problemi di rete",
+  main-scen: (
+    (descr: "L’Auth Server non è raggiungibile o risponde al sistema con un errore interno"),
+    (descr: "L’attore primario riceve un messaggio di errore interno dal sistema"),
+  ),
+)

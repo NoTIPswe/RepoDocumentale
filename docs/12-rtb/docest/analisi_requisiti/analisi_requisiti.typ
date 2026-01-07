@@ -235,12 +235,28 @@
   #include "uc/visualizzazione_singole_api.typ"
   #include "uc/visualizzazione_nome_descrittivo_api.typ"
   #include "uc/visualizzazione_timestamp_api.typ"
+  #include "uc/eliminazione_credenziali_api.typ"
+  #include "uc/selezione_credenziali_api.typ"
+  #include "uc/modifica_impostazioni_2fa.typ"
+  #include "uc/visualizzazione_log_audit_tenant.typ"
+  #include "uc/visualizzazione_singolo_log_audit.typ"
+  #include "uc/visualizzazione_timestamp_log_entry.typ"
+  #include "uc/visualizzazione_utente_log_entry.typ"
+  #include "uc/visualizzazione_operazione_log_entry.typ"
+  #include "uc/esportazione_log_audit_tenant.typ"
+  #include "uc/selezione_intervallo_temporale.typ"
+  #include "uc/download_log_audit_esportati.typ"
+  #include "uc/modifica_impostazioni_impersonificazione.typ"
+  #include "uc/aggiornamento_firmware_gateway.typ"
+  #include "uc/selezione_firmware.typ"
+  #include "uc/selezione_gateway.typ"
+  #include "uc/modifica_frequenza_invio_gateway.typ"
+  #include "uc/autenticazione_client_api.typ"
+  #include "uc/err_dati_autenticazione_invalidi.typ"
+  #include "uc/err_auth_server_non_disponibile.typ"
 
   // Utilizzare queste "dichiarazioni" per far compilare gli use case che includono
-  #uc(system: CLOUD_SYS, id: "selezione_gateway")
   #uc(system: CLOUD_SYS, id: "err_range_invalido")
-  #uc(system: CLOUD_SYS, id: "inserimento_conferma_mail")
-  #uc(system: CLOUD_SYS, id: "inserimento_conferma_password")
 
   = Casi d'Uso - Parte B: Simulatore Gateway
   == Attori del Sistema
@@ -342,7 +358,7 @@
     [Obbligatorio],
     [Il Sistema, durante la procedura di cambio password, deve permettere all'utente non autenticato di inserire la
       nuova password nel Sistema e confermarla.],
-    [#tag-uc("ins_conf_password")],
+    [#tag-uc("inserimento_conferma_password")],
 
     [R-13-F],
     [Obbligatorio],
@@ -364,7 +380,7 @@
     [Obbligatorio],
     [Il Sistema, durante la procedura di modifica mail dell'account, deve permettere all'Utente autenticato di inserire
       e confermare la nuova mail.],
-    [#tag-uc("ins_conf_mail")],
+    [#tag-uc("inserimento_conferma_mail")],
 
     [R-17-F],
     [Obbligatorio],

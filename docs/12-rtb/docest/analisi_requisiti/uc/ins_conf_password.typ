@@ -1,7 +1,7 @@
 #import "../uc_lib.typ": CA, CLOUD_SYS, uc
 
 #uc(
-  id: "ins_conf_password",
+  id: "inserimento_conferma_password",
   system: CLOUD_SYS,
   title: "Inserimento e Conferma Password",
   level: 1,

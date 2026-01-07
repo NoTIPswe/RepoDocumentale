@@ -25,11 +25,11 @@
     ),
     (
       descr: "L’attore inserisce e conferma la mail dell’utente",
-      inc: "ins_conf_password",
+      inc: "inserimento_conferma_password",
     ),
     (
       descr: "L’attore inserisce e conferma la password dell’utente",
-      inc: "ins_conf_password",
+      inc: "inserimento_conferma_password",
     ),
     (descr: "L’attore salva le modifiche e crea l’utente"),
   ),

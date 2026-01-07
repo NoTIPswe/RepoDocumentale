@@ -20,6 +20,11 @@
   cloud: "Sistema Cloud",
 )
 
+// Secondary actors
+#let CSA = (
+  auth-server: "Auth Server"
+)
+
 // Render UC tag
 #let tag-uc(uc-id) = context {
   let label = label("UC:" + uc-id)

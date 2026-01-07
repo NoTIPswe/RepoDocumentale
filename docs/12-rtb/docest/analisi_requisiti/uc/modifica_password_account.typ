@@ -16,7 +16,7 @@
   main-scen: (
     (
       descr: "L’attore primario inserisce la nuova password",
-      inc: "ins_conf_password",
+      inc: "inserimento_conferma_password",
     ),
     (
       descr: "L’attore primario conferma l’operazione di cambio password",
