@@ -607,6 +607,361 @@
     [Obbligatorio],
     [Il Sisteme deve notificare al Tenant Admin di aver inserito un nome già presente nella lista.],
     [#tag-uc("err_nome_gateway_duplicato")],
+
+    [R-55-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin di modificare lo stato del Gateway.],
+    [#tag-uc("modifica_stato_gateway")],
+
+    [R-56-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di selezionare uno o più Gateway tramite
+      il loro ID.],
+    [#tag-uc("selezione_gateway")],
+
+    [R-57-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin di selezionare lo stato desiderato per i Gateway che ha selezionato.],
+    [#tag-uc("selezione_stato_gateway")],
+
+    [R-58-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al tenant admin di cambiare il range dell'alert per un determinato sensore.],
+    [#tag-uc("modifica_range_sensore")],
+
+    [R-59-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin di selezionare uno specifico sensore.],
+    [#tag-uc("selezione_specifico_sensore")],
+
+    [R-60-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin di selezionare un range per le misurazioni, inserendo un valore minimo e
+      uno di massimo],
+    [#tag-uc("selezione_range_numerico")],
+
+    [R-61-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin di inserire un valore numerico quando richiesto.],
+    [#tag-uc("inserimento_valore_numerico")],
+
+    [R-62-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin di modificare il range dell'alert di default per tutti i sensori di un
+      determinato tipo.],
+    [#tag-uc("modifica_range_default_tipo_sensore")],
+
+    [R-63-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al tenant Admin di selezionare un determinato tipo di sensore.],
+    [#tag-uc("selezione_tipo_sensore")],
+
+    [R-64-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant admin di cambiare il timeout che determina se un Gateway è irraggiungibile],
+    [#tag-uc("modifica_intervallo_alert_gateway")],
+
+    [R-65-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati del Tenant di cui è amministratore],
+    [#tag-uc("visualizzazione_costi_stimati")],
+
+    [R-66-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati relativi allo storage del Gateway
+      selezionato],
+    [#tag-uc("visualizzazione_costi_storage")],
+
+    [R-67-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati dei Gateway associati al Tenant
+      raggruppati in base alla banda.],
+    [#tag-uc("visualizzazione_costi_banda")],
+
+    [R-68-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin di visualizzare gli Utenti associati al proprio Tenant.],
+    [#tag-uc("visualizzazione_lista_utenti_tenant")],
+
+    [R-69-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin di visualizzare un singolo utente del Tenant. Le informazioni che devono
+      essere visualizzate sono il ruolo dell'Utente, il nome dell'Utente, la mail dell'Utente e l'ultimo accesso
+      dell'utente.],
+    [#tag-uc("visualizzazione_singolo_utente_tenant"), #tag-uc("visualizzazione_ruolo_utente")#tag-uc(
+        "visualizzazione_nome_utente",
+      ), #tag-uc("visualizzazione_mail_utente"), #tag-uc("visualizzazione_ultimo_accesso_utente")],
+
+    [R-70-F],
+
+    [Obbligatorio],
+
+    [Il Sistema deve permettere al Tenant Admin di creare un nuovo Utente del Tenant.],
+
+    [#tag-uc("creazione_utente_tenant")],
+
+    [R-71-F],
+
+    [Obbligatorio],
+
+    [Il Sistema deve permettere al Tenant Admin di assegnare un nome all'Utente Tenant creato.],
+
+    [#tag-uc("inserimento_nome_utente")],
+
+    [R-72-F],
+
+    [Obbligatoria],
+
+    [Il Sistema deve permettere al Tenant Admin di selezionare un Utente del Tenant.],
+
+    [#tag-uc("selezione_utente_tenant")],
+
+    [R-73-F],
+
+    [Obbligatoria],
+
+    [Il Sistema deve permettere al Tenant Admin di modificare un permesso dell'Utente Tenant.],
+
+    [#tag-uc("selezione_permessi_utente"), #tag-uc("modifica_permessi_utente")],
+
+    [R-74-F],
+
+    [Obbligatorio],
+
+    [Il Sistema deve permettere al Tenant Admin di modificare l'email di un singolo Utente del Tenant.],
+
+    [#tag-uc("modifica_mail_utente")],
+
+    [R-75-F], [Obbligatorio],
+
+    [Il Sistema deve permettere al Tenant Admin di modificare la password di un Utente Tenant.],
+
+    [#tag-uc("modifica_password_utente")],
+
+    [R-76-F],
+
+    [Obbligatorio],
+
+    [Il Sistema deve permettere al Tenant Admin di eliminare uno o più Utenti di un Tenant.],
+
+    [#tag-uc("eliminazione_utenti_tenant")],
+
+    [R-77-F],
+
+    [Obbligatorio],
+
+    [Il Sistema deve permettere al Tenant Admin di selezionare più Utenti Tenant contemporaneamente],
+    [#tag-uc("selezione_lista_utenti")],
+
+    [R-78-F],
+
+    [Obbligatorio],
+
+    [Il Sistema deve permettere al Tenant Admin di abilitare l'accesso ai dati del Tenant da un Sistema esterno creando
+      delle credenziali.],
+
+    [#tag-uc("creazione_credenziali_api"), #tag-uc("inserimento_nome_client_api")],
+
+    [R-79-F],
+
+    [Obbligatorio],
+
+    [Il Sistema deve permettere al Tenant Admin di visualizzare il Client ID di alcune credenziali API.],
+
+    [#tag-uc("visualizzazione_client_id")],
+
+    [R-80-F],
+
+    [Obbligatorio],
+
+    [Il Sistema a termine della creazione delle credenziali API deve mostrare al Tenant Admin la Client Secret.],
+
+    [#tag-uc("visualizzazione_secret_api")],
+
+    [R-81-F],
+
+    [Obbligatorio],
+
+    [Il Sistema deve permettere al Tenant Admin di visualizzare la lista delle credenziali API relative ad un Tenant.],
+    [#tag-uc("visualizzazione_lista_api")],
+
+    [R-82-F],
+
+    [Obbligatorio],
+
+    [Il Sistema deve permettere al Tenant Admin di visualizzare delle specifiche credenziali API di un Tenant.],
+
+    [#tag-uc("visualizzazione_singole_api")],
+
+    [R-83-F],
+
+    [Obbligatorio],
+
+    [Il Sistema deve permettere al Tenant Admin di visualizzare il nome descrittivo di specifiche credenziali API di un
+      Tenant],
+
+    [#tag-uc("visualizzazione_nome_descrittivo_api")],
+
+    [R-84-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin di visualizzare il timestamp di creazione di specifiche credenziali API
+      di un Tenant],
+    [#tag-uc("visualizzazione_timestamp_api")],
+
+    [R-85-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin di eliminare delle credenziali API specifiche di un Tenant.],
+    [#tag-uc("eliminazione_credenziali_api")],
+
+    [R-86-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin di selezionare delle specifiche credenziali API di un Tenant.],
+    [#tag-uc("selezione_credenziali_api")],
+
+    [R-87-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin di modificare le impostazioni del login 2FA di un Tenant.],
+    [#tag-uc("modifica_impostazioni_2fa")],
+
+    [R-88-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare i log di Audit del
+      Tenant.],
+    [#tag-uc("visualizzazione_log_audit_tenant"), #tag-uc("visualizzazione_singolo_log_audit")],
+
+    [R-89-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare il timestamp di una
+      entry del log di Audit.],
+    [#tag-uc("visualizzazione_timestamp_log_entry")],
+
+    [R-90-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare l'Utente relativa ad un
+      entry del log Audit.],
+    [#tag-uc("visualizzazione_utente_log_entry")],
+
+    [R-91-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare l'azione relativa ad una
+      singola entry del log di Audit.],
+    [#tag-uc("visualizzazione_operazione_log_entry")],
+
+    [R-92-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di esportare i log per fare Audit del
+      Tenant.
+    ],
+    [#tag-uc("esportazione_log_audit_tenant")],
+
+    [R-93-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di inserire un intervallo temporale per
+      visualizzare i log.],
+    [#tag-uc("selezione_intervallo_temporale")],
+
+    [R-94-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di scaricare i log sul proprio
+      dispositivo.],
+    [#tag-uc("download_log_audit_esportati")],
+
+    [R-95-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di modificare le impostazioni di
+      impersonificazione relative al Tenant.],
+    [#tag-uc("modifica_impostazioni_impersonificazione")],
+
+    [R-96-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di installare una nuova versione
+      firmware sul Gateway.],
+    [#tag-uc("aggiornamento_firmware_gateway"), #tag-uc("selezione_firmware")],
+
+    [R-97-F],
+    [Obbligatorio],
+    [Il Sisteam deve permettere al Tenant Admin e all'Amministratore di Sistema di selezionare il Gateway su cui
+      effettuare un'operazione.],
+    [#tag-uc("selezione_gateway")],
+
+    [R-98-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant admin di modificare la frequenza di invio dati di un Gateway.],
+    [#tag-uc("modifica_frequenza_invio_gateway")],
+
+    [R-99-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Client API di autenticarsi per contattare le API.],
+    [#tag-uc("autenticazione_client_api")],
+
+    [R-100-F],
+    [Obbligatorio],
+    [Il Sistema deve notificare il Client API che i dati di autenticazione non sono validi.],
+    [#tag-uc("err_dati_autenticazione_invalidi")],
+
+    [R-101-F],
+    [Obbligatorio],
+    [Il Sistema deve notificare il Client API che è avvenuto un errore interno di rete.],
+    [#tag-uc("err_auth_server_non_disponibile")],
+
+    [R-102-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Client API di recuperare i dati storici tramite chiamata API.],
+    [#tag-uc("richiesta_dati_on_demand")],
+
+    [R-103-F],
+    [Obbligatoria],
+    [Il Sistema deve notificare il Client API che il token di autenticazione non è valido.],
+    [#tag-uc("err_token_api_invalido")],
+
+    [R-104-F],
+    [Obbligatorio],
+    [Il Sistema deve notificare il Client API che uno o più ID Gateway inseriti risultano invalidi.],
+    [#tag-uc("err_id_gateway_invalido")],
+
+    [R-105-F],
+    [Obbligatorio],
+    [Il Sistema deve notificare il Client API che l'ID sensore inserito non esiste.],
+    [#tag-uc("err_id_sensore_invalido")],
+
+    [R-106-F],
+    [Obbligatorio],
+    [Il Sistema deve notificare il Client API che l'intervallo temporale fornito non è valido.],
+    [#tag-uc("err_intervallo_temporale_invalido")],
+
+    [R-107-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Client API di recuperare dati real-time tramite un endpoint API.],
+    [#tag-uc("richiesta_dati_streaming")],
+
+    [R-108-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare la lista di Tenant registrati nel
+      Sistema.],
+    [#tag-uc("visualizzazione_lista_tenant")],
+
+    [R-109-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare un singolo Tenant all'interno della
+      lista.],
+    [#tag-uc("visualizzazione_singolo_tenant")],
+
+    [R-110-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare in dettaglio un Tenant.],
+    [#tag-uc("visualizzazione_dettagli_tenant")],
+
+    [R-111-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare il nome identificativo del singolo
+      Tenant.],
+    [#tag-uc("visualizzazione_nome_tenant")],
+
+    [], [], [], [],
+    [], [], [], [],
+    [], [], [], [],
+    [], [], [], [],
+    [], [], [], [],
   )
 
   == Requisiti Qualitativi
