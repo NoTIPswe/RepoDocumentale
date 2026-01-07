@@ -4,15 +4,15 @@
   sprint: 4,
   date: "08/01/2026",
 )[
-  - Estensione e finalizzazione della lista dei casi d'uso dell'AdR.
+  - Estensione e finalizzazione della lista dei casi d'uso dell'Analisi dei Requisiti.
 ][
   - Completamento della stesura dell'Analisi dei Requisiti.
   - Inizio della stesura dell'Analisi dello Stato dell'Arte.
-  - Possibile inizio PoC.
+  - Possibile inizio POC.
   - Fine definizione delle metriche e inizio raccolta dati per il Piano di Qualifica.
   - Conclusione cruscotto di valutazione.
   - Avanzamento delle Norme di Progetto.
 ][
-  - Dubbi sulla profondità dei casi d'uso e sulla loro suddivisione in sottocasi.
+  - Dubbi sulla profondità dei casi d'uso e sulla loro suddivisione in sotto-casi.
   - Difficoltà nell'organizzazione del lavoro durante le festività natalizie.
 ]
