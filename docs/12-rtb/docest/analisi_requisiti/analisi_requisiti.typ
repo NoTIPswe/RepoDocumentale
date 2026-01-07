@@ -218,10 +218,29 @@
   #include "uc/visualizzazione_nome_utente.typ"
   #include "uc/visualizzazione_ultimo_accesso_utente.typ"
   #include "uc/visualizzazione_mail_utente.typ"
+  #include "uc/creazione_utente_tenant.typ"
+  #include "uc/inserimento_nome_utente.typ"
+  #include "uc/selezione_utente_tenant.typ"
+  #include "uc/selezione_permessi_utente.typ"
+  #include "uc/modifica_permessi_utente.typ"
+  #include "uc/modifica_mail_utente.typ"
+  #include "uc/modifica_password_utente.typ"
+  #include "uc/eliminazione_utenti_tenant.typ"
+  #include "uc/selezione_lista_utenti.typ"
+  #include "uc/creazione_credenziali_api.typ"
+  #include "uc/inserimento_nome_client_api.typ"
+  #include "uc/visualizzazione_client_id.typ"
+  #include "uc/visualizzazione_secret_api.typ"
+  #include "uc/visualizzazione_lista_api.typ"
+  #include "uc/visualizzazione_singole_api.typ"
+  #include "uc/visualizzazione_nome_descrittivo_api.typ"
+  #include "uc/visualizzazione_timestamp_api.typ"
 
   // Utilizzare queste "dichiarazioni" per far compilare gli use case che includono
   #uc(system: CLOUD_SYS, id: "selezione_gateway")
   #uc(system: CLOUD_SYS, id: "err_range_invalido")
+  #uc(system: CLOUD_SYS, id: "inserimento_conferma_mail")
+  #uc(system: CLOUD_SYS, id: "inserimento_conferma_password")
 
   = Casi d'Uso - Parte B: Simulatore Gateway
   == Attori del Sistema

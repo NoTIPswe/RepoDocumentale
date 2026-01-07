@@ -4,7 +4,7 @@
   id: "visualizzazione_mail_utente",
   system: CLOUD_SYS,
   title: "Visualizzazione mail dell’utente",
-  level: 3,
+  level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
     "L'indirizzo email associato all'account dell'utente è disponibile nel contesto corrente",
