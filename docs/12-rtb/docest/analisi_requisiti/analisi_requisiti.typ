@@ -301,7 +301,9 @@
 
   #include "ucs/visualizzazione_lista_gateway_simulati.typ"
   #include "ucs/visualizzazione_singolo_gateway_simulato.typ"
+
   #uc(system: SIM_SYS, id: "visualizzazione_data_creazione_simulazione") // level 3
+  
   #include "ucs/visualizzazione_id_fabbrica_simulazione.typ"
   #include "ucs/visualizzazione_configurazione_simulazione_gateway.typ"
   #include "ucs/visualizzazione_chiave_fabbrica_simulazione.typ"
@@ -312,6 +314,20 @@
   #include "ucs/visualizzazione_algoritmo_generazione_dati.typ"
   #include "ucs/visualizzazione_identificativo_sensore.typ"
   #include "ucs/visualizzazione_tipo_sensore_simulato.typ"
+  #include "ucs/selezione_gateway_simulato.typ"
+  #include "ucs/selezione_sensore_simulato.typ"
+  #include "ucs/eliminazione_gateway_simulato.typ"
+  #include "ucs/eliminazione_sensore_simulato.typ"
+  #include "ucs/creazione_deploy_gateway_simulato.typ"
+  
+  #uc(system: SIM_SYS, id: "inserimento_dati_config_sim_gateway")   // bookmark - da capire quali saranno effettivamente 
+
+  #include "ucs/err_deploy_gateway_simulato.typ"
+  #include "ucs/creazione_sensore_gateway_simulato.typ"
+  #include "ucs/inserimento_dati_config_sim_sensore.typ"
+  #include "ucs/selezione_tipo_sensore_simulato.typ"
+  #include "ucs/selezione_algoritmo_generazione_dati_sensore.typ"
+  #include "ucs/inserimento_range_generazione_dati.typ"
   
 
 

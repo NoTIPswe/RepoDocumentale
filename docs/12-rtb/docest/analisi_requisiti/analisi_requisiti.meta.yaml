@@ -1,5 +1,12 @@
 title: Analisi dei Requisiti
 changelog:
+  - version: "0.20.0"
+    date: "2026-01-07"
+    authors:
+      - Francesco Marcon
+    verifier: TBD
+    description: >
+      Aggiunti UCS da 9 a 16
   - version: "0.19.0"
     date: "2026-01-07"
     authors:
