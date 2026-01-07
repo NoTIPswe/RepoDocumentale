@@ -10,7 +10,8 @@
   tenant-adm: "Tenant Admin",
   sys-adm: "Amministratore di Sistema",
   api-client: "Client API",
-  gway-sim: "Simulatore Gateway",
+  p-gway: "Provisioned Gateway",
+  np-gway-sim: "Non Provisioned Gateway",
 )
 
 // Simulator primary actors

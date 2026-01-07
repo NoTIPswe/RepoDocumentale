@@ -144,8 +144,6 @@
 
   == Diagrammi e Descrizioni Casi d'Uso
 
-  // Per informazioni sull'uso di `uc` vedi la documentazione allegata alla funzione
-
   #include "uc/login.typ"
   #include "uc/ins_mail.typ"
   #include "uc/ins_pw.typ"
@@ -202,9 +200,28 @@
   #include "uc/modifica_impostazioni_notifica_alert_email.typ"
   #include "uc/modifica_nome_gateway.typ"
   #include "uc/err_nome_gateway_duplicato.typ"
+  #include "uc/modifica_stato_gateway.typ"
+  #include "uc/selezione_stato_gateway.typ"
+  #include "uc/modifica_range_sensore.typ"
+  #include "uc/selezione_specifico_sensore.typ"
+  #include "uc/selezione_range_numerico.typ"
+  #include "uc/inserimento_valore_numerico.typ"
+  #include "uc/modifica_range_default_tipo_sensore.typ"
+  #include "uc/selezione_tipo_sensore.typ"
+  #include "uc/modifica_intervallo_alert_gateway.typ"
+  #include "uc/visualizzazione_costi_stimati.typ"
+  #include "uc/visualizzazione_costi_storage.typ"
+  #include "uc/visualizzazione_costi_banda.typ"
+  #include "uc/visualizzazione_lista_utenti_tenant.typ"
+  #include "uc/visualizzazione_singolo_utente_tenant.typ"
+  #include "uc/visualizzazione_ruolo_utente.typ"
+  #include "uc/visualizzazione_nome_utente.typ"
+  #include "uc/visualizzazione_ultimo_accesso_utente.typ"
+  #include "uc/visualizzazione_mail_utente.typ"
 
   // Utilizzare queste "dichiarazioni" per far compilare gli use case che includono
-  // #uc(system: CLOUD_SYS, id: "err_nome_gateway_duplicato")
+  #uc(system: CLOUD_SYS, id: "selezione_gateway")
+  #uc(system: CLOUD_SYS, id: "err_range_invalido")
 
   = Casi d'Uso - Parte B: Simulatore Gateway
   == Attori del Sistema
