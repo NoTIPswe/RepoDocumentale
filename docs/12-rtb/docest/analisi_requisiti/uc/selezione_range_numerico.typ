@@ -13,7 +13,7 @@
   postconds: (
     "L’attore ha inserito un range numerico valido (min <= max)",
   ),
-  trigger: "L’attore principale",
+  trigger: "L’attore principale vuole inserire un range su cui effettuare le misurazioni",
   main-scen: (
     (
       descr: "L’attore seleziona il valore minimo per le misurazioni",

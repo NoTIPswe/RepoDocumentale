@@ -1,5 +1,20 @@
 title: Analisi dei Requisiti
 changelog:
+  - version: "0.16.1"
+    date: "2026-01-07"
+    authors:
+      - Francesco Marcon
+    verifier: TBD
+    description: >
+      Minor fix errore in UC43
+  - version: "0.16.0"
+    date: "2026-01-07"
+    authors:
+      - Valerio Solito
+      - Alessandro Mazzariol
+    verifier: TBD
+    description: >
+      Aggiunta di ulteriori requisiti 
   - version: "0.15.0"
     date: "2026-01-07"
     authors:
