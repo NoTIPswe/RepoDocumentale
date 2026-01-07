@@ -15,4 +15,5 @@
 ][
   - Dubbi sulla profondità dei casi d'uso e sulla loro suddivisione in sotto-casi.
   - Difficoltà nell'organizzazione del lavoro durante le festività natalizie.
+  - Dubbio su come trattare l'Analisi dello Stato dell'Arte in relazione all'RTB.
 ]
