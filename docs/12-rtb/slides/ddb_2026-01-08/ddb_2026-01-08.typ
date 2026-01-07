@@ -13,6 +13,6 @@
   - Conclusione cruscotto di valutazione.
   - Avanzamento delle Norme di Progetto.
 ][
-  - Dubbi sulla profondità dei casi d'uso e sulla loro suddivisione in sottocasi.
+  - Dubbi sulla profondità dei casi d'uso e sulla loro suddivisione in sotto-casi.
   - Difficoltà nell'organizzazione del lavoro durante le festività natalizie.
 ]
