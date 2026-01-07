@@ -1,12 +1,61 @@
 title: Analisi dei Requisiti
 changelog:
+  - version: "0.10.0"
+    date: "2026-01-07"
+    authors:
+      - Francesco Marcon
+    verifier: TBD
+    description: >
+      Aggiunti UC da 46 a 49 e controllo finale coerenza interna
+  - version: "0.9.0"
+    date: "2026-01-06"
+    authors:
+      - Alessandro Contarini
+    verifier: TBD
+    description: >
+      Aggiunti UC da 39 a 45
+  - version: "0.8.0"
+    date: "2026-01-05"
+    authors:
+      - Francesco Marcon
+    verifier: TBD
+    description: >
+      Aggiunti UC da 32 a 38
+  - version: "0.7.0"
+    date: "2026-01-04"
+    authors:
+      - Valerio Solito
+    verifier: TBD
+    description: >
+      Aggiunti UC da 25 a 31
+  - version: "0.6.0"
+    date: "2026-01-03"
+    authors:
+      - Matteo Mantoan
+    verifier: TBD
+    description: >
+      Aggiunti UC da 18 a 24
+  - version: "0.5.0"
+    date: "2026-01-02"
+    authors:
+      - Leonardo Preo
+    verifier: TBD
+    description: >
+      Aggiunti UC da 11 a 17
+  - version: "0.4.0"
+    date: "2026-01-01"
+    authors:
+      - Leonardo Preo
+    verifier: TBD
+    description: >
+      Aggiunti UC da 4 a 10
   - version: "0.3.0"
     date: "2025-12-31"
     authors:
       - Matteo Mantoan
     verifier: TBD
     description: >
-      Test
+      Aggiunti i primi UC
   - version: "0.2.0"
     date: "2025-12-07"
     authors:
