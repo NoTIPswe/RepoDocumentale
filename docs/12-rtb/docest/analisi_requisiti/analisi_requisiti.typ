@@ -254,6 +254,26 @@
   #include "uc/autenticazione_client_api.typ"
   #include "uc/err_dati_autenticazione_invalidi.typ"
   #include "uc/err_auth_server_non_disponibile.typ"
+  #include "uc/richiesta_dati_on_demand.typ"
+  #include "uc/err_token_api_invalido.typ"
+  #include "uc/err_id_gateway_invalido.typ"
+  #include "uc/err_id_sensore_invalido.typ"
+  #include "uc/err_intervallo_temporale_invalido.typ"
+  #include "uc/richiesta_dati_streaming.typ"
+  #include "uc/visualizzazione_lista_tenant.typ"
+  #include "uc/visualizzazione_singolo_tenant.typ"
+  #include "uc/visualizzazione_dettagli_tenant.typ"
+  #include "uc/visualizzazione_nome_tenant.typ"
+  #include "uc/visualizzazione_stato_tenant.typ"
+  #include "uc/visualizzazione_id_tenant.typ"
+  #include "uc/visualizzazione_intervallo_sospensione_tenant.typ"
+  #include "uc/modifica_intervallo_sospensione_tenant.typ"
+  #include "uc/modifica_nome_tenant.typ"
+  // bookmark - da qui in poi è da sentire l’azienda che campi sono di loro interesse da memorizzare riguardo un Tenant. Una volta fatto vanno creati UC di visualizzazione creazione e modifica associati
+  #include "uc/creazione_tenant.typ"
+  #include "uc/inserimento_anagrafica_tenant.typ"
+  #include "uc/err_interno_creazione_tenant.typ"
+  #include "uc/selezione_tenant.typ"
 
   // Utilizzare queste "dichiarazioni" per far compilare gli use case che includono
   #uc(system: CLOUD_SYS, id: "err_range_invalido")

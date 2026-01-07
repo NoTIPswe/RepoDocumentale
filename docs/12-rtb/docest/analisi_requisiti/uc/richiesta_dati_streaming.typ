@@ -1,9 +1,9 @@
 #import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
-  id: "richiesta_dati_on_demand",
+  id: "richiesta_dati_streaming",
   system: CLOUD_SYS,
-  title: "Richiesta dati On-Demand",
+  title: "Richiesta dati Streaming",
   level: 1,
   prim-actors: CA.api-client,
   preconds: (
@@ -12,13 +12,13 @@
   postconds: (
     "L’attore riceve i dati relativi alla richiesta effettuata",
   ),
-  trigger: "L’attore primario vuole recuperare dati storici tramite una chiamata API",
+  trigger: "L’attore primario vuole recuperare dati real-time tramite un endpoint API",
   main-scen: (
     (
-      descr: "L’attore invia una richiesta allegando un token di autenticazione, identificativi dei gateway/sensori e intervallo temporale",
+      descr: "L’attore invia una richiesta allegando un token di autenticazione e identificativi dei gateway e dei relativi sensori",
       ep: "DatiNonValidi",
     ),
-    (descr: "L’attore riceve i dati storici richiesti"),
+    (descr: "L’attore inizia a ricevere i dati real-time richiesti"),
   ),
   alt-scen: (
     (
@@ -35,11 +35,6 @@
       ep: "DatiNonValidi",
       cond: "ID sensore invalido",
       uc: "err_id_sensore_invalido",
-    ),
-    (
-      ep: "DatiNonValidi",
-      cond: "Intervallo temporale malformato",
-      uc: "err_intervallo_temporale_invalido",
     ),
   ),
 )
