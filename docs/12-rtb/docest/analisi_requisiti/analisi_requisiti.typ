@@ -299,6 +299,20 @@
 
   = Casi d'Uso - Parte B: Simulatore Gateway
 
+  #include "ucs/visualizzazione_lista_gateway_simulati.typ"
+  #include "ucs/visualizzazione_singolo_gateway_simulato.typ"
+  #uc(system: SIM_SYS, id: "visualizzazione_data_creazione_simulazione") // level 3
+  #include "ucs/visualizzazione_id_fabbrica_simulazione.typ"
+  #include "ucs/visualizzazione_configurazione_simulazione_gateway.typ"
+  #include "ucs/visualizzazione_chiave_fabbrica_simulazione.typ"
+  #include "ucs/visualizzazione_lista_sensori_gateway_simulato.typ"
+  #include "ucs/visualizzazione_singolo_sensore_simulato.typ"
+  #include "ucs/visualizzazione_configurazione_simulazione_sensore.typ"
+  #include "ucs/visualizzazione_range_generazione_dati.typ"
+  #include "ucs/visualizzazione_algoritmo_generazione_dati.typ"
+  #include "ucs/visualizzazione_identificativo_sensore.typ"
+  #include "ucs/visualizzazione_tipo_sensore_simulato.typ"
+  
 
 
   == Attori del Sistema
