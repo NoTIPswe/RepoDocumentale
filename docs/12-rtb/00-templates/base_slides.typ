@@ -45,8 +45,7 @@
       #grid(
         row-gutter: 0.4em,
         align: center, columns: (1fr, 1fr, 1fr)
-      )[Francesco Marcon][Leonardo Preo][Matteo Mantoan][Alessandro Contarini][Alessandro Mazzariol][Mario De
-        Pasquale][][Valerio Solito]
+      )[Francesco Marcon][Leonardo Preo][Matteo Mantoan][Alessandro Contarini][Alessandro Mazzariol][Mario De Pasquale][][Valerio Solito]
       #if date != none { text(size: 18pt, font: base-configs.serif-font)[#date] }
     ]
   }

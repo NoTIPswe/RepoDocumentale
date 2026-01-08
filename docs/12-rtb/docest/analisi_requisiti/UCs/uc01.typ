@@ -14,8 +14,7 @@
 + L'Amministratore di Sistema inserisce il nome o la ragione sociale del Tenant $arrow$ Vedi [@UC1.1[UC1.1,]].
 + L'Amministratore di Sistema configura i parametri iniziali e le quote del Tenant $arrow$ Vedi [@UC1.2[UC1.2,]].
 + L'Amministratore di Sistema crea l'account per l'Amministratore del Tenant $arrow$ Vedi [@UC1.3[UC1.3,]].
-+ L'Amministratore di Sistema seleziona ed alloca le risorse tecniche (Storage/DB/Namespace) $arrow$ Vedi
-  [@UC1.4[UC1.4,]].
++ L'Amministratore di Sistema seleziona ed alloca le risorse tecniche (Storage/DB/Namespace) $arrow$ Vedi [@UC1.4[UC1.4,]].
 + L'Amministratore di Sistema conferma l'operazione di creazione.\
 *Scenari alternativi:* \
 - L'Amministratore tenta di creare un Tenant con dati non validi o nome duplicato $arrow$ Vedi [@UC2[UC2,]].
@@ -38,8 +37,7 @@
 *Post-condizioni:* \
 - Il nome del Tenant è stato inserito e validato (è univoco).\
 *Scenario principale:* \
-+ L'Amministratore di Sistema inserisce il nome identificativo o la ragione sociale del nuovo Tenant nell'apposito
-  campo.\
++ L'Amministratore di Sistema inserisce il nome identificativo o la ragione sociale del nuovo Tenant nell'apposito campo.\
 *Trigger:* L'Amministratore di Sistema deve identificare il nuovo Tenant.\
 
 #uc_sub("Configurazione Parametri Iniziali")
@@ -61,8 +59,7 @@
 *Post-condizioni:* \
 - Il Sistema riceve i dati necessari per creare l'account del primo amministratore del Tenant.\
 *Scenario principale:* \
-+ L'Amministratore di Sistema inserisce l'indirizzo e-mail e le credenziali iniziali per il referente del cliente che
-  fungerà da Amministratore del Tenant.\
++ L'Amministratore di Sistema inserisce l'indirizzo e-mail e le credenziali iniziali per il referente del cliente che fungerà da Amministratore del Tenant.\
 *Trigger:* È necessario fornire al cliente un accesso amministrativo per gestire il proprio ambiente.\
 
 #uc_sub("Scelta Namespace e DB Shard")
@@ -73,7 +70,5 @@
 *Post-condizioni:* \
 - Il Sistema riceve la selezione delle risorse fisiche o logiche (Namespace, DB Shard) da assegnare al Tenant.\
 *Scenario principale:* \
-+ L'Amministratore di Sistema seleziona o configura le risorse dedicate (es. Namespace Kubernetes, Bucket Storage, Shard
-  Database) su cui verranno ospitati i dati del Tenant.\
-*Trigger:* L'Amministratore di Sistema deve decidere l'allocazione delle risorse per garantire isolamento o
-performance.\
++ L'Amministratore di Sistema seleziona o configura le risorse dedicate (es. Namespace Kubernetes, Bucket Storage, Shard Database) su cui verranno ospitati i dati del Tenant.\
+*Trigger:* L'Amministratore di Sistema deve decidere l'allocazione delle risorse per garantire isolamento o performance.\

@@ -8,7 +8,7 @@
 ][
   - Completamento della stesura dell'Analisi dei Requisiti.
   - Inizio della stesura dell'Analisi dello Stato dell'Arte.
-  - Possibile inizio POC.
+  - Possibile inizio PoC.
   - Fine definizione delle metriche e inizio raccolta dati per il Piano di Qualifica.
   - Conclusione cruscotto di valutazione.
   - Avanzamento delle Norme di Progetto.
