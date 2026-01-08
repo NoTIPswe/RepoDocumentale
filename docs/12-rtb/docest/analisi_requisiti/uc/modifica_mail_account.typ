@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
 
 #uc(
   id: "modifica_mail_account",
@@ -22,4 +22,7 @@
       descr: "L’attore primario conferma l’operazione di cambio mail",
     ),
   ),
-)
+)[
+  #uml-schema("12", "Modifica Mail Account")
+
+]

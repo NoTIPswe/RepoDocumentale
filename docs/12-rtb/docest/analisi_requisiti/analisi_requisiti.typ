@@ -1,7 +1,8 @@
 #import "../../00-templates/base_document.typ" as base-document
-#import "uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, tag-uc, uc
+#import "uc_lib.typ": * /*CA, CLOUD_SYS, SA, SIM_SYS, tag-uc, uc , uml-schema*/
 
 #let metadata = yaml("analisi_requisiti.meta.yaml")
+
 
 #show figure.where(kind: table): set block(breakable: true)
 
@@ -143,7 +144,6 @@
   )
 
   == Diagrammi e Descrizioni Casi d'Uso
-
   #include "uc/login.typ"
   #include "uc/ins_mail.typ"
   #include "uc/ins_pw.typ"
@@ -153,8 +153,8 @@
   #include "uc/ins_otp.typ"
   #include "uc/err_otp_errato.typ"
   #include "uc/recupero_password.typ"
-  #include "uc/err_account_inesistente.typ"
   #include "uc/cambio_password.typ"
+  #include "uc/err_account_inesistente.typ"
   #include "uc/ins_conf_password.typ"
   #include "uc/err_campi_diversi.typ"
   #include "uc/err_password_invalida.typ"
@@ -615,8 +615,7 @@
 
     [R-56-F],
     [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di selezionare uno o più Gateway tramite
-      il loro ID.],
+    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di selezionare uno o più Gateway tramite il loro ID.],
     [#tag-uc("selezione_gateway")],
 
     [R-57-F],
@@ -685,12 +684,8 @@
 
     [R-69-F],
     [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin di visualizzare un singolo utente del Tenant. Le informazioni che devono
-      essere visualizzate sono il ruolo dell'Utente, il nome dell'Utente, la mail dell'Utente e l'ultimo accesso
-      dell'utente.],
-    [#tag-uc("visualizzazione_singolo_utente_tenant"), #tag-uc("visualizzazione_ruolo_utente")#tag-uc(
-        "visualizzazione_nome_utente",
-      ), #tag-uc("visualizzazione_mail_utente"), #tag-uc("visualizzazione_ultimo_accesso_utente")],
+    [Il Sistema deve permettere al Tenant Admin di visualizzare un singolo utente del Tenant. Le informazioni che devono essere visualizzate sono il ruolo dell'Utente, il nome dell'Utente, la mail dell'Utente e l'ultimo accesso dell'utente.],
+    [#tag-uc("visualizzazione_singolo_utente_tenant"), #tag-uc("visualizzazione_ruolo_utente"), #tag-uc("visualizzazione_nome_utente"), #tag-uc("visualizzazione_mail_utente"), #tag-uc("visualizzazione_ultimo_accesso_utente")],
 
     [R-70-F],
 
@@ -720,7 +715,7 @@
 
     [Obbligatoria],
 
-    [Il Sistema deve permettere al Tenant Admin di modificare un permesso dell'Utente Tenant.],
+    [Il Sistema deve permettere al Tenant Admin di selezionare e modificare un permesso dell'Utente Tenant.],
 
     [#tag-uc("selezione_permessi_utente"), #tag-uc("modifica_permessi_utente")],
 
@@ -797,8 +792,7 @@
 
     [Obbligatorio],
 
-    [Il Sistema deve permettere al Tenant Admin di visualizzare il nome descrittivo di specifiche credenziali API di un
-      Tenant],
+    [Il Sistema deve permettere al Tenant Admin di visualizzare il nome descrittivo di specifiche credenziali API di un Tenant],
 
     [#tag-uc("visualizzazione_nome_descrittivo_api")],
 
@@ -874,94 +868,123 @@
 
     [R-96-F],
     [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di installare una nuova versione
-      firmware sul Gateway.],
+    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di installare una nuova versione firmware sul Gateway.],
     [#tag-uc("aggiornamento_firmware_gateway"), #tag-uc("selezione_firmware")],
 
     [R-97-F],
     [Obbligatorio],
-    [Il Sisteam deve permettere al Tenant Admin e all'Amministratore di Sistema di selezionare il Gateway su cui
-      effettuare un'operazione.],
-    [#tag-uc("selezione_gateway")],
-
-    [R-98-F],
-    [Obbligatorio],
     [Il Sistema deve permettere al Tenant admin di modificare la frequenza di invio dati di un Gateway.],
     [#tag-uc("modifica_frequenza_invio_gateway")],
 
-    [R-99-F],
+    [R-98-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Client API di autenticarsi per contattare le API.],
     [#tag-uc("autenticazione_client_api")],
 
-    [R-100-F],
+    [R-99-F],
     [Obbligatorio],
     [Il Sistema deve notificare il Client API che i dati di autenticazione non sono validi.],
     [#tag-uc("err_dati_autenticazione_invalidi")],
 
-    [R-101-F],
+    [R-100-F],
     [Obbligatorio],
     [Il Sistema deve notificare il Client API che è avvenuto un errore interno di rete.],
     [#tag-uc("err_auth_server_non_disponibile")],
 
-    [R-102-F],
+    [R-101-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Client API di recuperare i dati storici tramite chiamata API.],
     [#tag-uc("richiesta_dati_on_demand")],
 
-    [R-103-F],
+    [R-102-F],
     [Obbligatoria],
     [Il Sistema deve notificare il Client API che il token di autenticazione non è valido.],
     [#tag-uc("err_token_api_invalido")],
 
-    [R-104-F],
+    [R-103-F],
     [Obbligatorio],
     [Il Sistema deve notificare il Client API che uno o più ID Gateway inseriti risultano invalidi.],
     [#tag-uc("err_id_gateway_invalido")],
 
-    [R-105-F],
+    [R-104-F],
     [Obbligatorio],
     [Il Sistema deve notificare il Client API che l'ID sensore inserito non esiste.],
     [#tag-uc("err_id_sensore_invalido")],
 
-    [R-106-F],
+    [R-105-F],
     [Obbligatorio],
     [Il Sistema deve notificare il Client API che l'intervallo temporale fornito non è valido.],
     [#tag-uc("err_intervallo_temporale_invalido")],
 
-    [R-107-F],
+    [R-106-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Client API di recuperare dati real-time tramite un endpoint API.],
     [#tag-uc("richiesta_dati_streaming")],
 
-    [R-108-F],
+    [R-107-F],
     [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare la lista di Tenant registrati nel
-      Sistema.],
+    [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare la lista di Tenant registrati nel Sistema.],
     [#tag-uc("visualizzazione_lista_tenant")],
 
-    [R-109-F],
+    [R-108-F],
     [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare un singolo Tenant all'interno della
-      lista.],
+    [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare un singolo Tenant all'interno della lista.],
     [#tag-uc("visualizzazione_singolo_tenant")],
 
-    [R-110-F],
+    [R-109-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare in dettaglio un Tenant.],
     [#tag-uc("visualizzazione_dettagli_tenant")],
 
-    [R-111-F],
+    [R-110-F],
     [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare il nome identificativo del singolo
-      Tenant.],
+    [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare il nome identificativo del singolo Tenant.],
     [#tag-uc("visualizzazione_nome_tenant")],
 
-    [], [], [], [],
-    [], [], [], [],
-    [], [], [], [],
-    [], [], [], [],
-    [], [], [], [],
+    [R-111-F], 
+    [Obbligatorio], 
+    [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare lo stato operativo del Tenant], 
+    [#tag-uc("visualizzazione_stato_tenant")],
+
+    [R-111-F], 
+    [Obbligatorio], 
+    [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare l'ID del Tenant scelto.], 
+    [#tag-uc("visualizzazione_id_tenant")],
+
+    [R-112-F], 
+    [Obbligatorio], 
+    [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare l'intervallo temporale minimo di sospensione (pre-eliminazione) del Tenant scelto.], 
+    [#tag-uc("visualizzazione_intervallo_sospensione_tenant")],
+
+    [R-113-F], 
+    [Obbligatorio], 
+    [Il Sistema deve permettere all'Amministratore di Sistema di modificare l'intervallo temporale minimo di sospensione (pre-eliminazione) del Tenant scelto.], 
+    [#tag-uc("modifica_intervallo_sospensione_tenant")],
+
+    [R-114-F], 
+    [Obbligatorio], 
+    [Il Sistema deve permettere all'Amministratore di Sistema di modificare il nome di un Tenant.], 
+    [#tag-uc("modifica_nome_tenant")],
+
+    [R-115-F],
+    [Obbligatorio], 
+    [Il Sistema deve permettere all'Amministratore di Sistema di creare un nuovo Tenant.], 
+    [#tag-uc("creazione_tenant")],
+
+    [R-116-F], 
+    [Obbligatorio], 
+    [Il Sistema, durante la creazione del tenant, deve permettere all'Amministratore di Sistema di inserire i dati anagrafici del Tenant.], 
+    [#tag-uc("inserimento_anagrafica_tenant")],
+
+    [R-117-F], 
+    [Obbligatorio], 
+    [Il Sistema deve poter notificare l'Amministratore di Sistema di un eventuale errore interno nella creazione del Tenant.], 
+    [#tag-uc("err_interno_creazione_tenant")],
+
+    [R-118-F], 
+    [Obbligatorio], 
+    [Il Sistema deve permettere all'Amministratore di Sistema di selezionare un Tenant.], 
+    [#tag-uc("selezione_tenant")],
   )
 
   == Requisiti Qualitativi

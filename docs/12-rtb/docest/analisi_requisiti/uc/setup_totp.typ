@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "setup_totp",
@@ -18,5 +18,7 @@
     (descr: "L'attore conferma la generazione del TOTP inserendo l'OTP", inc: "ins_otp"),
     (descr: "L'attore viene informato della buona riuscita del setup"),
   ),
-)
+)[
+  #uml-schema("3", "Setup TOTP")
+]
 

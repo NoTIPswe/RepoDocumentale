@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
 
 #uc(
   id: "err_campi_diversi",
@@ -18,4 +18,7 @@
     (descr: "L'attore primario viene notificato della differenza nelle due stringhe inserite"),
     (descr: "L'attore primario viene invitato a ricompilare"),
   ),
-)
+)[
+  #uml-schema("10", "Campi non corrispondenti")
+
+]

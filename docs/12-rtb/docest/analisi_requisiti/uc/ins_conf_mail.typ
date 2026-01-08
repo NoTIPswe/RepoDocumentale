@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
 
 #uc(
   id: "inserimento_conferma_mail",
@@ -40,4 +40,7 @@
       uc: "err_campi_diversi",
     ),
   ),
-)
+)[
+  #uml-schema("13", "Inserimento e conferma mail")
+
+]

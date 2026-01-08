@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
 
 #uc(
   id: "err_password_invalida",
@@ -17,4 +17,7 @@
   main-scen: (
     (descr: "L’attore viene notificato che l’email inserita non è valida e viene invitato a sceglierne un’altra"),
   ),
-)
+)[
+  #uml-schema("11", "Password non valida")
+
+]

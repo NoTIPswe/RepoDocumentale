@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
 
 #uc(
   id: "cambio_password",
@@ -19,4 +19,6 @@
       inc: "inserimento_conferma_password",
     ),
   ),
-)
+)[
+  #uml-schema("7.1", "Cambio Password")
+]

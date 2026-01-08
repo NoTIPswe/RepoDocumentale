@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
 
 #uc(
   id: "err_mail_non_valida",
@@ -17,4 +17,7 @@
   main-scen: (
     (descr: "L’attore primario viene notificato che l’email inserita non è valida ed invitato a inserirla nuovamente"),
   ),
-)
+)[
+  #uml-schema("14", "Mail non Valida")
+
+]

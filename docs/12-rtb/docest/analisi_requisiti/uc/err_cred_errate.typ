@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "err_cred_errate",
@@ -15,5 +15,7 @@
   main-scen: (
     (descr: "L'attore viene informato del problema in fase di autenticazione"),
   ),
-)
+)[
+  #uml-schema("2", "Credenziali Errate")
+]
 

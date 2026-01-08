@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
 
 #uc(
   id: "err_mail_gia_registrata",
@@ -21,4 +21,7 @@
       descr: "L'attore viene invitato ad inserirne una nuova",
     ),
   ),
-)
+)[
+  #uml-schema("15", "Mail Duplicata")
+
+]

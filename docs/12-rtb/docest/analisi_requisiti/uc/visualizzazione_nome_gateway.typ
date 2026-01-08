@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
 
 #uc(
   id: "visualizzazione_nome_gateway",
@@ -16,4 +16,6 @@
   main-scen: (
     (descr: "Viene visualizzato il nome del gateway"),
   ),
-)
+)[
+  #uml-schema("19", "Visualizzazione nome gateway")
+]

@@ -30,10 +30,18 @@
   let label = label("UC:" + uc-id)
   let title = query(label).first().body
   text(fill: blue)[#ref(label, supplement: "")] + " " + link(label)[#title]
-}
+} 
 
 #let uc-counter = counter("uc")
 #let ucs-counter = counter("ucs")
+
+/*Per utilizzarla negli use case bisogna aggiungere nell'import uml-schema e alla fine della parentesi tonda dell'UC aggiungere [#uml-schema("numero dell'UC", "Descrizione della figura")]*/
+#let uml-schema(versione, descrizione, larghezza: 100%) = [
+  #figure(
+    image("uc_schemas/UC" + versione + ".png", width: larghezza),
+    caption: descrizione,
+  )
+]
 
 /*
  * Funzione `uc`: Genera la documentazione strutturata per un Caso d'Uso.
@@ -113,14 +121,18 @@
   main-scen: (),
   alt-scen: (),
   trigger: none,
+  ..args
 ) = {
+
+  let body = args.pos().at(0, default: none)
+
   if system == CLOUD_SYS {
     uc-counter.step(level: level)
   } else if system == SIM_SYS {
     ucs-counter.step(level: level)
   }
 
-  block(breakable: false)[
+  block(breakable: true)[
     #context {
       let target-counter = if system == CLOUD_SYS { uc-counter } else { ucs-counter }
       let prefix = if system == CLOUD_SYS { "UC" } else { "UCS" }
@@ -141,6 +153,10 @@
       [
         #heading(title, level: 2 + level, numbering: (..nums) => uc-num-str + ".") #anchor
       ]
+
+      if body != none {
+        [#body]
+      }
 
       show table.cell.where(y: 0): text.with(weight: "thin")
       set table(
