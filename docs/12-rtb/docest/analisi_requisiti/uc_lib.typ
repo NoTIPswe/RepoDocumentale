@@ -11,7 +11,7 @@
   sys-adm: "Amministratore di Sistema",
   api-client: "Client API",
   p-gway: "Provisioned Gateway",
-  np-gway-sim: "Non Provisioned Gateway",
+  np-gway: "Non Provisioned Gateway",
 )
 
 // Simulator primary actors
@@ -22,7 +22,7 @@
 
 // Secondary actors
 #let CSA = (
-  auth-server: "Auth Server"
+  auth-server: "Auth Server",
 )
 
 // Render UC tag

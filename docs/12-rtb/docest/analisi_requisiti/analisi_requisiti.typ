@@ -141,6 +141,11 @@
     [Client Esterno],
     [Software di terze parti sviluppato dal cliente che interroga le API del sistema per ottenere dati storici o stream
       real-time.],
+    [Gateway non Provisionato],
+    [Dispositivo hardware fisico non ancora configurato nel sistema; non è associato ad alcun Tenant e non può ancora trasmettere dati validi.],
+
+    [Gateway Provisionato],
+    [Dispositivo hardware correttamente configurato, associato a un Tenant specifico e abilitato alla ricezione e all'invio dei dati dai sensori verso la piattaforma.]
   )
 
   == Diagrammi e Descrizioni Casi d'Uso
@@ -274,11 +279,67 @@
   #include "uc/inserimento_anagrafica_tenant.typ"
   #include "uc/err_interno_creazione_tenant.typ"
   #include "uc/selezione_tenant.typ"
+  #include "uc/sospensione_tenant.typ"
+  #include "uc/riattivazione_tenant.typ"
+  #include "uc/eliminazione_tenant.typ"
+  #include "uc/conferma_eliminazione_tenant.typ"
+  #include "uc/impersonificazione_utente_tenant.typ"
+  #include "uc/registrazione_associazione_gateway.typ"
+  #include "uc/inserimento_credenziali_fabbrica_gateway.typ"
+  #include "uc/creazione_utente_amministratore_tenant.typ"
+  #include "uc/visualizzazione_log_audit_sysadmin.typ"
+  #include "uc/esportazione_log_audit_tenant_sysadmin.typ"
+  #include "uc/monitoraggio_performance_sistema.typ"
+  #include "uc/monitoraggio_latenza.typ"
+  #include "uc/monitoraggio_volumi_traffico.typ"
+  #include "uc/monitoraggio_storage.typ"
+  #include "uc/onboarding_gateway.typ"
+  #include "uc/err_auth_gateway_fabbrica.typ"
+  #include "uc/invio_dati_crittografati_cloud.typ"
+  #include "uc/instaurazione_connessione_sicura.typ"
+  #include "uc/err_autenticazione_gateway.typ"
 
   // Utilizzare queste "dichiarazioni" per far compilare gli use case che includono
   #uc(system: CLOUD_SYS, id: "err_range_invalido")
 
   = Casi d'Uso - Parte B: Simulatore Gateway
+
+  #include "ucs/visualizzazione_lista_gateway_simulati.typ"
+  #include "ucs/visualizzazione_singolo_gateway_simulato.typ"
+
+  #uc(system: SIM_SYS, id: "visualizzazione_data_creazione_simulazione") // level 3
+
+  #include "ucs/visualizzazione_id_fabbrica_simulazione.typ"
+  #include "ucs/visualizzazione_configurazione_simulazione_gateway.typ"
+  #include "ucs/visualizzazione_chiave_fabbrica_simulazione.typ"
+  #include "ucs/visualizzazione_lista_sensori_gateway_simulato.typ"
+  #include "ucs/visualizzazione_singolo_sensore_simulato.typ"
+  #include "ucs/visualizzazione_configurazione_simulazione_sensore.typ"
+  #include "ucs/visualizzazione_range_generazione_dati.typ"
+  #include "ucs/visualizzazione_algoritmo_generazione_dati.typ"
+  #include "ucs/visualizzazione_identificativo_sensore.typ"
+  #include "ucs/visualizzazione_tipo_sensore_simulato.typ"
+  #include "ucs/selezione_gateway_simulato.typ"
+  #include "ucs/selezione_sensore_simulato.typ"
+  #include "ucs/eliminazione_gateway_simulato.typ"
+  #include "ucs/eliminazione_sensore_simulato.typ"
+  #include "ucs/creazione_deploy_gateway_simulato.typ"
+
+  #uc(system: SIM_SYS, id: "inserimento_dati_config_sim_gateway") // bookmark - da capire quali saranno effettivamente
+
+  #include "ucs/err_deploy_gateway_simulato.typ"
+  #include "ucs/creazione_sensore_gateway_simulato.typ"
+  #include "ucs/inserimento_dati_config_sim_sensore.typ"
+  #include "ucs/selezione_tipo_sensore_simulato.typ"
+  #include "ucs/selezione_algoritmo_generazione_dati_sensore.typ"
+  #include "ucs/inserimento_range_generazione_dati.typ"
+  #include "ucs/creazione_gateway_multipli_default.typ"
+  #include "ucs/comando_anomalia_degrado_rete.typ"
+  #include "ucs/comando_anomalia_disconnessione_temporanea.typ"
+  #include "ucs/comando_anomalia_outliers_misurazioni.typ"
+
+  // mancano quelli a fine doc google che sono da riadattare
+
   == Attori del Sistema
   == Digrammi e Descrizioni Casi d'Uso
   #table(

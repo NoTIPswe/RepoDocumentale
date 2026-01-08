@@ -15,6 +15,8 @@
   trigger: "Fase finale della creazione delle credenziali API",
   main-scen: (
     (descr: "L’attore visualizza la chiave segreta (Client Secret)"),
-    (descr: "L’attore viene informato del fatto che si tratta dell'unica occasione per visualizzare e copiare la chiave"),
+    (
+      descr: "L’attore viene informato del fatto che si tratta dell'unica occasione per visualizzare e copiare la chiave",
+    ),
   ),
 )

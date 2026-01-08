@@ -16,7 +16,9 @@
   ),
   trigger: "L’attore desidera installare una nuova versione del firmware sui dispositivi",
   main-scen: (
-    (descr: "L’attore visualizza la lista delle versioni del firmware tra quelle compatibili con tutti i gateway selezionati"),
+    (
+      descr: "L’attore visualizza la lista delle versioni del firmware tra quelle compatibili con tutti i gateway selezionati",
+    ),
     (descr: "L’attore seleziona una versione tra quelle visualizzate"),
   ),
 )

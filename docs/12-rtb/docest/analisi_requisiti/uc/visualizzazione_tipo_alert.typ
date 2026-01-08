@@ -9,7 +9,7 @@
   preconds: (
     "L’attore primario si trova nella sezione dedicata agli alert",
     "L’attore primario sta visualizzando lo storico degli alert",
-    "(Da inserire qualcosa)"
+    "(Da inserire qualcosa)",
   ),
   postconds: (
     "Il sistema mostra il tipo di alert",

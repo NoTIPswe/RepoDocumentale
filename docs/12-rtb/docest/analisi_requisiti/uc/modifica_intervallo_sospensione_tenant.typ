@@ -14,6 +14,8 @@
   ),
   trigger: "Volontà di visualizzare o modificare l’intervallo minimo di sospensione pre-eliminazione di un Tenant",
   main-scen: (
-    (descr: "L’attore visualizza l’intervallo temporale di sospensione (in giorni) minimo che deve trascorrere prima di poter eliminare il Tenant"),
+    (
+      descr: "L’attore visualizza l’intervallo temporale di sospensione (in giorni) minimo che deve trascorrere prima di poter eliminare il Tenant",
+    ),
   ),
 )
