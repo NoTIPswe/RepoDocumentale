@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "visualizzazione_dati_stream",
@@ -45,4 +45,6 @@
       uc: "err_dati_non_disponibili",
     ),
   ),
-)
+)[
+  #uml-schema("24", "Diagramma visualizzazione dati Stream")
+]

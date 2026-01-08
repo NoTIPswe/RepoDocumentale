@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "esportazione_dati",
@@ -18,4 +18,4 @@
     (descr: "L’attore avvia il download dei dati di cui è stata richiesta l’esportazione"),
     (descr: "L’attore ottiene i dati esportati in un nuovo file dedicato"),
   ),
-)
+)[#uml-schema("29", "Diagramma esportazione dati")]

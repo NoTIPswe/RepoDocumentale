@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "modifica_nome_gateway",
@@ -28,4 +28,6 @@
       uc: "err_nome_gateway_duplicato",
     ),
   ),
-)
+)[
+  #uml-schema("39", "Diagramma modifica nome gateway")
+]

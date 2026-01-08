@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "filtraggio_sensore",
@@ -25,4 +25,6 @@
       ep: "Filtraggio",
     ),
   ),
-)
+)[
+  #uml-schema("26", "Diagramma filtraggio dati per sensore")
+]

@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "visualizzazione_storico_alert",
@@ -20,4 +20,6 @@
       ep: "Dettagli",
     ),
   ),
-)
+)[
+  #uml-schema("33", "Diagramma visualizzazione storico alert")
+]

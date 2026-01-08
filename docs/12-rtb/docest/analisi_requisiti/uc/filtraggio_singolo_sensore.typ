@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "filtraggio_singolo_sensore",
@@ -19,4 +19,6 @@
   main-scen: (
     (descr: "L’Attore primario seleziona un sensore da aggiungere alla lista di filtraggio"),
   ),
-)
+)[
+  #uml-schema("26.1", "Diagramma filtraggio dati per singolo sensore")
+]

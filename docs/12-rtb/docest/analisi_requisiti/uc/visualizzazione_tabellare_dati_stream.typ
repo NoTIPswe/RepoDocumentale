@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "visualizzazione_tabellare_dati_stream",
@@ -17,4 +17,6 @@
   main-scen: (
     (descr: "L’Attore primario visualizza una tabella con: timestamp, Gateway, sensore, tipo misura, valore, unità"),
   ),
-)
+)[
+  #uml-schema("24.1", "Diagramma visualizzazione tabellare dati Stream")
+]

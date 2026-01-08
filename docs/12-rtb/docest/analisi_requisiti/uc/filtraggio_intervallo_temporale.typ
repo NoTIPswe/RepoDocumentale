@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "filtraggio_intervallo_temporale",
@@ -17,4 +17,6 @@
     (descr: "L’attore primario seleziona un intervallo di tempo per visualizzare i dati al suo interno"),
     (descr: "Il sistema salva le preferenze di visualizzazione"),
   ),
-)
+)[
+  #uml-schema("27", "Diagramma filtraggio dati per intervallo temporale")
+]

@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "err_nome_gateway_duplicato",
@@ -17,4 +17,6 @@
     (descr: "L’attore principale viene notificato dell’invalidità del nome inserito"),
     (descr: "L’attore principale viene invitato ad inserirne un altro valido"),
   ),
-)
+)[
+  #uml-schema("40", "Diagramma errore nome gateway duplicato")
+]

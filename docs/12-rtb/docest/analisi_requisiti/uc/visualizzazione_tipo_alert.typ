@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "visualizzazione_tipo_alert",
@@ -18,4 +18,6 @@
   main-scen: (
     (descr: "L’attore primario visualizza il tipo dell’alert"),
   ),
-)
+)[
+  #uml-schema("33.1.1", "Diagramma visualizzazione tipo di alert")
+]

@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "visualizzazione_grafico_dati_stream",
@@ -18,4 +18,6 @@
     (descr: "L’Attore primario visualizza uno o più grafici (in base alla tipologia dato) su base temporale"),
     (descr: "Il sistema distingue le serie nel caso i dati includano più sensori (es. per sensore o tipo misura)"),
   ),
-)
+)[
+  #uml-schema("24.2", "Diagramma visualizzazione grafico dati Stream")
+]

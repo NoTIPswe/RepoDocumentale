@@ -1,12 +1,27 @@
 title: Analisi dei Requisiti
 changelog:
-  - version: "0.22.0"
+  - version: "0.24.0"
+    date: "2026-01-08"
+    authors:
+      - Alessandro Mazzariol
+    verifier: TBD
+    description: >
+      Aggiunti UML fino a UC40
+  - version: "0.23.0"
     date: "2026-01-08"
     authors:
       - Valerio Solito
     verifier: TBD
     description: >
       Aggiunti requisiti dall'UC80 all'87 e aggiunti UML fino a UC20
+  - version: "0.22.0"
+    date: "2026-01-07"
+    authors:
+      - Valerio Solito
+      - Alessandro Mazzariol
+    verifier: TBD
+    description: >
+      Aggiunti requisiti dall'UC40 all'80
   - version: "0.21.0"
     date: "2026-01-07"
     authors:
@@ -56,7 +71,7 @@ changelog:
       - Alessandro Mazzariol
     verifier: TBD
     description: >
-      Aggiunta di ulteriori requisiti 
+      Aggiunta di ulteriori requisiti
   - version: "0.15.0"
     date: "2026-01-07"
     authors:
@@ -154,7 +169,7 @@ changelog:
       - Leonardo Preo
     verifier: Matteo Mantoan
     description: >
-        Resi UC indipendenti da UI
+      Resi UC indipendenti da UI
   - version: "0.1.0"
     date: "2025-12-03"
     authors:
@@ -162,11 +177,11 @@ changelog:
       - Alessandro Contarini
     verifier: Valerio Solito
     description: >
-        Modifica Utenti Sistema e Attori, inizio stesura UC. Rinominazione file
+      Modifica Utenti Sistema e Attori, inizio stesura UC. Rinominazione file
   - version: "0.0.1"
     date: "2025-11-27"
     authors:
       - Leonardo Preo
     verifier: Francesco Marcon
     description: >
-        Prima stesura Analisi dei Requisiti
+      Prima stesura Analisi dei Requisiti

@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "visualizzazione_singolo_alert",
@@ -28,4 +28,6 @@
       inc: "visualizzazione_hardware_interessato",
     ),
   ),
-)
+)[
+  #uml-schema("33.1", "Diagramma visualizzazione singolo alert")
+]

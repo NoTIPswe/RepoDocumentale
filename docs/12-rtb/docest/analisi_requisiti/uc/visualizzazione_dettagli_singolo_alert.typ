@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "visualizzazione_dettagli_singolo_alert",
@@ -21,4 +21,6 @@
     ),
     (descr: "L’attore primario visualizza le informazioni riguardanti l’alert"),
   ),
-)
+)[
+  #uml-schema("35", "Diagramma visualizzazione dettagli singolo alert")
+]
