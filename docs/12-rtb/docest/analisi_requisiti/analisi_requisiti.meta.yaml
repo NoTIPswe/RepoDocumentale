@@ -1,9 +1,16 @@
 title: Analisi dei Requisiti
 changelog:
+  - version: "0.25.0"
+    date: "2026-01-08"
+    authors:
+      - Francesco Marcon
+    verifier: TBD
+    description: >
+      Aggiunta UCS da 21 a 23
   - version: "0.24.1"
     date: "2026-01-08"
     authors:
-      - Alessandro Mazzariol
+      - Francesco Marcon
     verifier: TBD
     description: >
       Correzione ordine e gerarchia UC
