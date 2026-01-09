@@ -1,23 +1,32 @@
 title: Analisi dei Requisiti
 changelog:
-  - version: "0.25.0"
+  - version: "0.26.0"
     date: "2026-01-08"
     authors:
       - Francesco Marcon
     verifier: TBD
     description: >
       Aggiunta UCS da 21 a 23
-  - version: "0.24.1"
+  - version: "0.25.1"
     date: "2026-01-08"
     authors:
       - Francesco Marcon
     verifier: TBD
     description: >
       Correzione ordine e gerarchia UC
-  - version: "0.24.0"
+  - version: "0.25.0"
     date: "2026-01-08"
     authors:
       - Alessandro Mazzariol
+      - Mario De Pasquale
+    verifier: TBD
+    description: >
+      Aggiunti UML fino a UC40
+  - version: "0.24.0"
+    date: "2026-01-08"
+    authors:
+      - Alessandro Contarini
+      - Valerio Solito
     verifier: TBD
     description: >
       Aggiunti UML fino a UC40
