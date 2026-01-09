@@ -177,10 +177,10 @@
   #include "uc/visualizzazione_nome_gateway.typ"
   #include "uc/visualizzazione_stato_gateway.typ"
   #include "uc/visualizzazione_dettagli_gateway.typ"
-  #include "uc/visualizzazione_time_ultimo_invio.typ"
   #include "uc/visualizzazione_lista_sensori.typ"
   #include "uc/visualizzazione_singolo_sensore.typ"
   #include "uc/visualizzazione_time_ultimo_invio_sensore.typ"
+  #include "uc/visualizzazione_time_ultimo_invio.typ"
   #include "uc/visualizzazione_id_sensore.typ"
   #include "uc/visualizzazione_dati_stream.typ"
   #include "uc/visualizzazione_tabellare_dati_stream.typ"
@@ -307,6 +307,20 @@
 
   = Casi d'Uso - Parte B: Simulatore Gateway
 
+  == Attori del Sistema
+  == Digrammi e Descrizioni Casi d'Uso
+  #table(
+    columns: (1fr, 2fr),
+    [Attore], [Descrizione],
+    [Sistema Cloud],
+    [Piattaforma esterna (rispetto al simulatore) che riceve i dati inviati dal gateway simulato e trasmette comandi di
+      configurazione remota.],
+
+    [Utente del Simulatore],
+    [Operatore tecnico (Sviluppatore o Tester) che configura ed esegue il software di simulazione per generare traffico
+      dati, testare il carico o iniettare anomalie.],
+  )
+
   #include "ucs/visualizzazione_lista_gateway_simulati.typ"
   #include "ucs/visualizzazione_singolo_gateway_simulato.typ"
 
@@ -343,19 +357,6 @@
 
   // mancano quelli a fine doc google che sono da riadattare
 
-  == Attori del Sistema
-  == Digrammi e Descrizioni Casi d'Uso
-  #table(
-    columns: (1fr, 2fr),
-    [Attore], [Descrizione],
-    [Sistema Cloud],
-    [Piattaforma esterna (rispetto al simulatore) che riceve i dati inviati dal gateway simulato e trasmette comandi di
-      configurazione remota.],
-
-    [Utente del Simulatore],
-    [Operatore tecnico (Sviluppatore o Tester) che configura ed esegue il software di simulazione per generare traffico
-      dati, testare il carico o iniettare anomalie.],
-  )
   \
   \
   = Requisiti
