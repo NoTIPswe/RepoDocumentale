@@ -29,7 +29,7 @@ changelog:
       - Valerio Solito
     verifier: TBD
     description: >
-      Aggiunti UML fino a UC40
+      Aggiunti UML fino a UC20
   - version: "0.23.0"
     date: "2026-01-08"
     authors:
