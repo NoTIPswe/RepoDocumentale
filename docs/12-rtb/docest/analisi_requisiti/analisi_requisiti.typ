@@ -302,7 +302,6 @@
   #include "uc/instaurazione_connessione_sicura.typ"
   #include "uc/err_autenticazione_gateway.typ"
 
-  // Utilizzare queste "dichiarazioni" per far compilare gli use case che includono
   #uc(system: CLOUD_SYS, id: "err_range_invalido")
 
   = Casi d'Uso - Parte B: Simulatore Gateway
@@ -354,8 +353,11 @@
   #include "ucs/comando_anomalia_degrado_rete.typ"
   #include "ucs/comando_anomalia_disconnessione_temporanea.typ"
   #include "ucs/comando_anomalia_outliers_misurazioni.typ"
-
-  // mancano quelli a fine doc google che sono da riadattare
+  #include "ucs/impostazione_configurazione_gateway.typ"
+  #include "ucs/impostazione_frequenza_invio_dati.typ"
+  #include "ucs/impostazione_stato_sospensione.typ"
+  #include "ucs/err_sintattico_config_gateway.typ"
+  #include "ucs/err_config_frequenza_fuori_range.typ"
 
   \
   \
