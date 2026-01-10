@@ -1,5 +1,12 @@
 title: Analisi dei Requisiti
 changelog:
+  - version: "0.27.0"
+    date: "2026-01-10"
+    authors:
+      - Alessandro Mazzariol
+    verifier: TBD
+    description: >
+      Aggiunti requisiti fino a UC100
   - version: "0.26.0"
     date: "2026-01-08"
     authors:
@@ -36,7 +43,7 @@ changelog:
       - Valerio Solito
     verifier: TBD
     description: >
-      Aggiunti requisiti dall'UC80 all'87 e aggiunti UML fino a UC20
+      Aggiunti requisiti dall'UC80 all'87
   - version: "0.22.0"
     date: "2026-01-07"
     authors:

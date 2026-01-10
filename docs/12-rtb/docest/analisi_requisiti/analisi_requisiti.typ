@@ -1066,6 +1066,24 @@
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di selezionare un Tenant.],
     [#tag-uc("selezione_tenant")],
+    [R-119-F], [Obbligatorio], [Il Sistema deve permettere all'Amministratore di Sistema di sospendere un Tenant di interesse.], [#tag-uc("sospensione_tenant")],
+    [R-120-F], [Obbligatorio], [Il Sistema deve permettere all'Amministratore di Sistema di riattivare un Tenant precedentemente disattivato.], [#tag-uc("riattivazione_tenant")],
+    [R-121-F], [Obbligatorio], [Il Sistema deve permettere all'Amministratore di Sistema di eliminare un Tenant di interesse.], [#tag-uc("eliminazione_tenant"), #tag-uc("conferma_eliminazione_tenant")],
+    [R-122-F], [Obbligatorio], [Il Sistema deve permettere all'Amministratore di Sistema di avviare una sessione di impersonificazione.], [#tag-uc("impersonificazione_utente_tenant")],
+    [R-123-F], [Obbligatorio], [Il Sistema deve permettere all'Amministratore di Sistema di registrare e successivamente associare un Gateway ad un Tenant di interesse.], [#tag-uc("registrazione_associazione_gateway"), #tag-uc("inserimento_credenziali_fabbrica_gateway")],
+    [R-124-F], [Obbligatorio], [Il Sistema deve permettere all'Amministratore di Sistema di creare un Utente con ruolo Amministratore Tenant per un Tenant di interesse.], [#tag-uc("creazione_utente_amministratore_tenant")],
+    [R-125-F], [Obbligatorio], [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare i log di audit relativi ad un Tenant.], [#tag-uc("visualizzazione_log_audit_sysadmin")],
+    [R-126-F], [Obbligatorio], [Il Sistema deve permettere all'Amministratore di Sistema di esportare i log di audit di un Tenant.], [#tag-uc("esportazione_log_audit_tenant_sysadmin")],
+    [R-127-F], [Obbligatorio], [Il Sistema deve permettere all'Amministratore di Sistema di monitorare le prestazioni complessive del Sistema.], [#tag-uc("monitoraggio_performance_sistema")],
+    [R-128-F], [Obbligatorio], [Il Sistema deve permettere all'Amministratore di Sistema di monitorare la latenza media del Sistema.], [#tag-uc("monitoraggio_latenza")],
+    [R-129-F], [Obbligatorio], [Il Sistema deve permettere all'Amministratore di Sistema di monitorare il volume di traffico del Sistema.], [#tag-uc("monitoraggio_volumi_traffico")],
+    [R-130-F], [Obbligatorio], [Il Sistema deve permettere all'Amministratore di Sistema di monitorare l'utilizzo dello storage del Sistema.], [#tag-uc("monitoraggio_storage")],
+    [R-131-F], [Obbligatorio], [Il Sistema deve permettere al non provisioned Gateway di attivarsi e connettersi correttamente con il Sistema.], [#tag-uc("onboarding_gateway")],
+    [R-132-F], [Obbligatorio], [Il Sistema deve permettere al non provisioned Gateway di ricevere una risposta di errore di autenticazione. ], [#tag-uc("err_auth_gateway_fabbrica")],
+    [R-133-F], [Obbligatorio], [Il Sistema deve permettere al provisioned Gateway di inviare dati crittografici al Cloud.], [#tag-uc("invio_dati_crittografati_cloud")],
+    [R-134-F], [Obbligatorio], [Il Sistema deve permettere al non provisioned Gateway di aprire un canale di comunicazione sicuro.], [#tag-uc("instaurazione_connessione_sicura")],
+    [R-135-F], [Obbligatorio], [Il Sistema deve notificare il provisioned Gateway che il processo di autenticazione è fallito.], [#tag-uc("err_autenticazione_gateway")],
+    
   )
 
   == Requisiti Qualitativi
