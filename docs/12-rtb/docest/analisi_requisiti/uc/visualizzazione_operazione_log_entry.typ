@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "visualizzazione_operazione_log_entry",
@@ -16,4 +16,4 @@
   main-scen: (
     (descr: "L’attore visualizza l’azione relativa alla entry del log di audit"),
   ),
-)
+)[#uml-schema("63.4", "Visualizzazione operazione log entry")]

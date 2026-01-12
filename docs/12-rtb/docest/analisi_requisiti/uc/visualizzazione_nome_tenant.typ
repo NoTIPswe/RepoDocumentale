@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "visualizzazione_nome_tenant",
@@ -16,4 +16,4 @@
   main-scen: (
     (descr: "L’attore visualizza il nome del Tenant"),
   ),
-)
+)[#uml-schema("80", "Visualizzazione nome Tenant")]

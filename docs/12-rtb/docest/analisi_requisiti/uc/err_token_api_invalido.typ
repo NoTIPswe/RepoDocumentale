@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "err_token_api_invalido",
@@ -18,4 +18,4 @@
   main-scen: (
     (descr: "L’attore riceve una risposta di errore di autenticazione"),
   ),
-)
+)[#uml-schema("73", "Errore token di autenticazione API invalido")]

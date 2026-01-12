@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "visualizzazione_timestamp_log_entry",
@@ -16,4 +16,4 @@
   main-scen: (
     (descr: "L’attore visualizza il timestamp relativo alla entry del log di audit"),
   ),
-)
+)[#uml-schema("63.2", "Visualizzazione timestamp log entry")]

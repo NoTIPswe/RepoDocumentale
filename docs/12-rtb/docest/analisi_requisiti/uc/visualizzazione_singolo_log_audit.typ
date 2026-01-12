@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "visualizzazione_singolo_log_audit",
@@ -28,4 +28,4 @@
       inc: "visualizzazione_operazione_log_entry",
     ),
   ),
-)
+)[#uml-schema("63.1", "Visualizzazione singola entry log di Audit del tenant")]

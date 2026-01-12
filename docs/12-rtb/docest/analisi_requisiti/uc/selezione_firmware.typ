@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "selezione_firmware",
@@ -21,4 +21,4 @@
     ),
     (descr: "L’attore seleziona una versione tra quelle visualizzate"),
   ),
-)
+)[#uml-schema("66.1", "Selezione firmware")]

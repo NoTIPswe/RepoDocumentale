@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "selezione_intervallo_temporale",
@@ -17,4 +17,4 @@
     (descr: "L’attore seleziona un timestamp minimo"),
     (descr: "L’attore seleziona un timestamp massimo (maggiore del minimo)"),
   ),
-)
+)[#uml-schema("64.1", "Selezione intervallo temporale")]

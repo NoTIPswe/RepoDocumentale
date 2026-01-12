@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "download_log_audit_esportati",
@@ -18,4 +18,4 @@
     (descr: "L’attore viene notificato della disponibilità del log esportato"),
     (descr: "L’attore scarica il file di log sul proprio dispositivo"),
   ),
-)
+)[#uml-schema("64.2", "Download log audit esportati")]

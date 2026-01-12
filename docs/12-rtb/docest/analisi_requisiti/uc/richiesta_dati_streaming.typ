@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "richiesta_dati_streaming",
@@ -37,4 +37,4 @@
       uc: "err_id_sensore_invalido",
     ),
   ),
-)
+)[#uml-schema("77", "Richiesta dati streaming")]

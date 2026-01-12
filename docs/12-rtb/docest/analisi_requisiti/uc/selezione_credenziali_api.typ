@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "selezione_credenziali_api",
@@ -16,4 +16,4 @@
   main-scen: (
     (descr: "L’attore seleziona una entry di credenziali API dalla lista"),
   ),
-)
+)[#uml-schema("61.1", "Selezione credenziali API")]

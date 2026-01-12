@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "eliminazione_credenziali_api",
@@ -21,4 +21,4 @@
     (descr: "L’attore viene informato delle conseguenze dell’eliminazione"),
     (descr: "L’attore conferma la volontà di eliminazione del token"),
   ),
-)
+)[#uml-schema("61", "Eliminazione credenziali API")]
