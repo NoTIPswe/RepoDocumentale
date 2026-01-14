@@ -15,7 +15,6 @@
   trigger: "L’attore desidera visualizzare i log di Audit del Tenant",
   main-scen: (
     (
-      // bookmark
       descr: "L’attore visualizza il timestamp relativo all’azione loggata",
       inc: "visualizzazione_timestamp_log_entry",
     ),
@@ -27,5 +26,7 @@
       descr: "L’attore visualizza una descrizione testuale dell’operazione eseguita",
       inc: "visualizzazione_operazione_log_entry",
     ),
+    // bookmark
+    // codice -> indica l'operazione tracciandola
   ),
 )[#uml-schema("63.1", "Visualizzazione singola entry log di Audit del tenant")]

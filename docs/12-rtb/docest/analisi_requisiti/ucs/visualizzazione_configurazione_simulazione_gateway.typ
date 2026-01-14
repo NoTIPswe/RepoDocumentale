@@ -23,5 +23,11 @@
       inc: "visualizzazione_chiave_fabbrica_simulazione",
     ),
     // bookmark - non sappiamo ancora cosa altro visualizzare
+    // serial number 
+    // versione software 
+    // versione firmware
+    // modello 
+    // pin geografico 
+    // ...
   ),
 )

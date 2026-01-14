@@ -30,6 +30,5 @@
       descr: "L’attore visualizza l’algoritmo di generazione dei dati",
       inc: "visualizzazione_algoritmo_generazione_dati",
     ),
-    // bookmark - ancora non li sappiamo tutti
   ),
 )

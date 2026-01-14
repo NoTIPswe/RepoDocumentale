@@ -16,5 +16,9 @@
   main-scen: (
     (descr: "L’attore inserisce il nome del Tenant"),
     // bookmark - chiedere all'azienda che informazioni è di interesse memorizzare per un tenant
+    // PIVA
+    // mail 
+    // numero di telefono
+    // ... (classici, nulla di più rispetto a info di contatto)
   ),
 )
