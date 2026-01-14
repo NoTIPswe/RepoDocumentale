@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "creazione_utente_tenant",
@@ -33,4 +33,4 @@
     ),
     (descr: "L’attore salva le modifiche e crea l’utente"),
   ),
-)
+)[#uml-schema("51", "Creazione Utente del Tenant")]

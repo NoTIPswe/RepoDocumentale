@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "selezione_permessi_utente",
@@ -16,4 +16,4 @@
   main-scen: (
     (descr: "L'Attore seleziona il tipo di permesso da concedere all’utente (Amministratore Tenant o Utente Tenant)"),
   ),
-)
+)[#uml-schema("53", "Selezione permessi Utente")]

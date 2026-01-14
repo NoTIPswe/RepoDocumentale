@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "modifica_intervallo_alert_gateway",
@@ -21,4 +21,4 @@
     ),
     (descr: "L’Attore riceve la conferma della modifica apportata"),
   ),
-)
+)[#uml-schema("47", "Modifica intervallo alert gateway irraggiungibile")]

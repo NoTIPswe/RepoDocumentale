@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "impersonificazione_utente_tenant",
@@ -21,4 +21,4 @@
     (descr: "L’Attore viene reindirizzato nell’ambiente applicativo come “Utente Tenant” o “Amministratore Tenant”"),
     (descr: "L’Attore utilizza le funzionalità disponibili, nel rispetto dei permessi dell’utente impersonificato"),
   ),
-)
+)[#uml-schema("91", "Impersonificazione Utenti Tenant")]

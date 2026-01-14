@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "eliminazione_tenant",
@@ -25,4 +25,4 @@
     ),
     (descr: "L’attore riceve una notifica di operazione avvenuta con successo"),
   ),
-)
+)[#uml-schema("90", "Eliminazione Tenant")]

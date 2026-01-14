@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "modifica_nome_tenant",
@@ -18,4 +18,4 @@
     (descr: "L’attore inserisce un nuovo nome descrittivo per il Tenant"),
     (descr: "L’attore salva le modifiche"),
   ),
-)
+)[#uml-schema("84", "Modifica Nome Tenant")]

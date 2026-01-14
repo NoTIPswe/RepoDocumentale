@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "visualizzazione_client_id",
@@ -16,4 +16,4 @@
   main-scen: (
     (descr: "Il sistema mostra a video la stringa alfanumerica corrispondente al Client ID"),
   ),
-)
+)[#uml-schema("59", "Visualizzazione Client ID")]

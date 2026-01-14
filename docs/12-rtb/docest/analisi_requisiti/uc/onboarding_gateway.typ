@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "onboarding_gateway", // bookmark - use case o diagramma di attività
@@ -33,4 +33,4 @@
       uc: "err_auth_gateway_fabbrica",
     ),
   ),
-)
+)[#uml-schema("97", "Provisioning Gateway - Onboarding")]

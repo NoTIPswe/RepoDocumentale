@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "modifica_range_default_tipo_sensore",
@@ -26,4 +26,4 @@
     ),
     (descr: "L’attore salva le modifiche"),
   ),
-)
+)[#uml-schema("45", "Modifica range alert default per tipo sensore")]

@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "modifica_intervallo_sospensione_tenant",
@@ -18,4 +18,4 @@
       descr: "L’attore visualizza l’intervallo temporale di sospensione (in giorni) minimo che deve trascorrere prima di poter eliminare il Tenant",
     ),
   ),
-)
+)[#uml-schema("83", "Modifica intervallo minimo sospensione pre-eliminazione Tenant")]

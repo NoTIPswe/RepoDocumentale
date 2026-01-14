@@ -1,5 +1,12 @@
 title: Analisi dei Requisiti
 changelog:
+  - version: "0.29.0"
+    date: "2026-01-14"
+    authors:
+      - Alessandro Mazzariol
+    verifier: TBD
+    description: >
+      Aggiunti i restanti diagrammi UML
   - version: "0.28.0"
     date: "2026-01-12"
     authors:

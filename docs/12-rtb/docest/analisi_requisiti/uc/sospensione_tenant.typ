@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "sospensione_tenant",
@@ -23,4 +23,4 @@
     (descr: "L’attore conferma la decisione di sospendere il Tenant selezionato"),
     (descr: "L’attore riceve una notifica di operazione avvenuta con successo"),
   ),
-)
+)[#uml-schema("88", "Sospensione Tenant")]

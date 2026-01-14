@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "visualizzazione_stato_tenant",
@@ -16,4 +16,4 @@
   main-scen: (
     (descr: "L’attore visualizza lo stato corrente del Tenant"),
   ),
-)
+)[#uml-schema("81", "Visualizzazione stato del Tenant")]

@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "instaurazione_connessione_sicura",
@@ -30,4 +30,4 @@
       uc: "err_autenticazione_gateway",
     ),
   ),
-)
+)[#uml-schema("99.1", "Instaurazione connessione sicura")]

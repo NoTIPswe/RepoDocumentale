@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "monitoraggio_performance_sistema",
@@ -27,4 +27,4 @@
       inc: "monitoraggio_storage",
     ),
   ),
-)
+)[#uml-schema("96", "Monitoraggio performance Sistema")]

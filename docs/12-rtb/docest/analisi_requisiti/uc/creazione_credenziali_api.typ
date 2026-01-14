@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "creazione_credenziali_api",
@@ -28,4 +28,4 @@
       inc: "visualizzazione_secret_api",
     ),
   ),
-)
+)[#uml-schema("58", "Creazione credenziali Client API")]

@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "modifica_password_utente",
@@ -24,4 +24,4 @@
     ),
     (descr: "L’attore salva le modifiche apportate"),
   ),
-)
+)[#uml-schema("56", "Modifica password Utente del Tenant")]
