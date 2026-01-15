@@ -4,6 +4,7 @@ changelog:
     date: "2026-01-14"
     authors:
       - Alessandro Mazzariol
+      - Alessandro Contarini
     verifier: TBD
     description: >
       Aggiunti i restanti diagrammi UML
@@ -11,6 +12,7 @@ changelog:
     date: "2026-01-12"
     authors:
       - Alessandro Mazzariol
+      - Mario De Pasquale
     verifier: TBD
     description: >
       Aggiunti diagrammi UML fino a UC80
