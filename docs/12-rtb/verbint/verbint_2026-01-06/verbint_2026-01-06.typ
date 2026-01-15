@@ -40,18 +40,18 @@
       mancanza di tempo e gli impegni personali di ognuno dei componenti del gruppo non abbiano permesso la
       realizzazione di tutto ciò programmato ad inizio Sprint. Si è discusso inoltre riguardo le difficoltà emerse
       durante la ristesura dell'Analisi dei requisiti, evidenziando comunque come questa fosse oramai quasi ultimata e
-      necvessitasse solo di alcuni aggiustamenti finali. Si è proceduto con la stesura di una serie di domande da porre
+      necessitasse solo di alcuni aggiustamenti finali. Si è proceduto con la stesura di una serie di domande da porre
       al Prof. Cardin, in maniera tale da ultimare il documento entro la prima metà dello Sprint corrente.
     ],
     decisions: [
-      Viene ufficilizzata la necessità di contattare il Prof. Cardin e esporre le domande preparate dal gruppo.
+      Viene ufficializzata la necessità di contattare il Prof. Cardin e esporre le domande preparate dal gruppo.
     ],
   )
 
   #base-report.report-point(
     discussion_point: [Rotazione dei ruoli.],
     discussion: [
-      Si è proceduto alla definizione dei ruoli per lo Sprint corrente, seguendo la diposnibilità dei vari elementi del
+      Si è proceduto alla definizione dei ruoli per lo Sprint corrente, seguendo la disponibilità dei vari elementi del
       gruppo, ma garantendo che il PoC venga iniziato entro il termine del periodo.
     ],
     decisions: [
@@ -63,11 +63,11 @@
     discussion_point: [Previsione consegna RTB.],
     discussion: [
       Per organizzare al meglio il lavoro del gruppo e per garantire la consegna della RTB nei tempi previsti, si è
-      discusso riguardo al fissaggioo di una data entro la quale sporgere richiesta di consegna della Milestone.
+      discusso riguardo al fissaggio di una data entro la quale sporgere richiesta di consegna della Milestone.
     ],
     decisions: [
-      Si è deciso, di comune accordo, di fissare la data limite per la richiesta al *1 febbario 2026*, permettendo così
-      a tuttii componenti del gruppo di prepararsi agli esami e di arrivare pronti alla consegna.
+      Si è deciso, di comune accordo, di fissare la data limite per la richiesta al *1 febbraio 2026*, permettendo così
+      a tutti i componenti del gruppo di prepararsi agli esami e di arrivare pronti alla consegna.
     ],
   )
 
@@ -75,7 +75,7 @@
     discussion_point: [Analisi dello Stato dell'Arte.],
     discussion: [
       Affinchè ogni componente del gruppo sapesse cosa l'azienda richiede oltre al PoC, si è discusso riguardo la
-      stesura dell'Analisi delllo Stato dell'Arte. Da ciò sono emersi vari dubbi, soprattutto riguardo la formas e la
+      stesura dell'Analisi dello Stato dell'Arte. Da ciò sono emersi vari dubbi, soprattutto riguardo la forma e la
       profondità che deve presentare il suddetto documento.
     ],
     decisions: [
@@ -101,7 +101,7 @@
 ][
   = Esiti e decisioni finali
   Lo Sprint Planning si è concluso con successo, in quanto ogni componente del gruppo è stato aggiornato riguardo le
-  attività da svolgere nel prossimo periodo e ciò fatto nello Sprint precedente. Vengono quindi rischedulate tutte le
+  attività da svolgere nel prossimo periodo e ciò fatto nello Sprint precedente. Vengono quindi riprogrammate tutte le
   attività non completate, ponendo come priorità assoluta la finalizzazione dell'Analisi dei Requisiti e l'inizio dello
   studio per la realizzazione del PoC.
 ]
