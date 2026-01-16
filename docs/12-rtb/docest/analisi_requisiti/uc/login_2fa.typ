@@ -7,8 +7,8 @@
   level: 1,
   prim-actors: CA.non-authd-usr,
   preconds: (
-    "L'attore primario ha fornito correttamente le credenziali primarie",
-    "Il tenant a cui l'account relativo alle credenziali afferisce richiede 2FA",
+    "Le credenziali primarie dell’account dell'attore sono valide",
+    "Il tenant, a cui l'account relativo alle credenziali afferisce, richiede 2FA",
   ),
   postconds: (
     "L'attore primario è autenticato e riconosciuto correttamente",

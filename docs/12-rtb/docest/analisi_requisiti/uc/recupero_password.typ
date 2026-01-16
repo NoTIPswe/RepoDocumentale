@@ -7,7 +7,8 @@
   level: 1,
   prim-actors: CA.non-authd-usr,
   preconds: (
-    "L'attore primario ha un account registrato nel sistema",
+    "Esiste un account associato alla mail fornita",
+    "Il sistema consente l’avvio della procedura di recupero password", 
   ),
   postconds: (
     "La password è stata aggiornata e l'utente può effettuare il login con le nuove credenziali",

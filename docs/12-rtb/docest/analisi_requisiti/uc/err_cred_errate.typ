@@ -7,8 +7,7 @@
   level: 1,
   prim-actors: CA.non-authd-usr,
   preconds: (
-    "L'attore sta eseguendo una procedura di autenticazione",
-    "L'attore ha fornito delle credenziali non corrette",
+    "Le credenziali primarie fornite non risultano valide per alcun account registrato",
   ),
   postconds: ("Viene negato l'accesso al sistema", "L'attore viene informato dell'errore"),
   trigger: "L'attore ha inserito delle credenziali non valide",

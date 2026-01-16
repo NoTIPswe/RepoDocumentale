@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: CA.non-authd-usr,
   preconds: (
-    "L'attore primario ha inserito nel campo mail un indirizzo non associato a nessun account",
+    "La mail fornita dall'attore non risulta associata ad alcun account registrato nel sistema",
   ),
   postconds: (
     "L'attore primario ricompila il campo mail",

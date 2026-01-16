@@ -7,8 +7,7 @@
   level: 1,
   prim-actors: (CA.authd-usr,),
   preconds: (
-    "L’attore primario è in fase di registrazione di una email",
-    "L’attore primario ha inserito una mail non valida",
+    "La mail fornita non rispetta il formato valido definito dal sistema",
   ),
   postconds: (
     "La mail inserita viene rifiutata",

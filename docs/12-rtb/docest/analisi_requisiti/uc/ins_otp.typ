@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: CA.non-authd-usr,
   preconds: (
-    "Le credenziali primarie sono state validate",
+    "Le credenziali primarie dell'attore sono state validate",
     "Il sistema è in attesa del codice di verifica temporaneo",
   ),
   postconds: (

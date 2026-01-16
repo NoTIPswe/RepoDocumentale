@@ -7,8 +7,7 @@
   level: 1,
   prim-actors: (CA.non-authd-usr, CA.authd-usr),
   preconds: (
-    "L'attore primario ha inserito una stringa da validare attraverso ripetizione",
-    "Stringa e ripetizione sono diversi",
+    "I valori in input da validare attraverso ripetizione non coincidono",
   ),
   postconds: (
     "Viene richiesta una nuova compilazione del campo",

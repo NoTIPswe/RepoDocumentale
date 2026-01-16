@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: (CA.authd-usr,),
   preconds: (
-    "L’attore ha inserito una mail già registrata all'interno del Tenant",
+    "La mail fornita risulta già associata a un altro account registrato nel Tenant",
   ),
   postconds: (
     "L’indirizzo mail non viene memorizzato",

@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: (CA.authd-usr,),
   preconds: (
-    "L’attore primario rispetta il limite di cambi mail in un dato periodo",
+    "Il limite di cambi mail dell'account in analisi in un dato periodo di tempo non è stato superato",
   ),
   postconds: (
     "L’attore primario ha correttamente modificato la mail del proprio account",

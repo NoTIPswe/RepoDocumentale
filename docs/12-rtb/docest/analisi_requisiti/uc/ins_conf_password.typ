@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: (CA.non-authd-usr, CA.authd-usr),
   preconds: (
-    "L'attore primario deve inserire e confermare una password",
+    "Il sistema richiede l’impostazione di una nuova password per l’account",
   ),
   postconds: (
     "Password validata e salvata",

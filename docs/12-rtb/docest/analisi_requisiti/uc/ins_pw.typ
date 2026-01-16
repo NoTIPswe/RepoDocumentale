@@ -7,8 +7,9 @@
   level: 2,
   prim-actors: CA.non-authd-usr,
   preconds: (
+    "Esiste almeno un account registrato nel sistema",
     "L'attore non è autenticato nel sistema",
-    "L'attore si trova in una sezione dedicata all'autenticazione",
+    "Il sistema ha acquisito una mail associata a un account esistente",
   ),
   postconds: ("L'attore ha inserito una password",),
   trigger: "L'attore deve inserire una password per accedere",

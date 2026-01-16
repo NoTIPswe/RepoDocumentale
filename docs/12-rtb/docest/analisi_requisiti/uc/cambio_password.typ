@@ -7,7 +7,7 @@
   level: 2,
   prim-actors: CA.non-authd-usr,
   preconds: (
-    "L'attore primario ha inserito un codice monouso valido e non ancora scaduto",
+    "Il sistema ha validato il token di recupero password associato all’account",
   ),
   postconds: (
     "La nuova password è salvata nel database",

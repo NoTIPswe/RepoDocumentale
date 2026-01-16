@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: (CA.authd-usr,),
   preconds: (
-    "L’attore primario deve compilare un campo mail e un campo di conferma mail",
+    "Il sistema richiede l’inserimento di una nuova mail per l’account",
   ),
   postconds: (
     "L’indirizzo mail inserita è stato validato",

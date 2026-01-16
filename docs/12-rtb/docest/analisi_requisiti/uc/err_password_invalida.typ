@@ -7,8 +7,7 @@
   level: 1,
   prim-actors: (CA.non-authd-usr, CA.authd-usr),
   preconds: (
-    "L’attore primario è in fase di registrazione di una password",
-    "L’attore primario ha inserito una mail non valida secondo le politiche di sicurezza",
+    "La password fornita non soddisfa i criteri di validazione definiti dal sistema",    
   ),
   postconds: (
     "La password inserita viene rifiutata",
