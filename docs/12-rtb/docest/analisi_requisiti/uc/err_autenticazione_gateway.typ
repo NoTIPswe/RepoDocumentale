@@ -12,9 +12,9 @@
   postconds: (
     "Il canale sicuro non viene instaurato",
   ),
-  trigger: "Il processo di autenticazione del gateway fallisce",
+  trigger: "Il processo di autenticazione del Gateway fallisce",
   main-scen: (
-    (descr: "L’attore riceve un errore di autenticazione"),
+    (descr: "L’Attore riceve un errore di autenticazione"),
     (descr: "Il canale sicuro non viene instaurato"),
   ),
 )[#uml-schema("100", "Errore autenticazione Gateway")]

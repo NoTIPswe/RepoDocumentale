@@ -7,13 +7,13 @@
   level: 2,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "La sessione è attiva",
-    "L’attore sta visualizzando un alert relativo a dati fuori range",
+    "Esiste un'irregolarità nelle misurazioni del sensore",
+    "Il Sistema sta mostrando un alert relativo a dati fuori range",
   ),
   postconds: (
-    "L’attore visualizza il dato fuori range registrato",
+    "L’Attore visualizza il dato fuori range registrato",
   ),
-  trigger: "Un dato registrato risulta essere fuori range previsto",
+  trigger: "Un valore registrato dal sensore risulta fuori dal range previsto",
   main-scen: (
     (descr: "L’Attore visualizza il valore del dato registrato"),
   ),

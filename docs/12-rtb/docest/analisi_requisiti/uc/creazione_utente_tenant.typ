@@ -7,30 +7,30 @@
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "L’Attore primario si trova nella sezione dedicata alla gestione del proprio tenant",
-    "L’Attore primario vuole creare un nuovo utente associato al proprio tenant",
+    "Il Sistema sta mostrando la pagina di gestione del Tenant",
+    "Il Sistema sta attendendo l'inserimento dei dati per la creazione Utente da parte dell'Attore",
   ),
   postconds: (
-    "L’Attore primario ha creato con successo l’Utente",
+    "L’Attore ha creato con successo l’Utente",
   ),
-  trigger: "L’attore principale vuole creare un nuovo Utente del tenant",
+  trigger: "L’Attore vuole creare un nuovo Utente del tenant",
   main-scen: (
     (
-      descr: "L’attore inserisce il nome dell’utente",
+      descr: "L’Attore inserisce il nome dell’Utente",
       inc: "inserimento_nome_utente",
     ),
     (
-      descr: "L’attore seleziona i permessi dell’utente",
+      descr: "L’Attore seleziona i permessi dell’Utente",
       inc: "selezione_permessi_utente",
     ),
     (
-      descr: "L’attore inserisce e conferma la mail dell’utente",
+      descr: "L’Attore inserisce e conferma la mail dell’Utente",
       inc: "inserimento_conferma_password",
     ),
     (
-      descr: "L’attore inserisce e conferma la password dell’utente",
+      descr: "L’Attore inserisce e conferma la password dell’Utente",
       inc: "inserimento_conferma_password",
     ),
-    (descr: "L’attore salva le modifiche e crea l’utente"),
+    (descr: "L’Attore salva le modifiche e crea l’Utente"),
   ),
 )[#uml-schema("51", "Creazione Utente del Tenant")]

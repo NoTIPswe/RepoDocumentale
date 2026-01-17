@@ -7,13 +7,13 @@
   level: 2,
   prim-actors: (CA.tenant-adm, CA.sys-adm),
   preconds: (
-    "L’attore sta visualizzando i log di Audit del Tenant",
+    "L’Attore sta visualizzando i log di Audit del Tenant",
   ),
   postconds: (
     "L’Attore visualizza correttamente il timestamp di una singola entry del log di audit",
   ),
-  trigger: "L’attore desidera visualizzare una entry del log di Audit del Tenant",
+  trigger: "L’Attore desidera visualizzare una entry del log di Audit del Tenant",
   main-scen: (
-    (descr: "L’attore visualizza il timestamp relativo alla entry del log di audit"),
+    (descr: "L’Attore visualizza il timestamp relativo alla entry del log di audit"),
   ),
 )[#uml-schema("63.2", "Visualizzazione timestamp log entry")]

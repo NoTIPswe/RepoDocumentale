@@ -3,16 +3,16 @@
 #uc(
   id: "modifica_intervallo_alert_gateway",
   system: CLOUD_SYS,
-  title: "Modifica intervallo alert gateway irraggiungibile",
+  title: "Modifica intervallo alert Gateway irraggiungibile",
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "L’attore si trova nella sezione dedicata alla modifica dell’intervallo",
+    "I Gateway appartengono allo stesso Tenant"
   ),
   postconds: (
-    "Il nuovo intervallo viene applicato a tutti i gateway",
+    "Il nuovo intervallo viene applicato a tutti i Gateway",
   ),
-  trigger: "L’attore principale vuole cambiare il timeout applicato per determinare se un Gateway è irraggiungibile",
+  trigger: "L’Attore vuole cambiare il timeout applicato per determinare se un Gateway è irraggiungibile",
   main-scen: (
     (descr: "L’Attore visualizza l’intervallo attuale"),
     (
@@ -21,4 +21,4 @@
     ),
     (descr: "L’Attore riceve la conferma della modifica apportata"),
   ),
-)[#uml-schema("47", "Modifica intervallo alert gateway irraggiungibile")]
+)[#uml-schema("47", "Modifica intervallo alert Gateway irraggiungibile")]

@@ -12,13 +12,13 @@
   postconds: (
     "L’indirizzo mail non viene memorizzato",
   ),
-  trigger: "Una mail fornita dall'attore in fase di creazione di un utente è già presente nel Tenant",
+  trigger: "Una mail fornita dall'Attore in fase di creazione di un Utente è già presente nel Tenant",
   main-scen: (
     (
-      descr: "L’attore viene notificato che la mail è già presente all'interno del Tenant",
+      descr: "L’Attore viene notificato che la mail è già presente all'interno del Tenant",
     ),
     (
-      descr: "L'attore viene invitato ad inserirne una nuova",
+      descr: "L'Attore viene invitato ad inserirne una nuova",
     ),
   ),
 )[

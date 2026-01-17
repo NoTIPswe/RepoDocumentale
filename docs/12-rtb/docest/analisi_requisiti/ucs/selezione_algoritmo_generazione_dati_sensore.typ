@@ -7,14 +7,14 @@
   title: "Selezione algoritmo di generazione dati sensore",
   prim-actors: (SA.sym-usr),
   preconds: (
-    "L’attore primario si trova nella sezione di Gestione Gateway simulato",
+    "L’Attore primario si trova nella sezione di Gestione Gateway simulato",
     "È stato selezionato un Gateway simulato esistente",
   ),
   postconds: (
-    "L’attore ha selezionato un algoritmo di generazione",
+    "L’Attore ha selezionato un algoritmo di generazione",
   ),
-  trigger: "L’attore vuole decidere in che modo i dati verranno creati",
+  trigger: "L’Attore vuole decidere in che modo i dati verranno creati",
   main-scen: (
-    (descr: "L’attore seleziona un algoritmo di generazione tra quelli disponibili"),
+    (descr: "L’Attore seleziona un algoritmo di generazione tra quelli disponibili"),
   ),
 )

@@ -7,31 +7,31 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L'attore primario sta visualizzando la lista dei gateway",
-    "L'attore primario ha selezionato un Gateway specifico",
+    "L'Attore primario sta visualizzando la lista dei Gateway",
+    "L'Attore primario ha selezionato un Gateway specifico",
   ),
   postconds: (
-    "L'attore primario visualizza nome, stato, ultimo timestamp dati inviati ed i sensori del gateway",
+    "L'Attore primario visualizza nome, stato, ultimo timestamp dati inviati ed i sensori del Gateway",
   ),
-  trigger: "L'attore primario vuole vedere i dettagli di un singolo gateway",
+  trigger: "L'Attore primario vuole vedere i dettagli di un singolo Gateway",
   main-scen: (
     (
-      descr: "L'attore primario visualizza l'identificativo",
+      descr: "L'Attore primario visualizza l'identificativo",
       inc: "visualizzazione_nome_gateway",
     ),
     (
-      descr: "L'attore primario visualizza lo stato del gateway",
+      descr: "L'Attore primario visualizza lo stato del Gateway",
       inc: "visualizzazione_stato_gateway",
     ),
     (
-      descr: "L'attore primario visualizza l'ultimo timestamp dati inviati",
+      descr: "L'Attore primario visualizza l'ultimo timestamp dati inviati",
       inc: "visualizzazione_timestamp_ultimo_invio_dati_gateway",
     ),
     (
-      descr: "L'attore primario visualizza la lista dei sensori collegati",
+      descr: "L'Attore primario visualizza la lista dei sensori collegati",
       inc: "visualizzazione_lista_sensori",
     ),
   ),
 )[
-  #uml-schema("21", "Diagramma visualizzazione gateway")
+  #uml-schema("21", "Diagramma visualizzazione Gateway")
 ]

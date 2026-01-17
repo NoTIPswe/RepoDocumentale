@@ -8,19 +8,19 @@
   prim-actors: CA.sys-adm,
   preconds: (
     "L’Attore si trova nella sezione dedicata alla visualizzazione dei Tenant",
-    "L’attore seleziona un Tenant ed entra nella relativa sezione di Gestione",
+    "L’Attore seleziona un Tenant ed entra nella relativa sezione di Gestione",
   ),
   postconds: (
-    "L’attore scarica i log di audit del tenant",
+    "L’Attore scarica i log di audit del tenant",
   ),
   trigger: "Si desidera consultare i log di audit relativi ad un Tenant",
   main-scen: (
     (
-      descr: "L’attore seleziona un Tenant",
+      descr: "L’Attore seleziona un Tenant",
       inc: "selezione_tenant",
     ),
     (
-      descr: "L’attore esporta i log di audit del Tenant selezionato",
+      descr: "L’Attore esporta i log di audit del Tenant selezionato",
       inc: "esportazione_log_audit_tenant",
     ),
   ),

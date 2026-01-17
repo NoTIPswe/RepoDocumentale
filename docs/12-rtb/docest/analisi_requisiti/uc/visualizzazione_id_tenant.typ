@@ -7,13 +7,13 @@
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
-    "L’attore primario si trova nella sezione dedicata alla visualizzazione dei Tenant",
+    "L’Attore primario si trova nella sezione dedicata alla visualizzazione dei Tenant",
   ),
   postconds: (
-    "L’attore visualizza l’identificativo univoco del Tenant",
+    "L’Attore visualizza l’identificativo univoco del Tenant",
   ),
   trigger: "Necessità di conoscere l'identificativo del Tenant",
   main-scen: (
-    (descr: "L’attore visualizza l’ID univoco associato al Tenant"),
+    (descr: "L’Attore visualizza l’ID univoco associato al Tenant"),
   ),
 )[#uml-schema("82", "Visualizzazione ID Tenant")]

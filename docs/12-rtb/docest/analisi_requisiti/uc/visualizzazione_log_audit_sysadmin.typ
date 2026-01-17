@@ -16,11 +16,11 @@
   trigger: "Si desidera consultare i log di audit relativi ad un Tenant",
   main-scen: (
     (
-      descr: "L’attore seleziona un Tenant",
+      descr: "L’Attore seleziona un Tenant",
       inc: "selezione_tenant",
     ),
     (
-      descr: "L’attore visualizza i log di audit del Tenant selezionato",
+      descr: "L’Attore visualizza i log di audit del Tenant selezionato",
       inc: "visualizzazione_singolo_log_audit",
     ),
   ),

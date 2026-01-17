@@ -7,16 +7,18 @@
   level: 2,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "Il sistema ha generato la chiave segreta associata al client",
+    "Esiste almeno un Tenant",
+    "Il Tenant risulta attivo",
+    "Al Tenant risulta associato un client ID",
   ),
   postconds: (
     "La chiave segreta è stata mostrata a video; il sistema non permetterà una seconda visualizzazione in futuro",
   ),
   trigger: "Fase finale della creazione delle credenziali API",
   main-scen: (
-    (descr: "L’attore visualizza la chiave segreta (Client Secret)"),
+    (descr: "L’Attore visualizza la chiave segreta (Client Secret)"),
     (
-      descr: "L’attore viene informato del fatto che si tratta dell'unica occasione per visualizzare e copiare la chiave",
+      descr: "L’Attore viene informato del fatto che si tratta dell'unica occasione per visualizzare e copiare la chiave",
     ),
   ),
 )

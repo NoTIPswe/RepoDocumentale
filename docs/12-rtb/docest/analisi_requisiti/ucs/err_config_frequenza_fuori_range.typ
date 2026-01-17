@@ -7,14 +7,14 @@
   title: "Errore configurazione frequenza invio dati fuori range ammesso",
   prim-actors: (SA.cloud),
   preconds: (
-    "Il valore di frequenza ricevuto è sintatticamente corretto ma non accettabile dal gateway",
+    "Il valore di frequenza ricevuto è sintatticamente corretto ma non accettabile dal Gateway",
   ),
   postconds: (
     "La modifica della frequenza viene ignorata",
-    "L’attore riceve una notifica di errore",
+    "L’Attore riceve una notifica di errore",
   ),
   trigger: "Ricezione di un valore di frequenza non valido logicamente",
   main-scen: (
-    (descr: "L’attore riceve una notifica di errore di configurazione per errore semantico nel range"),
+    (descr: "L’Attore riceve una notifica di errore di configurazione per errore semantico nel range"),
   ),
 )

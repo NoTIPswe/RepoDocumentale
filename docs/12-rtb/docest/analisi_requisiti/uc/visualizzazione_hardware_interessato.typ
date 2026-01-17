@@ -7,13 +7,13 @@
   level: 3,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L’attore primario si trova nella sezione dedicata agli alert",
-    "L’attore primario sta visualizzando lo storico degli alert",
+    "Esiste almeno un alert registrato nel Sistema",
+    "Il Sistema sta mostrando lo storico degli alert registrati nel Sistema",
   ),
   postconds: (
-    "Il sistema mostra l’hardware interessato",
+    "L'Attore visualizza l’hardware interessato",
   ),
-  trigger: "L’attore primario deve visualizzare lo storico degli alert del tenant",
+  trigger: "L’Attore vuole visualizzare lo storico degli alert registrati nel Sistema",
   main-scen: (
     (descr: "L’attore primario visualizza l’identificativo dell’hardware interessato dall’alert"),
   ),

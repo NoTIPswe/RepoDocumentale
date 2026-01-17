@@ -10,20 +10,20 @@
     "La sessione è attiva",
   ),
   postconds: (
-    "L’attore viene notificato della non disponibilità del Gateway",
+    "L’Attore viene notificato della non disponibilità del Gateway",
   ),
-  trigger: "Un gateway diventa irraggiungibile",
+  trigger: "Un Gateway diventa irraggiungibile",
   main-scen: (
-    (descr: "Il sistema notifica l’attore primario dell’irraggiungibilità del gateway"),
+    (descr: "Il sistema notifica l’Attore primario dell’irraggiungibilità del Gateway"),
     (
-      descr: "L’attore primario visualizza il nome gateway interessato",
+      descr: "L’Attore primario visualizza il nome Gateway interessato",
       inc: "visualizzazione_nome_gateway",
     ),
     (
-      descr: "L’attore primario visualizza il timestamp dell’ultima comunicazione",
+      descr: "L’Attore primario visualizza il timestamp dell’ultima comunicazione",
       inc: "visualizzazione_timestamp_ultimo_invio_dati_gateway",
     ),
   ),
 )[
-  #uml-schema("30", "Diagramma alert gateway non raggiungibile")
+  #uml-schema("30", "Diagramma alert Gateway non raggiungibile")
 ]

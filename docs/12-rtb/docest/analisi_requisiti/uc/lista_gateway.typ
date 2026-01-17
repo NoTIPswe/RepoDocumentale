@@ -3,24 +3,24 @@
 #uc(
   id: "lista_gateway",
   system: CLOUD_SYS,
-  title: "Visualizzazione lista gateway",
+  title: "Visualizzazione lista Gateway",
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L'attore primario è autenticato e ha accesso autorizzato alle risorse del proprio Tenant",
+    "L'Attore primario è autenticato e ha accesso autorizzato alle risorse del proprio Tenant",
   ),
   postconds: (
-    "L'attore primario visualizza l'elenco di tutti i gateway associati al suo Tenant",
+    "L'Attore primario visualizza l'elenco di tutti i Gateway associati al suo Tenant",
   ),
-  trigger: "L'attore primario vuole visualizzare i gateway del proprio tenant",
+  trigger: "L'Attore primario vuole visualizzare i Gateway del proprio tenant",
   main-scen: (
-    (descr: "L'attore accede alla sezione dedicata alla visualizzazione dei dispositivi"),
+    (descr: "L'Attore accede alla sezione dedicata alla visualizzazione dei dispositivi"),
     (
-      descr: "L'attore visualizza la lista dei gateway associati al proprio tenant",
+      descr: "L'Attore visualizza la lista dei Gateway associati al proprio tenant",
       inc: "visualizzazione_singolo_gateway",
     ),
   ),
 )[
-  #uml-schema("18", "Visualizzazione lista gateway")
+  #uml-schema("18", "Visualizzazione lista Gateway")
 
 ]

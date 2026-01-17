@@ -13,9 +13,9 @@
   postconds: (
     "Il timer di invio dati viene aggiornato con il nuovo valore",
   ),
-  trigger: "L’attore desidera modificare la frequenza di invio dati del Gateway",
+  trigger: "L’Attore desidera modificare la frequenza di invio dati del Gateway",
   main-scen: (
-    (descr: "L’attore modifica il valore della frequenza di invio dati del Gateway selezionato"),
-    (descr: "L’attore viene notificato del buon esito della modifica"),
+    (descr: "L’Attore modifica il valore della frequenza di invio dati del Gateway selezionato"),
+    (descr: "L’Attore viene notificato del buon esito della modifica"),
   ),
 )

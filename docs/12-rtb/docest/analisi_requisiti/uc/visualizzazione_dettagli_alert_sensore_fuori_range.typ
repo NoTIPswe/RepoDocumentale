@@ -7,28 +7,27 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L’attore primario sta visualizzando lo storico degli alert",
-    "L’attore primario ha selezionato un alert per vederne i dettagli",
+    "Il Sistema sta mostrando i dettagli di un alert riferito a un sensore fuori dal range previsto"
   ),
   postconds: (
-    "L’attore primario visualizza i dettagli dell’alert",
+    "L’Attore visualizza i dettagli dell’alert",
   ),
-  trigger: "L’attore primario seleziona un alert sensore fuori range per vederne i dettagli",
+  trigger: "L’Attore vuole visualizzare i dettagli di un alert sensore fuori dal range",
   main-scen: (
     (
-      descr: "L’attore primario visualizza l’ID del sensore interessato",
+      descr: "L’Attore visualizza l’ID del sensore interessato",
       inc: "visualizzazione_id_sensore",
     ),
     (
-      descr: "L’attore primario visualizza il valore del dato registrato fuori range",
+      descr: "L’Attore visualizza il valore del dato registrato fuori range",
       inc: "visualizzazione_valore_dato_registrato",
     ),
     (
-      descr: "L’attore primario visualizza l’orario di registrazione del dato",
+      descr: "L’Attore visualizza l’orario di registrazione del dato",
       inc: "visualizzazione_timestamp_dato_irregolare",
     ),
     (
-      descr: "L’attore primario visualizza il range accettato",
+      descr: "L’Attore visualizza il range accettato",
       inc: "visualizzazione_range_accettato",
     ),
   ),

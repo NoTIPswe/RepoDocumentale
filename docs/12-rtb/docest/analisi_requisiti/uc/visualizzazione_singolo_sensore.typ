@@ -7,19 +7,19 @@
   level: 3,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L'attore primario sta visualizzando la lista di sensori collegati ad un gateway",
+    "L'Attore primario sta visualizzando la lista di sensori collegati ad un Gateway",
   ),
   postconds: (
-    "L’attore primario visualizza, nel singolo elemento della lista, ID sensore e timestamp ultimo invio dati",
+    "L’Attore primario visualizza, nel singolo elemento della lista, ID sensore e timestamp ultimo invio dati",
   ),
   trigger: "Identificazione dei sensori nel campo",
   main-scen: (
     (
-      descr: "L’attore primario visualizza identificativo sensore",
+      descr: "L’Attore primario visualizza identificativo sensore",
       inc: "visualizzazione_id_sensore",
     ),
     (
-      descr: "L’attore primario visualizza timestamp dell'ultima lettura",
+      descr: "L’Attore primario visualizza timestamp dell'ultima lettura",
       inc: "visualizzazione_timestamp_ultimo_invio_dati_sensore",
     ),
   ),

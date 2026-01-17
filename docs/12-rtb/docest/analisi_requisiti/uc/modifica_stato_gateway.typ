@@ -7,21 +7,22 @@
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "I Gateway sono raggiungibili",
+    "Il Gateway appartiene al Tenant",
+    "Il Gateway si trova in uno stato attivo/disabilitato",
   ),
   postconds: (
-    "I gateway si trovano nello stato selezionato; se disabilitati, non invieranno più dati al cloud",
+    "Il Gateway si trova nello stato impostato; se disabilitato, non invierà più dati al cloud",
   ),
-  trigger: "L’attore primario vuole abilitare o disabilitare dei gateway per gestire l’attività del sistema",
+  trigger: "L’Attore vuole abilitare/disabilitare lo stato di un Gateway",
   main-scen: (
     (
-      descr: "L’attore seleziona dei gateway appartenenti al Tenant",
+      descr: "L’Attore seleziona un Gateway appartenenti al Tenant",
       inc: "selezione_gateway",
     ),
     (
-      descr: "L’attore imposta lo stato desiderato (abilitato o disabilitato) per i gateway",
+      descr: "L’Attore imposta lo stato desiderato (abilitato o disabilitato) per il Gateway",
       inc: "selezione_stato_gateway",
     ),
-    (descr: "L’attore conferma l’operazione idempotente di cambio di stato"),
+    (descr: "L’Attore conferma l’operazione idempotente di cambio di stato"),
   ),
 )[#uml-schema("41", "Modifica stato del Gateway")]

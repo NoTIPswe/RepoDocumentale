@@ -7,23 +7,23 @@
   level: 1,
   prim-actors: CA.api-client,
   preconds: (
-    "L’attore dispone di un token di autenticazione",
+    "L’Attore dispone di un token di autenticazione",
   ),
   postconds: (
-    "L’attore riceve i dati relativi alla richiesta effettuata",
+    "L’Attore riceve i dati relativi alla richiesta effettuata",
   ),
-  trigger: "L’attore primario vuole recuperare dati real-time tramite un endpoint API",
+  trigger: "L’Attore primario vuole recuperare dati real-time tramite un endpoint API",
   main-scen: (
     (
-      descr: "L’attore invia una richiesta allegando un token di autenticazione e identificativi dei gateway e dei relativi sensori",
+      descr: "L’Attore invia una richiesta allegando un token di autenticazione e identificativi dei Gateway e dei relativi sensori",
       ep: "DatiNonValidi",
     ),
-    (descr: "L’attore inizia a ricevere i dati real-time richiesti"),
+    (descr: "L’Attore inizia a ricevere i dati real-time richiesti"),
   ),
   alt-scen: (
     (
       ep: "DatiNonValidi",
-      cond: "Il token fornito dall’utente non è valido",
+      cond: "Il token fornito dall’Utente non è valido",
       uc: "err_token_api_invalido",
     ),
     (

@@ -3,19 +3,19 @@
 #uc(
   id: "visualizzazione_ruolo_utente",
   system: CLOUD_SYS,
-  title: "Visualizzazione ruolo dell’utente",
+  title: "Visualizzazione ruolo dell’Utente",
   level: 3,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "L’attore primario si trova nella sezione dedicata alla Gestione del Tenant",
-    "L’Attore primario sta visualizzando la lista Utenti del Tenant",
-    "Il sistema ha identificato il livello di permessi associato dell'utente selezionato",
+    "Esiste almeno un Utente associato al Tenant",
+    "Il Sistema sta mostrando la lista di Utenti associati al Tenant",
+    "I dati dell'Utente sono visibili",
   ),
   postconds: (
-    "Il ruolo dell'utente è visibile",
+    "L'Attore visualizza il ruolo dell'Utente",
   ),
-  trigger: "Necessità di visualizzare i privilegi di accesso di un utente",
+  trigger: "L'Attore vuole visualizzare i privilegi di accesso di un Utente",
   main-scen: (
-    (descr: "L’attore visualizza il corrispondente ruolo dell’Utente"),
+    (descr: "L’Attore visualizza il corrispondente ruolo dell’Utente"),
   ),
 )

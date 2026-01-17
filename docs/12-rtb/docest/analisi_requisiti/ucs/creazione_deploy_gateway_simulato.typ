@@ -7,21 +7,21 @@
   title: "Creazione e Deploy di un Gateway simulato",
   prim-actors: (SA.sym-usr),
   preconds: (
-    "L’attore si trova nella sezione di gestione della simulazione",
+    "L’Attore si trova nella sezione di gestione della simulazione",
   ),
   postconds: (
     "L’istanza del Gateway simulato è stata creata e deployata correttamente",
   ),
   trigger: "Si desidera creare un Gateway simulato",
   main-scen: (
-    (descr: "L’attore avvia la procedura di creazione"),
+    (descr: "L’Attore avvia la procedura di creazione"),
     (
-      descr: "L’attore inserisce i dati relativi alla configurazione della simulazione",
+      descr: "L’Attore inserisce i dati relativi alla configurazione della simulazione",
       inc: "inserimento_dati_config_sim_gateway",
     ),
-    (descr: "L’attore conferma l’operazione di creazione"),
+    (descr: "L’Attore conferma l’operazione di creazione"),
     (
-      descr: "L’attore viene informato del successo dell’operazione",
+      descr: "L’Attore viene informato del successo dell’operazione",
       ep: "ErroreDeploy",
     ),
   ),

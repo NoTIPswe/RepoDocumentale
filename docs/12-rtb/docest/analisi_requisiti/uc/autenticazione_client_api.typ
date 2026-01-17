@@ -11,19 +11,19 @@
     "Il Client API è registrato e possiede credenziali valide",
   ),
   postconds: (
-    "L’attore principale possiede un token valido per effettuare chiamate successive",
+    "L’Attore principale possiede un token valido per effettuare chiamate successive",
   ),
-  trigger: "L’attore primario vuole autenticarsi per contattare le API",
+  trigger: "L’Attore primario vuole autenticarsi per contattare le API",
   main-scen: (
     (
-      descr: "L’attore primario contatta l’endpoint del Sistema dedicato all’autenticazione allegando le credenziali utilizzando un protocollo sicuro e criptato",
+      descr: "L’Attore primario contatta l’endpoint del Sistema dedicato all’autenticazione allegando le credenziali utilizzando un protocollo sicuro e criptato",
     ),
     (
       descr: "L’Auth Server riceve la richiesta inoltrata dal sistema", // bookmark - se usiamo auth server esterno
       ep: "ErroreAuthServer",
     ),
     (descr: "L’Auth Server risponde al sistema con un token valido"),
-    (descr: "L’attore primario riceve il token valido dal sistema"),
+    (descr: "L’Attore primario riceve il token valido dal sistema"),
   ),
   alt-scen: (
     (

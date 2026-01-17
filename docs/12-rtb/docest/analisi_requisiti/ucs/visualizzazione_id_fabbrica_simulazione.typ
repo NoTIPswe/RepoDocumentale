@@ -7,14 +7,14 @@
   title: "Visualizzazione ID di fabbrica simulazione",
   prim-actors: (SA.sym-usr),
   preconds: (
-    "L’attore ha selezionato un gateway simulato di cui visualizzare la configurazione della simulazione",
-    "L’attore sta visualizzando la configurazione di un gateway simulato",
+    "L’Attore ha selezionato un Gateway simulato di cui visualizzare la configurazione della simulazione",
+    "L’Attore sta visualizzando la configurazione di un Gateway simulato",
   ),
   postconds: (
-    "L’attore visualizza l'identificativo di fabbrica di un Gateway",
+    "L’Attore visualizza l'identificativo di fabbrica di un Gateway",
   ),
-  trigger: "L’attore accede ai dettagli di configurazione del Gateway simulato",
+  trigger: "L’Attore accede ai dettagli di configurazione del Gateway simulato",
   main-scen: (
-    (descr: "L’attore visualizza l'ID di fabbrica generato dal simulatore"),
+    (descr: "L’Attore visualizza l'ID di fabbrica generato dal simulatore"),
   ),
 )

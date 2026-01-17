@@ -7,15 +7,16 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L’attore primario si trova nella sezione dedicata agli alert",
+    "Esiste almeno un alert registrato nel Sistema",
+    "Il Sistema sta mostrando lo storico di alert registrati nel Sistema",
   ),
   postconds: (
-    "L’attore primario visualizza lo storico di tutti gli alert registrati",
+    "L’Attore visualizza lo storico di tutti gli alert registrati",
   ),
-  trigger: "L’attore primario vuole visualizzare la lista degli alert registrati",
+  trigger: "L’Attore vuole visualizzare lo storico degli alert registrati nel Sistema",
   main-scen: (
     (
-      descr: "L’attore primario visualizza la lista degli alert",
+      descr: "L’Attore visualizza la lista degli alert",
       inc: "visualizzazione_singolo_alert",
       ep: "Dettagli",
     ),

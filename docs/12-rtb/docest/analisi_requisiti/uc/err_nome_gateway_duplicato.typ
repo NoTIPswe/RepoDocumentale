@@ -7,16 +7,16 @@
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "Il nome inserito dall’attore principale è già assegnato ad un altro gateway nel Tenant",
+    "Il nome inserito dall’Attore risulta già assegnato ad un altro Gateway nel Tenant",
   ),
   postconds: (
-    "Il sistema richiede l’immissione di un nuovo nome",
+    "L'Attore ricompila il campo nome Gateway",
   ),
-  trigger: "L’attore principale ha inserito un nome duplicato ad un Gateway",
+  trigger: "Inserimento di un nome Gateway duplicato nel Tenant",
   main-scen: (
-    (descr: "L’attore principale viene notificato dell’invalidità del nome inserito"),
-    (descr: "L’attore principale viene invitato ad inserirne un altro valido"),
+    (descr: "L’Attore viene notificato dell’invalidità del nome inserito"),
+    (descr: "L’Attore viene invitato ad inserirne un altro valido"),
   ),
 )[
-  #uml-schema("40", "Diagramma errore nome gateway duplicato")
+  #uml-schema("40", "Diagramma errore nome Gateway duplicato")
 ]

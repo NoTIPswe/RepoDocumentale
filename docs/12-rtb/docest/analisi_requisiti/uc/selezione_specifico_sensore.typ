@@ -7,14 +7,15 @@
   level: 2,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "Il Gateway relativo al sensore interessato è raggiungibile",
+    "Il sensore appartiene ad un Gateway attivo",
+    "Il sensore risulta in funzione",
   ),
   postconds: (
     "Il sensore è selezionato correttamente",
   ),
-  trigger: "L’attore principale vuole selezionare un sensore",
+  trigger: "L’Attore vuole selezionare un sensore",
   main-scen: (
-    (descr: "L’attore seleziona il gateway relativo al sensore"),
-    (descr: "L’attore seleziona il sensore tra i sensori del gateway"),
+    (descr: "L’Attore seleziona il Gateway relativo al sensore"),
+    (descr: "L’Attore seleziona il sensore tra i sensori del Gateway"),
   ),
 )

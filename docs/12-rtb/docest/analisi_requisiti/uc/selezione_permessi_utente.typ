@@ -7,13 +7,14 @@
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "L’Attore primario sta modificando un utente",
+    "Esiste almeno un Utente associato al Tenant",
+    "Il Sistema sta attendendo le modifiche dell'Utente da parte dell'Attore",
   ),
   postconds: (
-    "L’Attore principale assegna all’Utente un tipo di permesso",
+    "L’Attore assegna all’Utente un tipo di permesso",
   ),
-  trigger: "L’attore principale vuole assegnare un permesso ad un utente",
+  trigger: "L’Attore vuole assegnare un permesso ad un Utente",
   main-scen: (
-    (descr: "L'Attore seleziona il tipo di permesso da concedere all’utente (Amministratore Tenant o Utente Tenant)"),
+    (descr: "L'Attore seleziona il tipo di permesso da concedere all’Utente (Amministratore Tenant o Utente Tenant)"),
   ),
 )[#uml-schema("53", "Selezione permessi Utente")]

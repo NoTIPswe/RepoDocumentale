@@ -7,15 +7,15 @@
   level: 1,
   prim-actors: (CA.tenant-adm, CA.sys-adm),
   preconds: (
-    "L’attore si trova nella sezione dedicata alla visualizzazione dei log",
+    "L’Attore si trova nella sezione dedicata alla visualizzazione dei log",
   ),
   postconds: (
     "L’Attore visualizza correttamente i dati di suo interesse",
   ),
-  trigger: "L’attore desidera visualizzare i log di Audit del Tenant",
+  trigger: "L’Attore desidera visualizzare i log di Audit del Tenant",
   main-scen: (
     (
-      descr: "L’attore visualizza l'elenco cronologico dei log di Audit in una tabella riepilogativa",
+      descr: "L’Attore visualizza l'elenco cronologico dei log di Audit in una tabella riepilogativa",
       inc: "visualizzazione_singolo_log_audit",
     ),
   ),

@@ -7,16 +7,16 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L’attore primario è nella sezione “Visualizzazione Stream”",
+    "L’Attore primario è nella sezione “Visualizzazione Stream”",
     "Esiste almeno un Gateway nel Tenant",
   ),
   postconds: (
     "Il sistema salva la richiesta di visualizzazione",
   ),
-  trigger: "L’attore primario vuole filtrare per gateway",
+  trigger: "L’Attore primario vuole filtrare per Gateway",
   main-scen: (
     (
-      descr: "L’attore primario seleziona i gateway dei quali visualizzare i dati",
+      descr: "L’Attore primario seleziona i Gateway dei quali visualizzare i dati",
       inc: "filtraggio_singolo_gateway",
     ),
     (
@@ -27,10 +27,10 @@
   alt-scen: (
     (
       ep: "Filtraggio",
-      cond: "L’attore primario decide di filtrare i dati per sensore",
+      cond: "L’Attore primario decide di filtrare i dati per sensore",
       uc: "filtraggio_sensore",
     ),
   ),
 )[
-  #uml-schema("25", "Diagramma filtraggio dati per gateway")
+  #uml-schema("25", "Diagramma filtraggio dati per Gateway")
 ]

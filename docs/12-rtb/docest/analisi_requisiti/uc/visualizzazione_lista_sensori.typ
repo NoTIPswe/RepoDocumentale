@@ -7,12 +7,12 @@
   level: 2,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L'attore primario visualizza i dettagli di un gateway o la sezione sensori del Tenant",
+    "L'Attore primario visualizza i dettagli di un Gateway o la sezione sensori del Tenant",
   ),
   postconds: (
     "Il sistema mostra l'elenco dei sensori associati",
   ),
-  trigger: "L’attore primario richiede visualizzazione sensori collegati ad un gateway",
+  trigger: "L’Attore primario richiede visualizzazione sensori collegati ad un Gateway",
   main-scen: (
     (
       descr: "Il sistema renderizza le voci per ogni sensore presente",

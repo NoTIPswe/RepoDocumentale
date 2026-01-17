@@ -7,20 +7,21 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "La sessione è attiva",
+    "Esiste un'irregolarità nelle misurazioni del sensore",
   ),
   postconds: (
-    "L’attore viene notificato dell'anomalia nei dati registrati dal sensore",
+    "L’Attore viene notificato dell'anomalia nei dati registrati dal sensore",
   ),
-  trigger: "Un sensore registra valori fuori range accettato",
+  trigger: "Un valore registrato dal sensore risulta fuori dal range previsto",
   main-scen: (
-    (descr: "Il sistema notifica l’attore primario di una irregolarità nelle misurazioni di un sensore"),
+    (descr: "Il Sistema rileva una irregolarità nelle misurazioni di un sensore"),
+    (descr: "Il Sistema notifica l’Attore"),
     (
-      descr: "L’attore visualizza l’ID del sensore interessato",
+      descr: "L’Attore visualizza l’ID del sensore interessato",
       inc: "visualizzazione_id_sensore",
     ),
     (
-      descr: "L’attore visualizza il valore del dato registrato",
+      descr: "L’Attore visualizza il valore del dato registrato",
       inc: "visualizzazione_valore_dato_registrato",
     ),
     (
@@ -28,7 +29,7 @@
       inc: "visualizzazione_range_accettato",
     ),
     (
-      descr: "L’attore visualizza timestamp di registrazione del dato",
+      descr: "L’Attore visualizza timestamp di registrazione del dato",
       inc: "visualizzazione_timestamp_dato_irregolare",
     ),
   ),

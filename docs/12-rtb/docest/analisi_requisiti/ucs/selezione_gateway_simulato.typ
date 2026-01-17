@@ -4,17 +4,17 @@
   system: SIM_SYS,
   id: "selezione_gateway_simulato",
   level: 1,
-  title: "Selezione gateway simulato",
+  title: "Selezione Gateway simulato",
   prim-actors: (SA.sym-usr),
   preconds: (
-    "L’attore si trova nella sezione dedicata alla visualizzazione dei Gateway simulati istanziati",
-    "L’attore sta visualizzando la lista dei gateway simulati",
+    "L’Attore si trova nella sezione dedicata alla visualizzazione dei Gateway simulati istanziati",
+    "L’Attore sta visualizzando la lista dei Gateway simulati",
   ),
   postconds: (
-    "L’attore ha selezionato correttamente uno dei Gateway simulati",
+    "L’Attore ha selezionato correttamente uno dei Gateway simulati",
   ),
-  trigger: "L’attore vuole selezionare, per effettuare qualche operazione, un Gateway",
+  trigger: "L’Attore vuole selezionare, per effettuare qualche operazione, un Gateway",
   main-scen: (
-    (descr: "L’attore seleziona uno o più Gateway tramite il loro identificativo"),
+    (descr: "L’Attore seleziona uno o più Gateway tramite il loro identificativo"),
   ),
 )

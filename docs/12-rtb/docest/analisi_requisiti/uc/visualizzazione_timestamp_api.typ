@@ -7,14 +7,16 @@
   level: 3,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "L’Attore si trova nella sezione dedicata alla visualizzazione degli API token",
-    "L’attore ha visualizzato la lista delle credenziali API",
+    "Esiste almeno un Tenant",
+    "Il Tenant risulta attivo",
+    "Al Tenant risulta associato almeno un client ID e una Secret API",
+    "Il Sistema sta mostrando la lista di API associate al Tenant",
   ),
   postconds: (
-    "L’attore visualizza il timestamp di creazione di specifiche credenziali API",
+    "L’Attore visualizza il timestamp di creazione di specifiche credenziali API",
   ),
   trigger: "L’Attore vuole visualizzare delle specifiche credenziali API",
   main-scen: (
-    (descr: "L’attore visualizza il timestamp di creazione delle credenziali"),
+    (descr: "L’Attore visualizza il timestamp di creazione delle credenziali"),
   ),
 )

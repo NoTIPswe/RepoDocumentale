@@ -7,20 +7,20 @@
   title: "Creazione sensore Gateway simulato",
   prim-actors: (SA.sym-usr),
   preconds: (
-    "L’attore primario si trova nella sezione di Gestione Gateway simulato",
+    "L’Attore primario si trova nella sezione di Gestione Gateway simulato",
     "È stato selezionato un Gateway simulato esistente",
   ),
   postconds: (
     "Il nuovo sensore simulato viene creato con successo",
     "Il nuovo sensore viene associato al Gateway simulato",
   ),
-  trigger: "L’attore vuole creare un nuovo sensore da associare ad un Gateway simulato",
+  trigger: "L’Attore vuole creare un nuovo sensore da associare ad un Gateway simulato",
   main-scen: (
     (
-      descr: "L’attore inserisce i dati relativi alla configurazione della simulazione del sensore",
+      descr: "L’Attore inserisce i dati relativi alla configurazione della simulazione del sensore",
       inc: "inserimento_dati_config_sim_sensore",
     ),
-    (descr: "L’attore principale conferma la creazione del sensore"),
-    (descr: "L’attore viene informato del successo della creazione del sensore simulato"),
+    (descr: "L’Attore principale conferma la creazione del sensore"),
+    (descr: "L’Attore viene informato del successo della creazione del sensore simulato"),
   ),
 )

@@ -7,21 +7,22 @@
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "L’utente di cui si vuole modificare la password non è Owner del Tenant",
+    "Esiste almeno un Utente associato al Tenant",
+    "Il Sistema sta attendendo le modifiche dell'Utente da parte dell'Attore",
   ),
   postconds: (
-    "La password dell’utente selezionato è stata aggiornata",
+    "La password dell’Utente selezionato è stata aggiornata",
   ),
-  trigger: "L’attore principale vuole modificare la password di un singolo utente del tenant",
+  trigger: "L’Attore vuole modificare la password di un singolo Utente del tenant",
   main-scen: (
     (
-      descr: "L’attore seleziona un utente del tenant",
+      descr: "L’Attore seleziona un Utente del tenant",
       inc: "selezione_utente_tenant",
     ),
     (
-      descr: "L’attore inserisce e conferma la nuova password",
+      descr: "L’Attore inserisce e conferma la nuova password",
       inc: "inserimento_conferma_password",
     ),
-    (descr: "L’attore salva le modifiche apportate"),
+    (descr: "L’Attore salva le modifiche apportate"),
   ),
 )[#uml-schema("56", "Modifica password Utente del Tenant")]

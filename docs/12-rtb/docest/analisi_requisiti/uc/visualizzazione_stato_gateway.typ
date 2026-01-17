@@ -3,19 +3,19 @@
 #uc(
   id: "visualizzazione_stato_gateway",
   system: CLOUD_SYS,
-  title: "Visualizzazione stato gateway",
+  title: "Visualizzazione stato Gateway",
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L'attore primario sta visualizzando una lista di gateway o i dettagli di uno di essi",
+    "L'Attore primario sta visualizzando una lista di Gateway o i dettagli di uno di essi",
   ),
   postconds: (
-    "L'attore primario visualizza lo stato del gateway",
+    "L'Attore primario visualizza lo stato del Gateway",
   ),
   trigger: "Necessità di verificare lo stato del dispositivo",
   main-scen: (
-    (descr: "Viene visualizzato lo stato del gateway (sospeso, online, offline)"),
+    (descr: "Viene visualizzato lo stato del Gateway (sospeso, online, offline)"),
   ),
 )[
-  #uml-schema("20", "Visualizzazione stato gateway")
+  #uml-schema("20", "Visualizzazione stato Gateway")
 ]

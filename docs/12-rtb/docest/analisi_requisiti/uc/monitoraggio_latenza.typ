@@ -7,7 +7,7 @@
   level: 2,
   prim-actors: CA.sys-adm,
   preconds: (
-    "L’attore primario si trova nella sezione dedicata al monitoraggio del sistema",
+    "L’Attore primario si trova nella sezione dedicata al monitoraggio del sistema",
     "Il sistema di monitoraggio della latenza risulta attivo",
   ),
   postconds: (
@@ -15,8 +15,8 @@
   ),
   trigger: "Si desidera monitorare la latenza media del sistema",
   main-scen: (
-    (descr: "L’attore primario visualizza la latenza media del sistema"),
-    (descr: "L’attore primario visualizza l’andamento della latenza del sistema in forma tabellare"),
-    (descr: "L’attore visualizza un grafico di andamento della latenza del sistema"),
+    (descr: "L’Attore primario visualizza la latenza media del sistema"),
+    (descr: "L’Attore primario visualizza l’andamento della latenza del sistema in forma tabellare"),
+    (descr: "L’Attore visualizza un grafico di andamento della latenza del sistema"),
   ),
 )

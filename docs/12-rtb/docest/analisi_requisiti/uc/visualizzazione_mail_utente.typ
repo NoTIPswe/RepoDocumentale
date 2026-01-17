@@ -3,17 +3,18 @@
 #uc(
   id: "visualizzazione_mail_utente",
   system: CLOUD_SYS,
-  title: "Visualizzazione mail dell’utente",
+  title: "Visualizzazione mail dell’Utente",
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "L'indirizzo email associato all'account dell'utente è disponibile nel contesto corrente",
+    "Esiste almeno un Utente associato al Tenant",
+    "L'indirizzo email dell'Utente è disponibile",
   ),
   postconds: (
-    "L'indirizzo email dell'utente è visibile",
+    "L'Attore visualizza l'email dell'Utente",
   ),
-  trigger: "Necessità di conoscere i recapiti digitali dell'utente",
+  trigger: "L'Attore vuole visualizzare l'email associata all'Utente",
   main-scen: (
-    (descr: "L’attore visualizza l'indirizzo email primario utilizzato dall'utente per la comunicazione e il login"),
+    (descr: "L’Attore visualizza l'indirizzo email primario utilizzato dall'Utente per la comunicazione e il login"),
   ),
 )[#uml-schema("50", "Visualizzazione mail dell'Utente")]

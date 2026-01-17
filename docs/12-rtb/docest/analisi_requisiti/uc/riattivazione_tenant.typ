@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
-    "L’attore si trova nella sezione di Gestione Tenant",
+    "L’Attore si trova nella sezione di Gestione Tenant",
   ),
   postconds: (
     "Il Tenant è stato riattivato correttamente",
@@ -16,11 +16,11 @@
   trigger: "Si desidera riattivare un Tenant",
   main-scen: (
     (
-      descr: "L’attore seleziona un Tenant",
+      descr: "L’Attore seleziona un Tenant",
       inc: "selezione_tenant",
     ),
-    (descr: "L’attore seleziona l’opzione di attivazione del Tenant"),
-    (descr: "L’attore conferma la decisione di riattivare il Tenant selezionato"),
-    (descr: "L’attore riceve una notifica di operazione avvenuta con successo"),
+    (descr: "L’Attore seleziona l’opzione di attivazione del Tenant"),
+    (descr: "L’Attore conferma la decisione di riattivare il Tenant selezionato"),
+    (descr: "L’Attore riceve una notifica di operazione avvenuta con successo"),
   ),
 )[#uml-schema("89", "Riattivazione Tenant")]

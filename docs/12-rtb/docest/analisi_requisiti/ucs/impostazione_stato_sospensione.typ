@@ -11,11 +11,11 @@
     "Il messaggio di configurazione contiene un flag di abilitazione/disabilitazione valido",
   ),
   postconds: (
-    "Il gateway simulato entra o esce dallo stato di sospensione",
+    "Il Gateway simulato entra o esce dallo stato di sospensione",
   ),
-  trigger: "L’attore desidera modificare lo stato operativo del Gateway",
+  trigger: "L’Attore desidera modificare lo stato operativo del Gateway",
   main-scen: (
-    (descr: "L’attore modifica lo stato operativo del Gateway selezionato"),
-    (descr: "L’attore viene notificato del buon esito della modifica"),
+    (descr: "L’Attore modifica lo stato operativo del Gateway selezionato"),
+    (descr: "L’Attore viene notificato del buon esito della modifica"),
   ),
 )

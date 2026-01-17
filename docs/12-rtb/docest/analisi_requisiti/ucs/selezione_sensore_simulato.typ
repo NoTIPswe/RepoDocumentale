@@ -7,14 +7,14 @@
   title: "Selezione sensore simulato",
   prim-actors: (SA.sym-usr),
   preconds: (
-    "L’attore si trova nella sezione dedicata alla visualizzazione dei sensori simulati relativi ad un Gateway simulato",
-    "L’attore sta visualizzando la lista dei sensori simulati",
+    "L’Attore si trova nella sezione dedicata alla visualizzazione dei sensori simulati relativi ad un Gateway simulato",
+    "L’Attore sta visualizzando la lista dei sensori simulati",
   ),
   postconds: (
-    "L’attore ha selezionato correttamente uno dei sensori simulati",
+    "L’Attore ha selezionato correttamente uno dei sensori simulati",
   ),
-  trigger: "L’attore vuole selezionare, per effettuare qualche operazione, un sensore",
+  trigger: "L’Attore vuole selezionare, per effettuare qualche operazione, un sensore",
   main-scen: (
-    (descr: "L’attore seleziona uno o più sensori tramite il loro identificativo"),
+    (descr: "L’Attore seleziona uno o più sensori tramite il loro identificativo"),
   ),
 )

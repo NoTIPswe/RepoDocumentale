@@ -7,14 +7,14 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L’attore primario sta visualizzando lo storico degli alert o i dettagli di un alert",
+    "Il Sistema sta mostrando lo storico degli alert registrati nel Sistema o i dettagli di un alert",
   ),
   postconds: (
-    "Il sistema mostra il timestamp dell’emissione dell’alert",
+    "L'Attore visualizza il timestamp dell’emissione dell’alert",
   ),
-  trigger: "L’attore primario deve visualizzare lo storico degli alert del tenant",
+  trigger: "L’Attore vuole visualizzare il timestamp di emissione di un alert",
   main-scen: (
-    (descr: "L’attore primario visualizza il timestamp dell’emissione dell’alert"),
+    (descr: "L’Attore visualizza il timestamp dell’emissione dell’alert"),
   ),
 )[
   #uml-schema("34", "Diagramma visualizzazione timestamp emissione alert")

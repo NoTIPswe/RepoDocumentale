@@ -7,21 +7,22 @@
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "L’utente di cui si vuole modificare la mail non è Owner del Tenant",
+    "Esiste almeno un Utente associato al Tenant",
+    "Il Sistema sta attendendo le modifiche dell'Utente da parte dell'Attore",
   ),
   postconds: (
-    "La mail dell’utente selezionato è stata aggiornata",
+    "La mail dell’Utente selezionato è stata aggiornata",
   ),
-  trigger: "L’attore principale vuole modificare la mail di un singolo utente del tenant",
+  trigger: "L’Attore vuole modificare la mail di un singolo Utente del tenant",
   main-scen: (
     (
-      descr: "L’attore seleziona un utente del tenant",
+      descr: "L’Attore seleziona un Utente del tenant",
       inc: "selezione_utente_tenant",
     ),
     (
-      descr: "L’attore inserisce la mail da assegnare all’utente",
+      descr: "L’Attore inserisce la mail da assegnare all’Utente",
       inc: "inserimento_conferma_mail",
     ),
-    (descr: "L’attore salva le modifiche apportate"),
+    (descr: "L’Attore salva le modifiche apportate"),
   ),
 )[#uml-schema("55", "Modifica mail Utente del Tenant")]

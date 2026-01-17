@@ -7,17 +7,17 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L’attore primario si trova nella sezione “Visualizzazione Stream”",
-    "L’attore primario ha effettuato un filtraggio per gateway",
-    "Esiste almeno un sensore associato al Gateway del Tenant gestito dall’attore",
+    "L’Attore primario si trova nella sezione “Visualizzazione Stream”",
+    "L’Attore primario ha effettuato un filtraggio per Gateway",
+    "Esiste almeno un sensore associato al Gateway del Tenant gestito dall’Attore",
   ),
   postconds: (
     "Il sistema salva la richiesta di visualizzazione",
   ),
-  trigger: "L’attore primario vuole filtrare per sensori",
+  trigger: "L’Attore primario vuole filtrare per sensori",
   main-scen: (
     (
-      descr: "L’attore primario seleziona i sensori di cui visualizzare i dati",
+      descr: "L’Attore primario seleziona i sensori di cui visualizzare i dati",
       inc: "filtraggio_singolo_sensore",
     ),
     (

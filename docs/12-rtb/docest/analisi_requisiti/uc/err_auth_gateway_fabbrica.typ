@@ -3,18 +3,18 @@
 #uc(
   id: "err_auth_gateway_fabbrica",
   system: CLOUD_SYS,
-  title: "Errore autenticazione gateway di fabbrica",
+  title: "Errore autenticazione Gateway di fabbrica",
   level: 1,
   prim-actors: CA.np-gway,
   preconds: (
     "Il Gateway ha contattato il sistema per la procedura di onboarding",
-    "Le credenziali di fabbrica fornite dal gateway sono invalide",
+    "Le credenziali di fabbrica fornite dal Gateway sono invalide",
   ),
   postconds: (
     "Il Gateway non procede con la procedura di onboarding",
     "Il Gateway riceve una risposta di errore",
   ),
-  trigger: "Accensione del gateway",
+  trigger: "Accensione del Gateway",
   main-scen: (
     (descr: "Il Gateway riceve una risposta di errore"),
   ),

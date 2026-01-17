@@ -8,15 +8,15 @@
   prim-actors: (SA.sym-usr),
   preconds: (
     "È stato richiesto il deploy di un nuovo Gateway",
-    "Si è verificato un errore tecnico durante il deploy del gateway",
+    "Si è verificato un errore tecnico durante il deploy del Gateway",
   ),
   postconds: (
-    "Il gateway non viene creato",
-    "L’attore viene notificato dell’errore di deploy",
+    "Il Gateway non viene creato",
+    "L’Attore viene notificato dell’errore di deploy",
   ),
   trigger: "Errore nella creazione del Gateway simulato",
   main-scen: (
     (descr: "L’operazione di creazione viene annullata"),
-    (descr: "L’attore viene notificato dell’errore"),
+    (descr: "L’Attore viene notificato dell’errore"),
   ),
 )

@@ -7,14 +7,14 @@
   title: "Selezione tipo di sensore simulato",
   prim-actors: (SA.sym-usr),
   preconds: (
-    "L’attore primario si trova nella sezione di Gestione Gateway simulato",
+    "L’Attore primario si trova nella sezione di Gestione Gateway simulato",
     "È stato selezionato un Gateway simulato esistente",
   ),
   postconds: (
-    "L’attore ha selezionato un tipo di sensore valido",
+    "L’Attore ha selezionato un tipo di sensore valido",
   ),
-  trigger: "L’attore vuole creare un nuovo sensore",
+  trigger: "L’Attore vuole creare un nuovo sensore",
   main-scen: (
-    (descr: "L’attore seleziona il tipo di sensore simulato tra quelli disponibili"),
+    (descr: "L’Attore seleziona il tipo di sensore simulato tra quelli disponibili"),
   ),
 )

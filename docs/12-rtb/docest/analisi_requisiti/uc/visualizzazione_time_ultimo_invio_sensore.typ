@@ -7,14 +7,14 @@
   level: 4,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L’attore primario sta visualizzando la lista dei sensori collegati ad un gateway",
+    "L’Attore primario sta visualizzando la lista dei sensori collegati ad un Gateway",
   ),
   postconds: (
-    "L’attore primario visualizza timestamp ultima lettura del sensore",
+    "L’Attore primario visualizza timestamp ultima lettura del sensore",
   ),
-  trigger: "Viene richiesta la lista dei sensori collegati al gateway",
+  trigger: "Viene richiesta la lista dei sensori collegati al Gateway",
   main-scen: (
-    (descr: "L’attore primario visualizza il timestamp associato all'ultimo dato ricevuto dal sensore"),
+    (descr: "L’Attore primario visualizza il timestamp associato all'ultimo dato ricevuto dal sensore"),
   ),
 )[
   #uml-schema("22.1.1.1", "Diagramma visualizzazione timestamp ultimo invio dati sensore")

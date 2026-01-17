@@ -7,14 +7,14 @@
   level: 1,
   prim-actors: CA.non-authd-usr,
   preconds: (
-    "La mail fornita dall'attore non risulta associata ad alcun account registrato nel sistema",
+    "La mail fornita dall'Attore non risulta associata ad alcun account registrato nel sistema",
   ),
   postconds: (
-    "L'attore primario ricompila il campo mail",
+    "L'Attore primario ricompila il campo mail",
   ),
   trigger: "Inserimento di una mail non associata ad un account",
   main-scen: (
-    (descr: "L'attore primario viene notificato dell'inserimento di una mail non associata a nessun account"),
+    (descr: "L'Attore primario viene notificato dell'inserimento di una mail non associata a nessun account"),
   ),
 )[
   #uml-schema("8", "Account Non Esistente")

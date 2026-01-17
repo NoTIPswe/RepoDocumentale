@@ -7,16 +7,17 @@
   level: 2,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "L’attore primario si trova nella sezione dedicata alla Gestione del Tenant",
-    "L’Attore primario sta visualizzando la lista Utenti del Tenant",
+    "Esiste almeno un Utente associato al Tenant",
+    "Il Sistema sta mostrando la lista di Utenti associati al Tenant",
+    "I dati dell'Utente sono visibili",
   ),
   postconds: (
-    "L’Attore principale visualizza il singolo utente",
+    "L’Attore principale visualizza il singolo Utente",
   ),
-  trigger: "L’attore principale vuole visualizzare un singolo utente del tenant",
+  trigger: "L’Attore principale vuole visualizzare un singolo utente del tenant",
   main-scen: (
     (
-      descr: "L’attore visualizza il ruolo dell’utente (Utente o Amministratore)",
+      descr: "L’Attore visualizza il ruolo dell’utente (Utente o Amministratore)",
       inc: "visualizzazione_ruolo_utente",
     ),
     (

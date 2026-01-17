@@ -12,14 +12,14 @@
   postconds: (
     "Password validata e salvata",
   ),
-  trigger: "L'attore primario deve inserire e confermare una password",
+  trigger: "L'Attore primario deve inserire e confermare una password",
   main-scen: (
     (
-      descr: "L'attore primario inserisce la password",
+      descr: "L'Attore primario inserisce la password",
       ep: "PasswordInvalida",
     ),
     (
-      descr: "L'attore primario conferma la password",
+      descr: "L'Attore primario conferma la password",
       ep: "PasswordDiverse",
     ),
   ),

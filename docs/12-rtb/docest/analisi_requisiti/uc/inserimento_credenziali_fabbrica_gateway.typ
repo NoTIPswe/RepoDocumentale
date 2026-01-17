@@ -8,15 +8,15 @@
   prim-actors: CA.sys-adm,
   preconds: (
     "Il Gateway esiste ed è operativo, ma non ancora configurato",
-    "L’attore possiede credenziali di fabbrica del gateway",
-    "Il Tenant a cui si desidera associare il gateway è attivo",
+    "L’Attore possiede credenziali di fabbrica del Gateway",
+    "Il Tenant a cui si desidera associare il Gateway è attivo",
   ),
   postconds: (
-    "L’attore ha inserito le credenziali di fabbrica del Gateway",
+    "L’Attore ha inserito le credenziali di fabbrica del Gateway",
   ),
-  trigger: "L’attore vuole effettuare la registrazione di un nuovo Gateway",
+  trigger: "L’Attore vuole effettuare la registrazione di un nuovo Gateway",
   main-scen: (
-    (descr: "L’attore inserisce l’identificativo fisico del gateway"),
-    (descr: "L’attore inserisce la chiave di fabbrica del gateway"),
+    (descr: "L’Attore inserisce l’identificativo fisico del Gateway"),
+    (descr: "L’Attore inserisce la chiave di fabbrica del Gateway"),
   ),
 )

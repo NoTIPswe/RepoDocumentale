@@ -7,15 +7,15 @@
   title: "Visualizzazione lista Gateway simulati",
   prim-actors: (SA.sym-usr),
   preconds: (
-    "L’attore si trova nella sezione dedicata alla visualizzazione dei Gateway simulati istanziati",
+    "L’Attore si trova nella sezione dedicata alla visualizzazione dei Gateway simulati istanziati",
   ),
   postconds: (
-    "L’attore visualizza la lista dei gateway simulati",
+    "L’Attore visualizza la lista dei Gateway simulati",
   ),
-  trigger: "L’attore vuole visualizzare i Gateway istanziati fino a quel momento",
+  trigger: "L’Attore vuole visualizzare i Gateway istanziati fino a quel momento",
   main-scen: (
     (
-      descr: "L’attore visualizza la lista dei gateway simulati",
+      descr: "L’Attore visualizza la lista dei Gateway simulati",
       inc: "visualizzazione_singolo_gateway_simulato",
     ),
   ),

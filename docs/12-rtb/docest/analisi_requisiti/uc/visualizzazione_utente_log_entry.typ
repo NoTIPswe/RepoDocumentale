@@ -3,17 +3,17 @@
 #uc(
   id: "visualizzazione_utente_log_entry",
   system: CLOUD_SYS,
-  title: "Visualizzazione utente log entry",
+  title: "Visualizzazione Utente log entry",
   level: 2,
   prim-actors: (CA.tenant-adm, CA.sys-adm),
   preconds: (
-    "L’attore sta visualizzando i log di Audit del Tenant",
+    "L’Attore sta visualizzando i log di Audit del Tenant",
   ),
   postconds: (
-    "L’Attore visualizza correttamente l’utente relativo ad una singola entry del log di audit",
+    "L’Attore visualizza correttamente l’Utente relativo ad una singola entry del log di audit",
   ),
-  trigger: "L’attore desidera visualizzare una entry del log di Audit del Tenant",
+  trigger: "L’Attore desidera visualizzare una entry del log di Audit del Tenant",
   main-scen: (
-    (descr: "L’attore visualizza l’utente relativo alla entry del log di audit"),
+    (descr: "L’Attore visualizza l’Utente relativo alla entry del log di audit"),
   ),
-)[#uml-schema("63.3", "Visualizzazione utente log entry")]
+)[#uml-schema("63.3", "Visualizzazione Utente log entry")]

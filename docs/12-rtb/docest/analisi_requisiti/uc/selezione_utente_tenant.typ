@@ -3,17 +3,17 @@
 #uc(
   id: "selezione_utente_tenant",
   system: CLOUD_SYS,
-  title: "Selezione utente tenant",
+  title: "Selezione Utente tenant",
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "Il Tenant possiede degli utenti",
+    "Esiste almeno un Utente associato al Tenant"
   ),
   postconds: (
-    "Un utente del tenant è stato selezionato",
+    "Un Utente del tenant è stato selezionato",
   ),
-  trigger: "L’attore principale vuole selezionare un utente per visualizzarne o modificarne le proprietà",
+  trigger: "L’Attore vuole selezionare un Utente per visualizzarne o modificarne le proprietà",
   main-scen: (
-    (descr: "L’attore seleziona un utente del tenant dalla lista"),
+    (descr: "L’Attore seleziona un Utente del tenant dalla lista"),
   ),
 )[#uml-schema("52", "Selezione Utente del Tenant")]

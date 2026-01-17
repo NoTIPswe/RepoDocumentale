@@ -3,19 +3,18 @@
 #uc(
   id: "inserimento_nome_utente",
   system: CLOUD_SYS,
-  title: "Inserimento nome utente",
+  title: "Inserimento nome Utente",
   level: 2,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "L’Attore primario si trova nella sezione dedicata alla gestione del proprio tenant",
-    "L’Attore primario vuole creare un nuovo utente associato al proprio tenant",
-    "Il sistema necessita di un nome da associare al nuovo utente",
+    "Il Sistema sta mostrando la pagina di gestione del Tenant",
+    "Il Sistema sta attendendo l'inserimento dei dati per la creazione Utente da parte dell'Attore",
   ),
   postconds: (
     "L’Attore principale assegna un nome all’Utente",
   ),
-  trigger: "L’Attore vuole dare un nome ad un nuovo utente creato",
+  trigger: "L’Attore vuole dare un nome ad un nuovo Utente creato",
   main-scen: (
-    (descr: "L'Attore inserisce un nome per le nuovo utente in creazione"),
+    (descr: "L'Attore inserisce un nome per le nuovo Utente in creazione"),
   ),
 )

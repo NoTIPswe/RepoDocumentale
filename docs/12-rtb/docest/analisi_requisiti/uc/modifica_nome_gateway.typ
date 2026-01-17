@@ -3,31 +3,31 @@
 #uc(
   id: "modifica_nome_gateway",
   system: CLOUD_SYS,
-  title: "Modifica nome gateway",
+  title: "Modifica nome Gateway",
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "Il gateway selezionato appartiene al Tenant",
-    "L’attore si trova in una sezione dedicata alla modifica del gateway",
+    "Il Gateway appartiene al Tenant",
+    "L'Attore risulta admin del Tenant",
   ),
   postconds: (
-    "Il nuovo nome è stato assegnato al gateway",
+    "Il nuovo nome è stato assegnato al Gateway",
   ),
-  trigger: "L’attore principale vuole cambiare il nome di un gateway proprietario",
+  trigger: "L’Attore vuole cambiare il nome di un Gateway proprietario",
   main-scen: (
     (
-      descr: "L’attore principale inserisce il nuovo nome da associare al gateway",
+      descr: "L’Attore inserisce il nuovo nome da associare al Gateway",
       ep: "NomeDuplicato",
     ),
-    (descr: "L’attore salva le modifiche"),
+    (descr: "L’Attore salva le modifiche"),
   ),
   alt-scen: (
     (
       ep: "NomeDuplicato",
-      cond: "Il nome inserito è già assegnato ad un altro gateway nel Tenant",
+      cond: "Il nome inserito è già assegnato ad un altro Gateway nel Tenant",
       uc: "err_nome_gateway_duplicato",
     ),
   ),
 )[
-  #uml-schema("39", "Diagramma modifica nome gateway")
+  #uml-schema("39", "Diagramma modifica nome Gateway")
 ]

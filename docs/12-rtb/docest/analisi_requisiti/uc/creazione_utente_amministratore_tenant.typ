@@ -3,11 +3,11 @@
 #uc(
   id: "creazione_utente_amministratore_tenant",
   system: CLOUD_SYS,
-  title: "Creazione utente Amministratore Tenant",
+  title: "Creazione Utente Amministratore Tenant",
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
-    "L’attore ha selezionato un tenant attivo",
+    "L’Attore ha selezionato un tenant attivo",
   ),
   postconds: (
     "L’Utente Amministratore Tenant è stato creato correttamente",
@@ -15,16 +15,16 @@
   ),
   trigger: "Si desidera creare un Utente con ruolo di Amministratore Tenant per un Tenant",
   main-scen: (
-    (descr: "L’attore avvia l’operazione di creazione di un nuovo Utente Amministratore Tenant"),
+    (descr: "L’Attore avvia l’operazione di creazione di un nuovo Utente Amministratore Tenant"),
     (
-      descr: "L’attore inserisce e conferma la mail dell’utente",
+      descr: "L’Attore inserisce e conferma la mail dell’Utente",
       inc: "inserimento_conferma_mail",
     ),
     (
-      descr: "L’attore inserisce e conferma la password dell’utente",
+      descr: "L’Attore inserisce e conferma la password dell’Utente",
       inc: "inserimento_conferma_password",
     ),
-    (descr: "L’attore conferma l’operazione"),
-    (descr: "L’attore viene informato del successo dell’operazione"),
+    (descr: "L’Attore conferma l’operazione"),
+    (descr: "L’Attore viene informato del successo dell’operazione"),
   ),
 )[#uml-schema("93", "Creazione Utente Amministratore Tenant")]

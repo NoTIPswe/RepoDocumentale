@@ -7,13 +7,15 @@
   level: 2,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "L’Attore si trova nella schermata di creazione delle credenziali API",
+    "Esiste almeno un Tenant",
+    "Il Tenant risulta attivo",
+    "Il Sistema sta attendendo che l'Attore inserisca il nome client API",
   ),
   postconds: (
-    "Il sistema ha acquisito il nome descrittivo per il nuovo client",
+    "Il Sistema ha acquisito il nome descrittivo per il nuovo client",
   ),
-  trigger: "L’attore deve fornire un riferimento mnemonico per il client API",
+  trigger: "L’Attore deve fornire un riferimento mnemonico per il client API",
   main-scen: (
-    (descr: "L’attore inserisce una stringa di testo identificativa nel campo dedicato"),
+    (descr: "L’Attore inserisce una stringa di testo identificativa nel campo dedicato"),
   ),
 )

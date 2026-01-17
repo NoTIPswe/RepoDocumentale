@@ -7,27 +7,27 @@
   title: "Visualizzazione configurazione simulazione Gateway",
   prim-actors: (SA.sym-usr),
   preconds: (
-    "L’attore ha selezionato un gateway simulato di cui visualizzare la configurazione della simulazione",
+    "L’Attore ha selezionato un Gateway simulato di cui visualizzare la configurazione della simulazione",
   ),
   postconds: (
-    "L’attore visualizza i dati di configurazione della simulazione del Gateway simulato",
+    "L’Attore visualizza i dati di configurazione della simulazione del Gateway simulato",
   ),
-  trigger: "L’attore vuole visualizzare i dettagli della configurazione di simulazione di un Gateway",
+  trigger: "L’Attore vuole visualizzare i dettagli della configurazione di simulazione di un Gateway",
   main-scen: (
     (
-      descr: "L’attore visualizza l’ID di fabbrica del Gateway simulato",
+      descr: "L’Attore visualizza l’ID di fabbrica del Gateway simulato",
       inc: "visualizzazione_id_fabbrica_simulazione",
     ),
     (
-      descr: "L’attore visualizza la chiave di fabbrica del Gateway simulato",
+      descr: "L’Attore visualizza la chiave di fabbrica del Gateway simulato",
       inc: "visualizzazione_chiave_fabbrica_simulazione",
     ),
     // bookmark - non sappiamo ancora cosa altro visualizzare
-    // serial number 
-    // versione software 
+    // serial number
+    // versione software
     // versione firmware
-    // modello 
-    // pin geografico 
+    // modello
+    // pin geografico
     // ...
   ),
 )

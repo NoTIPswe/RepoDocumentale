@@ -7,13 +7,13 @@
   level: 2,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "L’attore ha a disposizione la lista delle credenziali API",
+    "L’Attore ha a disposizione la lista delle credenziali API",
   ),
   postconds: (
     "Delle credenziali API sono state correttamente selezionate",
   ),
-  trigger: "L’attore desidera selezionare delle credenziali API",
+  trigger: "L’Attore desidera selezionare delle credenziali API",
   main-scen: (
-    (descr: "L’attore seleziona una entry di credenziali API dalla lista"),
+    (descr: "L’Attore seleziona una entry di credenziali API dalla lista"),
   ),
 )[#uml-schema("61.1", "Selezione credenziali API")]

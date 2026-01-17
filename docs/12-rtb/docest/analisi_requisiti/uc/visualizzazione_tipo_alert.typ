@@ -7,16 +7,15 @@
   level: 3,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L’attore primario si trova nella sezione dedicata agli alert",
-    "L’attore primario sta visualizzando lo storico degli alert",
-    "(Da inserire qualcosa)",
+    "Esiste almeno un alert registrato nel Sistema",
+    "Il Sistema sta mostrando lo storico degli alert registrati nel Sistema",
   ),
   postconds: (
-    "Il sistema mostra il tipo di alert",
+    "L'Attore visualizza il tipo di alert",
   ),
-  trigger: "L’attore primario deve visualizzare lo storico degli alert del tenant",
+  trigger: "L’Attore vuole visualizzare lo storico degli alert registrati nel Sistema",
   main-scen: (
-    (descr: "L’attore primario visualizza il tipo dell’alert"),
+    (descr: "L’Attore visualizza il tipo dell’alert"),
   ),
 )[
   #uml-schema("33.1.1", "Diagramma visualizzazione tipo di alert")
