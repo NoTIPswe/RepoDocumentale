@@ -7,8 +7,7 @@
   title: "Visualizzazione chiave di fabbrica simulazione",
   prim-actors: (SA.sym-usr),
   preconds: (
-    "L’attore ha selezionato un gateway simulato di cui visualizzare la configurazione della simulazione",
-    "L’attore sta visualizzando la configurazione di un gateway simulato",
+    "Esiste un Gateway simulato di cui si sta visualizzando la configurazione",
   ),
   postconds: (
     "L’attore visualizza la chiave segreta di fabbrica",

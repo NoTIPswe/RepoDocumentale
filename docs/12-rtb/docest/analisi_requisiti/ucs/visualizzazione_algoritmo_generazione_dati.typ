@@ -7,14 +7,13 @@
   title: "Visualizzazione algoritmo generazione dati",
   prim-actors: (SA.sym-usr),
   preconds: (
-    "L’attore ha selezionato un sensore relativo ad un gateway simulato di cui visualizzare la configurazione della simulazione",
-    "L’attore sta visualizzando la configurazione di un sensore simulato",
+    "Esiste un sensore che è stato selezionato di cui si stanno visualizzando i dettagli di configurazione della simulazione",
   ),
   postconds: (
-    "L’attore visualizza l'algoritmo utilizzato per la sintesi dei dati",
+    "L’Attore visualizza l'algoritmo utilizzato per la sintesi dei dati",
   ),
-  trigger: "L’attore accede ai dettagli del sensore simulato e vuole visualizzare con che algoritmo vengono generati i dati",
+  trigger: "L’Attore accede ai dettagli del sensore simulato e vuole visualizzare con che algoritmo vengono generati i dati",
   main-scen: (
-    (descr: "L’attore visualizza il nome dell'algoritmo utilizzato per generare i valori"),
+    (descr: "L’Attore visualizza il nome dell'algoritmo utilizzato per generare i valori"),
   ),
 )

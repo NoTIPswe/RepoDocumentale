@@ -11,7 +11,7 @@
   sys-adm: "Amministratore di Sistema",
   api-client: "Client API",
   p-gway: "Provisioned Gateway",
-  np-gway: "Non Provisioned Gateway",
+  np-gway: "Not Provisioned Gateway",
 )
 
 // Simulator primary actors
@@ -35,7 +35,9 @@
 #let uc-counter = counter("uc")
 #let ucs-counter = counter("ucs")
 
-/*Per utilizzarla negli use case bisogna aggiungere nell'import uml-schema e alla fine della parentesi tonda dell'UC aggiungere [#uml-schema("numero dell'UC", "Descrizione della figura")]*/
+/*Per utilizzarla negli use case bisogna aggiungere nell'import uml-schema e alla fine della parentesi tonda dell'UC aggiungere [#uml-schema("numero dell'UC", "Descrizione della figura")]
+Nel caso degli ucS bisogna scrivere "S" e subito di seguito il numero dell'UC, quindi ad esempio "S1" "descrizione figura s1"
+*/
 #let uml-schema(versione, descrizione, larghezza: 100%) = [
   #figure(
     image("uc_schemas/UC" + versione + ".png", width: larghezza),

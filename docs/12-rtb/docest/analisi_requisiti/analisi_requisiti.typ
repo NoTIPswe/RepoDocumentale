@@ -301,13 +301,12 @@
   #include "uc/invio_dati_crittografati_cloud.typ"
   #include "uc/instaurazione_connessione_sicura.typ"
   #include "uc/err_autenticazione_gateway.typ"
-
-  #uc(system: CLOUD_SYS, id: "err_range_invalido")
+  #include "uc/err_range_invalido.typ"
 
   = Casi d'Uso - Parte B: Simulatore Gateway
 
   == Attori del Sistema
-  == Digrammi e Descrizioni Casi d'Uso
+  == Diagrammi e Descrizioni Casi d'Uso
   #table(
     columns: (1fr, 2fr),
     [Attore], [Descrizione],
@@ -322,12 +321,13 @@
 
   #include "ucs/visualizzazione_lista_gateway_simulati.typ"
   #include "ucs/visualizzazione_singolo_gateway_simulato.typ"
-
-  #uc(system: SIM_SYS, id: "visualizzazione_data_creazione_simulazione") // level 3
-
+  #include "ucs/visualizzazione_data_creazione_simulazione.typ"
   #include "ucs/visualizzazione_id_fabbrica_simulazione.typ"
   #include "ucs/visualizzazione_configurazione_simulazione_gateway.typ"
   #include "ucs/visualizzazione_chiave_fabbrica_simulazione.typ"
+  #include "ucs/visualizzazione_serial_number_gateway_simulato.typ"
+  #include "ucs/visualizzazione_software_gateway_simulato.typ"
+  #include "ucs/visualizzazione_modello_gateway_simulato.typ"
   #include "ucs/visualizzazione_lista_sensori_gateway_simulato.typ"
   #include "ucs/visualizzazione_singolo_sensore_simulato.typ"
   #include "ucs/visualizzazione_configurazione_simulazione_sensore.typ"
@@ -335,21 +335,18 @@
   #include "ucs/visualizzazione_algoritmo_generazione_dati.typ"
   #include "ucs/visualizzazione_identificativo_sensore.typ"
   #include "ucs/visualizzazione_tipo_sensore_simulato.typ"
-  #include "ucs/selezione_gateway_simulato.typ"
-  #include "ucs/selezione_sensore_simulato.typ"
   #include "ucs/eliminazione_gateway_simulato.typ"
   #include "ucs/eliminazione_sensore_simulato.typ"
   #include "ucs/creazione_deploy_gateway_simulato.typ"
-
-  #uc(system: SIM_SYS, id: "inserimento_dati_config_sim_gateway") // bookmark - da capire quali saranno effettivamente
-
+  #include "ucs/inserimento_dati_config_sim_gateway.typ"
   #include "ucs/err_deploy_gateway_simulato.typ"
   #include "ucs/creazione_sensore_gateway_simulato.typ"
   #include "ucs/inserimento_dati_config_sim_sensore.typ"
-  #include "ucs/selezione_tipo_sensore_simulato.typ"
-  #include "ucs/selezione_algoritmo_generazione_dati_sensore.typ"
   #include "ucs/inserimento_range_generazione_dati.typ"
+  #include "ucs/err_range_invalido_simulazione.typ"
+  #include "ucs/err_creazione_sensore_simulato.typ"
   #include "ucs/creazione_gateway_multipli_default.typ"
+  #include "ucs/err_valore_numerico_invalido.typ"
   #include "ucs/comando_anomalia_degrado_rete.typ"
   #include "ucs/comando_anomalia_disconnessione_temporanea.typ"
   #include "ucs/comando_anomalia_outliers_misurazioni.typ"

@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   system: SIM_SYS,
@@ -7,26 +7,26 @@
   title: "Inserimento dati configurazione simulazione sensore",
   prim-actors: (SA.sym-usr),
   preconds: (
-    "L’attore primario si trova nella sezione di Gestione Gateway simulato",
-    "È stato selezionato un Gateway simulato esistente",
+    "Il Sistema si trova nella sezione di Gestione Gateway simulato",
+    "È stato selezionato un Gateway simulato esistente al quale si vuole associare un nuovo sensore simulato",
   ),
   postconds: (
-    "L’attore ha inserito dati validi per la configurazione della simulazione di un sensore",
+    "L’Attore ha inserito dati validi per la configurazione della simulazione di un sensore",
   ),
-  trigger: "All’attore viene richiesto di inserire dati di configurazione per la simulazione di un sensore",
+  trigger: "All’Attore viene richiesto di inserire dati di configurazione per la simulazione di un sensore",
   main-scen: (
     (
-      descr: "L’attore principale seleziona il tipo di sensore",
-      inc: "selezione_tipo_sensore_simulato",
+      descr: "L’Attore principale seleziona il tipo di sensore",
     ),
     (
-      descr: "L’attore inserisce il range di generazione dei dati",
+      descr: "L’Attore inserisce il range di generazione dei dati",
       inc: "inserimento_range_generazione_dati",
     ),
     (
-      descr: "L’attore seleziona l’algoritmo di generazione dei dati",
-      inc: "selezione_algoritmo_generazione_dati_sensore",
+      descr: "L’Attore seleziona l’algoritmo di generazione dei dati",
     ),
-    // bookamrk - ancora non li sappiamo
   ),
-)
+)[
+  #uml-schema("S12.1", "Inserimento dati configurazione sensore")
+]
+

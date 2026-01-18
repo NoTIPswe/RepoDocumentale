@@ -25,6 +25,9 @@
     (
       descr: "Il Gateway riceve un pacchetto di provisioning contenente le informazioni necessarie alla comunicazione autenticata e sicura",
     ),
+    (
+      descr: "Lo stato del Gateway passa da 'not provisioned' a 'active'",
+    ),
   ),
   alt-scen: (
     (

@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   system: SIM_SYS,
@@ -10,11 +10,25 @@
     "È stato selezionato un Gateway simulato esistente",
   ),
   postconds: (
-    "L’attore ha inserito in intervallo di generazione dati valido",
+    "L’Attore ha inserito in intervallo di generazione dati valido",
   ),
-  trigger: "L’attore vuole creare un nuovo sensore",
+  trigger: "L’Attore vuole creare un nuovo sensore",
   main-scen: (
-    (descr: "L’attore inserisce un valore minimo"),
-    (descr: "L’attore inserisce un valore massimo maggiore o uguale al minimo"),
+    (descr: "L’Attore inserisce un valore minimo"),
+    (descr: "L’Attore inserisce un valore massimo maggiore o uguale al minimo"),
+    (
+      descr: "L'operazione và a buon fine",
+      ep: "ErroreRangeInvalido",
+    ),
   ),
-)
+  alt-scen: (
+    (
+      ep: "ErroreRangeInvalido",
+      cond: "I valori inseriti non sono validi",
+      uc: "err_range_invalido_simulazione",
+    ),
+  ),
+)[
+  #uml-schema("S12.1.1", "Inserimento range generazione dati")
+]
+

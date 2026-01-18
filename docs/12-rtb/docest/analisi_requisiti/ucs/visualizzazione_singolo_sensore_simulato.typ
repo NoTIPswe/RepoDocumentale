@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   system: SIM_SYS,
@@ -7,21 +7,24 @@
   title: "Visualizzazione singolo sensore simulato",
   prim-actors: (SA.sym-usr),
   preconds: (
-    "L’attore ha selezionato un Gateway simulato",
-    "L’attore sta visualizzando la lista dei sensori relativi al Gateway simulato",
+    "Il Sistema si trova nella sezione dedicata alla visualizzazione dei sensori del Gateway simulato selezionato",
+    "Esiste un sensore che è stato selezionato di cui si vogliono visualizzare i dettagli"
   ),
   postconds: (
-    "L’attore visualizza una entry della lista dei sensori simulati relativi al Gateway selezionato",
+    "L’Attore visualizza i dettagli della entry selezionata dalla lista dei sensori simulati relativi al Gateway selezionato",
   ),
-  trigger: "L’attore vuole visualizzare dettagli utili ad identificare un sensore relativo ad un gateway simulato",
+  trigger: "L’Attore vuole visualizzare dettagli utili ad identificare un sensore relativo ad un gateway simulato",
   main-scen: (
     (
-      descr: "L’attore visualizza l’identificativo del sensore",
+      descr: "L’Attore visualizza l’identificativo del sensore",
       inc: "visualizzazione_identificativo_sensore",
     ),
     (
-      descr: "L’attore visualizza il tipo di sensore",
+      descr: "L’Attore visualizza il tipo di sensore",
       inc: "visualizzazione_tipo_sensore_simulato",
     ),
   ),
-)
+)[
+  #uml-schema("S4.1", "Visualizzazione singolo sensore simulato")
+]
+

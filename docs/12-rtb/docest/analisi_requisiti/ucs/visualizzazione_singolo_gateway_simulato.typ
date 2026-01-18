@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   system: SIM_SYS,
@@ -7,16 +7,15 @@
   title: "Visualizzazione singolo Gateway simulato",
   prim-actors: (SA.sym-usr),
   preconds: (
-    "L’attore si trova nella sezione dedicata alla visualizzazione dei Gateway simulati istanziati",
-    "L’attore sta visualizzando la lista dei gateway simulati",
+    "Il Sistema si trova nella sezione dedicata alla visualizzazione dei Gateway simulati istanziati",
   ),
   postconds: (
-    "L’attore visualizza una entry della lista dei gateway simulati",
+    "L’Attore visualizza una entry della lista dei gateway simulati",
   ),
-  trigger: "L’attore vuole visualizzare dettagli utili ad identificare un Gateway",
+  trigger: "L’Attore vuole visualizzare dettagli utili ad identificare un Gateway",
   main-scen: (
     (
-      descr: "L’attore visualizza la data di creazione del Gateway simulato",
+      descr: "L’Attore visualizza la data di creazione del Gateway simulato",
       inc: "visualizzazione_data_creazione_simulazione",
     ),
     (
@@ -24,4 +23,7 @@
       inc: "visualizzazione_id_fabbrica_simulazione",
     ),
   ),
-)
+)[
+  #uml-schema("S1.1", "Visualizzazione singolo Gateway simulato")
+]
+

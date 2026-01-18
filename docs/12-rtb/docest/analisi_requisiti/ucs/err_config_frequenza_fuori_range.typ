@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   system: SIM_SYS,
@@ -11,10 +11,12 @@
   ),
   postconds: (
     "La modifica della frequenza viene ignorata",
-    "L’attore riceve una notifica di errore",
+    "L'Attore riceve una notifica di errore",
   ),
   trigger: "Ricezione di un valore di frequenza non valido logicamente",
   main-scen: (
-    (descr: "L’attore riceve una notifica di errore di configurazione per errore semantico nel range"),
+    (descr: "L’Attore riceve una notifica di errore di configurazione per errore semantico nel range"),
   ),
-)
+)[
+  #uml-schema("S22", "Errore configurazione frequenza invio dati fuori range ammesso")
+]

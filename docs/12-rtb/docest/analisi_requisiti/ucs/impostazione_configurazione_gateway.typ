@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   system: SIM_SYS,
@@ -14,17 +14,17 @@
   ),
   trigger: "Il Cloud (o un amministratore tramite dashboard) invia una nuova configurazione al gateway",
   main-scen: (
-    (descr: "L’attore prepara una nuova configurazione per il Gateway"),
+    (descr: "L’Attore prepara una nuova configurazione per il Gateway"),
     (
-      descr: "L’attore aggiorna la frequenza",
+      descr: "L’Attore aggiorna la frequenza",
       inc: "impostazione_frequenza_invio_dati"
     ),
     (
-      descr: "L’attore aggiorna lo stato",
+      descr: "L’Attore aggiorna lo stato",
       inc: "impostazione_stato_sospensione"
     ),
     (
-      descr: "L’attore riceve una notifica di conferma dell'avvenuta configurazione",
+      descr: "L’Attore riceve una notifica di conferma dell'avvenuta configurazione",
       ep: "ConfigurazioneInvalida"
     ),
   ),
@@ -40,4 +40,6 @@
       uc: "err_config_frequenza_fuori_range"
     ),
   ),
-)
+)[
+  #uml-schema("S20", "Impostazione configurazione del Gateway")
+]

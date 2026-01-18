@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   system: SIM_SYS,
@@ -7,16 +7,19 @@
   title: "Errore deploy Gateway simulato",
   prim-actors: (SA.sym-usr),
   preconds: (
-    "È stato richiesto il deploy di un nuovo Gateway",
-    "Si è verificato un errore tecnico durante il deploy del gateway",
+    "È stato richiesto il deploy di una o più istanze di Gateway",
+    "Si è verificato un errore tecnico durante il deploy del Gateway",
   ),
   postconds: (
-    "Il gateway non viene creato",
-    "L’attore viene notificato dell’errore di deploy",
+    "Le istanze non vengono create",
+    "L'Attore viene notificato dell’errore di deploy",
   ),
-  trigger: "Errore nella creazione del Gateway simulato",
+  trigger: "Errore nella creazione dei Gateway simulati",
   main-scen: (
     (descr: "L’operazione di creazione viene annullata"),
-    (descr: "L’attore viene notificato dell’errore"),
+    (descr: "L’Attore viene notificato dell’errore"),
   ),
-)
+)[
+  #uml-schema("S11", "Errore deploy Gateway simulato")
+]
+

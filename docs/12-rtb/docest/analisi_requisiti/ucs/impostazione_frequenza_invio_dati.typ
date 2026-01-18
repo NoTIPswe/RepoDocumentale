@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   system: SIM_SYS,
@@ -13,9 +13,20 @@
   postconds: (
     "Il timer di invio dati viene aggiornato con il nuovo valore",
   ),
-  trigger: "L’attore desidera modificare la frequenza di invio dati del Gateway",
+  trigger: "L’Attore desidera modificare la frequenza di invio dati del Gateway",
   main-scen: (
-    (descr: "L’attore modifica il valore della frequenza di invio dati del Gateway selezionato"),
-    (descr: "L’attore viene notificato del buon esito della modifica"),
+    (descr: "L’Attore modifica il valore della frequenza di invio dati del Gateway selezionato",
+    ep: "ValoreNumericoInvalido"
+    ),
+    (descr: "L’Attore viene notificato del buon esito della modifica"),
   ),
-)
+  alt-scen: (
+    (
+      ep: "ValoreNumericoInvalido",
+      cond: "Il valore numerico inserito non è valido",
+      uc: "err_valore_numerico_invalido",
+    ),
+  ),
+)[
+  #uml-schema("S20.1", "Impostazione frequenza di invio dati")
+]

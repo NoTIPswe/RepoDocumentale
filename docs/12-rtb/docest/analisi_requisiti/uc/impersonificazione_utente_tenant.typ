@@ -7,8 +7,8 @@
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
-    "L’attore si trova nella sezione di Visualizzazione Tenant",
-    "L’attore seleziona un Tenant",
+    "Il Sistema si trova nella sezione di Visualizzazione Tenant",
+    "È stato selezionato un Tenant",
     "L’attore è entrato nella relativa sezione di Gestione",
   ),
   postconds: (

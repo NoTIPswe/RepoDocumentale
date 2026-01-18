@@ -7,15 +7,14 @@
   level: 1,
   prim-actors: CA.np-gway,
   preconds: (
-    "Il Gateway ha contattato il sistema per la procedura di onboarding",
+    "Il Sistema è stato contattato da un Gateway per la procedura di onboarding",
     "Le credenziali di fabbrica fornite dal gateway sono invalide",
   ),
   postconds: (
     "Il Gateway non procede con la procedura di onboarding",
-    "Il Gateway riceve una risposta di errore",
   ),
   trigger: "Accensione del gateway",
   main-scen: (
-    (descr: "Il Gateway riceve una risposta di errore"),
+    (descr: "Il Gateway viene notificato dell'errore avvenuto"),
   ),
-)[#uml-schema("98", "Errore autenticazone Gateway di fabbrica")]
+)[#uml-schema("98", "Errore autenticazione Gateway di fabbrica")]

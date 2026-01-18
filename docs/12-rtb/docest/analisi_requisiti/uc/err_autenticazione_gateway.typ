@@ -14,7 +14,6 @@
   ),
   trigger: "Il processo di autenticazione del gateway fallisce",
   main-scen: (
-    (descr: "L’attore riceve un errore di autenticazione"),
-    (descr: "Il canale sicuro non viene instaurato"),
+    (descr: "L’attore riceve un errore di autenticazione e l'operazione non va a buon fine"),
   ),
 )[#uml-schema("100", "Errore autenticazione Gateway")]

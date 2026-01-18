@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   system: SIM_SYS,
@@ -7,16 +7,19 @@
   title: "Visualizzazione lista sensori Gateway simulato",
   prim-actors: (SA.sym-usr),
   preconds: (
-    "L’attore ha selezionato un Gateway simulato",
+    "Il Sistema si trova nella sezione dedicata alla visualizzazione dei sensori del Gateway simulato selezionato",
   ),
   postconds: (
-    "L’attore visualizza la lista dei sensori simulati relativi al Gateway selezionato",
+    "L’Attore visualizza la lista dei sensori simulati relativi al Gateway selezionato",
   ),
-  trigger: "L’attore vuole visualizzare la lista dei sensori relativi ad un gateway simulato",
+  trigger: "L’Attore vuole visualizzare la lista dei sensori relativi ad un gateway simulato",
   main-scen: (
     (
-      descr: "L’attore visualizza la lista dei sensori simulati relativi al gateway selezionato",
+      descr: "L’Attore visualizza la lista dei sensori simulati relativi al gateway selezionato",
       inc: "visualizzazione_singolo_sensore_simulato",
     ),
   ),
-)
+)[
+  #uml-schema("S4", "Visualizzazione lista sensori Gateway simulato")
+]
+
