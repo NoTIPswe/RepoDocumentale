@@ -8,12 +8,12 @@
   prim-actors: CA.api-client,
   sec-actors: CSA.auth-server, // bokmark - solo se usiamo auth server esterno
   preconds: (
-    "L’Attore primario ha fornito dei dati non validi per l’autenticazione",
+    "Il sistema ha ricevuto dall'Attore primario dei dati non validi per l’autenticazione",
   ),
   postconds: (
     "L’autenticazione non va a buon fine e all’Attore primario viene notificato un errore di autenticazione",
   ),
-  trigger: "I dati per l’autenticazione forniti dall’Attore non sono validi",
+  trigger: "",
   main-scen: (
     (descr: "L’Auth Server risponde al sistema con un errore di autenticazione"),
     (descr: "L’Attore primario riceve un errore di autenticazione dal sistema"),

@@ -8,13 +8,13 @@
   prim-actors: CA.api-client,
   sec-actors: CSA.auth-server,
   preconds: (
-    "L’Attore primario ha richiesto l’autenticazione al sistema",
+    "Il sistema ha ricevuto la richiesta di autenticazione dall'Attore primario",
     "L’Auth Server non è raggiungibile o risponde con un errore interno",
   ),
   postconds: (
     "L’autenticazione non va a buon fine e all’Attore primario viene notificato un errore interno",
   ),
-  trigger: "L’Auth Server non è disponibile a seguito di un errore interno o problemi di rete",
+  trigger: "",
   main-scen: (
     (descr: "L’Auth Server non è raggiungibile o risponde al sistema con un errore interno"),
     (descr: "L’Attore primario riceve un messaggio di errore interno dal sistema"),

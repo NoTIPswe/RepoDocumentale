@@ -7,14 +7,14 @@
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
-    "L’Attore primario si trova nella sezione dedicata alla creazione di Tenant",
+    "Il sistema mostra all’Attore primario la sezione dedicata alla creazione di Tenant",
   ),
   postconds: (
     "Il Tenant è stato creato correttamente all’interno del sistema",
     "I dati anagrafici sono stati salvati",
     "I namespace relativi al Tenant sono stati creati in ogni livello del flusso di dati",
   ),
-  trigger: "L'Amministratore di Sistema deve registrare un nuovo cliente (Tenant)",
+  trigger: "",
   main-scen: (
     (descr: "L’Attore inizia la procedura di creazione Tenant"),
     (

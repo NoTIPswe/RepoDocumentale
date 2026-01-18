@@ -7,12 +7,12 @@
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "L’Attore si trova nella sezione dedicata alla modifica",
+    "Il sistema mostra le impostazioni di impersonificazione relative al Tenant",
   ),
   postconds: (
     "Le modifiche apportate dall’Attore vengono salvate",
   ),
-  trigger: "L’Attore vuole modificare le impostazioni di impersonificazione relative al Tenant",
+  trigger: "",
   main-scen: (
     (
       descr: "L’Attore abilita o disabilita la facoltà dell'Amministratore di Sistema di accedere come (“impersonare”) un Utente del tenant",

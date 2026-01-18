@@ -7,12 +7,12 @@
   level: 2,
   prim-actors: CA.sys-adm,
   preconds: (
-    "L’Attore primario è nella procedura di creazione Tenant",
+    "Il sistema permette all'Attore primario di creare un nuovo Tenant",
   ),
   postconds: (
     "L’Attore primario inserisce dei dati anagrafici validi per il Tenant",
   ),
-  trigger: "Il sistema richiede dei dati anagrafici da associare ad un Tenant",
+  trigger: "",
   main-scen: (
     (descr: "L’Attore inserisce il nome del Tenant"),
     // bookmark - chiedere all'azienda che informazioni è di interesse memorizzare per un tenant

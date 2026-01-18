@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
-    "L’Attore ha avviato la procedura di creazione Tenant",
+    "L’Attore primario ha avviato la procedura di creazione Tenant",
     "Il sistema ha riscontrato un errore interno",
   ),
   postconds: (

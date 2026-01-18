@@ -7,13 +7,13 @@
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
-    "L’Attore si trova nella sezione di Gestione Tenant",
+    "Il sistema mostra all’Attore primario la lista per la Gestione Tenant",
   ),
   postconds: (
     "Il Tenant è stato riattivato correttamente",
     "L’Amministratore di Tenant riceve una notifica riguardante la riattivazione del Tenant ad esso associato",
   ),
-  trigger: "Si desidera riattivare un Tenant",
+  trigger: "",
   main-scen: (
     (
       descr: "L’Attore seleziona un Tenant",

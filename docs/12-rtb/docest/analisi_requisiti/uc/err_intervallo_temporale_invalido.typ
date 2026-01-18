@@ -7,14 +7,14 @@
   level: 1,
   prim-actors: CA.api-client,
   preconds: (
-    "L’Attore ha allegato un token di autenticazione valido",
+    "Il sistema riceve un token di autenticazione valido dall'Attore",
     "L’intervallo temporale fornito nella richiesta non è valido",
   ),
   postconds: (
     "L’Attore non può procedere con la richiesta",
     "L’Attore riceve una risposta di errore",
   ),
-  trigger: "L’intervallo temporale fornito dall’Attore primario non è valido",
+  trigger: "",
   main-scen: (
     (descr: "L’Attore riceve una risposta di errore che segnala l’intervallo temporale non valido"),
   ),

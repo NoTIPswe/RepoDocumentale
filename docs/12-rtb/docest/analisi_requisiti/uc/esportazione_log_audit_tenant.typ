@@ -7,12 +7,12 @@
   level: 1,
   prim-actors: (CA.tenant-adm, CA.sys-adm),
   preconds: (
-    "L’Attore si trova nella sezione dedicata alla visualizzazione dei log",
+    "Il sistema mostra all'Attore primario i log di Audit del Tenant",
   ),
   postconds: (
     "L’Attore esporta correttamente i dati di suo interesse",
   ),
-  trigger: "L’Attore desidera esportare i log per fare Audit del Tenant",
+  trigger: "",
   main-scen: (
     (
       descr: "L’Attore seleziona l’intervallo temporale (data e ora) degli audit da esportare",

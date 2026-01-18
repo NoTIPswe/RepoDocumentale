@@ -7,8 +7,8 @@
   level: 1,
   prim-actors: CA.api-client,
   preconds: (
-    "L’Attore dispone di un token di autenticazione",
-    "Il token di autenticazione è stato valutato invalido o scaduto dal sistema",
+    "L’Attore primario dispone di un token di autenticazione",
+    "Il sistema ha valutato il token di autenticazione è stato valutato invalido o scaduto",
   ),
   postconds: (
     "L’Attore non può procedere con la richiesta",

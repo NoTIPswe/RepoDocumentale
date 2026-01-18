@@ -7,12 +7,12 @@
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
-    "L’Attore primario si trova nella sezione dedicata alla visualizzazione dei Tenant",
+    "Il sistema mostra all’Attore primario la lista dei Tenant",
   ),
   postconds: (
     "L’Attore visualizza lo stato operativo del Tenant",
   ),
-  trigger: "Necessità di verificare se il Tenant è operativo",
+  trigger: "",
   main-scen: (
     (descr: "L’Attore visualizza lo stato corrente del Tenant"),
   ),

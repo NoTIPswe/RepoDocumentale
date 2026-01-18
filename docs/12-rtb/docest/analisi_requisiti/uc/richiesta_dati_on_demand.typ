@@ -7,12 +7,12 @@
   level: 1,
   prim-actors: CA.api-client,
   preconds: (
-    "L’Attore dispone di un token di autenticazione",
+    "L’Attore primario dispone di un token di autenticazione",
   ),
   postconds: (
     "L’Attore riceve i dati relativi alla richiesta effettuata",
   ),
-  trigger: "L’Attore primario vuole recuperare dati storici tramite una chiamata API",
+  trigger: "",
   main-scen: (
     (
       descr: "L’Attore invia una richiesta allegando un token di autenticazione, identificativi dei Gateway/sensori e intervallo temporale",

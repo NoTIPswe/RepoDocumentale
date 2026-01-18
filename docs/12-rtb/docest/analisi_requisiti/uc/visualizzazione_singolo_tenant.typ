@@ -7,13 +7,13 @@
   level: 2,
   prim-actors: CA.sys-adm,
   preconds: (
-    "L’Attore primario si trova nella sezione dedicata alla visualizzazione dei Tenant",
-    "L’Attore primario sta visualizzando la lista dei Tenant",
+    "Il sistema mostra all’Attore primario la lista dei Tenant",
+    "Il sistema mostra all’Attore primario un singolo Tenant",
   ),
   postconds: (
     "L’Attore primario visualizza i dati essenziali relativi ad un singolo Tenant nella lista",
   ),
-  trigger: "L’Attore primario vuole visualizzare un Tenant all'interno della lista",
+  trigger: "",
   main-scen: (
     (
       descr: "L’Attore visualizza il nome del Tenant",

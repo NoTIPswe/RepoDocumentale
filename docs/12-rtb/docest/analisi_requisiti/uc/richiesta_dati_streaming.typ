@@ -12,7 +12,7 @@
   postconds: (
     "L’Attore riceve i dati relativi alla richiesta effettuata",
   ),
-  trigger: "L’Attore primario vuole recuperare dati real-time tramite un endpoint API",
+  trigger: "",
   main-scen: (
     (
       descr: "L’Attore invia una richiesta allegando un token di autenticazione e identificativi dei Gateway e dei relativi sensori",

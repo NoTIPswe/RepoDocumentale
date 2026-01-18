@@ -7,16 +7,16 @@
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
-    "L’Attore si trova nella sezione di Gestione Tenant",
-    "L’Attore seleziona il Tenant di interesse",
-    "L’Attore entra nella relativa sezione di Gestione",
+    "Il sistema mostra all’Attore primario la lista per la Gestione Tenant",
+    "Il Tenant di interesse è stato selezionato",
+    "Il sistema mostra la sezione di Gestione del tenant all'Attore primario",
     "Il Tenant di interesse si trova nello stato “sospeso” da un intervallo di tempo maggiore dell’intervallo minimo di sospensione pre-eliminazione selezionato",
   ),
   postconds: (
     "Il Tenant è stato eliminato correttamente",
     "L’Amministratore di Tenant riceve una notifica riguardante l’eliminazione del Tenant precedentemente ad esso associato",
   ),
-  trigger: "Si desidera eliminare un Tenant",
+  trigger: "",
   main-scen: (
     (descr: "L’Attore primario seleziona l’opzione di eliminazione del Tenant"),
     (

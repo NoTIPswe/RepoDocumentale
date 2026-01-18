@@ -7,12 +7,12 @@
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "L’Attore si trova nella sezione di visualizzazione delle credenziali API",
+    "Il sistema mostra le credenziali dell'API all'Attore primario",
   ),
   postconds: (
     "Le credenziali eliminate non sono più attive e valide all’interno del sistema",
   ),
-  trigger: "L’Attore desidera eliminare delle credenziali API non più utilizzate o desecretate",
+  trigger: "",
   main-scen: (
     (
       descr: "L’Attore seleziona un API token da eliminare",

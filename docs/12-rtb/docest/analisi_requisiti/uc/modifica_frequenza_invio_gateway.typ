@@ -7,12 +7,12 @@
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "L’Attore si trova nella sezione dedicata alla configurazione di un Gateway",
+    "Il sistema mostra all’Attore primario l'attuale configurazione di un Gateway",
   ),
   postconds: (
     "La frequenza d’invio è stata correttamente aggiornata",
   ),
-  trigger: "L’Attore vuole modificare la frequenza invio dati di un Gateway",
+  trigger: "",
   main-scen: (
     (
       descr: "L’Attore sceglie un Gateway tramite il suo identificativo",

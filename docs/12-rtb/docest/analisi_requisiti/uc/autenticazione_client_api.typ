@@ -13,7 +13,7 @@
   postconds: (
     "L’Attore principale possiede un token valido per effettuare chiamate successive",
   ),
-  trigger: "L’Attore primario vuole autenticarsi per contattare le API",
+  trigger: "",
   main-scen: (
     (
       descr: "L’Attore primario contatta l’endpoint del Sistema dedicato all’autenticazione allegando le credenziali utilizzando un protocollo sicuro e criptato",

@@ -7,13 +7,13 @@
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
-    "L’Attore si trova nella sezione di Gestione Tenant",
+    "Il sistema mostra all’Attore primario la lista per la Gestione Tenant",
   ),
   postconds: (
     "Il Tenant è stato sospeso correttamente",
     "L’Amministratore di Tenant riceve una notifica riguardante la sospensione del Tenant ad esso associato",
   ),
-  trigger: "Si desidera sospendere un Tenant",
+  trigger: "",
   main-scen: (
     (
       descr: "L’Attore seleziona un Tenant",

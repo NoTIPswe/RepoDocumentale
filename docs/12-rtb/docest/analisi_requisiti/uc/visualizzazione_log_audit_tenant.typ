@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: (CA.tenant-adm, CA.sys-adm),
   preconds: (
-    "L’Attore si trova nella sezione dedicata alla visualizzazione dei log",
+    "Il sistema mostra all'Attore primario la sezione dedicata ai log di Audit",
   ),
   postconds: (
     "L’Attore visualizza correttamente i dati di suo interesse",
