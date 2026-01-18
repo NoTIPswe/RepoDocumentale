@@ -10,19 +10,19 @@
     "Esiste un Gateway simulato di cui si vuole visualizzare la configurazione",
   ),
   postconds: (
-    "L’attore visualizza i dati di configurazione della simulazione del Gateway simulato",
+    "L’Attore visualizza i dati di configurazione della simulazione del Gateway simulato",
   ),
-  trigger: "L’attore vuole visualizzare i dettagli della configurazione di simulazione di un Gateway",
+  trigger: "L’Attore vuole visualizzare i dettagli della configurazione di simulazione di un Gateway",
   main-scen: (
         (
       descr: "L’attore seleziona il Gateway simulato desiderato",
     ),
     (
-      descr: "L’attore visualizza l’ID di fabbrica del Gateway simulato",
+      descr: "L’Attore visualizza l’ID di fabbrica del Gateway simulato",
       inc: "visualizzazione_id_fabbrica_simulazione",
     ),
     (
-      descr: "L’attore visualizza la chiave di fabbrica del Gateway simulato",
+      descr: "L’Attore visualizza la chiave di fabbrica del Gateway simulato",
       inc: "visualizzazione_chiave_fabbrica_simulazione",
     ),
     (
@@ -38,11 +38,11 @@
       inc: "visualizzazione_modello_gateway_simulato",
     ),
     // bookmark - non sappiamo ancora cosa altro visualizzare
-    // serial number 
-    // versione software 
+    // serial number
+    // versione software
     // versione firmware
-    // modello 
-    // pin geografico 
+    // modello
+    // pin geografico
     // ...
   ),
 )[

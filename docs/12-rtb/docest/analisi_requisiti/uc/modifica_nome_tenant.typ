@@ -7,15 +7,15 @@
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
-    "L’attore ha selezionato un Tenant",
-    "L’attore si trova nella sezione dedicata alla modifica relativa ad un Tenant",
+    "L’Attore primario ha selezionato un Tenant",
+    "Il sistema mostra all’Attore primario la lista dei Tenant modificabili",
   ),
   postconds: (
-    "L’attore ha modificato correttamente il nome Tenant",
+    "L’Attore ha modificato correttamente il nome Tenant",
   ),
-  trigger: "Volontà di cambiare il nome identificativo di un Tenant",
+  trigger: "",
   main-scen: (
-    (descr: "L’attore inserisce un nuovo nome descrittivo per il Tenant"),
-    (descr: "L’attore salva le modifiche"),
+    (descr: "L’Attore inserisce un nuovo nome descrittivo per il Tenant"),
+    (descr: "L’Attore salva le modifiche"),
   ),
 )[#uml-schema("84", "Modifica Nome Tenant")]

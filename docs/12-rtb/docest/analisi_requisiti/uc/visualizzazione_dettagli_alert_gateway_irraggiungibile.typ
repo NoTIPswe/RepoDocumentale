@@ -3,27 +3,26 @@
 #uc(
   id: "visualizzazione_dettagli_alert_gateway_irraggiungibile",
   system: CLOUD_SYS,
-  title: "Visualizzazione dettagli alert gateway non raggiungibile",
+  title: "Visualizzazione dettagli alert Gateway non raggiungibile",
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L’attore primario sta visualizzando lo storico degli alert",
-    "L’attore primario ha selezionato un alert per vederne i dettagli",
+    "Il Sistema sta mostrando i dettagli di un alert riferito a un Gateway non raggiungibile"
   ),
   postconds: (
-    "L’attore primario visualizza i dettagli dell’alert",
+    "L’Attore visualizza i dettagli dell’alert",
   ),
-  trigger: "L’attore primario seleziona un alert gateway non raggiungibile per vederne i dettagli",
+  trigger: "L’Attore vuole visualizzare i dettagli di una alert Gateway non raggiungibile",
   main-scen: (
     (
-      descr: "L’attore primario visualizza l’identificativo del gateway interessato",
+      descr: "L’Attore visualizza l’identificativo del Gateway interessato",
       inc: "visualizzazione_nome_gateway",
     ),
     (
-      descr: "L’attore primario visualizza il timestamp dell’ultima comunicazione",
+      descr: "L’Attore visualizza il timestamp dell’ultima comunicazione",
       inc: "visualizzazione_timestamp_ultimo_invio_dati_gateway",
     ),
   ),
 )[
-  #uml-schema("36", "Diagramma visualizzazione dettagli alert gateway non raggiungibile")
+  #uml-schema("36", "Diagramma visualizzazione dettagli alert Gateway non raggiungibile")
 ]

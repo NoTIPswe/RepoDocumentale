@@ -3,19 +3,19 @@
 #uc(
   id: "visualizzazione_ultimo_accesso_utente",
   system: CLOUD_SYS,
-  title: "Visualizzazione ultimo accesso dell’utente",
+  title: "Visualizzazione ultimo accesso dell’Utente",
   level: 3,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "L’attore primario si trova nella sezione dedicata alla Gestione del Tenant",
-    "L’Attore primario sta visualizzando la lista Utenti del Tenant",
-    "Il sistema ha a disposizione il timestamp relativo all'ultima sessione valida creata dall'utente",
+    "Esiste almeno un Utente associato al Tenant",
+    "Il Sistema sta mostrando la lista di Utenti associati al Tenant",
+    "I dati dell'Utente sono visibili",
   ),
   postconds: (
-    "La data e l’ora dell'ultimo accesso vengono visualizzate",
+    "L'Attore visualizza il timestamp dell'ultimo accesso dell'Utente",
   ),
-  trigger: "Necessità di monitorare l'attività recente dell'utente nel sistema",
+  trigger: "L'Attore vuole visualizzare l'ultimo accesso dell'Utente",
   main-scen: (
-    (descr: "L’attore visualizza il timestamp dell'ultimo accesso effettuato dall'utente"),
+    (descr: "L’Attore visualizza la data e ora dell'ultimo accesso effettuato dall'Utente"),
   ),
 )

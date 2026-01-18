@@ -12,7 +12,7 @@
   postconds: (
     "I dati sono stati inviati correttamente al Cloud in forma sicura",
   ),
-  trigger: "Scadenza del timer di invio dati al cloud del gateway",
+  trigger: "Scadenza del timer di invio dati al cloud del Gateway",
   main-scen: (
     (
       descr: "L’Attore stabilisce una connessione sicura verso l'Endpoint del Cloud",

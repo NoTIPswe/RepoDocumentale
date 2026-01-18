@@ -7,15 +7,15 @@
   level: 2,
   prim-actors: (CA.tenant-adm, CA.sys-adm),
   preconds: (
-    "L’attore si trova nella sezione dedicata alla visualizzazione dei log",
+    "Il sistema mostra all'Attore primario i log di Audit del Tenant",
     "Il sistema ha prodotto il file scaricabile contenente i log di audit esportati",
   ),
   postconds: (
     "L’Attore scarica i log sul proprio dispositivo",
   ),
-  trigger: "L’attore desidera esportare i log per fare Audit del Tenant",
+  trigger: "",
   main-scen: (
-    (descr: "L’attore viene notificato della disponibilità del log esportato"),
-    (descr: "L’attore scarica il file di log sul proprio dispositivo"),
+    (descr: "L’Attore viene notificato della disponibilità del log esportato"),
+    (descr: "L’Attore scarica il file di log sul proprio dispositivo"),
   ),
 )[#uml-schema("64.2", "Download log audit esportati")]

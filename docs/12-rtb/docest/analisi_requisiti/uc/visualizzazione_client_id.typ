@@ -7,12 +7,14 @@
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "Il sistema ha generato l'identificativo univoco per il client",
+    "Esiste almeno un Tenant",
+    "Il Tenant risulta attivo",
+    "Al Tenant risulta associato un client ID",
   ),
   postconds: (
-    "L’attore visualizza la stringa identificativa",
+    "L’Attore visualizza la stringa identificativa",
   ),
-  trigger: "L'attore desidera visualizzare il Client ID di alcune credenziali API",
+  trigger: "L'Attore vuole visualizzare il Client ID di alcune credenziali API",
   main-scen: (
     (descr: "Il sistema mostra a video la stringa alfanumerica corrispondente al Client ID"),
   ),

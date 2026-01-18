@@ -7,7 +7,7 @@
   level: 2,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "Eredita da UC: visualizzazione_dati_stream",
+    "Esiste almeno un sensore associato al Gateway di un Tenant gestito dall’Attore primario",
     "L’Attore primario sta visionando i dati sullo stream",
   ),
   postconds: (
@@ -18,5 +18,4 @@
     (descr: "L’Attore primario visualizza una tabella con: timestamp, Gateway, sensore, tipo misura, valore, unità"),
   ),
 )[
-  #uml-schema("24.1", "Diagramma visualizzazione tabellare dati Stream")
 ]

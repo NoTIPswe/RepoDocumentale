@@ -7,15 +7,15 @@
   level: 1,
   prim-actors: CA.api-client,
   preconds: (
-    "L’attore dispone di un token di autenticazione",
-    "Il token di autenticazione è stato valutato invalido o scaduto dal sistema",
+    "L’Attore primario dispone di un token di autenticazione",
+    "Il sistema ha valutato il token di autenticazione è stato valutato invalido o scaduto",
   ),
   postconds: (
-    "L’attore non può procedere con la richiesta",
-    "L’attore deve ripetere l’autenticazione prima di effettuare una nuova richiesta",
+    "L’Attore non può procedere con la richiesta",
+    "L’Attore deve ripetere l’autenticazione prima di effettuare una nuova richiesta",
   ),
-  trigger: "Il token fornito dall’attore primario risulta essere scaduto o non valido",
+  trigger: "Il token fornito dall’Attore primario risulta essere scaduto o non valido",
   main-scen: (
-    (descr: "L’attore riceve una risposta di errore di autenticazione"),
+    (descr: "L’Attore riceve una risposta di errore di autenticazione"),
   ),
 )[#uml-schema("73", "Errore token di autenticazione API invalido")]

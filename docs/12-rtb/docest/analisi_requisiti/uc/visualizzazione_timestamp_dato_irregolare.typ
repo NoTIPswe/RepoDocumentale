@@ -7,14 +7,15 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L’attore primario sta visualizzando un alert relativo a dati fuori range",
+    "Esiste un'irregolarità nelle misurazioni del sensore",
+    "Il Sistema sta mostrando un alert relativo a dati fuori range",
   ),
   postconds: (
-    "L’attore primario visualizza il timestamp della registrazione del dato fuori range",
+    "L’Attore visualizza il timestamp della registrazione del dato fuori range",
   ),
-  trigger: "Un dato registrato risulta essere fuori range previsto",
+  trigger: "Un valore registrato dal sensore risulta fuori dal range previsto",
   main-scen: (
-    (descr: "L’attore primario visualizza l’orario di registrazione del dato da parte del sensore"),
+    (descr: "L’Attore visualizza l’orario di registrazione del dato da parte del sensore"),
   ),
 )[
   #uml-schema("32", "Diagramma visualizzazione timestamp registrazione dato irregolare")

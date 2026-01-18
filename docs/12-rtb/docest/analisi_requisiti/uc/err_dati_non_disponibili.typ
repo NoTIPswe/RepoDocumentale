@@ -7,16 +7,16 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L’attore si trova in una sezione di visualizzazione",
+    "L’Attore si trova in una sezione di visualizzazione",
     "Non sono stati registrati dati",
   ),
   postconds: (
-    "L’attore primario è informato che non ci sono dati visualizzabili/esportabili",
+    "L’Attore primario è informato che non ci sono dati visualizzabili/esportabili",
   ),
   trigger: "I dati non sono disponibili in fase di visualizzazione dei dettagli",
   main-scen: (
     (
-      descr: "L’attore riceve una notifica di errore che indica che i dati non sono temporaneamente disponibili/esistenti",
+      descr: "L’Attore riceve una notifica di errore che indica che i dati non sono temporaneamente disponibili/esistenti",
     ),
   ),
 )[

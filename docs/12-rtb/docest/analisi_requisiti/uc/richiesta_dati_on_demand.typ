@@ -7,23 +7,23 @@
   level: 1,
   prim-actors: CA.api-client,
   preconds: (
-    "L’attore dispone di un token di autenticazione",
+    "L’Attore primario dispone di un token di autenticazione",
   ),
   postconds: (
-    "L’attore riceve i dati relativi alla richiesta effettuata",
+    "L’Attore riceve i dati relativi alla richiesta effettuata",
   ),
-  trigger: "L’attore primario vuole recuperare dati storici tramite una chiamata API",
+  trigger: "",
   main-scen: (
     (
-      descr: "L’attore invia una richiesta allegando un token di autenticazione, identificativi dei gateway/sensori e intervallo temporale",
+      descr: "L’Attore invia una richiesta allegando un token di autenticazione, identificativi dei Gateway/sensori e intervallo temporale",
       ep: "DatiNonValidi",
     ),
-    (descr: "L’attore riceve i dati storici richiesti"),
+    (descr: "L’Attore riceve i dati storici richiesti"),
   ),
   alt-scen: (
     (
       ep: "DatiNonValidi",
-      cond: "Il token fornito dall’utente non è valido",
+      cond: "Il token fornito dall’Utente non è valido",
       uc: "err_token_api_invalido",
     ),
     (

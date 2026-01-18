@@ -10,12 +10,12 @@
     "L'OTP inserito non viene riconosciuto come valido dal sistema",
   ),
   postconds: (
-    "L'attore non può procedere con l'operazione che richiede l'inserimento di OTP",
+    "L'Attore non può procedere con l'operazione che richiede l'inserimento di OTP",
   ),
-  trigger: "L'attore ha inserito un codice OTP errato nel sistema",
+  trigger: "L'Attore ha inserito un codice OTP errato nel sistema",
   main-scen: (
-    (descr: "L'attore primario viene informato dell'errore riscontrato"),
-    (descr: "L'attore primario viene invitato a riprovare"),
+    (descr: "L'Attore primario viene informato dell'errore riscontrato"),
+    (descr: "L'Attore primario viene invitato a riprovare"),
   ),
 )[
   #uml-schema("6", "OTP Errato")

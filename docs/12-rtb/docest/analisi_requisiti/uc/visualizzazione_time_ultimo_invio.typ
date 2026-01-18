@@ -3,19 +3,19 @@
 #uc(
   id: "visualizzazione_timestamp_ultimo_invio_dati_gateway",
   system: CLOUD_SYS,
-  title: "Visualizzazione timestamp ultimo invio dati gateway",
+  title: "Visualizzazione timestamp ultimo invio dati Gateway",
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L'attore primario sta visualizzando i dettagli di un gateway o di un alert riguardante un gateway non raggiungibile",
+    "Il sistema mostra i dettagli di un Gateway o di un alert riguardante un Gateway non raggiungibile",
   ),
   postconds: (
     "L'orario dell'ultimo pacchetto dati ricevuto è visibile",
   ),
-  trigger: "Visualizzazione dettagli di un gateway o di un alert ad esso collegato",
+  trigger: "Visualizzazione dettagli di un Gateway o di un alert ad esso collegato",
   main-scen: (
-    (descr: "L'attore primario visualizza l’orario dell’ultimo invio dati da parte del gateway"),
+    (descr: "L'Attore primario visualizza l’orario dell’ultimo invio dati da parte del Gateway"),
   ),
 )[
-  #uml-schema("22", "Diagramma visualizzazione timestamp ultimo invio dati gateway")
+  #uml-schema("22", "Diagramma visualizzazione timestamp ultimo invio dati Gateway")
 ]

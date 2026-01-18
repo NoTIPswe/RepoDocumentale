@@ -7,15 +7,13 @@
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "L’attore primario si trova nella sezione dedicata alla modifica",
-    "Esiste almeno un tipo di sensore configurato nel sistema per il quale è possibile modificare il range di default",
-    "L’attore principale sta eseguendo un’operazione che interessa un tipo specifico di sensore",
+    "Esiste un sensore di tipologia disponibile a modifiche nel Sistema",
   ),
   postconds: (
     "Il tipo di sensore è stato selezionato",
   ),
-  trigger: "L’attore principale sta eseguendo un’operazione che interessa un tipo specifico di sensore",
+  trigger: "L’Attore sta eseguendo un’operazione che interessa un tipo specifico di sensore",
   main-scen: (
-    (descr: "L’attore principale seleziona un tipo di sensore fra quelli disponibili"),
+    (descr: "L’Attore seleziona un tipo di sensore fra quelli disponibili"),
   ),
 )[#uml-schema("46", "Selezione tipo di sensore")]

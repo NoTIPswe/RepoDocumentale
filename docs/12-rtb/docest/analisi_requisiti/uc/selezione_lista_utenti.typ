@@ -7,13 +7,14 @@
   level: 2,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "L’Attore principale sta visualizzando la lista di Utenti del Tenant",
+    "Esiste almeno un Utente associato al Tenant",
+    "Il Sistema sta mostrando la lista di Utenti associati al Tenant",
   ),
   postconds: (
     "Uno o più utenti sono stati selezionati",
   ),
-  trigger: "L’attore principale desidera compiere un'operazione massiva su più account",
+  trigger: "L’Attore desidera compiere un'operazione massiva su più account",
   main-scen: (
-    (descr: "L’Attore principale seleziona uno o più utenti del Tenant"),
+    (descr: "L’Attore seleziona uno o più utenti del Tenant"),
   ),
 )

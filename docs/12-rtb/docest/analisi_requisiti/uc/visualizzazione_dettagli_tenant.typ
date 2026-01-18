@@ -7,34 +7,34 @@
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
-    "L’attore si trova nella sezione dedicata alla visualizzazione dei Tenant",
+    "Il sistema mostra all’Attore primario la lista dei Tenant",
   ),
   postconds: (
-    "L’attore visualizza tutte le informazioni di dettaglio del Tenant selezionato",
+    "L’Attore visualizza tutte le informazioni di dettaglio del Tenant selezionato",
   ),
-  trigger: "L’attore vuole esaminare in profondità lo stato e i dati di uno specifico Tenant",
+  trigger: "",
   main-scen: (
     (
-      descr: "L’attore seleziona un Tenant dalla lista",
+      descr: "L’Attore seleziona un Tenant dalla lista",
       inc: "selezione_tenant",
     ),
     (
-      descr: "L’attore visualizza il nome del Tenant",
+      descr: "L’Attore visualizza il nome del Tenant",
       inc: "visualizzazione_nome_tenant",
     ),
     (
-      descr: "L’attore visualizza lo stato del Tenant",
+      descr: "L’Attore visualizza lo stato del Tenant",
       inc: "visualizzazione_stato_tenant",
     ),
     (
-      descr: "L’attore visualizza l’identificativo del Tenant",
+      descr: "L’Attore visualizza l’identificativo del Tenant",
       inc: "visualizzazione_id_tenant",
     ),
     (
-      descr: "L’attore visualizza l’intervallo minimo di sospensione pre-eliminazione",
+      descr: "L’Attore visualizza l’intervallo minimo di sospensione pre-eliminazione",
       inc: "visualizzazione_intervallo_sospensione_tenant",
     ),
-    // bookmark 
-    // consumi leagti ad i gateway associati
+    // bookmark
+    // consumi leagti ad i Gateway associati
   ),
 )[#uml-schema("79", "Visualizzazione dettagli Tenant")]

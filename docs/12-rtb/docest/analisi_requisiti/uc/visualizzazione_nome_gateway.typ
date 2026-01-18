@@ -3,19 +3,19 @@
 #uc(
   id: "visualizzazione_nome_gateway",
   system: CLOUD_SYS,
-  title: "Visualizzazione nome gateway",
+  title: "Visualizzazione nome Gateway",
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L'attore primario sta visualizzando una lista di gateway, i dettagli di uno di essi o un alert riguardante un gateway",
+    "Il sistema presenta all’Attore primario una lista di Gateway, i dettagli di un Gateway oppure un alert relativo a un Gateway.",
   ),
   postconds: (
-    "L'attore primario visualizza il nome identificativo del gateway",
+    "L'Attore primario visualizza il nome identificativo del Gateway",
   ),
-  trigger: "Necessità di distinguere univocamente il gateway",
+  trigger: "Necessità di distinguere univocamente il Gateway",
   main-scen: (
-    (descr: "Viene visualizzato il nome del gateway"),
+    (descr: "Viene visualizzato il nome del Gateway"),
   ),
 )[
-  #uml-schema("19", "Visualizzazione nome gateway")
+  #uml-schema("19", "Visualizzazione nome Gateway")
 ]

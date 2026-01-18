@@ -7,13 +7,13 @@
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
-    "L’attore si trova nella sezione dedicata alla visualizzazione dei Tenant",
+    "Il sistema mostra all’Attore primario la lista dei Tenant",
   ),
   postconds: (
-    "L’attore visualizza il nome identificativo del Tenant",
+    "L’Attore visualizza il nome identificativo del Tenant",
   ),
-  trigger: "Necessità da parte dell’attore di riconoscere il Tenant tramite il suo nome",
+  trigger: "",
   main-scen: (
-    (descr: "L’attore visualizza il nome del Tenant"),
+    (descr: "L’Attore visualizza il nome del Tenant"),
   ),
 )[#uml-schema("80", "Visualizzazione nome Tenant")]

@@ -7,21 +7,22 @@
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "L’utente di cui si vogliono modificare i permessi non è Owner del Tenant",
+    "Esiste almeno un Utente associato al Tenant",
+    "Il Sistema sta attendendo le modifiche dell'Utente da parte dell'Attore",
   ),
   postconds: (
-    "I permessi dell’utente selezionato sono aggiornati",
+    "I permessi dell’Utente selezionato sono aggiornati",
   ),
-  trigger: "L’attore principale vuole modificare i permessi di un singolo utente del tenant",
+  trigger: "L’Attore vuole modificare i permessi di un singolo Utente del tenant",
   main-scen: (
     (
-      descr: "L’attore seleziona un utente del tenant",
+      descr: "L’Attore seleziona un Utente del tenant",
       inc: "selezione_utente_tenant",
     ),
     (
-      descr: "L’attore seleziona i permessi da concedere all’utente",
+      descr: "L’Attore seleziona i permessi da concedere all’Utente",
       inc: "selezione_permessi_utente",
     ),
-    (descr: "L’attore salva le modifiche apportate"),
+    (descr: "L’Attore salva le modifiche apportate"),
   ),
 )[#uml-schema("54", "Modifica permessi Utente del Tenant")]

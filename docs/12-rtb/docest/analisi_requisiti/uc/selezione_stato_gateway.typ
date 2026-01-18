@@ -7,15 +7,14 @@
   level: 2,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "I Gateway selezionati appartengono al Tenant",
-    "I Gateway sono raggiungibili",
-    "L’attore sta modificando lo stato di alcuni Gateway",
+    "Il Gateway appartiene al Tenant",
+    "Il Gateway si trova in uno stato attivo/disabilitato",
   ),
   postconds: (
-    "Lo stato selezionato viene applicato ai Gateway in fase di modifica",
+    "Lo stato selezionato viene applicato al Gateway in fase di modifica",
   ),
-  trigger: "L’attore primario vuole abilitare o disabilitare un Gateway per gestire l’attività del sistema",
+  trigger: "L’Attore vuole abilitare/disabilitare un Gateway.",
   main-scen: (
-    (descr: "L’attore seleziona lo stato desiderato (abilitato o disabilitato) per i Gateway"),
+    (descr: "L’Attore seleziona lo stato desiderato (abilitato o disabilitato) per il Gateway"),
   ),
 )

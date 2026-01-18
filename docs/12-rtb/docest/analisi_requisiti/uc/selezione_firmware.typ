@@ -7,18 +7,18 @@
   level: 2,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "L’attore si trova nella sezione dedicata alla gestione dei Gateway",
+    "Il sistema mostra all'Attore primario la lista dei Gateway",
     "Esiste almeno un nuovo firmware valido nel sistema che possa essere caricato",
-    "L’attore ha selezionato dei gateway da aggiornare",
+    "L’Attore primario ha selezionato dei Gateway da aggiornare",
   ),
   postconds: (
-    "L’attore ha selezionato con successo la versione firmware da installare",
+    "L’Attore ha selezionato con successo la versione firmware da installare",
   ),
-  trigger: "L’attore desidera installare una nuova versione del firmware sui dispositivi",
+  trigger: "L’Attore desidera installare una nuova versione del firmware sui dispositivi",
   main-scen: (
     (
-      descr: "L’attore visualizza la lista delle versioni del firmware tra quelle compatibili con tutti i gateway selezionati",
+      descr: "L’Attore visualizza la lista delle versioni del firmware tra quelle compatibili con tutti i Gateway selezionati",
     ),
-    (descr: "L’attore seleziona una versione tra quelle visualizzate"),
+    (descr: "L’Attore seleziona una versione tra quelle visualizzate"),
   ),
 )[#uml-schema("66.1", "Selezione firmware")]

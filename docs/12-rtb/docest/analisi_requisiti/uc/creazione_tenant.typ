@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "creazione_tenant",
@@ -7,33 +7,33 @@
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
-    "L’attore primario si trova nella sezione dedicata alla creazione di Tenant",
+    "Il sistema mostra all’Attore primario la sezione dedicata alla creazione di Tenant",
   ),
   postconds: (
     "Il Tenant è stato creato correttamente all’interno del sistema",
     "I dati anagrafici sono stati salvati",
     "I namespace relativi al Tenant sono stati creati in ogni livello del flusso di dati",
   ),
-  trigger: "L'Amministratore di Sistema deve registrare un nuovo cliente (Tenant)",
+  trigger: "",
   main-scen: (
-    (descr: "L’attore inizia la procedura di creazione Tenant"),
+    (descr: "L’Attore inizia la procedura di creazione Tenant"),
     (
-      descr: "L’attore inserisce i dati anagrafici relativi al Tenant",
+      descr: "L’Attore inserisce i dati anagrafici relativi al Tenant",
       inc: "inserimento_anagrafica_tenant",
     ),
     (
-      descr: "L’attore crea l’account dell’Owner del Tenant",
+      descr: "L’Attore crea l’account dell’Owner del Tenant",
       inc: "creazione_utente_tenant",
     ),
     (
-      descr: "L’attore visualizza il resoconto della procedura di creazione",
+      descr: "L’Attore visualizza il resoconto della procedura di creazione",
       inc: "visualizzazione_dettagli_tenant",
     ),
     (
-      descr: "L’attore conferma la volontà di avviare la creazione",
+      descr: "L’Attore conferma la volontà di avviare la creazione",
       ep: "ErroreInternoCreazione",
     ),
-    (descr: "L’attore viene informato alla fine della procedura della corretta creazione"),
+    (descr: "L’Attore viene informato alla fine della procedura della corretta creazione"),
   ),
   alt-scen: (
     (
@@ -42,4 +42,4 @@
       uc: "err_interno_creazione_tenant",
     ),
   ),
-)
+)[#uml-schema("85", "Creazione Tenant")]

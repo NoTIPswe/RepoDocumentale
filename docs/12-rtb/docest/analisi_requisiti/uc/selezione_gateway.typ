@@ -7,12 +7,12 @@
   level: 1,
   prim-actors: (CA.tenant-adm, CA.sys-adm),
   preconds: (
-    "L’attore visualizza l’elenco dei Gateway del proprio Tenant",
+    "Il sistema mostra all’Attore primario l’elenco dei Gateway del proprio Tenant",
   ),
   postconds: (
     "I Gateway sono stati selezionati correttamente",
   ),
-  trigger: "L’attore vuole selezionare dei Gateway per effettuare un’operazione",
+  trigger: "",
   main-scen: (
     (descr: "L’Attore seleziona uno o più Gateway tramite il loro identificativo"),
   ),

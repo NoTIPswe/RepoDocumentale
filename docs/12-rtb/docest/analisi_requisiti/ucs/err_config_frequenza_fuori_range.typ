@@ -7,7 +7,7 @@
   title: "Errore configurazione frequenza invio dati fuori range ammesso",
   prim-actors: (SA.cloud),
   preconds: (
-    "Il valore di frequenza ricevuto è sintatticamente corretto ma non accettabile dal gateway",
+    "Il valore di frequenza ricevuto è sintatticamente corretto ma non accettabile dal Gateway",
   ),
   postconds: (
     "La modifica della frequenza viene ignorata",

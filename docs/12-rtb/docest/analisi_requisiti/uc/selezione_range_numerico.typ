@@ -7,20 +7,20 @@
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "Il sistema ha recuperato i limiti minimi e massimi assoluti supportati dall'hardware del sensore",
-    "L’attore ha selezionato un sensore specifico",
+    "Il Sistema ha recuperato i limiti minimi e massimi assoluti supportati dall'hardware del sensore",
+    "Il sensore risulta attivo nel Sistema",
   ),
   postconds: (
-    "L’attore ha inserito un range numerico valido (min <= max)",
+    "L’Attore ha inserito un range numerico valido (min <= max)",
   ),
-  trigger: "L’attore principale vuole inserire un range su cui effettuare le misurazioni",
+  trigger: "L’Attore vuole inserire un range su cui effettuare le misurazioni",
   main-scen: (
     (
-      descr: "L’attore seleziona il valore minimo per le misurazioni",
+      descr: "L’Attore seleziona il valore minimo per le misurazioni",
       inc: "inserimento_valore_numerico",
     ),
     (
-      descr: "L’attore seleziona il valore massimo per le misurazioni",
+      descr: "L’Attore seleziona il valore massimo per le misurazioni",
       inc: "inserimento_valore_numerico",
       ep: "RangeInvalido",
     ),

@@ -3,7 +3,7 @@
 #uc(
   id: "creazione_utente_amministratore_tenant",
   system: CLOUD_SYS,
-  title: "Creazione utente Amministratore Tenant",
+  title: "Creazione Utente Amministratore Tenant",
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (

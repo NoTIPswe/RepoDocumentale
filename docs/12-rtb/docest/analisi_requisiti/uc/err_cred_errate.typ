@@ -9,10 +9,10 @@
   preconds: (
     "Le credenziali primarie fornite non risultano valide per alcun account registrato",
   ),
-  postconds: ("Viene negato l'accesso al sistema", "L'attore viene informato dell'errore"),
-  trigger: "L'attore ha inserito delle credenziali non valide",
+  postconds: ("Viene negato l'accesso al sistema", "L'Attore viene informato dell'errore"),
+  trigger: "L'Attore ha inserito delle credenziali non valide",
   main-scen: (
-    (descr: "L'attore viene informato del problema in fase di autenticazione"),
+    (descr: "L'Attore viene informato del problema in fase di autenticazione"),
   ),
 )[
   #uml-schema("2", "Credenziali Errate")

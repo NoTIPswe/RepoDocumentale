@@ -8,14 +8,14 @@
   prim-actors: CA.api-client,
   sec-actors: CSA.auth-server, // bokmark - solo se usiamo auth server esterno
   preconds: (
-    "L’attore primario ha fornito dei dati non validi per l’autenticazione",
+    "Il sistema ha ricevuto dall'Attore primario dei dati non validi per l’autenticazione",
   ),
   postconds: (
-    "L’autenticazione non va a buon fine e all’attore primario viene notificato un errore di autenticazione",
+    "L’autenticazione non va a buon fine e all’Attore primario viene notificato un errore di autenticazione",
   ),
-  trigger: "I dati per l’autenticazione forniti dall’attore non sono validi",
+  trigger: "",
   main-scen: (
     (descr: "L’Auth Server risponde al sistema con un errore di autenticazione"),
-    (descr: "L’attore primario riceve un errore di autenticazione dal sistema"),
+    (descr: "L’Attore primario riceve un errore di autenticazione dal sistema"),
   ),
 )[#uml-schema("70", "Errore dati di autenticazione non validi")]

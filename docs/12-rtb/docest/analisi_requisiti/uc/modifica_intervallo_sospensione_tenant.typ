@@ -7,15 +7,15 @@
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
-    "L’attore si trova nella sezione dedicata alla visualizzazione dei Tenant",
+    "Il sistema mostra all’Attore primario la lista dei Tenant",
   ),
   postconds: (
-    "L’attore visualizza l’intervallo minimo di sospensione pre-eliminazione del Tenant",
+    "L’Attore modifica l’intervallo minimo di sospensione pre-eliminazione del Tenant",
   ),
-  trigger: "Volontà di visualizzare o modificare l’intervallo minimo di sospensione pre-eliminazione di un Tenant",
+  trigger: "",
   main-scen: (
     (
-      descr: "L’attore visualizza l’intervallo temporale di sospensione (in giorni) minimo che deve trascorrere prima di poter eliminare il Tenant",
+      descr: "L’Attore visualizza l’intervallo temporale di sospensione (in giorni) minimo che deve trascorrere prima di poter eliminare il Tenant",
     ),
   ),
 )[#uml-schema("83", "Modifica intervallo minimo sospensione pre-eliminazione Tenant")]

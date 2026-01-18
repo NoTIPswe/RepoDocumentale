@@ -7,12 +7,12 @@
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
-    "L’attore visualizza la lista dei tenant",
+    "Il sistema mostra all’Attore primario la lista dei tenant",
   ),
   postconds: (
     "Il Tenant è stato selezionato correttamente",
   ),
-  trigger: "L’attore vuole selezionare un tenant",
+  trigger: "",
   main-scen: (
     (descr: "L’Attore seleziona un tenant dalla lista"),
   ),

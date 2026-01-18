@@ -4,15 +4,19 @@
   system: SIM_SYS,
   id: "comando_anomalia_disconnessione_temporanea",
   level: 1,
-  title: "Comando anomalia gateway - disconnessione temporanea",
+  title: "Comando anomalia Gateway - disconnessione temporanea",
   prim-actors: (SA.sym-usr),
   preconds: (
+<<<<<<< HEAD
     "Il Sistema si trova in una sezione dedicata all’invio di comandi per simulazione eventi",
+=======
+    "L’Attore si trova in una sezione dedicata all’invio di comandi per simulazione eventi",
+>>>>>>> bf34a471b30dfc4351927a13da43f6e23c8450d3
   ),
   postconds: (
     "Il Gateway selezionato simula una situazione di disconnessione temporanea",
   ),
-  trigger: "Necessità di testare il comportamento di un gateway in caso di disconnessione temporanea dalla rete",
+  trigger: "Necessità di testare il comportamento di un Gateway in caso di disconnessione temporanea dalla rete",
   main-scen: (
     (
       descr: "L’Attore seleziona un gateway",

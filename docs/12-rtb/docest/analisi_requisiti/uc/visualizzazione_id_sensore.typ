@@ -7,14 +7,14 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L’attore primario sta visualizzando una lista di sensori o un alert riguardante un sensore",
+    "Il sistema mostra una lista di sensori o un alert riguardante un sensore",
   ),
   postconds: (
-    "L’attore primario visualizza l’ID del sensore",
+    "L’Attore primario visualizza l’ID del sensore",
   ),
   trigger: "Necessità di distinguere univocamente i sensori",
   main-scen: (
-    (descr: "L’attore primario visualizza l’identificativo del sensore (UUID)"),
+    (descr: "L’Attore primario visualizza l’identificativo del sensore (UUID)"),
   ),
 )[
   #uml-schema("23", "Diagrammaza visualizzazione id sensore")

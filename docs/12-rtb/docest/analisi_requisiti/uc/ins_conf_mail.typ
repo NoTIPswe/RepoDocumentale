@@ -10,33 +10,33 @@
     "Il sistema richiede l’inserimento di una nuova mail per l’account",
   ),
   postconds: (
-    "L’indirizzo mail inserita è stato validato",
+    "L’indirizzo mail inserito è stato validato",
   ),
   trigger: "Necessità di inserire una mail e confermarla",
   main-scen: (
     (
-      descr: "L’attore primario inserisce l’indirizzo mail nel campo dedicato",
+      descr: "L’Attore primario inserisce l’indirizzo mail nel campo dedicato",
       ep: "MailInvalida",
     ),
     (
-      descr: "L’attore primario conferma l’indirizzo mail reinserendolo nel campo apposito",
+      descr: "L’Attore primario conferma l’indirizzo mail reinserendolo nel campo apposito",
       ep: "FallimentoValidazione",
     ),
   ),
   alt-scen: (
     (
       ep: "MailInvalida",
-      cond: "L’attore primario inserisce una mail non valida",
+      cond: "L’Attore primario inserisce una mail non valida",
       uc: "err_mail_non_valida",
     ),
     (
       ep: "MailInvalida",
-      cond: "L’attore primario inserisce una mail già associata ad un altro account",
+      cond: "L’Attore primario inserisce una mail già associata ad un altro account",
       uc: "err_mail_gia_registrata",
     ),
     (
       ep: "FallimentoValidazione",
-      cond: "L’attore primario inserisce due valori diversi nei due campi",
+      cond: "L’Attore primario inserisce due valori diversi nei due campi",
       uc: "err_campi_diversi",
     ),
   ),

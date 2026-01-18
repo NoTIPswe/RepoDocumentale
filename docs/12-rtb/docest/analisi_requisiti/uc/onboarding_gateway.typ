@@ -16,7 +16,7 @@
     "Il Gateway è in stato “active”",
     "Il Gateway inizia a comunicare con il sistema",
   ),
-  trigger: "Connessione del gateway e prima comunicazione con il Sistema",
+  trigger: "Connessione del Gateway e prima comunicazione con il Sistema",
   main-scen: (
     (
       descr: "Il Gateway contatta il sistema attraverso un canale di comunicazione predefinito allegando le proprie credenziali di fabbrica",

@@ -7,24 +7,25 @@
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "Il Gateway relativo al sensore interessato è raggiungibile",
+    "Il sensore appartiene ad un Gateway attivo",
+    "Il sensore risulta in funzione",
   ),
   postconds: (
     "Il sensore invierà alert per misurazioni al di fuori del range di valori selezionato",
   ),
-  trigger: "L’attore principale vuole cambiare il range dell’alert per un sensore specifico",
+  trigger: "L’Attore vuole cambiare il range dell’alert per un sensore specifico",
   main-scen: (
     (
-      descr: "L’attore seleziona il sensore",
+      descr: "L’Attore seleziona il sensore",
       inc: "selezione_specifico_sensore",
     ),
     (descr: "L’Attore visualizza il range corrente"),
     (
-      descr: "L’attore seleziona il range numerico per le misurazioni attese",
+      descr: "L’Attore seleziona il range numerico per le misurazioni attese",
       inc: "selezione_range_numerico",
     ),
     (
-      descr: "L’attore salva le modifiche",
+      descr: "L’Attore salva le modifiche",
       ep: "RangeInvalido",
     ),
   ),

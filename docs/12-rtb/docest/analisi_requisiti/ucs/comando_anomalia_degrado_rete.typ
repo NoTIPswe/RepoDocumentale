@@ -4,7 +4,7 @@
   system: SIM_SYS,
   id: "comando_anomalia_degrado_rete",
   level: 1,
-  title: "Comando anomalia gateway - degrado rete",
+  title: "Comando anomalia Gateway - degrado rete",
   prim-actors: (SA.sym-usr),
   preconds: (
     "Il Sistema si trova in una sezione dedicata all’invio di comandi per simulazione eventi",
@@ -12,7 +12,7 @@
   postconds: (
     "Il Gateway selezionato simula una situazione di degrado della rete",
   ),
-  trigger: "Necessità di testare il comportamento di un gateway in caso di degrado della rete",
+  trigger: "Necessità di testare il comportamento di un Gateway in caso di degrado della rete",
   main-scen: (
     (
       descr: "L’attore seleziona un gateway"

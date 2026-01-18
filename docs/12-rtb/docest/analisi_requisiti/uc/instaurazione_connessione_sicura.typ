@@ -26,7 +26,7 @@
   alt-scen: (
     (
       ep: "CertificatoRifiutato",
-      cond: "Il Cloud rifiuta il certificato del gateway",
+      cond: "Il Cloud rifiuta il certificato del Gateway",
       uc: "err_autenticazione_gateway",
     ),
   ),

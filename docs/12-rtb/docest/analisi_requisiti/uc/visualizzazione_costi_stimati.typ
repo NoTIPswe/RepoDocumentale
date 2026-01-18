@@ -7,23 +7,23 @@
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "L’attore primario si trova nella sezione dedicata ai costi del Tenant",
+    "Il Gateway appartiene al Tenant e ha dei costi stimati associati",
   ),
   postconds: (
-    "L’attore visualizza i costi stimati relativi al Gateway",
+    "L’Attore visualizza i costi stimati relativi al Gateway",
   ),
-  trigger: "L’attore vuole visualizzare i costi stimati per il Tenant di cui è amministratore",
+  trigger: "L’Attore vuole visualizzare i costi stimati per il Tenant di cui è amministratore",
   main-scen: (
     (
-      descr: "L'attore seleziona uno o più Gateway di cui desidera monitorare i costi",
+      descr: "L'Attore seleziona uno o più Gateway di cui desidera monitorare i costi",
       inc: "selezione_gateway",
     ),
     (
-      descr: "L'attore visualizza il riepilogo dei costi stimati per storage dei gateway selezionati",
+      descr: "L'Attore visualizza il riepilogo dei costi stimati per storage dei Gateway selezionati",
       inc: "visualizzazione_costi_storage",
     ),
     (
-      descr: "L'attore visualizza il riepilogo dei costi stimati per banda dei gateway selezionati",
+      descr: "L'Attore visualizza il riepilogo dei costi stimati per banda dei Gateway selezionati",
       inc: "visualizzazione_costi_banda",
     ),
   ),

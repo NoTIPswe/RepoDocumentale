@@ -10,10 +10,10 @@
     "Esiste un Gateway simulato di cui si sta visualizzando la configurazione",
   ),
   postconds: (
-    "L’attore visualizza la chiave segreta di fabbrica",
+    "L’Attore visualizza la chiave segreta di fabbrica",
   ),
-  trigger: "L’attore accede ai dettagli di configurazione del Gateway simulato",
+  trigger: "L’Attore accede ai dettagli di configurazione del Gateway simulato",
   main-scen: (
-    (descr: "L’attore visualizza la chiave segreta del Gateway simulato"),
+    (descr: "L’Attore visualizza la chiave segreta del Gateway simulato"),
   ),
 )

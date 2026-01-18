@@ -3,7 +3,7 @@
 #uc(
   id: "err_auth_gateway_fabbrica",
   system: CLOUD_SYS,
-  title: "Errore autenticazione gateway di fabbrica",
+  title: "Errore autenticazione Gateway di fabbrica",
   level: 1,
   prim-actors: CA.np-gway,
   preconds: (
@@ -13,7 +13,7 @@
   postconds: (
     "Il Gateway non procede con la procedura di onboarding",
   ),
-  trigger: "Accensione del gateway",
+  trigger: "Accensione del Gateway",
   main-scen: (
     (descr: "Il Gateway viene notificato dell'errore avvenuto"),
   ),

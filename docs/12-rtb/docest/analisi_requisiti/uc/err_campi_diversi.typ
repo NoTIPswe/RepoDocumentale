@@ -14,8 +14,8 @@
   ),
   trigger: "Inserimento di un valore diverso nel campo “conferma”",
   main-scen: (
-    (descr: "L'attore primario viene notificato della differenza nelle due stringhe inserite"),
-    (descr: "L'attore primario viene invitato a ricompilare"),
+    (descr: "L'Attore primario viene notificato della differenza nelle due stringhe inserite"),
+    (descr: "L'Attore primario viene invitato a ricompilare"),
   ),
 )[
   #uml-schema("10", "Campi non corrispondenti")

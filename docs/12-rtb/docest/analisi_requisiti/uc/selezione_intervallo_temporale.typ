@@ -7,14 +7,14 @@
   level: 2,
   prim-actors: (CA.tenant-adm, CA.sys-adm),
   preconds: (
-    "L’attore si trova nella sezione dedicata alla visualizzazione dei log",
+    "Il sistema mostra all'Attore primario i log di Audit del Tenant",
   ),
   postconds: (
     "L’Attore ha selezionato un intervallo temporale valido",
   ),
-  trigger: "L’attore desidera inserire un intervallo temporale nel sistema",
+  trigger: "",
   main-scen: (
-    (descr: "L’attore seleziona un timestamp minimo"),
-    (descr: "L’attore seleziona un timestamp massimo (maggiore del minimo)"),
+    (descr: "L’Attore seleziona un timestamp minimo"),
+    (descr: "L’Attore seleziona un timestamp massimo (maggiore del minimo)"),
   ),
 )[#uml-schema("64.1", "Selezione intervallo temporale")]

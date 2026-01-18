@@ -26,9 +26,9 @@
       descr: "L’Attore inserisce le credenziali di fabbrica del Gateway",
       inc: "inserimento_credenziali_fabbrica_gateway",
     ),
-    (descr: "L’attore conferma l’operazione"),
+    (descr: "L’Attore conferma l’operazione"),
     (
-      descr: "L’attore viene notificato dell’avvenuta connessione del gateway non appena il dispositivo contatta il Cloud e riceve le credenziali",
+      descr: "L’Attore viene notificato dell’avvenuta connessione del Gateway non appena il dispositivo contatta il Cloud e riceve le credenziali",
     ),
   ),
 )[#uml-schema("92", "Provisioning Gateway - Registrazione e associazione Tenant")]
