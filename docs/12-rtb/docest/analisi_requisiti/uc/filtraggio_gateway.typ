@@ -20,15 +20,9 @@
     ),
     (
       descr: "Il sistema salva le informazioni di visualizzazione",
-      ep: "Filtraggio",
     ),
   ),
   alt-scen: (
-    (
-      ep: "Filtraggio",
-      cond: "L’Attore primario decide di filtrare i dati per sensore",
-      uc: "filtraggio_sensore",
-    ),
   ),
 )[
   #uml-schema("25", "Diagramma filtraggio dati per Gateway")
