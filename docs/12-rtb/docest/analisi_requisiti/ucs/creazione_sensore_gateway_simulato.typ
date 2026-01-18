@@ -7,11 +7,7 @@
   title: "Creazione sensore Gateway simulato",
   prim-actors: (SA.sym-usr),
   preconds: (
-<<<<<<< HEAD
     "Il Sistema si trova nella sezione di Gestione Gateway simulato",
-=======
-    "L’Attore primario si trova nella sezione di Gestione Gateway simulato",
->>>>>>> bf34a471b30dfc4351927a13da43f6e23c8450d3
     "È stato selezionato un Gateway simulato esistente",
   ),
   postconds: (

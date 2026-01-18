@@ -7,11 +7,7 @@
   title: "Creazione Gateway multipli con configurazione di default",
   prim-actors: (SA.sym-usr),
   preconds: (
-<<<<<<< HEAD
     "Il Sistema si trova in una sezione dedicata alla Gestione della simulazione",
-=======
-    "L’Attore si trova in una sezione dedicata alla Gestione della simulazione",
->>>>>>> bf34a471b30dfc4351927a13da43f6e23c8450d3
   ),
   postconds: (
     "Vengono avviate più istanze di Gateway simulati in parallelo con una configurazione di sistema di default e credenziali di fabbrica casuali",
