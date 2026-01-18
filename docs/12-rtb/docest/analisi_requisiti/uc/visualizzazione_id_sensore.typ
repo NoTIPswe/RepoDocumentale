@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L’Attore primario sta visualizzando una lista di sensori o un alert riguardante un sensore",
+    "Il sistema mostra una lista di sensori o un alert riguardante un sensore",
   ),
   postconds: (
     "L’Attore primario visualizza l’ID del sensore",

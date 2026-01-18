@@ -7,7 +7,6 @@
   level: 4,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L’Attore primario sta visualizzando la lista dei sensori collegati ad un Gateway",
     "Il sistema mostra all'Attore primario la lista dei sensori collegati ad un Gateway",
   ),
   postconds: (
@@ -18,5 +17,4 @@
     (descr: "L’Attore primario visualizza il timestamp associato all'ultimo dato ricevuto dal sensore"),
   ),
 )[
-  #uml-schema("22.1.1.1", "Diagramma visualizzazione timestamp ultimo invio dati sensore")
 ]

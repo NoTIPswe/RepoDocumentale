@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L'Attore primario sta visualizzando i dettagli di un Gateway o di un alert riguardante un Gateway non raggiungibile",
+    "Il sistema mostra i dettagli di un Gateway o di un alert riguardante un Gateway non raggiungibile",
   ),
   postconds: (
     "L'orario dell'ultimo pacchetto dati ricevuto è visibile",
