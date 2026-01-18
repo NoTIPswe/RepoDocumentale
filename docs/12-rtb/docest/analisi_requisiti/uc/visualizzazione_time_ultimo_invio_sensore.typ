@@ -8,6 +8,7 @@
   prim-actors: CA.tenant-usr,
   preconds: (
     "L’Attore primario sta visualizzando la lista dei sensori collegati ad un Gateway",
+    "Il sistema mostra all'Attore primario la lista dei sensori collegati ad un Gateway",
   ),
   postconds: (
     "L’Attore primario visualizza timestamp ultima lettura del sensore",

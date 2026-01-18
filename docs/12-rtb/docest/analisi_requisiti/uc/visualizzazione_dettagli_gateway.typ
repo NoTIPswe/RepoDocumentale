@@ -7,8 +7,7 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L'Attore primario sta visualizzando la lista dei Gateway",
-    "L'Attore primario ha selezionato un Gateway specifico",
+    "Il sistema mostra la lista di Gateway",
   ),
   postconds: (
     "L'Attore primario visualizza nome, stato, ultimo timestamp dati inviati ed i sensori del Gateway",
@@ -16,7 +15,10 @@
   trigger: "L'Attore primario vuole vedere i dettagli di un singolo Gateway",
   main-scen: (
     (
-      descr: "L'Attore primario visualizza l'identificativo",
+      descr: "L'attore primario seleziona un Gateway dalla lista",
+    ),
+    (
+      descr: "L'Attore primario visualizza l'identificativo del Gateway",
       inc: "visualizzazione_nome_gateway",
     ),
     (

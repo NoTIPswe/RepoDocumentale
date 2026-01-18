@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: (CA.authd-usr,),
   preconds: (
-    "La mail fornita non rispetta il formato valido definito dal sistema",
+    "La mail fornita non rispetta il formato valido richiesto dal sistema",
   ),
   postconds: (
     "La mail inserita viene rifiutata",

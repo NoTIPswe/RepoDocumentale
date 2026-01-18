@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L'Attore primario sta visualizzando una lista di Gateway o i dettagli di uno di essi",
+    "Il sistema presenta all’Attore primario la lista di Gateway ad esso associato o i dettagli di uno di essi",
   ),
   postconds: (
     "L'Attore primario visualizza lo stato del Gateway",

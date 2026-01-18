@@ -10,7 +10,7 @@
     "Il sistema richiede l’inserimento di una nuova mail per l’account",
   ),
   postconds: (
-    "L’indirizzo mail inserita è stato validato",
+    "L’indirizzo mail inserito è stato validato",
   ),
   trigger: "Necessità di inserire una mail e confermarla",
   main-scen: (

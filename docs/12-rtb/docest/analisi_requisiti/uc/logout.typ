@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: (CA.authd-usr,),
   preconds: (
-    "Non sono in corso operazioni da parte dell’Attore primario",
+    "Non ci sono interazioni in corso tra sistema e Attore primario",
   ),
   postconds: (
     "La sessione viene riavviata e si torna al login",
