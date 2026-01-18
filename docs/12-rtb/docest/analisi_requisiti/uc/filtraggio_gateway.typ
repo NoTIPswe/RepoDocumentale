@@ -7,7 +7,6 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L’Attore primario è nella sezione “Visualizzazione Stream”",
     "Esiste almeno un Gateway nel Tenant",
   ),
   postconds: (

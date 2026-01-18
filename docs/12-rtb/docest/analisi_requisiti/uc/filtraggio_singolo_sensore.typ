@@ -7,10 +7,9 @@
   level: 2,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L’Attore primario si trova nella sezione “Visualizzazione Stream”",
     "L’Attore primario ha effettuato un filtraggio per Gateway",
     "Esiste almeno un sensore associato al Gateway del Tenant gestito dall’Attore",
-    "L’Attore primario sta scegliendo i sensori di cui vuole visualizzare i dati",
+    "Il sistema mostra all'Attore primario l'elenco dei sensori di cui potrà visualizzare i dati",
   ),
   postconds: (
     "Viene aggiunto un sensore alla lista della richiesta",
@@ -20,5 +19,4 @@
     (descr: "L’Attore primario seleziona un sensore da aggiungere alla lista di filtraggio"),
   ),
 )[
-  #uml-schema("26.1", "Diagramma filtraggio dati per singolo sensore")
 ]

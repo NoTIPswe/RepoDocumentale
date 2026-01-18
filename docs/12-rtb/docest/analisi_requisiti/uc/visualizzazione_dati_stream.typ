@@ -16,7 +16,6 @@
   main-scen: (
     (
       descr: "L’Attore primario accede alla sezione “Visualizzazione dati Stream”",
-      ep: "Filtraggio",
     ),
     (
       descr: "L’Attore primario visualizza i dati richiesti in formato tabellare",
@@ -29,16 +28,6 @@
     ),
   ),
   alt-scen: (
-    (
-      ep: "Filtraggio",
-      cond: "L’Attore primario decide di filtrare i dati per Gateway",
-      uc: "filtraggio_gateway",
-    ),
-    (
-      ep: "Filtraggio",
-      cond: "L’Attore primario decide di filtrare i dati per intervallo temporale",
-      uc: "filtraggio_intervallo_temporale",
-    ),
     (
       ep: "NessunDato",
       cond: "Non ci sono dati da visualizzare",

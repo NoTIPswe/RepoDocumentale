@@ -7,7 +7,6 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L’Attore primario si trova nella sezione “Visualizzazione Stream”",
     "L’Attore primario ha effettuato un filtraggio per Gateway",
     "Esiste almeno un sensore associato al Gateway del Tenant gestito dall’Attore",
   ),

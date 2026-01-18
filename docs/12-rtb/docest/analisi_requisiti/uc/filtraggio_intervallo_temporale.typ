@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L’Attore primario si trova nella sezione “Visualizzazione Stream”",
+    "Il sistema mostra i dati relativi allo Stream del Tenant",
   ),
   postconds: (
     "Il sistema salva la richiesta di visualizzazione",

@@ -7,7 +7,7 @@
   level: 2,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "Eredita da UC: visualizzazione_dati_stream",
+    "Esiste almeno un sensore associato al Gateway di un Tenant gestito dall’Attore primario",
     "L’Attore primario sta visionando i dati sullo stream",
   ),
   postconds: (
@@ -19,5 +19,4 @@
     (descr: "Il sistema distingue le serie nel caso i dati includano più sensori (es. per sensore o tipo misura)"),
   ),
 )[
-  #uml-schema("24.2", "Diagramma visualizzazione grafico dati Stream")
 ]

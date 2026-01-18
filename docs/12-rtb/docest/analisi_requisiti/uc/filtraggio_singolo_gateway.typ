@@ -7,9 +7,8 @@
   level: 2,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L’Attore primario è nella sezione “Visualizzazione Stream”",
     "Esiste almeno un Gateway nel Tenant",
-    "L’Attore primario sta scegliendo i Gateway di cui vuole visualizzare lo Stream di dati",
+    "Il sistema mostra i Gateway di cui l'attore primario potrà visualizzare lo Stream di dati",
   ),
   postconds: (
     "Viene aggiunto un Gateway alla lista della richiesta",
@@ -19,5 +18,4 @@
     (descr: "L’Attore primario seleziona un Gateway da aggiungere alla lista di filtraggio"),
   ),
 )[
-  #uml-schema("25.1", "Diagramma filtraggio dati per singolo Gateway")
 ]

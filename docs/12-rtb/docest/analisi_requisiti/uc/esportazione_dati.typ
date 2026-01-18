@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L’Attore primario sta visualizzando dei dati",
+    "Il sistema mostra i dati che l’Attore primario ha richiesto di visualizzare",
   ),
   postconds: (
     "I dati visualizzati vengono esportati correttamente",
