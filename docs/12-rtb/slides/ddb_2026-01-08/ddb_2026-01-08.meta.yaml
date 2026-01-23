@@ -1,0 +1,9 @@
+title: Diario di Bordo 2026-01-08
+changelog:
+  - version: "0.0.1"
+    date: "2026-01-07"
+    authors:
+      - Leonardo Preo
+    verifier: Alessandro Mazzariol
+    description: >
+      Creazione del diario di Bordo
