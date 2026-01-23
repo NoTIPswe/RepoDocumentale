@@ -1,12 +1,13 @@
 name: "PR Checks: Check Mergeability"
 
 on:
-  pull_request_review:
-    types: [submitted]
+  pull_request:
+    types: [labeled]
 
 jobs:
   check-mergeability:
-    if: github.event.review.state == 'approved'
+    # Only run if the specific label added was 'merge-ready'
+    if: github.event.label.name == 'merge-ready'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout PR branch
@@ -20,11 +21,3 @@ jobs:
       - name: Validate document changes with --merge-ready
         run: |
           notipdo check pr --merge-ready
-
-      - name: Add merge-ready label
-        if: success()
-        env:
-          GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: |
-          gh pr edit "$PR_NUMBER" --add-label "merge-ready"

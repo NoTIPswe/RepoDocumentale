@@ -3,8 +3,11 @@ import subprocess
 import sys
 import tempfile
 import os
+import re
+import yaml
+import html
 from pathlib import Path
-from typing import Tuple
+from typing import Tuple, List, Dict, TypedDict, cast
 from . import model, local_scanner, docs_factory, git_comparer, configs
 
 
@@ -16,7 +19,9 @@ def check_doc(
     spelling: bool,
 ) -> None:
     if not formatting and not spelling:
-        logging.info("Nothing to check. Please select something to check (e.g. formatting, spelling).")
+        logging.info(
+            "Nothing to check. Please select something to check (e.g. formatting, spelling)."
+        )
         return
 
     scanner = local_scanner.LocalScanner(meta_schema_path)
@@ -38,7 +43,9 @@ def check_all_docs(
     spelling: bool,
 ) -> None:
     if not formatting and not spelling:
-        logging.info("Nothing to check. Please select something to check (e.g. formatting, spelling).")
+        logging.info(
+            "Nothing to check. Please select something to check (e.g. formatting, spelling)."
+        )
         return
 
     scanner = local_scanner.LocalScanner(meta_schema_path)
@@ -67,7 +74,9 @@ def check_changed_docs(
     spelling: bool,
 ):
     if not formatting and not spelling:
-        logging.info("Nothing to check. Please select something to check (e.g. formatting, spelling).")
+        logging.info(
+            "Nothing to check. Please select something to check (e.g. formatting, spelling)."
+        )
         return
 
     diff = git_comparer.compare_against_revision(
@@ -102,7 +111,9 @@ def check_baseline_docs(
     spelling: bool,
 ) -> None:
     if not formatting and not spelling:
-        logging.info("Nothing to check. Please select something to check (e.g. formatting, spelling).")
+        logging.info(
+            "Nothing to check. Please select something to check (e.g. formatting, spelling)."
+        )
         return
 
     scanner = local_scanner.LocalScanner(meta_schema_path)
@@ -179,80 +190,188 @@ def _check_doc_formatting(doc: model.Document) -> Tuple[bool, str]:
     return passed, info + ". "
 
 
+class SpellcheckConfig(TypedDict, total=False):
+    """
+    Type definition for the ignore.yaml structure.
+    total=False means keys are optional in the YAML file.
+    """
+
+    normalizations: Dict[str, str]
+    ignore_patterns: List[str]
+    accepted_words: List[str]
+
+
 def _check_doc_spelling(
     doc: model.Document, hunspell_dir_path: Path
 ) -> Tuple[bool, str]:
-    info = "Spellcheck: "
+    """
+    Orchestrates the spellchecking process: build -> preprocess -> check.
+    """
+    info: str = "Spellcheck: "
 
     with tempfile.TemporaryDirectory() as temp_dir:
-        temp_html_path = Path(temp_dir) / "index.html"
+        temp_path = Path(temp_dir)
+        html_file_path = temp_path / "index.html"
+
+        if not _build_typst_html(doc, html_file_path):
+            return False, info + "FAIL (Build error). "
+
+        config = _load_spellcheck_config(hunspell_dir_path)
 
         try:
-            # I know, I know, this is code duplication, but builder._build_doc did a slightly different thing
-            # Also, HTML export is in beta, but still this is the better solution available.
-            meta_path_relative = os.path.relpath(
-                doc.meta_path, start=os.path.dirname(doc.source_path)
-            )
-            subprocess.run(
-                [
-                    "typst",
-                    "compile",
-                    "--features",
-                    "html",
-                    str(doc.source_path),
-                    str(temp_html_path),
-                    "--format",
-                    "html",
-                    "--input",
-                    f"meta-path={meta_path_relative}",
-                    "--root",
-                    str(doc.source_path.parent.parent.parent.parent),
-                ],
-                capture_output=True,
-                check=True,
-                text=True,
-            )
-        except subprocess.CalledProcessError as e:
-            return False, info + f"FAIL (Build error: {e.stderr.strip()}). "
-        except FileNotFoundError:
-            logging.critical("'typst' executable not found in PATH.")
-            sys.exit(1)
+            _preprocess_html_file(html_file_path, config)
+        except Exception as e:
+            return False, info + f"FAIL (Preprocessing error: {e}). "
 
-        try:
-            env = os.environ.copy()
-            env["DICPATH"] = str(hunspell_dir_path)
-            result = subprocess.run(
-                [
-                    "hunspell",
-                    "-d",
-                    ",".join(map(lambda d: str(hunspell_dir_path / d), configs.HUNSPELL_DICTS)),
-                    "-p",
-                    str(hunspell_dir_path / configs.HUNSPELL_IGNORE_FILE),
-                    "-l",
-                    "-H",
-                    str(temp_html_path),
-                ],
-                capture_output=True,
-                text=True,
-                encoding="utf-8",
-                env=env,
-                check=True,
-            )
+        temp_dic_path = temp_path / "custom.dic"
+        accepted_words = config.get("accepted_words", [])
+        _create_temp_dictionary(accepted_words, temp_dic_path)
 
-            mistakes = [word for word in result.stdout.strip().split("\n") if word]
+        return _run_hunspell_check(
+            html_file_path, temp_dic_path, hunspell_dir_path, info
+        )
 
-            unique_mistakes = sorted(list(set(mistakes)))
 
-            if not unique_mistakes:
-                return True, info + "PASS. "
-            else:
-                mistakes_str = ", ".join(unique_mistakes)
-                return False, info + f"FAIL ({mistakes_str}). "
+def _build_typst_html(doc: model.Document, output_path: Path) -> bool:
+    """
+    Compiles the Typst document to HTML.
+    """
+    try:
+        meta_path_relative = os.path.relpath(
+            doc.meta_path, start=os.path.dirname(doc.source_path)
+        )
+        project_root = doc.source_path.parent.parent.parent.parent
+        subprocess.run(
+            [
+                "typst",
+                "compile",
+                "--features",
+                "html",
+                str(doc.source_path),
+                str(output_path),
+                "--format",
+                "html",
+                "--input",
+                f"meta-path={meta_path_relative}",
+                "--root",
+                str(project_root),
+            ],
+            capture_output=True,
+            check=True,
+            text=True,
+        )
+        return True
+    except subprocess.CalledProcessError as e:
+        error_msg = e.stderr.strip() if e.stderr else "Unknown error"
+        logging.error(f"Typst build failed: {error_msg}")
+        return False
+    except FileNotFoundError:
+        logging.critical("'typst' executable not found in PATH.")
+        sys.exit(1)
 
-        except subprocess.CalledProcessError as e:
-            return False, info + f"FAIL (Hunspell error: {e.stderr.strip()}). "
-        except FileNotFoundError:
-            logging.critical(
-                "'hunspell' executable not found. Please ensure it's installed."
-            )
-            sys.exit(1)
+
+def _load_spellcheck_config(hunspell_dir_path: Path) -> SpellcheckConfig:
+    """
+    Loads the ignore.yaml file into a TypedDict.
+    """
+    config_path = hunspell_dir_path / "ignore.yaml"
+
+    if not config_path.exists():
+        logging.warning(
+            f"Spellcheck config not found at {config_path}. Using defaults."
+        )
+        return {}
+
+    try:
+        with open(config_path, "r", encoding="utf-8") as f:
+            data = yaml.safe_load(f)
+            if data is None:
+                return {}
+            return cast(SpellcheckConfig, data)
+
+    except yaml.YAMLError as e:
+        logging.error(f"Error parsing ignore.yaml: {e}")
+        return {}
+
+
+def _preprocess_html_file(file_path: Path, config: SpellcheckConfig) -> None:
+    with open(file_path, "r", encoding="utf-8") as f:
+        content: str = f.read()
+
+    content = html.unescape(content)
+
+    norm_rules = config.get("normalizations") or {}
+    for original, replacement in norm_rules.items():
+        content = content.replace(original, replacement)
+
+    # Matches a word+apostrophe followed by ONE OR MORE HTML tags.
+    # Replaces the whole block with just the word+apostrophe, effectively gluing the prefix to the word.
+    # Note: this could lead to invalid HTML, but it's not important for Hunspell.
+    content = re.sub(r"(\w')(?:<[^>]+>)+", r"\1", content)
+
+    patterns = config.get("ignore_patterns") or []
+    for pattern in patterns:
+        content = re.sub(pattern, " ", content)
+
+    with open(file_path, "w", encoding="utf-8") as f:
+        f.write(content)
+
+
+def _create_temp_dictionary(accepted_words: List[str], output_path: Path) -> None:
+    """
+    Writes the list of accepted words to a temporary .dic file for Hunspell.
+    """
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write("\n".join(accepted_words))
+
+
+def _run_hunspell_check(
+    html_path: Path, custom_dic_path: Path, hunspell_dir_path: Path, base_info_str: str
+) -> Tuple[bool, str]:
+    """
+    Executes Hunspell on the preprocessed file.
+    """
+    try:
+        env = os.environ.copy()
+        env["DICPATH"] = str(hunspell_dir_path)
+
+        main_dicts_paths = [str(hunspell_dir_path / d) for d in configs.HUNSPELL_DICTS]
+        main_dicts_arg = ",".join(main_dicts_paths)
+
+        cmd: List[str] = [
+            "hunspell",
+            "-d",
+            main_dicts_arg,
+            "-p",
+            str(custom_dic_path),
+            "-l",  # List misspelled words
+            "-H",  # HTML mode
+            str(html_path),
+        ]
+
+        result: subprocess.CompletedProcess[str] = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            env=env,
+            check=True,
+        )
+
+        raw_output = result.stdout.strip()
+        mistakes: List[str] = [word for word in raw_output.split("\n") if word]
+
+        if not mistakes:
+            return True, base_info_str + "PASS. "
+        else:
+            mistakes_str = ", ".join(mistakes)
+            return False, base_info_str + f"FAIL ({mistakes_str}). "
+
+    except subprocess.CalledProcessError as e:
+        error_msg = e.stderr.strip() if e.stderr else "Unknown stderr"
+        return False, base_info_str + f"FAIL (Hunspell error: {error_msg}). "
+    except FileNotFoundError:
+        logging.critical(
+            "'hunspell' executable not found. Please ensure it's installed."
+        )
+        sys.exit(1)

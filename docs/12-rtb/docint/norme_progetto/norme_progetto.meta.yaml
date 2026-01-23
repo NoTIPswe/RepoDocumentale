@@ -1,5 +1,12 @@
 title: Norme di Progetto
 changelog:
+  - version: "0.6.0"
+    date: "2026-01-12"
+    authors:
+      - Matteo Mantoan
+    verifier: Alessandro Mazzariol
+    description: >
+      Cambiamento alla struttura del documento, espansione sezione Documentazione
   - version: "0.5.0"
     date: "2025-11-21"
     authors:
