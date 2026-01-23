@@ -4,7 +4,7 @@ changelog:
     date: "2026-01-12"
     authors:
       - Matteo Mantoan
-    verifier: TBD
+    verifier: Alessandro Mazzariol
     description: >
       Cambiamento alla struttura del documento, espansione sezione Documentazione
   - version: "0.5.0"
