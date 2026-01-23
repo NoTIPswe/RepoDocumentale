@@ -20,7 +20,7 @@
       ],
     ),
   ),
-  abstract: "Il presente documento riporta il resoconto dell'incontro interno svolto con l'obiettivo di discutere l'organizzazione e la poanificazione delle attività in previsione dell'RTB",
+  abstract: "Il presente documento riporta il resoconto dell'incontro interno svolto con l'obiettivo di discutere l'organizzazione e la pianificazione delle attività in previsione dell'RTB",
   changelog: metadata.changelog,
 )[
   In data *1 gennaio 2026*, alle ore *15:00*, si è svolta una riunione interna del gruppo NoTIP in modalità virtuale sul
