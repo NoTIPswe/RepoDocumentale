@@ -43,11 +43,22 @@
 }
 
 #let apply-base-configs(doc, glossary-highlighted: true) = {
-  show regex("(?i)" + glossary-terms.terms.keys().map(k => "\b" + k + "\b").join("|")): t => {
-    if glossary-highlighted {
-      [_#t#sub("G")_]
-    } else {
+  // show the _g automatically for glossary terms outside links
+  let in-link = state("in-link", false)
+  show link: it => {
+    in-link.update(true)
+    it
+    in-link.update(false)
+  }
+  show regex("(?i)" + glossary-terms.terms.keys().map(k => "\b" + k + "\b").join("|")): t => context {
+    if in-link.get() {
       t
+    } else {
+      if glossary-highlighted {
+        [#t#sub("G")]
+      } else {
+        t
+      }
     }
   }
 

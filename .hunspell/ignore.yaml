@@ -1,0 +1,126 @@
+# 1. NORMALIZZAZIONI
+# Sostituzioni preliminari per correggere caratteri tipografici che confondono Hunspell.
+# Questo dovrebbe risolvere il problema dei falsi positivi su "L'", "dell'", "un'", ecc.
+normalizations:
+  "’": "'"  # Apostrofo tipografico -> Apostrofo ASCII
+  "“": '"'  # Virgolette aperte
+  "”": '"'  # Virgolette chiuse
+
+# 2. PATTERN DA IGNORARE (Regex)
+# Rimuove codici tecnici e sigle numerate prima del controllo.
+ignore_patterns:
+  - '\b(UC|UCS)\d*\b'     # UC/UCS
+  - '\bv\d+\b'            # versioni (v1, v2, ecc.)
+
+# 3. DIZIONARIO PERSONALIZZATO
+# Parole specifiche da considerare corrette. 
+# -------------------------------------------------------------------------
+# GUIDA ALLA CASE SENSITIVITY (Come aggiungere nuove parole)
+# Hunspell applica regole gerarchiche in base al casing usato in questa lista:
+#
+# 1. tutto minuscolo (es. 'pdf')
+#    Funziona da JOLLY. Accetta: 'pdf', 'Pdf' (inizio frase) e 'PDF'.
+#    USO: Parole comuni, estensioni, concetti generali.
+#
+# 2. Iniziale Maiuscola (es. 'Python')
+#    Accetta: 'Python' e 'PYTHON'. Rifiuta: 'python'.
+#    USO: Nomi propri che possono essere urlati (titoli), ma mai minuscoli.
+#
+# 3. TUTTO MAIUSCOLO (es. 'RTB')
+#    Molto restrittivo. Accetta solo: 'RTB'. Rifiuta: 'Rtb', 'rtb'.
+#    USO: Acronimi che devono essere rigorosamente maiuscoli.
+#
+# 4. CamelCase o Misto (es. 'GitHub', 'NoTIP')
+#    Corrispondenza esatta. Accetta solo la forma identica.
+#    USO: Brand, nomi di prodotti e casi particolari.
+# -------------------------------------------------------------------------
+accepted_words:
+  # --- Aziende e Brand ---
+  - Atlassian
+  - GitHub
+  - JetStream
+  - Jira
+  - KeyCloak
+  - M31
+  - MacOS
+  - NoTIP
+  - SonarQube
+
+  # --- Cognomi e Nomi Team ---
+  - Contarini
+  - De
+  - Mantoan
+  - Marcon
+  - Mazzariol
+  - McCabe
+  - Mobaraki
+  - Moones
+  - Pasquale
+  - Pirlog
+  - Preo
+  - Solito
+
+  # --- Tecnologie e Formati ---
+  - JSON
+  - LaTeX
+  - MQTT
+  - NATS
+  - PDF
+  - pdf
+  - Typst
+  - YAML
+
+  # --- Terminologia Software Engineering (SWE) ---
+  - ACK
+  - Acknowledgement
+  - BAC
+  - BLE
+  - changelog
+  - CMMI
+  - Cowork
+  - Cyclomatic
+  - DTO
+  - EAC
+  - EV
+  - Frontend
+  - Gulpease
+  - IEC
+  - IoT
+  - KLOC
+  - MVP
+  - PDCA
+  - PDP
+  - POC
+  - PV
+  - repo
+  - RTB
+  - SemVer
+  - Subfiles
+  - TBD
+  - TEAC
+  - UI
+  - versionamento
+  - subfiles
+
+  # --- Terminologia Standard Progetto ---
+  - docest
+  - docint
+  - verbest
+  - verbint
+
+  # --- Parole Italiane mancanti / Neologismi ---
+  - ciclomatica
+  - efficientare
+  - malinterpretabili
+  - manutenibile
+  - modularizzazione
+  - possiede
+  - prioritizzare
+  - riallocando
+  - riallocazione
+  - ripianificate
+  - ripianificato
+  - sovrascritta
+  - sufficiente
+  - suffissare
+  - yyyy
