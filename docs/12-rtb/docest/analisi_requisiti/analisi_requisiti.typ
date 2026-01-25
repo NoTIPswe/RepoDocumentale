@@ -1,7 +1,7 @@
 #import "../../00-templates/base_document.typ" as base-document
 #import "uc_lib.typ": * /*CA, CLOUD_SYS, SA, SIM_SYS, tag-uc, uc , uml-schema*/
 
-#let metadata = yaml("analisi_requisiti.meta.yaml")
+#let metadata = yaml(sys.inputs.meta-path)
 
 
 #show figure.where(kind: table): set block(breakable: true)
@@ -33,11 +33,16 @@
 
   == Riferimenti
   === Riferimenti Normativi
-  - Capitolato d'appalto C7 - Sistema di acquisizione dati da sensori (GC-0006.03)
-  - `Norme di Progetto`
+  - Capitolato d'appalto C7 - Sistema di acquisizione dati da sensori (GC-0006.03) \
+    https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+  - Norme di Progetto \
+    https://notipswe.github.io/docs/12-rtb/docint/norme_progetto.pdf
 
   === Riferimenti Informativi
-  - T05 - Analisi dei Requisiti
+  - Standard IEEE \
+    https://ieeexplore.ieee.org/document/720574
+  - T05 - Analisi dei Requisiti \
+    https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf
   - Documentazione tecnologie di riferimento (Node.js, Nest.js, Kubernetes, MongoDB, PostgreSQL, NATS/Kafka)
 
   = Descrizione del Prodotto
@@ -206,6 +211,7 @@
   #include "uc/visualizzazione_dettagli_alert_gateway_irraggiungibile.typ"
   #include "uc/visualizzazione_dettagli_alert_sensore_fuori_range.typ"
   #include "uc/modifica_impostazioni_notifica_alert_email.typ"
+  #include "uc/modifica_impostazioni_notifica_alert_dashboard.typ"
   #include "uc/modifica_nome_gateway.typ"
   #include "uc/err_nome_gateway_duplicato.typ"
   #include "uc/modifica_stato_gateway.typ"
@@ -664,90 +670,95 @@
 
     [R-53-F],
     [Desiderabile],
+    [Il Sistema deve permettere al Tenant User di attivare/disattivare la ricezione di alert via email.],
+    [#tag-uc("modifica_impostazioni_notifica_alert_dashboard")],
+
+    [R-54-F],
+    [Desiderabile],
     [Il Sistema deve permettere al Tenant Admin di modificare il nome di un Gateway che possiede.],
     [#tag-uc("modifica_nome_gateway")],
 
-    [R-54-F],
+    [R-55-F],
     [Obbligatorio],
     [Il Sisteme deve notificare al Tenant Admin di aver inserito un nome già presente nella lista.],
     [#tag-uc("err_nome_gateway_duplicato")],
 
-    [R-55-F],
+    [R-56-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di modificare lo stato del Gateway.],
     [#tag-uc("modifica_stato_gateway")],
 
-    [R-56-F],
+    [R-57-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di selezionare uno o più Gateway tramite
       il loro ID.],
     [#tag-uc("selezione_gateway")],
 
-    [R-57-F],
+    [R-58-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di selezionare lo stato desiderato per i Gateway che ha selezionato.],
     [#tag-uc("selezione_stato_gateway")],
 
-    [R-58-F],
+    [R-59-F],
     [Obbligatorio],
     [Il Sistema deve permettere al tenant admin di cambiare il range dell'alert per un determinato sensore.],
     [#tag-uc("modifica_range_sensore")],
 
-    [R-59-F],
+    [R-60-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di selezionare uno specifico sensore.],
     [#tag-uc("selezione_specifico_sensore")],
 
-    [R-60-F],
+    [R-61-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di selezionare un range per le misurazioni, inserendo un valore minimo e
       uno di massimo],
     [#tag-uc("selezione_range_numerico")],
 
-    [R-61-F],
+    [R-62-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di inserire un valore numerico quando richiesto.],
     [#tag-uc("inserimento_valore_numerico")],
 
-    [R-62-F],
+    [R-63-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di modificare il range dell'alert di default per tutti i sensori di un
       determinato tipo.],
     [#tag-uc("modifica_range_default_tipo_sensore")],
 
-    [R-63-F],
+    [R-64-F],
     [Obbligatorio],
     [Il Sistema deve permettere al tenant Admin di selezionare un determinato tipo di sensore.],
     [#tag-uc("selezione_tipo_sensore")],
 
-    [R-64-F],
+    [R-65-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant admin di cambiare il timeout che determina se un Gateway è irraggiungibile],
     [#tag-uc("modifica_intervallo_alert_gateway")],
 
-    [R-65-F],
+    [R-66-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati del Tenant di cui è amministratore],
     [#tag-uc("visualizzazione_costi_stimati")],
 
-    [R-66-F],
+    [R-67-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati relativi allo storage del Gateway
       selezionato],
     [#tag-uc("visualizzazione_costi_storage")],
 
-    [R-67-F],
+    [R-68-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati dei Gateway associati al Tenant
       raggruppati in base alla banda.],
     [#tag-uc("visualizzazione_costi_banda")],
 
-    [R-68-F],
+    [R-69-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di visualizzare gli Utenti associati al proprio Tenant.],
     [#tag-uc("visualizzazione_lista_utenti_tenant")],
 
-    [R-69-F],
+    [R-70-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di visualizzare un singolo utente del Tenant. Le informazioni che devono
       essere visualizzate sono il ruolo dell'Utente, il nome dell'Utente, la mail dell'Utente e l'ultimo accesso
@@ -756,7 +767,7 @@
         "visualizzazione_nome_utente",
       ), #tag-uc("visualizzazione_mail_utente"), #tag-uc("visualizzazione_ultimo_accesso_utente")],
 
-    [R-70-F],
+    [R-71-F],
 
     [Obbligatorio],
 
@@ -764,7 +775,7 @@
 
     [#tag-uc("creazione_utente_tenant")],
 
-    [R-71-F],
+    [R-72-F],
 
     [Obbligatorio],
 
@@ -772,7 +783,7 @@
 
     [#tag-uc("inserimento_nome_utente")],
 
-    [R-72-F],
+    [R-73-F],
 
     [Obbligatoria],
 
@@ -780,7 +791,7 @@
 
     [#tag-uc("selezione_utente_tenant")],
 
-    [R-73-F],
+    [R-74-F],
 
     [Obbligatoria],
 
@@ -788,7 +799,7 @@
 
     [#tag-uc("selezione_permessi_utente"), #tag-uc("modifica_permessi_utente")],
 
-    [R-74-F],
+    [R-75-F],
 
     [Obbligatorio],
 
@@ -796,13 +807,13 @@
 
     [#tag-uc("modifica_mail_utente")],
 
-    [R-75-F], [Obbligatorio],
+    [R-76-F], [Obbligatorio],
 
     [Il Sistema deve permettere al Tenant Admin di modificare la password di un Utente Tenant.],
 
     [#tag-uc("modifica_password_utente")],
 
-    [R-76-F],
+    [R-77-F],
 
     [Obbligatorio],
 
@@ -810,14 +821,14 @@
 
     [#tag-uc("eliminazione_utenti_tenant")],
 
-    [R-77-F],
+    [R-78-F],
 
     [Obbligatorio],
 
     [Il Sistema deve permettere al Tenant Admin di selezionare più Utenti Tenant contemporaneamente],
     [#tag-uc("selezione_lista_utenti")],
 
-    [R-78-F],
+    [R-79-F],
 
     [Obbligatorio],
 
@@ -826,7 +837,7 @@
 
     [#tag-uc("creazione_credenziali_api"), #tag-uc("inserimento_nome_client_api")],
 
-    [R-79-F],
+    [R-80-F],
 
     [Obbligatorio],
 
@@ -834,7 +845,7 @@
 
     [#tag-uc("visualizzazione_client_id")],
 
-    [R-80-F],
+    [R-81-F],
 
     [Obbligatorio],
 
@@ -842,14 +853,14 @@
 
     [#tag-uc("visualizzazione_secret_api")],
 
-    [R-81-F],
+    [R-82-F],
 
     [Obbligatorio],
 
     [Il Sistema deve permettere al Tenant Admin di visualizzare la lista delle credenziali API relative ad un Tenant.],
     [#tag-uc("visualizzazione_lista_api")],
 
-    [R-82-F],
+    [R-83-F],
 
     [Obbligatorio],
 
@@ -857,7 +868,7 @@
 
     [#tag-uc("visualizzazione_singole_api")],
 
-    [R-83-F],
+    [R-84-F],
 
     [Obbligatorio],
 
@@ -866,83 +877,83 @@
 
     [#tag-uc("visualizzazione_nome_descrittivo_api")],
 
-    [R-84-F],
+    [R-85-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di visualizzare il timestamp di creazione di specifiche credenziali API
       di un Tenant],
     [#tag-uc("visualizzazione_timestamp_api")],
 
-    [R-85-F],
+    [R-86-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di eliminare delle credenziali API specifiche di un Tenant.],
     [#tag-uc("eliminazione_credenziali_api")],
 
-    [R-86-F],
+    [R-87-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di selezionare delle specifiche credenziali API di un Tenant.],
     [#tag-uc("selezione_credenziali_api")],
 
-    [R-87-F],
+    [R-88-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di modificare le impostazioni del login 2FA di un Tenant.],
     [#tag-uc("modifica_impostazioni_2fa")],
 
-    [R-88-F],
+    [R-89-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare i log di Audit del
       Tenant.],
     [#tag-uc("visualizzazione_log_audit_tenant"), #tag-uc("visualizzazione_singolo_log_audit")],
 
-    [R-89-F],
+    [R-90-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare il timestamp di una
       entry del log di Audit.],
     [#tag-uc("visualizzazione_timestamp_log_entry")],
 
-    [R-90-F],
+    [R-91-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare l'Utente relativa ad un
       entry del log Audit.],
     [#tag-uc("visualizzazione_utente_log_entry")],
 
-    [R-91-F],
+    [R-92-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare l'azione relativa ad una
       singola entry del log di Audit.],
     [#tag-uc("visualizzazione_operazione_log_entry")],
 
-    [R-92-F],
+    [R-93-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di esportare i log per fare Audit del
       Tenant.
     ],
     [#tag-uc("esportazione_log_audit_tenant")],
 
-    [R-93-F],
+    [R-94-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di inserire un intervallo temporale per
       visualizzare i log.],
     [#tag-uc("selezione_intervallo_temporale")],
 
-    [R-94-F],
+    [R-95-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di scaricare i log sul proprio
       dispositivo.],
     [#tag-uc("download_log_audit_esportati")],
 
-    [R-95-F],
+    [R-96-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di modificare le impostazioni di
       impersonificazione relative al Tenant.],
     [#tag-uc("modifica_impostazioni_impersonificazione")],
 
-    [R-96-F],
+    [R-97-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di installare una nuova versione
       firmware sul Gateway.],
     [#tag-uc("aggiornamento_firmware_gateway"), #tag-uc("selezione_firmware")],
 
-    [R-97-F],
+    [R-98-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant admin di modificare la frequenza di invio dati di un Gateway.],
     [#tag-uc("modifica_frequenza_invio_gateway")],
@@ -952,201 +963,201 @@
     [Il Sistema deve permettere al Client API di autenticarsi per contattare le API.],
     [#tag-uc("autenticazione_client_api")],
 
-    [R-99-F],
+    [R-100-F],
     [Obbligatorio],
     [Il Sistema deve notificare il Client API che i dati di autenticazione non sono validi.],
     [#tag-uc("err_dati_autenticazione_invalidi")],
 
-    [R-100-F],
+    [R-101-F],
     [Obbligatorio],
     [Il Sistema deve notificare il Client API che è avvenuto un errore interno di rete.],
     [#tag-uc("err_auth_server_non_disponibile")],
 
-    [R-101-F],
+    [R-102-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Client API di recuperare i dati storici tramite chiamata API.],
     [#tag-uc("richiesta_dati_on_demand")],
 
-    [R-102-F],
+    [R-103-F],
     [Obbligatoria],
     [Il Sistema deve notificare il Client API che il token di autenticazione non è valido.],
     [#tag-uc("err_token_api_invalido")],
 
-    [R-103-F],
+    [R-104-F],
     [Obbligatorio],
     [Il Sistema deve notificare il Client API che uno o più ID Gateway inseriti risultano invalidi.],
     [#tag-uc("err_id_gateway_invalido")],
 
-    [R-104-F],
+    [R-105-F],
     [Obbligatorio],
     [Il Sistema deve notificare il Client API che l'ID sensore inserito non esiste.],
     [#tag-uc("err_id_sensore_invalido")],
 
-    [R-105-F],
+    [R-106-F],
     [Obbligatorio],
     [Il Sistema deve notificare il Client API che l'intervallo temporale fornito non è valido.],
     [#tag-uc("err_intervallo_temporale_invalido")],
 
-    [R-106-F],
+    [R-107-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Client API di recuperare dati real-time tramite un endpoint API.],
     [#tag-uc("richiesta_dati_streaming")],
 
-    [R-107-F],
+    [R-108-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare la lista di Tenant registrati nel
       Sistema.],
     [#tag-uc("visualizzazione_lista_tenant")],
 
-    [R-108-F],
+    [R-109-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare un singolo Tenant all'interno della
       lista.],
     [#tag-uc("visualizzazione_singolo_tenant")],
 
-    [R-109-F],
+    [R-110-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare in dettaglio un Tenant.],
     [#tag-uc("visualizzazione_dettagli_tenant")],
 
-    [R-110-F],
+    [R-111-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare il nome identificativo del singolo
       Tenant.],
     [#tag-uc("visualizzazione_nome_tenant")],
 
-    [R-111-F],
+    [R-112-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare lo stato operativo del Tenant],
     [#tag-uc("visualizzazione_stato_tenant")],
 
-    [R-111-F],
+    [R-113-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare l'ID del Tenant scelto.],
     [#tag-uc("visualizzazione_id_tenant")],
 
-    [R-112-F],
+    [R-114-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare l'intervallo temporale minimo di
       sospensione (pre-eliminazione) del Tenant scelto.],
     [#tag-uc("visualizzazione_intervallo_sospensione_tenant")],
 
-    [R-113-F],
+    [R-115-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di modificare l'intervallo temporale minimo di sospensione
       (pre-eliminazione) del Tenant scelto.],
     [#tag-uc("modifica_intervallo_sospensione_tenant")],
 
-    [R-114-F],
+    [R-116-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di modificare il nome di un Tenant.],
     [#tag-uc("modifica_nome_tenant")],
 
-    [R-115-F],
+    [R-117-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di creare un nuovo Tenant.],
     [#tag-uc("creazione_tenant")],
 
-    [R-116-F],
+    [R-118-F],
     [Obbligatorio],
     [Il Sistema, durante la creazione del tenant, deve permettere all'Amministratore di Sistema di inserire i dati
       anagrafici del Tenant.],
     [#tag-uc("inserimento_anagrafica_tenant")],
 
-    [R-117-F],
+    [R-119-F],
     [Obbligatorio],
     [Il Sistema deve poter notificare l'Amministratore di Sistema di un eventuale errore interno nella creazione del
       Tenant.],
     [#tag-uc("err_interno_creazione_tenant")],
 
-    [R-118-F],
+    [R-120-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di selezionare un Tenant.],
     [#tag-uc("selezione_tenant")],
 
-    [R-119-F],
+    [R-121-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di sospendere un Tenant di interesse.],
     [#tag-uc("sospensione_tenant")],
 
-    [R-120-F],
+    [R-122-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di riattivare un Tenant precedentemente disattivato.],
     [#tag-uc("riattivazione_tenant")],
 
-    [R-121-F],
+    [R-123-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di eliminare un Tenant di interesse.],
     [#tag-uc("eliminazione_tenant"), #tag-uc("conferma_eliminazione_tenant")],
 
-    [R-122-F],
+    [R-124-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di avviare una sessione di impersonificazione.],
     [#tag-uc("impersonificazione_utente_tenant")],
 
-    [R-123-F],
+    [R-125-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di registrare e successivamente associare un Gateway ad un
       Tenant di interesse.],
     [#tag-uc("registrazione_associazione_gateway"), #tag-uc("inserimento_credenziali_fabbrica_gateway")],
 
-    [R-124-F],
+    [R-126-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di creare un Utente con ruolo Amministratore Tenant per un
       Tenant di interesse.],
     [#tag-uc("creazione_utente_amministratore_tenant")],
 
-    [R-125-F],
+    [R-127-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare i log di audit relativi ad un Tenant.],
     [#tag-uc("visualizzazione_log_audit_sysadmin")],
 
-    [R-126-F],
+    [R-128-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di esportare i log di audit di un Tenant.],
     [#tag-uc("esportazione_log_audit_tenant_sysadmin")],
 
-    [R-127-F],
+    [R-129-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di monitorare le prestazioni complessive del Sistema.],
     [#tag-uc("monitoraggio_performance_sistema")],
 
-    [R-128-F],
+    [R-130-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di monitorare la latenza media del Sistema.],
     [#tag-uc("monitoraggio_latenza")],
 
-    [R-129-F],
+    [R-131-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di monitorare il volume di traffico del Sistema.],
     [#tag-uc("monitoraggio_volumi_traffico")],
 
-    [R-130-F],
+    [R-132-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di monitorare l'utilizzo dello storage del Sistema.],
     [#tag-uc("monitoraggio_storage")],
 
-    [R-131-F],
+    [R-133-F],
     [Obbligatorio],
     [Il Sistema deve permettere al non provisioned Gateway di attivarsi e connettersi correttamente con il Sistema.],
     [#tag-uc("onboarding_gateway")],
 
-    [R-132-F],
+    [R-134-F],
     [Obbligatorio],
     [Il Sistema deve permettere al non provisioned Gateway di ricevere una risposta di errore di autenticazione. ],
     [#tag-uc("err_auth_gateway_fabbrica")],
 
-    [R-133-F],
+    [R-135-F],
     [Obbligatorio],
     [Il Sistema deve permettere al provisioned Gateway di inviare dati crittografici al Cloud.],
     [#tag-uc("invio_dati_crittografati_cloud")],
 
-    [R-134-F],
+    [R-136-F],
     [Obbligatorio],
     [Il Sistema deve permettere al non provisioned Gateway di aprire un canale di comunicazione sicuro.],
     [#tag-uc("instaurazione_connessione_sicura")],
 
-    [R-135-F],
+    [R-137-F],
     [Obbligatorio],
     [Il Sistema deve notificare il provisioned Gateway che il processo di autenticazione è fallito.],
     [#tag-uc("err_autenticazione_gateway")],
@@ -1154,24 +1165,87 @@
 
   == Requisiti Qualitativi
   #table(
-    columns: (auto, auto, 4fr, 1fr),
+    columns: (auto, auto, 2fr, 1fr),
     [Codice], [Importanza], [Descrizione], [Fonte],
-    [], [], [], [],
-    [], [], [], [],
-    [], [], [], [],
-    [], [], [], [],
-    [], [], [], [],
+    [R-1-Q],
+    [Obbligatorio],
+    [È necessario produrre una documentazione dettagliata: diagramma architetturale, documentazione tecnica, manuale di
+      test e manuale utente e amministratore.],
+    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Documentazione"],
+
+    [R-2-Q],
+    [Obbligatorio],
+    [È necessario realizzare Test di integrazione sensore-gateway],
+    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e Validazione"],
+
+    [R-3-Q],
+    [Obbligatorio],
+    [È necessario realizzare Test di sincronizzazione cloud.],
+    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e Validazione"],
+
+    [R-4-Q],
+    [Obbligatorio],
+    [È necessario realizzare Test di sicurezza.],
+    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e Validazione"],
+
+    [R-5-Q],
+    [Obbligatorio],
+    [È necessario realizzare Test di scalabilità e carico.],
+    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e Validazione"],
+
+    [R-6-Q],
+    [Obbligatorio],
+    [È necessario realizzare Test multi-tenant.],
+    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e Validazione"],
+
+    [R-7-Q],
+    [Obbligatorio],
+    [È necessario realizzare Test di unità e code coverage.],
+    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e Validazione"],
+
+    [R-8-Q],
+    [Obbligatorio],
+    [È necessario rispettare tutte le norme presenti nel documento interno Norme di Progetto.],
+    [#link("https://notipswe.github.io/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto]],
   )
   == Requisiti di Vincolo
   #table(
-    columns: (auto, auto, 4fr, 1fr),
+    columns: (auto, auto, 2fr, 1fr),
     [Codice], [Importanza], [Descrizione], [Fonte],
-    [], [], [], [],
-    [], [], [], [],
-    [], [], [], [],
-    [], [], [], [],
-    [], [], [], [],
-    [], [], [], [],
+    [R-1-V],
+    [Obbligatorio],
+    [È necessario utilizzare Git come Software di versionamento.],
+    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Requisiti non
+      Funzionali"],
+
+    [R-2-V],
+    [Obbligatorio],
+    [È necessario che il Sistema realizzato sia organizzato su tre livelli: BLE, Gateway BLE-WiFi e Cloud.],
+    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Architettura"],
+
+    [R-3-V],
+    [Obbligatorio],
+    [È necessario che l'interfaccia sia realizzata in Angular.],
+    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Tecnologie di
+      Riferimento"],
+
+    [R-4-V],
+    [Obbligatorio],
+    [È necessario che la parte di microservizi sia realizzata in Go e NestJS.],
+    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Tecnologie di
+      Riferimento"],
+
+    [R-5-V],
+    [Obbligatorio],
+    [È necessario che la parte di scambio di messaggi tra microservizi sia realizzata in NATS.],
+    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Tecnologie di
+      Riferimento"],
+
+    [R-6-V],
+    [Obbligatorio],
+    [È necessario l'utilizzo di Docker],
+    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Tecnologie di
+      Riferimento"],
   )
   == Requisiti di Prestazione
   #table(
@@ -1187,7 +1261,7 @@
   #table(
     columns: (auto, auto, 4fr, 1fr),
     [Codice], [Importanza], [Descrizione], [Fonte],
-    [R-1-S], [Obbligatoria], [], [],
+    [], [], [], [],
     [], [], [], [],
     [], [], [], [],
     [], [], [], [],
