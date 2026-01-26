@@ -1,7 +1,7 @@
 #import "../../00-templates/base_document.typ" as base-document
 #import "uc_lib.typ": * /*CA, CLOUD_SYS, SA, SIM_SYS, tag-uc, uc , uml-schema*/
 
-#let metadata = yaml(sys.inputs.meta-path)
+#let metadata = yaml("analisi_requisiti.meta.yaml")
 
 
 #show figure.where(kind: table): set block(breakable: true)
@@ -1162,7 +1162,102 @@
     [Il Sistema deve notificare il provisioned Gateway che il processo di autenticazione è fallito.],
     [#tag-uc("err_autenticazione_gateway")],
   )
+  == Requisiti Funzionali - Parte B: Simulatore Gateway
+  #table(
+    columns: (auto, auto, 2fr, 1fr),
+    [Codice], [Importanza], [Descrizione], [Fonte],
+    [R-1-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere all'Utente del Simulatore di poter visualizzare la lista di Gateway simulati.],
+    [#tag-uc("visualizzazione_lista_gateway_simulati")],
 
+    [R-2-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere di poter visualizzare un singolo Gateway simulato, comprendendo anche la data della sua
+      creazione.],
+    [#tag-uc("visualizzazione_singolo_gateway_simulato"), #tag-uc("visualizzazione_data_creazione_simulazione")],
+
+    [R-3-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere di visualizzare l'ID di fabbrica di un Gateway simulato.],
+    [#tag-uc("visualizzazione_id_fabbrica_simulazione")],
+
+    [R-4-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere di visualizzare la configurazione di simulazione di un Gateway, di cui fanno parte:
+      chiave segreta, numero di serie, versione del software e modello.],
+    [#tag-uc("visualizzazione_configurazione_simulazione_gateway"), #tag-uc(
+        "visualizzazione_chiave_fabbrica_simulazione",
+      ), #tag-uc("visualizzazione_serial_number_gateway_simulato"), #tag-uc(
+        "visualizzazione_software_gateway_simulato",
+      ), #tag-uc("visualizzazione_modello_gateway_simulato")],
+
+    [R-5-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere di visualizzare la lista di sensori di un Gateway simulato.],
+    [#tag-uc("visualizzazione_lista_sensori_gateway_simulato")],
+
+    [R-6-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere di visualizzare un singolo sensore di un Gateway simulato.],
+    [#tag-uc("visualizzazione_singolo_sensore_simulato")],
+
+    [R-7-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere di visualizzare la configurazione di un sensore simulato, di cui fanno parte: range
+      generazione dati, algoritmo di generazione dati, identificativo e tipologia di sensore.
+    ],
+    [#tag-uc("visualizzazione_configurazione_simulazione_sensore"), #tag-uc("visualizzazione_range_generazione_dati"),
+      #tag-uc("visualizzazione_algoritmo_generazione_dati"), #tag-uc("visualizzazione_identificativo_sensore"), #tag-uc(
+        "visualizzazione_tipo_sensore_simulato",
+      )],
+
+    [R-8-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere di eliminare un Gateway simulato.],
+    [#tag-uc("eliminazione_gateway_simulato")],
+
+    [R-9-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere di eliminare un sensore simulato.],
+    [#tag-uc("eliminazione_sensore_simulato")],
+
+    [R-10-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere di creare e fare il deploy di un Gateway simulato.],
+    [#tag-uc("creazione_deploy_gateway_simulato")],
+
+    [R-11-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere di inserire i dati di configurazione di un Gateway simulato.],
+    [#tag-uc("inserimento_dati_config_sim_gateway")],
+
+    [R-12-F],
+    [Obbligatorio],
+    [Il Sistema deve notificare all'Utente del Simulatore che si è verificato un errore durante il deploy del Gateway.],
+    [#tag-uc("err_deploy_gateway_simulato")],
+
+    [R-13-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere di creare un sensore di un Gateway simulato.],
+    [#tag-uc("creazione_sensore_gateway_simulato")],
+
+    [R-14-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere di inserire i dati di configurazione di un sensore simulato.],
+    [#tag-uc("inserimento_dati_config_sim_sensore")],
+
+    [R-15-F],
+    [Obbligatorio],
+    [Il Sistema deve notificare all'Utente del Simulatore che il range di generazione dati inserito è invalido.],
+    [#tag-uc("err_range_invalido_simulazione")],
+
+    [R-16-F],
+    [Obbligatorio],
+    [Il Sistema deve notificare all'Utente del Simulatore che si è verificato un errore durante la creazione di un
+      sensore simulato.],
+    [#tag-uc("err_creazione_sensore_simulato")],
+  )
   == Requisiti Qualitativi
   #table(
     columns: (auto, auto, 2fr, 1fr),
@@ -1247,6 +1342,7 @@
     [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Tecnologie di
       Riferimento"],
   )
+
   == Requisiti di Prestazione
   #table(
     columns: (auto, auto, 4fr, 1fr),

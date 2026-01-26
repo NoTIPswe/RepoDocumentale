@@ -1,5 +1,12 @@
 title: Analisi dei Requisiti
 changelog:
+  - version: "0.31.0"
+    date: "2026-01-26"
+    authors:
+      - Alessandro Mazzariol
+    verifier: TBD
+    description: >
+      Aggiunti requisiti funzionali della parte B fino a UCS14
   - version: "0.30.0"
     date: "2026-01-25"
     authors:
