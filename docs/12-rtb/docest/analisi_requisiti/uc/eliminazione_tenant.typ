@@ -25,4 +25,4 @@
     ),
     (descr: "L’Attore riceve una notifica di operazione avvenuta con successo"),
   ),
-)[#uml-schema("90", "Eliminazione Tenant")]
+)[#uml-schema("91", "Eliminazione Tenant")]

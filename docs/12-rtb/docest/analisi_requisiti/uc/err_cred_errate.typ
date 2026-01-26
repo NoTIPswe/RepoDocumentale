@@ -3,7 +3,7 @@
 #uc(
   id: "err_cred_errate",
   system: CLOUD_SYS,
-  title: "Errore - Credenziali errate",
+  title: "Errore Credenziali errate",
   level: 1,
   prim-actors: CA.non-authd-usr,
   preconds: (

@@ -25,4 +25,4 @@
     ),
     (descr: "L’Attore salva le modifiche apportate"),
   ),
-)[#uml-schema("56", "Modifica password Utente del Tenant")]
+)[#uml-schema("57", "Modifica password Utente del Tenant")]

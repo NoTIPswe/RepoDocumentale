@@ -16,4 +16,4 @@
   main-scen: (
     (descr: "L’Attore visualizza l’ID univoco associato al Tenant"),
   ),
-)[#uml-schema("82", "Visualizzazione ID Tenant")]
+)[#uml-schema("83", "Visualizzazione ID Tenant")]

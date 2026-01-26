@@ -25,4 +25,4 @@
     ),
     (descr: "L’Attore conferma l’operazione idempotente di cambio di stato"),
   ),
-)[#uml-schema("41", "Modifica stato del Gateway")]
+)[#uml-schema("42", "Modifica stato del Gateway")]

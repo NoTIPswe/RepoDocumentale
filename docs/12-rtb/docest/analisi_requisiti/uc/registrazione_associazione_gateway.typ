@@ -31,4 +31,4 @@
       descr: "L’Attore viene notificato dell’avvenuta connessione del Gateway non appena il dispositivo contatta il Cloud e riceve le credenziali",
     ),
   ),
-)[#uml-schema("92", "Provisioning Gateway - Registrazione e associazione Tenant")]
+)[#uml-schema("93", "Provisioning Gateway - Registrazione e associazione Tenant")]

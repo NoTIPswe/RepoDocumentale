@@ -21,4 +21,4 @@
     (descr: "L’Attore viene reindirizzato nell’ambiente applicativo come “Utente Tenant” o “Amministratore Tenant”"),
     (descr: "L’Attore utilizza le funzionalità disponibili, nel rispetto dei permessi dell’Utente impersonificato"),
   ),
-)[#uml-schema("91", "Impersonificazione Utenti Tenant")]
+)[#uml-schema("92", "Impersonificazione Utenti Tenant")]

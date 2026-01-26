@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "modifica_impostazioni_notifica_alert_email",
@@ -17,4 +17,4 @@
     (descr: "L’Attore esprime la preferenza di ricezione notifiche via email (on/off)"),
     (descr: "Il sistema salva le preferenze"),
   ),
-)
+)[#uml-schema("38", "Diagramma modifica impostazioni notifica alert via email")]

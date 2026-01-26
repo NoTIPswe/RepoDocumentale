@@ -19,4 +19,4 @@
     (descr: "L’Auth Server non è raggiungibile o risponde al sistema con un errore interno"),
     (descr: "L’Attore primario riceve un messaggio di errore interno dal sistema"),
   ),
-)[#uml-schema("71", "Errore auth server non disponibile")]
+)[#uml-schema("72", "Errore Auth Server non disponibile")]

@@ -37,4 +37,4 @@
     // bookmark
     // consumi leagti ad i Gateway associati
   ),
-)[#uml-schema("79", "Visualizzazione dettagli Tenant")]
+)[#uml-schema("80", "Visualizzazione dettagli Tenant")]

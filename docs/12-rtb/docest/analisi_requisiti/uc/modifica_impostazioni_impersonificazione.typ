@@ -12,7 +12,7 @@
   postconds: (
     "Le modifiche apportate dall’Attore vengono salvate",
   ),
-  trigger: "",
+  trigger: "L'Attore vuole modificare le impostazioni di impersonificazione relative ad un Tenant",
   main-scen: (
     (
       descr: "L’Attore abilita o disabilita la facoltà dell'Amministratore di Sistema di accedere come (“impersonare”) un Utente del tenant",
@@ -20,4 +20,4 @@
     (descr: "Le modifiche vengono salvate"),
     (descr: "L’Attore viene notificato del buon esito dell’operazione"),
   ),
-)[#uml-schema("65", "Modifica impostazioni impersonificazione")]
+)[#uml-schema("66", "Modifica impostazioni impersonificazione")]

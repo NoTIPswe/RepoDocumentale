@@ -23,4 +23,4 @@
     (descr: "L’Attore conferma la decisione di riattivare il Tenant selezionato"),
     (descr: "L’Attore riceve una notifica di operazione avvenuta con successo"),
   ),
-)[#uml-schema("89", "Riattivazione Tenant")]
+)[#uml-schema("90", "Riattivazione Tenant")]

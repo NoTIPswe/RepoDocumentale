@@ -23,4 +23,4 @@
     (descr: "L’Attore conferma la decisione di sospendere il Tenant selezionato"),
     (descr: "L’Attore riceve una notifica di operazione avvenuta con successo"),
   ),
-)[#uml-schema("88", "Sospensione Tenant")]
+)[#uml-schema("89", "Sospensione Tenant")]

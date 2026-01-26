@@ -22,4 +22,4 @@
       inc: "visualizzazione_singole_api",
     ),
   ),
-)[#uml-schema("60", "Visualizzazione lista credenziali API del Tenant")]
+)[#uml-schema("61", "Visualizzazione lista credenziali API del Tenant")]

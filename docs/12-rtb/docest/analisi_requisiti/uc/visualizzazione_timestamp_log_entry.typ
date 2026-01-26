@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "visualizzazione_timestamp_log_entry",
@@ -12,8 +12,8 @@
   postconds: (
     "L’Attore visualizza correttamente il timestamp di una singola entry del log di audit",
   ),
-  trigger: "",
+  trigger: "L'Attore vuole visualizzare i dati di una singola entry del log di audit",
   main-scen: (
     (descr: "L’Attore visualizza il timestamp relativo alla entry del log di audit"),
   ),
-)[#uml-schema("63.2", "Visualizzazione timestamp log entry")]
+)

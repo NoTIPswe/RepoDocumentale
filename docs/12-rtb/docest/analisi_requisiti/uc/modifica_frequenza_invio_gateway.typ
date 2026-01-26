@@ -12,7 +12,7 @@
   postconds: (
     "La frequenza d’invio è stata correttamente aggiornata",
   ),
-  trigger: "",
+  trigger: "L'Attore vuole modificare la frequenza di invio dati di un Gateway",
   main-scen: (
     (
       descr: "L’Attore sceglie un Gateway tramite il suo identificativo",
@@ -25,4 +25,4 @@
     (descr: "L’Attore salva la nuova configurazione"),
     (descr: "L’Attore viene informato dell’avvenuta modifica"),
   ),
-)[#uml-schema("68", "Modifica frequenza invio dati al Gateway specifico")]
+)[#uml-schema("69", "Modifica frequenza invio dati al Gateway specifico")]

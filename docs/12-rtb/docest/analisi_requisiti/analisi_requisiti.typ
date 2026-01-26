@@ -182,10 +182,10 @@
   #include "uc/visualizzazione_nome_gateway.typ"
   #include "uc/visualizzazione_stato_gateway.typ"
   #include "uc/visualizzazione_dettagli_gateway.typ"
+  #include "uc/visualizzazione_timestamp_ultimo_invio_dati_gateway.typ"
   #include "uc/visualizzazione_lista_sensori.typ"
   #include "uc/visualizzazione_singolo_sensore.typ"
-  #include "uc/visualizzazione_time_ultimo_invio_sensore.typ"
-  #include "uc/visualizzazione_time_ultimo_invio.typ"
+  #include "uc/visualizzazione_timestamp_ultimo_invio_dati_sensore.typ"
   #include "uc/visualizzazione_id_sensore.typ"
   #include "uc/visualizzazione_dati_stream.typ"
   #include "uc/visualizzazione_tabellare_dati_stream.typ"
@@ -523,7 +523,7 @@
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant User di visualizzare il timestamp dell'ultimo invio dati di un Gateway.],
     [
-      /*Visualizzazione time ultimo invio (gateway) dà problemi e anche ultimo invio sensore perchè non riesce a differenziarli*/
+      #tag-uc("visualizzazione_timestamp_ultimo_invio_dati_gateway")
     ],
 
     [R-27-F],
@@ -542,7 +542,7 @@
     [Dopo che il Tenant User ha selezionato un singolo sensore da visualizzare, il Sistema deve permettere di visionare
       il timestamp dell'ultimo invio dati.],
     [
-      /*tag-uc("visualizzazione_time_ultimo_invio_sensore")*/
+      #tag-uc("visualizzazione_timestamp_ultimo_invio_dati_sensore")
     ],
 
     [R-30-F],
@@ -670,7 +670,7 @@
 
     [R-53-F],
     [Desiderabile],
-    [Il Sistema deve permettere al Tenant User di attivare/disattivare la ricezione di alert via email.],
+    [Il Sistema deve permettere al Tenant User di attivare/disattivare la ricezione di alert via dashboard.],
     [#tag-uc("modifica_impostazioni_notifica_alert_dashboard")],
 
     [R-54-F],
@@ -785,7 +785,7 @@
 
     [R-73-F],
 
-    [Obbligatoria],
+    [Obbligatorio],
 
     [Il Sistema deve permettere al Tenant Admin di selezionare un Utente del Tenant.],
 
@@ -793,7 +793,7 @@
 
     [R-74-F],
 
-    [Obbligatoria],
+    [Obbligatorio],
 
     [Il Sistema deve permettere al Tenant Admin di selezionare e modificare un permesso dell'Utente Tenant.],
 
@@ -979,7 +979,7 @@
     [#tag-uc("richiesta_dati_on_demand")],
 
     [R-103-F],
-    [Obbligatoria],
+    [Obbligatorio],
     [Il Sistema deve notificare il Client API che il token di autenticazione non è valido.],
     [#tag-uc("err_token_api_invalido")],
 
@@ -1161,6 +1161,11 @@
     [Obbligatorio],
     [Il Sistema deve notificare il provisioned Gateway che il processo di autenticazione è fallito.],
     [#tag-uc("err_autenticazione_gateway")],
+
+    [R-138-F],
+    [Obbligatorio],
+    [Il Sistema deve notificare il Tenant Admin che il range inserito è invalido.],
+    [#tag-uc("err_range_invalido")],
   )
   == Requisiti Funzionali - Parte B: Simulatore Gateway
   #table(

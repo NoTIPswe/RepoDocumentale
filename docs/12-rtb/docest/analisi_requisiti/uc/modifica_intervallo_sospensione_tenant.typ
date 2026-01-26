@@ -18,4 +18,4 @@
       descr: "L’Attore visualizza l’intervallo temporale di sospensione (in giorni) minimo che deve trascorrere prima di poter eliminare il Tenant",
     ),
   ),
-)[#uml-schema("83", "Modifica intervallo minimo sospensione pre-eliminazione Tenant")]
+)[#uml-schema("84", "Modifica intervallo minimo sospensione pre-eliminazione Tenant")]

@@ -21,4 +21,4 @@
     (descr: "L’Attore invia i dati in maniera sicura al Cloud"),
     (descr: "L’Attore riceve la notifica dell’esito dell’operazione"),
   ),
-)[#uml-schema("99", "Invio dati crittografati al Cloud")]
+)[#uml-schema("100", "Invio dati crittografati al Cloud")]

@@ -12,8 +12,8 @@
   postconds: (
     "Le impostazioni di 2FA per il login nel tenant sono state aggiornate",
   ),
-  trigger: "",
+  trigger: "L'Attore vuole abilitare/disabilitare la 2FA per il Tenant",
   main-scen: (
     (descr: "L’Attore abilita/disabilita la 2FA per gli account afferenti al Tenant"),
   ),
-)[#uml-schema("62", "Modfica impostazioni 2FA login dashboard")]
+)[#uml-schema("63", "Modfica impostazioni 2FA login dashboard")]

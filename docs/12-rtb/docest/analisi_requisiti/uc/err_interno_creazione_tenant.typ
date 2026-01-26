@@ -18,4 +18,4 @@
   main-scen: (
     (descr: "L’Attore visualizza i dettagli relativi all’errore verificatosi"),
   ),
-)[#uml-schema("86", "Errore interno creazione Tenant")]
+)[#uml-schema("87", "Errore interno creazione Tenant")]

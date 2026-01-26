@@ -18,10 +18,11 @@
   main-scen: (
     (
       descr: "L’Attore seleziona un Tenant",
+      inc: "selezione_tenant",
     ),
     (
       descr: "L’Attore esporta i log di audit del Tenant selezionato",
       inc: "esportazione_log_audit_tenant",
     ),
   ),
-)[#uml-schema("95", "Esportazione Log di Audit di un Tenant")]
+)[#uml-schema("96", "Esportazione Log di Audit di un Tenant")]

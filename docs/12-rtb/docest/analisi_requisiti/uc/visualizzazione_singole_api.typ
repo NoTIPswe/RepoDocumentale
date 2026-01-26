@@ -34,4 +34,4 @@
       inc: "visualizzazione_timestamp_api",
     ),
   ),
-)[#uml-schema("60.1", "Visualizzazione singole credenziali API del Tenant")]
+)[#uml-schema("61.1", "Visualizzazione singole credenziali API del Tenant")]

@@ -26,4 +26,4 @@
     (descr: "L’Attore conferma l’avvio della procedura di aggiornamento"),
     (descr: "L’Attore viene informato del buon esito della procedura al completamento"),
   ),
-)[#uml-schema("66", "Aggiornamento del firmware Gateway")]
+)[#uml-schema("67", "Aggiornamento del firmware Gateway")]

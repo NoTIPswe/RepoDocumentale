@@ -16,4 +16,4 @@
   main-scen: (
     (descr: "L’Attore seleziona un tipo di sensore fra quelli disponibili"),
   ),
-)[#uml-schema("46", "Selezione tipo di sensore")]
+)[#uml-schema("47", "Selezione tipo di sensore")]

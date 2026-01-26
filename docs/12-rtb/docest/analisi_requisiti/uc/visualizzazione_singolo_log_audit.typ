@@ -3,16 +3,16 @@
 #uc(
   id: "visualizzazione_singolo_log_audit",
   system: CLOUD_SYS,
-  title: "Visualizzazione singola entry log di Audit del Tenant",
+  title: "Visualizzazione singola entry log di audit del Tenant",
   level: 2,
   prim-actors: (CA.tenant-adm, CA.sys-adm),
   preconds: (
-    "Il sistema mostra all'Attore primario il singolo entry log di Audit del Tenant",
+    "Il sistema mostra all'Attore primario il singolo entry log di audit del Tenant",
   ),
   postconds: (
     "L’Attore visualizza correttamente i dati di una singola entry del log di audit",
   ),
-  trigger: "",
+  trigger: "L'Attore vuole visualizzare i dati di una singola entry del log di audit",
   main-scen: (
     (
       descr: "L’Attore visualizza il timestamp relativo all’azione loggata",
@@ -29,4 +29,4 @@
     // bookmark
     // codice -> indica l'operazione tracciandola
   ),
-)[#uml-schema("63.1", "Visualizzazione singola entry log di Audit del tenant")]
+)[#uml-schema("64.1", "Visualizzazione singola entry log di audit del tenant")]

@@ -18,4 +18,4 @@
   main-scen: (
     (descr: "Il sistema mostra a video la stringa alfanumerica corrispondente al Client ID"),
   ),
-)[#uml-schema("59", "Visualizzazione Client ID")]
+)[#uml-schema("60", "Visualizzazione Client ID")]

@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "visualizzazione_hardware_interessato",
@@ -17,6 +17,4 @@
   main-scen: (
     (descr: "L’attore primario visualizza l’identificativo dell’hardware interessato dall’alert"),
   ),
-)[
-  #uml-schema("33.1.2", "Diagramma visualizzazione hardware interessato")
-]
+)

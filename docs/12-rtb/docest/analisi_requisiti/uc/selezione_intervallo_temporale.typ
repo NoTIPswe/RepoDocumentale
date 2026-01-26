@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "selezione_intervallo_temporale",
@@ -12,9 +12,9 @@
   postconds: (
     "L’Attore ha selezionato un intervallo temporale valido",
   ),
-  trigger: "",
+  trigger: "L'Attore vuole esportare dei log di audit di un Tenant",
   main-scen: (
     (descr: "L’Attore seleziona un timestamp minimo"),
     (descr: "L’Attore seleziona un timestamp massimo (maggiore del minimo)"),
   ),
-)[#uml-schema("64.1", "Selezione intervallo temporale")]
+)

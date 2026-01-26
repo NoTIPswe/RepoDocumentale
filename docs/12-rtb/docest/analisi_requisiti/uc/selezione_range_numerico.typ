@@ -32,4 +32,4 @@
       uc: "err_range_invalido",
     ),
   ),
-)[#uml-schema("43", "Selezione range numerico misurazioni")]
+)[#uml-schema("44", "Selezione range numerico misurazioni")]

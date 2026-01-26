@@ -18,5 +18,5 @@
     (descr: "L’Attore viene invitato ad inserirne un altro valido"),
   ),
 )[
-  #uml-schema("40", "Diagramma errore nome Gateway duplicato")
+  #uml-schema("41", "Diagramma errore nome Gateway duplicato")
 ]

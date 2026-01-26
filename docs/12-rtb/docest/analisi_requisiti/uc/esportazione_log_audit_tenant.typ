@@ -3,16 +3,16 @@
 #uc(
   id: "esportazione_log_audit_tenant",
   system: CLOUD_SYS,
-  title: "Esportazione log di Audit del Tenant",
+  title: "Esportazione log di audit del Tenant",
   level: 1,
   prim-actors: (CA.tenant-adm, CA.sys-adm),
   preconds: (
-    "Il sistema mostra all'Attore primario i log di Audit del Tenant",
+    "Il sistema mostra all'Attore primario i log di audit del Tenant",
   ),
   postconds: (
     "L’Attore esporta correttamente i dati di suo interesse",
   ),
-  trigger: "",
+  trigger: "L'Attore vuole esportare dei log di audit di un Tenant",
   main-scen: (
     (
       descr: "L’Attore seleziona l’intervallo temporale (data e ora) degli audit da esportare",
@@ -24,4 +24,4 @@
       inc: "download_log_audit_esportati",
     ),
   ),
-)[#uml-schema("64", "Esportazione log di Audit del Tenant")]
+)[#uml-schema("65", "Esportazione log di Audit del Tenant")]

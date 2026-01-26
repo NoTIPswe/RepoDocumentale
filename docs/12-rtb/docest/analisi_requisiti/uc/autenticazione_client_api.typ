@@ -39,4 +39,4 @@
       uc: "err_auth_server_non_disponibile",
     ),
   ),
-)[#uml-schema("69", "Autenticazione del client API")]
+)[#uml-schema("70", "Autenticazione del client API")]

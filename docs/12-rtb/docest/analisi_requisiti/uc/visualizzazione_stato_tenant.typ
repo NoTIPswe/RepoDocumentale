@@ -16,4 +16,4 @@
   main-scen: (
     (descr: "L’Attore visualizza lo stato corrente del Tenant"),
   ),
-)[#uml-schema("81", "Visualizzazione stato del Tenant")]
+)[#uml-schema("82", "Visualizzazione stato del Tenant")]

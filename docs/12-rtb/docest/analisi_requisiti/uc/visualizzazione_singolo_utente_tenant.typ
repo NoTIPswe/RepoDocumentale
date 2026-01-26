@@ -33,4 +33,4 @@
       inc: "visualizzazione_ultimo_accesso_utente",
     ),
   ),
-)[#uml-schema("49.1", "Visualizzazione singolo Utente del Tenant")]
+)[#uml-schema("50.1", "Visualizzazione singolo Utente del Tenant")]

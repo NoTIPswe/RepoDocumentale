@@ -16,4 +16,4 @@
   main-scen: (
     (descr: "L’Attore seleziona un tenant dalla lista"),
   ),
-)[#uml-schema("87", "Selezione Tenant")]
+)[#uml-schema("88", "Selezione Tenant")]

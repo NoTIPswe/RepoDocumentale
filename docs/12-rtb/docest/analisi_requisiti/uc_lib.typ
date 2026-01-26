@@ -30,7 +30,7 @@
   let label = label("UC:" + uc-id)
   let title = query(label).first().body
   text(fill: blue)[#ref(label, supplement: "")] + " " + link(label)[#title]
-} 
+}
 
 #let uc-counter = counter("uc")
 #let ucs-counter = counter("ucs")
@@ -123,9 +123,8 @@ Nel caso degli ucS bisogna scrivere "S" e subito di seguito il numero dell'UC, q
   main-scen: (),
   alt-scen: (),
   trigger: none,
-  ..args
+  ..args,
 ) = {
-
   let body = args.pos().at(0, default: none)
 
   if system == CLOUD_SYS {

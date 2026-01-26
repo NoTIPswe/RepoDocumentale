@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "visualizzazione_timestamp_ultimo_invio_dati_sensore",
@@ -16,5 +16,4 @@
   main-scen: (
     (descr: "L’Attore primario visualizza il timestamp associato all'ultimo dato ricevuto dal sensore"),
   ),
-)[
-]
+)

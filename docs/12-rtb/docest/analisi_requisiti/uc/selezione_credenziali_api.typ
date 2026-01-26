@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "selezione_credenziali_api",
@@ -12,8 +12,8 @@
   postconds: (
     "Delle credenziali API sono state correttamente selezionate",
   ),
-  trigger: "",
+  trigger: "L'Attore vuole selezionare delle credenziali client API",
   main-scen: (
     (descr: "L’Attore seleziona una entry di credenziali API dalla lista"),
   ),
-)[#uml-schema("61.1", "Selezione credenziali API")]
+)

@@ -27,4 +27,4 @@
       inc: "visualizzazione_costi_banda",
     ),
   ),
-)[#uml-schema("48", "Visualizzazione costi stimati")]
+)[#uml-schema("49", "Visualizzazione costi stimati")]

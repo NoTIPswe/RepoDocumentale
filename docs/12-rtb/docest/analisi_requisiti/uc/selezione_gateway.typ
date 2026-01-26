@@ -12,8 +12,8 @@
   postconds: (
     "I Gateway sono stati selezionati correttamente",
   ),
-  trigger: "",
+  trigger: "L'Attore vuole selezionare uno o più Gateway",
   main-scen: (
     (descr: "L’Attore seleziona uno o più Gateway tramite il loro identificativo"),
   ),
-)[#uml-schema("67", "Selezione Gateway")]
+)[#uml-schema("68", "Diagramma selezione Gateway")]

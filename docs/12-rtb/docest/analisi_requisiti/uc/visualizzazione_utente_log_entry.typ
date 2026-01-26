@@ -12,8 +12,8 @@
   postconds: (
     "L’Attore visualizza correttamente l’Utente relativo ad una singola entry del log di audit",
   ),
-  trigger: "",
+  trigger: "L'Attore vuole visualizzare i dati di una singola entry del log di audit",
   main-scen: (
     (descr: "L’Attore visualizza l’Utente relativo alla entry del log di audit"),
   ),
-)[#uml-schema("63.3", "Visualizzazione Utente log entry")]
+)

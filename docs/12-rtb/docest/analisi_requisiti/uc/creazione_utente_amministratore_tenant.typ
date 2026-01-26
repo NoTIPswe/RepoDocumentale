@@ -27,4 +27,4 @@
     (descr: "L’Attore conferma l’operazione"),
     (descr: "L’Attore viene informato del successo dell’operazione"),
   ),
-)[#uml-schema("93", "Creazione Utente Amministratore Tenant")]
+)[#uml-schema("94", "Creazione Utente Amministratore Tenant")]

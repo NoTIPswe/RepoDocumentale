@@ -17,4 +17,4 @@
   main-scen: (
     (descr: "L'Attore seleziona il tipo di permesso da concedere all’Utente (Amministratore Tenant o Utente Tenant)"),
   ),
-)[#uml-schema("53", "Selezione permessi Utente")]
+)[#uml-schema("54", "Selezione permessi Utente")]

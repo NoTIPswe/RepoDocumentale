@@ -13,9 +13,9 @@
   postconds: (
     "L’Attore scarica i log sul proprio dispositivo",
   ),
-  trigger: "",
+  trigger: "L'Attore vuole esportare dei log di audit di un Tenant",
   main-scen: (
     (descr: "L’Attore viene notificato della disponibilità del log esportato"),
     (descr: "L’Attore scarica il file di log sul proprio dispositivo"),
   ),
-)[#uml-schema("64.2", "Download log audit esportati")]
+)[#uml-schema("102", "Download log audit esportati")]

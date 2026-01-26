@@ -37,4 +37,4 @@
       uc: "err_id_sensore_invalido",
     ),
   ),
-)[#uml-schema("77", "Richiesta dati streaming")]
+)[#uml-schema("78", "Richiesta dati streaming")]

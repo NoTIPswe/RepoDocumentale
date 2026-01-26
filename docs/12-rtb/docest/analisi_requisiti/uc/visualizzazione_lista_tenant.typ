@@ -19,4 +19,4 @@
       inc: "visualizzazione_singolo_tenant",
     ),
   ),
-)[#uml-schema("78", "Visualizzazione lista Tenant")]
+)[#uml-schema("79", "Visualizzazione lista Tenant")]

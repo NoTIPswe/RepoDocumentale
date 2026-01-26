@@ -3,7 +3,7 @@
 #uc(
   id: "err_token_api_invalido",
   system: CLOUD_SYS,
-  title: "Token autenticazione API invalido",
+  title: "Errore Token autenticazione API invalido",
   level: 1,
   prim-actors: CA.api-client,
   preconds: (
@@ -18,4 +18,4 @@
   main-scen: (
     (descr: "L’Attore riceve una risposta di errore di autenticazione"),
   ),
-)[#uml-schema("73", "Errore token di autenticazione API invalido")]
+)[#uml-schema("74", "Errore Token di autenticazione API invalido")]

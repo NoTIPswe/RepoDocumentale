@@ -3,7 +3,7 @@
 #uc(
   id: "err_dati_autenticazione_invalidi",
   system: CLOUD_SYS,
-  title: "Dati di autenticazione non validi",
+  title: "Errore dati di autenticazione non validi",
   level: 1,
   prim-actors: CA.api-client,
   sec-actors: CSA.auth-server, // bokmark - solo se usiamo auth server esterno
@@ -18,4 +18,4 @@
     (descr: "L’Auth Server risponde al sistema con un errore di autenticazione"),
     (descr: "L’Attore primario riceve un errore di autenticazione dal sistema"),
   ),
-)[#uml-schema("70", "Errore dati di autenticazione non validi")]
+)[#uml-schema("71", "Errore dati di autenticazione non validi")]

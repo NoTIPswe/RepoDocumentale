@@ -12,7 +12,7 @@
   postconds: (
     "Le credenziali eliminate non sono più attive e valide all’interno del sistema",
   ),
-  trigger: "",
+  trigger: "L'Attore vuole eliminare delle credenziali API",
   main-scen: (
     (
       descr: "L’Attore seleziona un API token da eliminare",
@@ -21,4 +21,4 @@
     (descr: "L’Attore viene informato delle conseguenze dell’eliminazione"),
     (descr: "L’Attore conferma la volontà di eliminazione del token"),
   ),
-)[#uml-schema("61", "Eliminazione credenziali API")]
+)[#uml-schema("62", "Eliminazione credenziali API")]

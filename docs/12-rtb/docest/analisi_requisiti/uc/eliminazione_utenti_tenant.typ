@@ -22,4 +22,4 @@
     (descr: "L’Attore conferma l’eliminazione"),
     (descr: "L’Attore viene informato del buon esito dell’operazione"),
   ),
-)[#uml-schema("57", "Eliminazione Utente del Tenant")]
+)[#uml-schema("58", "Eliminazione Utente del Tenant")]

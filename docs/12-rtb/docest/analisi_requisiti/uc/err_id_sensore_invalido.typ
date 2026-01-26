@@ -3,7 +3,7 @@
 #uc(
   id: "err_id_sensore_invalido",
   system: CLOUD_SYS,
-  title: "ID Sensore invalido",
+  title: "Errore ID Sensore invalido",
   level: 1,
   prim-actors: CA.api-client,
   preconds: (
@@ -18,4 +18,4 @@
   main-scen: (
     (descr: "L’Attore riceve una risposta di errore che segnala gli ID dei sensori non validi per Gateway"),
   ),
-)[#uml-schema("75", "Errore ID sensore invalido")]
+)[#uml-schema("76", "Errore ID sensore invalido")]
