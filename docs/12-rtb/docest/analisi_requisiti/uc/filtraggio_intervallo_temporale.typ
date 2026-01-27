@@ -7,16 +7,16 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "Il sistema mostra i dati relativi allo Stream del Tenant",
+    "Il Sistema mostra i dati relativi allo Stream del Tenant",
   ),
   postconds: (
-    "Il sistema salva la richiesta di visualizzazione",
+    "Il Sistema salva la richiesta di visualizzazione",
   ),
   trigger: "L’Attore primario vuole visualizzare i dati relativi ad uno specifico intervallo temporale",
   main-scen: (
     (descr: "L’Attore primario seleziona un intervallo di tempo per visualizzare i dati al suo interno"),
-    (descr: "Il sistema salva le preferenze di visualizzazione"),
+    (descr: "Il Sistema salva le preferenze di visualizzazione"),
   ),
 )[
-  #uml-schema("27", "Diagramma filtraggio dati per intervallo temporale")
+  #uml-schema("27", "Diagramma Filtraggio dati per intervallo temporale")
 ]

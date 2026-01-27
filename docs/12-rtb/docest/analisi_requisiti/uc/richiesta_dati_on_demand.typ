@@ -42,4 +42,4 @@
       uc: "err_intervallo_temporale_invalido",
     ),
   ),
-)[#uml-schema("73", "Richiesta dati On-Demand")]
+)[#uml-schema("73", "Diagramma Richiesta dati On-Demand")]

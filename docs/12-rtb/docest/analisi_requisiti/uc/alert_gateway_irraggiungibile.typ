@@ -14,7 +14,7 @@
   ),
   trigger: "Un Gateway diventa irraggiungibile",
   main-scen: (
-    (descr: "Il sistema notifica l’Attore primario dell’irraggiungibilità del Gateway"),
+    (descr: "Il Sistema notifica l’Attore primario dell’irraggiungibilità del Gateway"),
     (
       descr: "L’Attore primario visualizza il nome Gateway interessato",
       inc: "visualizzazione_nome_gateway",
@@ -25,5 +25,5 @@
     ),
   ),
 )[
-  #uml-schema("30", "Diagramma alert Gateway non raggiungibile")
+  #uml-schema("30", "Diagramma Ricezione alert Gateway non raggiungibile")
 ]

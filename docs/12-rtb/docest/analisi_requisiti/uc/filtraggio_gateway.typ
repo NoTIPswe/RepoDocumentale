@@ -10,7 +10,7 @@
     "Esiste almeno un Gateway nel Tenant",
   ),
   postconds: (
-    "Il sistema salva la richiesta di visualizzazione",
+    "Il Sistema salva la richiesta di visualizzazione",
   ),
   trigger: "L’Attore primario vuole filtrare per Gateway",
   main-scen: (
@@ -19,11 +19,10 @@
       inc: "filtraggio_singolo_gateway",
     ),
     (
-      descr: "Il sistema salva le informazioni di visualizzazione",
+      descr: "Il Sistema salva le informazioni di visualizzazione",
     ),
   ),
-  alt-scen: (
-  ),
+  alt-scen: (),
 )[
-  #uml-schema("25", "Diagramma filtraggio dati per Gateway")
+  #uml-schema("25", "Diagramma Filtraggio dati per Gateway")
 ]

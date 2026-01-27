@@ -20,4 +20,4 @@
       inc: "visualizzazione_singolo_utente_tenant",
     ),
   ),
-)[#uml-schema("50", "Visualizzazione lista Utenti del Tenant")]
+)[#uml-schema("50", "Diagramma Visualizzazione lista Utenti del Tenant")]

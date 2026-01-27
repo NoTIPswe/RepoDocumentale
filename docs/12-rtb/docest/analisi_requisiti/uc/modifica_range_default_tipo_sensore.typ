@@ -25,4 +25,4 @@
     ),
     (descr: "L’Attore salva le modifiche"),
   ),
-)[#uml-schema("46", "Modifica range alert default per tipo sensore")]
+)[#uml-schema("46", "Diagramma Modifica range alert default per tipo sensore")]

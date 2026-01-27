@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
-    "Il sistema mostra all’Attore primario la lista dei Tenant",
+    "Il Sistema mostra all’Attore primario la lista dei Tenant",
   ),
   postconds: (
     "L’Attore visualizza tutte le informazioni di dettaglio del Tenant selezionato",
@@ -37,4 +37,4 @@
     // bookmark
     // consumi leagti ad i Gateway associati
   ),
-)[#uml-schema("80", "Visualizzazione dettagli Tenant")]
+)[#uml-schema("80", "Diagramma Visualizzazione dettagli Tenant")]

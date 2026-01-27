@@ -17,5 +17,5 @@
     (descr: "L’Attore visualizza il timestamp dell’emissione dell’alert"),
   ),
 )[
-  #uml-schema("34", "Diagramma visualizzazione timestamp emissione alert")
+  #uml-schema("34", "Diagramma Visualizzazione timestamp emissione alert")
 ]

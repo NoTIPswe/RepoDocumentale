@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: (CA.tenant-adm, CA.sys-adm),
   preconds: (
-    "Il sistema mostra all'Attore primario la sezione dedicata ai log di Audit",
+    "Il Sistema mostra all'Attore primario la sezione dedicata ai log di Audit",
   ),
   postconds: (
     "L’Attore visualizza correttamente i dati di suo interesse",
@@ -19,4 +19,4 @@
       inc: "visualizzazione_singolo_log_audit",
     ),
   ),
-)[#uml-schema("64", "Visualizzazione log di audit tenant")]
+)[#uml-schema("64", "Diagramma Visualizzazione log di Audit Tenant")]

@@ -15,9 +15,9 @@
   ),
   trigger: "Policy opzionale di sicurezza che richiede un secondo fattore di autenticazione per completare l'accesso",
   main-scen: (
-    (descr: "Il sistema richiede l'inserimento del codice OTP"),
+    (descr: "Il Sistema richiede l'inserimento del codice OTP"),
     (descr: "L'Attore primario inserisce il codice", inc: "ins_otp"),
   ),
 )[
-  #uml-schema("4", "Login 2FA")
+  #uml-schema("4", "Diagramma Login 2FA")
 ]

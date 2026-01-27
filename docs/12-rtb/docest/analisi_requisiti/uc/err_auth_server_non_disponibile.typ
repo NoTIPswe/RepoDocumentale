@@ -3,12 +3,12 @@
 #uc(
   id: "err_auth_server_non_disponibile",
   system: CLOUD_SYS,
-  title: "Auth Server non disponibile",
+  title: "Errore Auth Server non disponibile",
   level: 1,
   prim-actors: CA.api-client,
   sec-actors: CSA.auth-server,
   preconds: (
-    "Il sistema ha ricevuto la richiesta di autenticazione dall'Attore primario",
+    "Il Sistema ha ricevuto la richiesta di autenticazione dall'Attore primario",
     "L’Auth Server non è raggiungibile o risponde con un errore interno",
   ),
   postconds: (
@@ -16,7 +16,7 @@
   ),
   trigger: "",
   main-scen: (
-    (descr: "L’Auth Server non è raggiungibile o risponde al sistema con un errore interno"),
-    (descr: "L’Attore primario riceve un messaggio di errore interno dal sistema"),
+    (descr: "L’Auth Server non è raggiungibile o risponde al Sistema con un errore interno"),
+    (descr: "L’Attore primario riceve un messaggio di errore interno dal Sistema"),
   ),
-)[#uml-schema("72", "Errore Auth Server non disponibile")]
+)[#uml-schema("72", "Diagramma Errore Auth Server non disponibile")]

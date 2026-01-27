@@ -3,11 +3,11 @@
 #uc(
   id: "err_account_inesistente",
   system: CLOUD_SYS,
-  title: "Errore - Account non esistente",
+  title: "Errore account non esistente",
   level: 1,
   prim-actors: CA.non-authd-usr,
   preconds: (
-    "La mail fornita dall'Attore non risulta associata ad alcun account registrato nel sistema",
+    "La mail fornita dall'Attore non risulta associata ad alcun account registrato nel Sistema",
   ),
   postconds: (
     "L'Attore primario ricompila il campo mail",
@@ -17,6 +17,6 @@
     (descr: "L'Attore primario viene notificato dell'inserimento di una mail non associata a nessun account"),
   ),
 )[
-  #uml-schema("8", "Account Non Esistente")
+  #uml-schema("8", "Diagramma Errore account non esistente")
 
 ]

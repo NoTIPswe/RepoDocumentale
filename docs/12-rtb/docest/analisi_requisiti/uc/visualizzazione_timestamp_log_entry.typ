@@ -7,13 +7,13 @@
   level: 2,
   prim-actors: (CA.tenant-adm, CA.sys-adm),
   preconds: (
-    "Il sistema mostra all'Attore primario i log di Audit del Tenant",
+    "Il Sistema mostra all'Attore primario i log di Audit del Tenant",
   ),
   postconds: (
-    "L’Attore visualizza correttamente il timestamp di una singola entry del log di audit",
+    "L’Attore visualizza correttamente il timestamp di una singola entry del log di Audit",
   ),
-  trigger: "L'Attore vuole visualizzare i dati di una singola entry del log di audit",
+  trigger: "L'Attore vuole visualizzare i dati di una singola entry del log di Audit",
   main-scen: (
-    (descr: "L’Attore visualizza il timestamp relativo alla entry del log di audit"),
+    (descr: "L’Attore visualizza il timestamp relativo alla entry del log di Audit"),
   ),
 )

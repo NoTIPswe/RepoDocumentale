@@ -435,14 +435,14 @@
 
     [R-10-F],
     [Obbligatorio],
-    [Il Sistema deve notificare all'utente non autenticato di aver inserito un email non associata ad un account nel
-      Sistema.],
-    [#tag-uc("err_account_inesistente")],
+    [Il Sistema deve permettere all'utente non autenticato di cambiare la password nel Sistema.],
+    [#tag-uc("cambio_password")],
 
     [R-11-F],
     [Obbligatorio],
-    [Il Sistema deve permettere all'utente non autenticato di cambiare la password nel Sistema.],
-    [#tag-uc("cambio_password")],
+    [Il Sistema deve notificare all'utente non autenticato di aver inserito un email non associata ad un account nel
+      Sistema.],
+    [#tag-uc("err_account_inesistente")],
 
     [R-12-F],
     [Obbligatorio],
@@ -596,9 +596,9 @@
     [Obbligatorio],
     [Il Sistema deve notificare il Tenant User dell'irraggiungibilità di un gateway. Inoltre deve anche permettere di
       visualizzare il nome e il timestamp dell'ultimo invio dati di tale gateway.],
-    [#tag-uc("visualizzazione_nome_gateway"), #tag-uc(
+    [#tag-uc(
         "alert_gateway_irraggiungibile",
-      )/* forse bisognerebbe inserire anche il primo uc che da problemi con typst*/
+      )
     ],
 
     [R-40-F],
@@ -690,84 +690,78 @@
 
     [R-57-F],
     [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di selezionare uno o più Gateway tramite
-      il loro ID.],
-    [#tag-uc("selezione_gateway")],
-
-    [R-58-F],
-    [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di selezionare lo stato desiderato per i Gateway che ha selezionato.],
     [#tag-uc("selezione_stato_gateway")],
 
-    [R-59-F],
+    [R-58-F],
     [Obbligatorio],
     [Il Sistema deve permettere al tenant admin di cambiare il range dell'alert per un determinato sensore.],
     [#tag-uc("modifica_range_sensore")],
 
-    [R-60-F],
+    [R-59-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di selezionare uno specifico sensore.],
     [#tag-uc("selezione_specifico_sensore")],
 
-    [R-61-F],
+    [R-60-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di selezionare un range per le misurazioni, inserendo un valore minimo e
       uno di massimo],
     [#tag-uc("selezione_range_numerico")],
 
-    [R-62-F],
+    [R-61-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di inserire un valore numerico quando richiesto.],
     [#tag-uc("inserimento_valore_numerico")],
 
-    [R-63-F],
+    [R-62-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di modificare il range dell'alert di default per tutti i sensori di un
       determinato tipo.],
     [#tag-uc("modifica_range_default_tipo_sensore")],
 
-    [R-64-F],
+    [R-63-F],
     [Obbligatorio],
     [Il Sistema deve permettere al tenant Admin di selezionare un determinato tipo di sensore.],
     [#tag-uc("selezione_tipo_sensore")],
 
-    [R-65-F],
+    [R-64-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant admin di cambiare il timeout che determina se un Gateway è irraggiungibile],
     [#tag-uc("modifica_intervallo_alert_gateway")],
 
-    [R-66-F],
+    [R-65-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati del Tenant di cui è amministratore],
     [#tag-uc("visualizzazione_costi_stimati")],
 
-    [R-67-F],
+    [R-66-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati relativi allo storage del Gateway
       selezionato],
     [#tag-uc("visualizzazione_costi_storage")],
 
-    [R-68-F],
+    [R-67-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati dei Gateway associati al Tenant
       raggruppati in base alla banda.],
     [#tag-uc("visualizzazione_costi_banda")],
 
-    [R-69-F],
+    [R-68-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di visualizzare gli Utenti associati al proprio Tenant.],
     [#tag-uc("visualizzazione_lista_utenti_tenant")],
 
-    [R-70-F],
+    [R-69-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di visualizzare un singolo utente del Tenant. Le informazioni che devono
       essere visualizzate sono il ruolo dell'Utente, il nome dell'Utente, la mail dell'Utente e l'ultimo accesso
       dell'utente.],
     [#tag-uc("visualizzazione_singolo_utente_tenant"), #tag-uc("visualizzazione_ruolo_utente"), #tag-uc(
         "visualizzazione_nome_utente",
-      ), #tag-uc("visualizzazione_mail_utente"), #tag-uc("visualizzazione_ultimo_accesso_utente")],
+      ), #tag-uc("visualizzazione_ultimo_accesso_utente"), #tag-uc("visualizzazione_mail_utente"),],
 
-    [R-71-F],
+    [R-70-F],
 
     [Obbligatorio],
 
@@ -775,7 +769,7 @@
 
     [#tag-uc("creazione_utente_tenant")],
 
-    [R-72-F],
+    [R-71-F],
 
     [Obbligatorio],
 
@@ -783,7 +777,7 @@
 
     [#tag-uc("inserimento_nome_utente")],
 
-    [R-73-F],
+    [R-72-F],
 
     [Obbligatorio],
 
@@ -791,7 +785,7 @@
 
     [#tag-uc("selezione_utente_tenant")],
 
-    [R-74-F],
+    [R-73-F],
 
     [Obbligatorio],
 
@@ -799,7 +793,7 @@
 
     [#tag-uc("selezione_permessi_utente"), #tag-uc("modifica_permessi_utente")],
 
-    [R-75-F],
+    [R-74-F],
 
     [Obbligatorio],
 
@@ -807,13 +801,13 @@
 
     [#tag-uc("modifica_mail_utente")],
 
-    [R-76-F], [Obbligatorio],
+    [R-75-F], [Obbligatorio],
 
     [Il Sistema deve permettere al Tenant Admin di modificare la password di un Utente Tenant.],
 
     [#tag-uc("modifica_password_utente")],
 
-    [R-77-F],
+    [R-76-F],
 
     [Obbligatorio],
 
@@ -821,14 +815,14 @@
 
     [#tag-uc("eliminazione_utenti_tenant")],
 
-    [R-78-F],
+    [R-77-F],
 
     [Obbligatorio],
 
     [Il Sistema deve permettere al Tenant Admin di selezionare più Utenti Tenant contemporaneamente],
     [#tag-uc("selezione_lista_utenti")],
 
-    [R-79-F],
+    [R-78-F],
 
     [Obbligatorio],
 
@@ -837,7 +831,7 @@
 
     [#tag-uc("creazione_credenziali_api"), #tag-uc("inserimento_nome_client_api")],
 
-    [R-80-F],
+    [R-79-F],
 
     [Obbligatorio],
 
@@ -845,7 +839,7 @@
 
     [#tag-uc("visualizzazione_client_id")],
 
-    [R-81-F],
+    [R-80-F],
 
     [Obbligatorio],
 
@@ -853,14 +847,14 @@
 
     [#tag-uc("visualizzazione_secret_api")],
 
-    [R-82-F],
+    [R-81-F],
 
     [Obbligatorio],
 
     [Il Sistema deve permettere al Tenant Admin di visualizzare la lista delle credenziali API relative ad un Tenant.],
     [#tag-uc("visualizzazione_lista_api")],
 
-    [R-83-F],
+    [R-82-F],
 
     [Obbligatorio],
 
@@ -868,7 +862,7 @@
 
     [#tag-uc("visualizzazione_singole_api")],
 
-    [R-84-F],
+    [R-83-F],
 
     [Obbligatorio],
 
@@ -877,88 +871,94 @@
 
     [#tag-uc("visualizzazione_nome_descrittivo_api")],
 
-    [R-85-F],
+    [R-84-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di visualizzare il timestamp di creazione di specifiche credenziali API
       di un Tenant],
     [#tag-uc("visualizzazione_timestamp_api")],
 
-    [R-86-F],
+    [R-85-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di eliminare delle credenziali API specifiche di un Tenant.],
     [#tag-uc("eliminazione_credenziali_api")],
 
-    [R-87-F],
+    [R-86-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di selezionare delle specifiche credenziali API di un Tenant.],
     [#tag-uc("selezione_credenziali_api")],
 
-    [R-88-F],
+    [R-87-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin di modificare le impostazioni del login 2FA di un Tenant.],
     [#tag-uc("modifica_impostazioni_2fa")],
 
-    [R-89-F],
+    [R-88-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare i log di Audit del
       Tenant.],
     [#tag-uc("visualizzazione_log_audit_tenant"), #tag-uc("visualizzazione_singolo_log_audit")],
 
-    [R-90-F],
+    [R-89-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare il timestamp di una
       entry del log di Audit.],
     [#tag-uc("visualizzazione_timestamp_log_entry")],
 
-    [R-91-F],
+    [R-90-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare l'Utente relativa ad un
       entry del log Audit.],
     [#tag-uc("visualizzazione_utente_log_entry")],
 
-    [R-92-F],
+    [R-91-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare l'azione relativa ad una
       singola entry del log di Audit.],
     [#tag-uc("visualizzazione_operazione_log_entry")],
 
-    [R-93-F],
+    [R-92-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di esportare i log per fare Audit del
       Tenant.
     ],
     [#tag-uc("esportazione_log_audit_tenant")],
 
-    [R-94-F],
+    [R-93-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di inserire un intervallo temporale per
       visualizzare i log.],
     [#tag-uc("selezione_intervallo_temporale")],
 
-    [R-95-F],
+    [R-94-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di scaricare i log sul proprio
       dispositivo.],
     [#tag-uc("download_log_audit_esportati")],
 
-    [R-96-F],
+    [R-95-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di modificare le impostazioni di
       impersonificazione relative al Tenant.],
     [#tag-uc("modifica_impostazioni_impersonificazione")],
 
-    [R-97-F],
+    [R-96-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di installare una nuova versione
       firmware sul Gateway.],
     [#tag-uc("aggiornamento_firmware_gateway"), #tag-uc("selezione_firmware")],
+
+    [R-97-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di selezionare uno o più Gateway tramite
+      il loro ID.],
+    [#tag-uc("selezione_gateway")],
 
     [R-98-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant admin di modificare la frequenza di invio dati di un Gateway.],
     [#tag-uc("modifica_frequenza_invio_gateway")],
 
-    [R-98-F],
+    [R-99-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Client API di autenticarsi per contattare le API.],
     [#tag-uc("autenticazione_client_api")],
@@ -1119,50 +1119,38 @@
 
     [R-129-F],
     [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di monitorare le prestazioni complessive del Sistema.],
-    [#tag-uc("monitoraggio_performance_sistema")],
+    [Il Sistema deve permettere all'Amministratore di Sistema di monitorare le prestazioni complessive del Sistema, in
+      particolare, la latenza media, il volume di traffico e lo l'utilizzo dello storage.],
+    [#tag-uc("monitoraggio_performance_sistema"), #tag-uc("monitoraggio_latenza"), #tag-uc(
+        "monitoraggio_volumi_traffico",
+      ), #tag-uc("monitoraggio_storage")],
 
     [R-130-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di monitorare la latenza media del Sistema.],
-    [#tag-uc("monitoraggio_latenza")],
-
-    [R-131-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di monitorare il volume di traffico del Sistema.],
-    [#tag-uc("monitoraggio_volumi_traffico")],
-
-    [R-132-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di monitorare l'utilizzo dello storage del Sistema.],
-    [#tag-uc("monitoraggio_storage")],
-
-    [R-133-F],
     [Obbligatorio],
     [Il Sistema deve permettere al non provisioned Gateway di attivarsi e connettersi correttamente con il Sistema.],
     [#tag-uc("onboarding_gateway")],
 
-    [R-134-F],
+    [R-131-F],
     [Obbligatorio],
     [Il Sistema deve permettere al non provisioned Gateway di ricevere una risposta di errore di autenticazione. ],
     [#tag-uc("err_auth_gateway_fabbrica")],
 
-    [R-135-F],
+    [R-132-F],
     [Obbligatorio],
     [Il Sistema deve permettere al provisioned Gateway di inviare dati crittografici al Cloud.],
     [#tag-uc("invio_dati_crittografati_cloud")],
 
-    [R-136-F],
+    [R-133-F],
     [Obbligatorio],
     [Il Sistema deve permettere al non provisioned Gateway di aprire un canale di comunicazione sicuro.],
     [#tag-uc("instaurazione_connessione_sicura")],
 
-    [R-137-F],
+    [R-134-F],
     [Obbligatorio],
     [Il Sistema deve notificare il provisioned Gateway che il processo di autenticazione è fallito.],
     [#tag-uc("err_autenticazione_gateway")],
 
-    [R-138-F],
+    [R-135-F],
     [Obbligatorio],
     [Il Sistema deve notificare il Tenant Admin che il range inserito è invalido.],
     [#tag-uc("err_range_invalido")],
@@ -1171,23 +1159,23 @@
   #table(
     columns: (auto, auto, 2fr, 1fr),
     [Codice], [Importanza], [Descrizione], [Fonte],
-    [R-1-F],
+    [R-S-1-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Utente del Simulatore di poter visualizzare la lista di Gateway simulati.],
     [#tag-uc("visualizzazione_lista_gateway_simulati")],
 
-    [R-2-F],
+    [R-S-2-F],
     [Obbligatorio],
     [Il Sistema deve permettere di poter visualizzare un singolo Gateway simulato, comprendendo anche la data della sua
       creazione.],
     [#tag-uc("visualizzazione_singolo_gateway_simulato"), #tag-uc("visualizzazione_data_creazione_simulazione")],
 
-    [R-3-F],
+    [R-S-3-F],
     [Obbligatorio],
     [Il Sistema deve permettere di visualizzare l'ID di fabbrica di un Gateway simulato.],
     [#tag-uc("visualizzazione_id_fabbrica_simulazione")],
 
-    [R-4-F],
+    [R-S-4-F],
     [Obbligatorio],
     [Il Sistema deve permettere di visualizzare la configurazione di simulazione di un Gateway, di cui fanno parte:
       chiave segreta, numero di serie, versione del software e modello.],
@@ -1197,17 +1185,17 @@
         "visualizzazione_software_gateway_simulato",
       ), #tag-uc("visualizzazione_modello_gateway_simulato")],
 
-    [R-5-F],
+    [R-S-5-F],
     [Obbligatorio],
     [Il Sistema deve permettere di visualizzare la lista di sensori di un Gateway simulato.],
     [#tag-uc("visualizzazione_lista_sensori_gateway_simulato")],
 
-    [R-6-F],
+    [R-S-6-F],
     [Obbligatorio],
     [Il Sistema deve permettere di visualizzare un singolo sensore di un Gateway simulato.],
     [#tag-uc("visualizzazione_singolo_sensore_simulato")],
 
-    [R-7-F],
+    [R-S-7-F],
     [Obbligatorio],
     [Il Sistema deve permettere di visualizzare la configurazione di un sensore simulato, di cui fanno parte: range
       generazione dati, algoritmo di generazione dati, identificativo e tipologia di sensore.
@@ -1217,51 +1205,96 @@
         "visualizzazione_tipo_sensore_simulato",
       )],
 
-    [R-8-F],
+    [R-S-8-F],
     [Obbligatorio],
     [Il Sistema deve permettere di eliminare un Gateway simulato.],
     [#tag-uc("eliminazione_gateway_simulato")],
 
-    [R-9-F],
+    [R-S-9-F],
     [Obbligatorio],
     [Il Sistema deve permettere di eliminare un sensore simulato.],
     [#tag-uc("eliminazione_sensore_simulato")],
 
-    [R-10-F],
+    [R-S-10-F],
     [Obbligatorio],
     [Il Sistema deve permettere di creare e fare il deploy di un Gateway simulato.],
     [#tag-uc("creazione_deploy_gateway_simulato")],
 
-    [R-11-F],
+    [R-S-11-F],
     [Obbligatorio],
     [Il Sistema deve permettere di inserire i dati di configurazione di un Gateway simulato.],
     [#tag-uc("inserimento_dati_config_sim_gateway")],
 
-    [R-12-F],
+    [R-S-12-F],
     [Obbligatorio],
     [Il Sistema deve notificare all'Utente del Simulatore che si è verificato un errore durante il deploy del Gateway.],
     [#tag-uc("err_deploy_gateway_simulato")],
 
-    [R-13-F],
+    [R-S-13-F],
     [Obbligatorio],
     [Il Sistema deve permettere di creare un sensore di un Gateway simulato.],
     [#tag-uc("creazione_sensore_gateway_simulato")],
 
-    [R-14-F],
+    [R-S-14-F],
     [Obbligatorio],
     [Il Sistema deve permettere di inserire i dati di configurazione di un sensore simulato.],
     [#tag-uc("inserimento_dati_config_sim_sensore")],
 
-    [R-15-F],
+    [R-S-15-F],
     [Obbligatorio],
     [Il Sistema deve notificare all'Utente del Simulatore che il range di generazione dati inserito è invalido.],
     [#tag-uc("err_range_invalido_simulazione")],
 
-    [R-16-F],
+    [R-S-16-F],
     [Obbligatorio],
     [Il Sistema deve notificare all'Utente del Simulatore che si è verificato un errore durante la creazione di un
       sensore simulato.],
     [#tag-uc("err_creazione_sensore_simulato")],
+
+    [R-S-17-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere di testare il suo comportamento qualora ci fossero più instanze di Gateway simulati in
+      parallelo.],
+    [#tag-uc("creazione_gateway_multipli_default")],
+
+    [R-S-18-F],
+    [Obbligatorio],
+    [Il Sistema deve notificare all'Utente del Simulatore che il valore numerico inserito risulta non valido.],
+    [#tag-uc("err_valore_numerico_invalido")],
+
+    [R-S-19-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere di testare il suo comportamento qualora ci fosse un degrado della rete.],
+    [#tag-uc("comando_anomalia_degrado_rete")],
+
+    [R-S-20-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere di testare il suo comportamento in caso di disconnessione temporanea della rete.],
+    [#tag-uc("comando_anomalia_disconnessione_temporanea")],
+
+    [R-S-21-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere di testare il suo comportamento qualora un sensore misurasse valori inaspettati.],
+    [#tag-uc("comando_anomalia_outliers_misurazioni")],
+
+    [R-S-22-F],
+    [Obbligatorio],
+    [Il Sistema deve permettere al Sistema Cloud di modificare le impostazioni di configurazione di un Gateway, di
+      modificare la frequenza di invio dati e dello stato di sospensione],
+    [#tag-uc("impostazione_configurazione_gateway"), #tag-uc("impostazione_frequenza_invio_dati"), #tag-uc(
+        "impostazione_stato_sospensione",
+      )],
+
+    [R-S-23-F],
+    [Obbligatorio],
+    [Il Sistema deve notificare al Sistema Cloud che il payload di configurazione ricevuto risulta invalido.],
+    [#tag-uc("err_sintattico_config_gateway")],
+
+    [R-S-24-F],
+    [Obbligatorio],
+    [Il Sistema deve notificare al Sistema Cloud che il valore di frequenza ricevuto è sintatticamente corretto, ma non
+      accettabile.],
+    [#tag-uc("err_config_frequenza_fuori_range")],
   )
   == Requisiti Qualitativi
   #table(
@@ -1306,7 +1339,12 @@
     [R-8-Q],
     [Obbligatorio],
     [È necessario rispettare tutte le norme presenti nel documento interno Norme di Progetto.],
-    [#link("https://notipswe.github.io/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto]],
+    [Interno],
+
+    [R-9-Q],
+    [Obbligatorio],
+    [I test e le metriche relative devono essere elencate e descritte nel documento interno Piano di Qualifica.],
+    [Interno],
   )
   == Requisiti di Vincolo
   #table(
@@ -1371,6 +1409,387 @@
   )
   = Tracciamento Requisiti
   == Tracciamento Fonte - Requisiti
+  #table(
+    columns: (auto, auto, auto),
+    [Fonte], [Requisito], [Importanza],
+    [UC1], [R-1-F], [Obbligatorio],
+    [UC1.1], [R-2-F], [Obbligatorio],
+    [UC1.2], [R-3-F], [Obbligatorio],
+    [UC2], [R-4-F], [Obbligatorio],
+    [UC3], [R-5-F], [Desiderabile],
+    [UC4], [R-6-F], [Desiderabile],
+    [UC5], [R-7-F], [Desiderabile],
+    [UC6], [R-8-F], [Desiderabile],
+    [UC7], [R-9-F], [Obbligatorio],
+    [UC7.1], [R-10-F], [Obbligatorio],
+    [UC8], [R-11-F], [Obbligatorio],
+    [UC9], [R-12-F], [Obbligatorio],
+    [UC10], [R-13-F], [Obbligatorio],
+    [UC11], [R-14-F], [Obbligatorio],
+    [UC12], [R-15-F], [Obbligatorio],
+    [UC13], [R-16-F], [Obbligatorio],
+    [UC14], [R-17-F], [Obbligatorio],
+    [UC15], [R-18-F], [Obbligatorio],
+    [UC16], [R-19-F], [Obbligatorio],
+    [UC17], [R-20-F], [Obbligatorio],
+    [UC18], [R-21-F], [Obbligatorio],
+    [UC18.1], [R-22-F], [Obbligatorio],
+    [UC19], [R-23-F], [Obbligatorio],
+    [UC20], [R-24-F], [Obbligatorio],
+    [UC21], [R-25-F], [Obbligatorio],
+    [UC22], [R-26-F], [Obbligatorio],
+    [UC22.1], [R-27-F], [Obbligatorio],
+    [UC22.1.1], [R-28-F], [Obbligatorio],
+    [UC22.1.1.1], [R-29-F], [Obbligatorio],
+    [UC23], [R-30-F], [Obbligatorio],
+    [UC24], [R-31-F], [Obbligatorio],
+    [UC24.1], [R-32-F], [Desiderabile],
+    [UC24.2], [R-33-F], [Desiderabile],
+    [UC25], [R-34-F], [Obbligatorio],
+    [UC25.1], [R-34-F], [Obbligatorio],
+    [UC26], [R-35-F], [Obbligatorio],
+    [UC26.1], [R-35-F], [Obbligatorio],
+    [UC27], [R-36-F], [Obbligatorio],
+    [UC28], [R-37-F], [Obbligatorio],
+    [UC29], [R-38-F], [Obbligatorio],
+    [UC30], [R-39-F], [Obbligatorio],
+    [UC31], [R-40-F], [Obbligatorio],
+    [UC31.1], [R-41-F], [Obbligatorio],
+    [UC31.2], [R-42-F], [Obbligatorio],
+    [UC32], [R-43-F], [Obbligatorio],
+    [UC33], [R-44-F], [Obbligatorio],
+    [UC33.1], [R-45-F], [Obbligatorio],
+    [UC33.1.1], [R-46-F], [Obbligatorio],
+    [UC33.1.2], [R-47-F], [Obbligatorio],
+    [UC34], [R-48-F], [Obbligatorio],
+    [UC35], [R-49-F], [Obbligatorio],
+    [UC36], [R-50-F], [Obbligatorio],
+    [UC37], [R-51-F], [Obbligatorio],
+    [UC38], [R-52-F], [Desiderabile],
+    [UC39], [R-53-F], [Desiderabile],
+    [UC40], [R-54-F], [Desiderabile],
+    [UC41], [R-55-F], [Obbligatorio],
+    [UC42], [R-56-F], [Obbligatorio],
+    [UC42.1], [R-57-F], [Obbligatorio],
+    [UC43], [R-58-F], [Obbligatorio],
+    [UC43.1], [R-59-F], [Obbligatorio],
+    [UC44], [R-60-F], [Obbligatorio],
+    [UC45], [R-61-F], [Obbligatorio],
+    [UC46], [R-62-F], [Obbligatorio],
+    [UC47], [R-63-F], [Obbligatorio],
+    [UC48], [R-64-F], [Obbligatorio],
+    [UC49], [R-65-F], [Obbligatorio],
+    [UC49.1], [R-66-F], [Obbligatorio],
+    [UC49.2], [R-67-F], [Obbligatorio],
+    [UC50], [R-68-F], [Obbligatorio],
+    [UC50.1], [R-69-F], [Obbligatorio],
+    [UC50.1.1], [R-69-F], [Obbligatorio],
+    [UC50.1.2], [R-69-F], [Obbligatorio],
+    [UC50.1.3], [R-69-F], [Obbligatorio],
+    [UC51], [R-69-F], [Obbligatorio],
+    [UC52], [R-70-F], [Obbligatorio],
+    [UC52.1], [R-71-F], [Obbligatorio],
+    [UC53], [R-72-F], [Obbligatorio],
+    [UC54], [R-73-F], [Obbligatorio],
+    [UC55], [R-73-F], [Obbligatorio],
+    [UC56], [R-74-F], [Obbligatorio],
+    [UC57], [R-75-F], [Obbligatorio],
+    [UC58], [R-76-F], [Obbligatorio],
+    [UC58.1], [R-77-F], [Obbligatorio],
+    [UC59], [R-78-F], [Obbligatorio],
+    [UC59.1], [R-78-F], [Obbligatorio],
+    [UC60], [R-79-F], [Obbligatorio],
+    [UC60.1], [R-80-F], [Obbligatorio],
+    [UC61], [R-81-F], [Obbligatorio],
+    [UC61.1], [R-82-F], [Obbligatorio],
+    [UC61.1.1], [R-83-F], [Obbligatorio],
+    [UC61.1.2], [R-84-F], [Obbligatorio],
+    [UC62], [R-85-F], [Obbligatorio],
+    [UC62.1], [R-86-F], [Obbligatorio],
+    [UC63], [R-87-F], [Obbligatorio],
+    [UC64], [R-88-F], [Obbligatorio],
+    [UC64.1], [R-88-F], [Obbligatorio],
+    [UC64.2], [R-89-F], [Obbligatorio],
+    [UC64.3], [R-90-F], [Obbligatorio],
+    [UC64.4], [R-91-F], [Obbligatorio],
+    [UC65], [R-92-F], [Obbligatorio],
+    [UC65.1], [R-93-F], [Obbligatorio],
+    [UC65.2], [R-94-F], [Obbligatorio],
+    [UC66], [R-95-F], [Obbligatorio],
+    [UC67], [R-96-F], [Obbligatorio],
+    [UC67.1], [R-96-F], [Obbligatorio],
+    [UC68], [R-97-F], [Obbligatorio],
+    [UC69], [R-98-F], [Obbligatorio],
+    [UC70], [R-99-F], [Obbligatorio],
+    [UC71], [R-100-F], [Obbligatorio],
+    [UC72], [R-101-F], [Obbligatorio],
+    [UC73], [R-102-F], [Obbligatorio],
+    [UC74], [R-103-F], [Obbligatorio],
+    [UC75], [R-104-F], [Obbligatorio],
+    [UC76], [R-105-F], [Obbligatorio],
+    [UC77], [R-106-F], [Obbligatorio],
+    [UC78], [R-107-F], [Obbligatorio],
+    [UC79], [R-108-F], [Obbligatorio],
+    [UC79.1], [R-109-F], [Obbligatorio],
+    [UC80], [R-110-F], [Obbligatorio],
+    [UC81], [R-111-F], [Obbligatorio],
+    [UC82], [R-112-F], [Obbligatorio],
+    [UC83], [R-113-F], [Obbligatorio],
+    [UC83.1], [R-114-F], [Obbligatorio],
+    [UC84], [R-115-F], [Obbligatorio],
+    [UC85], [R-116], [Obbligatorio],
+    [UC86], [R-117-F], [Obbligatorio],
+    [UC86.1], [R-118-F], [Obbligatorio],
+    [UC87], [R-119-F], [Obbligatorio],
+    [UC88], [R-120-F], [Obbligatorio],
+    [UC89], [R-121-F], [Obbligatorio],
+    [UC90], [R-122-F], [Obbligatorio],
+    [UC91], [R-123-F], [Obbligatorio],
+    [UC91.1], [R-123-F], [Obbligatorio],
+    [UC92], [R-124-F], [Obbligatorio],
+    [UC93], [R-125-F], [Obbligatorio],
+    [UC93.1], [R-125-F], [Obbligatorio],
+    [UC94], [R-126-F], [Obbligatorio],
+    [UC95], [R-127-F], [Obbligatorio],
+    [UC96], [R-128-F], [Obbligatorio],
+    [UC97], [R-129-F], [Obbligatorio],
+    [UC97.1], [R-129-F], [Obbligatorio],
+    [UC97.2], [R-129-F], [Obbligatorio],
+    [UC97.3], [R-129-F], [Obbligatorio],
+    [UC98], [R-130-F], [Obbligatorio],
+    [UC99], [R-131-F], [Obbligatorio],
+    [UC100], [R-132-F], [Obbligatorio],
+    [UC100.1], [R-133-F], [Obbligatorio],
+    [UC101], [R-134-F], [Obbligatorio],
+    [UC102], [R-135-F], [Obbligatorio],
+    [UCS1], [R-S-1-F], [Obbligatorio],
+    [UCS1.1], [R-S-2-F], [Obbligatorio],
+    [UCS1.1.1], [R-S-2-F], [Obbligatorio],
+    [UCS2], [R-S-3-F], [Obbligatorio],
+    [UCS3], [R-S-4-F], [Obbligatorio],
+    [UCS3.1], [R-S-4-F], [Obbligatorio],
+    [UCS3.2], [R-S-4-F], [Obbligatorio],
+    [UCS3.3], [R-S-4-F], [Obbligatorio],
+    [UCS3.4], [R-S-4-F], [Obbligatorio],
+    [UCS4], [R-S-5-F], [Obbligatorio],
+    [UCS4.1], [R-S-6-F], [Obbligatorio],
+    [UCS5], [R-S-7-F], [Obbligatorio],
+    [UCS5.1], [R-S-7-F], [Obbligatorio],
+    [UCS5.2], [R-S-7-F], [Obbligatorio],
+    [UCS6], [R-S-7-F], [Obbligatorio],
+    [UCS7], [R-S-7-F], [Obbligatorio],
+    [UCS8], [R-S-8-F], [Obbligatorio],
+    [UCS9], [R-S-9-F], [Obbligatorio],
+    [UCS10], [R-S-10-F], [Obbligatorio],
+    [UCS10.1], [R-S-11-F], [Obbligatorio],
+    [UCS11], [R-S-12-F], [Obbligatorio],
+    [UCS12], [R-S-13-F], [Obbligatorio],
+    [UCS12.1], [R-S-14-F], [Obbligatorio],
+    [UCS13], [R-S-15-F], [Obbligatorio],
+    [UCS14], [R-S-16-F], [Obbligatorio],
+    [UCS15], [R-S-17-F], [Obbligatorio],
+    [UCS16], [R-S-18-F], [Obbligatorio],
+    [UCS17], [R-S-19-F], [Obbligatorio],
+    [UCS18], [R-S-20-F], [Obbligatorio],
+    [UCS19], [R-S-21-F], [Obbligatorio],
+    [UCS20], [R-S-22-F], [Obbligatorio],
+    [UCS20.1], [R-S-22-F], [Obbligatorio],
+    [UCS20.2], [R-S-22-F], [Obbligatorio],
+    [UCS21], [R-S-23-F], [Obbligatorio],
+    [UCS22], [R-S-24-F], [Obbligatorio],
+    [Capitolato],
+    [R-1-Q \ R-2-Q \ R-3-Q \ R-4-Q \ R-5-Q \ R-6-Q \ R-7-Q \ R-1-V \ R-2-V \ R-3-V \ R-4-V \ R-5-V \ R-6-V ],
+    [Obbligatorio],
+
+    [Interno], [R-8-Q \ R-9-Q], [Obbligatorio],
+  )
   == Tracciamento Requisito - Fonte
+  #table(
+    columns: (auto, auto, auto),
+    [Requisito], [Importanza], [Fonte],
+    [R-1-F], [Obbligatorio], [UC1],
+    [R-2-F], [Obbligatorio], [UC1.1],
+    [R-3-F], [Obbligatorio], [UC1.2],
+    [R-4-F], [Obbligatorio], [UC2],
+    [R-5-F], [Desiderabile], [UC3],
+    [R-6-F], [Desiderabile], [UC4],
+    [R-7-F], [Desiderabile], [UC5],
+    [R-8-F], [Desiderabile], [UC6],
+    [R-9-F], [Obbligatorio], [UC7],
+    [R-10-F], [Obbligatorio], [UC7.1],
+    [R-11-F], [Obbligatorio], [UC8],
+    [R-12-F], [Obbligatorio], [UC9],
+    [R-13-F], [Obbligatorio], [UC10],
+    [R-14-F], [Obbligatorio], [UC11],
+    [R-15-F], [Obbligatorio], [UC12],
+    [R-16-F], [Obbligatorio], [UC13],
+    [R-17-F], [Obbligatorio], [UC14],
+    [R-18-F], [Obbligatorio], [UC15],
+    [R-19-F], [Obbligatorio], [UC16],
+    [R-20-F], [Obbligatorio], [UC17],
+    [R-21-F], [Obbligatorio], [UC18],
+    [R-22-F], [Obbligatorio], [UC18.1],
+    [R-23-F], [Obbligatorio], [UC19],
+    [R-24-F], [Obbligatorio], [UC20],
+    [R-25-F], [Obbligatorio], [UC21],
+    [R-26-F], [Obbligatorio], [UC22],
+    [R-27-F], [Obbligatorio], [UC22.1],
+    [R-28-F], [Obbligatorio], [UC22.1.1],
+    [R-29-F], [Obbligatorio], [UC22.1.1.1],
+    [R-30-F], [Obbligatorio], [UC23],
+    [R-31-F], [Obbligatorio], [UC24],
+    [R-32-F], [Desiderabile], [UC24.1],
+    [R-33-F], [Desiderabile], [UC24.2],
+    [R-34-F], [Obbligatorio], [UC25 \ UC25.1],
+    [R-35-F], [Obbligatorio], [UC26 \ UC26.1],
+    [R-36-F], [Obbligatorio], [UC27],
+    [R-37-F], [Obbligatorio], [UC28],
+    [R-38-F], [Obbligatorio], [UC29],
+    [R-39-F], [Obbligatorio], [UC30],
+    [R-40-F], [Obbligatorio], [UC31],
+    [R-41-F], [Obbligatorio], [UC31.1],
+    [R-42-F], [Obbligatorio], [UC31.2],
+    [R-43-F], [Obbligatorio], [UC32],
+    [R-44-F], [Obbligatorio], [UC33],
+    [R-45-F], [Obbligatorio], [UC33.1],
+    [R-46-F], [Obbligatorio], [UC33.1.1],
+    [R-47-F], [Obbligatorio], [UC33.1.2],
+    [R-48-F], [Obbligatorio], [UC34],
+    [R-49-F], [Obbligatorio], [UC35],
+    [R-50-F], [Obbligatorio], [UC36],
+    [R-51-F], [Obbligatorio], [UC37],
+    [R-52-F], [Desiderabile], [UC38],
+    [R-53-F], [Desiderabile], [UC39],
+    [R-54-F], [Desiderabile], [UC40],
+    [R-55-F], [Obbligatorio], [UC41],
+    [R-56-F], [Obbligatorio], [UC42],
+    [R-57-F], [Obbligatorio], [UC42.1],
+    [R-58-F], [Obbligatorio], [UC43],
+    [R-59-F], [Obbligatorio], [UC43.1],
+    [R-60-F], [Obbligatorio], [UC44],
+    [R-61-F], [Obbligatorio], [UC45],
+    [R-62-F], [Obbligatorio], [UC46],
+    [R-63-F], [Obbligatorio], [UC47],
+    [R-64-F], [Obbligatorio], [UC48],
+    [R-65-F], [Obbligatorio], [UC49],
+    [R-66-F], [Obbligatorio], [UC49.1],
+    [R-67-F], [Obbligatorio], [UC49.2],
+    [R-68-F], [Obbligatorio], [UC50],
+    [R-69-F], [Obbligatorio], [UC50.1 \ UC50.1.1 \ UC50.1.2 \ UC50.1.3 \ UC51],
+    [R-70-F], [Obbligatorio], [UC52],
+    [R-71-F], [Obbligatorio], [UC52.1],
+    [R-72-F], [Obbligatorio], [UC53],
+    [R-73-F], [Obbligatorio], [UC54 \ UC55],
+    [R-74-F], [Obbligatorio], [UC56],
+    [R-75-F], [Obbligatorio], [UC57],
+    [R-76-F], [Obbligatorio], [UC58],
+    [R-77-F], [Obbligatorio], [UC58.1],
+    [R-78-F], [Obbligatorio], [UC59 \ UC59.1],
+    [R-79-F], [Obbligatorio], [UC60],
+    [R-80-F], [Obbligatorio], [UC60.1],
+    [R-81-F], [Obbligatorio], [UC61],
+    [R-82-F], [Obbligatorio], [UC61.1],
+    [R-83-F], [Obbligatorio], [UC61.1.1],
+    [R-84-F], [Obbligatorio], [UC61.1.2],
+    [R-85-F], [Obbligatorio], [UC62],
+    [R-86-F], [Obbligatorio], [UC62.1],
+    [R-87-F], [Obbligatorio], [UC63],
+    [R-88-F], [Obbligatorio], [UC64 \ UC64.1],
+    [R-89-F], [Obbligatorio], [UC64.2],
+    [R-90-F], [Obbligatorio], [UC64.3],
+    [R-91-F], [Obbligatorio], [UC64.4],
+    [R-92-F], [Obbligatorio], [UC65],
+    [R-93-F], [Obbligatorio], [UC65.1],
+    [R-94-F], [Obbligatorio], [UC65.2],
+    [R-95-F], [Obbligatorio], [UC66],
+    [R-96-F], [Obbligatorio], [UC67 \ UC67.1],
+    [R-97-F], [Obbligatorio], [UC68],
+    [R-98-F], [Obbligatorio], [UC69],
+    [R-99-F], [Obbligatorio], [UC70],
+    [R-100-F], [Obbligatorio], [UC71],
+    [R-101-F], [Obbligatorio], [UC72],
+    [R-102-F], [Obbligatorio], [UC73],
+    [R-103-F], [Obbligatorio], [UC74],
+    [R-104-F], [Obbligatorio], [UC75],
+    [R-105-F], [Obbligatorio], [UC76],
+    [R-106-F], [Obbligatorio], [UC77],
+    [R-107-F], [Obbligatorio], [UC78],
+    [R-108-F], [Obbligatorio], [UC79],
+    [R-109-F], [Obbligatorio], [UC79.1],
+    [R-110-F], [Obbligatorio], [UC80],
+    [R-111-F], [Obbligatorio], [UC81],
+    [R-112-F], [Obbligatorio], [UC82],
+    [R-113-F], [Obbligatorio], [UC83],
+    [R-114-F], [Obbligatorio], [UC83.1],
+    [R-115-F], [Obbligatorio], [UC84],
+    [R-116-F], [Obbligatorio], [UC85],
+    [R-117-F], [Obbligatorio], [UC86],
+    [R-118-F], [Obbligatorio], [UC86.1],
+    [R-119-F], [Obbligatorio], [UC87],
+    [R-120-F], [Obbligatorio], [UC88],
+    [R-121-F], [Obbligatorio], [UC89],
+    [R-122-F], [Obbligatorio], [UC90],
+    [R-123-F], [Obbligatorio], [UC91 \ UC91.1],
+    [R-124-F], [Obbligatorio], [UC92],
+    [R-125-F], [Obbligatorio], [UC93 \ UC93.1],
+    [R-126-F], [Obbligatorio], [UC94],
+    [R-127-F], [Obbligatorio], [UC95],
+    [R-128-F], [Obbligatorio], [UC96],
+    [R-129-F], [Obbligatorio], [UC97 \ UC97.1 \ UC97.2 \ UC97.3],
+    [R-130-F], [Obbligatorio], [UC98],
+    [R-131-F], [Obbligatorio], [UC99],
+    [R-132-F], [Obbligatorio], [UC100],
+    [R-133-F], [Obbligatorio], [UC100.1],
+    [R-134-F], [Obbligatorio], [UC101],
+    [R-135-F], [Obbligatorio], [UC102],
+    [R-S-1-F], [Obbligatorio], [UCS1],
+    [R-S-2-F], [Obbligatorio], [UCS1.1 \ UCS1.1.1],
+    [R-S-3-F], [Obbligatorio], [UCS2],
+    [R-S-4-F], [Obbligatorio], [UCS3 \ UCS3.1 \ UCS3.2 \ UCS3.3 \ UCS3.4],
+    [R-S-5-F], [Obbligatorio], [UCS4],
+    [R-S-6-F], [Obbligatorio], [UCS4.1],
+    [R-S-7-F], [Obbligatorio], [UCS5 \ UCS5.1 \ UCS5.2 \ UCS6 \ UCS7],
+    [R-S-8-F], [Obbligatorio], [UCS8],
+    [R-S-9-F], [Obbligatorio], [UCS9],
+    [R-S-10-F], [Obbligatorio], [UCS10],
+    [R-S-11-F], [Obbligatorio], [UCS10.1],
+    [R-S-12-F], [Obbligatorio], [UCS11],
+    [R-S-13-F], [Obbligatorio], [UCS12],
+    [R-S-14-F], [Obbligatorio], [UCS12.1],
+    [R-S-15-F], [Obbligatorio], [UCS13],
+    [R-S-16-F], [Obbligatorio], [UCS14],
+    [R-S-17-F], [Obbligatorio], [UCS15],
+    [R-S-18-F], [Obbligatorio], [UCS16],
+    [R-S-19-F], [Obbligatorio], [UCS17],
+    [R-S-20-F], [Obbligatorio], [UCS18],
+    [R-S-21-F], [Obbligatorio], [UCS19],
+    [R-S-22-F], [Obbligatorio], [UCS20 \ UC20.1 \ UC20.2],
+    [R-S-23-F], [Obbligatorio], [UCS21],
+    [R-S-24-F], [Obbligatorio], [UCS22],
+    [R-1-Q], [Obbligatorio], [Capitolato],
+    [R-2-Q], [Obbligatorio], [Capitolato],
+    [R-3-Q], [Obbligatorio], [Capitolato],
+    [R-4-Q], [Obbligatorio], [Capitolato],
+    [R-5-Q], [Obbligatorio], [Capitolato],
+    [R-6-Q], [Obbligatorio], [Capitolato],
+    [R-7-Q], [Obbligatorio], [Capitolato],
+    [R-8-Q], [Obbligatorio], [Interno],
+    [R-9-Q], [Obbligatorio], [Interno],
+    [R-1-V], [Obbligatorio], [Capitolato],
+    [R-2-V], [Obbligatorio], [Capitolato],
+    [R-3-V], [Obbligatorio], [Capitolato],
+    [R-4-V], [Obbligatorio], [Capitolato],
+    [R-5-V], [Obbligatorio], [Capitolato],
+    [R-6-V], [Obbligatorio], [Capitolato],
+  )
   == Riepilogo Requisiti per Categoria
+  #table(
+    columns: (auto, auto, auto, auto),
+    [Tipologia], [Obbligatori], [Desiderabili], [Totale],
+    [Funzionali], [150], [9], [159],
+    [Qualità], [9], [0], [9],
+    [Vincolo], [6], [0], [6],
+    [Sicurezza], [], [], [],
+    [Prestazione], [], [], [],
+  )
 ]

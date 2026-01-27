@@ -8,7 +8,7 @@
   prim-actors: CA.tenant-usr,
   preconds: (
     "Esiste almeno un Gateway nel Tenant",
-    "Il sistema mostra i Gateway di cui l'attore primario potrà visualizzare lo Stream di dati",
+    "Il Sistema mostra i Gateway di cui l'attore primario potrà visualizzare lo Stream di dati",
   ),
   postconds: (
     "Viene aggiunto un Gateway alla lista della richiesta",

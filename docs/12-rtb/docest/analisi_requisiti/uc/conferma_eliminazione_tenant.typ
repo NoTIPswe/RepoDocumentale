@@ -3,19 +3,19 @@
 #uc(
   id: "conferma_eliminazione_tenant",
   system: CLOUD_SYS,
-  title: "Conferma Eliminazione Tenant",
+  title: "Conferma eliminazione Tenant",
   level: 2,
   prim-actors: CA.sys-adm,
   preconds: (
     "(Ereditate da UC. Eliminazione Tenant)",
-    "Il sistema riceve la conferma dell’operazione di eliminazione del Tenant dall’Attore primario",
+    "Il Sistema riceve la conferma dell’operazione di eliminazione del Tenant dall’Attore primario",
   ),
   postconds: (
     "La richiesta di eliminazione del Tenant è stata confermata con successo",
   ),
-  trigger: "",
+  trigger: "L'Attore vuole eliminare un Tenant di interesse",
   main-scen: (
-    (descr: "L’Attore primario viene informato delle conseguenze dell’eliminazione del Tenant selezionato"),
-    (descr: "L’Attore primario conferma il desiderio di eliminare il Tenant in analisi"),
+    (descr: "L’Attore viene informato delle conseguenze dell’eliminazione del Tenant selezionato"),
+    (descr: "L’Attore conferma il desiderio di eliminare il Tenant in analisi"),
   ),
 )

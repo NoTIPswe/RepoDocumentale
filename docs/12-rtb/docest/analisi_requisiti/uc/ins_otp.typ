@@ -8,24 +8,24 @@
   prim-actors: CA.non-authd-usr,
   preconds: (
     "Le credenziali primarie dell'Attore sono state validate",
-    "Il sistema è in attesa del codice di verifica temporaneo",
+    "Il Sistema è in attesa del codice di verifica temporaneo",
   ),
   postconds: (
     "L'Attore ha inserito un codice OTP valido",
   ),
   trigger: "Necessità di fornire il secondo fattore di autenticazione",
   main-scen: (
-    (descr: "L'Attore inserisce il codice numerico nel sistema", ep: "OtpErrato"),
+    (descr: "L'Attore inserisce il codice numerico nel Sistema", ep: "OtpErrato"),
     (descr: "L'Attore viene informato della correttezza del codice inserito"),
   ),
   alt-scen: (
     (
       ep: "OtpErrato",
-      cond: "L'OTP inserito non viene riconosciuto come valido dal sistema",
+      cond: "L'OTP inserito non viene riconosciuto come valido dal Sistema",
       uc: "err_otp_errato",
     ),
   ),
 )[
-  #uml-schema("5", "Inserimento OTP")
+  #uml-schema("5", "Diagramma Inserimento OTP")
 
 ]

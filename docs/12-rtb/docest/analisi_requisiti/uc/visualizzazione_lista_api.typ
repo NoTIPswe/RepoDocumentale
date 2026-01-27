@@ -9,7 +9,7 @@
   preconds: (
     "Esiste almeno un Tenant",
     "Il Tenant risulta attivo",
-    "Al Tenant risulta associato almeno un client ID e una Secret API",
+    "Al Tenant risulta associato almeno un Client ID e una Secret API",
     "Il Sistema sta mostrando la lista di API associate al Tenant",
   ),
   postconds: (
@@ -22,4 +22,4 @@
       inc: "visualizzazione_singole_api",
     ),
   ),
-)[#uml-schema("61", "Visualizzazione lista credenziali API del Tenant")]
+)[#uml-schema("61", "Diagramma Visualizzazione lista credenziali API del Tenant")]

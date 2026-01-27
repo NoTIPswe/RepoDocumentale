@@ -21,6 +21,6 @@
     ),
   ),
 )[
-  #uml-schema("18", "Visualizzazione lista Gateway")
+  #uml-schema("18", "Diagramma Visualizzazione lista Gateway")
 
 ]

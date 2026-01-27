@@ -32,5 +32,5 @@
     ),
   ),
 )[
-  #uml-schema("37", "Diagramma visualizzazione dettagli alert sensore fuori range")
+  #uml-schema("37", "Diagramma Visualizzazione dettagli alert sensore fuori range")
 ]

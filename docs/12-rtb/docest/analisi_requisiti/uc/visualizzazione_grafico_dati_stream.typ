@@ -16,7 +16,7 @@
   trigger: "L’Attore primario vuole visualizzare lo Stream di dati su grafici",
   main-scen: (
     (descr: "L’Attore primario visualizza uno o più grafici (in base alla tipologia dato) su base temporale"),
-    (descr: "Il sistema distingue le serie nel caso i dati includano più sensori (es. per sensore o tipo misura)"),
+    (descr: "Il Sistema distingue le serie nel caso i dati includano più sensori (es. per sensore o tipo misura)"),
   ),
 )[
 ]

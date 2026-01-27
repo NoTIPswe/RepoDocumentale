@@ -35,5 +35,5 @@
     ),
   ),
 )[
-  #uml-schema("24", "Diagramma visualizzazione dati Stream")
+  #uml-schema("24", "Diagramma Visualizzazione dati Stream")
 ]

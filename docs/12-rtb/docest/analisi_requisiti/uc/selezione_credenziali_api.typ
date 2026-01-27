@@ -7,7 +7,7 @@
   level: 2,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "Il sistema mette a disposizione all'Attore primario la lista delle credenziali dell'API",
+    "Il Sistema mette a disposizione all'Attore primario la lista delle credenziali dell'API",
   ),
   postconds: (
     "Delle credenziali API sono state correttamente selezionate",

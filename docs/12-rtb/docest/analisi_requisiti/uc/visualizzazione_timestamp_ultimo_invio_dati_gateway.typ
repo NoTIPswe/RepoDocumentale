@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "Il sistema mostra i dettagli di un Gateway o di un alert riguardante un Gateway non raggiungibile",
+    "Il Sistema mostra i dettagli di un Gateway o di un alert riguardante un Gateway non raggiungibile",
   ),
   postconds: (
     "L'orario dell'ultimo pacchetto dati ricevuto è visibile",
@@ -17,5 +17,5 @@
     (descr: "L'Attore primario visualizza l’orario dell’ultimo invio dati da parte del Gateway"),
   ),
 )[
-  #uml-schema("22", "Diagramma visualizzazione timestamp ultimo invio dati Gateway")
+  #uml-schema("22", "Diagramma Visualizzazione timestamp ultimo invio dati Gateway")
 ]

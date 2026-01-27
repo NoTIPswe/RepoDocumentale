@@ -3,7 +3,7 @@
 #uc(
   system: SIM_SYS,
   id: "err_valore_numerico_invalido",
-  title: "Errore - Valore numerico non valido",
+  title: "Errore Valore numerico non valido",
   level: 1,
   prim-actors: (SA.sym-usr),
   preconds: (

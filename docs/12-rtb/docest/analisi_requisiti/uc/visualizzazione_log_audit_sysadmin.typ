@@ -3,24 +3,24 @@
 #uc(
   id: "visualizzazione_log_audit_sysadmin",
   system: CLOUD_SYS,
-  title: "Visualizzazione Log di Audit di un Tenant",
+  title: "Visualizzazione log di Audit di un Tenant",
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
     "Il Sistema si trova nella sezione dedicata alla visualizzazione dei Tenant",
   ),
   postconds: (
-    "I log di audit del Tenant selezionato sono visualizzati correttamente",
+    "I log di Audit del Tenant selezionato sono visualizzati correttamente",
   ),
-  trigger: "Si desidera consultare i log di audit relativi ad un Tenant",
+  trigger: "Si desidera consultare i log di Audit relativi ad un Tenant",
   main-scen: (
     (
       descr: "L’Attore seleziona un Tenant",
       inc: "selezione_tenant",
     ),
     (
-      descr: "L’Attore visualizza i log di audit del Tenant selezionato",
+      descr: "L’Attore visualizza i log di Audit del Tenant selezionato",
       inc: "visualizzazione_singolo_log_audit",
     ),
   ),
-)[#uml-schema("95", "Visualizzazione Log di Audit di un Tenant")]
+)[#uml-schema("95", "Diagramma Visualizzazione log di Audit di un Tenant")]

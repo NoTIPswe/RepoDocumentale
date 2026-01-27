@@ -15,6 +15,6 @@
   trigger: "L’Attore vuole attivare/disattivare la ricezione di alert via email",
   main-scen: (
     (descr: "L’Attore esprime la preferenza di ricezione notifiche via email (on/off)"),
-    (descr: "Il sistema salva le preferenze"),
+    (descr: "Il Sistema salva le preferenze"),
   ),
-)[#uml-schema("38", "Diagramma modifica impostazioni notifica alert via email")]
+)[#uml-schema("38", "Diagramma Modifica impostazioni notifica alert via email")]

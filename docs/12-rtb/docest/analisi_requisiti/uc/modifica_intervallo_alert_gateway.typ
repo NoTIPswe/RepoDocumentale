@@ -21,4 +21,4 @@
     ),
     (descr: "L’Attore riceve la conferma della modifica apportata"),
   ),
-)[#uml-schema("48", "Modifica intervallo alert Gateway irraggiungibile")]
+)[#uml-schema("48", "Diagramma Modifica intervallo alert Gateway irraggiungibile")]

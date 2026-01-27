@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "Il sistema mostra i dati che l’Attore primario ha richiesto di visualizzare",
+    "Il Sistema mostra i dati che l’Attore primario ha richiesto di visualizzare",
   ),
   postconds: (
     "I dati visualizzati vengono esportati correttamente",
@@ -18,4 +18,4 @@
     (descr: "L’Attore avvia il download dei dati di cui è stata richiesta l’esportazione"),
     (descr: "L’Attore ottiene i dati esportati in un nuovo file dedicato"),
   ),
-)[#uml-schema("29", "Diagramma esportazione dati")]
+)[#uml-schema("29", "Diagramma Esportazione dati")]

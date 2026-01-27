@@ -36,4 +36,4 @@
       uc: "err_range_invalido",
     ),
   ),
-)[#uml-schema("43", "Modifica range alert sensore specifico")]
+)[#uml-schema("43", "Diagramma Modifica range alert sensore specifico")]

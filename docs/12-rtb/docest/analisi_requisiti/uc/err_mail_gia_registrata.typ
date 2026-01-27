@@ -3,7 +3,7 @@
 #uc(
   id: "err_mail_gia_registrata",
   system: CLOUD_SYS,
-  title: "Errore - Mail Duplicata",
+  title: "Errore mail duplicata",
   level: 1,
   prim-actors: (CA.authd-usr,),
   preconds: (
@@ -22,6 +22,6 @@
     ),
   ),
 )[
-  #uml-schema("15", "Mail Duplicata")
+  #uml-schema("15", "Diagramma Errore mail duplicata")
 
 ]

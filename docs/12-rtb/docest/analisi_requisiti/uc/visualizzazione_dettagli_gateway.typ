@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "Il sistema mostra la lista di Gateway",
+    "Il Sistema mostra la lista di Gateway",
   ),
   postconds: (
     "L'Attore primario visualizza nome, stato, ultimo timestamp dati inviati ed i sensori del Gateway",
@@ -35,5 +35,5 @@
     ),
   ),
 )[
-  #uml-schema("21", "Diagramma visualizzazione Gateway")
+  #uml-schema("21", "Diagramma Visualizzazione dettagli Gateway")
 ]

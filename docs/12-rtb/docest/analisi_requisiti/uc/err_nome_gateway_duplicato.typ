@@ -3,7 +3,7 @@
 #uc(
   id: "err_nome_gateway_duplicato",
   system: CLOUD_SYS,
-  title: "Nome Gateway Duplicato",
+  title: "Errore nome Gateway duplicato",
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
@@ -18,5 +18,5 @@
     (descr: "L’Attore viene invitato ad inserirne un altro valido"),
   ),
 )[
-  #uml-schema("41", "Diagramma errore nome Gateway duplicato")
+  #uml-schema("41", "Diagramma Errore nome Gateway duplicato")
 ]

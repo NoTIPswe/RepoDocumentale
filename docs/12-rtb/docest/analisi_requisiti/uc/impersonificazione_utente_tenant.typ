@@ -17,8 +17,8 @@
   ),
   trigger: "Si desidera operare/verificare funzionalità e configurazioni di un Tenant dal punto di vista di un Utente Tenant",
   main-scen: (
-    (descr: "L’Attore primario seleziona l’opzione di impersonificazione di un Utente per il Tenant selezionato"),
+    (descr: "L’Attore seleziona l’opzione di impersonificazione di un Utente per il Tenant selezionato"),
     (descr: "L’Attore viene reindirizzato nell’ambiente applicativo come “Utente Tenant” o “Amministratore Tenant”"),
     (descr: "L’Attore utilizza le funzionalità disponibili, nel rispetto dei permessi dell’Utente impersonificato"),
   ),
-)[#uml-schema("92", "Impersonificazione Utenti Tenant")]
+)[#uml-schema("92", "Diagramma Impersonificazione Utenti Tenant")]

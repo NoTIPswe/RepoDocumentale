@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
-    "Il sistema mostra all’Attore primario la lista per la Gestione Tenant",
+    "Il Sistema mostra all’Attore primario la lista per la Gestione Tenant",
   ),
   postconds: (
     "Il Tenant è stato riattivato correttamente",
@@ -23,4 +23,4 @@
     (descr: "L’Attore conferma la decisione di riattivare il Tenant selezionato"),
     (descr: "L’Attore riceve una notifica di operazione avvenuta con successo"),
   ),
-)[#uml-schema("90", "Riattivazione Tenant")]
+)[#uml-schema("90", "Diagramma Riattivazione Tenant")]

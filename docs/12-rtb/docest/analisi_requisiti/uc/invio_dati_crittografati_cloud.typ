@@ -3,7 +3,7 @@
 #uc(
   id: "invio_dati_crittografati_cloud",
   system: CLOUD_SYS,
-  title: "Invio Dati Crittografati al Cloud",
+  title: "Invio dati crittografati al Cloud",
   level: 1,
   prim-actors: CA.p-gway,
   preconds: (
@@ -21,4 +21,4 @@
     (descr: "L’Attore invia i dati in maniera sicura al Cloud"),
     (descr: "L’Attore riceve la notifica dell’esito dell’operazione"),
   ),
-)[#uml-schema("100", "Invio dati crittografati al Cloud")]
+)[#uml-schema("100", "Diagramma invio dati crittografati al Cloud")]

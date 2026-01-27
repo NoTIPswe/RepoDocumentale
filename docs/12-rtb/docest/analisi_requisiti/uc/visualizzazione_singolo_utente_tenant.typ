@@ -3,7 +3,7 @@
 #uc(
   id: "visualizzazione_singolo_utente_tenant",
   system: CLOUD_SYS,
-  title: "Visualizzazione singolo utente del tenant",
+  title: "Visualizzazione singolo Utente del Tenant",
   level: 2,
   prim-actors: CA.tenant-adm,
   preconds: (
@@ -14,23 +14,23 @@
   postconds: (
     "L’Attore principale visualizza il singolo Utente",
   ),
-  trigger: "L’Attore principale vuole visualizzare un singolo utente del tenant",
+  trigger: "L’Attore principale vuole visualizzare un singolo utente del Tenant",
   main-scen: (
     (
-      descr: "L’Attore visualizza il ruolo dell’utente (Utente o Amministratore)",
+      descr: "L’Attore visualizza il ruolo dell’Utente (Utente o Amministratore)",
       inc: "visualizzazione_ruolo_utente",
     ),
     (
-      descr: "L'Attore visualizza il nome dell’utente",
+      descr: "L'Attore visualizza il nome dell’Utente",
       inc: "visualizzazione_nome_utente",
     ),
     (
-      descr: "L’Attore visualizza la mail dell’utente",
+      descr: "L’Attore visualizza la mail dell’Utente",
       inc: "visualizzazione_mail_utente",
     ),
     (
-      descr: "L’Attore visualizza la data di ultimo accesso dell’utente",
+      descr: "L’Attore visualizza la data di ultimo accesso dell’Utente",
       inc: "visualizzazione_ultimo_accesso_utente",
     ),
   ),
-)[#uml-schema("50.1", "Visualizzazione singolo Utente del Tenant")]
+)[#uml-schema("50.1", "Diagramma Visualizzazione singolo Utente del Tenant")]

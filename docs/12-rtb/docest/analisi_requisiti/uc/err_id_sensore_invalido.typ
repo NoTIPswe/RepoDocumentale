@@ -7,8 +7,8 @@
   level: 1,
   prim-actors: CA.api-client,
   preconds: (
-    "Il sistema ha ricevuto un token di autenticazione valido dall'Attore primario",
-    "Il sistema verifica che l’ID del sensore fornito non è valido/registrato",
+    "Il Sistema ha ricevuto un token di autenticazione valido dall'Attore primario",
+    "Il Sistema verifica che l’ID del sensore fornito non è valido/registrato",
   ),
   postconds: (
     "L’Attore non può procedere con la richiesta",
@@ -18,4 +18,4 @@
   main-scen: (
     (descr: "L’Attore riceve una risposta di errore che segnala gli ID dei sensori non validi per Gateway"),
   ),
-)[#uml-schema("76", "Errore ID sensore invalido")]
+)[#uml-schema("76", "Diagramma Errore ID sensore invalido")]

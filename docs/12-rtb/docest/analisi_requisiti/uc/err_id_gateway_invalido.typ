@@ -7,8 +7,8 @@
   level: 1,
   prim-actors: CA.api-client,
   preconds: (
-    "Il sistema riceve un token di autenticazione valido",
-    "Il sistema riceve dall’Attore uno o più ID Gateway non validi allegati ad una richiesta",
+    "Il Sistema riceve un token di autenticazione valido",
+    "Il Sistema riceve dall’Attore uno o più ID Gateway non validi allegati ad una richiesta",
   ),
   postconds: (
     "L’Attore non può procedere con la richiesta",
@@ -18,4 +18,4 @@
   main-scen: (
     (descr: "L’Attore riceve una risposta di errore che segnala gli ID dei Gateway non validi"),
   ),
-)[#uml-schema("75", "Errore ID Gateway invalido")]
+)[#uml-schema("75", "Diagramma Errore ID Gateway invalido")]

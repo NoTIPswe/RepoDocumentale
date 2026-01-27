@@ -3,12 +3,12 @@
 #uc(
   id: "modifica_nome_tenant",
   system: CLOUD_SYS,
-  title: "Modifica Nome Tenant",
+  title: "Modifica nome Tenant",
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
     "L’Attore primario ha selezionato un Tenant",
-    "Il sistema mostra all’Attore primario la lista dei Tenant modificabili",
+    "Il Sistema mostra all’Attore primario la lista dei Tenant modificabili",
   ),
   postconds: (
     "L’Attore ha modificato correttamente il nome Tenant",
@@ -18,4 +18,4 @@
     (descr: "L’Attore inserisce un nuovo nome descrittivo per il Tenant"),
     (descr: "L’Attore salva le modifiche"),
   ),
-)[#uml-schema("85", "Modifica Nome Tenant")]
+)[#uml-schema("85", "Diagramma Modifica nome Tenant")]

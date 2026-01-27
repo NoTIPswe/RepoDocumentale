@@ -7,16 +7,16 @@
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
-    "Il sistema mostra all’Attore primario la lista dei Tenant",
+    "Il Sistema mostra all’Attore primario la lista dei Tenant",
   ),
   postconds: (
-    "L’Attore primario visualizza l’elenco completo dei Tenant registrati nel sistema",
+    "L’Attore primario visualizza l’elenco completo dei Tenant registrati nel Sistema",
   ),
   trigger: "",
   main-scen: (
     (
-      descr: "L’Attore primario visualizza la lista dei Tenant del sistema",
+      descr: "L’Attore primario visualizza la lista dei Tenant del Sistema",
       inc: "visualizzazione_singolo_tenant",
     ),
   ),
-)[#uml-schema("79", "Visualizzazione lista Tenant")]
+)[#uml-schema("79", "Diagramma Visualizzazione lista Tenant")]

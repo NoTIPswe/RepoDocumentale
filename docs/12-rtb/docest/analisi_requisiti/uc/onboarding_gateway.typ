@@ -14,12 +14,12 @@
   postconds: (
     "Il Gateway viene provisionato correttamente",
     "Il Gateway è in stato “active”",
-    "Il Gateway inizia a comunicare con il sistema",
+    "Il Gateway inizia a comunicare con il Sistema",
   ),
   trigger: "Connessione del Gateway e prima comunicazione con il Sistema",
   main-scen: (
     (
-      descr: "Il Gateway contatta il sistema attraverso un canale di comunicazione predefinito allegando le proprie credenziali di fabbrica",
+      descr: "Il Gateway contatta il Sistema attraverso un canale di comunicazione predefinito allegando le proprie credenziali di fabbrica",
       ep: "CredenzialiNonRiconosciute",
     ),
     (
@@ -36,4 +36,4 @@
       uc: "err_auth_gateway_fabbrica",
     ),
   ),
-)[#uml-schema("98", "Provisioning Gateway - Onboarding")]
+)[#uml-schema("98", "Diagramma Provisioning Gateway - Onboarding")]

@@ -8,7 +8,7 @@
   prim-actors: CA.non-authd-usr,
   preconds: (
     "Esiste un account associato alla mail fornita",
-    "Il sistema consente l’avvio della procedura di recupero password",
+    "Il Sistema consente l’avvio della procedura di recupero password",
   ),
   postconds: (
     "La password è stata aggiornata e l'Utente può effettuare il login con le nuove credenziali",
@@ -36,6 +36,6 @@
     ),
   ),
 )[
-  #uml-schema("7", "Recupero Password")
+  #uml-schema("7", "Diagramma Recupero password")
 
 ]

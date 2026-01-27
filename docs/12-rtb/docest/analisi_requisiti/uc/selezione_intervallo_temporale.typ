@@ -7,12 +7,12 @@
   level: 2,
   prim-actors: (CA.tenant-adm, CA.sys-adm),
   preconds: (
-    "Il sistema mostra all'Attore primario i log di Audit del Tenant",
+    "Il Sistema mostra all'Attore primario i log di Audit del Tenant",
   ),
   postconds: (
     "L’Attore ha selezionato un intervallo temporale valido",
   ),
-  trigger: "L'Attore vuole esportare dei log di audit di un Tenant",
+  trigger: "L'Attore vuole esportare dei log di Audit di un Tenant",
   main-scen: (
     (descr: "L’Attore seleziona un timestamp minimo"),
     (descr: "L’Attore seleziona un timestamp massimo (maggiore del minimo)"),

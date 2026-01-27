@@ -3,11 +3,11 @@
 #uc(
   id: "err_password_invalida",
   system: CLOUD_SYS,
-  title: "Errore - Password non valida",
+  title: "Errore password non valida",
   level: 1,
   prim-actors: (CA.non-authd-usr, CA.authd-usr),
   preconds: (
-    "La password fornita non soddisfa i criteri di validazione definiti dal sistema",
+    "La password fornita non soddisfa i criteri di validazione definiti dal Sistema",
   ),
   postconds: (
     "La password inserita viene rifiutata",
@@ -17,6 +17,6 @@
     (descr: "L’Attore viene notificato che l’email inserita non è valida e viene invitato a sceglierne un’altra"),
   ),
 )[
-  #uml-schema("11", "Password non valida")
+  #uml-schema("11", "Diagramma Errore password non valida")
 
 ]

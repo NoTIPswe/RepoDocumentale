@@ -3,7 +3,7 @@
 #uc(
   id: "modifica_mail_account",
   system: CLOUD_SYS,
-  title: "Modifica Mail Account",
+  title: "Modifica mail account",
   level: 1,
   prim-actors: (CA.authd-usr,),
   preconds: (
@@ -23,6 +23,6 @@
     ),
   ),
 )[
-  #uml-schema("12", "Modifica Mail Account")
+  #uml-schema("12", "Diagramma Modifica mail account")
 
 ]

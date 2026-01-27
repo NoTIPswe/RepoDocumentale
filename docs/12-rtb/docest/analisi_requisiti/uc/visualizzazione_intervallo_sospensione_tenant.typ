@@ -7,7 +7,7 @@
   level: 2,
   prim-actors: CA.sys-adm,
   preconds: (
-    "Il sistema mostra all’Attore primario la lista dei Tenant",
+    "Il Sistema mostra all’Attore primario la lista dei Tenant",
   ),
   postconds: (
     "L’Attore visualizza l’intervallo temporale minimo di sospensione pre-eliminazione",

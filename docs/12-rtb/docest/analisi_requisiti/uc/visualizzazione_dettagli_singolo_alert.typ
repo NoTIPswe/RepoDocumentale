@@ -21,5 +21,5 @@
     (descr: "L’Attore visualizza le informazioni riguardanti l’alert"),
   ),
 )[
-  #uml-schema("35", "Diagramma visualizzazione dettagli singolo alert")
+  #uml-schema("35", "Diagramma Visualizzazione dettagli singolo alert")
 ]

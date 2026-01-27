@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: (CA.authd-usr,),
   preconds: (
-    "Non ci sono interazioni in corso tra sistema e Attore primario",
+    "Non ci sono interazioni in corso tra Sistema e Attore primario",
   ),
   postconds: (
     "La sessione viene riavviata e si torna al login",
@@ -18,6 +18,6 @@
     (descr: "L’Attore primario conferma l’operazione di logout"),
   ),
 )[
-  #uml-schema("17", "Logout")
+  #uml-schema("17", "Diagramma Logout")
 
 ]

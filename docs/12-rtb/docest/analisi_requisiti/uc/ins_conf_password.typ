@@ -3,11 +3,11 @@
 #uc(
   id: "inserimento_conferma_password",
   system: CLOUD_SYS,
-  title: "Inserimento e Conferma Password",
+  title: "Inserimento e conferma password",
   level: 1,
   prim-actors: (CA.non-authd-usr, CA.authd-usr),
   preconds: (
-    "Il sistema richiede l’impostazione di una nuova password per l’account",
+    "Il Sistema richiede l’impostazione di una nuova password per l’account",
   ),
   postconds: (
     "Password validata e salvata",
@@ -36,6 +36,6 @@
     ),
   ),
 )[
-  #uml-schema("9", "Inserimento e Conferma password")
+  #uml-schema("9", "Diagramma Inserimento e conferma password")
 
 ]

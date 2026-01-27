@@ -14,7 +14,7 @@
   postconds: (
     "L’Attore ha inserito le credenziali di fabbrica del Gateway",
   ),
-  trigger: "L'Attore vuole effettuare la registrazione di un nuovo Gateway",
+  trigger: "L’Attore vuole effettuare la registrazione e l'associazione di un nuovo Gateway ad un Tenant",
   main-scen: (
     (descr: "L’Attore inserisce l’identificativo fisico del gateway"),
     (descr: "L’Attore inserisce la chiave di fabbrica del gateway"),

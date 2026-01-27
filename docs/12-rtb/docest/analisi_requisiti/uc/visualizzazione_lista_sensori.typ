@@ -7,10 +7,10 @@
   level: 2,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "Il sistema mostra all'Attore i dettagli del Gateway selezionato o la sezione sensori del Tenant",
+    "Il Sistema mostra all'Attore i dettagli del Gateway selezionato o la sezione sensori del Tenant",
   ),
   postconds: (
-    "Il sistema mostra l'elenco dei sensori associati",
+    "Il Sistema mostra l'elenco dei sensori associati",
   ),
   trigger: "L’Attore primario richiede visualizzazione sensori collegati ad un Gateway",
   main-scen: (
@@ -20,5 +20,5 @@
     ),
   ),
 )[
-  #uml-schema("22.1", "Diagramma visualizzazione lista sensori")
+  #uml-schema("22.1", "Diagramma Visualizzazione lista sensori")
 ]

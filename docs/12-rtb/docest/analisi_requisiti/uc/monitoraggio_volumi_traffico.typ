@@ -7,15 +7,15 @@
   level: 2,
   prim-actors: CA.sys-adm,
   preconds: (
-    "Il Sistema si trova nella sezione dedicata al monitoraggio del sistema",
+    "Il Sistema si trova nella sezione dedicata al monitoraggio del Sistema",
     "Il Sistema di monitoraggio dei volumi di traffico risulta attivo",
   ),
   postconds: (
-    "Le informazioni relative ai volumi di traffico del sistema sono visualizzate correttamente",
+    "Le informazioni relative ai volumi di traffico del Sistema sono visualizzate correttamente",
   ),
-  trigger: "Si desidera monitorare i volumi di traffico del sistema",
+  trigger: "Si desidera monitorare i volumi di traffico del Sistema",
   main-scen: (
-    (descr: "L’Attore primario visualizza l’andamento dei volumi di traffico del sistema in forma tabellare"),
-    (descr: "L’Attore primario visualizza un grafico di andamento dei volumi di traffico del sistema"),
+    (descr: "L’Attore primario visualizza l’andamento dei volumi di traffico del Sistema in forma tabellare"),
+    (descr: "L’Attore primario visualizza un grafico di andamento dei volumi di traffico del Sistema"),
   ),
 )

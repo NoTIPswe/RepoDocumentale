@@ -3,7 +3,7 @@
 #uc(
   id: "err_range_invalido",
   system: CLOUD_SYS,
-  title: "Errore - Range Invalido",
+  title: "Errore range invalido",
   level: 1,
   prim-actors: (CA.tenant-adm,),
   preconds: (
@@ -23,5 +23,5 @@
     ),
   ),
 )[
-  #uml-schema("102", "Errore- Range Invalido")
+  #uml-schema("102", "Diagramma Errore range invalido")
 ]

@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "Il sistema mostra all’Attore primario le impostazioni della 2FA",
+    "Il Sistema mostra all’Attore primario le impostazioni della 2FA",
   ),
   postconds: (
     "Le impostazioni di 2FA per il login nel tenant sono state aggiornate",
@@ -16,4 +16,4 @@
   main-scen: (
     (descr: "L’Attore abilita/disabilita la 2FA per gli account afferenti al Tenant"),
   ),
-)[#uml-schema("63", "Modfica impostazioni 2FA login dashboard")]
+)[#uml-schema("63", "Diagramma Modifica impostazioni 2FA login dashboard")]

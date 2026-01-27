@@ -13,10 +13,10 @@
   postconds: (
     "La mail dell’Utente selezionato è stata aggiornata",
   ),
-  trigger: "L’Attore vuole modificare la mail di un singolo Utente del tenant",
+  trigger: "L’Attore vuole modificare la mail di un singolo Utente del Tenant",
   main-scen: (
     (
-      descr: "L’Attore seleziona un Utente del tenant",
+      descr: "L’Attore seleziona un Utente del Tenant",
       inc: "selezione_utente_tenant",
     ),
     (
@@ -25,4 +25,4 @@
     ),
     (descr: "L’Attore salva le modifiche apportate"),
   ),
-)[#uml-schema("56", "Modifica mail Utente del Tenant")]
+)[#uml-schema("56", "Diagramma Modifica mail Utente del Tenant")]

@@ -29,5 +29,5 @@
     ),
   ),
 )[
-  #uml-schema("40", "Diagramma modifica nome Gateway")
+  #uml-schema("40", "Diagramma Modifica nome Gateway")
 ]

@@ -24,5 +24,5 @@
     ),
   ),
 )[
-  #uml-schema("36", "Diagramma visualizzazione dettagli alert Gateway non raggiungibile")
+  #uml-schema("36", "Diagramma Visualizzazione dettagli alert Gateway non raggiungibile")
 ]

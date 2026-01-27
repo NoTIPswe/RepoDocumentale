@@ -7,10 +7,10 @@
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
-    "Il sistema mostra all’Attore primario la sezione dedicata alla creazione di Tenant",
+    "Il Sistema mostra all’Attore primario la sezione dedicata alla creazione di Tenant",
   ),
   postconds: (
-    "Il Tenant è stato creato correttamente all’interno del sistema",
+    "Il Tenant è stato creato correttamente all’interno del Sistema",
     "I dati anagrafici sono stati salvati",
     "I namespace relativi al Tenant sono stati creati in ogni livello del flusso di dati",
   ),
@@ -42,4 +42,4 @@
       uc: "err_interno_creazione_tenant",
     ),
   ),
-)[#uml-schema("86", "Creazione Tenant")]
+)[#uml-schema("86", "Diagramma Creazione Tenant")]

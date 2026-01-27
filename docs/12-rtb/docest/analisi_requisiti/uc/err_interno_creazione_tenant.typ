@@ -3,12 +3,12 @@
 #uc(
   id: "err_interno_creazione_tenant",
   system: CLOUD_SYS,
-  title: "Errore Interno Creazione Tenant",
+  title: "Errore interno creazione Tenant",
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
     "L’Attore primario ha avviato la procedura di creazione Tenant",
-    "Il sistema ha riscontrato un errore interno",
+    "Il Sistema ha riscontrato un errore interno",
   ),
   postconds: (
     "Il Tenant non è stato creato",
@@ -18,4 +18,4 @@
   main-scen: (
     (descr: "L’Attore visualizza i dettagli relativi all’errore verificatosi"),
   ),
-)[#uml-schema("87", "Errore interno creazione Tenant")]
+)[#uml-schema("87", "Diagramma Errore interno creazione Tenant")]

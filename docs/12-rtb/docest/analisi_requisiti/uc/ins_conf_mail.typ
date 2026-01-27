@@ -3,11 +3,11 @@
 #uc(
   id: "inserimento_conferma_mail",
   system: CLOUD_SYS,
-  title: "Inserimento e Conferma Mail",
+  title: "Inserimento e conferma mail",
   level: 1,
   prim-actors: (CA.authd-usr,),
   preconds: (
-    "Il sistema richiede l’inserimento di una nuova mail per l’account",
+    "Il Sistema richiede l’inserimento di una nuova mail per l’account",
   ),
   postconds: (
     "L’indirizzo mail inserito è stato validato",
@@ -41,6 +41,6 @@
     ),
   ),
 )[
-  #uml-schema("13", "Inserimento e conferma mail")
+  #uml-schema("13", "Diagramma Inserimento e conferma mail")
 
 ]

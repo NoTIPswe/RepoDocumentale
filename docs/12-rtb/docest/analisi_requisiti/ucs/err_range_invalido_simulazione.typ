@@ -3,7 +3,7 @@
 #uc(
   system: SIM_SYS,
   id: "err_range_invalido_simulazione",
-  title: "Errore - Range Invalido del sensore simulato",
+  title: "Errore Range Invalido del sensore simulato",
   level: 1,
   prim-actors: (SA.sym-usr),
   preconds: (

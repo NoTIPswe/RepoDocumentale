@@ -17,4 +17,4 @@
     (descr: "L’Attore esprime la preferenza di ricezione notifiche via dashboard (on/off)"),
     (descr: "Il Sistema salva le preferenze"),
   ),
-)[#uml-schema("39", "Diagramma modifica impostazioni notifica alert via Dashboard")]
+)[#uml-schema("39", "Diagramma Modifica impostazioni notifica alert via dashboard")]

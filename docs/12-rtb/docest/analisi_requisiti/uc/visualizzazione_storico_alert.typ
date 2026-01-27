@@ -3,7 +3,7 @@
 #uc(
   id: "visualizzazione_storico_alert",
   system: CLOUD_SYS,
-  title: "Visualizzazione Storico Alert",
+  title: "Visualizzazione storico alert",
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
@@ -22,5 +22,5 @@
     ),
   ),
 )[
-  #uml-schema("33", "Diagramma visualizzazione storico alert")
+  #uml-schema("33", "Diagramma Visualizzazione storico alert")
 ]

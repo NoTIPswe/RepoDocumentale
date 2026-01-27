@@ -13,13 +13,13 @@
   postconds: (
     "Gli Utenti selezionati sono stati eliminati con successo",
   ),
-  trigger: "L’Attore vuole eliminare uno o più utenti del tenant",
+  trigger: "L’Attore vuole eliminare uno o più Utenti del Tenant",
   main-scen: (
     (
-      descr: "L’Attore seleziona uno o più utenti del Tenant da eliminare",
+      descr: "L’Attore seleziona uno o più Utenti del Tenant da eliminare",
       inc: "selezione_lista_utenti",
     ),
     (descr: "L’Attore conferma l’eliminazione"),
     (descr: "L’Attore viene informato del buon esito dell’operazione"),
   ),
-)[#uml-schema("58", "Eliminazione Utente del Tenant")]
+)[#uml-schema("58", "Diagramma Eliminazione Utente del Tenant")]

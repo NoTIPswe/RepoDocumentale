@@ -3,7 +3,7 @@
 #uc(
   id: "modifica_password_account",
   system: CLOUD_SYS,
-  title: "Modifica Password Account",
+  title: "Modifica password account",
   level: 1,
   prim-actors: (CA.authd-usr,),
   preconds: (
@@ -23,6 +23,6 @@
     ),
   ),
 )[
-  #uml-schema("16", "Modifica Password Account")
+  #uml-schema("16", "Diagramma Modifica password account")
 
 ]

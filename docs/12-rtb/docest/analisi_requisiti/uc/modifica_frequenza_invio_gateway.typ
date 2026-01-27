@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "Il sistema mostra all’Attore primario l'attuale configurazione di un Gateway",
+    "Il Sistema mostra all’Attore primario l'attuale configurazione di un Gateway",
   ),
   postconds: (
     "La frequenza d’invio è stata correttamente aggiornata",
@@ -25,4 +25,4 @@
     (descr: "L’Attore salva la nuova configurazione"),
     (descr: "L’Attore viene informato dell’avvenuta modifica"),
   ),
-)[#uml-schema("69", "Modifica frequenza invio dati al Gateway specifico")]
+)[#uml-schema("69", "Diagramma Modifica frequenza invio dati al Gateway specifico")]

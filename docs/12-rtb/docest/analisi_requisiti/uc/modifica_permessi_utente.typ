@@ -3,7 +3,7 @@
 #uc(
   id: "modifica_permessi_utente",
   system: CLOUD_SYS,
-  title: "Modifica Permessi Utente del Tenant",
+  title: "Modifica permessi Utente del Tenant",
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
@@ -13,10 +13,10 @@
   postconds: (
     "I permessi dell’Utente selezionato sono aggiornati",
   ),
-  trigger: "L’Attore vuole modificare i permessi di un singolo Utente del tenant",
+  trigger: "L’Attore vuole modificare i permessi di un singolo Utente del Tenant",
   main-scen: (
     (
-      descr: "L’Attore seleziona un Utente del tenant",
+      descr: "L’Attore seleziona un Utente del Tenant",
       inc: "selezione_utente_tenant",
     ),
     (
@@ -25,4 +25,4 @@
     ),
     (descr: "L’Attore salva le modifiche apportate"),
   ),
-)[#uml-schema("55", "Modifica permessi Utente del Tenant")]
+)[#uml-schema("55", "Diagramma Modifica permessi Utente del Tenant")]

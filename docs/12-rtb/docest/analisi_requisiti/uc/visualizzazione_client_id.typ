@@ -9,13 +9,13 @@
   preconds: (
     "Esiste almeno un Tenant",
     "Il Tenant risulta attivo",
-    "Al Tenant risulta associato un client ID",
+    "Al Tenant risulta associato un Client ID",
   ),
   postconds: (
     "L’Attore visualizza la stringa identificativa",
   ),
   trigger: "L'Attore vuole visualizzare il Client ID di alcune credenziali API",
   main-scen: (
-    (descr: "Il sistema mostra a video la stringa alfanumerica corrispondente al Client ID"),
+    (descr: "Il Sistema mostra a video la stringa alfanumerica corrispondente al Client ID"),
   ),
-)[#uml-schema("60", "Visualizzazione Client ID")]
+)[#uml-schema("60", "Diagramma Visualizzazione Client ID")]

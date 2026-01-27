@@ -29,5 +29,5 @@
     ),
   ),
 )[
-  #uml-schema("33.1", "Diagramma visualizzazione singolo alert")
+  #uml-schema("33.1", "Diagramma Visualizzazione singolo alert")
 ]

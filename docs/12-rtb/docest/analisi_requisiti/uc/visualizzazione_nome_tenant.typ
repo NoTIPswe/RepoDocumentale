@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
-    "Il sistema mostra all’Attore primario la lista dei Tenant",
+    "Il Sistema mostra all’Attore primario la lista dei Tenant",
   ),
   postconds: (
     "L’Attore visualizza il nome identificativo del Tenant",
@@ -16,4 +16,4 @@
   main-scen: (
     (descr: "L’Attore visualizza il nome del Tenant"),
   ),
-)[#uml-schema("81", "Visualizzazione nome Tenant")]
+)[#uml-schema("81", "Diagramma Visualizzazione nome Tenant")]

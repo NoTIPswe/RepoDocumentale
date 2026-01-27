@@ -7,8 +7,8 @@
   level: 2,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "Il sistema mostra all'Attore primario la lista dei Gateway",
-    "Esiste almeno un nuovo firmware valido nel sistema che possa essere caricato",
+    "Il Sistema mostra all'Attore primario la lista dei Gateway",
+    "Esiste almeno un nuovo firmware valido nel Sistema che possa essere caricato",
     "L’Attore primario ha selezionato dei Gateway da aggiornare",
   ),
   postconds: (

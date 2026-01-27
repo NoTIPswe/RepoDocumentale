@@ -3,11 +3,11 @@
 #uc(
   id: "cambio_password",
   system: CLOUD_SYS,
-  title: "Cambio Password",
+  title: "Cambio password",
   level: 2,
   prim-actors: CA.non-authd-usr,
   preconds: (
-    "Il sistema ha validato il token di recupero password associato all’account",
+    "Il Sistema ha validato il token di recupero password associato all’account",
   ),
   postconds: (
     "La nuova password è salvata nel database",
@@ -20,5 +20,5 @@
     ),
   ),
 )[
-  #uml-schema("7.1", "Cambio Password")
+  #uml-schema("7.1", "Diagramma Cambio password")
 ]

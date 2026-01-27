@@ -16,4 +16,4 @@
   main-scen: (
     (descr: "L’Attore inserisce un valore numerico"),
   ),
-)[#uml-schema("45", "Inserimento valore numerico")]
+)[#uml-schema("45", "Diagramma Inserimento valore numerico")]

@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: (CA.tenant-adm, CA.sys-adm),
   preconds: (
-    "Il sistema mostra all’Attore primario l’elenco dei Gateway del proprio Tenant",
+    "Il Sistema mostra all’Attore primario l’elenco dei Gateway del proprio Tenant",
   ),
   postconds: (
     "I Gateway sono stati selezionati correttamente",

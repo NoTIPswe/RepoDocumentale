@@ -19,11 +19,11 @@
       descr: "L’Attore primario contatta l’endpoint del Sistema dedicato all’autenticazione allegando le credenziali utilizzando un protocollo sicuro e criptato",
     ),
     (
-      descr: "L’Auth Server riceve la richiesta inoltrata dal sistema", // bookmark - se usiamo auth server esterno
+      descr: "L’Auth Server riceve la richiesta inoltrata dal Sistema", // bookmark - se usiamo auth server esterno
       ep: "ErroreAuthServer",
     ),
-    (descr: "L’Auth Server risponde al sistema con un token valido"),
-    (descr: "L’Attore primario riceve il token valido dal sistema"),
+    (descr: "L’Auth Server risponde al Sistema con un token valido"),
+    (descr: "L’Attore primario riceve il token valido dal Sistema"),
   ),
   alt-scen: (
     (
@@ -39,4 +39,4 @@
       uc: "err_auth_server_non_disponibile",
     ),
   ),
-)[#uml-schema("70", "Autenticazione del client API")]
+)[#uml-schema("70", "Diagramma Autenticazione del client API")]

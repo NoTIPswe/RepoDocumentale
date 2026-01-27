@@ -9,7 +9,7 @@
   preconds: (
     "L’Attore primario ha effettuato un filtraggio per Gateway",
     "Esiste almeno un sensore associato al Gateway del Tenant gestito dall’Attore",
-    "Il sistema mostra all'Attore primario l'elenco dei sensori di cui potrà visualizzare i dati",
+    "Il Sistema mostra all'Attore primario l'elenco dei sensori di cui potrà visualizzare i dati",
   ),
   postconds: (
     "Viene aggiunto un sensore alla lista della richiesta",

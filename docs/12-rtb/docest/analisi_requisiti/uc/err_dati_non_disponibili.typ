@@ -3,7 +3,7 @@
 #uc(
   id: "err_dati_non_disponibili",
   system: CLOUD_SYS,
-  title: "Dati non disponibili",
+  title: "Errore dati non disponibili",
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
@@ -20,5 +20,5 @@
     ),
   ),
 )[
-  #uml-schema("28", "Diagramma errore dati non disponibili")
+  #uml-schema("28", "Diagramma Errore dati non disponibili")
 ]

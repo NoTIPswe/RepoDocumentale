@@ -11,7 +11,7 @@
     "Esiste almeno un sensore associato al Gateway del Tenant gestito dall’Attore",
   ),
   postconds: (
-    "Il sistema salva la richiesta di visualizzazione",
+    "Il Sistema salva la richiesta di visualizzazione",
   ),
   trigger: "L’Attore primario vuole filtrare per sensori",
   main-scen: (
@@ -20,10 +20,10 @@
       inc: "filtraggio_singolo_sensore",
     ),
     (
-      descr: "Il sistema salva le preferenze di visualizzazione",
+      descr: "Il Sistema salva le preferenze di visualizzazione",
       ep: "Filtraggio",
     ),
   ),
 )[
-  #uml-schema("26", "Diagramma filtraggio dati per sensore")
+  #uml-schema("26", "Diagramma Filtraggio dati per sensore")
 ]

@@ -7,19 +7,19 @@
   level: 2,
   prim-actors: CA.sys-adm,
   preconds: (
-    "Il Sistema si trova nella sezione dedicata al monitoraggio del sistema",
+    "Il Sistema si trova nella sezione dedicata al monitoraggio del Sistema",
     "Il Sistema di monitoraggio dello storage risulta attivo",
   ),
   postconds: (
-    "Le informazioni relative allo storage del sistema sono visualizzate correttamente",
+    "Le informazioni relative allo storage del Sistema sono visualizzate correttamente",
   ),
-  trigger: "Si desidera monitorare l’utilizzo dello storage del sistema",
+  trigger: "Si desidera monitorare l’utilizzo dello storage del Sistema",
   main-scen: (
     (
-      descr: "L’Attore primario visualizza le informazioni relative all’utilizzo dello storage del sistema in forma tabellare",
+      descr: "L’Attore primario visualizza le informazioni relative all’utilizzo dello storage del Sistema in forma tabellare",
     ),
     (
-      descr: "L’Attore primario visualizza un grafico relativo alle informazioni relative all’utilizzo dello storage del sistema",
+      descr: "L’Attore primario visualizza un grafico relativo alle informazioni relative all’utilizzo dello storage del Sistema",
     ),
   ),
 )

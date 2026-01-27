@@ -9,10 +9,10 @@
   preconds: (
     "Esiste almeno un Tenant",
     "Il Tenant risulta attivo",
-    "Al Tenant risulta associato un client ID",
+    "Al Tenant risulta associato un Client ID",
   ),
   postconds: (
-    "La chiave segreta è stata mostrata a video; il sistema non permetterà una seconda visualizzazione in futuro",
+    "La chiave segreta è stata mostrata a video; il Sistema non permetterà una seconda visualizzazione in futuro",
   ),
   trigger: "Fase finale della creazione delle credenziali API",
   main-scen: (

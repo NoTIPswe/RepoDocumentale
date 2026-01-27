@@ -18,5 +18,5 @@
     (descr: "L’Attore visualizza l’orario di registrazione del dato da parte del sensore"),
   ),
 )[
-  #uml-schema("32", "Diagramma visualizzazione timestamp registrazione dato irregolare")
+  #uml-schema("32", "Diagramma Visualizzazione timestamp registrazione dato irregolare")
 ]

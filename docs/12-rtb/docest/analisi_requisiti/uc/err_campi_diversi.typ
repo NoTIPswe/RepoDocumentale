@@ -3,7 +3,7 @@
 #uc(
   id: "err_campi_diversi",
   system: CLOUD_SYS,
-  title: "Errore - Campi non corrispondenti",
+  title: "Errore campi non corrispondenti",
   level: 1,
   prim-actors: (CA.non-authd-usr, CA.authd-usr),
   preconds: (
@@ -18,6 +18,6 @@
     (descr: "L'Attore primario viene invitato a ricompilare"),
   ),
 )[
-  #uml-schema("10", "Campi non corrispondenti")
+  #uml-schema("10", "Diagramma Errore campi non corrispondenti")
 
 ]

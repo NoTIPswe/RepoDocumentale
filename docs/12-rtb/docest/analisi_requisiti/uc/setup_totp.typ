@@ -19,6 +19,6 @@
     (descr: "L'Attore viene informato della buona riuscita del setup"),
   ),
 )[
-  #uml-schema("3", "Setup TOTP")
+  #uml-schema("3", "Diagramma Setup TOTP")
 ]
 

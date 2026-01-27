@@ -13,10 +13,10 @@
   postconds: (
     "La password dell’Utente selezionato è stata aggiornata",
   ),
-  trigger: "L’Attore vuole modificare la password di un singolo Utente del tenant",
+  trigger: "L’Attore vuole modificare la password di un singolo Utente del Tenant",
   main-scen: (
     (
-      descr: "L’Attore seleziona un Utente del tenant",
+      descr: "L’Attore seleziona un Utente del Tenant",
       inc: "selezione_utente_tenant",
     ),
     (
@@ -25,4 +25,4 @@
     ),
     (descr: "L’Attore salva le modifiche apportate"),
   ),
-)[#uml-schema("57", "Modifica password Utente del Tenant")]
+)[#uml-schema("57", "Diagramma Modifica password Utente del Tenant")]

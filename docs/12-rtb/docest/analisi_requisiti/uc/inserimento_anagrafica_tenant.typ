@@ -7,7 +7,7 @@
   level: 2,
   prim-actors: CA.sys-adm,
   preconds: (
-    "Il sistema permette all'Attore primario di creare un nuovo Tenant",
+    "Il Sistema permette all'Attore primario di creare un nuovo Tenant",
   ),
   postconds: (
     "L’Attore primario inserisce dei dati anagrafici validi per il Tenant",

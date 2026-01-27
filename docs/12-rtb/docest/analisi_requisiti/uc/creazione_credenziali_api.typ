@@ -3,7 +3,7 @@
 #uc(
   id: "creazione_credenziali_api",
   system: CLOUD_SYS,
-  title: "Creazione credenziali client API",
+  title: "Creazione credenziali Client API",
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
@@ -13,11 +13,11 @@
   postconds: (
     "Sono state generate e salvate nuove credenziali (Client ID e Secret) associate al Tenant",
   ),
-  trigger: "L’Attore vuole abilitare un sistema esterno ad accedere ai dati del Tenant",
+  trigger: "L’Attore vuole abilitare un Sistema esterno ad accedere ai dati del Tenant",
   main-scen: (
     (descr: "L’Attore richiede la creazione di un nuovo accesso API"),
     (
-      descr: "L’Attore assegna un nome descrittivo al client",
+      descr: "L’Attore assegna un nome descrittivo al Client",
       inc: "inserimento_nome_client_api",
     ),
     (
@@ -29,4 +29,4 @@
       inc: "visualizzazione_secret_api",
     ),
   ),
-)[#uml-schema("59", "Creazione credenziali Client API")]
+)[#uml-schema("59", "Diagramma Creazione credenziali Client API")]

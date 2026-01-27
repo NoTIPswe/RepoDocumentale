@@ -1,5 +1,12 @@
 title: Analisi dei Requisiti
 changelog:
+  - version: "0.32.0"
+    date: "2026-01-27"
+    authors:
+      - Alessandro Mazzariol
+    verifier: TBD
+    description: >
+      Aggiunto tracciamento requisiti-fonte, fonte-requisiti, riepilogo requisiti e correzioni varie
   - version: "0.31.1"
     date: "2026-01-26"
     authors:

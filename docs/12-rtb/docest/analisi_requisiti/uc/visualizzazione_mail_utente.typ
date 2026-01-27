@@ -17,4 +17,4 @@
   main-scen: (
     (descr: "L’Attore visualizza l'indirizzo email primario utilizzato dall'Utente per la comunicazione e il login"),
   ),
-)[#uml-schema("51", "Visualizzazione mail dell'Utente")]
+)[#uml-schema("51", "Diagramma Visualizzazione mail dell'Utente")]

@@ -12,7 +12,7 @@
     "Il Tenant a cui si desidera associare il gateway è attivo",
   ),
   postconds: (
-    "Il Gateway è stato provisionato correttamente nel sistema",
+    "Il Gateway è stato provisionato correttamente nel Sistema",
     "Il Gateway è stato associato correttamente al Tenant",
     "Il Gateway è posto in stato “not provisioned” con nome e id generati automaticamente",
   ),
@@ -31,4 +31,4 @@
       descr: "L’Attore viene notificato dell’avvenuta connessione del Gateway non appena il dispositivo contatta il Cloud e riceve le credenziali",
     ),
   ),
-)[#uml-schema("93", "Provisioning Gateway - Registrazione e associazione Tenant")]
+)[#uml-schema("93", "Diagramma Provisioning Gateway - Registrazione e associazione Tenant")]

@@ -7,8 +7,8 @@
   level: 2,
   prim-actors: CA.sys-adm,
   preconds: (
-    "Il sistema mostra all’Attore primario la lista dei Tenant",
-    "Il sistema mostra all’Attore primario un singolo Tenant",
+    "Il Sistema mostra all’Attore primario la lista dei Tenant",
+    "Il Sistema mostra all’Attore primario un singolo Tenant",
   ),
   postconds: (
     "L’Attore primario visualizza i dati essenziali relativi ad un singolo Tenant nella lista",
@@ -28,4 +28,4 @@
       inc: "visualizzazione_id_tenant",
     ),
   ),
-)[#uml-schema("79.1", "Visualizzazione singolo Tenant")]
+)[#uml-schema("79.1", "Diagramma Visualizzazione singolo Tenant")]

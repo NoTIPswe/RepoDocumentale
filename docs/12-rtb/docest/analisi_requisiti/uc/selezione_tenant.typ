@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: CA.sys-adm,
   preconds: (
-    "Il sistema mostra all’Attore primario la lista dei tenant",
+    "Il Sistema mostra all’Attore primario la lista dei tenant",
   ),
   postconds: (
     "Il Tenant è stato selezionato correttamente",
@@ -16,4 +16,4 @@
   main-scen: (
     (descr: "L’Attore seleziona un tenant dalla lista"),
   ),
-)[#uml-schema("88", "Selezione Tenant")]
+)[#uml-schema("88", "Diagramma Selezione Tenant")]

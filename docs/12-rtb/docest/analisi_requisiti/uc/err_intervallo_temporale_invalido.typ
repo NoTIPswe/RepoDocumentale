@@ -3,11 +3,11 @@
 #uc(
   id: "err_intervallo_temporale_invalido",
   system: CLOUD_SYS,
-  title: "Errore Intervallo Temporale Invalido",
+  title: "Errore intervallo Temporale Invalido",
   level: 1,
   prim-actors: CA.api-client,
   preconds: (
-    "Il sistema riceve un token di autenticazione valido dall'Attore",
+    "Il Sistema riceve un token di autenticazione valido dall'Attore",
     "L’intervallo temporale fornito nella richiesta non è valido",
   ),
   postconds: (
@@ -18,4 +18,4 @@
   main-scen: (
     (descr: "L’Attore riceve una risposta di errore che segnala l’intervallo temporale non valido"),
   ),
-)[#uml-schema("77", "Errore Intervallo temporale invalido")]
+)[#uml-schema("77", "Diagramma Errore intervallo temporale invalido")]

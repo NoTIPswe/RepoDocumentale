@@ -7,8 +7,8 @@
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "Il sistema mostra all'Attore primario la lista dei Gateway",
-    "Esiste almeno un nuovo firmware valido nel sistema che possa essere caricato",
+    "Il Sistema mostra all'Attore primario la lista dei Gateway",
+    "Esiste almeno un nuovo firmware valido nel Sistema che possa essere caricato",
   ),
   postconds: (
     "L’Attore ha aggiornato con successo i dispositivi selezionati",
@@ -26,4 +26,4 @@
     (descr: "L’Attore conferma l’avvio della procedura di aggiornamento"),
     (descr: "L’Attore viene informato del buon esito della procedura al completamento"),
   ),
-)[#uml-schema("67", "Aggiornamento del firmware Gateway")]
+)[#uml-schema("67", "Diagramma Aggiornamento del firmware Gateway")]

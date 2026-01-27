@@ -7,7 +7,7 @@
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "Il sistema mostra le impostazioni di impersonificazione relative al Tenant",
+    "Il Sistema mostra le impostazioni di impersonificazione relative al Tenant",
   ),
   postconds: (
     "Le modifiche apportate dall’Attore vengono salvate",
@@ -20,4 +20,4 @@
     (descr: "Le modifiche vengono salvate"),
     (descr: "L’Attore viene notificato del buon esito dell’operazione"),
   ),
-)[#uml-schema("66", "Modifica impostazioni impersonificazione")]
+)[#uml-schema("66", "Diagramma Modifica impostazioni impersonificazione")]

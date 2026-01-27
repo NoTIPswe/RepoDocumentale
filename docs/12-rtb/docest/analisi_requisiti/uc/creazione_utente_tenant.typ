@@ -13,7 +13,7 @@
   postconds: (
     "L’Attore ha creato con successo l’Utente",
   ),
-  trigger: "L’Attore vuole creare un nuovo Utente del tenant",
+  trigger: "L’Attore vuole creare un nuovo Utente del Tenant",
   main-scen: (
     (
       descr: "L’Attore inserisce il nome dell’Utente",
@@ -33,4 +33,4 @@
     ),
     (descr: "L’Attore salva le modifiche e crea l’Utente"),
   ),
-)[#uml-schema("52", "Creazione Utente del Tenant")]
+)[#uml-schema("52", "Diagramma Creazione Utente del Tenant")]

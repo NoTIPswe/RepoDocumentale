@@ -7,10 +7,10 @@
   level: 1,
   prim-actors: CA.tenant-adm,
   preconds: (
-    "Il sistema mostra le credenziali dell'API all'Attore primario",
+    "Il Sistema mostra le credenziali dell'API all'Attore primario",
   ),
   postconds: (
-    "Le credenziali eliminate non sono più attive e valide all’interno del sistema",
+    "Le credenziali eliminate non sono più attive e valide all’interno del Sistema",
   ),
   trigger: "L'Attore vuole eliminare delle credenziali API",
   main-scen: (
@@ -21,4 +21,4 @@
     (descr: "L’Attore viene informato delle conseguenze dell’eliminazione"),
     (descr: "L’Attore conferma la volontà di eliminazione del token"),
   ),
-)[#uml-schema("62", "Eliminazione credenziali API")]
+)[#uml-schema("62", "Diagramma Eliminazione credenziali API")]
