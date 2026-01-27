@@ -845,9 +845,127 @@
   #pagebreak()
 
   = Metodi di testing
-  // Da completare successivamente
+  I seguenti metodi di testing verranno adottati per garantire la qualità del prodotto:
+  - *Unit Testing*: test automatici per singole unità di codice, garantendo correttezza funzionale isolata.
+  - *Integration Testing*: verifica delle interazioni tra moduli, assicurando che collaborino correttamente.
+  - *System Testing*: test end-to-end del sistema completo in ambiente simulato.
+
+  == Test di Unità
+
+  #table(
+  columns: (1fr, 3fr, 1.5fr, 0.8fr),
+  stroke: 0.5pt,
+  inset: 6pt,
+
+  table.header(
+    [*Codice*],
+    [*Descrizione (unitaria)*],
+    [*Requisiti di riferimento*],
+    [*Stato*],
+  ),
+    [T-U-001], [Verificare la costruzione corretta del payload di richiesta login], [R-1-F], [NI],
+  [T-U-002], [Verificare che una email con formato non valido venga rifiutata], [R-2-F], [NI],
+  [T-U-003], [Verificare che una password non valida venga rifiutata in login], [R-3-F], [NI],
+  [T-U-004], [Verificare il mapping dell’errore “credenziali errate”], [R-4-F], [NI],
+  [T-U-005], [Verificare la generazione e serializzazione del segreto TOTP], [R-5-F], [NI],
+  [T-U-006], [Verificare la valutazione della condizione “2FA richiesto”], [R-6-F], [NI],
+  [T-U-007], [Verificare la validazione dell’input OTP (solo cifre, lunghezza)], [R-7-F], [NI],
+  [T-U-008], [Verificare il mapping dell’errore “OTP errato”], [R-8-F], [NI],
+  [T-U-009], [Verificare la validazione della richiesta di recupero password], [R-9-F], [NI],
+  [T-U-010], [Verificare il mapping dell’errore “account non esistente”], [R-10-F], [NI],
+  [T-U-011], [Verificare la generazione del token di reset password (formato e scadenza)], [R-11-F], [NI],
+  [T-U-012], [Verificare il controllo di coerenza tra password e conferma], [R-12-F], [NI],
+  [T-U-013], [Verificare il mapping dell’errore “campi non corrispondenti”], [R-13-F], [NI],
+  [T-U-014], [Verificare la validazione della policy di complessità della password], [R-14-F], [NI],
+  [T-U-015], [Verificare la validazione della richiesta di modifica mail], [R-15-F], [NI],
+  [T-U-016], [Verificare il controllo di coerenza tra mail e conferma mail], [R-16-F], [NI],
+  [T-U-017], [Verificare la validazione del formato email], [R-17-F], [NI],
+  [T-U-018], [Verificare il rilevamento di una mail duplicata], [R-18-F], [NI],
+  [T-U-019], [Verificare la validazione della nuova password per utente autenticato], [R-19-F], [NI],
+  [T-U-020], [Verificare la formattazione del nome gateway], [R-23-F], [NI],
+  [T-U-021], [Verificare il mapping dello stato del gateway da enum a label], [R-24-F], [NI],
+  [T-U-022], [Verificare la formattazione del timestamp di ultimo invio gateway], [R-26-F], [NI],
+  [T-U-023], [Verificare la formattazione del timestamp di ultimo invio sensore], [R-29-F], [NI],
+  [T-U-024], [Verificare la formattazione dell’identificativo del sensore], [R-30-F], [NI],
+  [T-U-025], [Verificare la normalizzazione e serializzazione di uno stream dati], [R-31-F], [NI],
+  [T-U-026], [Verificare la trasformazione di uno stream in struttura tabellare], [R-32-F], [NI],
+  [T-U-027], [Verificare la trasformazione di uno stream in serie per grafico], [R-33-F], [NI],
+  [T-U-028], [Verificare la validazione dell’intervallo temporale (start ≤ end)], [R-36-F], [NI],
+  [T-U-029], [Verificare il mapping dello stato “dati non disponibili”], [R-37-F], [NI],
+  [T-U-030], [Verificare la serializzazione dei dati in formato di export], [R-38-F], [NI],
+  [T-U-031], [Verificare la formattazione del valore fuori range], [R-41-F], [NI],
+  [T-U-032], [Verificare la formattazione del range accettato], [R-42-F], [NI],
+  [T-U-033], [Verificare la formattazione del timestamp di un dato irregolare], [R-43-F], [NI],
+  [T-U-034], [Verificare il mapping del tipo di alert da enum a testo], [R-46-F], [NI],
+  [T-U-035], [Verificare il mapping dell’hardware interessato da id a label], [R-47-F], [NI],
+  [T-U-036], [Verificare la formattazione del timestamp di emissione alert], [R-48-F], [NI],
+  [T-U-037], [Verificare la validazione del toggle notifica email], [R-52-F], [NI],
+  [T-U-038], [Verificare la validazione del nome gateway (non vuoto, lunghezza)], [R-53-F], [NI],
+  [T-U-039], [Verificare il rilevamento di nomi gateway duplicati], [R-54-F], [NI],
+  [T-U-040], [Verificare la validazione dello stato gateway], [R-55-F], [NI],
+  [T-U-041], [Verificare la validazione dell’appartenenza sensore–gateway], [R-56-F], [NI],
+  [T-U-042], [Verificare la validazione di un range numerico (min/max)], [R-57-F], [NI],
+  [T-U-043], [Verificare il parsing della selezione di un range numerico], [R-58-F], [NI],
+  [T-U-044], [Verificare il parsing di un valore numerico], [R-59-F], [NI],
+  [T-U-045], [Verificare la validazione del tipo di sensore], [R-60-F], [NI],
+  [T-U-046], [Verificare la richiesta di input numerico quando previsto], [R-61-F], [NI],
+  [T-U-047], [Verificare il calcolo del range default per tipo di sensore], [R-62-F], [NI],
+  [T-U-048], [Verificare la validazione della selezione del tipo di sensore], [R-63-F], [NI],
+  [T-U-049], [Verificare la validazione del timeout gateway irraggiungibile], [R-64-F], [NI],
+  [T-U-050], [Verificare il raggruppamento dei costi per banda], [R-67-F], [NI],
+  [T-U-051], [Verificare la validazione del nome utente tenant], [R-71-F], [NI],
+  [T-U-052], [Verificare la validazione dei ruoli assegnabili], [R-73-F], [NI],
+  [T-U-053], [Verificare l’assenza di duplicati nella selezione utenti], [R-77-F], [NI],
+  [T-U-054], [Verificare la validazione del nome client API], [R-78-F], [NI],
+  [T-U-055], [Verificare la generazione del Client ID (formato e unicità)], [R-79-F], [NI],
+  [T-U-056], [Verificare la generazione del Client Secret (lunghezza e charset)], [R-80-F], [NI],
+  [T-U-057], [Verificare la formattazione del nome descrittivo credenziale API], [R-83-F], [NI],
+  [T-U-058], [Verificare la formattazione del timestamp di creazione credenziale API], [R-84-F], [NI],
+  [T-U-059], [Verificare la validazione delle impostazioni 2FA], [R-87-F], [NI],
+  [T-U-060], [Verificare la formattazione del timestamp di una entry di audit], [R-90-F], [NI],
+  [T-U-061], [Verificare la formattazione dell’utente in una entry di audit], [R-91-F], [NI],
+  [T-U-062], [Verificare il mapping dell’operazione di audit da enum a testo], [R-92-F], [NI],
+  [T-U-063], [Verificare la costruzione del nome file di export log], [R-95-F], [NI],
+  [T-U-064], [Verificare la validazione delle credenziali del client API], [R-98-F], [NI],
+  [T-U-065], [Verificare il mapping dell’errore “credenziali API non valide”], [R-99-F], [NI],
+  [T-U-066], [Verificare il mapping dell’errore “auth server non disponibile”], [R-100-F], [NI],
+  [T-U-067], [Verificare la validazione dei parametri di richiesta dati on-demand], [R-101-F], [NI],
+  [T-U-068], [Verificare la validazione del token API (firma, formato, scadenza)], [R-102-F], [NI],
+  [T-U-069], [Verificare la validazione dell’ID gateway lato API], [R-103-F], [NI],
+  [T-U-070], [Verificare la validazione dell’ID sensore lato API], [R-104-F], [NI],
+  [T-U-071], [Verificare la validazione dell’intervallo temporale lato API], [R-105-F], [NI],
+  [T-U-072], [Verificare la validazione dei parametri di streaming], [R-106-F], [NI],
+  [T-U-073], [Verificare il mapping dello stato tenant da enum a label], [R-111-F], [NI],
+  [T-U-074], [Verificare la formattazione dell’identificativo tenant], [R-112-F], [NI],
+  [T-U-075], [Verificare la validazione dell’intervallo minimo pre-eliminazione tenant], [R-113-F], [NI],
+  [T-U-076], [Verificare la validazione della modifica dell’intervallo di sospensione], [R-114-F], [NI],
+  [T-U-077], [Verificare la validazione della modifica del nome tenant], [R-115-F], [NI],
+  [T-U-078], [Verificare la validazione dei dati anagrafici tenant], [R-116-F], [NI],
+  [T-U-079], [Verificare il mapping dell’errore interno di creazione tenant], [R-117-F], [NI],
+  [T-U-080], [Verificare la validazione della selezione tenant], [R-118-F], [NI],
+  [T-U-081], [Verificare la validazione della transizione tenant → sospeso], [R-119-F], [NI],
+  [T-U-082], [Verificare la validazione della transizione tenant → attivo], [R-120-F], [NI],
+  [T-U-083], [Verificare la validazione della richiesta di eliminazione tenant], [R-121-F], [NI],
+  [T-U-084], [Verificare la validazione dello schema credenziali di fabbrica gateway], [R-123-F], [NI],
+  [T-U-085], [Verificare la validazione dei dati di creazione utente Admin Tenant], [R-124-F], [NI],
+  [T-U-086], [Verificare la validazione della query di audit per tenant], [R-125-F], [NI],
+  [T-U-087], [Verificare la validazione dello stato gateway non provisioned connesso], [R-131-F], [NI],
+  [T-U-088], [Verificare il mapping dell’errore di autenticazione gateway di fabbrica], [R-132-F], [NI],
+  [T-U-089], [Verificare la cifratura del payload dati gateway prima dell’invio], [R-133-F], [NI],
+  [T-U-090], [Verificare la validazione dei parametri del canale sicuro], [R-134-F], [NI],
+  [T-U-091], [Verificare il mapping della notifica “autenticazione gateway fallita”], [R-135-F], [NI],
+  )
+
+  == Test di Integrazione
+
+  == Test di Sistema
+
+
+
+
 
   = Cruscotto di valutazione
   // Da completare successivamente
 
 ]
+
