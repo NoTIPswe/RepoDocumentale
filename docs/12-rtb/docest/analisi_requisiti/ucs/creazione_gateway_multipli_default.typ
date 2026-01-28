@@ -14,12 +14,14 @@
   ),
   trigger: "Necessità di verificare il comportamento del sistema all’aumentare del numero di istanze",
   main-scen: (
-    (descr: "L’Attore inserisce il numero di istanze di Gateway da simulare in parallelo",
-    ep: "ValoreNumericoInvalido",
+    (
+      descr: "L’Attore inserisce il numero di istanze di Gateway da simulare in parallelo",
+      ep: "ValoreNumericoInvalido",
     ),
     (descr: "L’Attore avvia la creazione delle nuove istanze"),
-    (descr: "L’Attore riceve una notifica della corretta istanziazione dei processi simulati richiesti",
-    ep: "ErroreDeploy",
+    (
+      descr: "L’Attore riceve una notifica della corretta istanziazione dei processi simulati richiesti",
+      ep: "ErroreDeploy",
     ),
   ),
   alt-scen: (

@@ -3,7 +3,7 @@
 #uc(
   system: SIM_SYS,
   id: "err_range_invalido_simulazione",
-  title: "Errore Range Invalido del sensore simulato",
+  title: "Errore range invalido del sensore simulato",
   level: 1,
   prim-actors: (SA.sym-usr),
   preconds: (
@@ -23,5 +23,5 @@
     ),
   ),
 )[
-  #uml-schema("S13", "Errore - Range invalido del sensore simulato")
+  #uml-schema("S13", "Errore range invalido del sensore simulato")
 ]

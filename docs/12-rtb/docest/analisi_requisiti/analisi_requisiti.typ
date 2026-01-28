@@ -1,7 +1,7 @@
 #import "../../00-templates/base_document.typ" as base-document
 #import "uc_lib.typ": * /*CA, CLOUD_SYS, SA, SIM_SYS, tag-uc, uc , uml-schema*/
 
-#let metadata = yaml("analisi_requisiti.meta.yaml")
+#let metadata = yaml(sys.inputs.meta-path)
 
 
 #show figure.where(kind: table): set block(breakable: true)
@@ -368,7 +368,7 @@
   Qui di seguito verranno definiti i requisiti che sono stati individuati dal Team e raggruppati nelle seguenti
   categorie:
   - Funzionali: sono i requisiti che esprimono funzionalità che il sistema deve eseguire, a seguito della richiesta o
-    dell'azione di un utente;
+    dell'azione di un utente, questi sono ulteriormente divisi per la parte del Sistema e parte simulatore;
 
   - Qualitativi: sono i requisiti che devono essere soddisfatti per accertare la qualità del prodotto realizzato dal
     Team;
@@ -379,6 +379,24 @@
 
   - Sicurezza: sono i requisiti che stabiliscono le misure di protezione necessarie per garantire l'integrità, la
     riservatezza e la disponibilità dei dati del sistema;
+
+  La nomenclatura per il codice dei requisiti è la seguente:
+  #align(center, text(1.2em)[*`R-Numero-Tipologia`*])
+
+  dove:
+  - *R* abbreviazione di *R*\equisito;
+  - *Numero* è un valore univoco che identifica il requisito;
+  - *Tipologia* indica il tipo di requisito. Le tipologie sono:
+    - *F* per *F*\unzionale;
+    - *Q* per *Q*\ualità
+    - *V* per *V*\incolo
+    - *S* per *S*\icurezza
+
+  Per la parte dei requisiti funzionali del simulatore la nomenclatura presenta l'aggiunta:
+  #align(center, text(1.2em)[*`R-S-Numero-F`*])
+
+  dove:
+  - *S*: abbreviazione di *S*\imulatore;
 
   == Requisiti Funzionali
   #table(
@@ -1385,27 +1403,44 @@
     [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Tecnologie di
       Riferimento"],
   )
-
-  == Requisiti di Prestazione
-  #table(
-    columns: (auto, auto, 4fr, 1fr),
-    [Codice], [Importanza], [Descrizione], [Fonte],
-    [], [], [], [],
-    [], [], [], [],
-    [], [], [], [],
-    [], [], [], [],
-    [], [], [], [],
-  )
+  \
   == Requisiti di Sicurezza
   #table(
-    columns: (auto, auto, 4fr, 1fr),
+    columns: (auto, auto, 2fr, 1fr),
     [Codice], [Importanza], [Descrizione], [Fonte],
-    [], [], [], [],
-    [], [], [], [],
-    [], [], [], [],
-    [], [], [], [],
-    [], [], [], [],
-    [], [], [], [],
+    [R-1-S],
+    [Obbligatorio],
+    [I dati all'interno del Sistema devono essere cifrati sia in stato di transito sia a riposo, si raccomanda
+      l'utilizzo di protocollo TLS e algoritmi standard di cifratura.],
+    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di Sicurezza"],
+
+    [R-2-S],
+    [Obbligatorio],
+    [I dati appartenenti a diversi Tenant devono essere segregati sia a livello logicho che fisico (database e storage
+      dedicati o virtualizzati).],
+    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di Sicurezza"],
+
+    [R-3-S],
+    [Desiderabile],
+    [L'accesso alla UI e API deve essere concesso anche tramite l'utilizzo di autenticazione a più fattori (MFA).],
+    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di Sicurezza"],
+
+    [R-4-S],
+    [Obbligatorio],
+    [Il Sistema deve possedere un sistema di log completo delle attività, consultabile solo da utenti autorizzati.],
+    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di Sicurezza"],
+
+    [R-5-S],
+    [Desiderabile],
+    [Il Sistema deve essere protetto da attacchi informatici, tramite implementazione di meccanismi di rate limiting,
+      intrusion detection e failover automatico per garantire la continuità operativa.],
+    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di Sicurezza"],
+
+    [R-6-S],
+    [Obbligatorio],
+    [Tutti gli accessi al Sistema devono essere autenticati tramite meccanismi robusti (JWT, OAuth2, mTLS) con ruoli
+      granulari.],
+    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di Sicurezza"],
   )
   = Tracciamento Requisiti
   == Tracciamento Fonte - Requisiti
@@ -1598,8 +1633,11 @@
     [UCS21], [R-S-23-F], [Obbligatorio],
     [UCS22], [R-S-24-F], [Obbligatorio],
     [Capitolato],
-    [R-1-Q \ R-2-Q \ R-3-Q \ R-4-Q \ R-5-Q \ R-6-Q \ R-7-Q \ R-1-V \ R-2-V \ R-3-V \ R-4-V \ R-5-V \ R-6-V ],
+    [R-1-Q \ R-2-Q \ R-3-Q \ R-4-Q \ R-5-Q \ R-6-Q \ R-7-Q \ R-1-V \ R-2-V \ R-3-V \ R-4-V \ R-5-V \ R-6-V \ R-1-S \
+      R-2-S \ R-4-S \ R-6-S],
     [Obbligatorio],
+
+    [Capitolato], [R-3-S \ R-5-S], [Desiderabile],
 
     [Interno], [R-8-Q \ R-9-Q], [Obbligatorio],
   )
@@ -1781,6 +1819,12 @@
     [R-4-V], [Obbligatorio], [Capitolato],
     [R-5-V], [Obbligatorio], [Capitolato],
     [R-6-V], [Obbligatorio], [Capitolato],
+    [R-1-S], [Obbligatorio], [Capitolato],
+    [R-2-S], [Obbligatorio], [Capitolato],
+    [R-3-S], [Desiderabile], [Capitolato],
+    [R-4-S], [Obbligatorio], [Capitolato],
+    [R-5-S], [Desiderabile], [Capitolato],
+    [R-6-S], [Obbligatorio], [Capitolato],
   )
   == Riepilogo Requisiti per Categoria
   #table(
@@ -1789,7 +1833,6 @@
     [Funzionali], [150], [9], [159],
     [Qualità], [9], [0], [9],
     [Vincolo], [6], [0], [6],
-    [Sicurezza], [], [], [],
-    [Prestazione], [], [], [],
+    [Sicurezza], [4], [2], [6],
   )
 ]

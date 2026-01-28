@@ -15,17 +15,11 @@
   trigger: "Necessità di testare il comportamento di un Gateway in caso di degrado della rete",
   main-scen: (
     (
-      descr: "L’attore seleziona un gateway"
+      descr: "L’attore seleziona un gateway",
     ),
-    (descr: "L’attore inserisce la latenza desiderata in millisecondi",
-    ep: "ValoreNumericoInvalido",
-    ),
-    (descr: "L’attore inserisce la percentuale di pacchetti persi",
-    ep: "ValoreNumericoInvalido",
-    ),
-    (descr: "L’attore inserisce la durata dell’evento in secondi",
-    ep: "ValoreNumericoInvalido",
-    ),
+    (descr: "L’attore inserisce la latenza desiderata in millisecondi", ep: "ValoreNumericoInvalido"),
+    (descr: "L’attore inserisce la percentuale di pacchetti persi", ep: "ValoreNumericoInvalido"),
+    (descr: "L’attore inserisce la durata dell’evento in secondi", ep: "ValoreNumericoInvalido"),
     (descr: "L’attore conferma l’invio del comando"),
     (descr: "L’attore viene informato della corretta ricezione del comando e inizio dell’evento"),
   ),

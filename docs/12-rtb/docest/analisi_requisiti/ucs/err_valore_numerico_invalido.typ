@@ -3,7 +3,7 @@
 #uc(
   system: SIM_SYS,
   id: "err_valore_numerico_invalido",
-  title: "Errore Valore numerico non valido",
+  title: "Errore valore numerico invalido",
   level: 1,
   prim-actors: (SA.sym-usr),
   preconds: (
@@ -23,5 +23,5 @@
     ),
   ),
 )[
-  #uml-schema("S16", "Errore valore numerico non valido")
+  #uml-schema("S16", "Errore valore numerico invalido")
 ]

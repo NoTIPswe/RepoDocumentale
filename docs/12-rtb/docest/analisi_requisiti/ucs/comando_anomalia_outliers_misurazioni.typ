@@ -14,9 +14,7 @@
   ),
   trigger: "Necessità di testare il comportamento del sistema quando un sensore misura valori inaspettati",
   main-scen: (
-    (descr: "L’Attore inserisce la durata dell’evento in secondi",
-    ep: "ValoreNumericoInvalido"
-    ),
+    (descr: "L’Attore inserisce la durata dell’evento in secondi", ep: "ValoreNumericoInvalido"),
     (
       descr: "L’Attore inserisce un range fuori scala per le misurazioni",
       inc: "inserimento_range_generazione_dati",

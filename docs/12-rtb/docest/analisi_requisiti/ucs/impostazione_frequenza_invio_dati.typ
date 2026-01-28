@@ -15,8 +15,9 @@
   ),
   trigger: "L’Attore desidera modificare la frequenza di invio dati del Gateway",
   main-scen: (
-    (descr: "L’Attore modifica il valore della frequenza di invio dati del Gateway selezionato",
-    ep: "ValoreNumericoInvalido"
+    (
+      descr: "L’Attore modifica il valore della frequenza di invio dati del Gateway selezionato",
+      ep: "ValoreNumericoInvalido",
     ),
     (descr: "L’Attore viene notificato del buon esito della modifica"),
   ),

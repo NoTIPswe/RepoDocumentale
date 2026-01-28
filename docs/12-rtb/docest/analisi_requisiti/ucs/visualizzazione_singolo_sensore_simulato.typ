@@ -8,7 +8,7 @@
   prim-actors: (SA.sym-usr),
   preconds: (
     "Il Sistema si trova nella sezione dedicata alla visualizzazione dei sensori del Gateway simulato selezionato",
-    "Esiste un sensore che è stato selezionato di cui si vogliono visualizzare i dettagli"
+    "Esiste un sensore che è stato selezionato di cui si vogliono visualizzare i dettagli",
   ),
   postconds: (
     "L’Attore visualizza i dettagli della entry selezionata dalla lista dei sensori simulati relativi al Gateway selezionato",

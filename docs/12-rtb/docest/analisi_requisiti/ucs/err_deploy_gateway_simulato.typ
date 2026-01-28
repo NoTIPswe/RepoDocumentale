@@ -4,7 +4,7 @@
   system: SIM_SYS,
   id: "err_deploy_gateway_simulato",
   level: 1,
-  title: "Errore deploy Gateway simulato",
+  title: "Errore Deploy Gateway simulato",
   prim-actors: (SA.sym-usr),
   preconds: (
     "È stato richiesto il deploy di una o più istanze di Gateway",
@@ -20,6 +20,6 @@
     (descr: "L’Attore viene notificato dell’errore"),
   ),
 )[
-  #uml-schema("S11", "Errore deploy Gateway simulato")
+  #uml-schema("S11", "Errore Deploy Gateway simulato")
 ]
 

@@ -15,7 +15,7 @@
   trigger: "L’Attore vuole visualizzare i dettagli di configurazione del sensore selezionato",
   main-scen: (
     (
-      descr: "L'Attore seleziona il sensore simulato desiderato"
+      descr: "L'Attore seleziona il sensore simulato desiderato",
     ),
     (
       descr: "L’Attore visualizza l’identificativo del sensore",
