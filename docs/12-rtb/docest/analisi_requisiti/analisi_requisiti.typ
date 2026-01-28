@@ -420,7 +420,7 @@
 
     [R-4-F],
     [Obbligatorio],
-    [Il Sistema deve notificare l'utente non autenticato in seguito ad un tenativo di autenticazione non andato a buon
+    [Il Sistema deve notificare l'utente non autenticato in seguito ad un tentativo di autenticazione non andato a buon
       fine.],
     [#tag-uc("err_cred_errate")],
 
@@ -432,12 +432,12 @@
 
     [R-6-F],
     [Desiderabile],
-    [Il Sistema deve permettere all'utente non autenticato di effettuare il login 2FA],
+    [Il Sistema deve permettere all'utente non autenticato di effettuare il login 2FA.],
     [#tag-uc("login_2fa")],
 
     [R-7-F],
     [Desiderabile],
-    [Il Sistema deve permettere all'utente di inserire il codice numerico nel Sistema],
+    [Il Sistema deve permettere all'utente di inserire il codice numerico nel Sistema.],
     [#tag-uc("ins_otp")],
 
     [R-8-F],
@@ -458,7 +458,7 @@
 
     [R-11-F],
     [Obbligatorio],
-    [Il Sistema deve notificare all'utente non autenticato di aver inserito un email non associata ad un account nel
+    [Il Sistema deve notificare all'utente non autenticato di aver inserito un'email non associata ad un account nel
       Sistema.],
     [#tag-uc("err_account_inesistente")],
 
@@ -498,7 +498,7 @@
 
     [R-18-F],
     [Obbligatorio],
-    [Il Sistema deve notificare all'utente autenticato di aver inserito un email già associata ad un altro account],
+    [Il Sistema deve notificare all'utente autenticato di aver inserito un'email già associata ad un altro account],
     [#tag-uc("err_mail_gia_registrata")],
 
     [R-19-F],
@@ -628,7 +628,7 @@
 
     [R-41-F],
     [Obbligatorio],
-    [Il Sistema deve permettere al tenant User di visyalizzare il dato fuori range registrato.],
+    [Il Sistema deve permettere al Tenant User di visualizzare il dato fuori range registrato.],
     [#tag-uc("visualizzazione_valore_dato_registrato")],
 
     [R-42-F],
@@ -698,7 +698,7 @@
 
     [R-55-F],
     [Obbligatorio],
-    [Il Sisteme deve notificare al Tenant Admin di aver inserito un nome già presente nella lista.],
+    [Il Sistema deve notificare al Tenant Admin di aver inserito un nome già presente nella lista.],
     [#tag-uc("err_nome_gateway_duplicato")],
 
     [R-56-F],
@@ -713,7 +713,7 @@
 
     [R-58-F],
     [Obbligatorio],
-    [Il Sistema deve permettere al tenant admin di cambiare il range dell'alert per un determinato sensore.],
+    [Il Sistema deve permettere al Tenant Admin di cambiare il range dell'alert per un determinato sensore.],
     [#tag-uc("modifica_range_sensore")],
 
     [R-59-F],
@@ -740,12 +740,12 @@
 
     [R-63-F],
     [Obbligatorio],
-    [Il Sistema deve permettere al tenant Admin di selezionare un determinato tipo di sensore.],
+    [Il Sistema deve permettere al Tenant Admin di selezionare un determinato tipo di sensore.],
     [#tag-uc("selezione_tipo_sensore")],
 
     [R-64-F],
     [Obbligatorio],
-    [Il Sistema deve permettere al Tenant admin di cambiare il timeout che determina se un Gateway è irraggiungibile],
+    [Il Sistema deve permettere al Tenant Admin di cambiare il timeout che determina se un Gateway è irraggiungibile],
     [#tag-uc("modifica_intervallo_alert_gateway")],
 
     [R-65-F],
@@ -924,7 +924,7 @@
 
     [R-90-F],
     [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare l'Utente relativa ad un
+    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare l'Utente relativo ad un
       entry del log Audit.],
     [#tag-uc("visualizzazione_utente_log_entry")],
 
@@ -937,8 +937,7 @@
     [R-92-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di esportare i log per fare Audit del
-      Tenant.
-    ],
+      Tenant.],
     [#tag-uc("esportazione_log_audit_tenant")],
 
     [R-93-F],
@@ -973,7 +972,7 @@
 
     [R-98-F],
     [Obbligatorio],
-    [Il Sistema deve permettere al Tenant admin di modificare la frequenza di invio dati di un Gateway.],
+    [Il Sistema deve permettere al Tenant Admin di modificare la frequenza di invio dati di un Gateway.],
     [#tag-uc("modifica_frequenza_invio_gateway")],
 
     [R-99-F],
@@ -1046,7 +1045,7 @@
 
     [R-112-F],
     [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare lo stato operativo del Tenant],
+    [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare lo stato operativo del Tenant.],
     [#tag-uc("visualizzazione_stato_tenant")],
 
     [R-113-F],
@@ -1138,7 +1137,7 @@
     [R-129-F],
     [Obbligatorio],
     [Il Sistema deve permettere all'Amministratore di Sistema di monitorare le prestazioni complessive del Sistema, in
-      particolare, la latenza media, il volume di traffico e lo l'utilizzo dello storage.],
+      particolare, la latenza media, il volume di traffico e l'utilizzo dello storage.],
     [#tag-uc("monitoraggio_performance_sistema"), #tag-uc("monitoraggio_latenza"), #tag-uc(
         "monitoraggio_volumi_traffico",
       ), #tag-uc("monitoraggio_storage")],
@@ -1150,7 +1149,7 @@
 
     [R-131-F],
     [Obbligatorio],
-    [Il Sistema deve permettere al non provisioned Gateway di ricevere una risposta di errore di autenticazione. ],
+    [Il Sistema deve permettere al non provisioned Gateway di ricevere una risposta di errore di autenticazione.],
     [#tag-uc("err_auth_gateway_fabbrica")],
 
     [R-132-F],
@@ -1271,7 +1270,7 @@
 
     [R-S-17-F],
     [Obbligatorio],
-    [Il Sistema deve permettere di testare il suo comportamento qualora ci fossero più instanze di Gateway simulati in
+    [Il Sistema deve permettere di testare il suo comportamento qualora ci fossero più istanze di Gateway simulati in
       parallelo.],
     [#tag-uc("creazione_gateway_multipli_default")],
 
@@ -1298,7 +1297,7 @@
     [R-S-22-F],
     [Obbligatorio],
     [Il Sistema deve permettere al Sistema Cloud di modificare le impostazioni di configurazione di un Gateway, di
-      modificare la frequenza di invio dati e dello stato di sospensione],
+      modificare la frequenza di invio dati e dello stato di sospensione.],
     [#tag-uc("impostazione_configurazione_gateway"), #tag-uc("impostazione_frequenza_invio_dati"), #tag-uc(
         "impostazione_stato_sospensione",
       )],
@@ -1416,7 +1415,7 @@
 
     [R-2-S],
     [Obbligatorio],
-    [I dati appartenenti a diversi Tenant devono essere segregati sia a livello logicho che fisico (database e storage
+    [I dati appartenenti a diversi Tenant devono essere segregati sia a livello logico che fisico (database e storage
       dedicati o virtualizzati).],
     [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di Sicurezza"],
 
@@ -1801,7 +1800,7 @@
     [R-S-19-F], [Obbligatorio], [UCS17],
     [R-S-20-F], [Obbligatorio], [UCS18],
     [R-S-21-F], [Obbligatorio], [UCS19],
-    [R-S-22-F], [Obbligatorio], [UCS20 \ UC20.1 \ UC20.2],
+    [R-S-22-F], [Obbligatorio], [UCS20 \ UCS20.1 \ UC20.2],
     [R-S-23-F], [Obbligatorio], [UCS21],
     [R-S-24-F], [Obbligatorio], [UCS22],
     [R-1-Q], [Obbligatorio], [Capitolato],
