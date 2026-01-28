@@ -845,9 +845,9 @@
   #pagebreak()
 
   = Metodi di testing
-  I seguenti metodi di testing verranno adottati per garantire la qualità del prodotto:
+  I seguenti metodi di testing verranno adottati per garantire la qualità minima del prodotto:
   - *Unit Testing*: test automatici per singole unità di codice, garantendo correttezza funzionale isolata.
-  - *Integration Testing*: verifica delle interazioni tra moduli, assicurando che collaborino correttamente.
+  - *Integration Testing*: verifica delle interazioni tra unità, assicurando che collaborino correttamente.
   - *System Testing*: test end-to-end del sistema completo in ambiente simulato.
 
   == Test di Unità
@@ -863,7 +863,7 @@
     [*Requisiti di riferimento*],
     [*Stato*],
   ),
-    [T-U-001], [Verificare la costruzione corretta del payload di richiesta login], [R-1-F], [NI],
+  [T-U-001], [Verificare la costruzione corretta del payload di richiesta login], [R-1-F], [NI],
   [T-U-002], [Verificare che una email con formato non valido venga rifiutata], [R-2-F], [NI],
   [T-U-003], [Verificare che una password non valida venga rifiutata in login], [R-3-F], [NI],
   [T-U-004], [Verificare il mapping dell’errore “credenziali errate”], [R-4-F], [NI],
@@ -954,6 +954,23 @@
   [T-U-089], [Verificare la cifratura del payload dati gateway prima dell’invio], [R-133-F], [NI],
   [T-U-090], [Verificare la validazione dei parametri del canale sicuro], [R-134-F], [NI],
   [T-U-091], [Verificare il mapping della notifica “autenticazione gateway fallita”], [R-135-F], [NI],
+  [T-U-092],[Verificare che il validatore di configurazione rifiuti parametri di sicurezza non validi],[R-1-S],[NI],
+  [T-U-093],[Verificare la corretta inizializzazione dei parametri di sicurezza di default],[R-1-S],[NI],
+  [T-U-094],[Verificare che il mapper dei dati sensibili applichi correttamente mascheramento e omissione dei campi riservati],[R-1-S],[NI],
+  [T-U-095],[Verificare che il controllo di presenza del tenant sia obbligatorio nel contesto di esecuzione],[R-2-S],[NI],
+  [T-U-096],[Verificare che il validatore di coerenza tenant rifiuti operazioni con tenant non corrispondente],[R-2-S],[NI],
+  [T-U-097],[Verificare che il checker MFA richieda l’autenticazione a più fattori quando previsto dalla policy],[R-3-S],[NI],
+  [T-U-098],[Verificare la corretta generazione degli eventi di audit a partire dai dati di input],[R-4-S],[NI],
+  [T-U-099],[Verificare che il builder degli eventi di audit includa tenant, attore e timestamp],[R-4-S],[NI],
+  [T-U-100],[Verificare la corretta transizione degli stati della state machine di rate limiting],[R-5-S],[NI],
+  [T-U-101],[Verificare che il contatore di richieste venga azzerato allo scadere della finestra temporale],[R-5-S],[NI],
+  [T-U-102],[Verificare che il validatore JWT rilevi correttamente token scaduti],[R-6-S],[NI],
+  [T-U-103],[Verificare che il validatore JWT rilevi correttamente firma non valida],[R-6-S],[NI],
+  [T-U-104],[Verificare che il validatore JWT rifiuti token con issuer non conforme],[R-6-S],[NI],
+  [T-U-105],[Verificare che il policy checker applichi correttamente le regole di autorizzazione sui ruoli],[R-6-S],[NI],
+  [T-U-106],[Verificare che il validatore dei permessi applichi la politica deny-by-default],[R-6-S],[NI],
+  [T-U-107],[Verificare che il repository applichi automaticamente il filtro tenant alle query generate],[R-6-Q],[NI],
+  [T-U-108],[Verificare che il builder delle query rifiuti richieste prive di contesto tenant],[R-6-Q],[NI],
   )
 
   == Test di Integrazione
