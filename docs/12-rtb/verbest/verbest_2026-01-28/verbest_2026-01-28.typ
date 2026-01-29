@@ -34,7 +34,7 @@
     discussion: [
       Il gruppo ha posto il quesito se sia necessario fornire un sistema di gestione della decrittazione end-to-end. La proponente ha risposto ad ogni dubbio: i messaggi non devono essere inviati in chiaro e deve essere implementato un metodo di decrittazione lato client. L'aspettativa è che l'utente e l'altra parte siano in grado di mandare messaggi crittografati e di decifrarli correttamente.
 
-      È stato chiarito che si deve dare per scontata la presenza di un' API che ritorna una chiave utilizzabile per la decrittazione. La sfida di trovare la soluzione implementativa di come mandare i messaggi e, soprattutto, di come decifrarli è lasciata al gruppo.
+      È stato chiarito che si deve dare per scontata la presenza di un API che ritorna una chiave utilizzabile per la decrittazione. La sfida di trovare la soluzione implementativa di come mandare i messaggi e, soprattutto, di come decifrarli è lasciata al gruppo.
     ],
     decisions: [
       L'obiettivo finale è riuscire ad avere un meccanismo funzionante di crittografia end-to-end. Il gruppo procederà con l'implementazione di tale sistema nel POC, con la libertà di scegliere l'approccio tecnico più adeguato.
