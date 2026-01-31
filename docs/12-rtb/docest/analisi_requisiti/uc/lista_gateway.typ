@@ -7,12 +7,12 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "L'Attore primario è autenticato e ha accesso autorizzato alle risorse del proprio Tenant",
+    "L'Attore è autenticato e ha accesso autorizzato alle risorse del proprio Tenant",
   ),
   postconds: (
-    "L'Attore primario visualizza l'elenco di tutti i Gateway associati al suo Tenant",
+    "L'Attore visualizza l'elenco di tutti i Gateway associati al suo Tenant",
   ),
-  trigger: "L'Attore primario vuole visualizzare i Gateway del proprio tenant",
+  trigger: "L'Attore vuole visualizzare i Gateway del proprio tenant",
   main-scen: (
     (descr: "L'Attore accede alla sezione dedicata alla visualizzazione dei dispositivi"),
     (

@@ -17,6 +17,6 @@
     (descr: "L’Attore visualizza la tipologia di sensore simulato"),
   ),
 )[
-  #uml-schema("S7", "Visualizzazione tipo sensore simulato")
+  #uml-schema("S7", "Diagramma Visualizzazione tipo sensore simulato")
 ]
 

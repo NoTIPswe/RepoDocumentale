@@ -7,13 +7,13 @@
   level: 4,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "Il Sistema mostra all'Attore primario la lista dei sensori collegati ad un Gateway",
+    "Il Sistema mostra all'Attore la lista dei sensori collegati ad un Gateway",
   ),
   postconds: (
-    "L’Attore primario visualizza timestamp ultima lettura del sensore",
+    "L’Attore visualizza timestamp ultima lettura del sensore",
   ),
   trigger: "Viene richiesta la lista dei sensori collegati al Gateway",
   main-scen: (
-    (descr: "L’Attore primario visualizza il timestamp associato all'ultimo dato ricevuto dal sensore"),
+    (descr: "L’Attore visualizza il timestamp associato all'ultimo dato ricevuto dal sensore"),
   ),
 )

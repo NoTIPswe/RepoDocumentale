@@ -24,6 +24,6 @@
     ),
   ),
 )[
-  #uml-schema("S1.1", "Visualizzazione singolo Gateway simulato")
+  #uml-schema("S1.1", "Diagramma Visualizzazione singolo Gateway simulato")
 ]
 

@@ -30,6 +30,6 @@
     ),
   ),
 )[
-  #uml-schema("S19", "Comando anomalia sensore - outliers nelle misurazioni")
+  #uml-schema("S19", "Diagramma Comando anomalia sensore - outliers nelle misurazioni")
 ]
 

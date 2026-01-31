@@ -18,5 +18,5 @@
     (descr: "L’Attore riceve una notifica di errore di configurazione per errore semantico nel range"),
   ),
 )[
-  #uml-schema("S22", "Errore configurazione frequenza invio dati fuori range ammesso")
+  #uml-schema("S22", "Diagramma Errore configurazione frequenza invio dati fuori range ammesso")
 ]

@@ -35,6 +35,6 @@
     ),
   ),
 )[
-  #uml-schema("S5", "Visualizzazione configurazione simulazione sensore")
+  #uml-schema("S5", "Diagramma Visualizzazione configurazione simulazione sensore")
 ]
 

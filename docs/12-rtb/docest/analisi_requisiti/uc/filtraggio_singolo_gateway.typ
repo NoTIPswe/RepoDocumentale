@@ -8,14 +8,14 @@
   prim-actors: CA.tenant-usr,
   preconds: (
     "Esiste almeno un Gateway nel Tenant",
-    "Il Sistema mostra i Gateway di cui l'attore primario potrà visualizzare lo Stream di dati",
+    "Il Sistema mostra i Gateway di cui l'attore potrà visualizzare lo Stream di dati",
   ),
   postconds: (
     "Viene aggiunto un Gateway alla lista della richiesta",
   ),
-  trigger: "L’Attore primario vuole filtrare per Gateway",
+  trigger: "L’Attore vuole filtrare per Gateway",
   main-scen: (
-    (descr: "L’Attore primario seleziona un Gateway da aggiungere alla lista di filtraggio"),
+    (descr: "L’Attore seleziona un Gateway da aggiungere alla lista di filtraggio"),
   ),
 )[
 ]

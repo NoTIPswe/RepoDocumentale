@@ -17,15 +17,15 @@
     (descr: "L’Attore prepara una nuova configurazione per il Gateway"),
     (
       descr: "L’Attore aggiorna la frequenza",
-      inc: "impostazione_frequenza_invio_dati"
+      inc: "impostazione_frequenza_invio_dati",
     ),
     (
       descr: "L’Attore aggiorna lo stato",
-      inc: "impostazione_stato_sospensione"
+      inc: "impostazione_stato_sospensione",
     ),
     (
       descr: "L’Attore riceve una notifica di conferma dell'avvenuta configurazione",
-      ep: "ConfigurazioneInvalida"
+      ep: "ConfigurazioneInvalida",
     ),
   ),
   alt-scen: (
@@ -41,5 +41,5 @@
     ),
   ),
 )[
-  #uml-schema("S20", "Impostazione configurazione del Gateway")
+  #uml-schema("S20", "Diagramma Impostazione configurazione del Gateway")
 ]

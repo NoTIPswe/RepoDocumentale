@@ -12,10 +12,10 @@
   postconds: (
     "Il Sistema mostra l'elenco dei sensori associati",
   ),
-  trigger: "L’Attore primario richiede visualizzazione sensori collegati ad un Gateway",
+  trigger: "L’Attore richiede visualizzazione sensori collegati ad un Gateway",
   main-scen: (
     (
-      descr: "L’Attore primario richiede la visualizzazione dell’elenco dei sensori.",
+      descr: "L’Attore richiede la visualizzazione dell’elenco dei sensori.",
       inc: "visualizzazione_singolo_sensore",
     ),
   ),

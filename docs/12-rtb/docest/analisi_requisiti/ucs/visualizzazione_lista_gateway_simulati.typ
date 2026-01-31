@@ -20,5 +20,5 @@
     ),
   ),
 )[
-  #uml-schema("S1", "Visualizzazione lista Gateway simulati")
+  #uml-schema("S1", "Diagramma Visualizzazione lista Gateway simulati")
 ]

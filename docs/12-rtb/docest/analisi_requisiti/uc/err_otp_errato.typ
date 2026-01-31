@@ -14,8 +14,8 @@
   ),
   trigger: "L'Attore ha inserito un codice OTP errato nel Sistema",
   main-scen: (
-    (descr: "L'Attore primario viene informato dell'errore riscontrato"),
-    (descr: "L'Attore primario viene invitato a riprovare"),
+    (descr: "L'Attore viene informato dell'errore riscontrato"),
+    (descr: "L'Attore viene invitato a riprovare"),
   ),
 )[
   #uml-schema("6", "Diagramma Errore OTP errato")

@@ -12,10 +12,10 @@
   postconds: (
     "Il Sistema salva la richiesta di visualizzazione",
   ),
-  trigger: "L’Attore primario vuole filtrare per Gateway",
+  trigger: "L’Attore vuole filtrare per Gateway",
   main-scen: (
     (
-      descr: "L’Attore primario seleziona i Gateway dei quali visualizzare i dati",
+      descr: "L’Attore seleziona i Gateway dei quali visualizzare i dati",
       inc: "filtraggio_singolo_gateway",
     ),
     (

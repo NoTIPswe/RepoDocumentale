@@ -10,11 +10,11 @@
     "Il Sistema mostra una lista di sensori o un alert riguardante un sensore",
   ),
   postconds: (
-    "L’Attore primario visualizza l’ID del sensore",
+    "L’Attore visualizza l’ID del sensore",
   ),
   trigger: "Necessità di distinguere univocamente i sensori",
   main-scen: (
-    (descr: "L’Attore primario visualizza l’identificativo del sensore (UUID)"),
+    (descr: "L’Attore visualizza l’identificativo del sensore (UUID)"),
   ),
 )[
   #uml-schema("23", "Diagramma Visualizzazione ID sensore")

@@ -7,10 +7,10 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "Il Sistema presenta all’Attore primario la lista di Gateway associata al Tenant di appartenenza o i dettagli di uno di essi",
+    "Il Sistema presenta all’Attore la lista di Gateway associata al Tenant di appartenenza o i dettagli di uno di essi",
   ),
   postconds: (
-    "L'Attore primario visualizza lo stato del Gateway",
+    "L'Attore visualizza lo stato del Gateway",
   ),
   trigger: "Necessità di verificare lo stato del dispositivo",
   main-scen: (

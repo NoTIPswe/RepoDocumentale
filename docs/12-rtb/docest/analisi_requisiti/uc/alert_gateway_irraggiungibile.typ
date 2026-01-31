@@ -14,13 +14,13 @@
   ),
   trigger: "Un Gateway diventa irraggiungibile",
   main-scen: (
-    (descr: "Il Sistema notifica l’Attore primario dell’irraggiungibilità del Gateway"),
+    (descr: "Il Sistema notifica l’Attore dell’irraggiungibilità del Gateway"),
     (
-      descr: "L’Attore primario visualizza il nome Gateway interessato",
+      descr: "L’Attore visualizza il nome Gateway interessato",
       inc: "visualizzazione_nome_gateway",
     ),
     (
-      descr: "L’Attore primario visualizza il timestamp dell’ultima comunicazione",
+      descr: "L’Attore visualizza il timestamp dell’ultima comunicazione",
       inc: "visualizzazione_timestamp_ultimo_invio_dati_gateway",
     ),
   ),

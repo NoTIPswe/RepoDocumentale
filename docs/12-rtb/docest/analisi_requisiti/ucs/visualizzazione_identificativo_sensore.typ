@@ -17,6 +17,6 @@
     (descr: "L’Attore visualizza l’identificativo del sensore simulato"),
   ),
 )[
-  #uml-schema("S6", "Visualizzazione identificativo sensore")
+  #uml-schema("S6", "Diagramma Visualizzazione identificativo sensore")
 ]
 

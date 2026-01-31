@@ -33,6 +33,6 @@
     ),
   ),
 )[
-  #uml-schema("S10", "Creazione e deploy di un Gateway simulato")
+  #uml-schema("S10", "Diagramma Creazione e deploy di un Gateway simulato")
 ]
 

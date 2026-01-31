@@ -20,6 +20,6 @@
     ),
   ),
 )[
-  #uml-schema("S4", "Visualizzazione lista sensori Gateway simulato")
+  #uml-schema("S4", "Diagramma Visualizzazione lista sensori Gateway simulato")
 ]
 

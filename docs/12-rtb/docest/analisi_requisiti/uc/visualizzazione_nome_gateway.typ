@@ -7,10 +7,10 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "Il Sistema presenta all’Attore primario una lista di Gateway, i dettagli di un Gateway oppure un alert relativo a un Gateway.",
+    "Il Sistema presenta all’Attore una lista di Gateway, i dettagli di un Gateway oppure un alert relativo a un Gateway.",
   ),
   postconds: (
-    "L'Attore primario visualizza il nome identificativo del Gateway",
+    "L'Attore visualizza il nome identificativo del Gateway",
   ),
   trigger: "Necessità di distinguere univocamente il Gateway",
   main-scen: (

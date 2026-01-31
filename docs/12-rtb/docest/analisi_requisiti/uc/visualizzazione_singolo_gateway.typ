@@ -7,10 +7,10 @@
   level: 2,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "Il Sistema mostra la lista dei Gateway associati al Tenant dell'Attore primario",
+    "Il Sistema mostra la lista dei Gateway associati al Tenant dell'Attore",
   ),
   postconds: (
-    "L'Attore primario visualizza, nel singolo elemento della lista, nome e stato del Gateway",
+    "L'Attore visualizza, nel singolo elemento della lista, nome e stato del Gateway",
   ),
   trigger: "Visualizzazione rapida di un dispositivo nella lista",
   main-scen: (

@@ -7,14 +7,14 @@
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
-    "Il Sistema mostra i dati che l’Attore primario ha richiesto di visualizzare",
+    "Il Sistema mostra i dati che l’Attore ha richiesto di visualizzare",
   ),
   postconds: (
     "I dati visualizzati vengono esportati correttamente",
   ),
-  trigger: "L’Attore primario vuole esportare i dati visualizzati",
+  trigger: "L’Attore vuole esportare i dati visualizzati",
   main-scen: (
-    (descr: "L’Attore primario seleziona la funzionalità di esportazione dati visualizzati"),
+    (descr: "L’Attore seleziona la funzionalità di esportazione dati visualizzati"),
     (descr: "L’Attore avvia il download dei dati di cui è stata richiesta l’esportazione"),
     (descr: "L’Attore ottiene i dati esportati in un nuovo file dedicato"),
   ),

@@ -21,9 +21,7 @@
       inc: "inserimento_dati_config_sim_sensore",
     ),
     (descr: "L’Attore principale conferma la creazione del sensore"),
-    (descr: "L’Attore viene informato del successo della creazione del sensore simulato",
-    ep: "ErroreCreazione",
-    ),
+    (descr: "L’Attore viene informato del successo della creazione del sensore simulato", ep: "ErroreCreazione"),
   ),
   alt-scen: (
     (
@@ -31,8 +29,8 @@
       cond: "Errore di sistema nella creazione del sensore simulato",
       uc: "err_creazione_sensore_simulato",
     ),
-  )
+  ),
 )[
-  #uml-schema("S12", "Creazione sensore Gateway simulato")
+  #uml-schema("S12", "Diagramma Creazione sensore Gateway simulato")
 ]
 

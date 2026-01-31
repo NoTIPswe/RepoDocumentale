@@ -29,6 +29,6 @@
     ),
   ),
 )[
-  #uml-schema("S12.1.1", "Inserimento range generazione dati")
+  #uml-schema("S12.1.1", "Diagramma Inserimento range generazione dati")
 ]
 

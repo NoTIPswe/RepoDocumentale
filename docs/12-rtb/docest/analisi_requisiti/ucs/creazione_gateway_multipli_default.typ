@@ -37,5 +37,5 @@
     ),
   ),
 )[
-  #uml-schema("S15", "Creazione gateway multipli con configurazione di default")
+  #uml-schema("S15", "Diagramma Creazione gateway multipli con configurazione di default")
 ]

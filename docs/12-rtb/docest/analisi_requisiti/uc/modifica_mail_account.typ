@@ -10,16 +10,16 @@
     "Il limite di cambi mail dell'account in analisi in un dato periodo di tempo non è stato superato",
   ),
   postconds: (
-    "L’Attore primario ha correttamente modificato la mail del proprio account",
+    "L’Attore ha correttamente modificato la mail del proprio account",
   ),
   trigger: "Necessità e/o volontà da parte dell’Utente di cambiare la mail del proprio account",
   main-scen: (
     (
-      descr: "L’Attore primario inserisce la nuova mail",
+      descr: "L’Attore inserisce la nuova mail",
       inc: "inserimento_conferma_mail",
     ),
     (
-      descr: "L’Attore primario conferma l’operazione di cambio mail",
+      descr: "L’Attore conferma l’operazione di cambio mail",
     ),
   ),
 )[

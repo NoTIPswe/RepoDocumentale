@@ -12,9 +12,9 @@
   postconds: (
     "Il Sistema salva la richiesta di visualizzazione",
   ),
-  trigger: "L’Attore primario vuole visualizzare i dati relativi ad uno specifico intervallo temporale",
+  trigger: "L’Attore vuole visualizzare i dati relativi ad uno specifico intervallo temporale",
   main-scen: (
-    (descr: "L’Attore primario seleziona un intervallo di tempo per visualizzare i dati al suo interno"),
+    (descr: "L’Attore seleziona un intervallo di tempo per visualizzare i dati al suo interno"),
     (descr: "Il Sistema salva le preferenze di visualizzazione"),
   ),
 )[

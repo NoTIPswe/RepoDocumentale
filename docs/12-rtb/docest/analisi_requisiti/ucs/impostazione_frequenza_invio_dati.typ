@@ -29,5 +29,5 @@
     ),
   ),
 )[
-  #uml-schema("S20.1", "Impostazione frequenza di invio dati")
+  #uml-schema("S20.1", "Diagramma Impostazione frequenza di invio dati")
 ]

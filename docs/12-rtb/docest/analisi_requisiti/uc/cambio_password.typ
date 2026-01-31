@@ -15,7 +15,7 @@
   trigger: "Accesso alla pagina di impostazione tramite token di sicurezza",
   main-scen: (
     (
-      descr: "L'Attore primario inserisce la nuova password",
+      descr: "L'Attore inserisce la nuova password",
       inc: "inserimento_conferma_password",
     ),
   ),

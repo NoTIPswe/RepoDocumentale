@@ -15,6 +15,6 @@
   ),
   trigger: "L’Attore vuole visualizzare lo storico degli alert registrati nel Sistema",
   main-scen: (
-    (descr: "L’attore primario visualizza l’identificativo dell’hardware interessato dall’alert"),
+    (descr: "L’attore visualizza l’identificativo dell’hardware interessato dall’alert"),
   ),
 )

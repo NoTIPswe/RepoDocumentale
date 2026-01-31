@@ -7,19 +7,19 @@
   level: 1,
   prim-actors: (CA.authd-usr,),
   preconds: (
-    "L’Attore primario rispetta il limite di cambi password in un dato periodo",
+    "L’Attore rispetta il limite di cambi password in un dato periodo",
   ),
   postconds: (
     "La password dell’account è stata aggiornata",
   ),
-  trigger: "Necessità e/o volontà da parte dell’Attore primario di modificare la password dell’account",
+  trigger: "Necessità e/o volontà da parte dell’Attore di modificare la password dell’account",
   main-scen: (
     (
-      descr: "L’Attore primario inserisce la nuova password",
+      descr: "L’Attore inserisce la nuova password",
       inc: "inserimento_conferma_password",
     ),
     (
-      descr: "L’Attore primario conferma l’operazione di cambio password",
+      descr: "L’Attore conferma l’operazione di cambio password",
     ),
   ),
 )[

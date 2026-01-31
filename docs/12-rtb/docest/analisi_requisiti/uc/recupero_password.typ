@@ -16,22 +16,22 @@
   trigger: "Le credenziali di accesso sono state perse/dimenticate da parte di un Utente con un account registrato",
   main-scen: (
     (
-      descr: "L'Attore primario inserisce la mail",
+      descr: "L'Attore inserisce la mail",
       inc: "ins_mail",
       ep: "UtenteInesistente",
     ),
     (
-      descr: "L'Attore primario inserisce il codice monouso ricevuto alla mail registrata",
+      descr: "L'Attore inserisce il codice monouso ricevuto alla mail registrata",
     ),
     (
-      descr: "L'Attore primario imposta la nuova password",
+      descr: "L'Attore imposta la nuova password",
       inc: "cambio_password",
     ),
   ),
   alt-scen: (
     (
       ep: "UtenteInesistente",
-      cond: "L'Attore primario inserisce una mail non registrata",
+      cond: "L'Attore inserisce una mail non registrata",
       uc: "err_account_inesistente",
     ),
   ),

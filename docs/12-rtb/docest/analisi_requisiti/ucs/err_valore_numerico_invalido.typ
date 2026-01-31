@@ -23,5 +23,5 @@
     ),
   ),
 )[
-  #uml-schema("S16", "Errore valore numerico invalido")
+  #uml-schema("S16", "Diagramma Errore valore numerico invalido")
 ]

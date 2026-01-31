@@ -20,6 +20,6 @@
     (descr: "L’Attore viene notificato dell’errore"),
   ),
 )[
-  #uml-schema("S11", "Errore Deploy Gateway simulato")
+  #uml-schema("S11", "Diagramma Errore Deploy Gateway simulato")
 ]
 

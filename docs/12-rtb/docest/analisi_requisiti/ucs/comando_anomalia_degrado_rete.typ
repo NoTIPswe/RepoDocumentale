@@ -31,6 +31,6 @@
     ),
   ),
 )[
-  #uml-schema("S17", "Comando anomalia gateway - degrado rete")
+  #uml-schema("S17", "Diagramma Comando anomalia gateway - degrado rete")
 ]
 

@@ -20,6 +20,6 @@
     (descr: "L’Attore viene notificato dell’errore"),
   ),
 )[
-  #uml-schema("S14", "Errore creazione sensore simulato")
+  #uml-schema("S14", "Diagramma Errore creazione sensore simulato")
 ]
 

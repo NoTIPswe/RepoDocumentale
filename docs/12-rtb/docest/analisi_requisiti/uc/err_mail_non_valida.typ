@@ -12,9 +12,9 @@
   postconds: (
     "La mail inserita viene rifiutata",
   ),
-  trigger: "L’Attore primario ha fornito una email non valida",
+  trigger: "L’Attore ha fornito una email non valida",
   main-scen: (
-    (descr: "L’Attore primario viene notificato che l’email inserita non è valida ed invitato a inserirla nuovamente"),
+    (descr: "L’Attore viene notificato che l’email inserita non è valida ed invitato a inserirla nuovamente"),
   ),
 )[
   #uml-schema("14", "Diagramma Errore mail non valida")

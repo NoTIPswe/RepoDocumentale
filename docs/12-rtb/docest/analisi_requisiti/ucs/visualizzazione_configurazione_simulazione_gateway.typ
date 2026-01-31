@@ -14,7 +14,7 @@
   ),
   trigger: "L’Attore vuole visualizzare i dettagli della configurazione di simulazione di un Gateway",
   main-scen: (
-        (
+    (
       descr: "L’attore seleziona il Gateway simulato desiderato",
     ),
     (
@@ -30,7 +30,7 @@
       inc: "visualizzazione_serial_number_gateway_simulato",
     ),
     (
-      descr:"L'attore visualizza la versione del software del Gateway simulato",
+      descr: "L'attore visualizza la versione del software del Gateway simulato",
       inc: "visualizzazione_software_gateway_simulato",
     ),
     (
@@ -46,6 +46,6 @@
     // ...
   ),
 )[
-  #uml-schema("S3", "Visualizzazione configurazione simulazione Gateway")
+  #uml-schema("S3", "Diagramma Visualizzazione configurazione simulazione Gateway")
 ]
 

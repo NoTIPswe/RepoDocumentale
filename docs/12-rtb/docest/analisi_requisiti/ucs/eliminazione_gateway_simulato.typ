@@ -20,6 +20,6 @@
     (descr: "L’Attore riceve una notifica di operazione avvenuta con successo"),
   ),
 )[
-  #uml-schema("S8", "Eliminazione gateway simulato")
+  #uml-schema("S8", "Diagramma Eliminazione gateway simulato")
 ]
 

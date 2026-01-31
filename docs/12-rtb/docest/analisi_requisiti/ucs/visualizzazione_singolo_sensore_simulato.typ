@@ -25,6 +25,6 @@
     ),
   ),
 )[
-  #uml-schema("S4.1", "Visualizzazione singolo sensore simulato")
+  #uml-schema("S4.1", "Diagramma Visualizzazione singolo sensore simulato")
 ]
 

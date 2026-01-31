@@ -8,14 +8,14 @@
   prim-actors: CA.tenant-usr,
   preconds: (
     "Esiste almeno un sensore associato al Gateway di un Tenant gestito dall’Attore primario",
-    "L’Attore primario sta visionando i dati sullo stream",
+    "L’Attore sta visionando i dati sullo stream",
   ),
   postconds: (
-    "L’Attore primario visualizza i dati in grafico correttamente",
+    "L’Attore visualizza i dati in grafico correttamente",
   ),
-  trigger: "L’Attore primario vuole visualizzare lo Stream di dati su grafici",
+  trigger: "L’Attore vuole visualizzare lo Stream di dati su grafici",
   main-scen: (
-    (descr: "L’Attore primario visualizza uno o più grafici (in base alla tipologia dato) su base temporale"),
+    (descr: "L’Attore visualizza uno o più grafici (in base alla tipologia dato) su base temporale"),
     (descr: "Il Sistema distingue le serie nel caso i dati includano più sensori (es. per sensore o tipo misura)"),
   ),
 )[

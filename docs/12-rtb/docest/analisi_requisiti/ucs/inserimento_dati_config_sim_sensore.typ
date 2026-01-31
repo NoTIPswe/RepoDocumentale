@@ -27,6 +27,6 @@
     ),
   ),
 )[
-  #uml-schema("S12.1", "Inserimento dati configurazione sensore")
+  #uml-schema("S12.1", "Diagramma Inserimento dati configurazione sensore")
 ]
 

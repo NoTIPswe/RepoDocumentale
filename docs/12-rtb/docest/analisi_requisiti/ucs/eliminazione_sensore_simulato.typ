@@ -19,6 +19,6 @@
     (descr: "L’Attore riceve una notifica di operazione avvenuta con successo"),
   ),
 )[
-  #uml-schema("S9", "Eliminazione sensore simulato")
+  #uml-schema("S9", "Diagramma Eliminazione sensore simulato")
 ]
 

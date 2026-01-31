@@ -11,7 +11,7 @@
     "Non sono stati registrati dati",
   ),
   postconds: (
-    "L’Attore primario è informato che non ci sono dati visualizzabili/esportabili",
+    "L’Attore è informato che non ci sono dati visualizzabili/esportabili",
   ),
   trigger: "I dati non sono disponibili in fase di visualizzazione dei dettagli",
   main-scen: (

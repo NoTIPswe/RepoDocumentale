@@ -8,14 +8,14 @@
   prim-actors: CA.tenant-usr,
   preconds: (
     "Esiste almeno un sensore associato al Gateway di un Tenant gestito dall’Attore primario",
-    "L’Attore primario sta visionando i dati sullo stream",
+    "L’Attore sta visionando i dati sullo stream",
   ),
   postconds: (
-    "L’Attore primario visualizza i dati in tabella correttamente",
+    "L’Attore visualizza i dati in tabella correttamente",
   ),
-  trigger: "L’Attore primario vuole visualizzare lo Stream di dati in tabella",
+  trigger: "L’Attore vuole visualizzare lo Stream di dati in tabella",
   main-scen: (
-    (descr: "L’Attore primario visualizza una tabella con: timestamp, Gateway, sensore, tipo misura, valore, unità"),
+    (descr: "L’Attore visualizza una tabella con: timestamp, Gateway, sensore, tipo misura, valore, unità"),
   ),
 )[
 ]

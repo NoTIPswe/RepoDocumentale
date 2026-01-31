@@ -23,5 +23,5 @@
     ),
   ),
 )[
-  #uml-schema("S13", "Errore range invalido del sensore simulato")
+  #uml-schema("S13", "Diagramma Errore range invalido del sensore simulato")
 ]

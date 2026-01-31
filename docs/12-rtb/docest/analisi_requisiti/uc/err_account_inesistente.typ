@@ -10,11 +10,11 @@
     "La mail fornita dall'Attore non risulta associata ad alcun account registrato nel Sistema",
   ),
   postconds: (
-    "L'Attore primario ricompila il campo mail",
+    "L'Attore ricompila il campo mail",
   ),
   trigger: "Inserimento di una mail non associata ad un account",
   main-scen: (
-    (descr: "L'Attore primario viene notificato dell'inserimento di una mail non associata a nessun account"),
+    (descr: "L'Attore viene notificato dell'inserimento di una mail non associata a nessun account"),
   ),
 )[
   #uml-schema("8", "Diagramma Errore account non esistente")

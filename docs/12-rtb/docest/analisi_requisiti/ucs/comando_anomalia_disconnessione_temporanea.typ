@@ -32,6 +32,6 @@
     ),
   ),
 )[
-  #uml-schema("S18", "Comando anomalia gateway - disconnessione temporanea")
+  #uml-schema("S18", "Diagramma Comando anomalia gateway - disconnessione temporanea")
 ]
 

@@ -8,15 +8,15 @@
   prim-actors: CA.non-authd-usr,
   preconds: (
     "Le credenziali primarie dell’account dell'Attore sono valide",
-    "Il tenant, a cui l'account relativo alle credenziali afferisce, richiede 2FA",
+    "Il Tenant, a cui l'account relativo alle credenziali afferisce, richiede 2FA",
   ),
   postconds: (
-    "L'Attore primario è autenticato e riconosciuto correttamente",
+    "L'Attore è autenticato e riconosciuto correttamente",
   ),
   trigger: "Policy opzionale di sicurezza che richiede un secondo fattore di autenticazione per completare l'accesso",
   main-scen: (
     (descr: "Il Sistema richiede l'inserimento del codice OTP"),
-    (descr: "L'Attore primario inserisce il codice", inc: "ins_otp"),
+    (descr: "L'Attore inserisce il codice", inc: "ins_otp"),
   ),
 )[
   #uml-schema("4", "Diagramma Login 2FA")

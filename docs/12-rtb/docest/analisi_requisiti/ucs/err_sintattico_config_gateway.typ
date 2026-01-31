@@ -15,8 +15,10 @@
   ),
   trigger: "Ricezione di una configurazione malformata",
   main-scen: (
-    (descr: "L’Attore riceve una notifica di errore di configurazione con indicazione della natura sintattica del problema"),
+    (
+      descr: "L’Attore riceve una notifica di errore di configurazione con indicazione della natura sintattica del problema",
+    ),
   ),
 )[
-  #uml-schema("S21", "Errore sintattico configurazione Gateway")
+  #uml-schema("S21", "Diagramma Errore sintattico configurazione Gateway")
 ]
