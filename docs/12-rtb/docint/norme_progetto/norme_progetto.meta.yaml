@@ -4,7 +4,7 @@ changelog:
     date: "2026-02-01"
     authors:
       - Valerio Solito
-    verifier: TDB
+    verifier: TBD
     description: >
       Aggiunta sezione Jira, modificato anche lib.typ
   - version: "0.6.0"
