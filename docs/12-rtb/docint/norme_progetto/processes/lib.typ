@@ -1,7 +1,14 @@
 #let cite-norm(norm) = context {
   let label = label(norm)
+  let target = query(label).first()
   let title = query(label).first().body
-  text(fill: blue)[#ref(label)] + " " + link(label)[#title]
+
+  if target.func() == heading and target.numbering == none{
+    //text(fill: blue)[#ref(label)] + " " + link(label)[#title]
+    link(label)[#text(fill: blue)[#target.body]]
+  } else {
+    link(label)[#text(fill: blue)[#ref(label) #target.body]]
+  }
 }
 
 #let ROLES = (
@@ -24,22 +31,35 @@
   title: none,
   label: none,
   rationale: none,
+  level: 4,
 ) = {
   [
-    #heading(level: 4, title)
+    #if title != none {
+      if level > 4 {
+        heading(level: level, numbering: none, outlined: false, title)
+      } else {
+        heading(level: 4, title)
+      }
+    }
     #if label != none { label }
   ]
 
   content
 
   if rationale != none {
-    heading(level: 5, outlined: false, "Note")
+    if level > 4{
+      heading(level: level+1, numbering: none, outlined: false, text(style: "italic", weight: "bold")[Note])
+    } else {
+      heading(level: level+1, outlined: false, text(style: "italic", weight: "bold")[Note])
+    }
     rationale
   }
+  v(1.3em)
 }
 
 
 #let activity(
+  label: none,
   title: "",
   roles: none,
   norms: none,
@@ -47,9 +67,18 @@
   output: none,
   procedure: none,
   rationale: none,
+  level: 4,
 ) = {
-  heading(level: 4, title)
-
+  [
+    #if title != none {
+      if level > 4 {
+      heading(level: level, numbering: none, outlined: false, title)
+      } else {
+      heading(level: 4, title)
+      }
+    }
+    #if label != none { label }
+  ]
   grid(
     columns: (auto, 1fr),
     gutter: 1em,
@@ -64,8 +93,13 @@
     ])),
   )
 
-  if rationale != none {
-    heading(level: 5, outlined: false, "Note")
+ if rationale != none {
+    if level > 4{
+      heading(level: level+1, numbering: none, outlined: false, text(style: "italic", weight: "bold")[Note])
+    } else {
+      heading(level: level+1, outlined: false, text(style: "italic", weight: "bold")[Note])
+    }
     rationale
   }
+  v(1.3em)
 }

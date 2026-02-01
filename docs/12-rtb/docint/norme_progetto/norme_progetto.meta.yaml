@@ -1,5 +1,12 @@
 title: Norme di Progetto
 changelog:
+  - version: "0.7.0"
+    date: "2026-02-01"
+    authors:
+      - Valerio Solito
+    verifier: TDB
+    description: >
+      Aggiunta sezione Jira, modificato anche lib.typ
   - version: "0.6.0"
     date: "2026-01-12"
     authors:
