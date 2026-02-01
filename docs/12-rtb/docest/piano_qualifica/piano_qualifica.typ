@@ -916,6 +916,30 @@
 
   == Test di Integrazione
 
+  #table(
+  columns: (1fr, 3.5fr, 1.2fr, 0.8fr),
+  stroke: 0.5pt,
+  inset: 6pt,
+
+  table.header(
+    [*Codice*],
+    [*Descrizione (unitaria)*],
+    [*Requisiti di riferimento*],
+    [*Stato*],
+  ),
+  [T-I-1], [Verificare la corretta ricezione e validazione dei pacchetti JSON inviati dal Simulatore al Cloud Ingestion Service], [R-S-1-F, R-S-4-F], [NI],
+  [T-I-2], [Verificare il flusso di controllo bidirezionale: invio e corretta applicazione dei comandi di configurazione dal Cloud al Simulatore], [R-S-7-F, R-S-10-F], [NI],
+  [T-I-3], [Verificare la gestione del buffer locale del Simulatore e della successiva integrazione con il Cloud dopo un ripristino di rete], [R-S-8-F], [NI],
+  [T-I-4], [Verificare la persistenza dei dati nel database (MongoDB) e dell'isolamento dei dati per ciascun Tenant], [R-S-17-F, R-S-22-F], [NI],
+  [T-I-5], [Verificare la comunicazione tra il servizio di Ingestion e il sistema di Streaming (NATS) per la distribuzione dei dati], [R-S-21-F], [NI],
+  [T-I-6], [Verificare l'attivazione dei trigger di allerta tra il modulo di analisi dati e il servizio notifiche al superamento delle soglie], [R-S-19-F, R-S-20-F], [NI],
+  [T-I-7], [Verificare l'integrazione del sistema di autenticazione (JWT) tra l'API Gateway e i microservizi interni], [R-S-23-F, R-S-24-F], [NI],
+  [T-I-8], [Verificare la gestione degli errori di configurazione del Gateway simulato in caso di payload invalido o frequenza fuori range], [R-S-23-F, R-S-24-F], [NI],
+  [T-I-9], [Verificare la propagazione e gestione di misure anomale (outlier) dal Simulatore al Cloud], [R-S-21-F], [NI],
+  [T-I-10], [Verificare l’integrazione del sistema con più Gateway simulati attivi in parallelo], [R-S-17-F], [NI],
+  [T-I-11], [Verificare l’isolamento dei dati tra Tenant tramite API e persistenza su database], [R-2-S], [NI],
+  )
+
   == Test di Sistema
 
 
