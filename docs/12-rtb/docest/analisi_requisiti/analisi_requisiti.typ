@@ -380,23 +380,9 @@
   - Sicurezza: sono i requisiti che stabiliscono le misure di protezione necessarie per garantire l'integrità, la
     riservatezza e la disponibilità dei dati del sistema;
 
-  La nomenclatura per il codice dei requisiti è la seguente:
-  #align(center, text(1.2em)[*`R-Numero-Tipologia`*])
-
-  dove:
-  - *R* abbreviazione di *R*\equisito;
-  - *Numero* è un valore univoco che identifica il requisito;
-  - *Tipologia* indica il tipo di requisito. Le tipologie sono:
-    - *F* per *F*\unzionale;
-    - *Q* per *Q*\ualità
-    - *V* per *V*\incolo
-    - *S* per *S*\icurezza
-
-  Per la parte dei requisiti funzionali del simulatore la nomenclatura presenta l'aggiunta:
-  #align(center, text(1.2em)[*`R-S-Numero-F`*])
-
-  dove:
-  - *S*: abbreviazione di *S*\imulatore;
+  Per la nomenclatura usata di seguito si faccia riferimento alla Sez. 2.2.1.2 all'interno del documento #link(
+    "https://notipswe.github.io/docs/12-rtb/docint/norme_progetto.pdf",
+  )[Norme di Progetto].
 
   == Requisiti Funzionali
   #table(
