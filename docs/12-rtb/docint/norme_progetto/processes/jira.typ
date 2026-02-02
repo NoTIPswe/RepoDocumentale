@@ -70,7 +70,10 @@ Di seguito si elencano le varie norme legate al funzionamento di Jira.
   - *In Verification*: L'attività è stata presa in carico dal verificatore.
   - *Completata*: L'attività ha superato la verifica e può considerarsi conclusa.
   - *Waiting*: Stato iniziale della Sub-Task di Verifica, che passa allo stato *Da Completare* solo quando la Sub-Task
-    di Esecuzione passa allo stato *In Verification*
+    di Esecuzione passa allo stato *In Verification*.
+  - *Changes requested*: Stato della Sub-Task di Esecuzione raggiungibile soltanto se il Verificatore ha richiesto dei cambiamenti 
+    al lavoro svolto selezionando *Reject* nella Sub-Task di Verifica quando essa era nello stato *In Verification*. Richiede che l'Autore del documento
+    ritorni alla fase *In Execution* per poter così apportare le modifiche richieste.
   Le transizioni invece sono:
   - *Create*: La task viene creata.
   - *Start Execution*: Inizia lo sviluppo della task.
@@ -214,7 +217,7 @@ Di seguito si elencano le varie norme legate al funzionamento di Jira.
       name: "Verifica",
       desc: [
         - Prende in carico la Sub-Task di Verifica e fa avanzare allo stato '*In Corso*'
-        - Se la verifica và a buon fine, anche su GitHub viene approvata la Pull-Request e questa Sub-Task viene fatta
+        - Se la verifica va a buon fine, anche su GitHub viene approvata la Pull-Request e questa Sub-Task viene fatta
           avanzare allo stato '*Completata*'.
         - Nel caso in cui siano richieste delle modifiche, allora il verificatore farà la Reject del lavoro svolto,
           mandando la Sub-Task di Esecuzione allo stato *Changes Requested*, e la Sub-Task di Verifica allo stato
