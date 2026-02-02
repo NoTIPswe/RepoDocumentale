@@ -16,7 +16,7 @@
       ],
     ),
   ),
-  abstract: "Il presente documento riporta il resoconto dell'incontro esterno tenutosi in remoto. L'incontro ha avuto 
+  abstract: "Il presente documento riporta il resoconto dell'incontro esterno tenutosi in remoto. L'incontro ha avuto
   come oggetto la discussione tecnica sul Proof of Concept con le tecnologie adottate e la complessità del MVP.",
   changelog: metadata.changelog,
 )[
