@@ -148,7 +148,7 @@ riferimento, oltre che a *Jira* per la gestione centralizzata dei task da esegui
 
 In particolare, è stata pianificata l'applicazione delle issue per la gestione e l'assegnazione delle attività, nonché
 per la pianificazione di sprint e milestone. /*Tuttavia, al momento della stesura, tale modalità non risulta ancora
-                                             implementata operativamente. Penso da togliere questo*/
+implementata operativamente. Penso da togliere questo*/
 
 #include "processes/jira.typ"
 
