@@ -72,8 +72,8 @@ Nel contesto del presente progetto, risultano rilevanti esclusivamente i process
 == Fornitura
 
 === Documentazione fornitura
-Nella sezione seguente si elencano i documenti che il gruppo _NoTip_ consegnerà al committente _M31_ e ai proponenti
-Prof. Tullio Vardanega e Prof. Riccardo Cardin.
+Nella sezione seguente si elencano i documenti che il gruppo NoTIP consegnerà al committente _M31_ e ai proponenti Prof.
+Tullio Vardanega e Prof. Riccardo Cardin.
 
 ==== Analisi dei Requisiti
 L'#link("https://notipswe.github.io/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti] definisce nel
@@ -116,7 +116,7 @@ verifica. Il documento, redatto dagli analisti, è strutturato nelle seguenti se
 - Casi d'Uso: modella le interazioni tra attori e sistema;
 - Requisiti: elenca le caratteristiche funzionali, qualitative, di vincolo e di sicurezza da rispettare.
 ==== Casi d'uso
-Per garantire univocità e tracciabilità, i casi d'uso adottano òa seguente nomenclatura:
+Per garantire univocità e tracciabilità, i casi d'uso adottano la seguente nomenclatura:
 #align(center, text(1.2em)[*`UC[Codice].[Sottocaso] - [Titolo]`*])
 dove:
 - UC: acronimo di Use Case;
@@ -142,13 +142,13 @@ Ogni caso d'uso viene dettagliato secondo la seguente struttura:
   nomenclatura:
   #align(center, text(1.2em)[*`R-[Numero]-[Tipologia] [Priorità]`*])
   dove:
-  - *R* abbreviazione di *R*\equisito;
+  - *R* abbreviazione di *Requisito*;
   - *Numero* è un valore univoco che identifica il requisito;
   - *Tipologia* indica la natura del requisito, classificata in:
-    - *F* per *F*\unzionale;
-    - *Q* per *Q*\ualità;
-    - *V* per *V*\incolo;
-    - *S* per *S*\icurezza;
+    - *F* per *Funzionale*;
+    - *Q* per *Qualità*;
+    - *V* per *Vincolo*;
+    - *S* per *Sicurezza*;
   - *Priorità* indica l'importanza strategica del requisito:
   - *Obbligatorio*: indispensabile per la validità del progetto;
   - *Desiderabile*: non indispensabile, ma con valore aggiunto

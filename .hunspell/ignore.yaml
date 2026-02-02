@@ -2,18 +2,18 @@
 # Sostituzioni preliminari per correggere caratteri tipografici che confondono Hunspell.
 # Questo dovrebbe risolvere il problema dei falsi positivi su "L'", "dell'", "un'", ecc.
 normalizations:
-  "’": "'"  # Apostrofo tipografico -> Apostrofo ASCII
-  "“": '"'  # Virgolette aperte
-  "”": '"'  # Virgolette chiuse
+  "’": "'" # Apostrofo tipografico -> Apostrofo ASCII
+  "“": '"' # Virgolette aperte
+  "”": '"' # Virgolette chiuse
 
 # 2. PATTERN DA IGNORARE (Regex)
 # Rimuove codici tecnici e sigle numerate prima del controllo.
 ignore_patterns:
-  - '\b(UC|UCS)\d*\b'     # UC/UCS
-  - '\bv\d+\b'            # versioni (v1, v2, ecc.)
+  - '\b(UC|UCS)\d*\b' # UC/UCS
+  - '\bv\d+\b' # versioni (v1, v2, ecc.)
 
 # 3. DIZIONARIO PERSONALIZZATO
-# Parole specifiche da considerare corrette. 
+# Parole specifiche da considerare corrette.
 # -------------------------------------------------------------------------
 # GUIDA ALLA CASE SENSITIVITY (Come aggiungere nuove parole)
 # Hunspell applica regole gerarchiche in base al casing usato in questa lista:
@@ -59,6 +59,7 @@ accepted_words:
   - Pirlog
   - Preo
   - Solito
+  - Vardanega
 
   # --- Tecnologie e Formati ---
   - Gin
@@ -115,6 +116,9 @@ accepted_words:
   - docint
   - verbest
   - verbint
+  - PostCondizioni
+  - EP
+  - roadmap
 
   # --- Parole Italiane mancanti / Neologismi ---
   - ciclomatica
@@ -132,3 +136,6 @@ accepted_words:
   - sufficiente
   - suffissare
   - yyyy
+  - sottocasi
+  - sottocaso
+  - catagolazione
