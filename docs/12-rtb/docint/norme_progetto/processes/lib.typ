@@ -3,7 +3,7 @@
   let target = query(label).first()
   let title = query(label).first().body
 
-  if target.func() == heading and target.numbering == none{
+  if target.func() == heading and target.numbering == none {
     //text(fill: blue)[#ref(label)] + " " + link(label)[#title]
     link(label)[#text(fill: blue)[#target.body]]
   } else {
@@ -47,10 +47,10 @@
   content
 
   if rationale != none {
-    if level > 4{
-      heading(level: level+1, numbering: none, outlined: false, text(style: "italic", weight: "bold")[Note])
+    if level > 4 {
+      heading(level: level + 1, numbering: none, outlined: false, text(style: "italic", weight: "bold")[Note])
     } else {
-      heading(level: level+1, outlined: false, text(style: "italic", weight: "bold")[Note])
+      heading(level: level + 1, outlined: false, text(style: "italic", weight: "bold")[Note])
     }
     rationale
   }
@@ -72,9 +72,9 @@
   [
     #if title != none {
       if level > 4 {
-      heading(level: level, numbering: none, outlined: false, title)
+        heading(level: level, numbering: none, outlined: false, title)
       } else {
-      heading(level: 4, title)
+        heading(level: 4, title)
       }
     }
     #if label != none { label }
@@ -93,11 +93,11 @@
     ])),
   )
 
- if rationale != none {
-    if level > 4{
-      heading(level: level+1, numbering: none, outlined: false, text(style: "italic", weight: "bold")[Note])
+  if rationale != none {
+    if level > 4 {
+      heading(level: level + 1, numbering: none, outlined: false, text(style: "italic", weight: "bold")[Note])
     } else {
-      heading(level: level+1, outlined: false, text(style: "italic", weight: "bold")[Note])
+      heading(level: level + 1, outlined: false, text(style: "italic", weight: "bold")[Note])
     }
     rationale
   }
