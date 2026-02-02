@@ -29,7 +29,7 @@
   architetturali relative alla sicurezza dei dati e le tecnologie da adottare per il backend. Il confronto ha permesso
   di chiarire dubbi tecnici e di ricevere conferme dalla proponente.
 
-  Durante la riunione sono stati inoltre discusse le preoccupazioni del gruppo riguardo la complessità del MVP.
+  Durante la riunione sono state inoltre discusse le preoccupazioni del gruppo riguardo la complessità del MVP.
 ][
 
   #base-report.report-point(
@@ -40,7 +40,7 @@
       un metodo di decrittazione lato client. L'aspettativa è che l'utente e l'altra parte siano in grado di mandare
       messaggi crittografati e di decifrarli correttamente.
 
-      È stato chiarito che si deve dare per scontata la presenza di un API che ritorna una chiave utilizzabile per la
+      È stato chiarito che si deve dare per scontata la presenza di un'API che ritorna una chiave utilizzabile per la
       decrittazione. La sfida di trovare la soluzione implementativa di come mandare i messaggi e, soprattutto, di come
       decifrarli è lasciata al gruppo.
     ],
@@ -133,7 +133,7 @@
   comunque l'attenzione sugli obiettivi fondamentali del progetto.
 
   Il prossimo appuntamento è fissato per mercoledì della settimana successiva, quando verrà presentato il POC
-  completato. Solo in caso il gruppo avesse bisogno di più tempo per terminare lo sviluppo del POC allora la riunione
+  completato. Solo nel caso in cui il gruppo avesse bisogno di più tempo per terminare lo sviluppo del POC allora la riunione
   verrà spostata a venerdì.
 
   #pagebreak()
