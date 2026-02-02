@@ -71,9 +71,10 @@ Di seguito si elencano le varie norme legate al funzionamento di Jira.
   - *Completata*: L'attività ha superato la verifica e può considerarsi conclusa.
   - *Waiting*: Stato iniziale della Sub-Task di Verifica, che passa allo stato *Da Completare* solo quando la Sub-Task
     di Esecuzione passa allo stato *In Verification*.
-  - *Changes requested*: Stato della Sub-Task di Esecuzione raggiungibile soltanto se il Verificatore ha richiesto dei cambiamenti 
-    al lavoro svolto selezionando *Reject* nella Sub-Task di Verifica quando essa era nello stato *In Verification*. Richiede che l'Autore del documento
-    ritorni alla fase *In Execution* per poter così apportare le modifiche richieste.
+  - *Changes requested*: Stato della Sub-Task di Esecuzione raggiungibile soltanto se il Verificatore ha richiesto dei
+    cambiamenti al lavoro svolto selezionando *Reject* nella Sub-Task di Verifica quando essa era nello stato *In
+    Verification*. Richiede che l'Autore del documento ritorni alla fase *In Execution* per poter così apportare le
+    modifiche richieste.
   Le transizioni invece sono:
   - *Create*: La task viene creata.
   - *Start Execution*: Inizia lo sviluppo della task.
