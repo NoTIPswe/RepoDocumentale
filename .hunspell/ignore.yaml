@@ -72,6 +72,7 @@ accepted_words:
   - pdf
   - Typst
   - YAML
+  - typ
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -106,6 +107,8 @@ accepted_words:
   - UI
   - versionamento
   - subfiles
+  - auth
+  - Burndown
 
   # --- Terminologia Standard Progetto ---
   - docest
