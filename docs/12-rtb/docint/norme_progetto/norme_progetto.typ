@@ -69,7 +69,91 @@ Nel contesto del presente progetto, risultano rilevanti esclusivamente i process
 - Il processo di sviluppo comprende le attività di analisi, progettazione, implementazione, verifica e validazione del
   prodotto software.
 
-#pagebreak()
+== Fornitura
+
+=== Documentazione fornitura
+Nella sezione seguente si elencano i documenti che il gruppo _NoTip_ consegnerà al committente _M31_ e ai proponenti
+Prof. Tullio Vardanega e Prof. Riccardo Cardin.
+
+==== Analisi dei Requisiti
+L'#link("https://notipswe.github.io/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti] definisce nel
+dettaglio i requisiti obbligatori, desiderabili e opzionali del progetto. Il documento mira a risolvere le ambiguità
+derivanti dalla lettura del #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7],
+fornendo una base solida per la progettazione attraverso:
+- Descrizione del prodotto: analisi puntuale del sistema richiesto dal committente.
+- Casi d'uso: identificazione degli scenari d'uso e delle interazioni tra utenti e sistema. Ogni caso d'uso include una
+  descrizione dettagliata degli scenari principali, permettendo ai progettisti di comprendere il comportamento atteso
+  del software in ogni situazione.
+- Lista dei Requisiti: rappresenta l'insieme dettagliato delle funzionalità, dei vincoli e delle qualità del sistema,
+  derivanti dalle richieste del proponente o identificato dal gruppo durante l'attività di analisi.
+I dettagli riguardanti il documento possono essere trovati nella sezione 2.2.1.
+
+==== Piano di Progetto
+Il #link("https://notipswe.github.io/docs/12-rtb/docest/piano_progetto.pdf")[Piano di Progetto] definisce e organizza la
+pianificazione strategica e operativa del gruppo, fornendo una roadmap dettagliata delle attività e gestione delle
+risorse. Il documento si articola nelle seguenti sezioni:
+- Analisi dei rischi: identifica e qualifica le criticità che potrebbero manifestarsi durante il ciclo di vita del
+  progetto. A ogni rischio è associata una strategia di mitigazione, volta a ridurne l'impatto o la probabilità di
+  accadimento.
+- Pianificazione: definisce la sequenza temporale dei periodi di lavoro (Sprint). Per ogni Sprint sono riportate le
+  attività da completare, il preventivo orario per componente e il consuntivo delle ore effettivamente impiegate, con il
+  relativo aggiornamento del budget residuo.
+
+==== Glossario
+Il #link("https://notipswe.github.io/docs/12-rtb/docest/glossario.pdf")[Glossario] raccoglie e definisce in modo univoco
+i termini tecnici e gli acronimi utilizzati nella documentazione. Il suo scopo è eliminare le ambiguità linguistiche,
+garantendo una comunicazione uniforme sia tra i membri del gruppo sia verso gli stakeholder esterni.
+
+== Sviluppo
+=== Analisi dei Requisiti
+L'#link("https://notipswe.github.io/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti] è una delle
+attività cardine della milestone Requirements and Technology Baseline (RTB). Il suo obiettivo è individuare l'insieme
+completo dei requisiti che il sistema dovrà soddisfare, fungendo da riferimento oggettivo per le successive attività di
+verifica. Il documento, redatto dagli analisti, è strutturato nelle seguenti sezioni:
+- Introduzione: definisce lo scopo e il campo di applicazione del documento;
+- Descrizione: illustra le finalità generali e gli obiettivi del prodotto;
+- Attori: identifica gli utilizzatori del sistema e i soggetti che interagiscono con esso;
+- Casi d'Uso: modella le interazioni tra attori e sistema;
+- Requisiti: elenca le caratteristiche funzionali, qualitative, di vincolo e di sicurezza da rispettare.
+==== Casi d'uso
+Per garantire univocità e tracciabilità, i casi d'uso adottano òa seguente nomenclatura:
+#align(center, text(1.2em)[*`UC[Codice].[Sottocaso] - [Titolo]`*])
+dove:
+- UC: acronimo di Use Case;
+- [Codice]: numero identificativo univoco del caso d'uso principale.
+- [Sottocaso]: numero identificativo progressivo gerarchico per identificare scenari derivati o specifici, ci possono
+  essere sottocasi derivanti da sottocasi.
+- [Titolo]: titolo sintetico ed esplicativo dell'azione.
+Per la parte B (Simulatore), la nomenclatura viene estesa in UCS (Use Case Simulatore).
+
+Ogni caso d'uso viene dettagliato secondo la seguente struttura:
+- Attori Primari: utenti e attori che avviano l'interazione.
+- Attori Secondari: destinatari di notifiche o sistemi esterni coinvolti passivamente.
+- Precondizioni: stato del sistema o condizioni necessarie per l'attivazione del caso d'uso.
+- Postcondizioni: stato garantito del sistema a seguito del completamento con successo.
+- Scenario Principale: sequenza di azioni atomiche in linguaggio naturale, inclusi eventuali:
+  - Punti di Inclusione (Include: UC[ID] - Titolo).
+  - Punti di Estensione (Descrizione passo. [EP: NOME]).
+- Estensioni: gestione di scenari alternativi o eccezioni, definiti da una condizioni di guardia e dal relativo caso
+  d'uso esteso.
+  ==== Requisiti
+  Una volta definiti i casi d'uso, il documento procede all'individuazione dei requisiti, derivati dal capitolato e
+  dall'individuazione deducibile. Per garantire una catagolazione rigorosa, ogni requisito è identificato dalla seguente
+  nomenclatura:
+  #align(center, text(1.2em)[*`R-[Numero]-[Tipologia] [Priorità]`*])
+  dove:
+  - *R* abbreviazione di *R*\equisito;
+  - *Numero* è un valore univoco che identifica il requisito;
+  - *Tipologia* indica la natura del requisito, classificata in:
+    - *F* per *F*\unzionale;
+    - *Q* per *Q*\ualità;
+    - *V* per *V*\incolo;
+    - *S* per *S*\icurezza;
+  - *Priorità* indica l'importanza strategica del requisito:
+  - *Obbligatorio*: indispensabile per la validità del progetto;
+  - *Desiderabile*: non indispensabile, ma con valore aggiunto
+  - *Opzionale*: funzionalità aggiuntive a bassa priorità.
+Per la parte B (Simulatore), la nomenclatura viene estesa in RS (Requisito Simulatore).
 
 = Processi di supporto
 
