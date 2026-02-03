@@ -1,5 +1,12 @@
 title: Piano di Progetto
 changelog:
+  - version: "0.4.0"
+    date: "2026-02-03"
+    authors:
+      - Valerio Solito
+    verifier: TBD
+    description: >
+        Sistemate sezioni Sprint precedenti e aggiunta sezione Sprint 5
   - version: "0.3.0"
     date: "2025-12-16"
     authors:
