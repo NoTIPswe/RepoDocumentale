@@ -1,5 +1,13 @@
 title: Piano di Qualifica 
 changelog:
+  - version: "0.6.0"
+    date: "2026-02-03"
+    authors:
+      - Mario De Pasquale
+      - Alessandro Contarini
+    verifier: TBD
+    description: >
+      Fixati test di Integrazione e di Unità. Aggiunta bozza Test di Sistema.
   - version: "0.5.0"
     date: "2026-02-01"
     authors:
