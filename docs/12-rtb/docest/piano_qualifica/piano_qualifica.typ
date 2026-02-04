@@ -1019,11 +1019,38 @@
   [T-S-041], [Verificare che il Cloud possa inviare configurazioni al Gateway simulato e ricevere notifiche di errore], [R-S-22-F, R-S-23-F, R-S-24-F], [NI],
   )
 
-
-
-
   = Cruscotto di valutazione
-  // Da completare successivamente
+  Di seguito vengono presentate le misurazioni raccolte nel periodo compreso tra l’aggiudicazione del capitolato e la definizione della Requirements and Technology Baseline (RTB).
+  EVENTUALI ALTRE CONSIDERAZIONI DERIVATE DALLE MISURAZIONI POTRANNO ESSERE RICAVATE SOLO NEL MOMENTO IN CUI VERRANNO EFFETTUATE LE MISURAZIONI IMMEDIATAMENTE PRIMA DELLA REVISIONE RTB
+
+  == Burndown / Burnup Chart
+  IMMAGINE DA METTERE PRIMA DELLA RTB
+
+  Il grafico Burndown/Burnup mostra l’andamento delle ore di lavoro completate rispetto alla pianificazione ideale nel periodo compreso in analisi. La linea di riferimento ideale rappresenta l’avanzamento atteso del lavoro in modo lineare, mentre la curva delle ore effettivamente completate evidenzia l’andamento reale del progetto.
+
+  Dall’osservazione del grafico si nota che il lavoro effettivamente completato cresce nel tempo, ma con un andamento non perfettamente allineato alla pianificazione ideale. In particolare, sono presenti periodi di crescita ridotta alternati a incrementi più marcati, indice di una distribuzione del lavoro non uniforme tra le varie iterazioni. La distanza tra la curva reale e quella ideale indica un avanzamento inferiore rispetto a quanto pianificato, suggerendo un rallentamento temporaneo nello sviluppo.
+
+  == Velocity Chart
+  IMMAGINE DA METTERE PRIMA DELLA RTB
+  Il grafico di Velocity rappresenta il numero di ore di lavoro completate in ciascun intervallo temporale, mettendolo a confronto con la velocità media calcolata sulle iterazioni precedenti. Le barre mostrano il lavoro effettivamente completato in ogni sprint, mentre la linea di velocità media fornisce un’indicazione del ritmo di sviluppo complessivo del team.
+
+  == Altre misurazioni da aggiungere !
+
+  = Valutazioni per l'automiglioramento 
+  Al fine di perseguire un miglioramento continuo durante lo svolgimento del progetto, è opportuno effettuare valutazioni periodiche. Tali valutazioni hanno l’obiettivo di individuare le criticità emerse e le relative soluzioni adottate per affrontarle, consentendo al gruppo di acquisire una maggiore consapevolezza e di ridurre il rischio di ripetere gli stessi errori in futuro. Le analisi effettuate si basano sulle tre categorie di rischio definite nel _Piano di Progetto_ v1.0.0, ovvero:
+  - Rischi connessi alle tecnologie adottate (*RT1*);
+  - Rischi connessi all'organizzazione del team (*RO1*);
+  - Rischi connessi ai singoli componenti del gruppo (*RP1*).
+
+  == Valutazione sulle tecnologie adottate
+
+
+
+  == Valutazione sull'organizzazione del team
+
+
+
+  == Validazione sui singoli componenti del gruppo
 
 ]
 

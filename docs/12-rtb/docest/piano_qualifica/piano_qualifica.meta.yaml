@@ -4,10 +4,17 @@ changelog:
     date: "2026-02-04"
     authors:
       - Alessandro Contarini
+    verifier: TBD
+    description: >
+      Definizione delle ultime sezioni del documento (con contenuti riguardanti i risultati finora riscontrati)
+  - version: "0.6.0"
+    date: "2026-02-04"
+    authors:
+      - Alessandro Contarini
     verifier: Leonardo Preo
     description: >
       Finita la sezione di Testing
-  - version: "0.6.0"
+  - version: "0.5.1"
     date: "2026-02-03"
     authors:
       - Mario De Pasquale
