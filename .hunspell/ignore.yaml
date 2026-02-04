@@ -61,6 +61,9 @@ accepted_words:
   - Solito
 
   # --- Tecnologie e Formati ---
+  - Gin
+  - GO
+  - gRPC
   - JSON
   - LaTeX
   - MQTT
@@ -69,11 +72,14 @@ accepted_words:
   - pdf
   - Typst
   - YAML
+  - typ
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
   - Acknowledgement
+  - API
   - BAC
+  - backend
   - BLE
   - changelog
   - CMMI
@@ -101,6 +107,8 @@ accepted_words:
   - UI
   - versionamento
   - subfiles
+  - auth
+  - Burndown
 
   # --- Terminologia Standard Progetto ---
   - docest
