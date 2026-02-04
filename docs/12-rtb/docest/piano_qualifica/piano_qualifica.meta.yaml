@@ -4,22 +4,22 @@ changelog:
     date: "2026-02-04"
     authors:
       - Alessandro Contarini
-    verifier: TBD
+    verifier: Leonardo Preo
     description: >
-      Finita la sezione di Testing.
+      Finita la sezione di Testing
   - version: "0.6.0"
     date: "2026-02-03"
     authors:
       - Mario De Pasquale
       - Alessandro Contarini
-    verifier: TBD
+    verifier: Leonardo Preo
     description: >
       Fixati test di Integrazione e di Unità e aggiunta bozza Test di Sistema
   - version: "0.5.0"
     date: "2026-02-01"
     authors:
       - Mario De Pasquale
-    verifier: TBD
+    verifier: Leonardo Preo
     description: >
       Aggiunti Test di integrazione
   - version: "0.4.0"
