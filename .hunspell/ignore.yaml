@@ -115,6 +115,8 @@ accepted_words:
   - docint
   - verbest
   - verbint
+  - RO    # --- Starebbe per RO1 all'interno del PdP, ma scrivendo RO1 non lo prende ---
+
 
   # --- Parole Italiane mancanti / Neologismi ---
   - ciclomatica
