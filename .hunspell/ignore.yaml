@@ -170,6 +170,8 @@ accepted_words:
   - PreLogin
   - OtpErrato
   - PasswordInvalida
+  - RangeInvalido
+  - NessunDato
 
 
   # --- Parole Italiane mancanti / Neologismi ---
@@ -199,5 +201,11 @@ accepted_words:
   - l'OTP
   - dell'alert
   - dall'alert
+  - l'alert
   - impersonificato
   - dell'Owner
+  - dell'API
+  - istanziati
+  - l'endpoint
+  - failover
+  - Provisionato

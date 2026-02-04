@@ -17,7 +17,7 @@
     (descr: "L’Attore inserisce un valore minimo"),
     (descr: "L’Attore inserisce un valore massimo maggiore o uguale al minimo"),
     (
-      descr: "L'operazione và a buon fine",
+      descr: "L'operazione va a buon fine",
       ep: "ErroreRangeInvalido",
     ),
   ),
