@@ -28,7 +28,7 @@
   L'incontro si è focalizzato sulla definizione dei requisiti minimi attesi per il PoC, con consigli da parte della
   proponente volti a guidare il gruppo durante la scelta delle tecnologie e delle architetture da adottare. Inoltre, si
   è proceduto a richiedere all'azienda alcuni chiarimenti e specificazioni riguardo parametri dei Tenant e dei gateway.
-  Si sono, infine, richieste informazioni riguardo le aspettative dell'azienda riguardo al documento Analidi dello Stato
+  Si sono, infine, richieste informazioni riguardo le aspettative dell'azienda riguardo al documento Analisi dello Stato
   dell'Arte.
 ][
 
@@ -66,7 +66,7 @@
       è dimostrare il flusso "minimo indispensabile": un gateway simulato che invia un messaggio, il quale viaggia
       cifrato e arriva al cloud. È stato specificato che la sincronizzazione con il DB serve principalmente a dimostrare
       la "segregazione dei dati" (ovvero che un gateway è associato a uno specifico tenant). Se il codice prodotto
-      risulterà ben strutturato, potrà essere usato come base per l'MVP, altrimenti potrà essere scartato ("buttato
+      risulterà ben strutturato, potrà essere usato come base per il MVP, altrimenti potrà essere scartato ("buttato
       via") trattandosi di una demo esplorativa.
     ],
     decisions: [
@@ -149,14 +149,14 @@
     ],
     decisions: [
       Questa funzionalità è classificata come "desiderata", opzionale. Utile da prevedere a livello architetturale
-      (associare consumo a token), ma non bloccante per l'MVP attuale.
+      (associare consumo a token), ma non bloccante per il MVP attuale.
     ],
   )
 
   = Epilogo della riunione
   L'incontro si è concluso positivamente: i dubbi del gruppo sono stati sanati, permettendo la continuazione dei lavori.
-  A causa della sessione d'esami imminente si è chiesto all'azienda di rimandare l'incontro della settimana successiva.
-  Le eventuali comunicazioni avverrano tramite email, programmando il prossimo incontro tra il *26* ed il *28 Gennaio*,
+  A causa della sessione di esami imminente si è chiesto all'azienda di rimandare l'incontro della settimana successiva.
+  Le eventuali comunicazioni avverranno tramite email, programmando il prossimo incontro tra il *26* ed il *28 Gennaio*,
   nel quale verrà presentato il PoC prodotto. \
   NoTIP ringrazia nuovamente _M31_ per la professionalità e la disponibilità dimostrate durante l’incontro.
 
