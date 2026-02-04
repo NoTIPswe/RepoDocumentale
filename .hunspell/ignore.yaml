@@ -74,6 +74,13 @@ accepted_words:
   - Typst
   - YAML
   - typ
+  - ORM
+  - Gorm
+  - NestJS
+  - TypeScript
+  - OpenAI
+  - Grafana
+  - OTA
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -97,7 +104,7 @@ accepted_words:
   - MVP
   - PDCA
   - PDP
-  - POC
+  - PoC
   - PV
   - repo
   - RTB
@@ -110,6 +117,7 @@ accepted_words:
   - subfiles
   - auth
   - Burndown
+  - MVP
 
   # --- Terminologia Standard Progetto ---
   - docest
@@ -119,6 +127,8 @@ accepted_words:
   - postcondizioni
   - EP
   - roadmap
+  - RO    # --- Starebbe per RO1 all'interno del PdP, ma scrivendo RO1 non lo prende ---
+
 
   # --- Parole Italiane mancanti / Neologismi ---
   - ciclomatica
@@ -139,3 +149,4 @@ accepted_words:
   - sottocasi
   - sottocaso
   - catagolazione
+  - un'app
