@@ -26,9 +26,9 @@ svolgimento del progetto.
 
   Il ciclo di vita di un documento prevede tre stati fondamentali, mappati sul branch in cui si trova il file:
 
-  - *In lavorazione* (Branch di feature): Il documento è in fase di stesura o modifica. La versione è provvisoria.
+  - *In lavorazione* (Branch di feature): Il documento è in fase di stesura o modifica. La versione è provvisoria;
   - *Verificato* (Branch `main`): Il documento ha superato la revisione tecnica (PR) ed è stato integrato. È stabile ma
-    non necessariamente rilasciato.
+    non necessariamente rilasciato;
   - *Approvato* (Branch `main`): Il documento corrisponde a una Baseline ufficiale. Richiede l'approvazione esplicita
     del Responsabile.
 
