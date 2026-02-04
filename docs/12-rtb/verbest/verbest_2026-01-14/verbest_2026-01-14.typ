@@ -49,7 +49,7 @@
     discussion_point: [Suggerimenti Stack Tecnologico],
     discussion: [
       L'azienda consiglia fortemente Go (con framework Gin e ORM Gorm) per i servizi e la simulazione, NATS per la
-      comunicazione e Angular per il frontend. Questo anche in quanto sono le tecnologie che tutt'ora l'azienda
+      comunicazione e Angular per il Frontend. Questo anche in quanto sono le tecnologie che tutt'ora l'azienda
       utilizza, e nelle quali potrebbe seguirci maggiormente. Tuttavia, gli studenti chiedono se possono usare NestJS
       (con Prisma come ORM), alternativa che avevano trovato online durante lo studio per la scelta delle tecnologie.
     ],

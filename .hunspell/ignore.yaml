@@ -77,7 +77,7 @@ accepted_words:
   - ORM
   - Gorm
   - NestJS
-  - Typescript
+  - TypeScript
   - OpenAI
   - Grafana
   - OTA
@@ -141,4 +141,4 @@ accepted_words:
   - sufficiente
   - suffissare
   - yyyy
-  - app
+  - un'app
