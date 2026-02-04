@@ -103,7 +103,7 @@ accepted_words:
   - KLOC
   - MVP
   - PDCA
-  - PDP
+  - PdP
   - PoC
   - PV
   - repo
@@ -118,6 +118,8 @@ accepted_words:
   - auth
   - Burndown
   - MVP
+  - AdR
+  - NdP
 
   # --- Terminologia Standard Progetto ---
   - docest
