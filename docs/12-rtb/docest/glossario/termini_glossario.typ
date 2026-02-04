@@ -97,6 +97,7 @@
   "TBD": "Acronimo per To Be Defined (da definire). È un segnaposto utilizzato all'interno dei file .meta.yaml per indicare chiaramente la mancanza, al momento della modifica del documento, di un verificatore designato. In caso di presenza di tale campo la PR non può avere in alcun modo successo.",
   "template Typst": "Modello predefinito scritto in linguaggio Typst, utilizzato per standardizzare la struttura grafica e formale dei documenti del gruppo",
   "template": "Struttura predefinita utilizzata come modello per la redazione uniforme dei documenti del progetto",
+  "TOTP": "Acronimo per Time Based One Time Password, è un algoritmo che genera password temporanee, utilizzate per l'autenticazione a due fattori",
   "Typst": "Linguaggio di composizione testuale per la creazione di documenti strutturati, caratterizzato da una sintassi chiara e moderna, alternativo a LaTeX e adatto all’automazione della documentazione",
   // U
   // V

@@ -1,0 +1,35 @@
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+
+#uc(
+  id: "selezione_range_numerico",
+  system: CLOUD_SYS,
+  title: "Selezione range numerico misurazioni",
+  level: 1,
+  prim-actors: CA.tenant-adm,
+  preconds: (
+    "Il Sistema ha recuperato i limiti minimi e massimi assoluti supportati dall'hardware del sensore",
+    "Il sensore risulta attivo nel Sistema",
+  ),
+  postconds: (
+    "L’Attore ha inserito un range numerico valido (min <= max)",
+  ),
+  trigger: "L’Attore vuole inserire un range su cui effettuare le misurazioni",
+  main-scen: (
+    (
+      descr: "L’Attore seleziona il valore minimo per le misurazioni",
+      inc: "inserimento_valore_numerico",
+    ),
+    (
+      descr: "L’Attore seleziona il valore massimo per le misurazioni",
+      inc: "inserimento_valore_numerico",
+      ep: "RangeInvalido",
+    ),
+  ),
+  alt-scen: (
+    (
+      ep: "RangeInvalido",
+      cond: "Il range inserito non è valido (min > max)",
+      uc: "err_range_invalido",
+    ),
+  ),
+)[#uml-schema("44", "Diagramma Selezione range numerico misurazioni")]
