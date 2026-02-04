@@ -89,6 +89,10 @@ accepted_words:
   - GC
   - js
   - UML
+  - UUID
+  - Kubernetes
+  - HTTPS
+  - WebSocket
 
 
 
@@ -131,6 +135,7 @@ accepted_words:
   - TOTP
   - Postcondizioni
   - Precondizioni
+  - namespace
 
 
   # --- Terminologia Standard Progetto ---
@@ -153,6 +158,18 @@ accepted_words:
   - FallimentoValidazione
   - PasswordDiverse
   - UtenteInesistente
+  - ConfigurazioneInvalida
+  - ErroreCreazione
+  - CertificatoRifiutato
+  - ErroreAuthServer
+  - ErroreInternoCreazione
+  - ClientID
+  - ClientSecret
+  - active
+  - NomeDuplicato
+  - PreLogin
+  - OtpErrato
+  - PasswordInvalida
 
 
   # --- Parole Italiane mancanti / Neologismi ---
@@ -181,4 +198,6 @@ accepted_words:
   - Sez
   - l'OTP
   - dell'alert
-  
+  - dall'alert
+  - impersonificato
+  - dell'Owner
