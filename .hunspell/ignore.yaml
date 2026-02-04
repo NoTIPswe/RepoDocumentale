@@ -59,8 +59,12 @@ accepted_words:
   - Pirlog
   - Preo
   - Solito
+  - Vardanega
 
   # --- Tecnologie e Formati ---
+  - Gin
+  - GO
+  - gRPC
   - JSON
   - LaTeX
   - MQTT
@@ -69,11 +73,21 @@ accepted_words:
   - pdf
   - Typst
   - YAML
+  - typ
+  - ORM
+  - Gorm
+  - NestJS
+  - TypeScript
+  - OpenAI
+  - Grafana
+  - OTA
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
   - Acknowledgement
+  - API
   - BAC
+  - backend
   - BLE
   - changelog
   - CMMI
@@ -90,7 +104,7 @@ accepted_words:
   - MVP
   - PDCA
   - PDP
-  - POC
+  - PoC
   - PV
   - repo
   - RTB
@@ -101,12 +115,17 @@ accepted_words:
   - UI
   - versionamento
   - subfiles
+  - auth
+  - Burndown
+  - MVP
 
   # --- Terminologia Standard Progetto ---
   - docest
   - docint
   - verbest
   - verbint
+  - RO    # --- Starebbe per RO1 all'interno del PdP, ma scrivendo RO1 non lo prende ---
+
 
   # --- Parole Italiane mancanti / Neologismi ---
   - ciclomatica
@@ -124,3 +143,4 @@ accepted_words:
   - sufficiente
   - suffissare
   - yyyy
+  - un'app

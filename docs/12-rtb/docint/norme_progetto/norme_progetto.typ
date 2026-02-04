@@ -79,7 +79,7 @@ qualità durante tutte le fasi del suo ciclo di vita.
 
 #include "processes/documentazione.typ"
 
-#pagebreak()
+
 
 = Processi organizzativi
 
@@ -147,8 +147,12 @@ Per le attività di gestione e coordinamento, il gruppo ha deciso di adottare *G
 riferimento, oltre che a *Jira* per la gestione centralizzata dei task da eseguire.
 
 In particolare, è stata pianificata l'applicazione delle issue per la gestione e l'assegnazione delle attività, nonché
-per la pianificazione di sprint e milestone. Tuttavia, al momento della stesura, tale modalità non risulta ancora
-implementata operativamente.
+per la pianificazione di sprint e milestone. /*Tuttavia, al momento della stesura, tale modalità non risulta ancora
+                                             implementata operativamente. Penso da togliere questo*/
+
+#include "processes/jira.typ"
+
+
 
 = Riferimenti
 
@@ -166,3 +170,5 @@ implementata operativamente.
   - #link("http://docs.github.com/en")
 - *Documentazione Typst*
   - #link("https://typst.app/docs/reference")
+- *Conventional Commits*
+  - #link("https://www.conventionalcommits.org/en/v1.0.0/")

@@ -1,0 +1,16 @@
+title: Verbale Esterno 2026-01-28 (M31)
+changelog:
+  - version: "0.1.1"
+    date: "2026-02-01"
+    authors:
+      - Mario De Pasquale
+    verifier: Alessandro Mazzariol
+    description: >
+      Correzioni errori di battitura
+  - version: "0.0.1"
+    date: "2026-01-28"
+    authors:
+      - Mario De Pasquale
+    verifier: Alessandro Mazzariol
+    description: >
+      Prima bozza del verbale
