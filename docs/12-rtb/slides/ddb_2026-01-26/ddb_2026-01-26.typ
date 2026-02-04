@@ -14,5 +14,5 @@
   - Completare la stesura delle Norme di Progetto.
   - Completare il PoC.
 ][
-  - Difficoltà nell'organizzazione del lavoro durante la sessione d'esami.
+  - Difficoltà nell'organizzazione del lavoro durante la sessione di esami.
 ]
