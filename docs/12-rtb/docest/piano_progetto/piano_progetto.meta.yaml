@@ -4,7 +4,7 @@ changelog:
     date: "2026-02-03"
     authors:
       - Valerio Solito
-    verifier: TBD
+    verifier: Leonardo Preo
     description: >
         Sistemate sezioni Sprint precedenti e aggiunta sezione Sprint 5
   - version: "0.3.0"
