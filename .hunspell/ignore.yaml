@@ -138,6 +138,7 @@ accepted_words:
   - Postcondizioni
   - Precondizioni
   - namespace
+  - PdQ
 
 
   # --- Terminologia Standard Progetto ---

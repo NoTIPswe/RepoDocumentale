@@ -212,7 +212,7 @@
   - Sprint 3
   - Sprint 4
   - Sprint 5
-  - SPrint 6
+  - Sprint 6
 
   Lo Stato attuale del documento
   - Non completato
