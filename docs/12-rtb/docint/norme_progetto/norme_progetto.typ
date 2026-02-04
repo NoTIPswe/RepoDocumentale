@@ -163,6 +163,8 @@ qualità durante tutte le fasi del suo ciclo di vita.
 
 #include "processes/documentazione.typ"
 
+#include "processes/gestione_delle_configurazioni.typ"
+
 
 
 = Processi organizzativi
