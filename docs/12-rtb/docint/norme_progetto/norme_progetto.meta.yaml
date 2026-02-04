@@ -1,5 +1,26 @@
 title: Norme di Progetto
 changelog:
+  - version: "0.8.0"
+    date: "2026-02-02"
+    authors:
+      - Valerio Solito
+    verifier: Alessandro Mazzariol
+    description: >
+      Aggiunta sezione Fornitura e Sviluppo nei processi primari
+  - version: "0.7.0"
+    date: "2026-02-01"
+    authors:
+      - Valerio Solito
+    verifier: Alessandro Mazzariol
+    description: >
+      Aggiunta sezione Jira, modificato anche lib.typ
+  - version: "0.6.0"
+    date: "2026-01-12"
+    authors:
+      - Matteo Mantoan
+    verifier: Alessandro Mazzariol
+    description: >
+      Cambiamento alla struttura del documento, espansione sezione Documentazione
   - version: "0.5.0"
     date: "2025-11-21"
     authors:
@@ -14,7 +35,7 @@ changelog:
       - Mario De Pasquale
     verifier: Matteo Mantoan
     description: >
-        Aggiustamento ore produttive per sprint
+      Aggiustamento ore produttive per sprint
   - version: "0.4.0"
     date: "2025-11-16"
     authors:
@@ -22,28 +43,28 @@ changelog:
       - Mario De Pasquale
     verifier: Matteo Mantoan
     description: >
-        Aggiunta specifica criteri rotazione dei ruoli
+      Aggiunta specifica criteri rotazione dei ruoli
   - version: "0.3.1"
     date: "2025-11-05"
     authors:
       - Leonardo Preo
     verifier: Francesco Marcon
     description: >
-        Sostituzione Figura 1 "Ciclo di vita dei documenti" 
+      Sostituzione Figura 1 "Ciclo di vita dei documenti"
   - version: "0.3.0"
     date: "2025-11-04"
     authors:
       - Leonardo Preo
     verifier: Matteo Mantoan
     description: >
-        Modifica spiegazione commit e verifica
+      Modifica spiegazione commit e verifica
   - version: "0.2.0"
     date: "2025-11-04"
     authors:
       - Leonardo Preo
     verifier: Francesco Marcon
     description: >
-        Modifica ciclo di vita del documento - nuova tecnica di versionamento
+      Modifica ciclo di vita del documento - nuova tecnica di versionamento
   - version: "0.1.0"
     date: "2025-10-31"
     authors:
@@ -51,7 +72,7 @@ changelog:
       - Matteo Mantoan
     verifier: Alessandro Mazzariol
     description: >
-        Prima stesura
+      Prima stesura
   - version: "0.0.1"
     date: "2025-10-30"
     authors:
@@ -60,4 +81,4 @@ changelog:
       - Francesco Marcon
     verifier: Alessandro Mazzariol
     description: >
-        Prima bozza delle Norme di Progetto
+      Prima bozza delle Norme di Progetto
