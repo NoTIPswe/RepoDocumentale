@@ -59,18 +59,21 @@ progetto.
   la cronologia dei contributi. La struttura è così suddivisa:
   - *Repository Documentale*: Contiene la documentazione di progetto, il sito web e il tool `notipdo`;
   - *Repository PoC*: Contiene il codice sorgente per la Technology Baseline (Proof of Concept);
-  - *Repository MVP*: Conterrà il codice sorgente del prodotto richiesto dall'azienda proponente (Minimum Viable Product).
+  - *Repository MVP*: Conterrà il codice sorgente del prodotto richiesto dall'azienda proponente (Minimum Viable
+    Product).
 ]
 
 #norm(
   title: "Baseline",
   label: <baseline-def>,
 )[
-  Una Baseline rappresenta una versione stabile e approvata della configurazione. Nella repository documentale, le baseline sono definite strutturalmente tramite le directory di primo livello in `docs/`:
+  Una Baseline rappresenta una versione stabile e approvata della configurazione. Nella repository documentale, le
+  baseline sono definite strutturalmente tramite le directory di primo livello in `docs/`:
   - `11-candidatura`: Baseline di Candidatura;
   - `12-rtb`: Requirements and Technology Baseline.
 
-  Ogni modifica a una baseline passata (storica) è vietata se non previa autorizzazione esplicita del Responsabile e bloccata dalle automazioni di verifica.
+  Ogni modifica a una baseline passata (storica) è vietata se non previa autorizzazione esplicita del Responsabile e
+  bloccata dalle automazioni di verifica.
 ]
 
 #norm(
@@ -90,9 +93,11 @@ progetto.
   title: "Gestione dei Permessi e Branch Protection",
   label: <branch-protection>,
 )[
-  Per garantire che solo configurazioni verificate entrino nel ramo principale, vengono applicate le seguenti regole tecniche su GitHub (Teams & Rules):
+  Per garantire che solo configurazioni verificate entrino nel ramo principale, vengono applicate le seguenti regole
+  tecniche su GitHub (Teams & Rules):
   - *Branch main protetto*: È inibito il push diretto (comando `git push` rifiutato).
-  - *Merge Restriction*: Il merge è consentito solo tramite Pull Request approvata da almeno un membro del team che in quel momento sta ricoprendo il ruolo di *Verificatore*.
+  - *Merge Restriction*: Il merge è consentito solo tramite Pull Request approvata da almeno un membro del team che in
+    quel momento sta ricoprendo il ruolo di *Verificatore*.
   - *Status Check*: Il merge è bloccato se i check automatici (`pr-check-n-build`) falliscono.
 ]
 
@@ -107,7 +112,8 @@ progetto.
   procedure: (
     (
       name: "Collocazione",
-      desc: [Ogni nuovo documento o script deve essere collocato nella directory corretta secondo la struttura definita nelle norme di progetto.],
+      desc: [Ogni nuovo documento o script deve essere collocato nella directory corretta secondo la struttura definita
+        nelle norme di progetto.],
     ),
     (
       name: "Metadati",
@@ -127,8 +133,8 @@ progetto.
   norms: ("jira-config", "branching-commit-docs", "uso-notipdo"),
   input: [Necessità di modifica (Task o Bug)],
   output: [Configurazione aggiornata su `main`],
-  rationale: [L'uso di check automatici (`pr-check-n-build`) impedisce l'integrazione
-    di configurazioni non valide o incomplete, permettendo di seguire il principio di "correttezza per costruzione"],
+  rationale: [L'uso di check automatici (`pr-check-n-build`) impedisce l'integrazione di configurazioni non valide o
+    incomplete, permettendo di seguire il principio di "correttezza per costruzione"],
   procedure: (
     (
       name: "Creazione Task",
@@ -173,29 +179,31 @@ progetto.
   input: [Merge su `main` in previsione di una Baseline],
   output: [Sito Web aggiornato, Changelog, Matrice di Tracciamento, Report di Audit],
   rationale: [
-    Garantire la visibilità immediata dello stato del progetto (tramite automazione) e assicurare che il prodotto 
-    rispetti i requisiti funzionali (Validazione) e l'integrità dei componenti (Audit) prima di formalizzare il rilascio.
+    Garantire la visibilità immediata dello stato del progetto (tramite automazione) e assicurare che il prodotto
+    rispetti i requisiti funzionali (Validazione) e l'integrità dei componenti (Audit) prima di formalizzare il
+    rilascio.
   ],
   procedure: (
     (
       name: "Automazione e Snapshot",
       desc: [
-        Al merge su `main`, il workflow `deploy.yml` esegue `notipdo generate site`. Questo genera la documentazione 
+        Al merge su `main`, il workflow `deploy.yml` esegue `notipdo generate site`. Questo genera la documentazione
         statica e il Changelog, pubblicandoli su GitHub Pages come snapshot ufficiale della configurazione corrente.
       ],
     ),
     (
       name: "Audit dei Configuration Item",
       desc: [
-        Verifica l'integrità e la presenza di tutti i componenti previsti (Manuali, Codice, Dockerfile). 
-        Si assicura che ogni elemento sia correttamente versionato e coerente con lo stato descritto nel sito statico.
+        Verifica l'integrità e la presenza di tutti i componenti previsti (Manuali, Codice, Dockerfile). Si assicura che
+        ogni elemento sia correttamente versionato e coerente con lo stato descritto nel sito statico.
       ],
     ),
     (
       name: "Verifica e Tracciabilità",
       desc: [
-        Validazione della copertura dei requisiti: ogni Requisito deve risultare collegato a un Task Jira completato 
-        e a un test superato. Il risultato viene formalizzato nella Matrice di Tracciamento per garantire la completezza funzionale.
+        Validazione della copertura dei requisiti: ogni Requisito deve risultare collegato a un Task Jira completato e a
+        un test superato. Il risultato viene formalizzato nella Matrice di Tracciamento per garantire la completezza
+        funzionale.
       ],
     ),
   ),

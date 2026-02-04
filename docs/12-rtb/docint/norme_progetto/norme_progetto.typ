@@ -155,6 +155,8 @@ Ogni caso d'uso viene dettagliato secondo la seguente struttura:
     - *Opzionale*: funzionalità aggiuntive a bassa priorità.
 Per la parte B (Simulatore), la nomenclatura viene estesa in RS (Requisito Simulatore).
 
+#pagebreak()
+
 = Processi di supporto
 
 Secondo quanto definito dallo standard *ISO/IEC 12207:1995*, i *processi di supporto* non concorrono direttamente alla
@@ -167,7 +169,11 @@ qualità durante tutte le fasi del suo ciclo di vita.
 
 #include "processes/quality_assurance.typ"
 
+#include "processes/verifica.typ"
 
+#include "processes/validazione.typ"
+
+#pagebreak()
 
 = Processi organizzativi
 
