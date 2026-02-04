@@ -1,5 +1,12 @@
 title: Norme di Progetto
 changelog:
+  - version: "0.8.0"
+    date: "2026-02-02"
+    authors:
+      - Valerio Solito
+    verifier: Alessandro Mazzariol
+    description: >
+      Aggiunta sezione Fornitura e Sviluppo nei processi primari
   - version: "0.7.0"
     date: "2026-02-01"
     authors:
