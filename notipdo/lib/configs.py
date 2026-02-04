@@ -52,7 +52,7 @@ SUBGROUP_TO_SORTING_KEY: Dict[str, Callable[[model.Document], str]] = {
 
 TBD_VERIFIER = "TBD"
 
-HUNSPELL_DICTS = {"en_US", "it_IT"}
+HUNSPELL_DICTS = ["it_IT", "en_US"]
 HUNSPELL_IGNORE_FILE = "ignore"
 
 TYPSTYLE_CONF = [
