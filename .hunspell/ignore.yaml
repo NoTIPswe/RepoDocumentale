@@ -59,6 +59,7 @@ accepted_words:
   - Pirlog
   - Preo
   - Solito
+  - Vardanega
 
   # --- Tecnologie e Formati ---
   - Gin
@@ -73,6 +74,13 @@ accepted_words:
   - Typst
   - YAML
   - typ
+  - ORM
+  - Gorm
+  - NestJS
+  - TypeScript
+  - OpenAI
+  - Grafana
+  - OTA
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -96,7 +104,7 @@ accepted_words:
   - MVP
   - PDCA
   - PDP
-  - POC
+  - PoC
   - PV
   - repo
   - RTB
@@ -109,6 +117,7 @@ accepted_words:
   - subfiles
   - auth
   - Burndown
+  - MVP
 
   # --- Terminologia Standard Progetto ---
   - docest
@@ -134,3 +143,4 @@ accepted_words:
   - sufficiente
   - suffissare
   - yyyy
+  - un'app
