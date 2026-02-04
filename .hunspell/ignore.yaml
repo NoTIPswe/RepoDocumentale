@@ -81,7 +81,7 @@ accepted_words:
   - OpenAI
   - Grafana
   - OTA
-  - - OTP
+  - OTP
   - TLS
   - mTLS
   - OAuth
