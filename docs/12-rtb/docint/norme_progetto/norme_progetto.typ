@@ -1,7 +1,7 @@
 #import "../../00-templates/base_document.typ" as base-document
 
 
-#let metadata = yaml("norme_progetto.meta.yaml")
+#let metadata = yaml(sys.inputs.meta-path)
 
 #show: base-document.apply-base-document.with(
   title: metadata.title,
@@ -93,7 +93,8 @@ Il #link("https://notipswe.github.io/docs/12-rtb/docest/piano_progetto.pdf")[Pia
 pianificazione strategica e operativa del gruppo, fornendo una roadmap dettagliata delle attività e gestione delle
 risorse. Il documento si articola nelle seguenti sezioni:
 - Analisi dei rischi: identifica e qualifica le criticità che potrebbero manifestarsi durante il ciclo di vita del
-  progetto. A ogni rischio è associata una strategia di mitigazione, volta a ridurne l'impatto o la probabilità che accada.
+  progetto. A ogni rischio è associata una strategia di mitigazione, volta a ridurne l'impatto o la probabilità che
+  accada.
 - Pianificazione: definisce la sequenza temporale dei periodi di lavoro (Sprint). Per ogni Sprint sono riportate le
   attività da completare, il preventivo orario per componente e il consuntivo delle ore effettivamente impiegate, con il
   relativo aggiornamento del budget residuo.
@@ -137,8 +138,8 @@ Ogni caso d'uso viene dettagliato secondo la seguente struttura:
   d'uso esteso.
   ==== Requisiti
   Una volta definiti i casi d'uso, il documento procede all'individuazione dei requisiti, derivati dal capitolato e
-  dagli incontri effettuati con il committente. Per garantire una catalogazione rigorosa, ogni requisito è identificato dalla seguente
-  nomenclatura:
+  dagli incontri effettuati con il committente. Per garantire una catalogazione rigorosa, ogni requisito è identificato
+  dalla seguente nomenclatura:
   #align(center, text(1.2em)[*`R-[Numero]-[Tipologia] [Priorità]`*])
   dove:
   - *R* abbreviazione di *Requisito*;

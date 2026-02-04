@@ -4,7 +4,7 @@ changelog:
     date: "2026-02-02"
     authors:
       - Valerio Solito
-    verifier: TBD
+    verifier: Alessandro Mazzariol
     description: >
       Aggiunta sezione Fornitura e Sviluppo nei processi primari
   - version: "0.7.0"
