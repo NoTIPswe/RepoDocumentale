@@ -2,18 +2,18 @@
 # Sostituzioni preliminari per correggere caratteri tipografici che confondono Hunspell.
 # Questo dovrebbe risolvere il problema dei falsi positivi su "L'", "dell'", "un'", ecc.
 normalizations:
-  "’": "'" # Apostrofo tipografico -> Apostrofo ASCII
-  "“": '"' # Virgolette aperte
-  "”": '"' # Virgolette chiuse
+  "’": "'"  # Apostrofo tipografico -> Apostrofo ASCII
+  "“": '"'  # Virgolette aperte
+  "”": '"'  # Virgolette chiuse
 
 # 2. PATTERN DA IGNORARE (Regex)
 # Rimuove codici tecnici e sigle numerate prima del controllo.
 ignore_patterns:
-  - '\b(UC|UCS)\d*\b' # UC/UCS
-  - '\bv\d+\b' # versioni (v1, v2, ecc.)
+  - '\b(UC|UCS)\d*\b'     # UC/UCS
+  - '\bv\d+\b'            # versioni (v1, v2, ecc.)
 
 # 3. DIZIONARIO PERSONALIZZATO
-# Parole specifiche da considerare corrette.
+# Parole specifiche da considerare corrette. 
 # -------------------------------------------------------------------------
 # GUIDA ALLA CASE SENSITIVITY (Come aggiungere nuove parole)
 # Hunspell applica regole gerarchiche in base al casing usato in questa lista:
@@ -82,6 +82,19 @@ accepted_words:
   - Grafana
   - OTA
   - OTP
+  - TLS
+  - mTLS
+  - OAuth
+  - JWT
+  - GC
+  - js
+  - UML
+  - UUID
+  - Kubernetes
+  - HTTPS
+  - WebSocket
+
+
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -120,18 +133,45 @@ accepted_words:
   - Burndown
   - MVP
   - TOTP
+  - Postcondizioni
+  - Precondizioni
+  - namespace
+
 
   # --- Terminologia Standard Progetto ---
   - docest
   - docint
   - verbest
   - verbint
-  - postcondizioni
   - EP
   - roadmap
   - RO    # --- Starebbe per RO1 all'interno del PdP, ma scrivendo RO1 non lo prende ---
   - microservizi
   - onboarding
+  - L'Auth
+  - ErroreRangeInvalido
+  - ValoreNumericoInvalido
+  - ErroreDeploy
+  - CredenzialiNonRiconosciute
+  - DatiNonValidi
+  - MailInvalida
+  - FallimentoValidazione
+  - PasswordDiverse
+  - UtenteInesistente
+  - ConfigurazioneInvalida
+  - ErroreCreazione
+  - CertificatoRifiutato
+  - ErroreAuthServer
+  - ErroreInternoCreazione
+  - ClientID
+  - ClientSecret
+  - active
+  - NomeDuplicato
+  - PreLogin
+  - OtpErrato
+  - PasswordInvalida
+  - RangeInvalido
+  - NessunDato
 
 
   # --- Parole Italiane mancanti / Neologismi ---
@@ -155,3 +195,17 @@ accepted_words:
   - catagolazione
   - un'app
   - impersonificare
+  - l'ID
+  - pre
+  - Sez
+  - l'OTP
+  - dell'alert
+  - dall'alert
+  - l'alert
+  - impersonificato
+  - dell'Owner
+  - dell'API
+  - istanziati
+  - l'endpoint
+  - failover
+  - provisionato

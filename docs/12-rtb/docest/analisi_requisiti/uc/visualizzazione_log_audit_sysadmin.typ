@@ -1,0 +1,26 @@
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+
+#uc(
+  id: "visualizzazione_log_audit_sysadmin",
+  system: CLOUD_SYS,
+  title: "Visualizzazione log di Audit di un Tenant",
+  level: 1,
+  prim-actors: CA.sys-adm,
+  preconds: (
+    "Il Sistema si trova nella sezione dedicata alla visualizzazione dei Tenant",
+  ),
+  postconds: (
+    "I log di Audit del Tenant selezionato sono visualizzati correttamente",
+  ),
+  trigger: "Si desidera consultare i log di Audit relativi ad un Tenant",
+  main-scen: (
+    (
+      descr: "L’Attore seleziona un Tenant",
+      inc: "selezione_tenant",
+    ),
+    (
+      descr: "L’Attore visualizza i log di Audit del Tenant selezionato",
+      inc: "visualizzazione_singolo_log_audit",
+    ),
+  ),
+)[#uml-schema("95", "Diagramma Visualizzazione log di Audit di un Tenant")]
