@@ -81,6 +81,7 @@ accepted_words:
   - OpenAI
   - Grafana
   - OTA
+  - OTP
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -118,6 +119,7 @@ accepted_words:
   - auth
   - Burndown
   - MVP
+  - TOTP
 
   # --- Terminologia Standard Progetto ---
   - docest
@@ -128,6 +130,8 @@ accepted_words:
   - EP
   - roadmap
   - RO    # --- Starebbe per RO1 all'interno del PdP, ma scrivendo RO1 non lo prende ---
+  - microservizi
+  - onboarding
 
 
   # --- Parole Italiane mancanti / Neologismi ---
@@ -150,3 +154,4 @@ accepted_words:
   - sottocaso
   - catagolazione
   - un'app
+  - impersonificare
