@@ -1,7 +1,7 @@
 #import "../../00-templates/base_document.typ" as base-document
 
 
-#let metadata = yaml(sys.inputs.meta-path)
+#let metadata = yaml("norme_progetto.meta.yaml")
 
 #show: base-document.apply-base-document.with(
   title: metadata.title,
@@ -93,8 +93,7 @@ Il #link("https://notipswe.github.io/docs/12-rtb/docest/piano_progetto.pdf")[Pia
 pianificazione strategica e operativa del gruppo, fornendo una roadmap dettagliata delle attività e gestione delle
 risorse. Il documento si articola nelle seguenti sezioni:
 - Analisi dei rischi: identifica e qualifica le criticità che potrebbero manifestarsi durante il ciclo di vita del
-  progetto. A ogni rischio è associata una strategia di mitigazione, volta a ridurne l'impatto o la probabilità di
-  accadimento.
+  progetto. A ogni rischio è associata una strategia di mitigazione, volta a ridurne l'impatto o la probabilità che accada.
 - Pianificazione: definisce la sequenza temporale dei periodi di lavoro (Sprint). Per ogni Sprint sono riportate le
   attività da completare, il preventivo orario per componente e il consuntivo delle ore effettivamente impiegate, con il
   relativo aggiornamento del budget residuo.
@@ -121,8 +120,8 @@ Per garantire univocità e tracciabilità, i casi d'uso adottano la seguente nom
 dove:
 - UC: acronimo di Use Case;
 - [Codice]: numero identificativo univoco del caso d'uso principale.
-- [Sottocaso]: numero identificativo progressivo gerarchico per identificare scenari derivati o specifici, ci possono
-  essere sottocasi derivanti da sottocasi.
+- [Sottocaso]: numero identificativo progressivo gerarchico per identificare scenari derivati o specifici (ci possono
+  essere sottocasi derivanti da altri sottocasi).
 - [Titolo]: titolo sintetico ed esplicativo dell'azione.
 Per la parte B (Simulatore), la nomenclatura viene estesa in UCS (Use Case Simulatore).
 
@@ -138,7 +137,7 @@ Ogni caso d'uso viene dettagliato secondo la seguente struttura:
   d'uso esteso.
   ==== Requisiti
   Una volta definiti i casi d'uso, il documento procede all'individuazione dei requisiti, derivati dal capitolato e
-  dall'individuazione deducibile. Per garantire una catagolazione rigorosa, ogni requisito è identificato dalla seguente
+  dagli incontri effettuati con il committente. Per garantire una catalogazione rigorosa, ogni requisito è identificato dalla seguente
   nomenclatura:
   #align(center, text(1.2em)[*`R-[Numero]-[Tipologia] [Priorità]`*])
   dove:
@@ -150,9 +149,9 @@ Ogni caso d'uso viene dettagliato secondo la seguente struttura:
     - *V* per *Vincolo*;
     - *S* per *Sicurezza*;
   - *Priorità* indica l'importanza strategica del requisito:
-  - *Obbligatorio*: indispensabile per la validità del progetto;
-  - *Desiderabile*: non indispensabile, ma con valore aggiunto
-  - *Opzionale*: funzionalità aggiuntive a bassa priorità.
+    - *Obbligatorio*: indispensabile per la validità del progetto;
+    - *Desiderabile*: non indispensabile, ma con valore aggiunto;
+    - *Opzionale*: funzionalità aggiuntive a bassa priorità.
 Per la parte B (Simulatore), la nomenclatura viene estesa in RS (Requisito Simulatore).
 
 = Processi di supporto
