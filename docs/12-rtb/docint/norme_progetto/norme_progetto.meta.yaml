@@ -1,12 +1,12 @@
 title: Norme di Progetto
 changelog:
   - version: "0.10.0"
-    date: "2026-02-04"
+    date: "2026-02-05"
     authors:
-      - Francesco Marcon
+      - Alessandro Mazzariol
     verifier: TBD
     description: >
-      Aggiunta sezione "Accertamento della Qualità", "Verifica" e "Validazione" in Processi di Supporto
+      Completamento sezione fornitura e sviluppo dei processi primari.
   - version: "0.9.0"
     date: "2026-02-04"
     authors:
