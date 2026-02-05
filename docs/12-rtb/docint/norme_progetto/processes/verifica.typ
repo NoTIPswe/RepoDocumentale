@@ -35,9 +35,9 @@ Qualifica*.
   (_fault_). I test devono essere *ripetibili* e, ove possibile, *automatizzati*. Il gruppo adotta la classificazione
   dei test definita nel Piano di Qualifica:
   - *Test di Unità (Unit Testing)*: Verifica delle singole unità di codice in isolamento. Si suddividono in:
-    - _Funzionali (Black-box)_: Verifica input/output senza guardare la struttura interna.
-    - _Strutturali (White-box)_: Verifica della logica interna e copertura dei percorsi.
-  - *Test di Integrazione*: Verifica della collaborazione tra le unità e i sottosistemi.
+    - _Funzionali (Black-box)_: Verifica input/output senza dare alcun peso alla struttura interna del codice.
+    - _Strutturali (White-box)_: Verifica della logica interna e copertura dei percorsi da esso intrapresi.
+  - *Test di Integrazione*: Verifica il modo in cui collaborano le unità del nostro sistema.
   - *Test di Sistema*: Verifica del comportamento dell'intero sistema rispetto ai requisiti funzionali e non funzionali.
   - *Test di Regressione*: Riesecuzione dei test esistenti dopo delle modifiche per garantire che non siano stati
     introdotti nuovi difetti non previsti.
@@ -78,8 +78,7 @@ Qualifica*.
       desc: [Il Verificatore effettua una lettura completa del documento (o delle differenze nella PR) verificando:
         - Chiarezza espositiva (Indice Gulpease);
         - Coerenza con quanto riportato all'interno del changelog della modifica;
-        - Assenza di errori residui non rilevati dagli strumenti automatici;
-        - Correttezza dei contenuti rispetto allo scopo.
+        - Assenza di errori residui non rilevati dagli strumenti automatici.
       ],
     ),
   ),
