@@ -183,9 +183,9 @@ progetto.
       name: "Automazione e Snapshot",
       desc: [
         L'Amministratore avvia manualmente il workflow `deploy.yml` (dispatch). L'operazione è volutamente manuale in
-        quanto la registrazione dello stato deve essere una operazione voluta e non eseguibile accidentalmente. Il sistema esegue
-        `notipdo generate site`, generando la documentazione statica pubblicandoli su GitHub Pages come snapshot
-        ufficiale e immutabile della configurazione in quel preciso momento.
+        quanto la registrazione dello stato deve essere una operazione voluta e non eseguibile accidentalmente. Il
+        sistema esegue `notipdo generate site`, generando la documentazione statica pubblicandoli su GitHub Pages come
+        snapshot ufficiale e immutabile della configurazione in quel preciso momento.
       ],
     ),
   ),
@@ -198,19 +198,23 @@ progetto.
   input: [Rilascio di Baseline imminente],
   output: [Matrice di Tracciamento, Report di Audit],
   rationale: [
-    Questa attività ha l'obiettivo di garantire che il prodotto sia *efficiente* che *sufficiente*, evitando l'introduzione di funzionalità non richieste.
+    Questa attività ha l'obiettivo di garantire che il prodotto sia *efficiente* che *sufficiente*, evitando
+    l'introduzione di funzionalità non richieste.
   ],
   procedure: (
     (
       name: "Audit dei Configuration Item",
       desc: [
-        Verifica l'integrità e la presenza fisica di tutti i componenti previsti per il rilascio, assicurandosi che ogni elemento sia correttamente versionato e coerente con lo stato descritto.
+        Verifica l'integrità e la presenza fisica di tutti i componenti previsti per il rilascio, assicurandosi che ogni
+        elemento sia correttamente versionato e coerente con lo stato descritto.
       ],
     ),
     (
       name: "Verifica della Tracciabilità",
       desc: [
-        Validazione della copertura funzionale tramite il *Tracciamento dei Requisiti*: ogni Requisito deve risultare collegato ad un test superato. Il risultato viene formalizzato nella Matrice di Tracciamento per certificare l'aderenza alle aspettative.
+        Validazione della copertura funzionale tramite il *Tracciamento dei Requisiti*: ogni Requisito deve risultare
+        collegato ad un test superato. Il risultato viene formalizzato nella Matrice di Tracciamento per certificare
+        l'aderenza alle aspettative.
       ],
     ),
   ),

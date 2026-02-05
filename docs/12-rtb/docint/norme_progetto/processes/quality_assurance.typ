@@ -14,7 +14,7 @@ difetti, ponendo maggiore attenzione nei confronti del processo rispetto al prod
   label: <modello-pdca>,
   rationale: [
     *Perché PDCA?* In un contesto Agile con sprint brevi, è fondamentale iterare non solo sul prodotto ma anche sul
-    metodo di lavoro. Il ciclo PDCA formalizza questo approccio.
+    metodo di lavoro.
   ],
 )[
   Il gruppo adotta il modello iterativo *Plan-Do-Check-Act* per la gestione della qualità:
@@ -33,8 +33,8 @@ difetti, ponendo maggiore attenzione nei confronti del processo rispetto al prod
   dividono in:
   - *Metriche di Processo*: Misurano l'efficienza del metodo di lavoro in utilizzo in un dato momento (es. Earned
     Value). La fonte dati principale risulta essere *Jira*;
-  - *Metriche di Prodotto*: Misurano la qualità intrinseca degli artefatti (es. Indice Gulpease). Le metriche vengono
-    raccolte e storicizzate al termine di ogni Sprint.
+  - *Metriche di Prodotto*: Misurano la qualità degli artefatti (es. Indice Gulpease). Le metriche vengono raccolte e
+    storicizzate al termine di ogni Sprint.
 ]
 
 #norm(
@@ -61,7 +61,7 @@ difetti, ponendo maggiore attenzione nei confronti del processo rispetto al prod
     (
       name: "Formalizzazione degli Standard",
       desc: [Definire e documentare le convenzioni per la codifica, la stesura dei documenti e le modalità operative del
-        gruppo, aggiornando le presenti Norme di Progetto.],
+        gruppo, aggiornando il presente documento.],
     ),
     (
       name: "Automazione dei Controlli",
@@ -72,46 +72,58 @@ difetti, ponendo maggiore attenzione nei confronti del processo rispetto al prod
 )
 
 #activity(
-  title: "Misurazione e Raccolta Dati",
+  title: "Accertamento della Qualità del Prodotto",
   roles: (ROLES.ver, ROLES.amm),
   norms: ("gestione-metriche", "strumenti-monitoraggio"),
-  input: [Attività di sviluppo in corso, Chiusura Sprint],
-  output: [Dati grezzi delle metriche],
+  input: [Prodotti in rilascio (Codice, Documenti), Report di Verifica],
+  output: [Report di Qualità del Prodotto, Non conformità rilevate],
   procedure: (
     (
-      name: "Raccolta Automatica",
-      desc: [I sistemi di CI/CD raccolgono automaticamente le metriche di prodotto (es. coverage) ad ogni push/PR.
-        `notipdo` verifica la conformità dei documenti.],
+      name: "Verifica delle Metriche",
+      desc: [
+        Confrontare le metriche di prodotto raccolte automaticamente (es. Code Coverage, Indice Gulpease) con le soglie
+        di accettabilità definite nel Piano di Qualifica.
+      ],
     ),
     (
-      name: "Raccolta Manuale",
-      desc: [Il Responsabile verifica su Jira la correttezza del tracciamento temporale e l'aggiornamento degli stati
-        dei task, demandata comunque al singolo.],
+      name: "Controllo di Conformità",
+      desc: [
+        Accertarsi che tutti gli artefatti siano stati sottoposti alle attività di Verifica obbligatorie e che non vi
+        siano difetti bloccanti aperti.
+      ],
     ),
   ),
 )
 
 #activity(
-  title: "Valutazione e Miglioramento",
-  roles: (ROLES.resp, "Tutti i membri"),
-  norms: ("modello-pdca",),
-  input: [Dati delle metriche, fine dello Sprint],
-  output: [Azioni correttive (Task Jira), Aggiornamento Norme],
+  title: "Accertamento della Qualità del Processo",
+  roles: (ROLES.resp, ROLES.amm),
+  norms: ("modello-pdca", "gestione-metriche"),
+  input: [Dati di processo (Jira, Git logs), Svolgimento delle attività],
+  output: [Report di Qualità del Processo, Azioni correttive],
+  rationale: [
+    Attività prevista dallo standard (Process Assurance). Si assicura che il team stia lavorando secondo le regole
+    definite nelle Norme di Progetto (es. uso corretto di Jira, rispetto delle scadenze).
+  ],
   procedure: (
     (
-      name: "Analisi degli Scostamenti",
-      desc: [Confrontare i valori misurati con le soglie di accettazione definite nel Piano di Qualifica.],
-    ),
-    (
-      name: "Identificazione Cause",
-      desc: [Se una metrica è fuori soglia, analizzare le cause (es. stime errate).],
-    ),
-    (
-      name: "Pianificazione Azioni Correttive",
+      name: "Audit dei Processi",
       desc: [
-        Definire azioni concrete per risolvere il problema nello sprint successivo:
-        - Se il problema è di natura procedurale è necessario andare ad aggiornare le Norme di Progetto;
-        - Se il problema è di natura tecnica è necessario creare task correttivi.
+        Verificare periodicamente che gli strumenti siano usati correttamente.
+      ],
+    ),
+    (
+      name: "Analisi delle Performance",
+      desc: [
+        Valutare le metriche di processo (es. Earned Value, Velocity) per identificare inefficienze nel metodo di
+        lavoro.
+      ],
+    ),
+    (
+      name: "Miglioramento Continuo",
+      desc: [
+        Attuare le azioni correttive (Act) emerse dalle retrospettive per aggiornare i processi e prevenire il ripetersi
+        delle eventuali non conformità rilevate.
       ],
     ),
   ),
