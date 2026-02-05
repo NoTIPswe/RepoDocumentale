@@ -59,8 +59,8 @@ dell'intera documentazione riguardante il progetto.
 
 = Processi primari
 In conformità alla norma *ISO/IEC 12207:1995*, i processi primari rappresentano l'insieme delle attività fondamentali
-che definiscono il ciclo di vita del software, dalla sua concezione fino alla dismissione.
-Essi comprendono, in generale, i processi di *acquisizione*, *fornitura*, *esercizio* e *manutenzione*.
+che definiscono il ciclo di vita del software, dalla sua concezione fino alla dismissione. Essi comprendono, in
+generale, i processi di *acquisizione*, *fornitura*, *esercizio* e *manutenzione*.
 
 Nel contesto del progetto, risultano rilevanti esclusivamente i processi di fornitura e sviluppo:
 - Il processo di fornitura disciplina le attività relative alla pianificazione, definizione e gestione dell'impegno tra
@@ -69,11 +69,16 @@ Nel contesto del progetto, risultano rilevanti esclusivamente i processi di forn
   prodotto software.
 
 == Fornitura
-La fornitura è il processo primario adottato dal fornitore del futuro prodotto finale che si occupa di analizzare le azioni da intraprendere per la sua realizzazione.
-Questo processo prevede un primo studio dei requisiti che il progetto dovrà, nelle componenti prodotte, soddisfare. Ciò produce il materiale necessario per poter effettuare una contrattazione dei requisiti con il proponente, e poter comunicare allo stesso una possibile pianificazione del lavoro da svolgere con probabile data di consegna prevista.
+La fornitura è il processo primario adottato dal fornitore del futuro prodotto finale che si occupa di analizzare le
+azioni da intraprendere per la sua realizzazione. Questo processo prevede un primo studio dei requisiti che il progetto
+dovrà, nelle componenti prodotte, soddisfare. Ciò produce il materiale necessario per poter effettuare una
+contrattazione dei requisiti con il proponente, e poter comunicare allo stesso una possibile pianificazione del lavoro
+da svolgere con probabile data di consegna prevista.
 === Strumenti a supporto
-- *Jira*: per la gestione del backlog e del tracciamento delle task, Jira inoltre offre una visualizzazione di diagrammi di qualsiasi tipologia per facilitare la pianificazione
-- *Github*: per il versionamento dei documenti, utile anche a fini di verifica dei documenti e approvazione degli stessi;
+- *Jira*: per la gestione del backlog e del tracciamento delle task, Jira inoltre offre una visualizzazione di diagrammi
+  di qualsiasi tipologia per facilitare la pianificazione
+- *Github*: per il versionamento dei documenti, utile anche a fini di verifica dei documenti e approvazione degli
+  stessi;
 - *Discord*: usato principalmente come luogo per riunioni interne e sessioni di coding sincrone;
 - *Telegram*: usato come canale principale di comunicazione testuale all'interno del gruppo;
 - *Microsoft Teams*: usato come canale di comunicazione tra committente e gruppo;
@@ -81,27 +86,41 @@ Questo processo prevede un primo studio dei requisiti che il progetto dovrà, ne
 
 === Attività previste
 La fornitura prevede varie attività, qui di seguito descritte:
-- *Iniziazione*: il fornitore analizza le richieste del committente, tenendo conto di eventuali vincoli organizzativi o di altra natura. Questa è l'attività in cui il fornitore decide se proseguire con quanto proposto o di preparare una controproposta;
-- *Risposta*: viene elaborata e presentata una risposta che può essere una controproposta dei requisiti, oppure una proposta su come si soddisfare i requisiti;
-- *Contrattazione*: si effettua un incontro con il committente con l'obiettivo di arrivare ad un accordo (contratto) definendo costi, tempi e criteri di accettazione;
-- *Pianificazione*: stabiliti i requisiti finali, il fornitore deve pianificare l'organizzazione e un metodo di lavoro in grado di assicurare la qualità del sistema da realizzare, scegliendo, qualora non lo sia da contratto, il modello di ciclo di vita del Software da seguire. La pianificazione comprende la stesura del Piano di progetto, dove vengono indicate le risorse richieste per realizzare il prodotto, considerando anche i rischi che potrebbero accadere durante lo sviluppo;
-- *Esecuzione e controllo*: il fornitore realizza il prodotto, monitorando nel frattempo la qualità di quanto fatto e il progresso raggiunto;
-- *Consegna e completamento*: il fornitore, completato il progetto, deve fornire quanto prodotto al committente, garantendogli supporto.
+- *Iniziazione*: il fornitore analizza le richieste del committente, tenendo conto di eventuali vincoli organizzativi o
+  di altra natura. Questa è l'attività in cui il fornitore decide se proseguire con quanto proposto o di preparare una
+  controproposta;
+- *Risposta*: viene elaborata e presentata una risposta che può essere una controproposta dei requisiti, oppure una
+  proposta su come si soddisfare i requisiti;
+- *Contrattazione*: si effettua un incontro con il committente con l'obiettivo di arrivare ad un accordo (contratto)
+  definendo costi, tempi e criteri di accettazione;
+- *Pianificazione*: stabiliti i requisiti finali, il fornitore deve pianificare l'organizzazione e un metodo di lavoro
+  in grado di assicurare la qualità del sistema da realizzare, scegliendo, qualora non lo sia da contratto, il modello
+  di ciclo di vita del Software da seguire. La pianificazione comprende la stesura del Piano di progetto, dove vengono
+  indicate le risorse richieste per realizzare il prodotto, considerando anche i rischi che potrebbero accadere durante
+  lo sviluppo;
+- *Esecuzione e controllo*: il fornitore realizza il prodotto, monitorando nel frattempo la qualità di quanto fatto e il
+  progresso raggiunto;
+- *Consegna e completamento*: il fornitore, completato il progetto, deve fornire quanto prodotto al committente,
+  garantendogli supporto.
 
 === Documentazione fornitura
 Nella sezione seguente si elencano i documenti che il gruppo NoTIP consegnerà al committente _M31_ e ai proponenti Prof.
 Tullio Vardanega e Prof. Riccardo Cardin.
 
 ==== Dichiarazione di impegni
-La #link("https://notipswe.github.io/docs/11-candidatura/docest/dichiarazione_impegni.pdf")[Dichiarazione di impegni] è il documento in cui il gruppo ha stimato i costi del progetto, dall’impegno orario per persona e per ruolo, al costo complessivo del progetto e dei ruoli che i componenti del gruppo ricopriranno.
+La #link("https://notipswe.github.io/docs/11-candidatura/docest/dichiarazione_impegni.pdf")[Dichiarazione di impegni] è
+il documento in cui il gruppo ha stimato i costi del progetto, dall’impegno orario per persona e per ruolo, al costo
+complessivo del progetto e dei ruoli che i componenti del gruppo ricopriranno.
 ==== Lettera di presentazione
-La Lettera di presentazione è il documento con il quale il gruppo, conferma la volonta di candidarsi per una determinata Baseline.
-Il gruppo durante lo sviluppo del progetto presenterà ai proponenti tre lettere di presentazione:
+La Lettera di presentazione è il documento con il quale il gruppo, conferma la volonta di candidarsi per una determinata
+Baseline. Il gruppo durante lo sviluppo del progetto presenterà ai proponenti tre lettere di presentazione:
 - La Lettera di presentazione per la *candidatura all'appalto del capitolato C7*;
 - La Lettera di presentazione per la *Requirements and Technology Baseline (RTB)*;
 - La lettera di presentazione per la *Product Baseline (PB)*;
 ==== Analisi dei capitolati
-L'#link("https://notipswe.github.io/docs/11-candidatura/docest/analisi_capitolati.pdf")[Analisi dei capitolati] è il documento in cui il gruppo fornisce un analisi dettagliata di ogni capitolato evidenziando diversi punti, in particolare l'analisi suddivide ogni capitolato in diverse sezioni:
+L'#link("https://notipswe.github.io/docs/11-candidatura/docest/analisi_capitolati.pdf")[Analisi dei capitolati] è il
+documento in cui il gruppo fornisce un analisi dettagliata di ogni capitolato evidenziando diversi punti, in particolare
+l'analisi suddivide ogni capitolato in diverse sezioni:
 - *Panoramica*: che indica l’azienda proponente, il nome del capitolato e delle
 informazioni generali sul prodotto da realizzare;
 - *Pro*;
@@ -113,11 +132,11 @@ L'#link("https://notipswe.github.io/docs/12-rtb/docest/analisi_requisiti.pdf")[A
 dettaglio i requisiti obbligatori, desiderabili e opzionali del progetto. Il documento mira a risolvere le ambiguità
 derivanti dalla lettura del #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7],
 fornendo una base solida per la progettazione attraverso:
-- Descrizione del prodotto: analisi puntuale del sistema richiesto dal committente.
-- Casi d'uso: identificazione degli scenari d'uso e delle interazioni tra utenti e sistema. Ogni caso d'uso include una
-  descrizione dettagliata degli scenari principali, permettendo ai progettisti di comprendere il comportamento atteso
-  del software in ogni situazione.
-- Lista dei Requisiti: rappresenta l'insieme dettagliato delle funzionalità, dei vincoli e delle qualità del sistema,
+- *Descrizione del prodotto*: analisi puntuale del sistema richiesto dal committente.
+- *Casi d'uso*: identificazione degli scenari d'uso e delle interazioni tra utenti e sistema. Ogni caso d'uso include
+  una descrizione dettagliata degli scenari principali, permettendo ai progettisti di comprendere il comportamento
+  atteso del software in ogni situazione.
+- *Lista dei Requisiti*: rappresenta l'insieme dettagliato delle funzionalità, dei vincoli e delle qualità del sistema,
   derivanti dalle richieste del proponente o identificato dal gruppo durante l'attività di analisi.
 I dettagli riguardanti il documento possono essere trovati nella sezione 2.2.1.
 
@@ -125,18 +144,20 @@ I dettagli riguardanti il documento possono essere trovati nella sezione 2.2.1.
 Il #link("https://notipswe.github.io/docs/12-rtb/docest/piano_progetto.pdf")[Piano di Progetto] definisce e organizza la
 pianificazione strategica e operativa del gruppo, fornendo una roadmap dettagliata delle attività e gestione delle
 risorse. Il documento si articola nelle seguenti sezioni:
-- Analisi dei rischi: identifica e qualifica le criticità che potrebbero manifestarsi durante il ciclo di vita del
+- *Analisi dei rischi*: identifica e qualifica le criticità che potrebbero manifestarsi durante il ciclo di vita del
   progetto. A ogni rischio è associata una strategia di mitigazione, volta a ridurne l'impatto o la probabilità che
   accada.
-- Pianificazione: definisce la sequenza temporale dei periodi di lavoro (Sprint). Per ogni Sprint sono riportate le
+- *Pianificazione*: definisce la sequenza temporale dei periodi di lavoro (Sprint). Per ogni Sprint sono riportate le
   attività da completare, il preventivo orario per componente e il consuntivo delle ore effettivamente impiegate, con il
   relativo aggiornamento del budget residuo.
 
 ==== Piano di Qualifica
-Descrive i metodi di qualifica (Verifica e Validazione) adottate dal gruppo, nonché i test effettuati sul prodotto e i rispettivi esiti.
+Descrive i metodi di qualifica (Verifica e Validazione) adottate dal gruppo, nonché i test effettuati sul prodotto e i
+rispettivi esiti.
 
 ==== Verbali esterni e Verbali interni
-I primi sono i verbali di riunioni tra persone del gruppo e persone esterne al gruppo, i secondi invece sono i verbali di riunione senza il contatto con persone esterne al gruppo.
+I primi sono i verbali di riunioni tra persone del gruppo e persone esterne al gruppo, i secondi invece sono i verbali
+di riunione senza il contatto con persone esterne al gruppo.
 
 ==== Glossario
 Il #link("https://notipswe.github.io/docs/12-rtb/docest/glossario.pdf")[Glossario] raccoglie e definisce in modo univoco
@@ -144,8 +165,29 @@ i termini tecnici e gli acronimi utilizzati nella documentazione. Il suo scopo �
 garantendo una comunicazione uniforme sia tra i membri del gruppo sia verso gli stakeholder esterni.
 
 == Sviluppo
-Il *Processo di Sviluppo* stabilisce le attività che hanno come scopo quello di Analisi dei Requisiti, la progettazione, la codifica del Software, l’installazione e l’accettazione di quanto prodotto.
+Il *Processo di Sviluppo* stabilisce le attività che hanno come scopo quello di Analisi dei Requisiti, la progettazione,
+la codifica del Software, l’installazione e l’accettazione di quanto prodotto.
 === Attività previste
+Le attività previste dal processo di sviluppo in base allo standard ISO/IEC 12207:1995 sono le seguenti:
+- *Istanziazione del processo*: definizione del modello di ciclo di vita e dei piani di progetto;
+- *Analisi dei requisiti di sistema*: identificazione e definizione delle necessità dell'utente finale in relazione alle
+  funzionalità che il Software deve offrire;
+- *Progettazione dell'architettura di sistema*: identificazione dell'Hardware e del software del prodotto finale,
+  affinchè tutti i requisiti individuati siano soddisfatti;
+- *Progettazione architetturale software*: definizione della struttura generale, delle diverse componenti del sistema e
+  il loro funzionamento;
+- *Codifica e test software*: produzione delle unità di tutte le componenti individuate precedentemente, assicurando che
+  ciascuna di queste venga adeguatamente testata;
+- *Integrazione software*: assemblaggio delle varie unità software e test per assicurare il corretto funzionamento;
+- *Test di qualità software*: realizzazione di appositi test per assicurare la conformità del software agli obiettivi di
+  qualità attesi;
+- *Integrazione di sistema*: assemblaggio del software con l'hardware e altri sistemi;
+- *Test di qualifica del sistema*: test dell'intero sistema per assicurare il corretto funzionamento;
+- *Installazione software*: fornitura di quanto realizzato al cliente finale nell'ambiente concordato;
+- *Supporto all'accettazione software*: assistenza al committente durante le verifiche finali per l'accettazione.
+Le attività scritte in dettaglio sono quelle che il gruppo riteneva importanti per l'*Requirements and Technology
+Baseline (RTB)*, le restanti attività verranno descritte per la prossima baseline ovvero la *Product Baseline (PB)*
+
 
 
 === Analisi dei Requisiti
@@ -153,31 +195,31 @@ L'#link("https://notipswe.github.io/docs/12-rtb/docest/analisi_requisiti.pdf")[A
 attività cardine della milestone Requirements and Technology Baseline (RTB). Il suo obiettivo è individuare l'insieme
 completo dei requisiti che il sistema dovrà soddisfare, fungendo da riferimento oggettivo per le successive attività di
 verifica. Il documento, redatto dagli analisti, è strutturato nelle seguenti sezioni:
-- Introduzione: definisce lo scopo e il campo di applicazione del documento;
-- Descrizione: illustra le finalità generali e gli obiettivi del prodotto;
-- Attori: identifica gli utilizzatori del sistema e i soggetti che interagiscono con esso;
-- Casi d'Uso: modella le interazioni tra attori e sistema;
-- Requisiti: elenca le caratteristiche funzionali, qualitative, di vincolo e di sicurezza da rispettare.
+- *Introduzione*: definisce lo scopo e il campo di applicazione del documento;
+- *Descrizione*: illustra le finalità generali e gli obiettivi del prodotto;
+- *Attori*: identifica gli utilizzatori del sistema e i soggetti che interagiscono con esso;
+- *Casi d'Uso*: modella le interazioni tra attori e sistema;
+- *Requisiti*: elenca le caratteristiche funzionali, qualitative, di vincolo e di sicurezza da rispettare.
 ==== Casi d'uso
 Per garantire univocità e tracciabilità, i casi d'uso adottano la seguente nomenclatura:
 #align(center, text(1.2em)[*`UC[Codice].[Sottocaso] - [Titolo]`*])
 dove:
-- UC: acronimo di Use Case;
-- [Codice]: numero identificativo univoco del caso d'uso principale.
-- [Sottocaso]: numero identificativo progressivo gerarchico per identificare scenari derivati o specifici (ci possono
+- *UC*: acronimo di Use Case;
+- *[Codice]*: numero identificativo univoco del caso d'uso principale.
+- *[Sottocaso]*: numero identificativo progressivo gerarchico per identificare scenari derivati o specifici (ci possono
   essere sottocasi derivanti da altri sottocasi).
-- [Titolo]: titolo sintetico ed esplicativo dell'azione.
-Per la parte B (Simulatore), la nomenclatura viene estesa in UCS (Use Case Simulatore).
+- *[Titolo]*: titolo sintetico ed esplicativo dell'azione.
+Per la parte B (Simulatore), la nomenclatura viene estesa in *UCS (Use Case Simulatore)*.
 
 Ogni caso d'uso viene dettagliato secondo la seguente struttura:
-- Attori Primari: utenti e attori che avviano l'interazione.
-- Attori Secondari: destinatari di notifiche o sistemi esterni coinvolti passivamente.
-- Precondizioni: stato del sistema o condizioni necessarie per l'attivazione del caso d'uso.
-- Postcondizioni: stato garantito del sistema a seguito del completamento con successo.
-- Scenario Principale: sequenza di azioni atomiche in linguaggio naturale, inclusi eventuali:
+- *Attori Primari*: utenti e attori che avviano l'interazione.
+- *Attori Secondari*: destinatari di notifiche o sistemi esterni coinvolti passivamente.
+- *Precondizioni*: stato del sistema o condizioni necessarie per l'attivazione del caso d'uso.
+- *Postcondizioni*: stato garantito del sistema a seguito del completamento con successo.
+- *Scenario Principale*: sequenza di azioni atomiche in linguaggio naturale, inclusi eventuali:
   - Punti di Inclusione (Include: UC[ID] - Titolo).
   - Punti di Estensione (Descrizione passo. [EP: NOME]).
-- Estensioni: gestione di scenari alternativi o eccezioni, definiti da una condizioni di guardia e dal relativo caso
+- *Estensioni*: gestione di scenari alternativi o eccezioni, definiti da una condizioni di guardia e dal relativo caso
   d'uso esteso.
   ==== Requisiti
   Una volta definiti i casi d'uso, il documento procede all'individuazione dei requisiti, derivati dal capitolato e
