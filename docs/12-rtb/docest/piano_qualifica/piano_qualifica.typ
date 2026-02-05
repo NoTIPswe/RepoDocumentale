@@ -1043,8 +1043,26 @@
   - Rischi connessi ai singoli componenti del gruppo (*RP1*).
 
   == Valutazione sulle tecnologie adottate
+  #table(
+  columns: (1fr, 1fr, 0.4fr),
+  stroke: 0.5pt,
+  inset: 6pt,
 
-
+  table.header(
+    [*Problema*],
+    [*Soluzione adottata*],
+    [*Tecnologia coinvolta*],
+  ),
+  [La gestione del codice condiviso può generare conflitti e perdita di tracciabilità], [Utilizzo di repository GitHub con branch protection, pull request e sistema di issue tracking], [GitHub],
+  [La pianificazione e il monitoraggio delle attività possono risultare disorganizzati senza uno strumento dedicato], [Utilizzo di Jira per la gestione del backlog, la pianificazione degli sprint e il monitoraggio dello stato delle attività], [Jira],
+  [Alcuni membri del gruppo non avevano familiarità con il linguaggio Go, causando una curva di apprendimento iniziale], [Ogni membro ha intrapreso un percorso di autoapprendimento mirato, supportato da documentazione ufficiale ed esempi pratici], [Linguaggio Go],
+  [La maggior parte del team non aveva esperienza con tecnologie mi messagging come NATS], [Studio della documentazione ufficiale e realizzazione di prototipi incrementali per validarne l'utilizzo ne PoC], [NATS JetStream (MQTT)],
+  [La gestione di certificati e comunicazioni cifrate introduce complessità di configurazione], [Utilizzo di certificati statici preconfigurati per semplificare la gestione della sicurezza nel contesto del PoC], [Protocollo MQTT con mTLS],
+  [L’utilizzo di un database time-series basato su estensione PostgreSQL non era noto a tutti i membri], [Approfondimento delle funzionalità principali (Hypertables, partizionamento) e utilizzo guidato nelle prime fasi di sviluppo], [PostgreSQL + TimescaleDB],
+  [La struttura modulare di NestJS può risultare inizialmente complessa], [Adozione delle convenzioni ufficiali del framework e suddivisione chiara dei moduli per facilitare la comprensione], [TypeScript / NestJS],
+  [Il framework Angular richiede una buona organizzazione dei componenti e dei servizi], [Suddivisione dell’interfaccia in componenti riutilizzabili e utilizzo delle best practice suggerite dalla documentazione],[Angular],
+  [La gestione della decifratura lato client introduce complessità applicativa], [Implementazione semplificata con chiavi statiche per dimostrare la fattibilità dell’approccio nel PoC], [Cifratura end-to-end (Zero Knowledge)]
+  )
 
   == Valutazione sull'organizzazione del team
 
@@ -1064,12 +1082,22 @@
   [La gestione non strutturata delle priorità delle attività ha portato a ritardi nell'implementazione di funzionalità chiave.], [Definizione delle priorità a inizio sprint e loro revisione durante la pianificazione.],
 
   [Rallentamento delle attività di progetto nel periodo della sessione d'esami invernale.],[Pianificazione delle attività in modo da recuperare il ritardo una volta terminati gli esami.],
-
   )
 
+  == Valutazione sui singoli componenti del gruppo
 
+  #table(
+  columns: (1fr, 1fr),
+  stroke: 0.5pt,
+  inset: 6pt,
 
-  == Validazione sui singoli componenti del gruppo
+  table.header(
+    [*Problema*],
+    [*Soluzione adottata*],
+  ),
+  [Impegni esterni di alcuni componenti del gruppo hanno causato temporanee indisponibilità.], [Comunicazione immediata al team e riorganizzazione delle attività per garantire la continuità del lavoro.],
+  [Differenti livelli di esperienza tra i membri del gruppo.],[Collaborazione attiva e supporto reciproco per garantire un avanzamento uniforme delle attività.],
+  )
 
 ]
 
