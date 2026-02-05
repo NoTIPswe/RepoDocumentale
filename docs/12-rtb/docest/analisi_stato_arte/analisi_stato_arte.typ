@@ -66,7 +66,7 @@
       [Elaborazione e persistenza, consuma i messaggi dalla coda e storicizza i dati strutturati nel database.],
 
       [Frontend],
-      [nterroga il database tramite API e renderizza i dati grezzi in dashboard comprensibili per l'utente finale.],
+      [Interroga il database tramite API e renderizza i dati grezzi in dashboard comprensibili per l'utente finale.],
     ),
     caption: [Pipeline architetturale: dal sensore alla visualizzazione],
   )
@@ -102,7 +102,7 @@
   Abbiamo valutato le tre proposte architetturali moderne maggiormente in voga per determinare quale
   rispondesse meglio ai requisiti di scalabilità, manutenibilità e sviluppo parallelo richiesti dal progetto.
 
-  == 1. Edge Computing
+  == Edge Computing
 
   Questo approccio prevede di decentralizzare l'elaborazione, eseguendo calcoli direttamente sul Gateway, nelle zone
   "periferiche" della rete, anziché inviare dati grezzi al Cloud.
@@ -112,7 +112,7 @@
   - *Svantaggi:* La gestione e l'aggiornamento del software su una flotta distribuita di dispositivi eterogenei
     introduce una notevole complessità.
 
-  == 2. Serverless
+  == Serverless
 
   Il modello Serverless delega completamente la gestione dell'infrastruttura al Cloud Provider. Gli sviluppatori
   scrivono singole funzioni che vengono eseguite on-demand in risposta a specifici eventi.
@@ -122,7 +122,7 @@
   - *Svantaggi:* Soffre del problema del *"Cold Start"*: la latenza iniziale necessaria per istanziare le funzioni
     inattive può risultare inaccettabile per sistemi real-time.
 
-  == 3. Microservizi
+  == Microservizi
 
   L'architettura a microservizi decompone l'applicazione monolitica in un insieme di servizi piccoli, indipendenti e
   focalizzati su specifiche funzionalità di business.
@@ -139,7 +139,7 @@
 
   Il Message Broker costituisce il componente dell'infrastruttura di ingestione dati. Il suo ruolo è garantire la
   ricezione affidabile e l'ordinamento di migliaia di messaggi al secondo provenienti dai sensori, assicurando che
-  nessuna informazione vada persa prima di essere elaborata durabilità.
+  nessuna informazione vada persa prima di essere elaborata.
 
   == Valutazione delle Alternative
 
