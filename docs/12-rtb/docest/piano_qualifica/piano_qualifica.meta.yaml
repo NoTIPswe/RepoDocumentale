@@ -1,5 +1,12 @@
 title: Piano di Qualifica 
 changelog:
+  - version: "0.8.0"
+    date: "2026-02-05"
+    authors:
+      - Alessandro Contarini
+    verifier: TBD
+    description: >
+      Definizione delle valutazioni per l'automiglioramento (per quanto riscontrato fino in data odierna)
   - version: "0.7.0"
     date: "2026-02-04"
     authors:

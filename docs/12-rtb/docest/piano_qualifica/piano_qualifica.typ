@@ -1048,6 +1048,25 @@
 
   == Valutazione sull'organizzazione del team
 
+  #table(
+  columns: (1fr, 1fr),
+  stroke: 0.5pt,
+  inset: 6pt,
+
+  table.header(
+    [*Problema*],
+    [*Soluzione adottata*],
+  ),
+  [La difficoltà nel coordinamento del lavoro asincrono tra i membri del team ha rallentato il progresso del progetto.], [Pianificazione di riunioni regolari per allineare gli obiettivi e le attività del team, oltre all'adozione di strumenti di gestione del progetto per migliorare la comunicazione.],
+
+  [La comunicazione della rendicontazione delle ore lavorative durante la retrospettiva di sprint ha inizialmente causato un rallentamento del flusso organizzativo.],[Utilizzo di Jira per tracciare le ore lavorative in modo più efficiente e trasparente, riducendo il tempo dedicato alla rendicontazione manuale.],
+
+  [La gestione non strutturata delle priorità delle attività ha portato a ritardi nell'implementazione di funzionalità chiave.], [Definizione delle priorità a inizio sprint e loro revisione durante la pianificazione.],
+
+  [Rallentamento delle attività di progetto nel periodo della sessione d'esami invernale.],[Pianificazione delle attività in modo da recuperare il ritardo una volta terminati gli esami.],
+
+  )
+
 
 
   == Validazione sui singoli componenti del gruppo
