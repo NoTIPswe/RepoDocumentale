@@ -33,7 +33,7 @@
   rationale: none,
   level: 4,
 ) = {
-  [
+  block(breakable: false)[
     #if title != none {
       if level > 4 {
         heading(level: level, numbering: none, outlined: false, title)
@@ -69,7 +69,7 @@
   rationale: none,
   level: 4,
 ) = {
-  [
+  block(breakable: false)[
     #if title != none {
       if level > 4 {
         heading(level: level, numbering: none, outlined: false, title)

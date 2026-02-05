@@ -22,7 +22,7 @@ progetto.
     [Sistema di controllo di versione, utilizzato per tracciare la storia delle modifiche di documenti, codice sorgente
       e script di automazione.],
 
-    [GitHub], [Gestisce le Pull Request e le pipeline create tramite GitHub Actions.],
+    [GitHub], [Gestisce le Pull Request e le pipeline di verifica create tramite GitHub Actions.],
     [Jira],
     [Ogni modifica alla configurazione viene tracciata da un Task su Jira Board, contenente stime temporali, consuntivi
       e ruoli coinvolti.],
@@ -36,10 +36,6 @@ progetto.
 #norm(
   title: "Elementi di Configurazione",
   label: <config-items>,
-  rationale: [
-    *Perché includere dizionari e schemi?* Per eliminare la dipendenza dalle configurazioni locali e garantire che
-    chiunque, in qualsiasi momento, possa generare build identiche e validate, migliorando l'affidabilità del workflow..
-  ],
 )[
   Vengono sottoposti a controllo di versione e configurazione i seguenti elementi:
   - *Documentazione*: Tutti i file sorgente `.typ` e gli asset contenuti nella directory `docs/`;
@@ -68,11 +64,11 @@ progetto.
   label: <baseline-def>,
 )[
   Una Baseline rappresenta una versione stabile e approvata della configurazione. Nella repository documentale, le
-  baseline sono definite strutturalmente tramite le directory di primo livello in `docs/`:
+  baseline sono definite a livello strutturale tramite le directory di primo livello in `docs/`:
   - `11-candidatura`: Baseline di Candidatura;
   - `12-rtb`: Requirements and Technology Baseline.
 
-  Ogni modifica a una baseline passata (storica) è vietata se non previa autorizzazione esplicita del Responsabile e
+  Ogni modifica a una baseline passata (conclusa) è vietata se non previa autorizzazione esplicita del Responsabile e
   bloccata dalle automazioni di verifica.
 ]
 
@@ -81,24 +77,24 @@ progetto.
   label: <jira-config>,
 )[
   Ogni modifica alla configurazione deve essere associata a un Task su Jira. È obbligatorio compilare i seguenti campi
-  per garantire il tracciamento delle risorse:
+  per garantire un tracciamento delle risorse corretto:
   - *Autore*: Chi esegue la modifica;
   - *Ruolo*: Il ruolo ricoperto durante l'attività (es. Analista, Verificatore, ...);
   - *Time Tracking*:
-    - _Original Estimate_: Tempo stimato prima di iniziare;
+    - _Original Estimate_: Tempo stimato prima di iniziare l'attività;
     - _Time Spent_: Tempo effettivamente impiegato (da aggiornare a fine attività).
 ]
 
 #norm(
-  title: "Gestione dei Permessi e Branch Protection",
-  label: <branch-protection>,
+  title: "Restrizioni e Check",
+  label: <restriction-check>,
 )[
-  Per garantire che solo configurazioni verificate entrino nel ramo principale, vengono applicate le seguenti regole
-  tecniche su GitHub (Teams & Rules):
-  - *Branch main protetto*: È inibito il push diretto (comando `git push` rifiutato).
+  Per garantire che solo configurazioni verificate confluiscano nel ramo principale, vengono applicate le seguenti
+  regole su GitHub):
   - *Merge Restriction*: Il merge è consentito solo tramite Pull Request approvata da almeno un membro del team che in
     quel momento sta ricoprendo il ruolo di *Verificatore*.
-  - *Status Check*: Il merge è bloccato se i check automatici (`pr-check-n-build`) falliscono.
+  - *Status Check*: Il merge è bloccato se i check automatici (`pr-check-n-build`) falliscono, indicando cosa correggere
+    per allinearsi alle norme finora descritte.
 ]
 
 === Attività del processo
@@ -113,7 +109,7 @@ progetto.
     (
       name: "Collocazione",
       desc: [Ogni nuovo documento o script deve essere collocato nella directory corretta secondo la struttura definita
-        nelle norme di progetto.],
+        dal processo precedente.],
     ),
     (
       name: "Metadati",
@@ -128,7 +124,7 @@ progetto.
 )
 
 #activity(
-  title: "Controllo delle Modifiche",
+  title: "Controllo della Configurazione",
   roles: (ROLES.aut, ROLES.ver),
   norms: ("jira-config", "branching-commit-docs", "uso-notipdo"),
   input: [Necessità di modifica (Task o Bug)],
@@ -173,37 +169,48 @@ progetto.
 )
 
 #activity(
-  title: "Consolidamento e Valutazione della Baseline",
-  roles: (ROLES.amm, ROLES.resp, ROLES.anal),
-  norms: ("uso-notipdo", "baseline-def", "jira-config"),
-  input: [Merge su `main` in previsione di una Baseline],
-  output: [Sito Web aggiornato, Changelog, Matrice di Tracciamento, Report di Audit],
+  title: "Registrazione dello Stato della Configurazione",
+  roles: (ROLES.amm,),
+  norms: ("uso-notipdo", "baseline-def"),
+  input: [Decisione di pubblicazione],
+  output: [Sito Web aggiornato, Changelog],
   rationale: [
-    Garantire la visibilità immediata dello stato del progetto (tramite automazione) e assicurare che il prodotto
-    rispetti i requisiti funzionali (Validazione) e l'integrità dei componenti (Audit) prima di formalizzare il
-    rilascio.
+    Questa attività garantisce la visibilità immediata e pubblica dello stato corrente del progetto a tutti gli
+    stakeholder tramite automazione.
   ],
   procedure: (
     (
       name: "Automazione e Snapshot",
       desc: [
-        Al merge su `main`, il workflow `deploy.yml` esegue `notipdo generate site`. Questo genera la documentazione
-        statica e il Changelog, pubblicandoli su GitHub Pages come snapshot ufficiale della configurazione corrente.
+        L'Amministratore avvia manualmente il workflow `deploy.yml` (dispatch). L'operazione è volutamente manuale in
+        quanto la registrazione dello stato deve essere una operazione voluta e non eseguibile accidentalmente. Il sistema esegue
+        `notipdo generate site`, generando la documentazione statica pubblicandoli su GitHub Pages come snapshot
+        ufficiale e immutabile della configurazione in quel preciso momento.
       ],
     ),
+  ),
+)
+
+#activity(
+  title: "Valutazione della Configurazione",
+  roles: (ROLES.resp, ROLES.anal),
+  norms: ("baseline-def", "jira-config"),
+  input: [Rilascio di Baseline imminente],
+  output: [Matrice di Tracciamento, Report di Audit],
+  rationale: [
+    Questa attività ha l'obiettivo di garantire che il prodotto sia *efficiente* che *sufficiente*, evitando l'introduzione di funzionalità non richieste.
+  ],
+  procedure: (
     (
       name: "Audit dei Configuration Item",
       desc: [
-        Verifica l'integrità e la presenza di tutti i componenti previsti (Manuali, Codice, Dockerfile). Si assicura che
-        ogni elemento sia correttamente versionato e coerente con lo stato descritto nel sito statico.
+        Verifica l'integrità e la presenza fisica di tutti i componenti previsti per il rilascio, assicurandosi che ogni elemento sia correttamente versionato e coerente con lo stato descritto.
       ],
     ),
     (
-      name: "Verifica e Tracciabilità",
+      name: "Verifica della Tracciabilità",
       desc: [
-        Validazione della copertura dei requisiti: ogni Requisito deve risultare collegato a un Task Jira completato e a
-        un test superato. Il risultato viene formalizzato nella Matrice di Tracciamento per garantire la completezza
-        funzionale.
+        Validazione della copertura funzionale tramite il *Tracciamento dei Requisiti*: ogni Requisito deve risultare collegato ad un test superato. Il risultato viene formalizzato nella Matrice di Tracciamento per certificare l'aderenza alle aspettative.
       ],
     ),
   ),
