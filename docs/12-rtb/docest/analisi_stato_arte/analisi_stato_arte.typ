@@ -4,7 +4,7 @@
 
 #base-document.apply-base-document(
   title: metadata.title,
-  abstract: "Il documento offre una panoramica accessibile ma tecnica sulle tecnologie per l'Internet of Things (IoT). Vengono spiegati i concetti fondamentali, confrontate le architetture software e le soluzioni per la gestione dei dati, motivando le scelte di sicurezza e progettazione adottate per il Proof of Concept in un linguaggio chiaro anche per i non addetti ai lavori.",
+  abstract: "Il documento si prefigge di presentare la ricerca fatta dal gruppo riguardo l'oggetto del capitolato. In particolare verranno analizzati i concetti fondamentali, confrontate le architetture software e le soluzioni per la gestione dei dati, presentando gli approcci alla base di quelle che sono le attuali soluzioni disponibili sul mercato.",
   changelog: metadata.changelog,
   scope: base-document.EXTERNAL_SCOPE,
 )[
@@ -22,10 +22,10 @@
   == Aree di Indagine
 
   L'analisi si sviluppa lungo tre direttrici:
-  + *Piattaforme:* valutazione comparativa tra soluzioni managed proprietarie e soluzioni Open Source, per determinare
-    l'approccio più adeguato alle esigenze del progetto.
+  + *Piattaforme:* verrà presentata una valutazione comparativa tra soluzioni managed proprietarie e soluzioni Open Source, per determinare
+    l'approccio più adeguato alle esigenze espresse dal progetto.
   + *Architettura:* confronto tra i principali paradigmi di organizzazione del software (Edge Computing, Serverless,
-    Microservizi) per individuare quello più adatto a un sistema di ingestione dati in tempo reale.
+    Microservizi) per individuare quello maggiormente adatto a un sistema di ingestione dati in tempo reale.
   + *Sicurezza e Multi-tenancy:* studio delle strategie per garantire l'isolamento dei dati tra clienti distinti che
     condividono la stessa infrastruttura.
 
@@ -36,18 +36,17 @@
   Per la gestione dell'interazione con i sensori, è fondamentale comprendere le due modalità operative principali
   offerte dallo standard *Bluetooth Low Energy (BLE)*, ciascuna adatta a specifici requisiti applicativi:
 
-  - *Advertising:* Il dispositivo periferico trasmette periodicamente pacchetti di dati (payload) nell'ambiente
-    circostante. Questa modalità consente a qualsiasi ricevitore nel raggio di copertura di acquisire le informazioni
+  - *Advertising:* Il dispositivo periferico trasmette periodicamente pacchetti di dati (payload). Questa modalità consente a qualsiasi ricevitore nel raggio di copertura di acquisire le informazioni
     senza la necessità di stabilire un handshake formale, ottimizzando il consumo energetico.
 
   - *GATT:* È l'architettura utilizzata quando è richiesta una connessione stabile e bidirezionale. Il GATT definisce
-    una struttura gerarchica rigorosa per l'organizzazione dei dati, suddivisi in *Servizi* (raggruppamenti logici di
+    una struttura gerarchica per l'organizzazione dei dati, suddivisi in *Servizi* (raggruppamenti logici di
     funzionalità) e *Caratteristiche* (i singoli valori e i loro metadati).
 
   == La Pipeline di Acquisizione Dati
 
-  Il processo che trasforma il rilevamento fisico in informazione fruibile è stato modellato attraverso una pipeline a
-  stadi successivi. Ogni componente della catena svolge un ruolo specifico nel trattamento e nel trasporto del dato:
+  Il processo che trasforma il rilevamento fisico in informazione disponibile all'utente finale è stato modellato attraverso una pipeline a
+  stadi successivi. Ogni componente della catena svolge un ruolo specifico nel trattamento e nel trasporto dei singoli dati:
 
   #figure(
     table(
@@ -93,14 +92,14 @@
   dipendere da servizi gestiti di terze parti. Queste però comportano un maggiore onere operativo, richiedendo
   competenze specifiche per l'installazione, la configurazione sicura e la manutenzione dell'infrastruttura.
 
-  *Strategia di Progetto:* Considerando la natura didattica del lavoro, il nostro obiettivo è dimostrare la capacità di
+  *Strategia di Progetto:* Considerando la natura del progetto, il nostro obiettivo è dimostrare la capacità di
   governare l'architettura a ogni livello. Pertanto abbiamo deciso di evitare scatole nere proprietarie per mantenere il
   massimo controllo sulle scelte implementative.
 
   = Analisi delle Architetture Software
 
   Un aspetto cruciale dell'analisi ha riguardato l'organizzazione logica del codice e dei componenti del sistema.
-  Abbiamo valutato le tre proposte architetturali architetturali moderne maggiormente in voga per determinare quale
+  Abbiamo valutato le tre proposte architetturali moderne maggiormente in voga per determinare quale
   rispondesse meglio ai requisiti di scalabilità, manutenibilità e sviluppo parallelo richiesti dal progetto.
 
   == 1. Edge Computing
@@ -112,8 +111,6 @@
     (resilienza) anche in caso di disconnessione dalla rete internet.
   - *Svantaggi:* La gestione e l'aggiornamento del software su una flotta distribuita di dispositivi eterogenei
     introduce una notevole complessità.
-  - *Decisione:* Abbiamo optato per un approccio semplificato, in quanto il Gateway agirà puramente da nodo di inoltro
-    dati, mantenendo la logica di business centralizzata nel Cloud per facilitare lo sviluppo e la gestione.
 
   == 2. Serverless
 
@@ -121,11 +118,9 @@
   scrivono singole funzioni che vengono eseguite on-demand in risposta a specifici eventi.
 
   - *Vantaggi:* Elimina la necessità di provisioning e gestione dei server. Offre scalabilità automatica e un modello di
-    costo basato sull'effettivo utilizzo (*pay-per-execution*).
+    costo basato sull'effettivo utilizzo.
   - *Svantaggi:* Soffre del problema del *"Cold Start"*: la latenza iniziale necessaria per istanziare le funzioni
     inattive può risultare inaccettabile per sistemi real-time.
-  - *Decisione:* Ritenuto inadatto per il core del sistema di ingestione, che richiede la gestione di flussi di dati
-    continui ad alta frequenza.
 
   == 3. Microservizi
 
@@ -142,30 +137,34 @@
 
   = Analisi dei Message Broker
 
-  Il Message Broker costituisce il componente dell'infrastruttura di ingestione dati. Il suo ruolo è
-  garantire la ricezione affidabile e l'ordinamento di migliaia di messaggi al secondo provenienti dai sensori,
-  assicurando che nessuna informazione vada persa prima di essere elaborata durabilità.
+  Il Message Broker costituisce il componente dell'infrastruttura di ingestione dati. Il suo ruolo è garantire la
+  ricezione affidabile e l'ordinamento di migliaia di messaggi al secondo provenienti dai sensori, assicurando che
+  nessuna informazione vada persa prima di essere elaborata durabilità.
 
   == Valutazione delle Alternative
 
   Per individuare la soluzione più idonea, abbiamo confrontato tre tecnologie:
 
-  1. *Apache Kafka:* Rappresenta lo standard per lo streaming di dati enterprise. Sebbene garantisca un
-    throughput elevatissimo e una robustezza indiscutibile, la sua architettura è complessa da configurare
-    e mantenere, risultando sovradimensionata per le esigenze del nostro PoC.
+  1. *Apache Kafka:* Rappresenta lo standard per lo streaming di dati enterprise. Sebbene garantisca un throughput
+    elevatissimo e una robustezza indiscutibile, la sua architettura è complessa da configurare e mantenere, risultando
+    sovradimensionata per le esigenze del nostro PoC.
 
-  2. *Google Cloud Pub/Sub:* È una soluzione completamente gestita offerta da Google. Offre scalabilità, ma presenta un limite architetturale critico per il nostro caso d'uso: non supporta nativamente il
-    protocollo *MQTT*. Questo ci costringerebbe a sviluppare e mantenere degli adapter intermedi, aumentando la complessità e (presumibilmente) la latenza del sistema.
+  2. *Google Cloud Pub/Sub:* È una soluzione completamente gestita offerta da Google. Offre scalabilità, ma presenta un
+    limite architetturale critico per il nostro caso d'uso: non supporta nativamente il protocollo *MQTT*. Questo ci
+    costringerebbe a sviluppare e mantenere degli adapter intermedi, aumentando la complessità e (presumibilmente) la
+    latenza del sistema.
 
   3. *NATS JetStream:* È un sistema di messaging moderno, *cloud-native* e scritto in Go. Si distingue per l'estrema
-    leggerezza e per le prestazioni a bassissima latenza. Punto di forza decisivo è il supporto
-    nativo per MQTT, che consente ai gateway di connettersi direttamente al broker senza intermediari che possano rallenatarne la comunicazione.
+    leggerezza e per le prestazioni a bassissima latenza. Punto di forza decisivo è il supporto nativo per MQTT, che
+    consente ai gateway di connettersi direttamente al broker senza intermediari che possano rallenatarne la
+    comunicazione.
 
   == La Scelta: NATS JetStream
 
   La scelta è ricaduta su *NATS JetStream*. Questa tecnologia offre il miglior compromesso tra prestazioni e usabilità
-  nel contesto di un progetto universitario con risorse di tempo limitate riduce drasticamente la complessità infrastrutturale. Richiede risorse minime per l'esecuzione e si allinea tecnologicamente con il linguaggio
-  scelto per il simulatore (Go), facilitando l'integrazione.
+  nel contesto di un progetto universitario con risorse di tempo limitate riduce drasticamente la complessità
+  infrastrutturale. Richiede risorse minime per l'esecuzione e si allinea tecnologicamente con il linguaggio scelto per
+  il simulatore (Go), facilitando l'integrazione.
 
   #figure(
     table(
@@ -179,23 +178,32 @@
     caption: [Matrice decisionale per la selezione del Broker],
   )
 
- = Strategie di Sicurezza e Multi-tenancy
+  = Strategie di Sicurezza e Multi-tenancy
 
-  La sfida consiste nel servire molteplici clienti (tenant) su un'infrastruttura condivisa garantendo livelli di isolamento comparabili a quelli di ambienti fisicamente separati.
-  Le best practices di settore adottano un approccio "Zero Trust", dove nessuna entità (utente o dispositivo) è considerata affidabile per default, e la sicurezza è applicata a più livelli (Defense in Depth).
+  La sfida consiste nel servire molteplici clienti (tenant) su un'infrastruttura condivisa garantendo livelli di
+  isolamento comparabili a quelli di ambienti fisicamente separati. Le best practices di settore adottano un approccio
+  "Zero Trust", dove nessuna entità (utente o dispositivo) è considerata affidabile per default, e la sicurezza è
+  applicata a più livelli (Defense in Depth).
 
   == Isolamento dei Dati
 
-  A livello enterprise, esistono diverse strategie per garantire la segregazione dei dati, ciascuna con un diverso trade-off tra costi e sicurezza:
+  A livello enterprise, esistono diverse strategie per garantire la segregazione dei dati, ciascuna con un diverso
+  trade-off tra costi e sicurezza:
 
-  - *Database per Tenant:* Ogni cliente ha un database dedicato. Offre il massimo isolamento ma comporta costi operativi estremamente elevati su larga scala.
-  - *Row-Level Security (RLS):* È lo standard de-facto per applicazioni scalabili. I dati risiedono in tabelle condivise, distinte da una colonna discriminante (`tenant_id`). A differenza dei filtri applicativi (vulnerabili a errori umani), la RLS delega la sicurezza al motore del database, che applica policy di accesso mandatorie a ogni query. Questo garantisce che nessun bug software possa accidentalmente esporre dati.
+  - *Database per Tenant:* Ogni cliente ha un database dedicato. Offre il massimo isolamento ma comporta costi operativi
+    estremamente elevati su larga scala.
+  - *Row-Level Security (RLS):* È lo standard de-facto per applicazioni scalabili. I dati risiedono in tabelle
+    condivise, distinte da una colonna discriminante (`tenant_id`). A differenza dei filtri applicativi (vulnerabili a
+    errori umani), la RLS delega la sicurezza al motore del database, che applica policy di accesso mandatorie a ogni
+    query. Questo garantisce che nessun bug software possa accidentalmente esporre dati.
 
   == Protezione del Payload
 
-  Per settori regolamentati o dati altamente sensibili, le architetture cloud moderne adottano pattern di cifratura *End-to-End (E2EE)*.
-  Il principio è che il cloud provider agisca come un "trasportatore cieco", in quanto i dati vengono cifrati all'origine (Gateway nella nostra architettura) e decifrati solo a destinazione (Client/Dashboard).
-  A livello professionale, questo si traduce spesso in modelli *BYOK (Bring Your Own Key)*, dove le chiavi crittografiche sono gestite esclusivamente dal cliente e mai esposte all'infrastruttura di backend.
+  Per settori regolamentati o dati altamente sensibili, le architetture cloud moderne adottano pattern di cifratura
+  *End-to-End (E2EE)*. Il principio è che il cloud provider agisca come un "trasportatore cieco", in quanto i dati
+  vengono cifrati all'origine (Gateway nella nostra architettura) e decifrati solo a destinazione (Client/Dashboard). A
+  livello professionale, questo si traduce spesso in modelli *BYOK (Bring Your Own Key)*, dove le chiavi crittografiche
+  sono gestite esclusivamente dal cliente e mai esposte all'infrastruttura di backend.
 
   = Conclusioni e Scelte Finali
 
