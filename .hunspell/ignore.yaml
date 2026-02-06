@@ -95,6 +95,9 @@ accepted_words:
   - WebSocket
   - TimescaleDB
   - Hypertables
+  - TCP
+
+
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -136,6 +139,7 @@ accepted_words:
   - Postcondizioni
   - Precondizioni
   - namespace
+  - Serverless
 
   # --- Terminologia Standard Progetto ---
   - docest
