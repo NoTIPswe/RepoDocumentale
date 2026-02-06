@@ -1,12 +1,19 @@
 title: Norme di Progetto
 changelog:
-  - version: "0.11.0"
-    date: "2026-02-05"
+  - version: "0.12.0"
+    date: "2026-02-06"
     authors:
       - Valerio Solito
     verifier: TBD
     description: >
-      Completamento sezione 4 e sistemata struttura documento
+      Aggiunte sezioni parte 4 e sistemata struttura
+  - version: "0.11.0"
+    date: "2026-02-06"
+    authors:
+      - Alessandro Contarini
+    verifier: TBD
+    description: >
+      Stesura bozza metriche di qualità di processo
   - version: "0.10.0"
     date: "2026-02-05"
     authors:

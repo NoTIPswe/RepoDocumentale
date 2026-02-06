@@ -444,7 +444,112 @@ L'aggiornamento avverrà secondo il ciclo PDCA (Plan-Do-Check-Act):
 
 = Metriche di Qualità del Processo <qualità-processo>
 
+== QP-01 - Stabilità dei requisiti
+*Descrizione*: La metrica valuta la capacità del processo di analisi dei requisiti di produrre specifiche stabili nel
+tempo, limitando modifiche tardive che possono causare "incrementi distruttivi" e ritardi nelle fasi successive del
+progetto.
 
+*Formula:*
+$
+  text("Stabilità Requisiti") =
+  frac(text("Numero requisiti invariati"), text("Numero totale requisiti")) times 100
+$
+*Obiettivo*: mantenere una stabilità dei requisiti superiore al 80% per garantire una pianificazione efficace e ridurre
+i rischi di cambiamenti frequenti.
+
+\
+== QP-02 – Qualità della Tracciabilità dei Requisiti
+*Descrizione*: La metrica misura il grado con cui i requisiti risultano correttamente tracciati verso le rispettive
+fonti e verso gli artefatti di verifica, garantendo coerenza e completezza del processo di sviluppo.
+
+*Formula:*
+$
+  text("Copertura Tracciabilità") =
+  frac(text("Requisiti tracciati correttamente"), text("Numero totale requisiti")) times 100
+$
+*Obiettivo*: raggiungere una qualità della tracciabilità superiore al 90% per assicurare una gestione efficace dei
+requisiti e facilitare la verifica e validazione del prodotto.
+
+\
+== QP-03 – Tempo di Risoluzione delle Non Conformità di Processo
+*Descrizione*: La metrica valuta l’efficienza del processo nel risolvere non conformità individuate durante attività di
+revisione, verifica o controllo qualità.
+
+*Formula:*
+$
+  text("Tempo Medio Risoluzione") =
+  frac(sum (text("Tempo di risoluzione NC")), text("Numero di NC"))
+$
+*Obiettivo*: mantenere un tempo di risoluzione inferiore a 5 giorni lavorativi per garantire una rapida risposta alle
+problematiche e minimizzare l'impatto sul progresso del progetto.
+
+\
+
+== QP-04 – Qualità del Processo di Verifica
+*Descrizione*: La metrica misura l’efficacia del processo di verifica nel rilevare difetti e incongruenze prima delle
+fasi avanzate del progetto, riducendo il rischio di errori a valle.
+
+*Formula:*
+$
+  text("Efficacia Verifica") =
+  frac(text("Difetti rilevati in fase di verifica"), text("Difetti totali individuati")) times 100
+$
+*Obiettivo*: Raggiungere un'efficacia del processo di verifica superiore al 85% per assicurare che la maggior parte dei
+difetti venga identificata e risolta tempestivamente, migliorando la qualità complessiva del prodotto.
+
+\
+
+== QP-05 – Qualità della Documentazione di Progetto
+*Descrizione*: La metrica valuta la chiarezza, la correttezza e la leggibilità della documentazione prodotta, al fine di
+garantire una comunicazione efficace tra i membri del team e verso gli stakeholder.
+
+*Formula:*
+$
+  text("Qualità Documentazione") = (1 -
+    frac(text("Errori Rilevati"), text("Pagine analizzate"))) times 100
+$
+*Obiettivo*: Raggiungere una qualità della documentazione superiore al 95% per assicurare che i documenti siano
+comprensibili, accurati e utili per tutte le parti coinvolte nel progetto.
+
+\
+== QP-06 – Aderenza ai Processi Definiti
+*Descrizione*: La metrica misura quanto le attività svolte durante il progetto rispettino i processi e le pratiche
+definite nelle Norme di Progetto.
+
+*Formula:*
+$
+  text("Aderenza Processo") =
+  frac(text("Attività conformi"), text("Numero totale attività")) times 100
+$
+*Obiettivo*: Mantenere un'aderenza ai processi superiore al 90% per assicurare che le attività siano eseguite secondo le
+linee guida stabilite, migliorando l'efficienza e la qualità del lavoro svolto.
+\
+== QP-07 – Stabilità del Processo di Sviluppo
+*Descrizione*: La metrica valuta la regolarità e la prevedibilità del processo di sviluppo nel corso delle iterazioni,
+limitando variazioni eccessive nella pianificazione e nell’esecuzione.
+
+*Formula:*
+$
+  text("Stabilità Processo Sviluppo") = (1 -
+    frac(text("Deviazione attività pianificate"), text("Attivittà pianificate"))) times 100
+$
+*Obiettivo*: Mantenere una stabilità del processo di sviluppo superiore al 85% per garantire una pianificazione coerente
+e ridurre le variazioni che possono influire negativamente sul progresso del progetto.
+\
+
+== QP-08 – Efficienza del Processo di Revisione
+*Descrizione*: La metrica misura la capacità del processo di revisione di identificare e risolvere difetti e non
+conformità in modo tempestivo ed efficace.
+
+*Formula:*
+$
+  text("Efficienza Revisione") =
+  frac(text("Revisioni Concluse"), text("Revisioni avviate")) times 100
+$
+*Obiettivo*: Raggiungere un'efficienza del processo di revisione superiore al 90% per assicurare che le revisioni siano
+condotte in modo efficace, contribuendo al miglioramento continuo della qualità del progetto.
+
+\
 = Metriche di Qualità del Prodotto
 
 
