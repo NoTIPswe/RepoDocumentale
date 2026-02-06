@@ -314,6 +314,7 @@ svolgimento del progetto.
 
 #activity(
   title: "Stesura del documento",
+  label: <stesura-doc>,
   roles: (ROLES.aut,),
   norms: (
     "branching-commit-docs",
@@ -389,6 +390,7 @@ svolgimento del progetto.
 #activity(
   title: "Verifica del documento",
   roles: (ROLES.ver,),
+  label: <verifica-doc>,
   norms: ("ciclo-vita-docs", "struttura-repo-docs", "norme-tipog-stile", "uso-notipdo", "co-authoring-docs"),
   input: [Pull Request aperta],
   output: [Documento verificato (su `main`) o richiesta modifiche],

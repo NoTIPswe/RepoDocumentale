@@ -172,6 +172,11 @@ accepted_words:
   - PasswordInvalida
   - RangeInvalido
   - NessunDato
+  - uc 
+  - authd
+  - usr
+  - sym
+
 
 
   # --- Parole Italiane mancanti / Neologismi ---
@@ -209,3 +214,8 @@ accepted_words:
   - l'endpoint
   - failover
   - provisionato
+  - Istanziazione
+  - versionare
+  - un'activity
+  - l'uc
+  - l'istanziazione

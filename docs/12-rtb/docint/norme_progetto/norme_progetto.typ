@@ -1,7 +1,7 @@
 #import "../../00-templates/base_document.typ" as base-document
 
 
-#let metadata = yaml("norme_progetto.meta.yaml")
+#let metadata = yaml(sys.inputs.meta-path)
 
 #show: base-document.apply-base-document.with(
   title: metadata.title,
@@ -77,7 +77,7 @@ da svolgere con probabile data di consegna prevista.
 === Strumenti a supporto
 - *Jira*: per la gestione del backlog e del tracciamento delle task, Jira inoltre offre una visualizzazione di diagrammi
   di qualsiasi tipologia per facilitare la pianificazione
-- *Github*: per il versionamento dei documenti, utile anche a fini di verifica dei documenti e approvazione degli
+- *GitHub*: per il versionamento dei documenti, utile anche a fini di verifica dei documenti e approvazione degli
   stessi;
 - *Discord*: usato principalmente come luogo per riunioni interne e sessioni di coding sincrone;
 - *Telegram*: usato come canale principale di comunicazione testuale all'interno del gruppo;
@@ -112,7 +112,7 @@ La #link("https://notipswe.github.io/docs/11-candidatura/docest/dichiarazione_im
 il documento in cui il gruppo ha stimato i costi del progetto, dall’impegno orario per persona e per ruolo, al costo
 complessivo del progetto e dei ruoli che i componenti del gruppo ricopriranno.
 ==== Lettera di presentazione
-La Lettera di presentazione è il documento con il quale il gruppo, conferma la volonta di candidarsi per una determinata
+La Lettera di presentazione è il documento con il quale il gruppo, conferma la volontà di candidarsi per una determinata
 Baseline. Il gruppo durante lo sviluppo del progetto presenterà ai proponenti tre lettere di presentazione:
 - La Lettera di presentazione per la *candidatura all'appalto del capitolato C7*;
 - La Lettera di presentazione per la *Requirements and Technology Baseline (RTB)*;
@@ -173,7 +173,7 @@ Le attività previste dal processo di sviluppo in base allo standard ISO/IEC 122
 - *Analisi dei requisiti di sistema*: identificazione e definizione delle necessità dell'utente finale in relazione alle
   funzionalità che il Software deve offrire;
 - *Progettazione dell'architettura di sistema*: identificazione dell'Hardware e del software del prodotto finale,
-  affinchè tutti i requisiti individuati siano soddisfatti;
+  affinché tutti i requisiti individuati siano soddisfatti;
 - *Progettazione architetturale software*: definizione della struttura generale, delle diverse componenti del sistema e
   il loro funzionamento;
 - *Codifica e test software*: produzione delle unità di tutte le componenti individuate precedentemente, assicurando che
@@ -185,7 +185,7 @@ Le attività previste dal processo di sviluppo in base allo standard ISO/IEC 122
 - *Test di qualifica del sistema*: test dell'intero sistema per assicurare il corretto funzionamento;
 - *Installazione software*: fornitura di quanto realizzato al cliente finale nell'ambiente concordato;
 - *Supporto all'accettazione software*: assistenza al committente durante le verifiche finali per l'accettazione.
-Le attività scritte in dettaglio sono quelle che il gruppo riteneva importanti per l'*Requirements and Technology
+Le attività scritte in dettaglio sono quelle che il gruppo riteneva importanti per la *Requirements and Technology
 Baseline (RTB)*, le restanti attività verranno descritte per la prossima baseline ovvero la *Product Baseline (PB)*
 
 
@@ -320,30 +320,133 @@ verranno assegnati uno o più ruoli in base ai seguenti principi:
   competenze pregresse in determinati task. Nonostante ciò, tutti i componenti del gruppo dovranno svolgere, a parità di
   ruolo, un numero simile di ore, come riportato nella `Dichiarazione di Impegni`.
 
-=== Strumenti di gestione
+=== Coordinamento
+Una parte essenziale del progetto risiede nelle capacità di coordinamento del gruppo, sia verso l'interno che verso
+l'esterno. Per svolgere al meglio queste attività è necessario svolgere riunioni (interne ed esterne) e avere canali di
+comunicazione dedicati a ciò.
 
-Per le attività di gestione e coordinamento, il gruppo ha deciso di adottare *Git* e *GitHub* come strumenti di
-riferimento, oltre che a *Jira* per la gestione centralizzata dei task da eseguire.
+==== Riunioni
+Le riunioni rappresentano momenti di sincronizzazione del team.
+- Le riunioni interne si svolgono periodicamente (generalmente all'inizio e alla fine di ogni Sprint) per coordinare le
+  attività, verificare lo stato del lavoro, e per ruotare correttamente i ruoli. Queste riunioni permettono al
+  Responsabile di avere una panoramica aggiornata della situazione del gruppo, così da poter gestire eventuali criticità
+  e anche le riunioni esterne, in cui dovrà rappresentare il gruppo.
+- Le riunioni esterne si svolgono anch'esse in maniera periodica, poiché coincidono con i Diari di Bordo e con gli
+  incontri con l'azienda proponente _M31_. In questi casi il gruppo, tramite il responsabile, potrà esporre e chiarire i
+  dubbi riscontrati.
 
-In particolare, è stata pianificata l'applicazione delle issue per la gestione e l'assegnazione delle attività, nonché
-per la pianificazione di sprint e milestone. /*Tuttavia, al momento della stesura, tale modalità non risulta ancora
-                                             implementata operativamente. Penso da togliere questo*/
+Sia le riunioni esterne che interne si svolgono periodicamente, ma potrebbe anche capitare di svolgerne altre in casi
+speciali in cui il team abbia bisogno di immediato chiarimento riguardo ad alcuni dubbi.
 
-// Mario e Ale C. Sprint 6
+In ogni caso, i temi trattati nelle riunioni devono essere sempre riassunti tramite gli appositi verbali, che possono
+essere per l'appunto verbali interni o esterni.
 
-= Metriche e standard per la Qualità 
-  
+Per ulteriori informazioni sugli strumenti utilizzati per le Riunioni interne ed esterne si consiglia di leggere la
+@infrastruttura dedicata all'Infrastruttura.
+
+==== Comunicazioni
+Per quanto riguarda la Comunicazione interna il gruppo ha scelto di utilizzare Telegram e Discord. Le riunioni più
+importanti come quelle di inizio o fine sprint vengono sempre tenute su Discord. Per comunicare giornalmente di tutto
+ciò che concerne il progetto e anche per comunicazioni informali si utilizzerà Telegram. Invece per le comunicazioni
+esterne, il Responsabile utilizzerà la Mail del gruppo (#link("mailto:notip.swe@gmail.com")[#raw(
+  "notip.swe@gmail.com",
+)]) per contattare l'azienda proponente o i professori. Per ulteriori informazioni sugli strumenti utilizzati si
+consiglia la lettura della @infrastruttura , che descrive l'Infrastruttura.
 
 
-= Metriche di Qualità del Processo
+== Infrastruttura <infrastruttura>
+Il processo di Infrastruttura è responsabile dell'implementazione, della creazione e della manutenzione di tutti i
+componenti necessari per permettere tutti gli altri processi.
+
+=== Attività dell'Infrastruttura
+Il processo di Infrastruttura si suddivide in 3 attività:
+- Implementazione
+- Configurazione
+- Manutenzione
+
+=== Implementazione
+Per le attività di gestione e coordinamento, il gruppo ha deciso di adottare alcuni strumenti, ciascuno dei quali è
+stato scelto per specifici motivi. Ecco ciascuno degli strumenti utilizzati dal team:
+- Jira
+- Git
+- GitHub
+- Typst
+- Discord
+- Telegram
+- Google Mail
+- Microsoft Teams
+- Zoom
+
+=== Configurazione
+Di seguito si trovano le informazioni relative a ciascun strumento utilizzato.
+#include "processes/jira.typ"
+#include "processes/git.typ"
+#include "processes/GitHub.typ"
+#include "processes/typst.typ"
+#include "processes/discord.typ"
+==== Telegram
+Telegram è un programma di messaggistica utilizzato dal Gruppo per aggiornarsi giornalmente sui progressi del Progetto e
+per qualsiasi tipo di comunicazione fra i membri del gruppo. Per riunire tutti i membri è stato creato un Gruppo, nel
+quale è anche possibile fissare i messaggi più importanti in un determinato periodo.
+
+==== Google Mail
+Google Mail è il servizio di posta elettronico che il Team utilizza per gestire le comunicazioni esterne al Gruppo. A
+tal proposito è stata creata una mail dedicata al team chiamata #link("mailto:notip.swe@gmail.com")[#raw(
+  "notip.swe@gmail.com",
+)]. All'interno di Google Mail è anche collegato un Calendario che registra in maniera autonoma a partire dalle Mail
+ricevute i prossimi incontri a cui il Team dovrà partecipare.
+
+==== Microsoft Teams
+Microsoft Teams viene utilizzato per le riunioni esterne con l'azienda proponente _M31_.
+
+==== Zoom
+Zoom invece viene utilizzato per l'attività dei Diari di Bordo con il Prof. Vardanega. In questo caso è stato anche
+creato un account zoom del gruppo collegato alla Google Mail.
+
+=== Manutenzione
+A causa del continuo avanzamento del progetto, il gruppo è consapevole che l’infrastruttura subirà nel tempo cambiamenti
+e potrebbe causare possibili problemi. Per questo starà all’Amministratore il compito della Manutenzione, aggiornando le
+funzionalità qualora errori o cambiamenti lo rendano necessario.
+
+== Processo di Miglioramento
+In conformità alla norma *ISO/IEC 12207:1995*, il Processo di Miglioramento ha lo scopo di stabilire, valutare e
+ottimizzare i processi utilizzati durante l'intero ciclo di vita del software.
+
+=== Attività previste
+Il Processo di Miglioramento si articola in: -* Inizializzazione del Processo*, dove si stabiliranno i processi
+organizzativi e la relativa documentazione.
+- *Valutazione del Processo*, dove si stabilirà una procedura per valutare e documentare l'efficacia e l'efficienza dei
+  processi.
+- *Miglioramento del Processo*, dove si stabilirà come migliorare un processo giudicato inefficace ed inefficiente,
+  risolvendone le criticità.
+
+=== Inizializzazione
+In questa fase si stabiliranno tutti i processi organizzativi che guideranno il progetto. Lo scopo del documento delle
+norme di progetto è proprio quello di fornire una base solida per la comprensione e l'istanziazione dei processi.
+=== Valutazione
+Una volta che i processi saranno stati definiti, sarà necessario definire delle metriche appropriate e, sulla base dei
+dati prodotti da queste, valutare l'efficacia e l'efficienza dei processi. Tali metriche verranno esplicitate nella
+@qualità-processo, dedicata alle metriche di qualità del processo.
+
+=== Miglioramento
+Infine sulla base dei dati raccolti nella fase di Valutazione, bisognerà individuare i processi risultati inadatti.
+L'aggiornamento avverrà secondo il ciclo PDCA (Plan-Do-Check-Act):
+1. Identificazione del Problema;
+2. Modifica della documentazione relativa al problema.
+3. Allineamento del Team sulle modifiche effettuate.
+4. Monitoraggio delle metriche per verificare il successo delle modifiche apportate al processo.
+
+== Processo di Formazione
+
+= Metriche e standard per la Qualità
+/*Sezione Mario e Ale da qui in poi*/
+
+
+= Metriche di Qualità del Processo <qualità-processo>
 
 
 = Metriche di Qualità del Prodotto
 
-
-
-
-#include "processes/jira.typ"
 
 
 
