@@ -36,4 +36,4 @@
       uc: "err_auth_gateway_fabbrica",
     ),
   ),
-)[#uml-schema("98", "Diagramma Provisioning Gateway - Onboarding")]
+)[#uml-schema("96", "Diagramma Provisioning Gateway - Onboarding")]
