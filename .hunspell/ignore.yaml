@@ -95,6 +95,7 @@ accepted_words:
   - WebSocket
   - TimescaleDB
   - Hypertables
+  - TCP
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -140,6 +141,7 @@ accepted_words:
   - SPI
   - ETC
   - RSI
+  - Serverless
 
   # --- Terminologia Standard Progetto ---
   - docest
@@ -212,7 +214,18 @@ accepted_words:
   - l'endpoint
   - failover
   - provisionato
-  - automiglioramento
+  - l'automiglioramento
   - messagging
   - decifratura
   - d'esami
+  - l'EV
+  - L'AC
+  - l'SPI
+  - L'EAC
+  - nell'EAC
+  - l'ETC
+  - L'RSI
+  - l'API
+  - dell'
+  - l'
+  - l'AC
