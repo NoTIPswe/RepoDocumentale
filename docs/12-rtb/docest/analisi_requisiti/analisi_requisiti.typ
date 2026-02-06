@@ -283,7 +283,6 @@
   #include "uc/visualizzazione_intervallo_sospensione_tenant.typ"
   #include "uc/modifica_intervallo_sospensione_tenant.typ"
   #include "uc/modifica_nome_tenant.typ"
-  // bookmark - da qui in poi è da sentire l’azienda che campi sono di loro interesse da memorizzare riguardo un Tenant. Una volta fatto vanno creati UC di visualizzazione creazione e modifica associati
   #include "uc/creazione_tenant.typ"
   #include "uc/inserimento_anagrafica_tenant.typ"
   #include "uc/err_interno_creazione_tenant.typ"

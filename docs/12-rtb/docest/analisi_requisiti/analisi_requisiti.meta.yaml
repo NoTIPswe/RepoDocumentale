@@ -6,7 +6,7 @@ changelog:
       - Alessandro Mazzariol
     verifier: TBD
     description: >
-      Fix lista requisiti e numeri diagrammi
+      Fix lista requisiti e numeri
   - version: "0.33.1"
     date: "2026-01-28"
     authors:
