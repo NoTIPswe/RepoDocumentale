@@ -22,8 +22,8 @@
   == Aree di Indagine
 
   L'analisi si sviluppa lungo tre direttrici:
-  + *Piattaforme:* verrà presentata una valutazione comparativa tra soluzioni managed proprietarie e soluzioni Open Source, per determinare
-    l'approccio più adeguato alle esigenze espresse dal progetto.
+  + *Piattaforme:* verrà presentata una valutazione comparativa tra soluzioni managed proprietarie e soluzioni Open
+    Source, per determinare l'approccio più adeguato alle esigenze espresse dal progetto.
   + *Architettura:* confronto tra i principali paradigmi di organizzazione del software (Edge Computing, Serverless,
     Microservizi) per individuare quello maggiormente adatto a un sistema di ingestione dati in tempo reale.
   + *Sicurezza e Multi-tenancy:* studio delle strategie per garantire l'isolamento dei dati tra clienti distinti che
@@ -36,8 +36,9 @@
   Per la gestione dell'interazione con i sensori, è fondamentale comprendere le due modalità operative principali
   offerte dallo standard *Bluetooth Low Energy (BLE)*, ciascuna adatta a specifici requisiti applicativi:
 
-  - *Advertising:* Il dispositivo periferico trasmette periodicamente pacchetti di dati (payload). Questa modalità consente a qualsiasi ricevitore nel raggio di copertura di acquisire le informazioni
-    senza la necessità di stabilire un handshake formale, ottimizzando il consumo energetico.
+  - *Advertising:* Il dispositivo periferico trasmette periodicamente pacchetti di dati (payload). Questa modalità
+    consente a qualsiasi ricevitore nel raggio di copertura di acquisire le informazioni senza la necessità di stabilire
+    un handshake formale, ottimizzando il consumo energetico.
 
   - *GATT:* È l'architettura utilizzata quando è richiesta una connessione stabile e bidirezionale. Il GATT definisce
     una struttura gerarchica per l'organizzazione dei dati, suddivisi in *Servizi* (raggruppamenti logici di
@@ -45,8 +46,9 @@
 
   == La Pipeline di Acquisizione Dati
 
-  Il processo che trasforma il rilevamento fisico in informazione disponibile all'utente finale è stato modellato attraverso una pipeline a
-  stadi successivi. Ogni componente della catena svolge un ruolo specifico nel trattamento e nel trasporto dei singoli dati:
+  Il processo che trasforma il rilevamento fisico in informazione disponibile all'utente finale è stato modellato
+  attraverso una pipeline a stadi successivi. Ogni componente della catena svolge un ruolo specifico nel trattamento e
+  nel trasporto dei singoli dati:
 
   #figure(
     table(
@@ -99,8 +101,8 @@
   = Analisi delle Architetture Software
 
   Un aspetto cruciale dell'analisi ha riguardato l'organizzazione logica del codice e dei componenti del sistema.
-  Abbiamo valutato le tre proposte architetturali moderne maggiormente in voga per determinare quale
-  rispondesse meglio ai requisiti di scalabilità, manutenibilità e sviluppo parallelo richiesti dal progetto.
+  Abbiamo valutato le tre proposte architetturali moderne maggiormente in voga per determinare quale rispondesse meglio
+  ai requisiti di scalabilità, manutenibilità e sviluppo parallelo richiesti dal progetto.
 
   == Edge Computing
 
