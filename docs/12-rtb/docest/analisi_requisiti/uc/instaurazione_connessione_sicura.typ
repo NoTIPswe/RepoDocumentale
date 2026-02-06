@@ -30,4 +30,4 @@
       uc: "err_autenticazione_gateway",
     ),
   ),
-)[#uml-schema("100.1", "Diagramma Instaurazione connessione sicura")]
+)[#uml-schema("98.1", "Diagramma Instaurazione connessione sicura")]
