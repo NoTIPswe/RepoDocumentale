@@ -1,5 +1,12 @@
 title: Piano di Qualifica 
 changelog:
+  - version: "0.8.1"
+    date: "2026-02-06"
+    authors:
+      - Mario De Pasquale
+    verifier: TBD
+    description: >
+      Correzione errori di battitura
   - version: "0.8.0"
     date: "2026-02-05"
     authors:
