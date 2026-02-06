@@ -4,30 +4,30 @@ changelog:
     date: "2026-02-04"
     authors:
       - Valerio Solito
-    verifier: TBD
+    verifier: Alessandro Mazzariol
     description: >
-        Sistemate sezioni precedenti e aggiunta sezione Sprint 6
+      Sistemate sezioni precedenti e aggiunta sezione Sprint 6
   - version: "0.4.0"
     date: "2026-02-03"
     authors:
       - Valerio Solito
     verifier: Leonardo Preo
     description: >
-        Sistemate sezioni Sprint precedenti e aggiunta sezione Sprint 5
+      Sistemate sezioni Sprint precedenti e aggiunta sezione Sprint 5
   - version: "0.3.0"
     date: "2025-12-16"
     authors:
       - Alessandro Mazzariol
     verifier: Alessandro Contarini
     description: >
-        Aggiornata sezione Sprint 2 e aggiunta sezione Sprint 3
+      Aggiornata sezione Sprint 2 e aggiunta sezione Sprint 3
   - version: "0.2.0"
     date: "2025-12-12"
     authors:
       - Alessandro Mazzariol
     verifier: Valerio Solito
     description: >
-        Modificata sezione riferimenti normativi e aggiunta mitigazione del rischio RT2
+      Modificata sezione riferimenti normativi e aggiunta mitigazione del rischio RT2
 
   - version: "0.1.0"
     date: "2025-12-12"
@@ -35,7 +35,7 @@ changelog:
       - Alessandro Mazzariol
     verifier: Valerio Solito
     description: >
-        Aggiunti sezione Glossario e riferimenti normativi/informativi
+      Aggiunti sezione Glossario e riferimenti normativi/informativi
 
   - version: "0.0.2"
     date: "2025-12-03"
@@ -43,12 +43,12 @@ changelog:
       - Alessandro Mazzariol
     verifier: Valerio Solito
     description: >
-        Fix di errori ortografici vari
-        
+      Fix di errori ortografici vari
+
   - version: "0.0.1"
     date: "2025-12-03"
     authors:
       - Alessandro Mazzariol
     verifier: Valerio Solito
     description: >
-        Prima stesura del Piano di Progetto
+      Prima stesura del Piano di Progetto
