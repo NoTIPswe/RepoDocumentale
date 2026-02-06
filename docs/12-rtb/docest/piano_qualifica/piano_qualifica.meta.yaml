@@ -1,5 +1,12 @@
-title: Piano di Qualifica 
+title: Piano di Qualifica
 changelog:
+  - version: "0.8.2"
+    date: "2026-02-06"
+    authors:
+      - Alessandro Mazzariol
+    verifier: TBD
+    description: >
+      Fix numeri requisiti nei test
   - version: "0.8.1"
     date: "2026-02-06"
     authors:
@@ -49,7 +56,7 @@ changelog:
       - Alessandro Contarini
     verifier: Alessandro Mazzariol
     description: >
-      Aggiunti Test di unità 
+      Aggiunti Test di unità
   - version: "0.3.0"
     date: "2025-12-13"
     authors:
@@ -79,4 +86,3 @@ changelog:
     verifier: Valerio Solito
     description: >
       Prima bozza struttura del documento
-
