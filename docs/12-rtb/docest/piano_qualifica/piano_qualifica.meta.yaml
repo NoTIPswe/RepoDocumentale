@@ -11,21 +11,21 @@ changelog:
     date: "2026-02-06"
     authors:
       - Mario De Pasquale
-    verifier: TBD
+    verifier: Alessandro Mazzariol
     description: >
       Correzione errori di battitura
   - version: "0.8.0"
     date: "2026-02-05"
     authors:
       - Alessandro Contarini
-    verifier: TBD
+    verifier: Alessandro Mazzariol
     description: >
       Definizione delle valutazioni per l'automiglioramento (per quanto riscontrato fino in data odierna)
   - version: "0.7.0"
     date: "2026-02-04"
     authors:
       - Alessandro Contarini
-    verifier: TBD
+    verifier: Alessandro Mazzariol
     description: >
       Definizione delle ultime sezioni del documento (con contenuti riguardanti i risultati finora riscontrati)
   - version: "0.6.0"
