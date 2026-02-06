@@ -4,7 +4,7 @@ changelog:
     date: "2026-02-06"
     authors:
       - Alessandro Mazzariol
-    verifier: TBD
+    verifier: Alessandro Contarini
     description: >
       Fix numeri requisiti nei test
   - version: "0.8.1"
