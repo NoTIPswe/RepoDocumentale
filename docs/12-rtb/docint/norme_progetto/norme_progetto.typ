@@ -329,6 +329,20 @@ In particolare, è stata pianificata l'applicazione delle issue per la gestione 
 per la pianificazione di sprint e milestone. /*Tuttavia, al momento della stesura, tale modalità non risulta ancora
                                              implementata operativamente. Penso da togliere questo*/
 
+// Mario e Ale C. Sprint 6
+
+= Metriche e standard per la Qualità 
+  
+
+
+= Metriche di Qualità del Processo
+
+
+= Metriche di Qualità del Prodotto
+
+
+
+
 #include "processes/jira.typ"
 
 
