@@ -93,6 +93,7 @@ accepted_words:
   - Kubernetes
   - HTTPS
   - WebSocket
+  - TCP
 
 
 
@@ -136,6 +137,7 @@ accepted_words:
   - Postcondizioni
   - Precondizioni
   - namespace
+  - Serverless
 
 
   # --- Terminologia Standard Progetto ---
