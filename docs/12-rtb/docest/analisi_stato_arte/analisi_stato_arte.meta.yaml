@@ -4,13 +4,13 @@ changelog:
     date: "2026-02-04"
     authors:
       - Francesco Marcon
-    verifier: TBD
+    verifier: Leonardo Preo
     description: >
       Correzioni di forma e rimozione di alcune sezione
   - version: "0.0.1"
     date: "2026-02-04"
     authors:
       - Francesco Marcon
-    verifier: TBD
+    verifier: Leonardo Preo
     description: >
       Prima stesura del documento
