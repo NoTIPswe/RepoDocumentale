@@ -287,7 +287,6 @@
   Il gruppo pensa sia possibile che possano presentarsi i seguenti rischi:
   - RP1: Rischio personale legato a problematiche personali o attività universitarie.
   - RT1: Rischio legato all'apprendimento delle tecnologie richieste.
-  - RO1: Mancato rispetto delle scadenza stabilite.
 
   ==== Ore previste
   A seguito di una mancanza di organizzazione delle ore previste, il gruppo non ha lavorato nella maniera corretta, per
