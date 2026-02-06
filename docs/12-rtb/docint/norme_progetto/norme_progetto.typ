@@ -396,10 +396,11 @@ per la pianificazione di sprint e milestone. /*Tuttavia, al momento della stesur
       *Descrizione*: La metrica valuta la regolarità e la prevedibilità del processo di sviluppo nel corso delle iterazioni, limitando variazioni eccessive nella pianificazione e nell’esecuzione.
 
       *Formula:*
-      $ text("Stabilità Processo Sviluppo") = 1 - 
-        (frac(text("Deviazione attività pianificate"), text("Attivittà pianificate"))) times 100 $
+      $ text("Stabilità Processo Sviluppo") = (1 - 
+        frac(text("Deviazione attività pianificate"), text("Attivittà pianificate"))) times 100 $
       *Obiettivo*: Mantenere una stabilità del processo di sviluppo superiore al 85% per garantire una pianificazione coerente e ridurre le variazioni che possono influire negativamente sul progresso del progetto.
     \
+
     == QP-08 – Efficienza del Processo di Revisione
       *Descrizione*: La metrica misura la capacità del processo di revisione di identificare e risolvere difetti e non conformità in modo tempestivo ed efficace.
 
