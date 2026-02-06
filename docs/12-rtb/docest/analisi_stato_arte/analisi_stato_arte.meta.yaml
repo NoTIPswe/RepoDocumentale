@@ -1,9 +1,16 @@
 title: Analisi dello Stato dell'Arte
 changelog:
+  - version: "0.1.0"
+    date: "2026-02-04"
+    authors:
+      - Francesco Marcon
+    verifier: TBD
+    description: >
+      Correzioni di forma e rimozione di alcune sezione
   - version: "0.0.1"
     date: "2026-02-04"
     authors:
       - Francesco Marcon
     verifier: TBD
     description: >
-      Prima bozza del documento
+      Prima stesura del documento
