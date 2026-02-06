@@ -1,6 +1,6 @@
 #import "../../00-templates/base_document.typ" as base-document
 
-#let metadata = yaml("piano_progetto.meta.yaml")
+#let metadata = yaml(sys-inputs.meta-path)
 //Glossario
 //Use Case
 //Glossario
