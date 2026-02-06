@@ -6,7 +6,7 @@ changelog:
       - Alessandro Mazzariol
     verifier: TBD
     description: >
-      Completamento sezione fornitura e sviluppo dei processi primari.
+      Completamento sezione fornitura e sviluppo dei processi primari
   - version: "0.9.0"
     date: "2026-02-04"
     authors:
