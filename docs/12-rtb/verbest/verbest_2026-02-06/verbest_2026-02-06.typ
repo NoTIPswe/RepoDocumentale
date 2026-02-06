@@ -3,7 +3,7 @@
 #let metadata = yaml(sys.inputs.meta-path)
 
 #base-report.apply-base-verbale(
-  date: "2026-01-28",
+  date: "2026-02-06",
   scope: base-report.EXTERNAL_SCOPE,
   front-info: (
     (
@@ -27,7 +27,7 @@
 
   A rappresentare l’Azienda erano presenti Cristian Pirlog e Moones Mobaraki.
 ][
-  L'incontro è stato dedicato alla presentazione del PoC, recentemente ultimato. Il Team ha inoltre chiesto domande di
+  L'incontro è stato dedicato alla presentazione del PoC, recentemente ultimato. Il Team ha inoltre posto domande di
   natura tecnica riguardo eventuali punti del PoC, per confermare di aver correttamente trasposto le intenzioni della
   proponente nel lavoro svolto. Il confronto ha permesso di chiarire alcuni dubbi e di ricevere conferme dalla
   proponente.
