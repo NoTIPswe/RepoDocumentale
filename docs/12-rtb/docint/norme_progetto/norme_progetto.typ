@@ -413,7 +413,9 @@ In conformità alla norma *ISO/IEC 12207:1995*, il Processo di Miglioramento ha 
 ottimizzare i processi utilizzati durante l'intero ciclo di vita del software.
 
 === Attività previste
-Il Processo di Miglioramento si articola in: -* Inizializzazione del Processo*, dove si stabiliranno i processi
+Il Processo di Miglioramento si articola in:
+
+- * Inizializzazione del Processo*, dove si stabiliranno i processi
 organizzativi e la relativa documentazione.
 - *Valutazione del Processo*, dove si stabilirà una procedura per valutare e documentare l'efficacia e l'efficienza dei
   processi.
@@ -436,16 +438,15 @@ L'aggiornamento avverrà secondo il ciclo PDCA (Plan-Do-Check-Act):
 3. Allineamento del Team sulle modifiche effettuate.
 4. Monitoraggio delle metriche per verificare il successo delle modifiche apportate al processo.
 
-== Processo di Formazione
+#include "processes/formazione.typ"
 
 = Metriche e standard per la Qualità
-/*Sezione Mario e Ale da qui in poi*/
-
 
 = Metriche di Qualità del Processo <qualità-processo>
 
 == MPC-01 - Stabilità dei requisiti
-*Descrizione*: La metrica misura la percentuale di requisiti che non subiscono modifiche dopo la definizione della baseline dei requisiti.
+*Descrizione*: La metrica misura la percentuale di requisiti che non subiscono modifiche dopo la definizione della
+baseline dei requisiti.
 
 *Formula:*
 $
@@ -456,7 +457,8 @@ $
 
 \
 == MPC-02 – Qualità della Tracciabilità dei Requisiti
-*Descrizione*: La metrica misura la percentuale di requisiti correttamente tracciati verso casi d’uso e attività di verifica.
+*Descrizione*: La metrica misura la percentuale di requisiti correttamente tracciati verso casi d’uso e attività di
+verifica.
 
 *Formula:*
 $
@@ -479,7 +481,8 @@ $
 \
 
 == MPC-04 – Qualità del Processo di Verifica
-*Descrizione*: La metrica misura la percentuale di difetti individuati durante le attività di verifica rispetto al totale dei difetti rilevati.
+*Descrizione*: La metrica misura la percentuale di difetti individuati durante le attività di verifica rispetto al
+totale dei difetti rilevati.
 
 *Formula:*
 $
@@ -495,14 +498,15 @@ $
 
 *Formula:*
 $
-  text("Qualità Documentazione") = 
-    frac(text("Documenti verificati senza NC"), text("Documenti verificati")) times 100
+  text("Qualità Documentazione") =
+  frac(text("Documenti verificati senza NC"), text("Documenti verificati")) times 100
 $
 *Obiettivo*: $>=95%$
 
 \
 == MPC-06 – Aderenza ai Processi Definiti
-*Descrizione*: La metrica misura la percentuale di attività svolte in conformità ai processi definiti nelle _Norme di Progetto_.
+*Descrizione*: La metrica misura la percentuale di attività svolte in conformità ai processi definiti nelle _Norme di
+Progetto_.
 
 *Formula:*
 $
@@ -516,8 +520,8 @@ $
 
 *Formula:*
 $
-  text("Stabilità Processo Sviluppo") = 
-    frac(text("Attività pianificate completate"), text("Attivittà pianificate")) times 100
+  text("Stabilità Processo Sviluppo") =
+  frac(text("Attività pianificate completate"), text("Attivittà pianificate")) times 100
 $
 *Obiettivo*: $>=85%$
 \
@@ -534,85 +538,87 @@ $
 
 \
 = Metriche di Qualità del Prodotto <qualità-prodotto>
-  == MPD-01 - Copertura dei Requisiti
-    *Descrizione*: La metrica misura la percentuale di requisiti associati ad almeno un’attività di verifica.
+== MPD-01 - Copertura dei Requisiti
+*Descrizione*: La metrica misura la percentuale di requisiti associati ad almeno un’attività di verifica.
 
-    *Formula:*
-    $
-      text("Copertura Requisiti") =
-      frac(text("Requisiti verificati"), text("Requisiti totali")) times 100
-    $ 
-    *Obiettivo*: $100%$ dei requisiti obbligatori. $>=90%$ dei requisiti desiderabili.
+*Formula:*
+$
+  text("Copertura Requisiti") =
+  frac(text("Requisiti verificati"), text("Requisiti totali")) times 100
+$
+*Obiettivo*: $100%$ dei requisiti obbligatori. $>=90%$ dei requisiti desiderabili.
 
-    \
-  == MPD-02 - Tasso di Superamento dei Test
-    *Descrizione*: La metrica misura la percentuale di test superati rispetto ai test eseguiti.
+\
+== MPD-02 - Tasso di Superamento dei Test
+*Descrizione*: La metrica misura la percentuale di test superati rispetto ai test eseguiti.
 
-    *Formula:*
-    $
-      text("Tasso Superamento Test") =
-      frac(text("Test superati"), text("Test eseguiti")) times 100
-    $
-    *Obiettivo*: $>=95%$
+*Formula:*
+$
+  text("Tasso Superamento Test") =
+  frac(text("Test superati"), text("Test eseguiti")) times 100
+$
+*Obiettivo*: $>=95%$
 
-    \
+\
 
-  == MPD-03 - Densità dei Difetti
-    *Descrizione*: La metrica misura il numero di difetti rilevati in rapporto alla dimensione dell’artefatto.
-    
-    *Formula:*
-    $
-      text("Densità Difetti") =
-      frac(text("Difetti rilevati"), text("Dimensione dell'artefatto"))
-    $
-    *Obiettivo*: $<=0.5$ difetti per unità di dimensione scelta (es. per 1000 righe di codice, per pagina di documentazione, ecc.).
+== MPD-03 - Densità dei Difetti
+*Descrizione*: La metrica misura il numero di difetti rilevati in rapporto alla dimensione dell’artefatto.
 
-  \
+*Formula:*
+$
+  text("Densità Difetti") =
+  frac(text("Difetti rilevati"), text("Dimensione dell'artefatto"))
+$
+*Obiettivo*: $<=0.5$ difetti per unità di dimensione scelta (es. per 1000 righe di codice, per pagina di documentazione,
+ecc.).
 
-  == MPD-04 - Qualità della Documentazione
-    *Descrizione*: La metrica misura la percentuale di pagine di documentazione prive di errori rilevati in fase di verifica.
+\
 
-    *Formula:*
-    $
-      text("Qualità Documentazione") = (1 -
-        frac(text("Errori Rilevati"), text("Pagine analizzate"))) times 100
-    $
-    *Obiettivo*: $>=95%$
+== MPD-04 - Qualità della Documentazione
+*Descrizione*: La metrica misura la percentuale di pagine di documentazione prive di errori rilevati in fase di
+verifica.
 
-    \
+*Formula:*
+$
+  text("Qualità Documentazione") = (1 -
+    frac(text("Errori Rilevati"), text("Pagine analizzate"))) times 100
+$
+*Obiettivo*: $>=95%$
 
-  == MPD-05 - Completezza dei Casi d'Uso
-    *Descrizione*: La metrica misura la percentuale di casi d’uso completi in tutte le loro parti obbligatorie.
+\
 
-    *Formula:*
-    $
-      text("Completezza UC") =
-      frac(text("UC completi"), text("UC totali")) times 100
-    $
-    *Obiettivo*: $100%$
+== MPD-05 - Completezza dei Casi d'Uso
+*Descrizione*: La metrica misura la percentuale di casi d’uso completi in tutte le loro parti obbligatorie.
 
-    \
+*Formula:*
+$
+  text("Completezza UC") =
+  frac(text("UC completi"), text("UC totali")) times 100
+$
+*Obiettivo*: $100%$
 
-  == MPD-06 - Non Conformità di Prodotto Aperte
-    *Descrizione*: La metrica misura il numero di non conformità di prodotto non risolte al momento del rilascio.
+\
 
-    *Formula:*
-    $
-      text("NC di Prodotto Aperte") = text("Numero di NC non risolte")
-    $
-    *Obiettivo*: $0$ non conformità bloccanti o critiche.
+== MPD-06 - Non Conformità di Prodotto Aperte
+*Descrizione*: La metrica misura il numero di non conformità di prodotto non risolte al momento del rilascio.
 
-    \
+*Formula:*
+$
+  text("NC di Prodotto Aperte") = text("Numero di NC non risolte")
+$
+*Obiettivo*: $0$ non conformità bloccanti o critiche.
 
-  == MPD-07 - Conformità del Prodotto ai Requisiti
-    *Descrizione*: La metrica misura la percentuale di requisiti soddisfatti dal prodotto verificato.
+\
 
-    *Formula:*
-    $
-      text("Conformità Requisiti") =
-      frac(text("Requisiti soddisfatti"), text("Requisiti verificati")) times 100
-    $
-    *Obiettivo*: $100%$ dei requisiti obbligatori. $>=90%$ dei requisiti desiderabili.
+== MPD-07 - Conformità del Prodotto ai Requisiti
+*Descrizione*: La metrica misura la percentuale di requisiti soddisfatti dal prodotto verificato.
+
+*Formula:*
+$
+  text("Conformità Requisiti") =
+  frac(text("Requisiti soddisfatti"), text("Requisiti verificati")) times 100
+$
+*Obiettivo*: $100%$ dei requisiti obbligatori. $>=90%$ dei requisiti desiderabili.
 
 
 = Riferimenti

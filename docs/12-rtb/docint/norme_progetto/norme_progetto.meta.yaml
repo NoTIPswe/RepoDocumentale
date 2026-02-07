@@ -1,5 +1,12 @@
 title: Norme di Progetto
 changelog:
+  - version: "0.14.0"
+    date: "2026-02-07" 
+    authors:
+      - Francesco Marcon
+    verifier: TBD
+    description: >
+      Aggiunta sezione di "Processo di Formazione"
   - version: "0.13.0"
     date: "2026-02-07"
     authors:
