@@ -1247,11 +1247,7 @@
 
     [La maggior parte del team non aveva esperienza con tecnologie di messagging come NATS.],
     [Studio della documentazione ufficiale e realizzazione di prototipi incrementali per validarne l'utilizzo nel PoC.],
-    [NATS JetStream (MQTT)],
-
-    [La gestione di certificati e comunicazioni cifrate introduce complessità di configurazione.],
-    [Utilizzo di certificati statici preconfigurati per semplificare la gestione della sicurezza nel contesto del PoC.],
-    [Protocollo MQTT con mTLS],
+    [NATS JetStream],
 
     [L’utilizzo di un database time-series basato su estensione PostgreSQL non era noto a tutti i membri.],
     [Approfondimento delle funzionalità principali (Hypertables, partizionamento) e utilizzo guidato nelle prime fasi di
