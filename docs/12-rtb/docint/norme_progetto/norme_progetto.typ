@@ -553,6 +553,7 @@ condotte in modo efficace, contribuendo al miglioramento continuo della qualità
 = Metriche di Qualità del Prodotto
   == QC-01 - Copertura dei Requisiti
     *Descrizione*: La metrica misura il grado di copertura dei requisiti individuati nell’Analisi dei Requisiti, verificando che ciascun requisito sia associato ad almeno un’attività di verifica (test, ispezione o analisi). Garantisce che tutti i requisiti obbligatori siano stati considerati nel processo di validazione del prodotto.
+
     *Formula:*
     $
       text("Copertura Requisiti") =
@@ -563,6 +564,7 @@ condotte in modo efficace, contribuendo al miglioramento continuo della qualità
     \
   == QC-02 - Tasso di Superamento dei Test
     *Descrizione*: La metrica valuta l’affidabilità del prodotto misurando la percentuale di test superati rispetto a quelli eseguiti. Include test di unità, di integrazione e di sistema, come definiti nel _Piano di Qualifica_.
+
     *Formula:*
     $
       text("Tasso Superamento Test") =
@@ -585,6 +587,7 @@ condotte in modo efficace, contribuendo al miglioramento continuo della qualità
 
   == QC-04 - Qualità della Documentazione
     *Descrizione*: La metrica valuta la chiarezza, la correttezza sintattica e la leggibilità della documentazione prodotta, assicurando che essa sia comprensibile e utilizzabile sia dal team di sviluppo sia dagli stakeholder esterni.
+
     *Formula:*
     $
       text("Qualità Documentazione") = (1 -
@@ -596,6 +599,7 @@ condotte in modo efficace, contribuendo al miglioramento continuo della qualità
 
   == QC-05 - Completezza dei Casi d'Uso
     *Descrizione*: La metrica verifica che i casi d’uso siano stati redatti in modo completo e coerente, includendo tutti i campi obbligatori definiti dalle Norme di Progetto (attori, precondizioni, flusso principale, flussi alternativi, post-condizioni).
+
     *Formula:*
     $
       text("Completezza UC") =
@@ -607,6 +611,7 @@ condotte in modo efficace, contribuendo al miglioramento continuo della qualità
 
   == QC-06 - Non Conformità di Prodotto Aperte
     *Descrizione*: La metrica misura la presenza di non conformità di prodotto ancora aperte al momento del rilascio, con particolare attenzione a quelle classificate come bloccanti o critiche.
+
     *Formula:*
     $
       text("NC di Prodotto Aperte") = text("Numero di NC non risolte")
@@ -617,6 +622,7 @@ condotte in modo efficace, contribuendo al miglioramento continuo della qualità
 
   == QC-07 - Conformità del Prodotto ai Requisiti
     *Descrizione*: La metrica valuta la percentuale di requisiti soddisfatti dal prodotto finale, verificando che il comportamento del sistema sia conforme a quanto specificato nell’Analisi dei Requisiti.
+    
     *Formula:*
     $
       text("Conformità Requisiti") =
