@@ -1,5 +1,12 @@
 title: Norme di Progetto
 changelog:
+  - version: "0.15.0"
+    date: "2026-02-07"
+    authors:
+      - Mario De Pasquale
+    verifier: TBD
+    description: >
+      Stesura metriche e standard per la qualità
   - version: "0.14.0"
     date: "2026-02-07" 
     authors:
