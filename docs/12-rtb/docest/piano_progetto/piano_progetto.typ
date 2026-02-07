@@ -80,8 +80,8 @@
         stesso livello di conoscenza tra i componenti, è più probabile che i problemi vengano risolti internamente al
         gruppo.],
 
-      [Probabilità], [Elevata],
-      [Impatto prestazionale], [Alta],
+      [Probabilità], [Alta],
+      [Impatto prestazionale], [Alto],
     ),
     caption: [Rischio sull'apprendimento delle tecnologie richieste],
   )<tab:RT1>
@@ -102,12 +102,11 @@
       [Il gruppo farà affidamento su numerosi test durante lo sviluppo per garantire il funzionamento del prodotto.
         Qualora il gruppo non riuscisse ad andare avanti chiederà supporto all'Azienda proponente.],
 
-      [Probabilità], [Alto],
+      [Probabilità], [Alta],
       [Impatto prestazionale], [Medio],
     ),
     caption: [Rischio sugli errori di programmazione],
-  )
-  }<tab:RT2>
+  )<tab:RT2>
   == Rischi organizzativi
   === Rischio legato al mancato rispetto delle scadenze stabilite
   #figure(
@@ -122,13 +121,9 @@
         quali comportano un prolungamento dei tempi di consegna e blocco delle attività successive.],
 
       [Mitigazione],
-      [Il gruppo è consapevole che i ritardi sono possibili e si impegna in modo responsabile affinché non avvengano,
-        tuttavia qualora non si riuscisse ad evitarli, essi devono essere comunicati tempestivamente e giustificati in
-        modo adeguato senza compromettere le attività degli altri componenti del gruppo. Qualora il ritardo causasse un
-        disagio generale, tale da compromettere i tempi di consegna, il Gruppo organizzerà il prima possibile una
-        riunione con _M31_ per rinegoziare le richieste.],
+      [Il Gruppo si impegna a rispettare le tempistiche, pur nella consapevolezza che possano verificarsi imprevisti. Eventuali ritardi dovranno essere comunicati tempestivamente e motivati, cercando di mitigare l'impatto sulle attività degli altri membri. Qualora il ritardo mettesse a rischio la data di consegna finale, verrà convocata con urgenza una riunione con _M31_ per rivedere la pianificazione o rinegoziare i requisiti.],
 
-      [Probabilità], [Medio - Basso],
+      [Probabilità], [Media - Bassa],
       [Impatto prestazionale], [Alto],
     ),
     caption: [Mancato rispetto delle scadenza stabilite],
@@ -143,16 +138,14 @@
       [Codice], [RP1],
       [Nome], [Problematiche personali o attività universitarie],
       [Descrizione],
-      [Data la partecipazione dei componenti del Gruppo ad altri corsi universitari oltre a quello di Ingegneria del
-        Software, è dunque altamente probabile che vi siano possibili indisponibilità momentanee derivante da attività
-        legate a questi corsi, inoltre non sono da escludere indisponibilità per attività al di fuori della sfera
-        accademica.],
+      [Considerando la partecipazione dei membri del Gruppo ad altri corsi universitari concomitanti a Ingegneria 
+      del Software, si prevedono possibili indisponibilità temporanee dovute al relativo carico di lavoro. 
+      Non si escludono, inoltre, impegni di natura extra-accademica.],
 
       [Mitigazione],
-      [Il componente che si ritrova in tale situazione dovrà comunicare tempestivamente agli altri componenti la
-        problematica e una possibile stima del tempo che la problematica occupa e, qualora fosse necessario, il lavoro
-        che il componente doveva fare verrà suddiviso tra gli altri componenti del gruppo. Appena risolta la
-        problematica, il componente si impegnerà a recuperare le ore perse.],
+      [Il membro interessato dovrà notificare tempestivamente al gruppo l'impedimento, fornendo una stima della sua durata.
+      Qualora necessario, il carico di lavoro assegnatogli verrà redistribuito tra gli altri componenti.
+      Al termine dell'indisponibilità, sarà cura del membro recuperare le ore perse.],
 
       [Probabilità], [Media],
       [Impatto prestazionale], [Medio],
@@ -162,7 +155,7 @@
 
   = Pianificazione nel lungo termine
   Come anticipato nella #link(
-    "https://notipswe.github.io/docs/11-candidatura/docest/dichiarazione_impegni.pdf",
+    "https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/dichiarazione_impegni.pdf",
   )[Dichiarazione degli impegni], il gruppo prevede di terminare il progetto entro il giorno *21 Marzo 2026* con un
   budget di spesa fissato a *12.940 Euro*.\
   Al momento della candidatura si è teorizzato la seguente previsione dei costi: #figure(
@@ -467,7 +460,7 @@
   ==== Retrospettiva
   Questo Sprint è servito al gruppo per attuare in maniera concreta il workflow idealizzato. Il Gruppo tuttavia ha
   dovuto affrontare modifiche importanti per quanto riguarda l'#link(
-    "https://notipswe.github.io/docs/12-rtb/docest/analisi_requisiti.pdf",
+    "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf",
   )[Analisi dei Requisiti] che hanno causato un rinvio al prossimo Sprint del raggiungimento della versione *0.3.0* e
   *0.4.0*.
 
@@ -597,7 +590,7 @@
   Giorni di ritardo: 0\
 
   ==== Informazioni generali e attività pianificate
-  In questo Sprint il Gruppo si concentrerà sull'Analisi dello Stato dell'Arte e sulla fase progettuale del POC (che non
+  In questo Sprint il Gruppo si concentrerà sull'Analisi dello Stato dell'Arte e sulla fase progettuale del PoC (che non
   risulterà nelle ore effettive o previste, essendo ore di palestra), e sull'ultimare l'Analisi dei Requisiti. Inoltre
   si vuole continuare aggiungendo le nuove sezioni dedicati allo sprint 3 e creare lo sprint 4 nel Piano di Progetto.
 
@@ -709,7 +702,7 @@
   Giorni di ritardo: 2\
 
   ==== Informazioni generali e attività pianificate
-  In questo Sprint il Team si concentrerà sulla fase di programmazione del POC e sul verificare e approvare l'Analisi
+  In questo Sprint il Team si concentrerà sulla fase di programmazione del PoC e sul verificare e approvare l'Analisi
   dei Requisiti per assicurarsi che sia pronta per la RTB. Inoltre si porterà avanti il Piano di Qualifica, aggiungendo
   una sezione dedicata ai test, le norme di Progetto e il Piano di Progetto, completando lo sprint 4 e aggiungendo il 5.
 
@@ -809,11 +802,11 @@
 
   ==== Rischi incontrati
   Il Team ha speso ore di palestra nel comprendere come svolgere al meglio la fase di Progettazione e Programmazione del
-  POC. (RT1 e RT2). Inoltre dati gli esami svolti in questo periodo ci sono stati lievi rallentamenti nel lavoro da
+  PoC. (RT1 e RT2). Inoltre dati gli esami svolti in questo periodo ci sono stati lievi rallentamenti nel lavoro da
   svolgere (RP1).
   ==== Retrospettiva
   Nello Sprint 5 anche se il gruppo ha incontrato alcuni rallentamenti, i compiti assegnati sono stati svolti. Anche in
-  questo caso alcuni membri hanno meno ore registrate perché hanno ultimato la progettazione del POC.
+  questo caso alcuni membri hanno meno ore registrate perché hanno ultimato la progettazione del PoC.
 
   === Sprint 6
   Inizio: *04-02-2026* \
@@ -822,7 +815,7 @@
   Giorni di ritardo: \
 
   ==== Informazioni generali e attività pianificate
-  Per lo Sprint 6 il Team si è prefissato di ultimare il POC, e di portare in avanti le norme di progetto e il piano di
+  Per lo Sprint 6 il Team si è prefissato di ultimare il PoC, e di portare in avanti le norme di progetto e il piano di
   qualifica, affinché siano pronti per la RTB. Una volta che i documenti saranno stati ultimati verrà anche aggiornato
   il Glossario, aggiungendo tutti i nuovi termini utilizzati.
 
