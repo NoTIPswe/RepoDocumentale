@@ -94,6 +94,8 @@ accepted_words:
   - HTTPS
   - WebSocket
   - TCP
+  - Nats
+  - TimescaleDB
 
 
 
@@ -138,6 +140,7 @@ accepted_words:
   - Precondizioni
   - namespace
   - Serverless
+  - WebApp
 
 
   # --- Terminologia Standard Progetto ---
