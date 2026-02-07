@@ -465,11 +465,58 @@ L'aggiornamento avverrà secondo il ciclo PDCA (Plan-Do-Check-Act):
 #pagebreak()
 
 
-= Metriche e standard per la Qualità
+= Metriche e standard per la Qualità <standard-qualità>
+Le metriche e standard per la qualità fanno riferimento allo standard ISO/IEC 12207:1995. Attraverso 
+un’operazione di tailoring, il team ha selezionato gli standard della qualità pertinenti al contesto 
+del progetto, classificandoli in tre macro-categorie:
+1. Standard di Processo;
+2. Standard di Prodotto;
+3. Standard di Documentazione.
 
+== Standard del Processo
+Il gruppo adotta le norme dettate dallo standard ISO/IEC 12207:1995, ed in particolare
+la quality_assurance definita nel medesimo standard.
+In particolare il gruppo si impegna a rispettare:
 
+=== Pianificazione dell'Assicurazione Qualità
+Ogni attività di verifica deve essere definita nel documeto Piano di Qualifica, il quale specifica 
+lo standard , le procedure e gli strumenti da utilizzare.
 
-#pagebreak()
+=== Indipendenza e Autorità
+Per garantire imparzialità nella verifica, chi svolge il ruolo di Verificatore deve essere libero 
+di poter segnalare ogni tipo di anomalia senza subire conseguenze o influenza da altri membri 
+del gruppo, per garantira imparzialità da esso.
+La persona che svolge l'attività di Verificatore per un determinato prodotto non può essere 
+l'Autore dello stesso.
+
+=== Product Assurance
+Il gruppo si impegna a controllare e verificare che ogni prodotto sviluppato e la relativa 
+documentazione sia conforme ai piani ed ai requisiti prima della consegna.
+
+=== Process Assurance
+Il gruppo si impegna ad assicurare che i processi di fornitura, sviluppo e supporto siano 
+conformi alle norme stabilite in questo documento.
+
+== Standard di Prodotto
+
+=== Idoneità Funzionale 
+Capacità del prodotto di rispettare e soddisfare le funzioni richieste.
+
+=== Affidabilità
+Capacità di mantenere le prestazioni.
+
+=== Manutenibilità
+Facilità con cui il software può essere modificato.
+
+== Standard di Documentazione
+
+=== Standard per il formato data-ora
+Lo standard di rappresentazione della data e ora è definito nello standard *ISO 8601* 
+con il formato AAAA-MM-GG.
+
+=== Indice di Gulpase
+Standard di riferimento per la leggibilià della linguia italiana nei documenti tecnici.
+L'obiettivo minimo del gruppo è fissato a 60.
 
 = Metriche di Qualità del Processo <qualità-processo>
 
