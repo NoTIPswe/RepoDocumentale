@@ -533,7 +533,7 @@ $
 *Obiettivo*: $>=90%$
 
 \
-= Metriche di Qualità del Prodotto
+= Metriche di Qualità del Prodotto <qualità-prodotto>
   == MPD-01 - Copertura dei Requisiti
     *Descrizione*: La metrica misura la percentuale di requisiti associati ad almeno un’attività di verifica.
 
