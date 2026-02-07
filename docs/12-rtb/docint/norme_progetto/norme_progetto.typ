@@ -444,191 +444,174 @@ L'aggiornamento avverrà secondo il ciclo PDCA (Plan-Do-Check-Act):
 
 = Metriche di Qualità del Processo <qualità-processo>
 
-== QP-01 - Stabilità dei requisiti
-*Descrizione*: La metrica valuta la capacità del processo di analisi dei requisiti di produrre specifiche stabili nel
-tempo, limitando modifiche tardive che possono causare "incrementi distruttivi" e ritardi nelle fasi successive del
-progetto.
+== MPC-01 - Stabilità dei requisiti
+*Descrizione*: La metrica misura la percentuale di requisiti che non subiscono modifiche dopo la definizione della baseline dei requisiti.
 
 *Formula:*
 $
   text("Stabilità Requisiti") =
-  frac(text("Numero requisiti invariati"), text("Numero totale requisiti")) times 100
+  frac(text("Requisiti invariati"), text("Requisiti totali")) times 100
 $
-*Obiettivo*: mantenere una stabilità dei requisiti superiore al 80% per garantire una pianificazione efficace e ridurre
-i rischi di cambiamenti frequenti.
+*Obiettivo*: $>=90%$
 
 \
-== QP-02 – Qualità della Tracciabilità dei Requisiti
-*Descrizione*: La metrica misura il grado con cui i requisiti risultano correttamente tracciati verso le rispettive
-fonti e verso gli artefatti di verifica, garantendo coerenza e completezza del processo di sviluppo.
+== MPC-02 – Qualità della Tracciabilità dei Requisiti
+*Descrizione*: La metrica misura la percentuale di requisiti correttamente tracciati verso casi d’uso e attività di verifica.
 
 *Formula:*
 $
   text("Copertura Tracciabilità") =
   frac(text("Requisiti tracciati correttamente"), text("Numero totale requisiti")) times 100
 $
-*Obiettivo*: raggiungere una qualità della tracciabilità superiore al 90% per assicurare una gestione efficace dei
-requisiti e facilitare la verifica e validazione del prodotto.
+*Obiettivo*: $100%$
 
 \
-== QP-03 – Tempo di Risoluzione delle Non Conformità di Processo
-*Descrizione*: La metrica valuta l’efficienza del processo nel risolvere non conformità individuate durante attività di
-revisione, verifica o controllo qualità.
+== MPC-03 – Tempo di Risoluzione delle Non Conformità di Processo
+*Descrizione*: La metrica misura il tempo medio necessario alla risoluzione delle non conformità di processo rilevate.
 
 *Formula:*
 $
   text("Tempo Medio Risoluzione") =
-  frac(sum (text("Tempo di risoluzione NC")), text("Numero di NC"))
+  frac(sum (text("Data chiusura") - text("Data apertura")), text("Numero di NC"))
 $
-*Obiettivo*: mantenere un tempo di risoluzione inferiore a 5 giorni lavorativi per garantire una rapida risposta alle
-problematiche e minimizzare l'impatto sul progresso del progetto.
+*Obiettivo*: $<=5$ giorni lavorativi
 
 \
 
-== QP-04 – Qualità del Processo di Verifica
-*Descrizione*: La metrica misura l’efficacia del processo di verifica nel rilevare difetti e incongruenze prima delle
-fasi avanzate del progetto, riducendo il rischio di errori a valle.
+== MPC-04 – Qualità del Processo di Verifica
+*Descrizione*: La metrica misura la percentuale di difetti individuati durante le attività di verifica rispetto al totale dei difetti rilevati.
 
 *Formula:*
 $
   text("Efficacia Verifica") =
-  frac(text("Difetti rilevati in fase di verifica"), text("Difetti totali individuati")) times 100
+  frac(text("Difetti rilevati in verifica"), text("Difetti totali rilevati")) times 100
 $
-*Obiettivo*: Raggiungere un'efficacia del processo di verifica superiore al 85% per assicurare che la maggior parte dei
-difetti venga identificata e risolta tempestivamente, migliorando la qualità complessiva del prodotto.
+*Obiettivo*: $>=85%$
 
 \
 
-== QP-05 – Qualità della Documentazione di Progetto
-*Descrizione*: La metrica valuta la chiarezza, la correttezza e la leggibilità della documentazione prodotta, al fine di
-garantire una comunicazione efficace tra i membri del team e verso gli stakeholder.
+== MPC-05 – Qualità della Documentazione di Progetto
+*Descrizione*: La metrica misura la percentuale di documenti che superano la verifica senza non conformità.
 
 *Formula:*
 $
-  text("Qualità Documentazione") = (1 -
-    frac(text("Errori Rilevati"), text("Pagine analizzate"))) times 100
+  text("Qualità Documentazione") = 
+    frac(text("Documenti verificati senza NC"), text("Documenti verificati")) times 100
 $
-*Obiettivo*: Raggiungere una qualità della documentazione superiore al 95% per assicurare che i documenti siano
-comprensibili, accurati e utili per tutte le parti coinvolte nel progetto.
+*Obiettivo*: $>=95%$
 
 \
-== QP-06 – Aderenza ai Processi Definiti
-*Descrizione*: La metrica misura quanto le attività svolte durante il progetto rispettino i processi e le pratiche
-definite nelle Norme di Progetto.
+== MPC-06 – Aderenza ai Processi Definiti
+*Descrizione*: La metrica misura la percentuale di attività svolte in conformità ai processi definiti nelle _Norme di Progetto_.
 
 *Formula:*
 $
   text("Aderenza Processo") =
   frac(text("Attività conformi"), text("Numero totale attività")) times 100
 $
-*Obiettivo*: Mantenere un'aderenza ai processi superiore al 90% per assicurare che le attività siano eseguite secondo le
-linee guida stabilite, migliorando l'efficienza e la qualità del lavoro svolto.
+*Obiettivo*: $>=90%$
 \
-== QP-07 – Stabilità del Processo di Sviluppo
-*Descrizione*: La metrica valuta la regolarità e la prevedibilità del processo di sviluppo nel corso delle iterazioni,
-limitando variazioni eccessive nella pianificazione e nell’esecuzione.
+== MPC-07 – Stabilità del Processo di Sviluppo
+*Descrizione*: La metrica misura il rispetto della pianificazione del processo di sviluppo.
 
 *Formula:*
 $
-  text("Stabilità Processo Sviluppo") = (1 -
-    frac(text("Deviazione attività pianificate"), text("Attivittà pianificate"))) times 100
+  text("Stabilità Processo Sviluppo") = 
+    frac(text("Attività pianificate completate"), text("Attivittà pianificate")) times 100
 $
-*Obiettivo*: Mantenere una stabilità del processo di sviluppo superiore al 85% per garantire una pianificazione coerente
-e ridurre le variazioni che possono influire negativamente sul progresso del progetto.
+*Obiettivo*: $>=85%$
 \
 
-== QP-08 – Efficienza del Processo di Revisione
-*Descrizione*: La metrica misura la capacità del processo di revisione di identificare e risolvere difetti e non
-conformità in modo tempestivo ed efficace.
+== MPC-08 – Efficienza del Processo di Revisione
+*Descrizione*: La metrica misura la percentuale di revisioni concluse senza necessità di riapertura.
 
 *Formula:*
 $
   text("Efficienza Revisione") =
-  frac(text("Revisioni Concluse"), text("Revisioni avviate")) times 100
+  frac(text("Revisioni Concluse senza riapertura"), text("Revisioni totali")) times 100
 $
-*Obiettivo*: Raggiungere un'efficienza del processo di revisione superiore al 90% per assicurare che le revisioni siano
-condotte in modo efficace, contribuendo al miglioramento continuo della qualità del progetto.
+*Obiettivo*: $>=90%$
 
 \
 = Metriche di Qualità del Prodotto
-  == QC-01 - Copertura dei Requisiti
-    *Descrizione*: La metrica misura il grado di copertura dei requisiti individuati nell’Analisi dei Requisiti, verificando che ciascun requisito sia associato ad almeno un’attività di verifica (test, ispezione o analisi). Garantisce che tutti i requisiti obbligatori siano stati considerati nel processo di validazione del prodotto.
+  == MPD-01 - Copertura dei Requisiti
+    *Descrizione*: La metrica misura la percentuale di requisiti associati ad almeno un’attività di verifica.
 
     *Formula:*
     $
       text("Copertura Requisiti") =
       frac(text("Requisiti verificati"), text("Requisiti totali")) times 100
     $ 
-    *Obiettivo*: Raggiungere una copertura dei requisiti obbligatori pari al 100% per assicurare che tutte le funzionalità essenziali siano state adeguatamente testate e validate, garantendo la conformità del prodotto alle aspettative del committente. Inoltre, garantire una copertura dei requisiti desiderabili superiore al 90% per massimizzare il valore aggiunto del prodotto.
+    *Obiettivo*: $100%$ dei requisiti obbligatori. $>=90%$ dei requisiti desiderabili.
 
     \
-  == QC-02 - Tasso di Superamento dei Test
-    *Descrizione*: La metrica valuta l’affidabilità del prodotto misurando la percentuale di test superati rispetto a quelli eseguiti. Include test di unità, di integrazione e di sistema, come definiti nel _Piano di Qualifica_.
+  == MPD-02 - Tasso di Superamento dei Test
+    *Descrizione*: La metrica misura la percentuale di test superati rispetto ai test eseguiti.
 
     *Formula:*
     $
       text("Tasso Superamento Test") =
       frac(text("Test superati"), text("Test eseguiti")) times 100
     $
-    *Obiettivo*: Raggiungere un tasso di superamento dei test superiore al 95% per garantire che il prodotto soddisfi i requisiti funzionali e qualitativi, riducendo al minimo i difetti e migliorando la soddisfazione del committente. Si evidenzia l'importanza di non avere alcun test bloccante fallito al momento del rilascio del prodotto.
+    *Obiettivo*: $>=95%$
 
     \
 
-  == QC-03 - Densità dei Difetti
-    *Descrizione*: La metrica misura il numero di difetti rilevati in relazione alla dimensione dell’artefatto analizzato, consentendo di valutare la qualità intrinseca del prodotto e il suo miglioramento nel tempo. È utilizzata per confrontare i risultati tra sprint successivi.
+  == MPD-03 - Densità dei Difetti
+    *Descrizione*: La metrica misura il numero di difetti rilevati in rapporto alla dimensione dell’artefatto.
     *Formula:*
     $
       text("Densità Difetti") =
       frac(text("Difetti rilevati"), text("Dimensione dell'artefatto"))
     $
-    *Obiettivo*: mantenere una densità dei difetti decrescente nel tempo, perseguendo l'assenza di difetti critici al momento del rilascio del prodotto.
+    *Obiettivo*: $<=0.5$ difetti per unità di dimensione scelta (es. per 1000 righe di codice, per pagina di documentazione, ecc.).
 
   \
 
-  == QC-04 - Qualità della Documentazione
-    *Descrizione*: La metrica valuta la chiarezza, la correttezza sintattica e la leggibilità della documentazione prodotta, assicurando che essa sia comprensibile e utilizzabile sia dal team di sviluppo sia dagli stakeholder esterni.
+  == MPD-04 - Qualità della Documentazione
+    *Descrizione*: La metrica misura la percentuale di pagine di documentazione prive di errori rilevati in fase di verifica.
 
     *Formula:*
     $
       text("Qualità Documentazione") = (1 -
         frac(text("Errori Rilevati"), text("Pagine analizzate"))) times 100
     $
-    *Obiettivo*: Raggiungere una qualità della documentazione superiore al 95% per assicurare che i documenti siano chiari, accurati e completi, facilitando la comprensione e l'utilizzo da parte di sviluppatori, tester e stakeholder.
+    *Obiettivo*: $>=95%$
 
     \
 
-  == QC-05 - Completezza dei Casi d'Uso
-    *Descrizione*: La metrica verifica che i casi d’uso siano stati redatti in modo completo e coerente, includendo tutti i campi obbligatori definiti dalle Norme di Progetto (attori, precondizioni, flusso principale, flussi alternativi, post-condizioni).
+  == MPD-05 - Completezza dei Casi d'Uso
+    *Descrizione*: La metrica misura la percentuale di casi d’uso completi in tutte le loro parti obbligatorie.
 
     *Formula:*
     $
       text("Completezza UC") =
       frac(text("UC completi"), text("UC totali")) times 100
     $
-    *Obiettivo*: Raggiungere una piena completezza dei casi d'uso (100%) per garantire che tutte le interazioni tra attori e sistema siano state adeguatamente descritte, facilitando la progettazione e la verifica del prodotto.
+    *Obiettivo*: $100%$
 
     \
 
-  == QC-06 - Non Conformità di Prodotto Aperte
-    *Descrizione*: La metrica misura la presenza di non conformità di prodotto ancora aperte al momento del rilascio, con particolare attenzione a quelle classificate come bloccanti o critiche.
+  == MPD-06 - Non Conformità di Prodotto Aperte
+    *Descrizione*: La metrica misura il numero di non conformità di prodotto non risolte al momento del rilascio.
 
     *Formula:*
     $
       text("NC di Prodotto Aperte") = text("Numero di NC non risolte")
     $
-    *Obiettivo*: Mantenere un numero di non conformità di prodotto aperte pari a zero al momento del rilascio del prodotto, garantendo che tutti i difetti critici siano stati risolti e che il prodotto sia conforme ai requisiti stabiliti.
+    *Obiettivo*: $0$ non conformità bloccanti o critiche.
 
     \
 
-  == QC-07 - Conformità del Prodotto ai Requisiti
-    *Descrizione*: La metrica valuta la percentuale di requisiti soddisfatti dal prodotto finale, verificando che il comportamento del sistema sia conforme a quanto specificato nell’Analisi dei Requisiti.
-    
+  == MPD-07 - Conformità del Prodotto ai Requisiti
+    *Descrizione*: La metrica misura la percentuale di requisiti soddisfatti dal prodotto verificato.
+
     *Formula:*
     $
       text("Conformità Requisiti") =
       frac(text("Requisiti soddisfatti"), text("Requisiti verificati")) times 100
     $
-    *Obiettivo*: Raggiungere una conformità completa rispetto ai requisiti obbligatori (100%) e una conformità superiore al 90% per i requisiti desiderabili, assicurando che il prodotto finale soddisfi le aspettative del committente e offra un elevato valore aggiunto.
+    *Obiettivo*: $100%$ dei requisiti obbligatori. $>=90%$ dei requisiti desiderabili.
 
 
 = Riferimenti
