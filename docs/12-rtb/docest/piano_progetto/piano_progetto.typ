@@ -121,7 +121,10 @@
         quali comportano un prolungamento dei tempi di consegna e blocco delle attività successive.],
 
       [Mitigazione],
-      [Il Gruppo si impegna a rispettare le tempistiche, pur nella consapevolezza che possano verificarsi imprevisti. Eventuali ritardi dovranno essere comunicati tempestivamente e motivati, cercando di mitigare l'impatto sulle attività degli altri membri. Qualora il ritardo mettesse a rischio la data di consegna finale, verrà convocata con urgenza una riunione con _M31_ per rivedere la pianificazione o rinegoziare i requisiti.],
+      [Il Gruppo si impegna a rispettare le tempistiche, pur nella consapevolezza che possano verificarsi imprevisti.
+        Eventuali ritardi dovranno essere comunicati tempestivamente e motivati, cercando di mitigare l'impatto sulle
+        attività degli altri membri. Qualora il ritardo mettesse a rischio la data di consegna finale, verrà convocata
+        con urgenza una riunione con _M31_ per rivedere la pianificazione o rinegoziare i requisiti.],
 
       [Probabilità], [Media - Bassa],
       [Impatto prestazionale], [Alto],
@@ -138,14 +141,14 @@
       [Codice], [RP1],
       [Nome], [Problematiche personali o attività universitarie],
       [Descrizione],
-      [Considerando la partecipazione dei membri del Gruppo ad altri corsi universitari concomitanti a Ingegneria 
-      del Software, si prevedono possibili indisponibilità temporanee dovute al relativo carico di lavoro. 
-      Non si escludono, inoltre, impegni di natura extra-accademica.],
+      [Considerando la partecipazione dei membri del Gruppo ad altri corsi universitari concomitanti a Ingegneria del
+        Software, si prevedono possibili indisponibilità temporanee dovute al relativo carico di lavoro. Non si
+        escludono, inoltre, impegni di natura extra-accademica.],
 
       [Mitigazione],
-      [Il membro interessato dovrà notificare tempestivamente al gruppo l'impedimento, fornendo una stima della sua durata.
-      Qualora necessario, il carico di lavoro assegnatogli verrà redistribuito tra gli altri componenti.
-      Al termine dell'indisponibilità, sarà cura del membro recuperare le ore perse.],
+      [Il membro interessato dovrà notificare tempestivamente al gruppo l'impedimento, fornendo una stima della sua
+        durata. Qualora necessario, il carico di lavoro assegnatogli verrà redistribuito tra gli altri componenti. Al
+        termine dell'indisponibilità, sarà cura del membro recuperare le ore perse.],
 
       [Probabilità], [Media],
       [Impatto prestazionale], [Medio],
