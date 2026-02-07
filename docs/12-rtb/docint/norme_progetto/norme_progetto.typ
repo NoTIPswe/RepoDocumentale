@@ -559,6 +559,7 @@ $
 
   == MPD-03 - Densità dei Difetti
     *Descrizione*: La metrica misura il numero di difetti rilevati in rapporto alla dimensione dell’artefatto.
+    
     *Formula:*
     $
       text("Densità Difetti") =
