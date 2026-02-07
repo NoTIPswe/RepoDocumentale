@@ -1,5 +1,12 @@
 title: Analisi dei Requisiti
 changelog:
+  - version: "0.33.2"
+    date: "2026-02-06"
+    authors:
+      - Alessandro Mazzariol
+    verifier: TBD
+    description: >
+      Fix lista requisiti e numeri
   - version: "0.33.1"
     date: "2026-01-28"
     authors:

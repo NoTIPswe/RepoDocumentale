@@ -17,4 +17,4 @@
   main-scen: (
     (descr: "Il Gateway viene notificato dell'errore avvenuto"),
   ),
-)[#uml-schema("99", "Diagramma Errore autenticazione Gateway di fabbrica")]
+)[#uml-schema("97", "Diagramma Errore autenticazione Gateway di fabbrica")]

@@ -23,5 +23,5 @@
     ),
   ),
 )[
-  #uml-schema("102", "Diagramma Errore range invalido")
+  #uml-schema("100", "Diagramma Errore range invalido")
 ]

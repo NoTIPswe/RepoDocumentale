@@ -17,4 +17,4 @@
     (descr: "L’Attore riceve un errore di autenticazione"),
     (descr: "Il canale sicuro non viene instaurato"),
   ),
-)[#uml-schema("101", "Diagramma Errore autenticazione Gateway")]
+)[#uml-schema("99", "Diagramma Errore autenticazione Gateway")]
