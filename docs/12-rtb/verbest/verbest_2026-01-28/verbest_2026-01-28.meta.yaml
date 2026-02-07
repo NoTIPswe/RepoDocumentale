@@ -1,10 +1,10 @@
 title: Verbale Esterno 2026-01-28 (M31)
 changelog:
-  - version: "0.2.0"
+  - version: "1.0.0"
     date: "2026-02-07"
     authors:
       - Valerio Solito
-    verifier: TBD
+    verifier: Alessandro Mazzariol
     description: >
       Aggiunta firma azienda
   - version: "0.1.1"
