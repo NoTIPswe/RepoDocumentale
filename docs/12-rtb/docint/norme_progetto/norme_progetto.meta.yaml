@@ -1,5 +1,12 @@
 title: Norme di Progetto
 changelog:
+  - version: "0.13.0"
+    date: "2026-02-07"
+    authors:
+      - Alessandro Contarini
+    verifier: TBD
+    description: >
+      Stesura metriche di qualità del prodotto
   - version: "0.12.0"
     date: "2026-02-06"
     authors:
@@ -13,7 +20,7 @@ changelog:
       - Alessandro Contarini
     verifier: TBD
     description: >
-      Stesura bozza metriche di qualità di processo
+      Stesura metriche di qualità di processo
   - version: "0.10.0"
     date: "2026-02-05"
     authors:

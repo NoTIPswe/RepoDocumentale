@@ -551,8 +551,78 @@ condotte in modo efficace, contribuendo al miglioramento continuo della qualità
 
 \
 = Metriche di Qualità del Prodotto
+  == QC-01 - Copertura dei Requisiti
+    *Descrizione*: La metrica misura il grado di copertura dei requisiti individuati nell’Analisi dei Requisiti, verificando che ciascun requisito sia associato ad almeno un’attività di verifica (test, ispezione o analisi). Garantisce che tutti i requisiti obbligatori siano stati considerati nel processo di validazione del prodotto.
+    *Formula:*
+    $
+      text("Copertura Requisiti") =
+      frac(text("Requisiti verificati"), text("Requisiti totali")) times 100
+    $ 
+    *Obiettivo*: Raggiungere una copertura dei requisiti obbligatori pari al 100% per assicurare che tutte le funzionalità essenziali siano state adeguatamente testate e validate, garantendo la conformità del prodotto alle aspettative del committente. Inoltre, garantire una copertura dei requisiti desiderabili superiore al 90% per massimizzare il valore aggiunto del prodotto.
 
+    \
+  == QC-02 - Tasso di Superamento dei Test
+    *Descrizione*: La metrica valuta l’affidabilità del prodotto misurando la percentuale di test superati rispetto a quelli eseguiti. Include test di unità, di integrazione e di sistema, come definiti nel _Piano di Qualifica_.
+    *Formula:*
+    $
+      text("Tasso Superamento Test") =
+      frac(text("Test superati"), text("Test eseguiti")) times 100
+    $
+    *Obiettivo*: Raggiungere un tasso di superamento dei test superiore al 95% per garantire che il prodotto soddisfi i requisiti funzionali e qualitativi, riducendo al minimo i difetti e migliorando la soddisfazione del committente. Si evidenzia l'importanza di non avere alcun test bloccante fallito al momento del rilascio del prodotto.
 
+    \
+
+  == QC-03 - Densità dei Difetti
+    *Descrizione*: La metrica misura il numero di difetti rilevati in relazione alla dimensione dell’artefatto analizzato, consentendo di valutare la qualità intrinseca del prodotto e il suo miglioramento nel tempo. È utilizzata per confrontare i risultati tra sprint successivi.
+    *Formula:*
+    $
+      text("Densità Difetti") =
+      frac(text("Difetti rilevati"), text("Dimensione dell'artefatto"))
+    $
+    *Obiettivo*: mantenere una densità dei difetti decrescente nel tempo, perseguendo l'assenza di difetti critici al momento del rilascio del prodotto.
+
+  \
+
+  == QC-04 - Qualità della Documentazione
+    *Descrizione*: La metrica valuta la chiarezza, la correttezza sintattica e la leggibilità della documentazione prodotta, assicurando che essa sia comprensibile e utilizzabile sia dal team di sviluppo sia dagli stakeholder esterni.
+    *Formula:*
+    $
+      text("Qualità Documentazione") = (1 -
+        frac(text("Errori Rilevati"), text("Pagine analizzate"))) times 100
+    $
+    *Obiettivo*: Raggiungere una qualità della documentazione superiore al 95% per assicurare che i documenti siano chiari, accurati e completi, facilitando la comprensione e l'utilizzo da parte di sviluppatori, tester e stakeholder.
+
+    \
+
+  == QC-05 - Completezza dei Casi d'Uso
+    *Descrizione*: La metrica verifica che i casi d’uso siano stati redatti in modo completo e coerente, includendo tutti i campi obbligatori definiti dalle Norme di Progetto (attori, precondizioni, flusso principale, flussi alternativi, post-condizioni).
+    *Formula:*
+    $
+      text("Completezza UC") =
+      frac(text("UC completi"), text("UC totali")) times 100
+    $
+    *Obiettivo*: Raggiungere una piena completezza dei casi d'uso (100%) per garantire che tutte le interazioni tra attori e sistema siano state adeguatamente descritte, facilitando la progettazione e la verifica del prodotto.
+
+    \
+
+  == QC-06 - Non Conformità di Prodotto Aperte
+    *Descrizione*: La metrica misura la presenza di non conformità di prodotto ancora aperte al momento del rilascio, con particolare attenzione a quelle classificate come bloccanti o critiche.
+    *Formula:*
+    $
+      text("NC di Prodotto Aperte") = text("Numero di NC non risolte")
+    $
+    *Obiettivo*: Mantenere un numero di non conformità di prodotto aperte pari a zero al momento del rilascio del prodotto, garantendo che tutti i difetti critici siano stati risolti e che il prodotto sia conforme ai requisiti stabiliti.
+
+    \
+
+  == QC-07 - Conformità del Prodotto ai Requisiti
+    *Descrizione*: La metrica valuta la percentuale di requisiti soddisfatti dal prodotto finale, verificando che il comportamento del sistema sia conforme a quanto specificato nell’Analisi dei Requisiti.
+    *Formula:*
+    $
+      text("Conformità Requisiti") =
+      frac(text("Requisiti soddisfatti"), text("Requisiti verificati")) times 100
+    $
+    *Obiettivo*: Raggiungere una conformità completa rispetto ai requisiti obbligatori (100%) e una conformità superiore al 90% per i requisiti desiderabili, assicurando che il prodotto finale soddisfi le aspettative del committente e offra un elevato valore aggiunto.
 
 
 = Riferimenti
