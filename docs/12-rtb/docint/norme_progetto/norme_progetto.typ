@@ -1,6 +1,5 @@
 #import "../../00-templates/base_document.typ" as base-document
 
-
 #let metadata = yaml(sys.inputs.meta-path)
 
 #show: base-document.apply-base-document.with(
@@ -18,7 +17,24 @@ Il testo è da considerarsi un *Living Document*: la sua stesura è incrementale
 lavoro, perfezionandosi iterativamente. Ogni membro del gruppo è tenuto a visionare ogni nuova versione e a rispettare
 quanto descritto, per garantire uniformità e professionalità.
 
-== Riferimenti e Tailoring (ISO/IEC 12207:1995)
+== Scopo del prodotto
+
+Il progetto ha l'obiettivo di realizzare il sistema oggetto del capitolato *C7*, proposto dall'azienda *M31 S.r.l.*.
+
+Il contesto applicativo riguarda l'IoT, dove l'acquisizione e la gestione centralizzata di dati provenienti da sensori
+distribuiti è fondamentale. L'obiettivo primario è sviluppare una piattaforma *Cloud* distribuita, scalabile e sicura,
+in grado di acquisire dati provenienti da sensori *BLE* tramite Gateway. È inoltre fondamentale andare a garantire la
+segregazione dei dati in modalità *multi-tenant* ed esporre API per la consultazione storica e lo streaming in tempo
+reale dei dati.
+
+Poiché i dispositivi fisici (sensori e gateway) non sono oggetto di fornitura, sarà necessario andare a sviluppare un
+*simulatore di gateway* capace di generare traffico dati verosimile per validare l'infrastruttura e i flussi di
+comunicazione.
+
+L'obiettivo che si è posto il gruppo è andare a sviluppare questo progetto entro il *21 marzo 2026* rispettando il costo
+previsto per la realizzazione del progetto di *12.940 Euro*.
+
+== Riferimenti e Tailoring
 Tutti i processi descritti fanno riferimento allo standard *ISO/IEC 12207:1995*. Attraverso un'operazione di
 _tailoring_, il team ha selezionato i processi e le attività pertinenti al contesto del progetto, classificandoli nelle
 tre macro-categorie previste dallo standard:
@@ -57,68 +73,74 @@ dell'intera documentazione riguardante il progetto.
 
 #pagebreak()
 
+
 = Processi primari
 In conformità alla norma *ISO/IEC 12207:1995*, i processi primari rappresentano l'insieme delle attività fondamentali
-che definiscono il ciclo di vita del software, dalla sua concezione fino alla dismissione. Essi comprendono, in
+che definiscono il ciclo di vita del software. Essi comprendono, in
 generale, i processi di *acquisizione*, *fornitura*, *esercizio* e *manutenzione*.
 
 Nel contesto del progetto, risultano rilevanti esclusivamente i processi di fornitura e sviluppo:
-- Il processo di fornitura disciplina le attività relative alla pianificazione, definizione e gestione dell'impegno tra
+- Il *processo di fornitura* disciplina le attività relative alla pianificazione, definizione e gestione dell'impegno tra
   il fornitore e il committente;
-- Il processo di sviluppo comprende le attività di analisi, progettazione, implementazione, verifica e validazione del
+- Il *processo di sviluppo* comprende le attività di analisi, progettazione, implementazione, verifica e validazione del
   prodotto software.
 
 == Fornitura
 La fornitura è il processo primario adottato dal fornitore del futuro prodotto finale che si occupa di analizzare le
 azioni da intraprendere per la sua realizzazione. Questo processo prevede un primo studio dei requisiti che il progetto
-dovrà, nelle componenti prodotte, soddisfare. Ciò produce il materiale necessario per poter effettuare una
+dovrà, nelle componenti prodotte, soddisfare. Ciò produce il materiale necessario per poter effettuare una fase
 contrattazione dei requisiti con il proponente, e poter comunicare allo stesso una possibile pianificazione del lavoro
 da svolgere con probabile data di consegna prevista.
+
 === Strumenti a supporto
-- *Jira*: per la gestione del backlog e del tracciamento delle task, Jira inoltre offre una visualizzazione di diagrammi
+Per procedere allo svolgimento delle attività il gruppo ha deciso di usare i seguenti strumenti:
+- *Jira*: per la gestione del backlog e del tracciamento delle task, offre una visualizzazione di diagrammi
   di qualsiasi tipologia per facilitare la pianificazione
-- *GitHub*: per il versionamento dei documenti, utile anche a fini di verifica dei documenti e approvazione degli
+- *GitHub*: per il versionamento dei documenti. Utile anche a fini di verifica dei documenti e approvazione degli
   stessi;
-- *Discord*: usato principalmente come luogo per riunioni interne e sessioni di coding sincrone;
-- *Telegram*: usato come canale principale di comunicazione testuale all'interno del gruppo;
-- *Microsoft Teams*: usato come canale di comunicazione tra committente e gruppo;
+- *Discord*: usato principalmente come luogo per riunioni interne e sessioni di sviluppo sincrone;
+- *Telegram*: usato come canale principale di comunicazione testuale all'interno del gruppo. 
+
+Per quanto concerne la comunicazione con l'azienda proponente, vengono utilizzati i seguenti strumenti:
+- *Microsoft Teams*: usato come canale di comunicazione sincrono tra committente e gruppo;
 - *Google Mail*: usato come canale testuale tra committente e gruppo.
 
 === Attività previste
-La fornitura prevede varie attività, qui di seguito descritte:
-- *Iniziazione*: il fornitore analizza le richieste del committente, tenendo conto di eventuali vincoli organizzativi o
+La fornitura si struttura in varie attività: 
+- *Inizializzazione*: il fornitore analizza le richieste del committente, tenendo conto di eventuali vincoli organizzativi o
   di altra natura. Questa è l'attività in cui il fornitore decide se proseguire con quanto proposto o di preparare una
   controproposta;
 - *Risposta*: viene elaborata e presentata una risposta che può essere una controproposta dei requisiti, oppure una
   proposta su come si soddisfare i requisiti;
-- *Contrattazione*: si effettua un incontro con il committente con l'obiettivo di arrivare ad un accordo (contratto)
+- *Contrattazione*: si effettua un incontro con il committente con l'obiettivo di arrivare ad un accordo (sancito solitamente da un contratto formale)
   definendo costi, tempi e criteri di accettazione;
 - *Pianificazione*: stabiliti i requisiti finali, il fornitore deve pianificare l'organizzazione e un metodo di lavoro
-  in grado di assicurare la qualità del sistema da realizzare, scegliendo, qualora non lo sia da contratto, il modello
-  di ciclo di vita del Software da seguire. La pianificazione comprende la stesura del Piano di progetto, dove vengono
+  in grado di assicurare la qualità del sistema da realizzare. La pianificazione comprende la stesura del Piano di progetto, dove vengono
   indicate le risorse richieste per realizzare il prodotto, considerando anche i rischi che potrebbero accadere durante
   lo sviluppo;
 - *Esecuzione e controllo*: il fornitore realizza il prodotto, monitorando nel frattempo la qualità di quanto fatto e il
   progresso raggiunto;
-- *Consegna e completamento*: il fornitore, completato il progetto, deve fornire quanto prodotto al committente,
-  garantendogli supporto.
+- *Revisione*: il fornitore si tiene in contatto con la proponente, in modo da ottenere feedback su quanto realizzato;
+- *Consegna e completamento*: il fornitore, completato il progetto, deve fornire quanto prodotto al committente.
 
 === Documentazione fornitura
 Nella sezione seguente si elencano i documenti che il gruppo NoTIP consegnerà al committente _M31_ e ai proponenti Prof.
 Tullio Vardanega e Prof. Riccardo Cardin.
 
 ==== Dichiarazione di impegni
-La #link("https://notipswe.github.io/docs/11-candidatura/docest/dichiarazione_impegni.pdf")[Dichiarazione di impegni] è
+La #link("https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/dichiarazione_impegni.pdf")[Dichiarazione di impegni] è
 il documento in cui il gruppo ha stimato i costi del progetto, dall’impegno orario per persona e per ruolo, al costo
 complessivo del progetto e dei ruoli che i componenti del gruppo ricopriranno.
+
 ==== Lettera di presentazione
 La Lettera di presentazione è il documento con il quale il gruppo, conferma la volontà di candidarsi per una determinata
 Baseline. Il gruppo durante lo sviluppo del progetto presenterà ai proponenti tre lettere di presentazione:
-- La Lettera di presentazione per la *candidatura all'appalto del capitolato C7*;
+- La Lettera di presentazione per la *Candidatura all'appalto del capitolato C7*;
 - La Lettera di presentazione per la *Requirements and Technology Baseline (RTB)*;
 - La lettera di presentazione per la *Product Baseline (PB)*;
+
 ==== Analisi dei capitolati
-L'#link("https://notipswe.github.io/docs/11-candidatura/docest/analisi_capitolati.pdf")[Analisi dei capitolati] è il
+L'#link("https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/analisi_capitolati.pdf")[Analisi dei capitolati] è il
 documento in cui il gruppo fornisce un analisi dettagliata di ogni capitolato evidenziando diversi punti, in particolare
 l'analisi suddivide ogni capitolato in diverse sezioni:
 - *Panoramica*: che indica l’azienda proponente, il nome del capitolato e delle
@@ -128,7 +150,7 @@ informazioni generali sul prodotto da realizzare;
 - *Considerazioni* finale: con motivazioni sull'eventuale scelta o non di candidarsi al capitolato
 
 ==== Analisi dei Requisiti
-L'#link("https://notipswe.github.io/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti] definisce nel
+L'#link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti] definisce nel
 dettaglio i requisiti obbligatori, desiderabili e opzionali del progetto. Il documento mira a risolvere le ambiguità
 derivanti dalla lettura del #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7],
 fornendo una base solida per la progettazione attraverso:
@@ -141,7 +163,7 @@ fornendo una base solida per la progettazione attraverso:
 I dettagli riguardanti il documento possono essere trovati nella sezione 2.2.1.
 
 ==== Piano di Progetto
-Il #link("https://notipswe.github.io/docs/12-rtb/docest/piano_progetto.pdf")[Piano di Progetto] definisce e organizza la
+Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_progetto.pdf")[Piano di Progetto] definisce e organizza la
 pianificazione strategica e operativa del gruppo, fornendo una roadmap dettagliata delle attività e gestione delle
 risorse. Il documento si articola nelle seguenti sezioni:
 - *Analisi dei rischi*: identifica e qualifica le criticità che potrebbero manifestarsi durante il ciclo di vita del
@@ -160,7 +182,7 @@ I primi sono i verbali di riunioni tra persone del gruppo e persone esterne al g
 di riunione senza il contatto con persone esterne al gruppo.
 
 ==== Glossario
-Il #link("https://notipswe.github.io/docs/12-rtb/docest/glossario.pdf")[Glossario] raccoglie e definisce in modo univoco
+Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario] raccoglie e definisce in modo univoco
 i termini tecnici e gli acronimi utilizzati nella documentazione. Il suo scopo è eliminare le ambiguità linguistiche,
 garantendo una comunicazione uniforme sia tra i membri del gruppo sia verso gli stakeholder esterni.
 
@@ -189,9 +211,8 @@ Le attività scritte in dettaglio sono quelle che il gruppo riteneva importanti 
 Baseline (RTB)*, le restanti attività verranno descritte per la prossima baseline ovvero la *Product Baseline (PB)*
 
 
-
 === Analisi dei Requisiti
-L'#link("https://notipswe.github.io/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti] è una delle
+L'#link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti] è una delle
 attività cardine della milestone Requirements and Technology Baseline (RTB). Il suo obiettivo è individuare l'insieme
 completo dei requisiti che il sistema dovrà soddisfare, fungendo da riferimento oggettivo per le successive attività di
 verifica. Il documento, redatto dagli analisti, è strutturato nelle seguenti sezioni:
@@ -440,7 +461,15 @@ L'aggiornamento avverrà secondo il ciclo PDCA (Plan-Do-Check-Act):
 
 #include "processes/formazione.typ"
 
+
+#pagebreak()
+
+
 = Metriche e standard per la Qualità
+
+
+
+#pagebreak()
 
 = Metriche di Qualità del Processo <qualità-processo>
 
