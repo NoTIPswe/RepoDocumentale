@@ -286,27 +286,37 @@ svolgimento del progetto.
 ]
 
 #norm(title: "Specifiche di contenuto per documenti periodici", label: <contenuto-docs>)[
-  Sebbene la struttura sia guidata dai template, deve essere garantita la presenza dei seguenti contenuti minimi, mappati sui parametri delle funzioni Typst dedicate.
+  Sebbene la struttura sia guidata dai template, deve essere garantita la presenza dei seguenti contenuti minimi,
+  mappati sui parametri delle funzioni Typst dedicate.
 
   #heading(level: 5, numbering: none, outlined: false)[Verbali (Interni ed Esterni)]
-  I verbali devono essere redatti tramite il template `base_verbale.typ`  e includere i seguenti elementi:
+  I verbali devono essere redatti tramite il template `base_verbale.typ` e includere i seguenti elementi:
   - *Informazioni di base (`front-info`):* Elenco dettagliato di tutti i presenti;
-  - *Dettagli logistici:* Indicazione esplicita della data, della piattaforma di comunicazione (es. Microsoft Teams, Discord) e della fascia oraria dell'incontro;
+  - *Dettagli logistici:* Indicazione esplicita della data, della piattaforma di comunicazione (es. Microsoft Teams,
+    Discord) e della fascia oraria dell'incontro;
   - *Ordine del Giorno (`odg`):* Sintesi dei punti previsti per la trattazione durante la riunione;
-  - *Svolgimento (`discussion`):* Il contenuto deve essere organizzato in blocchi tramite la funzione `report-point`, assicurando che ogni sezione contenga:
+  - *Svolgimento (`discussion`):* Il contenuto deve essere organizzato in blocchi tramite la funzione `report-point`,
+    assicurando che ogni sezione contenga:
     - Un titolo chiaro per il punto di discussione (`discussion_point`);
     - La sintesi del dibattito intercorso (`discussion`);
     - Il riepilogo delle decisioni prese (`decisions`);
-    - Eventuali azioni da intraprendere (`actions`), corredate da descrizione e URL diretto al relativo work item su Jira;
-  - *Approvazione Aziendale:* Per i verbali esterni, è obbligatorio includere la sezione finale dedicata alla firma dei referenti per la validazione formale dei contenuti.
+    - Eventuali azioni da intraprendere (`actions`), corredate da descrizione e URL diretto al relativo work item su
+      Jira;
+  - *Approvazione Aziendale:* Per i verbali esterni, è obbligatorio includere la sezione finale dedicata alla firma dei
+    referenti per la validazione formale dei contenuti.
 
   #heading(level: 5, numbering: none, outlined: false)[Diari di Bordo (DdB)]
-  Ogni Diario di Bordo deve essere redatto tramite la funzione `apply-base-ddb` , indicando il numero dello Sprint di riferimento. I contenuti devono seguire rigorosamente la suddivisione in tre blocchi posizionali:
-  + *Risultati raggiunti:* Elenco puntato delle attività completate e dei traguardi raggiunti rispetto a quanto pianificato;
-  + *Obiettivi per il periodo successivo:* Pianificazione dei task previsti per lo sprint seguente, inclusi avanzamenti documentali o tecnici;
-  + *Criticità:* Esposizione di dubbi, difficoltà organizzative incontrate (es. durante le festività) o rischi occorsi durante lo svolgimento delle attività.
+  Ogni Diario di Bordo deve essere redatto tramite la funzione `apply-base-ddb` , indicando il numero dello Sprint di
+  riferimento. I contenuti devono seguire rigorosamente la suddivisione in tre blocchi posizionali:
+  + *Risultati raggiunti:* Elenco puntato delle attività completate e dei traguardi raggiunti rispetto a quanto
+    pianificato;
+  + *Obiettivi per il periodo successivo:* Pianificazione dei task previsti per lo sprint seguente, inclusi avanzamenti
+    documentali o tecnici;
+  + *Criticità:* Esposizione di dubbi, difficoltà organizzative incontrate (es. durante le festività) o rischi occorsi
+    durante lo svolgimento delle attività.
 
-  Per garantire l'integrità dei dati, ogni documento deve caricare il proprio registro delle modifiche tramite il file di metadati `{nome_documento}.meta.yaml`.
+  Per garantire l'integrità dei dati, ogni documento deve caricare il proprio registro delle modifiche tramite il file
+  di metadati `{nome_documento}.meta.yaml`.
 ]
 
 === Attività del processo
