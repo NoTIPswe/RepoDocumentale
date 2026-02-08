@@ -520,97 +520,94 @@ L'obiettivo minimo del gruppo è fissato a 60.
 
 = Metriche di Qualità del Processo <qualità-processo>
 
-== MPC-01 - Stabilità dei requisiti
-*Descrizione*: La metrica misura la percentuale di requisiti che non subiscono modifiche dopo la definizione della
-baseline dei requisiti.
+== Fornitura
+  === MP01 - Earned Value
+  *Descrizione*: Misura il valore del lavoro effettivamente completato rispetto alla pianificazione.
 
-*Formula:*
-$
-  text("Stabilità Requisiti") =
-  frac(text("Requisiti invariati"), text("Requisiti totali")) times 100
-$
-*Obiettivo*: $>=90%$
+  *Formula:*
+  $
+    text("EV") = sum (text("costo pianificato attività completate "))
+  $
+  \
 
-\
-== MPC-02 – Qualità della Tracciabilità dei Requisiti
-*Descrizione*: La metrica misura la percentuale di requisiti correttamente tracciati verso casi d’uso e attività di
-verifica.
+  === MP02 - Planned Value
+  *Descrizione*: Indica il valore del lavoro pianificato fino a una certa data.
 
-*Formula:*
-$
-  text("Copertura Tracciabilità") =
-  frac(text("Requisiti tracciati correttamente"), text("Numero totale requisiti")) times 100
-$
-*Obiettivo*: $100%$
+  *Formula:*
+  $
+    text("PV") = sum (text("costo pianificato attività previste"))
+  $
 
-\
-== MPC-03 – Tempo di Risoluzione delle Non Conformità di Processo
-*Descrizione*: La metrica misura il tempo medio necessario alla risoluzione delle non conformità di processo rilevate.
+  \
 
-*Formula:*
-$
-  text("Tempo Medio Risoluzione") =
-  frac(sum (text("Data chiusura") - text("Data apertura")), text("Numero di NC"))
-$
-*Obiettivo*: $<=5$ giorni lavorativi
+  === MP03 - Actual Cost
+  *Descrizione*: Rappresenta il costo reale sostenuto fino a un determinato momento.
 
-\
+  *Formula:*
+  $
+    text("AC") = sum (text("costi reali sostenuti"))
+  $
 
-== MPC-04 – Qualità del Processo di Verifica
-*Descrizione*: La metrica misura la percentuale di difetti individuati durante le attività di verifica rispetto al
-totale dei difetti rilevati.
+  \
 
-*Formula:*
-$
-  text("Efficacia Verifica") =
-  frac(text("Difetti rilevati in verifica"), text("Difetti totali rilevati")) times 100
-$
-*Obiettivo*: $>=85%$
+  === MP04 - Cost Performance Index (CPI)
+  *Descrizione*: Valuta l'efficienza dei costi del progetto.
 
-\
+  *Formula:*
+  $
+    text("CPI") = frac(text("EV"), text("AC"))
+  $
 
-== MPC-05 – Qualità della Documentazione di Progetto
-*Descrizione*: La metrica misura la percentuale di documenti che superano la verifica senza non conformità.
+  \
 
-*Formula:*
-$
-  text("Qualità Documentazione") =
-  frac(text("Documenti verificati senza NC"), text("Documenti verificati")) times 100
-$
-*Obiettivo*: $>=95%$
+  === MP05 - Schedule Performance Index (SPI)
+  *Descrizione*: Misura l'avanzamento temporale rispetto alla pianificazione.
 
-\
-== MPC-06 – Aderenza ai Processi Definiti
-*Descrizione*: La metrica misura la percentuale di attività svolte in conformità ai processi definiti nelle _Norme di
-Progetto_.
+  *Formula:*
+  $
+    text("SPI") = frac(text("EV"), text("PV"))
+  $
 
-*Formula:*
-$
-  text("Aderenza Processo") =
-  frac(text("Attività conformi"), text("Numero totale attività")) times 100
-$
-*Obiettivo*: $>=90%$
-\
-== MPC-07 – Stabilità del Processo di Sviluppo
-*Descrizione*: La metrica misura il rispetto della pianificazione del processo di sviluppo.
+  \
 
-*Formula:*
-$
-  text("Stabilità Processo Sviluppo") =
-  frac(text("Attività pianificate completate"), text("Attivittà pianificate")) times 100
-$
-*Obiettivo*: $>=85%$
-\
+  === MP06 - Estimate At Completion (EAC)
+  *Descrizione*: Stima il costo totale previsto alla fine del progetto.
 
-== MPC-08 – Efficienza del Processo di Revisione
-*Descrizione*: La metrica misura la percentuale di revisioni concluse senza necessità di riapertura.
+  *Formula:* 
+  $
+    text("EAC") = text("AC") + frac(text("PV") - text("EV"), text("CPI"))
+  $
 
-*Formula:*
-$
-  text("Efficienza Revisione") =
-  frac(text("Revisioni Concluse senza riapertura"), text("Revisioni totali")) times 100
-$
-*Obiettivo*: $>=90%$
+  \
+
+  === MP07 - Estimate To Complete (ETC)
+  *Descrizione*: Stima il costo necessario per completare il progetto a partire da un certo punto.
+
+  *Formula:*
+  $
+    text("ETC") = text("EAC") - text("AC")
+  $
+
+  \
+
+  === MP08 - Time Estimate At Completion (TEAC)
+  *Descrizione*: Stima il tempo totale previsto alla fine del progetto.
+
+  *Formula:*
+  $
+    text("TEAC") = frac(text("durata pianificata"), text("SPI"))
+  $
+
+  \
+  === MP09 - Budget Burn Rate
+  *Descrizione*: Misura la velocità con cui il budget viene consumato.
+  
+  *Formula:*
+  $
+    text("Budget Burn Rate") = frac(text("AC"), text("giorni trascorsi"))
+  $
+
+
 
 \
 = Metriche di Qualità del Prodotto <qualità-prodotto>
