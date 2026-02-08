@@ -1,5 +1,12 @@
 title: Piano di Qualifica
 changelog:
+  - version: "0.8.3"
+    date: "2026-02-08"
+    authors:
+      - Alessandro Contarini
+    verifier: TBD
+    description: >
+      Fix valutazione tecnologia Angular
   - version: "0.8.2"
     date: "2026-02-06"
     authors:

@@ -1260,8 +1260,7 @@
     [TypeScript / NestJS],
 
     [Il framework Angular richiede una buona organizzazione dei componenti e dei servizi.],
-    [Suddivisione dell’interfaccia in componenti riutilizzabili e utilizzo delle best practice suggerite dalla
-      documentazione.],
+    [Suddivisione dell’interfaccia in componenti con responsabilità ben definite e organizzazione della struttura del progetto seguendo le linee guida della documentazione.],
     [Angular],
 
     [La gestione della decifratura lato client introduce complessità applicativa.],
