@@ -79,9 +79,9 @@ Per la parte B (Simulatore), la nomenclatura viene estesa in RS (Requisito Simul
 
 === Codifica
 
-L'attività di codifica rappresenta la fase realizzativa del ciclo di vita del software, dove le specifiche progettuali
-vengono tradotte in codice sorgente eseguibile. L'obiettivo è produrre software non solo funzionante, ma anche
-leggibile e manutenibile.
+L'attività di codifica rappresenta la fase di realizzazione del ciclo di vita del software, dove le specifiche
+progettuali vengono tradotte in codice sorgente eseguibile. L'obiettivo è produrre software non solo funzionante, ma
+anche leggibile e manutenibile.
 
 ==== Norme e strumenti per la codifica
 
@@ -99,7 +99,8 @@ leggibile e manutenibile.
   title: "Strumenti di Qualità del Codice",
   label: <strumenti-qualita-codice>,
 )[
-  È richiesta la configurazione dell'IDE per l'applicazione automatica al salvataggio ("format on save") e i seguenti strumenti per formattare il codice:
+  È richiesta la configurazione dell'editor per l'applicazione automatica al salvataggio ("format on save") e i seguenti
+  strumenti per formattare il codice:
   #table(
     columns: (auto, auto, 1fr),
     align: (center, center, left),

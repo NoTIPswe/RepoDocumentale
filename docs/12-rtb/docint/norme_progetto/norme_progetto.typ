@@ -21,11 +21,11 @@ quanto descritto, per garantire uniformità e professionalità.
 
 Il progetto ha l'obiettivo di realizzare il sistema oggetto del capitolato *C7*, proposto dall'azienda *M31 S.r.l.*.
 
-Il contesto applicativo riguarda l'IoT, dove l'acquisizione e la gestione centralizzata di dati provenienti da sensori
-distribuiti è fondamentale. L'obiettivo primario è sviluppare una piattaforma *Cloud* distribuita, scalabile e sicura,
-in grado di acquisire dati provenienti da sensori *BLE* tramite Gateway. È inoltre fondamentale andare a garantire la
-segregazione dei dati in modalità *multi-tenant* ed esporre API per la consultazione storica e lo streaming in tempo
-reale dei dati.
+Il contesto applicativo riguarda il contesto IoT, dove l'acquisizione e la gestione centralizzata di dati provenienti da
+sensori distribuiti è fondamentale. L'obiettivo primario è sviluppare una piattaforma *Cloud* distribuita, scalabile e
+sicura, in grado di acquisire dati provenienti da sensori *BLE* tramite Gateway. È inoltre fondamentale andare a
+garantire la segregazione dei dati in modalità *multi-tenant* ed esporre API per la consultazione storica e lo streaming
+in tempo reale dei dati.
 
 Poiché i dispositivi fisici (sensori e gateway) non sono oggetto di fornitura, sarà necessario andare a sviluppare un
 *simulatore di gateway* capace di generare traffico dati verosimile per validare l'infrastruttura e i flussi di
@@ -557,7 +557,7 @@ Facilità con cui il software può essere modificato.
 === Standard per il formato data-ora
 Lo standard di rappresentazione della data e ora è definito nello standard *ISO 8601* con il formato AAAA-MM-GG.
 
-=== Indice di Gulpase
+=== Indice di Gulpease
 Standard di riferimento per la leggibilià della linguia italiana nei documenti tecnici. L'obiettivo minimo del gruppo è
 fissato a 60.
 
@@ -663,12 +663,12 @@ $
 
 == Processi di Supporto
 === Documentazione
-==== MP11 - Indice di Gulpase
+==== MP11 - Indice di Gulpease
 *Descrizione*: Valuta la leggibilità della documentazione tecnica.
 
 *Formula:*
 $
-  text("Indice di Gulpase") = 89.5 - frac(text("Numero di lettere"), text("Numero di parole"))times 100 + frac(text("Numero di frasi"), text("Numero di parole"))times 300
+  text("Indice di Gulpease") = 89.5 - frac(text("Numero di lettere"), text("Numero di parole"))times 100 + frac(text("Numero di frasi"), text("Numero di parole"))times 300
 $
 
 \

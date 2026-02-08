@@ -93,7 +93,8 @@ accepted_words:
   - Kubernetes
   - HTTPS
   - WebSocket
-
+  - ESLint
+  - Golang
 
 
   # --- Terminologia Software Engineering (SWE) ---
@@ -136,6 +137,7 @@ accepted_words:
   - Postcondizioni
   - Precondizioni
   - namespace
+  - DdB
 
 
   # --- Terminologia Standard Progetto ---
@@ -220,3 +222,4 @@ accepted_words:
   - un'activity
   - l'uc
   - l'istanziazione
+  - rifattorizzato
