@@ -519,9 +519,10 @@ Standard di riferimento per la leggibilià della linguia italiana nei documenti 
 L'obiettivo minimo del gruppo è fissato a 60.
 
 = Metriche di Qualità del Processo <qualità-processo>
+== Processi Primari
 
-== Fornitura
-  === MP01 - Earned Value
+=== Fornitura
+  ==== MP01 - Earned Value
   *Descrizione*: Misura il valore del lavoro effettivamente completato rispetto alla pianificazione.
 
   *Formula:*
@@ -530,7 +531,7 @@ L'obiettivo minimo del gruppo è fissato a 60.
   $
   \
 
-  === MP02 - Planned Value
+  ==== MP02 - Planned Value
   *Descrizione*: Indica il valore del lavoro pianificato fino a una certa data.
 
   *Formula:*
@@ -540,7 +541,7 @@ L'obiettivo minimo del gruppo è fissato a 60.
 
   \
 
-  === MP03 - Actual Cost
+  ==== MP03 - Actual Cost
   *Descrizione*: Rappresenta il costo reale sostenuto fino a un determinato momento.
 
   *Formula:*
@@ -550,7 +551,7 @@ L'obiettivo minimo del gruppo è fissato a 60.
 
   \
 
-  === MP04 - Cost Performance Index (CPI)
+  ==== MP04 - Cost Performance Index (CPI)
   *Descrizione*: Valuta l'efficienza dei costi del progetto.
 
   *Formula:*
@@ -560,7 +561,7 @@ L'obiettivo minimo del gruppo è fissato a 60.
 
   \
 
-  === MP05 - Schedule Performance Index (SPI)
+  ==== MP05 - Schedule Performance Index (SPI)
   *Descrizione*: Misura l'avanzamento temporale rispetto alla pianificazione.
 
   *Formula:*
@@ -570,7 +571,7 @@ L'obiettivo minimo del gruppo è fissato a 60.
 
   \
 
-  === MP06 - Estimate At Completion (EAC)
+  ==== MP06 - Estimate At Completion (EAC)
   *Descrizione*: Stima il costo totale previsto alla fine del progetto.
 
   *Formula:* 
@@ -580,7 +581,7 @@ L'obiettivo minimo del gruppo è fissato a 60.
 
   \
 
-  === MP07 - Estimate To Complete (ETC)
+  ==== MP07 - Estimate To Complete (ETC)
   *Descrizione*: Stima il costo necessario per completare il progetto a partire da un certo punto.
 
   *Formula:*
@@ -590,7 +591,7 @@ L'obiettivo minimo del gruppo è fissato a 60.
 
   \
 
-  === MP08 - Time Estimate At Completion (TEAC)
+  ==== MP08 - Time Estimate At Completion (TEAC)
   *Descrizione*: Stima il tempo totale previsto alla fine del progetto.
 
   *Formula:*
@@ -599,100 +600,324 @@ L'obiettivo minimo del gruppo è fissato a 60.
   $
 
   \
-  === MP09 - Budget Burn Rate
+  ==== MP09 - Budget Burn Rate
   *Descrizione*: Misura la velocità con cui il budget viene consumato.
-  
+
   *Formula:*
   $
     text("Budget Burn Rate") = frac(text("AC"), text("giorni trascorsi"))
   $
+  \
 
+  === Sviluppo
+  ==== MP10 - Requirements Stability Index
+  *Descrizione*: Misura la stabilità dei requisiti durante lo sviluppo.
 
+  *Formula:*
+  $
+  text("RSI") = frac(text("Requisiti modificati"), text("Requisiti totali"))
+  $
+
+  == Processi di Supporto
+  === Documentazione
+  ==== MP11 - Indice di Gulpase
+  *Descrizione*: Valuta la leggibilità della documentazione tecnica.
+
+  *Formula:*
+  $
+  text("Indice di Gulpase") = 89.5 - frac(text("Numero di lettere"), text("Numero di parole"))times 100 + frac(text("Numero di frasi"), text("Numero di parole"))times 300
+  $
+
+  \
+
+  ==== MP12 - Correttezza Ortografica
+  *Descrizione*: Misura la percentuale di parole senza errori ortografici nella documentazione.
+
+  *Formula:*
+  $
+  text("Correttezza Ortografica") = (1 - frac(text("Parole con errori"), text("Parole totali"))) times 100
+  $
+
+  === Verifica
+  ==== MP13 - Code Coverage
+  *Descrizione*: Misura la percentuale di codice sorgente coperto dai test.
+
+  *Formula:*
+  $
+  text("Code Coverage") = frac(text("Linee di codice testate"), text("Linee di codice totali")) times 100
+  $
+
+  \
+
+  ==== MP14 - Test Success Rate
+  *Descrizione*: Misura la percentuale di test superati rispetto al totale dei test eseguiti.
+
+  *Formula:*
+  $
+  text("Test Success Rate") = frac(text("Test superati"), text("Test eseguiti")) times 100
+  $
+
+  \
+
+  ==== MP15 - Test Automation Percentage
+  *Descrizione*: Misura la percentuale di test automatizzati rispetto al totale dei test eseguiti.
+
+  *Formula:*
+  $
+  text("Test Automation Percentage") = frac(text("Test automatizzati"), text("Test totali")) times 100
+  $
+
+  \
+
+  ==== MP16 - Defect Discovery Rate
+  *Descrizione*: Misura la velocità con cui vengono scoperti i difetti durante la fase di verifica.
+
+  *Formula:*
+  $
+  text("Defect Discovery Rate") = frac(text("Difetti scoperti"), text("Tempo di verifica")) times 100
+  $
+
+  === Gestione della Configurazione
+  ==== MP17 - Commit Message Quality Score
+  *Descrizione*: Valuta la qualità dei messaggi di commit in base a criteri predefiniti.
+
+  *Formula:*
+  $
+  text("Commit Message Quality Score") = frac(text("Commit con messaggi conformi"), text("Commit totali")) times 100
+  $
+
+  === Gestione della Qualità
+  ==== MP18 - Quality Metrics Satisfied
+  *Descrizione*: Misura la percentuale di metriche di qualità soddisfatte rispetto al totale delle metriche definite.
+
+  *Formula:*
+  $
+  text("Quality Metrics Satisfied") = frac(text("Metriche soddisfatte"), text("Metriche totali")) times 100
+  $
+
+  \
+
+  ==== MP19 - Quality Gate Pass Rate
+  *Descrizione*: Misura la percentuale di passaggio attraverso i gate di qualità definiti durante il processo di sviluppo.
+
+  *Formula:*
+  $
+  text("Quality Gate Pass Rate") = frac(text("Gate di qualità superati"), text("Gate di qualità totali")) times 100
+  $
+
+  == Processi Organizzativi
+  === Gestione dei Processi
+  ==== MP20 - Time Efficiency
+  *Descrizione*: Misura l'efficienza del tempo impiegato per completare le attività pianificate.
+
+  *Formula:*
+  $
+  text("Time Efficiency") = frac(text("Tempo pianificato"), text("Tempo effettivo")) times 100
+  $
+
+  \
+
+  ==== MP21 - Sprint Velocity Stability
+  *Descrizione*: Misura la stabilità della velocità di completamento degli sprint nel tempo.
+
+  *Formula:*
+  $
+  text("Sprint Velocity Stability") = 1 - frac(text("Deviazione standard della velocità degli sprint"), text("Velocità media degli sprint"))
+  $
+
+  \
+  ==== MP22 - Meeting Efficiency Index
+  *Descrizione*: Valuta l'efficienza delle riunioni in termini di tempo speso rispetto agli obiettivi raggiunti.
+
+  *Formula:*
+  $
+  text("Meeting Efficiency Index") = frac(text("Tempo speso in riunioni"), text("Obiettivi raggiunti nelle riunioni"))
+  $
+
+  \
+
+  ==== MP23 - PR Resolution Time
+  *Descrizione*: Misura il tempo medio impiegato per risolvere le Pull Request aperte.
+
+  *Formula:*
+  $
+  text("PR Resolution Time") = frac(text("Tempo totale per risolvere PR"), text("Numero di PR risolte"))
+  $
 
 \
 = Metriche di Qualità del Prodotto <qualità-prodotto>
-== MPD-01 - Copertura dei Requisiti
-*Descrizione*: La metrica misura la percentuale di requisiti associati ad almeno un’attività di verifica.
+== Funzionalità
+=== MQ01 - Requisiti Obbligatori Soddisfatti
+*Descrizione*: Misura la percentuale di requisiti obbligatori soddisfatti rispetto al totale dei requisiti obbligatori definiti.
 
 *Formula:*
 $
-  text("Copertura Requisiti") =
-  frac(text("Requisiti verificati"), text("Requisiti totali")) times 100
+text("Requisiti Obbligatori Soddisfatti") = frac(text("Requisiti obbligatori verificati"), text("Requisiti obbligatori totali")) times 100
 $
-*Obiettivo*: $100%$ dei requisiti obbligatori. $>=90%$ dei requisiti desiderabili.
-
-\
-== MPD-02 - Tasso di Superamento dei Test
-*Descrizione*: La metrica misura la percentuale di test superati rispetto ai test eseguiti.
-
-*Formula:*
-$
-  text("Tasso Superamento Test") =
-  frac(text("Test superati"), text("Test eseguiti")) times 100
-$
-*Obiettivo*: $>=95%$
 
 \
 
-== MPD-03 - Densità dei Difetti
-*Descrizione*: La metrica misura il numero di difetti rilevati in rapporto alla dimensione dell’artefatto.
+=== MQ02 - Requisiti Desiderabili Soddisfatti
+*Descrizione*: Misura la percentuale di requisiti desiderabili soddisfatti rispetto al totale dei requisiti desiderabili definiti.
 
 *Formula:*
 $
-  text("Densità Difetti") =
-  frac(text("Difetti rilevati"), text("Dimensione dell'artefatto"))
+text("Requisiti Desiderabili Soddisfatti") = frac(text("Requisiti desiderabili verificati"), text("Requisiti desiderabili totali")) times 100
 $
-*Obiettivo*: $<=0.5$ difetti per unità di dimensione scelta (es. per 1000 righe di codice, per pagina di documentazione,
-ecc.).
 
 \
 
-== MPD-04 - Qualità della Documentazione
-*Descrizione*: La metrica misura la percentuale di pagine di documentazione prive di errori rilevati in fase di
-verifica.
+=== MQ03 - Requisiti Opzionali Soddisfatti
+*Descrizione*: Misura la percentuale di requisiti opzionali soddisfatti rispetto al totale dei requisiti opzionali definiti.
 
 *Formula:*
 $
-  text("Qualità Documentazione") = (1 -
-    frac(text("Errori Rilevati"), text("Pagine analizzate"))) times 100
+text("Requisiti Opzionali Soddisfatti") = frac(text("Requisiti opzionali verificati"), text("Requisiti opzionali totali")) times 100  
 $
-*Obiettivo*: $>=95%$
 
 \
 
-== MPD-05 - Completezza dei Casi d'Uso
-*Descrizione*: La metrica misura la percentuale di casi d’uso completi in tutte le loro parti obbligatorie.
+=== MQ04 - Requirements Test Coverage
+*Descrizione*: Misura la percentuale di requisiti coperti da test rispetto al totale dei requisiti definiti.
 
 *Formula:*
 $
-  text("Completezza UC") =
-  frac(text("UC completi"), text("UC totali")) times 100
+text("Requirements Test Coverage") = frac(text("Requisiti coperti da test"), text("Requisiti totali")) times 100
 $
-*Obiettivo*: $100%$
+
+== Affidabilità
+=== MQ05 - Branch Coverage
+*Descrizione*: Misura la percentuale di rami del codice sorgente coperti dai test.
+
+*Formula:*
+$
+text("Branch Coverage") = frac(text("Rami coperti da test"), text("Rami totali")) times 100
+$ 
+\
+
+=== MQ06 - Statement Coverage
+*Descrizione*: Misura la percentuale di istruzioni del codice sorgente coperti dai test.
+
+*Formula:*
+$
+text("Statement Coverage") = frac(text("Istruzioni coperte da test"), text("Istruzioni totali")) times 100
+$
 
 \
 
-== MPD-06 - Non Conformità di Prodotto Aperte
-*Descrizione*: La metrica misura il numero di non conformità di prodotto non risolte al momento del rilascio.
+=== MQ07 - Failure Density
+*Descrizione*: Misura la densità di difetti rilevati durante la fase di verifica rispetto alla dimensione del software.
 
 *Formula:*
 $
-  text("NC di Prodotto Aperte") = text("Numero di NC non risolte")
+text("Failure Density") = frac(text("Difetti rilevati"), text("Linee di codice totali")) times 1000
 $
-*Obiettivo*: $0$ non conformità bloccanti o critiche.
+\
+
+=== MQ08 - Modified Condition/Decision Coverage (MC/DC)
+*Descrizione*: Misura la copertura dei test in base alla combinazione di condizioni e decisioni nel codice.
+
+*Formula:*
+$
+text("MC/DC Coverage") = frac(text("Condizioni/Decisioni coperte da test"), text("Condizioni/Decisioni totali")) times 100
+$
+
+== Usabilità
+=== MQ09 - Time On Task
+*Descrizione*: Misura il tempo medio impiegato dagli utenti per completare un'attività specifica utilizzando il software.
+
+*Formula:*
+$
+text("Time On Task") = frac(text("Tempo totale per completare l'attività"), text("Numero di utenti che hanno completato l'attività"))
+$
 
 \
 
-== MPD-07 - Conformità del Prodotto ai Requisiti
-*Descrizione*: La metrica misura la percentuale di requisiti soddisfatti dal prodotto verificato.
+=== MQ10 - Error Rate
+*Descrizione*: Misura la percentuale di errori commessi dagli utenti durante l'utilizzo del software.
 
 *Formula:*
 $
-  text("Conformità Requisiti") =
-  frac(text("Requisiti soddisfatti"), text("Requisiti verificati")) times 100
+text("Error Rate") = frac(text("Errori commessi dagli utenti"), text("Interazioni totali degli utenti")) times 100
 $
-*Obiettivo*: $100%$ dei requisiti obbligatori. $>=90%$ dei requisiti desiderabili.
 
+\
+
+== Efficienza
+=== MQ11 - Response Time
+*Descrizione*: Misura il tempo medio di risposta del software a una richiesta dell'utente.
+
+*Formula:*
+$
+text("Response Time") = frac(text("Tempo totale di risposta"), text("Numero di richieste"))
+$
+
+== Manutenibilità
+=== MQ12 - Code Smells
+*Descrizione*: Misura la presenza di "code smells" nel codice sorgente, che indicano potenziali problemi di manutenibilità.
+
+*Formula:*
+$
+text("Code Smells") = frac(text("Numero di code smells"), text("Linee di codice totali")) times 1000
+$
+\
+
+=== MQ13 - Coeffiecient of Coupling
+*Descrizione*: Misura il grado di accoppiamento tra i moduli del software, indicando la dipendenza tra di essi.
+
+*Formula:*
+$
+text("Coefficient of Coupling") = frac(text("Numero di dipendenze tra moduli"), text("Numero totale di moduli"))
+$
+
+\
+
+=== MQ14 - Cyclomatic Complexity
+*Descrizione*: Misura la complessità del codice sorgente in base al numero di percorsi indipendenti attraverso il codice.
+
+*Formula:*
+$
+text("Cyclomatic Complexity") = text("Numero di rami") - text("Numero di nodi") + 2
+$
+
+\
+
+=== MQ15 - Code Duplication Percentage
+*Descrizione*: Misura la percentuale di codice duplicato rispetto al totale del codice sorgente.
+
+*Formula:*
+$
+text("Code Duplication Percentage") = frac(text("Linee di codice duplicate"), text("Linee di codice totali")) times 100
+$
+
+== Portabilità
+=== MQ16 - Container Image Size
+*Descrizione*: Misura la dimensione dell'immagine del container utilizzato per distribuire il software, indicando l'efficienza della distribuzione.
+
+*Formula:*
+$
+text("Container Image Size") = text("Dimensione dell'immagine del container in MB")
+$
+
+\
+
+=== MQ17 - Application Success Rate
+*Descrizione*: Misura la percentuale di distribuzioni del software che sono state esegute con successo senza errori.
+
+*Formula:*
+$
+text("Application Success Rate") = frac(text("Distribuzioni riuscite"), text("Distribuzioni totali")) times 100
+$
+
+\
+
+=== MQ18 - Encryption Coverage
+*Descrizione*: Misura la percentuale di dati sensibili protetti da crittografia rispetto al totale dei dati sensibili gestiti dal software.
+
+*Formula:*
+$
+text("Encryption Coverage") = frac(text("Dati sensibili crittografati"), text("Dati sensibili totali")) times 100
+$
 
 = Riferimenti
 
