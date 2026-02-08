@@ -1,5 +1,12 @@
 title: Norme di Progetto
 changelog:
+  - version: "0.15.1"
+    date: "2026-02-08"
+    authors:
+      - Alessandro Contarini
+    verifier: TBD
+    description: >
+      Allineamento metriche di qualità con quelle del piano di qualifica
   - version: "0.15.0"
     date: "2026-02-07"
     authors:
