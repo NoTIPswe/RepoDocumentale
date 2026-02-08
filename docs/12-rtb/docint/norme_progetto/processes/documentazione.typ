@@ -97,7 +97,7 @@ svolgimento del progetto.
       lunghi e/o collaborativi per limitare i conflitti di merge;
     - `{nome_documento}.meta.yaml`: Metadati (titolo, changelog) conformi allo schema;
     - _Nota_: Per i documenti periodici (`ddb`, `verbint`, `verbest`), è obbligatorio suffissare il nome con la data in
-      formato ISO (`_yyyy-mm-dd`) per garantire l'ordinamento cronologico (es. verbint_2025-11-21).
+      formato ISO (`yyyy-mm-dd`) per garantire l'ordinamento cronologico (es. verbint_2025-11-21).
 
   #heading(level: 5, numbering: none, outlined: false)[Integrità storica delle baseline]
   È severamente vietato modificare i file appartenenti a directory di baseline passate. Eventuali correzioni a documenti
@@ -115,7 +115,7 @@ svolgimento del progetto.
     table.header([Elemento], [Utilizzo], [Esempio]),
 
     [*Grassetto*],
-    [Concetti chiave o formattazione. Non abusarne.],
+    [Concetti chiave o formattazione.],
     [
       - *Concetto A*: [...] ;
       - *Concetto B*: [...] .
@@ -257,6 +257,7 @@ svolgimento del progetto.
   `docs/{milestone}/00-templates/`:
   #table(
     columns: (auto, 1fr),
+    inset: 10pt,
     table.header([Template], [Utilizzo]),
     [`base_document.typ`], [Documenti generici (Analisi, Piano di Progetto, Norme)],
     [`base_verbale.typ`], [Verbali interni ed esterni. Include sezioni per ordine del giorno e decisioni],
@@ -268,7 +269,8 @@ svolgimento del progetto.
 #norm(title: "Matrice Documento - Ruolo autore", label: <matr-ruolo-documento>)[
   La seguente tabella rappresenta quale ruolo è responsabile della scrittura di ogni documento.
   #table(
-    columns: (auto, auto),
+    columns: (1fr, 1fr),
+    inset: 10pt,
     table.header([Documento], [Ruolo autore]),
     [Norme di Progetto], [#ROLES.amm],
     [Piano di Qualifica], [#ROLES.amm],
@@ -281,6 +283,30 @@ svolgimento del progetto.
   )
 
   Ognuno, durante la scrittura dei documenti, è tenuto ad inserire nel glossario i termini che lo richiedono.
+]
+
+#norm(title: "Specifiche di contenuto per documenti periodici", label: <contenuto-docs>)[
+  Sebbene la struttura sia guidata dai template, deve essere garantita la presenza dei seguenti contenuti minimi, mappati sui parametri delle funzioni Typst dedicate.
+
+  #heading(level: 5, numbering: none, outlined: false)[Verbali (Interni ed Esterni)]
+  I verbali devono essere redatti tramite il template `base_verbale.typ`  e includere i seguenti elementi:
+  - *Informazioni di base (`front-info`):* Elenco dettagliato di tutti i presenti;
+  - *Dettagli logistici:* Indicazione esplicita della data, della piattaforma di comunicazione (es. Microsoft Teams, Discord) e della fascia oraria dell'incontro;
+  - *Ordine del Giorno (`odg`):* Sintesi dei punti previsti per la trattazione durante la riunione;
+  - *Svolgimento (`discussion`):* Il contenuto deve essere organizzato in blocchi tramite la funzione `report-point`, assicurando che ogni sezione contenga:
+    - Un titolo chiaro per il punto di discussione (`discussion_point`);
+    - La sintesi del dibattito intercorso (`discussion`);
+    - Il riepilogo delle decisioni prese (`decisions`);
+    - Eventuali azioni da intraprendere (`actions`), corredate da descrizione e URL diretto al relativo work item su Jira;
+  - *Approvazione Aziendale:* Per i verbali esterni, è obbligatorio includere la sezione finale dedicata alla firma dei referenti per la validazione formale dei contenuti.
+
+  #heading(level: 5, numbering: none, outlined: false)[Diari di Bordo (DdB)]
+  Ogni Diario di Bordo deve essere redatto tramite la funzione `apply-base-ddb` , indicando il numero dello Sprint di riferimento. I contenuti devono seguire rigorosamente la suddivisione in tre blocchi posizionali:
+  + *Risultati raggiunti:* Elenco puntato delle attività completate e dei traguardi raggiunti rispetto a quanto pianificato;
+  + *Obiettivi per il periodo successivo:* Pianificazione dei task previsti per lo sprint seguente, inclusi avanzamenti documentali o tecnici;
+  + *Criticità:* Esposizione di dubbi, difficoltà organizzative incontrate (es. durante le festività) o rischi occorsi durante lo svolgimento delle attività.
+
+  Per garantire l'integrità dei dati, ogni documento deve caricare il proprio registro delle modifiche tramite il file di metadati `{nome_documento}.meta.yaml`.
 ]
 
 === Attività del processo

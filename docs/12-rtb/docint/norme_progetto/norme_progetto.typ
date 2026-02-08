@@ -133,12 +133,36 @@ La #link(
 )[Dichiarazione di impegni] è il documento in cui il gruppo ha stimato i costi del progetto, dall’impegno orario per
 persona e per ruolo, al costo complessivo del progetto e dei ruoli che i componenti del gruppo ricopriranno.
 
+#figure(
+  table(
+    columns: (auto, 2fr),
+    inset: 10pt,
+    align: (center, center),
+    [*Voce*], [*Dettaglio*],
+    [*Redattore*], [Responsabile],
+    [*Destinatari*], [NoTIP, M31, Prof. Vardanega, Prof. Cardin],
+    [*Uso*], [Esterno],
+  ),
+)
+
 ==== Lettera di presentazione
 La Lettera di presentazione è il documento con il quale il gruppo, conferma la volontà di candidarsi per una determinata
 Baseline. Il gruppo durante lo sviluppo del progetto presenterà ai proponenti tre lettere di presentazione:
 - La Lettera di presentazione per la *Candidatura all'appalto del capitolato C7*;
 - La Lettera di presentazione per la *Requirements and Technology Baseline (RTB)*;
 - La lettera di presentazione per la *Product Baseline (PB)*;
+
+#figure(
+  table(
+    columns: (auto, 2fr),
+    inset: 10pt,
+    align: (center, center),
+    [*Voce*], [*Dettaglio*],
+    [*Redattore*], [Responsabile],
+    [*Destinatari*], [NoTIP, M31, Prof. Vardanega, Prof. Cardin],
+    [*Uso*], [Esterno],
+  ),
+)
 
 ==== Analisi dei capitolati
 L'#link("https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/analisi_capitolati.pdf")[Analisi dei
@@ -148,7 +172,19 @@ punti, in particolare l'analisi suddivide ogni capitolato in diverse sezioni:
 informazioni generali sul prodotto da realizzare;
 - *Pro*;
 - *Contro*;
-- *Considerazioni* finale: con motivazioni sull'eventuale scelta o non di candidarsi al capitolato
+- *Considerazione finale*: motivazioni sull'eventuale scelta o non di candidarsi al capitolato
+
+#figure(
+  table(
+    columns: (auto, 2fr),
+    inset: 10pt,
+    align: (center, center),
+    [*Voce*], [*Dettaglio*],
+    [*Redattore*], [Responsabile],
+    [*Destinatari*], [NoTIP, Prof. Vardanega, Prof. Cardin],
+    [*Uso*], [Esterno],
+  ),
+)
 
 ==== Analisi dei Requisiti
 L'#link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti]
@@ -161,12 +197,26 @@ ambiguità derivanti dalla lettura del #link("https://www.math.unipd.it/~tullio/
   atteso del software in ogni situazione.
 - *Lista dei Requisiti*: rappresenta l'insieme dettagliato delle funzionalità, dei vincoli e delle qualità del sistema,
   derivanti dalle richieste del proponente o identificato dal gruppo durante l'attività di analisi.
-I dettagli riguardanti il documento possono essere trovati nella sezione 2.2.1.
+
+#figure(
+  table(
+    columns: (auto, 2fr),
+    inset: 10pt,
+    align: (center, center),
+    [*Voce*], [*Dettaglio*],
+    [*Redattore*], [Analista],
+    [*Destinatari*], [NoTIP, M31, Prof. Vardanega, Prof. Cardin],
+    [*Uso*], [Esterno],
+  ),
+)
+
+I dettagli riguardanti il documento possono essere trovati nella sezione #link(<analisi-requisiti>)[Analisi dei
+  Requisiti].
 
 ==== Piano di Progetto
 Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_progetto.pdf")[Piano di Progetto]
 definisce e organizza la pianificazione strategica e operativa del gruppo, fornendo una roadmap dettagliata delle
-attività e gestione delle risorse. Il documento si articola nelle seguenti sezioni:
+attività e gestione delle risorse. Il documento si compone delle seguenti sezioni:
 - *Analisi dei rischi*: identifica e qualifica le criticità che potrebbero manifestarsi durante il ciclo di vita del
   progetto. A ogni rischio è associata una strategia di mitigazione, volta a ridurne l'impatto o la probabilità che
   accada.
@@ -174,22 +224,88 @@ attività e gestione delle risorse. Il documento si articola nelle seguenti sezi
   attività da completare, il preventivo orario per componente e il consuntivo delle ore effettivamente impiegate, con il
   relativo aggiornamento del budget residuo.
 
+#figure(
+  table(
+    columns: (auto, 2fr),
+    inset: 10pt,
+    align: (center, center),
+    [*Voce*], [*Dettaglio*],
+    [*Redattore*], [Responsabile],
+    [*Destinatari*], [NoTIP, M31, Prof. Vardanega, Prof. Cardin],
+    [*Uso*], [Esterno],
+  ),
+)
+
 ==== Piano di Qualifica
-Descrive i metodi di qualifica (Verifica e Validazione) adottate dal gruppo, nonché i test effettuati sul prodotto e i
+Descrive i metodi di qualifica (Verifica e Validazione) che sono state adottate dal gruppo. Sono inclusi i test effettuati sul prodotto e i
 rispettivi esiti.
 
-==== Verbali esterni e Verbali interni
-I primi sono i verbali di riunioni tra persone del gruppo e persone esterne al gruppo, i secondi invece sono i verbali
-di riunione senza il contatto con persone esterne al gruppo.
+#figure(
+  table(
+    columns: (auto, 2fr),
+    inset: 10pt,
+    align: (center, center),
+    [*Voce*], [*Dettaglio*],
+    [*Redattore*], [Amministratore],
+    [*Destinatari*], [NoTIP, M31, Prof. Vardanega, Prof. Cardin],
+    [*Uso*], [Esterno],
+  ),
+)
+
+==== Verbali Esterni
+Sono i documenti che riassumono i contenuti trattati nelle riunioni tenute con soggetti esterni al gruppo (es. azienda
+proponente). Hanno lo scopo di formalizzare le decisioni prese, i chiarimenti ottenuti e gli accordi
+stipulati durante gli incontri ufficiali.
+
+#figure(
+  table(
+    columns: (auto, 1fr),
+    align: (center, center),
+    [*Voce*], [*Dettaglio*],
+    [*Redattore*], [Responsabile],
+    [*Destinatari*], [M31, NoTIP, Prof. Vardanega, Prof. Cardin],
+    [*Uso*], [Esterno],
+  ),
+)
+
+==== Verbali Interni
+Sono i documenti che riassumono i contenuti trattati nelle riunioni interne al gruppo, senza la partecipazione di
+soggetti esterni. Servono a tracciare l'avanzamento dei lavori, la suddivisione dei compiti e le decisioni tecniche o
+organizzative prese dal team.
+
+#figure(
+  table(
+    columns: (auto, 1fr),
+    align: (center, center),
+    [*Voce*], [*Dettaglio*],
+    [*Redattore*], [Responsabile],
+    [*Destinatari*], [NoTIP, Prof. Vardanega, Prof. Cardin],
+    [*Uso*], [Interno],
+  ),
+)
 
 ==== Glossario
 Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario] raccoglie e definisce
 in modo univoco i termini tecnici e gli acronimi utilizzati nella documentazione. Il suo scopo è eliminare le ambiguità
 linguistiche, garantendo una comunicazione uniforme sia tra i membri del gruppo sia verso gli stakeholder esterni.
 
+#figure(
+  table(
+    columns: (auto, 2fr),
+    inset: 10pt,
+    align: (center, center),
+    [*Voce*], [*Dettaglio*],
+    [*Redattore*], [Amministratore],
+    [*Destinatari*], [M31, NoTIP, Prof. Vardanega, Prof. Cardin],
+    [*Uso*], [Esterno],
+    // bookmark - siamo sicuri???
+  ),
+)
+
 == Sviluppo
-Il *Processo di Sviluppo* stabilisce le attività che hanno come scopo quello di Analisi dei Requisiti, la progettazione,
+Il *Processo di Sviluppo* definisce le attività che hanno come scopo quello di Analisi dei Requisiti, la progettazione,
 la codifica del Software, l’installazione e l’accettazione di quanto prodotto.
+
 === Attività previste
 Le attività previste dal processo di sviluppo in base allo standard ISO/IEC 12207:1995 sono le seguenti:
 - *Istanziazione del processo*: definizione del modello di ciclo di vita e dei piani di progetto;
@@ -209,10 +325,9 @@ Le attività previste dal processo di sviluppo in base allo standard ISO/IEC 122
 - *Installazione software*: fornitura di quanto realizzato al cliente finale nell'ambiente concordato;
 - *Supporto all'accettazione software*: assistenza al committente durante le verifiche finali per l'accettazione.
 Le attività scritte in dettaglio sono quelle che il gruppo riteneva importanti per la *Requirements and Technology
-Baseline (RTB)*, le restanti attività verranno descritte per la prossima baseline ovvero la *Product Baseline (PB)*
+Baseline (RTB)*, le restanti attività verranno descritte per la prossima baseline ovvero la *Product Baseline (PB)*.
 
-
-=== Analisi dei Requisiti
+=== Analisi dei Requisiti <analisi-requisiti>
 L'#link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti] è
 una delle attività cardine della milestone Requirements and Technology Baseline (RTB). Il suo obiettivo è individuare
 l'insieme completo dei requisiti che il sistema dovrà soddisfare, fungendo da riferimento oggettivo per le successive
@@ -261,6 +376,8 @@ Ogni caso d'uso viene dettagliato secondo la seguente struttura:
     - *Desiderabile*: non indispensabile, ma con valore aggiunto;
     - *Opzionale*: funzionalità aggiuntive a bassa priorità.
 Per la parte B (Simulatore), la nomenclatura viene estesa in RS (Requisito Simulatore).
+
+// bookmark - manca la parte di "codifica"
 
 #pagebreak()
 

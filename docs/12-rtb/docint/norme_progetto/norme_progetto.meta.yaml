@@ -1,5 +1,12 @@
 title: Norme di Progetto
 changelog:
+  - version: "0.15.2"
+    date: "2026-02-08"
+    authors:
+      - Francesco Marcon
+    verifier: TBD
+    description: >
+      Correzione typo, aggiunta tabelle descrittive per i documenti, aggiunta norma al processo di "Documentazione"
   - version: "0.15.1"
     date: "2026-02-08"
     authors:
