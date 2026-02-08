@@ -76,12 +76,12 @@ dell'intera documentazione riguardante il progetto.
 
 = Processi primari
 In conformità alla norma *ISO/IEC 12207:1995*, i processi primari rappresentano l'insieme delle attività fondamentali
-che definiscono il ciclo di vita del software. Essi comprendono, in
-generale, i processi di *acquisizione*, *fornitura*, *esercizio* e *manutenzione*.
+che definiscono il ciclo di vita del software. Essi comprendono, in generale, i processi di *acquisizione*, *fornitura*,
+*esercizio* e *manutenzione*.
 
 Nel contesto del progetto, risultano rilevanti esclusivamente i processi di fornitura e sviluppo:
-- Il *processo di fornitura* disciplina le attività relative alla pianificazione, definizione e gestione dell'impegno tra
-  il fornitore e il committente;
+- Il *processo di fornitura* disciplina le attività relative alla pianificazione, definizione e gestione dell'impegno
+  tra il fornitore e il committente;
 - Il *processo di sviluppo* comprende le attività di analisi, progettazione, implementazione, verifica e validazione del
   prodotto software.
 
@@ -94,30 +94,30 @@ da svolgere con probabile data di consegna prevista.
 
 === Strumenti a supporto
 Per procedere allo svolgimento delle attività il gruppo ha deciso di usare i seguenti strumenti:
-- *Jira*: per la gestione del backlog e del tracciamento delle task, offre una visualizzazione di diagrammi
-  di qualsiasi tipologia per facilitare la pianificazione
+- *Jira*: per la gestione del backlog e del tracciamento delle task, offre una visualizzazione di diagrammi di qualsiasi
+  tipologia per facilitare la pianificazione
 - *GitHub*: per il versionamento dei documenti. Utile anche a fini di verifica dei documenti e approvazione degli
   stessi;
 - *Discord*: usato principalmente come luogo per riunioni interne e sessioni di sviluppo sincrone;
-- *Telegram*: usato come canale principale di comunicazione testuale all'interno del gruppo. 
+- *Telegram*: usato come canale principale di comunicazione testuale all'interno del gruppo.
 
 Per quanto concerne la comunicazione con l'azienda proponente, vengono utilizzati i seguenti strumenti:
 - *Microsoft Teams*: usato come canale di comunicazione sincrono tra committente e gruppo;
 - *Google Mail*: usato come canale testuale tra committente e gruppo.
 
 === Attività previste
-La fornitura si struttura in varie attività: 
-- *Inizializzazione*: il fornitore analizza le richieste del committente, tenendo conto di eventuali vincoli organizzativi o
-  di altra natura. Questa è l'attività in cui il fornitore decide se proseguire con quanto proposto o di preparare una
-  controproposta;
+La fornitura si struttura in varie attività:
+- *Inizializzazione*: il fornitore analizza le richieste del committente, tenendo conto di eventuali vincoli
+  organizzativi o di altra natura. Questa è l'attività in cui il fornitore decide se proseguire con quanto proposto o di
+  preparare una controproposta;
 - *Risposta*: viene elaborata e presentata una risposta che può essere una controproposta dei requisiti, oppure una
   proposta su come si soddisfare i requisiti;
-- *Contrattazione*: si effettua un incontro con il committente con l'obiettivo di arrivare ad un accordo (sancito solitamente da un contratto formale)
-  definendo costi, tempi e criteri di accettazione;
+- *Contrattazione*: si effettua un incontro con il committente con l'obiettivo di arrivare ad un accordo (sancito
+  solitamente da un contratto formale) definendo costi, tempi e criteri di accettazione;
 - *Pianificazione*: stabiliti i requisiti finali, il fornitore deve pianificare l'organizzazione e un metodo di lavoro
-  in grado di assicurare la qualità del sistema da realizzare. La pianificazione comprende la stesura del Piano di progetto, dove vengono
-  indicate le risorse richieste per realizzare il prodotto, considerando anche i rischi che potrebbero accadere durante
-  lo sviluppo;
+  in grado di assicurare la qualità del sistema da realizzare. La pianificazione comprende la stesura del Piano di
+  progetto, dove vengono indicate le risorse richieste per realizzare il prodotto, considerando anche i rischi che
+  potrebbero accadere durante lo sviluppo;
 - *Esecuzione e controllo*: il fornitore realizza il prodotto, monitorando nel frattempo la qualità di quanto fatto e il
   progresso raggiunto;
 - *Revisione*: il fornitore si tiene in contatto con la proponente, in modo da ottenere feedback su quanto realizzato;
@@ -128,9 +128,10 @@ Nella sezione seguente si elencano i documenti che il gruppo NoTIP consegnerà a
 Tullio Vardanega e Prof. Riccardo Cardin.
 
 ==== Dichiarazione di impegni
-La #link("https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/dichiarazione_impegni.pdf")[Dichiarazione di impegni] è
-il documento in cui il gruppo ha stimato i costi del progetto, dall’impegno orario per persona e per ruolo, al costo
-complessivo del progetto e dei ruoli che i componenti del gruppo ricopriranno.
+La #link(
+  "https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/dichiarazione_impegni.pdf",
+)[Dichiarazione di impegni] è il documento in cui il gruppo ha stimato i costi del progetto, dall’impegno orario per
+persona e per ruolo, al costo complessivo del progetto e dei ruoli che i componenti del gruppo ricopriranno.
 
 ==== Lettera di presentazione
 La Lettera di presentazione è il documento con il quale il gruppo, conferma la volontà di candidarsi per una determinata
@@ -140,9 +141,9 @@ Baseline. Il gruppo durante lo sviluppo del progetto presenterà ai proponenti t
 - La lettera di presentazione per la *Product Baseline (PB)*;
 
 ==== Analisi dei capitolati
-L'#link("https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/analisi_capitolati.pdf")[Analisi dei capitolati] è il
-documento in cui il gruppo fornisce un analisi dettagliata di ogni capitolato evidenziando diversi punti, in particolare
-l'analisi suddivide ogni capitolato in diverse sezioni:
+L'#link("https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/analisi_capitolati.pdf")[Analisi dei
+  capitolati] è il documento in cui il gruppo fornisce un analisi dettagliata di ogni capitolato evidenziando diversi
+punti, in particolare l'analisi suddivide ogni capitolato in diverse sezioni:
 - *Panoramica*: che indica l’azienda proponente, il nome del capitolato e delle
 informazioni generali sul prodotto da realizzare;
 - *Pro*;
@@ -150,10 +151,10 @@ informazioni generali sul prodotto da realizzare;
 - *Considerazioni* finale: con motivazioni sull'eventuale scelta o non di candidarsi al capitolato
 
 ==== Analisi dei Requisiti
-L'#link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti] definisce nel
-dettaglio i requisiti obbligatori, desiderabili e opzionali del progetto. Il documento mira a risolvere le ambiguità
-derivanti dalla lettura del #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7],
-fornendo una base solida per la progettazione attraverso:
+L'#link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti]
+definisce nel dettaglio i requisiti obbligatori, desiderabili e opzionali del progetto. Il documento mira a risolvere le
+ambiguità derivanti dalla lettura del #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato
+  C7], fornendo una base solida per la progettazione attraverso:
 - *Descrizione del prodotto*: analisi puntuale del sistema richiesto dal committente.
 - *Casi d'uso*: identificazione degli scenari d'uso e delle interazioni tra utenti e sistema. Ogni caso d'uso include
   una descrizione dettagliata degli scenari principali, permettendo ai progettisti di comprendere il comportamento
@@ -163,9 +164,9 @@ fornendo una base solida per la progettazione attraverso:
 I dettagli riguardanti il documento possono essere trovati nella sezione 2.2.1.
 
 ==== Piano di Progetto
-Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_progetto.pdf")[Piano di Progetto] definisce e organizza la
-pianificazione strategica e operativa del gruppo, fornendo una roadmap dettagliata delle attività e gestione delle
-risorse. Il documento si articola nelle seguenti sezioni:
+Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_progetto.pdf")[Piano di Progetto]
+definisce e organizza la pianificazione strategica e operativa del gruppo, fornendo una roadmap dettagliata delle
+attività e gestione delle risorse. Il documento si articola nelle seguenti sezioni:
 - *Analisi dei rischi*: identifica e qualifica le criticità che potrebbero manifestarsi durante il ciclo di vita del
   progetto. A ogni rischio è associata una strategia di mitigazione, volta a ridurne l'impatto o la probabilità che
   accada.
@@ -182,9 +183,9 @@ I primi sono i verbali di riunioni tra persone del gruppo e persone esterne al g
 di riunione senza il contatto con persone esterne al gruppo.
 
 ==== Glossario
-Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario] raccoglie e definisce in modo univoco
-i termini tecnici e gli acronimi utilizzati nella documentazione. Il suo scopo è eliminare le ambiguità linguistiche,
-garantendo una comunicazione uniforme sia tra i membri del gruppo sia verso gli stakeholder esterni.
+Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario] raccoglie e definisce
+in modo univoco i termini tecnici e gli acronimi utilizzati nella documentazione. Il suo scopo è eliminare le ambiguità
+linguistiche, garantendo una comunicazione uniforme sia tra i membri del gruppo sia verso gli stakeholder esterni.
 
 == Sviluppo
 Il *Processo di Sviluppo* stabilisce le attività che hanno come scopo quello di Analisi dei Requisiti, la progettazione,
@@ -212,10 +213,10 @@ Baseline (RTB)*, le restanti attività verranno descritte per la prossima baseli
 
 
 === Analisi dei Requisiti
-L'#link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti] è una delle
-attività cardine della milestone Requirements and Technology Baseline (RTB). Il suo obiettivo è individuare l'insieme
-completo dei requisiti che il sistema dovrà soddisfare, fungendo da riferimento oggettivo per le successive attività di
-verifica. Il documento, redatto dagli analisti, è strutturato nelle seguenti sezioni:
+L'#link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti] è
+una delle attività cardine della milestone Requirements and Technology Baseline (RTB). Il suo obiettivo è individuare
+l'insieme completo dei requisiti che il sistema dovrà soddisfare, fungendo da riferimento oggettivo per le successive
+attività di verifica. Il documento, redatto dagli analisti, è strutturato nelle seguenti sezioni:
 - *Introduzione*: definisce lo scopo e il campo di applicazione del documento;
 - *Descrizione*: illustra le finalità generali e gli obiettivi del prodotto;
 - *Attori*: identifica gli utilizzatori del sistema e i soggetti che interagiscono con esso;
@@ -466,40 +467,37 @@ L'aggiornamento avverrà secondo il ciclo PDCA (Plan-Do-Check-Act):
 
 
 = Metriche e standard per la Qualità <standard-qualità>
-Le metriche e standard per la qualità fanno riferimento allo standard ISO/IEC 12207:1995. Attraverso 
-un’operazione di tailoring, il team ha selezionato gli standard della qualità pertinenti al contesto 
-del progetto, classificandoli in tre macro-categorie:
+Le metriche e standard per la qualità fanno riferimento allo standard ISO/IEC 12207:1995. Attraverso un’operazione di
+tailoring, il team ha selezionato gli standard della qualità pertinenti al contesto del progetto, classificandoli in tre
+macro-categorie:
 1. Standard di Processo;
 2. Standard di Prodotto;
 3. Standard di Documentazione.
 
 == Standard del Processo
-Il gruppo adotta le norme dettate dallo standard ISO/IEC 12207:1995, ed in particolare
-la quality_assurance definita nel medesimo standard.
-In particolare il gruppo si impegna a rispettare:
+Il gruppo adotta le norme dettate dallo standard ISO/IEC 12207:1995, ed in particolare la quality_assurance definita nel
+medesimo standard. In particolare il gruppo si impegna a rispettare:
 
 === Pianificazione dell'Assicurazione Qualità
-Ogni attività di verifica deve essere definita nel documeto Piano di Qualifica, il quale specifica 
-lo standard , le procedure e gli strumenti da utilizzare.
+Ogni attività di verifica deve essere definita nel documeto Piano di Qualifica, il quale specifica lo standard , le
+procedure e gli strumenti da utilizzare.
 
 === Indipendenza e Autorità
-Per garantire imparzialità nella verifica, chi svolge il ruolo di Verificatore deve essere libero 
-di poter segnalare ogni tipo di anomalia senza subire conseguenze o influenza da altri membri 
-del gruppo, per garantira imparzialità da esso.
-La persona che svolge l'attività di Verificatore per un determinato prodotto non può essere 
-l'Autore dello stesso.
+Per garantire imparzialità nella verifica, chi svolge il ruolo di Verificatore deve essere libero di poter segnalare
+ogni tipo di anomalia senza subire conseguenze o influenza da altri membri del gruppo, per garantira imparzialità da
+esso. La persona che svolge l'attività di Verificatore per un determinato prodotto non può essere l'Autore dello stesso.
 
 === Product Assurance
-Il gruppo si impegna a controllare e verificare che ogni prodotto sviluppato e la relativa 
-documentazione sia conforme ai piani ed ai requisiti prima della consegna.
+Il gruppo si impegna a controllare e verificare che ogni prodotto sviluppato e la relativa documentazione sia conforme
+ai piani ed ai requisiti prima della consegna.
 
 === Process Assurance
-Il gruppo si impegna ad assicurare che i processi di fornitura, sviluppo e supporto siano 
-conformi alle norme stabilite in questo documento.
+Il gruppo si impegna ad assicurare che i processi di fornitura, sviluppo e supporto siano conformi alle norme stabilite
+in questo documento.
 
 == Standard di Prodotto
 
-=== Idoneità Funzionale 
+=== Idoneità Funzionale
 Capacità del prodotto di rispettare e soddisfare le funzioni richieste.
 
 === Affidabilità
@@ -511,268 +509,270 @@ Facilità con cui il software può essere modificato.
 == Standard di Documentazione
 
 === Standard per il formato data-ora
-Lo standard di rappresentazione della data e ora è definito nello standard *ISO 8601* 
-con il formato AAAA-MM-GG.
+Lo standard di rappresentazione della data e ora è definito nello standard *ISO 8601* con il formato AAAA-MM-GG.
 
 === Indice di Gulpase
-Standard di riferimento per la leggibilià della linguia italiana nei documenti tecnici.
-L'obiettivo minimo del gruppo è fissato a 60.
+Standard di riferimento per la leggibilià della linguia italiana nei documenti tecnici. L'obiettivo minimo del gruppo è
+fissato a 60.
 
 = Metriche di Qualità del Processo <qualità-processo>
 == Processi Primari
 
 === Fornitura
-  ==== MP01 - Earned Value
-  *Descrizione*: Misura il valore del lavoro effettivamente completato rispetto alla pianificazione.
+==== MP01 - Earned Value
+*Descrizione*: Misura il valore del lavoro effettivamente completato rispetto alla pianificazione.
 
-  *Formula:*
-  $
-    text("EV") = sum (text("costo pianificato attività completate "))
-  $
-  \
+*Formula:*
+$
+  text("EV") = sum (text("costo pianificato attività completate "))
+$
+\
 
-  ==== MP02 - Planned Value
-  *Descrizione*: Indica il valore del lavoro pianificato fino a una certa data.
+==== MP02 - Planned Value
+*Descrizione*: Indica il valore del lavoro pianificato fino a una certa data.
 
-  *Formula:*
-  $
-    text("PV") = sum (text("costo pianificato attività previste"))
-  $
+*Formula:*
+$
+  text("PV") = sum (text("costo pianificato attività previste"))
+$
 
-  \
+\
 
-  ==== MP03 - Actual Cost
-  *Descrizione*: Rappresenta il costo reale sostenuto fino a un determinato momento.
+==== MP03 - Actual Cost
+*Descrizione*: Rappresenta il costo reale sostenuto fino a un determinato momento.
 
-  *Formula:*
-  $
-    text("AC") = sum (text("costi reali sostenuti"))
-  $
+*Formula:*
+$
+  text("AC") = sum (text("costi reali sostenuti"))
+$
 
-  \
+\
 
-  ==== MP04 - Cost Performance Index (CPI)
-  *Descrizione*: Valuta l'efficienza dei costi del progetto.
+==== MP04 - Cost Performance Index (CPI)
+*Descrizione*: Valuta l'efficienza dei costi del progetto.
 
-  *Formula:*
-  $
-    text("CPI") = frac(text("EV"), text("AC"))
-  $
+*Formula:*
+$
+  text("CPI") = frac(text("EV"), text("AC"))
+$
 
-  \
+\
 
-  ==== MP05 - Schedule Performance Index (SPI)
-  *Descrizione*: Misura l'avanzamento temporale rispetto alla pianificazione.
+==== MP05 - Schedule Performance Index (SPI)
+*Descrizione*: Misura l'avanzamento temporale rispetto alla pianificazione.
 
-  *Formula:*
-  $
-    text("SPI") = frac(text("EV"), text("PV"))
-  $
+*Formula:*
+$
+  text("SPI") = frac(text("EV"), text("PV"))
+$
 
-  \
+\
 
-  ==== MP06 - Estimate At Completion (EAC)
-  *Descrizione*: Stima il costo totale previsto alla fine del progetto.
+==== MP06 - Estimate At Completion (EAC)
+*Descrizione*: Stima il costo totale previsto alla fine del progetto.
 
-  *Formula:* 
-  $
-    text("EAC") = text("AC") + frac(text("PV") - text("EV"), text("CPI"))
-  $
+*Formula:*
+$
+  text("EAC") = text("AC") + frac(text("PV") - text("EV"), text("CPI"))
+$
 
-  \
+\
 
-  ==== MP07 - Estimate To Complete (ETC)
-  *Descrizione*: Stima il costo necessario per completare il progetto a partire da un certo punto.
+==== MP07 - Estimate To Complete (ETC)
+*Descrizione*: Stima il costo necessario per completare il progetto a partire da un certo punto.
 
-  *Formula:*
-  $
-    text("ETC") = text("EAC") - text("AC")
-  $
+*Formula:*
+$
+  text("ETC") = text("EAC") - text("AC")
+$
 
-  \
+\
 
-  ==== MP08 - Time Estimate At Completion (TEAC)
-  *Descrizione*: Stima il tempo totale previsto alla fine del progetto.
+==== MP08 - Time Estimate At Completion (TEAC)
+*Descrizione*: Stima il tempo totale previsto alla fine del progetto.
 
-  *Formula:*
-  $
-    text("TEAC") = frac(text("durata pianificata"), text("SPI"))
-  $
+*Formula:*
+$
+  text("TEAC") = frac(text("durata pianificata"), text("SPI"))
+$
 
-  \
-  ==== MP09 - Budget Burn Rate
-  *Descrizione*: Misura la velocità con cui il budget viene consumato.
+\
+==== MP09 - Budget Burn Rate
+*Descrizione*: Misura la velocità con cui il budget viene consumato.
 
-  *Formula:*
-  $
-    text("Budget Burn Rate") = frac(text("AC"), text("giorni trascorsi"))
-  $
-  \
+*Formula:*
+$
+  text("Budget Burn Rate") = frac(text("AC"), text("giorni trascorsi"))
+$
+\
 
-  === Sviluppo
-  ==== MP10 - Requirements Stability Index
-  *Descrizione*: Misura la stabilità dei requisiti durante lo sviluppo.
+=== Sviluppo
+==== MP10 - Requirements Stability Index
+*Descrizione*: Misura la stabilità dei requisiti durante lo sviluppo.
 
-  *Formula:*
-  $
+*Formula:*
+$
   text("RSI") = frac(text("Requisiti modificati"), text("Requisiti totali"))
-  $
+$
 
-  == Processi di Supporto
-  === Documentazione
-  ==== MP11 - Indice di Gulpase
-  *Descrizione*: Valuta la leggibilità della documentazione tecnica.
+== Processi di Supporto
+=== Documentazione
+==== MP11 - Indice di Gulpase
+*Descrizione*: Valuta la leggibilità della documentazione tecnica.
 
-  *Formula:*
-  $
+*Formula:*
+$
   text("Indice di Gulpase") = 89.5 - frac(text("Numero di lettere"), text("Numero di parole"))times 100 + frac(text("Numero di frasi"), text("Numero di parole"))times 300
-  $
+$
 
-  \
+\
 
-  ==== MP12 - Correttezza Ortografica
-  *Descrizione*: Misura la percentuale di parole senza errori ortografici nella documentazione.
+==== MP12 - Correttezza Ortografica
+*Descrizione*: Misura la percentuale di parole senza errori ortografici nella documentazione.
 
-  *Formula:*
-  $
+*Formula:*
+$
   text("Correttezza Ortografica") = (1 - frac(text("Parole con errori"), text("Parole totali"))) times 100
-  $
+$
 
-  === Verifica
-  ==== MP13 - Code Coverage
-  *Descrizione*: Misura la percentuale di codice sorgente coperto dai test.
+=== Verifica
+==== MP13 - Code Coverage
+*Descrizione*: Misura la percentuale di codice sorgente coperto dai test.
 
-  *Formula:*
-  $
+*Formula:*
+$
   text("Code Coverage") = frac(text("Linee di codice testate"), text("Linee di codice totali")) times 100
-  $
+$
 
-  \
+\
 
-  ==== MP14 - Test Success Rate
-  *Descrizione*: Misura la percentuale di test superati rispetto al totale dei test eseguiti.
+==== MP14 - Test Success Rate
+*Descrizione*: Misura la percentuale di test superati rispetto al totale dei test eseguiti.
 
-  *Formula:*
-  $
+*Formula:*
+$
   text("Test Success Rate") = frac(text("Test superati"), text("Test eseguiti")) times 100
-  $
+$
 
-  \
+\
 
-  ==== MP15 - Test Automation Percentage
-  *Descrizione*: Misura la percentuale di test automatizzati rispetto al totale dei test eseguiti.
+==== MP15 - Test Automation Percentage
+*Descrizione*: Misura la percentuale di test automatizzati rispetto al totale dei test eseguiti.
 
-  *Formula:*
-  $
+*Formula:*
+$
   text("Test Automation Percentage") = frac(text("Test automatizzati"), text("Test totali")) times 100
-  $
+$
 
-  \
+\
 
-  ==== MP16 - Defect Discovery Rate
-  *Descrizione*: Misura la velocità con cui vengono scoperti i difetti durante la fase di verifica.
+==== MP16 - Defect Discovery Rate
+*Descrizione*: Misura la velocità con cui vengono scoperti i difetti durante la fase di verifica.
 
-  *Formula:*
-  $
+*Formula:*
+$
   text("Defect Discovery Rate") = frac(text("Difetti scoperti"), text("Tempo di verifica")) times 100
-  $
+$
 
-  === Gestione della Configurazione
-  ==== MP17 - Commit Message Quality Score
-  *Descrizione*: Valuta la qualità dei messaggi di commit in base a criteri predefiniti.
+=== Gestione della Configurazione
+==== MP17 - Commit Message Quality Score
+*Descrizione*: Valuta la qualità dei messaggi di commit in base a criteri predefiniti.
 
-  *Formula:*
-  $
+*Formula:*
+$
   text("Commit Message Quality Score") = frac(text("Commit con messaggi conformi"), text("Commit totali")) times 100
-  $
+$
 
-  === Gestione della Qualità
-  ==== MP18 - Quality Metrics Satisfied
-  *Descrizione*: Misura la percentuale di metriche di qualità soddisfatte rispetto al totale delle metriche definite.
+=== Gestione della Qualità
+==== MP18 - Quality Metrics Satisfied
+*Descrizione*: Misura la percentuale di metriche di qualità soddisfatte rispetto al totale delle metriche definite.
 
-  *Formula:*
-  $
+*Formula:*
+$
   text("Quality Metrics Satisfied") = frac(text("Metriche soddisfatte"), text("Metriche totali")) times 100
-  $
+$
 
-  \
+\
 
-  ==== MP19 - Quality Gate Pass Rate
-  *Descrizione*: Misura la percentuale di passaggio attraverso i gate di qualità definiti durante il processo di sviluppo.
+==== MP19 - Quality Gate Pass Rate
+*Descrizione*: Misura la percentuale di passaggio attraverso i gate di qualità definiti durante il processo di sviluppo.
 
-  *Formula:*
-  $
+*Formula:*
+$
   text("Quality Gate Pass Rate") = frac(text("Gate di qualità superati"), text("Gate di qualità totali")) times 100
-  $
+$
 
-  == Processi Organizzativi
-  === Gestione dei Processi
-  ==== MP20 - Time Efficiency
-  *Descrizione*: Misura l'efficienza del tempo impiegato per completare le attività pianificate.
+== Processi Organizzativi
+=== Gestione dei Processi
+==== MP20 - Time Efficiency
+*Descrizione*: Misura l'efficienza del tempo impiegato per completare le attività pianificate.
 
-  *Formula:*
-  $
+*Formula:*
+$
   text("Time Efficiency") = frac(text("Tempo pianificato"), text("Tempo effettivo")) times 100
-  $
+$
 
-  \
+\
 
-  ==== MP21 - Sprint Velocity Stability
-  *Descrizione*: Misura la stabilità della velocità di completamento degli sprint nel tempo.
+==== MP21 - Sprint Velocity Stability
+*Descrizione*: Misura la stabilità della velocità di completamento degli sprint nel tempo.
 
-  *Formula:*
-  $
+*Formula:*
+$
   text("Sprint Velocity Stability") = 1 - frac(text("Deviazione standard della velocità degli sprint"), text("Velocità media degli sprint"))
-  $
+$
 
-  \
-  ==== MP22 - Meeting Efficiency Index
-  *Descrizione*: Valuta l'efficienza delle riunioni in termini di tempo speso rispetto agli obiettivi raggiunti.
+\
+==== MP22 - Meeting Efficiency Index
+*Descrizione*: Valuta l'efficienza delle riunioni in termini di tempo speso rispetto agli obiettivi raggiunti.
 
-  *Formula:*
-  $
+*Formula:*
+$
   text("Meeting Efficiency Index") = frac(text("Tempo speso in riunioni"), text("Obiettivi raggiunti nelle riunioni"))
-  $
+$
 
-  \
+\
 
-  ==== MP23 - PR Resolution Time
-  *Descrizione*: Misura il tempo medio impiegato per risolvere le Pull Request aperte.
+==== MP23 - PR Resolution Time
+*Descrizione*: Misura il tempo medio impiegato per risolvere le Pull Request aperte.
 
-  *Formula:*
-  $
+*Formula:*
+$
   text("PR Resolution Time") = frac(text("Tempo totale per risolvere PR"), text("Numero di PR risolte"))
-  $
+$
 
 \
 = Metriche di Qualità del Prodotto <qualità-prodotto>
 == Funzionalità
 === MQ01 - Requisiti Obbligatori Soddisfatti
-*Descrizione*: Misura la percentuale di requisiti obbligatori soddisfatti rispetto al totale dei requisiti obbligatori definiti.
+*Descrizione*: Misura la percentuale di requisiti obbligatori soddisfatti rispetto al totale dei requisiti obbligatori
+definiti.
 
 *Formula:*
 $
-text("Requisiti Obbligatori Soddisfatti") = frac(text("Requisiti obbligatori verificati"), text("Requisiti obbligatori totali")) times 100
+  text("Requisiti Obbligatori Soddisfatti") = frac(text("Requisiti obbligatori verificati"), text("Requisiti obbligatori totali")) times 100
 $
 
 \
 
 === MQ02 - Requisiti Desiderabili Soddisfatti
-*Descrizione*: Misura la percentuale di requisiti desiderabili soddisfatti rispetto al totale dei requisiti desiderabili definiti.
+*Descrizione*: Misura la percentuale di requisiti desiderabili soddisfatti rispetto al totale dei requisiti desiderabili
+definiti.
 
 *Formula:*
 $
-text("Requisiti Desiderabili Soddisfatti") = frac(text("Requisiti desiderabili verificati"), text("Requisiti desiderabili totali")) times 100
+  text("Requisiti Desiderabili Soddisfatti") = frac(text("Requisiti desiderabili verificati"), text("Requisiti desiderabili totali")) times 100
 $
 
 \
 
 === MQ03 - Requisiti Opzionali Soddisfatti
-*Descrizione*: Misura la percentuale di requisiti opzionali soddisfatti rispetto al totale dei requisiti opzionali definiti.
+*Descrizione*: Misura la percentuale di requisiti opzionali soddisfatti rispetto al totale dei requisiti opzionali
+definiti.
 
 *Formula:*
 $
-text("Requisiti Opzionali Soddisfatti") = frac(text("Requisiti opzionali verificati"), text("Requisiti opzionali totali")) times 100  
+  text("Requisiti Opzionali Soddisfatti") = frac(text("Requisiti opzionali verificati"), text("Requisiti opzionali totali")) times 100
 $
 
 \
@@ -782,7 +782,7 @@ $
 
 *Formula:*
 $
-text("Requirements Test Coverage") = frac(text("Requisiti coperti da test"), text("Requisiti totali")) times 100
+  text("Requirements Test Coverage") = frac(text("Requisiti coperti da test"), text("Requisiti totali")) times 100
 $
 
 == Affidabilità
@@ -791,8 +791,8 @@ $
 
 *Formula:*
 $
-text("Branch Coverage") = frac(text("Rami coperti da test"), text("Rami totali")) times 100
-$ 
+  text("Branch Coverage") = frac(text("Rami coperti da test"), text("Rami totali")) times 100
+$
 \
 
 === MQ06 - Statement Coverage
@@ -800,7 +800,7 @@ $
 
 *Formula:*
 $
-text("Statement Coverage") = frac(text("Istruzioni coperte da test"), text("Istruzioni totali")) times 100
+  text("Statement Coverage") = frac(text("Istruzioni coperte da test"), text("Istruzioni totali")) times 100
 $
 
 \
@@ -810,7 +810,7 @@ $
 
 *Formula:*
 $
-text("Failure Density") = frac(text("Difetti rilevati"), text("Linee di codice totali")) times 1000
+  text("Failure Density") = frac(text("Difetti rilevati"), text("Linee di codice totali")) times 1000
 $
 \
 
@@ -819,16 +819,17 @@ $
 
 *Formula:*
 $
-text("MC/DC Coverage") = frac(text("Condizioni/Decisioni coperte da test"), text("Condizioni/Decisioni totali")) times 100
+  text("MC/DC Coverage") = frac(text("Condizioni/Decisioni coperte da test"), text("Condizioni/Decisioni totali")) times 100
 $
 
 == Usabilità
 === MQ09 - Time On Task
-*Descrizione*: Misura il tempo medio impiegato dagli utenti per completare un'attività specifica utilizzando il software.
+*Descrizione*: Misura il tempo medio impiegato dagli utenti per completare un'attività specifica utilizzando il
+software.
 
 *Formula:*
 $
-text("Time On Task") = frac(text("Tempo totale per completare l'attività"), text("Numero di utenti che hanno completato l'attività"))
+  text("Time On Task") = frac(text("Tempo totale per completare l'attività"), text("Numero di utenti che hanno completato l'attività"))
 $
 
 \
@@ -838,7 +839,7 @@ $
 
 *Formula:*
 $
-text("Error Rate") = frac(text("Errori commessi dagli utenti"), text("Interazioni totali degli utenti")) times 100
+  text("Error Rate") = frac(text("Errori commessi dagli utenti"), text("Interazioni totali degli utenti")) times 100
 $
 
 \
@@ -849,35 +850,37 @@ $
 
 *Formula:*
 $
-text("Response Time") = frac(text("Tempo totale di risposta"), text("Numero di richieste"))
+  text("Response Time") = frac(text("Tempo totale di risposta"), text("Numero di richieste"))
 $
 
 == Manutenibilità
 === MQ12 - Code Smells
-*Descrizione*: Misura la presenza di "code smells" nel codice sorgente, che indicano potenziali problemi di manutenibilità.
+*Descrizione*: Misura la presenza di "code smells" nel codice sorgente, che indicano potenziali problemi di
+manutenibilità.
 
 *Formula:*
 $
-text("Code Smells") = frac(text("Numero di code smells"), text("Linee di codice totali")) times 1000
+  text("Code Smells") = frac(text("Numero di code smells"), text("Linee di codice totali")) times 1000
 $
 \
 
-=== MQ13 - Coeffiecient of Coupling
+=== MQ13 - Coefficient of Coupling
 *Descrizione*: Misura il grado di accoppiamento tra i moduli del software, indicando la dipendenza tra di essi.
 
 *Formula:*
 $
-text("Coefficient of Coupling") = frac(text("Numero di dipendenze tra moduli"), text("Numero totale di moduli"))
+  text("Coefficient of Coupling") = frac(text("Numero di dipendenze tra moduli"), text("Numero totale di moduli"))
 $
 
 \
 
 === MQ14 - Cyclomatic Complexity
-*Descrizione*: Misura la complessità del codice sorgente in base al numero di percorsi indipendenti attraverso il codice.
+*Descrizione*: Misura la complessità del codice sorgente in base al numero di percorsi indipendenti attraverso il
+codice.
 
 *Formula:*
 $
-text("Cyclomatic Complexity") = text("Numero di rami") - text("Numero di nodi") + 2
+  text("Cyclomatic Complexity") = text("Numero di rami") - text("Numero di nodi") + 2
 $
 
 \
@@ -887,16 +890,17 @@ $
 
 *Formula:*
 $
-text("Code Duplication Percentage") = frac(text("Linee di codice duplicate"), text("Linee di codice totali")) times 100
+  text("Code Duplication Percentage") = frac(text("Linee di codice duplicate"), text("Linee di codice totali")) times 100
 $
 
 == Portabilità
 === MQ16 - Container Image Size
-*Descrizione*: Misura la dimensione dell'immagine del container utilizzato per distribuire il software, indicando l'efficienza della distribuzione.
+*Descrizione*: Misura la dimensione dell'immagine del container utilizzato per distribuire il software, indicando
+l'efficienza della distribuzione.
 
 *Formula:*
 $
-text("Container Image Size") = text("Dimensione dell'immagine del container in MB")
+  text("Container Image Size") = text("Dimensione dell'immagine del container in MB")
 $
 
 \
@@ -906,17 +910,18 @@ $
 
 *Formula:*
 $
-text("Application Success Rate") = frac(text("Distribuzioni riuscite"), text("Distribuzioni totali")) times 100
+  text("Application Success Rate") = frac(text("Distribuzioni riuscite"), text("Distribuzioni totali")) times 100
 $
 
 \
 
 === MQ18 - Encryption Coverage
-*Descrizione*: Misura la percentuale di dati sensibili protetti da crittografia rispetto al totale dei dati sensibili gestiti dal software.
+*Descrizione*: Misura la percentuale di dati sensibili protetti da crittografia rispetto al totale dei dati sensibili
+gestiti dal software.
 
 *Formula:*
 $
-text("Encryption Coverage") = frac(text("Dati sensibili crittografati"), text("Dati sensibili totali")) times 100
+  text("Encryption Coverage") = frac(text("Dati sensibili crittografati"), text("Dati sensibili totali")) times 100
 $
 
 = Riferimenti
