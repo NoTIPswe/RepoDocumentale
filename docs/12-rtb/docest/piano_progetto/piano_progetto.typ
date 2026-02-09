@@ -317,7 +317,7 @@
         [Alessandro \ Mazzariol], [-], [2], [-], [-], [-], [3], [*5*],
         [Leonardo \ Preo], [-], [-], [2], [-], [-], [0,5], [*2,5*],
         [Valerio \ Solito], [-], [-], [-], [-], [-], [-], [*0*],
-        [Matteo \ Mantoan], [-], [4], [-], [-], [-], [1,25], [*5,25*],
+        [Matteo \ Mantoan], [-], [4], [-], [-], [-], [1,25], [*5,5*],
         [Mario De\ Pasquale], [-], [-], [1,5], [-], [-], [1], [*2,5*],
       )
     ],
@@ -430,11 +430,11 @@
         ),
 
         [Alessandro \ Contarini], [-], [4], [3,5], [-], [-], [-], [*7,5*],
-        [Francesco \ Marcon], [-], [3,2], [1], [-], [-], [2,5], [*6,7*],
+        [Francesco \ Marcon], [-], [3,25], [1], [-], [-], [2,5], [*6,75*],
         [Alessandro \ Mazzariol], [6], [-], [-], [-], [-], [1], [*7*],
         [Leonardo \ Preo], [-], [-], [4,5], [-], [-], [3], [*7,5*],
         [Valerio \ Solito], [-], [-], [3], [-], [-], [4], [*7*],
-        [Matteo \ Mantoan], [-], [5,2], [-], [-], [-], [2,5], [*7,7*],
+        [Matteo \ Mantoan], [-], [5,25], [-], [-], [-], [2,5], [*7,75*],
         [Mario De\ Pasquale], [-], [3,5], [1,5], [-], [-], [-], [*5*],
       )
     ],
@@ -449,12 +449,12 @@
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
       [Responsabile], [51], [1530],
-      [Amministratore], [33,6], [672],
+      [Amministratore], [33,5], [670],
       [Analista], [63], [1575],
       [Progettista], [137], [3425],
       [Programmatore], [165], [2475],
       [Verificatore], [111], [1665],
-      [*Totale*], [*560,6*], [*11342*],
+      [*Totale*], [*560,5*], [*11340*],
     ),
   )<tab:Sprint2-costi>
 
@@ -544,9 +544,9 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [-], [-], [3,7], [-], [-], [4], [*7,7*],
+        [Alessandro \ Contarini], [-], [-], [3,75], [-], [-], [4], [*7,75*],
         [Francesco \ Marcon], [4], [-], [3,5], [-], [-], [-], [*7,5*],
-        [Alessandro \ Mazzariol], [-], [4,6], [-], [-], [-], [2], [*6,6*],
+        [Alessandro \ Mazzariol], [-], [4,5], [-], [-], [-], [2], [*6,5*],
         [Leonardo \ Preo], [-], [3], [5,5], [-], [-], [-], [*8,5*],
         [Valerio \ Solito], [-], [-], [7], [-], [-], [2], [*9*],
         [Matteo \ Mantoan], [-], [3], [7,25], [-], [-], [-], [*10,25*],
@@ -565,12 +565,12 @@
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
       [Responsabile], [47], [1410],
-      [Amministratore], [27,6], [552],
-      [Analista], [31,05], [776,25],
+      [Amministratore], [23], [460],
+      [Analista], [31], [775],
       [Progettista], [137], [3425],
       [Programmatore], [165], [2475],
       [Verificatore], [99], [1485],
-      [*Totale*], [*506,65*], [*10123,25*],
+      [*Totale*], [*502*], [*10030*],
     ),
   )<tab:Sprint3-costi>
 
@@ -662,7 +662,7 @@
         [Alessandro \ Contarini], [-], [-], [3], [-], [-], [3,5], [*6,5*],
         [Francesco \ Marcon], [-], [-], [4], [-], [-], [1], [*5*],
         [Alessandro \ Mazzariol], [-], [-], [9], [-], [-], [-], [*9*],
-        [Leonardo \ Preo], [3,5], [-], [-], [-], [-], [-], [*3,5*],
+        [Leonardo \ Preo], [4], [-], [-], [-], [-], [-], [*4*],
         [Valerio \ Solito], [-], [3], [4], [-], [-], [-], [*7*],
         [Matteo \ Mantoan], [-], [-], [-], [-], [-], [-], [*0*],
         [Mario De\ Pasquale], [-], [-], [3], [-], [-], [6,5], [*9,5*],
@@ -680,12 +680,12 @@
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
       [Responsabile], [43,5], [1305],
-      [Amministratore], [24,6], [492],
-      [Analista], [8,05], [201,25],
+      [Amministratore], [20], [400],
+      [Analista], [8], [200],
       [Progettista], [137], [3425],
       [Programmatore], [165], [2475],
-      [Verificatore], [94,5], [1417,5],
-      [*Totale*], [*506,65*], [*9315,75*],
+      [Verificatore], [88], [1320],
+      [*Totale*], [*461,5*], [*9125*],
     ),
   )<tab:Sprint4-costi>
 
@@ -793,13 +793,13 @@
       inset: 0.8em,
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
-      [Responsabile], [43,5], [1095],
-      [Amministratore], [13,6], [272],
-      [Analista], [8,05], [201,25],
+      [Responsabile], [36], [1080],
+      [Amministratore], [9], [180],
+      [Analista], [8], [200],
       [Progettista], [137], [3425],
       [Programmatore], [134], [2010],
-      [Verificatore], [81,5], [1222,5],
-      [*Totale*], [*417,65*], [*8225,75*],
+      [Verificatore], [75], [1125],
+      [*Totale*], [*399*], [*8020*],
     ),
   )<tab:Sprint5-costi>
 

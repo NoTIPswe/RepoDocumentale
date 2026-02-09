@@ -1,5 +1,12 @@
 title: Piano di Progetto
 changelog:
+  - version: "0.5.1"
+    date: "2026-02-09"
+    authors:
+      - Alessandro Mazzariol
+    verifier: TBD
+    description: >
+      Sistemate tabelle ore
   - version: "0.5.0"
     date: "2026-02-04"
     authors:
