@@ -117,7 +117,7 @@
         (
           str(c.version),
           c.date,
-          table.cell(colspan: 2, c.approver, align: center),
+          table.cell(colspan: 2, c.approver + "\n(responsabile)", align: center),
           "Approvazione per ingresso in baseline " + c.baseline,
         )
       })
