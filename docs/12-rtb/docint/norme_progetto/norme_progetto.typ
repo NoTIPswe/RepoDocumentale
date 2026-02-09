@@ -298,7 +298,6 @@ linguistiche, garantendo una comunicazione uniforme sia tra i membri del gruppo 
     [*Redattore*], [Amministratore],
     [*Destinatari*], [M31, NoTIP, Prof. Vardanega, Prof. Cardin],
     [*Uso*], [Esterno],
-    // bookmark - siamo sicuri???
   ),
 )
 

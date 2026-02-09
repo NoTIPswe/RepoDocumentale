@@ -145,8 +145,7 @@ anche leggibile e manutenibile.
       name: "Codifica",
       desc: [
         Scrittura del codice sorgente rispettando le convenzioni di nomenclatura definite. Il codice deve essere
-        auto-esplicativo; i commenti in inglese devono chiarire il "perché" di una scelta complessa, non il "cosa" fa il
-        codice.
+        auto-esplicativo; eventuali commenti in inglese devono chiarire una sezione complessa.
       ],
     ),
     (

@@ -63,7 +63,7 @@ Qualifica*.
 
 #activity(
   title: "Esecuzione della Verifica Documentale",
-  roles: (ROLES.ver, ROLES.aut),
+  roles: (ROLES.ver,),
   norms: ("analisi-statica", "uso-notipdo"),
   input: [Documento in stato di "Verifica" (PR aperta)],
   output: [Documento approvato o Richiesta modifiche],
@@ -76,14 +76,10 @@ Qualifica*.
     (
       name: "Ispezione",
       desc: [Il Verificatore effettua una lettura completa del documento (o delle differenze nella PR) verificando:
-        - Chiarezza espositiva (Indice Gulpease);
+        - Chiarezza espositiva; 
         - Coerenza con quanto riportato all'interno del changelog della modifica;
         - Assenza di errori residui non rilevati dagli strumenti automatici.
       ],
     ),
   ),
 )
-
-
-// Bookmark - Inserire la verifica del codice, probabilmente dopo l'RTB
-

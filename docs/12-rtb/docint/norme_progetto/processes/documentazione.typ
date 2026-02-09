@@ -24,7 +24,7 @@ svolgimento del progetto.
     placement: bottom,
   ) <ciclo_vita_docs>
 
-  Il ciclo di vita di un documento prevede tre stati fondamentali, mappati sul branch in cui si trova il file:
+  Il ciclo di vita di un documento prevede tre stati fondamentali mappati sul branch in cui si trova il file:
 
   - *In lavorazione* (Branch di feature): Il documento è in fase di stesura o modifica. La versione è provvisoria;
   - *Verificato* (Branch `main`): Il documento ha superato la revisione tecnica (PR) ed è stato integrato. È stabile ma
@@ -162,8 +162,8 @@ svolgimento del progetto.
       velocità di lettura. L'obiettivo è l'efficienza operativa.],
 
     [*Esterno - Tecnico* \ (Committente/Professori)],
-    [*Formale e Professionale.* Uso rigoroso della terminologia standard. Evitare slang interno. Le frasi devono essere
-      complete, non ambigue e oggettive. In caso di ambiguità, porre i termini nel Glossario. Privilegiare la forma
+    [*Formale e Professionale.* Uso rigoroso della terminologia standard. Le frasi devono essere
+      complete, oggettive e non ambigue. In caso di ambiguità, porre i termini nel Glossario. Privilegiare la forma
       impersonale (es. "Si è scelto di...") o la prima persona plurale ("Abbiamo analizzato...").],
 
     [*Esterno - Utente* \ (Manuali utente)],

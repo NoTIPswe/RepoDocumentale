@@ -12,10 +12,6 @@ difetti, ponendo maggiore attenzione nei confronti del processo rispetto al prod
 #norm(
   title: "Modello PDCA",
   label: <modello-pdca>,
-  rationale: [
-    *Perché PDCA?* In un contesto Agile con sprint brevi, è fondamentale iterare non solo sul prodotto ma anche sul
-    metodo di lavoro.
-  ],
 )[
   Il gruppo adotta il modello iterativo *Plan-Do-Check-Act* per la gestione della qualità:
   - *Plan*: Pianificare gli obiettivi di qualità e i processi per raggiungerli (es. definizione delle metriche nel Piano
@@ -53,7 +49,7 @@ difetti, ponendo maggiore attenzione nei confronti del processo rispetto al prod
 
 #activity(
   title: "Definizione e Evoluzione del Sistema di Qualità",
-  roles: (ROLES.amm, ROLES.resp),
+  roles: (ROLES.amm,),
   norms: ("modello-pdca", "gestione-metriche"),
   input: [Avvio progetto, esiti delle Retrospective, non conformità rilevate],
   output: [Norme di Progetto revisionate, pipeline di verifica aggiornate],
@@ -65,15 +61,15 @@ difetti, ponendo maggiore attenzione nei confronti del processo rispetto al prod
     ),
     (
       name: "Automazione dei Controlli",
-      desc: [Predisporre verifiche automatiche cercando di prevenire gli errori alla fonte, rendendo quindi impossibile
-        il mancato rispetto delle norme.],
+      desc: [Predisporre verifiche automatiche cercando di prevenire gli errori alla fonte, riducendo quindi le possibilità di
+        un mancato rispetto delle norme.],
     ),
   ),
 )
 
 #activity(
   title: "Accertamento della Qualità del Prodotto",
-  roles: (ROLES.ver, ROLES.amm),
+  roles: (ROLES.ver,),
   norms: ("gestione-metriche", "strumenti-monitoraggio"),
   input: [Prodotti in rilascio (Codice, Documenti), Report di Verifica],
   output: [Report di Qualità del Prodotto, Non conformità rilevate],
@@ -102,8 +98,8 @@ difetti, ponendo maggiore attenzione nei confronti del processo rispetto al prod
   input: [Dati di processo (Jira, Git logs), Svolgimento delle attività],
   output: [Report di Qualità del Processo, Azioni correttive],
   rationale: [
-    Attività prevista dallo standard (Process Assurance). Si assicura che il team stia lavorando secondo le regole
-    definite nelle Norme di Progetto (es. uso corretto di Jira, rispetto delle scadenze).
+    Attività prevista dallo standard. Si assicura che il team stia lavorando secondo le regole
+    definite nelle Norme di Progetto.
   ],
   procedure: (
     (

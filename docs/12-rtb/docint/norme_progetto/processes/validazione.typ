@@ -15,8 +15,6 @@ definiti nell'Analisi dei Requisiti.
 #norm(
   title: "Tracciamento dei Requisiti",
   label: <tracciamento-requisiti>,
-  rationale: [Il tracciamento è l'unico strumento per dimostrare oggettivamente la copertura del capitolato, evitando
-    sia mancanze che l'implementazione di funzionalità non richieste.],
 )[
   Per garantire la completezza del prodotto, deve essere mantenuta una "tracciabilità bidirezionale" nella Matrice di
   Tracciamento:
@@ -59,5 +57,3 @@ definiti nell'Analisi dei Requisiti.
     ),
   ),
 )
-
-// Bookmark - andare ad ampliare questa sezione

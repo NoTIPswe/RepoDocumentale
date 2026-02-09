@@ -101,7 +101,7 @@ progetto.
 
 #activity(
   title: "Identificazione della Configurazione",
-  roles: (ROLES.amm,),
+  roles: (ROLES.amm, ROLES.resp),
   norms: ("config-items", "struttura-repo-docs", "uso-notipdo"),
   input: [Nuovi artefatti da produrre],
   output: [Struttura di directory conforme],
@@ -129,8 +129,6 @@ progetto.
   norms: ("jira-config", "branching-commit-docs", "uso-notipdo"),
   input: [Necessità di modifica (Task o Bug)],
   output: [Configurazione aggiornata su `main`],
-  rationale: [L'uso di check automatici (`pr-check-n-build`) impedisce l'integrazione di configurazioni non valide o
-    incomplete, permettendo di seguire il principio di "correttezza per costruzione"],
   procedure: (
     (
       name: "Creazione Task",
@@ -197,24 +195,12 @@ progetto.
   norms: ("baseline-def", "jira-config"),
   input: [Rilascio di Baseline imminente],
   output: [Matrice di Tracciamento, Report di Audit],
-  rationale: [
-    Questa attività ha l'obiettivo di garantire che il prodotto sia *efficiente* che *sufficiente*, evitando
-    l'introduzione di funzionalità non richieste.
-  ],
   procedure: (
     (
       name: "Audit dei Configuration Item",
       desc: [
         Verifica l'integrità e la presenza fisica di tutti i componenti previsti per il rilascio, assicurandosi che ogni
         elemento sia correttamente versionato e coerente con lo stato descritto.
-      ],
-    ),
-    (
-      name: "Verifica della Tracciabilità",
-      desc: [
-        Validazione della copertura funzionale tramite il *Tracciamento dei Requisiti*: ogni Requisito deve risultare
-        collegato ad un test superato. Il risultato viene formalizzato nella Matrice di Tracciamento per certificare
-        l'aderenza alle aspettative.
       ],
     ),
   ),
