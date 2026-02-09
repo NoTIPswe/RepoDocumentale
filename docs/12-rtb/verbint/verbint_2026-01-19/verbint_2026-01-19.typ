@@ -30,6 +30,7 @@
   - Analisi delle attività svolte e discussione criticità emerse nel precedente Sprint;
   - Pianificazione operativa del prossimo Sprint;
   - Discussione e pianificazione dell'organizzazione del gruppo;
+  - Discussione sullo stato di avanzamento della documentazione.
 
 ][
   #base-report.report-point(
