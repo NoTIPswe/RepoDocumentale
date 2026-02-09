@@ -4,58 +4,24 @@ on:
   push:
     branches:
       - main
-      - setup-gulpase-action
+      # - setup-gulpase-action
   workflow_dispatch:
 
 jobs:
-  jira-update:
+  gulpease-update: 
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Code checkout
+    steps: 
+      - name: Checkout code
         uses: actions/checkout@v4
+      
+      - name: Setup enviroment
+        uses: ./.github/actions/setup-docs-env
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run Gulpase and Extract Index
-        id: extract_index
-        run: |
-          # Esegui gulp e salva tutto l'output (inclusi i log di sistema)
-          npx gulp > output.txt 2>&1
-          
-          # Debug: mostriamo il contenuto per sicurezza nel log di GitHub
-          echo "--- Contenuto output.txt ---"
-          cat output.txt
-          echo "----------------------------"
-          
-          # Estrazione mirata usando RESULT_INDEX=
-          # Usiamo 'sed' invece di 'grep' per essere più sicuri nella cattura del solo numero
-          VALUE=$(sed -n 's/.*RESULT_INDEX=\([0-9.]*\).*/\1/p' output.txt | tail -1)
-          
-          if [ -z "$VALUE" ]; then
-            echo "ERRORE: Nonostante il log sia presente, il parsing non ha estratto il valore."
-            exit 1
-          fi
-          
-          echo "gulp_val=$VALUE" >> $GITHUB_OUTPUT
-          echo "Index found: $VALUE"
-
-      - name: Update Jira Custom Field
-        run: |
-          curl --request PUT \
-          --url "https://${{ secrets.JIRA_DOMAIN }}/rest/api/3/issue/${{ secrets.JIRA_ISSUE_KEY }}" \
-          --user "${{ secrets.JIRA_EMAIL }}:${{ secrets.JIRA_API_TOKEN }}" \
-          --header 'Accept: application/json' \
-          --header 'Content-Type: application/json' \
-          --data '{
-            "fields": {
-              "${{ secrets.JIRA_CUSTOM_FIELD_ID }}": ${{ steps.extract_index.outputs.gulp_val }}
-            }
-          }' \
-          --fail
+      - name: Build all baseline docs
+        run: notipdo build baseline
+      
+      - name: Calulate Gulpease index
+        run: notipdo metrics gulpease
+      
+      # Add the actual update of the values in Jira
