@@ -28,7 +28,7 @@
 
   Ordine del giorno:
   - Analisi delle attività svolte e discussione criticità emerse nel precedente Sprint;
-  - Pianificazione operativa del prossimo Sprint, ed in particolare suddivisione dei compiti per la realizzazione del PoC;
+  - Pianificazione operativa del prossimo Sprint;
   - Discussione e previsione del periodo di consegna per RTB, anche in relazione agli esami universitari dei vari componenti del gruppo;
 
 ][
