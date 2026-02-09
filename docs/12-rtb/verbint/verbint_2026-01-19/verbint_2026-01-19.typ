@@ -29,7 +29,7 @@
   Ordine del giorno:
   - Analisi delle attività svolte e discussione criticità emerse nel precedente Sprint;
   - Pianificazione operativa del prossimo Sprint;
-  - Discussione e previsione del periodo di consegna per RTB, anche in relazione agli esami universitari dei vari componenti del gruppo;
+  - Discussione e previsione del periodo di consegna per RTB, in relazione agli esami universitari dei vari componenti del gruppo e al lavoro mancante da svolgere;
 
 ][
   #base-report.report-point(
