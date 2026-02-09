@@ -4,7 +4,7 @@
 #let metadata = yaml(sys.inputs.meta-path)
 
 #base-report.apply-base-verbale(
-  date: "2026-01-06",
+  date: "2026-01-19",
   scope: base-report.INTERNAL_SCOPE,
   front-info: (
     (
