@@ -1,23 +1,20 @@
 title: Verbale Interno 2025-10-17
 changelog:
-  - version: "1.0.1"
-    date: "2025-11-05"
-    authors:
-      - Francesco Marcon
-    verifier: Matteo Mantoan
-    description: >
-      Divisione in punti: discussione, decisioni, azioni
-  - version: "1.0.0"
-    date: "2025-10-25"
-    authors:
-      - Francesco Marcon
-    verifier: Mario De Pasquale
-    description: >
-      Versione stabile verbale 
-  - version: "0.0.1"
-    date: "2025-10-25"
-    authors:
-      - Francesco Marcon
-    verifier: Mario De Pasquale
-    description: >
-      Prima bozza del verbale
+- version: 1.0.1
+  date: '2025-11-05'
+  authors:
+  - Francesco Marcon
+  verifier: Matteo Mantoan
+  description: |
+    Divisione in punti: discussione, decisioni, azioni
+- version: 1.0.0
+  date: '2025-10-25'
+  approver: Matteo Mantoan
+  baseline: Candidatura
+- version: 0.0.1
+  date: '2025-10-25'
+  authors:
+  - Francesco Marcon
+  verifier: Mario De Pasquale
+  description: |
+    Prima bozza del verbale

@@ -1,25 +1,20 @@
 title: Verbale Interno 2025-12-12
 changelog:
-  - version: "1.0.0"
-    date: "2025-12-12"
-    authors:
-      - Alessandro Mazzariol
-    verifier: Valerio Solito
-    description: >
-      Prima versione stabile
-
-  - version: "0.0.2"
-    date: "2025-12-12"
-    authors:
-      - Alessandro Mazzariol
-    verifier: Valerio Solito
-    description: >
-      Aggiustamenti vari
-
-  - version: "0.0.1"
-    date: "2025-12-12"
-    authors:
-      - Alessandro Mazzariol
-    verifier: Valerio Solito
-    description: >
-      Prima stesura bozza verbale
+- version: 1.0.0
+  date: '2025-12-12'
+  approver: Alessandro Mazzariol
+  baseline: RTB
+- version: 0.0.2
+  date: '2025-12-12'
+  authors:
+  - Alessandro Mazzariol
+  verifier: Valerio Solito
+  description: |
+    Aggiustamenti vari
+- version: 0.0.1
+  date: '2025-12-12'
+  authors:
+  - Alessandro Mazzariol
+  verifier: Valerio Solito
+  description: |
+    Prima stesura bozza verbale

@@ -1,49 +1,41 @@
 title: Verbale Esterno 2025-10-24 (M31)
 changelog:
-  - version: "1.0.1"
-    date: "2025-11-25"
-    authors:
-      - Matteo Mantoan
-    verifier: Francesco Marcon
-    description: >
-      Minori aggiustamenti stilistici
-
-  - version: "1.0.0"
-    date: "2025-11-25"
-    authors:
-      - Alessandro Contarini
-    verifier: Matteo Mantoan
-    description: >
-      Versione stabile verbale
-  
-  - version: "0.2.0"
-    date: "2025-11-25"
-    authors:
-      - Alessandro Contarini
-    verifier: Matteo Mantoan
-    description: >
-      Ristrutturazione contenuto
-
-  - version: "0.1.1"
-    date: "2025-11-19"
-    authors:
-      - Alessandro Contarini
-    verifier: Matteo Mantoan
-    description: >
-      Correzione errore ortografico
-
-  - version: "0.1.0"
-    date: "2025-11-19"
-    authors:
-      - Alessandro Contarini
-    verifier: Matteo Mantoan
-    description: >
-      Redazione contenuto del verbale
-
-  - version: "0.0.1"
-    date: "2025-11-19"
-    authors:
-      - Alessandro Contarini
-    verifier: Matteo Mantoan
-    description: >
-      Prima versione del Verbale Esterno post incontro con l'azienda proponente M31
+- version: 1.0.1
+  date: '2025-11-25'
+  authors:
+  - Matteo Mantoan
+  verifier: Francesco Marcon
+  description: |
+    Minori aggiustamenti stilistici
+- version: 1.0.0
+  date: '2025-11-25'
+  approver: Alessandro Contarini
+  baseline: RTB
+- version: 0.2.0
+  date: '2025-11-25'
+  authors:
+  - Alessandro Contarini
+  verifier: Matteo Mantoan
+  description: |
+    Ristrutturazione contenuto
+- version: 0.1.1
+  date: '2025-11-19'
+  authors:
+  - Alessandro Contarini
+  verifier: Matteo Mantoan
+  description: |
+    Correzione errore ortografico
+- version: 0.1.0
+  date: '2025-11-19'
+  authors:
+  - Alessandro Contarini
+  verifier: Matteo Mantoan
+  description: |
+    Redazione contenuto del verbale
+- version: 0.0.1
+  date: '2025-11-19'
+  authors:
+  - Alessandro Contarini
+  verifier: Matteo Mantoan
+  description: |
+    Prima versione del Verbale Esterno post incontro con l'azienda proponente M31

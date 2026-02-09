@@ -23,7 +23,7 @@ class ApprovementChangelogEntry:
     version: Version
     date: date
     approver: str
-    baseline: Literal["RTB", "PB"]
+    baseline: Literal["Candidatura", "RTB", "PB"]
 
 
 ChangelogEntry = Union[RegularChangelogEntry, ApprovementChangelogEntry]

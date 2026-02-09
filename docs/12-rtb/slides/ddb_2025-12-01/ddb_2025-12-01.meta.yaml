@@ -1,17 +1,13 @@
 title: Diario di Bordo 2025-12-01
 changelog:
-  - version: "1.0.0"
-    date: "2025-12-01"
-    authors:
-      - Mario De Pasquale
-    verifier: Leonardo Preo
-    description: >
-      Prima versione stabile
-
-  - version: "0.0.1"
-    date: "2025-12-01"
-    authors:
-      - Mario De Pasquale
-    verifier: Leonardo Preo
-    description: >
-      Creazione del diario di Bordo
+- version: 1.0.0
+  date: '2025-12-01'
+  approver: Alessandro Mazzariol
+  baseline: RTB
+- version: 0.0.1
+  date: '2025-12-01'
+  authors:
+  - Mario De Pasquale
+  verifier: Leonardo Preo
+  description: |
+    Creazione del diario di Bordo

@@ -1,16 +1,12 @@
 title: Verbale Esterno 2026-01-14 (M31)
 changelog:
-  - version: "1.0.0"
-    date: "2026-01-30"
-    authors:
-      - Leonardo Preo
-    verifier: Valerio Solito
-    description: >
-      Fix spelling errors e approvazione aziendale
-  - version: "0.0.1"
-    date: "2026-01-23"
-    authors:
-      - Leonardo Preo
-    verifier: Alessandro Mazzariol
-    description: >
-      Prima bozza del verbale
+- version: 1.0.0
+  date: '2026-01-30'
+  approver: Mario De Pasquale
+  baseline: RTB
+- version: 0.0.1
+  date: '2026-01-23'
+  authors:
+  - Leonardo Preo
+  verifier: Alessandro Mazzariol
+  description: Prima bozza del verbale
