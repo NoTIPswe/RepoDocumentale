@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - setup-gulpase-action
   workflow_dispatch:
 
 jobs:
@@ -25,13 +26,20 @@ jobs:
       - name: Run Gulpase and Extract Index
         id: extract_index
         run: |
-          npx gulpase > output.txt
+          # Esegui gulp e salva tutto l'output (inclusi i log di sistema)
+          npx gulp > output.txt 2>&1
           
-          VALUE=$(grep -oE '[0-9]+(\.[0-9]+)?%' output.txt | tail -1)
+          # Debug: mostriamo il contenuto per sicurezza nel log di GitHub
+          echo "--- Contenuto output.txt ---"
+          cat output.txt
+          echo "----------------------------"
+          
+          # Estrazione mirata usando RESULT_INDEX=
+          # Usiamo 'sed' invece di 'grep' per essere più sicuri nella cattura del solo numero
+          VALUE=$(sed -n 's/.*RESULT_INDEX=\([0-9.]*\).*/\1/p' output.txt | tail -1)
           
           if [ -z "$VALUE" ]; then
-            echo "No value found in Gulpase output"
-            cat output.txt
+            echo "ERRORE: Nonostante il log sia presente, il parsing non ha estratto il valore."
             exit 1
           fi
           
@@ -41,11 +49,13 @@ jobs:
       - name: Update Jira Custom Field
         run: |
           curl --request PUT \
-          --url 'https://${{ secrets.JIRA_DOMAIN }}/rest/api/3/issue/${{ secrets.JIRA_ISSUE_KEY }}' \
-          --user '${{ secrets.JIRA_EMAIL }}:${{ secrets.JIRA_API_TOKEN }}' \
+          --url "https://${{ secrets.JIRA_DOMAIN }}/rest/api/3/issue/${{ secrets.JIRA_ISSUE_KEY }}" \
+          --user "${{ secrets.JIRA_EMAIL }}:${{ secrets.JIRA_API_TOKEN }}" \
+          --header 'Accept: application/json' \
           --header 'Content-Type: application/json' \
-          --data "{
-            \"fields\": {
-              \"${{ secrets.JIRA_CUSTOM_FIELD_ID }}\": \"${{ steps.extract_index.outputs.gulp_val }}\"
+          --data '{
+            "fields": {
+              "${{ secrets.JIRA_CUSTOM_FIELD_ID }}": ${{ steps.extract_index.outputs.gulp_val }}
             }
-          }"
+          }' \
+          --fail

@@ -1,0 +1,32 @@
+{
+  "name": "notipswe.github.io",
+  "version": "1.0.0",
+  "description": "Repository che contiene sito e documentazione del Gruppo 12 del primo lotto dell'A.A 2025/2026, per il corso di Ingegneria del Software (SWE) dell'Università degli Studi di Padova.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulpase": "node ./bin/gulpase.js"
+  },
+  "bin": {
+    "gulpase": "./bin/gulpase.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NoTIPswe/NoTIPswe.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/NoTIPswe/NoTIPswe.github.io/issues"
+  },
+  "homepage": "https://github.com/NoTIPswe/NoTIPswe.github.io#readme",
+  "devDependencies": {
+    "gulp": "^5.0.1",
+    "gulp-cli": "^3.1.0"
+  }
+}
