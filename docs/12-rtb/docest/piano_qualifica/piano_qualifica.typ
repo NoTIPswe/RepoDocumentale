@@ -1200,18 +1200,24 @@
   lineare, mentre la curva delle ore effettivamente completate evidenzia l’andamento reale del progetto.
 
   Dall’osservazione del grafico si nota che il lavoro effettivamente completato cresce nel tempo, ma con un andamento
-  non perfettamente allineato alla pianificazione ideale. In particolare, sono presenti periodi di crescita ridotta
-  alternati a incrementi più marcati, indice di una distribuzione del lavoro non uniforme tra le varie iterazioni. La
-  distanza tra la curva reale e quella ideale indica un avanzamento inferiore rispetto a quanto pianificato, suggerendo
-  un rallentamento temporaneo nello sviluppo.
+  non perfettamente allineato alla pianificazione ideale. In particolare, NoTIP riconosce la presenza di periodi di crescita 
+  ridotta, alternati a incrementi più marcati, indice di una distribuzione del lavoro non uniforme tra le varie iterazioni.
 
   == Velocity Chart
-  IMMAGINE DA METTERE PRIMA DELLA RTB Il grafico di Velocity rappresenta il numero di ore di lavoro completate in
+  IMMAGINE DA METTERE PRIMA DELLA RTB.
+  Il grafico di Velocity rappresenta il numero di ore di lavoro completate in
   ciascun intervallo temporale, mettendolo a confronto con la velocità media calcolata sulle iterazioni precedenti. Le
   barre mostrano il lavoro effettivamente completato in ogni sprint, mentre la linea di velocità media fornisce
   un’indicazione del ritmo di sviluppo complessivo del team.
+  (COMMENTO DA AGGIUNGERE IN BASE A QUENTO RISCONTRATO A FINE PERIODO)
 
-  == Altre misurazioni da aggiungere !
+  == Indice di Gulpease
+  IMMAGINE DA METTERE PRIMA DELLA RTB.
+  L’indice di Gulpease è un indicatore di leggibilità per testi in lingua italiana che misura la facilità di comprensione 
+  in base alla lunghezza di frasi e parole, restituendo un valore compreso tra 0 e 100.
+  NoTIP si impegna a mantenere per la propria documentazione un valore dell’indice di Gulpease non inferiore a 60, al fine 
+  di garantire un adeguato livello di comprensibilità dei documenti prodotti.
+
 
   = Valutazioni per l'automiglioramento
   Al fine di perseguire un miglioramento continuo durante lo svolgimento del progetto, è opportuno effettuare
