@@ -62,7 +62,7 @@ def _send_to_jira(value: float):
     # Payload per aggiornare il custom field
     payload = {
         "fields": {
-            field_id: value / 100
+            field_id: value
         }
     }
 
