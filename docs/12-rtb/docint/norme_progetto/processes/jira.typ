@@ -27,11 +27,14 @@ Di seguito si elencano le varie norme legate all'utilizzo di Jira.
   label: <identificazione-jira>,
   level: 5,
   rationale: [
-    Sequenzialità degli ID: La creazione contestuale delle sub-task garantisce che esse ricevano identificativi immediatamente successivi alla Task Madre (es. Madre `NT-220` $->$ Esecuzione `NT-221`, Verifica `NT-222`), preservando l'ordine logico e visivo nel backlog.
+    Sequenzialità degli ID: La creazione contestuale delle sub-task garantisce che esse ricevano identificativi
+    immediatamente successivi alla Task Madre (es. Madre `NT-220` $->$ Esecuzione `NT-221`, Verifica `NT-222`),
+    preservando l'ordine logico e visivo nel backlog.
   ],
 )[
-  Ogni attività censita su Jira è rappresentata da una *Issue* dotata di una chiave univoca assegnata automaticamente dal sistema (es. `NT-XXX`).
-  Al fine di garantire una corretta rendicontazione temporale e la qualità del prodotto, ogni Task Madre deve essere scomposta in due sub-task distinte:
+  Ogni attività censita su Jira è rappresentata da una *Issue* dotata di una chiave univoca assegnata automaticamente
+  dal sistema (es. `NT-XXX`). Al fine di garantire una corretta rendicontazione temporale e la qualità del prodotto,
+  ogni Task Madre deve essere scomposta in due sub-task distinte:
 
   - *Sub-task di Esecuzione:* Utilizzata per tracciare le ore produttive impiegate nello svolgimento dell'attività.
   - *Sub-task di Verifica:* Utilizzata per tracciare le ore impiegate nelle attività di controllo.
@@ -42,12 +45,15 @@ Di seguito si elencano le varie norme legate all'utilizzo di Jira.
   level: 5,
   label: <workflow-jira>,
   rationale: [
-    Sincronizzazione Automatica: L'evoluzione della Task Madre è guidata automaticamente dallo stato delle sue Sub-task (Esecuzione e Verifica), garantendo l'allineamento tra il lavoro svolto e lo stato riportato nel Project Management. 
+    Sincronizzazione Automatica: L'evoluzione della Task Madre è guidata automaticamente dallo stato delle sue Sub-task
+    (Esecuzione e Verifica), garantendo l'allineamento tra il lavoro svolto e lo stato riportato nel Project Management.
     \
-    Quality Gate: Il workflow impone un vincolo bloccante: nessuna attività può raggiungere lo stato _Completata_ senza aver superato con successo la fase di verifica formale, garantendo la qualità del prodotto in uscita.
+    Quality Gate: Il workflow impone un vincolo bloccante: nessuna attività può raggiungere lo stato _Completata_ senza
+    aver superato con successo la fase di verifica formale, garantendo la qualità del prodotto in uscita.
   ],
 )[
-  Il ciclo di vita di ogni attività (*Task Madre*) è governato da una macchina a stati finiti che ne traccia l'evoluzione dalla presa in carico fino al rilascio. Il diagramma di riferimento è riportato in @fig-workflow.
+  Il ciclo di vita di ogni attività (*Task Madre*) è governato da una macchina a stati finiti che ne traccia
+  l'evoluzione dalla presa in carico fino al rilascio. Il diagramma di riferimento è riportato in @fig-workflow.
 
   #figure(
     image(height: 15%, "../assets/workflow.png"),

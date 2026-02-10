@@ -162,9 +162,9 @@ svolgimento del progetto.
       velocità di lettura. L'obiettivo è l'efficienza operativa.],
 
     [*Esterno - Tecnico* \ (Committente/Professori)],
-    [*Formale e Professionale.* Uso rigoroso della terminologia standard. Le frasi devono essere
-      complete, oggettive e non ambigue. In caso di ambiguità, porre i termini nel Glossario. Privilegiare la forma
-      impersonale (es. "Si è scelto di...") o la prima persona plurale ("Abbiamo analizzato...").],
+    [*Formale e Professionale.* Uso rigoroso della terminologia standard. Le frasi devono essere complete, oggettive e
+      non ambigue. In caso di ambiguità, porre i termini nel Glossario. Privilegiare la forma impersonale (es. "Si è
+      scelto di...") o la prima persona plurale ("Abbiamo analizzato...").],
 
     [*Esterno - Utente* \ (Manuali utente)],
     [*Semplice e Accessibile.* Evitare tecnicismi. Spiegare i concetti complessi con esempi pratici. Il tono deve essere

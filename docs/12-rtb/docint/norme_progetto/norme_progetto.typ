@@ -385,49 +385,68 @@ verranno assegnati uno o più ruoli in base ai seguenti principi:
 - *Assegnazione basata sulle competenze*: per velocizzare il progresso del progetto, nelle fasi iniziali è possibile che
   ai componenti del gruppo vengano assegnati ruoli nei quali hanno più esperienza, dando quindi priorità a chi possiede
   competenze pregresse in determinati task. Nonostante ciò, tutti i componenti del gruppo dovranno svolgere, a parità di
-  ruolo, un numero simile di ore, come riportato nella #link("https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/dichiarazione_impegni.pdf")[Dichiarazione di Impegni].
+  ruolo, un numero simile di ore, come riportato nella #link(
+    "https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/dichiarazione_impegni.pdf",
+  )[Dichiarazione di Impegni].
 
 === Coordinamento
-Una parte essenziale del progetto risiede nelle capacità di coordinamento e gestione del gruppo, sia verso l'interno che verso
-l'esterno. Per svolgere al meglio queste attività è necessario tenere riunioni (interne ed esterne) e avere canali di
-comunicazione solidi e ben collaudati.
+Una parte essenziale del progetto risiede nelle capacità di coordinamento e gestione del gruppo, sia verso l'interno che
+verso l'esterno. Per svolgere al meglio queste attività è necessario tenere riunioni (interne ed esterne) e avere canali
+di comunicazione solidi e ben collaudati.
 
 ==== Riunioni <riunioni>
 
 Le riunioni rappresentano i momenti formali di sincronizzazione e aggiornamento del team.
 
-- *Riunioni interne*: si svolgono periodicamente (di norma all'apertura e alla chiusura di ogni Sprint) al fine di coordinare le attività, verificare lo stato di avanzamento dei lavori e gestire la rotazione dei ruoli. Questi incontri consentono al Responsabile di monitorare la situazione del gruppo, mitigare eventuali criticità e preparare le interazioni con gli stakeholder esterni.
+- *Riunioni interne*: si svolgono periodicamente (di norma all'apertura e alla chiusura di ogni Sprint) al fine di
+  coordinare le attività, verificare lo stato di avanzamento dei lavori e gestire la rotazione dei ruoli. Questi
+  incontri consentono al Responsabile di monitorare la situazione del gruppo, mitigare eventuali criticità e preparare
+  le interazioni con gli stakeholder esterni.
 
-- *Riunioni esterne*: seguono una pianificazione periodica, coincidendo con i ricevimenti dei docenti e gli incontri con l'azienda proponente _M31_. In queste occasioni il gruppo, rappresentato dal Responsabile, espone l'avanzamento del progetto e risolve dubbi o ambiguità sui requisiti.
+- *Riunioni esterne*: seguono una pianificazione periodica, coincidendo con i ricevimenti dei docenti e gli incontri con
+  l'azienda proponente _M31_. In queste occasioni il gruppo, rappresentato dal Responsabile, espone l'avanzamento del
+  progetto e risolve dubbi o ambiguità sui requisiti.
 
-Oltre alla pianificazione ordinaria, è prevista la convocazione di riunioni *straordinarie* qualora emergano necessità impreviste o l'urgenza di chiarimenti immediati per il team.
+Oltre alla pianificazione ordinaria, è prevista la convocazione di riunioni *straordinarie* qualora emergano necessità
+impreviste o l'urgenza di chiarimenti immediati per il team.
 
-A garanzia della tracciabilità del processo, i temi trattati e le decisioni assunte devono essere sistematicamente documentati tramite appositi *verbali* (interni o esterni).
+A garanzia della tracciabilità del processo, i temi trattati e le decisioni assunte devono essere sistematicamente
+documentati tramite appositi *verbali* (interni o esterni).
 
-Per i dettagli operativi sugli strumenti utilizzati per la gestione e verbalizzazione delle riunioni, si rimanda alla sezione @infrastruttura.
+Per i dettagli operativi sugli strumenti utilizzati per la gestione e verbalizzazione delle riunioni, si rimanda alla
+sezione @infrastruttura.
 
 = Comunicazioni <comunicazioni>
 
-La gestione dei flussi comunicativi è strutturata per garantire efficienza sia nel coordinamento interno che nelle relazioni con gli stakeholder.
+La gestione dei flussi comunicativi è strutturata per garantire efficienza sia nel coordinamento interno che nelle
+relazioni con gli stakeholder.
 
 Per la *comunicazione interna* vengono adottati principalmente due canali:
-- Discord: designato per le attività sincrone, incluse le riunioni formali di inizio e fine Sprint, sfruttando le funzionalità di condivisione audio/video.
-- Telegram: utilizzato per il coordinamento operativo giornaliero, notifiche rapide e comunicazioni a carattere informale.
+- Discord: designato per le attività sincrone, incluse le riunioni formali di inizio e fine Sprint, sfruttando le
+  funzionalità di condivisione audio/video.
+- Telegram: utilizzato per il coordinamento operativo giornaliero, notifiche rapide e comunicazioni a carattere
+  informale.
 
-Per la *comunicazione esterna*, il canale ufficiale di riferimento è la posta elettronica. Il Responsabile gestisce i contatti con l'azienda proponente e i docenti avvalendosi dell'indirizzo istituzionale del gruppo: #link("mailto:notip.swe@gmail.com")[#raw("notip.swe@gmail.com")].
+Per la *comunicazione esterna*, il canale ufficiale di riferimento è la posta elettronica. Il Responsabile gestisce i
+contatti con l'azienda proponente e i docenti avvalendosi dell'indirizzo istituzionale del gruppo: #link(
+  "mailto:notip.swe@gmail.com",
+)[#raw("notip.swe@gmail.com")].
 
 Per le specifiche tecniche relative agli strumenti citati, si rimanda alla sezione @infrastruttura.
 
 
 == Infrastruttura <infrastruttura>
 
-Il processo di Infrastruttura ha lo scopo di definire, predisporre e mantenere l'ambiente tecnico necessario per abilitare e supportare l'esecuzione di tutti gli altri processi di progetto.
+Il processo di Infrastruttura ha lo scopo di definire, predisporre e mantenere l'ambiente tecnico necessario per
+abilitare e supportare l'esecuzione di tutti gli altri processi di progetto.
 
 === Attività del processo
 La gestione dell'infrastruttura si articola in tre attività principali:
 - *Implementazione*: selezione, installazione e messa in opera degli strumenti.
-- *Configurazione*: impostazione dei parametri e personalizzazione degli strumenti in base alle esigenze del team e delle normative.
-- *Manutenzione*: monitoraggio, aggiornamento e risoluzione di eventuali malfunzionamenti per garantire la continuità operativa.
+- *Configurazione*: impostazione dei parametri e personalizzazione degli strumenti in base alle esigenze del team e
+  delle normative.
+- *Manutenzione*: monitoraggio, aggiornamento e risoluzione di eventuali malfunzionamenti per garantire la continuità
+  operativa.
 
 === Implementazione e Strumenti
 Per supportare le attività di gestione, sviluppo e coordinamento, il gruppo ha adottato il seguente set di strumenti:
@@ -450,8 +469,8 @@ Di seguito si trovano le informazioni relative a ciascun strumento utilizzato.
 
 ==== Telegram
 Telegram è un programma di messaggistica utilizzato dal Gruppo per aggiornarsi giornalmente sui progressi del Progetto e
-per qualsiasi tipo di comunicazione, nel
-quale è anche possibile fissare i messaggi più importanti in un determinato periodo.
+per qualsiasi tipo di comunicazione, nel quale è anche possibile fissare i messaggi più importanti in un determinato
+periodo.
 
 ==== Google Mail
 Google Mail è il servizio di posta elettronico che il Team utilizza per gestire le comunicazioni esterne al Gruppo. A
@@ -463,17 +482,19 @@ ricevute i prossimi incontri a cui il Team dovrà partecipare.
 
 ==== Microsoft Teams
 
-La piattaforma Microsoft Teams è lo strumento adottato per lo svolgimento degli incontri a distanza con l'azienda proponente _M31_.
+La piattaforma Microsoft Teams è lo strumento adottato per lo svolgimento degli incontri a distanza con l'azienda
+proponente _M31_.
 
 ==== Zoom
 
-Zoom è la piattaforma designata per i ricevimenti e la discussione dei *Diari di Bordo* con il docente referente (Prof. Vardanega).
-Al fine di garantire l'indipendenza operativa dai singoli membri, il gruppo utilizza un'utenza condivisa, registrata direttamente con l'indirizzo e-mail ufficiale del progetto.
+Zoom è la piattaforma designata per i ricevimenti e la discussione dei *Diari di Bordo* con il docente referente (Prof.
+Vardanega). Al fine di garantire l'indipendenza operativa dai singoli membri, il gruppo utilizza un'utenza condivisa,
+registrata direttamente con l'indirizzo e-mail ufficiale del progetto.
 
 === Manutenzione
 A causa del continuo avanzamento del progetto, il gruppo è consapevole che l’infrastruttura subirà nel tempo cambiamenti
-e potrebbe causare possibili problemi. Per questo spetta all’Amministratore il compito della Manutenzione, aggiornando le
-funzionalità qualora errori o cambiamenti lo rendano necessario.
+e potrebbe causare possibili problemi. Per questo spetta all’Amministratore il compito della Manutenzione, aggiornando
+le funzionalità qualora errori o cambiamenti lo rendano necessario.
 
 == Processo di Miglioramento
 In conformità alla norma *ISO/IEC 12207:1995*, il Processo di Miglioramento ha lo scopo di stabilire, valutare e

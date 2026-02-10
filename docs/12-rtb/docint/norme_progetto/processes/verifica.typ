@@ -76,7 +76,7 @@ Qualifica*.
     (
       name: "Ispezione",
       desc: [Il Verificatore effettua una lettura completa del documento (o delle differenze nella PR) verificando:
-        - Chiarezza espositiva; 
+        - Chiarezza espositiva;
         - Coerenza con quanto riportato all'interno del changelog della modifica;
         - Assenza di errori residui non rilevati dagli strumenti automatici.
       ],

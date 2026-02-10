@@ -61,8 +61,8 @@ difetti, ponendo maggiore attenzione nei confronti del processo rispetto al prod
     ),
     (
       name: "Automazione dei Controlli",
-      desc: [Predisporre verifiche automatiche cercando di prevenire gli errori alla fonte, riducendo quindi le possibilità di
-        un mancato rispetto delle norme.],
+      desc: [Predisporre verifiche automatiche cercando di prevenire gli errori alla fonte, riducendo quindi le
+        possibilità di un mancato rispetto delle norme.],
     ),
   ),
 )
@@ -98,8 +98,8 @@ difetti, ponendo maggiore attenzione nei confronti del processo rispetto al prod
   input: [Dati di processo (Jira, Git logs), Svolgimento delle attività],
   output: [Report di Qualità del Processo, Azioni correttive],
   rationale: [
-    Attività prevista dallo standard. Si assicura che il team stia lavorando secondo le regole
-    definite nelle Norme di Progetto.
+    Attività prevista dallo standard. Si assicura che il team stia lavorando secondo le regole definite nelle Norme di
+    Progetto.
   ],
   procedure: (
     (

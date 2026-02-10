@@ -95,7 +95,7 @@ accepted_words:
   - WebSocket
   - ESLint
   - Golang
-
+  - gitignore
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK

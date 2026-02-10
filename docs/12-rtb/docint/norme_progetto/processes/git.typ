@@ -2,9 +2,10 @@
 
 ==== Git <git-tool>
 
-Git è lo strumento adottato dal gruppo per gestire il versionamento.
-Esso funge da "Single Source of Truth" per l'intero ciclo di vita del prodotto, garantendo l'integrità, la tracciabilità e la disponibilità storica di ogni artefatto.
-L'utilizzo di Git è strettamente vincolato all'hosting remoto su *GitHub*, che funge da repository centrale autoritativo.
+Git è lo strumento adottato dal gruppo per gestire il versionamento. Esso funge da "Single Source of Truth" per l'intero
+ciclo di vita del prodotto, garantendo l'integrità, la tracciabilità e la disponibilità storica di ogni artefatto.
+L'utilizzo di Git è strettamente vincolato all'hosting remoto su *GitHub*, che funge da repository centrale
+autoritativo.
 
 ===== Norme di Configurazione
 
@@ -13,8 +14,9 @@ L'utilizzo di Git è strettamente vincolato all'hosting remoto su *GitHub*, che 
   label: <git-config-env>,
   level: 5,
 )[
-  Ogni membro del team è tenuto a configurare il proprio ambiente locale prima del primo commit, rispettando i seguenti vincoli:
-  
+  Ogni membro del team è tenuto a configurare il proprio ambiente locale prima del primo commit, rispettando i seguenti
+  vincoli:
+
   Il ramo principale deve essere denominato `main` (e non `master`) per conformità con le policy del repository remoto.
 ]
 
@@ -23,15 +25,17 @@ L'utilizzo di Git è strettamente vincolato all'hosting remoto su *GitHub*, che 
   label: <git-ignore-policy>,
   level: 5,
   rationale: [
-    Il versionamento di file binari generati, dipendenze scaricate o file di configurazione locali appesantisce il repository e crea conflitti non risolvibili.
+    Il versionamento di file binari generati, dipendenze scaricate o file di configurazione locali appesantisce il
+    repository e crea conflitti non risolvibili.
   ],
 )[
-  È severamente vietato effettuare commit di file derivati o specifici dell'ambiente locale. Il repository deve contenere nella radice un file `.gitignore` condiviso che escluda tassativamente:
+  È severamente vietato effettuare commit di file derivati o specifici dell'ambiente locale. Il repository deve
+  contenere nella radice un file `.gitignore` condiviso che escluda tassativamente:
   - Cartelle di build e dist (es. `bin/`, `build/`, `dist/`);
   - Dipendenze esterne (es. `node_modules/`, `venv/`, `target/`);
-  - File di configurazione dell'IDE (es. `.vscode/`, `.idea/`);
+  - File di configurazione (es. `.vscode/`, `.idea/`);
   - Credenziali o file `.env`.
-  
+
   _Nota:_ Non utilizzare mai `git add --force` per aggirare queste regole senza previa approvazione del Responsabile.
 ]
 
