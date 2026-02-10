@@ -1,10 +1,16 @@
 #import "lib.typ": ROLES, activity, cite-norm, norm
 
+==== GitHub <github-platform>
 
-==== GitHub
-GitHub è invece il prodotto che permette di memorizzare su ciascun dispositivo remoto, la repository Git. Questo
-strumento permette anche a ciascun membro di lavorare in maniera asincrona al progetto, garantendo che non ci siano
-conflitti fra i documenti. Grazie a questo strumento il team inoltre riesce a verificare correttamente il lavoro svolto
-tramite le Pull-request, il cui funzionamento è descritto nella @verifica-doc. Inoltre la struttura della directory è
-definita nella @struttura-repo-docs. Anche per quanto riguarda il branching e i commit sono già stati descritti nella
-@branching-commit-docs e nella sezione #cite-norm("integrazione-git")
+GitHub è la piattaforma selezionata per la gestione del repository Git e il supporto allo sviluppo collaborativo.
+Esso permette la sincronizzazione del lavoro tra i membri del team, garantendo la disponibilità e l'integrità degli artefatti di progetto.
+
+===== Funzionalità e Riferimenti Normativi
+
+L'adozione di GitHub è trasversale a diversi processi di supporto. Di seguito si riporta la mappatura delle funzionalità della piattaforma sulle norme di progetto:
+
+- *Collaborazione e Verifica (Pull Request):* GitHub abilita il lavoro asincrono tramite il meccanismo delle *Pull Request* (PR). Le PR costituiscono il punto di controllo obbligatorio (Quality Gate) per la revisione del codice e la risoluzione dei conflitti prima dell'integrazione nel ramo stabile. Il processo operativo di verifica tramite PR è dettagliato nella sezione @verifica-doc.
+
+- *Organizzazione degli Artefatti:* La struttura delle directory ospitate sulla piattaforma non è arbitraria, ma deve rispecchiare fedelmente l'architettura informativa definita in @struttura-repo-docs.
+
+- *Gestione della Configurazione:* Le politiche di interazione con il repository remoto, incluse le strategie di *branching* e la sintassi dei *commit messages*, devono conformarsi rigorosamente a quanto stabilito in @branching-commit-docs e nella norma di integrazione #cite-norm("integrazione-git").

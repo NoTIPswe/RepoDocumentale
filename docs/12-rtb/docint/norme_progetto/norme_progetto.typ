@@ -378,101 +378,101 @@ verranno assegnati uno o più ruoli in base ai seguenti principi:
 - *Sprint planning*: stima del tempo richiesto per ruolo dai task in base agli obbiettivi dello sprint, dipendenti dalla
   componente del progetto in sviluppo;
 - *Disponibilità personale*: numero di ore produttive che la persona potrà dedicare allo sprint, generalmente tra le 7 e
-  le 15;
+  le 15 produttive;
 - *Monitoraggio ore produttive*: il Responsabile aggiorna la rotazione dei ruoli. Valuterà il numero di ore ricoperte
   dalla persona per ogni ruolo in passato, monitorando il rispetto dei principi qui elencati e ripartendo eventuali
   carichi distribuiti non equamente;
 - *Assegnazione basata sulle competenze*: per velocizzare il progresso del progetto, nelle fasi iniziali è possibile che
   ai componenti del gruppo vengano assegnati ruoli nei quali hanno più esperienza, dando quindi priorità a chi possiede
   competenze pregresse in determinati task. Nonostante ciò, tutti i componenti del gruppo dovranno svolgere, a parità di
-  ruolo, un numero simile di ore, come riportato nella `Dichiarazione di Impegni`.
+  ruolo, un numero simile di ore, come riportato nella #link("https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/dichiarazione_impegni.pdf")[Dichiarazione di Impegni].
 
 === Coordinamento
-Una parte essenziale del progetto risiede nelle capacità di coordinamento del gruppo, sia verso l'interno che verso
-l'esterno. Per svolgere al meglio queste attività è necessario svolgere riunioni (interne ed esterne) e avere canali di
-comunicazione dedicati a ciò.
+Una parte essenziale del progetto risiede nelle capacità di coordinamento e gestione del gruppo, sia verso l'interno che verso
+l'esterno. Per svolgere al meglio queste attività è necessario tenere riunioni (interne ed esterne) e avere canali di
+comunicazione solidi e ben collaudati.
 
-==== Riunioni
-Le riunioni rappresentano momenti di sincronizzazione del team.
-- Le riunioni interne si svolgono periodicamente (generalmente all'inizio e alla fine di ogni Sprint) per coordinare le
-  attività, verificare lo stato del lavoro, e per ruotare correttamente i ruoli. Queste riunioni permettono al
-  Responsabile di avere una panoramica aggiornata della situazione del gruppo, così da poter gestire eventuali criticità
-  e anche le riunioni esterne, in cui dovrà rappresentare il gruppo.
-- Le riunioni esterne si svolgono anch'esse in maniera periodica, poiché coincidono con i Diari di Bordo e con gli
-  incontri con l'azienda proponente _M31_. In questi casi il gruppo, tramite il responsabile, potrà esporre e chiarire i
-  dubbi riscontrati.
+==== Riunioni <riunioni>
 
-Sia le riunioni esterne che interne si svolgono periodicamente, ma potrebbe anche capitare di svolgerne altre in casi
-speciali in cui il team abbia bisogno di immediato chiarimento riguardo ad alcuni dubbi.
+Le riunioni rappresentano i momenti formali di sincronizzazione e aggiornamento del team.
 
-In ogni caso, i temi trattati nelle riunioni devono essere sempre riassunti tramite gli appositi verbali, che possono
-essere per l'appunto verbali interni o esterni.
+- *Riunioni interne*: si svolgono periodicamente (di norma all'apertura e alla chiusura di ogni Sprint) al fine di coordinare le attività, verificare lo stato di avanzamento dei lavori e gestire la rotazione dei ruoli. Questi incontri consentono al Responsabile di monitorare la situazione del gruppo, mitigare eventuali criticità e preparare le interazioni con gli stakeholder esterni.
 
-Per ulteriori informazioni sugli strumenti utilizzati per le Riunioni interne ed esterne si consiglia di leggere la
-@infrastruttura dedicata all'Infrastruttura.
+- *Riunioni esterne*: seguono una pianificazione periodica, coincidendo con i ricevimenti dei docenti e gli incontri con l'azienda proponente _M31_. In queste occasioni il gruppo, rappresentato dal Responsabile, espone l'avanzamento del progetto e risolve dubbi o ambiguità sui requisiti.
 
-==== Comunicazioni
-Per quanto riguarda la Comunicazione interna il gruppo ha scelto di utilizzare Telegram e Discord. Le riunioni più
-importanti come quelle di inizio o fine sprint vengono sempre tenute su Discord. Per comunicare giornalmente di tutto
-ciò che concerne il progetto e anche per comunicazioni informali si utilizzerà Telegram. Invece per le comunicazioni
-esterne, il Responsabile utilizzerà la Mail del gruppo (#link("mailto:notip.swe@gmail.com")[#raw(
-  "notip.swe@gmail.com",
-)]) per contattare l'azienda proponente o i professori. Per ulteriori informazioni sugli strumenti utilizzati si
-consiglia la lettura della @infrastruttura , che descrive l'Infrastruttura.
+Oltre alla pianificazione ordinaria, è prevista la convocazione di riunioni *straordinarie* qualora emergano necessità impreviste o l'urgenza di chiarimenti immediati per il team.
+
+A garanzia della tracciabilità del processo, i temi trattati e le decisioni assunte devono essere sistematicamente documentati tramite appositi *verbali* (interni o esterni).
+
+Per i dettagli operativi sugli strumenti utilizzati per la gestione e verbalizzazione delle riunioni, si rimanda alla sezione @infrastruttura.
+
+= Comunicazioni <comunicazioni>
+
+La gestione dei flussi comunicativi è strutturata per garantire efficienza sia nel coordinamento interno che nelle relazioni con gli stakeholder.
+
+Per la *comunicazione interna* vengono adottati principalmente due canali:
+- Discord: designato per le attività sincrone, incluse le riunioni formali di inizio e fine Sprint, sfruttando le funzionalità di condivisione audio/video.
+- Telegram: utilizzato per il coordinamento operativo giornaliero, notifiche rapide e comunicazioni a carattere informale.
+
+Per la *comunicazione esterna*, il canale ufficiale di riferimento è la posta elettronica. Il Responsabile gestisce i contatti con l'azienda proponente e i docenti avvalendosi dell'indirizzo istituzionale del gruppo: #link("mailto:notip.swe@gmail.com")[#raw("notip.swe@gmail.com")].
+
+Per le specifiche tecniche relative agli strumenti citati, si rimanda alla sezione @infrastruttura.
 
 
 == Infrastruttura <infrastruttura>
-Il processo di Infrastruttura è responsabile dell'implementazione, della creazione e della manutenzione di tutti i
-componenti necessari per permettere tutti gli altri processi.
 
-=== Attività dell'Infrastruttura
-Il processo di Infrastruttura si suddivide in 3 attività:
-- Implementazione
-- Configurazione
-- Manutenzione
+Il processo di Infrastruttura ha lo scopo di definire, predisporre e mantenere l'ambiente tecnico necessario per abilitare e supportare l'esecuzione di tutti gli altri processi di progetto.
 
-=== Implementazione
-Per le attività di gestione e coordinamento, il gruppo ha deciso di adottare alcuni strumenti, ciascuno dei quali è
-stato scelto per specifici motivi. Ecco ciascuno degli strumenti utilizzati dal team:
-- Jira
-- Git
-- GitHub
-- Typst
-- Discord
-- Telegram
-- Google Mail
-- Microsoft Teams
-- Zoom
+=== Attività del processo
+La gestione dell'infrastruttura si articola in tre attività principali:
+- *Implementazione*: selezione, installazione e messa in opera degli strumenti.
+- *Configurazione*: impostazione dei parametri e personalizzazione degli strumenti in base alle esigenze del team e delle normative.
+- *Manutenzione*: monitoraggio, aggiornamento e risoluzione di eventuali malfunzionamenti per garantire la continuità operativa.
+
+=== Implementazione e Strumenti
+Per supportare le attività di gestione, sviluppo e coordinamento, il gruppo ha adottato il seguente set di strumenti:
+
+- Jira;
+- Git e GitHub;
+- Discord;
+- Telegram;
+- Google Mail;
+- Microsoft Teams e Zoom.
 
 === Configurazione
 Di seguito si trovano le informazioni relative a ciascun strumento utilizzato.
+
 #include "processes/jira.typ"
 #include "processes/git.typ"
 #include "processes/GitHub.typ"
 #include "processes/typst.typ"
 #include "processes/discord.typ"
+
 ==== Telegram
 Telegram è un programma di messaggistica utilizzato dal Gruppo per aggiornarsi giornalmente sui progressi del Progetto e
-per qualsiasi tipo di comunicazione fra i membri del gruppo. Per riunire tutti i membri è stato creato un Gruppo, nel
+per qualsiasi tipo di comunicazione, nel
 quale è anche possibile fissare i messaggi più importanti in un determinato periodo.
 
 ==== Google Mail
 Google Mail è il servizio di posta elettronico che il Team utilizza per gestire le comunicazioni esterne al Gruppo. A
 tal proposito è stata creata una mail dedicata al team chiamata #link("mailto:notip.swe@gmail.com")[#raw(
   "notip.swe@gmail.com",
-)]. All'interno di Google Mail è anche collegato un Calendario che registra in maniera autonoma a partire dalle Mail
+)]. \
+All'interno di Google Mail è anche collegato un Calendario che registra in maniera autonoma a partire dalle Mail
 ricevute i prossimi incontri a cui il Team dovrà partecipare.
 
 ==== Microsoft Teams
-Microsoft Teams viene utilizzato per le riunioni esterne con l'azienda proponente _M31_.
+
+La piattaforma Microsoft Teams è lo strumento adottato per lo svolgimento degli incontri a distanza con l'azienda proponente _M31_.
 
 ==== Zoom
-Zoom invece viene utilizzato per l'attività dei Diari di Bordo con il Prof. Vardanega. In questo caso è stato anche
-creato un account zoom del gruppo collegato alla Google Mail.
+
+Zoom è la piattaforma designata per i ricevimenti e la discussione dei *Diari di Bordo* con il docente referente (Prof. Vardanega).
+Al fine di garantire l'indipendenza operativa dai singoli membri, il gruppo utilizza un'utenza condivisa, registrata direttamente con l'indirizzo e-mail ufficiale del progetto.
 
 === Manutenzione
 A causa del continuo avanzamento del progetto, il gruppo è consapevole che l’infrastruttura subirà nel tempo cambiamenti
-e potrebbe causare possibili problemi. Per questo starà all’Amministratore il compito della Manutenzione, aggiornando le
+e potrebbe causare possibili problemi. Per questo spetta all’Amministratore il compito della Manutenzione, aggiornando le
 funzionalità qualora errori o cambiamenti lo rendano necessario.
 
 == Processo di Miglioramento
@@ -482,8 +482,7 @@ ottimizzare i processi utilizzati durante l'intero ciclo di vita del software.
 === Attività previste
 Il Processo di Miglioramento si articola in:
 
-- * Inizializzazione del Processo*, dove si stabiliranno i processi
-organizzativi e la relativa documentazione.
+- * Inizializzazione del Processo*, dove si stabiliranno i processi organizzativi e la relativa documentazione.
 - *Valutazione del Processo*, dove si stabilirà una procedura per valutare e documentare l'efficacia e l'efficienza dei
   processi.
 - *Miglioramento del Processo*, dove si stabilirà come migliorare un processo giudicato inefficace ed inefficiente,
@@ -560,6 +559,8 @@ Lo standard di rappresentazione della data e ora è definito nello standard *ISO
 Standard di riferimento per la leggibilià della linguia italiana nei documenti tecnici. L'obiettivo minimo del gruppo è
 fissato a 60.
 
+#pagebreak()
+
 = Metriche di Qualità del Processo <qualità-processo>
 == Processi Primari
 
@@ -569,7 +570,7 @@ fissato a 60.
 
 *Formula:*
 $
-  text("EV") = sum (text("costo pianificato attività completate "))
+  text("EV") = sum (text("costo pianificato attività completate"))
 $
 \
 
@@ -786,7 +787,8 @@ $
   text("PR Resolution Time") = frac(text("Tempo totale per risolvere PR"), text("Numero di PR risolte"))
 $
 
-\
+#pagebreak()
+
 = Metriche di Qualità del Prodotto <qualità-prodotto>
 == Funzionalità
 === MQ01 - Requisiti Obbligatori Soddisfatti
@@ -968,6 +970,8 @@ gestiti dal software.
 $
   text("Encryption Coverage") = frac(text("Dati sensibili crittografati"), text("Dati sensibili totali")) times 100
 $
+
+#pagebreak()
 
 = Riferimenti
 

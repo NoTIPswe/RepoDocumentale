@@ -20,46 +20,37 @@ attività e il codice prodotto.
 
 ===== Norme di Configurazione
 
-Di seguito si elencano le varie norme legate al funzionamento di Jira.
+Di seguito si elencano le varie norme legate all'utilizzo di Jira.
+
 #norm(
   title: "Identificazione",
-  label: <identificazione>,
+  label: <identificazione-jira>,
   level: 5,
-  rationale: [Per quanto riguarda la chiave univoca delle Sub-task, esse vengono assegnate con i numeri immediatamente
-    successivi al numero della Issue madre, quindi continuando l'esempio con NT-220, la Sub-task di Esecuzione sarà la
-    221 e quella di Verifica la 222.
+  rationale: [
+    Sequenzialità degli ID: La creazione contestuale delle sub-task garantisce che esse ricevano identificativi immediatamente successivi alla Task Madre (es. Madre `NT-220` $->$ Esecuzione `NT-221`, Verifica `NT-222`), preservando l'ordine logico e visivo nel backlog.
   ],
 )[
-  Ogni attività su Jira è una Issue con una chiave univoca (es. NT-220) e tale chiave viene assegnata automaticamente
-  dal Sistema di Jira. Ogni task viene suddivisa in due Sub-task, una di Esecuzione ed una di Verifica:
-  - Nell'Esecuzione vengono rendicontate le ore produttive che il membro del gruppo ha svolto per portare a termine la
-    Task.
-  - Nella Verifica un membro diverso dal precedente rendiconterà il tempo impiegato per la verifica del lavoro svolto.
+  Ogni attività censita su Jira è rappresentata da una *Issue* dotata di una chiave univoca assegnata automaticamente dal sistema (es. `NT-XXX`).
+  Al fine di garantire una corretta rendicontazione temporale e la qualità del prodotto, ogni Task Madre deve essere scomposta in due sub-task distinte:
+
+  - *Sub-task di Esecuzione:* Utilizzata per tracciare le ore produttive impiegate nello svolgimento dell'attività.
+  - *Sub-task di Verifica:* Utilizzata per tracciare le ore impiegate nelle attività di controllo.
 ]
 
 #norm(
   title: "Workflow e Ciclo di vita",
   level: 5,
-  label: <workflow>,
+  label: <workflow-jira>,
   rationale: [
-    Per quanto riguarda le Sub-task, l'avvio e la chiusura delle Sub-task di Esecuzione innescano le transizioni verso
-    'In Execution' e 'To Verify' della task madre.
-
-    Invece per le Sub-task di Verifica, fanno passare la task madre da 'In Verification' con l'avvio della verifica, a
-    'Completata' nel caso in cui la verifica non richiede modifiche e si chiude la sub-task, e a 'In Execution' se
-    invece c'è bisogno di apportare modifiche.
-
-    Questo meccanismo impone che una task non possa risultare "Completata" se non ha superato obbligatoriamente la fase
-    di verifica.
+    Sincronizzazione Automatica: L'evoluzione della Task Madre è guidata automaticamente dallo stato delle sue Sub-task (Esecuzione e Verifica), garantendo l'allineamento tra il lavoro svolto e lo stato riportato nel Project Management. 
+    \
+    Quality Gate: Il workflow impone un vincolo bloccante: nessuna attività può raggiungere lo stato _Completata_ senza aver superato con successo la fase di verifica formale, garantendo la qualità del prodotto in uscita.
   ],
 )[
-  Il ciclo di vita di ogni attività principale (*Task Madre*) è governato da un workflow che ne traccia l'evoluzione
-  dalla presa in carico fino al completamento. Gli stati ammessi e le transizioni vincolanti sono rappresentati nel
-  diagramma di riferimento @fig-workflow.
+  Il ciclo di vita di ogni attività (*Task Madre*) è governato da una macchina a stati finiti che ne traccia l'evoluzione dalla presa in carico fino al rilascio. Il diagramma di riferimento è riportato in @fig-workflow.
 
-  #v(0.5em)
   #figure(
-    image(height: 14.1%, "../assets/workflow.png"),
+    image(height: 15%, "../assets/workflow.png"),
     caption: [Workflow operativo della Task Madre],
   ) <fig-workflow>
   #v(0.5em)
@@ -121,14 +112,9 @@ Di seguito si elencano le varie norme legate al funzionamento di Jira.
   Jira riceve aggiornamenti diretti dal repository remoto. Per garantire il funzionamento del tracciamento, è necessario
   rispettare rigorosamente la nomenclatura:
   - *Branching:* Il nome di ogni branch deve contenere l'id del Task (es. NT-67-norme-di-progetto-v-1-0-0)
-  - *Commit Message:* I messaggi devono seguire lo standard *Conventional Commits* e includere l'id del task nella
-    seguente maniera:
-  feature(auth): implementazione login NT-100.
-
-  oppure
-
-  fix(api): correzione timeout endpoint [NT-102].
-
+  - *Commit Message:* I messaggi devono seguire lo standard #link(
+      "https://www.conventionalcommits.org/en/v1.0.0/",
+    )[*Conventional Commits*] e includere l'id del task.
 ]
 
 #norm(
@@ -154,7 +140,7 @@ Di seguito si elencano le varie norme legate al funzionamento di Jira.
   level: 5,
   title: "Creazione e Pianificazione",
   roles: (ROLES.aut, ROLES.ver),
-  norms: ("identificazione", "gestione-risorse"),
+  norms: ("identificazione-jira", "gestione-risorse"),
   input: [Attività da svolgere da trasformare in Task],
   output: [Task correttamente realizzate e assegnate allo Sprint Backlog],
   procedure: (
@@ -201,7 +187,7 @@ Di seguito si elencano le varie norme legate al funzionamento di Jira.
   title: "Ciclo di Avanzamento",
   level: 5,
   roles: (ROLES.aut, ROLES.ver),
-  norms: ("workflow", "integrazione-git"),
+  norms: ("workflow-jira", "integrazione-git"),
   input: [Task in stato '*Da Completare*'],
   output: [Task in stato '*Completata*'],
   procedure: (
