@@ -18,6 +18,9 @@ jobs:
       - name: Setup environment
         uses: ./.github/actions/setup-docs-env
 
+      - name: Install dependencies
+        run: pip install requests
+
       - name: Build all baseline docs
         run: notipdo build baseline
       
