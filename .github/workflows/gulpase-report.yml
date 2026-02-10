@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - setup-gulpase-action
   workflow_dispatch:
 
 jobs:
