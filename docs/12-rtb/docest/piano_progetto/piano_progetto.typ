@@ -819,8 +819,8 @@
   === Sprint 6
   Inizio: *04-02-2026* \
   Fine prevista: *17-02-2026* \
-  Fine reale: \
-  Giorni di ritardo: \
+  Fine reale: *17-02-2026*\
+  Giorni di ritardo: 0 \
 
   ==== Informazioni generali e attività pianificate
   Per lo Sprint 6 il Team si è prefissato di ultimare il PoC, e di portare in avanti le norme di progetto e il piano di
