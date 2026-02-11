@@ -823,7 +823,7 @@
   il Glossario, aggiungendo tutti i nuovi termini utilizzati. L'obiettivo è quello di ultimare e validare tutti i
   documenti (verbali, NdP, AdR, PdQ, PdP) finora stilati in vista della RTB. A causa dei varie impegni dei componenti
   del gruppo, causati principalmente dallo studio per alcuni esami, le ore dedicate sono sotto la media, ma comunque
-  sufficienti per comnpletare tutte le attività sopra citate.
+  sufficienti per completare tutte le attività sopra citate.
 
   ==== Possibili rischi
   Il gruppo pensa sia possibile che possano presentarsi i seguenti rischi:
@@ -919,8 +919,8 @@
   )<tab:Sprint6-costi>
 
   ==== Rischi incontrati
-  Come preventivato, a causa degli impegni universitari dei componenenti del Team, è stato difficile incastrare le ore
-  di lavoro; tuttavia, sono state raggiunte le ore previste e tutti gli obiettivi prefissati sono stati raggiunti.
+  Come preventivato, a causa degli impegni universitari dei componenti del Team, è stato difficile incastrare le ore di
+  lavoro; tuttavia, sono state raggiunte le ore previste e tutti gli obiettivi prefissati sono stati raggiunti.
   ==== Retrospettiva
   Nello Sprint 6 il Team si è concentrato principalmente sull'ultimare il PoC e sull'aggiornare i documenti in vista
   della RTB. Nonostante le ore dedicate siano state inferiori alla media, sono stati raggiunti tutti gli obiettivi
