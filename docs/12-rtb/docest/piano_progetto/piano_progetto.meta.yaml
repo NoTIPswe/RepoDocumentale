@@ -1,5 +1,12 @@
 title: Piano di Progetto
 changelog:
+  - version: "0.6.0"
+    date: "2026-02-11"
+    authors:
+      - Leonardo Preo
+    verifier: TBD
+    description: >
+      Completamento ed inserimento ore Sprint 6
   - version: "0.5.1"
     date: "2026-02-09"
     authors:

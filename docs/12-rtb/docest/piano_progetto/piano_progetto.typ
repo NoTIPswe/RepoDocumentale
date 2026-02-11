@@ -820,7 +820,10 @@
   ==== Informazioni generali e attività pianificate
   Per lo Sprint 6 il Team si è prefissato di ultimare il PoC, e di portare in avanti le norme di progetto e il piano di
   qualifica, affinché siano pronti per la RTB. Una volta che i documenti saranno stati ultimati verrà anche aggiornato
-  il Glossario, aggiungendo tutti i nuovi termini utilizzati.
+  il Glossario, aggiungendo tutti i nuovi termini utilizzati. L'obiettivo è quello di ultimare e validare tutti i
+  documenti (verbali, NdP, AdR, PdQ, PdP) finora stilati in vista della RTB. A causa dei varie impegni dei componenti
+  del gruppo, causati principalmente dallo studio per alcuni esami, le ore dedicate sono sotto la media, ma comunque
+  sufficienti per comnpletare tutte le attività sopra citate.
 
   ==== Possibili rischi
   Il gruppo pensa sia possibile che possano presentarsi i seguenti rischi:
@@ -829,4 +832,97 @@
   - RT2: Rischio tecnologico legato ad errori di programmazione.
 
   ==== Ore previste
+  #figure(
+    numbering: "1",
+    caption: [Sprint 6 - Ore previste per componente],
+    [
+      #set text(size: 9pt)
+
+      #table(
+        columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+        align: (left, center, center, center, center, center, center, center),
+        inset: 0.6em,
+
+        table.header(
+          [],
+          [*Responsabile*],
+          [*Amministratore*],
+          [*Analista*],
+          [*Progettista*],
+          [*Programmatore*],
+          [*Verificatore*],
+          [*Totale*],
+        ),
+
+        [Alessandro \ Contarini], [2], [-], [-], [-], [-], [2], [*4*],
+        [Francesco \ Marcon], [-], [-], [-], [-], [1], [5], [*6*],
+        [Alessandro \ Mazzariol], [1], [1], [-], [-], [-], [3], [*5*],
+        [Leonardo \ Preo], [-], [2], [-], [-], [3], [-], [*5*],
+        [Valerio \ Solito], [5], [-], [-], [-], [-], [-], [*5*],
+        [Matteo \ Mantoan], [-], [-], [-], [-], [-], [6], [*6*],
+        [Mario De\ Pasquale], [2], [1], [-], [-], [-], [2], [*5*],
+      )
+    ],
+  )<tab:Sprint6-ore-previste>
+
+  ==== Ore effettive
+  #figure(
+    numbering: "1",
+    caption: [Sprint 6 - Ore effettive per componente],
+    [
+      #set text(size: 9pt)
+
+      #table(
+        columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+        align: (left, center, center, center, center, center, center, center),
+        inset: 0.6em,
+
+        table.header(
+          [],
+          [*Responsabile*],
+          [*Amministratore*],
+          [*Analista*],
+          [*Progettista*],
+          [*Programmatore*],
+          [*Verificatore*],
+          [*Totale*],
+        ),
+
+        [Alessandro \ Contarini], [2], [-], [-], [-], [-], [2], [*4*],
+        [Francesco \ Marcon], [-], [-], [-], [-], [1], [5], [*6*],
+        [Alessandro \ Mazzariol], [1], [1], [-], [-], [-], [3], [*5*],
+        [Leonardo \ Preo], [-], [2], [-], [-], [3], [-], [*5*],
+        [Valerio \ Solito], [5], [-], [-], [-], [-], [-], [*5*],
+        [Matteo \ Mantoan], [-], [-], [-], [-], [-], [6], [*6*],
+        [Mario De\ Pasquale], [2], [1], [-], [-], [-], [2], [*5*],
+      )
+    ],
+  )<tab:Sprint6-ore-effettive>
+
+  ==== Aggiornamento risorse monetarie rimanenti
+  #figure(
+    numbering: "1",
+    caption: [Sprint 6 - Variazione risorse monetarie rimanenti],
+    table(
+      columns: (2fr, 1fr, 1fr),
+      inset: 0.8em,
+      table.header([*Ruolo*], [*Ore*], [*Costo*]),
+
+      [Responsabile], [26], [780],
+      [Amministratore], [5], [100],
+      [Analista], [8], [200],
+      [Progettista], [137], [3425],
+      [Programmatore], [130], [1950],
+      [Verificatore], [57], [855],
+      [*Totale*], [*363*], [*7310*],
+    ),
+  )<tab:Sprint6-costi>
+
+  ==== Rischi incontrati
+  Come preventivato, a causa degli impegni universitari dei componenenti del Team, è stato difficile incastrare le ore
+  di lavoro; tuttavia, sono state raggiunte le ore previste e tutti gli obiettivi prefissati sono stati raggiunti.
+  ==== Retrospettiva
+  Nello Sprint 6 il Team si è concentrato principalmente sull'ultimare il PoC e sull'aggiornare i documenti in vista
+  della RTB. Nonostante le ore dedicate siano state inferiori alla media, sono stati raggiunti tutti gli obiettivi
+  prefissati.
 ]
