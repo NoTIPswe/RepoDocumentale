@@ -1,25 +1,20 @@
 title: Verbale Esterno 2025-12-10 (M31)
 changelog:
-  - version: "1.0.0"
-    date: "2025-12-16"
-    authors:
-      - Alessandro Mazzariol
-    verifier: Francesco Marcon
-    description: >
-      Approvazione - Prima versione stabile
-
-  - version: "0.1.0"
-    date: "2025-12-13"
-    authors:
-      - Alessandro Mazzariol
-    verifier: Francesco Marcon
-    description: >
-      Aggiunta sottosezione Decisioni e aggiustamenti di sottoparagrafi
-
-  - version: "0.0.1"
-    date: "2025-12-10"
-    authors:
-      - Alessandro Mazzariol
-    verifier: Francesco Marcon
-    description: >
-      Prima bozza del verbale
+- version: 1.0.0
+  date: '2025-12-16'
+  approver: Francesco Marcon
+  baseline: RTB
+- version: 0.1.0
+  date: '2025-12-13'
+  authors:
+  - Alessandro Mazzariol
+  verifier: Francesco Marcon
+  description: |
+    Aggiunta sottosezione Decisioni e aggiustamenti di sottoparagrafi
+- version: 0.0.1
+  date: '2025-12-10'
+  authors:
+  - Alessandro Mazzariol
+  verifier: Francesco Marcon
+  description: |
+    Prima bozza del verbale

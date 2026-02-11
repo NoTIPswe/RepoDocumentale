@@ -1,50 +1,45 @@
 title: Lettera di presentazione
 changelog:
-  - version: "1.0.0"
-    date: "2025-11-05"
-    authors:
-      - Valerio Solito
-      - Alessandro Contarini
-    verifier: Matteo Mantoan
-    description: >
-      Prima versione stabile
-  - version: "0.3.1"
-    date: "2025-11-05"
-    authors:
-      - Valerio Solito
-      - Alessandro Contarini
-    verifier: Matteo Mantoan
-    description: >
-      Inserimento link ai documenti
-  - version: "0.3.0"
-    date: "2025-11-05"
-    authors:
-      - Valerio Solito
-      - Alessandro Contarini
-    verifier: Leonardo Preo
-    description: >
-      Aggiunta contenuto - Documentazione attività svolte dal team
-  - version: "0.2.0"
-    date: "2025-11-05"
-    authors:
-      - Valerio Solito
-      - Alessandro Contarini
-    verifier: Leonardo Preo
-    description: >
-      Aggiunta contenuto - Incontro conoscitivo
-  - version: "0.1.0"
-    date: "2025-11-05"
-    authors:
-      - Valerio Solito
-      - Alessandro Contarini
-    verifier: Matteo Mantoan
-    description: >
-      Aggiunta contenuto - Candidatura capitolato e impegno dichiarato
-  - version: "0.0.1"
-    date: "2025-11-05"
-    authors:
-      - Valerio Solito
-      - Alessandro Contarini
-    verifier: Matteo Mantoan
-    description: >
-      Bozza Lettera di presentazione
+- version: 1.0.0
+  date: '2025-11-05'
+  approver: Matteo Mantoan
+  baseline: Candidatura
+- version: 0.3.1
+  date: '2025-11-05'
+  authors:
+  - Valerio Solito
+  - Alessandro Contarini
+  verifier: Matteo Mantoan
+  description: |
+    Inserimento link ai documenti
+- version: 0.3.0
+  date: '2025-11-05'
+  authors:
+  - Valerio Solito
+  - Alessandro Contarini
+  verifier: Leonardo Preo
+  description: |
+    Aggiunta contenuto - Documentazione attività svolte dal team
+- version: 0.2.0
+  date: '2025-11-05'
+  authors:
+  - Valerio Solito
+  - Alessandro Contarini
+  verifier: Leonardo Preo
+  description: |
+    Aggiunta contenuto - Incontro conoscitivo
+- version: 0.1.0
+  date: '2025-11-05'
+  authors:
+  - Valerio Solito
+  - Alessandro Contarini
+  verifier: Matteo Mantoan
+  description: |
+    Aggiunta contenuto - Candidatura capitolato e impegno dichiarato
+- version: 0.0.1
+  date: '2025-11-05'
+  authors:
+  - Valerio Solito
+  - Alessandro Contarini
+  verifier: Matteo Mantoan
+  description: Bozza Lettera di presentazione

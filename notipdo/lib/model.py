@@ -1,4 +1,4 @@
-from typing import Tuple, FrozenSet
+from typing import Tuple, FrozenSet, Union, Literal
 from pathlib import Path
 from datetime import date
 from packaging.version import Version
@@ -6,14 +6,27 @@ from dataclasses import dataclass
 
 
 @dataclass(frozen=True)
-class ChangelogEntry:
-    """A single, immutable changelog entry."""
+class RegularChangelogEntry:
+    """A regular changelog entry (x.y.z where (y,z) != (0,0))."""
 
     version: Version
     date: date
     authors: FrozenSet[str]
     verifier: str
     description: str
+
+
+@dataclass(frozen=True)
+class ApprovementChangelogEntry:
+    """An approvement changelog entry (x.0.0 where x != 0)."""
+
+    version: Version
+    date: date
+    approver: str
+    baseline: Literal["Candidatura", "RTB", "PB"]
+
+
+ChangelogEntry = Union[RegularChangelogEntry, ApprovementChangelogEntry]
 
 
 @dataclass(frozen=True)
@@ -26,7 +39,7 @@ class Document:
 
     # Metadata
     title: str
-    changelog: Tuple[ChangelogEntry, ...]
+    changelog: Tuple["ChangelogEntry", ...]
     group: str
     subgroup: str
 

@@ -101,7 +101,14 @@ def _validate_changelog_logic(changelog: List[Any]) -> None:
 
 def _changelog_entry_from_raw_meta(raw_entry: Any) -> model.ChangelogEntry:
     """Converts a single raw changelog dict into a ChangelogEntry."""
-    return model.ChangelogEntry(
+    if _is_approvement_entry(raw_entry):
+        return model.ApprovementChangelogEntry(
+            version=Version(raw_entry["version"]),
+            date=date.fromisoformat(raw_entry["date"]),
+            approver=raw_entry["approver"],
+            baseline=raw_entry["baseline"],
+        )
+    return model.RegularChangelogEntry(
         version=Version(raw_entry["version"]),
         date=date.fromisoformat(raw_entry["date"]),
         authors=frozenset(raw_entry["authors"]),
@@ -138,7 +145,7 @@ def _validate_date_sequence(changelog: List[Any]):
 
 def _validate_verifier_not_author(changelog: List[Any]):
     for e in changelog:
-        if e["verifier"] in e["authors"]:
+        if not _is_approvement_entry(e) and e["verifier"] in e["authors"]:
             raise FactoryError(
                 f"Version '{e['version']}' has the verifier in the authors list."
             )
@@ -146,3 +153,8 @@ def _validate_verifier_not_author(changelog: List[Any]):
 
 def _has_duplicates(list_to_check: List[Any]) -> bool:
     return len(list_to_check) != len(set(list_to_check))
+
+
+def _is_approvement_entry(e: Any) -> bool:
+    version = Version(e["version"])
+    return version.major != 0 and version.minor == 0 and version.micro == 0

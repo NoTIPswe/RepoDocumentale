@@ -1,17 +1,13 @@
 title: Diario di Bordo 2025-11-10
 changelog:
-  - version: "1.0.0"
-    date: "2025-11-09"
-    authors:
-      - Alessandro Mazzariol
-    verifier: "Leonardo Preo"
-    description: >
-      Prima versione stabile
-
-  - version: "0.0.1"
-    date: "2025-11-09"
-    authors:
-      - Alessandro Mazzariol
-    verifier: "Leonardo Preo"
-    description: >
-      Creazione del diario di Bordo
+- version: 1.0.0
+  date: '2025-11-09'
+  approver: Matteo Mantoan
+  baseline: RTB
+- version: 0.0.1
+  date: '2025-11-09'
+  authors:
+  - Alessandro Mazzariol
+  verifier: Leonardo Preo
+  description: |
+    Creazione del diario di Bordo
