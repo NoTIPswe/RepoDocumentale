@@ -88,6 +88,12 @@
     others.join(" ") + "\n" + last
   }
 
+  let is-acceptance-entry(c) = {
+    let (major, minor, patch) = c.split(".")
+
+    return int(major) != 0 and int(minor) == 0 and int(patch) == 0
+  }
+
   let formatNames(names) = {
     names.map(n => formatName(n)).sorted().join(",\n")
   }
@@ -99,13 +105,22 @@
     table.header[Versione][Data][Autori][Verificatore][Descrizione],
 
     ..changelog
-      .map(c => (
-        str(c.version),
-        c.date,
-        formatNames(c.authors),
-        formatName(c.verifier),
-        c.description,
-      ))
+      .map(c => if not is-acceptance-entry(c.version) {
+        (
+          str(c.version),
+          c.date,
+          formatNames(c.authors),
+          formatName(c.verifier),
+          c.description,
+        )
+      } else {
+        (
+          str(c.version),
+          c.date,
+          table.cell(colspan: 2, c.approver + "\n(responsabile)", align: center),
+          "Approvazione per ingresso in baseline " + c.baseline,
+        )
+      })
       .flatten(),
   )
 
