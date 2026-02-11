@@ -4,14 +4,14 @@ changelog:
     date: "2026-02-11"
     authors:
       - Leonardo Preo
-    verifier: TBD
+    verifier: Alessandro Contarini
     description: >
       Completamento ed inserimento ore Sprint 6
   - version: "0.5.1"
     date: "2026-02-09"
     authors:
       - Alessandro Mazzariol
-    verifier: TBD
+    verifier: Alessandro Contarini
     description: >
       Sistemate tabelle ore
   - version: "0.5.0"
@@ -34,7 +34,7 @@ changelog:
       - Alessandro Mazzariol
     verifier: Alessandro Contarini
     description: >
-      Aggiornata sezione Sprint 2 e aggiunta sezione Sprint 3
+      Aggiornata sezione Sprint 2 e 3
   - version: "0.2.0"
     date: "2025-12-12"
     authors:
@@ -42,7 +42,6 @@ changelog:
     verifier: Valerio Solito
     description: >
       Modificata sezione riferimenti normativi e aggiunta mitigazione del rischio RT2
-
   - version: "0.1.0"
     date: "2025-12-12"
     authors:
@@ -50,14 +49,13 @@ changelog:
     verifier: Valerio Solito
     description: >
       Aggiunti sezione Glossario e riferimenti normativi/informativi
-
   - version: "0.0.2"
     date: "2025-12-03"
     authors:
       - Alessandro Mazzariol
     verifier: Valerio Solito
     description: >
-      Fix di errori ortografici vari
+      Fix errori ortografici
 
   - version: "0.0.1"
     date: "2025-12-03"
