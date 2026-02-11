@@ -16,24 +16,24 @@
   == Scopo del documento
   Il presente documento ha lo scopo di definire, descrivere e tracciare le attività svolte e da svolgere nell'ambito
   della realizzazione del progetto "Sistema di Acquisizione Dati da Sensori BLE" proposto da M31 S.r.l (capitolato C7).
-  Il documento fornisce un'analisi complessiva delle attività, coprendo in particolare, la stima del tempo previsto ed
-  effettivo e i potenziali rischi che il gruppo potrebbe affrontare.
+  Il documento fornisce un'analisi complessiva delle attività coprendo, in particolare, la stima del tempo previsto ed
+  effettivo, oltre ai potenziali rischi che il gruppo potrebbe affrontare.
 
   == Glossario
-  Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario] è un documento
-  soggetto a continuo aggiornamento per l'intera durata del progetto; il suo scopo è definire la terminologia tecnica
-  per garantire una comprensione chiara e univoca dei contenuti. I termini presenti nel Glossario sono contrassegnati
-  nel testo da una lettera "G" posta a pedice (es. parola#sub[G]).
+  Il #link("https://notipswe.github.io/docs/12-rtb/docest/glossario.pdf")[Glossario] è un documento soggetto a continuo
+  aggiornamento per l'intera durata del progetto; il suo scopo è definire la terminologia tecnica per garantire una
+  comprensione chiara e univoca dei contenuti. I termini presenti nel Glossario sono contrassegnati nel testo da una
+  lettera "G" posta a pedice (es. parola#sub[G]).
   == Riferimenti
   === Riferimenti normativi
   - Capitolato d'appalto C7 Sistema di acquisizione dati da sensori BLE (M31) \
     https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
   - Piano di Qualifica \
-    https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_qualifica.pdf
+    https://notipswe.github.io/docs/12-rtb/docest/piano_qualifica.pdf
   - Analisi dei Requisiti \
-    https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf
+    https://notipswe.github.io/docs/12-rtb/docest/analisi_requisiti.pdf
   - Norme di Progetto \
-    https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf
+    https://notipswe.github.io/docs/12-rtb/docint/norme_progetto.pdf
   === Riferimenti informativi
   - Ciclo di via del Software \
     https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf
@@ -71,14 +71,10 @@
       [Nome], [Apprendimento delle tecnologie richieste],
       [Descrizione],
       [A causa della poca conoscenza o dell'inesperienza, il gruppo potrebbe incontrare difficoltà nella comprensione e
-        utilizzo delle tecnologie richieste nel progetto, causando un progressivo rallentamento nello sviluppo.],
+        nell'utilizzo delle tecnologie richieste nel progetto, causando un progressivo rallentamento nello sviluppo.],
 
       [Mitigazione],
-      [Appena stabilite le tecnologie da utilizzare, è bene stabilire un periodo di "palestra" per formarsi al meglio,
-        dato che questo problema potrebbe presentarsi anche dopo questo periodo, qualora fosse un problema generale, il
-        gruppo organizzerà un meeting con _M31_ per chiedere chiarimenti sulla tecnologia. Dato che non è garantito lo
-        stesso livello di conoscenza tra i componenti, è più probabile che i problemi vengano risolti internamente al
-        gruppo.],
+      [Una volta individuate le tecnologie da adottare, è opportuno prevedere un periodo di “palestra” per approfondirle e consolidare le competenze, considerando che situazioni simili potrebbero ripresentarsi anche in futuro. Se la criticità dovesse coinvolgere l’intero gruppo, il team potrà organizzare un incontro con M31 per richiedere chiarimenti sulla tecnologia oggetto di analisi. Tuttavia, poiché il livello di conoscenza tra i membri potrebbe non essere omogeneo, è verosimile che molte problematiche vengano risolte internamente al team.],
 
       [Probabilità], [Alta],
       [Impatto prestazionale], [Alto],
@@ -99,8 +95,8 @@
         esecuzione],
 
       [Mitigazione],
-      [Il gruppo farà affidamento su numerosi test durante lo sviluppo per garantire il funzionamento del prodotto.
-        Qualora il gruppo non riuscisse ad andare avanti chiederà supporto all'Azienda proponente.],
+      [Il team farà ampio ricorso ai test durante le fasi di sviluppo, così da assicurare il corretto funzionamento del prodotto.
+      Nel caso in cui dovessero emergere difficoltà tali da impedire l’avanzamento delle attività, verrà richiesto il supporto dell’Azienda proponente.],
 
       [Probabilità], [Alta],
       [Impatto prestazionale], [Medio],
@@ -117,8 +113,8 @@
       [Codice], [RO1],
       [Nome], [Mancato rispetto delle scadenze stabilite],
       [Descrizione],
-      [Durante lo sviluppo del prodotto possono verificarsi ritardi rispetto al conseguimento delle task fissate, i
-        quali comportano un prolungamento dei tempi di consegna e blocco delle attività successive.],
+      [Durante lo sviluppo del prodotto possono verificarsi ritardi rispetto al conseguimento delle task fissate, comportando
+      un prolungamento dei tempi di consegna e un eventuale blocco delle attività successive.],
 
       [Mitigazione],
       [Il Gruppo si impegna a rispettare le tempistiche, pur nella consapevolezza che possano verificarsi imprevisti.
@@ -147,7 +143,7 @@
 
       [Mitigazione],
       [Il membro interessato dovrà notificare tempestivamente al gruppo l'impedimento, fornendo una stima della sua
-        durata. Qualora necessario, il carico di lavoro assegnatogli verrà redistribuito tra gli altri componenti. Al
+        durata. Qualora necessario, il carico di lavoro assegnatogli verrà redistribuito agli altri componenti. Al
         termine dell'indisponibilità, sarà cura del membro recuperare le ore perse.],
 
       [Probabilità], [Media],
@@ -194,12 +190,12 @@
   - Sprint 5
 
   Lo Stato attuale del documento:
-  - Non completato
+  - Completato per RTB
 
   === Redazione Norme di Progetto (NdP)
   All'interno di questo periodo verranno redatte le seguenti parti del documento:
   - Parte introduttiva
-  - Processi primari, di supporto e di documentazione
+  - Processi primari, di supporto e organizzativi
   - Metriche di qualità utilizzate
 
   Queste parti verranno redatte nei periodi seguenti:
@@ -211,7 +207,7 @@
   - Sprint 6
 
   Lo Stato attuale del documento
-  - Non completato
+  - Completato per RTB
 
   === Redazione Piano di Progetto (PdP)
   All'interno di questo periodo verranno redatte le seguenti parti del documento:
@@ -229,16 +225,17 @@
   - Sprint 6
 
   Lo Stato attuale del documento:
-  - Non completato
+  - Completato per RTB
 
   === Redazione Piano di Qualifica (PdQ)
   All'interno di questo periodo verranno redatte le seguenti parti del documento:
   - Parte introduttiva
-  - Processi primari, di supporto e di documentazione
+  - Processi primari, di supporto e organizzativi
   - Metriche di qualità di processo
   - Metriche di qualità di prodotto
-  - Cruscotto di valutazione
   - Metodi di testing
+  - Cruscotto di valutazione
+  
 
   Queste parti verranno redatte nei periodi seguenti:
   - Sprint 2
@@ -248,7 +245,7 @@
   - Sprint 6
 
   Lo Stato attuale del documento
-  - Non completato
+  - Completato per RTB
 
   === Redazione Glossario
   All'interno di questo periodo verranno redatte le seguenti parti del documento:
@@ -257,7 +254,22 @@
   Queste parti verranno redatte nei periodi seguenti:
   - Tutti gli sprint
   Lo Stato attuale del documento
-  - Non completato
+  - Completato per RTB
+
+  === Realizzazione del Proof of Concept
+  All'interno di questo periodo sono stati fatti i Test sulle seguenti tecnologie:
+  - Golang;
+  - NATS;
+  - Docker;
+  - (Test di sincronizzazione).
+    
+  Queste parti verranno redatte nei periodi seguenti:
+  - Sprint 4
+  - Sprint 5
+  - Sprint 6
+
+  Lo stato attuale è
+  - Completato
 
   === Sprint 1
   Inizio: *16-11-2025* \
@@ -358,7 +370,7 @@
   Giorni di ritardo: *1*\
 
   ==== Informazioni generali e attività pianificate
-  In questo periodo il gruppo rispetto al periodo precedente si è suddiviso equamente le task.
+  In questo sprint il gruppo, rispetto al periodo precedente, si è suddiviso equamente le task.
 
   In particolare, le attività fissate in questo periodo sono:
   - Prima stesura Piano di Progetto (PDP).
@@ -475,12 +487,11 @@
 
   ==== Informazioni generali e attività pianificate
   Le attività fissate per questo Sprint sono:
-  - Analisi dei requisiti: casi d'uso finiti, requisiti almeno iniziati.
-  - Norme di Progetto: set di cambiamenti di NT-67; devono essere presenti le sezioni: processo di fornitura, processo
-    di sviluppo, processo di gestione della configurazione, metriche (citate nel piano di qualifica).
-  - Piano di Qualifica: metriche riviste e confermate, cruscotto di valutazione, metodi di testing da iniziare se c'è
-    tempo.
-  - Piano di Progetto: sprint 2 aggiornato, sprint 3 creato, rischi aggiornati.
+  - Analisi dei requisiti: casi d'uso da finire, iniziare la stesura dei requisiti.
+  - Norme di Progetto: set di cambiamenti di NT-67; realizzare le seguenti sezioni: processo di fornitura, processo
+    di sviluppo, processo di gestione della configurazione, metriche (citate nel _PdQ_).
+  - Piano di Qualifica: metriche da rivedere e confermare, cruscotto di valutazione, metodi di testing da iniziare (qualora avanzasse tempo).
+  - Piano di Progetto: Sprint 2 da aggiornare, stesura della sezione dello Sprint 3 , rischi da aggiornare.
 
   ==== Possibili rischi
   Il gruppo pensa sia possibile che possano presentarsi i seguenti rischi:
@@ -575,15 +586,12 @@
   )<tab:Sprint3-costi>
 
   ==== Rischi incontrati
-  Causa le vacanze natalizie si è scelto di allungare la durata di tale sprint a 3 settimane, per questo motivo figurano
-  0 giorni di ritardo anche se la data di fine prevista e fine reale sono diverse (RO1). (RP1) L'Analisi dei Requisiti è
-  risultata anche più impegnativa di quanto previsto e quindi molte ore di palestra sono state spese su questa attività.
-  (RT1)
+  A causa delle festività natalizie, si è deciso di estendere la durata dello sprint a tre settimane. Per questo motivo risultano 0 giorni di ritardo, nonostante la data di fine prevista differisca da quella effettiva (RO1).
+  (RP1) L’Analisi dei Requisiti si è rivelata più complessa del previsto; di conseguenza, sono state dedicate numerose ore di “palestra” a questa attività. (RT1)
   ==== Retrospettiva
-  In questo sprint il lavoro del gruppo si è focalizzato sull'Analisi dei requisiti arrivando a definire una grande
-  quantità di Use Case e alcuni dei requisiti. Per quanto riguarda gli altri documenti, nello specifico il Piano di
-  Progetto è stato portato avanti, anche alcune sezioni delle norme di progetto, e ricontrollate le metriche del Piano
-  di Qualifica. Non tutti gli obiettivi sono stati raggiunti e ci si pone di raggiungerli negli sprint successivi.
+  In questo sprint il lavoro del gruppo si è focalizzato sull'Analisi dei Requisiti, conseguendo alla definizione di una grande
+  quantità di Use Case e di parte dei requisiti. Per quanto riguarda gli altri documenti, in particolare il Piano di Progetto, le attività sono proseguite regolarmente; sono state inoltre sviluppate alcune sezioni delle Norme di Progetto e riviste le metriche del Piano di Qualifica.
+  Non tutti gli obiettivi prefissati sono stati raggiunti, ma si prevede di completarli nei prossimi sprint.
 
 
   === Sprint 4
@@ -594,8 +602,8 @@
 
   ==== Informazioni generali e attività pianificate
   In questo Sprint il Gruppo si concentrerà sull'Analisi dello Stato dell'Arte e sulla fase progettuale del PoC (che non
-  risulterà nelle ore effettive o previste, essendo ore di palestra), e sull'ultimare l'Analisi dei Requisiti. Inoltre
-  si vuole continuare aggiungendo le nuove sezioni dedicati allo sprint 3 e creare lo sprint 4 nel Piano di Progetto.
+  risulterà nelle ore effettive o previste, essendo ore di palestra), e sull'ultimare l'Analisi dei Requisiti. Inoltre,
+  si prevede l'aggiornamento e l'aggiunta delle sezioni dedicate allo sprint 3 e 4 del _Piano di Progetto_.
 
   ==== Possibili rischi
   Il gruppo pensa sia possibile che possano presentarsi i seguenti rischi:
@@ -690,13 +698,11 @@
   )<tab:Sprint4-costi>
 
   ==== Rischi incontrati
-  In seguito ad un incontro con il Prof. Cardin e incontri con l'azienda sono stati rivisti molti Use Case, sicuramente
-  frutto dell'inesperienza del gruppo nell'analizzare correttamente il capitolato (RT1). Inoltre dato l'inizio della
-  sessione invernale il lavoro ha subito alcuni rallentamenti (RP1).
+  In seguito ad un incontro con il Prof. Cardin e, successivamente con l'azienda, sono stati rivisti molti Use Case, sicuramente
+  frutto dell'inesperienza del gruppo nell'analizzare correttamente il capitolato (RT1). Inoltre, dato l'inizio della
+  sessione d'esami invernale, il lavoro ha subito alcuni rallentamenti (RP1).
   ==== Retrospettiva
-  In questo Sprint ci si è concentrati su quelli che erano gli obiettivi prefissati, e molti membri del gruppo risultano
-  con meno ore perché si sono concentrati esclusivamente sull'analisi dello stato dell'arte e sul POC. Gli obiettivi
-  prefissati sono stati comunque raggiunti senza particolari ritardi.
+  Nel corso di questo Sprint il team si è concentrato sugli obiettivi stabiliti. Sebbene diversi membri abbiano registrato un numero inferiore di ore, a causa dell’attenzione dedicata all’analisi dello stato dell’arte e al Proof of Concept (POC), gli obiettivi prefissati sono stati comunque raggiunti senza ritardi significativi.
 
   === Sprint 5
   Inizio: *18-01-2026* \
@@ -705,9 +711,9 @@
   Giorni di ritardo: 2\
 
   ==== Informazioni generali e attività pianificate
-  In questo Sprint il Team si concentrerà sulla fase di programmazione del PoC e sul verificare e approvare l'Analisi
-  dei Requisiti per assicurarsi che sia pronta per la RTB. Inoltre si porterà avanti il Piano di Qualifica, aggiungendo
-  una sezione dedicata ai test, le norme di Progetto e il Piano di Progetto, completando lo sprint 4 e aggiungendo il 5.
+  In questo Sprint, il Team si concentrerà sulla fase di programmazione del PoC e sulla verifica/approvazione dell'Analisi
+  dei Requisiti al fine di assicurarsi la piena completezza del documento per la revisione RTB. Inoltre, si porterà avanti il Piano di Qualifica, aggiungendo
+  una sezione dedicata ai test, le norme di Progetto e il Piano di Progetto, completando e aggiungendo la sezione dedicata allo Sprint 4 e 5.
 
   ==== Possibili rischi
   Il gruppo pensa sia possibile che possano presentarsi i seguenti rischi:
@@ -805,12 +811,11 @@
 
   ==== Rischi incontrati
   Il Team ha speso ore di palestra nel comprendere come svolgere al meglio la fase di Progettazione e Programmazione del
-  PoC. (RT1 e RT2). Inoltre dati gli esami svolti in questo periodo ci sono stati lievi rallentamenti nel lavoro da
+  PoC (RT1 e RT2). Inoltre, dati gli esami universitari svolti in questo periodo, ci sono stati lievi rallentamenti nel lavoro da
   svolgere (RP1).
   ==== Retrospettiva
   Nello Sprint 5 anche se il gruppo ha incontrato alcuni rallentamenti, i compiti assegnati sono stati svolti. Anche in
-  questo caso alcuni membri hanno meno ore registrate perché hanno ultimato la progettazione del PoC.
-
+  questo caso alcuni membri hanno meno ore registrate, perché hanno ultimato la progettazione del PoC.
   === Sprint 6
   Inizio: *04-02-2026* \
   Fine prevista: *17-02-2026* \
@@ -820,10 +825,8 @@
   ==== Informazioni generali e attività pianificate
   Per lo Sprint 6 il Team si è prefissato di ultimare il PoC, e di portare in avanti le norme di progetto e il piano di
   qualifica, affinché siano pronti per la RTB. Una volta che i documenti saranno stati ultimati verrà anche aggiornato
-  il Glossario, aggiungendo tutti i nuovi termini utilizzati. L'obiettivo è quello di ultimare e validare tutti i
-  documenti (verbali, NdP, AdR, PdQ, PdP) finora stilati in vista della RTB. A causa dei varie impegni dei componenti
-  del gruppo, causati principalmente dallo studio per alcuni esami, le ore dedicate sono sotto la media, ma comunque
-  sufficienti per completare tutte le attività sopra citate.
+  il Glossario, aggiungendo così tutti i nuovi termini utilizzati. L'obiettivo è quello di ultimare e validare tutti i
+  documenti (verbali, NdP, AdR, PdQ, PdP) finora stilati in vista della RTB.
 
   ==== Possibili rischi
   Il gruppo pensa sia possibile che possano presentarsi i seguenti rischi:
@@ -919,10 +922,10 @@
   )<tab:Sprint6-costi>
 
   ==== Rischi incontrati
-  Come preventivato, a causa degli impegni universitari dei componenti del Team, è stato difficile incastrare le ore di
-  lavoro; tuttavia, sono state raggiunte le ore previste e tutti gli obiettivi prefissati sono stati raggiunti.
+  Come preventivato, a causa degli impegni universitari dei componenenti del Team, è stato difficile incastrare le ore
+  di lavoro (RP1); tuttavia, tutti gli obiettivi prefissati sono stati raggiunti con successo.
   ==== Retrospettiva
-  Nello Sprint 6 il Team si è concentrato principalmente sull'ultimare il PoC e sull'aggiornare i documenti in vista
+  Nello Sprint 6, il Team si è concentrato principalmente sull'ultimare il PoC e sull'aggiornare i documenti in vista
   della RTB. Nonostante le ore dedicate siano state inferiori alla media, sono stati raggiunti tutti gli obiettivi
   prefissati.
 ]
