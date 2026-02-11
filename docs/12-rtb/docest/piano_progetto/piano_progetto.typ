@@ -922,7 +922,7 @@
   )<tab:Sprint6-costi>
 
   ==== Rischi incontrati
-  Come preventivato, a causa degli impegni universitari dei componenenti del Team, è stato difficile incastrare le ore
+  Come preventivato, a causa degli impegni universitari dei componenti del Team, è stato difficile incastrare le ore
   di lavoro (RP1); tuttavia, tutti gli obiettivi prefissati sono stati raggiunti con successo.
   ==== Retrospettiva
   Nello Sprint 6, il Team si è concentrato principalmente sull'ultimare il PoC e sull'aggiornare i documenti in vista
