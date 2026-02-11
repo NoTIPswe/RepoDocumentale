@@ -3,7 +3,7 @@
 #let metadata = yaml(sys.inputs.meta-path)
 
 #base-report.apply-base-verbale(
-  date: "2025-10-25",
+  date: "2025-10-24",
   scope: base-report.EXTERNAL_SCOPE,
   front-info: (
     (
