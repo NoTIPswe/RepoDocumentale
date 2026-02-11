@@ -1,6 +1,6 @@
 import logging
 from pathlib import Path
-from . import git_comparer, configs
+from . import git_comparer, configs, model
 
 
 class CheckError(Exception):
@@ -75,7 +75,10 @@ def _check_merge_ready(git_docs_diffs: git_comparer.GitDocsDiffs):
 
     for doc in docs_to_check:
         for entry in doc.changelog:
-            if entry.verifier == configs.TBD_VERIFIER:
+            if (
+                isinstance(entry, model.RegularChangelogEntry)
+                and entry.verifier == configs.TBD_VERIFIER
+            ):
                 logging.error(
                     f"The document in {doc.doc_dir_path} has a TBD verifier for version {entry.version}."
                 )

@@ -94,6 +94,8 @@ accepted_words:
   - HTTPS
   - WebSocket
   - TCP
+  - Nats
+  - TimescaleDB
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -136,6 +138,7 @@ accepted_words:
   - Precondizioni
   - namespace
   - Serverless
+  - WebApp
 
   # --- Terminologia Standard Progetto ---
   - docest

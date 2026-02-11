@@ -36,7 +36,7 @@
   - Capitolato d'appalto C7 - Sistema di acquisizione dati da sensori (GC-0006.03) \
     https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
   - Norme di Progetto \
-    https://notipswe.github.io/docs/12-rtb/docint/norme_progetto.pdf
+    https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf
 
   === Riferimenti Informativi
   - Standard IEEE \
@@ -378,7 +378,7 @@
     riservatezza e la disponibilità dei dati del sistema;
 
   Per la nomenclatura usata di seguito si faccia riferimento alla Sez. 2.2.1.2 all'interno del documento #link(
-    "https://notipswe.github.io/docs/12-rtb/docint/norme_progetto.pdf",
+    "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf",
   )[Norme di Progetto].
 
   == Requisiti Funzionali
