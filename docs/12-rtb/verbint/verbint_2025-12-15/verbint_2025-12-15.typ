@@ -40,7 +40,7 @@
     discussion_point: [Sprint Review: criticità Analisi dei Requisiti e rinvio rilascio.],
     discussion: [
       L'obiettivo primario dello Sprint era il consolidamento dell'#link(
-        "https://notipswe.github.io/docs/12-rtb/docest/analisi_requisiti.pdf",
+        "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf",
       )[Analisi dei Requisiti] in una versione stabile (v0.4.0).
 
       In fase di stesura, è emerso che diversi Casi d'Uso (UC), inizialmente ritenuti maturi e stabili, mancavano del

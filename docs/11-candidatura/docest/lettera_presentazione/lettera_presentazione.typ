@@ -39,18 +39,33 @@
   #oggetto("Candidatura capitolato C7 — Sistema di acquisizione dati da sensori")
 
 
-  Con la presente il gruppo *NoTIP* desidera comunicare formalmente la propria
-  candidatura per la realizzazione del capitolato *C7*, intitolato
-  *"Sistema di acquisizione dati da sensori"*, proposto dall’azienda *M31*.
+  Con la presente il gruppo *NoTIP* desidera comunicare formalmente la propria candidatura per la realizzazione del
+  capitolato *C7*, intitolato *"Sistema di acquisizione dati da sensori"*, proposto dall’azienda *M31*.
 
-  Come specificato nel documento di #link("https://notipswe.github.io/docs/11-candidatura/esterno/dichiarazione_impegni.pdf", [dichiarazione degli impegni]), il gruppo ha stimato un costo totale per la realizzazione del progetto di *Euro 12.940* e
-  ha fissato come termine ultimo di consegna il *21 marzo 2026*.
+  Come specificato nel documento di #link(
+    "https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/dichiarazione_impegni.pdf",
+    [dichiarazione degli impegni],
+  ), il gruppo ha stimato un costo totale per la realizzazione del progetto di *Euro 12.940* e ha fissato come termine
+  ultimo di consegna il *21 marzo 2026*.
 
-  Viene evidenziato inoltre lo svolgersi dell'*incontro conoscitivo* svoltosi il 24 ottobre 2025 con l'azienda M31. Il colloquio è risultato complessivamente positivo per entrambe le parti, mettendo in luce la disponibilità della proponente nel chiarire i dubbi sollevati dal team.
+  Viene evidenziato inoltre lo svolgersi dell'*incontro conoscitivo* svoltosi il 24 ottobre 2025 con l'azienda M31. Il
+  colloquio è risultato complessivamente positivo per entrambe le parti, mettendo in luce la disponibilità della
+  proponente nel chiarire i dubbi sollevati dal team.
 
-  Per eventuali approfondimenti riguardo ai punti di forza che hanno portato NoTIP alla scelta di questo capitolato, si rimanda all'#link("https://notipswe.github.io/docs/11-candidatura/esterno/analisi_capitolati.pdf", [analisi dei capitolati]) redatta dal gruppo e al #link("https://notipswe.github.io/docs/11-candidatura/esterno/verbest_2025-10-24.pdf", [verbale esterno]) dell'incontro conoscitivo svolto.
+  Per eventuali approfondimenti riguardo ai punti di forza che hanno portato NoTIP alla scelta di questo capitolato, si
+  rimanda all'#link(
+    "https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/analisi_capitolati.pdf",
+    [analisi dei capitolati],
+  ) redatta dal gruppo e al #link(
+    "https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/verbest/verbest_2025-10-24_m31.pdf",
+    [verbale esterno],
+  ) dell'incontro conoscitivo svolto.
 
-  Qualora si desiderasse consultare ulteriore documentazione relativa alle attività svolte dal team, si invita a visionare la #link("https://github.com/NoTIPswe/NoTIPswe.github.io", [repo documentale]) e il #link("https://notipswe.github.io/", [sito web]) ad essa associato.
+  Qualora si desiderasse consultare ulteriore documentazione relativa alle attività svolte dal team, si invita a
+  visionare la #link("https://github.com/NoTIPswe/NoTIPswe.github.io", [repo documentale]) e il #link(
+    "https://notipswe.github.io/RepoDocumentale/",
+    [sito web],
+  ) ad essa associato.
 
   #v(0.8cm)
 
