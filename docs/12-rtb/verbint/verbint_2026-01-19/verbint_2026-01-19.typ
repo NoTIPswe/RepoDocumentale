@@ -36,10 +36,9 @@
   #base-report.report-point(
     discussion_point: [Criticità emerse nello Sprint precedente.],
     discussion: [
-      Durante la discussione riguardo le attività svolte nello Sprint precedente, sono emerse alcune criticità che hanno
-      rallentato il lavoro del gruppo. In particolare, si è riscontrata una difficoltà nell'organizzazione del lavoro,
-      dovuta principalmente alla presenza di esami universitari che hanno limitato la disponibilità dei vari componenti
-      del gruppo.
+      Durante la discussione riguardo le attività svolte, sono emerse alcune criticità che hanno rallentato il lavoro
+      del gruppo. In particolare, si è riscontrata una difficoltà nell'organizzazione del lavoro, dovuta principalmente
+      alla presenza di esami universitari che hanno limitato la disponibilità dei vari componenti del gruppo.
     ],
     decisions: [
       Viene evidenziata la necessità di migliorare l’organizzazione del lavoro del gruppo, in particolare in vista
@@ -82,8 +81,8 @@
   Lo Sprint Planning si conclude con esito positivo. Tutti i componenti del gruppo risultano allineati sia sulle
   attività svolte nello Sprint precedente sia su quelle pianificate per il prossimo periodo. Le attività non completate
   vengono riprogrammate, ponendo particolare attenzione al miglioramento dell’organizzazione del lavoro in vista della
-  consegna della RTB. Viene ufficializzata l’assegnazione dei ruoli nel rispetto delle disponibilità emerse e confermata
-  la prosecuzione della redazione di tutta la documentazione prevista, con una pianificazione più accurata delle
-  attività. Viene infine ribadita l’importanza della definizione e realizzazione di un PoC da condividere al più presto
-  anche con la proponente.
+  consegna della RTB. Viene confermata l’assegnazione dei ruoli nel rispetto delle disponibilità emerse e confermata la
+  prosecuzione della redazione di tutta la documentazione prevista, con una pianificazione più accurata delle attività.
+  Viene infine ribadita l’importanza della definizione e realizzazione di un PoC da condividere al più presto anche con
+  la proponente.
 ]
