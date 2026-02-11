@@ -1,0 +1,13 @@
+title: Verbale Interno 2026-01-19
+changelog:
+  - version: 1.0.0
+    date: "2026-02-11"
+    approver: Valerio Solito
+    baseline: RTB
+  - version: "0.0.1"
+    date: "2026-01-20"
+    authors:
+      - Mario De Pasquale
+    verifier: Valerio Solito
+    description: >
+      Stesura del verbale
