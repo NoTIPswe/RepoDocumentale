@@ -840,10 +840,10 @@
   qualifica, affinché siano pronti per la RTB. Una volta che i documenti saranno stati ultimati verrà anche aggiornato
   il Glossario, aggiungendo così tutti i nuovi termini utilizzati. L'obiettivo è quello di ultimare e validare tutti i
   documenti (verbali, NdP, AdR, PdQ, PdP) finora stilati in vista della RTB.
-  
-  A causa dei vari impegni dei componenti del
-  gruppo, causati principalmente dallo studio per alcuni esami, le ore a disposizione da dedicare al progetto sono sotto la media, ma comunque
-  sufficienti per completare tutte le attività sopra citate.
+
+  A causa dei vari impegni dei componenti del gruppo, causati principalmente dallo studio per alcuni esami, le ore a
+  disposizione da dedicare al progetto sono sotto la media, ma comunque sufficienti per completare tutte le attività
+  sopra citate.
 
 
   ==== Possibili rischi
