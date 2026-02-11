@@ -20,20 +20,20 @@
   effettivo e i potenziali rischi che il gruppo potrebbe affrontare.
 
   == Glossario
-  Il #link("https://notipswe.github.io/docs/12-rtb/docest/glossario.pdf")[Glossario] è un documento soggetto a continuo
-  aggiornamento per l'intera durata del progetto; il suo scopo è definire la terminologia tecnica per garantire una
-  comprensione chiara e univoca dei contenuti. I termini presenti nel Glossario sono contrassegnati nel testo da una
-  lettera "G" posta a pedice (es. parola#sub[G]).
+  Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario] è un documento
+  soggetto a continuo aggiornamento per l'intera durata del progetto; il suo scopo è definire la terminologia tecnica
+  per garantire una comprensione chiara e univoca dei contenuti. I termini presenti nel Glossario sono contrassegnati
+  nel testo da una lettera "G" posta a pedice (es. parola#sub[G]).
   == Riferimenti
   === Riferimenti normativi
   - Capitolato d'appalto C7 Sistema di acquisizione dati da sensori BLE (M31) \
     https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
   - Piano di Qualifica \
-    https://notipswe.github.io/docs/12-rtb/docest/piano_qualifica.pdf
+    https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_qualifica.pdf
   - Analisi dei Requisiti \
-    https://notipswe.github.io/docs/12-rtb/docest/analisi_requisiti.pdf
+    https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf
   - Norme di Progetto \
-    https://notipswe.github.io/docs/12-rtb/docint/norme_progetto.pdf
+    https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf
   === Riferimenti informativi
   - Ciclo di via del Software \
     https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf
@@ -160,7 +160,7 @@
 
   = Pianificazione nel lungo termine
   Come anticipato nella #link(
-    "https://notipswe.github.io/docs/11-candidatura/docest/dichiarazione_impegni.pdf",
+    "https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/dichiarazione_impegni.pdf",
   )[Dichiarazione degli impegni], il gruppo prevede di terminare il progetto entro il giorno *21 Marzo 2026* con un
   budget di spesa fissato a *12.940 Euro*.\
   Al momento della candidatura si è teorizzato la seguente previsione dei costi: #figure(
@@ -383,7 +383,7 @@
   === Retrospettiva
   Questo Sprint è servito al gruppo per attuare in maniera concreta il workflow idealizzato. Il Gruppo tuttavia ha
   dovuto affrontare modifiche importanti per quanto riguarda l'#link(
-    "https://notipswe.github.io/docs/12-rtb/docest/analisi_requisiti.pdf",
+    "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf",
   )[Analisi dei Requisiti] che hanno causato un rinvio al prossimo Sprint del raggiungimento della versione *0.3.0* e
   *0.4.0*.
 
