@@ -1,4 +1,4 @@
-name: Update Gulpase Index on Jira
+name: Update Gulpease Index on Jira
 
 on:
   push:
