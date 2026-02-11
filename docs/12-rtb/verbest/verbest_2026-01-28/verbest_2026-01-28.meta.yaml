@@ -1,23 +1,20 @@
 title: Verbale Esterno 2026-01-28 (M31)
 changelog:
-  - version: "1.0.0"
-    date: "2026-02-07"
-    authors:
-      - Valerio Solito
-    verifier: Alessandro Mazzariol
-    description: >
-      Aggiunta firma azienda
-  - version: "0.1.1"
-    date: "2026-02-01"
-    authors:
-      - Mario De Pasquale
-    verifier: Alessandro Mazzariol
-    description: >
-      Correzioni errori di battitura
-  - version: "0.0.1"
-    date: "2026-01-28"
-    authors:
-      - Mario De Pasquale
-    verifier: Alessandro Mazzariol
-    description: >
-      Prima bozza del verbale
+- version: 1.0.0
+  date: '2026-02-07'
+  approver: Valerio Solito
+  baseline: RTB
+- version: 0.1.1
+  date: '2026-02-01'
+  authors:
+  - Mario De Pasquale
+  verifier: Alessandro Mazzariol
+  description: |
+    Correzioni errori di battitura
+- version: 0.0.1
+  date: '2026-01-28'
+  authors:
+  - Mario De Pasquale
+  verifier: Alessandro Mazzariol
+  description: |
+    Prima bozza del verbale
