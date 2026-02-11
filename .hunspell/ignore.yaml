@@ -93,6 +93,9 @@ accepted_words:
   - Kubernetes
   - HTTPS
   - WebSocket
+  - TCP
+  - Nats
+  - TimescaleDB
 
 
 
@@ -136,6 +139,8 @@ accepted_words:
   - Postcondizioni
   - Precondizioni
   - namespace
+  - Serverless
+  - WebApp
 
 
   # --- Terminologia Standard Progetto ---
