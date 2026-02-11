@@ -4,74 +4,74 @@ changelog:
     date: "2026-02-08"
     authors:
       - Francesco Marcon
-    verifier: TBD
+    verifier: Alessandro Mazzariol
     description: >
       Correzione typo, aggiunta tabelle descrittive per i documenti, aggiunta norma al processo di "Documentazione"
   - version: "0.15.1"
     date: "2026-02-08"
     authors:
       - Alessandro Contarini
-    verifier: TBD
+    verifier: Francesco Marcon
     description: >
       Allineamento metriche di qualità con quelle del piano di qualifica
   - version: "0.15.0"
     date: "2026-02-07"
     authors:
       - Mario De Pasquale
-    verifier: TBD
+    verifier: Francesco Marcon
     description: >
       Stesura metriche e standard per la qualità
   - version: "0.14.0"
     date: "2026-02-07" 
     authors:
       - Francesco Marcon
-    verifier: TBD
+    verifier: Alessandro Contarini
     description: >
       Aggiunta sezione di "Processo di Formazione"
   - version: "0.13.0"
-    date: "2026-02-07"
+    date: "2026-02-06"
     authors:
       - Alessandro Contarini
-    verifier: TBD
+    verifier: Francesco Marcon
     description: >
       Stesura metriche di qualità del prodotto
   - version: "0.12.0"
-    date: "2026-02-06"
+    date: "2026-02-04"
     authors:
       - Valerio Solito
-    verifier: TBD
+    verifier: Alessandro Mazzariol
     description: >
       Aggiunte sezioni parte 4 e sistemata struttura
   - version: "0.11.0"
-    date: "2026-02-06"
+    date: "2026-02-01"
     authors:
       - Alessandro Contarini
-    verifier: TBD
+    verifier: Leonardo Preo
     description: >
       Stesura metriche di qualità di processo
   - version: "0.10.0"
-    date: "2026-02-05"
+    date: "2026-01-30"
     authors:
       - Alessandro Mazzariol
-    verifier: TBD
+    verifier: Matteo Mantoan
     description: >
       Completamento sezione fornitura e sviluppo dei processi primari
   - version: "0.9.0"
-    date: "2026-02-04"
+    date: "2026-01-28"
     authors:
       - Francesco Marcon
-    verifier: TBD
+    verifier: Matteo Mantoan
     description: >
       Aggiunta sezione "Gestione di configurazioni" in Processi di Supporto
   - version: "0.8.0"
-    date: "2026-02-02"
+    date: "2026-01-25"
     authors:
       - Valerio Solito
     verifier: Alessandro Mazzariol
     description: >
       Aggiunta sezione Fornitura e Sviluppo nei processi primari
   - version: "0.7.0"
-    date: "2026-02-01"
+    date: "2026-01-24"
     authors:
       - Valerio Solito
     verifier: Alessandro Mazzariol
