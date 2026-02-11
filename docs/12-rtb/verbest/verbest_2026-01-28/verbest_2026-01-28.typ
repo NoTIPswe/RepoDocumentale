@@ -1,6 +1,6 @@
 #import "../../00-templates/base_verbale.typ" as base-report
 
-#let metadata = yaml("verbest_2026-01-28.meta.yaml")
+#let metadata = yaml(sys.inputs.meta-path)
 #base-report.apply-base-verbale(
   date: "2026-01-28",
   scope: base-report.EXTERNAL_SCOPE,
@@ -141,4 +141,10 @@
   = Approvazione Aziendale
   La presente sezione certifica che il verbale è stato esaminato e approvato dai rappresentanti di _M31_. L’avvenuta
   approvazione è formalmente confermata dalle firme riportate di seguito dei referenti Aziendali.
+
+  #v(2em)
+
+  #align(right)[
+    #image("assets/sign.png")
+  ]
 ]
