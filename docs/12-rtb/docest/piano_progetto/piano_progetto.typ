@@ -378,10 +378,10 @@
   In questo sprint il gruppo, rispetto al periodo precedente, si è suddiviso equamente le task.
 
   In particolare, le attività fissate in questo periodo sono:
-  - Prima stesura Piano di Progetto (PDP).
-  - Continuazione delle Norme di Progetto.
-  - Continuazione Analisi dei Requisiti.
-  - Prima stesura Piano di Qualifica (PDQ)
+  - Prima stesura Piano di Progetto (PdP).
+  - Continuazione delle Norme di Progetto (NdP).
+  - Continuazione Analisi dei Requisiti (AdR).
+  - Prima stesura Piano di Qualifica (PdQ)
 
   ==== Possibili rischi
   Il gruppo pensa sia possibile che possano presentarsi i seguenti rischi:
@@ -597,7 +597,7 @@
   L’Analisi dei Requisiti si è rivelata più complessa del previsto; di conseguenza, sono state dedicate numerose ore di
   “palestra” a questa attività. (RT1)
   ==== Retrospettiva
-  In questo sprint il lavoro del gruppo si è focalizzato sull'Analisi dei Requisiti, conseguendo alla definizione di una
+  In questo sprint il lavoro del gruppo si è focalizzato sull'Analisi dei Requisiti, portando alla definizione di una
   grande quantità di Use Case e di parte dei requisiti. Per quanto riguarda gli altri documenti, in particolare il Piano
   di Progetto, le attività sono proseguite regolarmente; sono state inoltre sviluppate alcune sezioni delle Norme di
   Progetto e riviste le metriche del Piano di Qualifica. Non tutti gli obiettivi prefissati sono stati raggiunti, ma si
@@ -725,7 +725,7 @@
   ==== Informazioni generali e attività pianificate
   In questo Sprint, il Team si concentrerà sulla fase di programmazione del PoC e sulla verifica/approvazione
   dell'Analisi dei Requisiti al fine di assicurarsi la piena completezza del documento per la revisione RTB. Inoltre, si
-  porterà avanti il Piano di Qualifica, aggiungendo una sezione dedicata ai test, le norme di Progetto e il Piano di
+  porterà avanti il Piano di Qualifica, aggiungendo una sezione dedicata ai test, le Norme di Progetto e il Piano di
   Progetto, completando e aggiungendo la sezione dedicata allo Sprint 4 e 5.
 
   ==== Possibili rischi
@@ -839,8 +839,10 @@
   Per lo Sprint 6 il Team si è prefissato di ultimare il PoC, e di portare in avanti le norme di progetto e il piano di
   qualifica, affinché siano pronti per la RTB. Una volta che i documenti saranno stati ultimati verrà anche aggiornato
   il Glossario, aggiungendo così tutti i nuovi termini utilizzati. L'obiettivo è quello di ultimare e validare tutti i
-  documenti (verbali, NdP, AdR, PdQ, PdP) finora stilati in vista della RTB. A causa dei vari impegni dei componenti del
-  gruppo, causati principalmente dallo studio per alcuni esami, le ore dedicate sono sotto la media, ma comunque
+  documenti (verbali, NdP, AdR, PdQ, PdP) finora stilati in vista della RTB.
+  
+  A causa dei vari impegni dei componenti del
+  gruppo, causati principalmente dallo studio per alcuni esami, le ore a disposizione da dedicare al progetto sono sotto la media, ma comunque
   sufficienti per completare tutte le attività sopra citate.
 
 
