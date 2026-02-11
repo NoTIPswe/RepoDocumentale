@@ -69,6 +69,7 @@ accepted_words:
   - LaTeX
   - MQTT
   - NATS
+  - Golang
   - PDF
   - pdf
   - Typst
@@ -120,7 +121,7 @@ accepted_words:
   - KLOC
   - MVP
   - PDCA
-  - PDP
+  - PdP
   - PoC
   - PV
   - repo
@@ -135,10 +136,13 @@ accepted_words:
   - auth
   - Burndown
   - MVP
+  - AdR
+  - NdP
   - TOTP
   - Postcondizioni
   - Precondizioni
   - namespace
+  - PdQ
   - Serverless
   - WebApp
 
@@ -214,3 +218,4 @@ accepted_words:
   - l'endpoint
   - failover
   - provisionato
+  - d'esami

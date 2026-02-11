@@ -1,13 +1,13 @@
-title: Verbale Esterno 2026-02-06 (M31)
+title: Verbale Interno 2026-01-19
 changelog:
   - version: 1.0.0
     date: "2026-02-11"
     approver: Valerio Solito
     baseline: RTB
   - version: "0.0.1"
-    date: "2026-02-06"
+    date: "2026-01-20"
     authors:
-      - Valerio Solito
-    verifier: Alessandro Mazzariol
+      - Mario De Pasquale
+    verifier: Valerio Solito
     description: >
-      Prima bozza del verbale
+      Stesura del verbale
