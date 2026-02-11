@@ -839,7 +839,7 @@
   Per lo Sprint 6 il Team si è prefissato di ultimare il PoC, e di portare in avanti le norme di progetto e il piano di
   qualifica, affinché siano pronti per la RTB. Una volta che i documenti saranno stati ultimati verrà anche aggiornato
   il Glossario, aggiungendo così tutti i nuovi termini utilizzati. L'obiettivo è quello di ultimare e validare tutti i
-  documenti (verbali, NdP, AdR, PdQ, PdP) finora stilati in vista della RTB. A causa dei varie impegni dei componenti
+  documenti (verbali, NdP, AdR, PdQ, PdP) finora stilati in vista della RTB. A causa dei vari impegni dei componenti
   del gruppo, causati principalmente dallo studio per alcuni esami, le ore dedicate sono sotto la media, ma comunque
   sufficienti per completare tutte le attività sopra citate.
 
