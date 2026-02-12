@@ -97,6 +97,11 @@ accepted_words:
   - TCP
   - Nats
   - TimescaleDB
+  - TypeORM
+  - Goroutines
+  - Hypertables
+  - NoSQL
+  - SDK
 
 
 
@@ -181,6 +186,7 @@ accepted_words:
   - PasswordInvalida
   - RangeInvalido
   - NessunDato
+  - DataAPI
 
 
   # --- Parole Italiane mancanti / Neologismi ---
