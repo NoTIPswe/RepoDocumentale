@@ -1,9 +1,16 @@
 title: Verbale Interno 2025-12-12
 changelog:
 - version: 1.0.0
-  date: '2025-12-12'
-  approver: Alessandro Mazzariol
+  date: '2026-02-11'
+  approver: Valerio Solito
   baseline: RTB
+- version: 0.0.3
+  date: '2025-12-12'
+  authors: 
+  - Alessandro Mazzariol
+  verifier: Valerio Solito
+  description: |
+    Ulteriori fix
 - version: 0.0.2
   date: '2025-12-12'
   authors:
