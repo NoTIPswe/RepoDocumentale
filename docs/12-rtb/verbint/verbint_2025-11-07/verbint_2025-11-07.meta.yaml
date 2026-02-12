@@ -1,7 +1,10 @@
 title: Verbale Interno 2025-11-07
 
 changelog:
-
+  - version: 1.0.0
+    date: '2026-02-11'
+    approver: Valerio Solito
+    baseline: RTB
   - version: "0.3.0"
     date: "2025-12-11"
     authors:

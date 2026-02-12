@@ -1,16 +1,20 @@
 title: Verbale Interno 2025-11-14
 changelog:
-  - version: "1.0.0"
-    date: "2025-11-19"
-    authors:
-      - Leonardo Preo
-    verifier: "Alessandro Mazzariol"
-    description: >
-      Versione stabile verbale
-  - version: "0.0.1"
-    date: "2025-11-14"
-    authors:
-      - Leonardo Preo
-    verifier: Alessandro Mazzariol
-    description: >
-      Prima stesura verbale
+- version: 1.0.0
+  date: '2026-02-11'
+  approver: Valerio Solito
+  baseline: RTB
+- version: 0.0.2
+  date: '2025-11-19'
+  authors:
+  - Leonardo Preo
+  verifier: Alessandro Contarini
+  description: |
+    Fix al documento
+- version: 0.0.1
+  date: '2025-11-14'
+  authors:
+  - Leonardo Preo
+  verifier: Alessandro Mazzariol
+  description: |
+    Prima stesura verbale
