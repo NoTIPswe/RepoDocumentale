@@ -30,7 +30,7 @@
   = Tecnologie Utilizzate
   - *Go* (Linguaggio Simulatore e Consumer)
     - _*Alternative considerate:*_ TypeScript (Nest.js o Node.js)
-    - _*Scelta:*_ Gestione ottimale della concorrenza (Goroutines) pewr simulare insiemi di dispositivi con basso
+    - _*Scelta:*_ Gestione ottimale della concorrenza (Goroutines) per simulare insiemi di dispositivi con basso
       footprint di risorse
   - *NATS JetStream* (Message Broker)
     - _*Alternative considerate:*_ Apache Kafka, Google Cloud Pub/Sub
@@ -44,7 +44,7 @@
     - _*Scelta:*_ Unisce l'affidabilità SQL per i dati strutturati (tenant) alle performance delle Hypertables per le
       serie temporali. \
       TimescaleDB permette di gestire efficientemente lo storico temporale dei sensori, evitando l'introduzione di un
-      databse NoSQL dedicato
+      database NoSQL dedicato
 
   #pagebreak()
 
