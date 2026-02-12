@@ -1453,7 +1453,10 @@
   (COMMENTO DA AGGIUNGERE IN BASE A QUENTO RISCONTRATO A FINE PERIODO)
 
   == Indice di Gulpease
-  IMMAGINE DA METTERE PRIMA DELLA RTB.
+  #figure(
+    image(height: 15%, "assets/Gulpease.png"),
+    caption: [Indice di Gulpease - NoTIP Dashboard],
+  ) <Gulpease>
   L’indice di Gulpease è un indicatore di leggibilità per testi in lingua italiana che misura la facilità di comprensione 
   in base alla lunghezza di frasi e parole, restituendo un valore compreso tra 0 e 100.
   NoTIP si impegna a mantenere per la propria documentazione un valore dell’indice di Gulpease non inferiore a 60, al fine 
