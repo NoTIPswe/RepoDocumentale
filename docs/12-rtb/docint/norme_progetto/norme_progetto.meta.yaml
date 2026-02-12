@@ -1,5 +1,9 @@
 title: Norme di Progetto
 changelog:
+  - version: 1.0.0
+    date: '2026-02-12'
+    approver: Valerio Solito
+    baseline: RTB
   - version: "0.15.2"
     date: "2026-02-08"
     authors:
