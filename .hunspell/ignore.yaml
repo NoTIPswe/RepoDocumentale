@@ -142,14 +142,11 @@ accepted_words:
   - Postcondizioni
   - Precondizioni
   - namespace
-<<<<<<< HEAD
   - AC
   - SPI
   - ETC
   - RSI
-=======
   - PdQ
->>>>>>> c35c979b40dafee5588afe53bd875349ebb4a3a1
   - Serverless
   - WebApp
 
@@ -224,7 +221,6 @@ accepted_words:
   - l'endpoint
   - failover
   - provisionato
-<<<<<<< HEAD
   - l'automiglioramento
   - messagging
   - decifratura
@@ -240,6 +236,4 @@ accepted_words:
   - dell'
   - l'
   - l'AC
-=======
   - d'esami
->>>>>>> c35c979b40dafee5588afe53bd875349ebb4a3a1
