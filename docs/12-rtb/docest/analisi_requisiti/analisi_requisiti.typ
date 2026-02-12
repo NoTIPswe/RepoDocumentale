@@ -377,7 +377,7 @@
   - Sicurezza: sono i requisiti che stabiliscono le misure di protezione necessarie per garantire l'integrità, la
     riservatezza e la disponibilità dei dati del sistema;
 
-  Per la nomenclatura usata di seguito si faccia riferimento alla Sez. 2.2.1.2 all'interno del documento #link(
+  Per la nomenclatura usata di seguito si faccia riferimento alla sezione relativa all'interno del documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf",
   )[Norme di Progetto].
 
