@@ -1,6 +1,5 @@
 #import "../../00-templates/base_document.typ" as base-document
 
-
 #let metadata = yaml(sys.inputs.meta-path)
 
 #show: base-document.apply-base-document.with(
@@ -18,7 +17,24 @@ Il testo è da considerarsi un *Living Document*: la sua stesura è incrementale
 lavoro, perfezionandosi iterativamente. Ogni membro del gruppo è tenuto a visionare ogni nuova versione e a rispettare
 quanto descritto, per garantire uniformità e professionalità.
 
-== Riferimenti e Tailoring (ISO/IEC 12207:1995)
+== Scopo del prodotto
+
+Il progetto ha l'obiettivo di realizzare il sistema oggetto del capitolato *C7*, proposto dall'azienda *M31 S.r.l.*.
+
+Il contesto applicativo riguarda il contesto IoT, dove l'acquisizione e la gestione centralizzata di dati provenienti da
+sensori distribuiti è fondamentale. L'obiettivo primario è sviluppare una piattaforma *Cloud* distribuita, scalabile e
+sicura, in grado di acquisire dati provenienti da sensori *BLE* tramite Gateway. È inoltre fondamentale andare a
+garantire la segregazione dei dati in modalità *multi-tenant* ed esporre API per la consultazione storica e lo streaming
+in tempo reale dei dati.
+
+Poiché i dispositivi fisici (sensori e gateway) non sono oggetto di fornitura, sarà necessario andare a sviluppare un
+*simulatore di gateway* capace di generare traffico dati verosimile per validare l'infrastruttura e i flussi di
+comunicazione.
+
+L'obiettivo che si è posto il gruppo è andare a sviluppare questo progetto entro il *21 marzo 2026* rispettando il costo
+previsto per la realizzazione del progetto di *12.940 Euro*.
+
+== Riferimenti e Tailoring
 Tutti i processi descritti fanno riferimento allo standard *ISO/IEC 12207:1995*. Attraverso un'operazione di
 _tailoring_, il team ha selezionato i processi e le attività pertinenti al contesto del progetto, classificandoli nelle
 tre macro-categorie previste dallo standard:
@@ -57,103 +73,241 @@ dell'intera documentazione riguardante il progetto.
 
 #pagebreak()
 
+
 = Processi primari
 In conformità alla norma *ISO/IEC 12207:1995*, i processi primari rappresentano l'insieme delle attività fondamentali
-che definiscono il ciclo di vita del software, dalla sua concezione fino alla dismissione.
+che definiscono il ciclo di vita del software. Essi comprendono, in generale, i processi di *acquisizione*, *fornitura*,
+*esercizio* e *manutenzione*.
 
-Essi comprendono, in generale, i processi di *acquisizione*, *fornitura*, *esercizio* e *manutenzione*.
-
-Nel contesto del presente progetto, risultano rilevanti esclusivamente i processi di fornitura e sviluppo:
-- Il processo di fornitura disciplina le attività relative alla pianificazione, definizione e gestione dell'impegno tra
-  il fornitore e il committente;
-- Il processo di sviluppo comprende le attività di analisi, progettazione, implementazione, verifica e validazione del
+Nel contesto del progetto, risultano rilevanti esclusivamente i processi di fornitura e sviluppo:
+- Il *processo di fornitura* disciplina le attività relative alla pianificazione, definizione e gestione dell'impegno
+  tra il fornitore e il committente;
+- Il *processo di sviluppo* comprende le attività di analisi, progettazione, implementazione, verifica e validazione del
   prodotto software.
 
 == Fornitura
+La fornitura è il processo primario adottato dal fornitore del futuro prodotto finale che si occupa di analizzare le
+azioni da intraprendere per la sua realizzazione. Questo processo prevede un primo studio dei requisiti che il progetto
+dovrà, nelle componenti prodotte, soddisfare. Ciò produce il materiale necessario per poter effettuare una fase
+contrattazione dei requisiti con il proponente, e poter comunicare allo stesso una possibile pianificazione del lavoro
+da svolgere con probabile data di consegna prevista.
+
+=== Strumenti a supporto
+Per procedere allo svolgimento delle attività il gruppo ha deciso di usare i seguenti strumenti:
+- *Jira*: per la gestione del backlog e del tracciamento delle task, offre una visualizzazione di diagrammi di qualsiasi
+  tipologia per facilitare la pianificazione
+- *GitHub*: per il versionamento dei documenti. Utile anche a fini di verifica dei documenti e approvazione degli
+  stessi;
+- *Discord*: usato principalmente come luogo per riunioni interne e sessioni di sviluppo sincrone;
+- *Telegram*: usato come canale principale di comunicazione testuale all'interno del gruppo.
+
+Per quanto concerne la comunicazione con l'azienda proponente, vengono utilizzati i seguenti strumenti:
+- *Microsoft Teams*: usato come canale di comunicazione sincrono tra committente e gruppo;
+- *Google Mail*: usato come canale testuale tra committente e gruppo.
+
+=== Attività previste
+La fornitura si struttura in varie attività:
+- *Inizializzazione*: il fornitore analizza le richieste del committente, tenendo conto di eventuali vincoli
+  organizzativi o di altra natura. Questa è l'attività in cui il fornitore decide se proseguire con quanto proposto o di
+  preparare una controproposta;
+- *Risposta*: viene elaborata e presentata una risposta che può essere una controproposta dei requisiti, oppure una
+  proposta su come si soddisfare i requisiti;
+- *Contrattazione*: si effettua un incontro con il committente con l'obiettivo di arrivare ad un accordo (sancito
+  solitamente da un contratto formale) definendo costi, tempi e criteri di accettazione;
+- *Pianificazione*: stabiliti i requisiti finali, il fornitore deve pianificare l'organizzazione e un metodo di lavoro
+  in grado di assicurare la qualità del sistema da realizzare. La pianificazione comprende la stesura del Piano di
+  progetto, dove vengono indicate le risorse richieste per realizzare il prodotto, considerando anche i rischi che
+  potrebbero accadere durante lo sviluppo;
+- *Esecuzione e controllo*: il fornitore realizza il prodotto, monitorando nel frattempo la qualità di quanto fatto e il
+  progresso raggiunto;
+- *Revisione*: il fornitore si tiene in contatto con la proponente, in modo da ottenere feedback su quanto realizzato;
+- *Consegna e completamento*: il fornitore, completato il progetto, deve fornire quanto prodotto al committente.
 
 === Documentazione fornitura
 Nella sezione seguente si elencano i documenti che il gruppo NoTIP consegnerà al committente _M31_ e ai proponenti Prof.
 Tullio Vardanega e Prof. Riccardo Cardin.
+
+==== Dichiarazione di impegni
+La #link(
+  "https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/dichiarazione_impegni.pdf",
+)[Dichiarazione di impegni] è il documento in cui il gruppo ha stimato i costi del progetto, dall’impegno orario per
+persona e per ruolo, al costo complessivo del progetto e dei ruoli che i componenti del gruppo ricopriranno.
+
+#figure(
+  table(
+    columns: (auto, 2fr),
+    inset: 10pt,
+    align: (center, center),
+    [*Voce*], [*Dettaglio*],
+    [*Redattore*], [Responsabile],
+    [*Destinatari*], [NoTIP, M31, Prof. Vardanega, Prof. Cardin],
+    [*Uso*], [Esterno],
+  ),
+)
+
+==== Lettera di presentazione
+La Lettera di presentazione è il documento con il quale il gruppo, conferma la volontà di candidarsi per una determinata
+Baseline. Il gruppo durante lo sviluppo del progetto presenterà ai proponenti tre lettere di presentazione:
+- La Lettera di presentazione per la *Candidatura all'appalto del capitolato C7*;
+- La Lettera di presentazione per la *Requirements and Technology Baseline (RTB)*;
+- La lettera di presentazione per la *Product Baseline (PB)*;
+
+#figure(
+  table(
+    columns: (auto, 2fr),
+    inset: 10pt,
+    align: (center, center),
+    [*Voce*], [*Dettaglio*],
+    [*Redattore*], [Responsabile],
+    [*Destinatari*], [NoTIP, M31, Prof. Vardanega, Prof. Cardin],
+    [*Uso*], [Esterno],
+  ),
+)
+
+==== Analisi dei capitolati
+L'#link("https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/analisi_capitolati.pdf")[Analisi dei
+  capitolati] è il documento in cui il gruppo fornisce un analisi dettagliata di ogni capitolato evidenziando diversi
+punti, in particolare l'analisi suddivide ogni capitolato in diverse sezioni:
+- *Panoramica*: che indica l’azienda proponente, il nome del capitolato e delle
+informazioni generali sul prodotto da realizzare;
+- *Pro*;
+- *Contro*;
+- *Considerazione finale*: motivazioni sull'eventuale scelta o non di candidarsi al capitolato
+
+#figure(
+  table(
+    columns: (auto, 2fr),
+    inset: 10pt,
+    align: (center, center),
+    [*Voce*], [*Dettaglio*],
+    [*Redattore*], [Responsabile],
+    [*Destinatari*], [NoTIP, Prof. Vardanega, Prof. Cardin],
+    [*Uso*], [Esterno],
+  ),
+)
 
 ==== Analisi dei Requisiti
 L'#link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti]
 definisce nel dettaglio i requisiti obbligatori, desiderabili e opzionali del progetto. Il documento mira a risolvere le
 ambiguità derivanti dalla lettura del #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato
   C7], fornendo una base solida per la progettazione attraverso:
-- Descrizione del prodotto: analisi puntuale del sistema richiesto dal committente.
-- Casi d'uso: identificazione degli scenari d'uso e delle interazioni tra utenti e sistema. Ogni caso d'uso include una
-  descrizione dettagliata degli scenari principali, permettendo ai progettisti di comprendere il comportamento atteso
-  del software in ogni situazione.
-- Lista dei Requisiti: rappresenta l'insieme dettagliato delle funzionalità, dei vincoli e delle qualità del sistema,
+- *Descrizione del prodotto*: analisi puntuale del sistema richiesto dal committente.
+- *Casi d'uso*: identificazione degli scenari d'uso e delle interazioni tra utenti e sistema. Ogni caso d'uso include
+  una descrizione dettagliata degli scenari principali, permettendo ai progettisti di comprendere il comportamento
+  atteso del software in ogni situazione.
+- *Lista dei Requisiti*: rappresenta l'insieme dettagliato delle funzionalità, dei vincoli e delle qualità del sistema,
   derivanti dalle richieste del proponente o identificato dal gruppo durante l'attività di analisi.
-I dettagli riguardanti il documento possono essere trovati nella sezione 2.2.1.
+
+#figure(
+  table(
+    columns: (auto, 2fr),
+    inset: 10pt,
+    align: (center, center),
+    [*Voce*], [*Dettaglio*],
+    [*Redattore*], [Analista],
+    [*Destinatari*], [NoTIP, M31, Prof. Vardanega, Prof. Cardin],
+    [*Uso*], [Esterno],
+  ),
+)
+
+I dettagli riguardanti il documento possono essere trovati nella sezione #link(<analisi-requisiti>)[Analisi dei
+  Requisiti].
 
 ==== Piano di Progetto
 Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_progetto.pdf")[Piano di Progetto]
 definisce e organizza la pianificazione strategica e operativa del gruppo, fornendo una roadmap dettagliata delle
-attività e gestione delle risorse. Il documento si articola nelle seguenti sezioni:
-- Analisi dei rischi: identifica e qualifica le criticità che potrebbero manifestarsi durante il ciclo di vita del
+attività e gestione delle risorse. Il documento si compone delle seguenti sezioni:
+- *Analisi dei rischi*: identifica e qualifica le criticità che potrebbero manifestarsi durante il ciclo di vita del
   progetto. A ogni rischio è associata una strategia di mitigazione, volta a ridurne l'impatto o la probabilità che
   accada.
-- Pianificazione: definisce la sequenza temporale dei periodi di lavoro (Sprint). Per ogni Sprint sono riportate le
+- *Pianificazione*: definisce la sequenza temporale dei periodi di lavoro (Sprint). Per ogni Sprint sono riportate le
   attività da completare, il preventivo orario per componente e il consuntivo delle ore effettivamente impiegate, con il
   relativo aggiornamento del budget residuo.
+
+#figure(
+  table(
+    columns: (auto, 2fr),
+    inset: 10pt,
+    align: (center, center),
+    [*Voce*], [*Dettaglio*],
+    [*Redattore*], [Responsabile],
+    [*Destinatari*], [NoTIP, M31, Prof. Vardanega, Prof. Cardin],
+    [*Uso*], [Esterno],
+  ),
+)
+
+==== Piano di Qualifica
+Descrive i metodi di qualifica (Verifica e Validazione) che sono state adottate dal gruppo. Sono inclusi i test
+effettuati sul prodotto e i rispettivi esiti.
+
+#figure(
+  table(
+    columns: (auto, 2fr),
+    inset: 10pt,
+    align: (center, center),
+    [*Voce*], [*Dettaglio*],
+    [*Redattore*], [Amministratore],
+    [*Destinatari*], [NoTIP, M31, Prof. Vardanega, Prof. Cardin],
+    [*Uso*], [Esterno],
+  ),
+)
+
+==== Verbali Esterni
+Sono i documenti che riassumono i contenuti trattati nelle riunioni tenute con soggetti esterni al gruppo (es. azienda
+proponente). Hanno lo scopo di formalizzare le decisioni prese, i chiarimenti ottenuti e gli accordi stipulati durante
+gli incontri ufficiali.
+
+#figure(
+  table(
+    columns: (auto, 1fr),
+    align: (center, center),
+    [*Voce*], [*Dettaglio*],
+    [*Redattore*], [Responsabile],
+    [*Destinatari*], [M31, NoTIP, Prof. Vardanega, Prof. Cardin],
+    [*Uso*], [Esterno],
+  ),
+)
+
+==== Verbali Interni
+Sono i documenti che riassumono i contenuti trattati nelle riunioni interne al gruppo, senza la partecipazione di
+soggetti esterni. Servono a tracciare l'avanzamento dei lavori, la suddivisione dei compiti e le decisioni tecniche o
+organizzative prese dal team.
+
+#figure(
+  table(
+    columns: (auto, 1fr),
+    align: (center, center),
+    [*Voce*], [*Dettaglio*],
+    [*Redattore*], [Responsabile],
+    [*Destinatari*], [NoTIP, Prof. Vardanega, Prof. Cardin],
+    [*Uso*], [Interno],
+  ),
+)
 
 ==== Glossario
 Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario] raccoglie e definisce
 in modo univoco i termini tecnici e gli acronimi utilizzati nella documentazione. Il suo scopo è eliminare le ambiguità
 linguistiche, garantendo una comunicazione uniforme sia tra i membri del gruppo sia verso gli stakeholder esterni.
 
-== Sviluppo
-=== Analisi dei Requisiti
-L'#link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti] è
-una delle attività cardine della milestone Requirements and Technology Baseline (RTB). Il suo obiettivo è individuare
-l'insieme completo dei requisiti che il sistema dovrà soddisfare, fungendo da riferimento oggettivo per le successive
-attività di verifica. Il documento, redatto dagli analisti, è strutturato nelle seguenti sezioni:
-- Introduzione: definisce lo scopo e il campo di applicazione del documento;
-- Descrizione: illustra le finalità generali e gli obiettivi del prodotto;
-- Attori: identifica gli utilizzatori del sistema e i soggetti che interagiscono con esso;
-- Casi d'Uso: modella le interazioni tra attori e sistema;
-- Requisiti: elenca le caratteristiche funzionali, qualitative, di vincolo e di sicurezza da rispettare.
-==== Casi d'uso
-Per garantire univocità e tracciabilità, i casi d'uso adottano la seguente nomenclatura:
-#align(center, text(1.2em)[*`UC[Codice].[Sottocaso] - [Titolo]`*])
-dove:
-- UC: acronimo di Use Case;
-- [Codice]: numero identificativo univoco del caso d'uso principale.
-- [Sottocaso]: numero identificativo progressivo gerarchico per identificare scenari derivati o specifici (ci possono
-  essere sottocasi derivanti da altri sottocasi).
-- [Titolo]: titolo sintetico ed esplicativo dell'azione.
-Per la parte B (Simulatore), la nomenclatura viene estesa in UCS (Use Case Simulatore).
+#figure(
+  table(
+    columns: (auto, 2fr),
+    inset: 10pt,
+    align: (center, center),
+    [*Voce*], [*Dettaglio*],
+    [*Redattore*], [Amministratore],
+    [*Destinatari*], [M31, NoTIP, Prof. Vardanega, Prof. Cardin],
+    [*Uso*], [Esterno],
+  ),
+)
 
-Ogni caso d'uso viene dettagliato secondo la seguente struttura:
-- Attori Primari: utenti e attori che avviano l'interazione.
-- Attori Secondari: destinatari di notifiche o sistemi esterni coinvolti passivamente.
-- Precondizioni: stato del sistema o condizioni necessarie per l'attivazione del caso d'uso.
-- Postcondizioni: stato garantito del sistema a seguito del completamento con successo.
-- Scenario Principale: sequenza di azioni atomiche in linguaggio naturale, inclusi eventuali:
-  - Punti di Inclusione (Include: UC[ID] - Titolo).
-  - Punti di Estensione (Descrizione passo. [EP: NOME]).
-- Estensioni: gestione di scenari alternativi o eccezioni, definiti da una condizioni di guardia e dal relativo caso
-  d'uso esteso.
-  ==== Requisiti
-  Una volta definiti i casi d'uso, il documento procede all'individuazione dei requisiti, derivati dal capitolato e
-  dagli incontri effettuati con il committente. Per garantire una catalogazione rigorosa, ogni requisito è identificato
-  dalla seguente nomenclatura:
-  #align(center, text(1.2em)[*`R-[Numero]-[Tipologia] [Priorità]`*])
-  dove:
-  - *R* abbreviazione di *Requisito*;
-  - *Numero* è un valore univoco che identifica il requisito;
-  - *Tipologia* indica la natura del requisito, classificata in:
-    - *F* per *Funzionale*;
-    - *Q* per *Qualità*;
-    - *V* per *Vincolo*;
-    - *S* per *Sicurezza*;
-  - *Priorità* indica l'importanza strategica del requisito:
-    - *Obbligatorio*: indispensabile per la validità del progetto;
-    - *Desiderabile*: non indispensabile, ma con valore aggiunto;
-    - *Opzionale*: funzionalità aggiuntive a bassa priorità.
-Per la parte B (Simulatore), la nomenclatura viene estesa in RS (Requisito Simulatore).
+== Sviluppo
+Il *Processo di Sviluppo* prevede di definire le attività che hanno come scopo quello di Analisi dei Requisiti, la
+progettazione, la codifica del Software, l’installazione e l’accettazione di quanto prodotto.
+
+#include "processes/sviluppo.typ"
+
+#pagebreak()
 
 = Processi di supporto
 
@@ -163,7 +317,15 @@ qualità durante tutte le fasi del suo ciclo di vita.
 
 #include "processes/documentazione.typ"
 
+#include "processes/gestione_delle_configurazioni.typ"
 
+#include "processes/quality_assurance.typ"
+
+#include "processes/verifica.typ"
+
+#include "processes/validazione.typ"
+
+#pagebreak()
 
 = Processi organizzativi
 
@@ -216,27 +378,621 @@ verranno assegnati uno o più ruoli in base ai seguenti principi:
 - *Sprint planning*: stima del tempo richiesto per ruolo dai task in base agli obbiettivi dello sprint, dipendenti dalla
   componente del progetto in sviluppo;
 - *Disponibilità personale*: numero di ore produttive che la persona potrà dedicare allo sprint, generalmente tra le 7 e
-  le 15;
+  le 15 produttive;
 - *Monitoraggio ore produttive*: il Responsabile aggiorna la rotazione dei ruoli. Valuterà il numero di ore ricoperte
   dalla persona per ogni ruolo in passato, monitorando il rispetto dei principi qui elencati e ripartendo eventuali
   carichi distribuiti non equamente;
 - *Assegnazione basata sulle competenze*: per velocizzare il progresso del progetto, nelle fasi iniziali è possibile che
   ai componenti del gruppo vengano assegnati ruoli nei quali hanno più esperienza, dando quindi priorità a chi possiede
   competenze pregresse in determinati task. Nonostante ciò, tutti i componenti del gruppo dovranno svolgere, a parità di
-  ruolo, un numero simile di ore, come riportato nella `Dichiarazione di Impegni`.
+  ruolo, un numero simile di ore, come riportato nella #link(
+    "https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/dichiarazione_impegni.pdf",
+  )[Dichiarazione di Impegni].
 
-=== Strumenti di gestione
+=== Coordinamento
+Una parte essenziale del progetto risiede nelle capacità di coordinamento e gestione del gruppo, sia verso l'interno che
+verso l'esterno. Per svolgere al meglio queste attività è necessario tenere riunioni (interne ed esterne) e avere canali
+di comunicazione solidi e ben collaudati.
 
-Per le attività di gestione e coordinamento, il gruppo ha deciso di adottare *Git* e *GitHub* come strumenti di
-riferimento, oltre che a *Jira* per la gestione centralizzata dei task da eseguire.
+==== Riunioni <riunioni>
 
-In particolare, è stata pianificata l'applicazione delle issue per la gestione e l'assegnazione delle attività, nonché
-per la pianificazione di sprint e milestone. /*Tuttavia, al momento della stesura, tale modalità non risulta ancora
-                                             implementata operativamente. Penso da togliere questo*/
+Le riunioni rappresentano i momenti formali di sincronizzazione e aggiornamento del team.
+
+- *Riunioni interne*: si svolgono periodicamente (di norma all'apertura e alla chiusura di ogni Sprint) al fine di
+  coordinare le attività, verificare lo stato di avanzamento dei lavori e gestire la rotazione dei ruoli. Questi
+  incontri consentono al Responsabile di monitorare la situazione del gruppo, mitigare eventuali criticità e preparare
+  le interazioni con gli stakeholder esterni.
+
+- *Riunioni esterne*: seguono una pianificazione periodica, coincidendo con i ricevimenti dei docenti e gli incontri con
+  l'azienda proponente _M31_. In queste occasioni il gruppo, rappresentato dal Responsabile, espone l'avanzamento del
+  progetto e risolve dubbi o ambiguità sui requisiti.
+
+Oltre alla pianificazione ordinaria, è prevista la convocazione di riunioni *straordinarie* qualora emergano necessità
+impreviste o l'urgenza di chiarimenti immediati per il team.
+
+A garanzia della tracciabilità del processo, i temi trattati e le decisioni assunte devono essere sistematicamente
+documentati tramite appositi *verbali* (interni o esterni).
+
+Per i dettagli operativi sugli strumenti utilizzati per la gestione e verbalizzazione delle riunioni, si rimanda alla
+sezione @infrastruttura.
+
+= Comunicazioni <comunicazioni>
+
+La gestione dei flussi comunicativi è strutturata per garantire efficienza sia nel coordinamento interno che nelle
+relazioni con gli stakeholder.
+
+Per la *comunicazione interna* vengono adottati principalmente due canali:
+- Discord: designato per le attività sincrone, incluse le riunioni formali di inizio e fine Sprint, sfruttando le
+  funzionalità di condivisione audio/video.
+- Telegram: utilizzato per il coordinamento operativo giornaliero, notifiche rapide e comunicazioni a carattere
+  informale.
+
+Per la *comunicazione esterna*, il canale ufficiale di riferimento è la posta elettronica. Il Responsabile gestisce i
+contatti con l'azienda proponente e i docenti avvalendosi dell'indirizzo istituzionale del gruppo: #link(
+  "mailto:notip.swe@gmail.com",
+)[#raw("notip.swe@gmail.com")].
+
+Per le specifiche tecniche relative agli strumenti citati, si rimanda alla sezione @infrastruttura.
+
+
+== Infrastruttura <infrastruttura>
+
+Il processo di Infrastruttura ha lo scopo di definire, predisporre e mantenere l'ambiente tecnico necessario per
+abilitare e supportare l'esecuzione di tutti gli altri processi di progetto.
+
+=== Attività del processo
+La gestione dell'infrastruttura si articola in tre attività principali:
+- *Implementazione*: selezione, installazione e messa in opera degli strumenti.
+- *Configurazione*: impostazione dei parametri e personalizzazione degli strumenti in base alle esigenze del team e
+  delle normative.
+- *Manutenzione*: monitoraggio, aggiornamento e risoluzione di eventuali malfunzionamenti per garantire la continuità
+  operativa.
+
+=== Implementazione e Strumenti
+Per supportare le attività di gestione, sviluppo e coordinamento, il gruppo ha adottato il seguente set di strumenti:
+
+- Jira;
+- Git e GitHub;
+- Discord;
+- Telegram;
+- Google Mail;
+- Microsoft Teams e Zoom.
+
+=== Configurazione
+Di seguito si trovano le informazioni relative a ciascun strumento utilizzato.
 
 #include "processes/jira.typ"
+#include "processes/git.typ"
+#include "processes/GitHub.typ"
+#include "processes/typst.typ"
+#include "processes/discord.typ"
+
+==== Telegram
+Telegram è un programma di messaggistica utilizzato dal Gruppo per aggiornarsi giornalmente sui progressi del Progetto e
+per qualsiasi tipo di comunicazione, nel quale è anche possibile fissare i messaggi più importanti in un determinato
+periodo.
+
+==== Google Mail
+Google Mail è il servizio di posta elettronico che il Team utilizza per gestire le comunicazioni esterne al Gruppo. A
+tal proposito è stata creata una mail dedicata al team chiamata #link("mailto:notip.swe@gmail.com")[#raw(
+  "notip.swe@gmail.com",
+)]. \
+All'interno di Google Mail è anche collegato un Calendario che registra in maniera autonoma a partire dalle Mail
+ricevute i prossimi incontri a cui il Team dovrà partecipare.
+
+==== Microsoft Teams
+
+La piattaforma Microsoft Teams è lo strumento adottato per lo svolgimento degli incontri a distanza con l'azienda
+proponente _M31_.
+
+==== Zoom
+
+Zoom è la piattaforma designata per i ricevimenti e la discussione dei *Diari di Bordo* con il docente referente (Prof.
+Vardanega). Al fine di garantire l'indipendenza operativa dai singoli membri, il gruppo utilizza un'utenza condivisa,
+registrata direttamente con l'indirizzo e-mail ufficiale del progetto.
+
+=== Manutenzione
+A causa del continuo avanzamento del progetto, il gruppo è consapevole che l’infrastruttura subirà nel tempo cambiamenti
+e potrebbe causare possibili problemi. Per questo spetta all’Amministratore il compito della Manutenzione, aggiornando
+le funzionalità qualora errori o cambiamenti lo rendano necessario.
+
+== Processo di Miglioramento
+In conformità alla norma *ISO/IEC 12207:1995*, il Processo di Miglioramento ha lo scopo di stabilire, valutare e
+ottimizzare i processi utilizzati durante l'intero ciclo di vita del software.
+
+=== Attività previste
+Il Processo di Miglioramento si articola in:
+
+- * Inizializzazione del Processo*, dove si stabiliranno i processi organizzativi e la relativa documentazione.
+- *Valutazione del Processo*, dove si stabilirà una procedura per valutare e documentare l'efficacia e l'efficienza dei
+  processi.
+- *Miglioramento del Processo*, dove si stabilirà come migliorare un processo giudicato inefficace ed inefficiente,
+  risolvendone le criticità.
+
+=== Inizializzazione
+In questa fase si stabiliranno tutti i processi organizzativi che guideranno il progetto. Lo scopo del documento delle
+norme di progetto è proprio quello di fornire una base solida per la comprensione e l'istanziazione dei processi.
+=== Valutazione
+Una volta che i processi saranno stati definiti, sarà necessario definire delle metriche appropriate e, sulla base dei
+dati prodotti da queste, valutare l'efficacia e l'efficienza dei processi. Tali metriche verranno esplicitate nella
+@qualità-processo, dedicata alle metriche di qualità del processo.
+
+=== Miglioramento
+Infine sulla base dei dati raccolti nella fase di Valutazione, bisognerà individuare i processi risultati inadatti.
+L'aggiornamento avverrà secondo il ciclo PDCA (Plan-Do-Check-Act):
+1. Identificazione del Problema;
+2. Modifica della documentazione relativa al problema.
+3. Allineamento del Team sulle modifiche effettuate.
+4. Monitoraggio delle metriche per verificare il successo delle modifiche apportate al processo.
+
+#include "processes/formazione.typ"
 
 
+#pagebreak()
+
+
+= Metriche e standard per la Qualità <standard-qualità>
+Le metriche e standard per la qualità fanno riferimento allo standard ISO/IEC 12207:1995. Attraverso un’operazione di
+tailoring, il team ha selezionato gli standard della qualità pertinenti al contesto del progetto, classificandoli in tre
+macro-categorie:
+1. Standard di Processo;
+2. Standard di Prodotto;
+3. Standard di Documentazione.
+
+== Standard del Processo
+Il gruppo adotta le norme dettate dallo standard ISO/IEC 12207:1995, ed in particolare la quality_assurance definita nel
+medesimo standard. In particolare il gruppo si impegna a rispettare:
+
+=== Pianificazione dell'Assicurazione Qualità
+Ogni attività di verifica deve essere definita nel documeto Piano di Qualifica, il quale specifica lo standard , le
+procedure e gli strumenti da utilizzare.
+
+=== Indipendenza e Autorità
+Per garantire imparzialità nella verifica, chi svolge il ruolo di Verificatore deve essere libero di poter segnalare
+ogni tipo di anomalia senza subire conseguenze o influenza da altri membri del gruppo, per garantira imparzialità da
+esso. La persona che svolge l'attività di Verificatore per un determinato prodotto non può essere l'Autore dello stesso.
+
+=== Product Assurance
+Il gruppo si impegna a controllare e verificare che ogni prodotto sviluppato e la relativa documentazione sia conforme
+ai piani ed ai requisiti prima della consegna.
+
+=== Process Assurance
+Il gruppo si impegna ad assicurare che i processi di fornitura, sviluppo e supporto siano conformi alle norme stabilite
+in questo documento.
+
+== Standard di Prodotto
+
+=== Idoneità Funzionale
+Capacità del prodotto di rispettare e soddisfare le funzioni richieste.
+
+=== Affidabilità
+Capacità di mantenere le prestazioni.
+
+=== Manutenibilità
+Facilità con cui il software può essere modificato.
+
+== Standard di Documentazione
+
+=== Standard per il formato data-ora
+Lo standard di rappresentazione della data e ora è definito nello standard *ISO 8601* con il formato AAAA-MM-GG.
+
+=== Indice di Gulpease
+Standard di riferimento per la leggibilià della linguia italiana nei documenti tecnici. L'obiettivo minimo del gruppo è
+fissato a 60.
+
+#pagebreak()
+
+= Metriche di Qualità del Processo <qualità-processo>
+== Processi Primari
+
+=== Fornitura
+==== MP01 - Earned Value
+*Descrizione*: Misura il valore del lavoro effettivamente completato rispetto alla pianificazione.
+
+*Formula:*
+$
+  text("EV") = sum (text("costo pianificato attività completate"))
+$
+\
+
+==== MP02 - Planned Value
+*Descrizione*: Indica il valore del lavoro pianificato fino a una certa data.
+
+*Formula:*
+$
+  text("PV") = sum (text("costo pianificato attività previste"))
+$
+
+\
+
+==== MP03 - Actual Cost
+*Descrizione*: Rappresenta il costo reale sostenuto fino a un determinato momento.
+
+*Formula:*
+$
+  text("AC") = sum (text("costi reali sostenuti"))
+$
+
+\
+
+==== MP04 - Cost Performance Index (CPI)
+*Descrizione*: Valuta l'efficienza dei costi del progetto.
+
+*Formula:*
+$
+  text("CPI") = frac(text("EV"), text("AC"))
+$
+
+\
+
+==== MP05 - Schedule Performance Index (SPI)
+*Descrizione*: Misura l'avanzamento temporale rispetto alla pianificazione.
+
+*Formula:*
+$
+  text("SPI") = frac(text("EV"), text("PV"))
+$
+
+\
+
+==== MP06 - Estimate At Completion (EAC)
+*Descrizione*: Stima il costo totale previsto alla fine del progetto.
+
+*Formula:*
+$
+  text("EAC") = text("AC") + frac(text("PV") - text("EV"), text("CPI"))
+$
+
+\
+
+==== MP07 - Estimate To Complete (ETC)
+*Descrizione*: Stima il costo necessario per completare il progetto a partire da un certo punto.
+
+*Formula:*
+$
+  text("ETC") = text("EAC") - text("AC")
+$
+
+\
+
+==== MP08 - Time Estimate At Completion (TEAC)
+*Descrizione*: Stima il tempo totale previsto alla fine del progetto.
+
+*Formula:*
+$
+  text("TEAC") = frac(text("durata pianificata"), text("SPI"))
+$
+
+\
+==== MP09 - Budget Burn Rate
+*Descrizione*: Misura la velocità con cui il budget viene consumato.
+
+*Formula:*
+$
+  text("Budget Burn Rate") = frac(text("AC"), text("giorni trascorsi"))
+$
+\
+
+=== Sviluppo
+==== MP10 - Requirements Stability Index
+*Descrizione*: Misura la stabilità dei requisiti durante lo sviluppo.
+
+*Formula:*
+$
+  text("RSI") = frac(text("Requisiti modificati"), text("Requisiti totali"))
+$
+
+== Processi di Supporto
+=== Documentazione
+==== MP11 - Indice di Gulpease
+*Descrizione*: Valuta la leggibilità della documentazione tecnica.
+
+*Formula:*
+$
+  text("Indice di Gulpease") = 89.5 - frac(text("Numero di lettere"), text("Numero di parole"))times 100 + frac(text("Numero di frasi"), text("Numero di parole"))times 300
+$
+
+\
+
+==== MP12 - Correttezza Ortografica
+*Descrizione*: Misura la percentuale di parole senza errori ortografici nella documentazione.
+
+*Formula:*
+$
+  text("Correttezza Ortografica") = (1 - frac(text("Parole con errori"), text("Parole totali"))) times 100
+$
+
+=== Verifica
+==== MP13 - Code Coverage
+*Descrizione*: Misura la percentuale di codice sorgente coperto dai test.
+
+*Formula:*
+$
+  text("Code Coverage") = frac(text("Linee di codice testate"), text("Linee di codice totali")) times 100
+$
+
+\
+
+==== MP14 - Test Success Rate
+*Descrizione*: Misura la percentuale di test superati rispetto al totale dei test eseguiti.
+
+*Formula:*
+$
+  text("Test Success Rate") = frac(text("Test superati"), text("Test eseguiti")) times 100
+$
+
+\
+
+==== MP15 - Test Automation Percentage
+*Descrizione*: Misura la percentuale di test automatizzati rispetto al totale dei test eseguiti.
+
+*Formula:*
+$
+  text("Test Automation Percentage") = frac(text("Test automatizzati"), text("Test totali")) times 100
+$
+
+\
+
+==== MP16 - Defect Discovery Rate
+*Descrizione*: Misura la velocità con cui vengono scoperti i difetti durante la fase di verifica.
+
+*Formula:*
+$
+  text("Defect Discovery Rate") = frac(text("Difetti scoperti"), text("Tempo di verifica")) times 100
+$
+
+=== Gestione della Configurazione
+==== MP17 - Commit Message Quality Score
+*Descrizione*: Valuta la qualità dei messaggi di commit in base a criteri predefiniti.
+
+*Formula:*
+$
+  text("Commit Message Quality Score") = frac(text("Commit con messaggi conformi"), text("Commit totali")) times 100
+$
+
+=== Gestione della Qualità
+==== MP18 - Quality Metrics Satisfied
+*Descrizione*: Misura la percentuale di metriche di qualità soddisfatte rispetto al totale delle metriche definite.
+
+*Formula:*
+$
+  text("Quality Metrics Satisfied") = frac(text("Metriche soddisfatte"), text("Metriche totali")) times 100
+$
+
+\
+
+==== MP19 - Quality Gate Pass Rate
+*Descrizione*: Misura la percentuale di passaggio attraverso i gate di qualità definiti durante il processo di sviluppo.
+
+*Formula:*
+$
+  text("Quality Gate Pass Rate") = frac(text("Gate di qualità superati"), text("Gate di qualità totali")) times 100
+$
+
+== Processi Organizzativi
+=== Gestione dei Processi
+==== MP20 - Time Efficiency
+*Descrizione*: Misura l'efficienza produttiva delle ore.
+
+*Formula:*
+$
+  text("Time Efficiency") = frac(text("Ore produttive"), text("Ore totali")) times 100
+$
+
+\
+
+==== MP21 - Sprint Velocity Stability
+*Descrizione*: Misura la stabilità della velocità di completamento degli sprint nel tempo.
+
+*Formula:*
+$
+  text("Sprint Velocity Stability") = 1 - frac(text("Deviazione standard della velocità degli sprint"), text("Velocità media degli sprint"))
+$
+
+\
+==== MP22 - Meeting Efficiency Index
+*Descrizione*: Valuta l'efficienza delle riunioni in termini di tempo speso rispetto agli obiettivi raggiunti.
+
+*Formula:*
+$
+  text("Meeting Efficiency Index") = frac(text("Tempo speso in riunioni"), text("Obiettivi raggiunti nelle riunioni"))
+$
+
+\
+
+==== MP23 - PR Resolution Time
+*Descrizione*: Misura il tempo medio impiegato per risolvere le Pull Request aperte.
+
+*Formula:*
+$
+  text("PR Resolution Time") = frac(text("Tempo totale per risolvere PR"), text("Numero di PR risolte"))
+$
+
+#pagebreak()
+
+= Metriche di Qualità del Prodotto <qualità-prodotto>
+== Funzionalità
+=== MQ01 - Requisiti Obbligatori Soddisfatti
+*Descrizione*: Misura la percentuale di requisiti obbligatori soddisfatti rispetto al totale dei requisiti obbligatori
+definiti.
+
+*Formula:*
+$
+  text("Requisiti Obbligatori Soddisfatti") = frac(text("Requisiti obbligatori verificati"), text("Requisiti obbligatori totali")) times 100
+$
+
+\
+
+=== MQ02 - Requisiti Desiderabili Soddisfatti
+*Descrizione*: Misura la percentuale di requisiti desiderabili soddisfatti rispetto al totale dei requisiti desiderabili
+definiti.
+
+*Formula:*
+$
+  text("Requisiti Desiderabili Soddisfatti") = frac(text("Requisiti desiderabili verificati"), text("Requisiti desiderabili totali")) times 100
+$
+
+\
+
+=== MQ03 - Requisiti Opzionali Soddisfatti
+*Descrizione*: Misura la percentuale di requisiti opzionali soddisfatti rispetto al totale dei requisiti opzionali
+definiti.
+
+*Formula:*
+$
+  text("Requisiti Opzionali Soddisfatti") = frac(text("Requisiti opzionali verificati"), text("Requisiti opzionali totali")) times 100
+$
+
+\
+
+=== MQ04 - Requirements Test Coverage
+*Descrizione*: Misura la percentuale di requisiti coperti da test rispetto al totale dei requisiti definiti.
+
+*Formula:*
+$
+  text("Requirements Test Coverage") = frac(text("Requisiti coperti da test"), text("Requisiti totali")) times 100
+$
+
+== Affidabilità
+=== MQ05 - Branch Coverage
+*Descrizione*: Misura la percentuale di rami del codice sorgente coperti dai test.
+
+*Formula:*
+$
+  text("Branch Coverage") = frac(text("Rami coperti da test"), text("Rami totali")) times 100
+$
+\
+
+=== MQ06 - Statement Coverage
+*Descrizione*: Misura la percentuale di istruzioni del codice sorgente coperti dai test.
+
+*Formula:*
+$
+  text("Statement Coverage") = frac(text("Istruzioni coperte da test"), text("Istruzioni totali")) times 100
+$
+
+\
+
+=== MQ07 - Failure Density
+*Descrizione*: Misura la densità di difetti rilevati durante la fase di verifica rispetto alla dimensione del software.
+
+*Formula:*
+$
+  text("Failure Density") = frac(text("Difetti rilevati"), text("Linee di codice totali")) times 1000
+$
+\
+
+=== MQ08 - Modified Condition/Decision Coverage (MC/DC)
+*Descrizione*: Misura la copertura dei test in base alla combinazione di condizioni e decisioni nel codice.
+
+*Formula:*
+$
+  text("MC/DC Coverage") = frac(text("Condizioni/Decisioni coperte da test"), text("Condizioni/Decisioni totali")) times 100
+$
+
+== Usabilità
+=== MQ09 - Time On Task
+*Descrizione*: Misura il tempo medio impiegato dagli utenti per completare un'attività specifica utilizzando il
+software.
+
+*Formula:*
+$
+  text("Time On Task") = frac(text("Tempo totale per completare l'attività"), text("Numero di utenti che hanno completato l'attività"))
+$
+
+\
+
+=== MQ10 - Error Rate
+*Descrizione*: Misura la percentuale di errori commessi dagli utenti durante l'utilizzo del software.
+
+*Formula:*
+$
+  text("Error Rate") = frac(text("Errori commessi dagli utenti"), text("Interazioni totali degli utenti")) times 100
+$
+
+\
+
+== Efficienza
+=== MQ11 - Response Time
+*Descrizione*: Misura il tempo medio di risposta del software a una richiesta dell'utente.
+
+*Formula:*
+$
+  text("Response Time") = frac(text("Tempo totale di risposta"), text("Numero di richieste"))
+$
+
+== Manutenibilità
+=== MQ12 - Code Smells
+*Descrizione*: Misura la presenza di "code smells" nel codice sorgente, che indicano potenziali problemi di
+manutenibilità.
+
+*Formula:*
+$
+  text("Code Smells") = frac(text("Numero di code smells"), text("Linee di codice totali")) times 1000
+$
+\
+
+=== MQ13 - Coefficient of Coupling
+*Descrizione*: Misura il grado di accoppiamento tra i moduli del software, indicando la dipendenza tra di essi.
+
+*Formula:*
+$
+  text("Coefficient of Coupling") = frac(text("Numero di dipendenze tra moduli"), text("Numero totale di moduli"))
+$
+
+\
+
+=== MQ14 - Cyclomatic Complexity
+*Descrizione*: Misura la complessità del codice sorgente in base al numero di percorsi indipendenti attraverso il
+codice.
+
+*Formula:*
+$
+  text("Cyclomatic Complexity") = text("Numero di rami") - text("Numero di nodi") + 2
+$
+
+\
+
+=== MQ15 - Code Duplication Percentage
+*Descrizione*: Misura la percentuale di codice duplicato rispetto al totale del codice sorgente.
+
+*Formula:*
+$
+  text("Code Duplication Percentage") = frac(text("Linee di codice duplicate"), text("Linee di codice totali")) times 100
+$
+
+== Portabilità
+=== MQ16 - Container Image Size
+*Descrizione*: Misura la dimensione dell'immagine del container utilizzato per distribuire il software, indicando
+l'efficienza della distribuzione.
+
+*Formula:*
+$
+  text("Container Image Size") = text("Dimensione dell'immagine del container in MB")
+$
+
+\
+
+=== MQ17 - Application Success Rate
+*Descrizione*: Misura la percentuale di distribuzioni del software che sono state esegute con successo senza errori.
+
+*Formula:*
+$
+  text("Application Success Rate") = frac(text("Distribuzioni riuscite"), text("Distribuzioni totali")) times 100
+$
+
+\
+
+=== MQ18 - Encryption Coverage
+*Descrizione*: Misura la percentuale di dati sensibili protetti da crittografia rispetto al totale dei dati sensibili
+gestiti dal software.
+
+*Formula:*
+$
+  text("Encryption Coverage") = frac(text("Dati sensibili crittografati"), text("Dati sensibili totali")) times 100
+$
+
+#pagebreak()
 
 = Riferimenti
 
