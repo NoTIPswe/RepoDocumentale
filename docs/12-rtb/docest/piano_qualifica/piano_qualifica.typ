@@ -319,9 +319,9 @@
       documentazione tecnica rivolta a professionisti del settore. Questo livello bilancia precisione terminologica e
       chiarezza espositiva.],
     [Un indice ≥ 80 indica documentazione molto accessibile, comprensibile anche per lettori con istruzione base.],
-    note: [Non è sempre necessario massimizzare tale indice, ma va interpretato considerando il tipo di
-      documento in esame: manuali utente dovrebbero cercare di raggiungere valori più alti (≥75), mentre documentazione
-      tecnica tenderà ad avere valori più bassi (≥55) data la natura tecnica del contenuto.],
+    note: [Non è sempre necessario massimizzare tale indice, ma va interpretato considerando il tipo di documento in
+      esame: manuali utente dovrebbero cercare di raggiungere valori più alti (≥75), mentre documentazione tecnica
+      tenderà ad avere valori più bassi (≥55) data la natura tecnica del contenuto.],
   )
 
   #metrics-description(
@@ -890,15 +890,15 @@
     [T-U-28], [Verificare la formattazione del timestamp di emissione alert], [R-48-F], [NI],
     [T-U-29], [Verificare la validazione delle impostazioni di notifica], [R-52-F], [NI],
 
-    [T-U-30], [Verificare la validazione del nome utente tenant], [R-71-F], [NI],
-    [T-U-31], [Verificare la validazione dei ruoli assegnabili], [R-73-F], [NI],
-    [T-U-32], [Verificare l’assenza di duplicati nella selezione utenti], [R-77-F], [NI],
-    [T-U-33], [Verificare la generazione del Client ID], [R-79-F], [NI],
-    [T-U-34], [Verificare la generazione del Client Secret], [R-80-F], [NI],
+    [T-U-30], [Verificare la validazione del nome utente tenant], [R-59-F], [NI],
+    [T-U-31], [Verificare la validazione dei ruoli assegnabili], [R-61-F], [NI],
+    [T-U-32], [Verificare l’assenza di duplicati nella selezione utenti], [R-65-F], [NI],
+    [T-U-33], [Verificare la generazione del Client ID], [R-67-F], [NI],
+    [T-U-34], [Verificare la generazione del Client Secret], [R-68-F], [NI],
 
-    [T-U-35], [Verificare la costruzione di una entry di audit (campi obbligatori)], [R-90-F], [NI],
-    [T-U-36], [Verificare il mapping dell’operazione di audit verso testo], [R-92-F], [NI],
-    [T-U-37], [Verificare la validazione di un token JWT (scadenza e formato)], [R-103-F], [NI],
+    [T-U-35], [Verificare la costruzione di una entry di audit (campi obbligatori)], [R-75-F], [NI],
+    [T-U-36], [Verificare il mapping dell’operazione di audit verso testo], [R-75-F], [NI],
+    [T-U-37], [Verificare la validazione di un token JWT (scadenza e formato)], [R-87-F], [NI],
     [T-U-38], [Verificare la validazione dei permessi secondo policy], [R-6-S], [NI],
 
     [T-U-39], [Verificare il mapping della lista gateway simulati], [R-S-1-F], [NI],
@@ -920,41 +920,41 @@
     [T-I-1],
     [Verificare la corretta ricezione e validazione dei pacchetti JSON inviati dal Simulatore al Cloud Ingestion
       Service],
-    [R-S-1-F, R-S-4-F],
+    [R-114-F],
     [NI],
 
     [T-I-2],
     [Verificare il flusso di controllo bidirezionale: invio e corretta applicazione dei comandi di configurazione dal
       Cloud al Simulatore],
-    [R-S-7-F, R-S-10-F],
+    [R-S-22-F],
     [NI],
 
     [T-I-3],
     [Verificare la gestione del buffer locale del Simulatore e della successiva integrazione con il Cloud dopo un
       ripristino di rete],
-    [R-S-8-F],
+    [R-S-20-F],
     [NI],
 
     [T-I-4],
     [Verificare la persistenza dei dati nel database (MongoDB) e dell'isolamento dei dati per ciascun Tenant],
-    [R-S-17-F, R-S-22-F],
+    [R-S-17-F, R-2-S],
     [NI],
 
     [T-I-5],
     [Verificare la comunicazione tra il servizio di Ingestion e il sistema di Streaming (NATS) per la distribuzione dei
       dati],
-    [R-S-21-F],
+    [R-S-21-F, R-5-V],
     [NI],
 
     [T-I-6],
     [Verificare l'attivazione dei trigger di allerta tra il modulo di analisi dati e il servizio notifiche al
       superamento delle soglie],
-    [R-S-19-F, R-S-20-F],
+    [R-33-F, R-34-F],
     [NI],
 
     [T-I-7],
     [Verificare l'integrazione del Sistema di autenticazione (JWT) tra l'API Gateway e i microservizi interni],
-    [R-S-23-F, R-S-24-F],
+    [R-6-S],
     [NI],
 
     [T-I-8],
@@ -969,7 +969,7 @@
     [NI],
 
     [T-I-10], [Verificare l’integrazione del Sistema con più Gateway simulati attivi in parallelo], [R-S-17-F], [NI],
-    [T-I-11], [Verificare la corretta trasmissione del flusso di dati tra sensore e relativo gateway], [R-Q-2], [NI],
+    [T-I-11], [Verificare la corretta trasmissione del flusso di dati tra sensore e relativo gateway], [R-2-Q], [NI],
     [T-I-12],
     [Verificare che i dati scambiati tra le diverse componenti del Sistema distribuito siano cifrati e trasmessi tramite
       protocollo TLS.],
@@ -1045,122 +1045,113 @@
 
     [T-S-012],
     [Verificare che il sistema mostri correttamente i dettagli di un Gateway selezionato],
-    [R-22-F, R-23-F, R-24-F, R-25-F],
+    [R-22-F, R-23-F],
     [NI],
 
-    [T-S-013], [Verificare che il sistema mostri la lista dei sensori associati a un Gateway], [R-26-F, R-27-F], [NI],
+    [T-S-013], [Verificare che il sistema mostri la lista dei sensori associati a un Gateway], [R-24-F], [NI],
     [T-S-014],
     [Verificare che il sistema mostri correttamente i dettagli e l’ultimo timestamp di ciascun sensore],
-    [R-28-F, R-29-F, R-30-F],
-    [NI],
+    [R-24-F],
 
     //Dati, Filtri e Esportazione
-    [T-S-015], [Verificare che il sistema visualizzi i dati di stream in formato tabellare], [R-31-F, R-32-F], [NI],
-    [T-S-016], [Verificare che il sistema visualizzi i dati di stream in formato grafico], [R-33-F], [NI],
+    [T-S-015], [Verificare che il sistema visualizzi i dati di stream in formato tabellare], [R-25-F, R-26-F], [NI],
+    [T-S-016], [Verificare che il sistema visualizzi i dati di stream in formato grafico], [R-25-F,R-27-F], [NI],
     [T-S-017],
     [Verificare che l’utente possa filtrare i dati per Gateway, sensore e intervallo temporale],
-    [R-34-F, R-35-F, R-36-F],
+    [R-28-F, R-29-F, R-30-F],
     [NI],
 
     [T-S-018],
     [Verificare che il sistema notifichi l’utente quando non sono disponibili dati per i filtri selezionati],
-    [R-37-F],
+    [R-31-F],
     [NI],
 
-    [T-S-019], [Verificare che l’utente possa esportare i dati visualizzati in formato supportato], [R-38-F], [NI],
+    [T-S-019], [Verificare che l’utente possa esportare i dati visualizzati in formato supportato], [R-32-F], [NI],
 
     //Alert e Notifiche
-    [T-S-020], [Verificare che il sistema generi un alert in caso di Gateway non raggiungibile], [R-39-F], [NI],
-    [T-S-021],
-    [Verificare che il sistema generi un alert in caso di valore sensore fuori range],
-    [R-40-F, R-41-F, R-42-F, R-43-F],
-    [NI],
+    [T-S-020], [Verificare che il sistema generi un alert in caso di Gateway non raggiungibile], [R-33-F], [NI],
+    [T-S-021], [Verificare che il sistema generi un alert in caso di valore sensore fuori range], [R-34-F], [NI],
 
-    [T-S-022], [Verificare che l’utente possa visualizzare lo storico degli alert generati], [R-44-F, R-45-F], [NI],
+    [T-S-022], [Verificare che l’utente possa visualizzare lo storico degli alert generati], [R-35-F], [NI],
     [T-S-023],
     [Verificare che il sistema mostri i dettagli completi di un alert selezionato],
-    [R-46-F, R-47-F, R-48-F],
+    [R-36-F, R-37-F, R-38-F, R-39-F],
     [NI],
 
     [T-S-024],
     [Verificare che l’utente possa configurare le notifiche di alert via email e dashboard],
-    [R-52-F, R-53-F],
+    [R-40-F, R-41-F],
     [NI],
 
     //Configurazione Gateway
     [T-S-025],
     [Verificare che l’utente possa modificare il nome di un Gateway e ricevere errore in caso di duplicato],
-    [R-54-F, R-55-F],
+    [R-42-F, R-43-F],
     [NI],
 
-    [T-S-026], [Verificare che l’utente possa modificare lo stato operativo di un Gateway], [R-56-F, R-57-F], [NI],
+    [T-S-026], [Verificare che l’utente possa modificare lo stato operativo di un Gateway], [R-44-F, R-45-F], [NI],
     [T-S-027],
     [Verificare che l’utente possa modificare i range di allarme di un sensore specifico],
-    [R-58-F, R-59-F],
+    [R-46-F, R-47-F, R-48-F, R-49-F],
     [NI],
 
     //Utenti e Tenant
     [T-S-028],
     [Verificare che il Tenant Admin possa creare, modificare ed eliminare utenti del Tenant],
-    [R-50-F, R-51-F, R-52-F, R-53-F, R-54-F, R-55-F, R-56-F, R-57-F, R-58-F],
+    [R-56-F, R-57-F, R-58-F, R-59-F, R-60-F, R-61-F, R-62-F, R-63-F, R-64-F, R-65-F],
     [NI],
 
     [T-S-029],
-    [Verificare che l'Amministratore di Sistema possa creare, sospendere, riattivare ed eliminare un Tenant],
-    [R-79-F, R-80-F, R-81-F, R-82-F, R-83-F, R-84-F, R-85-F, R-86-F, R-87-F, R-89-F, R-90-F, R-91-F],
+    [Verificare che l'Amministratore di Sistema possa creare, sospendere, modificare, visualizzare dettagli, riattivare
+      ed eliminare un Tenant],
+    [R-92-F, R-93-F, R-94-F, R-95-F, R-96-F, R-97-F, R-98-F, R-99-F, R-100-F, R-101-F, R-105-F, R-106-F, R-107-F],
     [NI],
 
     [T-S-030],
     [Verificare che l'Amministratore di Sistema possa impersonificare un utente Tenant e operare con i suoi permessi],
-    [R-92-F],
+    [R-108-F],
     [NI],
 
     //API, audit e monitoraggio
     [T-S-031],
-    [Verificare che il Tenant Admin possa creare e revocare credenziali API],
-    [R-59-F, R-60-F, R-61-F, R-62-F],
+    [Verificare che il Tenant Admin possa creare, visualizzare e revocare credenziali API],
+    [R-66-F, R-67-F, R-68-F, R-69-F, R-70-F, R-71-F, R-72-F],
     [NI],
 
-    [T-S-032],
-    [Verificare che il sistema registri tutte le operazioni rilevanti nei log di Audit],
-    [R-64-F, R-4-S],
-    [NI],
+    [T-S-032], [Verificare che il sistema registri tutte le operazioni rilevanti nei log di Audit], [R-4-S], [NI],
 
     [T-S-033],
     [Verificare che un utente autorizzato possa consultare ed esportare i log di Audit],
-    [R-65-F, R-95-F, R-96-F],
+    [R-74-F, R-75-F, R-76-F, R-77-F],
     [NI],
 
-    [T-S-034],
-    [Verificare che il sistema mostri metriche di latenza, traffico e utilizzo storage],
-    [R-97-F, R-97.1-F, R-97.2-F, R-97.3-F],
-    [NI],
+    [T-S-034], [Verificare che il sistema mostri metriche di latenza, traffico e utilizzo storage], [R-111-F], [NI],
 
     //Provisioning e sicurezza comunicazioni
     [T-S-035],
     [Verificare che un Gateway non provisioned possa completare correttamente il processo di onboarding],
-    [R-93-F, R-94-F, R-98-F],
+    [R-112-F],
     [NI],
 
     [T-S-036],
     [Verificare che il sistema notifichi errori di autenticazione per Gateway non validi],
-    [R-99-F, R-101-F],
+    [R-113-F, R-116-F],
     [NI],
 
     [T-S-037],
     [Verificare che il Gateway invii dati al Cloud tramite canale cifrato e che il Cloud li accetti],
-    [R-100-F, R-100.1-F, R-1-S],
+    [R-114-F, R-115-F, R-1-S],
     [NI],
 
     //Simulatore Gateway
     [T-S-038],
     [Verificare che l’utente del simulatore possa visualizzare e gestire Gateway simulati],
-    [R-S-1-F, R-S-2-F, R-S-3-F, R-S-4-F],
+    [R-S-1-F, R-S-2-F, R-S-3-F, R-S-4-F, R-S-8-F, R-S-10-F, R-S-11-F, R-S-12-F],
     [NI],
 
     [T-S-039],
     [Verificare che l’utente possa configurare e simulare sensori associati a un Gateway simulato],
-    [R-S-5-F, R-S-6-F, R-S-7-F, R-S-8-F, R-S-9-F, R-S-10-F, R-S-11-F, R-S-12-F, R-S-13-F, R-S-14-F, R-S-15-F, R-S-16-F],
+    [R-S-5-F, R-S-6-F, R-S-7-F, R-S-9-F, R-S-13-F, R-S-14-F, R-S-15-F, R-S-16-F],
     [NI],
 
     [T-S-040],
@@ -1188,26 +1179,26 @@
   lineare, mentre la curva delle ore effettivamente completate evidenzia l’andamento reale del progetto.
 
   Dall’osservazione del grafico si nota che il lavoro effettivamente completato cresce nel tempo, ma con un andamento
-  non perfettamente allineato alla pianificazione ideale. In particolare, NoTIP riconosce la presenza di periodi di crescita 
-  ridotta, alternati a incrementi più marcati, indice di una distribuzione del lavoro non uniforme tra le varie iterazioni.
+  non perfettamente allineato alla pianificazione ideale. In particolare, NoTIP riconosce la presenza di periodi di
+  crescita ridotta, alternati a incrementi più marcati, indice di una distribuzione del lavoro non uniforme tra le varie
+  iterazioni.
 
   == Velocity Chart
-  IMMAGINE DA METTERE PRIMA DELLA RTB.
-  Il grafico di Velocity rappresenta il numero di ore di lavoro completate in
+  IMMAGINE DA METTERE PRIMA DELLA RTB. Il grafico di Velocity rappresenta il numero di ore di lavoro completate in
   ciascun intervallo temporale, mettendolo a confronto con la velocità media calcolata sulle iterazioni precedenti. Le
   barre mostrano il lavoro effettivamente completato in ogni sprint, mentre la linea di velocità media fornisce
-  un’indicazione del ritmo di sviluppo complessivo del team.
-  (COMMENTO DA AGGIUNGERE IN BASE A QUENTO RISCONTRATO A FINE PERIODO)
+  un’indicazione del ritmo di sviluppo complessivo del team. (COMMENTO DA AGGIUNGERE IN BASE A QUANTO RISCONTRATO A FINE
+  PERIODO)
 
   == Indice di Gulpease
   #figure(
     image(height: 15%, "assets/Gulpease.png"),
     caption: [Indice di Gulpease - NoTIP Dashboard],
   ) <Gulpease>
-  L’indice di Gulpease è un indicatore di leggibilità per testi in lingua italiana che misura la facilità di comprensione 
-  in base alla lunghezza di frasi e parole, restituendo un valore compreso tra 0 e 100.
-  NoTIP si impegna a mantenere per la propria documentazione un valore dell’indice di Gulpease non inferiore a 60, al fine 
-  di garantire un adeguato livello di comprensibilità dei documenti prodotti.
+  L’indice di Gulpease è un indicatore di leggibilità per testi in lingua italiana che misura la facilità di
+  comprensione in base alla lunghezza di frasi e parole, restituendo un valore compreso tra 0 e 100. NoTIP si impegna a
+  mantenere per la propria documentazione un valore dell’indice di Gulpease non inferiore a 60, al fine di garantire un
+  adeguato livello di comprensibilità dei documenti prodotti.
 
 
   = Valutazioni per l'automiglioramento
@@ -1257,7 +1248,8 @@
     [TypeScript / NestJS],
 
     [Il framework Angular richiede una buona organizzazione dei componenti e dei servizi.],
-    [Suddivisione dell’interfaccia in componenti con responsabilità ben definite e organizzazione della struttura del progetto seguendo le linee guida della documentazione.],
+    [Suddivisione dell’interfaccia in componenti con responsabilità ben definite e organizzazione della struttura del
+      progetto seguendo le linee guida della documentazione.],
     [Angular],
 
     [La gestione della decifratura lato client introduce complessità applicativa.],

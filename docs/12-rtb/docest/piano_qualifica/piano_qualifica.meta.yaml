@@ -8,7 +8,7 @@ changelog:
     date: "2026-02-08"
     authors:
       - Alessandro Contarini
-    verifier: TBD
+    verifier: Alessandro Mazzariol
     description: >
       Fix valutazione tecnologia Angular
   - version: "0.8.2"
