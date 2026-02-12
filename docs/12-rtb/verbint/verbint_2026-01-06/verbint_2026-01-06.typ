@@ -38,10 +38,11 @@
     discussion: [
       Il gruppo si è confrontato sul difficile lavoro svoltosi durante le vacanze invernali, evidenziando come la
       mancanza di tempo e gli impegni personali di ognuno dei componenti del gruppo non abbiano permesso la
-      realizzazione di tutto ciò programmato ad inizio Sprint. Si è discusso inoltre riguardo le difficoltà emerse
-      durante la ristesura dell'Analisi dei requisiti, evidenziando comunque come questa fosse oramai quasi ultimata e
-      necessitasse solo di alcuni aggiustamenti finali. Si è proceduto con la stesura di una serie di domande da porre
-      al Prof. Cardin, in maniera tale da ultimare il documento entro la prima metà dello Sprint corrente.
+      realizzazione di tutto ciò che era stato programmato ad inizio Sprint. Si è discusso inoltre riguardo le
+      difficoltà emerse durante la ristesura dell'Analisi dei requisiti, evidenziando comunque come questa fosse oramai
+      quasi ultimata e necessitasse solo di alcuni aggiustamenti finali. Si è proceduto con la stesura di una serie di
+      domande da porre al Prof. Cardin, in maniera tale da ultimare il documento entro la prima metà dello Sprint
+      corrente.
     ],
     decisions: [
       Viene ufficializzata la necessità di contattare il Prof. Cardin e esporre le domande preparate dal gruppo.
@@ -74,7 +75,7 @@
   #base-report.report-point(
     discussion_point: [Analisi dello Stato dell'Arte.],
     discussion: [
-      Affinchè ogni componente del gruppo sapesse cosa l'azienda richiede oltre al PoC, si è discusso riguardo la
+      Affinché ogni componente del gruppo sapesse cosa l'azienda richiede oltre al PoC, si è discusso riguardo la
       stesura dell'Analisi dello Stato dell'Arte. Da ciò sono emersi vari dubbi, soprattutto riguardo la forma e la
       profondità che deve presentare il suddetto documento.
     ],
@@ -101,7 +102,7 @@
 ][
   = Esiti e decisioni finali
   Lo Sprint Planning si è concluso con successo, in quanto ogni componente del gruppo è stato aggiornato riguardo le
-  attività da svolgere nel prossimo periodo e ciò fatto nello Sprint precedente. Vengono quindi riprogrammate tutte le
-  attività non completate, ponendo come priorità assoluta la finalizzazione dell'Analisi dei Requisiti e l'inizio dello
-  studio per la realizzazione del PoC.
+  attività da svolgere nel prossimo periodo e su ciò che è stato fatto nello Sprint precedente. Vengono quindi
+  riprogrammate tutte le attività non completate, ponendo come priorità assoluta la finalizzazione dell'Analisi dei
+  Requisiti e l'inizio dello studio per la realizzazione del PoC.
 ]

@@ -46,13 +46,10 @@
       Si stabilisce che l'amministratore di sistema sarà trattato come attore nei casi d'uso, ma esterno alla gerarchia
       degli utenti ipotizzata. Verranno aggiunti i casi d'uso relativi all'abilitazione dell'accesso (lato tenant) e
       all'impersonificazione vera e propria (lato amministratore).
+
+      *Azioni da intraprendere:*
+      - Revisione Casi d'Uso
     ],
-    actions: (
-      (
-        desc: "Revisione Casi d'Uso UC",
-        url: "https://notipswe.atlassian.net/browse/NT-101",
-      ),
-    ),
   )
 
   #base-report.report-point(
@@ -65,29 +62,14 @@
     ],
     decisions: [
       Il Gruppo delibera il rinvio del rilascio della versione 0.4.0 al prossimo Sprint.
+
+      *Azioni da intraprendere:*
+      - Inserimento requisiti funzionali
+      - Inserimento requisiti qualitativi e di vincolo
+      - Inserimento requisiti di prestazione e sicurezza
+      - Inserimento tracciamento requisito-fonte
+      - Inserimento tracciamento fonte-requisiti
     ],
-    actions: (
-      (
-        desc: "Inserimento requisiti funzionali",
-        url: "https://notipswe.atlassian.net/browse/NT-89",
-      ),
-      (
-        desc: "Inserimento requisiti qualitativi e di vincolo",
-        url: "https://notipswe.atlassian.net/browse/NT-92",
-      ),
-      (
-        desc: "Inserimento requisiti di prestazione e sicurezza",
-        url: "https://notipswe.atlassian.net/browse/NT-98",
-      ),
-      (
-        desc: "Inserimento tracciamento requisito-fonte",
-        url: "https://notipswe.atlassian.net/browse/NT-104",
-      ),
-      (
-        desc: "Inserimento tracciamento fonte-requisiti",
-        url: "https://notipswe.atlassian.net/browse/NT-107",
-      ),
-    ),
   )
 
   #base-report.report-point(
@@ -101,10 +83,10 @@
   )
   #base-report.report-point(
     discussion_point: [Differenza tra approvazione e verifica.],
-    discussion: [Si è definita la distinzione formale tra i due processi: la verifica si concentra sulla correttenza
+    discussion: [Si è definita la distinzione formale tra i due processi: la verifica si concentra sulla correttezza
       sintattica e formale; l'approvazione valida i contenuti, implica la conoscenza approfondita del documento e ne
       autorizza il rilascio in corrispondenza delle milestone.],
-    decisions: [Il Gruppo formalizzerà queste defininizioni all'interno delle #link(
+    decisions: [Il Gruppo formalizzerà queste definizioni all'interno delle #link(
         "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf",
       )[Norme di Progetto].],
   )
