@@ -1,45 +1,52 @@
 title: Analisi dei Requisiti
 changelog:
+  - version: "0.33.2"
+    date: "2026-02-06"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Matteo Mantoan
+    description: >
+      Fix lista requisiti e numeri
   - version: "0.33.1"
     date: "2026-01-28"
     authors:
       - Alessandro Mazzariol
-    verifier: TBD
+    verifier: Leonardo Preo
     description: >
       Fix ortografia
   - version: "0.33.0"
     date: "2026-01-28"
     authors:
       - Alessandro Mazzariol
-    verifier: TBD
+    verifier: Leonardo Preo
     description: >
       Aggiunti requisiti di sicurezza e aggiunta nomenclatura
   - version: "0.32.0"
     date: "2026-01-27"
     authors:
       - Alessandro Mazzariol
-    verifier: TBD
+    verifier: Leonardo Preo
     description: >
       Aggiunto tracciamento requisiti-fonte, fonte-requisiti, riepilogo requisiti e correzioni varie
   - version: "0.31.1"
     date: "2026-01-26"
     authors:
       - Alessandro Mazzariol
-    verifier: TBD
+    verifier: Leonardo Preo
     description: >
       Fix dei numeri e dei diagrammi UML
   - version: "0.31.0"
     date: "2026-01-26"
     authors:
       - Alessandro Mazzariol
-    verifier: TBD
+    verifier: Leonardo Preo
     description: >
       Aggiunti requisiti funzionali della parte B fino a UCS14
   - version: "0.30.0"
     date: "2026-01-25"
     authors:
       - Alessandro Mazzariol
-    verifier: TBD
+    verifier: Leonardo Preo
     description: >
       Aggiunta requisiti di Vincolo e di Qualità e correzioni di numeri e UC mancanti
   - version: "0.29.3"

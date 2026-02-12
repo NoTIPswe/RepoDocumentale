@@ -1,5 +1,9 @@
 title: Piano di Qualifica
 changelog:
+  - version: 1.0.0
+    date: "2026-02-12"
+    approver: Valerio Solito
+    baseline: RTB
   - version: "0.8.3"
     date: "2026-02-08"
     authors:

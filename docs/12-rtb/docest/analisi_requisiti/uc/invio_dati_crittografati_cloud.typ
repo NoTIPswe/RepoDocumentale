@@ -15,10 +15,10 @@
   trigger: "Scadenza del timer di invio dati al cloud del Gateway",
   main-scen: (
     (
-      descr: "L’Attore stabilisce una connessione sicura verso l'Endpoint del Cloud",
+      descr: "L’Attore stabilisce una connessione sicura verso l'endpoint del Cloud",
       inc: "instaurazione_connessione_sicura",
     ),
     (descr: "L’Attore invia i dati in maniera sicura al Cloud"),
     (descr: "L’Attore riceve la notifica dell’esito dell’operazione"),
   ),
-)[#uml-schema("100", "Diagramma invio dati crittografati al Cloud")]
+)[#uml-schema("98", "Diagramma invio dati crittografati al Cloud")]
