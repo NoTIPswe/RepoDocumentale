@@ -8,6 +8,8 @@ dependencies = [
     "typer",
     "gitpython",
     "packaging",
+    "pdfplumber",
+    "requests",
 ]
 
 [project.scripts]

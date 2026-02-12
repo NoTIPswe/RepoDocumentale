@@ -4,7 +4,7 @@ Repository che contiene sito e documentazione del Gruppo 12 del primo lotto dell
 
 ## Sito
 
-L'interfaccia pubblica della documentazione è il nostro sito: [notipswe.github.io](https://notipswe.github.io)
+L'interfaccia pubblica della documentazione è il nostro sito: [notipswe.github.io/RepoDocumentale](https://notipswe.github.io/RepoDocumentale)
 
 
 ## Uso del tool `notipdo`

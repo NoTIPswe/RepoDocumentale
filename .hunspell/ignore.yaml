@@ -69,6 +69,7 @@ accepted_words:
   - LaTeX
   - MQTT
   - NATS
+  - Golang
   - PDF
   - pdf
   - Typst
@@ -96,6 +97,8 @@ accepted_words:
   - TimescaleDB
   - Hypertables
   - TCP
+  - Nats
+  - TimescaleDB
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -118,7 +121,7 @@ accepted_words:
   - KLOC
   - MVP
   - PDCA
-  - PDP
+  - PdP
   - PoC
   - PV
   - repo
@@ -133,15 +136,22 @@ accepted_words:
   - auth
   - Burndown
   - MVP
+  - AdR
+  - NdP
   - TOTP
   - Postcondizioni
   - Precondizioni
   - namespace
+<<<<<<< HEAD
   - AC
   - SPI
   - ETC
   - RSI
+=======
+  - PdQ
+>>>>>>> c35c979b40dafee5588afe53bd875349ebb4a3a1
   - Serverless
+  - WebApp
 
   # --- Terminologia Standard Progetto ---
   - docest
@@ -214,6 +224,7 @@ accepted_words:
   - l'endpoint
   - failover
   - provisionato
+<<<<<<< HEAD
   - l'automiglioramento
   - messagging
   - decifratura
@@ -229,3 +240,6 @@ accepted_words:
   - dell'
   - l'
   - l'AC
+=======
+  - d'esami
+>>>>>>> c35c979b40dafee5588afe53bd875349ebb4a3a1
