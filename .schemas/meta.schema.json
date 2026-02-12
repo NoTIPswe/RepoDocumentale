@@ -36,49 +36,82 @@
             "type": "array",
             "minItems": 1,
             "items": {
-                "description": "A single entry in the changelog. Must have the following fields.",
-                "properties": {
-                    "version": {
-                        "description": "The full SemVer version number.",
-                        "type": "string",
-                        "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$"
-                    },
-                    "date": {
-                        "type": "string",
-                        "format": "date",
-                        "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                        "description": "The date of the update (e.g., \"2025-10-19\")."
-                    },
-                    "authors": {
-                        "description": "The person (one or more) who contributed to this version.",
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/$defs/authorizedUser"
+                "oneOf": [
+                    {
+                        "description": "A regular changelog entry (x.y.z where (y,z) != (0,0)).",
+                        "type": "object",
+                        "properties": {
+                            "version": {
+                                "description": "The full SemVer version number (y or z must be non-zero).",
+                                "type": "string",
+                                "pattern": "^(0|[1-9]\\d*)\\.([1-9]\\d*\\.(0|[1-9]\\d*)|0\\.[1-9]\\d*)$"
+                            },
+                            "date": {
+                                "type": "string",
+                                "format": "date",
+                                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                                "description": "The date of the update (e.g., \"2025-10-19\")."
+                            },
+                            "authors": {
+                                "description": "The person (one or more) who contributed to this version.",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/$defs/authorizedUser"
+                                },
+                                "minItems": 1,
+                                "uniqueItems": true
+                            },
+                            "verifier": {
+                                "description": "The person who verified and approved this version.",
+                                "oneOf": [
+                                    {
+                                        "comment": "Option 1: An authorized user from the list.",
+                                        "$ref": "#/$defs/authorizedUser"
+                                    },
+                                    {
+                                        "comment": "Option 2: The 'Not Assigned' placeholder string.",
+                                        "$ref": "#/$defs/toBeDefined"
+                                    }
+                                ]
+                            },
+                            "description": {
+                                "type": "string",
+                                "minLength": 1,
+                                "pattern": "^(?!.*\\.\\s*$)[\\s\\S]*$"
+                            }
                         },
-                        "minItems": 1,
-                        "uniqueItems": true
+                        "required": ["version", "date", "authors", "verifier", "description"],
+                        "additionalProperties": false
                     },
-                    "verifier": {
-                        "description": "The person who verified and approved this version.",
-                        "oneOf": [
-                            {
-                                "comment": "Option 1: An authorized user from the list.",
+                    {
+                        "description": "An approvement changelog entry (x.0.0 where x != 0).",
+                        "type": "object",
+                        "properties": {
+                            "version": {
+                                "description": "The approvement version number (x.0.0 format where x >= 1).",
+                                "type": "string",
+                                "pattern": "^[1-9]\\d*\\.0\\.0$"
+                            },
+                            "date": {
+                                "type": "string",
+                                "format": "date",
+                                "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                                "description": "The date of the approvement (e.g., \"2025-10-19\")."
+                            },
+                            "approver": {
+                                "description": "The person who approved this version.",
                                 "$ref": "#/$defs/authorizedUser"
                             },
-                            {
-                                "comment": "Option 2: The 'Not Assigned' placeholder string.",
-                                "$ref": "#/$defs/toBeDefined"
+                            "baseline": {
+                                "description": "The baseline type for this approvement.",
+                                "type": "string",
+                                "enum": ["Candidatura", "RTB", "PB"]
                             }
-                        ]
-                    },
-                    "description": {
-                        "type": "string",
-                        "minLength": 1,
-                        "pattern": "^(?!.*\\.\\s*$)[\\s\\S]*$"
+                        },
+                        "required": ["version", "date", "approver", "baseline"],
+                        "additionalProperties": false
                     }
-                },
-                "required": ["version", "date", "authors", "verifier", "description"],
-                "additionalProperties": false 
+                ]
             }
         }
     },

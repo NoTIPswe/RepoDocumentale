@@ -1,7 +1,7 @@
 #import "../docest/glossario/termini_glossario.typ" as glossary-terms
 
 #let project-email = "notip.swe@gmail.com"
-#let project-url = "https://notipswe.github.io/RepoDocumentale"
+#let project-url = "https://notipswe.github.io/RepoDocumentale/"
 #let project_name = link(project-url, [NoTIP])
 
 #let sans-font = "Noto Sans"

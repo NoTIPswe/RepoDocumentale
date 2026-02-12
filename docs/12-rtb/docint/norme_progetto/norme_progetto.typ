@@ -76,10 +76,10 @@ Nella sezione seguente si elencano i documenti che il gruppo NoTIP consegnerà a
 Tullio Vardanega e Prof. Riccardo Cardin.
 
 ==== Analisi dei Requisiti
-L'#link("https://notipswe.github.io/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti] definisce nel
-dettaglio i requisiti obbligatori, desiderabili e opzionali del progetto. Il documento mira a risolvere le ambiguità
-derivanti dalla lettura del #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7],
-fornendo una base solida per la progettazione attraverso:
+L'#link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti]
+definisce nel dettaglio i requisiti obbligatori, desiderabili e opzionali del progetto. Il documento mira a risolvere le
+ambiguità derivanti dalla lettura del #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato
+  C7], fornendo una base solida per la progettazione attraverso:
 - Descrizione del prodotto: analisi puntuale del sistema richiesto dal committente.
 - Casi d'uso: identificazione degli scenari d'uso e delle interazioni tra utenti e sistema. Ogni caso d'uso include una
   descrizione dettagliata degli scenari principali, permettendo ai progettisti di comprendere il comportamento atteso
@@ -89,9 +89,9 @@ fornendo una base solida per la progettazione attraverso:
 I dettagli riguardanti il documento possono essere trovati nella sezione 2.2.1.
 
 ==== Piano di Progetto
-Il #link("https://notipswe.github.io/docs/12-rtb/docest/piano_progetto.pdf")[Piano di Progetto] definisce e organizza la
-pianificazione strategica e operativa del gruppo, fornendo una roadmap dettagliata delle attività e gestione delle
-risorse. Il documento si articola nelle seguenti sezioni:
+Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_progetto.pdf")[Piano di Progetto]
+definisce e organizza la pianificazione strategica e operativa del gruppo, fornendo una roadmap dettagliata delle
+attività e gestione delle risorse. Il documento si articola nelle seguenti sezioni:
 - Analisi dei rischi: identifica e qualifica le criticità che potrebbero manifestarsi durante il ciclo di vita del
   progetto. A ogni rischio è associata una strategia di mitigazione, volta a ridurne l'impatto o la probabilità che
   accada.
@@ -100,16 +100,16 @@ risorse. Il documento si articola nelle seguenti sezioni:
   relativo aggiornamento del budget residuo.
 
 ==== Glossario
-Il #link("https://notipswe.github.io/docs/12-rtb/docest/glossario.pdf")[Glossario] raccoglie e definisce in modo univoco
-i termini tecnici e gli acronimi utilizzati nella documentazione. Il suo scopo è eliminare le ambiguità linguistiche,
-garantendo una comunicazione uniforme sia tra i membri del gruppo sia verso gli stakeholder esterni.
+Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario] raccoglie e definisce
+in modo univoco i termini tecnici e gli acronimi utilizzati nella documentazione. Il suo scopo è eliminare le ambiguità
+linguistiche, garantendo una comunicazione uniforme sia tra i membri del gruppo sia verso gli stakeholder esterni.
 
 == Sviluppo
 === Analisi dei Requisiti
-L'#link("https://notipswe.github.io/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti] è una delle
-attività cardine della milestone Requirements and Technology Baseline (RTB). Il suo obiettivo è individuare l'insieme
-completo dei requisiti che il sistema dovrà soddisfare, fungendo da riferimento oggettivo per le successive attività di
-verifica. Il documento, redatto dagli analisti, è strutturato nelle seguenti sezioni:
+L'#link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti] è
+una delle attività cardine della milestone Requirements and Technology Baseline (RTB). Il suo obiettivo è individuare
+l'insieme completo dei requisiti che il sistema dovrà soddisfare, fungendo da riferimento oggettivo per le successive
+attività di verifica. Il documento, redatto dagli analisti, è strutturato nelle seguenti sezioni:
 - Introduzione: definisce lo scopo e il campo di applicazione del documento;
 - Descrizione: illustra le finalità generali e gli obiettivi del prodotto;
 - Attori: identifica gli utilizzatori del sistema e i soggetti che interagiscono con esso;

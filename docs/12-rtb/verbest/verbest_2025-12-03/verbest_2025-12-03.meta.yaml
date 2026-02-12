@@ -1,25 +1,19 @@
 title: Verbale Esterno 2025-12-03 (M31)
 changelog:
-  - version: "1.0.0"
-    date: "2025-12-09"
-    authors:
-      - Alessandro Mazzariol
-    verifier: Valerio Solito
-    description: >
-      Prima versione stabile
-
-  - version: "0.1.0"
-    date: "2025-12-04"
-    authors:
-      - Alessandro Mazzariol
-    verifier: Valerio Solito
-    description: >
-      Correzione sezione 3.3
-
-  - version: "0.0.1"
-    date: "2025-12-03"
-    authors:
-      - Alessandro Mazzariol
-    verifier: Valerio Solito
-    description: >
-      Prima bozza del verbale 
+- version: 1.0.0
+  date: '2025-12-09'
+  approver: Alessandro Mazzariol
+  baseline: RTB
+- version: 0.1.0
+  date: '2025-12-04'
+  authors:
+  - Alessandro Mazzariol
+  verifier: Valerio Solito
+  description: |
+    Correzione sezione 3.3
+- version: 0.0.1
+  date: '2025-12-03'
+  authors:
+  - Alessandro Mazzariol
+  verifier: Valerio Solito
+  description: "Prima bozza del verbale \n"
