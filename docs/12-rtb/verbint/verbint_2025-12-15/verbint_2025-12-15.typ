@@ -29,7 +29,7 @@
 
   L'ordine del giorno, in occasione della Sprint Review, prevede:
   - Analisi delle attività svolte e gestione delle criticità bloccanti nel precedente Sprint;
-  - Revisione e approvazione degli strumenti di automatizzazione;
+  - Revisione e approvazione degli strumenti di automazione;
   - Aggiornamento delle Norme di Progetto e formalizzazione delle milestone interne;
   - Discussione approfondita sulle problematiche dell'Analisi dei Requisiti;
   - Pianificazione operativa del prossimo Sprint.
@@ -52,33 +52,16 @@
       Si deciso di rinviare i rilasci di v0.3.0 e v0.4.0, riallocando i relativi task nel prossimo Sprint con priorità
       maggiore. È stato inoltre stabilito di richiedere un confronto mirato con il prof. Cardin al termine della
       prossima lezione, al fine di validare l'adeguatezza della profondità di analisi ora ipotizzata.
+
+      *Azioni da intraprendere:*
+      - Spostamento task: Analisi dei Requisiti v0.3.0 - aggiustamenti UC
+      - Spostamento task: Analisi dei Requisiti v0.4.0 - inserimento requisiti funzionali
+      - Spostamento task: Analisi dei Requisiti v0.4.0 - inserimento requisiti qualitativi e di vincolo
+      - Spostamento task: Analisi dei Requisiti v0.4.0 - inserimento requisiti di prestazione e sicurezza
+      - Spostamento task: Analisi dei Requisiti v0.4.0 - inserimento tracciamento requisito-fonte
+      - Spostamento task: Analisi dei Requisiti v0.4.0 - inserimento tracciamento fonte-requisiti
+
     ],
-    actions: (
-      (
-        desc: "Spostamento task: Analisi dei Requisiti v0.3.0 - aggiustamenti UC",
-        url: "https://notipswe.atlassian.net/browse/NT-101",
-      ),
-      (
-        desc: "Spostamento task: Analisi dei Requisiti v0.4.0 - inserimento requisiti funzionali",
-        url: "https://notipswe.atlassian.net/browse/NT-89",
-      ),
-      (
-        desc: "Spostamento task: Analisi dei Requisiti v0.4.0 - inserimento requisiti qualitativi e di vincolo",
-        url: "https://notipswe.atlassian.net/browse/NT-92",
-      ),
-      (
-        desc: "Spostamento task: Analisi dei Requisiti v0.4.0 - inserimento requisiti di prestazione e sicurezza",
-        url: "https://notipswe.atlassian.net/browse/NT-98",
-      ),
-      (
-        desc: "Spostamento task: Analisi dei Requisiti v0.4.0 - inserimento tracciamento requisito-fonte",
-        url: "https://notipswe.atlassian.net/browse/NT-104",
-      ),
-      (
-        desc: "Spostamento task: Analisi dei Requisiti v0.4.0 - inserimento tracciamento fonte-requisiti",
-        url: "https://notipswe.atlassian.net/browse/NT-107",
-      ),
-    ),
   )
 
   #base-report.report-point(
@@ -129,20 +112,17 @@
       - Validazione delle metriche in base al valore aggiunto apportato al processo;
       - Progettazione della struttura del Cruscotto di Valutazione (organizzazione e contenuti);
       - Analisi preliminare e stesura dei metodi di testing (attività opzionale).
+
+      *Azioni da Intraprendere:*
+      - Piano di Qualifica v0.3.0 - Palestra per sezione Testing
     ],
-    actions: (
-      (
-        desc: "Piano di Qualifica v0.3.0 - Palestra per sezione Testing",
-        url: "https://notipswe.atlassian.net/browse/NT-146",
-      ),
-    ),
   )
 
   #base-report.report-point(
     discussion_point: [Aggiornamento Norme di Progetto.],
     discussion: [
-      L'esperienza maturata nell'ultimo periodo ha portato alla luce lacune normative che richiedono un aggiornamento
-      del documento Norme di Progetto nel prossimo Sprint.
+      L'esperienza maturata nell'ultimo periodo ha portato alla luce alcune lacune normative che richiedono un
+      aggiornamento del documento Norme di Progetto nel prossimo Sprint.
     ],
     decisions: [
       Nello Sprint 3 verranno integrate le seguenti sezioni:
@@ -177,9 +157,9 @@
       quello avvenuto sui casi d'uso), evitando di accumulare ritardi.
     ],
     decisions: [
-      Si decide di stabilire delle milestone interne che scandiscano il lavoro fino alla RTB. Queste scadenze dovranno
-      avere obiettivi chiari e verificabili nel breve periodo, per avere un riscontro frequente sulla qualità del lavoro
-      svolto.
+      Si decide di stabilire eventualmente delle milestone interne che scandiscano il lavoro fino alla RTB. Queste
+      scadenze dovranno avere obiettivi chiari e verificabili nel breve periodo, per avere un riscontro frequente sulla
+      qualità del lavoro svolto.
     ],
   )
 
