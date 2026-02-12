@@ -772,11 +772,11 @@ $
 == Processi Organizzativi
 === Gestione dei Processi
 ==== MP20 - Time Efficiency
-*Descrizione*: Misura l'efficienza del tempo impiegato per completare le attività pianificate.
+*Descrizione*: Misura l'efficienza produttiva delle ore.
 
 *Formula:*
 $
-  text("Time Efficiency") = frac(text("Tempo pianificato"), text("Tempo effettivo")) times 100
+  text("Time Efficiency") = frac(text("Ore produttive"), text("Ore totali")) times 100
 $
 
 \
