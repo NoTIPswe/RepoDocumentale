@@ -14,6 +14,18 @@
 
   #pagebreak()
 
+  #align(center)[
+    #image("assets/es_architettura.png")
+  ]
+
+  #pagebreak()
+
+  #align(center)[
+    #image("assets/es_architettura_grande.png")
+  ]
+
+  #pagebreak()
+
   == Requisiti Fondamentali
   - *Scalabilità e Sicurezza:* Progettare un'infrastruttura capace di gestire dati sensibili da sensori eterogenei in
     modo robusto
@@ -25,7 +37,8 @@
   = Architettura
   - *Microservizi*
     - _*Alternative considerate:*_ Serverless, Edge Computing
-    - _*Scelta:*_ Garantisce isolamento dei guasti e facilita lo sviluppo parallelo del team
+    - _*Scelta:*_ Garantisce isolamento dei guasti e facilita lo sviluppo parallelo del team. Permette la scalabilità
+      orizzontale dei servizi
 
   = Tecnologie Utilizzate
   - *Go* (Linguaggio Simulatore e Consumer)
@@ -34,13 +47,12 @@
       footprint di risorse
   - *NATS JetStream* (Message Broker)
     - _*Alternative considerate:*_ Apache Kafka, Google Cloud Pub/Sub
-    - _*Scelta:*_ Supporto nativo al protocollo MQTT (evita adapter intermedi), bassa latenza e gestione integrata della
-      persistenza
+    - _*Scelta:*_ Semplicità di implementazione rispetto a Kafka, sicurezza integrata
 
   #pagebreak()
 
   - *PostgreSQL + TimescaleDB* (Database)
-    - _*Alternative considerate:*_ Database Relazionali puri o Time-Series puri
+    - _*Alternative considerate:*_ Database Relazionali puri e/o Time-Series puri
     - _*Scelta:*_ Unisce l'affidabilità SQL per i dati strutturati (tenant) alle performance delle Hypertables per le
       serie temporali. \
       TimescaleDB permette di gestire efficientemente lo storico temporale dei sensori, evitando l'introduzione di un
@@ -49,23 +61,29 @@
   #pagebreak()
 
   - *NestJS* (DataAPI)
-    - _*Alternative considerate:*_
+    - _*Alternative considerate:*_ Gin (Go)
     - _*Scelta:*_ Struttura modulare e integrazione con TypeORM per query ottimizzate e gestione manutenibile della
-      logica di business
+      logica di business. Permette la facile costruzione delle API.
   - *Angular + TypeScript SDK* (Frontend)
-    - _*Alternative considerate:*_
-    - _*Scelta:*_ Permette di gestire la decifrazione dei dati "lato client" (End-to-End Encryption), garantendo che il
-      dato in chiaro sia visibile solo all'utente finale.
+    - _*Scelta:*_ TypeScript SDK permette di gestire la decifrazione dei dati "lato client" (End-to-End Encryption),
+      garantendo che il dato in chiaro sia visibile solo all'utente finale. Framework molto completo e pieno sostegno da
+      parte dell'azienda proponente
 
   = PoC
 
   == Componenti realizzati
   1. *Gateway Simulator (Go):* Simula invio dati, mTLS, e concorrenza
-  2. *Data Queue (NATS):* Ingestion diretta MQTT; garantisce bufferizzazione e resilienza
+  2. *Data Queue (NATS):* Ingestion diretta; garantisce bufferizzazione e resilienza
   3. *Storage & Segregazione:* Implementazione della multi-tenancy logica su TimescaleDB
   4. *Dashboard (Angular):* Visualizzazione Real-Time con decifrazione client-side
 
   == Esclusi dalla realizzazione
   - *Monitoraggio* e *Auth Utente* rimandati all'MVP
+
+  #pagebreak()
+
+  #align(center)[
+    #image("assets/architettura_poc.svg")
+  ]
 
 ]

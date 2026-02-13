@@ -1,5 +1,12 @@
 title: Tecnologie
 changelog:
+  - version: "0.1.0"
+    date: "2024-02-13"
+    authors:
+      - Leonardo Preo
+    verifier: TBD
+    description: >
+      Aggiunta immagini architetture e modifica motivazioni scelte tecnologiche
   - version: "0.0.1"
     date: "2024-02-12"
     authors:
