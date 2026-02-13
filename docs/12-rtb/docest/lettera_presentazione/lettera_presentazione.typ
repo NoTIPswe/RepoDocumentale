@@ -55,7 +55,7 @@
   La documentazione completa relativa alla revisione RTB è invece disponibile sul sito ufficiale del gruppo: #link(
     "https://notipswe.github.io/RepoDocumentale",
   )[RepoDocumentale]. \
-  In particolare, si sottopongo alla Vostra attenzione i seguenti documenti:
+  In particolare, si sottopongono alla Vostra attenzione i seguenti documenti:
 
   - Lettera di presentazione (documento attuale)
   - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto (NdP)]
