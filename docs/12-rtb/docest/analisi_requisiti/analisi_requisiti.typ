@@ -128,6 +128,12 @@
 
   = Casi d'Uso - Parte A: Sistema Cloud
   == Attori del Sistema
+
+  #figure(
+    image("uc_schemas/attori_cloud.png"),
+    caption: "Attori relativi al Sistema Cloud",
+  )
+
   #table(
     columns: (1fr, 2fr),
     [Attore], [Descrizione],
@@ -309,7 +315,12 @@
   = Casi d'Uso - Parte B: Simulatore Gateway
 
   == Attori del Sistema
-  == Diagrammi e Descrizioni Casi d'Uso
+
+  #figure(
+    image("uc_schemas/attori_sim.png", width: 50%),
+    caption: "Attori relativi al Simulatore Gateway",
+  )
+
   #table(
     columns: (1fr, 2fr),
     [Attore], [Descrizione],
@@ -321,6 +332,8 @@
     [Operatore tecnico (Sviluppatore o Tester) che configura ed esegue il software di simulazione per generare traffico
       dati, testare il carico o iniettare anomalie.],
   )
+
+  == Diagrammi e Descrizioni Casi d'Uso
 
   #include "ucs/visualizzazione_lista_gateway_simulati.typ"
   #include "ucs/visualizzazione_singolo_gateway_simulato.typ"
@@ -382,6 +395,8 @@
   )[Norme di Progetto].
 
   == Requisiti Funzionali
+
+
   #table(
     columns: (auto, auto, 2fr, 1fr),
     [Codice], [Importanza], [Descrizione], [Fonte],
