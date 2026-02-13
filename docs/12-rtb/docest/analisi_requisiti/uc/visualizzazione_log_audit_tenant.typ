@@ -15,7 +15,11 @@
   trigger: "L’Attore desidera visualizzare i log di Audit del Tenant",
   main-scen: (
     (
-      descr: "L’Attore visualizza l'elenco cronologico dei log di Audit in una tabella riepilogativa",
+      descr: "L’Attore seleziona un Tenant",
+      inc: "selezione_tenant",
+    ),
+    (
+      descr: "L’Attore visualizza i log di Audit del Tenant selezionato",
       inc: "visualizzazione_singolo_log_audit",
     ),
   ),
