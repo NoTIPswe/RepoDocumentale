@@ -243,9 +243,10 @@ svolgimento del progetto.
   - Compilare i documenti in modalità _hot reload_;
   - _Generare il sito_ web del team contenente tutti i documenti;
   - _Formattare i file Typst_ secondo le regole di formattazione del team;
-  - _Verificare_ che un set di modifiche rispetti le norme del progetto. Ad esempio:
+  - _Verificare_ che un set di modifiche rispetti le norme del progetto; Ad esempio:
     - Verificare che non siano stati modificati documenti di vecchie baseline;
-    - Verificare
+    - Verificare;
+  - _Calcolare l'indice di Gulpease_ di ogni singolo documento e permette di condividere il valore medio alla dashboard del gruppo.
 
   Il tool è accompagnato dalla sua documentazione d'uso e da messaggi di errore chiari. Per iniziare ad utilizzarlo,
   seguire le istruzioni presenti in `README.md` e digitare `notipdo --help` sulla propria shell. `notipdo` supporta
