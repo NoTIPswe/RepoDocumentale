@@ -94,12 +94,11 @@ accepted_words:
   - Kubernetes
   - HTTPS
   - WebSocket
+  - TimescaleDB
+  - Hypertables
   - TCP
   - Nats
   - TimescaleDB
-  - ESLint
-  - Golang
-  - gitignore
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -143,11 +142,14 @@ accepted_words:
   - Postcondizioni
   - Precondizioni
   - namespace
+  - AC
+  - SPI
+  - ETC
+  - RSI
   - PdQ
   - Serverless
   - WebApp
   - DdB
-
 
   # --- Terminologia Standard Progetto ---
   - docest
@@ -183,6 +185,7 @@ accepted_words:
   - PasswordInvalida
   - RangeInvalido
   - NessunDato
+  - burnup
   - uc 
   - authd
   - usr
@@ -225,6 +228,21 @@ accepted_words:
   - l'endpoint
   - failover
   - provisionato
+  - l'automiglioramento
+  - messagging
+  - decifratura
+  - d'esami
+  - l'EV
+  - L'AC
+  - l'SPI
+  - L'EAC
+  - nell'EAC
+  - l'ETC
+  - L'RSI
+  - l'API
+  - dell'
+  - l'
+  - l'AC
   - d'esami
   - versionare
   - un'activity

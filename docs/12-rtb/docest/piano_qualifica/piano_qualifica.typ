@@ -1,6 +1,6 @@
 #import "../../00-templates/base_document.typ" as base-document
 
-#let metadata = yaml(sys.inputs.meta-path)
+#let metadata = yaml("piano_qualifica.meta.yaml")
 
 #let metrics-table(metrics, caption: none) = {
   set text(hyphenate: false)
@@ -168,13 +168,13 @@
   #metrics-description(
     [MP01],
     [Earned Value],
-    [Il valore accettabile minimo è zero poiché l'EV rappresenta il valore del lavoro completato. Non può essere
+    [Il valore accettabile minimo è zero poiché l’EV rappresenta il valore del lavoro completato. Non può essere
       negativo per definizione e valori molto bassi rispetto al pianificato indicano ritardi nell'esecuzione, tuttavia
       non sono invalidanti dal punto di vista metrico.],
     [Il valore ottimo corrisponde esattamente al Planned Value (EV = PV), indicando che il lavoro completato coincide o
       eccede addirittura quello pianificato. Questo significa che il progetto procede esattamente nei tempi previsti,
       senza ritardi.],
-    note: [L'EV deve essere calcolato a intervalli regolari (es. fine sprint) per tracciare l'andamento del progetto.
+    note: [L’EV deve essere calcolato a intervalli regolari (es. fine sprint) per tracciare l'andamento del progetto.
       Variazioni significative richiedono analisi delle cause e potenziali azioni correttive.],
   )
 
@@ -319,9 +319,9 @@
       documentazione tecnica rivolta a professionisti del settore. Questo livello bilancia precisione terminologica e
       chiarezza espositiva.],
     [Un indice ≥ 80 indica documentazione molto accessibile, comprensibile anche per lettori con istruzione base.],
-    note: [L'indice di Gulpease non è sempre necessario massimizzarlo, ma va interpretato considerando il tipo di
-      documento in esame: manuali utente dovrebbero cercare di raggiungere valori più alti (≥75), mentre documentazione
-      tecnica tenderà ad avere valori più bassi (≥55) data la natura tecnica del contenuto.],
+    note: [Non è sempre necessario massimizzare tale indice, ma va interpretato considerando il tipo di documento in
+      esame: manuali utente dovrebbero cercare di raggiungere valori più alti (≥75), mentre documentazione tecnica
+      tenderà ad avere valori più bassi (≥55) data la natura tecnica del contenuto.],
   )
 
   #metrics-description(
@@ -848,7 +848,7 @@
   I seguenti metodi di testing verranno adottati per garantire la qualità minima del prodotto:
   - *Unit Testing*: test automatici per singole unità di codice, garantendo correttezza funzionale isolata.
   - *Integration Testing*: verifica delle interazioni tra unità, assicurando che collaborino correttamente.
-  - *System Testing*: test end-to-end del sistema completo in ambiente simulato.
+  - *System Testing*: test end-to-end del Sistema completo in ambiente simulato.
 
   == Test di Unità
 
@@ -858,48 +858,48 @@
     inset: 6pt,
 
     table.header([*Codice*], [*Descrizione (unitaria)*], [*Requisiti di riferimento*], [*Stato*]),
-    [T-U-1], [Verificare la validazione del campo email nella richiesta di login (presenza e formato)], [R-2-F], [NI],
-    [T-U-2], [Verificare la validazione del campo password nella richiesta di login], [R-3-F], [NI],
-    [T-U-3], [Verificare il mapping dell’errore “credenziali errate”], [R-4-F], [NI],
-    [T-U-4], [Verificare la generazione del segreto TOTP (formato e lunghezza)], [R-5-F], [NI],
-    [T-U-5], [Verificare la serializzazione del segreto TOTP], [R-5-F], [NI],
-    [T-U-6], [Verificare la valutazione della condizione “2FA richiesto”], [R-6-F], [NI],
-    [T-U-7], [Verificare la validazione dell’input OTP (solo cifre, lunghezza)], [R-7-F], [NI],
-    [T-U-8], [Verificare il mapping dell’errore “OTP errato”], [R-8-F], [NI],
-    [T-U-9], [Verificare la validazione della richiesta di recupero password], [R-9-F], [NI],
-    [T-U-10], [Verificare il mapping dell’errore “account non esistente”], [R-11-F], [NI],
-    [T-U-11], [Verificare la validazione della nuova password], [R-12-F], [NI],
-    [T-U-12], [Verificare il mapping dell’errore “password non corrispondenti”], [R-13-F], [NI],
-    [T-U-13], [Verificare il rispetto della policy di complessità password], [R-14-F], [NI],
+    [T-U-1], [Verificare la validazione del campo email nella richiesta di login (presenza e formato)], [R-117-F], [NI],
+    [T-U-2], [Verificare la validazione del campo password nella richiesta di login], [R-2-F], [NI],
+    [T-U-3], [Verificare il mapping dell’errore “credenziali errate”], [R-3-F], [NI],
+    [T-U-4], [Verificare la generazione del segreto TOTP (formato e lunghezza)], [R-4-F], [NI],
+    [T-U-5], [Verificare la serializzazione del segreto TOTP], [R-4-F], [NI],
+    [T-U-6], [Verificare la valutazione della condizione “2FA richiesto”], [R-5-F], [NI],
+    [T-U-7], [Verificare la validazione dell’input OTP (solo cifre, lunghezza)], [R-6-F], [NI],
+    [T-U-8], [Verificare il mapping dell’errore “OTP errato”], [R-7-F], [NI],
+    [T-U-9], [Verificare la validazione della richiesta di recupero password], [R-8-F], [NI],
+    [T-U-10], [Verificare il mapping dell’errore “account non esistente”], [R-10-F], [NI],
+    [T-U-11], [Verificare la validazione della nuova password], [R-11-F], [NI],
+    [T-U-12], [Verificare il mapping dell’errore “password non corrispondenti”], [R-12-F], [NI],
+    [T-U-13], [Verificare il rispetto della policy di complessità password], [R-13-F], [NI],
 
-    [T-U-14], [Verificare il mapping dello stato gateway verso label testuale], [R-24-F], [NI],
-    [T-U-15], [Verificare la formattazione del timestamp ultimo invio gateway], [R-26-F], [NI],
-    [T-U-16], [Verificare la formattazione del timestamp ultimo invio sensore], [R-29-F], [NI],
-    [T-U-17], [Verificare la normalizzazione e serializzazione dello stream dati], [R-31-F], [NI],
-    [T-U-18], [Verificare la trasformazione dello stream in struttura tabellare], [R-32-F], [NI],
-    [T-U-19], [Verificare la trasformazione dello stream in serie per grafico], [R-33-F], [NI],
-    [T-U-20], [Verificare la validazione dell’intervallo temporale (start ≤ end)], [R-36-F], [NI],
-    [T-U-21], [Verificare il mapping dello stato “dati non disponibili”], [R-37-F], [NI],
-    [T-U-22], [Verificare la serializzazione dei dati per export], [R-38-F], [NI],
-    [T-U-23], [Verificare la formattazione del valore fuori range], [R-41-F], [NI],
-    [T-U-24], [Verificare la formattazione del range accettato], [R-42-F], [NI],
-    [T-U-25], [Verificare la formattazione del timestamp di un dato irregolare], [R-43-F], [NI],
+    [T-U-14], [Verificare il mapping dello stato gateway verso label testuale], [R-21-F], [NI],
+    [T-U-15], [Verificare la formattazione del timestamp ultimo invio gateway], [R-22-F], [NI],
+    [T-U-16], [Verificare la formattazione del timestamp ultimo invio sensore], [R-23-F], [NI],
+    [T-U-17], [Verificare la normalizzazione e serializzazione dello stream dati], [R-24-F], [NI],
+    [T-U-18], [Verificare la trasformazione dello stream in struttura tabellare], [R-25-F], [NI],
+    [T-U-19], [Verificare la trasformazione dello stream in serie per grafico], [R-26-F], [NI],
+    [T-U-20], [Verificare la validazione dell’intervallo temporale (start ≤ end)], [R-29-F], [NI],
+    [T-U-21], [Verificare il mapping dello stato “dati non disponibili”], [R-30-F], [NI],
+    [T-U-22], [Verificare la serializzazione dei dati per export], [R-31-F], [NI],
+    [T-U-23], [Verificare la formattazione del valore fuori range], [R-33-F], [NI],
+    [T-U-24], [Verificare la formattazione del range accettato], [R-33-F], [NI],
+    [T-U-25], [Verificare la formattazione del timestamp di un dato irregolare], [R-33-F], [NI],
 
-    [T-U-26], [Verificare il mapping del tipo di alert verso descrizione testuale], [R-46-F], [NI],
-    [T-U-27], [Verificare il mapping dell’hardware interessato da un alert], [R-47-F], [NI],
-    [T-U-28], [Verificare la formattazione del timestamp di emissione alert], [R-48-F], [NI],
-    [T-U-29], [Verificare la validazione delle impostazioni di notifica], [R-52-F], [NI],
+    [T-U-26], [Verificare il mapping del tipo di alert verso descrizione testuale], [R-35-F], [NI],
+    [T-U-27], [Verificare il mapping dell’hardware interessato da un alert], [R-35-F], [NI],
+    [T-U-28], [Verificare la formattazione del timestamp di emissione alert], [R-35-F], [NI],
+    [T-U-29], [Verificare la validazione delle impostazioni di notifica], [R-39-F, R-40-F], [NI],
 
-    [T-U-30], [Verificare la validazione del nome utente tenant], [R-71-F], [NI],
-    [T-U-31], [Verificare la validazione dei ruoli assegnabili], [R-73-F], [NI],
-    [T-U-32], [Verificare l’assenza di duplicati nella selezione utenti], [R-77-F], [NI],
-    [T-U-33], [Verificare la generazione del Client ID], [R-79-F], [NI],
-    [T-U-34], [Verificare la generazione del Client Secret], [R-80-F], [NI],
+    [T-U-30], [Verificare la validazione del nome utente tenant], [R-58-F], [NI],
+    [T-U-31], [Verificare la validazione dei ruoli assegnabili], [R-60-F], [NI],
+    [T-U-32], [Verificare l’assenza di duplicati nella selezione utenti], [R-64-F], [NI],
+    [T-U-33], [Verificare la generazione del Client ID], [R-66-F], [NI],
+    [T-U-34], [Verificare la generazione del Client Secret], [R-67-F], [NI],
 
-    [T-U-35], [Verificare la costruzione di una entry di audit (campi obbligatori)], [R-90-F], [NI],
-    [T-U-36], [Verificare il mapping dell’operazione di audit verso testo], [R-92-F], [NI],
-    [T-U-37], [Verificare la validazione di un token JWT (scadenza e formato)], [R-102-F], [NI],
-    [T-U-38], [Verificare la validazione dei permessi secondo policy], [R-105-F], [NI],
+    [T-U-35], [Verificare la costruzione di una entry di audit (campi obbligatori)], [R-74-F], [NI],
+    [T-U-36], [Verificare il mapping dell’operazione di audit verso testo], [R-74-F], [NI],
+    [T-U-37], [Verificare la validazione di un token JWT (scadenza e formato)], [R-86-F], [NI],
+    [T-U-38], [Verificare la validazione dei permessi secondo policy], [R-6-S], [NI],
 
     [T-U-39], [Verificare il mapping della lista gateway simulati], [R-S-1-F], [NI],
     [T-U-40], [Verificare il mapping del gateway simulato], [R-S-2-F], [NI],
@@ -920,41 +920,41 @@
     [T-I-1],
     [Verificare la corretta ricezione e validazione dei pacchetti JSON inviati dal Simulatore al Cloud Ingestion
       Service],
-    [R-S-1-F, R-S-4-F],
+    [R-113-F],
     [NI],
 
     [T-I-2],
     [Verificare il flusso di controllo bidirezionale: invio e corretta applicazione dei comandi di configurazione dal
       Cloud al Simulatore],
-    [R-S-7-F, R-S-10-F],
+    [R-S-22-F],
     [NI],
 
     [T-I-3],
     [Verificare la gestione del buffer locale del Simulatore e della successiva integrazione con il Cloud dopo un
       ripristino di rete],
-    [R-S-8-F],
+    [R-S-20-F],
     [NI],
 
     [T-I-4],
     [Verificare la persistenza dei dati nel database (MongoDB) e dell'isolamento dei dati per ciascun Tenant],
-    [R-S-17-F, R-S-22-F],
+    [R-S-17-F, R-2-S],
     [NI],
 
     [T-I-5],
     [Verificare la comunicazione tra il servizio di Ingestion e il sistema di Streaming (NATS) per la distribuzione dei
       dati],
-    [R-S-21-F],
+    [R-S-21-F, R-5-V],
     [NI],
 
     [T-I-6],
     [Verificare l'attivazione dei trigger di allerta tra il modulo di analisi dati e il servizio notifiche al
       superamento delle soglie],
-    [R-S-19-F, R-S-20-F],
+    [R-33-F],
     [NI],
 
     [T-I-7],
-    [Verificare l'integrazione del sistema di autenticazione (JWT) tra l'API Gateway e i microservizi interni],
-    [R-S-23-F, R-S-24-F],
+    [Verificare l'integrazione del Sistema di autenticazione (JWT) tra l'API Gateway e i microservizi interni],
+    [R-6-S],
     [NI],
 
     [T-I-8],
@@ -968,10 +968,10 @@
     [R-S-21-F],
     [NI],
 
-    [T-I-10], [Verificare l’integrazione del sistema con più Gateway simulati attivi in parallelo], [R-S-17-F], [NI],
-    [T-I-11], [Verificare la corretta trasmissione del flusso di dati tra sensore e relativo gateway], [R-Q-2], [NI],
+    [T-I-10], [Verificare l’integrazione del Sistema con più Gateway simulati attivi in parallelo], [R-S-17-F], [NI],
+    [T-I-11], [Verificare la corretta trasmissione del flusso di dati tra sensore e relativo gateway], [R-2-Q], [NI],
     [T-I-12],
-    [Verificare che i dati scambiati tra le diverse componenti del sistema distribuito siano cifrati e trasmessi tramite
+    [Verificare che i dati scambiati tra le diverse componenti del Sistema distribuito siano cifrati e trasmessi tramite
       protocollo TLS.],
     [R-1-S],
     [NI],
@@ -989,178 +989,171 @@
     table.header([*Codice*], [*Descrizione (unitaria)*], [*Requisiti di riferimento*], [*Stato*]),
     //Autenticazione e Autorizzazione
     [T-S-001],
-    [Verificare che un utente non autenticato possa accedere al sistema inserendo credenziali valide tramite interfaccia
-      UI],
-    [R-1-F, R-2-F, R-3-F],
+    [Verificare che un utente non autenticato possa accedere al Sistema inserendo credenziali valide tramite interfaccia
+      UI.],
+    [R-1-F, R-2-F, R-117-F],
     [NI],
 
     [T-S-002],
-    [Verificare che il sistema neghi l’accesso e mostri un messaggio di errore in caso di credenziali errate],
-    [R-4-F],
+    [Verificare che il Sistema neghi l’accesso e mostri un messaggio di errore in caso di credenziali errate.],
+    [R-3-F],
     [NI],
 
     [T-S-003],
-    [Verificare che un utente possa configurare correttamente il meccanismo 2FA durante il primo accesso],
-    [R-5-F],
+    [Verificare che un utente possa configurare correttamente il meccanismo 2FA durante il primo accesso.],
+    [R-4-F],
     [NI],
 
-    [T-S-004], [Verificare che un utente possa effettuare il login tramite codice OTP valido], [R-6-F, R-7-F], [NI],
+    [T-S-004], [Verificare che un utente possa effettuare il login tramite codice OTP valido.], [R-5-F, R-6-F], [NI],
     [T-S-005],
-    [Verificare che il sistema notifichi un errore in caso di inserimento di codice OTP errato],
-    [R-8-F],
+    [Verificare che il Sistema notifichi un errore in caso di inserimento di codice OTP errato.],
+    [R-7-F],
     [NI],
 
     [T-S-006],
-    [Verificare che tutti gli endpoint UI e API rifiutino richieste provenienti da utenti non autenticati],
+    [Verificare che tutti gli endpoint UI e API rifiutino richieste provenienti da utenti non autenticati.],
     [R-6-S],
     [NI],
 
     //Recupero Credenziali
     [T-S-007],
     [Verificare che un utente non autenticato possa avviare la procedura di recupero password inserendo una mail
-      valida],
-    [R-9-F],
+      valida.],
+    [R-8-F],
     [NI],
 
     [T-S-008],
-    [Verificare che il sistema permetta la modifica della password tramite procedura di recupero],
-    [R-10-F, R-12-F],
+    [Verificare che il Sistema permetta la modifica della password tramite procedura di recupero.],
+    [R-9-F, R-11-F],
     [NI],
 
     [T-S-009],
-    [Verificare che il sistema notifichi un errore in caso di email non associata ad alcun account],
-    [R-11-F],
+    [Verificare che il Sistema notifichi un errore in caso di email non associata ad alcun account.],
+    [R-10-F],
     [NI],
 
     [T-S-010],
     [Verificare che il sistema notifichi un errore in caso di password inserite non corrispondenti o non valide],
-    [R-13-F, R-14-F],
+    [R-12-F, R-13-F],
     [NI],
 
     //Gateway e Sensori
     [T-S-011],
     [Verificare che un utente autenticato possa visualizzare la lista dei Gateway associati al proprio Tenant],
-    [R-21-F],
+    [R-20-F],
     [NI],
 
     [T-S-012],
     [Verificare che il sistema mostri correttamente i dettagli di un Gateway selezionato],
-    [R-22-F, R-23-F, R-24-F, R-25-F],
+    [R-21-F, R-22-F],
     [NI],
 
-    [T-S-013], [Verificare che il sistema mostri la lista dei sensori associati a un Gateway], [R-26-F, R-27-F], [NI],
+    [T-S-013], [Verificare che il sistema mostri la lista dei sensori associati a un Gateway], [R-23-F], [NI],
     [T-S-014],
     [Verificare che il sistema mostri correttamente i dettagli e l’ultimo timestamp di ciascun sensore],
-    [R-28-F, R-29-F, R-30-F],
+    [R-23-F],
     [NI],
 
     //Dati, Filtri e Esportazione
-    [T-S-015], [Verificare che il sistema visualizzi i dati di stream in formato tabellare], [R-31-F, R-32-F], [NI],
-    [T-S-016], [Verificare che il sistema visualizzi i dati di stream in formato grafico], [R-33-F], [NI],
+    [T-S-015], [Verificare che il sistema visualizzi i dati di stream in formato tabellare], [R-24-F, R-25-F], [NI],
+
+    [T-S-016], [Verificare che il sistema visualizzi i dati di stream in formato grafico], [R-24-F,R-26-F], [NI],
     [T-S-017],
     [Verificare che l’utente possa filtrare i dati per Gateway, sensore e intervallo temporale],
-    [R-34-F, R-35-F, R-36-F],
+    [R-27-F, R-28-F, R-29-F],
     [NI],
 
     [T-S-018],
     [Verificare che il sistema notifichi l’utente quando non sono disponibili dati per i filtri selezionati],
-    [R-37-F],
+    [R-30-F],
     [NI],
 
-    [T-S-019], [Verificare che l’utente possa esportare i dati visualizzati in formato supportato], [R-38-F], [NI],
+    [T-S-019], [Verificare che l’utente possa esportare i dati visualizzati in formato supportato], [R-31-F], [NI],
 
     //Alert e Notifiche
-    [T-S-020], [Verificare che il sistema generi un alert in caso di Gateway non raggiungibile], [R-39-F], [NI],
-    [T-S-021],
-    [Verificare che il sistema generi un alert in caso di valore sensore fuori range],
-    [R-40-F, R-41-F, R-42-F, R-43-F],
-    [NI],
+    [T-S-020], [Verificare che il sistema generi un alert in caso di Gateway non raggiungibile], [R-32-F], [NI],
+    [T-S-021], [Verificare che il sistema generi un alert in caso di valore sensore fuori range], [R-33-F], [NI],
 
-    [T-S-022], [Verificare che l’utente possa visualizzare lo storico degli alert generati], [R-44-F, R-45-F], [NI],
+    [T-S-022], [Verificare che l’utente possa visualizzare lo storico degli alert generati], [R-34F], [NI],
     [T-S-023],
     [Verificare che il sistema mostri i dettagli completi di un alert selezionato],
-    [R-46-F, R-47-F, R-48-F],
+    [R-35-F, R-36-F, R-37-F, R-38-F],
     [NI],
 
     [T-S-024],
     [Verificare che l’utente possa configurare le notifiche di alert via email e dashboard],
-    [R-52-F, R-53-F],
+    [R-39-F, R-40-F],
     [NI],
 
     //Configurazione Gateway
     [T-S-025],
     [Verificare che l’utente possa modificare il nome di un Gateway e ricevere errore in caso di duplicato],
-    [R-54-F, R-55-F],
+    [R-41-F, R-42-F],
     [NI],
 
-    [T-S-026], [Verificare che l’utente possa modificare lo stato operativo di un Gateway], [R-56-F, R-57-F], [NI],
+    [T-S-026], [Verificare che l’utente possa modificare lo stato operativo di un Gateway], [R-43-F, R-44-F], [NI],
     [T-S-027],
     [Verificare che l’utente possa modificare i range di allarme di un sensore specifico],
-    [R-58-F, R-59-F],
+    [R-45-F, R-46-F, R-48-F, R-49-F],
     [NI],
 
     //Utenti e Tenant
     [T-S-028],
     [Verificare che il Tenant Admin possa creare, modificare ed eliminare utenti del Tenant],
-    [R-50-F, R-51-F, R-52-F, R-53-F, R-54-F, R-55-F, R-56-F, R-57-F, R-58-F],
+    [R-56-F, R-57-F, R-58-F, R-59-F, R-60-F, R-61-F, R-62-F, R-63-F, R-64-F, R-65-F],
     [NI],
 
     [T-S-029],
-    [Verificare che l'Amministratore di Sistema possa creare, sospendere, riattivare ed eliminare un Tenant],
-    [R-79-F, R-80-F, R-81-F, R-82-F, R-83-F, R-84-F, R-85-F, R-86-F, R-87-F, R-89-F, R-90-F, R-91-F],
+    [Verificare che l'Amministratore di Sistema possa creare, sospendere, modificare, visualizzare dettagli, riattivare
+      ed eliminare un Tenant],
+    [R-92-F, R-93-F, R-94-F, R-95-F, R-96-F, R-97-F, R-98-F, R-99-F, R-100-F, R-101-F, R-105-F, R-106-F],
     [NI],
 
     [T-S-030],
     [Verificare che l'Amministratore di Sistema possa impersonificare un utente Tenant e operare con i suoi permessi],
-    [R-92-F],
+    [R-107-F],
     [NI],
 
     //API, audit e monitoraggio
     [T-S-031],
-    [Verificare che il Tenant Admin possa creare e revocare credenziali API],
-    [R-59-F, R-60-F, R-61-F, R-62-F],
+    [Verificare che il Tenant Admin possa creare, visualizzare e revocare credenziali API],
+    [R-65-F, R-66-F, R-67-F, R-68-F, R-69-F, R-70-F, R-71-F],
     [NI],
 
-    [T-S-032],
-    [Verificare che il sistema registri tutte le operazioni rilevanti nei log di Audit],
-    [R-64-F, R-4-S],
-    [NI],
+    [T-S-032], [Verificare che il sistema registri tutte le operazioni rilevanti nei log di Audit], [R-4-S], [NI],
 
     [T-S-033],
     [Verificare che un utente autorizzato possa consultare ed esportare i log di Audit],
-    [R-65-F, R-95-F, R-96-F],
+    [R-73-F, R-74-F, R-75-F, R-76-F],
     [NI],
 
-    [T-S-034],
-    [Verificare che il sistema mostri metriche di latenza, traffico e utilizzo storage],
-    [R-97-F, R-97.1-F, R-97.2-F, R-97.3-F],
-    [NI],
+    [T-S-034], [Verificare che il sistema mostri metriche di latenza, traffico e utilizzo storage], [R-110-F], [NI],
 
     //Provisioning e sicurezza comunicazioni
     [T-S-035],
     [Verificare che un Gateway non provisioned possa completare correttamente il processo di onboarding],
-    [R-93-F, R-94-F, R-98-F],
+    [R-111-F],
     [NI],
 
     [T-S-036],
     [Verificare che il sistema notifichi errori di autenticazione per Gateway non validi],
-    [R-99-F, R-101-F],
+    [R-112-F, R-116-F],
     [NI],
 
     [T-S-037],
     [Verificare che il Gateway invii dati al Cloud tramite canale cifrato e che il Cloud li accetti],
-    [R-100-F, R-100.1-F, R-1-S],
+    [R-113-F, R-114-F, R-1-S],
     [NI],
 
     //Simulatore Gateway
     [T-S-038],
     [Verificare che l’utente del simulatore possa visualizzare e gestire Gateway simulati],
-    [R-S-1-F, R-S-2-F, R-S-3-F, R-S-4-F],
+    [R-S-1-F, R-S-2-F, R-S-3-F, R-S-4-F, R-S-8-F, R-S-10-F, R-S-11-F, R-S-12-F],
     [NI],
 
     [T-S-039],
     [Verificare che l’utente possa configurare e simulare sensori associati a un Gateway simulato],
-    [R-S-5-F, R-S-6-F, R-S-7-F, R-S-8-F, R-S-9-F, R-S-10-F, R-S-11-F, R-S-12-F, R-S-13-F, R-S-14-F, R-S-15-F, R-S-16-F],
+    [R-S-5-F, R-S-6-F, R-S-7-F, R-S-9-F, R-S-13-F, R-S-14-F, R-S-15-F, R-S-16-F],
     [NI],
 
     [T-S-040],
@@ -1174,11 +1167,138 @@
     [NI],
   )
 
-
-
-
   = Cruscotto di valutazione
-  // Da completare successivamente
+  Di seguito vengono presentate le misurazioni raccolte nel periodo compreso tra l’aggiudicazione del capitolato e la
+  definizione della Requirements and Technology Baseline (RTB). EVENTUALI ALTRE CONSIDERAZIONI DERIVATE DALLE
+  MISURAZIONI POTRANNO ESSERE RICAVATE SOLO NEL MOMENTO IN CUI VERRANNO EFFETTUATE LE MISURAZIONI IMMEDIATAMENTE PRIMA
+  DELLA REVISIONE RTB
+
+  == Burndown / Burnup Chart
+  IMMAGINE DA METTERE PRIMA DELLA RTB
+
+  Il grafico Burndown/Burnup mostra l’andamento delle ore di lavoro completate rispetto alla pianificazione ideale nel
+  periodo compreso in analisi. La linea di riferimento ideale rappresenta l’avanzamento atteso del lavoro in modo
+  lineare, mentre la curva delle ore effettivamente completate evidenzia l’andamento reale del progetto.
+
+  Dall’osservazione del grafico si nota che il lavoro effettivamente completato cresce nel tempo, ma con un andamento
+  non perfettamente allineato alla pianificazione ideale. In particolare, NoTIP riconosce la presenza di periodi di
+  crescita ridotta, alternati a incrementi più marcati, indice di una distribuzione del lavoro non uniforme tra le varie
+  iterazioni.
+
+  == Velocity Chart
+  IMMAGINE DA METTERE PRIMA DELLA RTB. Il grafico di Velocity rappresenta il numero di ore di lavoro completate in
+  ciascun intervallo temporale, mettendolo a confronto con la velocità media calcolata sulle iterazioni precedenti. Le
+  barre mostrano il lavoro effettivamente completato in ogni sprint, mentre la linea di velocità media fornisce
+  un’indicazione del ritmo di sviluppo complessivo del team. (COMMENTO DA AGGIUNGERE IN BASE A QUANTO RISCONTRATO A FINE
+  PERIODO)
+
+  == Indice di Gulpease
+  #figure(
+    image(height: 15%, "assets/Gulpease.png"),
+    caption: [Indice di Gulpease - NoTIP Dashboard],
+  ) <Gulpease>
+  L’indice di Gulpease è un indicatore di leggibilità per testi in lingua italiana che misura la facilità di
+  comprensione in base alla lunghezza di frasi e parole, restituendo un valore compreso tra 0 e 100. NoTIP si impegna a
+  mantenere per la propria documentazione un valore dell’indice di Gulpease non inferiore a 60, al fine di garantire un
+  adeguato livello di comprensibilità dei documenti prodotti.
+
+
+  = Valutazioni per l'automiglioramento
+  Al fine di perseguire un miglioramento continuo durante lo svolgimento del progetto, è opportuno effettuare
+  valutazioni periodiche. Tali valutazioni hanno l’obiettivo di individuare le criticità emerse e le relative soluzioni
+  adottate per affrontarle, consentendo al gruppo di acquisire una maggiore consapevolezza e di ridurre il rischio di
+  ripetere gli stessi errori in futuro. Le analisi effettuate si basano sulle tre categorie di rischio definite nel
+  _Piano di Progetto_ v1.0.0, ovvero:
+  - Rischi connessi alle tecnologie adottate (*RT1*);
+  - Rischi connessi all'organizzazione del team (*RO1*);
+  - Rischi connessi ai singoli componenti del gruppo (*RP1*).
+
+  == Valutazione sulle tecnologie adottate
+  #table(
+    columns: (1fr, 1fr, 0.4fr),
+    stroke: 0.5pt,
+    inset: 6pt,
+
+    table.header([*Problema*], [*Soluzione adottata*], [*Tecnologia coinvolta*]),
+    [La gestione del codice condiviso può generare conflitti e perdita di tracciabilità.],
+    [Utilizzo di repository GitHub con branch protection, pull request e Sistema di issue tracking.],
+    [GitHub],
+
+    [La pianificazione e il monitoraggio delle attività possono risultare disorganizzati senza uno strumento dedicato.],
+    [Utilizzo di Jira per la gestione del backlog, la pianificazione degli sprint e il monitoraggio dello stato delle
+      attività.],
+    [Jira],
+
+    [Alcuni membri del gruppo non avevano familiarità con il linguaggio Go, causando una curva di apprendimento
+      iniziale.],
+    [Ogni membro ha intrapreso un percorso di autoapprendimento mirato, supportato da documentazione ufficiale ed esempi
+      pratici.],
+    [Linguaggio Go],
+
+    [La maggior parte del team non aveva esperienza con tecnologie di messagging come NATS.],
+    [Studio della documentazione ufficiale e realizzazione di prototipi incrementali per validarne l'utilizzo nel PoC.],
+    [NATS JetStream],
+
+    [L’utilizzo di un database time-series basato su estensione PostgreSQL non era noto a tutti i membri.],
+    [Approfondimento delle funzionalità principali (Hypertables, partizionamento) e utilizzo guidato nelle prime fasi di
+      sviluppo.],
+    [PostgreSQL + TimescaleDB],
+
+    [La struttura modulare di NestJS può risultare inizialmente complessa.],
+    [Adozione delle convenzioni ufficiali del framework e suddivisione chiara dei moduli per facilitare la
+      comprensione.],
+    [TypeScript / NestJS],
+
+    [Il framework Angular richiede una buona organizzazione dei componenti e dei servizi.],
+    [Suddivisione dell’interfaccia in componenti con responsabilità ben definite e organizzazione della struttura del
+      progetto seguendo le linee guida della documentazione.],
+    [Angular],
+
+    [La gestione della decifratura lato client introduce complessità applicativa.],
+    [Implementazione semplificata con chiavi statiche per dimostrare la fattibilità dell’approccio nel PoC.],
+    [Cifratura end-to-end (Zero Knowledge).],
+  )
+
+  == Valutazione sull'organizzazione del team
+
+  #table(
+    columns: (1fr, 1fr),
+    stroke: 0.5pt,
+    inset: 6pt,
+
+    table.header([*Problema*], [*Soluzione adottata*]),
+    [La difficoltà nel coordinamento del lavoro asincrono tra i membri del team ha rallentato il progresso del
+      progetto.],
+    [Pianificazione di riunioni regolari per allineare gli obiettivi e le attività del team, oltre all'adozione di
+      strumenti di gestione del progetto per migliorare la comunicazione.],
+
+    [La comunicazione della rendicontazione delle ore lavorative durante la retrospettiva di sprint ha inizialmente
+      causato un rallentamento del flusso organizzativo.],
+    [Utilizzo di Jira per tracciare le ore lavorative in modo più efficiente e trasparente, riducendo il tempo dedicato
+      alla rendicontazione manuale.],
+
+    [La gestione non strutturata delle priorità delle attività ha portato a ritardi nell'implementazione di funzionalità
+      chiave.],
+    [Definizione delle priorità a inizio sprint e loro revisione durante la pianificazione.],
+
+    [Rallentamento delle attività di progetto nel periodo della sessione d'esami invernale.],
+    [Pianificazione delle attività in modo da recuperare il ritardo una volta terminati gli esami.],
+  )
+
+  == Valutazione sui singoli componenti del gruppo
+
+  #table(
+    columns: (1fr, 1fr),
+    stroke: 0.5pt,
+    inset: 6pt,
+
+    table.header([*Problema*], [*Soluzione adottata*]),
+    [Impegni esterni di alcuni componenti del gruppo hanno causato temporanee indisponibilità.],
+    [Comunicazione immediata al team e riorganizzazione delle attività per garantire la continuità del lavoro.],
+
+    [Differenti livelli di esperienza tra i membri del gruppo.],
+    [Collaborazione attiva e supporto reciproco per garantire un avanzamento uniforme delle attività.],
+  )
 
 ]
 
