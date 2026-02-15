@@ -123,6 +123,7 @@ Nel caso degli ucS bisogna scrivere "S" e subito di seguito il numero dell'UC, q
   main-scen: (),
   alt-scen: (),
   trigger: none,
+  show-trigger: false,
   ..args,
 ) = {
   let body = args.pos().at(0, default: none)
@@ -193,7 +194,7 @@ Nel caso degli ucS bisogna scrivere "S" e subito di seguito il numero dell'UC, q
         [*Postcondizioni*],
         [#if type(postconds) == array { list(..postconds) } else { list(postconds) } ],
 
-        ..if trigger != none {
+        ..if trigger != none and show-trigger {
           (
             [*Trigger*],
             [#trigger],

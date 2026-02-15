@@ -6,6 +6,7 @@
   title: "Aggiornamento del firmware Gateway",
   level: 1,
   prim-actors: CA.tenant-adm,
+  sec-actors: CA.p-gway,
   preconds: (
     "Il Sistema mostra all'Attore primario la lista dei Gateway",
     "Esiste almeno un nuovo firmware valido nel Sistema che possa essere caricato",
@@ -24,6 +25,7 @@
       inc: "selezione_firmware",
     ),
     (descr: "L’Attore conferma l’avvio della procedura di aggiornamento"),
+    (descr: "Il/I Gateway eseguono l'aggiornamento"),
     (descr: "L’Attore viene informato del buon esito della procedura al completamento"),
   ),
 )[#uml-schema("67", "Diagramma Aggiornamento del firmware Gateway")]

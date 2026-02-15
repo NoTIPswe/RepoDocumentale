@@ -6,6 +6,7 @@
   title: "Modifica range alert sensore specifico",
   level: 1,
   prim-actors: CA.tenant-adm,
+  sec-actors: CA.p-gway,
   preconds: (
     "Il sensore appartiene ad un Gateway attivo",
     "Il sensore risulta in funzione",

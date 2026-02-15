@@ -6,6 +6,7 @@
   title: "Visualizzazione dati Stream",
   level: 1,
   prim-actors: CA.tenant-usr,
+  sec-actors: CA.p-gway,
   preconds: (
     "Esiste almeno un sensore associato al Gateway di un Tenant gestito dall’Attore primario",
   ),

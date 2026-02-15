@@ -1,10 +1,10 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
 
 #uc(
   id: "ins_mail",
   system: CLOUD_SYS,
   title: "Inserimento mail",
-  level: 2,
+  level: 1,
   prim-actors: (CA.non-authd-usr,),
   preconds: (
     "Esiste almeno un account registrato nel Sistema",
@@ -16,4 +16,4 @@
   main-scen: (
     (descr: "L'Attore inserisce la mail nel campo dedicato"),
   ),
-)
+)[#uml-schema("101", "Diagramma Inserimento mail")]

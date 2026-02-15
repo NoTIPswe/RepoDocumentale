@@ -6,6 +6,7 @@
   title: "Richiesta dati Streaming",
   level: 1,
   prim-actors: CA.api-client,
+  sec-actors: CA.p-gway,
   preconds: (
     "L’Attore dispone di un token di autenticazione",
   ),
