@@ -148,7 +148,6 @@ accepted_words:
   - WebApp
   - DdB
 
-
   # --- Terminologia Standard Progetto ---
   - docest
   - docint
@@ -183,6 +182,7 @@ accepted_words:
   - PasswordInvalida
   - RangeInvalido
   - NessunDato
+  - RepoDocumentale
   - uc 
   - authd
   - usr
