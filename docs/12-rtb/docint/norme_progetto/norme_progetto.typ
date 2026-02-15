@@ -1,6 +1,6 @@
 #import "../../00-templates/base_document.typ" as base-document
 
-#let metadata = yaml(sys.inputs.meta-path)
+#let metadata = yaml("norme_progetto.meta.yaml")
 
 #show: base-document.apply-base-document.with(
   title: metadata.title,
@@ -591,7 +591,7 @@ fissato a 60.
 
 *Formula:*
 $
-  text("EV") = sum (text("costo pianificato attività completate"))
+  text("EV") = text("Budget at Completion") times text("Percentuale di lavoro completato nello sprint")
 $
 \
 
@@ -600,7 +600,7 @@ $
 
 *Formula:*
 $
-  text("PV") = sum (text("costo pianificato attività previste"))
+  text("PV") = text("Budget at Completion") times text("Percentuale di lavoro pianificato nello sprint")
 $
 
 \
@@ -610,7 +610,7 @@ $
 
 *Formula:*
 $
-  text("AC") = sum (text("costi reali sostenuti"))
+  text("AC") = (text("costo effettivo sostenuto nello sprint"))
 $
 
 \
