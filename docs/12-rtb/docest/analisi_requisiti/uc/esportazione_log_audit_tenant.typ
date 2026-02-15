@@ -7,6 +7,7 @@
   level: 1,
   prim-actors: (CA.tenant-adm, CA.sys-adm),
   preconds: (
+    "Esiste un Tenant che è stato selezionato",
     "Il Sistema mostra all'Attore primario i log di Audit del Tenant",
   ),
   postconds: (
@@ -14,6 +15,10 @@
   ),
   trigger: "L'Attore vuole esportare dei log di Audit di un Tenant",
   main-scen: (
+    (
+      descr: "L’Attore seleziona un Tenant",
+      inc: "selezione_tenant",
+    ),
     (
       descr: "L’Attore seleziona l’intervallo temporale (data e ora) degli Audit da esportare",
       inc: "selezione_intervallo_temporale",

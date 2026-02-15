@@ -97,6 +97,9 @@ accepted_words:
   - TCP
   - Nats
   - TimescaleDB
+  - ESLint
+  - Golang
+  - gitignore
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -143,6 +146,7 @@ accepted_words:
   - PdQ
   - Serverless
   - WebApp
+  - DdB
 
   # --- Terminologia Standard Progetto ---
   - docest
@@ -179,6 +183,13 @@ accepted_words:
   - RangeInvalido
   - NessunDato
   - RepoDocumentale
+  - uc 
+  - authd
+  - usr
+  - sym
+  - QP
+
+
 
   # --- Parole Italiane mancanti / Neologismi ---
   - ciclomatica
@@ -198,7 +209,6 @@ accepted_words:
   - yyyy
   - sottocasi
   - sottocaso
-  - catagolazione
   - un'app
   - impersonificare
   - l'ID
@@ -216,3 +226,12 @@ accepted_words:
   - failover
   - provisionato
   - d'esami
+  - versionare
+  - un'activity
+  - l'uc
+  - l'istanziazione
+  - rifattorizzato
+  - deployata
+  - loggata
+  - idempotente
+  - istanziazione

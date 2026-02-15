@@ -8,7 +8,7 @@
   prim-actors: (SA.sym-usr),
   preconds: (
     "Il Sistema si trova nella sezione dedicata alla visualizzazione dei Gateway simulati istanziati",
-    "Esiste un Gateway simulato selezionato di cui si stanno visualizzando i dettagli"
+    "Esiste un Gateway simulato selezionato di cui si stanno visualizzando i dettagli",
   ),
   postconds: (
     "L’Attore visualizza l'identificativo di fabbrica di un Gateway",
