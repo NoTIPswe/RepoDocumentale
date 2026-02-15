@@ -610,7 +610,7 @@ $
 
 *Formula:*
 $
-  text("AC") = (text("costo effettivo sostenuto nello sprint"))
+  text("AC") = (text("Costo effettivo sostenuto nello sprint"))
 $
 
 \
