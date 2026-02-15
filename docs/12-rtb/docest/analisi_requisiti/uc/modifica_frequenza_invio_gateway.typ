@@ -6,6 +6,7 @@
   title: "Modifica frequenza invio dati Gateway specifico",
   level: 1,
   prim-actors: CA.tenant-adm,
+  sec-actors: CA.p-gway,
   preconds: (
     "Il Sistema mostra all’Attore primario l'attuale configurazione di un Gateway",
   ),
@@ -23,6 +24,7 @@
       inc: "inserimento_valore_numerico",
     ),
     (descr: "L’Attore salva la nuova configurazione"),
+    (descr: "Il Gateway applica la nuova configurazione"),
     (descr: "L’Attore viene informato dell’avvenuta modifica"),
   ),
 )[#uml-schema("69", "Diagramma Modifica frequenza invio dati al Gateway specifico")]
