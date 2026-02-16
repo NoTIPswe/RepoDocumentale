@@ -1,13 +1,59 @@
-title: Piano di Qualifica 
+title: Piano di Qualifica
 changelog:
+  - version: 1.0.0
+    date: "2026-02-12"
+    approver: Valerio Solito
+    baseline: RTB
+  - version: "0.9.0"
+    date: "2026-02-11"
+    authors:
+      - Alessandro Contarini
+    verifier: TBD
+    description: >
+      Sistemazione del Cruscotto di Valutazione
+  - version: "0.8.3"
+    date: "2026-02-08"
+    authors:
+      - Alessandro Contarini
+    verifier: Alessandro Mazzariol
+    description: >
+      Fix valutazione tecnologia Angular
+  - version: "0.8.2"
+    date: "2026-02-06"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Alessandro Contarini
+    description: >
+      Fix numeri requisiti nei test
+  - version: "0.8.1"
+    date: "2026-02-06"
+    authors:
+      - Mario De Pasquale
+    verifier: Alessandro Mazzariol
+    description: >
+      Correzione errori di battitura
+  - version: "0.8.0"
+    date: "2026-02-05"
+    authors:
+      - Alessandro Contarini
+    verifier: Alessandro Mazzariol
+    description: >
+      Definizione delle valutazioni per l'automiglioramento (per quanto riscontrato fino in data odierna)
   - version: "0.7.0"
+    date: "2026-02-04"
+    authors:
+      - Alessandro Contarini
+    verifier: Alessandro Mazzariol
+    description: >
+      Definizione delle ultime sezioni del documento (con contenuti riguardanti i risultati finora riscontrati)
+  - version: "0.6.0"
     date: "2026-02-04"
     authors:
       - Alessandro Contarini
     verifier: Leonardo Preo
     description: >
       Finita la sezione di Testing
-  - version: "0.6.0"
+  - version: "0.5.1"
     date: "2026-02-03"
     authors:
       - Mario De Pasquale
@@ -28,7 +74,7 @@ changelog:
       - Alessandro Contarini
     verifier: Alessandro Mazzariol
     description: >
-      Aggiunti Test di unità 
+      Aggiunti Test di unità
   - version: "0.3.0"
     date: "2025-12-13"
     authors:
@@ -58,4 +104,3 @@ changelog:
     verifier: Valerio Solito
     description: >
       Prima bozza struttura del documento
-
