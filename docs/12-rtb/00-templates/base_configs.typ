@@ -44,22 +44,21 @@
 
 #let apply-base-configs(doc, glossary-highlighted: true) = {
   // show the _g automatically for glossary terms outside links
-  let in-link = state("in-link", false)
-  show link: it => {
-    in-link.update(true)
-    it
-    in-link.update(false)
-  }
-  show regex("(?i)" + glossary-terms.terms.keys().map(k => "\b" + k + "\b").join("|")): t => context {
-    if in-link.get() {
-      t
+  // ordina i termini per lunghezza decrescente così i composti (es. "GitHub Projects") matchano prima dei semplici (es. "GitHub")
+  let sorted-keys = glossary-terms.terms.keys().sorted(key: k => -k.len())
+  let glossary-regex = regex("(?i)" + sorted-keys.map(k => "\b" + k.replace(".", "\\.") + "\b").join("|"))
+
+  show glossary-regex: t => {
+    if glossary-highlighted {
+      [#t#sub("G")]
     } else {
-      if glossary-highlighted {
-        [#t#sub("G")]
-      } else {
-        t
-      }
+      t
     }
+  }
+
+  show link: it => {
+    show glossary-regex: t => t
+    it
   }
 
   set par(justify: true)
