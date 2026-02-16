@@ -538,7 +538,7 @@ svolgimento del progetto.
   roles: (ROLES.amm,),
   norms: ("struttura-repo-docs", "uso-notipdo"),
   input: [Documenti relativi alla Baseline approvati],
-  output: [Baseline pubblicata sul #link("https://notipswe.github.io")[sito Web]],
+  output: [Baseline pubblicata sul #link("https://notipswe.github.io/RepoDocumentale/")[sito Web]],
   procedure: (
     (
       name: "Rilascio",

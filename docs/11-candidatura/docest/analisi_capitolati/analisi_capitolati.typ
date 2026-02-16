@@ -123,7 +123,7 @@
   In particolare, il gruppo ha apprezzato la flessibilità tecnologica proposta, chiarendo che non rappresentano vincoli
   rigidi, l’approccio incentrato sull’apprendimento del processo e la forte attenzione al supporto formativo. Tutto ciò
   è consultabile in modo più dettagliato nel #link(
-    "https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/verbest/verbest_2025-10-25_eggon.pdf",
+    "https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/verbest/verbest_2025-10-24_eggon.pdf",
   )[verbale esterno] dedicato. L’incontro ha quindi lasciato una valutazione complessivamente molto positiva, facendo
   percepire l’azienda come un collaboratore disponibile ed attento alla crescita degli studenti.\
   == Contro
