@@ -24,5 +24,6 @@
       inc: "selezione_range_numerico",
     ),
     (descr: "L’Attore salva le modifiche"),
+    (descr: "Il Gateway salva la nuova configurazione"),
   ),
 )[#uml-schema("46", "Diagramma Modifica range alert default per tipo sensore")]
