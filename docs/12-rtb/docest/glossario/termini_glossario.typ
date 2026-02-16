@@ -76,7 +76,7 @@
   "IoT": "Acronimo di Internet of Things, ecosistema di dispositivi connessi a rete che raccolgono, elaborano e scambiano dati senza intervento umano diretto",
   "ISO 8601": "Standard internazionale per rappresentare date e orari in formato non ambiguo (es. yyyy-mm-dd)",
   "ISO/IEC 12207:1995": "Standard internazionale che definisce i processi del ciclo di vita del software (primari, di supporto, organizzativi) come riferimento metodologico",
-  "issue": "Segnalazione, proposta o attività da gestita all'interno di un repository GitHub",
+  "issue": "Segnalazione, proposta o attività da gestire all'interno di un repository GitHub",
   // J
   "JavaScript": "Linguaggio di programmazione multi paradigma orientato agli eventi, fortemente utilizzato sia nella programmazione lato client web sia lato server.",
   "JetStream": "Estensione nativa di NATS che aggiunge persistenza dei dati e consegna garantita, permettendo l'archiviazione dei messaggi e il loro recupero successivo tramite modelli di consumo Push o Pull",
@@ -135,7 +135,7 @@
   "Retention Policy": "Politica che definisce il tempo per il quale i dati devono essere conservati nel sistema prima della loro eliminazione automatica",
   "Retrospective": "Riunione al termine di uno sprint dove il team analizza l'andamento, identifica miglioramenti e pianifica correzioni per il periodo successivo",
   "repository documentale": "Archivio centralizzato che contiene documenti, file e versioni, utilizzato per la gestione e la conservazione della documentazione di progetto",
-  "repository": "Archivio centralizzato che può contiene solitamente codice sorgente, la documentazione e la cronologia delle versioni di un progetto",
+  "repository": "Archivio centralizzato che solitamente contiene il codice sorgente, la documentazione e la cronologia delle versioni di un progetto",
   "Redis": "Database in-memory open source utilizzato come cache, message broker e archivio chiave-valore ad alte prestazioni",
   "Row-Level Security": "Meccanismo di sicurezza database che applica policy di accesso a livello di riga, garantendo segregazione dati in contesti multi-tenant",
   "RTB": "Acronimo di Requirements and Technology Baseline, milestone che rappresenta il primo punto di baseline formale del progetto con requisiti e tecnologie approvati",
