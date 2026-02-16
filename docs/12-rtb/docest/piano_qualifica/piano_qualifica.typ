@@ -1196,13 +1196,11 @@
     image(height: 30%, "assets/CPI_SPI.jpeg"),
     caption: [Grafico per Sprint di MP04 e MP05],
   ) <MP04_MP05>
-  Dal grafico si nota che nella fase iniziale il progetto presenta un leggero scostamento rispetto alla condizione ottimale. In particolare, negli ultimi 
-  sprint entrambi gli indici tendono ad avvicinarsi o scendere lievemente sotto il valore di riferimento pari a 1, segnalando una possibile perdita di 
-  efficienza sia dal punto di vista economico sia temporale.
-  Questo andamento è spiegato dal progressivo assestamento dei costi e delle tempistiche nelle fasi finali del progetto. Se nei primi sprint il Cost 
-  Performance Index (CPI) risulta superiore a 1 (indicando un utilizzo efficiente del budget) e lo Schedule Performance Index (SPI) è in linea con la pianificazione, successivamente si osserva una lieve flessione. Ciò suggerisce che nelle fasi conclusive le attività hanno richiesto un impegno leggermente maggiore rispetto a quanto previsto.
+  Dal grafico si osserva che nei primi sprint il Cost Performance Index (CPI) risulta superiore a 1 (indicando un utilizzo efficiente del budget) e lo 
+  Schedule Performance Index (SPI) è in linea con la pianificazione. Tuttavia, 
+  in seguito il diagramma mostra una lieve flessione; evidenzia infatti che nelle fasi conclusive del periodo analizzato,
+  le attività hanno richiesto un impegno leggermente maggiore rispetto a quanto previsto.
   Nonostante questa diminuzione, la situazione rimane complessivamente sotto controllo: gli scostamenti sono contenuti e non evidenziano criticità rilevanti. 
-  L’andamento mostra comunque una buona stabilità generale degli indicatori, senza variazioni improvvise o fuori scala.
 
   == MP06: Estimate At Completion
   #figure(
@@ -1253,11 +1251,11 @@
     caption: [Grafico per Sprint di MP20],
   ) <MP20>
   Dal grafico si osserva un progressivo incremento della Time Efficiency (TE) dallo sprint 1 allo sprint 6. Tuttavia, l’indicatore rimane costantemente 
-  al di sotto sia del valore accettabile sia del valore ottimale, evidenziando un livello di efficienza temporale ancora migliorabile. Questo andamento è legato alla significativa incidenza 
+  al di sotto del valore ottimale, evidenziando un livello di efficienza temporale ancora migliorabile. Questo andamento è legato alla significativa incidenza 
   delle “ore di palestra”, indispensabili al team per lo svolgimento dei task in analisi.
-  Nonostante ciò, la crescita costante dell’indicatore dimostra un miglioramento graduale nella gestione del tempo. Inoltre, dopo la RTB, le ore di palestra 
-  tenderanno a diminuire, poiché il gruppo avrà ormai consolidato competenze e modalità operative. Questo comporterà un aumento delle ore effettivamente 
-  produttive e, di conseguenza, un incremento atteso della Time Efficiency nei prossimi sprint.
+  Nonostante ciò, la crescita costante dell’indicatore dimostra un miglioramento graduale nella gestione del tempo. Inoltre, si prevede che, dopo la RTB, 
+  le ore di palestra tenderanno a diminuire, poiché il gruppo avrà ormai consolidato competenze e modalità operative. Questo comporterà un aumento delle ore 
+  effettivamente produttive e, di conseguenza, un incremento della Time Efficiency nei prossimi sprint.
 
 
   = Valutazioni per l'automiglioramento
