@@ -309,6 +309,16 @@ def _preprocess_html_file(file_path: Path, config: SpellcheckConfig) -> None:
     # Note: this could lead to invalid HTML, but it's not important for Hunspell.
     content = re.sub(r"(\w')(?:<[^>]+>)+", r"\1", content)
 
+    # Strip Italian elision prefixes in a single pass
+    # e.g., "l'automiglioramento" -> "automiglioramento"
+    # The word after the apostrophe is then checked normally by Hunspell
+    # (against both the Italian dictionary and our custom dictionary)
+    content = re.sub(
+        r"\b(?:[lLdD]|[dDnNsS]ell|[aA]ll|[dD]all|[uU]n|[sS]ull)'(\w+)\b",
+        r"\1",
+        content,
+    )
+
     patterns = config.get("ignore_patterns") or []
     for pattern in patterns:
         content = re.sub(pattern, " ", content)
