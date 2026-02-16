@@ -45,6 +45,7 @@ accepted_words:
   - MacOS
   - NoTIP
   - SonarQube
+  - Typstyle
 
   # --- Cognomi e Nomi Team ---
   - Contarini
@@ -74,6 +75,7 @@ accepted_words:
   - pdf
   - Typst
   - YAML
+  - yaml
   - typ
   - ORM
   - Gorm
@@ -93,6 +95,8 @@ accepted_words:
   - UUID
   - Kubernetes
   - HTTPS
+  - HyperText
+  - NoSQL
   - WebSocket
   - TimescaleDB
   - Hypertables
@@ -120,7 +124,9 @@ accepted_words:
   - IoT
   - KLOC
   - MVP
+  - BYOK
   - PDCA
+  - SSO
   - PdP
   - PoC
   - PV
@@ -186,6 +192,7 @@ accepted_words:
   - RangeInvalido
   - NessunDato
   - burnup
+  - RepoDocumentale
   - uc 
   - authd
   - usr
@@ -253,3 +260,9 @@ accepted_words:
   - loggata
   - idempotente
   - istanziazione
+  - istanziata
+  - containerizzazione
+  - containerizzate
+  - un'API
+  - l'Issue
+  - dell'ID

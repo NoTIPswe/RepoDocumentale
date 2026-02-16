@@ -1,5 +1,9 @@
 title: Analisi dei Requisiti
 changelog:
+  - version: "1.0.0"
+    approver: Valerio Solito
+    baseline: RTB
+    date: "2026-02-12"
   - version: "0.33.2"
     date: "2026-02-06"
     authors:
