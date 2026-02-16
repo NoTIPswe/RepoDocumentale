@@ -1,25 +1,25 @@
 title: Tecnologie
 changelog:
   - version: "1.0.0"
-    date: "2024-02-16"
+    date: "2026-02-16"
     approver: Valerio Solito
     baseline: RTB
   - version: "0.2.0"
-    date: "2024-02-16"
+    date: "2026-02-15"
     authors:
       - Leonardo Preo
     verifier: Matteo Mantoan
     description: >
       Aggiunta sezione Prometheus e Grafana
   - version: "0.1.0"
-    date: "2024-02-13"
+    date: "2026-02-13"
     authors:
       - Leonardo Preo
     verifier: Matteo Mantoan
     description: >
       Aggiunta immagini architetture e modifica motivazioni scelte tecnologiche
   - version: "0.0.1"
-    date: "2024-02-12"
+    date: "2026-02-12"
     authors:
       - Leonardo Preo
     verifier: Matteo Mantoan
