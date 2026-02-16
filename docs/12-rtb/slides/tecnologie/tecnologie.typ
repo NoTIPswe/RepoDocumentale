@@ -3,7 +3,7 @@
 #base-slides.apply-base-slides(
   title: "Tecnologie",
   subtitle: "Gruppo 12 - A.A. 2025/2026",
-  date: "12/02/2026",
+  date: "2026-02-16",
 )[
   = C7: Sistema di Acquisizione Dati da Sensori
   == Obiettivo del progetto
@@ -11,12 +11,6 @@
   - *Sensori:* Raccolta dati dal campo (simulati)
   - *Gateway:* Normalizzazione ed invio sicuro (simulati)
   - *Cloud:* Piattaforma centrale di gestione
-
-  #pagebreak()
-
-  #align(center)[
-    #image("assets/es_architettura.png")
-  ]
 
   #pagebreak()
 
@@ -34,17 +28,15 @@
   - *Canali Sicuri:* Implementare comunicazioni protette end-to-end
   - *Fruibilità:* Fornire dashboard per il monitoraggio in tempo reale e API per l'integrazione con sistemi esterni
 
-  = Architettura
-  - *Microservizi*
-    - _*Alternative considerate:*_ Serverless, Edge Computing
+  = Architettura di deploy
+
+  - *Microservizi* (parte cloud)
+    - _*Alternative considerate:*_ Monolite
     - _*Scelta:*_ Garantisce isolamento dei guasti e facilita lo sviluppo parallelo del team. Permette la scalabilità
       orizzontale dei servizi
 
   = Tecnologie Utilizzate
-  - *Go* (Linguaggio Simulatore e Consumer)
-    - _*Alternative considerate:*_ TypeScript (Nest.js o Node.js)
-    - _*Scelta:*_ Gestione ottimale della concorrenza (Goroutines) per simulare insiemi di dispositivi con basso
-      footprint di risorse
+
   - *NATS JetStream* (Message Broker)
     - _*Alternative considerate:*_ Apache Kafka, Google Cloud Pub/Sub
     - _*Scelta:*_ Semplicità di implementazione rispetto a Kafka, sicurezza integrata
@@ -57,7 +49,14 @@
       serie temporali. \
       TimescaleDB permette di gestire efficientemente lo storico temporale dei sensori, evitando l'introduzione di un
       database NoSQL dedicato
-  - *NestJS* (DataAPI)
+
+  #pagebreak()
+
+  - *Go* (Simulatore e Consumer)
+    - _*Alternative considerate:*_ TypeScript (Nest.js o Node.js puro)
+    - _*Scelta:*_ Gestione ottimale della concorrenza (Goroutines) per simulare insiemi di dispositivi con basso
+      footprint di risorse e sviluppare servizi a bassa latenza
+  - *NestJS* (API e servizi non critici)
     - _*Alternative considerate:*_ Gin (Go)
     - _*Scelta:*_ Struttura modulare e integrazione con TypeORM per query ottimizzate e gestione manutenibile della
       logica di business. Permette la facile costruzione delle API.
@@ -68,9 +67,13 @@
     - _*Scelta:*_ TypeScript SDK permette di gestire la decifrazione dei dati "lato client" (End-to-End Encryption),
       garantendo che il dato in chiaro sia visibile solo all'utente finale. Framework molto completo e pieno sostegno da
       parte dell'azienda proponente
+
+  #pagebreak()
+
   - *Prometheus + Grafana* (Monitoraggio)
-    - _*Scelta:*_ Soluzione open-source con forte community e flessibilità di personalizzazione. Permette di monitorare
-      efficacemente le performance del sistema e visualizzare metriche chiave
+    - _*Scelta:*_ Standard de-facto per il monitoring cloud-native. Soluzione open-source con forte community e
+      flessibilità di personalizzazione. Permette di monitorare efficacemente le performance del sistema e visualizzare
+      metriche chiave
 
   = PoC
 
@@ -79,7 +82,7 @@
   2. *Data Queue (NATS):* Ingestion diretta; garantisce bufferizzazione e resilienza
   3. *Storage & Segregazione:* Implementazione della multi-tenancy logica su TimescaleDB
   4. *Dashboard (Angular):* Visualizzazione Real-Time con decifrazione client-side
-  5. *Observability*: Setup base di Prometheus e Grafana per monitoraggio di NATS.
+  5. *Observability di base*: Setup base di Prometheus e Grafana per monitoraggio di NATS.
 
   == Esclusi dalla realizzazione
   - *API esterne*, *Flusso Bidirezionale* e *Auth Utente* rimandati all'MVP
