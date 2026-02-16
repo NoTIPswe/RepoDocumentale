@@ -8,13 +8,13 @@ changelog:
   date: '2025-11-15'
   authors:
   - Alessandro Contarini
-  verifier: TBD
+  verifier: Francesco Marcon
   description: |
     Redazione contenuto
 - version: 0.0.1
   date: '2025-11-15'
   authors:
   - Alessandro Contarini
-  verifier: TBD
+  verifier: Francesco Marcon
   description: |
     Creazione del diario di Bordo
