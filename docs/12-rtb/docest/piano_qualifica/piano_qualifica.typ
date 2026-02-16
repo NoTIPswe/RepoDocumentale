@@ -1173,57 +1173,64 @@
 
   == MP01 e MP02: Earned Value e Planned Value
   GRAFICO
-  Dal grafico si osserva un incremento progressivo sia dell’Earned Value (EV) sia della Planned Value (PV) lungo i sei sprint considerati. 
-  L’andamento delle due curve risulta quasi sovrapposto per l’intera durata del periodo, con scostamenti minimi tra valore pianificato e valore 
-  effettivamente maturato. Questo indica che il lavoro svolto è sostanzialmente in linea con quanto previsto dal piano, senza ritardi significativi 
-  né anticipi rilevanti.
+  Dal grafico non emergono scostamenti rilevanti tra andamento pianificato e andamento reale. Sia l’Earned Value (EV) sia la Planned Value (PV) mostrano 
+  un incremento progressivo lungo i sei sprint considerati.
+  La quasi sovrapposizione delle due curve indica che il valore effettivamente maturato segue con buona precisione quanto previsto in fase di pianificazione. 
+  Gli scostamenti risultano minimi e non evidenziano ritardi o anticipi significativi rispetto al piano iniziale.
 
   == MP03 e MP07: Actual Cost e Estimate To Complete
   GRAFICO
-  Dal grafico si osserva un incremento progressivo dell’Actual Cost (AC) lungo i sei sprint considerati. Il costo effettivamente sostenuto cresce in modo 
-  costante, passando da valori contenuti nel primo sprint fino a stabilizzarsi intorno ai 5.500–6.000 € negli ultimi sprint, segno di un avanzamento regolare 
-  delle attività e di un impegno economico coerente con lo sviluppo del progetto.
-  Parallelamente, l’Estimate To Complete (ETC) mostra un andamento decrescente nel tempo. A partire da un valore iniziale elevato, la stima del costo 
-  rimanente diminuisce sprint dopo sprint, riflettendo la progressiva riduzione del lavoro ancora da svolgere. Negli ultimi sprint il calo dell’ETC tende 
-  ad attenuarsi, indicando che la parte residua del progetto si sta stabilizzando.
+  Dal grafico non emergono particolari criticità nell’andamento dei costi. L’Actual Cost (AC) cresce progressivamente lungo i sei sprint, mostrando un 
+  incremento regolare e coerente con l’avanzamento delle attività.
+  Questo andamento è spiegato dal naturale sviluppo del progetto: man mano che il lavoro viene completato, i costi effettivi aumentano. Parallelamente, 
+  l’Estimate To Complete (ETC) diminuisce in modo costante, indicando una progressiva riduzione del lavoro ancora da svolgere.
 
   == MP04 e MP05: Cost Performance Index e Schedule Performance Index
-  Per quanto riguarda il Cost Performance Index (CPI), i valori si mantengono inizialmente leggermente superiori a 1 nei primi sprint, indicando una gestione 
-  dei costi efficiente e una spesa inferiore rispetto al valore prodotto. Successivamente si osserva una lieve flessione: a partire dallo sprint 4 il CPI 
-  tende a scendere progressivamente, attestandosi poco al di sotto di 1 negli ultimi sprint. Questo segnala una leggera perdita di efficienza economica, 
-  con costi che iniziano ad allinearsi o superare marginalmente il valore pianificato.
-  Lo Schedule Performance Index (SPI) si mantiene molto vicino al valore ottimale (1) per quasi tutta la durata del progetto. Nei primi sprint risulta 
-  sostanzialmente in linea con la pianificazione; nella parte finale si registra un lieve calo sotto 1, indice di un piccolo rallentamento rispetto alle 
-  tempistiche previste, ma senza scostamenti rilevanti.
+  GRAFICO
+  Dal grafico si nota che nella fase iniziale il progetto presenta un leggero scostamento rispetto alla condizione ottimale. In particolare, negli ultimi 
+  sprint entrambi gli indici tendono ad avvicinarsi o scendere lievemente sotto il valore di riferimento pari a 1, segnalando una possibile perdita di 
+  efficienza sia dal punto di vista economico sia temporale.
+  Questo andamento è spiegato dal progressivo assestamento dei costi e delle tempistiche nelle fasi finali del progetto. Se nei primi sprint il Cost 
+  Performance Index (CPI) risulta superiore a 1 (indicando un utilizzo efficiente del budget) e lo Schedule Performance Index (SPI) è in linea con la pianificazione, successivamente si osserva una lieve flessione. Ciò suggerisce che nelle fasi conclusive le attività hanno richiesto un impegno leggermente maggiore rispetto a quanto previsto.
+  Nonostante questa diminuzione, la situazione rimane complessivamente sotto controllo: gli scostamenti sono contenuti e non evidenziano criticità rilevanti. 
+  L’andamento mostra comunque una buona stabilità generale degli indicatori, senza variazioni improvvise o fuori scala.
 
-  == Burndown / Burnup Chart
-  IMMAGINE DA METTERE PRIMA DELLA RTB
+  == MP06: Estimate At Completion
+  GRAFICO
+  Dal grafico si osserva che l’Estimate At Completion (EAC) tende progressivamente ad aumentare dallo Sprint 2 in poi, arrivando a superare il Budget At 
+  Completion (BAC) nella parte centrale e finale del periodo considerato.
+  Tale incremento è riconducibile a una temporanea riduzione della produttività del gruppo, dovuta alla concomitanza con il periodo degli esami universitari. 
+  Il rallentamento delle attività ha comportato un maggiore impiego di risorse rispetto a quanto inizialmente pianificato, incidendo così sulla stima finale 
+  dei costi. Tuttavia, nell’ultimo sprint l’andamento dell’EAC mostra un’attenuazione della crescita e una tendenza alla stabilizzazione. Questo rappresenta 
+  un segnale positivo, in quanto indica una maggiore attenzione nella gestione delle risorse e un impegno concreto da parte del gruppo nel contenimento 
+  dei costi.
 
-  Il grafico Burndown/Burnup mostra l’andamento delle ore di lavoro completate rispetto alla pianificazione ideale nel
-  periodo compreso in analisi. La linea di riferimento ideale rappresenta l’avanzamento atteso del lavoro in modo
-  lineare, mentre la curva delle ore effettivamente completate evidenzia l’andamento reale del progetto.
+  == MP08: Time Estimate At Completion
 
-  Dall’osservazione del grafico si nota che il lavoro effettivamente completato cresce nel tempo, ma con un andamento
-  non perfettamente allineato alla pianificazione ideale. In particolare, NoTIP riconosce la presenza di periodi di
-  crescita ridotta, alternati a incrementi più marcati, indice di una distribuzione del lavoro non uniforme tra le varie
-  iterazioni.
+  == MP18: Quality Metrics Satisfied
+  GRAFICO
+  Dal grafico si osserva che la percentuale di Quality Metrics Satisfied si mantiene sempre al di sopra del valore minimo accettabile (80%) per tutti gli 
+  sprint considerati. Tuttavia, non in tutti i periodi viene raggiunto il valore ottimale del 100%, con alcune leggere oscillazioni nel corso del progetto.
+  L’andamento evidenzia quindi una buona attenzione alla qualità complessiva del prodotto: le variazioni registrate non compromettono il rispetto degli standard 
+  minimi e dimostrano una capacità del gruppo di mantenere il controllo sulle metriche qualitative, intervenendo quando necessario.
 
-  == Velocity Chart
-  IMMAGINE DA METTERE PRIMA DELLA RTB. Il grafico di Velocity rappresenta il numero di ore di lavoro completate in
-  ciascun intervallo temporale, mettendolo a confronto con la velocità media calcolata sulle iterazioni precedenti. Le
-  barre mostrano il lavoro effettivamente completato in ogni sprint, mentre la linea di velocità media fornisce
-  un’indicazione del ritmo di sviluppo complessivo del team. (COMMENTO DA AGGIUNGERE IN BASE A QUANTO RISCONTRATO A FINE
-  PERIODO)
+  == MP20: Time Efficiency
+  GRAFICO
+  Dal grafico si osserva un progressivo incremento della Time Efficiency (TE) dallo sprint 1 allo sprint 6. Tuttavia, l’indicatore rimane costantemente 
+  al di sotto sia del valore accettabile sia del valore ottimale, evidenziando un livello di efficienza temporale ancora migliorabile. Questo andamento è legato alla significativa incidenza 
+  delle “ore di palestra”, indispensabili al team per lo svolgimento dei task in analisi.
+  Nonostante ciò, la crescita costante dell’indicatore dimostra un miglioramento graduale nella gestione del tempo. Inoltre, dopo la RTB, le ore di palestra 
+  tenderanno a diminuire, poiché il gruppo avrà ormai consolidato competenze e modalità operative. Questo comporterà un aumento delle ore effettivamente 
+  produttive e, di conseguenza, un incremento atteso della Time Efficiency nei prossimi sprint.
 
   == Indice di Gulpease
   #figure(
     image(height: 15%, "assets/Gulpease.png"),
     caption: [Indice di Gulpease - NoTIP Dashboard],
   ) <Gulpease>
-  L’indice di Gulpease è un indicatore di leggibilità per testi in lingua italiana che misura la facilità di
-  comprensione in base alla lunghezza di frasi e parole, restituendo un valore compreso tra 0 e 100. NoTIP si impegna a
-  mantenere per la propria documentazione un valore dell’indice di Gulpease non inferiore a 60, al fine di garantire un
-  adeguato livello di comprensibilità dei documenti prodotti.
+  Dal grafico emerge che tutti i documenti mantengono un livello di avanzamento superiore alla soglia minima del 60% definita internamente dal gruppo.
+  Nel complesso, l’andamento conferma una gestione della documentazione stabile e coerente con quanto fissato, senza scostamenti al di sotto del 
+  livello minimo previsto.
 
 
   = Valutazioni per l'automiglioramento
