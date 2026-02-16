@@ -1,5 +1,9 @@
 title: Analisi dello Stato dell'Arte
 changelog:
+  - version: "1.0.0"
+    approver: Valerio Solito
+    baseline: RTB
+    date: "2026-02-16"
   - version: "0.1.0"
     date: "2026-02-04"
     authors:

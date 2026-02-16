@@ -1,5 +1,9 @@
 title: Diario di Bordo 2026-01-26
 changelog:
+  - version: 1.0.0
+    date: '2026-02-16'
+    approver: Alessandro Contarini
+    baseline: RTB
   - version: "0.0.1"
     date: "2026-01-25"
     authors:

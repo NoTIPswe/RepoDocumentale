@@ -1,14 +1,14 @@
 title: Piano di Qualifica
 changelog:
   - version: 1.0.0
-    date: "2026-02-12"
+    date: "2026-02-16"
     approver: Valerio Solito
     baseline: RTB
   - version: "0.9.0"
     date: "2026-02-11"
     authors:
       - Alessandro Contarini
-    verifier: TBD
+    verifier: Alessandro Mazzariol
     description: >
       Sistemazione del Cruscotto di Valutazione
   - version: "0.8.3"
