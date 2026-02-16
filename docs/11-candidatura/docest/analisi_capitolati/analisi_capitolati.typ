@@ -11,7 +11,7 @@
   #heading(level: 1, numbering: none)[Introduzione]
   La stesura del presente documento ha lo scopo di illustrare le motivazioni che hanno guidato il gruppo _NoTIP_ nella
   scelta del capitolato per cui ha presentato la candidatura. \
-  Il capitolato selezionato è *“Sistema di acquisizione dati da sensori”*ª della proponente _M31_, la cui analisi e
+  Il capitolato selezionato è *“Sistema di acquisizione dati da sensori”* della proponente _M31_, la cui analisi e
   motivazione saranno approfondite nella sezione specificamente dedicata. \
   Nelle pagine seguenti verranno inoltre riportate brevi sintesi delle valutazioni, prodotte durante le varie riunioni
   ed incontri, corrispondenti ad una sintesi delle opinioni espresse da ciascun membro del gruppo, evidenziando i
@@ -90,7 +90,7 @@
   un’applicazione mobile che mira alla prevenzione e il supporto delle vittime di violenza di genere, attraverso
   strumenti intelligenti, sicuri e facilmente accessibili.\
   == Pro
-  E’ sicuramente una proposta molto interessante, sia per l’impatto sociale del progetto che per l'integrazione con
+  È sicuramente una proposta molto interessante, sia per l’impatto sociale del progetto che per l'integrazione con
   l’Intelligenza Artificiale. \
   == Contro
   Il gruppo non ha dimostrato alcun interesse nei confronti del capitolato fin dalla presentazione avvenuta in aula,
@@ -138,7 +138,7 @@
   = Capitolato C6
   Il *Capitolato C6*: *“Second Brain: Estendere il note-taking con i Large Language Models”*, presentato da _Zucchetti_,
   si prefigge come obiettivo la realizzazione di un’applicazione che cerchi di integrare le note capacità dei Large
-  Language Models (LLM) ad un editor di testo, basato su MarkDown, con il fine di fornire all’utente un “aiutante
+  Language Models (LLM) ad un editor di testo, basato su Markdown, con il fine di fornire all’utente un “aiutante
   intelligente”, che lo supporti nella scrittura, correzione e generazione di contenuti.\
   == Pro
   Abbiamo trovato il capitolato interessante per l’opportunità di sperimentare concretamente l’utilizzo dei modelli
@@ -161,7 +161,7 @@
   realizzazione di un sistema distribuito per l’acquisizione, la gestione e la visualizzazione di dati provenienti da
   sensori Bluetooth Low Energy (BLE), con particolare attenzione allo sviluppo dell’infrastruttura Cloud. \
   == Pro
-  Il gruppo si è dimostrato caldamente interessato alla proposta fin dalla presentazione. E’ stato trovato
+  Il gruppo si è dimostrato caldamente interessato alla proposta fin dalla presentazione. È stato trovato
   particolarmente stimolante per la struttura architetturale ben definita e precisa nel capitolato di progetto fornito,
   per diversi livelli che sono richiesti di realizzare (sensori, gateway, Cloud) e della gestione multi-tenant. Anche
   l’utilizzo di tecnologie moderne, come Nest.js e Kubernetes, è stato valutato positivamente, poiché riflettono un

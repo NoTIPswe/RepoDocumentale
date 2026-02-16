@@ -14,6 +14,7 @@ SITE_GROUP_TEMPLATE_NAME = "group.template.html"
 INDEX_HTML_GROUPS_LIST_MARKER = "<!--GROUP_LIST_MARKER-->"
 GROUPS_HTML_GROUP_TITLE_MARKER = "<!--GROUP_TITLE_MARKER-->"
 GROUPS_HTML_TABLES_MARKER = "<!--GROUP_TABLES_MARKER-->"
+GROUPS_HTML_BASELINE_MARKER = "<!--BASELINE_SECTION_MARKER-->"
 
 IGNORED_GROUPS = {
     "00-common_assets",
@@ -62,3 +63,13 @@ TYPSTYLE_CONF = [
     "2",
     "--wrap-text",
 ]
+
+BASELINE_REPOS = {
+    "12-rtb": {
+        "display_name": "Proof of Concept",
+        "description": "Requirements and Technology Baseline",
+        "repo_name": "PoC",
+        "icon": "code_blocks",
+        "branch": "main",
+    },
+}

@@ -16,19 +16,19 @@
 
   #{
     if discussion != "" [
-      #heading(level: 5, outlined:false, numbering: none)[Dibattito:]
+      #heading(level: 5, outlined: false, numbering: none)[Dibattito:]
       #discussion
     ]
 
     if decisions != "" [
-      #heading(level: 5, outlined:false, numbering: none)[Decisioni:]
-      #decisions 
+      #heading(level: 5, outlined: false, numbering: none)[Decisioni:]
+      #decisions
     ]
 
     if actions.len() > 0 [
-      #heading(level: 5, outlined:false, numbering: none)[Azioni da intraprendere:]
+      #heading(level: 5, outlined: false, numbering: none)[Azioni da intraprendere:]
       #list(
-        ..actions.map(a => link(a.url, a.desc))
+        ..actions.map(a => link(a.url, a.desc)),
       )
     ]
   }
@@ -51,7 +51,7 @@
     changelog: changelog,
     scope: scope,
     front-info: front-info,
-    glossary-highlighted: glossary-highlighted
+    glossary-highlighted: glossary-highlighted,
   )[
 
     = Info e ordine del giorno

@@ -37,19 +37,32 @@ ignore_patterns:
 accepted_words:
   # --- Aziende e Brand ---
   - Atlassian
+  - Bluewind
+  - ClickUp
+  - DIPReader
+  - Eggon
+  - Ergon
   - GitHub
   - JetStream
   - Jira
   - KeyCloak
   - M31
   - MacOS
+  - NEXUM
+  - Nexum
   - NoTIP
+  - Sanmarco
+  - SmartOrder
   - SonarQube
   - Typstyle
+  - VarGroup
+  - Vimar
 
   # --- Cognomi e Nomi Team ---
   - Contarini
+  - Cossaro
   - De
+  - Ferrarin
   - Mantoan
   - Marcon
   - Mazzariol
@@ -94,6 +107,7 @@ accepted_words:
   - UML
   - UUID
   - Kubernetes
+  - https
   - HTTPS
   - HyperText
   - NoSQL
@@ -103,6 +117,18 @@ accepted_words:
   - TCP
   - Nats
   - TimescaleDB
+  - BRD
+  - DevOps
+  - ERP
+  - ESLint
+  - GDPR
+  - github
+  - gitignore
+  - Golang
+  - LLM
+  - Markdown
+  - NLP
+  - OWASP
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -113,7 +139,7 @@ accepted_words:
   - BLE
   - changelog
   - CMMI
-  - Cowork
+  - cowork
   - Cyclomatic
   - DTO
   - EAC
@@ -156,6 +182,9 @@ accepted_words:
   - Serverless
   - WebApp
   - DdB
+  - multitenant
+  - multitenancy
+  - testbook
 
   # --- Terminologia Standard Progetto ---
   - docest
@@ -165,6 +194,7 @@ accepted_words:
   - EP
   - roadmap
   - RO # --- Starebbe per RO1 all'interno del PdP, ma scrivendo RO1 non lo prende ---
+  - rtb
   - microservizi
   - onboarding
   - L'Auth
@@ -202,6 +232,14 @@ accepted_words:
 
 
   # --- Parole Italiane mancanti / Neologismi ---
+  - autoconsistente
+  - autoconsistenza
+  - collaborativamente
+  - concatenabili
+  - multimodale
+  - pragmaticità
+  - primis
+  - rinomatamente
   - ciclomatica
   - efficientare
   - malinterpretabili
@@ -268,4 +306,26 @@ accepted_words:
   - containerizzate
   - un'API
   - l'Issue
+  - dell'AI
   - dell'ID
+  - l'AC
+  - L'AC
+  - l'API
+  - L'API
+  - l'audit
+  - L'admin
+  - L'Admin
+  - L'app
+  - l'EAC
+  - L'EAC
+  - l'ETC
+  - L'ETC
+  - l'EV
+  - L'EV
+  - l'MVP
+  - l'RSI
+  - L'RSI
+  - l'SPI
+  - L'SPI
+  - nell'EAC
+  - sull'MVP

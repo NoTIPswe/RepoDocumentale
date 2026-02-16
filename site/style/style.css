@@ -189,6 +189,46 @@ nav a:hover {
   margin: 0;
 }
 
+.rtb-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.rtb-icon {
+  font-size: 1.5rem;
+  color: var(--accent);
+}
+
+.rtb-text {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.rtb-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+  padding: 0.5rem 1.2rem;
+  background-color: var(--accent);
+  color: #fff;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.rtb-download-btn:hover {
+  background-color: #e0242e;
+  transform: translateY(-1px);
+  color: #fff;
+}
+
 footer {
   display: flex;
   flex-direction: column;
@@ -361,6 +401,13 @@ footer a:hover {
   .group-card h4 {
     color: var(--text-muted-dark);
   }
+  .rtb-inline {
+    background-color: var(--card-dark);
+    border: 1px solid rgb(from var(--accent) r g b/20%);
+  }
+  .rtb-text {
+    color: var(--text-muted-dark);
+  }
   footer {
     background-color: var(--background-dark);
     border-top: 1px solid rgb(from var(--text-muted-dark) r g b/10%);
@@ -431,6 +478,13 @@ footer a:hover {
   }
   .group-card p,
   .group-card h4 {
+    color: var(--text-muted-light);
+  }
+  .rtb-inline {
+    background-color: var(--background-light);
+    border: 1px solid rgb(from var(--accent) r g b/20%);
+  }
+  .rtb-text {
     color: var(--text-muted-light);
   }
   footer {
