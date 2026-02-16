@@ -8,7 +8,7 @@ changelog:
     date: "2026-02-11"
     authors:
       - Alessandro Contarini
-    verifier: TBD
+    verifier: Alessandro Mazzariol
     description: >
       Sistemazione del Cruscotto di Valutazione
   - version: "0.8.3"
