@@ -1172,21 +1172,30 @@
   definizione della Requirements and Technology Baseline (RTB).
 
   == MP01 e MP02: Earned Value e Planned Value
-  GRAFICO
+  #figure(
+    image(height: 30%, "assets/EV_PV.jpeg"),
+    caption: [Grafico per Sprint di MP01 e MP02],
+  ) <MP01_MP02>
   Dal grafico non emergono scostamenti rilevanti tra andamento pianificato e andamento reale. Sia l’Earned Value (EV) sia la Planned Value (PV) mostrano 
   un incremento progressivo lungo i sei sprint considerati.
   La quasi sovrapposizione delle due curve indica che il valore effettivamente maturato segue con buona precisione quanto previsto in fase di pianificazione. 
   Gli scostamenti risultano minimi e non evidenziano ritardi o anticipi significativi rispetto al piano iniziale.
 
   == MP03 e MP07: Actual Cost e Estimate To Complete
-  GRAFICO
+  #figure(
+    image(height: 30%, "assets/AC_ETC.jpeg"),
+    caption: [Grafico per Sprint di MP03 e MP07],
+  ) <MP03_MP07>
   Dal grafico non emergono particolari criticità nell’andamento dei costi. L’Actual Cost (AC) cresce progressivamente lungo i sei sprint, mostrando un 
   incremento regolare e coerente con l’avanzamento delle attività.
   Questo andamento è spiegato dal naturale sviluppo del progetto: man mano che il lavoro viene completato, i costi effettivi aumentano. Parallelamente, 
   l’Estimate To Complete (ETC) diminuisce in modo costante, indicando una progressiva riduzione del lavoro ancora da svolgere.
 
   == MP04 e MP05: Cost Performance Index e Schedule Performance Index
-  GRAFICO
+  #figure(
+    image(height: 30%, "assets/CPI_SPI.jpeg"),
+    caption: [Grafico per Sprint di MP04 e MP05],
+  ) <MP04_MP05>
   Dal grafico si nota che nella fase iniziale il progetto presenta un leggero scostamento rispetto alla condizione ottimale. In particolare, negli ultimi 
   sprint entrambi gli indici tendono ad avvicinarsi o scendere lievemente sotto il valore di riferimento pari a 1, segnalando una possibile perdita di 
   efficienza sia dal punto di vista economico sia temporale.
@@ -1196,7 +1205,10 @@
   L’andamento mostra comunque una buona stabilità generale degli indicatori, senza variazioni improvvise o fuori scala.
 
   == MP06: Estimate At Completion
-  GRAFICO
+  #figure(
+    image(height: 30%, "assets/EAC.jpeg"),
+    caption: [Grafico per Sprint di MP06],
+  ) <MP06>
   Dal grafico si osserva che l’Estimate At Completion (EAC) tende progressivamente ad aumentare dallo Sprint 2 in poi, arrivando a superare il Budget At 
   Completion (BAC) nella parte centrale e finale del periodo considerato.
   Tale incremento è riconducibile a una temporanea riduzione della produttività del gruppo, dovuta alla concomitanza con il periodo degli esami universitari. 
@@ -1206,31 +1218,46 @@
   dei costi.
 
   == MP08: Time Estimate At Completion
+  #figure(
+    image(height: 30%, "assets/TEAC.jpeg"),
+    caption: [Grafico per Sprint di MP08],
+  ) <MP08>
+  Dal grafico si osserva che il Time At Completion si mantiene sostanzialmente allineato al valore ottimale per i primi quattro sprint. Solo a partire dallo 
+  sprint 5 si registra un lieve aumento rispetto alla durata prevista, seguito da una leggera riduzione nello sprint 6, pur rimanendo leggermente sopra il 
+  valore ottimale.
+  Lo scostamento registrato nella parte centrale può essere ricondotto a un rallentamento temporaneo delle attività, che ha inciso sulla previsione 
+  complessiva della durata del progetto. Tuttavia, tale variazione risulta contenuta e non evidenzia un allungamento significativo dei tempi.
+
+  == MP11: Indice di Gulpease
+  #figure(
+    image(height: 30%, "assets/Gulpease.jpeg"),
+    caption: [Grafico per Sprint di MP11],
+  ) <MP11>
+  Dal grafico emerge che tutti i documenti mantengono un livello di avanzamento superiore alla soglia minima del 60% definita internamente dal gruppo.
+  Nel complesso, l’andamento conferma una gestione della documentazione stabile e coerente con quanto fissato, senza scostamenti al di sotto del 
+  livello minimo previsto.
 
   == MP18: Quality Metrics Satisfied
-  GRAFICO
+  #figure(
+    image(height: 30%, "assets/QMS.jpeg"),
+    caption: [Grafico per Sprint di MP18],
+  ) <MP18>
   Dal grafico si osserva che la percentuale di Quality Metrics Satisfied si mantiene sempre al di sopra del valore minimo accettabile (80%) per tutti gli 
   sprint considerati. Tuttavia, non in tutti i periodi viene raggiunto il valore ottimale del 100%, con alcune leggere oscillazioni nel corso del progetto.
   L’andamento evidenzia quindi una buona attenzione alla qualità complessiva del prodotto: le variazioni registrate non compromettono il rispetto degli standard 
   minimi e dimostrano una capacità del gruppo di mantenere il controllo sulle metriche qualitative, intervenendo quando necessario.
 
   == MP20: Time Efficiency
-  GRAFICO
+  #figure(
+    image(height: 30%, "assets/TE.jpeg"),
+    caption: [Grafico per Sprint di MP20],
+  ) <MP20>
   Dal grafico si osserva un progressivo incremento della Time Efficiency (TE) dallo sprint 1 allo sprint 6. Tuttavia, l’indicatore rimane costantemente 
   al di sotto sia del valore accettabile sia del valore ottimale, evidenziando un livello di efficienza temporale ancora migliorabile. Questo andamento è legato alla significativa incidenza 
   delle “ore di palestra”, indispensabili al team per lo svolgimento dei task in analisi.
   Nonostante ciò, la crescita costante dell’indicatore dimostra un miglioramento graduale nella gestione del tempo. Inoltre, dopo la RTB, le ore di palestra 
   tenderanno a diminuire, poiché il gruppo avrà ormai consolidato competenze e modalità operative. Questo comporterà un aumento delle ore effettivamente 
   produttive e, di conseguenza, un incremento atteso della Time Efficiency nei prossimi sprint.
-
-  == Indice di Gulpease
-  #figure(
-    image(height: 15%, "assets/Gulpease.png"),
-    caption: [Indice di Gulpease - NoTIP Dashboard],
-  ) <Gulpease>
-  Dal grafico emerge che tutti i documenti mantengono un livello di avanzamento superiore alla soglia minima del 60% definita internamente dal gruppo.
-  Nel complesso, l’andamento conferma una gestione della documentazione stabile e coerente con quanto fissato, senza scostamenti al di sotto del 
-  livello minimo previsto.
 
 
   = Valutazioni per l'automiglioramento
