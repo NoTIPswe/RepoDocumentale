@@ -52,9 +52,9 @@
 
   Nel periodo trascorso, il gruppo *NoTIP* ha sviluppato un Proof of Concept (PoC), consultabile presso la repository
   dedicata: #link("https://github.com/NoTIPswe/PoC")[PoC-Repository]. \
-  La documentazione completa relativa alla revisione RTB è invece disponibile sul sito ufficiale del gruppo: #link(
+  La documentazione completa relativa alla revisione RTB è invece disponibile sul #link(
     "https://notipswe.github.io/RepoDocumentale",
-  )[RepoDocumentale]. \
+  )[sito ufficiale] del gruppo. \
   In particolare, si sottopongono alla Vostra attenzione i seguenti documenti:
 
   - Lettera di presentazione (documento attuale)
@@ -77,10 +77,10 @@
   #v(0.8cm)
 
   Ringraziamo nuovamente per la Vostra disponibilità, \
-  cordiali saluti.
+  Cordiali saluti.
 
   #v(0.5cm)
-  Padova, 10 febbraio 2026, \
+  Padova, 16 febbraio 2026, \
 
   *Team NoTIP*
 
