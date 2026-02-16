@@ -314,7 +314,7 @@ def _preprocess_html_file(file_path: Path, config: SpellcheckConfig) -> None:
     # The word after the apostrophe is then checked normally by Hunspell
     # (against both the Italian dictionary and our custom dictionary)
     content = re.sub(
-        r"\b(?:[lLdD]|[dDnNsS]ell|[aA]ll|[dD]all|[uU]n|[sS]ull|[nN]ell)'(\w+)\b",
+        r"\b(?:[lLdD]|[dDnNsS]ell|[aA]ll|[dD]all|[uU]n|[sS]ull)'(\w+)\b",
         r"\1",
         content,
     )
