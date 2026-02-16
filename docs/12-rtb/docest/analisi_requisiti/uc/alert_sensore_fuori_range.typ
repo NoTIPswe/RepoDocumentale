@@ -6,6 +6,7 @@
   title: "Ricezione alert dati sensore fuori range",
   level: 1,
   prim-actors: CA.tenant-usr,
+  sec-actors: CA.p-gway,
   preconds: (
     "Esiste un'irregolarità nelle misurazioni del sensore",
   ),

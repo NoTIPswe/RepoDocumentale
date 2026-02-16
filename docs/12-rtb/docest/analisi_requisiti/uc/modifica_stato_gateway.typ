@@ -6,6 +6,7 @@
   title: "Modifica stato del Gateway",
   level: 1,
   prim-actors: CA.tenant-adm,
+  sec-actors: CA.p-gway,
   preconds: (
     "Il Gateway appartiene al Tenant",
     "Il Gateway si trova in uno stato attivo/disabilitato",
