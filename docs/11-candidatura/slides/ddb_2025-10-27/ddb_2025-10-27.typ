@@ -9,7 +9,8 @@
   - Sito web del progetto.
   - Repository documentale.
   - Incontri con le Aziende.
-  - Definizione dei flussi operativi interni per standardizzare il processo di revisione, approvazione e rilascio della documentazione.
+  - Definizione dei flussi operativi interni per standardizzare il processo di revisione, approvazione e rilascio della
+    documentazione.
   - Creazione dei template per i diari di bordo e per i verbali.
   - Comunicazione interna tramite l'uso di strumenti collaborativi.
 ][

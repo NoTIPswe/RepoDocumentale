@@ -13,7 +13,7 @@
   - Iniziare l'attività di Analisi dei requisiti.
 
   - Perseguire una suddivisione più efficiente dei task.
-  
+
 ][
   - Gestione living documents e rispettive versioni "finali" per ogni milestone.
 
