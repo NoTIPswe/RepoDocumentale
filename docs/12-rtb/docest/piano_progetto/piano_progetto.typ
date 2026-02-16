@@ -277,9 +277,9 @@
   - Completato
 
   === Sprint 1
-  Inizio: *16-11-2025* \
-  Fine prevista: *29-11-2025* \
-  Fine reale: *29-11-2025* \
+  Inizio: *2025-11-16* \
+  Fine prevista: *2025-11-29* \
+  Fine reale: *2025-11-29* \
   Giorni di ritardo: *0* \
 
   ==== Informazioni generali e attività pianificate
@@ -369,9 +369,9 @@
   prima stesura dei documenti più importanti. Tutte le attività previste sono state comunque eseguite senza ritardi.
 
   === Sprint 2
-  Inizio: *02-12-2025* \
-  Fine prevista: *14-12-2025* \
-  Fine reale: *15-12-2025* \
+  Inizio: *2025-12-02* \
+  Fine prevista: *2025-12-14* \
+  Fine reale: *2025-12-15* \
   Giorni di ritardo: *1*\
 
   ==== Informazioni generali e attività pianificate
@@ -485,9 +485,9 @@
   *0.4.0*.
 
   === Sprint 3
-  Inizio: *15-12-2025* \
-  Fine prevista: *28-12-2025* \
-  Fine reale: *04-01-2026*\
+  Inizio: *2025-12-16* \
+  Fine prevista: *2025-12-28* \
+  Fine reale: *2026-01-04*\
   Giorni di ritardo: 0\
 
   ==== Informazioni generali e attività pianificate
@@ -605,9 +605,9 @@
 
 
   === Sprint 4
-  Inizio: *04-01-2026* \
-  Fine prevista: *18-01-2026* \
-  Fine reale: *18-01-2026*\
+  Inizio: *2026-01-05* \
+  Fine prevista: *2026-01-18* \
+  Fine reale: *2026-01-18*\
   Giorni di ritardo: 0\
 
   ==== Informazioni generali e attività pianificate
@@ -717,9 +717,9 @@
   of Concept (POC), gli obiettivi prefissati sono stati comunque raggiunti senza ritardi significativi.
 
   === Sprint 5
-  Inizio: *18-01-2026* \
-  Fine prevista: *01-02-2026* \
-  Fine reale: *03-01-2026*\
+  Inizio: *2026-01-19* \
+  Fine prevista: *2026-02-01* \
+  Fine reale: *2026-02-03*\
   Giorni di ritardo: 2\
 
   ==== Informazioni generali e attività pianificate
@@ -830,9 +830,9 @@
   Nello Sprint 5 anche se il gruppo ha incontrato alcuni rallentamenti, i compiti assegnati sono stati svolti. Anche in
   questo caso alcuni membri hanno meno ore registrate, perché hanno ultimato la progettazione del PoC.
   === Sprint 6
-  Inizio: *04-02-2026* \
-  Fine prevista: *17-02-2026* \
-  Fine reale: *17-02-2026*\
+  Inizio: *2026-02-04* \
+  Fine prevista: *2026-02-17* \
+  Fine reale: *2026-02-17*\
   Giorni di ritardo: 0 \
 
   ==== Informazioni generali e attività pianificate
