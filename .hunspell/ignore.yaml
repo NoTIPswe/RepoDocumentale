@@ -112,6 +112,8 @@ accepted_words:
   - HyperText
   - NoSQL
   - WebSocket
+  - TimescaleDB
+  - Hypertables
   - TCP
   - Nats
   - TimescaleDB
@@ -172,6 +174,10 @@ accepted_words:
   - Postcondizioni
   - Precondizioni
   - namespace
+  - AC
+  - SPI
+  - ETC
+  - RSI
   - PdQ
   - Serverless
   - WebApp
@@ -215,6 +221,7 @@ accepted_words:
   - PasswordInvalida
   - RangeInvalido
   - NessunDato
+  - burnup
   - RepoDocumentale
   - uc 
   - authd
@@ -266,6 +273,21 @@ accepted_words:
   - l'endpoint
   - failover
   - provisionato
+  - l'automiglioramento
+  - messagging
+  - decifratura
+  - d'esami
+  - l'EV
+  - L'AC
+  - l'SPI
+  - L'EAC
+  - nell'EAC
+  - l'ETC
+  - L'RSI
+  - l'API
+  - dell'
+  - l'
+  - l'AC
   - d'esami
   - versionare
   - un'activity
@@ -278,6 +300,9 @@ accepted_words:
   - istanziazione
   - istanziata
   - containerizzazione
+  - l'Earned 
+  - L'Actual
+  - dell'EAC
   - containerizzate
   - un'API
   - l'Issue
