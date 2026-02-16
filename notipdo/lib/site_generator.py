@@ -169,8 +169,11 @@ def _generate_group_template(
     for subgroup, docs in _group_docs_by_subgroup(group_docs):
         tables += _generate_subgroup_table(subgroup, docs, docs_output_dir_rel_path)
 
+    baseline_html = _generate_baseline_html(group)
+
     replacements = {
         configs.GROUPS_HTML_GROUP_TITLE_MARKER: configs.GROUP_TO_TITLE[group],
+        configs.GROUPS_HTML_BASELINE_MARKER: baseline_html,
         configs.GROUPS_HTML_TABLES_MARKER: tables,
     }
 
@@ -268,3 +271,22 @@ def _copy_static_assets(site_dir_path: Path, site_output_dir_path: Path) -> None
             shutil.copytree(source_item, dest_item, dirs_exist_ok=True)
         else:
             shutil.copy2(source_item, dest_item)
+
+def _generate_baseline_html(group_folder_name: str) -> str:
+    repo_config = configs.BASELINE_REPOS.get(group_folder_name)
+
+    if not repo_config:
+        return ""
+
+    return f"""
+    <div class="rtb-inline">
+      <span class="material-symbols-outlined rtb-icon">{repo_config['icon']}</span>
+      <span class="rtb-text">{repo_config['display_name']} — {repo_config['description']}</span>
+      <a
+        href="https://github.com/NoTIPswe/{repo_config['repo_name']}/archive/refs/heads/{repo_config['branch']}.zip"
+        class="rtb-download-btn"
+      >
+        <i class="fa-solid fa-download"></i> Scarica ZIP
+      </a>
+    </div>
+    """
