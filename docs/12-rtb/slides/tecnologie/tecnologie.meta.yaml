@@ -1,5 +1,12 @@
 title: Tecnologie
 changelog:
+  - version: "0.2.0"
+    date: "2024-02-16"
+    authors:
+      - Leonardo Preo
+    verifier: TBD
+    description: >
+      Aggiunta sezione Prometheus e Grafana
   - version: "0.1.0"
     date: "2024-02-13"
     authors:

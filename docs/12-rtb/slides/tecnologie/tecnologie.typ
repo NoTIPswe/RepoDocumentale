@@ -57,17 +57,20 @@
       serie temporali. \
       TimescaleDB permette di gestire efficientemente lo storico temporale dei sensori, evitando l'introduzione di un
       database NoSQL dedicato
-
-  #pagebreak()
-
   - *NestJS* (DataAPI)
     - _*Alternative considerate:*_ Gin (Go)
     - _*Scelta:*_ Struttura modulare e integrazione con TypeORM per query ottimizzate e gestione manutenibile della
       logica di business. Permette la facile costruzione delle API.
+
+  #pagebreak()
+
   - *Angular + TypeScript SDK* (Frontend)
     - _*Scelta:*_ TypeScript SDK permette di gestire la decifrazione dei dati "lato client" (End-to-End Encryption),
       garantendo che il dato in chiaro sia visibile solo all'utente finale. Framework molto completo e pieno sostegno da
       parte dell'azienda proponente
+  - *Prometheus + Grafana* (Monitoraggio)
+    - _*Scelta:*_ Soluzione open-source con forte community e flessibilità di personalizzazione. Permette di monitorare
+      efficacemente le performance del sistema e visualizzare metriche chiave
 
   = PoC
 
@@ -76,9 +79,11 @@
   2. *Data Queue (NATS):* Ingestion diretta; garantisce bufferizzazione e resilienza
   3. *Storage & Segregazione:* Implementazione della multi-tenancy logica su TimescaleDB
   4. *Dashboard (Angular):* Visualizzazione Real-Time con decifrazione client-side
+  5. *Observability*: Setup base di Prometheus e Grafana per monitoraggio di NATS.
 
   == Esclusi dalla realizzazione
-  - *Monitoraggio* e *Auth Utente* rimandati all'MVP
+  - *API esterne*, *Flusso Bidirezionale* e *Auth Utente* rimandati all'MVP
+  - Sistema di alerting, logging centralizzato e tracing distribuito
 
   #pagebreak()
 
