@@ -1169,9 +1169,32 @@
 
   = Cruscotto di valutazione
   Di seguito vengono presentate le misurazioni raccolte nel periodo compreso tra l’aggiudicazione del capitolato e la
-  definizione della Requirements and Technology Baseline (RTB). EVENTUALI ALTRE CONSIDERAZIONI DERIVATE DALLE
-  MISURAZIONI POTRANNO ESSERE RICAVATE SOLO NEL MOMENTO IN CUI VERRANNO EFFETTUATE LE MISURAZIONI IMMEDIATAMENTE PRIMA
-  DELLA REVISIONE RTB
+  definizione della Requirements and Technology Baseline (RTB).
+
+  == MP01 e MP02: Earned Value e Planned Value
+  GRAFICO
+  Dal grafico si osserva un incremento progressivo sia dell’Earned Value (EV) sia della Planned Value (PV) lungo i sei sprint considerati. 
+  L’andamento delle due curve risulta quasi sovrapposto per l’intera durata del periodo, con scostamenti minimi tra valore pianificato e valore 
+  effettivamente maturato. Questo indica che il lavoro svolto è sostanzialmente in linea con quanto previsto dal piano, senza ritardi significativi 
+  né anticipi rilevanti.
+
+  == MP03 e MP07: Actual Cost e Estimate To Complete
+  GRAFICO
+  Dal grafico si osserva un incremento progressivo dell’Actual Cost (AC) lungo i sei sprint considerati. Il costo effettivamente sostenuto cresce in modo 
+  costante, passando da valori contenuti nel primo sprint fino a stabilizzarsi intorno ai 5.500–6.000 € negli ultimi sprint, segno di un avanzamento regolare 
+  delle attività e di un impegno economico coerente con lo sviluppo del progetto.
+  Parallelamente, l’Estimate To Complete (ETC) mostra un andamento decrescente nel tempo. A partire da un valore iniziale elevato, la stima del costo 
+  rimanente diminuisce sprint dopo sprint, riflettendo la progressiva riduzione del lavoro ancora da svolgere. Negli ultimi sprint il calo dell’ETC tende 
+  ad attenuarsi, indicando che la parte residua del progetto si sta stabilizzando.
+
+  == MP04 e MP05: Cost Performance Index e Schedule Performance Index
+  Per quanto riguarda il Cost Performance Index (CPI), i valori si mantengono inizialmente leggermente superiori a 1 nei primi sprint, indicando una gestione 
+  dei costi efficiente e una spesa inferiore rispetto al valore prodotto. Successivamente si osserva una lieve flessione: a partire dallo sprint 4 il CPI 
+  tende a scendere progressivamente, attestandosi poco al di sotto di 1 negli ultimi sprint. Questo segnala una leggera perdita di efficienza economica, 
+  con costi che iniziano ad allinearsi o superare marginalmente il valore pianificato.
+  Lo Schedule Performance Index (SPI) si mantiene molto vicino al valore ottimale (1) per quasi tutta la durata del progetto. Nei primi sprint risulta 
+  sostanzialmente in linea con la pianificazione; nella parte finale si registra un lieve calo sotto 1, indice di un piccolo rallentamento rispetto alle 
+  tempistiche previste, ma senza scostamenti rilevanti.
 
   == Burndown / Burnup Chart
   IMMAGINE DA METTERE PRIMA DELLA RTB
