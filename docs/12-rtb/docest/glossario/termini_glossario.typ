@@ -27,7 +27,7 @@
   "Cloud-native": "Paradigma di sviluppo che sfrutta servizi e architetture progettate specificamente per ambienti cloud scalabili",
   "CMMI": "Approccio al miglioramento dei processi che fornisce alle organizzazioni gli elementi essenziali per un efficace miglioramento dei processi",
   "Code Review": "Processo di verifica sistematica del codice sorgente da parte di altri sviluppatori per garantire qualità e conformità",
-  "Cold Start": "Latenza iniziale che si verifica in architetture serverless quando una funzione inattiva deve essere istanziata prima di poter gestire una richiesta",
+  "Cold Start": "Latenza iniziale che si verifica in architetture Serverless quando una funzione inattiva deve essere istanziata prima di poter gestire una richiesta",
   "commit": "Operazione con cui si registrano modifiche in un sistema di controllo versione (come Git). Deve essere atomico, cioè riguardare un singolo cambiamento coerente",
   "Conventional Commits": "Standard strutturato per la formattazione dei messaggi di commit che garantisce leggibilità e tracciabilità della cronologia",
   "convention over configuration": "Principio di progettazione secondo cui scelte predefinite e convenzioni riducono la necessità di configurazioni esplicite, semplificando lo sviluppo",
