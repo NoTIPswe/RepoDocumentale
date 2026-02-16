@@ -38,7 +38,7 @@
     discussion_point: [Rotazione dei ruoli],
     discussion: [
       Durante la revisione che il Professore ha fornito riguardo al nostro operato è emersa una mancanza per quanto riguarda le modalità e i criteri che regolano la rotazione rei ruoli. \
-      E' stato inoltre discusso come andare a dividere le ore nei vari ruoli tra le persone del gruppo, in modo da poter garantire una copertura adeguata alle esigenze che il gruppo ha comunicato.
+      È stato inoltre discusso come andare a dividere le ore nei vari ruoli tra le persone del gruppo, in modo da poter garantire una copertura adeguata alle esigenze che il gruppo ha comunicato.
     ],
     decisions: [
       La dichiarazione di impegni includerà una tabella riepilogativa con persone, ore e ruolo. Le ore saranno suddivise in modo equo tra i membri, seguendo quanto riportato nella issue di riferimento.

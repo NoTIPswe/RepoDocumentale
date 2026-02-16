@@ -71,7 +71,7 @@
   #base-report.report-point(
     discussion_point: [Autonomia del tenant nel ciclo di vita del gateway], 
     discussion: [
-      Si è discusso se operazioni critiche come lo spegnimento o la rimozione di un gateway richiedessero la necessità dell'intervendo da parte dell'amministratore di sistema. L'azienda ha specificato che il sistema deve garantire agilità operativa al cliente.
+      Si è discusso se operazioni critiche come lo spegnimento o la rimozione di un gateway richiedessero la necessità dell'intervento da parte dell'amministratore di sistema. L'azienda ha specificato che il sistema deve garantire agilità operativa al cliente.
     ], 
     decisions: [
       - L'admin tenant può sospendere temporaneamente l'invio dati o disconnettere logicamente un gateway (es. per malfunzionamento sensori simulati) in autonomia.

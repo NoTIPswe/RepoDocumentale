@@ -48,7 +48,7 @@
   #base-report.report-point(
     discussion_point: [Recap delle varie Task assegnate ai componenti del gruppo],
     discussion: [
-      Discussione sull'assegnazione delle varie task mancanti e metodi di assegnaiozne
+      Discussione sull'assegnazione delle varie task mancanti e metodi di assegnazione
     ],
     decisions: [
       A seguito di una discussione approfondita sono state riviste le attività da svolgere fino alla candidatura tramite un foglio Google Docs temporaneo.\
@@ -59,13 +59,13 @@
   )
 ][
   = Note aggiuntive
-  Al termine dei punti principali precedentemente elencati, il gruppo si é concentrato su alcune parti non meno importanti, riguardo alla preparazione della documentazione.
+  Al termine dei punti principali precedentemente elencati, il gruppo si è concentrato su alcune parti non meno importanti, riguardo alla preparazione della documentazione.
 
   == Introduzione ai template Typst
-  Il componente del gruppo Leonardo Preo, a seguito della finalizzazione dei vari template necessari di Typst, ha mostrato il loro utilizzo ed esempi allegati, nonchè linee guida con cui poter scrivere.
+  Il componente del gruppo Leonardo Preo, a seguito della finalizzazione dei vari template necessari di Typst, ha mostrato il loro utilizzo ed esempi allegati, nonché linee guida con cui poter scrivere.
 
   == Introduzione al processo di scrittura dei documenti
-  Il componente del gruppo Matteo Mantoan invece, ha introdotto al gruppo il processo di scrittura dei documenti, cioè tutta la parte che riguarda l'automazione e la successiva pubblicazione automatica della documentazione sul sito (#link("https://notipswe.github.io")).\
+  Il componente del gruppo Matteo Mantoan invece, ha introdotto al gruppo il processo di scrittura dei documenti, cioè tutta la parte che riguarda l'automazione e la successiva pubblicazione automatica della documentazione sul sito (#link("https://notipswe.github.io/RepoDocumentale")).\
   In aggiunta è stata creata una Task con completamento nei successivi giorni che riguarda la produzione della documentazione collegata all'utilizzo dei vari automatismi.
 
   = Esiti e decisioni finali

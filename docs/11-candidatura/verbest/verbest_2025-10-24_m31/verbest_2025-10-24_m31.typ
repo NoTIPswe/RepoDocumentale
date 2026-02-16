@@ -43,7 +43,7 @@
 
   Per quanto riguarda la comunicazione, #emph([M31]) preferisce l’uso dell’email per semplificare la gestione interna e chiede che eventuali domande tecniche vengano inviate in anticipo, così da rendere più efficaci gli incontri successivi, evitando perdite di tempo da entrambe le parti.
 ][
-  = Chiarimenti e risposte ai dubbi del druppo
+  = Chiarimenti e risposte ai dubbi del gruppo
   L’azienda ha risposto ai quesiti del gruppo fornendo i seguenti chiarimenti:
 
   == Interfaccia utente e gateway
@@ -72,7 +72,7 @@
 
 
   == Tecnologie
-  L’azienda esprime disponibilità e apertura verso l’utilizzo delle tecnologie che più si avvicinano alle competenze attuali e preferenze del gruppo, incoraggiando un approccio flessibile e propositivo, purchè funzionante.
+  L’azienda esprime disponibilità e apertura verso l’utilizzo delle tecnologie che più si avvicinano alle competenze attuali e preferenze del gruppo, incoraggiando un approccio flessibile e propositivo, purché funzionante.
   È stata inoltre sottolineata l’importanza della documentazione e del test-book, elementi fondamentali nella filosofia aziendale orientata alle pratiche professionali e al rigore metodologico.
 
   == Altro
