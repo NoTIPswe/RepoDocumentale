@@ -47,8 +47,8 @@
 
 
   Con la presente il gruppo *NoTIP* comunica formalmente la propria intenzione di sostenere la revisione della
-  Requirements and Technology Baseline (RTB), relativamente al progetto proposto dall'azienda M31, capitolato *C7*, dal
-  titolo: *"Sistema di acquisizione dati da sensori"*.
+  Requirements and Technology Baseline (RTB), relativamente al progetto proposto dall'azienda M31, capitolato *C7*,
+  intitolato: *"Sistema di acquisizione dati da sensori"*.
 
   Nel periodo trascorso, il gruppo *NoTIP* ha sviluppato un Proof of Concept (PoC), consultabile presso la repository
   dedicata: #link("https://github.com/NoTIPswe/PoC")[PoC-Repository]. \
@@ -58,18 +58,21 @@
   In particolare, si sottopongono alla Vostra attenzione i seguenti documenti:
 
   - Lettera di presentazione (documento attuale)
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto (NdP)]
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_progetto.pdf")[Piano di Progetto (PdP)]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto (NdP)
+      v1.0.0]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_progetto.pdf")[Piano di Progetto (PdP)
+      v1.0.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti
-      (AdR)]
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_qualifica.pdf")[Piano di Qualifica (PdQ)]
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario]
+      (AdR) v1.0.0]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_qualifica.pdf")[Piano di Qualifica (PdQ)
+      v1.0.0]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario v1.0.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_stato_arte.pdf")[Analisi dello stato
-      dell'arte]
+      dell'arte v1.0.0]
 
   Il gruppo mette inoltre a disposizione tutti i verbali delle riunioni interne e dei colloqui intercorsi con l'azienda
   proponente M31. \
-  Infine, il gruppo riconferma gli impegni assunti nella #link(
+  Infine, vengono riconfermati gli impegni assunti nella #link(
     "https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/dichiarazione_impegni.pdf",
   )[Dichiarazione degli impegni], relativamente alla data di consegna finale (*21 marzo 2026*) e al preventivo di costo
   massimo stimato (*12.940 €*).
