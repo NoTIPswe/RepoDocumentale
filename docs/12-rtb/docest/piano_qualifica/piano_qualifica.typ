@@ -1231,6 +1231,12 @@
   previsione complessiva della durata del progetto. Tuttavia, tale variazione risulta contenuta e non evidenzia un
   allungamento significativo dei tempi.
 
+  == MP09: Budget Burn Rate
+  #figure(
+    image(height: 30%, "assets/BBR.jpeg"),
+    caption: [Grafico per Sprint di MP09],
+  ) <MP09>
+
   == MP11: Indice di Gulpease
   #figure(
     image(height: 30%, "assets/Gulpease.jpeg"),
@@ -1239,6 +1245,12 @@
   Dal grafico emerge che tutti i documenti mantengono un livello di avanzamento superiore alla soglia minima del 60%
   definita internamente dal gruppo. Nel complesso, l’andamento conferma una gestione della documentazione stabile e
   coerente con quanto fissato, senza scostamenti al di sotto del livello minimo previsto.
+
+  == MP12: Correttezza Ortografica
+  #figure(
+    image(height: 30%, "assets/CO.png"),
+    caption: [Grafico per Sprint di MP12],
+  ) <MP12>
 
   == MP18: Quality Metrics Satisfied
   #figure(
@@ -1264,6 +1276,25 @@
   miglioramento graduale nella gestione del tempo. Inoltre, si prevede che, dopo la RTB, le ore di palestra tenderanno a
   diminuire, poiché il gruppo avrà ormai consolidato competenze e modalità operative. Questo comporterà un aumento delle
   ore effettivamente produttive e, di conseguenza, un incremento della Time Efficiency nei prossimi sprint.
+
+  == MP21: Sprint Velocity Stability
+  #figure(
+    image(height: 30%, "assets/SVS.jpeg"),
+    caption: [Grafico per Sprint di MP21],
+  ) <MP21>
+
+
+  == MP22: Meeting Efficiency Index
+  #figure(
+    image(height: 30%, "assets/MEI.jpeg"),
+    caption: [Grafico per Sprint di MP22],
+  ) <MP22>
+
+  == MP23: PR Resolution Time
+  #figure(
+    image(height: 30%, "assets/PRRT.jpeg"),
+    caption: [Grafico per Sprint di MP23],
+  ) <MP23>
 
 
   = Valutazioni per l'automiglioramento
