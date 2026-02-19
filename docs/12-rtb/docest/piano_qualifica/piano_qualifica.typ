@@ -1237,7 +1237,7 @@
     caption: [Grafico per Sprint di MP09],
   ) <MP09>
   Dal grafico si osserva che il consumo medio di budget per sprint mostra un andamento inizialmente crescente.
-  n particolare, dal primo al quarto sprint il valore aumenta progressivamente, passando da circa 50 giorni/uomo a un picco intorno ai 70 giorni/uomo. Nel quinto sprint il valore si mantiene su livelli simili al precedente, evidenziando una fase di stabilizzazione del ritmo di spesa. Nell’ultimo sprint, invece, si registra una lieve diminuzione del burn rate, che torna intorno ai 60 giorni/uomo.
+  In particolare, dal primo al quarto sprint il valore aumenta progressivamente, passando da circa 50 giorni/uomo a un picco intorno ai 70 giorni/uomo. Nel quinto sprint il valore si mantiene su livelli simili al precedente, evidenziando una fase di stabilizzazione del ritmo di spesa. Nell’ultimo sprint, invece, si registra una lieve diminuzione del burn rate, che torna intorno ai 60 giorni/uomo.
   È comunque importante sottolineare che per l’intera durata del periodo considerato, il Budget Burn Rate rimane sempre al di sotto del valore soglia accettabile (pari a circa 100 giorni/uomo), rappresentato dalla linea rossa nel grafico. Questo aspetto evidenzia che il progetto ha mantenuto un livello di consumo delle risorse coerente con quanto pianificato, senza superare i limiti stabiliti.
 
   == MP11: Indice di Gulpease
