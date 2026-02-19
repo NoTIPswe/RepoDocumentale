@@ -1236,6 +1236,9 @@
     image(height: 30%, "assets/BBR.jpeg"),
     caption: [Grafico per Sprint di MP09],
   ) <MP09>
+  Dal grafico si osserva che il consumo medio di budget per sprint mostra un andamento inizialmente crescente.
+  n particolare, dal primo al quarto sprint il valore aumenta progressivamente, passando da circa 50 giorni/uomo a un picco intorno ai 70 giorni/uomo. Nel quinto sprint il valore si mantiene su livelli simili al precedente, evidenziando una fase di stabilizzazione del ritmo di spesa. Nell’ultimo sprint, invece, si registra una lieve diminuzione del burn rate, che torna intorno ai 60 giorni/uomo.
+  È comunque importante sottolineare che per l’intera durata del periodo considerato, il Budget Burn Rate rimane sempre al di sotto del valore soglia accettabile (pari a circa 100 giorni/uomo), rappresentato dalla linea rossa nel grafico. Questo aspetto evidenzia che il progetto ha mantenuto un livello di consumo delle risorse coerente con quanto pianificato, senza superare i limiti stabiliti.
 
   == MP11: Indice di Gulpease
   #figure(
@@ -1251,6 +1254,8 @@
     image(height: 30%, "assets/CO.png"),
     caption: [Grafico per Sprint di MP12],
   ) <MP12>
+  Dal grafico si osserva un andamento complessivamente decrescente del numero di errori ortografici rilevati nei documenti prodotti durante gli sprint. Nel primo sprint il valore iniziale risulta piuttosto elevato (circa 35 errori), segno di una fase iniziale in cui la revisione formale non era ancora pienamente strutturata.
+  Nel secondo sprint si registra una lieve diminuzione, seguita però da un piccolo incremento nel terzo sprint. A partire dal quarto sprint, tuttavia, il numero di errori cala in modo significativo, passando da circa 20 nel quarto sprint a 12 nel quinto, fino ad azzerarsi completamente nel sesto sprint. Il progressivo avvicinamento e infine il raggiungimento del valore ottimo (e accettabile) dimostrano un miglioramento continuo nella qualità redazionale e una maggiore attenzione ai processi di revisione.
 
   == MP18: Quality Metrics Satisfied
   #figure(
@@ -1282,6 +1287,8 @@
     image(height: 30%, "assets/SVS.jpeg"),
     caption: [Grafico per Sprint di MP21],
   ) <MP21>
+  Dal grafico si osserva un andamento progressivamente migliorativo nel corso degli sprint. Poiché la metrica misura lo scostamento percentuale tra velocity pianificata e velocity effettiva, valori più elevati indicano una maggiore instabilità, mentre valori più bassi rappresentano una migliore capacità di previsione e quindi una maggiore stabilità. Nel primo sprint il valore si attesta intorno al 100%, evidenziando uno scostamento molto elevato e quindi una situazione iniziale critica. Nel secondo sprint si registra una lieve riduzione, ma il miglioramento più significativo si osserva nel terzo sprint, dove lo scostamento scende intorno al 65%. 
+  Negli sprint successivi il valore continua a ridursi gradualmente e tende a stabilizzarsi attorno al 70%, mostrando comunque una distanza dalla soglia di accettabilità (linea rossa). Sebbene il team non abbia ancora raggiunto il valore accettabile, il valore decrescente rappresenta un segnale positivo: lo scostamento si sta progressivamente riducendo e la prevedibilità della velocity sta migliorando.
 
 
   == MP22: Meeting Efficiency Index
@@ -1289,12 +1296,20 @@
     image(height: 30%, "assets/MEI.jpeg"),
     caption: [Grafico per Sprint di MP22],
   ) <MP22>
+  Dal grafico si osserva un andamento variabile nel corso degli sprint, con valori che oscillano attorno al valore ottimo fissato a 5 decisioni/ora (linea gialla). Poiché la metrica misura il numero medio di decisioni prese per ora di riunione, valori più elevati indicano una maggiore efficienza, mentre valori più bassi riflettono un minor rendimento degli incontri.
+  Nel primo sprint l’indice si attesta intorno a 9 decisioni/ora, valore significativamente superiore a quello ottimo. Negli sprint successivi si osserva una progressiva riduzione: nel secondo sprint il valore scende a circa 6, mentre nel terzo si allinea al valore ottimo di 5 decisioni/ora, evidenziando un buon equilibrio tra produttività e qualità delle decisioni.
+  Nel quarto sprint si registra un lieve incremento, seguito però da un calo più marcato nel quinto sprint (circa 3–4 decisioni/ora), valore che si avvicina alla soglia di accettabilità (linea rossa), indice di riunioni meno focalizzate e di fasi in cui le decisioni effettive risultano meno numerose. Nell’ultimo sprint si osserva una ripresa, con un ritorno a circa 6 decisioni/ora, riportando l’indicatore sopra il valore ottimo.
+
 
   == MP23: PR Resolution Time
   #figure(
     image(height: 30%, "assets/PRRT.jpeg"),
     caption: [Grafico per Sprint di MP23],
   ) <MP23>
+  Dal grafico si osserva un andamento complessivamente variabile nel tempo, con un picco significativo nella parte centrale del periodo considerato. La metrica misura il numero medio di giorni necessari per la risoluzione delle Pull Request: trattandosi di un indicatore temporale, valori più bassi sono preferibili, poiché indicano maggiore reattività e fluidità nel processo di revisione.
+  Nel primo sprint il tempo medio di risoluzione si attesta intorno ai 3 giorni, valore in prossimità della soglia di accettabilità (linea rossa). Nel secondo sprint si registra un miglioramento significativo, con una riduzione a circa 1 giorno, in linea con il valore ottimo (linea gialla). Anche il terzo sprint mantiene un tempo contenuto, sebbene leggermente superiore rispetto al precedente.
+  Nel quarto sprint si verifica un marcato peggioramento, con un picco di circa 11–12 giorni, ampiamente superiore alla soglia accettabile.
+  A partire dal quinto sprint si osserva un recupero significativo: il tempo medio scende nuovamente sotto la soglia accettabile (circa 2 giorni) e nell’ultimo sprint si riporta in prossimità del valore ottimo. Questo andamento evidenzia la capacità del team di reagire a una criticità temporanea e di ristabilire un processo di revisione più efficiente.
 
 
   = Valutazioni per l'automiglioramento
