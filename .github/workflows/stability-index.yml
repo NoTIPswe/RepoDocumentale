@@ -1,0 +1,30 @@
+name: Stability Index - Analisi Requisiti
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/12-rtb/docest/analisi_requisiti/**'
+  workflow_dispatch:
+
+jobs:
+  stability-index:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Necessario per iterare l'intera storia git e trovare il commit di baseline
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-docs-env
+
+      - name: Install Google Sheets dependencies
+        run: pip install gspread google-auth
+
+      - name: Calculate Stability Index and send to Google Sheets
+        env:
+          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+        run: notipdo metrics stability-index --sheet
