@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "registrazione_associazione_gateway",
@@ -31,4 +31,6 @@
       descr: "L’Attore viene notificato dell’avvenuta connessione del Gateway non appena il dispositivo contatta il Cloud e riceve le credenziali",
     ),
   ),
-)[#uml-schema("93", "Diagramma Provisioning Gateway - Registrazione e associazione Tenant")]
+
+  uml-descr: "Diagramma Provisioning Gateway - Registrazione e associazione Tenant",
+)

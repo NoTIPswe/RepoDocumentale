@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "visualizzazione_id_tenant",
@@ -16,4 +16,6 @@
   main-scen: (
     (descr: "L’Attore visualizza l’ID univoco associato al Tenant"),
   ),
-)[#uml-schema("83", "Diagramma Visualizzazione ID Tenant")]
+
+  uml-descr: "Diagramma Visualizzazione ID Tenant",
+)

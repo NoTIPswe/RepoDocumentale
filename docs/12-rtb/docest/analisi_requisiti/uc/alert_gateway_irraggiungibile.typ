@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "alert_gateway_irraggiungibile",
@@ -24,6 +24,6 @@
       inc: "visualizzazione_timestamp_ultimo_invio_dati_gateway",
     ),
   ),
-)[
-  #uml-schema("30", "Diagramma Ricezione alert Gateway non raggiungibile")
-]
+
+  uml-descr: "Diagramma Ricezione alert Gateway non raggiungibile",
+)

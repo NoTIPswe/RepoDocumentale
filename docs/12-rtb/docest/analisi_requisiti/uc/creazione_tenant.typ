@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "creazione_tenant",
@@ -42,4 +42,6 @@
       uc: "err_interno_creazione_tenant",
     ),
   ),
-)[#uml-schema("86", "Diagramma Creazione Tenant")]
+
+  uml-descr: "Diagramma Creazione Tenant",
+)

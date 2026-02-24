@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 
 
@@ -19,14 +19,7 @@
   ),
   alt-scen: (
     (ep: "PreLogin", cond: "L'Attore inserisce credenziali errate", uc: "err_cred_errate"),
-    (
-      ep: "PreLogin",
-      cond: "L'Attore fa il login per la prima volta e l'account appartiene a un "
-        + CA.sys-adm
-        + " o a un tenant in cui la 2FA è abilitata",
-      uc: "setup_totp",
-    ),
   ),
-)[
-  #uml-schema("1", "Diagramma Login")
-]
+
+  uml-descr: "Diagramma Login",
+)

@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "invio_dati_crittografati_cloud",
@@ -21,4 +21,6 @@
     (descr: "L’Attore invia i dati in maniera sicura al Cloud"),
     (descr: "L’Attore riceve la notifica dell’esito dell’operazione"),
   ),
-)[#uml-schema("98", "Diagramma invio dati crittografati al Cloud")]
+
+  uml-descr: "Diagramma invio dati crittografati al Cloud",
+)

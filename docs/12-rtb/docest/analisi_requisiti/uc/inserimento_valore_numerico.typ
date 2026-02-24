@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "inserimento_valore_numerico",
@@ -16,4 +16,6 @@
   main-scen: (
     (descr: "L’Attore inserisce un valore numerico"),
   ),
-)[#uml-schema("45", "Diagramma Inserimento valore numerico")]
+
+  uml-descr: "Diagramma Inserimento valore numerico",
+)

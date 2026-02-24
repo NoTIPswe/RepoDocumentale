@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc
 
 #uc(
   id: "visualizzazione_timestamp_ultimo_invio_dati_gateway",
@@ -16,6 +16,6 @@
   main-scen: (
     (descr: "L'Attore visualizza l’orario dell’ultimo invio dati da parte del Gateway"),
   ),
-)[
-  #uml-schema("22", "Diagramma Visualizzazione timestamp ultimo invio dati Gateway")
-]
+
+  uml-descr: "Diagramma Visualizzazione timestamp ultimo invio dati Gateway",
+)

@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc
 
 #uc(
   id: "lista_gateway",
@@ -20,7 +20,6 @@
       inc: "visualizzazione_singolo_gateway",
     ),
   ),
-)[
-  #uml-schema("18", "Diagramma Visualizzazione lista Gateway")
 
-]
+  uml-descr: "Diagramma Visualizzazione lista Gateway",
+)

@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   system: SIM_SYS,
@@ -30,7 +30,7 @@
       uc: "err_valore_numerico_invalido",
     ),
   ),
-)[
-  #uml-schema("S17", "Diagramma Comando anomalia gateway - degrado rete")
-]
+
+  uml-descr: "Diagramma Comando anomalia gateway - degrado rete",
+)
 

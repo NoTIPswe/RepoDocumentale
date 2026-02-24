@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "visualizzazione_lista_utenti_tenant",
@@ -20,4 +20,6 @@
       inc: "visualizzazione_singolo_utente_tenant",
     ),
   ),
-)[#uml-schema("50", "Diagramma Visualizzazione lista Utenti del Tenant")]
+
+  uml-descr: "Diagramma Visualizzazione lista Utenti del Tenant",
+)

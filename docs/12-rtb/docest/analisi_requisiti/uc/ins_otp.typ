@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "ins_otp",
@@ -25,7 +25,6 @@
       uc: "err_otp_errato",
     ),
   ),
-)[
-  #uml-schema("5", "Diagramma Inserimento OTP")
 
-]
+  uml-descr: "Diagramma Inserimento OTP",
+)

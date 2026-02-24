@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   system: SIM_SYS,
@@ -17,6 +17,6 @@
   main-scen: (
     (descr: "L’Attore riceve una notifica di errore di configurazione per errore semantico nel range"),
   ),
-)[
-  #uml-schema("S22", "Diagramma Errore configurazione frequenza invio dati fuori range ammesso")
-]
+
+  uml-descr: "Diagramma Errore configurazione frequenza invio dati fuori range ammesso",
+)

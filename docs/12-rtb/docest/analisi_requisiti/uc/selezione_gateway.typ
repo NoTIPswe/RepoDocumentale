@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "selezione_gateway",
@@ -16,4 +16,6 @@
   main-scen: (
     (descr: "L’Attore seleziona uno o più Gateway tramite il loro identificativo"),
   ),
-)[#uml-schema("68", "Diagramma selezione Gateway")]
+
+  uml-descr: "Diagramma selezione Gateway",
+)

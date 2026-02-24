@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "err_dati_non_disponibili",
@@ -19,6 +19,6 @@
       descr: "L’Attore riceve una notifica di errore che indica che i dati non sono temporaneamente disponibili/esistenti",
     ),
   ),
-)[
-  #uml-schema("28", "Diagramma Errore dati non disponibili")
-]
+
+  uml-descr: "Diagramma Errore dati non disponibili",
+)

@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   system: SIM_SYS,
@@ -30,7 +30,7 @@
       uc: "err_creazione_sensore_simulato",
     ),
   ),
-)[
-  #uml-schema("S12", "Diagramma Creazione sensore Gateway simulato")
-]
+
+  uml-descr: "Diagramma Creazione sensore Gateway simulato",
+)
 

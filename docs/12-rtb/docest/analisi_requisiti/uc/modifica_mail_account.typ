@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc
 
 #uc(
   id: "modifica_mail_account",
@@ -22,7 +22,6 @@
       descr: "L’Attore conferma l’operazione di cambio mail",
     ),
   ),
-)[
-  #uml-schema("12", "Diagramma Modifica mail account")
 
-]
+  uml-descr: "Diagramma Modifica mail account",
+)

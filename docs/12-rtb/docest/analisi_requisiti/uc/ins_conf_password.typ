@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc
 
 #uc(
   id: "inserimento_conferma_password",
@@ -35,7 +35,6 @@
       uc: "err_campi_diversi",
     ),
   ),
-)[
-  #uml-schema("9", "Diagramma Inserimento e conferma password")
 
-]
+  uml-descr: "Diagramma Inserimento e conferma password",
+)

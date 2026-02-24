@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc
 
 #uc(
   id: "err_account_inesistente",
@@ -16,7 +16,6 @@
   main-scen: (
     (descr: "L'Attore viene notificato dell'inserimento di una mail non associata a nessun account"),
   ),
-)[
-  #uml-schema("8", "Diagramma Errore account non esistente")
 
-]
+  uml-descr: "Diagramma Errore account non esistente",
+)

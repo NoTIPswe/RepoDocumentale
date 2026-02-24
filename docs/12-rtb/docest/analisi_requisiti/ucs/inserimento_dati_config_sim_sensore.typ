@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   system: SIM_SYS,
@@ -26,7 +26,7 @@
       descr: "L’Attore seleziona l’algoritmo di generazione dei dati",
     ),
   ),
-)[
-  #uml-schema("S12.1", "Diagramma Inserimento dati configurazione sensore")
-]
+
+  uml-descr: "Diagramma Inserimento dati configurazione sensore",
+)
 

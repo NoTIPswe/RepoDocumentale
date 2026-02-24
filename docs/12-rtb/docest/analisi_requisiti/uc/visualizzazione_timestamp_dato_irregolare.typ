@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "visualizzazione_timestamp_dato_irregolare",
@@ -17,6 +17,6 @@
   main-scen: (
     (descr: "L’Attore visualizza l’orario di registrazione del dato da parte del sensore"),
   ),
-)[
-  #uml-schema("32", "Diagramma Visualizzazione timestamp registrazione dato irregolare")
-]
+
+  uml-descr: "Diagramma Visualizzazione timestamp registrazione dato irregolare",
+)

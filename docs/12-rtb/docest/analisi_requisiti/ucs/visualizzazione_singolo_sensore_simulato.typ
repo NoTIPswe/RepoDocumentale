@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   system: SIM_SYS,
@@ -24,7 +24,7 @@
       inc: "visualizzazione_tipo_sensore_simulato",
     ),
   ),
-)[
-  #uml-schema("S4.1", "Diagramma Visualizzazione singolo sensore simulato")
-]
+
+  uml-descr: "Diagramma Visualizzazione singolo sensore simulato",
+)
 

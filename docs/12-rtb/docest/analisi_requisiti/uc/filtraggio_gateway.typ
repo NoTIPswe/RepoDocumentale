@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "filtraggio_gateway",
@@ -23,6 +23,6 @@
     ),
   ),
   alt-scen: (),
-)[
-  #uml-schema("25", "Diagramma Filtraggio dati per Gateway")
-]
+
+  uml-descr: "Diagramma Filtraggio dati per Gateway",
+)

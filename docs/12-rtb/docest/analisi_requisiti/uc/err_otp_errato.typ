@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "err_otp_errato",
@@ -17,7 +17,6 @@
     (descr: "L'Attore viene informato dell'errore riscontrato"),
     (descr: "L'Attore viene invitato a riprovare"),
   ),
-)[
-  #uml-schema("6", "Diagramma Errore OTP errato")
 
-]
+  uml-descr: "Diagramma Errore OTP errato",
+)

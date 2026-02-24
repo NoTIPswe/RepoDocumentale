@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   system: SIM_SYS,
@@ -40,6 +40,6 @@
       uc: "err_config_frequenza_fuori_range",
     ),
   ),
-)[
-  #uml-schema("S20", "Diagramma Impostazione configurazione del Gateway")
-]
+
+  uml-descr: "Diagramma Impostazione configurazione del Gateway",
+)

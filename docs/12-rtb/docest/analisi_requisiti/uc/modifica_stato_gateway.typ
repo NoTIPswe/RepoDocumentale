@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "modifica_stato_gateway",
@@ -26,4 +26,6 @@
     ),
     (descr: "L’Attore conferma l’operazione idempotente di cambio di stato"),
   ),
-)[#uml-schema("42", "Diagramma Modifica stato del Gateway")]
+
+  uml-descr: "Diagramma Modifica stato del Gateway",
+)

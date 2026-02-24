@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "selezione_range_numerico",
@@ -32,4 +32,6 @@
       uc: "err_range_invalido",
     ),
   ),
-)[#uml-schema("44", "Diagramma Selezione range numerico misurazioni")]
+
+  uml-descr: "Diagramma Selezione range numerico misurazioni",
+)

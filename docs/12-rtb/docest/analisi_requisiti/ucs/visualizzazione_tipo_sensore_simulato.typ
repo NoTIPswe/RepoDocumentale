@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   system: SIM_SYS,
@@ -16,7 +16,7 @@
   main-scen: (
     (descr: "L’Attore visualizza la tipologia di sensore simulato"),
   ),
-)[
-  #uml-schema("S7", "Diagramma Visualizzazione tipo sensore simulato")
-]
+
+  uml-descr: "Diagramma Visualizzazione tipo sensore simulato",
+)
 

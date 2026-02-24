@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "modifica_frequenza_invio_gateway",
@@ -27,4 +27,6 @@
     (descr: "Il Gateway applica la nuova configurazione"),
     (descr: "L’Attore viene informato dell’avvenuta modifica"),
   ),
-)[#uml-schema("69", "Diagramma Modifica frequenza invio dati al Gateway specifico")]
+
+  uml-descr: "Diagramma Modifica frequenza invio dati al Gateway specifico",
+)

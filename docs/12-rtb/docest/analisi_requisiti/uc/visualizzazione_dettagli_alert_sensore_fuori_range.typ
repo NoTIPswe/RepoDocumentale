@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "visualizzazione_dettagli_alert_sensore_fuori_range",
@@ -31,6 +31,6 @@
       inc: "visualizzazione_range_accettato",
     ),
   ),
-)[
-  #uml-schema("37", "Diagramma Visualizzazione dettagli alert sensore fuori range")
-]
+
+  uml-descr: "Diagramma Visualizzazione dettagli alert sensore fuori range",
+)

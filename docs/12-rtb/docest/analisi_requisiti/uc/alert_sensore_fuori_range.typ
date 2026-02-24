@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "alert_sensore_fuori_range",
@@ -34,6 +34,6 @@
       inc: "visualizzazione_timestamp_dato_irregolare",
     ),
   ),
-)[
-  #uml-schema("31", "Diagramma Ricezione alert dati sensore fuori range")
-]
+
+  uml-descr: "Diagramma Ricezione alert dati sensore fuori range",
+)

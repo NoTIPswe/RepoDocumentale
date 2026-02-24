@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc
 
 #uc(
   id: "recupero_password",
@@ -24,8 +24,7 @@
       descr: "L'Attore inserisce il codice monouso ricevuto alla mail registrata",
     ),
     (
-      descr: "L'Attore imposta la nuova password",
-      inc: "cambio_password",
+      descr: "L'Attore ha la possibilità di impostare una nuova password",
     ),
   ),
   alt-scen: (
@@ -35,7 +34,6 @@
       uc: "err_account_inesistente",
     ),
   ),
-)[
-  #uml-schema("7", "Diagramma Recupero password")
 
-]
+  uml-descr: "Diagramma Recupero password",
+)

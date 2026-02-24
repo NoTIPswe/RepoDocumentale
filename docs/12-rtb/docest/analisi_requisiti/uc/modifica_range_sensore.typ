@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "modifica_range_sensore",
@@ -37,4 +37,6 @@
       uc: "err_range_invalido",
     ),
   ),
-)[#uml-schema("43", "Diagramma Modifica range alert sensore specifico")]
+
+  uml-descr: "Diagramma Modifica range alert sensore specifico",
+)

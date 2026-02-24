@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "aggiornamento_firmware_gateway",
@@ -28,4 +28,6 @@
     (descr: "Il/I Gateway eseguono l'aggiornamento"),
     (descr: "L’Attore viene informato del buon esito della procedura al completamento"),
   ),
-)[#uml-schema("67", "Diagramma Aggiornamento del firmware Gateway")]
+
+  uml-descr: "Diagramma Aggiornamento del firmware Gateway",
+)

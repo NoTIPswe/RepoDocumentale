@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "creazione_credenziali_api",
@@ -29,4 +29,6 @@
       inc: "visualizzazione_secret_api",
     ),
   ),
-)[#uml-schema("59", "Diagramma Creazione credenziali Client API")]
+
+  uml-descr: "Diagramma Creazione credenziali Client API",
+)

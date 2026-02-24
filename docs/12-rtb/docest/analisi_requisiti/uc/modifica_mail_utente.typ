@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "modifica_mail_utente",
@@ -25,4 +25,6 @@
     ),
     (descr: "L’Attore salva le modifiche apportate"),
   ),
-)[#uml-schema("56", "Diagramma Modifica mail Utente del Tenant")]
+
+  uml-descr: "Diagramma Modifica mail Utente del Tenant",
+)

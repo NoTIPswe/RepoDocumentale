@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   system: SIM_SYS,
@@ -28,7 +28,7 @@
       uc: "err_range_invalido_simulazione",
     ),
   ),
-)[
-  #uml-schema("S12.1.1", "Diagramma Inserimento range generazione dati")
-]
+
+  uml-descr: "Diagramma Inserimento range generazione dati",
+)
 

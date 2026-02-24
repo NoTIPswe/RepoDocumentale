@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   system: SIM_SYS,
@@ -28,6 +28,6 @@
       uc: "err_valore_numerico_invalido",
     ),
   ),
-)[
-  #uml-schema("S20.1", "Diagramma Impostazione frequenza di invio dati")
-]
+
+  uml-descr: "Diagramma Impostazione frequenza di invio dati",
+)

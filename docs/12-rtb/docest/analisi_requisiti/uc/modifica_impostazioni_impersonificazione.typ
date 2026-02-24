@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "modifica_impostazioni_impersonificazione",
@@ -20,4 +20,6 @@
     (descr: "Le modifiche vengono salvate"),
     (descr: "L’Attore viene notificato del buon esito dell’operazione"),
   ),
-)[#uml-schema("66", "Diagramma Modifica impostazioni impersonificazione")]
+
+  uml-descr: "Diagramma Modifica impostazioni impersonificazione",
+)

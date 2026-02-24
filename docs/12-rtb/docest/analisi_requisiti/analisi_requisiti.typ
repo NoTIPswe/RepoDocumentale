@@ -1,5 +1,5 @@
 #import "../../00-templates/base_document.typ" as base-document
-#import "uc_lib.typ": * /*CA, CLOUD_SYS, SA, SIM_SYS, tag-uc, uc , uml-schema*/
+#import "uc_lib.typ": * /*CA, CLOUD_SYS, SA, SIM_SYS, tag-uc, uc */
 #import "req_lib.typ": *
 
 #let metadata = yaml(sys.inputs.meta-path)
@@ -172,7 +172,6 @@
   #include "uc/ins_otp.typ"
   #include "uc/err_otp_errato.typ"
   #include "uc/recupero_password.typ"
-  #include "uc/cambio_password.typ"
   #include "uc/err_account_inesistente.typ"
   #include "uc/ins_conf_password.typ"
   #include "uc/err_campi_diversi.typ"

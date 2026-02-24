@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "selezione_utente_tenant",
@@ -16,4 +16,6 @@
   main-scen: (
     (descr: "L’Attore seleziona un Utente del Tenant dalla lista"),
   ),
-)[#uml-schema("53", "Diagramma Selezione Utente del Tenant")]
+
+  uml-descr: "Diagramma Selezione Utente del Tenant",
+)

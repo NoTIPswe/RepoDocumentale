@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc
 
 #uc(
   id: "logout",
@@ -17,7 +17,6 @@
     (descr: "L’Attore seleziona la funzionalità di logout"),
     (descr: "L’Attore conferma l’operazione di logout"),
   ),
-)[
-  #uml-schema("17", "Diagramma Logout")
 
-]
+  uml-descr: "Diagramma Logout",
+)

@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "login_2fa",
@@ -18,6 +18,6 @@
     (descr: "Il Sistema richiede l'inserimento del codice OTP"),
     (descr: "L'Attore inserisce il codice", inc: "ins_otp"),
   ),
-)[
-  #uml-schema("4", "Diagramma Login 2FA")
-]
+
+  uml-descr: "Diagramma Login 2FA",
+)

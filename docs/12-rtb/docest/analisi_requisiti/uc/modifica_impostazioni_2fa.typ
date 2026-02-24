@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "modifica_impostazioni_2fa",
@@ -16,4 +16,6 @@
   main-scen: (
     (descr: "L’Attore abilita/disabilita la 2FA per gli account afferenti al Tenant"),
   ),
-)[#uml-schema("63", "Diagramma Modifica impostazioni 2FA login dashboard")]
+
+  uml-descr: "Diagramma Modifica impostazioni 2FA login dashboard",
+)

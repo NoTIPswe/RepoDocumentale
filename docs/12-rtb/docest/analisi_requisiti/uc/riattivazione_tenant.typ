@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "riattivazione_tenant",
@@ -23,4 +23,6 @@
     (descr: "L’Attore conferma la decisione di riattivare il Tenant selezionato"),
     (descr: "L’Attore riceve una notifica di operazione avvenuta con successo"),
   ),
-)[#uml-schema("90", "Diagramma Riattivazione Tenant")]
+
+  uml-descr: "Diagramma Riattivazione Tenant",
+)

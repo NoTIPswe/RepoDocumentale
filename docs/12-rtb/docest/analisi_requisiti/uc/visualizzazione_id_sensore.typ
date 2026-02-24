@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "visualizzazione_id_sensore",
@@ -16,6 +16,6 @@
   main-scen: (
     (descr: "L’Attore visualizza l’identificativo del sensore (UUID)"),
   ),
-)[
-  #uml-schema("23", "Diagramma Visualizzazione ID sensore")
-]
+
+  uml-descr: "Diagramma Visualizzazione ID sensore",
+)

@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "visualizzazione_dettagli_tenant",
@@ -37,4 +37,6 @@
     // bookmark
     // consumi leagti ad i Gateway associati
   ),
-)[#uml-schema("80", "Diagramma Visualizzazione dettagli Tenant")]
+
+  uml-descr: "Diagramma Visualizzazione dettagli Tenant",
+)

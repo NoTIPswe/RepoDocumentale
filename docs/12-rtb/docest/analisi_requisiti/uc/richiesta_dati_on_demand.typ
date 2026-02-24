@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "richiesta_dati_on_demand",
@@ -42,4 +42,6 @@
       uc: "err_intervallo_temporale_invalido",
     ),
   ),
-)[#uml-schema("73", "Diagramma Richiesta dati On-Demand")]
+
+  uml-descr: "Diagramma Richiesta dati On-Demand",
+)
