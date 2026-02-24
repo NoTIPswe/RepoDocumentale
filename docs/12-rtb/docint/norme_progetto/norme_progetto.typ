@@ -435,61 +435,12 @@ contatti con l'azienda proponente e i docenti avvalendosi dell'indirizzo istituz
 Per le specifiche tecniche relative agli strumenti citati, si rimanda alla sezione @infrastruttura.
 
 
-== Infrastruttura <infrastruttura>
+== Processo di infrastruttura <infrastruttura>
 
 Il processo di Infrastruttura ha lo scopo di definire, predisporre e mantenere l'ambiente tecnico necessario per
 abilitare e supportare l'esecuzione di tutti gli altri processi di progetto.
 
-=== Attività del processo
-La gestione dell'infrastruttura si articola in tre attività principali:
-- *Implementazione*: selezione, installazione e messa in opera degli strumenti.
-- *Configurazione*: impostazione dei parametri e personalizzazione degli strumenti in base alle esigenze del team e
-  delle normative.
-- *Manutenzione*: monitoraggio, aggiornamento e risoluzione di eventuali malfunzionamenti per garantire la continuità
-  operativa.
-
-=== Implementazione e Strumenti
-Per supportare le attività di gestione, sviluppo e coordinamento, il gruppo ha adottato il seguente set di strumenti:
-
-- Jira;
-- Git e GitHub;
-- Discord;
-- Telegram;
-- Google Mail;
-- Microsoft Teams e Zoom.
-
-=== Configurazione
-Di seguito si trovano le informazioni relative a ciascun strumento utilizzato.
-
-#include "processes/jira.typ"
-#include "processes/git.typ"
-#include "processes/GitHub.typ"
-#include "processes/typst.typ"
-#include "processes/discord.typ"
-
-==== Telegram
-Telegram è un programma di messaggistica utilizzato dal Gruppo per aggiornarsi giornalmente sui progressi del Progetto e
-per qualsiasi tipo di comunicazione, nel quale è anche possibile fissare i messaggi più importanti in un determinato
-periodo.
-
-==== Google Mail
-Google Mail è il servizio di posta elettronico che il Team utilizza per gestire le comunicazioni esterne al Gruppo. A
-tal proposito è stata creata una mail dedicata al team chiamata #link("mailto:notip.swe@gmail.com")[#raw(
-  "notip.swe@gmail.com",
-)]. \
-All'interno di Google Mail è anche collegato un Calendario che registra in maniera autonoma a partire dalle Mail
-ricevute i prossimi incontri a cui il Team dovrà partecipare.
-
-==== Microsoft Teams
-
-La piattaforma Microsoft Teams è lo strumento adottato per lo svolgimento degli incontri a distanza con l'azienda
-proponente _M31_.
-
-==== Zoom
-
-Zoom è la piattaforma designata per i ricevimenti e la discussione dei *Diari di Bordo* con il docente referente (Prof.
-Vardanega). Al fine di garantire l'indipendenza operativa dai singoli membri, il gruppo utilizza un'utenza condivisa,
-registrata direttamente con l'indirizzo e-mail ufficiale del progetto.
+#include "processes/infrastruttura.typ"
 
 === Manutenzione
 A causa del continuo avanzamento del progetto, il gruppo è consapevole che l’infrastruttura subirà nel tempo cambiamenti
@@ -526,7 +477,6 @@ L'aggiornamento avverrà secondo il ciclo PDCA (Plan-Do-Check-Act):
 4. Monitoraggio delle metriche per verificare il successo delle modifiche apportate al processo.
 
 #include "processes/formazione.typ"
-
 
 #pagebreak()
 

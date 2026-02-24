@@ -1,24 +1,48 @@
 #import "lib.typ": ROLES, activity, cite-norm, norm
 
+Per supportare le attività di gestione, sviluppo e coordinamento, il gruppo ha adottato il seguente set di strumenti:
 
-/*
--Project Management,
--MEtodologia Agile ma mi sa sta già,
--Backlog
--SUb-task ?
-- Conventional Commits?
-- Velocity Chart
-- Burndown chart
-- Sprint ma penso sta già
-- Pull-Request ?
-*/
+- Telegram;
+- Google Mail;
+- Microsoft Teams e Zoom.
+- Jira;
+- Git e GitHub;
+- Discord;
+
+Di seguito si trovano le informazioni relative a ciascun strumento utilizzato.
+
+
+=== Norme e strumenti del processo di infrastruttura
+==== Telegram
+Telegram è un programma di messaggistica utilizzato dal Gruppo per aggiornarsi giornalmente sui progressi del Progetto e
+per qualsiasi tipo di comunicazione, nel quale è anche possibile fissare i messaggi più importanti in un determinato
+periodo.
+
+==== Google Mail
+Google Mail è il servizio di posta elettronico che il Team utilizza per gestire le comunicazioni esterne al Gruppo. A
+tal proposito è stata creata una mail dedicata al team chiamata #link("mailto:notip.swe@gmail.com")[#raw(
+  "notip.swe@gmail.com",
+)]. \
+All'interno di Google Mail è anche collegato un Calendario che registra in maniera autonoma a partire dalle Mail
+ricevute i prossimi incontri a cui il Team dovrà partecipare.
+
+==== Microsoft Teams
+
+La piattaforma Microsoft Teams è lo strumento adottato per lo svolgimento degli incontri a distanza con l'azienda
+proponente _M31_.
+
+==== Zoom
+
+Zoom è la piattaforma designata per i ricevimenti e la discussione dei *Diari di Bordo* con il docente referente (Prof.
+Vardanega). Al fine di garantire l'indipendenza operativa dai singoli membri, il gruppo utilizza un'utenza condivisa,
+registrata direttamente con l'indirizzo e-mail ufficiale del progetto.
+
+
 ==== Jira
 Jira è la piattaforma di Project Management selezionata dal gruppo NoTIP per adottare correttamente la metodologia
 Agile. Lo strumento viene utilizzato per la pianificazione degli Sprint, la gestione del Backlog e il tracciamento delle
 Task. Grazie all'integrazione con Git, Jira funge da punto centrale di controllo per garantire la tracciabilità tra le
 attività e il codice prodotto.
-
-===== Norme di Configurazione
 
 Di seguito si elencano le varie norme legate all'utilizzo di Jira.
 
@@ -140,8 +164,152 @@ Di seguito si elencano le varie norme legate all'utilizzo di Jira.
     fornendo un dato medio fondamentale per stimare con precisione la capacità produttiva futura del team.
 ]
 
-===== Attività operative
+==== Git <git-tool>
 
+Git è lo strumento adottato dal gruppo per gestire il versionamento. Esso funge da "Single Source of Truth" per l'intero
+ciclo di vita del prodotto, garantendo l'integrità, la tracciabilità e la disponibilità storica di ogni artefatto.
+L'utilizzo di Git è strettamente vincolato all'hosting remoto su *GitHub*, che funge da repository centrale
+autoritativo.
+
+
+#norm(
+  title: "Configurazione dell'Ambiente Locale",
+  label: <git-config-env>,
+  level: 5,
+)[
+  Ogni membro del team è tenuto a configurare il proprio ambiente locale prima del primo commit, rispettando i seguenti
+  vincoli:
+
+  Il ramo principale deve essere denominato `main` (e non `master`) per conformità con le policy del repository remoto.
+]
+
+#norm(
+  title: "Politiche di Esclusione (.gitignore)",
+  label: <git-ignore-policy>,
+  level: 5,
+  rationale: [
+    Il versionamento di file binari generati, dipendenze scaricate o file di configurazione locali appesantisce il
+    repository e crea conflitti non risolvibili.
+  ],
+)[
+  È severamente vietato effettuare commit di file derivati o specifici dell'ambiente locale. Il repository deve
+  contenere nella radice un file `.gitignore` condiviso che escluda tassativamente:
+  - Cartelle di build e dist (es. `bin/`, `build/`, `dist/`);
+  - Dipendenze esterne (es. `node_modules/`, `venv/`, `target/`);
+  - File di configurazione (es. `.vscode/`, `.idea/`);
+  - Credenziali o file `.env`.
+
+  _Nota:_ Non utilizzare mai `git add --force` per aggirare queste regole senza previa approvazione del Responsabile.
+]
+
+==== GitHub <github-platform>
+
+GitHub è la piattaforma selezionata per la gestione del repository Git e il supporto allo sviluppo collaborativo. Esso
+permette la sincronizzazione del lavoro tra i membri del team, garantendo la disponibilità e l'integrità degli artefatti
+di progetto.
+
+L'adozione di GitHub è trasversale a diversi processi di supporto. Di seguito si riporta la mappatura delle funzionalità
+della piattaforma sulle norme di progetto:
+
+- *Collaborazione e Verifica (Pull Request):* GitHub abilita il lavoro asincrono tramite il meccanismo delle *Pull
+  Request* (PR). Le PR costituiscono il punto di controllo obbligatorio (Quality Gate) per la revisione del codice e la
+  risoluzione dei conflitti prima dell'integrazione nel ramo stabile. Il processo operativo di verifica tramite PR è
+  dettagliato nella sezione @verifica-doc.
+
+- *Organizzazione degli Artefatti:* La struttura delle directory ospitate sulla piattaforma non è arbitraria, ma deve
+  rispecchiare fedelmente l'architettura informativa definita in @struttura-repo-docs.
+
+- *Gestione della Configurazione:* Le politiche di interazione con il repository remoto, incluse le strategie di
+  *branching* e la sintassi dei *commit messages*, devono conformarsi rigorosamente a quanto stabilito in
+  @branching-commit-docs e nella norma di integrazione #cite-norm("integrazione-git").
+
+==== Typst <typst-tool>
+
+Typst è il sistema adottato per la redazione di tutta la documentazione. L'approccio *Docs as Code* garantisce coerenza
+stilistica e validazione strutturale tramite l'uso di librerie e template condivisi.
+
+
+#norm(
+  title: "Libreria dei Processi (lib.typ)",
+  label: <lib-typ-standard>,
+  level: 5,
+  rationale: [
+    Standardizzazione: L'uso di funzioni dedicate per norme e attività vincola gli autori a definire tutti i metadati
+    necessari (ruoli, input/output, tracciabilità), rendendo la documentazione conforme agli standard di qualità.
+  ],
+)[
+  Il file `lib.typ` espone le primitive fondamentali per la stesura delle Norme di Progetto. È obbligatorio utilizzare
+  le seguenti funzioni:
+
+  - `#norm`: Definisce regole statiche o vincoli di progetto.
+    - `title`: Identificativo univoco della norma.
+    - `label`: Etichetta per i riferimenti incrociati (es. `<etichetta>`).
+    - `rationale`: (Opzionale) Giustificazione o note esplicative che appariranno in un blocco "Note".
+
+  - `#activity`: Definisce procedure operative e flussi di lavoro.
+    - `roles`: Elenco dei ruoli coinvolti, da selezionare esclusivamente dal dizionario `ROLES` (es. `ROLES.anal`,
+      `ROLES.ver`).
+    - `input` / `output`: Descrizione degli artefatti in ingresso e uscita.
+    - `norms`: Lista delle label delle norme citate (es. `("norma-1", "norma-2")`).
+    - `procedure`: Array di oggetti contenenti `name` (nome del passo) e `desc` (descrizione operativa).
+]
+
+#norm(
+  title: "Adozione dei Template",
+  label: <templates-standard>,
+  level: 5,
+  rationale: [
+    I template astraggono la formattazione e la struttura obbligatoria (front-matter, changelog, indici), permettendo
+    agli autori di concentrarsi sul contenuto.
+  ],
+)[
+  Ogni tipologia di documento deve estendere il relativo *base template* per garantire la presenza delle sezioni
+  obbligatorie:
+  - Documenti generici: Utilizzare `base_document.typ` per Analisi, Piani e Norme.
+  - Verbali: Utilizzare `apply-base-verbale` da `base_verbale.typ`. La discussione deve essere strutturata tramite la
+    funzione `report-point`, definendo esplicitamente `discussion`, `decisions` e `actions`.
+  - Diari di Bordo: Utilizzare `apply-base-ddb` da `base_ddb.typ`, compilando le sezioni di risultati, obiettivi e
+    difficoltà.
+  - Presentazioni: Utilizzare `base_slides.typ` per le slide di avanzamento (SAL).
+]
+
+#norm(
+  title: "Specifica tecnica dei Casi d'Uso",
+  label: <uc-lib-standard>,
+  level: 5,
+)[
+  La definizione dei Casi d'Uso è vincolata all'utilizzo della funzione `#uc` (libreria `uc_lib.typ`), che richiede
+  obbligatoriamente `id` e `title` univoci, l'uso di costanti tipizzate per gli attori, la specifica degli scenari
+  (`main-scen` e `alt-scen` con `cond`), il contratto (`preconds`/`postconds`) e l'importazione dei diagrammi UML
+  tramite `#uml-schema`.
+]
+
+==== Discord
+Discord è un programma di messaggistica utilizzato dal Gruppo per svolgere riunioni interne in modalità virtuale e anche
+per lavorare insieme in chiamata sugli stessi documenti.
+
+#norm(
+  title: "Organizzazione dei Canali",
+  label: <discord>,
+  level: 5,
+)[
+  Il server è strutturato in diverse categorie:
+
+  - *Discussions:* Categoria dedicata alle decisioni asincrone.
+    - `tech`: Per dubbi su tecnologie, librerie e condivisione di snippet di codice;
+    - `management`: Per scadenze, organizzazione informale o per raggruppare in un unico luogo considerazioni su unico
+      argomento.
+
+  - *Meetings:* Categoria per le riunioni.
+    - Il canale testuale `meeting-notes` è riservato a brevi appunti o link condivisi durante la call.
+
+  - *Cowork:* Canali vocali dedicati al lavoro di gruppo informale.
+]
+
+
+
+=== Attività del processo
+==== Jira
 #activity(
   level: 5,
   title: "Creazione e Pianificazione",
@@ -231,4 +399,33 @@ Di seguito si elencano le varie norme legate all'utilizzo di Jira.
     (visibile dall'aggiornamento dell'interfaccia) prima di considerare conclusa l'operazione, per evitare problemi di
     allineamento dovuti alla latenza di Jira.
   ],
+)
+
+==== Git
+#activity(
+  title: "Setup iniziale dell'ambiente di versionamento",
+  roles: (ROLES.aut,), // Si applica a tutti gli sviluppatori/autori
+  norms: ("git-config-env", "git-ignore-policy"),
+  input: [Nuova postazione di lavoro o nuovo membro del team],
+  output: [Ambiente Git configurato e repository clonato],
+  procedure: (
+    (
+      name: "Installazione",
+      desc: [Verificare l'installazione dell'ultima versione stabile di Git tramite il comando `git --version`.],
+    ),
+    (
+      name: "Configurazione completa e Autenticazione",
+      desc: [
+        Eseguire in sequenza le configurazioni di identità, tecniche e di sicurezza:
+        - Impostare nome e mail (uguale a GitHub):
+          `git config --global user.name "Nome Cognome"`
+          `git config --global user.email "email@dominio.it"`;
+        - Generazion della chiave SSH.
+      ],
+    ),
+    (
+      name: "Cloning",
+      desc: [Clonare il repository utilizzando la stringa di connessione SSH.],
+    ),
+  ),
 )
