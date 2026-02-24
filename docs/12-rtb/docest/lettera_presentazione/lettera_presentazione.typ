@@ -66,7 +66,7 @@
       (AdR) v1.0.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_qualifica.pdf")[Piano di Qualifica (PdQ)
       v1.0.0]
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario v1.0.0]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario v2.0.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_stato_arte.pdf")[Analisi dello stato
       dell'arte v1.0.0]
 
