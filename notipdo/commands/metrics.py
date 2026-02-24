@@ -86,7 +86,7 @@ def _get_google_credentials() -> Credentials:
     return Credentials.from_service_account_info(creds_info, scopes=scopes)
 
 
-def _append_stability_to_sheet(doc_name: str, baseline_version: str, result, credentials: Credentials):
+def _append_stability_to_sheet(tot_si: float, sprint_si: float, credentials: Credentials):
     client = gspread.authorize(credentials)
     spreadsheet = client.open("notip-dashboard")
 
@@ -95,19 +95,13 @@ def _append_stability_to_sheet(doc_name: str, baseline_version: str, result, cre
         worksheet = spreadsheet.worksheet(sheet_name)
     except gspread.WorksheetNotFound:
         typer.echo(f"Sheet '{sheet_name}' not found. Creating it...")
-        worksheet = spreadsheet.add_worksheet(title=sheet_name, rows=1000, cols=8)
-        header = ["Timestamp", "Document", "Baseline Version", "Baseline Reqs", "Added", "Removed", "Modified", "Stability Index"]
-        worksheet.update("A1:H1", [header])
+        worksheet = spreadsheet.add_worksheet(title=sheet_name, rows=1000, cols=3)
+        worksheet.update("A1:C1", [["timestamp", "requirement-stability-tot", "requirement-stability-sprint"]])
 
     row = [
         datetime.now(timezone.utc).isoformat(),
-        doc_name,
-        str(baseline_version),
-        result.total_baseline,
-        len(result.added),
-        len(result.removed),
-        len(result.modified),
-        round(result.index, 4),
+        round(tot_si, 4),
+        round(sprint_si, 4),
     ]
     worksheet.append_row(row)
     typer.echo(f"Data saved to Google Sheets in sheet '{sheet_name}'.")
@@ -123,39 +117,51 @@ def compute_stability_index(
     repo_root: Path = defaults.REPO_ROOT_PATH,
     send_to_sheet: bool = typer.Option(False, "--sheet", help="Send metrics to Google Sheets."),
 ):
-    """Compute the Stability Index of requirements against the last approved baseline."""
+    """Compute total and sprint Stability Index of requirements."""
     meta_path = repo_root / doc_dir / f"{doc_dir.name}.meta.yaml"
+    meta_rel  = doc_dir / f"{doc_dir.name}.meta.yaml"
+    repo = git.Repo(repo_root)
+    current_reqs = stability.get_reqs_from_local(repo_root / doc_dir)
 
-    baseline_version = stability.find_latest_baseline_version(meta_path)
-    if baseline_version is None:
+    tot_version = stability.find_total_baseline_version(meta_path)
+    if tot_version is None:
         typer.echo("Error: no baseline >= 1.0.0 found in the changelog.")
         raise typer.Exit(code=1)
-
-    repo = git.Repo(repo_root)
-    baseline_commit = stability.find_baseline_commit(repo, doc_dir / f"{doc_dir.name}.meta.yaml", baseline_version)
-    if baseline_commit is None:
-        typer.echo(f"Error: commit for version {baseline_version} not found.")
+    tot_commit = stability.find_baseline_commit(repo, meta_rel, tot_version)
+    if tot_commit is None:
+        typer.echo(f"Error: commit for version {tot_version} not found.")
         raise typer.Exit(code=1)
+    tot_result = stability.compute_stability(
+        stability.get_reqs_at_commit(repo, tot_commit, doc_dir), current_reqs, tot_version
+    )
 
-    baseline_reqs = stability.get_reqs_at_commit(repo, baseline_commit, doc_dir)
-    current_reqs  = stability.get_reqs_from_local(repo_root / doc_dir)
+    sprint_version = stability.find_sprint_baseline_version(meta_path)
+    if sprint_version is None:
+        typer.echo("Error: no x.y.0 version found in the changelog.")
+        raise typer.Exit(code=1)
+    sprint_commit = stability.find_baseline_commit(repo, meta_rel, sprint_version)
+    if sprint_commit is None:
+        typer.echo(f"Error: commit for version {sprint_version} not found.")
+        raise typer.Exit(code=1)
+    sprint_result = stability.compute_stability(
+        stability.get_reqs_at_commit(repo, sprint_commit, doc_dir), current_reqs, sprint_version
+    )
 
-    result = stability.compute_stability(baseline_reqs, current_reqs, baseline_version)
-
-    typer.echo(f"\nStability Index: {doc_dir.name}  (v{baseline_version} → HEAD)")
+    typer.echo(f"\nStability Index: {doc_dir.name}")
     typer.echo("-" * 70)
-    typer.echo(f"  Baseline total : {result.total_baseline}   Changed: {result.changed}")
-    typer.echo(f"  Added    ({len(result.added):>3}): {', '.join(sorted(result.added)) or '-'}")
-    typer.echo(f"  Removed  ({len(result.removed):>3}): {', '.join(sorted(result.removed)) or '-'}")
-    typer.echo(f"  Modified ({len(result.modified):>3}): {', '.join(sorted(result.modified)) or '-'}")
+    typer.echo(f"  TOTAL  (v{tot_version} → HEAD)")
+    typer.echo(f"    Baseline: {tot_result.total_baseline}  Changed: {tot_result.changed}  (added {len(tot_result.added)}, removed {len(tot_result.removed)}, modified {len(tot_result.modified)})")
+    typer.echo(f"    SI: {tot_result.index:.4f}  ({tot_result.index * 100:.1f}%)")
+    typer.echo(f"  SPRINT (v{sprint_version} → HEAD)")
+    typer.echo(f"    Baseline: {sprint_result.total_baseline}  Changed: {sprint_result.changed}  (added {len(sprint_result.added)}, removed {len(sprint_result.removed)}, modified {len(sprint_result.modified)})")
+    typer.echo(f"    SI: {sprint_result.index:.4f}  ({sprint_result.index * 100:.1f}%)")
     typer.echo("-" * 70)
-    typer.echo(f"  STABILITY INDEX: {result.index:.3f}  ({result.index * 100:.1f}%)\n")
 
     if send_to_sheet:
         try:
             typer.echo("Sending data to Google Sheets...")
             google_creds = _get_google_credentials()
-            _append_stability_to_sheet(doc_dir.name, str(baseline_version), result, google_creds)
+            _append_stability_to_sheet(tot_result.index, sprint_result.index, google_creds)
         except Exception as e:
             typer.echo(f"Error sending to Google Sheets: {e}")
             raise typer.Exit(code=1)

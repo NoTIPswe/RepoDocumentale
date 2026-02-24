@@ -16,7 +16,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Necessario per iterare l'intera storia git e trovare il commit di baseline
+          fetch-depth: 0 
 
       - name: Setup environment
         uses: ./.github/actions/setup-docs-env

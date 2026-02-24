@@ -21,7 +21,7 @@ class StabilityResult:
     @property
     def index(self) -> float: 
         if self.total_baseline == 0: 
-            return 1.0
+            return 0.0 if self.changed > 0 else 1.0
         return 1.0 - self.changed / self.total_baseline
     
 def _extract_req_blocks(source: str) -> list[tuple[str, str]]:
@@ -98,12 +98,23 @@ def find_baseline_commit(
     return last_matching
 
 
-def find_latest_baseline_version(meta_path: Path) -> Version | None:
-    """Reads the local meta.yaml and returns the latest x.0.0 version with x >= 1."""
+def find_total_baseline_version(meta_path: Path) -> Version | None:
+    """Returns the oldest x.0.0 version with x >= 1 (i.e. always 1.0.0, the first approved baseline)."""
     meta = yaml.safe_load(meta_path.read_text(encoding="utf-8"))
+    result = None
     for entry in meta["changelog"]:
         v = Version(entry["version"])
         if v.major >= 1 and v.minor == 0 and v.micro == 0:
+            result = v
+    return result
+
+
+def find_sprint_baseline_version(meta_path: Path) -> Version | None:
+    """Returns the most recent x.y.0 version (any minor release), used as sprint baseline."""
+    meta = yaml.safe_load(meta_path.read_text(encoding="utf-8"))
+    for entry in meta["changelog"]:
+        v = Version(entry["version"])
+        if v.micro == 0:
             return v
     return None
 
