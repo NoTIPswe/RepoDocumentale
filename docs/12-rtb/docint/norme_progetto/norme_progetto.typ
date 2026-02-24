@@ -435,23 +435,23 @@ contatti con l'azienda proponente e i docenti avvalendosi dell'indirizzo istituz
 Per le specifiche tecniche relative agli strumenti citati, si rimanda alla sezione @infrastruttura.
 
 
-== Processo di infrastruttura <infrastruttura>
+= Processo di infrastruttura <infrastruttura>
 
 Il processo di Infrastruttura ha lo scopo di definire, predisporre e mantenere l'ambiente tecnico necessario per
 abilitare e supportare l'esecuzione di tutti gli altri processi di progetto.
 
 #include "processes/infrastruttura.typ"
 
-=== Manutenzione
+== Manutenzione
 A causa del continuo avanzamento del progetto, il gruppo è consapevole che l’infrastruttura subirà nel tempo cambiamenti
 e potrebbe causare possibili problemi. Per questo spetta all’Amministratore il compito della Manutenzione, aggiornando
 le funzionalità qualora errori o cambiamenti lo rendano necessario.
 
-== Processo di Miglioramento
+= Processo di Miglioramento
 In conformità alla norma *ISO/IEC 12207:1995*, il Processo di Miglioramento ha lo scopo di stabilire, valutare e
 ottimizzare i processi utilizzati durante l'intero ciclo di vita del software.
 
-=== Attività previste
+== Attività del processo
 Il Processo di Miglioramento si articola in:
 
 - * Inizializzazione del Processo*, dove si stabiliranno i processi organizzativi e la relativa documentazione.
@@ -468,8 +468,8 @@ Una volta che i processi saranno stati definiti, sarà necessario definire delle
 dati prodotti da queste, valutare l'efficacia e l'efficienza dei processi. Tali metriche verranno esplicitate nella
 @qualità-processo, dedicata alle metriche di qualità del processo.
 
-=== Miglioramento
-Infine sulla base dei dati raccolti nella fase di Valutazione, bisognerà individuare i processi risultati inadatti.
+=== Miglioramento del Processo
+Infine, sulla base dei dati raccolti nella fase di Valutazione, bisognerà individuare i processi risultati inadatti.
 L'aggiornamento avverrà secondo il ciclo PDCA (Plan-Do-Check-Act):
 1. Identificazione del Problema;
 2. Modifica della documentazione relativa al problema.
