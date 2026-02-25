@@ -12,13 +12,13 @@ Per supportare le attività di gestione, sviluppo e coordinamento, il gruppo ha 
 Di seguito si trovano le informazioni relative a ciascun strumento utilizzato.
 
 
-== Norme e strumenti del processo di infrastruttura
-=== Telegram
+=== Norme e strumenti del processo di infrastruttura
+==== Telegram
 Telegram è un programma di messaggistica utilizzato dal Gruppo per aggiornarsi giornalmente sui progressi del Progetto e
 per qualsiasi tipo di comunicazione, nel quale è anche possibile fissare i messaggi più importanti in un determinato
 periodo.
 
-=== Google Mail
+==== Google Mail
 Google Mail è il servizio di posta elettronico che il Team utilizza per gestire le comunicazioni esterne al Gruppo. A
 tal proposito è stata creata una mail dedicata al team chiamata #link("mailto:notip.swe@gmail.com")[#raw(
   "notip.swe@gmail.com",
@@ -26,19 +26,19 @@ tal proposito è stata creata una mail dedicata al team chiamata #link("mailto:n
 All'interno di Google Mail è anche collegato un Calendario che registra in maniera autonoma a partire dalle Mail
 ricevute i prossimi incontri a cui il Team dovrà partecipare.
 
-=== Microsoft Teams
+==== Microsoft Teams
 
 La piattaforma Microsoft Teams è lo strumento adottato per lo svolgimento degli incontri a distanza con l'azienda
 proponente _M31_.
 
-=== Zoom
+==== Zoom
 
 Zoom è la piattaforma designata per i ricevimenti e la discussione dei *Diari di Bordo* con il docente referente (Prof.
 Vardanega). Al fine di garantire l'indipendenza operativa dai singoli membri, il gruppo utilizza un'utenza condivisa,
 registrata direttamente con l'indirizzo e-mail ufficiale del progetto.
 
 
-=== Jira
+==== Jira
 Jira è la piattaforma di Project Management selezionata dal gruppo NoTIP per adottare correttamente la metodologia
 Agile. Lo strumento viene utilizzato per la pianificazione degli Sprint, la gestione del Backlog e il tracciamento delle
 Task. Grazie all'integrazione con Git, Jira funge da punto centrale di controllo per garantire la tracciabilità tra le
@@ -164,7 +164,7 @@ Di seguito si elencano le varie norme legate all'utilizzo di Jira.
     fornendo un dato medio fondamentale per stimare con precisione la capacità produttiva futura del team.
 ]
 
-=== Git <git-tool>
+==== Git <git-tool>
 
 Git è lo strumento adottato dal gruppo per gestire il versionamento. Esso funge da "Single Source of Truth" per l'intero
 ciclo di vita del prodotto, garantendo l'integrità, la tracciabilità e la disponibilità storica di ogni artefatto.
@@ -202,7 +202,7 @@ autoritativo.
   _Nota:_ Non utilizzare mai `git add --force` per aggirare queste regole senza previa approvazione del Responsabile.
 ]
 
-=== GitHub <github-platform>
+==== GitHub <github-platform>
 
 GitHub è la piattaforma selezionata per la gestione del repository Git e il supporto allo sviluppo collaborativo. Esso
 permette la sincronizzazione del lavoro tra i membri del team, garantendo la disponibilità e l'integrità degli artefatti
@@ -223,7 +223,7 @@ della piattaforma sulle norme di progetto:
   *branching* e la sintassi dei *commit messages*, devono conformarsi rigorosamente a quanto stabilito in
   @branching-commit-docs e nella norma di integrazione #cite-norm("integrazione-git").
 
-=== Typst <typst-tool>
+==== Typst <typst-tool>
 
 Typst è il sistema adottato per la redazione di tutta la documentazione. L'approccio *Docs as Code* garantisce coerenza
 stilistica e validazione strutturale tramite l'uso di librerie e template condivisi.
@@ -284,7 +284,7 @@ stilistica e validazione strutturale tramite l'uso di librerie e template condiv
   tramite `#uml-schema`.
 ]
 
-=== Discord
+==== Discord
 Discord è un programma di messaggistica utilizzato dal Gruppo per svolgere riunioni interne in modalità virtuale e anche
 per lavorare insieme in chiamata sugli stessi documenti.
 
@@ -308,8 +308,8 @@ per lavorare insieme in chiamata sugli stessi documenti.
 
 
 
-== Attività del processo
-=== Jira
+=== Attività del processo
+==== Jira
 #activity(
   level: 5,
   title: "Creazione e Pianificazione",
@@ -401,7 +401,7 @@ per lavorare insieme in chiamata sugli stessi documenti.
   ],
 )
 
-=== Git
+==== Git
 
 #activity(
   title: "Setup iniziale dell'ambiente di versionamento",

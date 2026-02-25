@@ -1,6 +1,6 @@
 #import "lib.typ": ROLES, activity, cite-norm, norm
 
-= Processo di Formazione
+== Processo di Formazione
 
 Il *Processo di Formazione* ha lo scopo di mantenere i membri del gruppo aggiornati sulle tecnologie adottate e sulle
 procedure interne, facendo in modo che ogni componente acquisisca le competenze necessarie per operare efficacemente
@@ -14,7 +14,7 @@ Il gruppo ha individuato le seguenti tecnologie come oggetto di formazione:
 - Gestione: Jira, Git, GitHub.
 - Comunicazione: Discord, Telegram.
 
-== Norme e strumenti del processo di formazione
+=== Norme e strumenti del processo di formazione
 
 #norm(
   title: "Auto-formazione e Consolidamento",
@@ -39,7 +39,7 @@ Il gruppo ha individuato le seguenti tecnologie come oggetto di formazione:
     ricevere consigli e "best practices" non codificabili formalmente.
 ]
 
-=== Risorse per la formazione
+==== Risorse per la formazione
 
 Il gruppo ha selezionato le seguenti risorse di riferimento per lo studio:
 
@@ -97,7 +97,7 @@ Il gruppo ha selezionato le seguenti risorse di riferimento per lo studio:
   caption: [Risorse per la formazione tecnica],
 )
 
-== Attività del processo
+=== Attività del processo
 #activity(
   title: "Sviluppo di materiale per la formazione",
   roles: (ROLES.amm,),
