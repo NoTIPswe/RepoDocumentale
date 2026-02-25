@@ -16,7 +16,7 @@
   main-scen: (
     (
       descr: "L'Attore inserisce la nuova password",
-      inc: "inserimento_conferma_password",
+      inc: "impostazione_password",
     ),
   ),
 

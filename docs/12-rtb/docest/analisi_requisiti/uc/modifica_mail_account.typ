@@ -16,7 +16,7 @@
   main-scen: (
     (
       descr: "L’Attore inserisce la nuova mail",
-      inc: "inserimento_conferma_mail",
+      inc: "impostazione_mail",
     ),
     (
       descr: "L’Attore conferma l’operazione di cambio mail",

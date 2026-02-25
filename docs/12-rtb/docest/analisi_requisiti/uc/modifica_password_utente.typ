@@ -21,7 +21,7 @@
     ),
     (
       descr: "L’Attore inserisce e conferma la nuova password",
-      inc: "inserimento_conferma_password",
+      inc: "impostazione_password",
     ),
     (descr: "L’Attore salva le modifiche apportate"),
   ),

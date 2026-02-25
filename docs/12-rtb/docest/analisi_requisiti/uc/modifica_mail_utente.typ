@@ -21,7 +21,7 @@
     ),
     (
       descr: "L’Attore inserisce la mail da assegnare all’Utente",
-      inc: "inserimento_conferma_mail",
+      inc: "impostazione_mail",
     ),
     (descr: "L’Attore salva le modifiche apportate"),
   ),

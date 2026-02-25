@@ -44,7 +44,16 @@
     https://ieeexplore.ieee.org/document/720574
   - T05 - Analisi dei Requisiti \
     https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf
-  - Documentazione tecnologie di riferimento (Node.js, Nest.js, Kubernetes, MongoDB, PostgreSQL, NATS/Kafka)
+  - Documentazione tecnologie di riferimento \
+    Di seguito i riferimenti alla documentazione ufficiale delle tecnologie impiegate:
+    - Node.js: #link("https://nodejs.org/en/docs/")[Node.js Official Documentation]
+    - NestJS: #link("https://docs.nestjs.com/")[NestJS Official Documentation]
+    - Go: #link("https://go.dev/doc/")[Go Official Documentation]
+    - Kubernetes: #link("https://kubernetes.io/docs/home/")[Kubernetes Official Documentation]
+    - MongoDB: #link("https://www.mongodb.com/docs/")[MongoDB Official Documentation]
+    - PostgreSQL: #link("https://www.postgresql.org/docs/")[PostgreSQL Official Manuals]
+    - NATS: #link("https://docs.nats.io/")[NATS Official Documentation]
+    - Apache Kafka: #link("https://kafka.apache.org/documentation/")[Apache Kafka Official Documentation]
 
   = Descrizione del Prodotto
   == Obiettivi del Prodotto
@@ -173,7 +182,9 @@
   #include "uc/err_otp_errato.typ"
   #include "uc/recupero_password.typ"
   #include "uc/err_account_inesistente.typ"
-  #include "uc/ins_conf_password.typ"
+  #include "uc/impostazione_password.typ"
+  #include "uc/inserimento_nuova_password.typ"
+  #include "uc/conferma_nuova_password.typ"
   #include "uc/err_campi_diversi.typ"
   #include "uc/err_password_invalida.typ"
   #include "uc/modifica_mail_account.typ"
@@ -486,12 +497,12 @@
     ),
 
     ..req(
-      id: "inserimento_conferma_password",
+      id: "impostazione_password",
       tipo: F,
       priorita: OBBLIGATORIO,
       descrizione: [Il Sistema, durante la procedura di cambio password, deve permettere all'utente non autenticato di inserire la
       nuova password nel Sistema e confermarla.],
-      fonti: [#tag-uc("inserimento_conferma_password")],
+      fonti: [#tag-uc("impostazione_password")],
     ),
 
     ..req(
@@ -520,12 +531,12 @@
     ),
 
     ..req(
-      id: "inserimento_conferma_mail",
+      id: "impostazione_mail",
       tipo: F,
       priorita: OBBLIGATORIO,
       descrizione: [Il Sistema, durante la procedura di modifica mail dell'account, deve permettere all'Utente autenticato di inserire
       e confermare la nuova mail.],
-      fonti: [#tag-uc("inserimento_conferma_mail")],
+      fonti: [#tag-uc("impostazione_mail")],
     ),
 
     ..req(
@@ -1843,11 +1854,11 @@
     [UC7], [#ref-req("recupero_password")], [Obbligatorio],
     [UC7.1], [#ref-req("cambio_password")], [Obbligatorio],
     [UC8], [#ref-req("err_account_inesistente")], [Obbligatorio],
-    [UC9], [#ref-req("inserimento_conferma_password")], [Obbligatorio],
+    [UC9], [#ref-req("impostazione_password")], [Obbligatorio],
     [UC10], [#ref-req("err_campi_diversi")], [Obbligatorio],
     [UC11], [#ref-req("err_password_invalida")], [Obbligatorio],
     [UC12], [#ref-req("modifica_mail_account")], [Obbligatorio],
-    [UC13], [#ref-req("inserimento_conferma_mail")], [Obbligatorio],
+    [UC13], [#ref-req("impostazione_mail")], [Obbligatorio],
     [UC14], [#ref-req("err_mail_non_valida")], [Obbligatorio],
     [UC15], [#ref-req("err_mail_gia_registrata")], [Obbligatorio],
     [UC16], [#ref-req("modifica_password_account")], [Obbligatorio],
@@ -2039,11 +2050,11 @@
     [#ref-req("recupero_password")], [Obbligatorio], [UC7],
     [#ref-req("cambio_password")], [Obbligatorio], [UC7.1],
     [#ref-req("err_account_inesistente")], [Obbligatorio], [UC8],
-    [#ref-req("inserimento_conferma_password")], [Obbligatorio], [UC9],
+    [#ref-req("impostazione_password")], [Obbligatorio], [UC9],
     [#ref-req("err_campi_diversi")], [Obbligatorio], [UC10],
     [#ref-req("err_password_invalida")], [Obbligatorio], [UC11],
     [#ref-req("modifica_mail_account")], [Obbligatorio], [UC12],
-    [#ref-req("inserimento_conferma_mail")], [Obbligatorio], [UC13],
+    [#ref-req("impostazione_mail")], [Obbligatorio], [UC13],
     [#ref-req("err_mail_non_valida")], [Obbligatorio], [UC14],
     [#ref-req("err_mail_gia_registrata")], [Obbligatorio], [UC15],
     [#ref-req("modifica_password_account")], [Obbligatorio], [UC16],

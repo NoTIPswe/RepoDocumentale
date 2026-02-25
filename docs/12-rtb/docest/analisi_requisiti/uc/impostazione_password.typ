@@ -1,9 +1,9 @@
 #import "../uc_lib.typ": CA, CLOUD_SYS, uc
 
 #uc(
-  id: "inserimento_conferma_password",
+  id: "impostazione_password",
   system: CLOUD_SYS,
-  title: "Inserimento e conferma password",
+  title: "Impostazione password",
   level: 1,
   prim-actors: (CA.non-authd-usr, CA.authd-usr),
   preconds: (
@@ -16,23 +16,11 @@
   main-scen: (
     (
       descr: "L'Attore inserisce la password",
-      ep: "PasswordInvalida",
+      inc: "inserimento_nuova_password",
     ),
     (
       descr: "L'Attore conferma la password",
-      ep: "PasswordDiverse",
-    ),
-  ),
-  alt-scen: (
-    (
-      ep: "PasswordInvalida",
-      cond: "La password inserita non rispetta i criteri di sicurezza",
-      uc: "err_password_invalida",
-    ),
-    (
-      ep: "PasswordDiverse",
-      cond: "Le password inserite non corrispondono",
-      uc: "err_campi_diversi",
+      inc: "conferma_nuova_password",
     ),
   ),
 

@@ -18,11 +18,11 @@
     (descr: "L’Attore avvia l’operazione di creazione di un nuovo Utente Amministratore Tenant"),
     (
       descr: "L’Attore inserisce e conferma la mail dell’utente",
-      inc: "inserimento_conferma_mail",
+      inc: "impostazione_mail",
     ),
     (
       descr: "L’Attore inserisce e conferma la password dell’utente",
-      inc: "inserimento_conferma_password",
+      inc: "impostazione_password",
     ),
     (descr: "L’Attore conferma l’operazione"),
     (descr: "L’Attore viene informato del successo dell’operazione"),
