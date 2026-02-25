@@ -37,6 +37,17 @@
   }
 }
 
+#let tag-uc-num(uc-id) = context {
+  let lbl = label("UC:" + uc-id)
+  let results = query(lbl)
+  if results.len() == 0 {
+    text(fill: red)[UC:#{ uc-id } (not found)]
+  } else {
+    let title = results.first().body
+    text(fill: blue)[#ref(lbl, supplement: "")]
+  }
+}
+
 #let uc-counter = counter("uc")
 #let ucs-counter = counter("ucs")
 

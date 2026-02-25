@@ -20,7 +20,7 @@
       descr: "L'attore ottiene l'insieme filtrato dei dati di partenza",
     ),
   ),
-  specialized-by: ("filtraggio_sensore", "filtraggio_sensore", "filtraggio_intervallo_temporale"),
+  specialized-by: ("filtraggio_gateway", "filtraggio_sensore", "filtraggio_intervallo_temporale"),
 
   uml-descr: "Diagramma Filtraggio dati",
 )

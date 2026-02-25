@@ -4,7 +4,7 @@
   id: "vis_stato_attivo",
   system: CLOUD_SYS,
   title: "Visualizzazione stato Tenant attivo",
-  level: 2,
+  level: 1,
   gen-parent: "visualizzazione_stato_tenant",
   prim-actors: CA.sys-adm,
   preconds: (

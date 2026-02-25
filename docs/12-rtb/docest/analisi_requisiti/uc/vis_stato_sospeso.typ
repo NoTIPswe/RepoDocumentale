@@ -3,8 +3,8 @@
 #uc(
   id: "vis_stato_sospeso",
   system: CLOUD_SYS,
-  title: "Visualizzazione stato Tenant: Sospeso",
-  level: 2,
+  title: "Visualizzazione stato Tenant sospeso",
+  level: 1,
   gen-parent: "visualizzazione_stato_tenant",
   prim-actors: CA.sys-adm,
   preconds: (

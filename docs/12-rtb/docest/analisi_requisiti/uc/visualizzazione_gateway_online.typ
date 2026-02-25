@@ -5,7 +5,7 @@
   system: CLOUD_SYS,
   title: "Visualizzazione Gateway Online",
   gen-parent: "visualizzazione_stato_gateway",
-  level: 2,
+  level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
     "Il Sistema presenta all’Attore la lista o il dettaglio di un Gateway",
@@ -20,5 +20,3 @@
   ),
   uml-descr: none,
 )
-
-// bookmark - andare a promuoverlo a livello 1 quando sistemiamo la generazione dei grafici automatica

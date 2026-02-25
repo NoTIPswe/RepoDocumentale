@@ -4,7 +4,7 @@
   id: "disabilitazione_notifica_alert_dashboard",
   system: CLOUD_SYS,
   title: "Disabilitazione notifica alert via dashboard",
-  level: 2,
+  level: 1,
   gen-parent: "modifica_impostazioni_notifica_alert_dashboard",
   prim-actors: CA.tenant-usr,
   preconds: (

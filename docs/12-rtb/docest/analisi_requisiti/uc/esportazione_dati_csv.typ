@@ -5,7 +5,7 @@
   system: CLOUD_SYS,
   title: "Esportazione dati in formato CSV",
   gen-parent: "esportazione_dati",
-  level: 2,
+  level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
     "Il Sistema mostra i dati che l’Attore ha richiesto di visualizzare",
