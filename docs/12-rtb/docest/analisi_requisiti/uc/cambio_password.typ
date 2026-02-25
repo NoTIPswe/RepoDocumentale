@@ -20,5 +20,6 @@
     ),
   ),
 
-  uml-descr: "Diagramma Cambio password",
+  uml-descr: none,
+  // bookmark - manca da aggiungere questo diagramma
 )

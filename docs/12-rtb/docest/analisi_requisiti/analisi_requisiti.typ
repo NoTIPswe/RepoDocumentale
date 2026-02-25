@@ -336,6 +336,7 @@
   #include "uc/err_autenticazione_gateway.typ"
   #include "uc/err_range_invalido.typ"
   #include "uc/ins_mail.typ"
+  #include "uc/cambio_password.typ"
 
   = Casi d'Uso - Parte B: Simulatore Gateway
 
@@ -490,15 +491,15 @@
       id: "recupero_password",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere all'utente non autenticato di recuperare la password persa/dimenticata.],
+      descrizione: [Il Sistema deve permettere all'utente di recuperare la password persa/dimenticata.],
       fonti: [#tag-uc("recupero_password")],
     ),
 
     ..req(
-      id: "cambio_password",
+      id: "cambio_password_req",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere all'utente non autenticato di cambiare la password nel Sistema.],
+      descrizione: [Il Sistema deve permettere all'utente di cambiare la password nel Sistema.],
       fonti: [#tag-uc("cambio_password")],
     ),
 
@@ -1415,7 +1416,7 @@
       id: "invio_dati_crittografati_cloud",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al provisioned Gateway di inviare dati crittografici al Cloud.],
+      descrizione: [Il Sistema deve permettere al provisioned Gateway di inviare dati crittografati al Cloud.],
       fonti: [#tag-uc("invio_dati_crittografati_cloud")],
     ),
 
@@ -1917,7 +1918,7 @@
     [#tag-uc-num("ins_otp")], [#ref-req("ins_otp")], [Desiderabile],
     [#tag-uc-num("err_otp_errato")], [#ref-req("err_otp_errato")], [Desiderabile],
     [#tag-uc-num("recupero_password")], [#ref-req("recupero_password")], [Obbligatorio],
-    [#tag-uc-num("cambio_password")], [#ref-req("cambio_password")], [Obbligatorio],
+    [#tag-uc-num("cambio_password")], [#ref-req("cambio_password_req")], [Obbligatorio],
     [#tag-uc-num("err_account_inesistente")], [#ref-req("err_account_inesistente")], [Obbligatorio],
     [#tag-uc-num("impostazione_password")], [#ref-req("impostazione_password")], [Obbligatorio],
     [#tag-uc-num("inserimento_nuova_password")], [#ref-req("impostazione_password")], [Obbligatorio],
@@ -2143,7 +2144,7 @@
     [#ref-req("ins_otp")], [Desiderabile], [#tag-uc-num("ins_otp")],
     [#ref-req("err_otp_errato")], [Desiderabile], [#tag-uc-num("err_otp_errato")],
     [#ref-req("recupero_password")], [Obbligatorio], [#tag-uc-num("recupero_password")],
-    [#ref-req("cambio_password")], [Obbligatorio], [#tag-uc-num("cambio_password")],
+    [#ref-req("cambio_password_req")], [Obbligatorio], [#tag-uc-num("cambio_password")],
     [#ref-req("err_account_inesistente")], [Obbligatorio], [#tag-uc-num("err_account_inesistente")],
     [#ref-req("impostazione_password")], [Obbligatorio], [#tag-uc-num("impostazione_password") \ #tag-uc-num("inserimento_nuova_password") \ #tag-uc-num("conferma_nuova_password")],
     [#ref-req("err_campi_diversi")], [Obbligatorio], [#tag-uc-num("err_campi_diversi")],

@@ -26,8 +26,6 @@
       descr: "L’Attore visualizza una descrizione testuale dell’operazione eseguita",
       inc: "visualizzazione_operazione_log_entry",
     ),
-    // bookmark
-    // codice -> indica l'operazione tracciandola
   ),
 
   uml-descr: "Diagramma Visualizzazione singola entry log di Audit del tenant",
