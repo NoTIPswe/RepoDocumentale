@@ -1,0 +1,28 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Client API" as CA_api_client
+actor "Auth Server" as CSA_auth_server
+
+rectangle "Sistema" {
+    usecase "UC70 - Autenticazione del client API" as autenticazione_client_api
+    usecase "UC72 - Errore Auth Server non disponibile" as err_auth_server_non_disponibile
+    usecase "UC71 - Errore dati di autenticazione non validi" as err_dati_autenticazione_invalidi
+}
+
+CA_api_client -right-> autenticazione_client_api
+autenticazione_client_api -right-> CSA_auth_server
+err_dati_autenticazione_invalidi .up.> autenticazione_client_api : <<extend>>
+note on link
+  EP: ErroreAuthServer
+  Condition: ClientID e/o ClientSecret forniti non sono validi
+end note
+err_auth_server_non_disponibile .up.> autenticazione_client_api : <<extend>>
+note on link
+  EP: ErroreAuthServer
+  Condition: L’Auth Server esterno non è raggiungibile
+end note
+@enduml

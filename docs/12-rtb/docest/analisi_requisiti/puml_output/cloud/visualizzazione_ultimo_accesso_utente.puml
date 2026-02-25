@@ -1,0 +1,14 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Tenant Admin" as CA_tenant_adm
+
+rectangle "Sistema" {
+    usecase "UC50.1.3 - Visualizzazione ultimo accesso dell’Utente" as visualizzazione_ultimo_accesso_utente
+}
+
+CA_tenant_adm -right-> visualizzazione_ultimo_accesso_utente
+@enduml

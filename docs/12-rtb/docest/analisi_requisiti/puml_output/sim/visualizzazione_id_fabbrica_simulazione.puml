@@ -1,0 +1,14 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Utente del Simulatore" as SA_sym_usr
+
+rectangle "Sistema" {
+    usecase "UCS2 - Visualizzazione ID di fabbrica simulazione" as visualizzazione_id_fabbrica_simulazione
+}
+
+SA_sym_usr -right-> visualizzazione_id_fabbrica_simulazione
+@enduml

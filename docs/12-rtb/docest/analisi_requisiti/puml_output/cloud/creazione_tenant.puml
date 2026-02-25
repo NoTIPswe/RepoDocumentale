@@ -1,0 +1,26 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Amministratore di Sistema" as CA_sys_adm
+
+rectangle "Sistema" {
+    usecase "UC86 - Creazione Tenant" as creazione_tenant
+    usecase "UC52 - Creazione Utente del Tenant" as creazione_utente_tenant
+    usecase "UC87 - Errore interno creazione Tenant" as err_interno_creazione_tenant
+    usecase "UC86.1 - Inserimento dati anagrafici Tenant" as inserimento_anagrafica_tenant
+    usecase "UC80 - Visualizzazione dettagli Tenant" as visualizzazione_dettagli_tenant
+}
+
+CA_sys_adm -right-> creazione_tenant
+creazione_tenant -down..> inserimento_anagrafica_tenant : <<include>>
+creazione_tenant -down..> creazione_utente_tenant : <<include>>
+creazione_tenant -down..> visualizzazione_dettagli_tenant : <<include>>
+err_interno_creazione_tenant .up.> creazione_tenant : <<extend>>
+note on link
+  EP: ErroreInternoCreazione
+  Condition: Si verifica un errore interno durante la procedura di creazione del Tenant
+end note
+@enduml

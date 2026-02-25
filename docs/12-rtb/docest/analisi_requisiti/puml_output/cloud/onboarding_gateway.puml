@@ -1,0 +1,20 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Not Provisioned Gateway" as CA_np_gway
+
+rectangle "Sistema" {
+    usecase "UC97 - Errore autenticazione Gateway di fabbrica" as err_auth_gateway_fabbrica
+    usecase "UC96 - Provisioning Gateway - Onboarding" as onboarding_gateway
+}
+
+CA_np_gway -right-> onboarding_gateway
+err_auth_gateway_fabbrica .up.> onboarding_gateway : <<extend>>
+note on link
+  EP: CredenzialiNonRiconosciute
+  Condition: Le credenziali fornite non corrispondono a quelle registrate
+end note
+@enduml

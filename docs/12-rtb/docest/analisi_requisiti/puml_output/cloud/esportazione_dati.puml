@@ -1,0 +1,14 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Tenant User" as CA_tenant_usr
+
+rectangle "Sistema" {
+    usecase "UC29 - Esportazione dati" as esportazione_dati
+}
+
+CA_tenant_usr -right-> esportazione_dati
+@enduml

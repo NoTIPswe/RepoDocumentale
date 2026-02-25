@@ -1,0 +1,14 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Amministratore di Sistema" as CA_sys_adm
+
+rectangle "Sistema" {
+    usecase "UC84 - Modifica intervallo minimo sospensione pre-eliminazione Tenant" as modifica_intervallo_sospensione_tenant
+}
+
+CA_sys_adm -right-> modifica_intervallo_sospensione_tenant
+@enduml

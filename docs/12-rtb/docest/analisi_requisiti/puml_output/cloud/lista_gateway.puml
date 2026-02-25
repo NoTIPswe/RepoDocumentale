@@ -1,0 +1,16 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Tenant User" as CA_tenant_usr
+
+rectangle "Sistema" {
+    usecase "UC18 - Visualizzazione lista Gateway" as lista_gateway
+    usecase "UC18.1 - Visualizzazione singolo Gateway" as visualizzazione_singolo_gateway
+}
+
+CA_tenant_usr -right-> lista_gateway
+lista_gateway -down..> visualizzazione_singolo_gateway : <<include>>
+@enduml

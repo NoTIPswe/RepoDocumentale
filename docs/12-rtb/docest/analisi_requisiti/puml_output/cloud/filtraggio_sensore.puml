@@ -1,0 +1,16 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Tenant User" as CA_tenant_usr
+
+rectangle "Sistema" {
+    usecase "UC26 - Filtraggio dati per sensore" as filtraggio_sensore
+    usecase "UC26.1 - Filtraggio dati singolo sensore" as filtraggio_singolo_sensore
+}
+
+CA_tenant_usr -right-> filtraggio_sensore
+filtraggio_sensore -down..> filtraggio_singolo_sensore : <<include>>
+@enduml

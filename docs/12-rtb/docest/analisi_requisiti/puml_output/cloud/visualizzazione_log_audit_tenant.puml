@@ -1,0 +1,20 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Amministratore di Sistema" as CA_sys_adm
+actor "Tenant Admin" as CA_tenant_adm
+
+rectangle "Sistema" {
+    usecase "UC88 - Selezione Tenant" as selezione_tenant
+    usecase "UC64 - Visualizzazione log di Audit del Tenant" as visualizzazione_log_audit_tenant
+    usecase "UC64.1 - Visualizzazione singola entry log di Audit del Tenant" as visualizzazione_singolo_log_audit
+}
+
+CA_tenant_adm -right-> visualizzazione_log_audit_tenant
+CA_sys_adm -right-> visualizzazione_log_audit_tenant
+visualizzazione_log_audit_tenant -down..> selezione_tenant : <<include>>
+visualizzazione_log_audit_tenant -down..> visualizzazione_singolo_log_audit : <<include>>
+@enduml

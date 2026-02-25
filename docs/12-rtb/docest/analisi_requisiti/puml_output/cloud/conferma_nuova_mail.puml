@@ -1,0 +1,20 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Utente Autenticato" as CA_authd_usr
+
+rectangle "Sistema" {
+    usecase "UC13.2 - Conferma mail" as conferma_nuova_mail
+    usecase "UC10 - Errore campi non corrispondenti" as err_campi_diversi
+}
+
+CA_authd_usr -right-> conferma_nuova_mail
+err_campi_diversi .up.> conferma_nuova_mail : <<extend>>
+note on link
+  EP: FallimentoValidazione
+  Condition: L’Attore inserisce due valori diversi nei due campi
+end note
+@enduml

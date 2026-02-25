@@ -1,0 +1,14 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Client API" as CA_api_client
+
+rectangle "Sistema" {
+    usecase "UC76 - Errore ID Sensore invalido" as err_id_sensore_invalido
+}
+
+CA_api_client -right-> err_id_sensore_invalido
+@enduml

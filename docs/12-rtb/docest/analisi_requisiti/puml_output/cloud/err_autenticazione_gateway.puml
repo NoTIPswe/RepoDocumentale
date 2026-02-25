@@ -1,0 +1,14 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Provisioned Gateway" as CA_p_gway
+
+rectangle "Sistema" {
+    usecase "UC99 - Errore Autenticazione Gateway" as err_autenticazione_gateway
+}
+
+CA_p_gway -right-> err_autenticazione_gateway
+@enduml

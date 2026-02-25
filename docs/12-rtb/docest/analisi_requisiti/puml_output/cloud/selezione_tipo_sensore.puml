@@ -1,0 +1,14 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Tenant Admin" as CA_tenant_adm
+
+rectangle "Sistema" {
+    usecase "UC47 - Selezione tipo di sensore" as selezione_tipo_sensore
+}
+
+CA_tenant_adm -right-> selezione_tipo_sensore
+@enduml

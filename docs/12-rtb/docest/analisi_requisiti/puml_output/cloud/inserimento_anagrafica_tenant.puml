@@ -1,0 +1,14 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Amministratore di Sistema" as CA_sys_adm
+
+rectangle "Sistema" {
+    usecase "UC86.1 - Inserimento dati anagrafici Tenant" as inserimento_anagrafica_tenant
+}
+
+CA_sys_adm -right-> inserimento_anagrafica_tenant
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Amministratore di Sistema" as CA_sys_adm
+actor "Tenant Admin" as CA_tenant_adm
+
+rectangle "Sistema" {
+    usecase "UC65.1 - Selezione intervallo temporale" as selezione_intervallo_temporale
+}
+
+CA_tenant_adm -right-> selezione_intervallo_temporale
+CA_sys_adm -right-> selezione_intervallo_temporale
+@enduml

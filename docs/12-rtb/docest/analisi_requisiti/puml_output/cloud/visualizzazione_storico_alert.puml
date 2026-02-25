@@ -1,0 +1,16 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Tenant User" as CA_tenant_usr
+
+rectangle "Sistema" {
+    usecase "UC33.1 - Visualizzazione singolo alert" as visualizzazione_singolo_alert
+    usecase "UC33 - Visualizzazione storico alert" as visualizzazione_storico_alert
+}
+
+CA_tenant_usr -right-> visualizzazione_storico_alert
+visualizzazione_storico_alert -down..> visualizzazione_singolo_alert : <<include>>
+@enduml

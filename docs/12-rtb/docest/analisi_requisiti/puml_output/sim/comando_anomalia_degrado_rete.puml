@@ -1,0 +1,20 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Utente del Simulatore" as SA_sym_usr
+
+rectangle "Sistema" {
+    usecase "UCS17 - Comando anomalia Gateway - degrado rete" as comando_anomalia_degrado_rete
+    usecase "UCS16 - Errore valore numerico invalido" as err_valore_numerico_invalido
+}
+
+SA_sym_usr -right-> comando_anomalia_degrado_rete
+err_valore_numerico_invalido .up.> comando_anomalia_degrado_rete : <<extend>>
+note on link
+  EP: ValoreNumericoInvalido
+  Condition: È stato inserito un valore numerico non valido
+end note
+@enduml

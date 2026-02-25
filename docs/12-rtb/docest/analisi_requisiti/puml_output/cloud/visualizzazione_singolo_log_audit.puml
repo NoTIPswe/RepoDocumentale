@@ -1,0 +1,22 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Amministratore di Sistema" as CA_sys_adm
+actor "Tenant Admin" as CA_tenant_adm
+
+rectangle "Sistema" {
+    usecase "UC64.4 - Visualizzazione operazione log entry" as visualizzazione_operazione_log_entry
+    usecase "UC64.1 - Visualizzazione singola entry log di Audit del Tenant" as visualizzazione_singolo_log_audit
+    usecase "UC64.2 - Visualizzazione timestamp log entry" as visualizzazione_timestamp_log_entry
+    usecase "UC64.3 - Visualizzazione Utente log entry" as visualizzazione_utente_log_entry
+}
+
+CA_tenant_adm -right-> visualizzazione_singolo_log_audit
+CA_sys_adm -right-> visualizzazione_singolo_log_audit
+visualizzazione_singolo_log_audit -down..> visualizzazione_timestamp_log_entry : <<include>>
+visualizzazione_singolo_log_audit -down..> visualizzazione_utente_log_entry : <<include>>
+visualizzazione_singolo_log_audit -down..> visualizzazione_operazione_log_entry : <<include>>
+@enduml

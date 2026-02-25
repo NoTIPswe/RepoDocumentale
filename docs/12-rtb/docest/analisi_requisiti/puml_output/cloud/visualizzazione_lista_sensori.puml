@@ -1,0 +1,16 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Tenant User" as CA_tenant_usr
+
+rectangle "Sistema" {
+    usecase "UC22.1 - Visualizzazione lista sensori" as visualizzazione_lista_sensori
+    usecase "UC22.1.1 - Visualizzazione singolo sensore" as visualizzazione_singolo_sensore
+}
+
+CA_tenant_usr -right-> visualizzazione_lista_sensori
+visualizzazione_lista_sensori -down..> visualizzazione_singolo_sensore : <<include>>
+@enduml

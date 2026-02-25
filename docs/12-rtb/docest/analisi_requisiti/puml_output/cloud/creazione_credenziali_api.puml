@@ -1,0 +1,20 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Tenant Admin" as CA_tenant_adm
+
+rectangle "Sistema" {
+    usecase "UC59 - Creazione credenziali Client API" as creazione_credenziali_api
+    usecase "UC59.1 - Inserimento nome Client API" as inserimento_nome_client_api
+    usecase "UC60 - Visualizzazione Client ID" as visualizzazione_client_id
+    usecase "UC60.1 - Visualizzazione Client Secret" as visualizzazione_secret_api
+}
+
+CA_tenant_adm -right-> creazione_credenziali_api
+creazione_credenziali_api -down..> inserimento_nome_client_api : <<include>>
+creazione_credenziali_api -down..> visualizzazione_client_id : <<include>>
+creazione_credenziali_api -down..> visualizzazione_secret_api : <<include>>
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Provisioned Gateway" as CA_p_gway
+actor "Tenant User" as CA_tenant_usr
+
+rectangle "Sistema" {
+    usecase "UC31 - Ricezione alert dati sensore fuori range" as alert_sensore_fuori_range
+    usecase "UC23 - Visualizzazione ID sensore" as visualizzazione_id_sensore
+    usecase "UC31.2 - Visualizzazione range accettato" as visualizzazione_range_accettato
+    usecase "UC32 - Visualizzazione timestamp registrazione dato irregolare" as visualizzazione_timestamp_dato_irregolare
+    usecase "UC31.1 - Visualizzazione valore del dato registrato" as visualizzazione_valore_dato_registrato
+}
+
+CA_tenant_usr -right-> alert_sensore_fuori_range
+alert_sensore_fuori_range -right-> CA_p_gway
+alert_sensore_fuori_range -down..> visualizzazione_id_sensore : <<include>>
+alert_sensore_fuori_range -down..> visualizzazione_valore_dato_registrato : <<include>>
+alert_sensore_fuori_range -down..> visualizzazione_range_accettato : <<include>>
+alert_sensore_fuori_range -down..> visualizzazione_timestamp_dato_irregolare : <<include>>
+@enduml

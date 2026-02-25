@@ -1,0 +1,14 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Tenant Admin" as CA_tenant_adm
+
+rectangle "Sistema" {
+    usecase "UC41 - Errore nome Gateway duplicato" as err_nome_gateway_duplicato
+}
+
+CA_tenant_adm -right-> err_nome_gateway_duplicato
+@enduml

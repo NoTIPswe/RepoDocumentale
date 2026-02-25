@@ -1,0 +1,16 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Amministratore di Sistema" as CA_sys_adm
+actor "Tenant Admin" as CA_tenant_adm
+
+rectangle "Sistema" {
+    usecase "UC64.3 - Visualizzazione Utente log entry" as visualizzazione_utente_log_entry
+}
+
+CA_tenant_adm -right-> visualizzazione_utente_log_entry
+CA_sys_adm -right-> visualizzazione_utente_log_entry
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Utente del Simulatore" as SA_sym_usr
+
+rectangle "Sistema" {
+    usecase "UCS1 - Visualizzazione lista Gateway simulati" as visualizzazione_lista_gateway_simulati
+    usecase "UCS1.1 - Visualizzazione singolo Gateway simulato" as visualizzazione_singolo_gateway_simulato
+}
+
+SA_sym_usr -right-> visualizzazione_lista_gateway_simulati
+visualizzazione_lista_gateway_simulati -down..> visualizzazione_singolo_gateway_simulato : <<include>>
+@enduml

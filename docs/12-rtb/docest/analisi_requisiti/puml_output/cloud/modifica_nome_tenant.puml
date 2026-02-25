@@ -1,0 +1,14 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Amministratore di Sistema" as CA_sys_adm
+
+rectangle "Sistema" {
+    usecase "UC85 - Modifica nome Tenant" as modifica_nome_tenant
+}
+
+CA_sys_adm -right-> modifica_nome_tenant
+@enduml

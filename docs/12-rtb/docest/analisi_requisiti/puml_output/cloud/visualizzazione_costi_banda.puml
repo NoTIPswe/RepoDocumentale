@@ -1,0 +1,14 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Tenant Admin" as CA_tenant_adm
+
+rectangle "Sistema" {
+    usecase "UC49.2 - Visualizzazione costi stimati per banda" as visualizzazione_costi_banda
+}
+
+CA_tenant_adm -right-> visualizzazione_costi_banda
+@enduml

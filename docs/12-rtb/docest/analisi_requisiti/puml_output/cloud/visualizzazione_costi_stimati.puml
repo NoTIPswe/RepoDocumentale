@@ -1,0 +1,20 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Tenant Admin" as CA_tenant_adm
+
+rectangle "Sistema" {
+    usecase "UC68 - Selezione Gateway" as selezione_gateway
+    usecase "UC49.2 - Visualizzazione costi stimati per banda" as visualizzazione_costi_banda
+    usecase "UC49 - Visualizzazione costi stimati" as visualizzazione_costi_stimati
+    usecase "UC49.1 - Visualizzazione costi stimati per storage" as visualizzazione_costi_storage
+}
+
+CA_tenant_adm -right-> visualizzazione_costi_stimati
+visualizzazione_costi_stimati -down..> selezione_gateway : <<include>>
+visualizzazione_costi_stimati -down..> visualizzazione_costi_storage : <<include>>
+visualizzazione_costi_stimati -down..> visualizzazione_costi_banda : <<include>>
+@enduml

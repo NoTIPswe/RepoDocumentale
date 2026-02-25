@@ -1,0 +1,20 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Sistema Cloud" as SA_cloud
+
+rectangle "Sistema" {
+    usecase "UCS16 - Errore valore numerico invalido" as err_valore_numerico_invalido
+    usecase "UCS20.1 - Impostazione frequenza di invio dati" as impostazione_frequenza_invio_dati
+}
+
+SA_cloud -right-> impostazione_frequenza_invio_dati
+err_valore_numerico_invalido .up.> impostazione_frequenza_invio_dati : <<extend>>
+note on link
+  EP: ValoreNumericoInvalido
+  Condition: Il valore numerico inserito non è valido
+end note
+@enduml

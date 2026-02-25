@@ -1,0 +1,16 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Tenant User" as CA_tenant_usr
+
+rectangle "Sistema" {
+    usecase "UC25 - Filtraggio dati per Gateway" as filtraggio_gateway
+    usecase "UC25.1 - Filtraggio dati per singolo Gateway" as filtraggio_singolo_gateway
+}
+
+CA_tenant_usr -right-> filtraggio_gateway
+filtraggio_gateway -down..> filtraggio_singolo_gateway : <<include>>
+@enduml
