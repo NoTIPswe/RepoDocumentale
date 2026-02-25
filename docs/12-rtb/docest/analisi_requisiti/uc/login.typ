@@ -1,7 +1,5 @@
 #import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
-
-
 #uc(
   id: "login",
   system: CLOUD_SYS,
@@ -20,6 +18,7 @@
   alt-scen: (
     (ep: "PreLogin", cond: "L'Attore inserisce credenziali errate", uc: "err_cred_errate"),
   ),
+  specialized-by: "login_2fa",
 
   uml-descr: "Diagramma Login",
 )

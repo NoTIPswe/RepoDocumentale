@@ -9,10 +9,8 @@ actor "Tenant Admin" as CA_tenant_adm
 rectangle "Sistema" {
     usecase "UC46 - Modifica range alert default per tipo sensore" as modifica_range_default_tipo_sensore
     usecase "UC44 - Selezione range numerico misurazioni" as selezione_range_numerico
-    usecase "UC47 - Selezione tipo di sensore" as selezione_tipo_sensore
 }
 
 CA_tenant_adm -right-> modifica_range_default_tipo_sensore
-modifica_range_default_tipo_sensore -down..> selezione_tipo_sensore : <<include>>
 modifica_range_default_tipo_sensore -down..> selezione_range_numerico : <<include>>
 @enduml

@@ -4,6 +4,7 @@
   id: "filtraggio_gateway",
   system: CLOUD_SYS,
   title: "Filtraggio dati per Gateway",
+  gen-parent: "filtraggio_dati",
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
@@ -24,5 +25,5 @@
   ),
   alt-scen: (),
 
-  uml-descr: "Diagramma Filtraggio dati per Gateway",
+  uml-descr: none,
 )

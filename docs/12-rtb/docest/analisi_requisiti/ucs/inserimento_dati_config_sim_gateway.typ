@@ -25,3 +25,54 @@
     ),
   ),
 )
+
+#uc(
+  system: SIM_SYS,
+  id: "sel_sn_gateway",
+  level: 3,
+  title: "Selezione Serial Number Gateway",
+  prim-actors: (SA.sym-usr),
+  preconds: (
+    "Il Sistema mostra all'Attore la lista dei Serial Number disponibili per la simulazione",
+  ),
+  postconds: (
+    "L'Attore ha selezionato un Serial Number valido",
+  ),
+  main-scen: (
+    (descr: "L'Attore seleziona il Serial Number desiderato"),
+  ),
+)
+
+#uc(
+  system: SIM_SYS,
+  id: "sel_modello_gateway",
+  level: 3,
+  title: "Selezione Modello Gateway",
+  prim-actors: (SA.sym-usr),
+  preconds: (
+    "Il Sistema mostra all'Attore la lista dei modelli di Gateway disponibili",
+  ),
+  postconds: (
+    "L'Attore ha selezionato un modello di Gateway valido",
+  ),
+  main-scen: (
+    (descr: "L'Attore seleziona il modello desiderato"),
+  ),
+)
+
+#uc(
+  system: SIM_SYS,
+  id: "sel_versione_sw_gateway",
+  level: 3,
+  title: "Selezione Versione Software Gateway",
+  prim-actors: (SA.sym-usr),
+  preconds: (
+    "Il Sistema mostra all'Attore la lista delle versioni software compatibili e disponibili",
+  ),
+  postconds: (
+    "L'Attore ha selezionato una versione software valida",
+  ),
+  main-scen: (
+    (descr: "L'Attore seleziona la versione desiderata"),
+  ),
+)

@@ -4,7 +4,6 @@ skinparam MaxMessageSize 150
 top to bottom direction
 skinparam packageStyle rectangle
 
-
 actor "Utente del Simulatore" as SA_sym_usr
 
 rectangle "Sistema" {

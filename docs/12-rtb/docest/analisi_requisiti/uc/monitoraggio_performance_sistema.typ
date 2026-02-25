@@ -15,15 +15,15 @@
   trigger: "Si desidera monitorare le prestazioni complessive del Sistema",
   main-scen: (
     (
-      descr: "L’Attore monitora la latenza del Sistema",
+      descr: "L’Attore visualizza la latenza del Sistema",
       inc: "monitoraggio_latenza",
     ),
     (
-      descr: "L’Attore monitora i volumi di traffico del Sistema",
+      descr: "L’Attore visualizza i volumi di traffico del Sistema",
       inc: "monitoraggio_volumi_traffico",
     ),
     (
-      descr: "L’Attore monitora lo storage utilizzato dal Sistema",
+      descr: "L’Attore visualizza lo storage utilizzato dal Sistema",
       inc: "monitoraggio_storage",
     ),
   ),

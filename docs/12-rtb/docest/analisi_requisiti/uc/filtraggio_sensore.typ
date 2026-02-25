@@ -4,6 +4,7 @@
   id: "filtraggio_sensore",
   system: CLOUD_SYS,
   title: "Filtraggio dati per sensore",
+  gen-parent: "filtraggio_dati",
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
@@ -21,9 +22,8 @@
     ),
     (
       descr: "Il Sistema salva le preferenze di visualizzazione",
-      ep: "Filtraggio",
     ),
   ),
 
-  uml-descr: "Diagramma Filtraggio dati per sensore",
+  uml-descr: none,
 )

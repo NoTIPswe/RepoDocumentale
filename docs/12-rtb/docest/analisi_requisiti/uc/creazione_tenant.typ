@@ -26,10 +26,6 @@
       inc: "creazione_utente_tenant",
     ),
     (
-      descr: "L’Attore visualizza il resoconto della procedura di creazione",
-      inc: "visualizzazione_dettagli_tenant",
-    ),
-    (
       descr: "L’Attore conferma la volontà di avviare la creazione",
       ep: "ErroreInternoCreazione",
     ),

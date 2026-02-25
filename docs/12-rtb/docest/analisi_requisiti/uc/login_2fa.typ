@@ -4,6 +4,7 @@
   id: "login_2fa",
   system: CLOUD_SYS,
   title: "Login 2FA",
+  gen-parent: "login",
   level: 1,
   prim-actors: CA.non-authd-usr,
   preconds: (

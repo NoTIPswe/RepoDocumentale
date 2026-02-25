@@ -4,6 +4,7 @@
   id: "filtraggio_intervallo_temporale",
   system: CLOUD_SYS,
   title: "Filtraggio dati per intervallo temporale",
+  gen-parent: "filtraggio_dati",
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
@@ -18,5 +19,5 @@
     (descr: "Il Sistema salva le preferenze di visualizzazione"),
   ),
 
-  uml-descr: "Diagramma Filtraggio dati per intervallo temporale",
+  uml-descr: none,
 )

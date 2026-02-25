@@ -211,6 +211,7 @@
   #include "uc/visualizzazione_dati_stream.typ"
   #include "uc/visualizzazione_tabellare_dati_stream.typ"
   #include "uc/visualizzazione_grafico_dati_stream.typ"
+  #include "uc/filtraggio_dati.typ"
   #include "uc/filtraggio_gateway.typ"
   #include "uc/filtraggio_singolo_gateway.typ"
   #include "uc/filtraggio_sensore.typ"
