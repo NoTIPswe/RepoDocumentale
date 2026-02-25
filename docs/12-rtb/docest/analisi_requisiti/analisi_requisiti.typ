@@ -218,6 +218,8 @@
   #include "uc/filtraggio_intervallo_temporale.typ"
   #include "uc/err_dati_non_disponibili.typ"
   #include "uc/esportazione_dati.typ"
+  #include "uc/esportazione_dati_csv.typ"
+  #include "uc/esportazione_dati_json.typ"
   #include "uc/alert_gateway_irraggiungibile.typ"
   #include "uc/alert_sensore_fuori_range.typ"
   #include "uc/visualizzazione_valore_dato_registrato.typ"

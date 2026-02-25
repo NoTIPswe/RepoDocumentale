@@ -10,14 +10,16 @@
     "Il Sistema mostra i dati che l’Attore ha richiesto di visualizzare",
   ),
   postconds: (
-    "I dati visualizzati vengono esportati correttamente",
+    "I dati visualizzati vengono esportati correttamente nel formato scelto",
   ),
   trigger: "L’Attore vuole esportare i dati visualizzati",
   main-scen: (
     (descr: "L’Attore seleziona la funzionalità di esportazione dati visualizzati"),
-    (descr: "L’Attore avvia il download dei dati di cui è stata richiesta l’esportazione"),
+    (descr: "L’Attore seleziona il formato desiderato per l'esportazione"),
+    (descr: "L’Attore avvia il download dei dati"),
     (descr: "L’Attore ottiene i dati esportati in un nuovo file dedicato"),
   ),
+  specialized-by: ("esportazione_dati_csv", "esportazione_dati_json"),
 
   uml-descr: "Diagramma Esportazione dati",
 )
