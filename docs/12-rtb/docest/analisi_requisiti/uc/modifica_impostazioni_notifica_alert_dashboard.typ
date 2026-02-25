@@ -17,6 +17,6 @@
     (descr: "L’Attore modifica la preferenza di ricezione notifiche via dashboard"),
   ),
   specialized-by: ("abilitazione_notifica_alert_dashboard", "disabilitazione_notifica_alert_dashboard"),
-  
+
   uml-descr: "Diagramma Modifica impostazioni notifica alert via dashboard",
 )

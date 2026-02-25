@@ -17,6 +17,6 @@
   main-scen: (
     (descr: "L’Attore imposta la preferenza su 'Attivo' (ON)"),
   ),
-  
+
   uml-descr: none,
 )

@@ -1700,7 +1700,7 @@
       fonti: [#tag-uc("err_config_frequenza_fuori_range")],
     ),
   )
-  == Requisiti Qualitativi
+  == Requisiti di Qualità
   #table(
     columns: (auto, auto, 2fr, 1fr),
     [Codice], [Importanza], [Descrizione], [Fonte],
@@ -1708,64 +1708,52 @@
       id: "qualita_documentazione",
       tipo: Q,
       priorita: OBBLIGATORIO,
-      descrizione: [È necessario produrre una documentazione dettagliata: diagramma architetturale, documentazione
-        tecnica, manuale di test e manuale utente e amministratore.],
+      descrizione: [È necessario produrre il documento "Specifica Tecnica" contenente diagrammi e specifica
+        architetturale del software.],
       fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez.
         "Documentazione"],
     ),
 
     ..req(
-      id: "qualita_test_integrazione_sensore_gateway",
+      id: "qualita_testbook",
       tipo: Q,
       priorita: OBBLIGATORIO,
-      descrizione: [È necessario realizzare Test di integrazione sensore-gateway],
-      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e
-        Validazione"],
+      descrizione: [È necessario produrre una documentazione dettagliata riguardante i test previsti ed eseguiti
+        (contenuta nel documento #link(
+          "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_qualifica.pdf",
+        )[Piano di Qualifica]).],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez.
+        "Documentazione"],
     ),
 
     ..req(
-      id: "qualita_test_sincronizzazione_cloud",
+      id: "qualita_manuale_utente",
       tipo: Q,
       priorita: OBBLIGATORIO,
-      descrizione: [È necessario realizzare Test di sincronizzazione cloud.],
-      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e
-        Validazione"],
+      descrizione: [È necessario produrre il documento "Manuale Utente" con indicazioni chiare riguardanti l'uso del
+        software lato utente.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez.
+        "Documentazione"],
     ),
 
     ..req(
-      id: "qualita_test_sicurezza",
+      id: "qualita_manuale_amministratore",
       tipo: Q,
       priorita: OBBLIGATORIO,
-      descrizione: [È necessario realizzare Test di sicurezza.],
-      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e
-        Validazione"],
+      descrizione: [È necessario produrre il documento "Manuale Amministratore" con indicazioni chiare riguardanti l'uso
+        del software lato amministrazione.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez.
+        "Documentazione"],
     ),
 
     ..req(
-      id: "qualita_test_scalabilita_carico",
+      id: "qualita_manuale_api",
       tipo: Q,
       priorita: OBBLIGATORIO,
-      descrizione: [È necessario realizzare Test di scalabilità e carico.],
-      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e
-        Validazione"],
-    ),
-
-    ..req(
-      id: "qualita_test_multi_tenant",
-      tipo: Q,
-      priorita: OBBLIGATORIO,
-      descrizione: [È necessario realizzare Test multi-tenant.],
-      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e
-        Validazione"],
-    ),
-
-    ..req(
-      id: "qualita_test_unita_coverage",
-      tipo: Q,
-      priorita: OBBLIGATORIO,
-      descrizione: [È necessario realizzare Test di unità e code coverage.],
-      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e
-        Validazione"],
+      descrizione: [È necessario produrre documentazione tecnica riguardante le API per ricezione dei dati storici e
+        real-time.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez.
+        "Documentazione"],
     ),
 
     ..req(
@@ -1784,20 +1772,20 @@
         Qualifica.],
       fonti: [Interno],
     ),
-  )
-  == Requisiti di Vincolo
-  #table(
-    columns: (auto, auto, 2fr, 1fr),
-    [Codice], [Importanza], [Descrizione], [Fonte],
+
     ..req(
-      id: "vincolo_git",
-      tipo: V,
+      id: "qualita_git",
+      tipo: Q,
       priorita: OBBLIGATORIO,
       descrizione: [È necessario utilizzare Git come Software di versionamento.],
       fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Requisiti non
         Funzionali"],
     ),
-
+  )
+  == Requisiti di Vincolo
+  #table(
+    columns: (auto, auto, 2fr, 1fr),
+    [Codice], [Importanza], [Descrizione], [Fonte],
     ..req(
       id: "vincolo_architettura_tre_livelli",
       tipo: V,
@@ -1811,18 +1799,18 @@
       id: "vincolo_angular",
       tipo: V,
       priorita: OBBLIGATORIO,
-      descrizione: [È necessario che l'interfaccia sia realizzata in Angular.],
+      descrizione: [È necessario che l'interfaccia sia realizzata in Angular v21.],
       fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Tecnologie di
-        Riferimento"],
+        Riferimento", Interno (scelta versione)],
     ),
 
     ..req(
       id: "vincolo_go_nestjs",
       tipo: V,
       priorita: OBBLIGATORIO,
-      descrizione: [È necessario che la parte di microservizi sia realizzata in Go e NestJS.],
+      descrizione: [È necessario che la parte di microservizi sia realizzata in Go v1.26.x e NestJS v11.1.x.],
       fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Tecnologie di
-        Riferimento"],
+        Riferimento", Interno (scelta versioni)],
     ),
 
     ..req(
@@ -1842,6 +1830,14 @@
       fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Tecnologie di
         Riferimento"],
     ),
+
+    ..req(
+      id: "vincolo_browser",
+      tipo: V,
+      priorita: OBBLIGATORIO,
+      descrizione: [Le componenti web del sistema devono essere compatibili con le versioni di Chrome 120+, Safari 17+ e Firefox 120+.],
+      fonti: [Interno],
+    ),
   )
   \
   == Requisiti di Sicurezza
@@ -1852,10 +1848,10 @@
       id: "sicurezza_cifratura_dati",
       tipo: S,
       priorita: OBBLIGATORIO,
-      descrizione: [I dati all'interno del Sistema devono essere cifrati sia in stato di transito sia a riposo, si
-        raccomanda l'utilizzo di protocollo TLS e algoritmi standard di cifratura.],
+      descrizione: [I dati all'interno del Sistema devono essere cifrati sia in stato di transito (TLS) sia a riposo
+        (AES-256).],
       fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di
-        Sicurezza"],
+        Sicurezza", Interno (scelta algoritmi)],
     ),
 
     ..req(
