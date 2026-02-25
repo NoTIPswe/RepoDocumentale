@@ -199,6 +199,9 @@
   #include "uc/visualizzazione_singolo_gateway.typ"
   #include "uc/visualizzazione_nome_gateway.typ"
   #include "uc/visualizzazione_stato_gateway.typ"
+  #include "uc/visualizzazione_gateway_online.typ"
+  #include "uc/visualizzazione_gateway_offline.typ"
+  #include "uc/visualizzazione_gateway_sospeso.typ"
   #include "uc/visualizzazione_dettagli_gateway.typ"
   #include "uc/visualizzazione_timestamp_ultimo_invio_dati_gateway.typ"
   #include "uc/visualizzazione_lista_sensori.typ"
@@ -426,7 +429,7 @@
       tipo: F,
       priorita: OBBLIGATORIO,
       descrizione: [Il Sistema, durante il login, deve permettere all'utente non autenticato di inserire la password per
-      autenticarsi.],
+        autenticarsi.],
       fonti: [#tag-uc("ins_pw")],
     ),
 
@@ -434,8 +437,8 @@
       id: "err_cred_errate",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve notificare l'utente non autenticato in seguito ad un tentativo di autenticazione non andato a buon
-      fine.],
+      descrizione: [Il Sistema deve notificare l'utente non autenticato in seguito ad un tentativo di autenticazione non
+        andato a buon fine.],
       fonti: [#tag-uc("err_cred_errate")],
     ),
 
@@ -443,8 +446,8 @@
       id: "setup_totp",
       tipo: F,
       priorita: DESIDERABILE,
-      descrizione: [Il Sistema deve permettere all'utente non autenticato di effettuare la configurazione iniziale del TOTP in modo da
-      garantire il login 2FA.],
+      descrizione: [Il Sistema deve permettere all'utente non autenticato di effettuare la configurazione iniziale del
+        TOTP in modo da garantire il login 2FA.],
       fonti: [#tag-uc("setup_totp")],
     ),
 
@@ -468,8 +471,9 @@
       id: "err_otp_errato",
       tipo: F,
       priorita: DESIDERABILE,
-      descrizione: [Il Sistema deve notificare l'utente non autenticato in seguito ad un inserimento errato del codice OTP nel Sistema.
-    ],
+      descrizione: [Il Sistema deve notificare l'utente non autenticato in seguito ad un inserimento errato del codice
+        OTP nel Sistema.
+      ],
       fonti: [#tag-uc("err_otp_errato")],
     ),
 
@@ -493,8 +497,8 @@
       id: "err_account_inesistente",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve notificare all'utente non autenticato di aver inserito un'email non associata ad un account nel
-      Sistema.],
+      descrizione: [Il Sistema deve notificare all'utente non autenticato di aver inserito un'email non associata ad un
+        account nel Sistema.],
       fonti: [#tag-uc("err_account_inesistente")],
     ),
 
@@ -502,8 +506,8 @@
       id: "impostazione_password",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema, durante la procedura di cambio password, deve permettere all'utente non autenticato di inserire la
-      nuova password nel Sistema e confermarla.],
+      descrizione: [Il Sistema, durante la procedura di cambio password, deve permettere all'utente non autenticato di
+        inserire la nuova password nel Sistema e confermarla.],
       fonti: [#tag-uc("impostazione_password")],
     ),
 
@@ -511,8 +515,8 @@
       id: "err_campi_diversi",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve notificare all'utente non autenticato di aver inserito un valore diverso da quello inserito
-      precedentemente.],
+      descrizione: [Il Sistema deve notificare all'utente non autenticato di aver inserito un valore diverso da quello
+        inserito precedentemente.],
       fonti: [#tag-uc("err_campi_diversi")],
     ),
 
@@ -536,8 +540,8 @@
       id: "impostazione_mail",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema, durante la procedura di modifica mail dell'account, deve permettere all'Utente autenticato di inserire
-      e confermare la nuova mail.],
+      descrizione: [Il Sistema, durante la procedura di modifica mail dell'account, deve permettere all'Utente
+        autenticato di inserire e confermare la nuova mail.],
       fonti: [#tag-uc("impostazione_mail")],
     ),
 
@@ -545,8 +549,8 @@
       id: "err_mail_non_valida",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema, in fase di registrazione di una mail, deve notificare all'Utente autenticato di aver inserito una mail
-      non valida.],
+      descrizione: [Il Sistema, in fase di registrazione di una mail, deve notificare all'Utente autenticato di aver
+        inserito una mail non valida.],
       fonti: [#tag-uc("err_mail_non_valida")],
     ),
 
@@ -554,7 +558,8 @@
       id: "err_mail_gia_registrata",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve notificare all'utente autenticato di aver inserito un'email già associata ad un altro account],
+      descrizione: [Il Sistema deve notificare all'utente autenticato di aver inserito un'email già associata ad un
+        altro account],
       fonti: [#tag-uc("err_mail_gia_registrata")],
     ),
 
@@ -562,7 +567,8 @@
       id: "modifica_password_account",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere all'utente autenticato di poter modificare la password del proprio account.],
+      descrizione: [Il Sistema deve permettere all'utente autenticato di poter modificare la password del proprio
+        account.],
       fonti: [#tag-uc("modifica_password_account")],
     ),
 
@@ -578,7 +584,8 @@
       id: "lista_gateway",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare i Gateway appartenenti al proprio Tenant.],
+      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare i Gateway appartenenti al proprio
+        Tenant.],
       fonti: [#tag-uc("lista_gateway")],
     ),
 
@@ -586,32 +593,35 @@
       id: "visualizzazione_singolo_gateway",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare un singolo Gateway nella lista, in particolare il nome e
-      lo stato.],
+      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare un singolo Gateway nella lista, in
+        particolare il nome e lo stato.],
       fonti: [#tag-uc("visualizzazione_singolo_gateway"), #tag-uc("visualizzazione_nome_gateway"),#tag-uc(
-        "visualizzazione_stato_gateway",
-      )],
+          "visualizzazione_stato_gateway",
+        )],
     ),
 
     ..req(
       id: "visualizzazione_dettagli_gateway",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare ultimo timestamp dati inviati ed i sensori del Gateway.],
+      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare ultimo timestamp dati inviati ed i sensori
+        del Gateway.],
       fonti: [#tag-uc("visualizzazione_dettagli_gateway"), #tag-uc(
-        "visualizzazione_timestamp_ultimo_invio_dati_gateway",
-      ),#tag-uc("visualizzazione_lista_sensori")],
+          "visualizzazione_timestamp_ultimo_invio_dati_gateway",
+        ),#tag-uc("visualizzazione_lista_sensori")],
     ),
 
     ..req(
       id: "visualizzazione_singolo_sensore",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare un singolo sensore dalla lista dei sensori. Di tale
-      sensore interessa visualizzare l'ID e il timestamp dell'ultimo invio dati],
-      fonti: [#tag-uc("visualizzazione_singolo_sensore"),#tag-uc("visualizzazione_timestamp_ultimo_invio_dati_sensore"),#tag-uc(
-        "visualizzazione_id_sensore",
-      )],
+      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare un singolo sensore dalla lista dei
+        sensori. Di tale sensore interessa visualizzare l'ID e il timestamp dell'ultimo invio dati],
+      fonti: [#tag-uc("visualizzazione_singolo_sensore"),#tag-uc(
+          "visualizzazione_timestamp_ultimo_invio_dati_sensore",
+        ),#tag-uc(
+          "visualizzazione_id_sensore",
+        )],
     ),
 
     ..req(
@@ -658,7 +668,8 @@
       id: "filtraggio_intervallo_temporale",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare i dati relativi ad uno specifico intervallo temporale.],
+      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare i dati relativi ad uno specifico
+        intervallo temporale.],
       fonti: [#tag-uc("filtraggio_intervallo_temporale")],
     ),
 
@@ -666,8 +677,8 @@
       id: "err_dati_non_disponibili",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve notificare al Tenant User della non disponibilità dei dati (non temporaneamente disponibili o
-      inesistenti).],
+      descrizione: [Il Sistema deve notificare al Tenant User della non disponibilità dei dati (non temporaneamente
+        disponibili o inesistenti).],
       fonti: [#tag-uc("err_dati_non_disponibili")],
     ),
 
@@ -685,21 +696,21 @@
       priorita: OBBLIGATORIO,
       descrizione: [Il Sistema deve notificare il Tenant User dell'irraggiungibilità di un gateway],
       fonti: [#tag-uc(
-        "alert_gateway_irraggiungibile",
-      )
-    ],
+          "alert_gateway_irraggiungibile",
+        )
+      ],
     ),
 
     ..req(
       id: "alert_sensore_fuori_range",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve notificare il Tenant User delle irregolarità presenti nelle misurazioni di un sensore. In
-      particolare deve permettere di visualizzare il valore del dato registrato, il range accettato e il timestamp di
-      registrazione del dato irregolare del sensore in questione.],
+      descrizione: [Il Sistema deve notificare il Tenant User delle irregolarità presenti nelle misurazioni di un
+        sensore. In particolare deve permettere di visualizzare il valore del dato registrato, il range accettato e il
+        timestamp di registrazione del dato irregolare del sensore in questione.],
       fonti: [#tag-uc("alert_sensore_fuori_range"), #tag-uc("visualizzazione_valore_dato_registrato"), #tag-uc(
-        "visualizzazione_range_accettato",
-      ),#tag-uc("visualizzazione_timestamp_dato_irregolare")],
+          "visualizzazione_range_accettato",
+        ),#tag-uc("visualizzazione_timestamp_dato_irregolare")],
     ),
 
     ..req(
@@ -714,11 +725,12 @@
       id: "visualizzazione_singolo_alert",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare i dettagli di un singolo alert, in particolare deve
-      permettere di visualizzare il tipo di alert, l'hardware interessato e il timestamp di emissione dell'alert.],
+      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare i dettagli di un singolo alert, in
+        particolare deve permettere di visualizzare il tipo di alert, l'hardware interessato e il timestamp di emissione
+        dell'alert.],
       fonti: [#tag-uc("visualizzazione_singolo_alert"), #tag-uc("visualizzazione_tipo_alert"), #tag-uc(
-        "visualizzazione_hardware_interessato",
-      ),#tag-uc("visualizzazione_timestamp_emissione_alert")],
+          "visualizzazione_hardware_interessato",
+        ),#tag-uc("visualizzazione_timestamp_emissione_alert")],
     ),
 
     ..req(
@@ -733,7 +745,8 @@
       id: "visualizzazione_dettagli_alert_gateway_irraggiungibile",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare i dettagli di un alert Gateway non raggiungibile.],
+      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare i dettagli di un alert Gateway non
+        raggiungibile.],
       fonti: [#tag-uc("visualizzazione_dettagli_alert_gateway_irraggiungibile")],
     ),
 
@@ -757,7 +770,8 @@
       id: "modifica_impostazioni_notifica_alert_dashboard",
       tipo: F,
       priorita: DESIDERABILE,
-      descrizione: [Il Sistema deve permettere al Tenant User di attivare/disattivare la ricezione di alert via dashboard.],
+      descrizione: [Il Sistema deve permettere al Tenant User di attivare/disattivare la ricezione di alert via
+        dashboard.],
       fonti: [#tag-uc("modifica_impostazioni_notifica_alert_dashboard")],
     ),
 
@@ -789,7 +803,8 @@
       id: "selezione_stato_gateway",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin di selezionare lo stato desiderato per i Gateway che ha selezionato.],
+      descrizione: [Il Sistema deve permettere al Tenant Admin di selezionare lo stato desiderato per i Gateway che ha
+        selezionato.],
       fonti: [#tag-uc("selezione_stato_gateway")],
     ),
 
@@ -797,7 +812,8 @@
       id: "modifica_range_sensore",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin di cambiare il range dell'alert per un determinato sensore.],
+      descrizione: [Il Sistema deve permettere al Tenant Admin di cambiare il range dell'alert per un determinato
+        sensore.],
       fonti: [#tag-uc("modifica_range_sensore")],
     ),
 
@@ -813,8 +829,8 @@
       id: "selezione_range_numerico",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin di selezionare un range per le misurazioni, inserendo un valore minimo e
-      uno di massimo],
+      descrizione: [Il Sistema deve permettere al Tenant Admin di selezionare un range per le misurazioni, inserendo un
+        valore minimo e uno di massimo],
       fonti: [#tag-uc("selezione_range_numerico")],
     ),
 
@@ -830,8 +846,8 @@
       id: "modifica_range_default_tipo_sensore",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin di modificare il range dell'alert di default per tutti i sensori di un
-      determinato tipo.],
+      descrizione: [Il Sistema deve permettere al Tenant Admin di modificare il range dell'alert di default per tutti i
+        sensori di un determinato tipo.],
       fonti: [#tag-uc("modifica_range_default_tipo_sensore")],
     ),
 
@@ -847,7 +863,8 @@
       id: "modifica_intervallo_alert_gateway",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin di cambiare il timeout che determina se un Gateway è irraggiungibile],
+      descrizione: [Il Sistema deve permettere al Tenant Admin di cambiare il timeout che determina se un Gateway è
+        irraggiungibile],
       fonti: [#tag-uc("modifica_intervallo_alert_gateway")],
     ),
 
@@ -855,7 +872,8 @@
       id: "visualizzazione_costi_stimati",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati del Tenant di cui è amministratore],
+      descrizione: [Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati del Tenant di cui è
+        amministratore],
       fonti: [#tag-uc("visualizzazione_costi_stimati")],
     ),
 
@@ -863,8 +881,8 @@
       id: "visualizzazione_costi_storage",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati relativi allo storage del Gateway
-      selezionato],
+      descrizione: [Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati relativi allo storage del
+        Gateway selezionato],
       fonti: [#tag-uc("visualizzazione_costi_storage")],
     ),
 
@@ -872,8 +890,8 @@
       id: "visualizzazione_costi_banda",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati dei Gateway associati al Tenant
-      raggruppati in base alla banda.],
+      descrizione: [Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati dei Gateway associati al
+        Tenant raggruppati in base alla banda.],
       fonti: [#tag-uc("visualizzazione_costi_banda")],
     ),
 
@@ -889,12 +907,12 @@
       id: "visualizzazione_singolo_utente_tenant",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin di visualizzare un singolo utente del Tenant. Le informazioni che devono
-      essere visualizzate sono il ruolo dell'Utente, il nome dell'Utente, la mail dell'Utente e l'ultimo accesso
-      dell'utente.],
+      descrizione: [Il Sistema deve permettere al Tenant Admin di visualizzare un singolo utente del Tenant. Le
+        informazioni che devono essere visualizzate sono il ruolo dell'Utente, il nome dell'Utente, la mail dell'Utente
+        e l'ultimo accesso dell'utente.],
       fonti: [#tag-uc("visualizzazione_singolo_utente_tenant"), #tag-uc("visualizzazione_ruolo_utente"), #tag-uc(
-        "visualizzazione_nome_utente",
-      ), #tag-uc("visualizzazione_ultimo_accesso_utente"), #tag-uc("visualizzazione_mail_utente"),],
+          "visualizzazione_nome_utente",
+        ), #tag-uc("visualizzazione_ultimo_accesso_utente"), #tag-uc("visualizzazione_mail_utente"),],
     ),
 
     ..req(
@@ -925,7 +943,8 @@
       id: "selezione_permessi_utente",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin di selezionare e modificare un permesso dell'Utente Tenant.],
+      descrizione: [Il Sistema deve permettere al Tenant Admin di selezionare e modificare un permesso dell'Utente
+        Tenant.],
       fonti: [#tag-uc("selezione_permessi_utente"), #tag-uc("modifica_permessi_utente")],
     ),
 
@@ -965,8 +984,8 @@
       id: "creazione_credenziali_api",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin di abilitare l'accesso ai dati del Tenant da un Sistema esterno creando
-      delle credenziali.],
+      descrizione: [Il Sistema deve permettere al Tenant Admin di abilitare l'accesso ai dati del Tenant da un Sistema
+        esterno creando delle credenziali.],
       fonti: [#tag-uc("creazione_credenziali_api"), #tag-uc("inserimento_nome_client_api")],
     ),
 
@@ -982,7 +1001,8 @@
       id: "visualizzazione_secret_api",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema a termine della creazione delle credenziali API deve mostrare al Tenant Admin la Client Secret.],
+      descrizione: [Il Sistema a termine della creazione delle credenziali API deve mostrare al Tenant Admin la Client
+        Secret.],
       fonti: [#tag-uc("visualizzazione_secret_api")],
     ),
 
@@ -990,7 +1010,8 @@
       id: "visualizzazione_lista_api",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin di visualizzare la lista delle credenziali API relative ad un Tenant.],
+      descrizione: [Il Sistema deve permettere al Tenant Admin di visualizzare la lista delle credenziali API relative
+        ad un Tenant.],
       fonti: [#tag-uc("visualizzazione_lista_api")],
     ),
 
@@ -998,19 +1019,20 @@
       id: "visualizzazione_singole_api",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin di visualizzare delle specifiche credenziali API di un Tenant, in
-      particolare deve permettere di visualizzare il nome descrittivo delle credenziali e il timestamp di creazione
-      delle credenziali.],
+      descrizione: [Il Sistema deve permettere al Tenant Admin di visualizzare delle specifiche credenziali API di un
+        Tenant, in particolare deve permettere di visualizzare il nome descrittivo delle credenziali e il timestamp di
+        creazione delle credenziali.],
       fonti: [#tag-uc("visualizzazione_singole_api"), #tag-uc("visualizzazione_nome_descrittivo_api"), #tag-uc(
-        "visualizzazione_timestamp_api",
-      )],
+          "visualizzazione_timestamp_api",
+        )],
     ),
 
     ..req(
       id: "eliminazione_credenziali_api",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin di eliminare delle credenziali API specifiche di un Tenant.],
+      descrizione: [Il Sistema deve permettere al Tenant Admin di eliminare delle credenziali API specifiche di un
+        Tenant.],
       fonti: [#tag-uc("eliminazione_credenziali_api")],
     ),
 
@@ -1018,7 +1040,8 @@
       id: "selezione_credenziali_api",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin di selezionare delle specifiche credenziali API di un Tenant.],
+      descrizione: [Il Sistema deve permettere al Tenant Admin di selezionare delle specifiche credenziali API di un
+        Tenant.],
       fonti: [#tag-uc("selezione_credenziali_api")],
     ),
 
@@ -1026,7 +1049,8 @@
       id: "modifica_impostazioni_2fa",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin di modificare le impostazioni del login 2FA di un Tenant.],
+      descrizione: [Il Sistema deve permettere al Tenant Admin di modificare le impostazioni del login 2FA di un
+        Tenant.],
       fonti: [#tag-uc("modifica_impostazioni_2fa")],
     ),
 
@@ -1034,8 +1058,8 @@
       id: "visualizzazione_log_audit_tenant",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare i log di Audit del
-      Tenant.],
+      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare i log di
+        Audit del Tenant.],
       fonti: [#tag-uc("visualizzazione_log_audit_tenant")],
     ),
 
@@ -1043,20 +1067,20 @@
       id: "visualizzazione_singolo_log_audit",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare una singola entry di log
-      di Audit, in particolare deve permettere di visualizzare il timestamp, l'utente relativo e l'azione relativa della
-      singola entry.],
+      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare una
+        singola entry di log di Audit, in particolare deve permettere di visualizzare il timestamp, l'utente relativo e
+        l'azione relativa della singola entry.],
       fonti: [#tag-uc("visualizzazione_singolo_log_audit"),#tag-uc("visualizzazione_timestamp_log_entry"),#tag-uc(
-        "visualizzazione_utente_log_entry",
-      ),#tag-uc("visualizzazione_operazione_log_entry")],
+          "visualizzazione_utente_log_entry",
+        ),#tag-uc("visualizzazione_operazione_log_entry")],
     ),
 
     ..req(
       id: "esportazione_log_audit_tenant",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di esportare i log per fare Audit del
-      Tenant.],
+      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di esportare i log per
+        fare Audit del Tenant.],
       fonti: [#tag-uc("esportazione_log_audit_tenant")],
     ),
 
@@ -1064,8 +1088,8 @@
       id: "selezione_intervallo_temporale",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di inserire un intervallo temporale per
-      visualizzare i log.],
+      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di inserire un intervallo
+        temporale per visualizzare i log.],
       fonti: [#tag-uc("selezione_intervallo_temporale")],
     ),
 
@@ -1073,8 +1097,8 @@
       id: "download_log_audit_esportati",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di scaricare i log sul proprio
-      dispositivo.],
+      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di scaricare i log sul
+        proprio dispositivo.],
       fonti: [#tag-uc("download_log_audit_esportati")],
     ),
 
@@ -1082,8 +1106,8 @@
       id: "modifica_impostazioni_impersonificazione",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di modificare le impostazioni di
-      impersonificazione relative al Tenant.],
+      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di modificare le
+        impostazioni di impersonificazione relative al Tenant.],
       fonti: [#tag-uc("modifica_impostazioni_impersonificazione")],
     ),
 
@@ -1091,8 +1115,8 @@
       id: "aggiornamento_firmware_gateway",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di installare una nuova versione
-      firmware sul Gateway.],
+      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di installare una nuova
+        versione firmware sul Gateway.],
       fonti: [#tag-uc("aggiornamento_firmware_gateway"), #tag-uc("selezione_firmware")],
     ),
 
@@ -1100,8 +1124,8 @@
       id: "selezione_gateway",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di selezionare uno o più Gateway tramite
-      il loro ID.],
+      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di selezionare uno o più
+        Gateway tramite il loro ID.],
       fonti: [#tag-uc("selezione_gateway")],
     ),
 
@@ -1189,8 +1213,8 @@
       id: "visualizzazione_lista_tenant",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare la lista di Tenant registrati nel
-      Sistema.],
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare la lista di Tenant
+        registrati nel Sistema.],
       fonti: [#tag-uc("visualizzazione_lista_tenant")],
     ),
 
@@ -1198,8 +1222,8 @@
       id: "visualizzazione_singolo_tenant",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare un singolo Tenant all'interno della
-      lista.],
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare un singolo Tenant
+        all'interno della lista.],
       fonti: [#tag-uc("visualizzazione_singolo_tenant")],
     ),
 
@@ -1215,8 +1239,8 @@
       id: "visualizzazione_nome_tenant",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare il nome identificativo del singolo
-      Tenant.],
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare il nome identificativo del
+        singolo Tenant.],
       fonti: [#tag-uc("visualizzazione_nome_tenant")],
     ),
 
@@ -1224,7 +1248,8 @@
       id: "visualizzazione_stato_tenant",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare lo stato operativo del Tenant.],
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare lo stato operativo del
+        Tenant.],
       fonti: [#tag-uc("visualizzazione_stato_tenant")],
     ),
 
@@ -1240,8 +1265,8 @@
       id: "visualizzazione_intervallo_sospensione_tenant",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare l'intervallo temporale minimo di
-      sospensione (pre-eliminazione) del Tenant scelto.],
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare l'intervallo temporale
+        minimo di sospensione (pre-eliminazione) del Tenant scelto.],
       fonti: [#tag-uc("visualizzazione_intervallo_sospensione_tenant")],
     ),
 
@@ -1249,8 +1274,8 @@
       id: "modifica_intervallo_sospensione_tenant",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di modificare l'intervallo temporale minimo di sospensione
-      (pre-eliminazione) del Tenant scelto.],
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di modificare l'intervallo temporale minimo
+        di sospensione (pre-eliminazione) del Tenant scelto.],
       fonti: [#tag-uc("modifica_intervallo_sospensione_tenant")],
     ),
 
@@ -1274,8 +1299,8 @@
       id: "inserimento_anagrafica_tenant",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema, durante la creazione del tenant, deve permettere all'Amministratore di Sistema di inserire i dati
-      anagrafici del Tenant.],
+      descrizione: [Il Sistema, durante la creazione del tenant, deve permettere all'Amministratore di Sistema di
+        inserire i dati anagrafici del Tenant.],
       fonti: [#tag-uc("inserimento_anagrafica_tenant")],
     ),
 
@@ -1283,8 +1308,8 @@
       id: "err_interno_creazione_tenant",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve poter notificare l'Amministratore di Sistema di un eventuale errore interno nella creazione del
-      Tenant.],
+      descrizione: [Il Sistema deve poter notificare l'Amministratore di Sistema di un eventuale errore interno nella
+        creazione del Tenant.],
       fonti: [#tag-uc("err_interno_creazione_tenant")],
     ),
 
@@ -1308,7 +1333,8 @@
       id: "riattivazione_tenant",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di riattivare un Tenant precedentemente disattivato.],
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di riattivare un Tenant precedentemente
+        disattivato.],
       fonti: [#tag-uc("riattivazione_tenant")],
     ),
 
@@ -1324,7 +1350,8 @@
       id: "impersonificazione_utente_tenant",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di avviare una sessione di impersonificazione.],
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di avviare una sessione di
+        impersonificazione.],
       fonti: [#tag-uc("impersonificazione_utente_tenant")],
     ),
 
@@ -1332,8 +1359,8 @@
       id: "registrazione_associazione_gateway",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di registrare e successivamente associare un Gateway ad un
-      Tenant di interesse.],
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di registrare e successivamente associare
+        un Gateway ad un Tenant di interesse.],
       fonti: [#tag-uc("registrazione_associazione_gateway"), #tag-uc("inserimento_credenziali_fabbrica_gateway")],
     ),
 
@@ -1341,8 +1368,8 @@
       id: "creazione_utente_amministratore_tenant",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di creare un Utente con ruolo Amministratore Tenant per un
-      Tenant di interesse.],
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di creare un Utente con ruolo
+        Amministratore Tenant per un Tenant di interesse.],
       fonti: [#tag-uc("creazione_utente_amministratore_tenant")],
     ),
 
@@ -1350,18 +1377,19 @@
       id: "monitoraggio_performance_sistema",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di monitorare le prestazioni complessive del Sistema, in
-      particolare, la latenza media, il volume di traffico e l'utilizzo dello storage.],
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di monitorare le prestazioni complessive
+        del Sistema, in particolare, la latenza media, il volume di traffico e l'utilizzo dello storage.],
       fonti: [#tag-uc("monitoraggio_performance_sistema"), #tag-uc("monitoraggio_latenza"), #tag-uc(
-        "monitoraggio_volumi_traffico",
-      ), #tag-uc("monitoraggio_storage")],
+          "monitoraggio_volumi_traffico",
+        ), #tag-uc("monitoraggio_storage")],
     ),
 
     ..req(
       id: "onboarding_gateway",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al non provisioned Gateway di attivarsi e connettersi correttamente con il Sistema.],
+      descrizione: [Il Sistema deve permettere al non provisioned Gateway di attivarsi e connettersi correttamente con
+        il Sistema.],
       fonti: [#tag-uc("onboarding_gateway")],
     ),
 
@@ -1369,7 +1397,8 @@
       id: "err_auth_gateway_fabbrica",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al non provisioned Gateway di ricevere una risposta di errore di autenticazione.],
+      descrizione: [Il Sistema deve permettere al non provisioned Gateway di ricevere una risposta di errore di
+        autenticazione.],
       fonti: [#tag-uc("err_auth_gateway_fabbrica")],
     ),
 
@@ -1409,7 +1438,8 @@
       id: "ins_mail",
       tipo: F,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema, durante il login, deve permettere all'utente non autenticato di inserire una mail per autenticarsi.],
+      descrizione: [Il Sistema, durante il login, deve permettere all'utente non autenticato di inserire una mail per
+        autenticarsi.],
       fonti: [#tag-uc("ins_mail")],
     ),
   )
@@ -1422,7 +1452,8 @@
       tipo: F,
       system: SIM,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere all'Utente del Simulatore di poter visualizzare la lista di Gateway simulati.],
+      descrizione: [Il Sistema deve permettere all'Utente del Simulatore di poter visualizzare la lista di Gateway
+        simulati.],
       fonti: [#tag-uc("visualizzazione_lista_gateway_simulati")],
     ),
 
@@ -1431,9 +1462,11 @@
       tipo: F,
       system: SIM,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere di poter visualizzare un singolo Gateway simulato, comprendendo anche la data della sua
-      creazione.],
-      fonti: [#tag-uc("visualizzazione_singolo_gateway_simulato"), #tag-uc("visualizzazione_data_creazione_simulazione")],
+      descrizione: [Il Sistema deve permettere di poter visualizzare un singolo Gateway simulato, comprendendo anche la
+        data della sua creazione.],
+      fonti: [#tag-uc("visualizzazione_singolo_gateway_simulato"), #tag-uc(
+          "visualizzazione_data_creazione_simulazione",
+        )],
     ),
 
     ..req(
@@ -1450,13 +1483,13 @@
       tipo: F,
       system: SIM,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere di visualizzare la configurazione di simulazione di un Gateway, di cui fanno parte:
-      chiave segreta, numero di serie, versione del software e modello.],
+      descrizione: [Il Sistema deve permettere di visualizzare la configurazione di simulazione di un Gateway, di cui
+        fanno parte: chiave segreta, numero di serie, versione del software e modello.],
       fonti: [#tag-uc("visualizzazione_configurazione_simulazione_gateway"), #tag-uc(
-        "visualizzazione_chiave_fabbrica_simulazione",
-      ), #tag-uc("visualizzazione_serial_number_gateway_simulato"), #tag-uc(
-        "visualizzazione_software_gateway_simulato",
-      ), #tag-uc("visualizzazione_modello_gateway_simulato")],
+          "visualizzazione_chiave_fabbrica_simulazione",
+        ), #tag-uc("visualizzazione_serial_number_gateway_simulato"), #tag-uc(
+          "visualizzazione_software_gateway_simulato",
+        ), #tag-uc("visualizzazione_modello_gateway_simulato")],
     ),
 
     ..req(
@@ -1482,13 +1515,15 @@
       tipo: F,
       system: SIM,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere di visualizzare la configurazione di un sensore simulato, di cui fanno parte: range
-      generazione dati, algoritmo di generazione dati, identificativo e tipologia di sensore.
-    ],
-      fonti: [#tag-uc("visualizzazione_configurazione_simulazione_sensore"), #tag-uc("visualizzazione_range_generazione_dati"),
-      #tag-uc("visualizzazione_algoritmo_generazione_dati"), #tag-uc("visualizzazione_identificativo_sensore"), #tag-uc(
-        "visualizzazione_tipo_sensore_simulato",
-      )],
+      descrizione: [Il Sistema deve permettere di visualizzare la configurazione di un sensore simulato, di cui fanno
+        parte: range generazione dati, algoritmo di generazione dati, identificativo e tipologia di sensore.
+      ],
+      fonti: [#tag-uc("visualizzazione_configurazione_simulazione_sensore"), #tag-uc(
+          "visualizzazione_range_generazione_dati",
+        ), #tag-uc("visualizzazione_algoritmo_generazione_dati"), #tag-uc("visualizzazione_identificativo_sensore"),
+        #tag-uc(
+          "visualizzazione_tipo_sensore_simulato",
+        )],
     ),
 
     ..req(
@@ -1532,7 +1567,8 @@
       tipo: F,
       system: SIM,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve notificare all'Utente del Simulatore che si è verificato un errore durante il deploy del Gateway.],
+      descrizione: [Il Sistema deve notificare all'Utente del Simulatore che si è verificato un errore durante il deploy
+        del Gateway.],
       fonti: [#tag-uc("err_deploy_gateway_simulato")],
     ),
 
@@ -1559,7 +1595,8 @@
       tipo: F,
       system: SIM,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve notificare all'Utente del Simulatore che il range di generazione dati inserito è invalido.],
+      descrizione: [Il Sistema deve notificare all'Utente del Simulatore che il range di generazione dati inserito è
+        invalido.],
       fonti: [#tag-uc("err_range_invalido_simulazione")],
     ),
 
@@ -1568,8 +1605,8 @@
       tipo: F,
       system: SIM,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve notificare all'Utente del Simulatore che si è verificato un errore durante la creazione di un
-      sensore simulato.],
+      descrizione: [Il Sistema deve notificare all'Utente del Simulatore che si è verificato un errore durante la
+        creazione di un sensore simulato.],
       fonti: [#tag-uc("err_creazione_sensore_simulato")],
     ),
 
@@ -1578,8 +1615,8 @@
       tipo: F,
       system: SIM,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere di testare il suo comportamento qualora ci fossero più istanze di Gateway simulati in
-      parallelo.],
+      descrizione: [Il Sistema deve permettere di testare il suo comportamento qualora ci fossero più istanze di Gateway
+        simulati in parallelo.],
       fonti: [#tag-uc("creazione_gateway_multipli_default")],
     ),
 
@@ -1588,7 +1625,8 @@
       tipo: F,
       system: SIM,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve notificare all'Utente del Simulatore che il valore numerico inserito risulta non valido.],
+      descrizione: [Il Sistema deve notificare all'Utente del Simulatore che il valore numerico inserito risulta non
+        valido.],
       fonti: [#tag-uc("err_valore_numerico_invalido")],
     ),
 
@@ -1606,7 +1644,8 @@
       tipo: F,
       system: SIM,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere di testare il suo comportamento in caso di disconnessione temporanea della rete.],
+      descrizione: [Il Sistema deve permettere di testare il suo comportamento in caso di disconnessione temporanea
+        della rete.],
       fonti: [#tag-uc("comando_anomalia_disconnessione_temporanea")],
     ),
 
@@ -1615,7 +1654,8 @@
       tipo: F,
       system: SIM,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere di testare il suo comportamento qualora un sensore misurasse valori inaspettati.],
+      descrizione: [Il Sistema deve permettere di testare il suo comportamento qualora un sensore misurasse valori
+        inaspettati.],
       fonti: [#tag-uc("comando_anomalia_outliers_misurazioni")],
     ),
 
@@ -1624,11 +1664,11 @@
       tipo: F,
       system: SIM,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve permettere al Sistema Cloud di modificare le impostazioni di configurazione di un Gateway, di
-      modificare la frequenza di invio dati e dello stato di sospensione.],
+      descrizione: [Il Sistema deve permettere al Sistema Cloud di modificare le impostazioni di configurazione di un
+        Gateway, di modificare la frequenza di invio dati e dello stato di sospensione.],
       fonti: [#tag-uc("impostazione_configurazione_gateway"), #tag-uc("impostazione_frequenza_invio_dati"), #tag-uc(
-        "impostazione_stato_sospensione",
-      )],
+          "impostazione_stato_sospensione",
+        )],
     ),
 
     ..req(
@@ -1636,7 +1676,8 @@
       tipo: F,
       system: SIM,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve notificare al Sistema Cloud che il payload di configurazione ricevuto risulta invalido.],
+      descrizione: [Il Sistema deve notificare al Sistema Cloud che il payload di configurazione ricevuto risulta
+        invalido.],
       fonti: [#tag-uc("err_sintattico_config_gateway")],
     ),
 
@@ -1645,8 +1686,8 @@
       tipo: F,
       system: SIM,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve notificare al Sistema Cloud che il valore di frequenza ricevuto è sintatticamente corretto, ma non
-      accettabile.],
+      descrizione: [Il Sistema deve notificare al Sistema Cloud che il valore di frequenza ricevuto è sintatticamente
+        corretto, ma non accettabile.],
       fonti: [#tag-uc("err_config_frequenza_fuori_range")],
     ),
   )
@@ -1658,9 +1699,10 @@
       id: "qualita_documentazione",
       tipo: Q,
       priorita: OBBLIGATORIO,
-      descrizione: [È necessario produrre una documentazione dettagliata: diagramma architetturale, documentazione tecnica, manuale di
-      test e manuale utente e amministratore.],
-      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Documentazione"],
+      descrizione: [È necessario produrre una documentazione dettagliata: diagramma architetturale, documentazione
+        tecnica, manuale di test e manuale utente e amministratore.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez.
+        "Documentazione"],
     ),
 
     ..req(
@@ -1668,7 +1710,8 @@
       tipo: Q,
       priorita: OBBLIGATORIO,
       descrizione: [È necessario realizzare Test di integrazione sensore-gateway],
-      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e Validazione"],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e
+        Validazione"],
     ),
 
     ..req(
@@ -1676,7 +1719,8 @@
       tipo: Q,
       priorita: OBBLIGATORIO,
       descrizione: [È necessario realizzare Test di sincronizzazione cloud.],
-      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e Validazione"],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e
+        Validazione"],
     ),
 
     ..req(
@@ -1684,7 +1728,8 @@
       tipo: Q,
       priorita: OBBLIGATORIO,
       descrizione: [È necessario realizzare Test di sicurezza.],
-      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e Validazione"],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e
+        Validazione"],
     ),
 
     ..req(
@@ -1692,7 +1737,8 @@
       tipo: Q,
       priorita: OBBLIGATORIO,
       descrizione: [È necessario realizzare Test di scalabilità e carico.],
-      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e Validazione"],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e
+        Validazione"],
     ),
 
     ..req(
@@ -1700,7 +1746,8 @@
       tipo: Q,
       priorita: OBBLIGATORIO,
       descrizione: [È necessario realizzare Test multi-tenant.],
-      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e Validazione"],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e
+        Validazione"],
     ),
 
     ..req(
@@ -1708,7 +1755,8 @@
       tipo: Q,
       priorita: OBBLIGATORIO,
       descrizione: [È necessario realizzare Test di unità e code coverage.],
-      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e Validazione"],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e
+        Validazione"],
     ),
 
     ..req(
@@ -1723,7 +1771,8 @@
       id: "qualita_piano_qualifica",
       tipo: Q,
       priorita: OBBLIGATORIO,
-      descrizione: [I test e le metriche relative devono essere elencate e descritte nel documento interno Piano di Qualifica.],
+      descrizione: [I test e le metriche relative devono essere elencate e descritte nel documento interno Piano di
+        Qualifica.],
       fonti: [Interno],
     ),
   )
@@ -1737,14 +1786,15 @@
       priorita: OBBLIGATORIO,
       descrizione: [È necessario utilizzare Git come Software di versionamento.],
       fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Requisiti non
-      Funzionali"],
+        Funzionali"],
     ),
 
     ..req(
       id: "vincolo_architettura_tre_livelli",
       tipo: V,
       priorita: OBBLIGATORIO,
-      descrizione: [È necessario che il Sistema realizzato sia organizzato su tre livelli: BLE, Gateway BLE-WiFi e Cloud.],
+      descrizione: [È necessario che il Sistema realizzato sia organizzato su tre livelli: BLE, Gateway BLE-WiFi e
+        Cloud.],
       fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Architettura"],
     ),
 
@@ -1754,7 +1804,7 @@
       priorita: OBBLIGATORIO,
       descrizione: [È necessario che l'interfaccia sia realizzata in Angular.],
       fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Tecnologie di
-      Riferimento"],
+        Riferimento"],
     ),
 
     ..req(
@@ -1763,7 +1813,7 @@
       priorita: OBBLIGATORIO,
       descrizione: [È necessario che la parte di microservizi sia realizzata in Go e NestJS.],
       fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Tecnologie di
-      Riferimento"],
+        Riferimento"],
     ),
 
     ..req(
@@ -1772,7 +1822,7 @@
       priorita: OBBLIGATORIO,
       descrizione: [È necessario che la parte di scambio di messaggi tra microservizi sia realizzata in NATS.],
       fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Tecnologie di
-      Riferimento"],
+        Riferimento"],
     ),
 
     ..req(
@@ -1781,7 +1831,7 @@
       priorita: OBBLIGATORIO,
       descrizione: [È necessario l'utilizzo di Docker],
       fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Tecnologie di
-      Riferimento"],
+        Riferimento"],
     ),
   )
   \
@@ -1793,52 +1843,60 @@
       id: "sicurezza_cifratura_dati",
       tipo: S,
       priorita: OBBLIGATORIO,
-      descrizione: [I dati all'interno del Sistema devono essere cifrati sia in stato di transito sia a riposo, si raccomanda
-      l'utilizzo di protocollo TLS e algoritmi standard di cifratura.],
-      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di Sicurezza"],
+      descrizione: [I dati all'interno del Sistema devono essere cifrati sia in stato di transito sia a riposo, si
+        raccomanda l'utilizzo di protocollo TLS e algoritmi standard di cifratura.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di
+        Sicurezza"],
     ),
 
     ..req(
       id: "sicurezza_segregazione_tenant",
       tipo: S,
       priorita: OBBLIGATORIO,
-      descrizione: [I dati appartenenti a diversi Tenant devono essere segregati sia a livello logico che fisico (database e storage
-      dedicati o virtualizzati).],
-      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di Sicurezza"],
+      descrizione: [I dati appartenenti a diversi Tenant devono essere segregati sia a livello logico che fisico
+        (database e storage dedicati o virtualizzati).],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di
+        Sicurezza"],
     ),
 
     ..req(
       id: "sicurezza_mfa",
       tipo: S,
       priorita: DESIDERABILE,
-      descrizione: [L'accesso alla UI e API deve essere concesso anche tramite l'utilizzo di autenticazione a più fattori (MFA).],
-      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di Sicurezza"],
+      descrizione: [L'accesso alla UI e API deve essere concesso anche tramite l'utilizzo di autenticazione a più
+        fattori (MFA).],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di
+        Sicurezza"],
     ),
 
     ..req(
       id: "sicurezza_log_attivita",
       tipo: S,
       priorita: OBBLIGATORIO,
-      descrizione: [Il Sistema deve possedere un sistema di log completo delle attività, consultabile solo da utenti autorizzati.],
-      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di Sicurezza"],
+      descrizione: [Il Sistema deve possedere un sistema di log completo delle attività, consultabile solo da utenti
+        autorizzati.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di
+        Sicurezza"],
     ),
 
     ..req(
       id: "sicurezza_protezione_attacchi",
       tipo: S,
       priorita: DESIDERABILE,
-      descrizione: [Il Sistema deve essere protetto da attacchi informatici, tramite implementazione di meccanismi di rate limiting,
-      intrusion detection e failover automatico per garantire la continuità operativa.],
-      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di Sicurezza"],
+      descrizione: [Il Sistema deve essere protetto da attacchi informatici, tramite implementazione di meccanismi di
+        rate limiting, intrusion detection e failover automatico per garantire la continuità operativa.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di
+        Sicurezza"],
     ),
 
     ..req(
       id: "sicurezza_autenticazione_accessi",
       tipo: S,
       priorita: OBBLIGATORIO,
-      descrizione: [Tutti gli accessi al Sistema devono essere autenticati tramite meccanismi robusti (JWT, OAuth2, mTLS) con ruoli
-      granulari.],
-      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di Sicurezza"],
+      descrizione: [Tutti gli accessi al Sistema devono essere autenticati tramite meccanismi robusti (JWT, OAuth2,
+        mTLS) con ruoli granulari.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di
+        Sicurezza"],
     ),
   )
   = Tracciamento Requisiti
@@ -2030,8 +2088,18 @@
     [UCS21], [#ref-req("err_sintattico_config_gateway")], [Obbligatorio],
     [UCS22], [#ref-req("err_config_frequenza_fuori_range")], [Obbligatorio],
     [Capitolato],
-    [#ref-req("qualita_documentazione") \ #ref-req("qualita_test_integrazione_sensore_gateway") \ #ref-req("qualita_test_sincronizzazione_cloud") \ #ref-req("qualita_test_sicurezza") \ #ref-req("qualita_test_scalabilita_carico") \ #ref-req("qualita_test_multi_tenant") \ #ref-req("qualita_test_unita_coverage") \ #ref-req("vincolo_git") \ #ref-req("vincolo_architettura_tre_livelli") \ #ref-req("vincolo_angular") \ #ref-req("vincolo_go_nestjs") \ #ref-req("vincolo_nats") \ #ref-req("vincolo_docker") \ #ref-req("sicurezza_cifratura_dati") \
-      #ref-req("sicurezza_segregazione_tenant") \ #ref-req("sicurezza_log_attivita") \ #ref-req("sicurezza_autenticazione_accessi")],
+    [#ref-req("qualita_documentazione") \ #ref-req("qualita_test_integrazione_sensore_gateway") \ #ref-req(
+        "qualita_test_sincronizzazione_cloud",
+      ) \ #ref-req("qualita_test_sicurezza") \ #ref-req("qualita_test_scalabilita_carico") \ #ref-req(
+        "qualita_test_multi_tenant",
+      ) \ #ref-req("qualita_test_unita_coverage") \ #ref-req("vincolo_git") \ #ref-req(
+        "vincolo_architettura_tre_livelli",
+      ) \ #ref-req("vincolo_angular") \ #ref-req("vincolo_go_nestjs") \ #ref-req("vincolo_nats") \ #ref-req(
+        "vincolo_docker",
+      ) \ #ref-req("sicurezza_cifratura_dati") \
+      #ref-req("sicurezza_segregazione_tenant") \ #ref-req("sicurezza_log_attivita") \ #ref-req(
+        "sicurezza_autenticazione_accessi",
+      )],
     [Obbligatorio],
 
     [Capitolato], [#ref-req("sicurezza_mfa") \ #ref-req("sicurezza_protezione_attacchi")], [Desiderabile],
@@ -2097,7 +2165,10 @@
     [#ref-req("visualizzazione_costi_storage")], [Obbligatorio], [UC49.1],
     [#ref-req("visualizzazione_costi_banda")], [Obbligatorio], [UC49.2],
     [#ref-req("visualizzazione_lista_utenti_tenant")], [Obbligatorio], [UC50],
-    [#ref-req("visualizzazione_singolo_utente_tenant")], [Obbligatorio], [UC50.1 \ UC50.1.1 \ UC50.1.2 \ UC50.1.3 \ UC51],
+    [#ref-req("visualizzazione_singolo_utente_tenant")],
+    [Obbligatorio],
+    [UC50.1 \ UC50.1.1 \ UC50.1.2 \ UC50.1.3 \ UC51],
+
     [#ref-req("creazione_utente_tenant")], [Obbligatorio], [UC52],
     [#ref-req("inserimento_nome_utente")], [Obbligatorio], [UC52.1],
     [#ref-req("selezione_utente_tenant")], [Obbligatorio], [UC53],
@@ -2162,10 +2233,16 @@
     [#ref-req("visualizzazione_lista_gateway_simulati")], [Obbligatorio], [UCS1],
     [#ref-req("visualizzazione_singolo_gateway_simulato")], [Obbligatorio], [UCS1.1 \ UCS1.1.1],
     [#ref-req("visualizzazione_id_fabbrica_simulazione")], [Obbligatorio], [UCS2],
-    [#ref-req("visualizzazione_configurazione_simulazione_gateway")], [Obbligatorio], [UCS3 \ UCS3.1 \ UCS3.2 \ UCS3.3 \ UCS3.4],
+    [#ref-req("visualizzazione_configurazione_simulazione_gateway")],
+    [Obbligatorio],
+    [UCS3 \ UCS3.1 \ UCS3.2 \ UCS3.3 \ UCS3.4],
+
     [#ref-req("visualizzazione_lista_sensori_gateway_simulato")], [Obbligatorio], [UCS4],
     [#ref-req("visualizzazione_singolo_sensore_simulato")], [Obbligatorio], [UCS4.1],
-    [#ref-req("visualizzazione_configurazione_simulazione_sensore")], [Obbligatorio], [UCS5 \ UCS5.1 \ UCS5.2 \ UCS6 \ UCS7],
+    [#ref-req("visualizzazione_configurazione_simulazione_sensore")],
+    [Obbligatorio],
+    [UCS5 \ UCS5.1 \ UCS5.2 \ UCS6 \ UCS7],
+
     [#ref-req("eliminazione_gateway_simulato")], [Obbligatorio], [UCS8],
     [#ref-req("eliminazione_sensore_simulato")], [Obbligatorio], [UCS9],
     [#ref-req("creazione_deploy_gateway_simulato")], [Obbligatorio], [UCS10],

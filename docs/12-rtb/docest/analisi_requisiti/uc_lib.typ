@@ -30,7 +30,7 @@
   let lbl = label("UC:" + uc-id)
   let results = query(lbl)
   if results.len() == 0 {
-    text(fill: red)[UC:#{uc-id} (not found)]
+    text(fill: red)[UC:#{ uc-id } (not found)]
   } else {
     let title = results.first().body
     text(fill: blue)[#ref(lbl, supplement: "")] + " " + link(lbl)[#title]
@@ -86,6 +86,7 @@
  * 3 -> UCx.y.z  (Nipote)
  *
  * - gen-parent: (string) [Opzionale] L'ID del padre dello use case nella gerarchia di generalizzazioni
+ * - specialized-by: (string | array) [Opzionale] ID dei casi d'uso figli nella gerarchia di generalizzazioni
  * - prim-actors: (string | array) Uno o più attori primari (Usa costanti CA/SA).
  * - sec-actors: (string | array) [Opzionale] Uno o più attori secondari.
  * - preconds: (string | array) Lista delle precondizioni. Verranno renderizzate come elenco puntato.
@@ -114,6 +115,7 @@
   level: 1,
   title: "Untitled",
   gen-parent: none,
+  specialized-by: (),
   prim-actors: (),
   sec-actors: (),
   preconds: (),
@@ -253,6 +255,19 @@
             [*Estensioni*],
             [
               #list(..extensions)
+            ],
+          )
+        },
+
+        ..if specialized-by != () and specialized-by != none {
+          (
+            [*Specializzato da*],
+            [
+              #if type(specialized-by) == array {
+                specialized-by.map(tag-uc).join([, ])
+              } else {
+                tag-uc(specialized-by)
+              }
             ],
           )
         },

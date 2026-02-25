@@ -16,6 +16,11 @@
   main-scen: (
     (descr: "Viene visualizzato lo stato del Gateway (sospeso, online, offline)"),
   ),
+  specialized-by: (
+    "visualizzazione_gateway_online",
+    "visualizzazione_gateway_offline",
+    "visualizzazione_gateway_sospeso",
+  ),
 
   uml-descr: "Diagramma Visualizzazione stato Gateway",
 )
