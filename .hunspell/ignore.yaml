@@ -76,9 +76,12 @@ accepted_words:
   - Vardanega
 
   # --- Tecnologie e Formati ---
+  - AES
+  - csv
   - Gin
   - GO
   - gRPC
+  - json
   - JSON
   - LaTeX
   - MQTT
@@ -192,6 +195,7 @@ accepted_words:
   - testbook
 
   # --- Terminologia Standard Progetto ---
+  - REQ
   - docest
   - docint
   - verbest

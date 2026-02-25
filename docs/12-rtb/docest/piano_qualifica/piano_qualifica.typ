@@ -968,6 +968,7 @@
       protocollo TLS.],
     [R-1-S],
     [NI],
+
     [T-I-11], [Verificare l’isolamento dei dati tra Tenant tramite API e persistenza su database], [R-2-S], [NI],
   )
 
@@ -1039,15 +1040,9 @@
     [R-14-F, R-15-F, R-16-F, R-17-F],
     [NI],
 
-    [T-S-012],
-    [Verificare che un utente autenticato possa modificare la password del proprio account.],
-    [R-18-F],
-    [NI],
+    [T-S-012], [Verificare che un utente autenticato possa modificare la password del proprio account.], [R-18-F], [NI],
 
-    [T-S-013],
-    [Verificare che un utente autenticato possa effettuare il logout dal Sistema.],
-    [R-19-F],
-    [NI],
+    [T-S-013], [Verificare che un utente autenticato possa effettuare il logout dal Sistema.], [R-19-F], [NI],
 
     //Gateway e Sensori
     [T-S-014],
@@ -1155,7 +1150,7 @@
       log di Audit del Tenant.],
     [R-73-F, R-74-F, R-75-F, R-76-F, R-77-F],
     [NI],
-    
+
     [T-S-038],
     [Verificare che il Tenant Admin e l’Amministratore di Sistema possano configurare le impostazioni di
       impersonificazione del Tenant.],
@@ -1186,8 +1181,8 @@
     [NI],
 
     [T-S-044],
-    [Verificare che l’Amministratore di Sistema possa creare, sospendere, riattivare, modificare ed eliminare un
-      Tenant, con corretta gestione di errori interni durante la creazione.],
+    [Verificare che l’Amministratore di Sistema possa creare, sospendere, riattivare, modificare ed eliminare un Tenant,
+      con corretta gestione di errori interni durante la creazione.],
     [R-98-F, R-99-F, R-100-F, R-101-F, R-102-F, R-103-F, R-104-F, R-105-F, R-106-F],
     [NI],
 
@@ -1214,8 +1209,8 @@
     [NI],
 
     [T-S-049],
-    [Verificare che un Client API autenticato possa recuperare dati storici on-demand e ricevere notifiche di errore
-      per token, ID Gateway, ID sensore o intervallo temporale non validi.],
+    [Verificare che un Client API autenticato possa recuperare dati storici on-demand e ricevere notifiche di errore per
+      token, ID Gateway, ID sensore o intervallo temporale non validi.],
     [R-85-F, R-86-F, R-87-F, R-88-F, R-89-F],
     [NI],
 
@@ -1225,8 +1220,8 @@
     [NI],
 
     [T-S-051],
-    [Verificare che un Gateway non provisioned possa completare correttamente il processo di onboarding e connettersi
-      al Sistema.],
+    [Verificare che un Gateway non provisioned possa completare correttamente il processo di onboarding e connettersi al
+      Sistema.],
     [R-111-F],
     [NI],
 
@@ -1266,6 +1261,7 @@
       per payload o frequenza non validi.],
     [R-S-22-F, R-S-23-F, R-S-24-F],
     [NI],
+
     [T-S-058], [Verificare la corretta trasmissione del flusso di dati tra sensore e relativo gateway], [R-113-F], [NI],
   )
 

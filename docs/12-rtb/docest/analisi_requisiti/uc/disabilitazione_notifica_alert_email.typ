@@ -15,6 +15,6 @@
   ),
   trigger: "L’Attore sceglie di disattivare la ricezione di alert via email",
   main-scen: (
-    (descr: "L’Attore imposta la preferenza su 'Disattivo' (OFF)"),
+    (descr: "L’Attore imposta la preferenza su Disattivo (OFF)"),
   ),
 )

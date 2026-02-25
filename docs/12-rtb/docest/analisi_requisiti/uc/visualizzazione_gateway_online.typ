@@ -12,11 +12,11 @@
     "Il Gateway è attualmente connesso e operativo",
   ),
   postconds: (
-    "L'Attore visualizza l'indicatore di stato 'Online'",
+    "L'Attore visualizza l'indicatore di stato Online",
   ),
   trigger: "Necessità di verificare lo stato del dispositivo",
   main-scen: (
-    (descr: "Il Sistema mostra visivamente che il Gateway è in stato 'Online'"),
+    (descr: "Il Sistema mostra visivamente che il Gateway è in stato Online"),
   ),
   uml-descr: none,
 )

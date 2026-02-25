@@ -278,10 +278,10 @@
               } else {
                 tag-uc(specialized-by)
               }
-               
-            ],  
-          )  
-        }
+
+            ],
+          )
+        },
       )
     }
   ]

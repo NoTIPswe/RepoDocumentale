@@ -12,11 +12,11 @@
     "Il Gateway è stato precedentemente disabilitato o sospeso tramite il Sistema",
   ),
   postconds: (
-    "L'Attore visualizza l'indicatore di stato 'Sospeso'",
+    "L'Attore visualizza l'indicatore di stato Sospeso",
   ),
   trigger: "Necessità di verificare lo stato del dispositivo",
   main-scen: (
-    (descr: "Il Sistema mostra visivamente che il Gateway è in stato 'Sospeso'"),
+    (descr: "Il Sistema mostra visivamente che il Gateway è in stato Sospeso"),
   ),
   uml-descr: none,
 )

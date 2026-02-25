@@ -12,11 +12,11 @@
     "Il Gateway è attualmente disconnesso, spento o irraggiungibile dalla rete",
   ),
   postconds: (
-    "L'Attore visualizza l'indicatore di stato 'Offline'",
+    "L'Attore visualizza l'indicatore di stato Offline",
   ),
   trigger: "Necessità di verificare lo stato del dispositivo",
   main-scen: (
-    (descr: "Il Sistema mostra visivamente che il Gateway è in stato 'Offline'"),
+    (descr: "Il Sistema mostra visivamente che il Gateway è in stato Offline"),
   ),
   uml-descr: none,
 )

@@ -1782,6 +1782,63 @@
       fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Requisiti non
         Funzionali"],
     ),
+
+    ..req(
+      id: "qualita_test_integrazione_sensore_gateway",
+      tipo: Q,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario eseguire test di integrazione che verifichino la corretta comunicazione tra i sensori
+        BLE simulati e il Gateway, assicurando che i dati vengano trasmessi e ricevuti senza perdita o corruzione.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7]],
+    ),
+
+    ..req(
+      id: "qualita_test_sincronizzazione_cloud",
+      tipo: Q,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario eseguire test che verifichino la corretta sincronizzazione dei dati tra Gateway e
+        piattaforma Cloud, garantendo che tutti i dati inviati dal Gateway vengano ricevuti e persistiti
+        correttamente.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7]],
+    ),
+
+    ..req(
+      id: "qualita_test_sicurezza",
+      tipo: Q,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario eseguire test di sicurezza che verifichino la robustezza del sistema rispetto ad
+        accessi non autorizzati, garantendo la corretta applicazione dei meccanismi di autenticazione e
+        autorizzazione.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7]],
+    ),
+
+    ..req(
+      id: "qualita_test_scalabilita_carico",
+      tipo: Q,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario eseguire test di carico che verifichino la scalabilità del sistema al crescere del
+        numero di Gateway, sensori e dati gestiti, assicurando che le prestazioni rimangano accettabili sotto carico
+        elevato.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7]],
+    ),
+
+    ..req(
+      id: "qualita_test_multi_tenant",
+      tipo: Q,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario eseguire test che verifichino il corretto isolamento dei dati tra Tenant distinti,
+        assicurando che nessun Tenant possa accedere ai dati o alle risorse di un altro Tenant.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7]],
+    ),
+
+    ..req(
+      id: "qualita_test_unita_coverage",
+      tipo: Q,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario che la copertura dei test unitari raggiunga almeno l'80% del codice prodotto, con
+        copertura quanto più vicina al 100% nelle sezioni critiche del sistema.],
+      fonti: [Interno],
+    ),
   )
   == Requisiti di Vincolo
   #table(
@@ -1836,7 +1893,8 @@
       id: "vincolo_browser",
       tipo: V,
       priorita: OBBLIGATORIO,
-      descrizione: [Le componenti web del sistema devono essere compatibili con le versioni di Chrome 120+, Safari 17+ e Firefox 120+.],
+      descrizione: [Le componenti web del sistema devono essere compatibili con le versioni di Chrome 120+, Safari 17+ e
+        Firefox 120+.],
       fonti: [Interno],
     ),
   )
@@ -1941,14 +1999,26 @@
     [#tag-uc-num("visualizzazione_gateway_offline")], [#ref-req("visualizzazione_singolo_gateway")], [Obbligatorio],
     [#tag-uc-num("visualizzazione_gateway_sospeso")], [#ref-req("visualizzazione_singolo_gateway")], [Obbligatorio],
     [#tag-uc-num("visualizzazione_dettagli_gateway")], [#ref-req("visualizzazione_dettagli_gateway")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_timestamp_ultimo_invio_dati_gateway")], [#ref-req("visualizzazione_dettagli_gateway")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_timestamp_ultimo_invio_dati_gateway")],
+    [#ref-req("visualizzazione_dettagli_gateway")],
+    [Obbligatorio],
+
     [#tag-uc-num("visualizzazione_lista_sensori")], [#ref-req("visualizzazione_dettagli_gateway")], [Obbligatorio],
     [#tag-uc-num("visualizzazione_singolo_sensore")], [#ref-req("visualizzazione_singolo_sensore")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_timestamp_ultimo_invio_dati_sensore")], [#ref-req("visualizzazione_singolo_sensore")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_timestamp_ultimo_invio_dati_sensore")],
+    [#ref-req("visualizzazione_singolo_sensore")],
+    [Obbligatorio],
+
     [#tag-uc-num("visualizzazione_id_sensore")], [#ref-req("visualizzazione_singolo_sensore")], [Obbligatorio],
     [#tag-uc-num("visualizzazione_dati_stream")], [#ref-req("visualizzazione_dati_stream")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_tabellare_dati_stream")], [#ref-req("visualizzazione_tabellare_dati_stream")], [Desiderabile],
-    [#tag-uc-num("visualizzazione_grafico_dati_stream")], [#ref-req("visualizzazione_grafico_dati_stream")], [Desiderabile],
+    [#tag-uc-num("visualizzazione_tabellare_dati_stream")],
+    [#ref-req("visualizzazione_tabellare_dati_stream")],
+    [Desiderabile],
+
+    [#tag-uc-num("visualizzazione_grafico_dati_stream")],
+    [#ref-req("visualizzazione_grafico_dati_stream")],
+    [Desiderabile],
+
     [#tag-uc-num("filtraggio_dati")], [#ref-req("filtraggio_gateway")], [Obbligatorio],
     [#tag-uc-num("filtraggio_gateway")], [#ref-req("filtraggio_gateway")], [Obbligatorio],
     [#tag-uc-num("filtraggio_singolo_gateway")], [#ref-req("filtraggio_gateway")], [Obbligatorio],
@@ -1968,16 +2038,46 @@
     [#tag-uc-num("visualizzazione_singolo_alert")], [#ref-req("visualizzazione_singolo_alert")], [Obbligatorio],
     [#tag-uc-num("visualizzazione_tipo_alert")], [#ref-req("visualizzazione_singolo_alert")], [Obbligatorio],
     [#tag-uc-num("visualizzazione_hardware_interessato")], [#ref-req("visualizzazione_singolo_alert")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_timestamp_emissione_alert")], [#ref-req("visualizzazione_singolo_alert")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_dettagli_singolo_alert")], [#ref-req("visualizzazione_dettagli_singolo_alert")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_dettagli_alert_gateway_irraggiungibile")], [#ref-req("visualizzazione_dettagli_alert_gateway_irraggiungibile")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_dettagli_alert_sensore_fuori_range")], [#ref-req("visualizzazione_dettagli_alert_sensore_fuori_range")], [Obbligatorio],
-    [#tag-uc-num("modifica_impostazioni_notifica_alert_email")], [#ref-req("modifica_impostazioni_notifica_alert_email")], [Desiderabile],
-    [#tag-uc-num("abilitazione_notifica_alert_email")], [#ref-req("modifica_impostazioni_notifica_alert_email")], [Desiderabile],
-    [#tag-uc-num("disabilitazione_notifica_alert_email")], [#ref-req("modifica_impostazioni_notifica_alert_email")], [Desiderabile],
-    [#tag-uc-num("modifica_impostazioni_notifica_alert_dashboard")], [#ref-req("modifica_impostazioni_notifica_alert_dashboard")], [Desiderabile],
-    [#tag-uc-num("abilitazione_notifica_alert_dashboard")], [#ref-req("modifica_impostazioni_notifica_alert_dashboard")], [Desiderabile],
-    [#tag-uc-num("disabilitazione_notifica_alert_dashboard")], [#ref-req("modifica_impostazioni_notifica_alert_dashboard")], [Desiderabile],
+    [#tag-uc-num("visualizzazione_timestamp_emissione_alert")],
+    [#ref-req("visualizzazione_singolo_alert")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_dettagli_singolo_alert")],
+    [#ref-req("visualizzazione_dettagli_singolo_alert")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_dettagli_alert_gateway_irraggiungibile")],
+    [#ref-req("visualizzazione_dettagli_alert_gateway_irraggiungibile")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_dettagli_alert_sensore_fuori_range")],
+    [#ref-req("visualizzazione_dettagli_alert_sensore_fuori_range")],
+    [Obbligatorio],
+
+    [#tag-uc-num("modifica_impostazioni_notifica_alert_email")],
+    [#ref-req("modifica_impostazioni_notifica_alert_email")],
+    [Desiderabile],
+
+    [#tag-uc-num("abilitazione_notifica_alert_email")],
+    [#ref-req("modifica_impostazioni_notifica_alert_email")],
+    [Desiderabile],
+
+    [#tag-uc-num("disabilitazione_notifica_alert_email")],
+    [#ref-req("modifica_impostazioni_notifica_alert_email")],
+    [Desiderabile],
+
+    [#tag-uc-num("modifica_impostazioni_notifica_alert_dashboard")],
+    [#ref-req("modifica_impostazioni_notifica_alert_dashboard")],
+    [Desiderabile],
+
+    [#tag-uc-num("abilitazione_notifica_alert_dashboard")],
+    [#ref-req("modifica_impostazioni_notifica_alert_dashboard")],
+    [Desiderabile],
+
+    [#tag-uc-num("disabilitazione_notifica_alert_dashboard")],
+    [#ref-req("modifica_impostazioni_notifica_alert_dashboard")],
+    [Desiderabile],
+
     [#tag-uc-num("modifica_nome_gateway")], [#ref-req("modifica_nome_gateway")], [Desiderabile],
     [#tag-uc-num("err_nome_gateway_duplicato")], [#ref-req("err_nome_gateway_duplicato")], [Obbligatorio],
     [#tag-uc-num("modifica_stato_gateway")], [#ref-req("modifica_stato_gateway")], [Obbligatorio],
@@ -1986,17 +2086,29 @@
     [#tag-uc-num("selezione_specifico_sensore")], [#ref-req("selezione_specifico_sensore")], [Obbligatorio],
     [#tag-uc-num("selezione_range_numerico")], [#ref-req("selezione_range_numerico")], [Obbligatorio],
     [#tag-uc-num("inserimento_valore_numerico")], [#ref-req("inserimento_valore_numerico")], [Obbligatorio],
-    [#tag-uc-num("modifica_range_default_tipo_sensore")], [#ref-req("modifica_range_default_tipo_sensore")], [Obbligatorio],
+    [#tag-uc-num("modifica_range_default_tipo_sensore")],
+    [#ref-req("modifica_range_default_tipo_sensore")],
+    [Obbligatorio],
+
     [#tag-uc-num("selezione_tipo_sensore")], [#ref-req("selezione_tipo_sensore")], [Obbligatorio],
     [#tag-uc-num("modifica_intervallo_alert_gateway")], [#ref-req("modifica_intervallo_alert_gateway")], [Obbligatorio],
     [#tag-uc-num("visualizzazione_costi_stimati")], [#ref-req("visualizzazione_costi_stimati")], [Obbligatorio],
     [#tag-uc-num("visualizzazione_costi_storage")], [#ref-req("visualizzazione_costi_storage")], [Obbligatorio],
     [#tag-uc-num("visualizzazione_costi_banda")], [#ref-req("visualizzazione_costi_banda")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_lista_utenti_tenant")], [#ref-req("visualizzazione_lista_utenti_tenant")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_singolo_utente_tenant")], [#ref-req("visualizzazione_singolo_utente_tenant")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_lista_utenti_tenant")],
+    [#ref-req("visualizzazione_lista_utenti_tenant")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_singolo_utente_tenant")],
+    [#ref-req("visualizzazione_singolo_utente_tenant")],
+    [Obbligatorio],
+
     [#tag-uc-num("visualizzazione_ruolo_utente")], [#ref-req("visualizzazione_singolo_utente_tenant")], [Obbligatorio],
     [#tag-uc-num("visualizzazione_nome_utente")], [#ref-req("visualizzazione_singolo_utente_tenant")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_ultimo_accesso_utente")], [#ref-req("visualizzazione_singolo_utente_tenant")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_ultimo_accesso_utente")],
+    [#ref-req("visualizzazione_singolo_utente_tenant")],
+    [Obbligatorio],
+
     [#tag-uc-num("visualizzazione_mail_utente")], [#ref-req("visualizzazione_singolo_utente_tenant")], [Obbligatorio],
     [#tag-uc-num("creazione_utente_tenant")], [#ref-req("creazione_utente_tenant")], [Obbligatorio],
     [#tag-uc-num("inserimento_nome_utente")], [#ref-req("inserimento_nome_utente")], [Obbligatorio],
@@ -2020,13 +2132,22 @@
     [#tag-uc-num("modifica_impostazioni_2fa")], [#ref-req("modifica_impostazioni_2fa")], [Obbligatorio],
     [#tag-uc-num("visualizzazione_log_audit_tenant")], [#ref-req("visualizzazione_log_audit_tenant")], [Obbligatorio],
     [#tag-uc-num("visualizzazione_singolo_log_audit")], [#ref-req("visualizzazione_singolo_log_audit")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_timestamp_log_entry")], [#ref-req("visualizzazione_singolo_log_audit")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_timestamp_log_entry")],
+    [#ref-req("visualizzazione_singolo_log_audit")],
+    [Obbligatorio],
+
     [#tag-uc-num("visualizzazione_utente_log_entry")], [#ref-req("visualizzazione_singolo_log_audit")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_operazione_log_entry")], [#ref-req("visualizzazione_singolo_log_audit")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_operazione_log_entry")],
+    [#ref-req("visualizzazione_singolo_log_audit")],
+    [Obbligatorio],
+
     [#tag-uc-num("esportazione_log_audit_tenant")], [#ref-req("esportazione_log_audit_tenant")], [Obbligatorio],
     [#tag-uc-num("selezione_intervallo_temporale")], [#ref-req("selezione_intervallo_temporale")], [Obbligatorio],
     [#tag-uc-num("download_log_audit_esportati")], [#ref-req("download_log_audit_esportati")], [Obbligatorio],
-    [#tag-uc-num("modifica_impostazioni_impersonificazione")], [#ref-req("modifica_impostazioni_impersonificazione")], [Obbligatorio],
+    [#tag-uc-num("modifica_impostazioni_impersonificazione")],
+    [#ref-req("modifica_impostazioni_impersonificazione")],
+    [Obbligatorio],
+
     [#tag-uc-num("aggiornamento_firmware_gateway")], [#ref-req("aggiornamento_firmware_gateway")], [Obbligatorio],
     [#tag-uc-num("selezione_firmware")], [#ref-req("aggiornamento_firmware_gateway")], [Obbligatorio],
     [#tag-uc-num("selezione_gateway")], [#ref-req("selezione_gateway")], [Obbligatorio],
@@ -2048,8 +2169,14 @@
     [#tag-uc-num("vis_stato_attivo")], [#ref-req("visualizzazione_stato_tenant")], [Obbligatorio],
     [#tag-uc-num("vis_stato_sospeso")], [#ref-req("visualizzazione_stato_tenant")], [Obbligatorio],
     [#tag-uc-num("visualizzazione_id_tenant")], [#ref-req("visualizzazione_id_tenant")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_intervallo_sospensione_tenant")], [#ref-req("visualizzazione_intervallo_sospensione_tenant")], [Obbligatorio],
-    [#tag-uc-num("modifica_intervallo_sospensione_tenant")], [#ref-req("modifica_intervallo_sospensione_tenant")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_intervallo_sospensione_tenant")],
+    [#ref-req("visualizzazione_intervallo_sospensione_tenant")],
+    [Obbligatorio],
+
+    [#tag-uc-num("modifica_intervallo_sospensione_tenant")],
+    [#ref-req("modifica_intervallo_sospensione_tenant")],
+    [Obbligatorio],
+
     [#tag-uc-num("modifica_nome_tenant")], [#ref-req("modifica_nome_tenant")], [Obbligatorio],
     [#tag-uc-num("creazione_tenant")], [#ref-req("creazione_tenant")], [Obbligatorio],
     [#tag-uc-num("inserimento_anagrafica_tenant")], [#ref-req("inserimento_anagrafica_tenant")], [Obbligatorio],
@@ -2060,9 +2187,18 @@
     [#tag-uc-num("eliminazione_tenant")], [#ref-req("eliminazione_tenant")], [Obbligatorio],
     [#tag-uc-num("conferma_eliminazione_tenant")], [#ref-req("eliminazione_tenant")], [Obbligatorio],
     [#tag-uc-num("impersonificazione_utente_tenant")], [#ref-req("impersonificazione_utente_tenant")], [Obbligatorio],
-    [#tag-uc-num("registrazione_associazione_gateway")], [#ref-req("registrazione_associazione_gateway")], [Obbligatorio],
-    [#tag-uc-num("inserimento_credenziali_fabbrica_gateway")], [#ref-req("registrazione_associazione_gateway")], [Obbligatorio],
-    [#tag-uc-num("creazione_utente_amministratore_tenant")], [#ref-req("creazione_utente_amministratore_tenant")], [Obbligatorio],
+    [#tag-uc-num("registrazione_associazione_gateway")],
+    [#ref-req("registrazione_associazione_gateway")],
+    [Obbligatorio],
+
+    [#tag-uc-num("inserimento_credenziali_fabbrica_gateway")],
+    [#ref-req("registrazione_associazione_gateway")],
+    [Obbligatorio],
+
+    [#tag-uc-num("creazione_utente_amministratore_tenant")],
+    [#ref-req("creazione_utente_amministratore_tenant")],
+    [Obbligatorio],
+
     [#tag-uc-num("monitoraggio_performance_sistema")], [#ref-req("monitoraggio_performance_sistema")], [Obbligatorio],
     [#tag-uc-num("monitoraggio_latenza")], [#ref-req("monitoraggio_performance_sistema")], [Obbligatorio],
     [#tag-uc-num("monitoraggio_volumi_traffico")], [#ref-req("monitoraggio_performance_sistema")], [Obbligatorio],
@@ -2074,42 +2210,117 @@
     [#tag-uc-num("err_autenticazione_gateway")], [#ref-req("err_autenticazione_gateway")], [Obbligatorio],
     [#tag-uc-num("err_range_invalido")], [#ref-req("err_range_invalido")], [Obbligatorio],
     [#tag-uc-num("ins_mail")], [#ref-req("ins_mail")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_lista_gateway_simulati")], [#ref-req("visualizzazione_lista_gateway_simulati")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_singolo_gateway_simulato")], [#ref-req("visualizzazione_singolo_gateway_simulato")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_data_creazione_simulazione")], [#ref-req("visualizzazione_singolo_gateway_simulato")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_id_fabbrica_simulazione")], [#ref-req("visualizzazione_id_fabbrica_simulazione")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_configurazione_simulazione_gateway")], [#ref-req("visualizzazione_configurazione_simulazione_gateway")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_chiave_fabbrica_simulazione")], [#ref-req("visualizzazione_configurazione_simulazione_gateway")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_serial_number_gateway_simulato")], [#ref-req("visualizzazione_configurazione_simulazione_gateway")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_software_gateway_simulato")], [#ref-req("visualizzazione_configurazione_simulazione_gateway")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_modello_gateway_simulato")], [#ref-req("visualizzazione_configurazione_simulazione_gateway")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_lista_sensori_gateway_simulato")], [#ref-req("visualizzazione_lista_sensori_gateway_simulato")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_singolo_sensore_simulato")], [#ref-req("visualizzazione_singolo_sensore_simulato")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_configurazione_simulazione_sensore")], [#ref-req("visualizzazione_configurazione_simulazione_sensore")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_range_generazione_dati")], [#ref-req("visualizzazione_configurazione_simulazione_sensore")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_algoritmo_generazione_dati")], [#ref-req("visualizzazione_configurazione_simulazione_sensore")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_identificativo_sensore")], [#ref-req("visualizzazione_configurazione_simulazione_sensore")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_tipo_sensore_simulato")], [#ref-req("visualizzazione_configurazione_simulazione_sensore")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_lista_gateway_simulati")],
+    [#ref-req("visualizzazione_lista_gateway_simulati")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_singolo_gateway_simulato")],
+    [#ref-req("visualizzazione_singolo_gateway_simulato")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_data_creazione_simulazione")],
+    [#ref-req("visualizzazione_singolo_gateway_simulato")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_id_fabbrica_simulazione")],
+    [#ref-req("visualizzazione_id_fabbrica_simulazione")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_configurazione_simulazione_gateway")],
+    [#ref-req("visualizzazione_configurazione_simulazione_gateway")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_chiave_fabbrica_simulazione")],
+    [#ref-req("visualizzazione_configurazione_simulazione_gateway")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_serial_number_gateway_simulato")],
+    [#ref-req("visualizzazione_configurazione_simulazione_gateway")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_software_gateway_simulato")],
+    [#ref-req("visualizzazione_configurazione_simulazione_gateway")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_modello_gateway_simulato")],
+    [#ref-req("visualizzazione_configurazione_simulazione_gateway")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_lista_sensori_gateway_simulato")],
+    [#ref-req("visualizzazione_lista_sensori_gateway_simulato")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_singolo_sensore_simulato")],
+    [#ref-req("visualizzazione_singolo_sensore_simulato")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_configurazione_simulazione_sensore")],
+    [#ref-req("visualizzazione_configurazione_simulazione_sensore")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_range_generazione_dati")],
+    [#ref-req("visualizzazione_configurazione_simulazione_sensore")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_algoritmo_generazione_dati")],
+    [#ref-req("visualizzazione_configurazione_simulazione_sensore")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_identificativo_sensore")],
+    [#ref-req("visualizzazione_configurazione_simulazione_sensore")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_tipo_sensore_simulato")],
+    [#ref-req("visualizzazione_configurazione_simulazione_sensore")],
+    [Obbligatorio],
+
     [#tag-uc-num("eliminazione_gateway_simulato")], [#ref-req("eliminazione_gateway_simulato")], [Obbligatorio],
     [#tag-uc-num("eliminazione_sensore_simulato")], [#ref-req("eliminazione_sensore_simulato")], [Obbligatorio],
     [#tag-uc-num("creazione_deploy_gateway_simulato")], [#ref-req("creazione_deploy_gateway_simulato")], [Obbligatorio],
-    [#tag-uc-num("inserimento_dati_config_sim_gateway")], [#ref-req("inserimento_dati_config_sim_gateway")], [Obbligatorio],
+    [#tag-uc-num("inserimento_dati_config_sim_gateway")],
+    [#ref-req("inserimento_dati_config_sim_gateway")],
+    [Obbligatorio],
+
     [#tag-uc-num("sel_sn_gateway")], [#ref-req("inserimento_dati_config_sim_gateway")], [Obbligatorio],
     [#tag-uc-num("sel_modello_gateway")], [#ref-req("inserimento_dati_config_sim_gateway")], [Obbligatorio],
     [#tag-uc-num("sel_versione_sw_gateway")], [#ref-req("inserimento_dati_config_sim_gateway")], [Obbligatorio],
     [#tag-uc-num("err_deploy_gateway_simulato")], [#ref-req("err_deploy_gateway_simulato")], [Obbligatorio],
-    [#tag-uc-num("creazione_sensore_gateway_simulato")], [#ref-req("creazione_sensore_gateway_simulato")], [Obbligatorio],
-    [#tag-uc-num("inserimento_dati_config_sim_sensore")], [#ref-req("inserimento_dati_config_sim_sensore")], [Obbligatorio],
-    [#tag-uc-num("inserimento_range_generazione_dati")], [#ref-req("inserimento_dati_config_sim_sensore")], [Obbligatorio],
+    [#tag-uc-num("creazione_sensore_gateway_simulato")],
+    [#ref-req("creazione_sensore_gateway_simulato")],
+    [Obbligatorio],
+
+    [#tag-uc-num("inserimento_dati_config_sim_sensore")],
+    [#ref-req("inserimento_dati_config_sim_sensore")],
+    [Obbligatorio],
+
+    [#tag-uc-num("inserimento_range_generazione_dati")],
+    [#ref-req("inserimento_dati_config_sim_sensore")],
+    [Obbligatorio],
+
     [#tag-uc-num("err_range_invalido_simulazione")], [#ref-req("err_range_invalido_simulazione")], [Obbligatorio],
     [#tag-uc-num("err_creazione_sensore_simulato")], [#ref-req("err_creazione_sensore_simulato")], [Obbligatorio],
-    [#tag-uc-num("creazione_gateway_multipli_default")], [#ref-req("creazione_gateway_multipli_default")], [Obbligatorio],
+    [#tag-uc-num("creazione_gateway_multipli_default")],
+    [#ref-req("creazione_gateway_multipli_default")],
+    [Obbligatorio],
+
     [#tag-uc-num("err_valore_numerico_invalido")], [#ref-req("err_valore_numerico_invalido")], [Obbligatorio],
     [#tag-uc-num("comando_anomalia_degrado_rete")], [#ref-req("comando_anomalia_degrado_rete")], [Obbligatorio],
-    [#tag-uc-num("comando_anomalia_disconnessione_temporanea")], [#ref-req("comando_anomalia_disconnessione_temporanea")], [Obbligatorio],
-    [#tag-uc-num("comando_anomalia_outliers_misurazioni")], [#ref-req("comando_anomalia_outliers_misurazioni")], [Obbligatorio],
-    [#tag-uc-num("impostazione_configurazione_gateway")], [#ref-req("impostazione_configurazione_gateway")], [Obbligatorio],
-    [#tag-uc-num("impostazione_frequenza_invio_dati")], [#ref-req("impostazione_configurazione_gateway")], [Obbligatorio],
+    [#tag-uc-num("comando_anomalia_disconnessione_temporanea")],
+    [#ref-req("comando_anomalia_disconnessione_temporanea")],
+    [Obbligatorio],
+
+    [#tag-uc-num("comando_anomalia_outliers_misurazioni")],
+    [#ref-req("comando_anomalia_outliers_misurazioni")],
+    [Obbligatorio],
+
+    [#tag-uc-num("impostazione_configurazione_gateway")],
+    [#ref-req("impostazione_configurazione_gateway")],
+    [Obbligatorio],
+
+    [#tag-uc-num("impostazione_frequenza_invio_dati")],
+    [#ref-req("impostazione_configurazione_gateway")],
+    [Obbligatorio],
+
     [#tag-uc-num("impostazione_stato_sospensione")], [#ref-req("impostazione_configurazione_gateway")], [Obbligatorio],
     [#tag-uc-num("err_sintattico_config_gateway")], [#ref-req("err_sintattico_config_gateway")], [Obbligatorio],
     [#tag-uc-num("err_config_frequenza_fuori_range")], [#ref-req("err_config_frequenza_fuori_range")], [Obbligatorio],
@@ -2146,11 +2357,19 @@
     [#ref-req("recupero_password")], [Obbligatorio], [#tag-uc-num("recupero_password")],
     [#ref-req("cambio_password_req")], [Obbligatorio], [#tag-uc-num("cambio_password")],
     [#ref-req("err_account_inesistente")], [Obbligatorio], [#tag-uc-num("err_account_inesistente")],
-    [#ref-req("impostazione_password")], [Obbligatorio], [#tag-uc-num("impostazione_password") \ #tag-uc-num("inserimento_nuova_password") \ #tag-uc-num("conferma_nuova_password")],
+    [#ref-req("impostazione_password")],
+    [Obbligatorio],
+    [#tag-uc-num("impostazione_password") \ #tag-uc-num("inserimento_nuova_password") \ #tag-uc-num(
+        "conferma_nuova_password",
+      )],
+
     [#ref-req("err_campi_diversi")], [Obbligatorio], [#tag-uc-num("err_campi_diversi")],
     [#ref-req("err_password_invalida")], [Obbligatorio], [#tag-uc-num("err_password_invalida")],
     [#ref-req("modifica_mail_account")], [Obbligatorio], [#tag-uc-num("modifica_mail_account")],
-    [#ref-req("impostazione_mail")], [Obbligatorio], [#tag-uc-num("impostazione_mail") \ #tag-uc-num("inserimento_nuova_mail") \ #tag-uc-num("conferma_nuova_mail")],
+    [#ref-req("impostazione_mail")],
+    [Obbligatorio],
+    [#tag-uc-num("impostazione_mail") \ #tag-uc-num("inserimento_nuova_mail") \ #tag-uc-num("conferma_nuova_mail")],
+
     [#ref-req("err_mail_non_valida")], [Obbligatorio], [#tag-uc-num("err_mail_non_valida")],
     [#ref-req("err_mail_gia_registrata")], [Obbligatorio], [#tag-uc-num("err_mail_gia_registrata")],
     [#ref-req("modifica_password_account")], [Obbligatorio], [#tag-uc-num("modifica_password_account")],
@@ -2158,47 +2377,82 @@
     [#ref-req("lista_gateway")], [Obbligatorio], [#tag-uc-num("lista_gateway")],
     [#ref-req("visualizzazione_singolo_gateway")],
     [Obbligatorio],
-    [#tag-uc-num("visualizzazione_singolo_gateway") \ #tag-uc-num("visualizzazione_nome_gateway") \ #tag-uc-num("visualizzazione_stato_gateway") \ #tag-uc-num("visualizzazione_gateway_online") \ #tag-uc-num("visualizzazione_gateway_offline") \ #tag-uc-num("visualizzazione_gateway_sospeso")],
+    [#tag-uc-num("visualizzazione_singolo_gateway") \ #tag-uc-num("visualizzazione_nome_gateway") \ #tag-uc-num(
+        "visualizzazione_stato_gateway",
+      ) \ #tag-uc-num("visualizzazione_gateway_online") \ #tag-uc-num("visualizzazione_gateway_offline") \ #tag-uc-num(
+        "visualizzazione_gateway_sospeso",
+      )],
 
     [#ref-req("visualizzazione_dettagli_gateway")],
     [Obbligatorio],
-    [#tag-uc-num("visualizzazione_dettagli_gateway") \ #tag-uc-num("visualizzazione_timestamp_ultimo_invio_dati_gateway") \ #tag-uc-num("visualizzazione_lista_sensori")],
+    [#tag-uc-num("visualizzazione_dettagli_gateway") \ #tag-uc-num(
+        "visualizzazione_timestamp_ultimo_invio_dati_gateway",
+      ) \ #tag-uc-num("visualizzazione_lista_sensori")],
 
     [#ref-req("visualizzazione_singolo_sensore")],
     [Obbligatorio],
-    [#tag-uc-num("visualizzazione_singolo_sensore") \ #tag-uc-num("visualizzazione_timestamp_ultimo_invio_dati_sensore") \ #tag-uc-num("visualizzazione_id_sensore")],
+    [#tag-uc-num("visualizzazione_singolo_sensore") \ #tag-uc-num("visualizzazione_timestamp_ultimo_invio_dati_sensore")
+      \ #tag-uc-num("visualizzazione_id_sensore")],
 
     [#ref-req("visualizzazione_dati_stream")], [Obbligatorio], [#tag-uc-num("visualizzazione_dati_stream")],
-    [#ref-req("visualizzazione_tabellare_dati_stream")], [Desiderabile], [#tag-uc-num("visualizzazione_tabellare_dati_stream")],
-    [#ref-req("visualizzazione_grafico_dati_stream")], [Desiderabile], [#tag-uc-num("visualizzazione_grafico_dati_stream")],
+    [#ref-req("visualizzazione_tabellare_dati_stream")],
+    [Desiderabile],
+    [#tag-uc-num("visualizzazione_tabellare_dati_stream")],
+
+    [#ref-req("visualizzazione_grafico_dati_stream")],
+    [Desiderabile],
+    [#tag-uc-num("visualizzazione_grafico_dati_stream")],
+
     [#ref-req("filtraggio_gateway")],
     [Obbligatorio],
     [#tag-uc-num("filtraggio_dati") \ #tag-uc-num("filtraggio_gateway") \ #tag-uc-num("filtraggio_singolo_gateway")],
 
-    [#ref-req("filtraggio_sensore")], [Obbligatorio], [#tag-uc-num("filtraggio_sensore") \ #tag-uc-num("filtraggio_singolo_sensore")],
+    [#ref-req("filtraggio_sensore")],
+    [Obbligatorio],
+    [#tag-uc-num("filtraggio_sensore") \ #tag-uc-num("filtraggio_singolo_sensore")],
+
     [#ref-req("filtraggio_intervallo_temporale")], [Obbligatorio], [#tag-uc-num("filtraggio_intervallo_temporale")],
     [#ref-req("err_dati_non_disponibili")], [Obbligatorio], [#tag-uc-num("err_dati_non_disponibili")],
-    [#ref-req("esportazione_dati")], [Obbligatorio], [#tag-uc-num("esportazione_dati") \ #tag-uc-num("esportazione_dati_csv") \ #tag-uc-num("esportazione_dati_json")],
+    [#ref-req("esportazione_dati")],
+    [Obbligatorio],
+    [#tag-uc-num("esportazione_dati") \ #tag-uc-num("esportazione_dati_csv") \ #tag-uc-num("esportazione_dati_json")],
+
     [#ref-req("alert_gateway_irraggiungibile")], [Obbligatorio], [#tag-uc-num("alert_gateway_irraggiungibile")],
     [#ref-req("alert_sensore_fuori_range")],
     [Obbligatorio],
-    [#tag-uc-num("alert_sensore_fuori_range") \ #tag-uc-num("visualizzazione_valore_dato_registrato") \ #tag-uc-num("visualizzazione_range_accettato") \ #tag-uc-num("visualizzazione_timestamp_dato_irregolare")],
+    [#tag-uc-num("alert_sensore_fuori_range") \ #tag-uc-num("visualizzazione_valore_dato_registrato") \ #tag-uc-num(
+        "visualizzazione_range_accettato",
+      ) \ #tag-uc-num("visualizzazione_timestamp_dato_irregolare")],
 
     [#ref-req("visualizzazione_storico_alert")], [Obbligatorio], [#tag-uc-num("visualizzazione_storico_alert")],
     [#ref-req("visualizzazione_singolo_alert")],
     [Obbligatorio],
-    [#tag-uc-num("visualizzazione_singolo_alert") \ #tag-uc-num("visualizzazione_tipo_alert") \ #tag-uc-num("visualizzazione_hardware_interessato") \ #tag-uc-num("visualizzazione_timestamp_emissione_alert")],
+    [#tag-uc-num("visualizzazione_singolo_alert") \ #tag-uc-num("visualizzazione_tipo_alert") \ #tag-uc-num(
+        "visualizzazione_hardware_interessato",
+      ) \ #tag-uc-num("visualizzazione_timestamp_emissione_alert")],
 
-    [#ref-req("visualizzazione_dettagli_singolo_alert")], [Obbligatorio], [#tag-uc-num("visualizzazione_dettagli_singolo_alert")],
-    [#ref-req("visualizzazione_dettagli_alert_gateway_irraggiungibile")], [Obbligatorio], [#tag-uc-num("visualizzazione_dettagli_alert_gateway_irraggiungibile")],
-    [#ref-req("visualizzazione_dettagli_alert_sensore_fuori_range")], [Obbligatorio], [#tag-uc-num("visualizzazione_dettagli_alert_sensore_fuori_range")],
+    [#ref-req("visualizzazione_dettagli_singolo_alert")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_dettagli_singolo_alert")],
+
+    [#ref-req("visualizzazione_dettagli_alert_gateway_irraggiungibile")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_dettagli_alert_gateway_irraggiungibile")],
+
+    [#ref-req("visualizzazione_dettagli_alert_sensore_fuori_range")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_dettagli_alert_sensore_fuori_range")],
+
     [#ref-req("modifica_impostazioni_notifica_alert_email")],
     [Desiderabile],
-    [#tag-uc-num("modifica_impostazioni_notifica_alert_email") \ #tag-uc-num("abilitazione_notifica_alert_email") \ #tag-uc-num("disabilitazione_notifica_alert_email")],
+    [#tag-uc-num("modifica_impostazioni_notifica_alert_email") \ #tag-uc-num("abilitazione_notifica_alert_email") \
+      #tag-uc-num("disabilitazione_notifica_alert_email")],
 
     [#ref-req("modifica_impostazioni_notifica_alert_dashboard")],
     [Desiderabile],
-    [#tag-uc-num("modifica_impostazioni_notifica_alert_dashboard") \ #tag-uc-num("abilitazione_notifica_alert_dashboard") \ #tag-uc-num("disabilitazione_notifica_alert_dashboard")],
+    [#tag-uc-num("modifica_impostazioni_notifica_alert_dashboard") \ #tag-uc-num(
+        "abilitazione_notifica_alert_dashboard",
+      ) \ #tag-uc-num("disabilitazione_notifica_alert_dashboard")],
 
     [#ref-req("modifica_nome_gateway")], [Desiderabile], [#tag-uc-num("modifica_nome_gateway")],
     [#ref-req("err_nome_gateway_duplicato")], [Obbligatorio], [#tag-uc-num("err_nome_gateway_duplicato")],
@@ -2208,43 +2462,69 @@
     [#ref-req("selezione_specifico_sensore")], [Obbligatorio], [#tag-uc-num("selezione_specifico_sensore")],
     [#ref-req("selezione_range_numerico")], [Obbligatorio], [#tag-uc-num("selezione_range_numerico")],
     [#ref-req("inserimento_valore_numerico")], [Obbligatorio], [#tag-uc-num("inserimento_valore_numerico")],
-    [#ref-req("modifica_range_default_tipo_sensore")], [Obbligatorio], [#tag-uc-num("modifica_range_default_tipo_sensore")],
+    [#ref-req("modifica_range_default_tipo_sensore")],
+    [Obbligatorio],
+    [#tag-uc-num("modifica_range_default_tipo_sensore")],
+
     [#ref-req("selezione_tipo_sensore")], [Obbligatorio], [#tag-uc-num("selezione_tipo_sensore")],
     [#ref-req("modifica_intervallo_alert_gateway")], [Obbligatorio], [#tag-uc-num("modifica_intervallo_alert_gateway")],
     [#ref-req("visualizzazione_costi_stimati")], [Obbligatorio], [#tag-uc-num("visualizzazione_costi_stimati")],
     [#ref-req("visualizzazione_costi_storage")], [Obbligatorio], [#tag-uc-num("visualizzazione_costi_storage")],
     [#ref-req("visualizzazione_costi_banda")], [Obbligatorio], [#tag-uc-num("visualizzazione_costi_banda")],
-    [#ref-req("visualizzazione_lista_utenti_tenant")], [Obbligatorio], [#tag-uc-num("visualizzazione_lista_utenti_tenant")],
+    [#ref-req("visualizzazione_lista_utenti_tenant")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_lista_utenti_tenant")],
+
     [#ref-req("visualizzazione_singolo_utente_tenant")],
     [Obbligatorio],
-    [#tag-uc-num("visualizzazione_singolo_utente_tenant") \ #tag-uc-num("visualizzazione_ruolo_utente") \ #tag-uc-num("visualizzazione_nome_utente") \ #tag-uc-num("visualizzazione_ultimo_accesso_utente") \ #tag-uc-num("visualizzazione_mail_utente")],
+    [#tag-uc-num("visualizzazione_singolo_utente_tenant") \ #tag-uc-num("visualizzazione_ruolo_utente") \ #tag-uc-num(
+        "visualizzazione_nome_utente",
+      ) \ #tag-uc-num("visualizzazione_ultimo_accesso_utente") \ #tag-uc-num("visualizzazione_mail_utente")],
 
     [#ref-req("creazione_utente_tenant")], [Obbligatorio], [#tag-uc-num("creazione_utente_tenant")],
     [#ref-req("inserimento_nome_utente")], [Obbligatorio], [#tag-uc-num("inserimento_nome_utente")],
     [#ref-req("selezione_utente_tenant")], [Obbligatorio], [#tag-uc-num("selezione_utente_tenant")],
-    [#ref-req("selezione_permessi_utente")], [Obbligatorio], [#tag-uc-num("selezione_permessi_utente") \ #tag-uc-num("modifica_permessi_utente")],
+    [#ref-req("selezione_permessi_utente")],
+    [Obbligatorio],
+    [#tag-uc-num("selezione_permessi_utente") \ #tag-uc-num("modifica_permessi_utente")],
+
     [#ref-req("modifica_mail_utente")], [Obbligatorio], [#tag-uc-num("modifica_mail_utente")],
     [#ref-req("modifica_password_utente")], [Obbligatorio], [#tag-uc-num("modifica_password_utente")],
     [#ref-req("eliminazione_utenti_tenant")], [Obbligatorio], [#tag-uc-num("eliminazione_utenti_tenant")],
     [#ref-req("selezione_lista_utenti")], [Obbligatorio], [#tag-uc-num("selezione_lista_utenti")],
-    [#ref-req("creazione_credenziali_api")], [Obbligatorio], [#tag-uc-num("creazione_credenziali_api") \ #tag-uc-num("inserimento_nome_client_api")],
+    [#ref-req("creazione_credenziali_api")],
+    [Obbligatorio],
+    [#tag-uc-num("creazione_credenziali_api") \ #tag-uc-num("inserimento_nome_client_api")],
+
     [#ref-req("visualizzazione_client_id")], [Obbligatorio], [#tag-uc-num("visualizzazione_client_id")],
     [#ref-req("visualizzazione_secret_api")], [Obbligatorio], [#tag-uc-num("visualizzazione_secret_api")],
     [#ref-req("visualizzazione_lista_api")], [Obbligatorio], [#tag-uc-num("visualizzazione_lista_api")],
-    [#ref-req("visualizzazione_singole_api")], [Obbligatorio], [#tag-uc-num("visualizzazione_singole_api") \ #tag-uc-num("visualizzazione_nome_descrittivo_api") \ #tag-uc-num("visualizzazione_timestamp_api")],
+    [#ref-req("visualizzazione_singole_api")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_singole_api") \ #tag-uc-num("visualizzazione_nome_descrittivo_api") \ #tag-uc-num(
+        "visualizzazione_timestamp_api",
+      )],
+
     [#ref-req("eliminazione_credenziali_api")], [Obbligatorio], [#tag-uc-num("eliminazione_credenziali_api")],
     [#ref-req("selezione_credenziali_api")], [Obbligatorio], [#tag-uc-num("selezione_credenziali_api")],
     [#ref-req("modifica_impostazioni_2fa")], [Obbligatorio], [#tag-uc-num("modifica_impostazioni_2fa")],
     [#ref-req("visualizzazione_log_audit_tenant")], [Obbligatorio], [#tag-uc-num("visualizzazione_log_audit_tenant")],
     [#ref-req("visualizzazione_singolo_log_audit")],
     [Obbligatorio],
-    [#tag-uc-num("visualizzazione_singolo_log_audit") \ #tag-uc-num("visualizzazione_timestamp_log_entry") \ #tag-uc-num("visualizzazione_utente_log_entry") \ #tag-uc-num("visualizzazione_operazione_log_entry")],
+    [#tag-uc-num("visualizzazione_singolo_log_audit") \ #tag-uc-num("visualizzazione_timestamp_log_entry") \
+      #tag-uc-num("visualizzazione_utente_log_entry") \ #tag-uc-num("visualizzazione_operazione_log_entry")],
 
     [#ref-req("esportazione_log_audit_tenant")], [Obbligatorio], [#tag-uc-num("esportazione_log_audit_tenant")],
     [#ref-req("selezione_intervallo_temporale")], [Obbligatorio], [#tag-uc-num("selezione_intervallo_temporale")],
     [#ref-req("download_log_audit_esportati")], [Obbligatorio], [#tag-uc-num("download_log_audit_esportati")],
-    [#ref-req("modifica_impostazioni_impersonificazione")], [Obbligatorio], [#tag-uc-num("modifica_impostazioni_impersonificazione")],
-    [#ref-req("aggiornamento_firmware_gateway")], [Obbligatorio], [#tag-uc-num("aggiornamento_firmware_gateway") \ #tag-uc-num("selezione_firmware")],
+    [#ref-req("modifica_impostazioni_impersonificazione")],
+    [Obbligatorio],
+    [#tag-uc-num("modifica_impostazioni_impersonificazione")],
+
+    [#ref-req("aggiornamento_firmware_gateway")],
+    [Obbligatorio],
+    [#tag-uc-num("aggiornamento_firmware_gateway") \ #tag-uc-num("selezione_firmware")],
+
     [#ref-req("selezione_gateway")], [Obbligatorio], [#tag-uc-num("selezione_gateway")],
     [#ref-req("modifica_frequenza_invio_gateway")], [Obbligatorio], [#tag-uc-num("modifica_frequenza_invio_gateway")],
     [#ref-req("autenticazione_client_api")], [Obbligatorio], [#tag-uc-num("autenticazione_client_api")],
@@ -2260,10 +2540,19 @@
     [#ref-req("visualizzazione_singolo_tenant")], [Obbligatorio], [#tag-uc-num("visualizzazione_singolo_tenant")],
     [#ref-req("visualizzazione_dettagli_tenant")], [Obbligatorio], [#tag-uc-num("visualizzazione_dettagli_tenant")],
     [#ref-req("visualizzazione_nome_tenant")], [Obbligatorio], [#tag-uc-num("visualizzazione_nome_tenant")],
-    [#ref-req("visualizzazione_stato_tenant")], [Obbligatorio], [#tag-uc-num("visualizzazione_stato_tenant") \ #tag-uc-num("vis_stato_attivo") \ #tag-uc-num("vis_stato_sospeso")],
+    [#ref-req("visualizzazione_stato_tenant")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_stato_tenant") \ #tag-uc-num("vis_stato_attivo") \ #tag-uc-num("vis_stato_sospeso")],
+
     [#ref-req("visualizzazione_id_tenant")], [Obbligatorio], [#tag-uc-num("visualizzazione_id_tenant")],
-    [#ref-req("visualizzazione_intervallo_sospensione_tenant")], [Obbligatorio], [#tag-uc-num("visualizzazione_intervallo_sospensione_tenant")],
-    [#ref-req("modifica_intervallo_sospensione_tenant")], [Obbligatorio], [#tag-uc-num("modifica_intervallo_sospensione_tenant")],
+    [#ref-req("visualizzazione_intervallo_sospensione_tenant")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_intervallo_sospensione_tenant")],
+
+    [#ref-req("modifica_intervallo_sospensione_tenant")],
+    [Obbligatorio],
+    [#tag-uc-num("modifica_intervallo_sospensione_tenant")],
+
     [#ref-req("modifica_nome_tenant")], [Obbligatorio], [#tag-uc-num("modifica_nome_tenant")],
     [#ref-req("creazione_tenant")], [Obbligatorio], [#tag-uc-num("creazione_tenant")],
     [#ref-req("inserimento_anagrafica_tenant")], [Obbligatorio], [#tag-uc-num("inserimento_anagrafica_tenant")],
@@ -2271,13 +2560,24 @@
     [#ref-req("selezione_tenant")], [Obbligatorio], [#tag-uc-num("selezione_tenant")],
     [#ref-req("sospensione_tenant")], [Obbligatorio], [#tag-uc-num("sospensione_tenant")],
     [#ref-req("riattivazione_tenant")], [Obbligatorio], [#tag-uc-num("riattivazione_tenant")],
-    [#ref-req("eliminazione_tenant")], [Obbligatorio], [#tag-uc-num("eliminazione_tenant") \ #tag-uc-num("conferma_eliminazione_tenant")],
+    [#ref-req("eliminazione_tenant")],
+    [Obbligatorio],
+    [#tag-uc-num("eliminazione_tenant") \ #tag-uc-num("conferma_eliminazione_tenant")],
+
     [#ref-req("impersonificazione_utente_tenant")], [Obbligatorio], [#tag-uc-num("impersonificazione_utente_tenant")],
-    [#ref-req("registrazione_associazione_gateway")], [Obbligatorio], [#tag-uc-num("registrazione_associazione_gateway") \ #tag-uc-num("inserimento_credenziali_fabbrica_gateway")],
-    [#ref-req("creazione_utente_amministratore_tenant")], [Obbligatorio], [#tag-uc-num("creazione_utente_amministratore_tenant")],
+    [#ref-req("registrazione_associazione_gateway")],
+    [Obbligatorio],
+    [#tag-uc-num("registrazione_associazione_gateway") \ #tag-uc-num("inserimento_credenziali_fabbrica_gateway")],
+
+    [#ref-req("creazione_utente_amministratore_tenant")],
+    [Obbligatorio],
+    [#tag-uc-num("creazione_utente_amministratore_tenant")],
+
     [#ref-req("monitoraggio_performance_sistema")],
     [Obbligatorio],
-    [#tag-uc-num("monitoraggio_performance_sistema") \ #tag-uc-num("monitoraggio_latenza") \ #tag-uc-num("monitoraggio_volumi_traffico") \ #tag-uc-num("monitoraggio_storage")],
+    [#tag-uc-num("monitoraggio_performance_sistema") \ #tag-uc-num("monitoraggio_latenza") \ #tag-uc-num(
+        "monitoraggio_volumi_traffico",
+      ) \ #tag-uc-num("monitoraggio_storage")],
 
     [#ref-req("onboarding_gateway")], [Obbligatorio], [#tag-uc-num("onboarding_gateway")],
     [#ref-req("err_auth_gateway_fabbrica")], [Obbligatorio], [#tag-uc-num("err_auth_gateway_fabbrica")],
@@ -2286,39 +2586,82 @@
     [#ref-req("err_autenticazione_gateway")], [Obbligatorio], [#tag-uc-num("err_autenticazione_gateway")],
     [#ref-req("err_range_invalido")], [Obbligatorio], [#tag-uc-num("err_range_invalido")],
     [#ref-req("ins_mail")], [Obbligatorio], [#tag-uc-num("ins_mail")],
-    [#ref-req("visualizzazione_lista_gateway_simulati")], [Obbligatorio], [#tag-uc-num("visualizzazione_lista_gateway_simulati")],
-    [#ref-req("visualizzazione_singolo_gateway_simulato")], [Obbligatorio], [#tag-uc-num("visualizzazione_singolo_gateway_simulato") \ #tag-uc-num("visualizzazione_data_creazione_simulazione")],
-    [#ref-req("visualizzazione_id_fabbrica_simulazione")], [Obbligatorio], [#tag-uc-num("visualizzazione_id_fabbrica_simulazione")],
+    [#ref-req("visualizzazione_lista_gateway_simulati")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_lista_gateway_simulati")],
+
+    [#ref-req("visualizzazione_singolo_gateway_simulato")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_singolo_gateway_simulato") \ #tag-uc-num(
+        "visualizzazione_data_creazione_simulazione",
+      )],
+
+    [#ref-req("visualizzazione_id_fabbrica_simulazione")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_id_fabbrica_simulazione")],
+
     [#ref-req("visualizzazione_configurazione_simulazione_gateway")],
     [Obbligatorio],
-    [#tag-uc-num("visualizzazione_configurazione_simulazione_gateway") \ #tag-uc-num("visualizzazione_chiave_fabbrica_simulazione") \ #tag-uc-num("visualizzazione_serial_number_gateway_simulato") \ #tag-uc-num("visualizzazione_software_gateway_simulato") \ #tag-uc-num("visualizzazione_modello_gateway_simulato")],
+    [#tag-uc-num("visualizzazione_configurazione_simulazione_gateway") \ #tag-uc-num(
+        "visualizzazione_chiave_fabbrica_simulazione",
+      ) \ #tag-uc-num("visualizzazione_serial_number_gateway_simulato") \ #tag-uc-num(
+        "visualizzazione_software_gateway_simulato",
+      ) \ #tag-uc-num("visualizzazione_modello_gateway_simulato")],
 
-    [#ref-req("visualizzazione_lista_sensori_gateway_simulato")], [Obbligatorio], [#tag-uc-num("visualizzazione_lista_sensori_gateway_simulato")],
-    [#ref-req("visualizzazione_singolo_sensore_simulato")], [Obbligatorio], [#tag-uc-num("visualizzazione_singolo_sensore_simulato")],
+    [#ref-req("visualizzazione_lista_sensori_gateway_simulato")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_lista_sensori_gateway_simulato")],
+
+    [#ref-req("visualizzazione_singolo_sensore_simulato")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_singolo_sensore_simulato")],
+
     [#ref-req("visualizzazione_configurazione_simulazione_sensore")],
     [Obbligatorio],
-    [#tag-uc-num("visualizzazione_configurazione_simulazione_sensore") \ #tag-uc-num("visualizzazione_range_generazione_dati") \ #tag-uc-num("visualizzazione_algoritmo_generazione_dati") \ #tag-uc-num("visualizzazione_identificativo_sensore") \ #tag-uc-num("visualizzazione_tipo_sensore_simulato")],
+    [#tag-uc-num("visualizzazione_configurazione_simulazione_sensore") \ #tag-uc-num(
+        "visualizzazione_range_generazione_dati",
+      ) \ #tag-uc-num("visualizzazione_algoritmo_generazione_dati") \ #tag-uc-num(
+        "visualizzazione_identificativo_sensore",
+      ) \ #tag-uc-num("visualizzazione_tipo_sensore_simulato")],
 
     [#ref-req("eliminazione_gateway_simulato")], [Obbligatorio], [#tag-uc-num("eliminazione_gateway_simulato")],
     [#ref-req("eliminazione_sensore_simulato")], [Obbligatorio], [#tag-uc-num("eliminazione_sensore_simulato")],
     [#ref-req("creazione_deploy_gateway_simulato")], [Obbligatorio], [#tag-uc-num("creazione_deploy_gateway_simulato")],
     [#ref-req("inserimento_dati_config_sim_gateway")],
     [Obbligatorio],
-    [#tag-uc-num("inserimento_dati_config_sim_gateway") \ #tag-uc-num("sel_sn_gateway") \ #tag-uc-num("sel_modello_gateway") \ #tag-uc-num("sel_versione_sw_gateway")],
+    [#tag-uc-num("inserimento_dati_config_sim_gateway") \ #tag-uc-num("sel_sn_gateway") \ #tag-uc-num(
+        "sel_modello_gateway",
+      ) \ #tag-uc-num("sel_versione_sw_gateway")],
 
     [#ref-req("err_deploy_gateway_simulato")], [Obbligatorio], [#tag-uc-num("err_deploy_gateway_simulato")],
-    [#ref-req("creazione_sensore_gateway_simulato")], [Obbligatorio], [#tag-uc-num("creazione_sensore_gateway_simulato")],
-    [#ref-req("inserimento_dati_config_sim_sensore")], [Obbligatorio], [#tag-uc-num("inserimento_dati_config_sim_sensore") \ #tag-uc-num("inserimento_range_generazione_dati")],
+    [#ref-req("creazione_sensore_gateway_simulato")],
+    [Obbligatorio],
+    [#tag-uc-num("creazione_sensore_gateway_simulato")],
+
+    [#ref-req("inserimento_dati_config_sim_sensore")],
+    [Obbligatorio],
+    [#tag-uc-num("inserimento_dati_config_sim_sensore") \ #tag-uc-num("inserimento_range_generazione_dati")],
+
     [#ref-req("err_range_invalido_simulazione")], [Obbligatorio], [#tag-uc-num("err_range_invalido_simulazione")],
     [#ref-req("err_creazione_sensore_simulato")], [Obbligatorio], [#tag-uc-num("err_creazione_sensore_simulato")],
-    [#ref-req("creazione_gateway_multipli_default")], [Obbligatorio], [#tag-uc-num("creazione_gateway_multipli_default")],
+    [#ref-req("creazione_gateway_multipli_default")],
+    [Obbligatorio],
+    [#tag-uc-num("creazione_gateway_multipli_default")],
+
     [#ref-req("err_valore_numerico_invalido")], [Obbligatorio], [#tag-uc-num("err_valore_numerico_invalido")],
     [#ref-req("comando_anomalia_degrado_rete")], [Obbligatorio], [#tag-uc-num("comando_anomalia_degrado_rete")],
-    [#ref-req("comando_anomalia_disconnessione_temporanea")], [Obbligatorio], [#tag-uc-num("comando_anomalia_disconnessione_temporanea")],
-    [#ref-req("comando_anomalia_outliers_misurazioni")], [Obbligatorio], [#tag-uc-num("comando_anomalia_outliers_misurazioni")],
+    [#ref-req("comando_anomalia_disconnessione_temporanea")],
+    [Obbligatorio],
+    [#tag-uc-num("comando_anomalia_disconnessione_temporanea")],
+
+    [#ref-req("comando_anomalia_outliers_misurazioni")],
+    [Obbligatorio],
+    [#tag-uc-num("comando_anomalia_outliers_misurazioni")],
+
     [#ref-req("impostazione_configurazione_gateway")],
     [Obbligatorio],
-    [#tag-uc-num("impostazione_configurazione_gateway") \ #tag-uc-num("impostazione_frequenza_invio_dati") \ #tag-uc-num("impostazione_stato_sospensione")],
+    [#tag-uc-num("impostazione_configurazione_gateway") \ #tag-uc-num("impostazione_frequenza_invio_dati") \
+      #tag-uc-num("impostazione_stato_sospensione")],
 
     [#ref-req("err_sintattico_config_gateway")], [Obbligatorio], [#tag-uc-num("err_sintattico_config_gateway")],
     [#ref-req("err_config_frequenza_fuori_range")], [Obbligatorio], [#tag-uc-num("err_config_frequenza_fuori_range")],

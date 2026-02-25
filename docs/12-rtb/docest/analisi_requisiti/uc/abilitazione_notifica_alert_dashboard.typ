@@ -15,7 +15,7 @@
   ),
   trigger: "L’Attore sceglie di attivare la ricezione di alert via dashboard",
   main-scen: (
-    (descr: "L’Attore imposta la preferenza su 'Attivo' (ON)"),
+    (descr: "L’Attore imposta la preferenza su Attivo (ON)"),
   ),
 
   uml-descr: none,

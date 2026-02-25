@@ -14,6 +14,6 @@
     "L’Attore visualizza lo stato operativo del Tenant",
   ),
   main-scen: (
-    (descr: "L’Attore visualizza lo stato corrente del Tenant come 'Sospeso'"),
+    (descr: "L’Attore visualizza lo stato corrente del Tenant come Sospeso"),
   ),
 )
