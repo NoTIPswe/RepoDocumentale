@@ -9,6 +9,7 @@
   sec-actors: CA.p-gway,
   preconds: (
     "Il Gateway appartiene al Tenant",
+    "L'Attore ha precedentemente selezionato il Gateway su cui operare",
     "Il Gateway si trova in uno stato attivo/disabilitato",
   ),
   postconds: (
@@ -16,10 +17,6 @@
   ),
   trigger: "L’Attore vuole abilitare/disabilitare lo stato di un Gateway",
   main-scen: (
-    (
-      descr: "L’Attore seleziona un Gateway appartenenti al Tenant",
-      inc: "selezione_gateway",
-    ),
     (
       descr: "L’Attore imposta lo stato desiderato (abilitato o disabilitato) per il Gateway",
       inc: "selezione_stato_gateway",
