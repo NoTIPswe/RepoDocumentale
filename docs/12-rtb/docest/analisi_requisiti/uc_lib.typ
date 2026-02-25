@@ -133,6 +133,7 @@
   alt-scen: (),
   trigger: none,
   show-trigger: false,
+  specialized-by: none,
   uml-descr: none,
   ..args,
 ) = {
@@ -267,6 +268,20 @@
             ],
           )
         },
+
+        ..if specialized-by != none and specialized-by.len() > 0 {
+          (
+            [*Generalizzato da*],
+            [
+              #if type(specialized-by) == array {
+                list(..specialized-by.map(uc => tag-uc(uc)))
+              } else {
+                tag-uc(specialized-by)
+              }
+               
+            ],  
+          )  
+        }
       )
     }
   ]
