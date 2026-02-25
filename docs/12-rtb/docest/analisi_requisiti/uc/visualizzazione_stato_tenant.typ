@@ -5,6 +5,7 @@
   system: CLOUD_SYS,
   title: "Visualizzazione stato Tenant",
   level: 1,
+  specialized-by: ("vis_stato_attivo", "vis_stato_sospeso"),
   prim-actors: CA.sys-adm,
   preconds: (
     "Il Sistema mostra all’Attore primario la lista dei Tenant",

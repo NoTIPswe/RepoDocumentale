@@ -8,16 +8,13 @@
   prim-actors: CA.sys-adm,
   preconds: (
     "Il Sistema mostra all’Attore primario la lista dei Tenant",
+    "L’Attore ha precedentemente selezionato il Tenant di cui visualizzare i dettagli",
   ),
   postconds: (
     "L’Attore visualizza tutte le informazioni di dettaglio del Tenant selezionato",
   ),
   trigger: "",
   main-scen: (
-    (
-      descr: "L’Attore seleziona un Tenant dalla lista",
-      inc: "selezione_tenant",
-    ),
     (
       descr: "L’Attore visualizza il nome del Tenant",
       inc: "visualizzazione_nome_tenant",

@@ -8,16 +8,13 @@
   prim-actors: CA.tenant-adm,
   preconds: (
     "Esiste un sensore di tipologia disponibile a modifiche nel Sistema",
+    "L'Attore ha precedentemente selezionato il tipo di sensore su cui operare",
   ),
   postconds: (
     "Ogni nuovo sensore del tipo selezionato, di default, invierà alert per misurazioni al di fuori del range impostato",
   ),
   trigger: "L’Attore vuole cambiare il range dell’alert di default per tutti i sensori di un certo tipo",
   main-scen: (
-    (
-      descr: "L’Attore seleziona il tipo di sensore",
-      inc: "selezione_tipo_sensore",
-    ),
     (descr: "L’Attore visualizza il range corrente"),
     (
       descr: "L'Attore seleziona il range numerico per le misurazioni attese",

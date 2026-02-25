@@ -8,16 +8,13 @@
   prim-actors: CA.sys-adm,
   preconds: (
     "Il Sistema si trova nella sezione dedicata alla visualizzazione dei Tenant",
+    "L'Attore ha precedentemente selezionato il Tenant di cui visualizzare i log di Audit",
   ),
   postconds: (
     "I log di Audit del Tenant selezionato sono visualizzati correttamente",
   ),
   trigger: "Si desidera consultare i log di Audit relativi ad un Tenant",
   main-scen: (
-    (
-      descr: "L’Attore seleziona un Tenant",
-      inc: "selezione_tenant",
-    ),
     (
       descr: "L’Attore visualizza i log di Audit del Tenant selezionato",
       inc: "visualizzazione_singolo_log_audit",

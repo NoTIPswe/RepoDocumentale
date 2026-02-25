@@ -306,6 +306,8 @@
   #include "uc/visualizzazione_dettagli_tenant.typ"
   #include "uc/visualizzazione_nome_tenant.typ"
   #include "uc/visualizzazione_stato_tenant.typ"
+  #include "uc/vis_stato_attivo.typ"
+  #include "uc/vis_stato_sospeso.typ"
   #include "uc/visualizzazione_id_tenant.typ"
   #include "uc/visualizzazione_intervallo_sospensione_tenant.typ"
   #include "uc/modifica_intervallo_sospensione_tenant.typ"

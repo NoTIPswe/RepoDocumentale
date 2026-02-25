@@ -8,17 +8,13 @@
   prim-actors: CA.tenant-adm,
   preconds: (
     "Esiste almeno un Utente associato al Tenant",
-    "Il Sistema sta attendendo le modifiche dell'Utente da parte dell'Attore",
+    "L'Attore ha precedentemente selezionato l'Utente del Tenant su cui operare",
   ),
   postconds: (
     "I permessi dell’Utente selezionato sono aggiornati",
   ),
   trigger: "L’Attore vuole modificare i permessi di un singolo Utente del Tenant",
   main-scen: (
-    (
-      descr: "L’Attore seleziona un Utente del Tenant",
-      inc: "selezione_utente_tenant",
-    ),
     (
       descr: "L’Attore seleziona i permessi da concedere all’Utente",
       inc: "selezione_permessi_utente",

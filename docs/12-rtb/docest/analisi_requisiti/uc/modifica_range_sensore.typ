@@ -10,16 +10,13 @@
   preconds: (
     "Il sensore appartiene ad un Gateway attivo",
     "Il sensore risulta in funzione",
+    "L'Attore ha precedentemente selezionato il sensore su cui operare",
   ),
   postconds: (
     "Il sensore invierà alert per misurazioni al di fuori del range di valori selezionato",
   ),
   trigger: "L’Attore vuole cambiare il range dell’alert per un sensore specifico",
   main-scen: (
-    (
-      descr: "L’Attore seleziona il sensore",
-      inc: "selezione_specifico_sensore",
-    ),
     (descr: "L’Attore visualizza il range corrente"),
     (
       descr: "L’Attore seleziona il range numerico per le misurazioni attese",
