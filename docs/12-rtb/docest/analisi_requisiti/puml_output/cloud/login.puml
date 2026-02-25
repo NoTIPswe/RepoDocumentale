@@ -1,0 +1,24 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Utente Non Autenticato" as CA_non_authd_usr
+
+rectangle "Sistema" {
+    usecase "UC2 - Errore credenziali errate" as err_cred_errate
+    usecase "UC101 - Inserimento mail" as ins_mail
+    usecase "UC1.1 - Inserimento password" as ins_pw
+    usecase "UC1 - Login" as login
+}
+
+CA_non_authd_usr -right-> login
+login -down..> ins_mail : <<include>>
+login -down..> ins_pw : <<include>>
+err_cred_errate .up.> login : <<extend>>
+note on link
+  EP: PreLogin
+  Condition: L
+end note
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Tenant User" as CA_tenant_usr
+
+rectangle "Sistema" {
+    usecase "UC20.3 - Visualizzazione Gateway Sospeso" as visualizzazione_gateway_sospeso
+}
+
+CA_tenant_usr -right-> visualizzazione_gateway_sospeso
+@enduml

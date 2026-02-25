@@ -1,0 +1,14 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Tenant User" as CA_tenant_usr
+
+rectangle "Sistema" {
+    usecase "UC20 - Visualizzazione stato Gateway" as visualizzazione_stato_gateway
+}
+
+CA_tenant_usr -right-> visualizzazione_stato_gateway
+@enduml

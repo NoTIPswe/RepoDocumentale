@@ -1,0 +1,16 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Tenant Admin" as CA_tenant_adm
+
+rectangle "Sistema" {
+    usecase "UC62 - Eliminazione credenziali API" as eliminazione_credenziali_api
+    usecase "UC62.1 - Selezione credenziali client API" as selezione_credenziali_api
+}
+
+CA_tenant_adm -right-> eliminazione_credenziali_api
+eliminazione_credenziali_api -down..> selezione_credenziali_api : <<include>>
+@enduml

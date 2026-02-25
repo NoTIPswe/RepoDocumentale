@@ -1,0 +1,16 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Utente Autenticato" as CA_authd_usr
+
+rectangle "Sistema" {
+    usecase "UC13 - Impostazione mail" as impostazione_mail
+    usecase "UC12 - Modifica mail account" as modifica_mail_account
+}
+
+CA_authd_usr -right-> modifica_mail_account
+modifica_mail_account -down..> impostazione_mail : <<include>>
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Utente Non Autenticato" as CA_non_authd_usr
+
+rectangle "Sistema" {
+    usecase "UC6 - Errore OTP errato" as err_otp_errato
+}
+
+CA_non_authd_usr -right-> err_otp_errato
+@enduml

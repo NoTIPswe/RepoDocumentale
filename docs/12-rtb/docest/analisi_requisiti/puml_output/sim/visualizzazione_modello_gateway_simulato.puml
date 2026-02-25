@@ -1,0 +1,14 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Utente del Simulatore" as SA_sym_usr
+
+rectangle "Sistema" {
+    usecase "UCS3.4 - Visualizzazione modello del Gateway simulato" as visualizzazione_modello_gateway_simulato
+}
+
+SA_sym_usr -right-> visualizzazione_modello_gateway_simulato
+@enduml

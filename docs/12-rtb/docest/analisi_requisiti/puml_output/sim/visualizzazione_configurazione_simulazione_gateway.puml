@@ -1,0 +1,25 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+
+actor "Utente del Simulatore" as SA_sym_usr
+
+rectangle "Sistema" {
+    usecase "UCS3.1 - Visualizzazione chiave di fabbrica simulazione" as visualizzazione_chiave_fabbrica_simulazione
+    usecase "UCS3 - Visualizzazione configurazione simulazione Gateway" as visualizzazione_configurazione_simulazione_gateway
+    usecase "UCS2 - Visualizzazione ID di fabbrica simulazione" as visualizzazione_id_fabbrica_simulazione
+    usecase "UCS3.4 - Visualizzazione modello del Gateway simulato" as visualizzazione_modello_gateway_simulato
+    usecase "UCS3.2 - Visualizzazione serial number del gateway simulato" as visualizzazione_serial_number_gateway_simulato
+    usecase "UCS3.3 - Visualizzazione versione software del gateway simulato" as visualizzazione_software_gateway_simulato
+}
+
+SA_sym_usr -right-> visualizzazione_configurazione_simulazione_gateway
+visualizzazione_configurazione_simulazione_gateway -down..> visualizzazione_id_fabbrica_simulazione : <<include>>
+visualizzazione_configurazione_simulazione_gateway -down..> visualizzazione_chiave_fabbrica_simulazione : <<include>>
+visualizzazione_configurazione_simulazione_gateway -down..> visualizzazione_serial_number_gateway_simulato : <<include>>
+visualizzazione_configurazione_simulazione_gateway -down..> visualizzazione_software_gateway_simulato : <<include>>
+visualizzazione_configurazione_simulazione_gateway -down..> visualizzazione_modello_gateway_simulato : <<include>>
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Utente Autenticato" as CA_authd_usr
+
+rectangle "Sistema" {
+    usecase "UC13.2 - Conferma mail" as conferma_nuova_mail
+    usecase "UC13 - Impostazione mail" as impostazione_mail
+    usecase "UC13.1 - Inserimento mail" as inserimento_nuova_mail
+}
+
+CA_authd_usr -right-> impostazione_mail
+impostazione_mail -down..> inserimento_nuova_mail : <<include>>
+impostazione_mail -down..> conferma_nuova_mail : <<include>>
+@enduml

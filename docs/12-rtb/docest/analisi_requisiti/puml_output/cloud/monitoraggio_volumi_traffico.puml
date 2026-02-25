@@ -1,0 +1,14 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Amministratore di Sistema" as CA_sys_adm
+
+rectangle "Sistema" {
+    usecase "UC95.2 - Monitoraggio Volumi di Traffico" as monitoraggio_volumi_traffico
+}
+
+CA_sys_adm -right-> monitoraggio_volumi_traffico
+@enduml

@@ -2,7 +2,7 @@
 #import "uc_lib.typ": * /*CA, CLOUD_SYS, SA, SIM_SYS, tag-uc, uc */
 #import "req_lib.typ": *
 
-#let metadata = yaml(sys.inputs.meta-path)
+#let metadata = yaml("analisi_requisiti.meta.yaml")
 
 
 #show figure.where(kind: table): set block(breakable: true)

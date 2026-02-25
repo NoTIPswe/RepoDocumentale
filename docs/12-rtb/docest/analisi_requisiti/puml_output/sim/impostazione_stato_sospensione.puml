@@ -1,0 +1,14 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Sistema Cloud" as SA_cloud
+
+rectangle "Sistema" {
+    usecase "UCS20.2 - Impostazione stato sospensione" as impostazione_stato_sospensione
+}
+
+SA_cloud -right-> impostazione_stato_sospensione
+@enduml

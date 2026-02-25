@@ -1,0 +1,16 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Tenant Admin" as CA_tenant_adm
+
+rectangle "Sistema" {
+    usecase "UC45 - Inserimento valore numerico" as inserimento_valore_numerico
+    usecase "UC48 - Modifica intervallo alert Gateway irraggiungibile" as modifica_intervallo_alert_gateway
+}
+
+CA_tenant_adm -right-> modifica_intervallo_alert_gateway
+modifica_intervallo_alert_gateway -down..> inserimento_valore_numerico : <<include>>
+@enduml

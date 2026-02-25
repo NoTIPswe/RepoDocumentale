@@ -1,0 +1,26 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Utente del Simulatore" as SA_sym_usr
+
+rectangle "Sistema" {
+    usecase "UCS15 - Creazione Gateway multipli con configurazione di default" as creazione_gateway_multipli_default
+    usecase "UCS11 - Errore Deploy Gateway simulato" as err_deploy_gateway_simulato
+    usecase "UCS16 - Errore valore numerico invalido" as err_valore_numerico_invalido
+}
+
+SA_sym_usr -right-> creazione_gateway_multipli_default
+err_valore_numerico_invalido .up.> creazione_gateway_multipli_default : <<extend>>
+note on link
+  EP: ValoreNumericoInvalido
+  Condition: È stato inserito un valore numerico non valido
+end note
+err_deploy_gateway_simulato .up.> creazione_gateway_multipli_default : <<extend>>
+note on link
+  EP: ErroreDeploy
+  Condition: Errore di sistema nella creazione delle istanze
+end note
+@enduml

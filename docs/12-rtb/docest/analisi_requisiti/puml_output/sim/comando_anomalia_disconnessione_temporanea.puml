@@ -1,0 +1,20 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Utente del Simulatore" as SA_sym_usr
+
+rectangle "Sistema" {
+    usecase "UCS18 - Comando anomalia Gateway - disconnessione temporanea" as comando_anomalia_disconnessione_temporanea
+    usecase "UCS16 - Errore valore numerico invalido" as err_valore_numerico_invalido
+}
+
+SA_sym_usr -right-> comando_anomalia_disconnessione_temporanea
+err_valore_numerico_invalido .up.> comando_anomalia_disconnessione_temporanea : <<extend>>
+note on link
+  EP: ValoreNumericoInvalido
+  Condition: È stato inserito un valore numerico non valido
+end note
+@enduml

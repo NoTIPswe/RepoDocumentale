@@ -1,0 +1,16 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Tenant Admin" as CA_tenant_adm
+
+rectangle "Sistema" {
+    usecase "UC58 - Eliminazione Utenti del Tenant" as eliminazione_utenti_tenant
+    usecase "UC58.1 - Selezione lista utenti" as selezione_lista_utenti
+}
+
+CA_tenant_adm -right-> eliminazione_utenti_tenant
+eliminazione_utenti_tenant -down..> selezione_lista_utenti : <<include>>
+@enduml

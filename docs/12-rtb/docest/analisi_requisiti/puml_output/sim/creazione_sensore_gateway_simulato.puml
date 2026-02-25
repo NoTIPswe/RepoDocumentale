@@ -1,0 +1,22 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Utente del Simulatore" as SA_sym_usr
+
+rectangle "Sistema" {
+    usecase "UCS12 - Creazione sensore Gateway simulato" as creazione_sensore_gateway_simulato
+    usecase "UCS14 - Errore creazione Sensore simulato" as err_creazione_sensore_simulato
+    usecase "UCS12.1 - Inserimento dati configurazione simulazione sensore" as inserimento_dati_config_sim_sensore
+}
+
+SA_sym_usr -right-> creazione_sensore_gateway_simulato
+creazione_sensore_gateway_simulato -down..> inserimento_dati_config_sim_sensore : <<include>>
+err_creazione_sensore_simulato .up.> creazione_sensore_gateway_simulato : <<extend>>
+note on link
+  EP: ErroreCreazione
+  Condition: Errore di sistema nella creazione del sensore simulato
+end note
+@enduml

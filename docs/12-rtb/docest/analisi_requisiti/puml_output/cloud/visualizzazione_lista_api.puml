@@ -1,0 +1,16 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Tenant Admin" as CA_tenant_adm
+
+rectangle "Sistema" {
+    usecase "UC61 - Visualizzazione lista credenziali API del Tenant" as visualizzazione_lista_api
+    usecase "UC61.1 - Visualizzazione singole credenziali API del Tenant" as visualizzazione_singole_api
+}
+
+CA_tenant_adm -right-> visualizzazione_lista_api
+visualizzazione_lista_api -down..> visualizzazione_singole_api : <<include>>
+@enduml

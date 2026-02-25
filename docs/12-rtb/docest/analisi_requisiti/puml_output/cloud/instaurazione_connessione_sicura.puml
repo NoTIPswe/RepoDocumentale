@@ -1,0 +1,20 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Not Provisioned Gateway" as CA_np_gway
+
+rectangle "Sistema" {
+    usecase "UC99 - Errore Autenticazione Gateway" as err_autenticazione_gateway
+    usecase "UC98.1 - Instaurazione connessione sicura" as instaurazione_connessione_sicura
+}
+
+CA_np_gway -right-> instaurazione_connessione_sicura
+err_autenticazione_gateway .up.> instaurazione_connessione_sicura : <<extend>>
+note on link
+  EP: CertificatoRifiutato
+  Condition: Il Cloud rifiuta il certificato del Gateway
+end note
+@enduml

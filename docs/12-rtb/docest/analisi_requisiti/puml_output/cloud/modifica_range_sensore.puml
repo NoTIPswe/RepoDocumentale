@@ -1,0 +1,20 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Provisioned Gateway" as CA_p_gway
+actor "Tenant Admin" as CA_tenant_adm
+
+rectangle "Sistema" {
+    usecase "UC43 - Modifica range alert sensore specifico" as modifica_range_sensore
+    usecase "UC44 - Selezione range numerico misurazioni" as selezione_range_numerico
+    usecase "UC43.1 - Selezione specifico sensore" as selezione_specifico_sensore
+}
+
+CA_tenant_adm -right-> modifica_range_sensore
+modifica_range_sensore -right-> CA_p_gway
+modifica_range_sensore -down..> selezione_specifico_sensore : <<include>>
+modifica_range_sensore -down..> selezione_range_numerico : <<include>>
+@enduml

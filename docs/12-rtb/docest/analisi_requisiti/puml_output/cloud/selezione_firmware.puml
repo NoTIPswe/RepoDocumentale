@@ -1,0 +1,14 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Tenant Admin" as CA_tenant_adm
+
+rectangle "Sistema" {
+    usecase "UC67.1 - Selezione firmware" as selezione_firmware
+}
+
+CA_tenant_adm -right-> selezione_firmware
+@enduml

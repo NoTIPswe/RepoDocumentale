@@ -1,0 +1,22 @@
+@startuml
+skinparam wrapWidth 200
+skinparam MaxMessageSize 150
+top to bottom direction
+skinparam packageStyle rectangle
+
+actor "Utente del Simulatore" as SA_sym_usr
+
+rectangle "Sistema" {
+    usecase "UCS5.2 - Visualizzazione algoritmo generazione dati" as visualizzazione_algoritmo_generazione_dati
+    usecase "UCS5 - Visualizzazione configurazione simulazione sensore" as visualizzazione_configurazione_simulazione_sensore
+    usecase "UCS6 - Visualizzazione identificativo sensore" as visualizzazione_identificativo_sensore
+    usecase "UCS5.1 - Visualizzazione range generazione dati" as visualizzazione_range_generazione_dati
+    usecase "UCS7 - Visualizzazione tipo sensore simulato" as visualizzazione_tipo_sensore_simulato
+}
+
+SA_sym_usr -right-> visualizzazione_configurazione_simulazione_sensore
+visualizzazione_configurazione_simulazione_sensore -down..> visualizzazione_identificativo_sensore : <<include>>
+visualizzazione_configurazione_simulazione_sensore -down..> visualizzazione_tipo_sensore_simulato : <<include>>
+visualizzazione_configurazione_simulazione_sensore -down..> visualizzazione_range_generazione_dati : <<include>>
+visualizzazione_configurazione_simulazione_sensore -down..> visualizzazione_algoritmo_generazione_dati : <<include>>
+@enduml
