@@ -71,7 +71,7 @@ definizione dei ruoli, la pianificazione delle attività e il monitoraggio dell'
   Per le specifiche tecniche relative agli strumenti citati si rimanda alla sezione @infrastruttura.
 ]
 
-=== Attività del processo di gestione
+=== Attività del processo
 
 #activity(
   title: "Sprint Planning",

@@ -98,7 +98,7 @@
     - *Costanti*: Evitare costanti globali; prediligere configurazioni o variabili contestualizzate.
 ]
 
-=== Attività del processo di sviluppo
+=== Attività del processo
 
 #activity(
   title: "Analisi dei Requisiti di Sistema",

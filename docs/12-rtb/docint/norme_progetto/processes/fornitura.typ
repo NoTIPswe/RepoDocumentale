@@ -194,7 +194,7 @@
   )
 ]
 
-=== Attività previste
+=== Attività del processo
 #activity(
   title: "Inizializzazione",
   roles: (ROLES.resp,),
