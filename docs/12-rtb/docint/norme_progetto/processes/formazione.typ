@@ -4,28 +4,16 @@
 
 Il *Processo di Formazione* ha lo scopo di mantenere i membri del gruppo aggiornati sulle tecnologie adottate e sulle
 procedure interne, facendo in modo che ogni componente acquisisca le competenze necessarie per operare efficacemente
-all'interno del progetto.
+all'interno del progetto. Il gruppo ha individuato le seguenti tecnologie come oggetto di formazione:
 
-=== Attività previste
-
-In conformità a quanto espresso nello standard il processo si articola nelle seguenti attività:
-- *Implementazione del processo*: Definizione degli obiettivi formativi.
-- *Sviluppo di materiale per la formazione*: Selezione, produzione e mantenimento delle risorse dedicate alla formazione
-  dei membri del gruppo.
-- *Implementazione del piano per la formazione*: Esecuzione delle attività di apprendimento e verifica.
-
-=== Implementazione del processo
-
-Il gruppo ha individuato le seguenti tecnologie come oggetto di formazione:
-
-- Backend: Go, NestJS, NATS JetStream.
-- Frontend: Angular.
-- Infrastruttura: Docker.
-- Documentazione: Typst.
-- Gestione: Jira, Git, GitHub.
+- Backend: Go, NestJS, NATS JetStream;
+- Frontend: Angular;
+- Infrastruttura: Docker;
+- Documentazione: Typst;
+- Gestione: Jira, Git, GitHub;
 - Comunicazione: Discord, Telegram.
 
-=== Norme e strumenti per la formazione
+=== Norme e strumenti del processo di formazione
 
 #norm(
   title: "Auto-formazione e Consolidamento",
@@ -45,68 +33,71 @@ Il gruppo ha individuato le seguenti tecnologie come oggetto di formazione:
   Per favorire la condivisione della conoscenza e gestire al meglio la rotazione dei ruoli, il gruppo adotta il
   confronto diretto:
   - *Sessioni di spiegazione*: Quando viene introdotta una nuova tecnologia o procedura, il membro più esperto organizza
-    una breve sessione di spiegazione sincrona (su Discord) per il resto del team.
+    una breve sessione di spiegazione sincrona (su Discord) per il resto del team;
   - *Supporto alla rotazione*: Chi subentra in un ruolo deve confrontarsi con chi lo ha ricoperto precedentemente per
     ricevere consigli e "best practices" non codificabili formalmente.
 ]
 
-==== Risorse per la formazione
+#norm(
+  title: "Risorse per la formazione",
+  label: <risorse-formazione>,
+)[
+  Il gruppo ha selezionato le seguenti risorse di riferimento per lo studio:
 
-Il gruppo ha selezionato le seguenti risorse di riferimento per lo studio:
+  #figure(
+    table(
+      columns: (1fr, 1fr),
+      fill: (_, row) => if calc.odd(row) { luma(240) } else { white },
+      align: (left, left),
+      [*Ambito*], [*Risorse Selezionate*],
 
-#figure(
-  table(
-    columns: (1fr, 1fr),
-    fill: (_, row) => if calc.odd(row) { luma(240) } else { white },
-    align: (left, left),
-    [*Ambito*], [*Risorse Selezionate*],
+      [Go],
+      [
+        - #link("https://gobyexample.com/")[Go by Example]
+        - #link("https://go.dev/doc/effective_go")[Effective Go]
+      ],
 
-    [Go],
-    [
-      - #link("https://gobyexample.com/")[Go by Example]
-      - #link("https://go.dev/doc/effective_go")[Effective Go]
-    ],
+      [NestJS],
+      [
+        - #link("https://docs.nestjs.com/")[NestJS Documentation]
+        - #link("https://www.youtube.com/watch?v=GHTA143_b-s&t=8261s")[NestJs Course for Beginners]
+      ],
 
-    [NestJS],
-    [
-      - #link("https://docs.nestjs.com/")[NestJS Documentation]
-      - #link("https://www.youtube.com/watch?v=GHTA143_b-s&t=8261s")[NestJs Course for Beginners]
-    ],
+      [NATS],
+      [
+        - #link("https://nbyone.io/")[NATS by Example]
+        - #link("https://docs.nats.io/nats-concepts/jetstream")[JetStream Documentation]
+      ],
 
-    [NATS],
-    [
-      - #link("https://nbyone.io/")[NATS by Example]
-      - #link("https://docs.nats.io/nats-concepts/jetstream")[JetStream Documentation]
-    ],
+      [Angular],
+      [
+        - #link("https://angular.dev/")[Angular Docs]
+        - #link("https://angular.dev/playground?templateId=0-hello-world")[Angular Playground]
+      ],
 
-    [Angular],
-    [
-      - #link("https://angular.dev/")[Angular Docs]
-      - #link("https://angular.dev/playground?templateId=0-hello-world")[Angular Playground]
-    ],
+      [Docker],
+      [
+        - #link("https://docs.docker.com/get-started/")[Docker Get Started]
+      ],
 
-    [Docker],
-    [
-      - #link("https://docs.docker.com/get-started/")[Docker Get Started]
-    ],
+      [Typst],
+      [
+        - #link("https://typst.app/docs/reference/")[Reference Guide]
+      ],
 
-    [Typst],
-    [
-      - #link("https://typst.app/docs/reference/")[Reference Guide]
-    ],
+      [Git & GitHub],
+      [
+        - #link("https://docs.github.com/en")[GitHub Docs]
+      ],
 
-    [Git & GitHub],
-    [
-      - #link("https://docs.github.com/en")[GitHub Docs]
-    ],
-
-    [Jira],
-    [
-      - Atlassian Jira Software Guide
-    ],
-  ),
-  caption: [Risorse per la formazione tecnica],
-)
+      [Jira],
+      [
+        - Atlassian Jira Software Guide
+      ],
+    ),
+    caption: [Risorse per la formazione tecnica],
+  )
+]
 
 === Attività del processo
 
@@ -147,7 +138,7 @@ Il gruppo ha selezionato le seguenti risorse di riferimento per lo studio:
   procedure: (
     (
       name: "Studio Individuale",
-      desc: [Il membro studia le risorse per lo sviluppo matieriale delle attività o rilegge le sezioni pertinenti delle
+      desc: [Il membro studia le risorse per lo sviluppo materiale delle attività o rilegge le sezioni pertinenti delle
         Norme di Progetto.],
     ),
     (
