@@ -16,12 +16,15 @@
   main-scen: (
     (
       descr: "L'Attore seleziona il serial number del Gateway tra quelli a disposizione",
+      inc: "sel_sn_gateway"
     ),
     (
       descr: "L'Attore seleziona il modello del Gateway tra quelli a disposizione",
+      inc: "sel_modello_gateway"
     ),
     (
       descr: "L'Attore seleziona la versione del software del Gateway tra quelli a disposizione",
+      inc: "sel_versione_sw_gateway"
     ),
   ),
 )
