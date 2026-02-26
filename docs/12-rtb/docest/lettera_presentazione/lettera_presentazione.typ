@@ -59,13 +59,13 @@
 
   - Lettera di presentazione (documento attuale)
   - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto (NdP)
-      v1.0.0]
+      v1.1.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_progetto.pdf")[Piano di Progetto (PdP)
       v1.0.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti
-      (AdR) v1.0.0]
+      (AdR) v1.1.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_qualifica.pdf")[Piano di Qualifica (PdQ)
-      v1.0.0]
+      v1.1.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario v2.0.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_stato_arte.pdf")[Analisi dello stato
       dell'arte v1.0.0]
@@ -74,7 +74,7 @@
   proponente M31. \
   Infine, vengono riconfermati gli impegni assunti nella #link(
     "https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/dichiarazione_impegni.pdf",
-  )[Dichiarazione degli impegni], relativamente alla data di consegna finale (*21 marzo 2026*) e al preventivo di costo
+  )[Dichiarazione degli impegni v1.0.0], relativamente alla data di consegna finale (*21 marzo 2026*) e al preventivo di costo
   massimo stimato (*12.940 €*).
 
   #v(0.8cm)

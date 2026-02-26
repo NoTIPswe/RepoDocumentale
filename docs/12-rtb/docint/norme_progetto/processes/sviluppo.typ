@@ -106,7 +106,7 @@
   norms: ("nomenclatura-uc", "struttura-uc", "nomenclatura-requisiti"),
   input: [Capitolato C7, verbali degli incontri con il committente],
   output: [#link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei
-      Requisiti] (casi d'uso e lista requisiti)],
+      Requisiti v1.1.0] (casi d'uso e lista requisiti)],
   procedure: (
     (
       name: "Modellazione dei Casi d'Uso",

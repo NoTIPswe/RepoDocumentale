@@ -1,5 +1,12 @@
 title: Lettera di presentazione
 changelog:
+  - version: "1.0.1"
+    date: "2026-02-26"
+    authors:
+      - Francesco Marcon
+    verifier: Valerio Solito
+    description: >
+      Bozza Lettera di presentazio
   - version: 1.0.0
     date: "2026-02-16"
     approver: Valerio Solito

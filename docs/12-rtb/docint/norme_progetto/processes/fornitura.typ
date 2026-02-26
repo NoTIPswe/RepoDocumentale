@@ -23,7 +23,7 @@
   #heading(level: 5, numbering: none, outlined: false)[Dichiarazione di impegni]
   La #link(
     "https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/dichiarazione_impegni.pdf",
-  )[Dichiarazione di impegni] è il documento in cui il gruppo ha stimato i costi del progetto, dall'impegno orario per
+  )[Dichiarazione di impegni v1.0.0] è il documento in cui il gruppo ha stimato i costi del progetto, dall'impegno orario per
   persona e per ruolo, al costo complessivo del progetto e dei ruoli che i componenti del gruppo ricopriranno.
 
   #figure(table(
@@ -56,7 +56,7 @@
 
   #heading(level: 5, numbering: none, outlined: false)[Analisi dei capitolati]
   L'#link("https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/analisi_capitolati.pdf")[Analisi dei
-    capitolati] è il documento in cui il gruppo fornisce un analisi dettagliata di ogni capitolato evidenziando diversi
+    capitolati v1.0.1] è il documento in cui il gruppo fornisce un analisi dettagliata di ogni capitolato evidenziando diversi
   punti, in particolare l'analisi suddivide ogni capitolato in diverse sezioni:
   - *Panoramica*: che indica l’azienda proponente, il nome del capitolato e delle
   informazioni generali sul prodotto da realizzare;
@@ -77,7 +77,7 @@
   )
 
   #heading(level: 5, numbering: none, outlined: false)[Analisi dei Requisiti]
-  L'#link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti]
+  L'#link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti v1.1.0]
   definisce nel dettaglio i requisiti obbligatori, desiderabili e opzionali del progetto. Il documento mira a risolvere
   le ambiguità derivanti dalla lettura del #link(
     "https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf",
@@ -105,7 +105,7 @@
   #cite-norm("struttura-uc") e #cite-norm("nomenclatura-requisiti") del processo di sviluppo.
 
   #heading(level: 5, numbering: none, outlined: false)[Piano di Progetto]
-  Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_progetto.pdf")[Piano di Progetto]
+  Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_progetto.pdf")[Piano di Progetto v1.0.0]
   definisce e organizza la pianificazione strategica e operativa del gruppo, fornendo una roadmap dettagliata delle
   attività e gestione delle risorse. Il documento si compone delle seguenti sezioni:
   - *Analisi dei rischi*: identifica e qualifica le criticità che potrebbero manifestarsi durante il ciclo di vita del
@@ -176,7 +176,7 @@
   )
 
   #heading(level: 5, numbering: none, outlined: false)[Glossario]
-  Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario] raccoglie e
+  Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario v2.0.0] raccoglie e
   definisce in modo univoco i termini tecnici e gli acronimi utilizzati nella documentazione. Il suo scopo è eliminare
   le ambiguità linguistiche, garantendo una comunicazione uniforme sia tra i membri del gruppo sia verso gli stakeholder
   esterni.
