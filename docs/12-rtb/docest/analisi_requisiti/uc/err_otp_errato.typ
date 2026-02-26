@@ -17,6 +17,4 @@
     (descr: "L'Attore viene informato dell'errore riscontrato"),
     (descr: "L'Attore viene invitato a riprovare"),
   ),
-
-  uml-descr: "Diagramma Errore OTP errato",
 )

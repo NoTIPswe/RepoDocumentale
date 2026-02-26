@@ -20,5 +20,4 @@
     ),
   ),
 
-  uml-descr: "Diagramma Errore dati non disponibili",
 )

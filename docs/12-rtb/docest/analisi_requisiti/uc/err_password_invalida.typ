@@ -17,5 +17,4 @@
     (descr: "L’Attore viene notificato che l’email inserita non è valida e viene invitato a sceglierne un’altra"),
   ),
 
-  uml-descr: "Diagramma Errore password non valida",
 )

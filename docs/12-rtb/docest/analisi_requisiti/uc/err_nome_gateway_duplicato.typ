@@ -18,5 +18,4 @@
     (descr: "L’Attore viene invitato ad inserirne un altro valido"),
   ),
 
-  uml-descr: "Diagramma Errore nome Gateway duplicato",
 )

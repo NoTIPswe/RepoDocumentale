@@ -14,7 +14,5 @@
   main-scen: (
     (descr: "L'Attore viene informato del problema in fase di autenticazione"),
   ),
-
-  uml-descr: "Diagramma Errore credenziali errate",
 )
 

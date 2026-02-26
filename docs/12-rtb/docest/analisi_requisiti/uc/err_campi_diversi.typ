@@ -17,6 +17,4 @@
     (descr: "L'Attore viene notificato della differenza nelle due stringhe inserite"),
     (descr: "L'Attore viene invitato a ricompilare"),
   ),
-
-  uml-descr: "Diagramma Errore campi non corrispondenti",
 )

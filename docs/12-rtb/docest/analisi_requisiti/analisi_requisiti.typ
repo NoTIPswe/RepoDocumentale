@@ -15,7 +15,7 @@
 )[
   = Introduzione
   == Scopo del Documento
-  Il presente documento descrive i risultati del processo di analisi dei requisiti per il progetto "Sistema di
+  Il presente documento descrive i risultati del processo di analisi dei requisiti per il progetto "Sistema di 
   Acquisizione Dati da Sensori BLE" proposto da M31 S.r.l. (capitolato C7). L'analisi è stata condotta attraverso lo
   studio approfondito del capitolato, il confronto con il proponente e la discussione tra gli analisti del gruppo.
 

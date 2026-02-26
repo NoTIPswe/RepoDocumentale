@@ -19,6 +19,4 @@
     (descr: "Il Sistema richiede l'inserimento del codice OTP"),
     (descr: "L'Attore inserisce il codice", inc: "ins_otp"),
   ),
-
-  uml-descr: "Diagramma Login 2FA",
 )

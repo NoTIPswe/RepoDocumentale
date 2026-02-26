@@ -16,6 +16,4 @@
   main-scen: (
     (descr: "L'Attore viene notificato dell'inserimento di una mail non associata a nessun account"),
   ),
-
-  uml-descr: "Diagramma Errore account non esistente",
 )

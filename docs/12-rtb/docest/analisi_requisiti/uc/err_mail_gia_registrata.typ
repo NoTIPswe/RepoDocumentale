@@ -21,6 +21,4 @@
       descr: "L'Attore viene invitato ad inserirne una nuova",
     ),
   ),
-
-  uml-descr: "Diagramma Errore mail duplicata",
 )
