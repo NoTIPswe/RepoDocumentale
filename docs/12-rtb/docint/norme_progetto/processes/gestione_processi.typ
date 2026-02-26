@@ -36,7 +36,7 @@ definizione dei ruoli, la pianificazione delle attività e il monitoraggio dell'
     ruoli in cui i componenti hanno più esperienza, dando priorità a chi possiede competenze pregresse. Tutti i
     componenti dovranno comunque svolgere, a parità di ruolo, un numero simile di ore, come riportato nella #link(
       "https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/dichiarazione_impegni.pdf",
-    )[Dichiarazione di Impegni].
+    )[Dichiarazione di Impegni v1.0.0].
 ]
 
 #norm(title: "Riunioni", label: <norme-riunioni>)[

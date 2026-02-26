@@ -108,7 +108,7 @@
   == Riferimenti
   === Riferimenti normativi
 
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto v1.1.0]
   - #link(
       "https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf",
     )[Capitolato d'appalto C7 - Sistema di acquisizione dati da sensori]
@@ -126,7 +126,7 @@
   Al fine di garantire un linguaggio univoco e prevenire possibili ambiguità, i termini tecnici, gli acronimi e i
   vocaboli con accezione specifica nel contesto del progetto sono stati definiti puntualmente nel documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf",
-  )[Glossario]. Si invita il lettore a fare riferimento a tale documento per chiarire qualsiasi dubbio.
+  )[Glossario v2.0.0]. Si invita il lettore a fare riferimento a tale documento per chiarire qualsiasi dubbio.
 
   = Qualità di processo
 

@@ -420,7 +420,7 @@
 
   Per la nomenclatura usata di seguito si faccia riferimento alla sezione relativa all'interno del documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf",
-  )[Norme di Progetto].
+  )[Norme di Progetto v1.1.0].
 
   == Requisiti Funzionali
 
@@ -1724,7 +1724,7 @@
       descrizione: [È necessario produrre una documentazione dettagliata riguardante i test previsti ed eseguiti
         (contenuta nel documento #link(
           "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_qualifica.pdf",
-        )[Piano di Qualifica]).],
+        )[Piano di Qualifica v1.1.0]).],
       fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez.
         "Documentazione"],
     ),
