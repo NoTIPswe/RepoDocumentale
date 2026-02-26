@@ -4,10 +4,10 @@
   system: SIM_SYS,
   id: "inserimento_dati_config_sim_gateway",
   level: 2,
-  title: "Inserimento dati configurazione simulazione gateway",
+  title: "Inserimento dati configurazione simulazione Gateway",
   prim-actors: (SA.sym-usr),
   preconds: (
-    "Il Sistema si trova nella sezione di configurazione del gateway simulato",
+    "Il Sistema si trova nella sezione di configurazione del Gateway simulato",
   ),
   postconds: (
     "L’Attore ha inserito dati validi per la configurazione della simulazione di un Gateway",
@@ -16,17 +16,18 @@
   main-scen: (
     (
       descr: "L'Attore seleziona il serial number del Gateway tra quelli a disposizione",
-      inc: "sel_sn_gateway"
+      inc: "sel_sn_gateway",
     ),
     (
       descr: "L'Attore seleziona il modello del Gateway tra quelli a disposizione",
-      inc: "sel_modello_gateway"
+      inc: "sel_modello_gateway",
     ),
     (
       descr: "L'Attore seleziona la versione del software del Gateway tra quelli a disposizione",
-      inc: "sel_versione_sw_gateway"
+      inc: "sel_versione_sw_gateway",
     ),
   ),
+  uml-descr: "Diagramma Inserimento dati configurazione simulazione Gateway",
 )
 
 #uc(
