@@ -5,7 +5,7 @@ changelog:
     authors:
       - Leonardo Preo
       - Alessandro Contarini
-    verifier: TBD
+    verifier: Valerio Solito
     description: >
       Adozione struttura "Norme e Strumenti + Attività" per processi primari e di supporto
   - version: 1.0.0
