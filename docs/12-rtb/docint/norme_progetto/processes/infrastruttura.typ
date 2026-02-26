@@ -99,7 +99,7 @@ le norme relative a ciascuno.
   l'evoluzione dalla presa in carico fino al rilascio. Il diagramma di riferimento è riportato in @fig-workflow.
 
   #figure(
-    image(height: 15%, "../assets/workflow.png"),
+    image(height: 14%, "../assets/workflow.png"),
     caption: [Workflow operativo della Task Madre],
   ) <fig-workflow>
   #v(0.5em)
@@ -155,7 +155,7 @@ le norme relative a ciascuno.
     che lo soddisfa, e dal codice è possibile risalire alla task che lo ha generato. Per ulteriori informazioni o esempi
     sui Conventional Commits si consiglia di visionare la seguente pagina #link(
       "https://www.conventionalcommits.org/en/v1.0.0/",
-    )[*Conventional Commits*] o di rileggere la sezione @branching-commit-docs.
+    )[*Conventional Commits*] o di rileggere la @branching-commit-docs.
   ],
 )[
   Jira riceve aggiornamenti diretti dal repository remoto. Per garantire il funzionamento del tracciamento, è necessario
