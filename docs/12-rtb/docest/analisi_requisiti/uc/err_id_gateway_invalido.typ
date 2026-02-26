@@ -18,6 +18,4 @@
   main-scen: (
     (descr: "L’Attore riceve una risposta di errore che segnala gli ID dei Gateway non validi"),
   ),
-
-  uml-descr: "Diagramma Errore ID Gateway invalido",
 )

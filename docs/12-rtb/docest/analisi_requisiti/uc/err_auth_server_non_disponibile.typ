@@ -19,6 +19,4 @@
     (descr: "L’Auth Server non è raggiungibile o risponde al Sistema con un errore interno"),
     (descr: "L’Attore primario riceve un messaggio di errore interno dal Sistema"),
   ),
-
-  uml-descr: "Diagramma Errore Auth Server non disponibile",
 )

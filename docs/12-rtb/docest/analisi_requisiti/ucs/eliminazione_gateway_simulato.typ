@@ -20,6 +20,6 @@
     (descr: "L’Attore riceve una notifica di operazione avvenuta con successo"),
   ),
 
-  uml-descr: "Diagramma Eliminazione gateway simulato",
+  uml-descr: "Diagramma Eliminazione Gateway simulato",
 )
 

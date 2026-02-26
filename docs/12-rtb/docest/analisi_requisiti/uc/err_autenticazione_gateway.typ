@@ -17,6 +17,4 @@
     (descr: "L’Attore riceve un errore di autenticazione"),
     (descr: "Il canale sicuro non viene instaurato"),
   ),
-
-  uml-descr: "Diagramma Errore autenticazione Gateway",
 )

@@ -8,17 +8,13 @@
   prim-actors: CA.tenant-adm,
   preconds: (
     "Esiste almeno un Utente associato al Tenant",
-    "Il Sistema sta attendendo le modifiche dell'Utente da parte dell'Attore",
+    "L'Attore ha precedentemente selezionato l'Utente del Tenant su cui operare",
   ),
   postconds: (
     "La mail dell’Utente selezionato è stata aggiornata",
   ),
   trigger: "L’Attore vuole modificare la mail di un singolo Utente del Tenant",
   main-scen: (
-    (
-      descr: "L’Attore seleziona un Utente del Tenant",
-      inc: "selezione_utente_tenant",
-    ),
     (
       descr: "L’Attore inserisce la mail da assegnare all’Utente",
       inc: "impostazione_mail",

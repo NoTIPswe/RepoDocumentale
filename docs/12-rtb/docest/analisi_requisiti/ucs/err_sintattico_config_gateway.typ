@@ -19,6 +19,4 @@
       descr: "L’Attore riceve una notifica di errore di configurazione con indicazione della natura sintattica del problema",
     ),
   ),
-
-  uml-descr: "Diagramma Errore sintattico configurazione Gateway",
 )

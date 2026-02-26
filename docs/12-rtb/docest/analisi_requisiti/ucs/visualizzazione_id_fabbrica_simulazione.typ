@@ -18,6 +18,6 @@
     (descr: "L’Attore visualizza l'ID di fabbrica generato dal simulatore"),
   ),
 
-  uml-descr: "Visualizzazione ID di fabbrica simulazione",
+  uml-descr: "Diagramma Visualizzazione ID di fabbrica simulazione",
 )
 

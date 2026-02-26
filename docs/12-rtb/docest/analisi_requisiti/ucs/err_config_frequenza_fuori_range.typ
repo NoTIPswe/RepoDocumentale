@@ -17,6 +17,4 @@
   main-scen: (
     (descr: "L’Attore riceve una notifica di errore di configurazione per errore semantico nel range"),
   ),
-
-  uml-descr: "Diagramma Errore configurazione frequenza invio dati fuori range ammesso",
 )

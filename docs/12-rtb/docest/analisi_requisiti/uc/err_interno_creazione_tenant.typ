@@ -18,6 +18,4 @@
   main-scen: (
     (descr: "L’Attore visualizza i dettagli relativi all’errore verificatosi"),
   ),
-
-  uml-descr: "Diagramma Errore interno creazione Tenant",
 )

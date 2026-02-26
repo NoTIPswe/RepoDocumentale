@@ -18,6 +18,4 @@
   main-scen: (
     (descr: "L’Attore riceve una risposta di errore di autenticazione"),
   ),
-
-  uml-descr: "Diagramma Errore token di autenticazione API invalido",
 )

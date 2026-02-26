@@ -18,6 +18,4 @@
   main-scen: (
     (descr: "L’Attore riceve una risposta di errore che segnala l’intervallo temporale non valido"),
   ),
-
-  uml-descr: "Diagramma Errore intervallo temporale invalido",
 )

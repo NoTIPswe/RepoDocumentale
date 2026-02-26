@@ -18,6 +18,4 @@
   main-scen: (
     (descr: "L’Attore riceve una risposta di errore che segnala gli ID dei sensori non validi per Gateway"),
   ),
-
-  uml-descr: "Diagramma Errore ID sensore invalido",
 )

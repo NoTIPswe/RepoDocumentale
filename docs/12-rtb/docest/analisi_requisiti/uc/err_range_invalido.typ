@@ -22,6 +22,4 @@
       descr: "L'Attore viene invitato ad inserire un valore accettabile",
     ),
   ),
-
-  uml-descr: "Diagramma Errore range invalido",
 )

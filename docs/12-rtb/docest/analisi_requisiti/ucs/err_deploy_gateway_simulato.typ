@@ -19,7 +19,5 @@
     (descr: "L’operazione di creazione viene annullata"),
     (descr: "L’Attore viene notificato dell’errore"),
   ),
-
-  uml-descr: "Diagramma Errore Deploy Gateway simulato",
 )
 

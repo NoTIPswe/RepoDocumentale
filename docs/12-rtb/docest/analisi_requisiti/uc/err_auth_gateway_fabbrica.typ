@@ -17,6 +17,4 @@
   main-scen: (
     (descr: "Il Gateway viene notificato dell'errore avvenuto"),
   ),
-
-  uml-descr: "Diagramma Errore autenticazione Gateway di fabbrica",
 )

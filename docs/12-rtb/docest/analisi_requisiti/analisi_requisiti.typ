@@ -15,7 +15,7 @@
 )[
   = Introduzione
   == Scopo del Documento
-  Il presente documento descrive i risultati del processo di analisi dei requisiti per il progetto "Sistema di 
+  Il presente documento descrive i risultati del processo di analisi dei requisiti per il progetto "Sistema di
   Acquisizione Dati da Sensori BLE" proposto da M31 S.r.l. (capitolato C7). L'analisi è stata condotta attraverso lo
   studio approfondito del capitolato, il confronto con il proponente e la discussione tra gli analisti del gruppo.
 
@@ -30,13 +30,15 @@
   - Sicurezza end-to-end e autenticazione robusta
 
   == Glossario
-  I termini tecnici utilizzati sono definiti nel documento `Glossario`, identificati con pedice _G_.
+  I termini tecnici utilizzati sono definiti nel documento #link(
+    "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf",
+  )[Glossario] (v2.0.0), identificati con pedice _G_.
 
   == Riferimenti
   === Riferimenti Normativi
   - Capitolato d'appalto C7 - Sistema di acquisizione dati da sensori (GC-0006.03) \
     https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
-  - Norme di Progetto \
+  - Norme di Progetto (v1.0.0) \
     https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf
 
   === Riferimenti Informativi
@@ -2325,11 +2327,17 @@
     [#tag-uc-num("err_sintattico_config_gateway")], [#ref-req("err_sintattico_config_gateway")], [Obbligatorio],
     [#tag-uc-num("err_config_frequenza_fuori_range")], [#ref-req("err_config_frequenza_fuori_range")], [Obbligatorio],
     [Capitolato],
-    [#ref-req("qualita_documentazione") \ #ref-req("qualita_test_integrazione_sensore_gateway") \ #ref-req(
+    [#ref-req("qualita_documentazione") \ #ref-req("qualita_testbook") \ #ref-req("qualita_manuale_utente") \ #ref-req(
+        "qualita_manuale_amministratore",
+      ) \ #ref-req(
+        "qualita_manuale_api",
+      ) \ #ref-req("qualita_git") \ #ref-req(
+        "qualita_test_integrazione_sensore_gateway",
+      ) \ #ref-req(
         "qualita_test_sincronizzazione_cloud",
       ) \ #ref-req("qualita_test_sicurezza") \ #ref-req("qualita_test_scalabilita_carico") \ #ref-req(
         "qualita_test_multi_tenant",
-      ) \ #ref-req("qualita_test_unita_coverage") \ #ref-req("vincolo_git") \ #ref-req(
+      ) \ #ref-req("qualita_test_unita_coverage") \ #ref-req(
         "vincolo_architettura_tre_livelli",
       ) \ #ref-req("vincolo_angular") \ #ref-req("vincolo_go_nestjs") \ #ref-req("vincolo_nats") \ #ref-req(
         "vincolo_docker",
@@ -2341,8 +2349,11 @@
 
     [Capitolato], [#ref-req("sicurezza_mfa") \ #ref-req("sicurezza_protezione_attacchi")], [Desiderabile],
 
-    [Interno], [#ref-req("qualita_norme_progetto") \ #ref-req("qualita_piano_qualifica")], [Obbligatorio],
+    [Interno],
+    [#ref-req("qualita_norme_progetto") \ #ref-req("qualita_piano_qualifica") \ #ref-req("vincolo_browser")],
+    [Obbligatorio],
   )
+
   == Tracciamento Requisito - Fonte
   #table(
     columns: (auto, auto, auto),
@@ -2666,6 +2677,11 @@
     [#ref-req("err_sintattico_config_gateway")], [Obbligatorio], [#tag-uc-num("err_sintattico_config_gateway")],
     [#ref-req("err_config_frequenza_fuori_range")], [Obbligatorio], [#tag-uc-num("err_config_frequenza_fuori_range")],
     [#ref-req("qualita_documentazione")], [Obbligatorio], [Capitolato],
+    [#ref-req("qualita_testbook")], [Obbligatorio], [Capitolato],
+    [#ref-req("qualita_manuale_utente")], [Obbligatorio], [Capitolato],
+    [#ref-req("qualita_manuale_amministratore")], [Obbligatorio], [Capitolato],
+    [#ref-req("qualita_manuale_api")], [Obbligatorio], [Capitolato],
+    [#ref-req("qualita_git")], [Obbligatorio], [Capitolato],
     [#ref-req("qualita_test_integrazione_sensore_gateway")], [Obbligatorio], [Capitolato],
     [#ref-req("qualita_test_sincronizzazione_cloud")], [Obbligatorio], [Capitolato],
     [#ref-req("qualita_test_sicurezza")], [Obbligatorio], [Capitolato],
@@ -2674,12 +2690,12 @@
     [#ref-req("qualita_test_unita_coverage")], [Obbligatorio], [Capitolato],
     [#ref-req("qualita_norme_progetto")], [Obbligatorio], [Interno],
     [#ref-req("qualita_piano_qualifica")], [Obbligatorio], [Interno],
-    [#ref-req("vincolo_git")], [Obbligatorio], [Capitolato],
     [#ref-req("vincolo_architettura_tre_livelli")], [Obbligatorio], [Capitolato],
     [#ref-req("vincolo_angular")], [Obbligatorio], [Capitolato],
     [#ref-req("vincolo_go_nestjs")], [Obbligatorio], [Capitolato],
     [#ref-req("vincolo_nats")], [Obbligatorio], [Capitolato],
     [#ref-req("vincolo_docker")], [Obbligatorio], [Capitolato],
+    [#ref-req("vincolo_browser")], [Obbligatorio], [Interno],
     [#ref-req("sicurezza_cifratura_dati")], [Obbligatorio], [Capitolato],
     [#ref-req("sicurezza_segregazione_tenant")], [Obbligatorio], [Capitolato],
     [#ref-req("sicurezza_mfa")], [Desiderabile], [Capitolato],

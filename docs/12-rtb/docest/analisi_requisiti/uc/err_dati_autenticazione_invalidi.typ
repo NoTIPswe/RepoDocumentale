@@ -18,6 +18,4 @@
     (descr: "L’Auth Server risponde al Sistema con un errore di autenticazione"),
     (descr: "L’Attore primario riceve un errore di autenticazione dal Sistema"),
   ),
-
-  uml-descr: "Diagramma Errore dati di autenticazione non validi",
 )
