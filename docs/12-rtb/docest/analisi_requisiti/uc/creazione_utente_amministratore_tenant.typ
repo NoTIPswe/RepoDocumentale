@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "creazione_utente_amministratore_tenant",
@@ -18,13 +18,15 @@
     (descr: "L’Attore avvia l’operazione di creazione di un nuovo Utente Amministratore Tenant"),
     (
       descr: "L’Attore inserisce e conferma la mail dell’utente",
-      inc: "inserimento_conferma_mail",
+      inc: "impostazione_mail",
     ),
     (
       descr: "L’Attore inserisce e conferma la password dell’utente",
-      inc: "inserimento_conferma_password",
+      inc: "impostazione_password",
     ),
     (descr: "L’Attore conferma l’operazione"),
     (descr: "L’Attore viene informato del successo dell’operazione"),
   ),
-)[#uml-schema("94", "Diagramma Creazione Utente Amministratore Tenant")]
+
+  uml-descr: "Diagramma Creazione Utente Amministratore Tenant",
+)

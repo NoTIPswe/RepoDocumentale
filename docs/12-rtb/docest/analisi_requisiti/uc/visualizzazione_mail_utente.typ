@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "visualizzazione_mail_utente",
@@ -17,4 +17,6 @@
   main-scen: (
     (descr: "L’Attore visualizza l'indirizzo email primario utilizzato dall'Utente per la comunicazione e il login"),
   ),
-)[#uml-schema("51", "Diagramma Visualizzazione mail dell'Utente")]
+
+  uml-descr: "Diagramma Visualizzazione mail dell'Utente",
+)

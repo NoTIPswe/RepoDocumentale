@@ -1,5 +1,13 @@
 title: Piano di Qualifica
 changelog:
+  - version: "1.1.0"
+    date: "2026-02-25"
+    authors:
+      - Francesco Marcon
+      - Matteo Mantoan 
+    verifier: Valerio Solito
+    description: >
+      Aggiustamento test a seguito a seguito dell'aggiornamento dell'AdR a v1.1.0
   - version: 1.0.0
     date: "2026-02-16"
     approver: Valerio Solito

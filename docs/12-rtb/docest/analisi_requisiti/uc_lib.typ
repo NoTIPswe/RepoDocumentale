@@ -27,23 +27,30 @@
 
 // Render UC tag
 #let tag-uc(uc-id) = context {
-  let label = label("UC:" + uc-id)
-  let title = query(label).first().body
-  text(fill: blue)[#ref(label, supplement: "")] + " " + link(label)[#title]
+  let lbl = label("UC:" + uc-id)
+  let results = query(lbl)
+  if results.len() == 0 {
+    text(fill: red)[UC:#{ uc-id } (not found)]
+  } else {
+    let title = results.first().body
+    text(fill: blue)[#ref(lbl, supplement: "")] + " " + link(lbl)[#title]
+  }
+}
+
+#let tag-uc-num(uc-id) = context {
+  let lbl = label("UC:" + uc-id)
+  let results = query(lbl)
+  if results.len() == 0 {
+    text(fill: red)[UC:#{ uc-id } (not found)]
+  } else {
+    let title = results.first().body
+    text(fill: blue)[#ref(lbl, supplement: "")]
+  }
 }
 
 #let uc-counter = counter("uc")
 #let ucs-counter = counter("ucs")
 
-/*Per utilizzarla negli use case bisogna aggiungere nell'import uml-schema e alla fine della parentesi tonda dell'UC aggiungere [#uml-schema("numero dell'UC", "Descrizione della figura")]
-Nel caso degli ucS bisogna scrivere "S" e subito di seguito il numero dell'UC, quindi ad esempio "S1" "descrizione figura s1"
-*/
-#let uml-schema(versione, descrizione, larghezza: 100%) = [
-  #figure(
-    image("uc_schemas/UC" + versione + ".png", width: larghezza),
-    caption: descrizione,
-  )
-]
 
 /*
  * Funzione `uc`: Genera la documentazione strutturata per un Caso d'Uso.
@@ -95,6 +102,8 @@ Nel caso degli ucS bisogna scrivere "S" e subito di seguito il numero dell'UC, q
  * - preconds: (string | array) Lista delle precondizioni. Verranno renderizzate come elenco puntato.
  * - postconds: (string | array) Lista delle postcondizioni. Verranno renderizzate come elenco puntato.
  * - trigger: (string | content) [Opzionale] L'evento che innesca il caso d'uso.
+ * - uml-descr: (string) [Opzionale] Didascalia del diagramma UML. Se fornita, inserisce automaticamente
+ *   l'immagine "uc_schemas/{UCn}.png" prima della tabella, senza bisogno di hardcodare il numero.
  *
  * - main-scen: (array di dizionari) Lo scenario principale. Ogni elemento è un passo:
  * (
@@ -124,6 +133,8 @@ Nel caso degli ucS bisogna scrivere "S" e subito di seguito il numero dell'UC, q
   alt-scen: (),
   trigger: none,
   show-trigger: false,
+  specialized-by: none,
+  uml-descr: none,
   ..args,
 ) = {
   let body = args.pos().at(0, default: none)
@@ -155,6 +166,13 @@ Nel caso degli ucS bisogna scrivere "S" e subito di seguito il numero dell'UC, q
       [
         #heading(title, level: 2 + level, numbering: (..nums) => uc-num-str + ".") #anchor
       ]
+
+      if uml-descr != none {
+        figure(
+          image("uc_schemas/" + uc-num-str + ".png", width: 90%),
+          caption: uml-descr,
+        )
+      }
 
       if body != none {
         [#body]
@@ -247,6 +265,20 @@ Nel caso degli ucS bisogna scrivere "S" e subito di seguito il numero dell'UC, q
             [*Estensioni*],
             [
               #list(..extensions)
+            ],
+          )
+        },
+
+        ..if specialized-by != none and specialized-by.len() > 0 {
+          (
+            [*Generalizzato da*],
+            [
+              #if type(specialized-by) == array {
+                list(..specialized-by.map(uc => tag-uc(uc)))
+              } else {
+                tag-uc(specialized-by)
+              }
+
             ],
           )
         },

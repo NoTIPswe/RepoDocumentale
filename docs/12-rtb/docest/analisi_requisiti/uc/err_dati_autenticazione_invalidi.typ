@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, CSA, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, CSA, SA, SIM_SYS, uc
 
 #uc(
   id: "err_dati_autenticazione_invalidi",
@@ -18,4 +18,4 @@
     (descr: "L’Auth Server risponde al Sistema con un errore di autenticazione"),
     (descr: "L’Attore primario riceve un errore di autenticazione dal Sistema"),
   ),
-)[#uml-schema("71", "Diagramma Errore dati di autenticazione non validi")]
+)

@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "eliminazione_utenti_tenant",
@@ -22,4 +22,6 @@
     (descr: "L’Attore conferma l’eliminazione"),
     (descr: "L’Attore viene informato del buon esito dell’operazione"),
   ),
-)[#uml-schema("58", "Diagramma Eliminazione Utente del Tenant")]
+
+  uml-descr: "Diagramma Eliminazione Utente del Tenant",
+)

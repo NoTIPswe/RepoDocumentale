@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "err_auth_gateway_fabbrica",
@@ -17,4 +17,4 @@
   main-scen: (
     (descr: "Il Gateway viene notificato dell'errore avvenuto"),
   ),
-)[#uml-schema("97", "Diagramma Errore autenticazione Gateway di fabbrica")]
+)

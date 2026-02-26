@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "esportazione_dati",
@@ -10,12 +10,16 @@
     "Il Sistema mostra i dati che l’Attore ha richiesto di visualizzare",
   ),
   postconds: (
-    "I dati visualizzati vengono esportati correttamente",
+    "I dati visualizzati vengono esportati correttamente nel formato scelto",
   ),
   trigger: "L’Attore vuole esportare i dati visualizzati",
   main-scen: (
     (descr: "L’Attore seleziona la funzionalità di esportazione dati visualizzati"),
-    (descr: "L’Attore avvia il download dei dati di cui è stata richiesta l’esportazione"),
+    (descr: "L’Attore seleziona il formato desiderato per l'esportazione"),
+    (descr: "L’Attore avvia il download dei dati"),
     (descr: "L’Attore ottiene i dati esportati in un nuovo file dedicato"),
   ),
-)[#uml-schema("29", "Diagramma Esportazione dati")]
+  specialized-by: ("esportazione_dati_csv", "esportazione_dati_json"),
+
+  uml-descr: "Diagramma Esportazione dati",
+)

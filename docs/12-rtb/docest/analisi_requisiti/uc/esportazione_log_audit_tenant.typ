@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "esportazione_log_audit_tenant",
@@ -29,4 +29,6 @@
       inc: "download_log_audit_esportati",
     ),
   ),
-)[#uml-schema("65", "Diagramma Esportazione log di Audit del Tenant")]
+
+  uml-descr: "Diagramma Esportazione log di Audit del Tenant",
+)

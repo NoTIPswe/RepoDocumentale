@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, CSA, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, CSA, SA, SIM_SYS, uc
 
 #uc(
   id: "autenticazione_client_api",
@@ -39,4 +39,6 @@
       uc: "err_auth_server_non_disponibile",
     ),
   ),
-)[#uml-schema("70", "Diagramma Autenticazione del client API")]
+
+  uml-descr: "Diagramma Autenticazione del client API",
+)

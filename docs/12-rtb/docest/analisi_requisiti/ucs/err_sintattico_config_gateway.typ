@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   system: SIM_SYS,
@@ -19,6 +19,4 @@
       descr: "L’Attore riceve una notifica di errore di configurazione con indicazione della natura sintattica del problema",
     ),
   ),
-)[
-  #uml-schema("S21", "Diagramma Errore sintattico configurazione Gateway")
-]
+)

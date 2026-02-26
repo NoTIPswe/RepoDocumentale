@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "ins_mail",
@@ -16,4 +16,6 @@
   main-scen: (
     (descr: "L'Attore inserisce la mail nel campo dedicato"),
   ),
-)[#uml-schema("101", "Diagramma Inserimento mail")]
+
+  uml-descr: "Diagramma Inserimento mail",
+)

@@ -1,10 +1,10 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc
 
 #uc(
   id: "cambio_password",
   system: CLOUD_SYS,
   title: "Cambio password",
-  level: 2,
+  level: 1,
   prim-actors: CA.non-authd-usr,
   preconds: (
     "Il Sistema ha validato il token di recupero password associato all’account",
@@ -16,9 +16,9 @@
   main-scen: (
     (
       descr: "L'Attore inserisce la nuova password",
-      inc: "inserimento_conferma_password",
+      inc: "impostazione_password",
     ),
   ),
-)[
-  #uml-schema("7.1", "Diagramma Cambio password")
-]
+
+  uml-descr: "Diagramma Cambio password",
+)

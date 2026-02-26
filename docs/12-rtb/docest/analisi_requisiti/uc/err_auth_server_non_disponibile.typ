@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, CSA, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, CSA, SA, SIM_SYS, uc
 
 #uc(
   id: "err_auth_server_non_disponibile",
@@ -19,4 +19,4 @@
     (descr: "L’Auth Server non è raggiungibile o risponde al Sistema con un errore interno"),
     (descr: "L’Attore primario riceve un messaggio di errore interno dal Sistema"),
   ),
-)[#uml-schema("72", "Diagramma Errore Auth Server non disponibile")]
+)

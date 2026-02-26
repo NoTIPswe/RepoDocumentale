@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "visualizzazione_timestamp_emissione_alert",
@@ -16,6 +16,6 @@
   main-scen: (
     (descr: "L’Attore visualizza il timestamp dell’emissione dell’alert"),
   ),
-)[
-  #uml-schema("34", "Diagramma Visualizzazione timestamp emissione alert")
-]
+
+  uml-descr: "Diagramma Visualizzazione timestamp emissione alert",
+)

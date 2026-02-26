@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "err_interno_creazione_tenant",
@@ -18,4 +18,4 @@
   main-scen: (
     (descr: "L’Attore visualizza i dettagli relativi all’errore verificatosi"),
   ),
-)[#uml-schema("87", "Diagramma Errore interno creazione Tenant")]
+)

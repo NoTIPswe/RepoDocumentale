@@ -1,9 +1,9 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc
 
 #uc(
   id: "err_mail_non_valida",
   system: CLOUD_SYS,
-  title: "Errore Mail non valida",
+  title: "Errore mail non valida",
   level: 1,
   prim-actors: (CA.authd-usr,),
   preconds: (
@@ -16,7 +16,4 @@
   main-scen: (
     (descr: "L’Attore viene notificato che l’email inserita non è valida ed invitato a inserirla nuovamente"),
   ),
-)[
-  #uml-schema("14", "Diagramma Errore mail non valida")
-
-]
+)

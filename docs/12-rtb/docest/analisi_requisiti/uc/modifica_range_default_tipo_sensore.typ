@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "modifica_range_default_tipo_sensore",
@@ -8,16 +8,13 @@
   prim-actors: CA.tenant-adm,
   preconds: (
     "Esiste un sensore di tipologia disponibile a modifiche nel Sistema",
+    "L'Attore ha precedentemente selezionato il tipo di sensore su cui operare",
   ),
   postconds: (
     "Ogni nuovo sensore del tipo selezionato, di default, invierà alert per misurazioni al di fuori del range impostato",
   ),
   trigger: "L’Attore vuole cambiare il range dell’alert di default per tutti i sensori di un certo tipo",
   main-scen: (
-    (
-      descr: "L’Attore seleziona il tipo di sensore",
-      inc: "selezione_tipo_sensore",
-    ),
     (descr: "L’Attore visualizza il range corrente"),
     (
       descr: "L'Attore seleziona il range numerico per le misurazioni attese",
@@ -26,4 +23,6 @@
     (descr: "L’Attore salva le modifiche"),
     (descr: "Il Gateway salva la nuova configurazione"),
   ),
-)[#uml-schema("46", "Diagramma Modifica range alert default per tipo sensore")]
+
+  uml-descr: "Diagramma Modifica range alert default per tipo sensore",
+)

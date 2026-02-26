@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "err_autenticazione_gateway",
@@ -17,4 +17,4 @@
     (descr: "L’Attore riceve un errore di autenticazione"),
     (descr: "Il canale sicuro non viene instaurato"),
   ),
-)[#uml-schema("99", "Diagramma Errore autenticazione Gateway")]
+)

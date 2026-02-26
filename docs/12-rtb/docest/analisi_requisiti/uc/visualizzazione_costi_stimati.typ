@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "visualizzazione_costi_stimati",
@@ -27,4 +27,6 @@
       inc: "visualizzazione_costi_banda",
     ),
   ),
-)[#uml-schema("49", "Diagramma Visualizzazione costi stimati")]
+
+  uml-descr: "Diagramma Visualizzazione costi stimati",
+)

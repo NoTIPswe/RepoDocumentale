@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   system: SIM_SYS,
@@ -36,6 +36,6 @@
       uc: "err_deploy_gateway_simulato",
     ),
   ),
-)[
-  #uml-schema("S15", "Diagramma Creazione gateway multipli con configurazione di default")
-]
+
+  uml-descr: "Diagramma Creazione gateway multipli con configurazione di default",
+)

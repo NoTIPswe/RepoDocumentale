@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "creazione_tenant",
@@ -26,10 +26,6 @@
       inc: "creazione_utente_tenant",
     ),
     (
-      descr: "L’Attore visualizza il resoconto della procedura di creazione",
-      inc: "visualizzazione_dettagli_tenant",
-    ),
-    (
       descr: "L’Attore conferma la volontà di avviare la creazione",
       ep: "ErroreInternoCreazione",
     ),
@@ -42,4 +38,6 @@
       uc: "err_interno_creazione_tenant",
     ),
   ),
-)[#uml-schema("86", "Diagramma Creazione Tenant")]
+
+  uml-descr: "Diagramma Creazione Tenant",
+)

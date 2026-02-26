@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   system: SIM_SYS,
@@ -23,7 +23,7 @@
       inc: "visualizzazione_id_fabbrica_simulazione",
     ),
   ),
-)[
-  #uml-schema("S1.1", "Diagramma Visualizzazione singolo Gateway simulato")
-]
+
+  uml-descr: "Diagramma Visualizzazione singolo Gateway simulato",
+)
 

@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   system: SIM_SYS,
@@ -17,7 +17,7 @@
   main-scen: (
     (descr: "L’Attore visualizza l'ID di fabbrica generato dal simulatore"),
   ),
-)[
-  #uml-schema("S2", "Visualizzazione ID di fabbrica simulazione")
-]
+
+  uml-descr: "Diagramma Visualizzazione ID di fabbrica simulazione",
+)
 

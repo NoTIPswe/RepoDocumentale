@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "selezione_tipo_sensore",
@@ -16,4 +16,6 @@
   main-scen: (
     (descr: "L’Attore seleziona un tipo di sensore fra quelli disponibili"),
   ),
-)[#uml-schema("47", "Diagramma Selezione tipo di sensore")]
+
+  uml-descr: "Diagramma Selezione tipo di sensore",
+)

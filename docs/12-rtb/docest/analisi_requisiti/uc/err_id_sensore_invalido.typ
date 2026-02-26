@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "err_id_sensore_invalido",
@@ -18,4 +18,4 @@
   main-scen: (
     (descr: "L’Attore riceve una risposta di errore che segnala gli ID dei sensori non validi per Gateway"),
   ),
-)[#uml-schema("76", "Diagramma Errore ID sensore invalido")]
+)

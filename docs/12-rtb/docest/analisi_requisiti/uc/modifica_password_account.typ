@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc
 
 #uc(
   id: "modifica_password_account",
@@ -16,13 +16,12 @@
   main-scen: (
     (
       descr: "L’Attore inserisce la nuova password",
-      inc: "inserimento_conferma_password",
+      inc: "impostazione_password",
     ),
     (
       descr: "L’Attore conferma l’operazione di cambio password",
     ),
   ),
-)[
-  #uml-schema("16", "Diagramma Modifica password account")
 
-]
+  uml-descr: "Diagramma Modifica password account",
+)

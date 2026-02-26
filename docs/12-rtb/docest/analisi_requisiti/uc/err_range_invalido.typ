@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc
 
 #uc(
   id: "err_range_invalido",
@@ -22,6 +22,4 @@
       descr: "L'Attore viene invitato ad inserire un valore accettabile",
     ),
   ),
-)[
-  #uml-schema("100", "Diagramma Errore range invalido")
-]
+)

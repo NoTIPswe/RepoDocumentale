@@ -916,7 +916,7 @@
     stroke: 0.5pt,
     inset: 6pt,
 
-    table.header([*Codice*], [*Descrizione (unitaria)*], [*Requisiti di riferimento*], [*Stato*]),
+    table.header([*Codice*], [*Descrizione*], [*Requisiti di riferimento*], [*Stato*]),
     [T-I-1],
     [Verificare la corretta ricezione e validazione dei pacchetti JSON inviati dal Simulatore al Cloud Ingestion
       Service],
@@ -936,47 +936,40 @@
     [NI],
 
     [T-I-4],
-    [Verificare la persistenza dei dati nel database (MongoDB) e dell'isolamento dei dati per ciascun Tenant],
-    [R-S-17-F, R-2-S],
+    [Verificare la persistenza dei dati nel database e dell’isolamento dei dati per ciascun Tenant],
+    [R-113-F, R-2-S],
     [NI],
 
     [T-I-5],
-    [Verificare la comunicazione tra il servizio di Ingestion e il sistema di Streaming (NATS) per la distribuzione dei
-      dati],
-    [R-S-21-F, R-5-V],
-    [NI],
-
-    [T-I-6],
-    [Verificare l'attivazione dei trigger di allerta tra il modulo di analisi dati e il servizio notifiche al
+    [Verificare l’attivazione dei trigger di allerta tra il modulo di analisi dati e il servizio notifiche al
       superamento delle soglie],
     [R-33-F],
     [NI],
 
-    [T-I-7],
-    [Verificare l'integrazione del Sistema di autenticazione (JWT) tra l'API Gateway e i microservizi interni],
+    [T-I-6],
+    [Verificare l’integrazione del Sistema di autenticazione (JWT) tra l’API Gateway e i microservizi interni],
     [R-6-S],
     [NI],
 
-    [T-I-8],
+    [T-I-7],
     [Verificare la gestione degli errori di configurazione del Gateway simulato in caso di payload invalido o frequenza
       fuori range],
     [R-S-23-F, R-S-24-F],
     [NI],
 
-    [T-I-9],
+    [T-I-8],
     [Verificare la propagazione e gestione di misure anomale (outlier) dal Simulatore al Cloud],
     [R-S-21-F],
     [NI],
 
-    [T-I-10], [Verificare l’integrazione del Sistema con più Gateway simulati attivi in parallelo], [R-S-17-F], [NI],
-    [T-I-11], [Verificare la corretta trasmissione del flusso di dati tra sensore e relativo gateway], [R-2-Q], [NI],
-    [T-I-12],
+    [T-I-9], [Verificare l’integrazione del Sistema con più Gateway simulati attivi in parallelo], [R-S-17-F], [NI],
+    [T-I-10],
     [Verificare che i dati scambiati tra le diverse componenti del Sistema distribuito siano cifrati e trasmessi tramite
       protocollo TLS.],
     [R-1-S],
     [NI],
 
-    [T-I-13], [Verificare l’isolamento dei dati tra Tenant tramite API e persistenza su database], [R-2-S], [NI],
+    [T-I-11], [Verificare l’isolamento dei dati tra Tenant tramite API e persistenza su database], [R-2-S], [NI],
   )
 
   == Test di Sistema
@@ -986,7 +979,7 @@
     stroke: 0.5pt,
     inset: 6pt,
 
-    table.header([*Codice*], [*Descrizione (unitaria)*], [*Requisiti di riferimento*], [*Stato*]),
+    table.header([*Codice*], [*Descrizione*], [*Requisiti di riferimento*], [*Stato*]),
     //Autenticazione e Autorizzazione
     [T-S-001],
     [Verificare che un utente non autenticato possa accedere al Sistema inserendo credenziali valide tramite interfaccia
@@ -1001,10 +994,14 @@
 
     [T-S-003],
     [Verificare che un utente possa configurare correttamente il meccanismo 2FA durante il primo accesso.],
-    [R-4-F],
+    [R-4-F, R-3-S],
     [NI],
 
-    [T-S-004], [Verificare che un utente possa effettuare il login tramite codice OTP valido.], [R-5-F, R-6-F], [NI],
+    [T-S-004],
+    [Verificare che un utente possa effettuare il login tramite codice OTP valido.],
+    [R-5-F, R-6-F, R-3-S],
+    [NI],
+
     [T-S-005],
     [Verificare che il Sistema notifichi un errore in caso di inserimento di codice OTP errato.],
     [R-7-F],
@@ -1015,7 +1012,7 @@
     [R-6-S],
     [NI],
 
-    //Recupero Credenziali
+    //Recupero e Gestione Credenziali Account
     [T-S-007],
     [Verificare che un utente non autenticato possa avviare la procedura di recupero password inserendo una mail
       valida.],
@@ -1033,138 +1030,239 @@
     [NI],
 
     [T-S-010],
-    [Verificare che il sistema notifichi un errore in caso di password inserite non corrispondenti o non valide],
+    [Verificare che il sistema notifichi un errore in caso di password inserite non corrispondenti o non valide.],
     [R-12-F, R-13-F],
     [NI],
 
-    //Gateway e Sensori
     [T-S-011],
-    [Verificare che un utente autenticato possa visualizzare la lista dei Gateway associati al proprio Tenant],
+    [Verificare che un utente autenticato possa modificare la propria email, con corretta validazione del formato,
+      segnalazione di duplicati e richiesta di conferma.],
+    [R-14-F, R-15-F, R-16-F, R-17-F],
+    [NI],
+
+    [T-S-012], [Verificare che un utente autenticato possa modificare la password del proprio account.], [R-18-F], [NI],
+
+    [T-S-013], [Verificare che un utente autenticato possa effettuare il logout dal Sistema.], [R-19-F], [NI],
+
+    //Gateway e Sensori
+    [T-S-014],
+    [Verificare che un utente autenticato possa visualizzare la lista dei Gateway associati al proprio Tenant.],
     [R-20-F],
     [NI],
 
-    [T-S-012],
-    [Verificare che il sistema mostri correttamente i dettagli di un Gateway selezionato],
+    [T-S-015],
+    [Verificare che il sistema mostri correttamente nome, stato, timestamp dell’ultimo invio dati e lista sensori di un
+      Gateway selezionato.],
     [R-21-F, R-22-F],
     [NI],
 
-    [T-S-013], [Verificare che il sistema mostri la lista dei sensori associati a un Gateway], [R-23-F], [NI],
-    [T-S-014],
-    [Verificare che il sistema mostri correttamente i dettagli e l’ultimo timestamp di ciascun sensore],
+    [T-S-016], [Verificare che il sistema mostri la lista dei sensori associati a un Gateway.], [R-23-F], [NI],
+    [T-S-017],
+    [Verificare che il sistema mostri correttamente l’ID e l’ultimo timestamp di invio dati di ciascun sensore.],
     [R-23-F],
     [NI],
 
     //Dati, Filtri e Esportazione
-    [T-S-015], [Verificare che il sistema visualizzi i dati di stream in formato tabellare], [R-24-F, R-25-F], [NI],
-
-    [T-S-016], [Verificare che il sistema visualizzi i dati di stream in formato grafico], [R-24-F,R-26-F], [NI],
-    [T-S-017],
-    [Verificare che l’utente possa filtrare i dati per Gateway, sensore e intervallo temporale],
+    [T-S-018], [Verificare che il sistema visualizzi i dati di stream in formato tabellare.], [R-24-F, R-25-F], [NI],
+    [T-S-019], [Verificare che il sistema visualizzi i dati di stream in formato grafico.], [R-24-F, R-26-F], [NI],
+    [T-S-020],
+    [Verificare che l’utente possa filtrare i dati per Gateway, sensore e intervallo temporale.],
     [R-27-F, R-28-F, R-29-F],
     [NI],
 
-    [T-S-018],
-    [Verificare che il sistema notifichi l’utente quando non sono disponibili dati per i filtri selezionati],
+    [T-S-021],
+    [Verificare che il sistema notifichi l’utente quando non sono disponibili dati per i filtri selezionati.],
     [R-30-F],
     [NI],
 
-    [T-S-019], [Verificare che l’utente possa esportare i dati visualizzati in formato supportato], [R-31-F], [NI],
+    [T-S-022], [Verificare che l’utente possa esportare i dati visualizzati in formato supportato.], [R-31-F], [NI],
 
     //Alert e Notifiche
-    [T-S-020], [Verificare che il sistema generi un alert in caso di Gateway non raggiungibile], [R-32-F], [NI],
-    [T-S-021], [Verificare che il sistema generi un alert in caso di valore sensore fuori range], [R-33-F], [NI],
-
-    [T-S-022], [Verificare che l’utente possa visualizzare lo storico degli alert generati], [R-34F], [NI],
-    [T-S-023],
-    [Verificare che il sistema mostri i dettagli completi di un alert selezionato],
+    [T-S-023], [Verificare che il sistema generi un alert in caso di Gateway non raggiungibile.], [R-32-F], [NI],
+    [T-S-024], [Verificare che il sistema generi un alert in caso di valore sensore fuori range.], [R-33-F], [NI],
+    [T-S-025], [Verificare che l’utente possa visualizzare lo storico degli alert generati.], [R-34-F], [NI],
+    [T-S-026],
+    [Verificare che il sistema mostri i dettagli completi di un alert selezionato.],
     [R-35-F, R-36-F, R-37-F, R-38-F],
     [NI],
 
-    [T-S-024],
-    [Verificare che l’utente possa configurare le notifiche di alert via email e dashboard],
+    [T-S-027],
+    [Verificare che l’utente possa attivare e disattivare la ricezione di notifiche alert via email e dashboard.],
     [R-39-F, R-40-F],
     [NI],
 
-    //Configurazione Gateway
-    [T-S-025],
-    [Verificare che l’utente possa modificare il nome di un Gateway e ricevere errore in caso di duplicato],
+    [T-S-028],
+    [Verificare che il Tenant Admin possa modificare il nome di un Gateway e ricevere errore in caso di nome
+      duplicato.],
     [R-41-F, R-42-F],
     [NI],
 
-    [T-S-026], [Verificare che l’utente possa modificare lo stato operativo di un Gateway], [R-43-F, R-44-F], [NI],
-    [T-S-027],
-    [Verificare che l’utente possa modificare i range di allarme di un sensore specifico],
-    [R-45-F, R-46-F, R-48-F, R-49-F],
-    [NI],
-
-    //Utenti e Tenant
-    [T-S-028],
-    [Verificare che il Tenant Admin possa creare, modificare ed eliminare utenti del Tenant],
-    [R-56-F, R-57-F, R-58-F, R-59-F, R-60-F, R-61-F, R-62-F, R-63-F, R-64-F, R-65-F],
-    [NI],
-
     [T-S-029],
-    [Verificare che l'Amministratore di Sistema possa creare, sospendere, modificare, visualizzare dettagli, riattivare
-      ed eliminare un Tenant],
-    [R-92-F, R-93-F, R-94-F, R-95-F, R-96-F, R-97-F, R-98-F, R-99-F, R-100-F, R-101-F, R-105-F, R-106-F],
+    [Verificare che il Tenant Admin possa modificare lo stato operativo di un Gateway selezionato.],
+    [R-43-F, R-44-F],
     [NI],
 
     [T-S-030],
-    [Verificare che l'Amministratore di Sistema possa impersonificare un utente Tenant e operare con i suoi permessi],
-    [R-107-F],
+    [Verificare che il Tenant Admin possa modificare il range di allarme per un sensore specifico e per un tipo di
+      sensore, ricevendo errore in caso di range invalido.],
+    [R-45-F, R-46-F, R-47-F, R-48-F, R-49-F, R-50-F, R-116-F],
     [NI],
 
-    //API, audit e monitoraggio
     [T-S-031],
-    [Verificare che il Tenant Admin possa creare, visualizzare e revocare credenziali API],
-    [R-65-F, R-66-F, R-67-F, R-68-F, R-69-F, R-70-F, R-71-F],
+    [Verificare che il Tenant Admin possa modificare il timeout che determina l’irraggiungibilità di un Gateway.],
+    [R-51-F],
     [NI],
 
-    [T-S-032], [Verificare che il sistema registri tutte le operazioni rilevanti nei log di Audit], [R-4-S], [NI],
+    [T-S-032],
+    [Verificare che il Tenant Admin possa modificare la frequenza di invio dati di un Gateway.],
+    [R-81-F],
+    [NI],
 
     [T-S-033],
-    [Verificare che un utente autorizzato possa consultare ed esportare i log di Audit],
-    [R-73-F, R-74-F, R-75-F, R-76-F],
+    [Verificare che il Tenant Admin possa visualizzare i costi stimati del Tenant, inclusi costi di storage e banda.],
+    [R-52-F, R-53-F, R-54-F],
     [NI],
 
-    [T-S-034], [Verificare che il sistema mostri metriche di latenza, traffico e utilizzo storage], [R-110-F], [NI],
+    //Gestione Utenti del Tenant (Tenant Admin)
+    [T-S-034],
+    [Verificare che il Tenant Admin possa visualizzare la lista degli utenti del Tenant e i dettagli di un singolo
+      utente.],
+    [R-55-F, R-56-F],
+    [NI],
 
-    //Provisioning e sicurezza comunicazioni
     [T-S-035],
-    [Verificare che un Gateway non provisioned possa completare correttamente il processo di onboarding],
-    [R-111-F],
+    [Verificare che il Tenant Admin possa creare, modificare ed eliminare uno o più utenti del Tenant.],
+    [R-57-F, R-58-F, R-59-F, R-60-F, R-61-F, R-62-F, R-63-F, R-64-F],
     [NI],
 
     [T-S-036],
-    [Verificare che il sistema notifichi errori di autenticazione per Gateway non validi],
-    [R-112-F, R-116-F],
+    [Verificare che il Tenant Admin possa creare, visualizzare e revocare credenziali API per il Tenant.],
+    [R-65-F, R-66-F, R-67-F, R-68-F, R-69-F, R-70-F, R-71-F],
     [NI],
 
     [T-S-037],
-    [Verificare che il Gateway invii dati al Cloud tramite canale cifrato e che il Cloud li accetti],
+    [Verificare che il Tenant Admin possa modificare le impostazioni del login 2FA per il Tenant.],
+    [R-72-F],
+    [NI],
+
+    [T-S-039],
+    [Verificare che un utente autorizzato possa consultare, filtrare per intervallo temporale, esportare e scaricare i
+      log di Audit del Tenant.],
+    [R-73-F, R-74-F, R-75-F, R-76-F, R-77-F],
+    [NI],
+
+    [T-S-038],
+    [Verificare che il Tenant Admin e l’Amministratore di Sistema possano configurare le impostazioni di
+      impersonificazione del Tenant.],
+    [R-78-F],
+    [NI],
+
+    [T-S-040],
+    [Verificare che il sistema registri correttamente tutte le operazioni rilevanti nei log di Audit.],
+    [R-4-S],
+    [NI],
+
+    [T-S-041],
+    [Verificare che l’Amministratore di Sistema possa visualizzare metriche di latenza, volume di traffico e utilizzo
+      storage.],
+    [R-110-F],
+    [NI],
+
+    [T-S-042],
+    [Verificare che il Tenant Admin e l’Amministratore di Sistema possano selezionare uno o più Gateway e installare un
+      aggiornamento firmware.],
+    [R-79-F, R-80-F],
+    [NI],
+
+    [T-S-043],
+    [Verificare che l’Amministratore di Sistema possa visualizzare la lista dei Tenant e i dettagli di un singolo
+      Tenant, inclusi nome, stato, ID e intervallo di sospensione.],
+    [R-91-F, R-92-F, R-93-F, R-94-F, R-95-F, R-96-F, R-97-F],
+    [NI],
+
+    [T-S-044],
+    [Verificare che l’Amministratore di Sistema possa creare, sospendere, riattivare, modificare ed eliminare un Tenant,
+      con corretta gestione di errori interni durante la creazione.],
+    [R-98-F, R-99-F, R-100-F, R-101-F, R-102-F, R-103-F, R-104-F, R-105-F, R-106-F],
+    [NI],
+
+    [T-S-045],
+    [Verificare che l’Amministratore di Sistema possa avviare una sessione di impersonificazione di un utente Tenant.],
+    [R-107-F],
+    [NI],
+
+    [T-S-046],
+    [Verificare che l’Amministratore di Sistema possa registrare un Gateway e associarlo a un Tenant di interesse.],
+    [R-108-F],
+    [NI],
+
+    [T-S-047],
+    [Verificare che l’Amministratore di Sistema possa creare un utente con ruolo Amministratore Tenant per un Tenant di
+      interesse.],
+    [R-109-F],
+    [NI],
+
+    [T-S-048],
+    [Verificare che un Client API possa autenticarsi tramite le credenziali ottenute e ricevere notifica di errore in
+      caso di credenziali invalide o server non disponibile.],
+    [R-82-F, R-83-F, R-84-F],
+    [NI],
+
+    [T-S-049],
+    [Verificare che un Client API autenticato possa recuperare dati storici on-demand e ricevere notifiche di errore per
+      token, ID Gateway, ID sensore o intervallo temporale non validi.],
+    [R-85-F, R-86-F, R-87-F, R-88-F, R-89-F],
+    [NI],
+
+    [T-S-050],
+    [Verificare che un Client API autenticato possa ricevere dati real-time tramite endpoint di streaming.],
+    [R-90-F],
+    [NI],
+
+    [T-S-051],
+    [Verificare che un Gateway non provisioned possa completare correttamente il processo di onboarding e connettersi al
+      Sistema.],
+    [R-111-F],
+    [NI],
+
+    [T-S-052],
+    [Verificare che il sistema notifichi errori di autenticazione per Gateway con credenziali di fabbrica non valide o
+      con processo di autenticazione fallito.],
+    [R-112-F, R-115-F],
+    [NI],
+
+    [T-S-053],
+    [Verificare che il Gateway invii dati al Cloud tramite canale sicuro cifrato e che il Cloud li accetti
+      correttamente.],
     [R-113-F, R-114-F, R-1-S],
     [NI],
 
     //Simulatore Gateway
-    [T-S-038],
-    [Verificare che l’utente del simulatore possa visualizzare e gestire Gateway simulati],
+    [T-S-054],
+    [Verificare che l’utente del simulatore possa visualizzare la lista dei Gateway simulati, i dettagli di ciascuno e
+      gestire creazione, deploy ed eliminazione.],
     [R-S-1-F, R-S-2-F, R-S-3-F, R-S-4-F, R-S-8-F, R-S-10-F, R-S-11-F, R-S-12-F],
     [NI],
 
-    [T-S-039],
-    [Verificare che l’utente possa configurare e simulare sensori associati a un Gateway simulato],
+    [T-S-055],
+    [Verificare che l’utente del simulatore possa configurare e simulare sensori associati a un Gateway simulato,
+      inclusa la gestione degli errori di range e creazione.],
     [R-S-5-F, R-S-6-F, R-S-7-F, R-S-9-F, R-S-13-F, R-S-14-F, R-S-15-F, R-S-16-F],
     [NI],
 
-    [T-S-040],
-    [Verificare che il simulatore permetta di iniettare anomalie di rete e valori sensore anomali],
+    [T-S-056],
+    [Verificare che il simulatore permetta di creare più istanze Gateway in parallelo e di iniettare anomalie di rete e
+      valori sensore anomali.],
     [R-S-17-F, R-S-18-F, R-S-19-F, R-S-20-F, R-S-21-F],
     [NI],
 
-    [T-S-041],
-    [Verificare che il Cloud possa inviare configurazioni al Gateway simulato e ricevere notifiche di errore],
+    [T-S-057],
+    [Verificare che il Cloud possa inviare comandi di configurazione al Gateway simulato e ricevere notifiche di errore
+      per payload o frequenza non validi.],
     [R-S-22-F, R-S-23-F, R-S-24-F],
     [NI],
+
+    [T-S-058], [Verificare la corretta trasmissione del flusso di dati tra sensore e relativo gateway], [R-113-F], [NI],
   )
 
   = Cruscotto di valutazione

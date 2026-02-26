@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   system: SIM_SYS,
@@ -19,7 +19,5 @@
     (descr: "L’operazione di creazione viene annullata"),
     (descr: "L’Attore viene notificato dell’errore"),
   ),
-)[
-  #uml-schema("S11", "Diagramma Errore Deploy Gateway simulato")
-]
+)
 

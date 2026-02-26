@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "modifica_range_sensore",
@@ -10,16 +10,13 @@
   preconds: (
     "Il sensore appartiene ad un Gateway attivo",
     "Il sensore risulta in funzione",
+    "L'Attore ha precedentemente selezionato il sensore su cui operare",
   ),
   postconds: (
     "Il sensore invierà alert per misurazioni al di fuori del range di valori selezionato",
   ),
   trigger: "L’Attore vuole cambiare il range dell’alert per un sensore specifico",
   main-scen: (
-    (
-      descr: "L’Attore seleziona il sensore",
-      inc: "selezione_specifico_sensore",
-    ),
     (descr: "L’Attore visualizza il range corrente"),
     (
       descr: "L’Attore seleziona il range numerico per le misurazioni attese",
@@ -37,4 +34,6 @@
       uc: "err_range_invalido",
     ),
   ),
-)[#uml-schema("43", "Diagramma Modifica range alert sensore specifico")]
+
+  uml-descr: "Diagramma Modifica range alert sensore specifico",
+)

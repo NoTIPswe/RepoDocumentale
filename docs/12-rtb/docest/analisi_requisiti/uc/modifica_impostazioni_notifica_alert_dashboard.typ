@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "modifica_impostazioni_notifica_alert_dashboard",
@@ -10,11 +10,13 @@
     "Il Sistema sta mostrando le preferenze impostate per la ricezione delle notifiche di alert via dashboard",
   ),
   postconds: (
-    "Il Sistema salva le preferenze di ricezione alert",
+    "Il Sistema salva le nuove preferenze di ricezione alert via dashboard",
   ),
-  trigger: "L’Attore vuole di attivare/disattivare la ricezione di alert via dashboard",
+  trigger: "L’Attore vuole modificare lo stato della ricezione di alert via dashboard",
   main-scen: (
-    (descr: "L’Attore esprime la preferenza di ricezione notifiche via dashboard (on/off)"),
-    (descr: "Il Sistema salva le preferenze"),
+    (descr: "L’Attore modifica la preferenza di ricezione notifiche via dashboard"),
   ),
-)[#uml-schema("39", "Diagramma Modifica impostazioni notifica alert via dashboard")]
+  specialized-by: ("abilitazione_notifica_alert_dashboard", "disabilitazione_notifica_alert_dashboard"),
+
+  uml-descr: "Diagramma Modifica impostazioni notifica alert via dashboard",
+)

@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "creazione_utente_tenant",
@@ -25,12 +25,14 @@
     ),
     (
       descr: "L’Attore inserisce e conferma la mail dell’Utente",
-      inc: "inserimento_conferma_password",
+      inc: "impostazione_mail",
     ),
     (
       descr: "L’Attore inserisce e conferma la password dell’Utente",
-      inc: "inserimento_conferma_password",
+      inc: "impostazione_password",
     ),
     (descr: "L’Attore salva le modifiche e crea l’Utente"),
   ),
-)[#uml-schema("52", "Diagramma Creazione Utente del Tenant")]
+
+  uml-descr: "Diagramma Creazione Utente del Tenant",
+)

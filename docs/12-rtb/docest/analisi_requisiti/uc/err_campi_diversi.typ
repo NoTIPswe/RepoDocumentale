@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc
 
 #uc(
   id: "err_campi_diversi",
@@ -17,7 +17,4 @@
     (descr: "L'Attore viene notificato della differenza nelle due stringhe inserite"),
     (descr: "L'Attore viene invitato a ricompilare"),
   ),
-)[
-  #uml-schema("10", "Diagramma Errore campi non corrispondenti")
-
-]
+)

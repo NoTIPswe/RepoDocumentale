@@ -1,9 +1,10 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "filtraggio_gateway",
   system: CLOUD_SYS,
   title: "Filtraggio dati per Gateway",
+  gen-parent: "filtraggio_dati",
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
@@ -23,6 +24,6 @@
     ),
   ),
   alt-scen: (),
-)[
-  #uml-schema("25", "Diagramma Filtraggio dati per Gateway")
-]
+
+  uml-descr: none,
+)

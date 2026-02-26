@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc
 
 #uc(
   id: "visualizzazione_lista_sensori",
@@ -19,6 +19,6 @@
       inc: "visualizzazione_singolo_sensore",
     ),
   ),
-)[
-  #uml-schema("22.1", "Diagramma Visualizzazione lista sensori")
-]
+
+  uml-descr: "Diagramma Visualizzazione lista sensori",
+)

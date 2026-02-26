@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "modifica_mail_utente",
@@ -8,7 +8,7 @@
   prim-actors: CA.tenant-adm,
   preconds: (
     "Esiste almeno un Utente associato al Tenant",
-    "Il Sistema sta attendendo le modifiche dell'Utente da parte dell'Attore",
+    "L'Attore ha precedentemente selezionato l'Utente del Tenant su cui operare",
   ),
   postconds: (
     "La mail dell’Utente selezionato è stata aggiornata",
@@ -16,13 +16,11 @@
   trigger: "L’Attore vuole modificare la mail di un singolo Utente del Tenant",
   main-scen: (
     (
-      descr: "L’Attore seleziona un Utente del Tenant",
-      inc: "selezione_utente_tenant",
-    ),
-    (
       descr: "L’Attore inserisce la mail da assegnare all’Utente",
-      inc: "inserimento_conferma_mail",
+      inc: "impostazione_mail",
     ),
     (descr: "L’Attore salva le modifiche apportate"),
   ),
-)[#uml-schema("56", "Diagramma Modifica mail Utente del Tenant")]
+
+  uml-descr: "Diagramma Modifica mail Utente del Tenant",
+)

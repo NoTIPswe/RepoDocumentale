@@ -1,9 +1,9 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "filtraggio_singolo_sensore",
   system: CLOUD_SYS,
-  title: "Filtraggio dati singolo sensore",
+  title: "Filtraggio dati per singolo sensore",
   level: 2,
   prim-actors: CA.tenant-usr,
   preconds: (

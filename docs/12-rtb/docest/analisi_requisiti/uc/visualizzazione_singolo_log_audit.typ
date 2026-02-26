@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "visualizzazione_singolo_log_audit",
@@ -26,7 +26,7 @@
       descr: "L’Attore visualizza una descrizione testuale dell’operazione eseguita",
       inc: "visualizzazione_operazione_log_entry",
     ),
-    // bookmark
-    // codice -> indica l'operazione tracciandola
   ),
-)[#uml-schema("64.1", "Diagramma Visualizzazione singola entry log di Audit del tenant")]
+
+  uml-descr: "Diagramma Visualizzazione singola entry log di Audit del tenant",
+)

@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "visualizzazione_lista_api",
@@ -22,4 +22,6 @@
       inc: "visualizzazione_singole_api",
     ),
   ),
-)[#uml-schema("61", "Diagramma Visualizzazione lista credenziali API del Tenant")]
+
+  uml-descr: "Diagramma Visualizzazione lista credenziali API del Tenant",
+)

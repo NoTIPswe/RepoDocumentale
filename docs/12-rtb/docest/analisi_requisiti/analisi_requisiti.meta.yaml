@@ -1,5 +1,12 @@
 title: Analisi dei Requisiti
 changelog:
+  - version: "1.1.0"
+    date: "2026-02-25"
+    authors:
+      - Francesco Marcon
+    verifier: Valerio Solito
+    description: >
+      Correzioni a seguito dell'incontro con il Prof. Cardin 
   - version: "1.0.0"
     approver: Valerio Solito
     baseline: RTB

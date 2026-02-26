@@ -10,6 +10,8 @@ dependencies = [
     "packaging",
     "pdfplumber",
     "requests",
+    "gspread",
+    "google-auth",
 ]
 
 [project.scripts]

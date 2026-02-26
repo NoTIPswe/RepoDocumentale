@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc
 
 #uc(
   id: "visualizzazione_stato_gateway",
@@ -16,6 +16,11 @@
   main-scen: (
     (descr: "Viene visualizzato lo stato del Gateway (sospeso, online, offline)"),
   ),
-)[
-  #uml-schema("20", "Diagramma Visualizzazione stato Gateway")
-]
+  specialized-by: (
+    "visualizzazione_gateway_online",
+    "visualizzazione_gateway_offline",
+    "visualizzazione_gateway_sospeso",
+  ),
+
+  uml-descr: "Diagramma Visualizzazione stato Gateway",
+)

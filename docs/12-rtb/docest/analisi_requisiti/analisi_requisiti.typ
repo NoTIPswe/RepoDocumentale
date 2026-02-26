@@ -1,7 +1,8 @@
 #import "../../00-templates/base_document.typ" as base-document
-#import "uc_lib.typ": * /*CA, CLOUD_SYS, SA, SIM_SYS, tag-uc, uc , uml-schema*/
+#import "uc_lib.typ": * /*CA, CLOUD_SYS, SA, SIM_SYS, tag-uc, uc */
+#import "req_lib.typ": *
 
-#let metadata = yaml(sys.inputs.meta-path)
+#let metadata = yaml("analisi_requisiti.meta.yaml")
 
 
 #show figure.where(kind: table): set block(breakable: true)
@@ -29,13 +30,15 @@
   - Sicurezza end-to-end e autenticazione robusta
 
   == Glossario
-  I termini tecnici utilizzati sono definiti nel documento `Glossario`, identificati con pedice _G_.
+  I termini tecnici utilizzati sono definiti nel documento #link(
+    "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf",
+  )[Glossario] (v2.0.0), identificati con pedice _G_.
 
   == Riferimenti
   === Riferimenti Normativi
   - Capitolato d'appalto C7 - Sistema di acquisizione dati da sensori (GC-0006.03) \
     https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
-  - Norme di Progetto \
+  - Norme di Progetto (v1.0.0) \
     https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf
 
   === Riferimenti Informativi
@@ -43,7 +46,16 @@
     https://ieeexplore.ieee.org/document/720574
   - T05 - Analisi dei Requisiti \
     https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf
-  - Documentazione tecnologie di riferimento (Node.js, Nest.js, Kubernetes, MongoDB, PostgreSQL, NATS/Kafka)
+  - Documentazione tecnologie di riferimento \
+    Di seguito i riferimenti alla documentazione ufficiale delle tecnologie impiegate:
+    - Node.js: #link("https://nodejs.org/en/docs/")[Node.js Official Documentation]
+    - NestJS: #link("https://docs.nestjs.com/")[NestJS Official Documentation]
+    - Go: #link("https://go.dev/doc/")[Go Official Documentation]
+    - Kubernetes: #link("https://kubernetes.io/docs/home/")[Kubernetes Official Documentation]
+    - MongoDB: #link("https://www.mongodb.com/docs/")[MongoDB Official Documentation]
+    - PostgreSQL: #link("https://www.postgresql.org/docs/")[PostgreSQL Official Manuals]
+    - NATS: #link("https://docs.nats.io/")[NATS Official Documentation]
+    - Apache Kafka: #link("https://kafka.apache.org/documentation/")[Apache Kafka Official Documentation]
 
   = Descrizione del Prodotto
   == Obiettivi del Prodotto
@@ -171,13 +183,16 @@
   #include "uc/ins_otp.typ"
   #include "uc/err_otp_errato.typ"
   #include "uc/recupero_password.typ"
-  #include "uc/cambio_password.typ"
   #include "uc/err_account_inesistente.typ"
-  #include "uc/ins_conf_password.typ"
+  #include "uc/impostazione_password.typ"
+  #include "uc/inserimento_nuova_password.typ"
+  #include "uc/conferma_nuova_password.typ"
   #include "uc/err_campi_diversi.typ"
   #include "uc/err_password_invalida.typ"
   #include "uc/modifica_mail_account.typ"
-  #include "uc/ins_conf_mail.typ"
+  #include "uc/impostazione_mail.typ"
+  #include "uc/inserimento_nuova_mail.typ"
+  #include "uc/conferma_nuova_mail.typ"
   #include "uc/err_mail_non_valida.typ"
   #include "uc/err_mail_gia_registrata.typ"
   #include "uc/modifica_password_account.typ"
@@ -186,6 +201,9 @@
   #include "uc/visualizzazione_singolo_gateway.typ"
   #include "uc/visualizzazione_nome_gateway.typ"
   #include "uc/visualizzazione_stato_gateway.typ"
+  #include "uc/visualizzazione_gateway_online.typ"
+  #include "uc/visualizzazione_gateway_offline.typ"
+  #include "uc/visualizzazione_gateway_sospeso.typ"
   #include "uc/visualizzazione_dettagli_gateway.typ"
   #include "uc/visualizzazione_timestamp_ultimo_invio_dati_gateway.typ"
   #include "uc/visualizzazione_lista_sensori.typ"
@@ -195,6 +213,7 @@
   #include "uc/visualizzazione_dati_stream.typ"
   #include "uc/visualizzazione_tabellare_dati_stream.typ"
   #include "uc/visualizzazione_grafico_dati_stream.typ"
+  #include "uc/filtraggio_dati.typ"
   #include "uc/filtraggio_gateway.typ"
   #include "uc/filtraggio_singolo_gateway.typ"
   #include "uc/filtraggio_sensore.typ"
@@ -202,6 +221,8 @@
   #include "uc/filtraggio_intervallo_temporale.typ"
   #include "uc/err_dati_non_disponibili.typ"
   #include "uc/esportazione_dati.typ"
+  #include "uc/esportazione_dati_csv.typ"
+  #include "uc/esportazione_dati_json.typ"
   #include "uc/alert_gateway_irraggiungibile.typ"
   #include "uc/alert_sensore_fuori_range.typ"
   #include "uc/visualizzazione_valore_dato_registrato.typ"
@@ -216,7 +237,11 @@
   #include "uc/visualizzazione_dettagli_alert_gateway_irraggiungibile.typ"
   #include "uc/visualizzazione_dettagli_alert_sensore_fuori_range.typ"
   #include "uc/modifica_impostazioni_notifica_alert_email.typ"
+  #include "uc/abilitazione_notifica_alert_email.typ"
+  #include "uc/disabilitazione_notifica_alert_email.typ"
   #include "uc/modifica_impostazioni_notifica_alert_dashboard.typ"
+  #include "uc/abilitazione_notifica_alert_dashboard.typ"
+  #include "uc/disabilitazione_notifica_alert_dashboard.typ"
   #include "uc/modifica_nome_gateway.typ"
   #include "uc/err_nome_gateway_duplicato.typ"
   #include "uc/modifica_stato_gateway.typ"
@@ -284,6 +309,8 @@
   #include "uc/visualizzazione_dettagli_tenant.typ"
   #include "uc/visualizzazione_nome_tenant.typ"
   #include "uc/visualizzazione_stato_tenant.typ"
+  #include "uc/vis_stato_attivo.typ"
+  #include "uc/vis_stato_sospeso.typ"
   #include "uc/visualizzazione_id_tenant.typ"
   #include "uc/visualizzazione_intervallo_sospensione_tenant.typ"
   #include "uc/modifica_intervallo_sospensione_tenant.typ"
@@ -311,6 +338,7 @@
   #include "uc/err_autenticazione_gateway.typ"
   #include "uc/err_range_invalido.typ"
   #include "uc/ins_mail.typ"
+  #include "uc/cambio_password.typ"
 
   = Casi d'Uso - Parte B: Simulatore Gateway
 
@@ -400,1320 +428,2280 @@
   #table(
     columns: (auto, auto, 2fr, 1fr),
     [Codice], [Importanza], [Descrizione], [Fonte],
-    [R-1-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'utente non autenticato di effettuare il login.],
-    [#tag-uc("login")],
-
-    [R-2-F],
-    [Obbligatorio],
-    [Il Sistema, durante il login, deve permettere all'utente non autenticato di inserire la password per
-      autenticarsi.],
-    [#tag-uc("ins_pw")],
-
-    [R-3-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare l'utente non autenticato in seguito ad un tentativo di autenticazione non andato a buon
-      fine.],
-    [#tag-uc("err_cred_errate")],
-
-    [R-4-F],
-    [Desiderabile],
-    [Il Sistema deve permettere all'utente non autenticato di effettuare la configurazione iniziale del TOTP in modo da
-      garantire il login 2FA.],
-    [#tag-uc("setup_totp")],
-
-    [R-5-F],
-    [Desiderabile],
-    [Il Sistema deve permettere all'utente non autenticato di effettuare il login 2FA.],
-    [#tag-uc("login_2fa")],
-
-    [R-6-F],
-    [Desiderabile],
-    [Il Sistema deve permettere all'utente di inserire il codice numerico nel Sistema.],
-    [#tag-uc("ins_otp")],
-
-    [R-7-F],
-    [Desiderabile],
-    [Il Sistema deve notificare l'utente non autenticato in seguito ad un inserimento errato del codice OTP nel Sistema.
-    ],
-    [#tag-uc("err_otp_errato")],
-
-    [R-8-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'utente non autenticato di recuperare la password persa/dimenticata.],
-    [#tag-uc("recupero_password")],
-
-    [R-9-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'utente non autenticato di cambiare la password nel Sistema.],
-    [#tag-uc("cambio_password")],
-
-    [R-10-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare all'utente non autenticato di aver inserito un'email non associata ad un account nel
-      Sistema.],
-    [#tag-uc("err_account_inesistente")],
-
-    [R-11-F],
-    [Obbligatorio],
-    [Il Sistema, durante la procedura di cambio password, deve permettere all'utente non autenticato di inserire la
-      nuova password nel Sistema e confermarla.],
-    [#tag-uc("inserimento_conferma_password")],
-
-    [R-12-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare all'utente non autenticato di aver inserito un valore diverso da quello inserito
-      precedentemente.],
-    [#tag-uc("err_campi_diversi")],
-
-    [R-13-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare all'utente non autenticato di aver inserito una password non valida.],
-    [#tag-uc("err_password_invalida")],
-
-    [R-14-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Utente Autenticato di modificare la propria mail],
-    [#tag-uc("modifica_mail_account")],
-
-    [R-15-F],
-    [Obbligatorio],
-    [Il Sistema, durante la procedura di modifica mail dell'account, deve permettere all'Utente autenticato di inserire
-      e confermare la nuova mail.],
-    [#tag-uc("inserimento_conferma_mail")],
-
-    [R-16-F],
-    [Obbligatorio],
-    [Il Sistema, in fase di registrazione di una mail, deve notificare all'Utente autenticato di aver inserito una mail
-      non valida.],
-    [#tag-uc("err_mail_non_valida")],
-
-    [R-17-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare all'utente autenticato di aver inserito un'email già associata ad un altro account],
-    [#tag-uc("err_mail_gia_registrata")],
-
-    [R-18-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'utente autenticato di poter modificare la password del proprio account.],
-    [#tag-uc("modifica_password_account")],
-
-    [R-19-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'utente autenticato di poter eseguire il logout dal Sistema.],
-    [#tag-uc("logout")],
-
-    [R-20-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant User di visualizzare i Gateway appartenenti al proprio Tenant.],
-    [#tag-uc("lista_gateway")],
-
-    [R-21-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant User di visualizzare un singolo Gateway nella lista, in particolare il nome e
-      lo stato.],
-    [#tag-uc("visualizzazione_singolo_gateway"), #tag-uc("visualizzazione_nome_gateway"),#tag-uc(
-        "visualizzazione_stato_gateway",
-      )],
-
-    [R-22-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant User di visualizzare ultimo timestamp dati inviati ed i sensori del Gateway.],
-    [#tag-uc("visualizzazione_dettagli_gateway"), #tag-uc(
-        "visualizzazione_timestamp_ultimo_invio_dati_gateway",
-      ),#tag-uc("visualizzazione_lista_sensori")],
-
-    [R-23-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant User di visualizzare un singolo sensore dalla lista dei sensori. Di tale
-      sensore interessa visualizzare l'ID e il timestamp dell'ultimo invio dati],
-    [#tag-uc("visualizzazione_singolo_sensore"),#tag-uc("visualizzazione_timestamp_ultimo_invio_dati_sensore"),#tag-uc(
-        "visualizzazione_id_sensore",
-      )],
-
-    [R-24-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant User di visualizzare i dati sullo Stream.],
-    [#tag-uc("visualizzazione_dati_stream")],
-
-    [R-25-F],
-    [Desiderabile],
-    [Il Sistema deve permettere al Tenant User di visualizzare lo Stream di dati in tabella.],
-    [#tag-uc("visualizzazione_tabellare_dati_stream")],
-
-    [R-26-F],
-    [Desiderabile],
-    [Il Sistema deve permettere al Tenant User di visualizzare lo Stream di dati su grafici.],
-    [#tag-uc("visualizzazione_grafico_dati_stream")],
-
-    [R-27-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant User di filtrare i dati per soli Gateway.],
-    [#tag-uc("filtraggio_gateway"), #tag-uc("filtraggio_singolo_gateway")],
-
-    [R-28-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant User di filtrare i dati per soli sensori.],
-    [#tag-uc("filtraggio_sensore"), #tag-uc("filtraggio_singolo_sensore")],
-
-    [R-29-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant User di visualizzare i dati relativi ad uno specifico intervallo temporale.],
-    [#tag-uc("filtraggio_intervallo_temporale")],
-
-    [R-30-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare al Tenant User della non disponibilità dei dati (non temporaneamente disponibili o
-      inesistenti).],
-    [#tag-uc("err_dati_non_disponibili")],
-
-    [R-31-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant User di poter esportare i dati che sta visualizzando.],
-    [#tag-uc("esportazione_dati")],
-
-    [R-32-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare il Tenant User dell'irraggiungibilità di un gateway],
-    [#tag-uc(
-        "alert_gateway_irraggiungibile",
-      )
-    ],
-
-    [R-33-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare il Tenant User delle irregolarità presenti nelle misurazioni di un sensore. In
-      particolare deve permettere di visualizzare il valore del dato registrato, il range accettato e il timestamp di
-      registrazione del dato irregolare del sensore in questione.],
-    [#tag-uc("alert_sensore_fuori_range"), #tag-uc("visualizzazione_valore_dato_registrato"), #tag-uc(
-        "visualizzazione_range_accettato",
-      ),#tag-uc("visualizzazione_timestamp_dato_irregolare")],
-
-    [R-34-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant User di visualizzare la lista degli alert registrati.],
-    [#tag-uc("visualizzazione_storico_alert")],
-
-    [R-35-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant User di visualizzare i dettagli di un singolo alert, in particolare deve
-      permettere di visualizzare il tipo di alert, l'hardware interessato e il timestamp di emissione dell'alert.],
-    [#tag-uc("visualizzazione_singolo_alert"), #tag-uc("visualizzazione_tipo_alert"), #tag-uc(
-        "visualizzazione_hardware_interessato",
-      ),#tag-uc("visualizzazione_timestamp_emissione_alert")],
-
-    [R-36-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant User di visualizzare i dettagli di un alert selezionato.],
-    [#tag-uc("visualizzazione_dettagli_singolo_alert")],
-
-    [R-37-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant User di visualizzare i dettagli di un alert Gateway non raggiungibile.],
-    [#tag-uc("visualizzazione_dettagli_alert_gateway_irraggiungibile")],
-
-    [R-38-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant User di visualizzare i dettagli di un sensore fuori range.],
-    [#tag-uc("visualizzazione_dettagli_alert_sensore_fuori_range")],
-
-    [R-39-F],
-    [Desiderabile],
-    [Il Sistema deve permettere al Tenant User di attivare/disattivare la ricezione di alert via email.],
-    [#tag-uc("modifica_impostazioni_notifica_alert_email")],
-
-    [R-40-F],
-    [Desiderabile],
-    [Il Sistema deve permettere al Tenant User di attivare/disattivare la ricezione di alert via dashboard.],
-    [#tag-uc("modifica_impostazioni_notifica_alert_dashboard")],
-
-    [R-41-F],
-    [Desiderabile],
-    [Il Sistema deve permettere al Tenant Admin di modificare il nome di un Gateway che possiede.],
-    [#tag-uc("modifica_nome_gateway")],
-
-    [R-42-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare al Tenant Admin di aver inserito un nome già presente nella lista.],
-    [#tag-uc("err_nome_gateway_duplicato")],
-
-    [R-43-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin di modificare lo stato del Gateway.],
-    [#tag-uc("modifica_stato_gateway")],
-
-    [R-44-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin di selezionare lo stato desiderato per i Gateway che ha selezionato.],
-    [#tag-uc("selezione_stato_gateway")],
-
-    [R-45-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin di cambiare il range dell'alert per un determinato sensore.],
-    [#tag-uc("modifica_range_sensore")],
-
-    [R-46-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin di selezionare uno specifico sensore.],
-    [#tag-uc("selezione_specifico_sensore")],
-
-    [R-47-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin di selezionare un range per le misurazioni, inserendo un valore minimo e
-      uno di massimo],
-    [#tag-uc("selezione_range_numerico")],
-
-    [R-48-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin di inserire un valore numerico quando richiesto.],
-    [#tag-uc("inserimento_valore_numerico")],
-
-    [R-49-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin di modificare il range dell'alert di default per tutti i sensori di un
-      determinato tipo.],
-    [#tag-uc("modifica_range_default_tipo_sensore")],
-
-    [R-50-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin di selezionare un determinato tipo di sensore.],
-    [#tag-uc("selezione_tipo_sensore")],
-
-    [R-51-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin di cambiare il timeout che determina se un Gateway è irraggiungibile],
-    [#tag-uc("modifica_intervallo_alert_gateway")],
-
-    [R-52-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati del Tenant di cui è amministratore],
-    [#tag-uc("visualizzazione_costi_stimati")],
-
-    [R-53-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati relativi allo storage del Gateway
-      selezionato],
-    [#tag-uc("visualizzazione_costi_storage")],
-
-    [R-54-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati dei Gateway associati al Tenant
-      raggruppati in base alla banda.],
-    [#tag-uc("visualizzazione_costi_banda")],
-
-    [R-55-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin di visualizzare gli Utenti associati al proprio Tenant.],
-    [#tag-uc("visualizzazione_lista_utenti_tenant")],
-
-    [R-56-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin di visualizzare un singolo utente del Tenant. Le informazioni che devono
-      essere visualizzate sono il ruolo dell'Utente, il nome dell'Utente, la mail dell'Utente e l'ultimo accesso
-      dell'utente.],
-    [#tag-uc("visualizzazione_singolo_utente_tenant"), #tag-uc("visualizzazione_ruolo_utente"), #tag-uc(
-        "visualizzazione_nome_utente",
-      ), #tag-uc("visualizzazione_ultimo_accesso_utente"), #tag-uc("visualizzazione_mail_utente"),],
-
-    [R-57-F],
-
-    [Obbligatorio],
-
-    [Il Sistema deve permettere al Tenant Admin di creare un nuovo Utente del Tenant.],
-
-    [#tag-uc("creazione_utente_tenant")],
-
-    [R-58-F],
-
-    [Obbligatorio],
-
-    [Il Sistema deve permettere al Tenant Admin di assegnare un nome all'Utente Tenant creato.],
-
-    [#tag-uc("inserimento_nome_utente")],
-
-    [R-59-F],
-
-    [Obbligatorio],
-
-    [Il Sistema deve permettere al Tenant Admin di selezionare un Utente del Tenant.],
-
-    [#tag-uc("selezione_utente_tenant")],
-
-    [R-60-F],
-
-    [Obbligatorio],
-
-    [Il Sistema deve permettere al Tenant Admin di selezionare e modificare un permesso dell'Utente Tenant.],
-
-    [#tag-uc("selezione_permessi_utente"), #tag-uc("modifica_permessi_utente")],
-
-    [R-61-F],
-
-    [Obbligatorio],
-
-    [Il Sistema deve permettere al Tenant Admin di modificare l'email di un singolo Utente del Tenant.],
-
-    [#tag-uc("modifica_mail_utente")],
-
-    [R-62-F], [Obbligatorio],
-
-    [Il Sistema deve permettere al Tenant Admin di modificare la password di un Utente Tenant.],
-
-    [#tag-uc("modifica_password_utente")],
-
-    [R-63-F],
-
-    [Obbligatorio],
-
-    [Il Sistema deve permettere al Tenant Admin di eliminare uno o più Utenti di un Tenant.],
-
-    [#tag-uc("eliminazione_utenti_tenant")],
-
-    [R-64-F], [Obbligatorio],
-
-    [Il Sistema deve permettere al Tenant Admin di selezionare più Utenti Tenant contemporaneamente],
-    [#tag-uc("selezione_lista_utenti")],
-
-    [R-65-F],
-
-    [Obbligatorio],
-
-    [Il Sistema deve permettere al Tenant Admin di abilitare l'accesso ai dati del Tenant da un Sistema esterno creando
-      delle credenziali.],
-
-    [#tag-uc("creazione_credenziali_api"), #tag-uc("inserimento_nome_client_api")],
-
-    [R-66-F],
-
-    [Obbligatorio],
-
-    [Il Sistema deve permettere al Tenant Admin di visualizzare il Client ID di alcune credenziali API.],
-
-    [#tag-uc("visualizzazione_client_id")],
-
-    [R-67-F],
-
-    [Obbligatorio],
-
-    [Il Sistema a termine della creazione delle credenziali API deve mostrare al Tenant Admin la Client Secret.],
-
-    [#tag-uc("visualizzazione_secret_api")],
-
-    [R-68-F],
-
-    [Obbligatorio],
-
-    [Il Sistema deve permettere al Tenant Admin di visualizzare la lista delle credenziali API relative ad un Tenant.],
-    [#tag-uc("visualizzazione_lista_api")],
-
-    [R-69-F],
-
-    [Obbligatorio],
-
-    [Il Sistema deve permettere al Tenant Admin di visualizzare delle specifiche credenziali API di un Tenant, in
-      particolare deve permettere di visualizzare il nome descrittivo delle credenziali e il timestamp di creazione
-      delle credenziali.],
-
-    [#tag-uc("visualizzazione_singole_api"), #tag-uc("visualizzazione_nome_descrittivo_api"), #tag-uc(
-        "visualizzazione_timestamp_api",
-      )],
-
-    [R-70-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin di eliminare delle credenziali API specifiche di un Tenant.],
-    [#tag-uc("eliminazione_credenziali_api")],
-
-    [R-71-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin di selezionare delle specifiche credenziali API di un Tenant.],
-    [#tag-uc("selezione_credenziali_api")],
-
-    [R-72-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin di modificare le impostazioni del login 2FA di un Tenant.],
-    [#tag-uc("modifica_impostazioni_2fa")],
-
-    [R-73-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare i log di Audit del
-      Tenant.],
-    [#tag-uc("visualizzazione_log_audit_tenant")],
-
-    [R-74-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare una singola entry di log
-      di Audit, in particolare deve permettere di visualizzare il timestamp, l'utente relativo e l'azione relativa della
-      singola entry.],
-    [#tag-uc("visualizzazione_singolo_log_audit"),#tag-uc("visualizzazione_timestamp_log_entry"),#tag-uc(
-        "visualizzazione_utente_log_entry",
-      ),#tag-uc("visualizzazione_operazione_log_entry")],
-
-    [R-75-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di esportare i log per fare Audit del
-      Tenant.],
-    [#tag-uc("esportazione_log_audit_tenant")],
-
-    [R-76-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di inserire un intervallo temporale per
-      visualizzare i log.],
-    [#tag-uc("selezione_intervallo_temporale")],
-
-    [R-77-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di scaricare i log sul proprio
-      dispositivo.],
-    [#tag-uc("download_log_audit_esportati")],
-
-    [R-78-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di modificare le impostazioni di
-      impersonificazione relative al Tenant.],
-    [#tag-uc("modifica_impostazioni_impersonificazione")],
-
-    [R-79-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di installare una nuova versione
-      firmware sul Gateway.],
-    [#tag-uc("aggiornamento_firmware_gateway"), #tag-uc("selezione_firmware")],
-
-    [R-80-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di selezionare uno o più Gateway tramite
-      il loro ID.],
-    [#tag-uc("selezione_gateway")],
-
-    [R-81-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Tenant Admin di modificare la frequenza di invio dati di un Gateway.],
-    [#tag-uc("modifica_frequenza_invio_gateway")],
-
-    [R-82-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Client API di autenticarsi per contattare le API.],
-    [#tag-uc("autenticazione_client_api")],
-
-    [R-83-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare il Client API che i dati di autenticazione non sono validi.],
-    [#tag-uc("err_dati_autenticazione_invalidi")],
-
-    [R-84-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare il Client API che è avvenuto un errore interno di rete.],
-    [#tag-uc("err_auth_server_non_disponibile")],
-
-    [R-85-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Client API di recuperare i dati storici tramite chiamata API.],
-    [#tag-uc("richiesta_dati_on_demand")],
-
-    [R-86-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare il Client API che il token di autenticazione non è valido.],
-    [#tag-uc("err_token_api_invalido")],
-
-    [R-87-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare il Client API che uno o più ID Gateway inseriti risultano invalidi.],
-    [#tag-uc("err_id_gateway_invalido")],
-
-    [R-88-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare il Client API che l'ID sensore inserito non esiste.],
-    [#tag-uc("err_id_sensore_invalido")],
-
-    [R-89-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare il Client API che l'intervallo temporale fornito non è valido.],
-    [#tag-uc("err_intervallo_temporale_invalido")],
-
-    [R-90-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Client API di recuperare dati real-time tramite un endpoint API.],
-    [#tag-uc("richiesta_dati_streaming")],
-
-    [R-91-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare la lista di Tenant registrati nel
-      Sistema.],
-    [#tag-uc("visualizzazione_lista_tenant")],
-
-    [R-92-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare un singolo Tenant all'interno della
-      lista.],
-    [#tag-uc("visualizzazione_singolo_tenant")],
-
-    [R-93-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare in dettaglio un Tenant.],
-    [#tag-uc("visualizzazione_dettagli_tenant")],
-
-    [R-94-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare il nome identificativo del singolo
-      Tenant.],
-    [#tag-uc("visualizzazione_nome_tenant")],
-
-    [R-95-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare lo stato operativo del Tenant.],
-    [#tag-uc("visualizzazione_stato_tenant")],
-
-    [R-96-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare l'ID del Tenant scelto.],
-    [#tag-uc("visualizzazione_id_tenant")],
-
-    [R-97-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare l'intervallo temporale minimo di
-      sospensione (pre-eliminazione) del Tenant scelto.],
-    [#tag-uc("visualizzazione_intervallo_sospensione_tenant")],
-
-    [R-98-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di modificare l'intervallo temporale minimo di sospensione
-      (pre-eliminazione) del Tenant scelto.],
-    [#tag-uc("modifica_intervallo_sospensione_tenant")],
-
-    [R-99-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di modificare il nome di un Tenant.],
-    [#tag-uc("modifica_nome_tenant")],
-
-    [R-100-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di creare un nuovo Tenant.],
-    [#tag-uc("creazione_tenant")],
-
-    [R-101-F],
-    [Obbligatorio],
-    [Il Sistema, durante la creazione del tenant, deve permettere all'Amministratore di Sistema di inserire i dati
-      anagrafici del Tenant.],
-    [#tag-uc("inserimento_anagrafica_tenant")],
-
-    [R-102-F],
-    [Obbligatorio],
-    [Il Sistema deve poter notificare l'Amministratore di Sistema di un eventuale errore interno nella creazione del
-      Tenant.],
-    [#tag-uc("err_interno_creazione_tenant")],
-
-    [R-103-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di selezionare un Tenant.],
-    [#tag-uc("selezione_tenant")],
-
-    [R-104-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di sospendere un Tenant di interesse.],
-    [#tag-uc("sospensione_tenant")],
-
-    [R-105-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di riattivare un Tenant precedentemente disattivato.],
-    [#tag-uc("riattivazione_tenant")],
-
-    [R-106-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di eliminare un Tenant di interesse.],
-    [#tag-uc("eliminazione_tenant"), #tag-uc("conferma_eliminazione_tenant")],
-
-    [R-107-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di avviare una sessione di impersonificazione.],
-    [#tag-uc("impersonificazione_utente_tenant")],
-
-    [R-108-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di registrare e successivamente associare un Gateway ad un
-      Tenant di interesse.],
-    [#tag-uc("registrazione_associazione_gateway"), #tag-uc("inserimento_credenziali_fabbrica_gateway")],
-
-    [R-109-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di creare un Utente con ruolo Amministratore Tenant per un
-      Tenant di interesse.],
-    [#tag-uc("creazione_utente_amministratore_tenant")],
-
-    [R-110-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Amministratore di Sistema di monitorare le prestazioni complessive del Sistema, in
-      particolare, la latenza media, il volume di traffico e l'utilizzo dello storage.],
-    [#tag-uc("monitoraggio_performance_sistema"), #tag-uc("monitoraggio_latenza"), #tag-uc(
-        "monitoraggio_volumi_traffico",
-      ), #tag-uc("monitoraggio_storage")],
-
-    [R-111-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al non provisioned Gateway di attivarsi e connettersi correttamente con il Sistema.],
-    [#tag-uc("onboarding_gateway")],
-
-    [R-112-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al non provisioned Gateway di ricevere una risposta di errore di autenticazione.],
-    [#tag-uc("err_auth_gateway_fabbrica")],
-
-    [R-113-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al provisioned Gateway di inviare dati crittografici al Cloud.],
-    [#tag-uc("invio_dati_crittografati_cloud")],
-
-    [R-114-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al non provisioned Gateway di aprire un canale di comunicazione sicuro.],
-    [#tag-uc("instaurazione_connessione_sicura")],
-
-    [R-115-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare il provisioned Gateway che il processo di autenticazione è fallito.],
-    [#tag-uc("err_autenticazione_gateway")],
-
-    [R-116-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare il Tenant Admin che il range inserito è invalido.],
-    [#tag-uc("err_range_invalido")],
-
-    [R-117-F],
-    [Obbligatorio],
-    [Il Sistema, durante il login, deve permettere all'utente non autenticato di inserire una mail per autenticarsi.],
-    [#tag-uc("ins_mail")],
+    ..req(
+      id: "login",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'utente non autenticato di effettuare il login.],
+      fonti: [#tag-uc("login")],
+    ),
+
+    ..req(
+      id: "ins_pw",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema, durante il login, deve permettere all'utente non autenticato di inserire la password per
+        autenticarsi.],
+      fonti: [#tag-uc("ins_pw")],
+    ),
+
+    ..req(
+      id: "err_cred_errate",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare l'utente non autenticato in seguito ad un tentativo di autenticazione non
+        andato a buon fine.],
+      fonti: [#tag-uc("err_cred_errate")],
+    ),
+
+    ..req(
+      id: "setup_totp",
+      tipo: F,
+      priorita: DESIDERABILE,
+      descrizione: [Il Sistema deve permettere all'utente non autenticato di effettuare la configurazione iniziale del
+        TOTP in modo da garantire il login 2FA.],
+      fonti: [#tag-uc("setup_totp")],
+    ),
+
+    ..req(
+      id: "login_2fa",
+      tipo: F,
+      priorita: DESIDERABILE,
+      descrizione: [Il Sistema deve permettere all'utente non autenticato di effettuare il login 2FA.],
+      fonti: [#tag-uc("login_2fa")],
+    ),
+
+    ..req(
+      id: "ins_otp",
+      tipo: F,
+      priorita: DESIDERABILE,
+      descrizione: [Il Sistema deve permettere all'utente di inserire il codice numerico nel Sistema.],
+      fonti: [#tag-uc("ins_otp")],
+    ),
+
+    ..req(
+      id: "err_otp_errato",
+      tipo: F,
+      priorita: DESIDERABILE,
+      descrizione: [Il Sistema deve notificare l'utente non autenticato in seguito ad un inserimento errato del codice
+        OTP nel Sistema.
+      ],
+      fonti: [#tag-uc("err_otp_errato")],
+    ),
+
+    ..req(
+      id: "recupero_password",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'utente di recuperare la password persa/dimenticata.],
+      fonti: [#tag-uc("recupero_password")],
+    ),
+
+    ..req(
+      id: "cambio_password_req",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'utente di cambiare la password nel Sistema.],
+      fonti: [#tag-uc("cambio_password")],
+    ),
+
+    ..req(
+      id: "err_account_inesistente",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare all'utente non autenticato di aver inserito un'email non associata ad un
+        account nel Sistema.],
+      fonti: [#tag-uc("err_account_inesistente")],
+    ),
+
+    ..req(
+      id: "impostazione_password",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema, durante la procedura di cambio password, deve permettere all'utente non autenticato di
+        inserire la nuova password nel Sistema e confermarla.],
+      fonti: [#tag-uc("impostazione_password")],
+    ),
+
+    ..req(
+      id: "err_campi_diversi",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare all'utente non autenticato di aver inserito un valore diverso da quello
+        inserito precedentemente.],
+      fonti: [#tag-uc("err_campi_diversi")],
+    ),
+
+    ..req(
+      id: "err_password_invalida",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare all'utente non autenticato di aver inserito una password non valida.],
+      fonti: [#tag-uc("err_password_invalida")],
+    ),
+
+    ..req(
+      id: "modifica_mail_account",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Utente Autenticato di modificare la propria mail],
+      fonti: [#tag-uc("modifica_mail_account")],
+    ),
+
+    ..req(
+      id: "impostazione_mail",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema, durante la procedura di modifica mail dell'account, deve permettere all'Utente
+        autenticato di inserire e confermare la nuova mail.],
+      fonti: [#tag-uc("impostazione_mail")],
+    ),
+
+    ..req(
+      id: "err_mail_non_valida",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema, in fase di registrazione di una mail, deve notificare all'Utente autenticato di aver
+        inserito una mail non valida.],
+      fonti: [#tag-uc("err_mail_non_valida")],
+    ),
+
+    ..req(
+      id: "err_mail_gia_registrata",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare all'utente autenticato di aver inserito un'email già associata ad un
+        altro account],
+      fonti: [#tag-uc("err_mail_gia_registrata")],
+    ),
+
+    ..req(
+      id: "modifica_password_account",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'utente autenticato di poter modificare la password del proprio
+        account.],
+      fonti: [#tag-uc("modifica_password_account")],
+    ),
+
+    ..req(
+      id: "logout",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'utente autenticato di poter eseguire il logout dal Sistema.],
+      fonti: [#tag-uc("logout")],
+    ),
+
+    ..req(
+      id: "lista_gateway",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare i Gateway appartenenti al proprio
+        Tenant.],
+      fonti: [#tag-uc("lista_gateway")],
+    ),
+
+    ..req(
+      id: "visualizzazione_singolo_gateway",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare un singolo Gateway nella lista, in
+        particolare il nome e lo stato.],
+      fonti: [#tag-uc("visualizzazione_singolo_gateway"), #tag-uc("visualizzazione_nome_gateway"),#tag-uc(
+          "visualizzazione_stato_gateway",
+        )],
+    ),
+
+    ..req(
+      id: "visualizzazione_dettagli_gateway",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare ultimo timestamp dati inviati ed i sensori
+        del Gateway.],
+      fonti: [#tag-uc("visualizzazione_dettagli_gateway"), #tag-uc(
+          "visualizzazione_timestamp_ultimo_invio_dati_gateway",
+        ),#tag-uc("visualizzazione_lista_sensori")],
+    ),
+
+    ..req(
+      id: "visualizzazione_singolo_sensore",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare un singolo sensore dalla lista dei
+        sensori. Di tale sensore interessa visualizzare l'ID e il timestamp dell'ultimo invio dati],
+      fonti: [#tag-uc("visualizzazione_singolo_sensore"),#tag-uc(
+          "visualizzazione_timestamp_ultimo_invio_dati_sensore",
+        ),#tag-uc(
+          "visualizzazione_id_sensore",
+        )],
+    ),
+
+    ..req(
+      id: "visualizzazione_dati_stream",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare i dati sullo Stream.],
+      fonti: [#tag-uc("visualizzazione_dati_stream")],
+    ),
+
+    ..req(
+      id: "visualizzazione_tabellare_dati_stream",
+      tipo: F,
+      priorita: DESIDERABILE,
+      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare lo Stream di dati in tabella.],
+      fonti: [#tag-uc("visualizzazione_tabellare_dati_stream")],
+    ),
+
+    ..req(
+      id: "visualizzazione_grafico_dati_stream",
+      tipo: F,
+      priorita: DESIDERABILE,
+      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare lo Stream di dati su grafici.],
+      fonti: [#tag-uc("visualizzazione_grafico_dati_stream")],
+    ),
+
+    ..req(
+      id: "filtraggio_gateway",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant User di filtrare i dati per soli Gateway.],
+      fonti: [#tag-uc("filtraggio_gateway"), #tag-uc("filtraggio_singolo_gateway")],
+    ),
+
+    ..req(
+      id: "filtraggio_sensore",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant User di filtrare i dati per soli sensori.],
+      fonti: [#tag-uc("filtraggio_sensore"), #tag-uc("filtraggio_singolo_sensore")],
+    ),
+
+    ..req(
+      id: "filtraggio_intervallo_temporale",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare i dati relativi ad uno specifico
+        intervallo temporale.],
+      fonti: [#tag-uc("filtraggio_intervallo_temporale")],
+    ),
+
+    ..req(
+      id: "err_dati_non_disponibili",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare al Tenant User della non disponibilità dei dati (non temporaneamente
+        disponibili o inesistenti).],
+      fonti: [#tag-uc("err_dati_non_disponibili")],
+    ),
+
+    ..req(
+      id: "esportazione_dati",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant User di poter esportare i dati che sta visualizzando.],
+      fonti: [#tag-uc("esportazione_dati")],
+    ),
+
+    ..req(
+      id: "alert_gateway_irraggiungibile",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare il Tenant User dell'irraggiungibilità di un gateway],
+      fonti: [#tag-uc(
+          "alert_gateway_irraggiungibile",
+        )
+      ],
+    ),
+
+    ..req(
+      id: "alert_sensore_fuori_range",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare il Tenant User delle irregolarità presenti nelle misurazioni di un
+        sensore. In particolare deve permettere di visualizzare il valore del dato registrato, il range accettato e il
+        timestamp di registrazione del dato irregolare del sensore in questione.],
+      fonti: [#tag-uc("alert_sensore_fuori_range"), #tag-uc("visualizzazione_valore_dato_registrato"), #tag-uc(
+          "visualizzazione_range_accettato",
+        ),#tag-uc("visualizzazione_timestamp_dato_irregolare")],
+    ),
+
+    ..req(
+      id: "visualizzazione_storico_alert",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare la lista degli alert registrati.],
+      fonti: [#tag-uc("visualizzazione_storico_alert")],
+    ),
+
+    ..req(
+      id: "visualizzazione_singolo_alert",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare i dettagli di un singolo alert, in
+        particolare deve permettere di visualizzare il tipo di alert, l'hardware interessato e il timestamp di emissione
+        dell'alert.],
+      fonti: [#tag-uc("visualizzazione_singolo_alert"), #tag-uc("visualizzazione_tipo_alert"), #tag-uc(
+          "visualizzazione_hardware_interessato",
+        ),#tag-uc("visualizzazione_timestamp_emissione_alert")],
+    ),
+
+    ..req(
+      id: "visualizzazione_dettagli_singolo_alert",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare i dettagli di un alert selezionato.],
+      fonti: [#tag-uc("visualizzazione_dettagli_singolo_alert")],
+    ),
+
+    ..req(
+      id: "visualizzazione_dettagli_alert_gateway_irraggiungibile",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare i dettagli di un alert Gateway non
+        raggiungibile.],
+      fonti: [#tag-uc("visualizzazione_dettagli_alert_gateway_irraggiungibile")],
+    ),
+
+    ..req(
+      id: "visualizzazione_dettagli_alert_sensore_fuori_range",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant User di visualizzare i dettagli di un sensore fuori range.],
+      fonti: [#tag-uc("visualizzazione_dettagli_alert_sensore_fuori_range")],
+    ),
+
+    ..req(
+      id: "modifica_impostazioni_notifica_alert_email",
+      tipo: F,
+      priorita: DESIDERABILE,
+      descrizione: [Il Sistema deve permettere al Tenant User di attivare/disattivare la ricezione di alert via email.],
+      fonti: [#tag-uc("modifica_impostazioni_notifica_alert_email")],
+    ),
+
+    ..req(
+      id: "modifica_impostazioni_notifica_alert_dashboard",
+      tipo: F,
+      priorita: DESIDERABILE,
+      descrizione: [Il Sistema deve permettere al Tenant User di attivare/disattivare la ricezione di alert via
+        dashboard.],
+      fonti: [#tag-uc("modifica_impostazioni_notifica_alert_dashboard")],
+    ),
+
+    ..req(
+      id: "modifica_nome_gateway",
+      tipo: F,
+      priorita: DESIDERABILE,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di modificare il nome di un Gateway che possiede.],
+      fonti: [#tag-uc("modifica_nome_gateway")],
+    ),
+
+    ..req(
+      id: "err_nome_gateway_duplicato",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare al Tenant Admin di aver inserito un nome già presente nella lista.],
+      fonti: [#tag-uc("err_nome_gateway_duplicato")],
+    ),
+
+    ..req(
+      id: "modifica_stato_gateway",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di modificare lo stato del Gateway.],
+      fonti: [#tag-uc("modifica_stato_gateway")],
+    ),
+
+    ..req(
+      id: "selezione_stato_gateway",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di selezionare lo stato desiderato per i Gateway che ha
+        selezionato.],
+      fonti: [#tag-uc("selezione_stato_gateway")],
+    ),
+
+    ..req(
+      id: "modifica_range_sensore",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di cambiare il range dell'alert per un determinato
+        sensore.],
+      fonti: [#tag-uc("modifica_range_sensore")],
+    ),
+
+    ..req(
+      id: "selezione_specifico_sensore",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di selezionare uno specifico sensore.],
+      fonti: [#tag-uc("selezione_specifico_sensore")],
+    ),
+
+    ..req(
+      id: "selezione_range_numerico",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di selezionare un range per le misurazioni, inserendo un
+        valore minimo e uno di massimo],
+      fonti: [#tag-uc("selezione_range_numerico")],
+    ),
+
+    ..req(
+      id: "inserimento_valore_numerico",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di inserire un valore numerico quando richiesto.],
+      fonti: [#tag-uc("inserimento_valore_numerico")],
+    ),
+
+    ..req(
+      id: "modifica_range_default_tipo_sensore",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di modificare il range dell'alert di default per tutti i
+        sensori di un determinato tipo.],
+      fonti: [#tag-uc("modifica_range_default_tipo_sensore")],
+    ),
+
+    ..req(
+      id: "selezione_tipo_sensore",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di selezionare un determinato tipo di sensore.],
+      fonti: [#tag-uc("selezione_tipo_sensore")],
+    ),
+
+    ..req(
+      id: "modifica_intervallo_alert_gateway",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di cambiare il timeout che determina se un Gateway è
+        irraggiungibile],
+      fonti: [#tag-uc("modifica_intervallo_alert_gateway")],
+    ),
+
+    ..req(
+      id: "visualizzazione_costi_stimati",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati del Tenant di cui è
+        amministratore],
+      fonti: [#tag-uc("visualizzazione_costi_stimati")],
+    ),
+
+    ..req(
+      id: "visualizzazione_costi_storage",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati relativi allo storage del
+        Gateway selezionato],
+      fonti: [#tag-uc("visualizzazione_costi_storage")],
+    ),
+
+    ..req(
+      id: "visualizzazione_costi_banda",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati dei Gateway associati al
+        Tenant raggruppati in base alla banda.],
+      fonti: [#tag-uc("visualizzazione_costi_banda")],
+    ),
+
+    ..req(
+      id: "visualizzazione_lista_utenti_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di visualizzare gli Utenti associati al proprio Tenant.],
+      fonti: [#tag-uc("visualizzazione_lista_utenti_tenant")],
+    ),
+
+    ..req(
+      id: "visualizzazione_singolo_utente_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di visualizzare un singolo utente del Tenant. Le
+        informazioni che devono essere visualizzate sono il ruolo dell'Utente, il nome dell'Utente, la mail dell'Utente
+        e l'ultimo accesso dell'utente.],
+      fonti: [#tag-uc("visualizzazione_singolo_utente_tenant"), #tag-uc("visualizzazione_ruolo_utente"), #tag-uc(
+          "visualizzazione_nome_utente",
+        ), #tag-uc("visualizzazione_ultimo_accesso_utente"), #tag-uc("visualizzazione_mail_utente"),],
+    ),
+
+    ..req(
+      id: "creazione_utente_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di creare un nuovo Utente del Tenant.],
+      fonti: [#tag-uc("creazione_utente_tenant")],
+    ),
+
+    ..req(
+      id: "inserimento_nome_utente",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di assegnare un nome all'Utente Tenant creato.],
+      fonti: [#tag-uc("inserimento_nome_utente")],
+    ),
+
+    ..req(
+      id: "selezione_utente_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di selezionare un Utente del Tenant.],
+      fonti: [#tag-uc("selezione_utente_tenant")],
+    ),
+
+    ..req(
+      id: "selezione_permessi_utente",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di selezionare e modificare un permesso dell'Utente
+        Tenant.],
+      fonti: [#tag-uc("selezione_permessi_utente"), #tag-uc("modifica_permessi_utente")],
+    ),
+
+    ..req(
+      id: "modifica_mail_utente",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di modificare l'email di un singolo Utente del Tenant.],
+      fonti: [#tag-uc("modifica_mail_utente")],
+    ),
+
+    ..req(
+      id: "modifica_password_utente",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di modificare la password di un Utente Tenant.],
+      fonti: [#tag-uc("modifica_password_utente")],
+    ),
+
+    ..req(
+      id: "eliminazione_utenti_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di eliminare uno o più Utenti di un Tenant.],
+      fonti: [#tag-uc("eliminazione_utenti_tenant")],
+    ),
+
+    ..req(
+      id: "selezione_lista_utenti",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di selezionare più Utenti Tenant contemporaneamente],
+      fonti: [#tag-uc("selezione_lista_utenti")],
+    ),
+
+    ..req(
+      id: "creazione_credenziali_api",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di abilitare l'accesso ai dati del Tenant da un Sistema
+        esterno creando delle credenziali.],
+      fonti: [#tag-uc("creazione_credenziali_api"), #tag-uc("inserimento_nome_client_api")],
+    ),
+
+    ..req(
+      id: "visualizzazione_client_id",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di visualizzare il Client ID di alcune credenziali API.],
+      fonti: [#tag-uc("visualizzazione_client_id")],
+    ),
+
+    ..req(
+      id: "visualizzazione_secret_api",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema a termine della creazione delle credenziali API deve mostrare al Tenant Admin la Client
+        Secret.],
+      fonti: [#tag-uc("visualizzazione_secret_api")],
+    ),
+
+    ..req(
+      id: "visualizzazione_lista_api",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di visualizzare la lista delle credenziali API relative
+        ad un Tenant.],
+      fonti: [#tag-uc("visualizzazione_lista_api")],
+    ),
+
+    ..req(
+      id: "visualizzazione_singole_api",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di visualizzare delle specifiche credenziali API di un
+        Tenant, in particolare deve permettere di visualizzare il nome descrittivo delle credenziali e il timestamp di
+        creazione delle credenziali.],
+      fonti: [#tag-uc("visualizzazione_singole_api"), #tag-uc("visualizzazione_nome_descrittivo_api"), #tag-uc(
+          "visualizzazione_timestamp_api",
+        )],
+    ),
+
+    ..req(
+      id: "eliminazione_credenziali_api",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di eliminare delle credenziali API specifiche di un
+        Tenant.],
+      fonti: [#tag-uc("eliminazione_credenziali_api")],
+    ),
+
+    ..req(
+      id: "selezione_credenziali_api",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di selezionare delle specifiche credenziali API di un
+        Tenant.],
+      fonti: [#tag-uc("selezione_credenziali_api")],
+    ),
+
+    ..req(
+      id: "modifica_impostazioni_2fa",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di modificare le impostazioni del login 2FA di un
+        Tenant.],
+      fonti: [#tag-uc("modifica_impostazioni_2fa")],
+    ),
+
+    ..req(
+      id: "visualizzazione_log_audit_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare i log di
+        Audit del Tenant.],
+      fonti: [#tag-uc("visualizzazione_log_audit_tenant")],
+    ),
+
+    ..req(
+      id: "visualizzazione_singolo_log_audit",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare una
+        singola entry di log di Audit, in particolare deve permettere di visualizzare il timestamp, l'utente relativo e
+        l'azione relativa della singola entry.],
+      fonti: [#tag-uc("visualizzazione_singolo_log_audit"),#tag-uc("visualizzazione_timestamp_log_entry"),#tag-uc(
+          "visualizzazione_utente_log_entry",
+        ),#tag-uc("visualizzazione_operazione_log_entry")],
+    ),
+
+    ..req(
+      id: "esportazione_log_audit_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di esportare i log per
+        fare Audit del Tenant.],
+      fonti: [#tag-uc("esportazione_log_audit_tenant")],
+    ),
+
+    ..req(
+      id: "selezione_intervallo_temporale",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di inserire un intervallo
+        temporale per visualizzare i log.],
+      fonti: [#tag-uc("selezione_intervallo_temporale")],
+    ),
+
+    ..req(
+      id: "download_log_audit_esportati",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di scaricare i log sul
+        proprio dispositivo.],
+      fonti: [#tag-uc("download_log_audit_esportati")],
+    ),
+
+    ..req(
+      id: "modifica_impostazioni_impersonificazione",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di modificare le
+        impostazioni di impersonificazione relative al Tenant.],
+      fonti: [#tag-uc("modifica_impostazioni_impersonificazione")],
+    ),
+
+    ..req(
+      id: "aggiornamento_firmware_gateway",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di installare una nuova
+        versione firmware sul Gateway.],
+      fonti: [#tag-uc("aggiornamento_firmware_gateway"), #tag-uc("selezione_firmware")],
+    ),
+
+    ..req(
+      id: "selezione_gateway",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di selezionare uno o più
+        Gateway tramite il loro ID.],
+      fonti: [#tag-uc("selezione_gateway")],
+    ),
+
+    ..req(
+      id: "modifica_frequenza_invio_gateway",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Tenant Admin di modificare la frequenza di invio dati di un Gateway.],
+      fonti: [#tag-uc("modifica_frequenza_invio_gateway")],
+    ),
+
+    ..req(
+      id: "autenticazione_client_api",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Client API di autenticarsi per contattare le API.],
+      fonti: [#tag-uc("autenticazione_client_api")],
+    ),
+
+    ..req(
+      id: "err_dati_autenticazione_invalidi",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare il Client API che i dati di autenticazione non sono validi.],
+      fonti: [#tag-uc("err_dati_autenticazione_invalidi")],
+    ),
+
+    ..req(
+      id: "err_auth_server_non_disponibile",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare il Client API che è avvenuto un errore interno di rete.],
+      fonti: [#tag-uc("err_auth_server_non_disponibile")],
+    ),
+
+    ..req(
+      id: "richiesta_dati_on_demand",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Client API di recuperare i dati storici tramite chiamata API.],
+      fonti: [#tag-uc("richiesta_dati_on_demand")],
+    ),
+
+    ..req(
+      id: "err_token_api_invalido",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare il Client API che il token di autenticazione non è valido.],
+      fonti: [#tag-uc("err_token_api_invalido")],
+    ),
+
+    ..req(
+      id: "err_id_gateway_invalido",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare il Client API che uno o più ID Gateway inseriti risultano invalidi.],
+      fonti: [#tag-uc("err_id_gateway_invalido")],
+    ),
+
+    ..req(
+      id: "err_id_sensore_invalido",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare il Client API che l'ID sensore inserito non esiste.],
+      fonti: [#tag-uc("err_id_sensore_invalido")],
+    ),
+
+    ..req(
+      id: "err_intervallo_temporale_invalido",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare il Client API che l'intervallo temporale fornito non è valido.],
+      fonti: [#tag-uc("err_intervallo_temporale_invalido")],
+    ),
+
+    ..req(
+      id: "richiesta_dati_streaming",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Client API di recuperare dati real-time tramite un endpoint API.],
+      fonti: [#tag-uc("richiesta_dati_streaming")],
+    ),
+
+    ..req(
+      id: "visualizzazione_lista_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare la lista di Tenant
+        registrati nel Sistema.],
+      fonti: [#tag-uc("visualizzazione_lista_tenant")],
+    ),
+
+    ..req(
+      id: "visualizzazione_singolo_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare un singolo Tenant
+        all'interno della lista.],
+      fonti: [#tag-uc("visualizzazione_singolo_tenant")],
+    ),
+
+    ..req(
+      id: "visualizzazione_dettagli_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare in dettaglio un Tenant.],
+      fonti: [#tag-uc("visualizzazione_dettagli_tenant")],
+    ),
+
+    ..req(
+      id: "visualizzazione_nome_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare il nome identificativo del
+        singolo Tenant.],
+      fonti: [#tag-uc("visualizzazione_nome_tenant")],
+    ),
+
+    ..req(
+      id: "visualizzazione_stato_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare lo stato operativo del
+        Tenant.],
+      fonti: [#tag-uc("visualizzazione_stato_tenant")],
+    ),
+
+    ..req(
+      id: "visualizzazione_id_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare l'ID del Tenant scelto.],
+      fonti: [#tag-uc("visualizzazione_id_tenant")],
+    ),
+
+    ..req(
+      id: "visualizzazione_intervallo_sospensione_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di visualizzare l'intervallo temporale
+        minimo di sospensione (pre-eliminazione) del Tenant scelto.],
+      fonti: [#tag-uc("visualizzazione_intervallo_sospensione_tenant")],
+    ),
+
+    ..req(
+      id: "modifica_intervallo_sospensione_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di modificare l'intervallo temporale minimo
+        di sospensione (pre-eliminazione) del Tenant scelto.],
+      fonti: [#tag-uc("modifica_intervallo_sospensione_tenant")],
+    ),
+
+    ..req(
+      id: "modifica_nome_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di modificare il nome di un Tenant.],
+      fonti: [#tag-uc("modifica_nome_tenant")],
+    ),
+
+    ..req(
+      id: "creazione_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di creare un nuovo Tenant.],
+      fonti: [#tag-uc("creazione_tenant")],
+    ),
+
+    ..req(
+      id: "inserimento_anagrafica_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema, durante la creazione del tenant, deve permettere all'Amministratore di Sistema di
+        inserire i dati anagrafici del Tenant.],
+      fonti: [#tag-uc("inserimento_anagrafica_tenant")],
+    ),
+
+    ..req(
+      id: "err_interno_creazione_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve poter notificare l'Amministratore di Sistema di un eventuale errore interno nella
+        creazione del Tenant.],
+      fonti: [#tag-uc("err_interno_creazione_tenant")],
+    ),
+
+    ..req(
+      id: "selezione_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di selezionare un Tenant.],
+      fonti: [#tag-uc("selezione_tenant")],
+    ),
+
+    ..req(
+      id: "sospensione_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di sospendere un Tenant di interesse.],
+      fonti: [#tag-uc("sospensione_tenant")],
+    ),
+
+    ..req(
+      id: "riattivazione_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di riattivare un Tenant precedentemente
+        disattivato.],
+      fonti: [#tag-uc("riattivazione_tenant")],
+    ),
+
+    ..req(
+      id: "eliminazione_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di eliminare un Tenant di interesse.],
+      fonti: [#tag-uc("eliminazione_tenant"), #tag-uc("conferma_eliminazione_tenant")],
+    ),
+
+    ..req(
+      id: "impersonificazione_utente_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di avviare una sessione di
+        impersonificazione.],
+      fonti: [#tag-uc("impersonificazione_utente_tenant")],
+    ),
+
+    ..req(
+      id: "registrazione_associazione_gateway",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di registrare e successivamente associare
+        un Gateway ad un Tenant di interesse.],
+      fonti: [#tag-uc("registrazione_associazione_gateway"), #tag-uc("inserimento_credenziali_fabbrica_gateway")],
+    ),
+
+    ..req(
+      id: "creazione_utente_amministratore_tenant",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di creare un Utente con ruolo
+        Amministratore Tenant per un Tenant di interesse.],
+      fonti: [#tag-uc("creazione_utente_amministratore_tenant")],
+    ),
+
+    ..req(
+      id: "monitoraggio_performance_sistema",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di monitorare le prestazioni complessive
+        del Sistema, in particolare, la latenza media, il volume di traffico e l'utilizzo dello storage.],
+      fonti: [#tag-uc("monitoraggio_performance_sistema"), #tag-uc("monitoraggio_latenza"), #tag-uc(
+          "monitoraggio_volumi_traffico",
+        ), #tag-uc("monitoraggio_storage")],
+    ),
+
+    ..req(
+      id: "onboarding_gateway",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al non provisioned Gateway di attivarsi e connettersi correttamente con
+        il Sistema.],
+      fonti: [#tag-uc("onboarding_gateway")],
+    ),
+
+    ..req(
+      id: "err_auth_gateway_fabbrica",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al non provisioned Gateway di ricevere una risposta di errore di
+        autenticazione.],
+      fonti: [#tag-uc("err_auth_gateway_fabbrica")],
+    ),
+
+    ..req(
+      id: "invio_dati_crittografati_cloud",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al provisioned Gateway di inviare dati crittografati al Cloud.],
+      fonti: [#tag-uc("invio_dati_crittografati_cloud")],
+    ),
+
+    ..req(
+      id: "instaurazione_connessione_sicura",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al non provisioned Gateway di aprire un canale di comunicazione sicuro.],
+      fonti: [#tag-uc("instaurazione_connessione_sicura")],
+    ),
+
+    ..req(
+      id: "err_autenticazione_gateway",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare il provisioned Gateway che il processo di autenticazione è fallito.],
+      fonti: [#tag-uc("err_autenticazione_gateway")],
+    ),
+
+    ..req(
+      id: "err_range_invalido",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare il Tenant Admin che il range inserito è invalido.],
+      fonti: [#tag-uc("err_range_invalido")],
+    ),
+
+    ..req(
+      id: "ins_mail",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema, durante il login, deve permettere all'utente non autenticato di inserire una mail per
+        autenticarsi.],
+      fonti: [#tag-uc("ins_mail")],
+    ),
   )
   == Requisiti Funzionali - Parte B: Simulatore Gateway
   #table(
     columns: (auto, auto, 2fr, 1fr),
     [Codice], [Importanza], [Descrizione], [Fonte],
-    [R-S-1-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere all'Utente del Simulatore di poter visualizzare la lista di Gateway simulati.],
-    [#tag-uc("visualizzazione_lista_gateway_simulati")],
+    ..req(
+      id: "visualizzazione_lista_gateway_simulati",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Utente del Simulatore di poter visualizzare la lista di Gateway
+        simulati.],
+      fonti: [#tag-uc("visualizzazione_lista_gateway_simulati")],
+    ),
 
-    [R-S-2-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere di poter visualizzare un singolo Gateway simulato, comprendendo anche la data della sua
-      creazione.],
-    [#tag-uc("visualizzazione_singolo_gateway_simulato"), #tag-uc("visualizzazione_data_creazione_simulazione")],
+    ..req(
+      id: "visualizzazione_singolo_gateway_simulato",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere di poter visualizzare un singolo Gateway simulato, comprendendo anche la
+        data della sua creazione.],
+      fonti: [#tag-uc("visualizzazione_singolo_gateway_simulato"), #tag-uc(
+          "visualizzazione_data_creazione_simulazione",
+        )],
+    ),
 
-    [R-S-3-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere di visualizzare l'ID di fabbrica di un Gateway simulato.],
-    [#tag-uc("visualizzazione_id_fabbrica_simulazione")],
+    ..req(
+      id: "visualizzazione_id_fabbrica_simulazione",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere di visualizzare l'ID di fabbrica di un Gateway simulato.],
+      fonti: [#tag-uc("visualizzazione_id_fabbrica_simulazione")],
+    ),
 
-    [R-S-4-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere di visualizzare la configurazione di simulazione di un Gateway, di cui fanno parte:
-      chiave segreta, numero di serie, versione del software e modello.],
-    [#tag-uc("visualizzazione_configurazione_simulazione_gateway"), #tag-uc(
-        "visualizzazione_chiave_fabbrica_simulazione",
-      ), #tag-uc("visualizzazione_serial_number_gateway_simulato"), #tag-uc(
-        "visualizzazione_software_gateway_simulato",
-      ), #tag-uc("visualizzazione_modello_gateway_simulato")],
+    ..req(
+      id: "visualizzazione_configurazione_simulazione_gateway",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere di visualizzare la configurazione di simulazione di un Gateway, di cui
+        fanno parte: chiave segreta, numero di serie, versione del software e modello.],
+      fonti: [#tag-uc("visualizzazione_configurazione_simulazione_gateway"), #tag-uc(
+          "visualizzazione_chiave_fabbrica_simulazione",
+        ), #tag-uc("visualizzazione_serial_number_gateway_simulato"), #tag-uc(
+          "visualizzazione_software_gateway_simulato",
+        ), #tag-uc("visualizzazione_modello_gateway_simulato")],
+    ),
 
-    [R-S-5-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere di visualizzare la lista di sensori di un Gateway simulato.],
-    [#tag-uc("visualizzazione_lista_sensori_gateway_simulato")],
+    ..req(
+      id: "visualizzazione_lista_sensori_gateway_simulato",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere di visualizzare la lista di sensori di un Gateway simulato.],
+      fonti: [#tag-uc("visualizzazione_lista_sensori_gateway_simulato")],
+    ),
 
-    [R-S-6-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere di visualizzare un singolo sensore di un Gateway simulato.],
-    [#tag-uc("visualizzazione_singolo_sensore_simulato")],
+    ..req(
+      id: "visualizzazione_singolo_sensore_simulato",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere di visualizzare un singolo sensore di un Gateway simulato.],
+      fonti: [#tag-uc("visualizzazione_singolo_sensore_simulato")],
+    ),
 
-    [R-S-7-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere di visualizzare la configurazione di un sensore simulato, di cui fanno parte: range
-      generazione dati, algoritmo di generazione dati, identificativo e tipologia di sensore.
-    ],
-    [#tag-uc("visualizzazione_configurazione_simulazione_sensore"), #tag-uc("visualizzazione_range_generazione_dati"),
-      #tag-uc("visualizzazione_algoritmo_generazione_dati"), #tag-uc("visualizzazione_identificativo_sensore"), #tag-uc(
-        "visualizzazione_tipo_sensore_simulato",
-      )],
+    ..req(
+      id: "visualizzazione_configurazione_simulazione_sensore",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere di visualizzare la configurazione di un sensore simulato, di cui fanno
+        parte: range generazione dati, algoritmo di generazione dati, identificativo e tipologia di sensore.
+      ],
+      fonti: [#tag-uc("visualizzazione_configurazione_simulazione_sensore"), #tag-uc(
+          "visualizzazione_range_generazione_dati",
+        ), #tag-uc("visualizzazione_algoritmo_generazione_dati"), #tag-uc("visualizzazione_identificativo_sensore"),
+        #tag-uc(
+          "visualizzazione_tipo_sensore_simulato",
+        )],
+    ),
 
-    [R-S-8-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere di eliminare un Gateway simulato.],
-    [#tag-uc("eliminazione_gateway_simulato")],
+    ..req(
+      id: "eliminazione_gateway_simulato",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere di eliminare un Gateway simulato.],
+      fonti: [#tag-uc("eliminazione_gateway_simulato")],
+    ),
 
-    [R-S-9-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere di eliminare un sensore simulato.],
-    [#tag-uc("eliminazione_sensore_simulato")],
+    ..req(
+      id: "eliminazione_sensore_simulato",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere di eliminare un sensore simulato.],
+      fonti: [#tag-uc("eliminazione_sensore_simulato")],
+    ),
 
-    [R-S-10-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere di creare e fare il deploy di un Gateway simulato.],
-    [#tag-uc("creazione_deploy_gateway_simulato")],
+    ..req(
+      id: "creazione_deploy_gateway_simulato",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere di creare e fare il deploy di un Gateway simulato.],
+      fonti: [#tag-uc("creazione_deploy_gateway_simulato")],
+    ),
 
-    [R-S-11-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere di inserire i dati di configurazione di un Gateway simulato.],
-    [#tag-uc("inserimento_dati_config_sim_gateway")],
+    ..req(
+      id: "inserimento_dati_config_sim_gateway",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere di inserire i dati di configurazione di un Gateway simulato.],
+      fonti: [#tag-uc("inserimento_dati_config_sim_gateway")],
+    ),
 
-    [R-S-12-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare all'Utente del Simulatore che si è verificato un errore durante il deploy del Gateway.],
-    [#tag-uc("err_deploy_gateway_simulato")],
+    ..req(
+      id: "err_deploy_gateway_simulato",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare all'Utente del Simulatore che si è verificato un errore durante il deploy
+        del Gateway.],
+      fonti: [#tag-uc("err_deploy_gateway_simulato")],
+    ),
 
-    [R-S-13-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere di creare un sensore di un Gateway simulato.],
-    [#tag-uc("creazione_sensore_gateway_simulato")],
+    ..req(
+      id: "creazione_sensore_gateway_simulato",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere di creare un sensore di un Gateway simulato.],
+      fonti: [#tag-uc("creazione_sensore_gateway_simulato")],
+    ),
 
-    [R-S-14-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere di inserire i dati di configurazione di un sensore simulato.],
-    [#tag-uc("inserimento_dati_config_sim_sensore")],
+    ..req(
+      id: "inserimento_dati_config_sim_sensore",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere di inserire i dati di configurazione di un sensore simulato.],
+      fonti: [#tag-uc("inserimento_dati_config_sim_sensore")],
+    ),
 
-    [R-S-15-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare all'Utente del Simulatore che il range di generazione dati inserito è invalido.],
-    [#tag-uc("err_range_invalido_simulazione")],
+    ..req(
+      id: "err_range_invalido_simulazione",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare all'Utente del Simulatore che il range di generazione dati inserito è
+        invalido.],
+      fonti: [#tag-uc("err_range_invalido_simulazione")],
+    ),
 
-    [R-S-16-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare all'Utente del Simulatore che si è verificato un errore durante la creazione di un
-      sensore simulato.],
-    [#tag-uc("err_creazione_sensore_simulato")],
+    ..req(
+      id: "err_creazione_sensore_simulato",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare all'Utente del Simulatore che si è verificato un errore durante la
+        creazione di un sensore simulato.],
+      fonti: [#tag-uc("err_creazione_sensore_simulato")],
+    ),
 
-    [R-S-17-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere di testare il suo comportamento qualora ci fossero più istanze di Gateway simulati in
-      parallelo.],
-    [#tag-uc("creazione_gateway_multipli_default")],
+    ..req(
+      id: "creazione_gateway_multipli_default",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere di testare il suo comportamento qualora ci fossero più istanze di Gateway
+        simulati in parallelo.],
+      fonti: [#tag-uc("creazione_gateway_multipli_default")],
+    ),
 
-    [R-S-18-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare all'Utente del Simulatore che il valore numerico inserito risulta non valido.],
-    [#tag-uc("err_valore_numerico_invalido")],
+    ..req(
+      id: "err_valore_numerico_invalido",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare all'Utente del Simulatore che il valore numerico inserito risulta non
+        valido.],
+      fonti: [#tag-uc("err_valore_numerico_invalido")],
+    ),
 
-    [R-S-19-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere di testare il suo comportamento qualora ci fosse un degrado della rete.],
-    [#tag-uc("comando_anomalia_degrado_rete")],
+    ..req(
+      id: "comando_anomalia_degrado_rete",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere di testare il suo comportamento qualora ci fosse un degrado della rete.],
+      fonti: [#tag-uc("comando_anomalia_degrado_rete")],
+    ),
 
-    [R-S-20-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere di testare il suo comportamento in caso di disconnessione temporanea della rete.],
-    [#tag-uc("comando_anomalia_disconnessione_temporanea")],
+    ..req(
+      id: "comando_anomalia_disconnessione_temporanea",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere di testare il suo comportamento in caso di disconnessione temporanea
+        della rete.],
+      fonti: [#tag-uc("comando_anomalia_disconnessione_temporanea")],
+    ),
 
-    [R-S-21-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere di testare il suo comportamento qualora un sensore misurasse valori inaspettati.],
-    [#tag-uc("comando_anomalia_outliers_misurazioni")],
+    ..req(
+      id: "comando_anomalia_outliers_misurazioni",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere di testare il suo comportamento qualora un sensore misurasse valori
+        inaspettati.],
+      fonti: [#tag-uc("comando_anomalia_outliers_misurazioni")],
+    ),
 
-    [R-S-22-F],
-    [Obbligatorio],
-    [Il Sistema deve permettere al Sistema Cloud di modificare le impostazioni di configurazione di un Gateway, di
-      modificare la frequenza di invio dati e dello stato di sospensione.],
-    [#tag-uc("impostazione_configurazione_gateway"), #tag-uc("impostazione_frequenza_invio_dati"), #tag-uc(
-        "impostazione_stato_sospensione",
-      )],
+    ..req(
+      id: "impostazione_configurazione_gateway",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere al Sistema Cloud di modificare le impostazioni di configurazione di un
+        Gateway, di modificare la frequenza di invio dati e dello stato di sospensione.],
+      fonti: [#tag-uc("impostazione_configurazione_gateway"), #tag-uc("impostazione_frequenza_invio_dati"), #tag-uc(
+          "impostazione_stato_sospensione",
+        )],
+    ),
 
-    [R-S-23-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare al Sistema Cloud che il payload di configurazione ricevuto risulta invalido.],
-    [#tag-uc("err_sintattico_config_gateway")],
+    ..req(
+      id: "err_sintattico_config_gateway",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare al Sistema Cloud che il payload di configurazione ricevuto risulta
+        invalido.],
+      fonti: [#tag-uc("err_sintattico_config_gateway")],
+    ),
 
-    [R-S-24-F],
-    [Obbligatorio],
-    [Il Sistema deve notificare al Sistema Cloud che il valore di frequenza ricevuto è sintatticamente corretto, ma non
-      accettabile.],
-    [#tag-uc("err_config_frequenza_fuori_range")],
+    ..req(
+      id: "err_config_frequenza_fuori_range",
+      tipo: F,
+      system: SIM,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve notificare al Sistema Cloud che il valore di frequenza ricevuto è sintatticamente
+        corretto, ma non accettabile.],
+      fonti: [#tag-uc("err_config_frequenza_fuori_range")],
+    ),
   )
-  == Requisiti Qualitativi
+  == Requisiti di Qualità
   #table(
     columns: (auto, auto, 2fr, 1fr),
     [Codice], [Importanza], [Descrizione], [Fonte],
-    [R-1-Q],
-    [Obbligatorio],
-    [È necessario produrre una documentazione dettagliata: diagramma architetturale, documentazione tecnica, manuale di
-      test e manuale utente e amministratore.],
-    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Documentazione"],
+    ..req(
+      id: "qualita_documentazione",
+      tipo: Q,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario produrre il documento "Specifica Tecnica" contenente diagrammi e specifica
+        architetturale del software.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez.
+        "Documentazione"],
+    ),
 
-    [R-2-Q],
-    [Obbligatorio],
-    [È necessario realizzare Test di integrazione sensore-gateway],
-    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e Validazione"],
+    ..req(
+      id: "qualita_testbook",
+      tipo: Q,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario produrre una documentazione dettagliata riguardante i test previsti ed eseguiti
+        (contenuta nel documento #link(
+          "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_qualifica.pdf",
+        )[Piano di Qualifica]).],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez.
+        "Documentazione"],
+    ),
 
-    [R-3-Q],
-    [Obbligatorio],
-    [È necessario realizzare Test di sincronizzazione cloud.],
-    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e Validazione"],
+    ..req(
+      id: "qualita_manuale_utente",
+      tipo: Q,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario produrre il documento "Manuale Utente" con indicazioni chiare riguardanti l'uso del
+        software lato utente.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez.
+        "Documentazione"],
+    ),
 
-    [R-4-Q],
-    [Obbligatorio],
-    [È necessario realizzare Test di sicurezza.],
-    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e Validazione"],
+    ..req(
+      id: "qualita_manuale_amministratore",
+      tipo: Q,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario produrre il documento "Manuale Amministratore" con indicazioni chiare riguardanti l'uso
+        del software lato amministrazione.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez.
+        "Documentazione"],
+    ),
 
-    [R-5-Q],
-    [Obbligatorio],
-    [È necessario realizzare Test di scalabilità e carico.],
-    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e Validazione"],
+    ..req(
+      id: "qualita_manuale_api",
+      tipo: Q,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario produrre documentazione tecnica riguardante le API per ricezione dei dati storici e
+        real-time.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez.
+        "Documentazione"],
+    ),
 
-    [R-6-Q],
-    [Obbligatorio],
-    [È necessario realizzare Test multi-tenant.],
-    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e Validazione"],
+    ..req(
+      id: "qualita_norme_progetto",
+      tipo: Q,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario rispettare tutte le norme presenti nel documento interno Norme di Progetto.],
+      fonti: [Interno],
+    ),
 
-    [R-7-Q],
-    [Obbligatorio],
-    [È necessario realizzare Test di unità e code coverage.],
-    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Test e Validazione"],
+    ..req(
+      id: "qualita_piano_qualifica",
+      tipo: Q,
+      priorita: OBBLIGATORIO,
+      descrizione: [I test e le metriche relative devono essere elencate e descritte nel documento interno Piano di
+        Qualifica.],
+      fonti: [Interno],
+    ),
 
-    [R-8-Q],
-    [Obbligatorio],
-    [È necessario rispettare tutte le norme presenti nel documento interno Norme di Progetto.],
-    [Interno],
+    ..req(
+      id: "qualita_git",
+      tipo: Q,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario utilizzare Git come Software di versionamento.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Requisiti non
+        Funzionali"],
+    ),
 
-    [R-9-Q],
-    [Obbligatorio],
-    [I test e le metriche relative devono essere elencate e descritte nel documento interno Piano di Qualifica.],
-    [Interno],
+    ..req(
+      id: "qualita_test_integrazione_sensore_gateway",
+      tipo: Q,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario eseguire test di integrazione che verifichino la corretta comunicazione tra i sensori
+        BLE simulati e il Gateway, assicurando che i dati vengano trasmessi e ricevuti senza perdita o corruzione.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7]],
+    ),
+
+    ..req(
+      id: "qualita_test_sincronizzazione_cloud",
+      tipo: Q,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario eseguire test che verifichino la corretta sincronizzazione dei dati tra Gateway e
+        piattaforma Cloud, garantendo che tutti i dati inviati dal Gateway vengano ricevuti e persistiti
+        correttamente.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7]],
+    ),
+
+    ..req(
+      id: "qualita_test_sicurezza",
+      tipo: Q,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario eseguire test di sicurezza che verifichino la robustezza del sistema rispetto ad
+        accessi non autorizzati, garantendo la corretta applicazione dei meccanismi di autenticazione e
+        autorizzazione.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7]],
+    ),
+
+    ..req(
+      id: "qualita_test_scalabilita_carico",
+      tipo: Q,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario eseguire test di carico che verifichino la scalabilità del sistema al crescere del
+        numero di Gateway, sensori e dati gestiti, assicurando che le prestazioni rimangano accettabili sotto carico
+        elevato.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7]],
+    ),
+
+    ..req(
+      id: "qualita_test_multi_tenant",
+      tipo: Q,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario eseguire test che verifichino il corretto isolamento dei dati tra Tenant distinti,
+        assicurando che nessun Tenant possa accedere ai dati o alle risorse di un altro Tenant.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7]],
+    ),
+
+    ..req(
+      id: "qualita_test_unita_coverage",
+      tipo: Q,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario che la copertura dei test unitari raggiunga almeno l'80% del codice prodotto, con
+        copertura quanto più vicina al 100% nelle sezioni critiche del sistema.],
+      fonti: [Interno],
+    ),
   )
   == Requisiti di Vincolo
   #table(
     columns: (auto, auto, 2fr, 1fr),
     [Codice], [Importanza], [Descrizione], [Fonte],
-    [R-1-V],
-    [Obbligatorio],
-    [È necessario utilizzare Git come Software di versionamento.],
-    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez. "Requisiti non
-      Funzionali"],
+    ..req(
+      id: "vincolo_architettura_tre_livelli",
+      tipo: V,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario che il Sistema realizzato sia organizzato su tre livelli: BLE, Gateway BLE-WiFi e
+        Cloud.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Architettura"],
+    ),
 
-    [R-2-V],
-    [Obbligatorio],
-    [È necessario che il Sistema realizzato sia organizzato su tre livelli: BLE, Gateway BLE-WiFi e Cloud.],
-    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Architettura"],
+    ..req(
+      id: "vincolo_angular",
+      tipo: V,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario che l'interfaccia sia realizzata in Angular v21.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Tecnologie di
+        Riferimento", Interno (scelta versione)],
+    ),
 
-    [R-3-V],
-    [Obbligatorio],
-    [È necessario che l'interfaccia sia realizzata in Angular.],
-    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Tecnologie di
-      Riferimento"],
+    ..req(
+      id: "vincolo_go_nestjs",
+      tipo: V,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario che la parte di microservizi sia realizzata in Go v1.26.x e NestJS v11.1.x.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Tecnologie di
+        Riferimento", Interno (scelta versioni)],
+    ),
 
-    [R-4-V],
-    [Obbligatorio],
-    [È necessario che la parte di microservizi sia realizzata in Go e NestJS.],
-    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Tecnologie di
-      Riferimento"],
+    ..req(
+      id: "vincolo_nats",
+      tipo: V,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario che la parte di scambio di messaggi tra microservizi sia realizzata in NATS.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Tecnologie di
+        Riferimento"],
+    ),
 
-    [R-5-V],
-    [Obbligatorio],
-    [È necessario che la parte di scambio di messaggi tra microservizi sia realizzata in NATS.],
-    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Tecnologie di
-      Riferimento"],
+    ..req(
+      id: "vincolo_docker",
+      tipo: V,
+      priorita: OBBLIGATORIO,
+      descrizione: [È necessario l'utilizzo di Docker],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Tecnologie di
+        Riferimento"],
+    ),
 
-    [R-6-V],
-    [Obbligatorio],
-    [È necessario l'utilizzo di Docker],
-    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Tecnologie di
-      Riferimento"],
+    ..req(
+      id: "vincolo_browser",
+      tipo: V,
+      priorita: OBBLIGATORIO,
+      descrizione: [Le componenti web del sistema devono essere compatibili con le versioni di Chrome 120+, Safari 17+ e
+        Firefox 120+.],
+      fonti: [Interno],
+    ),
   )
   \
   == Requisiti di Sicurezza
   #table(
     columns: (auto, auto, 2fr, 1fr),
     [Codice], [Importanza], [Descrizione], [Fonte],
-    [R-1-S],
-    [Obbligatorio],
-    [I dati all'interno del Sistema devono essere cifrati sia in stato di transito sia a riposo, si raccomanda
-      l'utilizzo di protocollo TLS e algoritmi standard di cifratura.],
-    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di Sicurezza"],
+    ..req(
+      id: "sicurezza_cifratura_dati",
+      tipo: S,
+      priorita: OBBLIGATORIO,
+      descrizione: [I dati all'interno del Sistema devono essere cifrati sia in stato di transito (TLS) sia a riposo
+        (AES-256).],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di
+        Sicurezza", Interno (scelta algoritmi)],
+    ),
 
-    [R-2-S],
-    [Obbligatorio],
-    [I dati appartenenti a diversi Tenant devono essere segregati sia a livello logico che fisico (database e storage
-      dedicati o virtualizzati).],
-    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di Sicurezza"],
+    ..req(
+      id: "sicurezza_segregazione_tenant",
+      tipo: S,
+      priorita: OBBLIGATORIO,
+      descrizione: [I dati appartenenti a diversi Tenant devono essere segregati sia a livello logico che fisico
+        (database e storage dedicati o virtualizzati).],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di
+        Sicurezza"],
+    ),
 
-    [R-3-S],
-    [Desiderabile],
-    [L'accesso alla UI e API deve essere concesso anche tramite l'utilizzo di autenticazione a più fattori (MFA).],
-    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di Sicurezza"],
+    ..req(
+      id: "sicurezza_mfa",
+      tipo: S,
+      priorita: DESIDERABILE,
+      descrizione: [L'accesso alla UI e API deve essere concesso anche tramite l'utilizzo di autenticazione a più
+        fattori (MFA).],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di
+        Sicurezza"],
+    ),
 
-    [R-4-S],
-    [Obbligatorio],
-    [Il Sistema deve possedere un sistema di log completo delle attività, consultabile solo da utenti autorizzati.],
-    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di Sicurezza"],
+    ..req(
+      id: "sicurezza_log_attivita",
+      tipo: S,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve possedere un sistema di log completo delle attività, consultabile solo da utenti
+        autorizzati.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di
+        Sicurezza"],
+    ),
 
-    [R-5-S],
-    [Desiderabile],
-    [Il Sistema deve essere protetto da attacchi informatici, tramite implementazione di meccanismi di rate limiting,
-      intrusion detection e failover automatico per garantire la continuità operativa.],
-    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di Sicurezza"],
+    ..req(
+      id: "sicurezza_protezione_attacchi",
+      tipo: S,
+      priorita: DESIDERABILE,
+      descrizione: [Il Sistema deve essere protetto da attacchi informatici, tramite implementazione di meccanismi di
+        rate limiting, intrusion detection e failover automatico per garantire la continuità operativa.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di
+        Sicurezza"],
+    ),
 
-    [R-6-S],
-    [Obbligatorio],
-    [Tutti gli accessi al Sistema devono essere autenticati tramite meccanismi robusti (JWT, OAuth2, mTLS) con ruoli
-      granulari.],
-    [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di Sicurezza"],
+    ..req(
+      id: "sicurezza_autenticazione_accessi",
+      tipo: S,
+      priorita: OBBLIGATORIO,
+      descrizione: [Tutti gli accessi al Sistema devono essere autenticati tramite meccanismi robusti (JWT, OAuth2,
+        mTLS) con ruoli granulari.],
+      fonti: [#link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato C7], Sez."Requisiti di
+        Sicurezza"],
+    ),
   )
   = Tracciamento Requisiti
   == Tracciamento Fonte - Requisiti
   #table(
     columns: (auto, auto, auto),
     [Fonte], [Requisito], [Importanza],
-    [UC1], [R-1-F], [Obbligatorio],
-    [UC1.1], [R-2-F], [Obbligatorio],
-    [UC2], [R-3-F], [Obbligatorio],
-    [UC3], [R-4-F], [Desiderabile],
-    [UC4], [R-5-F], [Desiderabile],
-    [UC5], [R-6-F], [Desiderabile],
-    [UC6], [R-7-F], [Desiderabile],
-    [UC7], [R-8-F], [Obbligatorio],
-    [UC7.1], [R-9-F], [Obbligatorio],
-    [UC8], [R-10-F], [Obbligatorio],
-    [UC9], [R-11-F], [Obbligatorio],
-    [UC10], [R-12-F], [Obbligatorio],
-    [UC11], [R-13-F], [Obbligatorio],
-    [UC12], [R-14-F], [Obbligatorio],
-    [UC13], [R-15-F], [Obbligatorio],
-    [UC14], [R-16-F], [Obbligatorio],
-    [UC15], [R-17-F], [Obbligatorio],
-    [UC16], [R-18-F], [Obbligatorio],
-    [UC17], [R-19-F], [Obbligatorio],
-    [UC18], [R-20-F], [Obbligatorio],
-    [UC18.1], [R-21-F], [Obbligatorio],
-    [UC19], [R-21-F], [Obbligatorio],
-    [UC20], [R-21-F], [Obbligatorio],
-    [UC21], [R-22-F], [Obbligatorio],
-    [UC22], [R-22-F], [Obbligatorio],
-    [UC22.1], [R-22-F], [Obbligatorio],
-    [UC22.1.1], [R-23-F], [Obbligatorio],
-    [UC22.1.1.1], [R-23-F], [Obbligatorio],
-    [UC23], [R-23-F], [Obbligatorio],
-    [UC24], [R-24-F], [Obbligatorio],
-    [UC24.1], [R-25-F], [Desiderabile],
-    [UC24.2], [R-26-F], [Desiderabile],
-    [UC25], [R-27-F], [Obbligatorio],
-    [UC25.1], [R-27-F], [Obbligatorio],
-    [UC26], [R-28-F], [Obbligatorio],
-    [UC26.1], [R-28-F], [Obbligatorio],
-    [UC27], [R-29-F], [Obbligatorio],
-    [UC28], [R-30-F], [Obbligatorio],
-    [UC29], [R-31-F], [Obbligatorio],
-    [UC30], [R-32-F], [Obbligatorio],
-    [UC31], [R-33-F], [Obbligatorio],
-    [UC31.1], [R-33-F], [Obbligatorio],
-    [UC31.2], [R-33-F], [Obbligatorio],
-    [UC32], [R-33-F], [Obbligatorio],
-    [UC33], [R-34-F], [Obbligatorio],
-    [UC33.1], [R-35-F], [Obbligatorio],
-    [UC33.1.1], [R-35-F], [Obbligatorio],
-    [UC33.1.2], [R-35-F], [Obbligatorio],
-    [UC34], [R-35-F], [Obbligatorio],
-    [UC35], [R-36-F], [Obbligatorio],
-    [UC36], [R-37-F], [Obbligatorio],
-    [UC37], [R-38-F], [Obbligatorio],
-    [UC38], [R-39-F], [Desiderabile],
-    [UC39], [R-40-F], [Desiderabile],
-    [UC40], [R-41-F], [Desiderabile],
-    [UC41], [R-42-F], [Obbligatorio],
-    [UC42], [R-43-F], [Obbligatorio],
-    [UC42.1], [R-44-F], [Obbligatorio],
-    [UC43], [R-45-F], [Obbligatorio],
-    [UC43.1], [R-46-F], [Obbligatorio],
-    [UC44], [R-47-F], [Obbligatorio],
-    [UC45], [R-48-F], [Obbligatorio],
-    [UC46], [R-49-F], [Obbligatorio],
-    [UC47], [R-50-F], [Obbligatorio],
-    [UC48], [R-51-F], [Obbligatorio],
-    [UC49], [R-52-F], [Obbligatorio],
-    [UC49.1], [R-53-F], [Obbligatorio],
-    [UC49.2], [R-54-F], [Obbligatorio],
-    [UC50], [R-55-F], [Obbligatorio],
-    [UC50.1], [R-56-F], [Obbligatorio],
-    [UC50.1.1], [R-56-F], [Obbligatorio],
-    [UC50.1.2], [R-56-F], [Obbligatorio],
-    [UC50.1.3], [R-56-F], [Obbligatorio],
-    [UC51], [R-56-F], [Obbligatorio],
-    [UC52], [R-57-F], [Obbligatorio],
-    [UC52.1], [R-58-F], [Obbligatorio],
-    [UC53], [R-59-F], [Obbligatorio],
-    [UC54], [R-60-F], [Obbligatorio],
-    [UC55], [R-60-F], [Obbligatorio],
-    [UC56], [R-61-F], [Obbligatorio],
-    [UC57], [R-62-F], [Obbligatorio],
-    [UC58], [R-63-F], [Obbligatorio],
-    [UC58.1], [R-64-F], [Obbligatorio],
-    [UC59], [R-65-F], [Obbligatorio],
-    [UC59.1], [R-65-F], [Obbligatorio],
-    [UC60], [R-66-F], [Obbligatorio],
-    [UC60.1], [R-67-F], [Obbligatorio],
-    [UC61], [R-68-F], [Obbligatorio],
-    [UC61.1], [R-69-F], [Obbligatorio],
-    [UC61.1.1], [R-69-F], [Obbligatorio],
-    [UC61.1.2], [R-69-F], [Obbligatorio],
-    [UC62], [R-70-F], [Obbligatorio],
-    [UC62.1], [R-71-F], [Obbligatorio],
-    [UC63], [R-72-F], [Obbligatorio],
-    [UC64], [R-73-F], [Obbligatorio],
-    [UC64.1], [R-74-F], [Obbligatorio],
-    [UC64.2], [R-74-F], [Obbligatorio],
-    [UC64.3], [R-74-F], [Obbligatorio],
-    [UC64.4], [R-74-F], [Obbligatorio],
-    [UC65], [R-75-F], [Obbligatorio],
-    [UC65.1], [R-76-F], [Obbligatorio],
-    [UC65.2], [R-77-F], [Obbligatorio],
-    [UC66], [R-78-F], [Obbligatorio],
-    [UC67], [R-79-F], [Obbligatorio],
-    [UC67.1], [R-79-F], [Obbligatorio],
-    [UC68], [R-80-F], [Obbligatorio],
-    [UC69], [R-81-F], [Obbligatorio],
-    [UC70], [R-82-F], [Obbligatorio],
-    [UC71], [R-83-F], [Obbligatorio],
-    [UC72], [R-84-F], [Obbligatorio],
-    [UC73], [R-85-F], [Obbligatorio],
-    [UC74], [R-86-F], [Obbligatorio],
-    [UC75], [R-87-F], [Obbligatorio],
-    [UC76], [R-88-F], [Obbligatorio],
-    [UC77], [R-89-F], [Obbligatorio],
-    [UC78], [R-90-F], [Obbligatorio],
-    [UC79], [R-91-F], [Obbligatorio],
-    [UC79.1], [R-92-F], [Obbligatorio],
-    [UC80], [R-93-F], [Obbligatorio],
-    [UC81], [R-94-F], [Obbligatorio],
-    [UC82], [R-95-F], [Obbligatorio],
-    [UC83], [R-96-F], [Obbligatorio],
-    [UC83.1], [R-97-F], [Obbligatorio],
-    [UC84], [R-98-F], [Obbligatorio],
-    [UC85], [R-99-F], [Obbligatorio],
-    [UC86], [R-100-F], [Obbligatorio],
-    [UC86.1], [R-101-F], [Obbligatorio],
-    [UC87], [R-102-F], [Obbligatorio],
-    [UC88], [R-103-F], [Obbligatorio],
-    [UC89], [R-104-F], [Obbligatorio],
-    [UC90], [R-105-F], [Obbligatorio],
-    [UC91], [R-106-F], [Obbligatorio],
-    [UC91.1], [R-106-F], [Obbligatorio],
-    [UC92], [R-107-F], [Obbligatorio],
-    [UC93], [R-108-F], [Obbligatorio],
-    [UC93.1], [R-108-F], [Obbligatorio],
-    [UC94], [R-109-F], [Obbligatorio],
-    [UC95], [R-110-F], [Obbligatorio],
-    [UC95.1], [R-110-F], [Obbligatorio],
-    [UC95.2], [R-110-F], [Obbligatorio],
-    [UC95.3], [R-110-F], [Obbligatorio],
-    [UC96], [R-111-F], [Obbligatorio],
-    [UC97], [R-112-F], [Obbligatorio],
-    [UC98], [R-113-F], [Obbligatorio],
-    [UC98.1], [R-114-F], [Obbligatorio],
-    [UC99], [R-115-F], [Obbligatorio],
-    [UC100], [R-116-F], [Obbligatorio],
-    [UC101], [R-117-F], [Obbligatorio],
-    [UCS1], [R-S-1-F], [Obbligatorio],
-    [UCS1.1], [R-S-2-F], [Obbligatorio],
-    [UCS1.1.1], [R-S-2-F], [Obbligatorio],
-    [UCS2], [R-S-3-F], [Obbligatorio],
-    [UCS3], [R-S-4-F], [Obbligatorio],
-    [UCS3.1], [R-S-4-F], [Obbligatorio],
-    [UCS3.2], [R-S-4-F], [Obbligatorio],
-    [UCS3.3], [R-S-4-F], [Obbligatorio],
-    [UCS3.4], [R-S-4-F], [Obbligatorio],
-    [UCS4], [R-S-5-F], [Obbligatorio],
-    [UCS4.1], [R-S-6-F], [Obbligatorio],
-    [UCS5], [R-S-7-F], [Obbligatorio],
-    [UCS5.1], [R-S-7-F], [Obbligatorio],
-    [UCS5.2], [R-S-7-F], [Obbligatorio],
-    [UCS6], [R-S-7-F], [Obbligatorio],
-    [UCS7], [R-S-7-F], [Obbligatorio],
-    [UCS8], [R-S-8-F], [Obbligatorio],
-    [UCS9], [R-S-9-F], [Obbligatorio],
-    [UCS10], [R-S-10-F], [Obbligatorio],
-    [UCS10.1], [R-S-11-F], [Obbligatorio],
-    [UCS11], [R-S-12-F], [Obbligatorio],
-    [UCS12], [R-S-13-F], [Obbligatorio],
-    [UCS12.1], [R-S-14-F], [Obbligatorio],
-    [UCS13], [R-S-15-F], [Obbligatorio],
-    [UCS14], [R-S-16-F], [Obbligatorio],
-    [UCS15], [R-S-17-F], [Obbligatorio],
-    [UCS16], [R-S-18-F], [Obbligatorio],
-    [UCS17], [R-S-19-F], [Obbligatorio],
-    [UCS18], [R-S-20-F], [Obbligatorio],
-    [UCS19], [R-S-21-F], [Obbligatorio],
-    [UCS20], [R-S-22-F], [Obbligatorio],
-    [UCS20.1], [R-S-22-F], [Obbligatorio],
-    [UCS20.2], [R-S-22-F], [Obbligatorio],
-    [UCS21], [R-S-23-F], [Obbligatorio],
-    [UCS22], [R-S-24-F], [Obbligatorio],
-    [Capitolato],
-    [R-1-Q \ R-2-Q \ R-3-Q \ R-4-Q \ R-5-Q \ R-6-Q \ R-7-Q \ R-1-V \ R-2-V \ R-3-V \ R-4-V \ R-5-V \ R-6-V \ R-1-S \
-      R-2-S \ R-4-S \ R-6-S],
+    [#tag-uc-num("login")], [#ref-req("login")], [Obbligatorio],
+    [#tag-uc-num("ins_pw")], [#ref-req("ins_pw")], [Obbligatorio],
+    [#tag-uc-num("err_cred_errate")], [#ref-req("err_cred_errate")], [Obbligatorio],
+    [#tag-uc-num("setup_totp")], [#ref-req("setup_totp")], [Desiderabile],
+    [#tag-uc-num("login_2fa")], [#ref-req("login_2fa")], [Desiderabile],
+    [#tag-uc-num("ins_otp")], [#ref-req("ins_otp")], [Desiderabile],
+    [#tag-uc-num("err_otp_errato")], [#ref-req("err_otp_errato")], [Desiderabile],
+    [#tag-uc-num("recupero_password")], [#ref-req("recupero_password")], [Obbligatorio],
+    [#tag-uc-num("cambio_password")], [#ref-req("cambio_password_req")], [Obbligatorio],
+    [#tag-uc-num("err_account_inesistente")], [#ref-req("err_account_inesistente")], [Obbligatorio],
+    [#tag-uc-num("impostazione_password")], [#ref-req("impostazione_password")], [Obbligatorio],
+    [#tag-uc-num("inserimento_nuova_password")], [#ref-req("impostazione_password")], [Obbligatorio],
+    [#tag-uc-num("conferma_nuova_password")], [#ref-req("impostazione_password")], [Obbligatorio],
+    [#tag-uc-num("err_campi_diversi")], [#ref-req("err_campi_diversi")], [Obbligatorio],
+    [#tag-uc-num("err_password_invalida")], [#ref-req("err_password_invalida")], [Obbligatorio],
+    [#tag-uc-num("modifica_mail_account")], [#ref-req("modifica_mail_account")], [Obbligatorio],
+    [#tag-uc-num("impostazione_mail")], [#ref-req("impostazione_mail")], [Obbligatorio],
+    [#tag-uc-num("inserimento_nuova_mail")], [#ref-req("impostazione_mail")], [Obbligatorio],
+    [#tag-uc-num("conferma_nuova_mail")], [#ref-req("impostazione_mail")], [Obbligatorio],
+    [#tag-uc-num("err_mail_non_valida")], [#ref-req("err_mail_non_valida")], [Obbligatorio],
+    [#tag-uc-num("err_mail_gia_registrata")], [#ref-req("err_mail_gia_registrata")], [Obbligatorio],
+    [#tag-uc-num("modifica_password_account")], [#ref-req("modifica_password_account")], [Obbligatorio],
+    [#tag-uc-num("logout")], [#ref-req("logout")], [Obbligatorio],
+    [#tag-uc-num("lista_gateway")], [#ref-req("lista_gateway")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_singolo_gateway")], [#ref-req("visualizzazione_singolo_gateway")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_nome_gateway")], [#ref-req("visualizzazione_singolo_gateway")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_stato_gateway")], [#ref-req("visualizzazione_singolo_gateway")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_gateway_online")], [#ref-req("visualizzazione_singolo_gateway")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_gateway_offline")], [#ref-req("visualizzazione_singolo_gateway")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_gateway_sospeso")], [#ref-req("visualizzazione_singolo_gateway")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_dettagli_gateway")], [#ref-req("visualizzazione_dettagli_gateway")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_timestamp_ultimo_invio_dati_gateway")],
+    [#ref-req("visualizzazione_dettagli_gateway")],
     [Obbligatorio],
 
-    [Capitolato], [R-3-S \ R-5-S], [Desiderabile],
+    [#tag-uc-num("visualizzazione_lista_sensori")], [#ref-req("visualizzazione_dettagli_gateway")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_singolo_sensore")], [#ref-req("visualizzazione_singolo_sensore")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_timestamp_ultimo_invio_dati_sensore")],
+    [#ref-req("visualizzazione_singolo_sensore")],
+    [Obbligatorio],
 
-    [Interno], [R-8-Q \ R-9-Q], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_id_sensore")], [#ref-req("visualizzazione_singolo_sensore")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_dati_stream")], [#ref-req("visualizzazione_dati_stream")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_tabellare_dati_stream")],
+    [#ref-req("visualizzazione_tabellare_dati_stream")],
+    [Desiderabile],
+
+    [#tag-uc-num("visualizzazione_grafico_dati_stream")],
+    [#ref-req("visualizzazione_grafico_dati_stream")],
+    [Desiderabile],
+
+    [#tag-uc-num("filtraggio_dati")], [#ref-req("filtraggio_gateway")], [Obbligatorio],
+    [#tag-uc-num("filtraggio_gateway")], [#ref-req("filtraggio_gateway")], [Obbligatorio],
+    [#tag-uc-num("filtraggio_singolo_gateway")], [#ref-req("filtraggio_gateway")], [Obbligatorio],
+    [#tag-uc-num("filtraggio_sensore")], [#ref-req("filtraggio_sensore")], [Obbligatorio],
+    [#tag-uc-num("filtraggio_singolo_sensore")], [#ref-req("filtraggio_sensore")], [Obbligatorio],
+    [#tag-uc-num("filtraggio_intervallo_temporale")], [#ref-req("filtraggio_intervallo_temporale")], [Obbligatorio],
+    [#tag-uc-num("err_dati_non_disponibili")], [#ref-req("err_dati_non_disponibili")], [Obbligatorio],
+    [#tag-uc-num("esportazione_dati")], [#ref-req("esportazione_dati")], [Obbligatorio],
+    [#tag-uc-num("esportazione_dati_csv")], [#ref-req("esportazione_dati")], [Obbligatorio],
+    [#tag-uc-num("esportazione_dati_json")], [#ref-req("esportazione_dati")], [Obbligatorio],
+    [#tag-uc-num("alert_gateway_irraggiungibile")], [#ref-req("alert_gateway_irraggiungibile")], [Obbligatorio],
+    [#tag-uc-num("alert_sensore_fuori_range")], [#ref-req("alert_sensore_fuori_range")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_valore_dato_registrato")], [#ref-req("alert_sensore_fuori_range")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_range_accettato")], [#ref-req("alert_sensore_fuori_range")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_timestamp_dato_irregolare")], [#ref-req("alert_sensore_fuori_range")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_storico_alert")], [#ref-req("visualizzazione_storico_alert")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_singolo_alert")], [#ref-req("visualizzazione_singolo_alert")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_tipo_alert")], [#ref-req("visualizzazione_singolo_alert")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_hardware_interessato")], [#ref-req("visualizzazione_singolo_alert")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_timestamp_emissione_alert")],
+    [#ref-req("visualizzazione_singolo_alert")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_dettagli_singolo_alert")],
+    [#ref-req("visualizzazione_dettagli_singolo_alert")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_dettagli_alert_gateway_irraggiungibile")],
+    [#ref-req("visualizzazione_dettagli_alert_gateway_irraggiungibile")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_dettagli_alert_sensore_fuori_range")],
+    [#ref-req("visualizzazione_dettagli_alert_sensore_fuori_range")],
+    [Obbligatorio],
+
+    [#tag-uc-num("modifica_impostazioni_notifica_alert_email")],
+    [#ref-req("modifica_impostazioni_notifica_alert_email")],
+    [Desiderabile],
+
+    [#tag-uc-num("abilitazione_notifica_alert_email")],
+    [#ref-req("modifica_impostazioni_notifica_alert_email")],
+    [Desiderabile],
+
+    [#tag-uc-num("disabilitazione_notifica_alert_email")],
+    [#ref-req("modifica_impostazioni_notifica_alert_email")],
+    [Desiderabile],
+
+    [#tag-uc-num("modifica_impostazioni_notifica_alert_dashboard")],
+    [#ref-req("modifica_impostazioni_notifica_alert_dashboard")],
+    [Desiderabile],
+
+    [#tag-uc-num("abilitazione_notifica_alert_dashboard")],
+    [#ref-req("modifica_impostazioni_notifica_alert_dashboard")],
+    [Desiderabile],
+
+    [#tag-uc-num("disabilitazione_notifica_alert_dashboard")],
+    [#ref-req("modifica_impostazioni_notifica_alert_dashboard")],
+    [Desiderabile],
+
+    [#tag-uc-num("modifica_nome_gateway")], [#ref-req("modifica_nome_gateway")], [Desiderabile],
+    [#tag-uc-num("err_nome_gateway_duplicato")], [#ref-req("err_nome_gateway_duplicato")], [Obbligatorio],
+    [#tag-uc-num("modifica_stato_gateway")], [#ref-req("modifica_stato_gateway")], [Obbligatorio],
+    [#tag-uc-num("selezione_stato_gateway")], [#ref-req("selezione_stato_gateway")], [Obbligatorio],
+    [#tag-uc-num("modifica_range_sensore")], [#ref-req("modifica_range_sensore")], [Obbligatorio],
+    [#tag-uc-num("selezione_specifico_sensore")], [#ref-req("selezione_specifico_sensore")], [Obbligatorio],
+    [#tag-uc-num("selezione_range_numerico")], [#ref-req("selezione_range_numerico")], [Obbligatorio],
+    [#tag-uc-num("inserimento_valore_numerico")], [#ref-req("inserimento_valore_numerico")], [Obbligatorio],
+    [#tag-uc-num("modifica_range_default_tipo_sensore")],
+    [#ref-req("modifica_range_default_tipo_sensore")],
+    [Obbligatorio],
+
+    [#tag-uc-num("selezione_tipo_sensore")], [#ref-req("selezione_tipo_sensore")], [Obbligatorio],
+    [#tag-uc-num("modifica_intervallo_alert_gateway")], [#ref-req("modifica_intervallo_alert_gateway")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_costi_stimati")], [#ref-req("visualizzazione_costi_stimati")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_costi_storage")], [#ref-req("visualizzazione_costi_storage")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_costi_banda")], [#ref-req("visualizzazione_costi_banda")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_lista_utenti_tenant")],
+    [#ref-req("visualizzazione_lista_utenti_tenant")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_singolo_utente_tenant")],
+    [#ref-req("visualizzazione_singolo_utente_tenant")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_ruolo_utente")], [#ref-req("visualizzazione_singolo_utente_tenant")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_nome_utente")], [#ref-req("visualizzazione_singolo_utente_tenant")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_ultimo_accesso_utente")],
+    [#ref-req("visualizzazione_singolo_utente_tenant")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_mail_utente")], [#ref-req("visualizzazione_singolo_utente_tenant")], [Obbligatorio],
+    [#tag-uc-num("creazione_utente_tenant")], [#ref-req("creazione_utente_tenant")], [Obbligatorio],
+    [#tag-uc-num("inserimento_nome_utente")], [#ref-req("inserimento_nome_utente")], [Obbligatorio],
+    [#tag-uc-num("selezione_utente_tenant")], [#ref-req("selezione_utente_tenant")], [Obbligatorio],
+    [#tag-uc-num("selezione_permessi_utente")], [#ref-req("selezione_permessi_utente")], [Obbligatorio],
+    [#tag-uc-num("modifica_permessi_utente")], [#ref-req("selezione_permessi_utente")], [Obbligatorio],
+    [#tag-uc-num("modifica_mail_utente")], [#ref-req("modifica_mail_utente")], [Obbligatorio],
+    [#tag-uc-num("modifica_password_utente")], [#ref-req("modifica_password_utente")], [Obbligatorio],
+    [#tag-uc-num("eliminazione_utenti_tenant")], [#ref-req("eliminazione_utenti_tenant")], [Obbligatorio],
+    [#tag-uc-num("selezione_lista_utenti")], [#ref-req("selezione_lista_utenti")], [Obbligatorio],
+    [#tag-uc-num("creazione_credenziali_api")], [#ref-req("creazione_credenziali_api")], [Obbligatorio],
+    [#tag-uc-num("inserimento_nome_client_api")], [#ref-req("creazione_credenziali_api")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_client_id")], [#ref-req("visualizzazione_client_id")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_secret_api")], [#ref-req("visualizzazione_secret_api")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_lista_api")], [#ref-req("visualizzazione_lista_api")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_singole_api")], [#ref-req("visualizzazione_singole_api")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_nome_descrittivo_api")], [#ref-req("visualizzazione_singole_api")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_timestamp_api")], [#ref-req("visualizzazione_singole_api")], [Obbligatorio],
+    [#tag-uc-num("eliminazione_credenziali_api")], [#ref-req("eliminazione_credenziali_api")], [Obbligatorio],
+    [#tag-uc-num("selezione_credenziali_api")], [#ref-req("selezione_credenziali_api")], [Obbligatorio],
+    [#tag-uc-num("modifica_impostazioni_2fa")], [#ref-req("modifica_impostazioni_2fa")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_log_audit_tenant")], [#ref-req("visualizzazione_log_audit_tenant")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_singolo_log_audit")], [#ref-req("visualizzazione_singolo_log_audit")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_timestamp_log_entry")],
+    [#ref-req("visualizzazione_singolo_log_audit")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_utente_log_entry")], [#ref-req("visualizzazione_singolo_log_audit")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_operazione_log_entry")],
+    [#ref-req("visualizzazione_singolo_log_audit")],
+    [Obbligatorio],
+
+    [#tag-uc-num("esportazione_log_audit_tenant")], [#ref-req("esportazione_log_audit_tenant")], [Obbligatorio],
+    [#tag-uc-num("selezione_intervallo_temporale")], [#ref-req("selezione_intervallo_temporale")], [Obbligatorio],
+    [#tag-uc-num("download_log_audit_esportati")], [#ref-req("download_log_audit_esportati")], [Obbligatorio],
+    [#tag-uc-num("modifica_impostazioni_impersonificazione")],
+    [#ref-req("modifica_impostazioni_impersonificazione")],
+    [Obbligatorio],
+
+    [#tag-uc-num("aggiornamento_firmware_gateway")], [#ref-req("aggiornamento_firmware_gateway")], [Obbligatorio],
+    [#tag-uc-num("selezione_firmware")], [#ref-req("aggiornamento_firmware_gateway")], [Obbligatorio],
+    [#tag-uc-num("selezione_gateway")], [#ref-req("selezione_gateway")], [Obbligatorio],
+    [#tag-uc-num("modifica_frequenza_invio_gateway")], [#ref-req("modifica_frequenza_invio_gateway")], [Obbligatorio],
+    [#tag-uc-num("autenticazione_client_api")], [#ref-req("autenticazione_client_api")], [Obbligatorio],
+    [#tag-uc-num("err_dati_autenticazione_invalidi")], [#ref-req("err_dati_autenticazione_invalidi")], [Obbligatorio],
+    [#tag-uc-num("err_auth_server_non_disponibile")], [#ref-req("err_auth_server_non_disponibile")], [Obbligatorio],
+    [#tag-uc-num("richiesta_dati_on_demand")], [#ref-req("richiesta_dati_on_demand")], [Obbligatorio],
+    [#tag-uc-num("err_token_api_invalido")], [#ref-req("err_token_api_invalido")], [Obbligatorio],
+    [#tag-uc-num("err_id_gateway_invalido")], [#ref-req("err_id_gateway_invalido")], [Obbligatorio],
+    [#tag-uc-num("err_id_sensore_invalido")], [#ref-req("err_id_sensore_invalido")], [Obbligatorio],
+    [#tag-uc-num("err_intervallo_temporale_invalido")], [#ref-req("err_intervallo_temporale_invalido")], [Obbligatorio],
+    [#tag-uc-num("richiesta_dati_streaming")], [#ref-req("richiesta_dati_streaming")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_lista_tenant")], [#ref-req("visualizzazione_lista_tenant")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_singolo_tenant")], [#ref-req("visualizzazione_singolo_tenant")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_dettagli_tenant")], [#ref-req("visualizzazione_dettagli_tenant")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_nome_tenant")], [#ref-req("visualizzazione_nome_tenant")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_stato_tenant")], [#ref-req("visualizzazione_stato_tenant")], [Obbligatorio],
+    [#tag-uc-num("vis_stato_attivo")], [#ref-req("visualizzazione_stato_tenant")], [Obbligatorio],
+    [#tag-uc-num("vis_stato_sospeso")], [#ref-req("visualizzazione_stato_tenant")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_id_tenant")], [#ref-req("visualizzazione_id_tenant")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_intervallo_sospensione_tenant")],
+    [#ref-req("visualizzazione_intervallo_sospensione_tenant")],
+    [Obbligatorio],
+
+    [#tag-uc-num("modifica_intervallo_sospensione_tenant")],
+    [#ref-req("modifica_intervallo_sospensione_tenant")],
+    [Obbligatorio],
+
+    [#tag-uc-num("modifica_nome_tenant")], [#ref-req("modifica_nome_tenant")], [Obbligatorio],
+    [#tag-uc-num("creazione_tenant")], [#ref-req("creazione_tenant")], [Obbligatorio],
+    [#tag-uc-num("inserimento_anagrafica_tenant")], [#ref-req("inserimento_anagrafica_tenant")], [Obbligatorio],
+    [#tag-uc-num("err_interno_creazione_tenant")], [#ref-req("err_interno_creazione_tenant")], [Obbligatorio],
+    [#tag-uc-num("selezione_tenant")], [#ref-req("selezione_tenant")], [Obbligatorio],
+    [#tag-uc-num("sospensione_tenant")], [#ref-req("sospensione_tenant")], [Obbligatorio],
+    [#tag-uc-num("riattivazione_tenant")], [#ref-req("riattivazione_tenant")], [Obbligatorio],
+    [#tag-uc-num("eliminazione_tenant")], [#ref-req("eliminazione_tenant")], [Obbligatorio],
+    [#tag-uc-num("conferma_eliminazione_tenant")], [#ref-req("eliminazione_tenant")], [Obbligatorio],
+    [#tag-uc-num("impersonificazione_utente_tenant")], [#ref-req("impersonificazione_utente_tenant")], [Obbligatorio],
+    [#tag-uc-num("registrazione_associazione_gateway")],
+    [#ref-req("registrazione_associazione_gateway")],
+    [Obbligatorio],
+
+    [#tag-uc-num("inserimento_credenziali_fabbrica_gateway")],
+    [#ref-req("registrazione_associazione_gateway")],
+    [Obbligatorio],
+
+    [#tag-uc-num("creazione_utente_amministratore_tenant")],
+    [#ref-req("creazione_utente_amministratore_tenant")],
+    [Obbligatorio],
+
+    [#tag-uc-num("monitoraggio_performance_sistema")], [#ref-req("monitoraggio_performance_sistema")], [Obbligatorio],
+    [#tag-uc-num("monitoraggio_latenza")], [#ref-req("monitoraggio_performance_sistema")], [Obbligatorio],
+    [#tag-uc-num("monitoraggio_volumi_traffico")], [#ref-req("monitoraggio_performance_sistema")], [Obbligatorio],
+    [#tag-uc-num("monitoraggio_storage")], [#ref-req("monitoraggio_performance_sistema")], [Obbligatorio],
+    [#tag-uc-num("onboarding_gateway")], [#ref-req("onboarding_gateway")], [Obbligatorio],
+    [#tag-uc-num("err_auth_gateway_fabbrica")], [#ref-req("err_auth_gateway_fabbrica")], [Obbligatorio],
+    [#tag-uc-num("invio_dati_crittografati_cloud")], [#ref-req("invio_dati_crittografati_cloud")], [Obbligatorio],
+    [#tag-uc-num("instaurazione_connessione_sicura")], [#ref-req("instaurazione_connessione_sicura")], [Obbligatorio],
+    [#tag-uc-num("err_autenticazione_gateway")], [#ref-req("err_autenticazione_gateway")], [Obbligatorio],
+    [#tag-uc-num("err_range_invalido")], [#ref-req("err_range_invalido")], [Obbligatorio],
+    [#tag-uc-num("ins_mail")], [#ref-req("ins_mail")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_lista_gateway_simulati")],
+    [#ref-req("visualizzazione_lista_gateway_simulati")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_singolo_gateway_simulato")],
+    [#ref-req("visualizzazione_singolo_gateway_simulato")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_data_creazione_simulazione")],
+    [#ref-req("visualizzazione_singolo_gateway_simulato")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_id_fabbrica_simulazione")],
+    [#ref-req("visualizzazione_id_fabbrica_simulazione")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_configurazione_simulazione_gateway")],
+    [#ref-req("visualizzazione_configurazione_simulazione_gateway")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_chiave_fabbrica_simulazione")],
+    [#ref-req("visualizzazione_configurazione_simulazione_gateway")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_serial_number_gateway_simulato")],
+    [#ref-req("visualizzazione_configurazione_simulazione_gateway")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_software_gateway_simulato")],
+    [#ref-req("visualizzazione_configurazione_simulazione_gateway")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_modello_gateway_simulato")],
+    [#ref-req("visualizzazione_configurazione_simulazione_gateway")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_lista_sensori_gateway_simulato")],
+    [#ref-req("visualizzazione_lista_sensori_gateway_simulato")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_singolo_sensore_simulato")],
+    [#ref-req("visualizzazione_singolo_sensore_simulato")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_configurazione_simulazione_sensore")],
+    [#ref-req("visualizzazione_configurazione_simulazione_sensore")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_range_generazione_dati")],
+    [#ref-req("visualizzazione_configurazione_simulazione_sensore")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_algoritmo_generazione_dati")],
+    [#ref-req("visualizzazione_configurazione_simulazione_sensore")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_identificativo_sensore")],
+    [#ref-req("visualizzazione_configurazione_simulazione_sensore")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_tipo_sensore_simulato")],
+    [#ref-req("visualizzazione_configurazione_simulazione_sensore")],
+    [Obbligatorio],
+
+    [#tag-uc-num("eliminazione_gateway_simulato")], [#ref-req("eliminazione_gateway_simulato")], [Obbligatorio],
+    [#tag-uc-num("eliminazione_sensore_simulato")], [#ref-req("eliminazione_sensore_simulato")], [Obbligatorio],
+    [#tag-uc-num("creazione_deploy_gateway_simulato")], [#ref-req("creazione_deploy_gateway_simulato")], [Obbligatorio],
+    [#tag-uc-num("inserimento_dati_config_sim_gateway")],
+    [#ref-req("inserimento_dati_config_sim_gateway")],
+    [Obbligatorio],
+
+    [#tag-uc-num("sel_sn_gateway")], [#ref-req("inserimento_dati_config_sim_gateway")], [Obbligatorio],
+    [#tag-uc-num("sel_modello_gateway")], [#ref-req("inserimento_dati_config_sim_gateway")], [Obbligatorio],
+    [#tag-uc-num("sel_versione_sw_gateway")], [#ref-req("inserimento_dati_config_sim_gateway")], [Obbligatorio],
+    [#tag-uc-num("err_deploy_gateway_simulato")], [#ref-req("err_deploy_gateway_simulato")], [Obbligatorio],
+    [#tag-uc-num("creazione_sensore_gateway_simulato")],
+    [#ref-req("creazione_sensore_gateway_simulato")],
+    [Obbligatorio],
+
+    [#tag-uc-num("inserimento_dati_config_sim_sensore")],
+    [#ref-req("inserimento_dati_config_sim_sensore")],
+    [Obbligatorio],
+
+    [#tag-uc-num("inserimento_range_generazione_dati")],
+    [#ref-req("inserimento_dati_config_sim_sensore")],
+    [Obbligatorio],
+
+    [#tag-uc-num("err_range_invalido_simulazione")], [#ref-req("err_range_invalido_simulazione")], [Obbligatorio],
+    [#tag-uc-num("err_creazione_sensore_simulato")], [#ref-req("err_creazione_sensore_simulato")], [Obbligatorio],
+    [#tag-uc-num("creazione_gateway_multipli_default")],
+    [#ref-req("creazione_gateway_multipli_default")],
+    [Obbligatorio],
+
+    [#tag-uc-num("err_valore_numerico_invalido")], [#ref-req("err_valore_numerico_invalido")], [Obbligatorio],
+    [#tag-uc-num("comando_anomalia_degrado_rete")], [#ref-req("comando_anomalia_degrado_rete")], [Obbligatorio],
+    [#tag-uc-num("comando_anomalia_disconnessione_temporanea")],
+    [#ref-req("comando_anomalia_disconnessione_temporanea")],
+    [Obbligatorio],
+
+    [#tag-uc-num("comando_anomalia_outliers_misurazioni")],
+    [#ref-req("comando_anomalia_outliers_misurazioni")],
+    [Obbligatorio],
+
+    [#tag-uc-num("impostazione_configurazione_gateway")],
+    [#ref-req("impostazione_configurazione_gateway")],
+    [Obbligatorio],
+
+    [#tag-uc-num("impostazione_frequenza_invio_dati")],
+    [#ref-req("impostazione_configurazione_gateway")],
+    [Obbligatorio],
+
+    [#tag-uc-num("impostazione_stato_sospensione")], [#ref-req("impostazione_configurazione_gateway")], [Obbligatorio],
+    [#tag-uc-num("err_sintattico_config_gateway")], [#ref-req("err_sintattico_config_gateway")], [Obbligatorio],
+    [#tag-uc-num("err_config_frequenza_fuori_range")], [#ref-req("err_config_frequenza_fuori_range")], [Obbligatorio],
+    [Capitolato],
+    [#ref-req("qualita_documentazione") \ #ref-req("qualita_testbook") \ #ref-req("qualita_manuale_utente") \ #ref-req(
+        "qualita_manuale_amministratore",
+      ) \ #ref-req(
+        "qualita_manuale_api",
+      ) \ #ref-req("qualita_git") \ #ref-req(
+        "qualita_test_integrazione_sensore_gateway",
+      ) \ #ref-req(
+        "qualita_test_sincronizzazione_cloud",
+      ) \ #ref-req("qualita_test_sicurezza") \ #ref-req("qualita_test_scalabilita_carico") \ #ref-req(
+        "qualita_test_multi_tenant",
+      ) \ #ref-req("qualita_test_unita_coverage") \ #ref-req(
+        "vincolo_architettura_tre_livelli",
+      ) \ #ref-req("vincolo_angular") \ #ref-req("vincolo_go_nestjs") \ #ref-req("vincolo_nats") \ #ref-req(
+        "vincolo_docker",
+      ) \ #ref-req("sicurezza_cifratura_dati") \
+      #ref-req("sicurezza_segregazione_tenant") \ #ref-req("sicurezza_log_attivita") \ #ref-req(
+        "sicurezza_autenticazione_accessi",
+      )],
+    [Obbligatorio],
+
+    [Capitolato], [#ref-req("sicurezza_mfa") \ #ref-req("sicurezza_protezione_attacchi")], [Desiderabile],
+
+    [Interno],
+    [#ref-req("qualita_norme_progetto") \ #ref-req("qualita_piano_qualifica") \ #ref-req("vincolo_browser")],
+    [Obbligatorio],
   )
+
   == Tracciamento Requisito - Fonte
   #table(
     columns: (auto, auto, auto),
     [Requisito], [Importanza], [Fonte],
-    [R-1-F], [Obbligatorio], [UC1],
-    [R-2-F], [Obbligatorio], [UC1.1],
-    [R-3-F], [Obbligatorio], [UC2],
-    [R-4-F], [Desiderabile], [UC3],
-    [R-5-F], [Desiderabile], [UC4],
-    [R-6-F], [Desiderabile], [UC5],
-    [R-7-F], [Desiderabile], [UC6],
-    [R-8-F], [Obbligatorio], [UC7],
-    [R-9-F], [Obbligatorio], [UC7.1],
-    [R-10-F], [Obbligatorio], [UC8],
-    [R-11-F], [Obbligatorio], [UC9],
-    [R-12-F], [Obbligatorio], [UC10],
-    [R-13-F], [Obbligatorio], [UC11],
-    [R-14-F], [Obbligatorio], [UC12],
-    [R-15-F], [Obbligatorio], [UC13],
-    [R-16-F], [Obbligatorio], [UC14],
-    [R-17-F], [Obbligatorio], [UC15],
-    [R-18-F], [Obbligatorio], [UC16],
-    [R-19-F], [Obbligatorio], [UC17],
-    [R-20-F], [Obbligatorio], [UC18],
-    [R-21-F], [Obbligatorio], [UC18.1 \ UC19 \ UC20],
-    [R-22-F], [Obbligatorio], [UC21 \ UC22 \ UC22.1],
-    [R-23-F], [Obbligatorio], [UC22.1.1 \ UC22.1.1.1 \ UC23],
-    [R-24-F], [Obbligatorio], [UC24],
-    [R-25-F], [Desiderabile], [UC24.1],
-    [R-26-F], [Desiderabile], [UC24.2],
-    [R-27-F], [Obbligatorio], [UC25 \ UC25.1],
-    [R-28-F], [Obbligatorio], [UC26 \ UC26.1],
-    [R-29-F], [Obbligatorio], [UC27],
-    [R-30-F], [Obbligatorio], [UC28],
-    [R-31-F], [Obbligatorio], [UC29],
-    [R-32-F], [Obbligatorio], [UC30],
-    [R-33-F], [Obbligatorio], [UC31 \ UC31.1 \ UC31.2 \ UC32],
-    [R-34-F], [Obbligatorio], [UC33],
-    [R-35-F], [Obbligatorio], [UC33.1 \ UC33.1.1 \ UC33.1.2 \ UC34],
-    [R-36-F], [Obbligatorio], [UC35],
-    [R-37-F], [Obbligatorio], [UC36],
-    [R-38-F], [Obbligatorio], [UC37],
-    [R-39-F], [Desiderabile], [UC38],
-    [R-40-F], [Desiderabile], [UC39],
-    [R-41-F], [Desiderabile], [UC40],
-    [R-42-F], [Obbligatorio], [UC41],
-    [R-43-F], [Obbligatorio], [UC42],
-    [R-44-F], [Obbligatorio], [UC42.1],
-    [R-45-F], [Obbligatorio], [UC43],
-    [R-46-F], [Obbligatorio], [UC43.1],
-    [R-47-F], [Obbligatorio], [UC44],
-    [R-48-F], [Obbligatorio], [UC45],
-    [R-49-F], [Obbligatorio], [UC46],
-    [R-50-F], [Obbligatorio], [UC47],
-    [R-51-F], [Obbligatorio], [UC48],
-    [R-52-F], [Obbligatorio], [UC49],
-    [R-53-F], [Obbligatorio], [UC49.1],
-    [R-54-F], [Obbligatorio], [UC49.2],
-    [R-55-F], [Obbligatorio], [UC50],
-    [R-56-F], [Obbligatorio], [UC50.1 \ UC50.1.1 \ UC50.1.2 \ UC50.1.3 \ UC51],
-    [R-57-F], [Obbligatorio], [UC52],
-    [R-58-F], [Obbligatorio], [UC52.1],
-    [R-59-F], [Obbligatorio], [UC53],
-    [R-60-F], [Obbligatorio], [UC54 \ UC55],
-    [R-61-F], [Obbligatorio], [UC56],
-    [R-62-F], [Obbligatorio], [UC57],
-    [R-63-F], [Obbligatorio], [UC58],
-    [R-64-F], [Obbligatorio], [UC58.1],
-    [R-65-F], [Obbligatorio], [UC59 \ UC59.1],
-    [R-66-F], [Obbligatorio], [UC60],
-    [R-67-F], [Obbligatorio], [UC60.1],
-    [R-68-F], [Obbligatorio], [UC61],
-    [R-69-F], [Obbligatorio], [UC61.1 \ UC61.1.1 \ UC61.1.2],
-    [R-70-F], [Obbligatorio], [UC62],
-    [R-71-F], [Obbligatorio], [UC62.1],
-    [R-72-F], [Obbligatorio], [UC63],
-    [R-73-F], [Obbligatorio], [UC64],
-    [R-74-F], [Obbligatorio], [UC64.1 \ UC64.2 \ UC64.3 \ UC64.4],
-    [R-75-F], [Obbligatorio], [UC65],
-    [R-76-F], [Obbligatorio], [UC65.1],
-    [R-77-F], [Obbligatorio], [UC65.2],
-    [R-78-F], [Obbligatorio], [UC66],
-    [R-79-F], [Obbligatorio], [UC67 \ UC67.1],
-    [R-80-F], [Obbligatorio], [UC68],
-    [R-81-F], [Obbligatorio], [UC69],
-    [R-82-F], [Obbligatorio], [UC70],
-    [R-83-F], [Obbligatorio], [UC71],
-    [R-84-F], [Obbligatorio], [UC72],
-    [R-85-F], [Obbligatorio], [UC73],
-    [R-86-F], [Obbligatorio], [UC74],
-    [R-87-F], [Obbligatorio], [UC75],
-    [R-88-F], [Obbligatorio], [UC76],
-    [R-89-F], [Obbligatorio], [UC77],
-    [R-90-F], [Obbligatorio], [UC78],
-    [R-91-F], [Obbligatorio], [UC79],
-    [R-92-F], [Obbligatorio], [UC79.1],
-    [R-93-F], [Obbligatorio], [UC80],
-    [R-94-F], [Obbligatorio], [UC81],
-    [R-95-F], [Obbligatorio], [UC82],
-    [R-96-F], [Obbligatorio], [UC83],
-    [R-97-F], [Obbligatorio], [UC83.1],
-    [R-98-F], [Obbligatorio], [UC84],
-    [R-99-F], [Obbligatorio], [UC85],
-    [R-100-F], [Obbligatorio], [UC86],
-    [R-101-F], [Obbligatorio], [UC86.1],
-    [R-102-F], [Obbligatorio], [UC87],
-    [R-103-F], [Obbligatorio], [UC88],
-    [R-104-F], [Obbligatorio], [UC89],
-    [R-105-F], [Obbligatorio], [UC90],
-    [R-106-F], [Obbligatorio], [UC91 \ UC91.1],
-    [R-107-F], [Obbligatorio], [UC92],
-    [R-108-F], [Obbligatorio], [UC93 \ UC93.1],
-    [R-109-F], [Obbligatorio], [UC94],
-    [R-110-F], [Obbligatorio], [UC95 \ UC95.1 \ UC95.2 \ UC95.3],
-    [R-111-F], [Obbligatorio], [UC96],
-    [R-112-F], [Obbligatorio], [UC97],
-    [R-113-F], [Obbligatorio], [UC98],
-    [R-114-F], [Obbligatorio], [UC98.1],
-    [R-115-F], [Obbligatorio], [UC99],
-    [R-116-F], [Obbligatorio], [UC100],
-    [R-117-F], [Obbligatorio], [UC101],
-    [R-S-1-F], [Obbligatorio], [UCS1],
-    [R-S-2-F], [Obbligatorio], [UCS1.1 \ UCS1.1.1],
-    [R-S-3-F], [Obbligatorio], [UCS2],
-    [R-S-4-F], [Obbligatorio], [UCS3 \ UCS3.1 \ UCS3.2 \ UCS3.3 \ UCS3.4],
-    [R-S-5-F], [Obbligatorio], [UCS4],
-    [R-S-6-F], [Obbligatorio], [UCS4.1],
-    [R-S-7-F], [Obbligatorio], [UCS5 \ UCS5.1 \ UCS5.2 \ UCS6 \ UCS7],
-    [R-S-8-F], [Obbligatorio], [UCS8],
-    [R-S-9-F], [Obbligatorio], [UCS9],
-    [R-S-10-F], [Obbligatorio], [UCS10],
-    [R-S-11-F], [Obbligatorio], [UCS10.1],
-    [R-S-12-F], [Obbligatorio], [UCS11],
-    [R-S-13-F], [Obbligatorio], [UCS12],
-    [R-S-14-F], [Obbligatorio], [UCS12.1],
-    [R-S-15-F], [Obbligatorio], [UCS13],
-    [R-S-16-F], [Obbligatorio], [UCS14],
-    [R-S-17-F], [Obbligatorio], [UCS15],
-    [R-S-18-F], [Obbligatorio], [UCS16],
-    [R-S-19-F], [Obbligatorio], [UCS17],
-    [R-S-20-F], [Obbligatorio], [UCS18],
-    [R-S-21-F], [Obbligatorio], [UCS19],
-    [R-S-22-F], [Obbligatorio], [UCS20 \ UCS20.1 \ UC20.2],
-    [R-S-23-F], [Obbligatorio], [UCS21],
-    [R-S-24-F], [Obbligatorio], [UCS22],
-    [R-1-Q], [Obbligatorio], [Capitolato],
-    [R-2-Q], [Obbligatorio], [Capitolato],
-    [R-3-Q], [Obbligatorio], [Capitolato],
-    [R-4-Q], [Obbligatorio], [Capitolato],
-    [R-5-Q], [Obbligatorio], [Capitolato],
-    [R-6-Q], [Obbligatorio], [Capitolato],
-    [R-7-Q], [Obbligatorio], [Capitolato],
-    [R-8-Q], [Obbligatorio], [Interno],
-    [R-9-Q], [Obbligatorio], [Interno],
-    [R-1-V], [Obbligatorio], [Capitolato],
-    [R-2-V], [Obbligatorio], [Capitolato],
-    [R-3-V], [Obbligatorio], [Capitolato],
-    [R-4-V], [Obbligatorio], [Capitolato],
-    [R-5-V], [Obbligatorio], [Capitolato],
-    [R-6-V], [Obbligatorio], [Capitolato],
-    [R-1-S], [Obbligatorio], [Capitolato],
-    [R-2-S], [Obbligatorio], [Capitolato],
-    [R-3-S], [Desiderabile], [Capitolato],
-    [R-4-S], [Obbligatorio], [Capitolato],
-    [R-5-S], [Desiderabile], [Capitolato],
-    [R-6-S], [Obbligatorio], [Capitolato],
+    [#ref-req("login")], [Obbligatorio], [#tag-uc-num("login")],
+    [#ref-req("ins_pw")], [Obbligatorio], [#tag-uc-num("ins_pw")],
+    [#ref-req("err_cred_errate")], [Obbligatorio], [#tag-uc-num("err_cred_errate")],
+    [#ref-req("setup_totp")], [Desiderabile], [#tag-uc-num("setup_totp")],
+    [#ref-req("login_2fa")], [Desiderabile], [#tag-uc-num("login_2fa")],
+    [#ref-req("ins_otp")], [Desiderabile], [#tag-uc-num("ins_otp")],
+    [#ref-req("err_otp_errato")], [Desiderabile], [#tag-uc-num("err_otp_errato")],
+    [#ref-req("recupero_password")], [Obbligatorio], [#tag-uc-num("recupero_password")],
+    [#ref-req("cambio_password_req")], [Obbligatorio], [#tag-uc-num("cambio_password")],
+    [#ref-req("err_account_inesistente")], [Obbligatorio], [#tag-uc-num("err_account_inesistente")],
+    [#ref-req("impostazione_password")],
+    [Obbligatorio],
+    [#tag-uc-num("impostazione_password") \ #tag-uc-num("inserimento_nuova_password") \ #tag-uc-num(
+        "conferma_nuova_password",
+      )],
+
+    [#ref-req("err_campi_diversi")], [Obbligatorio], [#tag-uc-num("err_campi_diversi")],
+    [#ref-req("err_password_invalida")], [Obbligatorio], [#tag-uc-num("err_password_invalida")],
+    [#ref-req("modifica_mail_account")], [Obbligatorio], [#tag-uc-num("modifica_mail_account")],
+    [#ref-req("impostazione_mail")],
+    [Obbligatorio],
+    [#tag-uc-num("impostazione_mail") \ #tag-uc-num("inserimento_nuova_mail") \ #tag-uc-num("conferma_nuova_mail")],
+
+    [#ref-req("err_mail_non_valida")], [Obbligatorio], [#tag-uc-num("err_mail_non_valida")],
+    [#ref-req("err_mail_gia_registrata")], [Obbligatorio], [#tag-uc-num("err_mail_gia_registrata")],
+    [#ref-req("modifica_password_account")], [Obbligatorio], [#tag-uc-num("modifica_password_account")],
+    [#ref-req("logout")], [Obbligatorio], [#tag-uc-num("logout")],
+    [#ref-req("lista_gateway")], [Obbligatorio], [#tag-uc-num("lista_gateway")],
+    [#ref-req("visualizzazione_singolo_gateway")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_singolo_gateway") \ #tag-uc-num("visualizzazione_nome_gateway") \ #tag-uc-num(
+        "visualizzazione_stato_gateway",
+      ) \ #tag-uc-num("visualizzazione_gateway_online") \ #tag-uc-num("visualizzazione_gateway_offline") \ #tag-uc-num(
+        "visualizzazione_gateway_sospeso",
+      )],
+
+    [#ref-req("visualizzazione_dettagli_gateway")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_dettagli_gateway") \ #tag-uc-num(
+        "visualizzazione_timestamp_ultimo_invio_dati_gateway",
+      ) \ #tag-uc-num("visualizzazione_lista_sensori")],
+
+    [#ref-req("visualizzazione_singolo_sensore")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_singolo_sensore") \ #tag-uc-num("visualizzazione_timestamp_ultimo_invio_dati_sensore")
+      \ #tag-uc-num("visualizzazione_id_sensore")],
+
+    [#ref-req("visualizzazione_dati_stream")], [Obbligatorio], [#tag-uc-num("visualizzazione_dati_stream")],
+    [#ref-req("visualizzazione_tabellare_dati_stream")],
+    [Desiderabile],
+    [#tag-uc-num("visualizzazione_tabellare_dati_stream")],
+
+    [#ref-req("visualizzazione_grafico_dati_stream")],
+    [Desiderabile],
+    [#tag-uc-num("visualizzazione_grafico_dati_stream")],
+
+    [#ref-req("filtraggio_gateway")],
+    [Obbligatorio],
+    [#tag-uc-num("filtraggio_dati") \ #tag-uc-num("filtraggio_gateway") \ #tag-uc-num("filtraggio_singolo_gateway")],
+
+    [#ref-req("filtraggio_sensore")],
+    [Obbligatorio],
+    [#tag-uc-num("filtraggio_sensore") \ #tag-uc-num("filtraggio_singolo_sensore")],
+
+    [#ref-req("filtraggio_intervallo_temporale")], [Obbligatorio], [#tag-uc-num("filtraggio_intervallo_temporale")],
+    [#ref-req("err_dati_non_disponibili")], [Obbligatorio], [#tag-uc-num("err_dati_non_disponibili")],
+    [#ref-req("esportazione_dati")],
+    [Obbligatorio],
+    [#tag-uc-num("esportazione_dati") \ #tag-uc-num("esportazione_dati_csv") \ #tag-uc-num("esportazione_dati_json")],
+
+    [#ref-req("alert_gateway_irraggiungibile")], [Obbligatorio], [#tag-uc-num("alert_gateway_irraggiungibile")],
+    [#ref-req("alert_sensore_fuori_range")],
+    [Obbligatorio],
+    [#tag-uc-num("alert_sensore_fuori_range") \ #tag-uc-num("visualizzazione_valore_dato_registrato") \ #tag-uc-num(
+        "visualizzazione_range_accettato",
+      ) \ #tag-uc-num("visualizzazione_timestamp_dato_irregolare")],
+
+    [#ref-req("visualizzazione_storico_alert")], [Obbligatorio], [#tag-uc-num("visualizzazione_storico_alert")],
+    [#ref-req("visualizzazione_singolo_alert")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_singolo_alert") \ #tag-uc-num("visualizzazione_tipo_alert") \ #tag-uc-num(
+        "visualizzazione_hardware_interessato",
+      ) \ #tag-uc-num("visualizzazione_timestamp_emissione_alert")],
+
+    [#ref-req("visualizzazione_dettagli_singolo_alert")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_dettagli_singolo_alert")],
+
+    [#ref-req("visualizzazione_dettagli_alert_gateway_irraggiungibile")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_dettagli_alert_gateway_irraggiungibile")],
+
+    [#ref-req("visualizzazione_dettagli_alert_sensore_fuori_range")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_dettagli_alert_sensore_fuori_range")],
+
+    [#ref-req("modifica_impostazioni_notifica_alert_email")],
+    [Desiderabile],
+    [#tag-uc-num("modifica_impostazioni_notifica_alert_email") \ #tag-uc-num("abilitazione_notifica_alert_email") \
+      #tag-uc-num("disabilitazione_notifica_alert_email")],
+
+    [#ref-req("modifica_impostazioni_notifica_alert_dashboard")],
+    [Desiderabile],
+    [#tag-uc-num("modifica_impostazioni_notifica_alert_dashboard") \ #tag-uc-num(
+        "abilitazione_notifica_alert_dashboard",
+      ) \ #tag-uc-num("disabilitazione_notifica_alert_dashboard")],
+
+    [#ref-req("modifica_nome_gateway")], [Desiderabile], [#tag-uc-num("modifica_nome_gateway")],
+    [#ref-req("err_nome_gateway_duplicato")], [Obbligatorio], [#tag-uc-num("err_nome_gateway_duplicato")],
+    [#ref-req("modifica_stato_gateway")], [Obbligatorio], [#tag-uc-num("modifica_stato_gateway")],
+    [#ref-req("selezione_stato_gateway")], [Obbligatorio], [#tag-uc-num("selezione_stato_gateway")],
+    [#ref-req("modifica_range_sensore")], [Obbligatorio], [#tag-uc-num("modifica_range_sensore")],
+    [#ref-req("selezione_specifico_sensore")], [Obbligatorio], [#tag-uc-num("selezione_specifico_sensore")],
+    [#ref-req("selezione_range_numerico")], [Obbligatorio], [#tag-uc-num("selezione_range_numerico")],
+    [#ref-req("inserimento_valore_numerico")], [Obbligatorio], [#tag-uc-num("inserimento_valore_numerico")],
+    [#ref-req("modifica_range_default_tipo_sensore")],
+    [Obbligatorio],
+    [#tag-uc-num("modifica_range_default_tipo_sensore")],
+
+    [#ref-req("selezione_tipo_sensore")], [Obbligatorio], [#tag-uc-num("selezione_tipo_sensore")],
+    [#ref-req("modifica_intervallo_alert_gateway")], [Obbligatorio], [#tag-uc-num("modifica_intervallo_alert_gateway")],
+    [#ref-req("visualizzazione_costi_stimati")], [Obbligatorio], [#tag-uc-num("visualizzazione_costi_stimati")],
+    [#ref-req("visualizzazione_costi_storage")], [Obbligatorio], [#tag-uc-num("visualizzazione_costi_storage")],
+    [#ref-req("visualizzazione_costi_banda")], [Obbligatorio], [#tag-uc-num("visualizzazione_costi_banda")],
+    [#ref-req("visualizzazione_lista_utenti_tenant")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_lista_utenti_tenant")],
+
+    [#ref-req("visualizzazione_singolo_utente_tenant")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_singolo_utente_tenant") \ #tag-uc-num("visualizzazione_ruolo_utente") \ #tag-uc-num(
+        "visualizzazione_nome_utente",
+      ) \ #tag-uc-num("visualizzazione_ultimo_accesso_utente") \ #tag-uc-num("visualizzazione_mail_utente")],
+
+    [#ref-req("creazione_utente_tenant")], [Obbligatorio], [#tag-uc-num("creazione_utente_tenant")],
+    [#ref-req("inserimento_nome_utente")], [Obbligatorio], [#tag-uc-num("inserimento_nome_utente")],
+    [#ref-req("selezione_utente_tenant")], [Obbligatorio], [#tag-uc-num("selezione_utente_tenant")],
+    [#ref-req("selezione_permessi_utente")],
+    [Obbligatorio],
+    [#tag-uc-num("selezione_permessi_utente") \ #tag-uc-num("modifica_permessi_utente")],
+
+    [#ref-req("modifica_mail_utente")], [Obbligatorio], [#tag-uc-num("modifica_mail_utente")],
+    [#ref-req("modifica_password_utente")], [Obbligatorio], [#tag-uc-num("modifica_password_utente")],
+    [#ref-req("eliminazione_utenti_tenant")], [Obbligatorio], [#tag-uc-num("eliminazione_utenti_tenant")],
+    [#ref-req("selezione_lista_utenti")], [Obbligatorio], [#tag-uc-num("selezione_lista_utenti")],
+    [#ref-req("creazione_credenziali_api")],
+    [Obbligatorio],
+    [#tag-uc-num("creazione_credenziali_api") \ #tag-uc-num("inserimento_nome_client_api")],
+
+    [#ref-req("visualizzazione_client_id")], [Obbligatorio], [#tag-uc-num("visualizzazione_client_id")],
+    [#ref-req("visualizzazione_secret_api")], [Obbligatorio], [#tag-uc-num("visualizzazione_secret_api")],
+    [#ref-req("visualizzazione_lista_api")], [Obbligatorio], [#tag-uc-num("visualizzazione_lista_api")],
+    [#ref-req("visualizzazione_singole_api")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_singole_api") \ #tag-uc-num("visualizzazione_nome_descrittivo_api") \ #tag-uc-num(
+        "visualizzazione_timestamp_api",
+      )],
+
+    [#ref-req("eliminazione_credenziali_api")], [Obbligatorio], [#tag-uc-num("eliminazione_credenziali_api")],
+    [#ref-req("selezione_credenziali_api")], [Obbligatorio], [#tag-uc-num("selezione_credenziali_api")],
+    [#ref-req("modifica_impostazioni_2fa")], [Obbligatorio], [#tag-uc-num("modifica_impostazioni_2fa")],
+    [#ref-req("visualizzazione_log_audit_tenant")], [Obbligatorio], [#tag-uc-num("visualizzazione_log_audit_tenant")],
+    [#ref-req("visualizzazione_singolo_log_audit")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_singolo_log_audit") \ #tag-uc-num("visualizzazione_timestamp_log_entry") \
+      #tag-uc-num("visualizzazione_utente_log_entry") \ #tag-uc-num("visualizzazione_operazione_log_entry")],
+
+    [#ref-req("esportazione_log_audit_tenant")], [Obbligatorio], [#tag-uc-num("esportazione_log_audit_tenant")],
+    [#ref-req("selezione_intervallo_temporale")], [Obbligatorio], [#tag-uc-num("selezione_intervallo_temporale")],
+    [#ref-req("download_log_audit_esportati")], [Obbligatorio], [#tag-uc-num("download_log_audit_esportati")],
+    [#ref-req("modifica_impostazioni_impersonificazione")],
+    [Obbligatorio],
+    [#tag-uc-num("modifica_impostazioni_impersonificazione")],
+
+    [#ref-req("aggiornamento_firmware_gateway")],
+    [Obbligatorio],
+    [#tag-uc-num("aggiornamento_firmware_gateway") \ #tag-uc-num("selezione_firmware")],
+
+    [#ref-req("selezione_gateway")], [Obbligatorio], [#tag-uc-num("selezione_gateway")],
+    [#ref-req("modifica_frequenza_invio_gateway")], [Obbligatorio], [#tag-uc-num("modifica_frequenza_invio_gateway")],
+    [#ref-req("autenticazione_client_api")], [Obbligatorio], [#tag-uc-num("autenticazione_client_api")],
+    [#ref-req("err_dati_autenticazione_invalidi")], [Obbligatorio], [#tag-uc-num("err_dati_autenticazione_invalidi")],
+    [#ref-req("err_auth_server_non_disponibile")], [Obbligatorio], [#tag-uc-num("err_auth_server_non_disponibile")],
+    [#ref-req("richiesta_dati_on_demand")], [Obbligatorio], [#tag-uc-num("richiesta_dati_on_demand")],
+    [#ref-req("err_token_api_invalido")], [Obbligatorio], [#tag-uc-num("err_token_api_invalido")],
+    [#ref-req("err_id_gateway_invalido")], [Obbligatorio], [#tag-uc-num("err_id_gateway_invalido")],
+    [#ref-req("err_id_sensore_invalido")], [Obbligatorio], [#tag-uc-num("err_id_sensore_invalido")],
+    [#ref-req("err_intervallo_temporale_invalido")], [Obbligatorio], [#tag-uc-num("err_intervallo_temporale_invalido")],
+    [#ref-req("richiesta_dati_streaming")], [Obbligatorio], [#tag-uc-num("richiesta_dati_streaming")],
+    [#ref-req("visualizzazione_lista_tenant")], [Obbligatorio], [#tag-uc-num("visualizzazione_lista_tenant")],
+    [#ref-req("visualizzazione_singolo_tenant")], [Obbligatorio], [#tag-uc-num("visualizzazione_singolo_tenant")],
+    [#ref-req("visualizzazione_dettagli_tenant")], [Obbligatorio], [#tag-uc-num("visualizzazione_dettagli_tenant")],
+    [#ref-req("visualizzazione_nome_tenant")], [Obbligatorio], [#tag-uc-num("visualizzazione_nome_tenant")],
+    [#ref-req("visualizzazione_stato_tenant")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_stato_tenant") \ #tag-uc-num("vis_stato_attivo") \ #tag-uc-num("vis_stato_sospeso")],
+
+    [#ref-req("visualizzazione_id_tenant")], [Obbligatorio], [#tag-uc-num("visualizzazione_id_tenant")],
+    [#ref-req("visualizzazione_intervallo_sospensione_tenant")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_intervallo_sospensione_tenant")],
+
+    [#ref-req("modifica_intervallo_sospensione_tenant")],
+    [Obbligatorio],
+    [#tag-uc-num("modifica_intervallo_sospensione_tenant")],
+
+    [#ref-req("modifica_nome_tenant")], [Obbligatorio], [#tag-uc-num("modifica_nome_tenant")],
+    [#ref-req("creazione_tenant")], [Obbligatorio], [#tag-uc-num("creazione_tenant")],
+    [#ref-req("inserimento_anagrafica_tenant")], [Obbligatorio], [#tag-uc-num("inserimento_anagrafica_tenant")],
+    [#ref-req("err_interno_creazione_tenant")], [Obbligatorio], [#tag-uc-num("err_interno_creazione_tenant")],
+    [#ref-req("selezione_tenant")], [Obbligatorio], [#tag-uc-num("selezione_tenant")],
+    [#ref-req("sospensione_tenant")], [Obbligatorio], [#tag-uc-num("sospensione_tenant")],
+    [#ref-req("riattivazione_tenant")], [Obbligatorio], [#tag-uc-num("riattivazione_tenant")],
+    [#ref-req("eliminazione_tenant")],
+    [Obbligatorio],
+    [#tag-uc-num("eliminazione_tenant") \ #tag-uc-num("conferma_eliminazione_tenant")],
+
+    [#ref-req("impersonificazione_utente_tenant")], [Obbligatorio], [#tag-uc-num("impersonificazione_utente_tenant")],
+    [#ref-req("registrazione_associazione_gateway")],
+    [Obbligatorio],
+    [#tag-uc-num("registrazione_associazione_gateway") \ #tag-uc-num("inserimento_credenziali_fabbrica_gateway")],
+
+    [#ref-req("creazione_utente_amministratore_tenant")],
+    [Obbligatorio],
+    [#tag-uc-num("creazione_utente_amministratore_tenant")],
+
+    [#ref-req("monitoraggio_performance_sistema")],
+    [Obbligatorio],
+    [#tag-uc-num("monitoraggio_performance_sistema") \ #tag-uc-num("monitoraggio_latenza") \ #tag-uc-num(
+        "monitoraggio_volumi_traffico",
+      ) \ #tag-uc-num("monitoraggio_storage")],
+
+    [#ref-req("onboarding_gateway")], [Obbligatorio], [#tag-uc-num("onboarding_gateway")],
+    [#ref-req("err_auth_gateway_fabbrica")], [Obbligatorio], [#tag-uc-num("err_auth_gateway_fabbrica")],
+    [#ref-req("invio_dati_crittografati_cloud")], [Obbligatorio], [#tag-uc-num("invio_dati_crittografati_cloud")],
+    [#ref-req("instaurazione_connessione_sicura")], [Obbligatorio], [#tag-uc-num("instaurazione_connessione_sicura")],
+    [#ref-req("err_autenticazione_gateway")], [Obbligatorio], [#tag-uc-num("err_autenticazione_gateway")],
+    [#ref-req("err_range_invalido")], [Obbligatorio], [#tag-uc-num("err_range_invalido")],
+    [#ref-req("ins_mail")], [Obbligatorio], [#tag-uc-num("ins_mail")],
+    [#ref-req("visualizzazione_lista_gateway_simulati")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_lista_gateway_simulati")],
+
+    [#ref-req("visualizzazione_singolo_gateway_simulato")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_singolo_gateway_simulato") \ #tag-uc-num(
+        "visualizzazione_data_creazione_simulazione",
+      )],
+
+    [#ref-req("visualizzazione_id_fabbrica_simulazione")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_id_fabbrica_simulazione")],
+
+    [#ref-req("visualizzazione_configurazione_simulazione_gateway")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_configurazione_simulazione_gateway") \ #tag-uc-num(
+        "visualizzazione_chiave_fabbrica_simulazione",
+      ) \ #tag-uc-num("visualizzazione_serial_number_gateway_simulato") \ #tag-uc-num(
+        "visualizzazione_software_gateway_simulato",
+      ) \ #tag-uc-num("visualizzazione_modello_gateway_simulato")],
+
+    [#ref-req("visualizzazione_lista_sensori_gateway_simulato")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_lista_sensori_gateway_simulato")],
+
+    [#ref-req("visualizzazione_singolo_sensore_simulato")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_singolo_sensore_simulato")],
+
+    [#ref-req("visualizzazione_configurazione_simulazione_sensore")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_configurazione_simulazione_sensore") \ #tag-uc-num(
+        "visualizzazione_range_generazione_dati",
+      ) \ #tag-uc-num("visualizzazione_algoritmo_generazione_dati") \ #tag-uc-num(
+        "visualizzazione_identificativo_sensore",
+      ) \ #tag-uc-num("visualizzazione_tipo_sensore_simulato")],
+
+    [#ref-req("eliminazione_gateway_simulato")], [Obbligatorio], [#tag-uc-num("eliminazione_gateway_simulato")],
+    [#ref-req("eliminazione_sensore_simulato")], [Obbligatorio], [#tag-uc-num("eliminazione_sensore_simulato")],
+    [#ref-req("creazione_deploy_gateway_simulato")], [Obbligatorio], [#tag-uc-num("creazione_deploy_gateway_simulato")],
+    [#ref-req("inserimento_dati_config_sim_gateway")],
+    [Obbligatorio],
+    [#tag-uc-num("inserimento_dati_config_sim_gateway") \ #tag-uc-num("sel_sn_gateway") \ #tag-uc-num(
+        "sel_modello_gateway",
+      ) \ #tag-uc-num("sel_versione_sw_gateway")],
+
+    [#ref-req("err_deploy_gateway_simulato")], [Obbligatorio], [#tag-uc-num("err_deploy_gateway_simulato")],
+    [#ref-req("creazione_sensore_gateway_simulato")],
+    [Obbligatorio],
+    [#tag-uc-num("creazione_sensore_gateway_simulato")],
+
+    [#ref-req("inserimento_dati_config_sim_sensore")],
+    [Obbligatorio],
+    [#tag-uc-num("inserimento_dati_config_sim_sensore") \ #tag-uc-num("inserimento_range_generazione_dati")],
+
+    [#ref-req("err_range_invalido_simulazione")], [Obbligatorio], [#tag-uc-num("err_range_invalido_simulazione")],
+    [#ref-req("err_creazione_sensore_simulato")], [Obbligatorio], [#tag-uc-num("err_creazione_sensore_simulato")],
+    [#ref-req("creazione_gateway_multipli_default")],
+    [Obbligatorio],
+    [#tag-uc-num("creazione_gateway_multipli_default")],
+
+    [#ref-req("err_valore_numerico_invalido")], [Obbligatorio], [#tag-uc-num("err_valore_numerico_invalido")],
+    [#ref-req("comando_anomalia_degrado_rete")], [Obbligatorio], [#tag-uc-num("comando_anomalia_degrado_rete")],
+    [#ref-req("comando_anomalia_disconnessione_temporanea")],
+    [Obbligatorio],
+    [#tag-uc-num("comando_anomalia_disconnessione_temporanea")],
+
+    [#ref-req("comando_anomalia_outliers_misurazioni")],
+    [Obbligatorio],
+    [#tag-uc-num("comando_anomalia_outliers_misurazioni")],
+
+    [#ref-req("impostazione_configurazione_gateway")],
+    [Obbligatorio],
+    [#tag-uc-num("impostazione_configurazione_gateway") \ #tag-uc-num("impostazione_frequenza_invio_dati") \
+      #tag-uc-num("impostazione_stato_sospensione")],
+
+    [#ref-req("err_sintattico_config_gateway")], [Obbligatorio], [#tag-uc-num("err_sintattico_config_gateway")],
+    [#ref-req("err_config_frequenza_fuori_range")], [Obbligatorio], [#tag-uc-num("err_config_frequenza_fuori_range")],
+    [#ref-req("qualita_documentazione")], [Obbligatorio], [Capitolato],
+    [#ref-req("qualita_testbook")], [Obbligatorio], [Capitolato],
+    [#ref-req("qualita_manuale_utente")], [Obbligatorio], [Capitolato],
+    [#ref-req("qualita_manuale_amministratore")], [Obbligatorio], [Capitolato],
+    [#ref-req("qualita_manuale_api")], [Obbligatorio], [Capitolato],
+    [#ref-req("qualita_git")], [Obbligatorio], [Capitolato],
+    [#ref-req("qualita_test_integrazione_sensore_gateway")], [Obbligatorio], [Capitolato],
+    [#ref-req("qualita_test_sincronizzazione_cloud")], [Obbligatorio], [Capitolato],
+    [#ref-req("qualita_test_sicurezza")], [Obbligatorio], [Capitolato],
+    [#ref-req("qualita_test_scalabilita_carico")], [Obbligatorio], [Capitolato],
+    [#ref-req("qualita_test_multi_tenant")], [Obbligatorio], [Capitolato],
+    [#ref-req("qualita_test_unita_coverage")], [Obbligatorio], [Capitolato],
+    [#ref-req("qualita_norme_progetto")], [Obbligatorio], [Interno],
+    [#ref-req("qualita_piano_qualifica")], [Obbligatorio], [Interno],
+    [#ref-req("vincolo_architettura_tre_livelli")], [Obbligatorio], [Capitolato],
+    [#ref-req("vincolo_angular")], [Obbligatorio], [Capitolato],
+    [#ref-req("vincolo_go_nestjs")], [Obbligatorio], [Capitolato],
+    [#ref-req("vincolo_nats")], [Obbligatorio], [Capitolato],
+    [#ref-req("vincolo_docker")], [Obbligatorio], [Capitolato],
+    [#ref-req("vincolo_browser")], [Obbligatorio], [Interno],
+    [#ref-req("sicurezza_cifratura_dati")], [Obbligatorio], [Capitolato],
+    [#ref-req("sicurezza_segregazione_tenant")], [Obbligatorio], [Capitolato],
+    [#ref-req("sicurezza_mfa")], [Desiderabile], [Capitolato],
+    [#ref-req("sicurezza_log_attivita")], [Obbligatorio], [Capitolato],
+    [#ref-req("sicurezza_protezione_attacchi")], [Desiderabile], [Capitolato],
+    [#ref-req("sicurezza_autenticazione_accessi")], [Obbligatorio], [Capitolato],
   )
   == Riepilogo Requisiti per Categoria
   #table(

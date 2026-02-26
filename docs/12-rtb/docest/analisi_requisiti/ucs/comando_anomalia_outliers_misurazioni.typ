@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   system: SIM_SYS,
@@ -29,7 +29,7 @@
       uc: "err_valore_numerico_invalido",
     ),
   ),
-)[
-  #uml-schema("S19", "Diagramma Comando anomalia sensore - outliers nelle misurazioni")
-]
+
+  uml-descr: "Diagramma Comando anomalia sensore - outliers nelle misurazioni",
+)
 

@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   system: SIM_SYS,
@@ -19,7 +19,7 @@
     (descr: "L’Attore conferma la decisione di eliminare il Gateway selezionato"),
     (descr: "L’Attore riceve una notifica di operazione avvenuta con successo"),
   ),
-)[
-  #uml-schema("S8", "Diagramma Eliminazione gateway simulato")
-]
+
+  uml-descr: "Diagramma Eliminazione Gateway simulato",
+)
 

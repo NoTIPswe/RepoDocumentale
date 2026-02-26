@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc
 
 #uc(
   id: "modifica_mail_account",
@@ -16,13 +16,12 @@
   main-scen: (
     (
       descr: "L’Attore inserisce la nuova mail",
-      inc: "inserimento_conferma_mail",
+      inc: "impostazione_mail",
     ),
     (
       descr: "L’Attore conferma l’operazione di cambio mail",
     ),
   ),
-)[
-  #uml-schema("12", "Diagramma Modifica mail account")
 
-]
+  uml-descr: "Diagramma Modifica mail account",
+)

@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   system: SIM_SYS,
@@ -22,6 +22,4 @@
       descr: "L'Attore viene invitato ad inserire un valore accettabile",
     ),
   ),
-)[
-  #uml-schema("S16", "Diagramma Errore valore numerico invalido")
-]
+)

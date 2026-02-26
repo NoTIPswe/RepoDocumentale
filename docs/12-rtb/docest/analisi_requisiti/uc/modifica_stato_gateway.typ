@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "modifica_stato_gateway",
@@ -9,6 +9,7 @@
   sec-actors: CA.p-gway,
   preconds: (
     "Il Gateway appartiene al Tenant",
+    "L'Attore ha precedentemente selezionato il Gateway su cui operare",
     "Il Gateway si trova in uno stato attivo/disabilitato",
   ),
   postconds: (
@@ -17,13 +18,11 @@
   trigger: "L’Attore vuole abilitare/disabilitare lo stato di un Gateway",
   main-scen: (
     (
-      descr: "L’Attore seleziona un Gateway appartenenti al Tenant",
-      inc: "selezione_gateway",
-    ),
-    (
       descr: "L’Attore imposta lo stato desiderato (abilitato o disabilitato) per il Gateway",
       inc: "selezione_stato_gateway",
     ),
     (descr: "L’Attore conferma l’operazione idempotente di cambio di stato"),
   ),
-)[#uml-schema("42", "Diagramma Modifica stato del Gateway")]
+
+  uml-descr: "Diagramma Modifica stato del Gateway",
+)

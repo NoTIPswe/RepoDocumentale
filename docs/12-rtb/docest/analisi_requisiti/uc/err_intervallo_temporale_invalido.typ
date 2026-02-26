@@ -1,4 +1,4 @@
-#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc, uml-schema
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
 
 #uc(
   id: "err_intervallo_temporale_invalido",
@@ -18,4 +18,4 @@
   main-scen: (
     (descr: "L’Attore riceve una risposta di errore che segnala l’intervallo temporale non valido"),
   ),
-)[#uml-schema("77", "Diagramma Errore intervallo temporale invalido")]
+)
