@@ -5,7 +5,7 @@ changelog:
     authors:
       - Francesco Marcon
       - Matteo Mantoan 
-    verifier: TBD
+    verifier: Valerio Solito
     description: >
       Aggiustamento test a seguito a seguito dell'aggiornamento dell'AdR a v1.1.0
   - version: 1.0.0
