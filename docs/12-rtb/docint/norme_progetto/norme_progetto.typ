@@ -88,7 +88,7 @@ Nel contesto del progetto, risultano rilevanti esclusivamente i processi di forn
 == Fornitura
 La fornitura è il processo primario adottato dal fornitore del futuro prodotto finale che si occupa di analizzare le
 azioni da intraprendere per la sua realizzazione. Questo processo prevede un primo studio dei requisiti che il progetto
-dovrà, nelle componenti prodotte, soddisfare. Ciò produce il materiale necessario per poter effettuare una fase
+dovrà, nelle componenti prodotte, soddisfare. Ciò produce il materiale necessario per poter iniziare la fase
 contrattazione dei requisiti con il proponente, e poter comunicare allo stesso una possibile pianificazione del lavoro
 da svolgere con probabile data di consegna prevista.
 

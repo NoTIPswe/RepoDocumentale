@@ -1,8 +1,7 @@
 #import "lib.typ": ROLES, activity, cite-norm, norm
 
 Per supportare le attività di gestione, sviluppo e coordinamento, il gruppo ha adottato il seguente set di strumenti:
-Telegram, Google Mail, Microsoft Teams, Zoom, Jira, Git, GitHub, Discord e Typst. Di seguito si trovano le norme
-relative a ciascuno.
+Telegram, Google Mail, Microsoft Teams, Zoom, Jira, Git, GitHub, Discord, Typst e Google Sheets. Di seguito si trovano le norme relative a ciascuno.
 
 === Norme e strumenti del processo di infrastruttura
 
@@ -55,6 +54,12 @@ relative a ciascuno.
 #norm(title: "Strumenti di documentazione", label: <strumenti-documentazione>)[
   Il gruppo adotta *Typst* come sistema per la redazione di tutta la documentazione. L'approccio *Docs as Code*
   garantisce coerenza stilistica e validazione strutturale tramite l'uso di librerie e template condivisi.
+]
+
+#norm(title: "Strumenti per la raccolta e l'analisi delle metriche", label: <strumenti-metriche>)[
+  Per il monitoraggio quantitativo del progetto, la valutazione della qualità e la stesura dei grafici, il gruppo si affida a:
+  - *Google Sheets*: utilizzato come centro dell'inserimento, la classificazione e la storicizzazione di tutte le metriche (di processo, di prodotto e di qualità). Questo ci consente di elaborare i dati raccolti tramite script automatici e generando automaticamente dei grafici per i report;
+  - *Git e GitHub*: oltre alla gestione del codice, vengono attivamente interrogati per estrarre metriche fondamentali legate allo sviluppo (come la qualità dei commit o i tempi di risoluzione delle Pull Request), i cui risultati vengono poi aggregati, inviati ed analizzati su Google Sheets.
 ]
 
 #norm(
