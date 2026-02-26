@@ -20,10 +20,10 @@
   effettivo, oltre ai potenziali rischi che il gruppo potrebbe affrontare.
 
   == Glossario
-  Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario v2.0.0] è un documento
-  soggetto a continuo aggiornamento per l'intera durata del progetto; il suo scopo è definire la terminologia tecnica
-  per garantire una comprensione chiara e univoca dei contenuti. I termini presenti nel Glossario sono contrassegnati
-  nel testo da una lettera "G" posta a pedice (es. parola#sub[G]).
+  Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario v2.0.0] è un
+  documento soggetto a continuo aggiornamento per l'intera durata del progetto; il suo scopo è definire la terminologia
+  tecnica per garantire una comprensione chiara e univoca dei contenuti. I termini presenti nel Glossario sono
+  contrassegnati nel testo da una lettera "G" posta a pedice (es. parola#sub[G]).
   == Riferimenti
   === Riferimenti normativi
   - Capitolato d'appalto C7 Sistema di acquisizione dati da sensori BLE (M31) \
@@ -160,8 +160,8 @@
   = Pianificazione nel lungo termine
   Come anticipato nella #link(
     "https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/dichiarazione_impegni.pdf",
-  )[Dichiarazione degli impegni v1.0.0], il gruppo prevede di terminare il progetto entro il giorno *21 Marzo 2026* con un
-  budget di spesa fissato a *12.940 Euro*.\
+  )[Dichiarazione degli impegni v1.0.0], il gruppo prevede di terminare il progetto entro il giorno *21 Marzo 2026* con
+  un budget di spesa fissato a *12.940 Euro*.\
   Al momento della candidatura si è teorizzato la seguente previsione dei costi: #figure(
     numbering: "1",
     table(
@@ -481,8 +481,8 @@
   Questo Sprint è servito al gruppo per attuare in maniera concreta il workflow idealizzato. Il Gruppo tuttavia ha
   dovuto affrontare modifiche importanti per quanto riguarda l'#link(
     "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf",
-  )[Analisi dei Requisiti v1.1.0] che hanno causato un rinvio al prossimo Sprint del raggiungimento della versione *0.3.0* e
-  *0.4.0*.
+  )[Analisi dei Requisiti v1.1.0] che hanno causato un rinvio al prossimo Sprint del raggiungimento della versione
+  *0.3.0* e *0.4.0*.
 
   === Sprint 3
   Inizio: *2025-12-16* \

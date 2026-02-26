@@ -23,8 +23,9 @@
   #heading(level: 5, numbering: none, outlined: false)[Dichiarazione di impegni]
   La #link(
     "https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/dichiarazione_impegni.pdf",
-  )[Dichiarazione di impegni v1.0.0] è il documento in cui il gruppo ha stimato i costi del progetto, dall'impegno orario per
-  persona e per ruolo, al costo complessivo del progetto e dei ruoli che i componenti del gruppo ricopriranno.
+  )[Dichiarazione di impegni v1.0.0] è il documento in cui il gruppo ha stimato i costi del progetto, dall'impegno
+  orario per persona e per ruolo, al costo complessivo del progetto e dei ruoli che i componenti del gruppo
+  ricopriranno.
 
   #figure(table(
     columns: (auto, 2fr),
@@ -56,8 +57,8 @@
 
   #heading(level: 5, numbering: none, outlined: false)[Analisi dei capitolati]
   L'#link("https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/analisi_capitolati.pdf")[Analisi dei
-    capitolati v1.0.1] è il documento in cui il gruppo fornisce un analisi dettagliata di ogni capitolato evidenziando diversi
-  punti, in particolare l'analisi suddivide ogni capitolato in diverse sezioni:
+    capitolati v1.0.1] è il documento in cui il gruppo fornisce un analisi dettagliata di ogni capitolato evidenziando
+  diversi punti, in particolare l'analisi suddivide ogni capitolato in diverse sezioni:
   - *Panoramica*: che indica l’azienda proponente, il nome del capitolato e delle
   informazioni generali sul prodotto da realizzare;
   - *Pro*;
@@ -77,9 +78,9 @@
   )
 
   #heading(level: 5, numbering: none, outlined: false)[Analisi dei Requisiti]
-  L'#link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti v1.1.0]
-  definisce nel dettaglio i requisiti obbligatori, desiderabili e opzionali del progetto. Il documento mira a risolvere
-  le ambiguità derivanti dalla lettura del #link(
+  L'#link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti
+    v1.1.0] definisce nel dettaglio i requisiti obbligatori, desiderabili e opzionali del progetto. Il documento mira a
+  risolvere le ambiguità derivanti dalla lettura del #link(
     "https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf",
   )[Capitolato C7], fornendo una base solida per la progettazione attraverso:
   - *Descrizione del prodotto*: analisi puntuale del sistema richiesto dal committente.

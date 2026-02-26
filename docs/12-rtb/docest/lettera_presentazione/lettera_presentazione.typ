@@ -74,8 +74,8 @@
   proponente M31. \
   Infine, vengono riconfermati gli impegni assunti nella #link(
     "https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/dichiarazione_impegni.pdf",
-  )[Dichiarazione degli impegni v1.0.0], relativamente alla data di consegna finale (*21 marzo 2026*) e al preventivo di costo
-  massimo stimato (*12.940 €*).
+  )[Dichiarazione degli impegni v1.0.0], relativamente alla data di consegna finale (*21 marzo 2026*) e al preventivo di
+  costo massimo stimato (*12.940 €*).
 
   #v(0.8cm)
 
