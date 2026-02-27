@@ -22,11 +22,13 @@ IGNORED_GROUPS = {
 VALID_GROUPS_ORDERED = [
     "11-candidatura",
     "12-rtb",
+    "13-pb"
 ]
 
 GROUP_TO_TITLE = {
     "11-candidatura": "Candidatura",
     "12-rtb": "RTB",
+    "13-pb": "PB"
 }
 
 VALID_SUBGROUPS_ORDERED = [
@@ -72,4 +74,7 @@ BASELINE_REPOS = {
         "icon": "code_blocks",
         "branch": "main",
     },
+    "13-pb": {
+        # need to update for MVP
+    }
 }
