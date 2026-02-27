@@ -1,0 +1,123 @@
+title: Glossario
+changelog:
+- version: 2.0.0
+  date: '2026-02-12'
+  approver: Valerio Solito
+  baseline: RTB
+- version: 1.11.1
+  date: '2026-02-06'
+  authors:
+  - Alessandro Mazzariol
+  verifier: Matteo Mantoan
+  description: |
+    Revisione definizioni e correzione refusi post-review finale
+- version: 1.11.0
+  date: '2026-02-03'
+  authors:
+  - Francesco Marcon
+  verifier: Leonardo Preo
+  description: |
+    Aggiunta termini relativi a metriche di processo e qualità del Piano di Qualifica
+- version: 1.10.0
+  date: '2026-01-28'
+  authors:
+  - Leonardo Preo
+  verifier: Alessandro Contarini
+  description: |
+    Aggiunta termini area sicurezza e autenticazione derivanti dai requisiti non funzionali
+- version: 1.9.0
+  date: '2026-01-25'
+  authors:
+  - Alessandro Mazzariol
+  verifier: Mario De Pasquale
+  description: |
+    Aggiunta termini relativi a requisiti di vincolo e qualità dell'Analisi dei Requisiti
+- version: 1.8.1
+  date: '2026-01-18'
+  authors:
+  - Valerio Solito
+  verifier: Alessandro Contarini
+  description: |
+    Correzione definizioni e allineamento terminologia con Analisi dei Requisiti
+- version: 1.8.0
+  date: '2026-01-14'
+  authors:
+  - Mario De Pasquale
+  verifier: Alessandro Mazzariol
+  description: |
+    Aggiunta termini relativi al Simulatore di Gateway e protocolli BLE
+- version: 1.7.0
+  date: '2026-01-10'
+  authors:
+  - Alessandro Contarini
+  verifier: Matteo Mantoan
+  description: |
+    Aggiunta termini relativi a gestione Tenant, provisioning e architettura cloud
+- version: 1.6.0
+  date: '2026-01-08'
+  authors:
+  - Francesco Marcon
+  verifier: Mario De Pasquale
+  description: |
+    Aggiunta termini relativi a gestione API client, credenziali e integrazioni esterne
+- version: 1.5.0
+  date: '2026-01-05'
+  authors:
+  - Matteo Mantoan
+  verifier: Leonardo Preo
+  description: |
+    Aggiunta termini relativi a visualizzazione dati stream, alert e monitoraggio
+- version: 1.4.0
+  date: '2026-01-02'
+  authors:
+  - Leonardo Preo
+  verifier: Alessandro Mazzariol
+  description: |
+    Aggiunta termini relativi ad autenticazione, gestione account e casi d'uso iniziali
+- version: 1.3.0
+  date: '2025-12-31'
+  authors:
+  - Francesco Marcon
+  verifier: Alessandro Contarini
+  description: |
+    Aggiunta termini derivanti dall'Analisi dello Stato dell'Arte e primi casi d'uso
+- version: 1.2.0
+  date: '2025-12-22'
+  authors:
+  - Alessandro Mazzariol
+  verifier: Alessandro Contarini
+  description: |
+    Aggiunta Termini specifici dello sprint 2
+- version: 1.1.0
+  date: '2025-11-22'
+  authors:
+  - Francesco Marcon
+  verifier: Leonardo Preo
+  description: |
+    Termini post aggiornamento versionamento e struttura repo
+- version: 1.0.0
+  date: '2025-11-07'
+  approver: Matteo Mantoan
+  baseline: Candidatura
+- version: 0.2.0
+  date: '2025-10-31'
+  authors:
+  - Francesco Marcon
+  verifier: Matteo Mantoan
+  description: |
+    Cambiamento ordinamento termini e tolti indici numerici
+- version: 0.1.0
+  date: '2025-10-31'
+  authors:
+  - Francesco Marcon
+  verifier: Matteo Mantoan
+  description: |
+    Aggiunta nuovi termini
+- version: 0.0.1
+  date: '2025-10-30'
+  authors:
+  - Francesco Marcon
+  - Matteo Mantoan
+  verifier: Leonardo Preo
+  description: |
+    Prima bozza, implementazione di automatismi e primi termini
