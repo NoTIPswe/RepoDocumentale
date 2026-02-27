@@ -37,14 +37,14 @@
   #base-report.report-point(
     discussion_point: [Definizione task e regole per il tracciamento delle ore su Jira.],
     discussion: [
-      È stato presentato un nuovo set di task. È emersa la necessità di tracciare con più precisione il tempo per le
-      ore di "palestra formativa". Al momento manca una pianificazione con ore certe, a causa della necessità di fare
+      È stato presentato un nuovo set di task. È emersa la necessità di tracciare con più precisione il tempo per le ore
+      di "palestra formativa". Al momento manca una pianificazione con ore certe, a causa della necessità di fare
       maggiore pratica (palestra).
     ],
     decisions: [
       Per migliorare le stime future, si è deciso di cambiare approccio al tracciamento. È stata stabilita una regola:
-      prima di iniziare un lavoro, deve essere creato il task su Jira. Prima di spostarlo in execution, bisogna
-      inserire un tempo previsto.
+      prima di iniziare un lavoro, deve essere creato il task su Jira. Prima di spostarlo in execution, bisogna inserire
+      un tempo previsto.
     ],
     actions: (
       (
@@ -98,8 +98,8 @@
   #base-report.report-point(
     discussion_point: [Pianificazione risoluzione criticità AdR, PdQ e NdP.],
     discussion: [
-      È stata discussa la necessità di risolvere i problemi emersi dal responso del Prof. Cardin, relativi ad AdR e
-      PdQ. In parallelo, sarà urgente aggiornare le Norme di Progetto per adattarle alla nuova struttura tra "norme e
+      È stata discussa la necessità di risolvere i problemi emersi dal responso del Prof. Cardin, relativi ad AdR e PdQ.
+      In parallelo, sarà urgente aggiornare le Norme di Progetto per adattarle alla nuova struttura tra "norme e
       strumenti" e "attività del processo".
     ],
     decisions: [
@@ -136,7 +136,7 @@
   #pagebreak()
 
   = Esiti e decisioni finali
-  La riunione è da considerarsi conclusa con successo. Il gruppo ha saputo riorganizzare le proprie attività
-  sfruttando la maggiore flessibilità post-sessione invernale. Le attività imminenti sono state ripianificate con
-  sotto-gruppi dedicati. La priorità assoluta è la risoluzione delle criticità documentali.
+  La riunione è da considerarsi conclusa con successo. Il gruppo ha saputo riorganizzare le proprie attività sfruttando
+  la maggiore flessibilità post-sessione invernale. Le attività imminenti sono state ripianificate con sotto-gruppi
+  dedicati. La priorità assoluta è la risoluzione delle criticità documentali.
 ]

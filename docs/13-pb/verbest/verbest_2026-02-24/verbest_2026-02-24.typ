@@ -30,8 +30,8 @@
 ][
   L'incontro è stato dedicato principalmente alla risoluzione di dubbi e blocchi riguardanti l'infrastruttura di
   comunicazione e la sicurezza dei dati. Il Team ha posto all'Azienda quesiti specifici sulle modalità di distribuzione
-  e mantenimento delle chiavi per la decifrazione dei payload. Questi elementi sono fondamentali in un'architettura
-  che sfrutta la crittografia E2EE.
+  e mantenimento delle chiavi per la decifrazione dei payload. Questi elementi sono fondamentali in un'architettura che
+  sfrutta la crittografia E2EE.
 
   Durante la riunione si sono anche trattati temi riguardanti l'implementazione di funzionalità accessorie come il
   Logging e l'Auditing.
@@ -53,8 +53,8 @@
     decisions: [
       È stato deciso di non inserire l'E2EE puro come requisito obbligatorio a causa dell'elevata complessità di
       definizione e progettazione. Come compromesso per gestire il rischio in modo ottimale, è stato concordato di
-      generare chiavi specifiche per ogni Gateway. Le chiavi saranno mantenute in una tabella dedicata. Si rinuncia
-      così alla gestione centralizzata basata sulla singola chiave per Tenant.
+      generare chiavi specifiche per ogni Gateway. Le chiavi saranno mantenute in una tabella dedicata. Si rinuncia così
+      alla gestione centralizzata basata sulla singola chiave per Tenant.
     ],
   )
 
@@ -70,8 +70,8 @@
     ],
 
     decisions: [
-      Si è convenuto di adottare una soluzione semplice. Si utilizzerà una tabella di log nel database per registrare
-      le operazioni di maggior rilievo (es. creazione di utenti o modifiche a configurazioni critiche). Per ogni evento
+      Si è convenuto di adottare una soluzione semplice. Si utilizzerà una tabella di log nel database per registrare le
+      operazioni di maggior rilievo (es. creazione di utenti o modifiche a configurazioni critiche). Per ogni evento
       sarà sufficiente tracciare timestamp, Utente e Azione. \
 
       Di conseguenza, il Team manterrà questo requisito con priorità "desiderabile".
@@ -98,13 +98,13 @@
     discussion: [
       Il Team ha discusso la validità di NATS come motore principale di comunicazione, portando come esempio il pattern
       Request-Reply tra i servizi. Successivamente, è stata affrontata la criticità della gestione centralizzata degli
-      alert. A causa della crittografia E2EE, i dati in transito risultano illeggibili per l'infrastruttura centrale.
-      Di conseguenza, intercettare le fluttuazioni dei sensori per generare avvisi automatici risulta molto complesso.
+      alert. A causa della crittografia E2EE, i dati in transito risultano illeggibili per l'infrastruttura centrale. Di
+      conseguenza, intercettare le fluttuazioni dei sensori per generare avvisi automatici risulta molto complesso.
     ],
 
     decisions: [
-      L'Azienda ha confermato che NATS è una soluzione solida e coerente con i servizi ipotizzati. Per gli alert, si
-      è convenuto di evitare logiche di micro-management interne. L'analisi e la generazione di allarmi sui dati saranno
+      L'Azienda ha confermato che NATS è una soluzione solida e coerente con i servizi ipotizzati. Per gli alert, si è
+      convenuto di evitare logiche di micro-management interne. L'analisi e la generazione di allarmi sui dati saranno
       demandate agli utilizzatori terzi tramite API. Il sistema centrale si limiterà a fornire alert di stato o
       diagnostica (es. disconnessione di un Gateway).
     ],
@@ -119,8 +119,8 @@
   Il prossimo incontro è stato fissato a *martedì 3 marzo*.
 
   = Approvazione Aziendale
-  La presente sezione certifica che il verbale è stato esaminato e approvato dai rappresentanti di _M31_.
-  L’approvazione è confermata dalle firme dei referenti aziendali riportate di seguito.
+  La presente sezione certifica che il verbale è stato esaminato e approvato dai rappresentanti di _M31_. L’approvazione
+  è confermata dalle firme dei referenti aziendali riportate di seguito.
 
   // #align(right)[
   //   #image("assets/sign.png")
