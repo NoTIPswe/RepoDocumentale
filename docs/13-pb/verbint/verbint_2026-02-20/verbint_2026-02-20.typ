@@ -37,14 +37,14 @@
   #base-report.report-point(
     discussion_point: [Definizione task e regole per il tracciamento delle ore su Jira.],
     discussion: [
-      È stato presentato un nuovo set di task ed è emersa la necessità di tracciare in modo più preciso il tempo speso
-      per le ore dedicate alla "palestra formativa". È stato fatto presente che, al momento, manca una pianificazione
-      con ore certe proprio a causa della necessità di fare maggiore pratica (palestra).
+      È stato presentato un nuovo set di task. È emersa la necessità di tracciare con più precisione il tempo per le
+      ore di "palestra formativa". Al momento manca una pianificazione con ore certe, a causa della necessità di fare
+      maggiore pratica (palestra).
     ],
     decisions: [
-      Per migliorare la misurazione e le stime future, si è deciso di cambiare approccio al tracciamento. È stata
-      stabilita una regola la quale prevede che prima di iniziare qualsiasi lavoro, deve essere stato creato il relativo
-      task su Jira. Prima di spostare il task in execution, bisogna inserire un tempo previsto.
+      Per migliorare le stime future, si è deciso di cambiare approccio al tracciamento. È stata stabilita una regola:
+      prima di iniziare un lavoro, deve essere creato il task su Jira. Prima di spostarlo in execution, bisogna
+      inserire un tempo previsto.
     ],
     actions: (
       (
@@ -58,9 +58,8 @@
     discussion_point: [Organizzazione Palestra di Progettazione.],
     discussion: [
       Al fine di migliorare le competenze tecniche del team, è stata organizzata una "palestra di progettazione".
-      L'approccio scelto prevede una prima fase di studio individuale e generazione di idee, seguita da un confronto di
-      gruppo. Come materiale di studio individuale sono stati assegnati i diagrammi C4 in modo da poter lavorare con un
-      "linguaggio" condiviso.
+      L'approccio prevede prima uno studio individuale con generazione di idee. Segue poi un confronto di gruppo. Come
+      materiale di studio sono stati assegnati i diagrammi C4 per lavorare con un linguaggio condiviso.
     ],
     decisions: [
       Valerio e Mario sono stati incaricati di continuare in via principale con la progettazione e la palestra.
@@ -80,9 +79,9 @@
   #base-report.report-point(
     discussion_point: [Chiarimenti sui ruoli e nuova assegnazione.],
     discussion: [
-      Durante la riunione è emerso un dubbio procedurale riguardo alle mansioni specifiche del Verificatore durante il
-      processo di sviluppo. Dopo aver chiarito questo aspetto, il gruppo ha deciso di assegnare i ruoli in modo
-      leggermente più dinamico rispetto ai precedenti Sprint, provando ad adottare un approccio più "agile".
+      Durante la riunione è emerso un dubbio sulle mansioni del Verificatore nel processo di sviluppo. Dopo aver
+      chiarito il dubbio, il gruppo ha deciso di assegnare i ruoli in modo più dinamico rispetto ai precedenti Sprint.
+      Si è provato ad adottare un approccio più agile.
     ],
     decisions: [
       I ruoli sono stati così assegnati per lo Sprint corrente:
@@ -99,10 +98,9 @@
   #base-report.report-point(
     discussion_point: [Pianificazione risoluzione criticità AdR, PdQ e NdP.],
     discussion: [
-      È stata discussa la necessità di concludere al più presto la risoluzione dei problemi emersi dal responso fornito
-      dal Prof. Cardin, relativi all'Analisi dei Requisiti e al Piano di Qualifica. Parallelamente, sarà urgente
-      sistemare le Norme di Progetto per adattarle alla nuova struttura divisa tra "norme e strumenti" e "attività del
-      processo".
+      È stata discussa la necessità di risolvere i problemi emersi dal responso del Prof. Cardin, relativi ad AdR e
+      PdQ. In parallelo, sarà urgente aggiornare le Norme di Progetto per adattarle alla nuova struttura tra "norme e
+      strumenti" e "attività del processo".
     ],
     decisions: [
       Si decide di dividere il lavoro con la scadenza fissata per *mercoledì 25*:
@@ -138,8 +136,7 @@
   #pagebreak()
 
   = Esiti e decisioni finali
-  La riunione interna è da considerarsi conclusa con successo, in quanto il gruppo ha saputo riorganizzare
-  operativamente le proprie attività sfruttando la maggiore flessibilità post-sessione invernale. Le attività imminenti
-  sono state ripianificate assegnando sotto-gruppi di lavoro dedicati, ponendo come priorità assoluta la risoluzione
-  delle criticità documentali.
+  La riunione è da considerarsi conclusa con successo. Il gruppo ha saputo riorganizzare le proprie attività
+  sfruttando la maggiore flessibilità post-sessione invernale. Le attività imminenti sono state ripianificate con
+  sotto-gruppi dedicati. La priorità assoluta è la risoluzione delle criticità documentali.
 ]
