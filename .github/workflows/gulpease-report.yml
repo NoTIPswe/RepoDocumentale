@@ -20,8 +20,8 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
-      - name: Build all baseline docs
-        run: notipdo build baseline
+      - name: Build all docs
+        run: notipdo build all
       
       - name: Calculate Gulpease index and Send to Jira
         # Passiamo i secret come variabili d'ambiente
