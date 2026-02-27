@@ -78,6 +78,7 @@ accepted_words:
   # --- Tecnologie e Formati ---
   - AES
   - csv
+  - EE    # for End to End Encryption (spellcheck keeps failing)
   - Gin
   - GO
   - gRPC

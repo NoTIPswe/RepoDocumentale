@@ -31,7 +31,7 @@
   L'incontro è stato dedicato principalmente alla risoluzione di dubbi e blocchi riguardanti l'infrastruttura di
   comunicazione e la sicurezza dei dati. Il Team ha posto all'Azienda quesiti specifici sulle modalità di distribuzione
   e mantenimento delle chiavi per la decifrazione dei payload, fondamentali in una architettura che sfrutta la
-  crittografia EE2E.
+  crittografia E2EE.
 
   Durante la riunione si sono anche trattati temi riguardanti l'implementazione di funzionalità accessorie come il
   Logging e l'Auditing.
@@ -84,8 +84,8 @@
     discussion_point: [Servizio di Log tramite NATS],
 
     discussion: [
-      Il Team ha proposto la creazione di un microservizio specifico dedicato esclusivamente all'osservazione dei vari
-      topic di NATS, con lo scopo di intercettare le informazioni e inserirle nel database dei log.
+      Il Team ha proposto la creazione di un servizio specifico dedicato esclusivamente all'osservazione dei vari topic
+      di NATS, con lo scopo di intercettare le informazioni e inserirle nel database dei log.
     ],
 
     decisions: [
@@ -111,7 +111,7 @@
       L'Azienda ha confermato che l'adozione di NATS come asse portante dell'architettura rappresenta una soluzione
       solida e coerente con i servizi ipotizzati. Per quanto riguarda gli alert, si è convenuto di evitare logiche di
       micro-management interne all'applicativo: l'analisi del contenuto e la generazione di allarmi sui dati saranno
-      demandate interamente agli utilizzatori terzi (che possiedono le chiavi di decrittazione) tramite API. Il sistema
+      demandate interamente agli utilizzatori terzi (che posseggono le chiavi di decrittazione) tramite API. Il sistema
       centrale, se necessario, si limiterà a fornire esclusivamente alert di stato o per la diagnostica (es.
       disconnessione o assenza di trasmissione da parte di un Gateway).
     ],
