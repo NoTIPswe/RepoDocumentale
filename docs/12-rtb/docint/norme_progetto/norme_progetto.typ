@@ -217,7 +217,7 @@ fissato a 60.
 
 *Formula:*
 $
-  text("EV") = sum (text("costo pianificato attività completate"))
+  text("EV") = (text("Budget at Completion") times text("Percentuale di lavoro completato nello sprint"))
 $
 \
 
@@ -226,7 +226,7 @@ $
 
 *Formula:*
 $
-  text("PV") = sum (text("costo pianificato attività previste"))
+  text("PV") = (text("Budget at Completion") times text("Percentuale di lavoro pianificato nello sprint"))
 $
 
 \
@@ -266,7 +266,7 @@ $
 
 *Formula:*
 $
-  text("EAC") = text("AC") + frac(text("PV") - text("EV"), text("CPI"))
+  text("EAC") = text("AC") + frac(text("BAC") - text("EV"), text("CPI"))
 $
 
 \

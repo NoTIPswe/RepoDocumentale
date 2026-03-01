@@ -172,6 +172,14 @@ svolgimento del progetto.
   )
 ]
 
+#norm(title: "Versionamento dei riferimenti", label: <versionamento-riferimenti>)[
+  Al fine di garantire la massima tracciabilità e la riproducibilità delle decisioni, ogni volta si inserisce un
+  riferimento ad un documento interno o a una fonte esterna, è obbligatorio esplicitare la versione di quest'ultima. \
+  In questo modo è possibile prevenire eventuali ambiguità derivanti dall'evoluzione dei contenuti nel tempo e assicura
+  che qualsiasi lettore o verificatore possa consultare l'esatta versione del documento utilizzata dall'autore al
+  momento della stesura.
+]
+
 #norm(title: "Nomenclatura Work Items di documentazione", label: <work-items-docs>)[
   I work items di documentazione presenti su Jira devono seguire la seguente nomenclatura:
   #align(center)[`{nome_dir_documento}-v{nuova_versione_documento} - {Breve descrizione}`]
@@ -355,6 +363,7 @@ svolgimento del progetto.
   norms: (
     "branching-commit-docs",
     "norme-tipog-stile",
+    "versionamento-riferimenti",
     "struttura-repo-docs",
     "template-typst",
     "uso-notipdo",
