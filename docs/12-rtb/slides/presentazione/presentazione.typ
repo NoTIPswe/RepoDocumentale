@@ -7,92 +7,71 @@
 )[
   == Aggiornamento della comprensione del capitolato
   === E2E Encryption
-  - Complessità implementativa elevata: criticità nella gestione e distribuzione delle chiavi.
-  - Decisione condivisa con la proponente di rinegoziare il requisito
+  Decisione condivisa con la proponente di rinegoziare il requisito
 
   === NATS JetStream vs MQTT
-  - NATS JetStream: Semplicità di implementazione, sicurezza integrata, supporto nativo per la persistenza dei messaggi.
-  - MQTT: Protocolli di comunicazione leggeri, ma richiede componenti aggiuntivi per la persistenza e la scalabilità.
-  - Scelta: NATS JetStream per la sua semplicità e sicurezza, in linea con i requisiti di scalabilità e sicurezza del progetto
+  Semplicità e supporto nativo alla persistenza dei dati, rispetto a protocolli di comunicazione leggeri, che richiedono
+  componenti aggiuntivi
 
   === Scalabilità orizzontale
-  - Sistema "predisposto" per la scalabilità orizzontale, con architettura modulare e supporto per l'aggiunta di nodi.
-  - Architettura modulare e containerizzabile
+  Sistema "predisposto" per la scalabilità orizzontale
 
   === Ampiezza architetturale
-  - Iniziale sottovalutazione della complessità del sistema, con focus eccessivo su aspetti specifici (es. comunicazione tra gateway e cloud).
-  - Rischio principale: tempo
-  - Mitigazione: maggiore pianificazione e suddivisione del lavoro, con attenzione alla gestione del tempo
+  Sottovalutazione della complessità con rischio principale tempo
 
-  == Migliorie ai prodotti in progress
+  #pagebreak()
+
+  == Migliorie ai prodotti "in progress"
   === Documentazione
-  - Introduzione di forme normalizzate
-  - Maggior uniformità e leggibilità
+  Normalizzazione della forma per maggior uniformità e leggibilità
 
   === Analisi dei requisiti
-  - Confronto con la proponente e incontro con prof. Cardin
-  - Criticità emerse dal colloquio TB con prof. Cardin
-  - Aggiunta e correzione di UC con conseguente avvicinamento all'obiettivo reale
+  Ripetuti confronti con la proponente e gli incontri con prof. Cardin hanno portato all'aggiunta e correzione di
+  numerosi UC
 
-  === Tool NoTIP (notipdo)
-  - Formattazione automatica dei documenti
-  - Controllo ortografico
-  - Introduzione di metriche (es. Gulpease)
-  
+  === Tool di automazione
+  Sviluppo di "notipdo", un tool di automazione che permette di eseguire: controlli ortografici, di formattazione,
+  generazione automatica del sito e molto altro.
 
   == Auto-valutazione del lavoro e del colloquio TB
-  === Metriche di processo
-  - Dati raccolti da GitHub e Jira
 
-  #pagebreak()
-  #let imgs = (
-  "assets/AC_ETC.jpeg",
-  "assets/BBR.jpeg",
-  "assets/CO.png",
-  "assets/CPI_SPI.jpeg",
-  "assets/EAC.jpeg",
-  "assets/EV_PV.jpeg",
-  "assets/Gulpease.jpeg",
-  "assets/MEI.jpeg",
-  "assets/PRRT.jpeg",
-  "assets/QMS.jpeg",
-  "assets/SVS.jpeg",
-  "assets/TE.jpeg",
-  "assets/TEAC.jpeg",
-)
-
-
-
-#let cols = 5
-#let gap = 8pt
-#let cell_h = 38mm
-
-#let cell_w = (100% - (cols - 1) * gap) / cols
-
-#grid(columns: cols, gutter: gap)[
-  #for p in imgs {
-    [
-      #box(width: cell_w, height: cell_h, clip: true)[
-        #image(p, width: 100%, height: 100%, fit: "cover")
-      ]
-    ]
-  }
-]
-  #pagebreak()
-  === Ritardo
-  - Ritardo accumulato nel periodo invernale
-  - Impatto: TB slittata di 2 settimane
-  - Obiettivo: recupero nel breve periodo
+  === Periodo invernale
+  Ritardo accumulato ha portato la TB ad essere ritardata di 2 settimane
 
   === Organizzazione del lavoro
-  - Suddivisione ore complessivamente efficiente
-  - Criticità iniziali: comunicazione
-  - Miglioramento progressivo nell'applicazione delle norme di progetto
+  - Suddivisione oraria e applicazione delle Norme di Progetto in costante miglioramento
+  - Comunicazione poco efficiente
 
   === Esito colloquio TB
   - Valutazione complessivamente positiva
-  - Suggerimento: focus su sostenibilità e obiettivi minimi garantiti, con attenzione alla gestione del tempo
-  
+  - Suggerimento: focus su sostenibilità e obiettivi minimi garantiti
+
+  #let metriche_map = (
+    "assets/CPI_SPI.jpeg": "CPI & SPI",
+    "assets/EAC.jpeg": "Estimate At Completion (EAC)",
+    "assets/AC_ETC.jpeg": "Actual Cost vs Estimate To Complete(ETC)", // or PR resolution time
+    "assets/MEI.jpeg": "Meeting Efficiency Index",
+    "assets/CO.png": "Correttezza Ortografica",
+    "assets/QMS.jpeg": "Quality Metrics Satisfied",
+  )
+
+  #grid(
+    columns: (1fr, 1fr, 1fr),
+    row-gutter: 15pt,
+    column-gutter: 10pt,
+
+    ..for (img_path, metric_name) in metriche_map.pairs() {
+      (
+        align(center)[
+          #text(size: 11pt, weight: "bold")[#metric_name]
+          #v(0.3em)
+
+          #image(img_path, width: 100%, height: 45mm, fit: "contain")
+        ],
+      )
+    }
+  )
+  #pagebreak()
 
   == Consuntivo allo stato attuale e preventivo a finire
   === Obiettivi raggiunti
@@ -110,7 +89,6 @@
 
   === Preventivo a finire
   - Scadenza confermata: 21/03/2026
-  - Garantiti requisiti minimi obbligatori
-  - Eventuali requisiti migliorativi subordinati alla fattibilità
+  - Garantiti il rispetto delle ore e del budget
 
 ]

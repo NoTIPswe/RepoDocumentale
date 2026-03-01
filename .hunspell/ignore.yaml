@@ -238,6 +238,7 @@ accepted_words:
   - sym
   - QP
   - DataAPI
+  - notipdo
 
 
   # --- Parole Italiane mancanti / Neologismi ---
