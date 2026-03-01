@@ -9,7 +9,7 @@
   === E2E Encryption
   Decisione condivisa con la proponente di rinegoziare il requisito
 
-  === NATS JetStream vs MQTT
+  === Protocollo: NATS nativo vs MQTT
   Semplicità e supporto nativo alla persistenza dei dati, rispetto a protocolli di comunicazione leggeri, che richiedono
   componenti aggiuntivi
 
@@ -22,16 +22,15 @@
   #pagebreak()
 
   == Migliorie ai prodotti "in progress"
-  === Documentazione
-  Normalizzazione della forma per maggior uniformità e leggibilità
+  === Norme di Progetto
+  Ristrutturazione completa del documento.
 
   === Analisi dei requisiti
-  Ripetuti confronti con la proponente e gli incontri con prof. Cardin hanno portato all'aggiunta e correzione di
-  numerosi UC
+  Aggiunta e correzione di numerosi Use Case.
 
-  === Tool di automazione
-  Sviluppo di "notipdo", un tool di automazione che permette di eseguire: controlli ortografici, di formattazione,
-  generazione automatica del sito e molto altro.
+  === Sviluppo di "notipdo"
+  Tool di automazione interno che permette un controllo automatico della documentazione e una gestione rigorosa del
+  versionamento.
 
   == Auto-valutazione del lavoro e del colloquio TB
 
@@ -45,6 +44,8 @@
   === Esito colloquio TB
   - Valutazione complessivamente positiva
   - Suggerimento: focus su sostenibilità e obiettivi minimi garantiti
+
+  #pagebreak()
 
   #let metriche_map = (
     "assets/CPI_SPI.jpeg": "CPI & SPI",
@@ -71,24 +72,16 @@
       )
     }
   )
+
+  #pagebreak()
+  == Consuntivo di periodo allo stato attuale
+  #image("assets/CdP.png", width: 100%)
+
   #pagebreak()
 
-  == Consuntivo allo stato attuale e preventivo a finire
-  === Obiettivi raggiunti
-  - Documentazione stabile per RTB
-  - PoC realizzato
-  - Raccolta e analisi metriche
-  === Criticità
-  - Ritardo di circa 2 settimane
-  - Difficoltà iniziali nel lavoro di gruppo
-  - Comunicazione non sempre efficace
-  === Azioni correttive
-  - Maggiore aderenza alle norme di progetto
-  - Migliore pianificazione sprint
-  - Maggiore sincronizzazione tra membri
+  == Preventivo a finire
+  #image("assets/PaF.png", width: 100%)
 
-  === Preventivo a finire
-  - Scadenza confermata: 21/03/2026
-  - Garantiti il rispetto delle ore e del budget
+
 
 ]
