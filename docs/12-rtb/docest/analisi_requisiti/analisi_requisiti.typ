@@ -38,7 +38,7 @@
   === Riferimenti Normativi
   - Capitolato d'appalto C7 - Sistema di acquisizione dati da sensori (GC-0006.03) \
     https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
-  - Norme di Progetto (v1.0.0) \
+  - Norme di Progetto (v1.1.0) \
     https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf
 
   === Riferimenti Informativi

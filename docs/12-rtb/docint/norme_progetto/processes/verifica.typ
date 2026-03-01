@@ -78,6 +78,8 @@ Qualifica*.
       desc: [Il Verificatore effettua una lettura completa del documento (o delle differenze nella PR) verificando:
         - Chiarezza espositiva;
         - Coerenza con quanto riportato all'interno del changelog della modifica;
+        - Integrità dei riferimenti: tutti i link a documenti esterni o interni sono funzionanti, puntano a versioni
+          appropriate e contengono effettivamente l'informazione a cui il testo rimanda;
         - Assenza di errori residui non rilevati dagli strumenti automatici.
       ],
     ),
