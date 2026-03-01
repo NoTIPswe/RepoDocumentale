@@ -57,12 +57,12 @@
   #base-report.report-point(
     discussion_point: [Organizzazione Palestra di Progettazione.],
     discussion: [
-      Al fine di migliorare le competenze tecniche del team, è stata organizzata una "palestra di progettazione".
-      L'approccio prevede prima uno studio individuale con generazione di idee. Segue poi un confronto di gruppo. Come
-      materiale di studio sono stati assegnati i diagrammi C4 per lavorare con un linguaggio condiviso.
+      Al fine di migliorare le competenze tecniche del team, è stata organizzata una sessione dedicata alla "palestra di
+      progettazione". L'approccio prevede prima uno studio individuale con generazione di idee. Segue poi un confronto
+      di gruppo. Come materiale di studio sono stati assegnati i diagrammi C4 per lavorare con un linguaggio condiviso.
     ],
     decisions: [
-      Valerio e Mario sono stati incaricati di continuare in via principale con la progettazione e la palestra.
+      Valerio e Mario sono stati incaricati di continuare in via principale con la progettazione.
     ],
     actions: (
       (
