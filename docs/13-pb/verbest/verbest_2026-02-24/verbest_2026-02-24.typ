@@ -118,6 +118,8 @@
 
   Il prossimo incontro è stato fissato a *martedì 3 marzo*.
 
+  #pagebreak()
+
   = Approvazione Aziendale
   La presente sezione certifica che il verbale è stato esaminato e approvato dai rappresentanti di _M31_. L’approvazione
   è confermata dalle firme dei referenti aziendali riportate di seguito.
