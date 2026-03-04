@@ -124,7 +124,7 @@
   La presente sezione certifica che il verbale è stato esaminato e approvato dai rappresentanti di _M31_. L’approvazione
   è confermata dalle firme dei referenti aziendali riportate di seguito.
 
-  // #align(right)[
-  //   #image("assets/sign.png")
-  // ]
+  #align(right)[
+    #image("assets/sign.png")
+  ]
 ]

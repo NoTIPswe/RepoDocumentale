@@ -3,7 +3,7 @@ changelog:
   - version: "0.0.1"
     date: "2026-02-23"
     authors:
-      - Matteo Mantoan
+      - Francesco Marcon
     verifier: Valerio Solito
     description: >
       Stesura del verbale
