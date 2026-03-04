@@ -138,6 +138,7 @@ accepted_words:
   - Markdown
   - NLP
   - OWASP
+  - asdf
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -194,6 +195,9 @@ accepted_words:
   - multitenant
   - multitenancy
   - testbook
+  - monorepo
+  - microservizio
+  - Dev
 
   # --- Terminologia Standard Progetto ---
   - REQ
@@ -239,6 +243,7 @@ accepted_words:
   - sym
   - QP
   - DataAPI
+  - notipdo
 
 
   # --- Parole Italiane mancanti / Neologismi ---
