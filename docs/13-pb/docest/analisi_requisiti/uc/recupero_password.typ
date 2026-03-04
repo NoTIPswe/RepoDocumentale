@@ -1,0 +1,39 @@
+#import "../uc_lib.typ": CA, CLOUD_SYS, uc
+
+#uc(
+  id: "recupero_password",
+  system: CLOUD_SYS,
+  title: "Recupero password",
+  level: 1,
+  prim-actors: CA.non-authd-usr,
+  preconds: (
+    "Esiste un account associato alla mail fornita",
+    "Il Sistema consente l’avvio della procedura di recupero password",
+  ),
+  postconds: (
+    "La password è stata aggiornata e l'Utente può effettuare il login con le nuove credenziali",
+  ),
+  trigger: "Le credenziali di accesso sono state perse/dimenticate da parte di un Utente con un account registrato",
+  main-scen: (
+    (
+      descr: "L'Attore inserisce la mail",
+      inc: "ins_mail",
+      ep: "UtenteInesistente",
+    ),
+    (
+      descr: "L'Attore inserisce il codice monouso ricevuto alla mail registrata",
+    ),
+    (
+      descr: "L'Attore ha la possibilità di impostare una nuova password",
+    ),
+  ),
+  alt-scen: (
+    (
+      ep: "UtenteInesistente",
+      cond: "L'Attore inserisce una mail non registrata",
+      uc: "err_account_inesistente",
+    ),
+  ),
+
+  uml-descr: "Diagramma Recupero password",
+)

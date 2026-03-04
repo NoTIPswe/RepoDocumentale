@@ -1,0 +1,29 @@
+#import "../uc_lib.typ": CA, CLOUD_SYS, SA, SIM_SYS, uc
+
+#uc(
+  id: "filtraggio_gateway",
+  system: CLOUD_SYS,
+  title: "Filtraggio dati per Gateway",
+  gen-parent: "filtraggio_dati",
+  level: 1,
+  prim-actors: CA.tenant-usr,
+  preconds: (
+    "Esiste almeno un Gateway nel Tenant",
+  ),
+  postconds: (
+    "Il Sistema salva la richiesta di visualizzazione",
+  ),
+  trigger: "L’Attore vuole filtrare per Gateway",
+  main-scen: (
+    (
+      descr: "L’Attore seleziona i Gateway dei quali visualizzare i dati",
+      inc: "filtraggio_singolo_gateway",
+    ),
+    (
+      descr: "Il Sistema salva le informazioni di visualizzazione",
+    ),
+  ),
+  alt-scen: (),
+
+  uml-descr: none,
+)

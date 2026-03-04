@@ -1,0 +1,293 @@
+title: Analisi dei Requisiti
+changelog:
+  - version: "1.1.0"
+    date: "2026-02-25"
+    authors:
+      - Francesco Marcon
+    verifier: Valerio Solito
+    description: >
+      Correzioni a seguito dell'incontro con il Prof. Cardin 
+  - version: "1.0.0"
+    approver: Valerio Solito
+    baseline: RTB
+    date: "2026-02-12"
+  - version: "0.33.2"
+    date: "2026-02-06"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Matteo Mantoan
+    description: >
+      Fix lista requisiti e numeri
+  - version: "0.33.1"
+    date: "2026-01-28"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Leonardo Preo
+    description: >
+      Fix ortografia
+  - version: "0.33.0"
+    date: "2026-01-28"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Leonardo Preo
+    description: >
+      Aggiunti requisiti di sicurezza e aggiunta nomenclatura
+  - version: "0.32.0"
+    date: "2026-01-27"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Leonardo Preo
+    description: >
+      Aggiunto tracciamento requisiti-fonte, fonte-requisiti, riepilogo requisiti e correzioni varie
+  - version: "0.31.1"
+    date: "2026-01-26"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Leonardo Preo
+    description: >
+      Fix dei numeri e dei diagrammi UML
+  - version: "0.31.0"
+    date: "2026-01-26"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Leonardo Preo
+    description: >
+      Aggiunti requisiti funzionali della parte B fino a UCS14
+  - version: "0.30.0"
+    date: "2026-01-25"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Leonardo Preo
+    description: >
+      Aggiunta requisiti di Vincolo e di Qualità e correzioni di numeri e UC mancanti
+  - version: "0.29.3"
+    date: "2026-01-18"
+    authors:
+      - Valerio Solito
+    verifier: Alessandro Contarini
+    description: >
+      Revisione finale diagrammi di attività UC 90-100 e correzione riferimenti nel tracciamento
+  - version: "0.29.2"
+    date: "2026-01-18"
+    authors:
+      - Alessandro Contarini
+    verifier: Mario De Pasquale
+    description: >
+      Uniformata terminologia negli scenari principali (UC 1-30) e correzione refusi nell'area autenticazione
+  - version: "0.29.1"
+    date: "2026-01-17"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Mario De Pasquale
+    description: >
+      Fix e allineamento diagrammi UML per l'area amministrativa e gestione costi (UC 60-80)
+  - version: "0.29.0"
+    date: "2026-01-17"
+    authors:
+      - Alessandro Contarini
+    verifier: Mario De Pasquale
+    description: >
+      Completamento sezione Tracciamento Requisiti (Fonti-Requisiti e Requisiti-Fonti) e matrici di conformità
+  - version: "0.28.0"
+    date: "2026-01-14"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Alessandro Contarini
+    description: >
+      Aggiunta diagrammi UML per i casi d'uso del Simulatore di Gateway (UCS 1-22)
+  - version: "0.27.0"
+    date: "2026-01-12"
+    authors:
+      - Mario De Pasquale
+    verifier: Alessandro Contarini
+    description: >
+      Integrazione diagrammi UML e descrizione testuale per gestione errori critici e provisioning (UC 95-100)
+  - version: "0.26.0"
+    date: "2026-01-10"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Mario De Pasquale
+    description: >
+      Stesura completa dei Requisiti Funzionali, Qualitativi, di Vincolo, Prestazionali e di Sicurezza
+  - version: "0.25.0"
+    date: "2026-01-08"
+    authors:
+      - Valerio Solito
+    verifier: Mario De Pasquale
+    description: >
+      Inserimento diagrammi UML per area ricerca, filtri temporali e visualizzazione grafici (UC 25-45)
+  - version: "0.24.0"
+    date: "2026-01-08"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Alessandro Contarini
+    description: >
+      Inserimento diagrammi UML per area autenticazione, sicurezza e gestione utente (UC 1-24)
+  - version: "0.23.0"
+    date: "2026-01-08"
+    authors:
+      - Francesco Marcon
+    verifier: Alessandro Contarini
+    description: >
+      Ristrutturazione gerarchia attori e correzione dipendenze include/extend tra casi d'uso
+  - version: "0.22.0"
+    date: "2026-01-08"
+    authors:
+      - Francesco Marcon
+    verifier: Mario De Pasquale
+    description: >
+      Aggiunta Use Case Simulatore: Configurazione avanzata ed Errori di simulazione (UCS 21-22)
+  - version: "0.21.0"
+    date: "2026-01-07"
+    authors:
+      - Francesco Marcon
+    verifier: Alessandro Contarini
+    description: >
+      Aggiunta Use Case Simulatore: Iniezione anomalie e Comandi remoti (UCS 17-20)
+  - version: "0.20.0"
+    date: "2026-01-07"
+    authors:
+      - Francesco Marcon
+    verifier: Mario De Pasquale
+    description: >
+      Aggiunta Use Case Simulatore: Gestione Sensori, Deploy istanze e configurazione massiva (UCS 9-16)
+  - version: "0.19.0"
+    date: "2026-01-07"
+    authors:
+      - Francesco Marcon
+    verifier: Alessandro Contarini
+    description: >
+      Aggiunta Use Case Simulatore: Visualizzazione lista Gateway e dettagli simulazione (UCS 1-8)
+  - version: "0.18.0"
+    date: "2026-01-07"
+    authors:
+      - Francesco Marcon
+    verifier: Mario De Pasquale
+    description: >
+      Stesura UC gestione errori critici, onboarding e provisioning gateway (UC 95-100)
+  - version: "0.17.0"
+    date: "2026-01-07"
+    authors:
+      - Francesco Marcon
+    verifier: Alessandro Contarini
+    description: >
+      Stesura UC funzionalità di esportazione dati, log di audit e monitoraggio performance (UC 88-96)
+  - version: "0.16.0"
+    date: "2026-01-07"
+    authors:
+      - Valerio Solito
+    verifier: Mario De Pasquale
+    description: >
+      Stesura UC gestione Tenant lato Super Admin: creazione, sospensione ed eliminazione (UC 80-87)
+  - version: "0.15.0"
+    date: "2026-01-07"
+    authors:
+      - Francesco Marcon
+    verifier: Alessandro Contarini
+    description: >
+      Stesura UC gestione notifiche, alert gateway e soglie sensori (UC 72-79)
+  - version: "0.14.0"
+    date: "2026-01-07"
+    authors:
+      - Francesco Marcon
+    verifier: Mario De Pasquale
+    description: >
+      Stesura UC gestione API client, autenticazione server-to-server e integrazioni esterne (UC 61-71)
+  - version: "0.13.0"
+    date: "2026-01-07"
+    authors:
+      - Francesco Marcon
+    verifier: Alessandro Contarini
+    description: >
+      Stesura UC gestione credenziali client API e sicurezza (UC 58-60)
+  - version: "0.12.0"
+    date: "2026-01-07"
+    authors:
+      - Francesco Marcon
+    verifier: Mario De Pasquale
+    description: >
+      Stesura UC gestione permessi, ruoli e amministrazione utenti del tenant (UC 54-57)
+  - version: "0.11.0"
+    date: "2026-01-07"
+    authors:
+      - Francesco Marcon
+    verifier: Alessandro Contarini
+    description: >
+      Stesura UC creazione e gestione anagrafica utenti del tenant (UC 50-53)
+  - version: "0.10.0"
+    date: "2026-01-07"
+    authors:
+      - Francesco Marcon
+    verifier: Mario De Pasquale
+    description: >
+      Stesura UC gestione costi, budget e visualizzazione lista utenti (UC 46-49)
+  - version: "0.9.0"
+    date: "2026-01-06"
+    authors:
+      - Alessandro Contarini
+    verifier: Mario De Pasquale
+    description: >
+      Stesura UC configurazione sensori specifici, range di default e soglie di allarme (UC 39-45)
+  - version: "0.8.0"
+    date: "2026-01-05"
+    authors:
+      - Francesco Marcon
+    verifier: Alessandro Contarini
+    description: >
+      Stesura UC visualizzazione storico alert, dettagli notifiche e stato sensori (UC 32-38)
+  - version: "0.7.0"
+    date: "2026-01-04"
+    authors:
+      - Valerio Solito
+    verifier: Alessandro Mazzariol
+    description: >
+      Stesura UC visualizzazione dati stream, applicazione filtri e viste grafiche (UC 25-31)
+  - version: "0.6.0"
+    date: "2026-01-03"
+    authors:
+      - Matteo Mantoan
+    verifier: Mario De Pasquale
+    description: >
+      Stesura UC visualizzazione lista Gateway, stato dispositivi e dettagli sensori (UC 18-24)
+  - version: "0.5.0"
+    date: "2026-01-02"
+    authors:
+      - Leonardo Preo
+    verifier: Alessandro Contarini
+    description: >
+      Stesura UC gestione account utente, modifica credenziali e logout (UC 11-17)
+  - version: "0.4.0"
+    date: "2026-01-01"
+    authors:
+      - Alessandro Contarini
+    verifier: Alessandro Mazzariol
+    description: >
+      Stesura UC autenticazione 2FA, recupero password e gestione errori login (UC 4-10)
+  - version: "0.3.0"
+    date: "2025-12-31"
+    authors:
+      - Matteo Mantoan
+    verifier: Mario De Pasquale
+    description: >
+      Stesura primi UC di Login base e registrazione (UC 1-3)
+  - version: "0.2.0"
+    date: "2025-12-07"
+    authors:
+      - Leonardo Preo
+    verifier: Matteo Mantoan
+    description: >
+      Definizione attori del Simulatore
+  - version: "0.1.0"
+    date: "2025-12-03"
+    authors:
+      - Leonardo Preo
+    verifier: Valerio Solito
+    description: >
+      Inizio stesura UC
+  - version: "0.0.1"
+    date: "2025-11-27"
+    authors:
+      - Leonardo Preo
+    verifier: Francesco Marcon
+    description: >
+      Creazione struttura documento, introduzione e setup template

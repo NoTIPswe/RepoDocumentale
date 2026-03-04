@@ -78,6 +78,7 @@ accepted_words:
   # --- Tecnologie e Formati ---
   - AES
   - csv
+  - EE    # for End to End Encryption (spellcheck keeps failing)
   - Gin
   - GO
   - gRPC
@@ -137,6 +138,7 @@ accepted_words:
   - Markdown
   - NLP
   - OWASP
+  - asdf
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -193,6 +195,9 @@ accepted_words:
   - multitenant
   - multitenancy
   - testbook
+  - monorepo
+  - microservizio
+  - Dev
 
   # --- Terminologia Standard Progetto ---
   - REQ
