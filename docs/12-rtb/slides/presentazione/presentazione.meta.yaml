@@ -1,0 +1,13 @@
+title: Tecnologie
+changelog:
+  - version: "1.0.0"
+    date: "2026-03-03"
+    approver: Valerio Solito
+    baseline: RTB
+  - version: "0.0.1"
+    date: "2026-03-02"
+    authors:
+      - Matteo Mantoan
+    verifier: Valerio Solito
+    description: >
+      Prima bozza della presentazione RTB
