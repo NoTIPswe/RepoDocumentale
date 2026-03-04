@@ -23,7 +23,7 @@
   abstract: "Il presente documento riporta il resoconto dell'incontro esterno tenutosi in remoto. L'incontro ha avuto come oggetto la validazione del diagramma C4, l'organizzazione delle repository dei microservizi e una discussione sulle API del sistema.",
   changelog: metadata.changelog,
 )[
-  Il presente documento attesta formalmente che, in data *03 Marzo 2026*, si è tenuto un incontro in remoto tramite
+  Il presente documento attesta formalmente che, in data *03 marzo 2026*, si è tenuto un incontro in remoto tramite
   Microsoft Teams con la proponente _M31_. A rappresentare l’Azienda erano presenti Cristian Pirlog e Moones Mobaraki.
 ][
   L'incontro è stato dedicato principalmente alla discussione delle scelte architetturali e all'organizzazione pratica per lo sviluppo dei vari microservizi. Il confronto ha permesso di chiarire dubbi e di ricevere indicazioni dalla proponente per l'impostazione degli ambienti di sviluppo.
@@ -37,7 +37,7 @@
 
     decisions: [
       - L'Azienda ha valutato positivamente la struttura del C4 elaborata dal Team, ritenendola già abbastanza buona e adeguata al progetto. A tal proposito il Team continuerà nella direzione già intrapresa.       
-      /*- È stato suggerito dalla proponente di porre particolare attenzione alla differenza concettuale tra "moduli" e "servizi", specialmente nella fase in cui si andranno a creare le varie repository per i microservizi. */
+      - È stato suggerito dalla proponente di porre particolare attenzione alla differenza concettuale tra "moduli" e "servizi", specialmente nella fase in cui si andranno a creare le varie repository per i microservizi.
     ],
   )
 
@@ -51,12 +51,12 @@
 
       - *Isolamento Dev Container:* Per gestire l'isolamento dei vari applicativi, la proponente ha suggerito l'utilizzo di Dev Container con Docker. Ad esempio, implementare un Dev Container specifico per la WebApp permetterebbe di isolare l'ambiente Node.js, garantendo che vengano utilizzate le dipendenze corrette senza interferenze esterne.
 
-      - *Adozione di asdf:* È stata consigliata la valutazione di asdf, un tool da riga di comando in grado di gestire i runtime di progetto attraverso vari plugin. 
+      - *Adozione di #link("https://asdf-vm.com/")[asdf]:* È stata consigliata la valutazione di #link("https://asdf-vm.com/")[asdf], un tool da riga di comando in grado di gestire i runtime di progetto attraverso vari plugin. 
 
     ],
 
     decisions: [
-      Il Team terrà in considerazione l'utilizzo di *asdf* per uniformare gli ambienti di sviluppo e seguirà i consigli della proponente. Nello specifico cercherà di separare correttamente nelle repository tutti i microservizi implementati.
+      Il Team terrà in considerazione l'utilizzo di #link("https://asdf-vm.com/")[*asdf*] per uniformare gli ambienti di sviluppo e seguirà i consigli della proponente. Nello specifico cercherà di separare correttamente nelle repository tutti i microservizi implementati.
       È stato anche stabilito che il Provisioning Service e la WebApp dovranno sicuramente risiedere in repository separate.
     ],
   )
