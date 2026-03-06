@@ -42,20 +42,20 @@
     https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf
 
   === Riferimenti Informativi
-  - Standard IEEE \
-    https://ieeexplore.ieee.org/document/720574
+  - Standard IEEE 830-1998 \
+    https://ieeexplore.ieee.org/document/720574 — ultimo accesso: 2026-03-06
   - T05 - Analisi dei Requisiti \
-    https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf
+    https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf — ultimo accesso: 2026-03-06
   - Documentazione tecnologie di riferimento \
     Di seguito i riferimenti alla documentazione ufficiale delle tecnologie impiegate:
-    - Node.js: #link("https://nodejs.org/en/docs/")[Node.js Official Documentation]
-    - NestJS: #link("https://docs.nestjs.com/")[NestJS Official Documentation]
-    - Go: #link("https://go.dev/doc/")[Go Official Documentation]
-    - Kubernetes: #link("https://kubernetes.io/docs/home/")[Kubernetes Official Documentation]
-    - MongoDB: #link("https://www.mongodb.com/docs/")[MongoDB Official Documentation]
-    - PostgreSQL: #link("https://www.postgresql.org/docs/")[PostgreSQL Official Manuals]
-    - NATS: #link("https://docs.nats.io/")[NATS Official Documentation]
-    - Apache Kafka: #link("https://kafka.apache.org/documentation/")[Apache Kafka Official Documentation]
+    - Node.js: #link("https://nodejs.org/en/docs/")[Node.js Official Documentation] — ultimo accesso: 2026-03-06
+    - NestJS: #link("https://docs.nestjs.com/")[NestJS Official Documentation] — ultimo accesso: 2026-03-06
+    - Go: #link("https://go.dev/doc/")[Go Official Documentation] — ultimo accesso: 2026-03-06
+    - Kubernetes: #link("https://kubernetes.io/docs/home/")[Kubernetes Official Documentation] — ultimo accesso: 2026-03-06
+    - MongoDB: #link("https://www.mongodb.com/docs/")[MongoDB Official Documentation] — ultimo accesso: 2026-03-06
+    - PostgreSQL: #link("https://www.postgresql.org/docs/")[PostgreSQL Official Manuals] — ultimo accesso: 2026-03-06
+    - NATS: #link("https://docs.nats.io/")[NATS Official Documentation] — ultimo accesso: 2026-03-06
+    - Apache Kafka: #link("https://kafka.apache.org/documentation/")[Apache Kafka Official Documentation] — ultimo accesso: 2026-03-06
 
   = Descrizione del Prodotto
   == Obiettivi del Prodotto

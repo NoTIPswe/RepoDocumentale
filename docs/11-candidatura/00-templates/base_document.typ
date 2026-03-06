@@ -159,6 +159,7 @@
   changelog: (),
   scope: "",
   glossary-highlighted: true,
+  show-changelog: true,
   content,
 ) = {
   show: base.apply-base-configs.with(glossary-highlighted: glossary-highlighted)
@@ -169,7 +170,7 @@
   set text(lang: "it", size: font-size-base, font: base.serif-font)
   set par(justify: true)
   show link: set text(fill: blue)
-  set figure(numbering: "1.", gap: 0.5em)
+  set figure(numbering: "1", gap: 0.5em)
   set heading(numbering: "1.")
 
   // Content
@@ -188,7 +189,9 @@
     header: base.default-header(title: title),
   )
 
-  render-changelog(changelog)
+  if show-changelog {
+    render-changelog(changelog)
+  }
 
   toc()
 

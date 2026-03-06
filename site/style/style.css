@@ -175,6 +175,25 @@ nav a:hover {
   box-shadow: 0 1px 0 rgba(181, 17, 25, 0.8);
 }
 
+.group-card--latest {
+  border: 2px solid var(--accent);
+}
+
+.group-card--latest::after {
+  content: "Baseline attuale";
+  position: absolute;
+  top: -0.65rem;
+  right: 0.75rem;
+  background-color: var(--accent);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.3rem;
+}
+
 .group-card h3 {
   text-align: left;
   font-weight: 700;

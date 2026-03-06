@@ -88,7 +88,7 @@ def _generate_index_group_cards(
 ) -> str:
     html_cards = ""
 
-    for group_name, docs in sorted(grouped_docs.items()):
+    for i, (group_name, docs) in enumerate(sorted(grouped_docs.items(), reverse=True)):
         group_displayed_name = configs.GROUP_TO_TITLE[group_name]
         group_page_path = _group_name_to_page_path(group_name)
 
@@ -96,6 +96,7 @@ def _generate_index_group_cards(
             group_page_path,
             group_displayed_name,
             len(docs),
+            is_latest=(i == 0),
         )
 
     return html_cards
@@ -110,10 +111,12 @@ def _populate_group_card(
     group_page_path: Path,
     group_displayed_name: str,
     docs_number: int,
+    is_latest: bool = False,
 ):
     documents_word = "Documento" if docs_number == 1 else "Documenti"
+    extra_class = " group-card--latest" if is_latest else ""
     return f"""
-        <a class="group-card" href="{group_page_path}">
+        <a class="group-card{extra_class}" href="{group_page_path}">
             <h3>{group_displayed_name}</h3>
             <p class="doc-count">{docs_number} {documents_word}</p>
         </a>
@@ -182,6 +185,7 @@ def _generate_group_template(
         site_output_dir_path / _group_name_to_page_path(group),
         replacements,
     )
+
 
 
 def _group_docs_by_subgroup(
