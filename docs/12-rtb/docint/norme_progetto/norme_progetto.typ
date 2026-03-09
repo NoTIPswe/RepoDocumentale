@@ -624,17 +624,17 @@ $
 
 == Riferimenti normativi
 - *Standard ISO 8601 - Formata data e ora*
-  - #link("https://www.iso.org/iso-8601-date-and-time-format.html")
-  - #link("https://it.wikipedia.org/wiki/ISO_8601")
+  - #link("https://www.iso.org/iso-8601-date-and-time-format.html") — ultimo accesso: 2026-02-13
+  - #link("https://it.wikipedia.org/wiki/ISO_8601") — ultimo accesso: 2026-02-13
 
 == Riferimenti informativi
-- *Standard ISO/IEC 12207:1995 - Processi del ciclo di vita del software*
-  - #link("https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf")
+- *Standard ISO/IEC 12207:1995 - Processi del ciclo di vita del software* (versione 1995)
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf") — ultimo accesso: 2026-02-13
 - *Documentazione Git*
-  - #link("https://git-scm.com/docs")
+  - #link("https://git-scm.com/docs") — ultimo accesso: 2026-02-13
 - *Documentazione GitHub*
-  - #link("http://docs.github.com/en")
+  - #link("http://docs.github.com/en") — ultimo accesso: 2026-02-13
 - *Documentazione Typst*
-  - #link("https://typst.app/docs/reference")
-- *Conventional Commits*
+  - #link("https://typst.app/docs/reference") — ultimo accesso: 2026-02-13
+- *Conventional Commits v1.0.0*
   - #link("https://www.conventionalcommits.org/en/v1.0.0/")
