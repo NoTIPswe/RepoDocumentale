@@ -51,11 +51,13 @@
     - Node.js: #link("https://nodejs.org/en/docs/")[Node.js Official Documentation] — ultimo accesso: 2026-02-13
     - NestJS: #link("https://docs.nestjs.com/")[NestJS Official Documentation] — ultimo accesso: 2026-02-13
     - Go: #link("https://go.dev/doc/")[Go Official Documentation] — ultimo accesso: 2026-02-13
-    - Kubernetes: #link("https://kubernetes.io/docs/home/")[Kubernetes Official Documentation] — ultimo accesso: 2026-02-13
+    - Kubernetes: #link("https://kubernetes.io/docs/home/")[Kubernetes Official Documentation] — ultimo accesso:
+      2026-02-13
     - MongoDB: #link("https://www.mongodb.com/docs/")[MongoDB Official Documentation] — ultimo accesso: 2026-02-13
     - PostgreSQL: #link("https://www.postgresql.org/docs/")[PostgreSQL Official Manuals] — ultimo accesso: 2026-02-13
     - NATS: #link("https://docs.nats.io/")[NATS Official Documentation] — ultimo accesso: 2026-02-13
-    - Apache Kafka: #link("https://kafka.apache.org/documentation/")[Apache Kafka Official Documentation] — ultimo accesso: 2026-02-13
+    - Apache Kafka: #link("https://kafka.apache.org/documentation/")[Apache Kafka Official Documentation] — ultimo
+      accesso: 2026-02-13
 
   = Descrizione del Prodotto
   == Obiettivi del Prodotto
