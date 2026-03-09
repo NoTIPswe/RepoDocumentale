@@ -94,7 +94,7 @@
     discussion_point: [Approccio alla documentazione architetturale per la PB.],
     discussion: [
       Per la Product Baseline è fondamentale descrivere le *scelte architetturali*, non i dettagli implementativi.
-      Vengono valutate le relazioni fra le componenti, le motivazioni, la correttezza e i tradeoff (sincrono vs
+      Vengono valutate le relazioni fra le componenti, le motivazioni, la correttezza e i trade-off (sincrono vs
       asincrono, microservizi vs monolite, ecc.). Vanno descritti i pattern architetturali ad alto e basso livello, ma
       senza scendere nel codice. Il tutto andrà esposto in una *presentazione di 20 minuti*.
     ],
@@ -150,6 +150,6 @@
   La riunione è da considerarsi conclusa con successo. Il confronto con il Prof. Cardin ha fornito indicazioni chiare su
   quattro aspetti chiave: suddivisione granulare dei microservizi con comunicazione esterna sincrona e interna
   asincrona; adozione di repository separate per ciascun microservizio; documentazione PB incentrata sulle scelte
-  architetturali e i relativi tradeoff, da presentare in 20 minuti; manuali utente differenziati per tipologia di
+  architetturali e i relativi trade-off, da presentare in 20 minuti; manuali utente differenziati per tipologia di
   utilizzatore, con specifica OpenAPI affiancata da descrizione dei flussi.
 ]
