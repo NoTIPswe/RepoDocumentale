@@ -163,6 +163,7 @@
   changelog: (),
   scope: "",
   glossary-highlighted: true,
+  show-changelog: true,
   content,
 ) = {
   show: base.apply-base-configs.with(glossary-highlighted: glossary-highlighted)
@@ -192,7 +193,9 @@
     header: base.default-header(title: title),
   )
 
-  render-changelog(changelog)
+  if show-changelog {
+    render-changelog(changelog)
+  }
 
   toc()
 

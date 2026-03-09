@@ -32,6 +32,7 @@ GROUP_TO_TITLE = {
 }
 
 VALID_SUBGROUPS_ORDERED = [
+    "lettera_presentazione",
     "docest",
     "docint",
     "verbest",
@@ -39,6 +40,7 @@ VALID_SUBGROUPS_ORDERED = [
     "slides",
 ]
 SUBGROUP_TO_TITLE = {
+    "lettera_presentazione": "Lettera di Presentazione",
     "docint": "Documentazione Interna",
     "docest": "Documentazione Esterna",
     "verbint": "Verbali Interni",
@@ -46,6 +48,7 @@ SUBGROUP_TO_TITLE = {
     "slides": "Slides",
 }
 SUBGROUP_TO_SORTING_KEY: Dict[str, Callable[[model.Document], str]] = {
+    "lettera_presentazione": lambda d: d.last_modified_date.strftime("%Y-%m-%d"),
     "docint": lambda d: d.last_modified_date.strftime("%Y-%m-%d"),
     "docest": lambda d: d.last_modified_date.strftime("%Y-%m-%d"),
     "verbint": lambda d: d.source_path.name,
