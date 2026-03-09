@@ -32,30 +32,27 @@
   == Glossario
   I termini tecnici utilizzati sono definiti nel documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf",
-  )[Glossario] (v2.0.0), identificati con pedice _G_.
+  )[Glossario v2.0.0], identificati con pedice _G_.
 
   == Riferimenti
   === Riferimenti Normativi
-  - Capitolato d'appalto C7 - Sistema di acquisizione dati da sensori (GC-0006.03) \
-    https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
-  - Norme di Progetto (v1.1.0) \
-    https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato d'appalto C7 - Sistema di acquisizione dati da sensori] \
+    _Ultimo accesso: 2026-03-09_
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto v1.1.0]
 
   === Riferimenti Informativi
-  - Standard IEEE \
-    https://ieeexplore.ieee.org/document/720574
-  - T05 - Analisi dei Requisiti \
-    https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf
-  - Documentazione tecnologie di riferimento \
+  - #link("https://ieeexplore.ieee.org/document/720574")[Standard IEEE] \ _Ultimo accesso: 2026-03-09_
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf")[T05 - Analisi dei Requisiti] \ _Ultimo accesso: 2026-03-09_
+  - *Documentazione tecnologie di riferimento* \
     Di seguito i riferimenti alla documentazione ufficiale delle tecnologie impiegate:
-    - Node.js: #link("https://nodejs.org/en/docs/")[Node.js Official Documentation]
-    - NestJS: #link("https://docs.nestjs.com/")[NestJS Official Documentation]
-    - Go: #link("https://go.dev/doc/")[Go Official Documentation]
-    - Kubernetes: #link("https://kubernetes.io/docs/home/")[Kubernetes Official Documentation]
-    - MongoDB: #link("https://www.mongodb.com/docs/")[MongoDB Official Documentation]
-    - PostgreSQL: #link("https://www.postgresql.org/docs/")[PostgreSQL Official Manuals]
-    - NATS: #link("https://docs.nats.io/")[NATS Official Documentation]
-    - Apache Kafka: #link("https://kafka.apache.org/documentation/")[Apache Kafka Official Documentation]
+    - Node.js: #link("https://nodejs.org/en/docs/")[Node.js Official Documentation] \ _Ultimo accesso: 2026-03-09_
+    - NestJS: #link("https://docs.nestjs.com/")[NestJS Official Documentation] \ _Ultimo accesso: 2026-03-09_
+    - Go: #link("https://go.dev/doc/")[Go Official Documentation] \ _Ultimo accesso: 2026-03-09_
+    - Kubernetes: #link("https://kubernetes.io/docs/home/")[Kubernetes Official Documentation] \ _Ultimo accesso: 2026-03-09_
+    - MongoDB: #link("https://www.mongodb.com/docs/")[MongoDB Official Documentation] \ _Ultimo accesso: 2026-03-09_
+    - PostgreSQL: #link("https://www.postgresql.org/docs/")[PostgreSQL Official Manuals] \ _Ultimo accesso: 2026-03-09_
+    - NATS: #link("https://docs.nats.io/")[NATS Official Documentation] \ _Ultimo accesso: 2026-03-09_
+    - Apache Kafka: #link("https://kafka.apache.org/documentation/")[Apache Kafka Official Documentation] \ _Ultimo accesso: 2026-03-09_
 
   = Descrizione del Prodotto
   == Obiettivi del Prodotto

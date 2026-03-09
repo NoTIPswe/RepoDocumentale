@@ -105,28 +105,30 @@
   L'obiettivo finale è quello di fornire uno strumento completo per l'amministrazione e la visualizzazione dei dati,
   garantendo requisiti non funzionali critici quali sicurezza, affidabilità e scalabilità.
 
+  == Glossario
+  Al fine di garantire un linguaggio univoco e prevenire possibili ambiguità, i termini tecnici, gli acronimi e i
+  vocaboli con accezione specifica nel contesto del progetto sono stati definiti puntualmente nel documento #link(
+    "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf",
+  )[Glossario v2.0.0]. Si invita il lettore a fare riferimento a tale documento per chiarire qualsiasi dubbio.
+  Le parole che possiedono un riferimento nel Glossario saranno indicate nel modo che segue:
+  #align(center)[#emph([parola#sub[G]])]
+
   == Riferimenti
   === Riferimenti normativi
 
   - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto v1.1.0]
   - #link(
       "https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf",
-    )[Capitolato d'appalto C7 - Sistema di acquisizione dati da sensori]
+    )[Capitolato d'appalto C7 - Sistema di acquisizione dati da sensori] \ _Ultimo accesso: 2026-03-09_
 
   === Riferimenti informativi
 
-  - #link("https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf")[Standard ISO/IEC 12207:1995]
-    – Software Life Cycle Processes
-  - #link("https://it.wikipedia.org/wiki/ISO/IEC_9126")[Standard ISO/IEC 9126] – Software Engineering - Product Quality
-  - Materiale didattico:
-    - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T07.pdf")[Slide T7] - Qualità di prodotto
-    - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T08.pdf")[Slide T8] - Qualità di processo
-    - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T09.pdf")[Slide T9] - Verifica e Validazione
-
-  Al fine di garantire un linguaggio univoco e prevenire possibili ambiguità, i termini tecnici, gli acronimi e i
-  vocaboli con accezione specifica nel contesto del progetto sono stati definiti puntualmente nel documento #link(
-    "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf",
-  )[Glossario v2.0.0]. Si invita il lettore a fare riferimento a tale documento per chiarire qualsiasi dubbio.
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf")[Standard ISO/IEC 12207:1995] \ _Ultimo accesso: 2026-03-09_
+  - #link("https://it.wikipedia.org/wiki/ISO/IEC_9126")[Standard ISO/IEC 9126] \ _Ultimo accesso: 2026-03-09_
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T07.pdf")[T07 - Qualità di prodotto] \ _Ultimo accesso: 2026-03-09_
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T08.pdf")[T08 - Qualità di processo] \ _Ultimo accesso: 2026-03-09_
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T09.pdf")[T09 - Verifica e Validazione] \ _Ultimo accesso: 2026-03-09_
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario v2.0.0]
 
   = Qualità di processo
 
