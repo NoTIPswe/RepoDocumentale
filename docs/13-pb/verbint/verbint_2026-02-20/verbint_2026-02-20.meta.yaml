@@ -3,7 +3,7 @@ changelog:
   - version: "0.0.2"
     date: "2026-02-23"
     authors:
-      - Francesco Marcon
+      - Matteo Mantoan
     verifier: Valerio Solito
     description: >
       Rimosso typo
