@@ -4,7 +4,7 @@ changelog:
     date: "2026-02-23"
     authors:
       - Francesco Marcon
-    verifier: TBD
+    verifier: Valerio Solito
     description: >
       Rimosso typo
   - version: "0.0.1"
