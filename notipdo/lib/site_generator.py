@@ -88,16 +88,20 @@ def _generate_index_group_cards(
 ) -> str:
     html_cards = ""
 
-    for i, (group_name, docs) in enumerate(sorted(grouped_docs.items(), reverse=True)):
-        group_displayed_name = configs.GROUP_TO_TITLE[group_name]
-        group_page_path = _group_name_to_page_path(group_name)
+    sorted_groups = sorted(grouped_docs.items(), reverse=True)
+    if not sorted_groups:
+        return html_cards
 
-        html_cards += _populate_group_card(
-            group_page_path,
-            group_displayed_name,
-            len(docs),
-            is_latest=(i == 0),
-        )
+    group_name, docs = sorted_groups[0]
+    group_displayed_name = configs.GROUP_TO_TITLE[group_name]
+    group_page_path = _group_name_to_page_path(group_name)
+
+    html_cards += _populate_group_card(
+        group_page_path,
+        group_displayed_name,
+        len(docs),
+        is_latest=True,
+    )
 
     return html_cards
 
