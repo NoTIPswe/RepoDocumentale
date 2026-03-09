@@ -1,11 +1,6 @@
 #import "../../00-templates/base_document.typ" as base-document
 
 #let metadata = yaml(sys.inputs.meta-path)
-//Glossario
-//Use Case
-//Glossario
-//RTB
-//forse tutti i codici di rischi in questo file?
 #base-document.apply-base-document(
   title: metadata.title,
   abstract: "Documento relativo al Piano di Progetto realizzato dal Gruppo NoTIP per la realizzazione del progetto Sistema di Acquisizione Dati da Sensori BLE",
@@ -321,7 +316,7 @@
   )
 
 
-  == Attività fissate per la Requirements and Technology Baseline (PB)
+  == Attività fissate per la Product Baseline (PB)
   === Correzione errori nei documenti segnalati
   #figure(
     table(
