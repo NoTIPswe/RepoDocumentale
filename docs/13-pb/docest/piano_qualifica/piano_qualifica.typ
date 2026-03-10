@@ -109,8 +109,8 @@
   Al fine di garantire un linguaggio univoco e prevenire possibili ambiguità, i termini tecnici, gli acronimi e i
   vocaboli con accezione specifica nel contesto del progetto sono stati definiti puntualmente nel documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf",
-  )[Glossario v2.0.0]. Si invita il lettore a fare riferimento a tale documento per chiarire qualsiasi dubbio.
-  Le parole che possiedono un riferimento nel Glossario saranno indicate nel modo che segue:
+  )[Glossario v2.0.0]. Si invita il lettore a fare riferimento a tale documento per chiarire qualsiasi dubbio. Le parole
+  che possiedono un riferimento nel Glossario saranno indicate nel modo che segue:
   #align(center)[#emph([parola#sub[G]])]
 
   == Riferimenti
@@ -123,11 +123,15 @@
 
   === Riferimenti informativi
 
-  - #link("https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf")[Standard ISO/IEC 12207:1995] \ _Ultimo accesso: 2026-03-09_
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf")[Standard ISO/IEC 12207:1995]
+    \ _Ultimo accesso: 2026-03-09_
   - #link("https://it.wikipedia.org/wiki/ISO/IEC_9126")[Standard ISO/IEC 9126] \ _Ultimo accesso: 2026-03-09_
-  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T07.pdf")[T07 - Qualità di prodotto] \ _Ultimo accesso: 2026-03-09_
-  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T08.pdf")[T08 - Qualità di processo] \ _Ultimo accesso: 2026-03-09_
-  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T09.pdf")[T09 - Verifica e Validazione] \ _Ultimo accesso: 2026-03-09_
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T07.pdf")[T07 - Qualità di prodotto] \ _Ultimo accesso:
+    2026-03-09_
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T08.pdf")[T08 - Qualità di processo] \ _Ultimo accesso:
+    2026-03-09_
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T09.pdf")[T09 - Verifica e Validazione] \ _Ultimo
+    accesso: 2026-03-09_
   - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario v2.0.0]
 
   = Qualità di processo
