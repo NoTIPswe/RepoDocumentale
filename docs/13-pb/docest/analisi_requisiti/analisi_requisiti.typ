@@ -2,7 +2,7 @@
 #import "uc_lib.typ": * /*CA, CLOUD_SYS, SA, SIM_SYS, tag-uc, uc */
 #import "req_lib.typ": *
 
-#let metadata = yaml("analisi_requisiti.meta.yaml")
+#let metadata = yaml(sys.inputs.meta-path)
 
 
 #show figure.where(kind: table): set block(breakable: true)
@@ -2003,13 +2003,34 @@
     [#tag-uc-num("err_mail_gia_registrata")], [#ref-req("err_mail_gia_registrata")], [Obbligatorio],
     [#tag-uc-num("modifica_password_account")], [#ref-req("modifica_password_account")], [Obbligatorio],
     [#tag-uc-num("logout")], [#ref-req("logout")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_lista_gateway_tenant")], [#ref-req("visualizzazione_lista_gateway_tenant")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_singolo_gateway_tenant")], [#ref-req("visualizzazione_singolo_gateway_tenant")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_nome_gateway_tenant")], [#ref-req("visualizzazione_singolo_gateway_tenant")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_stato_gateway_tenant")], [#ref-req("visualizzazione_singolo_gateway_tenant")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_gateway_online")], [#ref-req("visualizzazione_singolo_gateway_tenant")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_gateway_offline")], [#ref-req("visualizzazione_singolo_gateway_tenant")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_gateway_sospeso")], [#ref-req("visualizzazione_singolo_gateway_tenant")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_lista_gateway_tenant")],
+    [#ref-req("visualizzazione_lista_gateway_tenant")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_singolo_gateway_tenant")],
+    [#ref-req("visualizzazione_singolo_gateway_tenant")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_nome_gateway_tenant")],
+    [#ref-req("visualizzazione_singolo_gateway_tenant")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_stato_gateway_tenant")],
+    [#ref-req("visualizzazione_singolo_gateway_tenant")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_gateway_online")],
+    [#ref-req("visualizzazione_singolo_gateway_tenant")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_gateway_offline")],
+    [#ref-req("visualizzazione_singolo_gateway_tenant")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_gateway_sospeso")],
+    [#ref-req("visualizzazione_singolo_gateway_tenant")],
+    [Obbligatorio],
+
     [#tag-uc-num("visualizzazione_dettagli_gateway")], [#ref-req("visualizzazione_dettagli_gateway")], [Obbligatorio],
     [#tag-uc-num("visualizzazione_timestamp_ultimo_invio_dati_gateway")],
     [#ref-req("visualizzazione_dettagli_gateway")],
@@ -2395,10 +2416,14 @@
     [#ref-req("err_mail_gia_registrata")], [Obbligatorio], [#tag-uc-num("err_mail_gia_registrata")],
     [#ref-req("modifica_password_account")], [Obbligatorio], [#tag-uc-num("modifica_password_account")],
     [#ref-req("logout")], [Obbligatorio], [#tag-uc-num("logout")],
-    [#ref-req("visualizzazione_lista_gateway_tenant")], [Obbligatorio], [#tag-uc-num("visualizzazione_lista_gateway_tenant")],
+    [#ref-req("visualizzazione_lista_gateway_tenant")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_lista_gateway_tenant")],
+
     [#ref-req("visualizzazione_singolo_gateway_tenant")],
     [Obbligatorio],
-    [#tag-uc-num("visualizzazione_singolo_gateway_tenant") \ #tag-uc-num("visualizzazione_nome_gateway_tenant") \ #tag-uc-num(
+    [#tag-uc-num("visualizzazione_singolo_gateway_tenant") \ #tag-uc-num("visualizzazione_nome_gateway_tenant") \
+      #tag-uc-num(
         "visualizzazione_stato_gateway_tenant",
       ) \ #tag-uc-num("visualizzazione_gateway_online") \ #tag-uc-num("visualizzazione_gateway_offline") \ #tag-uc-num(
         "visualizzazione_gateway_sospeso",
