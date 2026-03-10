@@ -1,9 +1,9 @@
 #import "../uc_lib.typ": CA, CLOUD_SYS, uc
 
 #uc(
-  id: "visualizzazione_singolo_gateway",
+  id: "visualizzazione_singolo_gateway_tenant",
   system: CLOUD_SYS,
-  title: "Visualizzazione singolo Gateway",
+  title: "Visualizzazione singolo Gateway Tenant",
   level: 2,
   prim-actors: CA.tenant-usr,
   preconds: (
@@ -16,13 +16,13 @@
   main-scen: (
     (
       descr: "Il Sistema mostra il nome identificativo del Gateway",
-      inc: "visualizzazione_nome_gateway",
+      inc: "visualizzazione_nome_gateway_tenant",
     ),
     (
       descr: "Il Sistema mostra la condizione operativa attuale",
-      inc: "visualizzazione_stato_gateway",
+      inc: "visualizzazione_stato_gateway_tenant",
     ),
   ),
 
-  uml-descr: "Diagramma Visualizzazione singolo Gateway",
+  uml-descr: "Diagramma Visualizzazione singolo Gateway Tenant",
 )

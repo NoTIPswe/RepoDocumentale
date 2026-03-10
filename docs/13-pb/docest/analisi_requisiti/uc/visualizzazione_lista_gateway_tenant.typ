@@ -1,9 +1,9 @@
 #import "../uc_lib.typ": CA, CLOUD_SYS, uc
 
 #uc(
-  id: "lista_gateway",
+  id: "visualizzazione_lista_gateway_tenant",
   system: CLOUD_SYS,
-  title: "Visualizzazione lista Gateway",
+  title: "Visualizzazione lista Gateway Tenant",
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (
@@ -17,9 +17,9 @@
     (descr: "L'Attore accede alla sezione dedicata alla visualizzazione dei dispositivi"),
     (
       descr: "L'Attore visualizza la lista dei Gateway associati al proprio tenant",
-      inc: "visualizzazione_singolo_gateway",
+      inc: "visualizzazione_singolo_gateway_tenant",
     ),
   ),
 
-  uml-descr: "Diagramma Visualizzazione lista Gateway",
+  uml-descr: "Diagramma Visualizzazione lista Gateway Tenant",
 )

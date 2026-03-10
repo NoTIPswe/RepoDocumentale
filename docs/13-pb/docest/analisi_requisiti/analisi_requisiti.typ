@@ -199,10 +199,10 @@
   #include "uc/err_mail_gia_registrata.typ"
   #include "uc/modifica_password_account.typ"
   #include "uc/logout.typ"
-  #include "uc/lista_gateway.typ"
-  #include "uc/visualizzazione_singolo_gateway.typ"
-  #include "uc/visualizzazione_nome_gateway.typ"
-  #include "uc/visualizzazione_stato_gateway.typ"
+  #include "uc/visualizzazione_lista_gateway_tenant.typ"
+  #include "uc/visualizzazione_singolo_gateway_tenant.typ"
+  #include "uc/visualizzazione_nome_gateway_tenant.typ"
+  #include "uc/visualizzazione_stato_gateway_tenant.typ"
   #include "uc/visualizzazione_gateway_online.typ"
   #include "uc/visualizzazione_gateway_offline.typ"
   #include "uc/visualizzazione_gateway_sospeso.typ"
@@ -341,6 +341,14 @@
   #include "uc/err_range_invalido.typ"
   #include "uc/ins_mail.typ"
   #include "uc/cambio_password.typ"
+  #include "uc/visualizzazione_lista_gateway_sistema.typ"
+  #include "uc/visualizzazione_singolo_gateway_sistema.typ"
+  #include "uc/visualizzazione_id_fabbrica_gateway_sistema.typ"
+  #include "uc/visualizzazione_id_tenant_gateway.typ"
+  #include "uc/visualizzazione_id_tenant_gateway_nd.typ"
+  #include "uc/visualizzazione_id_tenant_gateway_provisionato.typ"
+
+
 
   = Casi d'Uso - Parte B: Simulatore Gateway
 
