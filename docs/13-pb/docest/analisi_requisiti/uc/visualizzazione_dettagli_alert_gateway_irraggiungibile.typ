@@ -16,7 +16,7 @@
   main-scen: (
     (
       descr: "L’Attore visualizza l’identificativo del Gateway interessato",
-      inc: "visualizzazione_nome_gateway",
+      inc: "visualizzazione_nome_gateway_tenant",
     ),
     (
       descr: "L’Attore visualizza il timestamp dell’ultima comunicazione",

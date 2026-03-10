@@ -4,7 +4,7 @@ changelog:
     date: "2026-03-10"
     authors:
       - Alessandro Mazzariol
-    verifier: TBD
+    verifier: Valerio Solito
     description: >
       Aggiunta UC Gateway Sistema e Fix nomi
   - version: "1.1.0"

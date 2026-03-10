@@ -603,22 +603,22 @@
     ),
 
     ..req(
-      id: "lista_gateway",
+      id: "visualizzazione_lista_gateway_tenant",
       tipo: F,
       priorita: OBBLIGATORIO,
       descrizione: [Il Sistema deve permettere al Tenant User di visualizzare i Gateway appartenenti al proprio
         Tenant.],
-      fonti: [#tag-uc("lista_gateway")],
+      fonti: [#tag-uc("visualizzazione_lista_gateway_tenant")],
     ),
 
     ..req(
-      id: "visualizzazione_singolo_gateway",
+      id: "visualizzazione_singolo_gateway_tenant",
       tipo: F,
       priorita: OBBLIGATORIO,
       descrizione: [Il Sistema deve permettere al Tenant User di visualizzare un singolo Gateway nella lista, in
         particolare il nome e lo stato.],
-      fonti: [#tag-uc("visualizzazione_singolo_gateway"), #tag-uc("visualizzazione_nome_gateway"),#tag-uc(
-          "visualizzazione_stato_gateway",
+      fonti: [#tag-uc("visualizzazione_singolo_gateway_tenant"), #tag-uc("visualizzazione_nome_gateway_tenant"),#tag-uc(
+          "visualizzazione_stato_gateway_tenant",
         )],
     ),
 
@@ -2003,13 +2003,13 @@
     [#tag-uc-num("err_mail_gia_registrata")], [#ref-req("err_mail_gia_registrata")], [Obbligatorio],
     [#tag-uc-num("modifica_password_account")], [#ref-req("modifica_password_account")], [Obbligatorio],
     [#tag-uc-num("logout")], [#ref-req("logout")], [Obbligatorio],
-    [#tag-uc-num("lista_gateway")], [#ref-req("lista_gateway")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_singolo_gateway")], [#ref-req("visualizzazione_singolo_gateway")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_nome_gateway")], [#ref-req("visualizzazione_singolo_gateway")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_stato_gateway")], [#ref-req("visualizzazione_singolo_gateway")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_gateway_online")], [#ref-req("visualizzazione_singolo_gateway")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_gateway_offline")], [#ref-req("visualizzazione_singolo_gateway")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_gateway_sospeso")], [#ref-req("visualizzazione_singolo_gateway")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_lista_gateway_tenant")], [#ref-req("visualizzazione_lista_gateway_tenant")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_singolo_gateway_tenant")], [#ref-req("visualizzazione_singolo_gateway_tenant")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_nome_gateway_tenant")], [#ref-req("visualizzazione_singolo_gateway_tenant")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_stato_gateway_tenant")], [#ref-req("visualizzazione_singolo_gateway_tenant")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_gateway_online")], [#ref-req("visualizzazione_singolo_gateway_tenant")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_gateway_offline")], [#ref-req("visualizzazione_singolo_gateway_tenant")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_gateway_sospeso")], [#ref-req("visualizzazione_singolo_gateway_tenant")], [Obbligatorio],
     [#tag-uc-num("visualizzazione_dettagli_gateway")], [#ref-req("visualizzazione_dettagli_gateway")], [Obbligatorio],
     [#tag-uc-num("visualizzazione_timestamp_ultimo_invio_dati_gateway")],
     [#ref-req("visualizzazione_dettagli_gateway")],
@@ -2395,11 +2395,11 @@
     [#ref-req("err_mail_gia_registrata")], [Obbligatorio], [#tag-uc-num("err_mail_gia_registrata")],
     [#ref-req("modifica_password_account")], [Obbligatorio], [#tag-uc-num("modifica_password_account")],
     [#ref-req("logout")], [Obbligatorio], [#tag-uc-num("logout")],
-    [#ref-req("lista_gateway")], [Obbligatorio], [#tag-uc-num("lista_gateway")],
-    [#ref-req("visualizzazione_singolo_gateway")],
+    [#ref-req("visualizzazione_lista_gateway_tenant")], [Obbligatorio], [#tag-uc-num("visualizzazione_lista_gateway_tenant")],
+    [#ref-req("visualizzazione_singolo_gateway_tenant")],
     [Obbligatorio],
-    [#tag-uc-num("visualizzazione_singolo_gateway") \ #tag-uc-num("visualizzazione_nome_gateway") \ #tag-uc-num(
-        "visualizzazione_stato_gateway",
+    [#tag-uc-num("visualizzazione_singolo_gateway_tenant") \ #tag-uc-num("visualizzazione_nome_gateway_tenant") \ #tag-uc-num(
+        "visualizzazione_stato_gateway_tenant",
       ) \ #tag-uc-num("visualizzazione_gateway_online") \ #tag-uc-num("visualizzazione_gateway_offline") \ #tag-uc-num(
         "visualizzazione_gateway_sospeso",
       )],

@@ -4,7 +4,7 @@
   id: "visualizzazione_gateway_online",
   system: CLOUD_SYS,
   title: "Visualizzazione Gateway Online",
-  gen-parent: "visualizzazione_stato_gateway",
+  gen-parent: "visualizzazione_stato_gateway_tenant",
   level: 1,
   prim-actors: CA.tenant-usr,
   preconds: (

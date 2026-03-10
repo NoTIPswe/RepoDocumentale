@@ -17,7 +17,7 @@
     (descr: "Il Sistema notifica l’Attore dell’irraggiungibilità del Gateway"),
     (
       descr: "L’Attore visualizza il nome Gateway interessato",
-      inc: "visualizzazione_nome_gateway",
+      inc: "visualizzazione_nome_gateway_tenant",
     ),
     (
       descr: "L’Attore visualizza il timestamp dell’ultima comunicazione",
