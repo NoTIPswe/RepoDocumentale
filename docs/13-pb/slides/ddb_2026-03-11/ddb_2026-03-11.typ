@@ -4,7 +4,7 @@
   sprint: 8,
   date: "11/03/2026",
 )[
-  - Sessioni intensive di progettazione logica per evitare regressioni post-RTB.
+  - Sessioni intensive di progettazione logica.
   - Aggiornamento del documento di Analisi dei Requisiti (AdR).
   - Iniziata fase progettazione di dettaglio di MVP.
   - Ricevimento con Prof. Cardin per chiarimento su microservizi e Message-Broker.
