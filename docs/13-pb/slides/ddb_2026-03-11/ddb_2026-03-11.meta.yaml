@@ -1,0 +1,9 @@
+title: Diario di Bordo 2026-03-11
+changelog:
+  - version: "0.0.1"
+    date: "2026-03-11"
+    authors:
+      - Matteo Mantoan
+    verifier: TBD
+    description: >
+      Creazione del diario di Bordo
