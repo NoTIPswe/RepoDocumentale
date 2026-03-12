@@ -1,0 +1,16 @@
+title: Specifica Tecnica
+changelog:
+  - version: "0.1.0"
+    date: "2026-03-09"
+    authors:
+      - Leonardo Preo
+    verifier: Valerio Solito
+    description: >
+      Prima stesura del documento
+  - version: "0.0.1"
+    date: "2026-03-09"
+    authors:
+      - Leonardo Preo 
+    verifier: Valerio Solito
+    description: >
+      Creazione del documento
