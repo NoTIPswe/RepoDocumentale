@@ -198,10 +198,10 @@
   #include "uc/err_mail_gia_registrata.typ"
   #include "uc/modifica_password_account.typ"
   #include "uc/logout.typ"
-  #include "uc/lista_gateway.typ"
-  #include "uc/visualizzazione_singolo_gateway.typ"
-  #include "uc/visualizzazione_nome_gateway.typ"
-  #include "uc/visualizzazione_stato_gateway.typ"
+  #include "uc/visualizzazione_lista_gateway_tenant.typ"
+  #include "uc/visualizzazione_singolo_gateway_tenant.typ"
+  #include "uc/visualizzazione_nome_gateway_tenant.typ"
+  #include "uc/visualizzazione_stato_gateway_tenant.typ"
   #include "uc/visualizzazione_gateway_online.typ"
   #include "uc/visualizzazione_gateway_offline.typ"
   #include "uc/visualizzazione_gateway_sospeso.typ"
@@ -340,6 +340,14 @@
   #include "uc/err_range_invalido.typ"
   #include "uc/ins_mail.typ"
   #include "uc/cambio_password.typ"
+  #include "uc/visualizzazione_lista_gateway_sistema.typ"
+  #include "uc/visualizzazione_singolo_gateway_sistema.typ"
+  #include "uc/visualizzazione_id_fabbrica_gateway_sistema.typ"
+  #include "uc/visualizzazione_id_tenant_gateway.typ"
+  #include "uc/visualizzazione_id_tenant_gateway_nd.typ"
+  #include "uc/visualizzazione_id_tenant_gateway_provisionato.typ"
+
+
 
   = Casi d'Uso - Parte B: Simulatore Gateway
 
@@ -594,22 +602,22 @@
     ),
 
     ..req(
-      id: "lista_gateway",
+      id: "visualizzazione_lista_gateway_tenant",
       tipo: F,
       priorita: OBBLIGATORIO,
       descrizione: [Il Sistema deve permettere al Tenant User di visualizzare i Gateway appartenenti al proprio
         Tenant.],
-      fonti: [#tag-uc("lista_gateway")],
+      fonti: [#tag-uc("visualizzazione_lista_gateway_tenant")],
     ),
 
     ..req(
-      id: "visualizzazione_singolo_gateway",
+      id: "visualizzazione_singolo_gateway_tenant",
       tipo: F,
       priorita: OBBLIGATORIO,
       descrizione: [Il Sistema deve permettere al Tenant User di visualizzare un singolo Gateway nella lista, in
         particolare il nome e lo stato.],
-      fonti: [#tag-uc("visualizzazione_singolo_gateway"), #tag-uc("visualizzazione_nome_gateway"),#tag-uc(
-          "visualizzazione_stato_gateway",
+      fonti: [#tag-uc("visualizzazione_singolo_gateway_tenant"), #tag-uc("visualizzazione_nome_gateway_tenant"),#tag-uc(
+          "visualizzazione_stato_gateway_tenant",
         )],
     ),
 
@@ -1455,7 +1463,27 @@
         autenticarsi.],
       fonti: [#tag-uc("ins_mail")],
     ),
-  )
+
+    ..req(
+      id: "visualizzazione_lista_gateway_sistema",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di poter visualizzare la lista di Gateway
+        conosciuti dal Sistema.],
+      fonti: [#tag-uc("visualizzazione_lista_gateway_sistema")],
+    ),
+    ..req(
+      id: "visualizzazione_singolo_gateway_sistema",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di poter visualizzare un singolo Gateway
+        conosciuto dal Sistema, in particolare l'ID di fabbrica e l'ID del Tenant a cui è associato.],
+      fonti: [#tag-uc("visualizzazione_singolo_gateway_sistema"), #tag-uc(
+          "visualizzazione_id_fabbrica_gateway_sistema",
+        ), #tag-uc("visualizzazione_id_tenant_gateway"), #tag-uc("visualizzazione_id_tenant_gateway_nd"),
+        #tag-uc("visualizzazione_id_tenant_gateway_provisionato")],
+    ),
+  ),
   == Requisiti Funzionali - Parte B: Simulatore Gateway
   #table(
     columns: (auto, auto, 2fr, 1fr),
@@ -1994,13 +2022,34 @@
     [#tag-uc-num("err_mail_gia_registrata")], [#ref-req("err_mail_gia_registrata")], [Obbligatorio],
     [#tag-uc-num("modifica_password_account")], [#ref-req("modifica_password_account")], [Obbligatorio],
     [#tag-uc-num("logout")], [#ref-req("logout")], [Obbligatorio],
-    [#tag-uc-num("lista_gateway")], [#ref-req("lista_gateway")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_singolo_gateway")], [#ref-req("visualizzazione_singolo_gateway")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_nome_gateway")], [#ref-req("visualizzazione_singolo_gateway")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_stato_gateway")], [#ref-req("visualizzazione_singolo_gateway")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_gateway_online")], [#ref-req("visualizzazione_singolo_gateway")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_gateway_offline")], [#ref-req("visualizzazione_singolo_gateway")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_gateway_sospeso")], [#ref-req("visualizzazione_singolo_gateway")], [Obbligatorio],
+    [#tag-uc-num("visualizzazione_lista_gateway_tenant")],
+    [#ref-req("visualizzazione_lista_gateway_tenant")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_singolo_gateway_tenant")],
+    [#ref-req("visualizzazione_singolo_gateway_tenant")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_nome_gateway_tenant")],
+    [#ref-req("visualizzazione_singolo_gateway_tenant")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_stato_gateway_tenant")],
+    [#ref-req("visualizzazione_singolo_gateway_tenant")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_gateway_online")],
+    [#ref-req("visualizzazione_singolo_gateway_tenant")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_gateway_offline")],
+    [#ref-req("visualizzazione_singolo_gateway_tenant")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_gateway_sospeso")],
+    [#ref-req("visualizzazione_singolo_gateway_tenant")],
+    [Obbligatorio],
+
     [#tag-uc-num("visualizzazione_dettagli_gateway")], [#ref-req("visualizzazione_dettagli_gateway")], [Obbligatorio],
     [#tag-uc-num("visualizzazione_timestamp_ultimo_invio_dati_gateway")],
     [#ref-req("visualizzazione_dettagli_gateway")],
@@ -2213,8 +2262,32 @@
     [#tag-uc-num("err_autenticazione_gateway")], [#ref-req("err_autenticazione_gateway")], [Obbligatorio],
     [#tag-uc-num("err_range_invalido")], [#ref-req("err_range_invalido")], [Obbligatorio],
     [#tag-uc-num("ins_mail")], [#ref-req("ins_mail")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_lista_gateway_simulati")],
-    [#ref-req("visualizzazione_lista_gateway_simulati")],
+    [#tag-uc-num("visualizzazione_lista_gateway_sistema")],
+    [#ref-req("visualizzazione_lista_gateway_sistema")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_singolo_gateway_sistema")],
+    [#ref-req("visualizzazione_singolo_gateway_sistema")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_id_fabbrica_gateway_sistema")],
+    [#ref-req("visualizzazione_singolo_gateway_sistema")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_id_tenant_gateway")],
+    [#ref-req("visualizzazione_singolo_gateway_sistema")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_id_tenant_gateway_nd")],
+    [#ref-req("visualizzazione_singolo_gateway_sistema")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_id_tenant_gateway_provisionato")],
+    [#ref-req("visualizzazione_singolo_gateway_sistema")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_lista_gateway_simulati")], [#ref-req("visualizzazione_lista_gateway_simulati")],
+
     [Obbligatorio],
 
     [#tag-uc-num("visualizzazione_singolo_gateway_simulato")],
@@ -2386,11 +2459,15 @@
     [#ref-req("err_mail_gia_registrata")], [Obbligatorio], [#tag-uc-num("err_mail_gia_registrata")],
     [#ref-req("modifica_password_account")], [Obbligatorio], [#tag-uc-num("modifica_password_account")],
     [#ref-req("logout")], [Obbligatorio], [#tag-uc-num("logout")],
-    [#ref-req("lista_gateway")], [Obbligatorio], [#tag-uc-num("lista_gateway")],
-    [#ref-req("visualizzazione_singolo_gateway")],
+    [#ref-req("visualizzazione_lista_gateway_tenant")],
     [Obbligatorio],
-    [#tag-uc-num("visualizzazione_singolo_gateway") \ #tag-uc-num("visualizzazione_nome_gateway") \ #tag-uc-num(
-        "visualizzazione_stato_gateway",
+    [#tag-uc-num("visualizzazione_lista_gateway_tenant")],
+
+    [#ref-req("visualizzazione_singolo_gateway_tenant")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_singolo_gateway_tenant") \ #tag-uc-num("visualizzazione_nome_gateway_tenant") \
+      #tag-uc-num(
+        "visualizzazione_stato_gateway_tenant",
       ) \ #tag-uc-num("visualizzazione_gateway_online") \ #tag-uc-num("visualizzazione_gateway_offline") \ #tag-uc-num(
         "visualizzazione_gateway_sospeso",
       )],
@@ -2598,6 +2675,16 @@
     [#ref-req("err_autenticazione_gateway")], [Obbligatorio], [#tag-uc-num("err_autenticazione_gateway")],
     [#ref-req("err_range_invalido")], [Obbligatorio], [#tag-uc-num("err_range_invalido")],
     [#ref-req("ins_mail")], [Obbligatorio], [#tag-uc-num("ins_mail")],
+    [#ref-req("visualizzazione_lista_gateway_sistema")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_lista_gateway_sistema")],
+
+    [#ref-req("visualizzazione_singolo_gateway_sistema")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_singolo_gateway_sistema") \ #tag-uc-num("visualizzazione_id_fabbrica_gateway_sistema")
+      \ #tag-uc-num("visualizzazione_id_tenant_gateway") \ #tag-uc-num("visualizzazione_id_tenant_gateway_nd") \
+      #tag-uc-num("visualizzazione_id_tenant_gateway_provisionato"),],
+
     [#ref-req("visualizzazione_lista_gateway_simulati")],
     [Obbligatorio],
     [#tag-uc-num("visualizzazione_lista_gateway_simulati")],
@@ -2708,7 +2795,7 @@
   #table(
     columns: (auto, auto, auto, auto),
     [Tipologia], [Obbligatori], [Desiderabili], [Totale],
-    [Funzionali], [132], [9], [141],
+    [Funzionali], [134], [9], [143],
     [Qualità], [9], [0], [9],
     [Vincolo], [6], [0], [6],
     [Sicurezza], [4], [2], [6],

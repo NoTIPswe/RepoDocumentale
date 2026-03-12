@@ -19,11 +19,11 @@
     ),
     (
       descr: "L'Attore visualizza l'identificativo del Gateway",
-      inc: "visualizzazione_nome_gateway",
+      inc: "visualizzazione_nome_gateway_tenant",
     ),
     (
       descr: "L'Attore visualizza lo stato del Gateway",
-      inc: "visualizzazione_stato_gateway",
+      inc: "visualizzazione_stato_gateway_tenant",
     ),
     (
       descr: "L'Attore visualizza l'ultimo timestamp dati inviati",
