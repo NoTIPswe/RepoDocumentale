@@ -24,8 +24,8 @@
     componenti nell'ambiente di esecuzione;
   - Documentare i *design pattern architetturali* adottati, motivando le scelte progettuali in relazione alle tecnologie
     selezionate e ai requisiti del sistema
-  - Identificare gli *idiomi implementativi* impiegati a livello di dettaglio, con riferimento alle
-    ottimizzazioni apportate alla *qualità* e alla *leggibilità* del codice;
+  - Identificare gli *idiomi implementativi* impiegati a livello di dettaglio, con riferimento alle ottimizzazioni
+    apportate alla *qualità* e alla *leggibilità* del codice;
   - Fornire approfondimenti progettuali a supporto della comprensione, della *manutenibilità* e dell'*evoluzione futura*
     del prodotto.
 
