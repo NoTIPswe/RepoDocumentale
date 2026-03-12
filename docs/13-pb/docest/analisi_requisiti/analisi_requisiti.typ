@@ -2,7 +2,7 @@
 #import "uc_lib.typ": * /*CA, CLOUD_SYS, SA, SIM_SYS, tag-uc, uc */
 #import "req_lib.typ": *
 
-#let metadata = yaml(sys.inputs.meta-path)
+#let metadata = yaml("analisi_requisiti.meta.yaml")
 
 
 #show figure.where(kind: table): set block(breakable: true)
@@ -1464,7 +1464,27 @@
         autenticarsi.],
       fonti: [#tag-uc("ins_mail")],
     ),
-  )
+
+    ..req(
+      id: "visualizzazione_lista_gateway_sistema",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di poter visualizzare la lista di Gateway
+        conosciuti dal Sistema.],
+      fonti: [#tag-uc("visualizzazione_lista_gateway_sistema")],
+    ),
+    ..req(
+      id: "visualizzazione_singolo_gateway_sistema",
+      tipo: F,
+      priorita: OBBLIGATORIO,
+      descrizione: [Il Sistema deve permettere all'Amministratore di Sistema di poter visualizzare un singolo Gateway
+        conosciuto dal Sistema, in particolare l'ID di fabbrica e l'ID del Tenant a cui è associato.],
+      fonti: [#tag-uc("visualizzazione_singolo_gateway_sistema"), #tag-uc(
+          "visualizzazione_id_fabbrica_gateway_sistema",
+        ), #tag-uc("visualizzazione_id_tenant_gateway"), #tag-uc("visualizzazione_id_tenant_gateway_nd"),
+        #tag-uc("visualizzazione_id_tenant_gateway_provisionato")],
+    ),
+  ),
   == Requisiti Funzionali - Parte B: Simulatore Gateway
   #table(
     columns: (auto, auto, 2fr, 1fr),
@@ -2243,8 +2263,32 @@
     [#tag-uc-num("err_autenticazione_gateway")], [#ref-req("err_autenticazione_gateway")], [Obbligatorio],
     [#tag-uc-num("err_range_invalido")], [#ref-req("err_range_invalido")], [Obbligatorio],
     [#tag-uc-num("ins_mail")], [#ref-req("ins_mail")], [Obbligatorio],
-    [#tag-uc-num("visualizzazione_lista_gateway_simulati")],
-    [#ref-req("visualizzazione_lista_gateway_simulati")],
+    [#tag-uc-num("visualizzazione_lista_gateway_sistema")],
+    [#ref-req("visualizzazione_lista_gateway_sistema")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_singolo_gateway_sistema")],
+    [#ref-req("visualizzazione_singolo_gateway_sistema")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_id_fabbrica_gateway_sistema")],
+    [#ref-req("visualizzazione_singolo_gateway_sistema")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_id_tenant_gateway")],
+    [#ref-req("visualizzazione_singolo_gateway_sistema")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_id_tenant_gateway_nd")],
+    [#ref-req("visualizzazione_singolo_gateway_sistema")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_id_tenant_gateway_provisionato")],
+    [#ref-req("visualizzazione_singolo_gateway_sistema")],
+    [Obbligatorio],
+
+    [#tag-uc-num("visualizzazione_lista_gateway_simulati")], [#ref-req("visualizzazione_lista_gateway_simulati")],
+
     [Obbligatorio],
 
     [#tag-uc-num("visualizzazione_singolo_gateway_simulato")],
@@ -2632,6 +2676,16 @@
     [#ref-req("err_autenticazione_gateway")], [Obbligatorio], [#tag-uc-num("err_autenticazione_gateway")],
     [#ref-req("err_range_invalido")], [Obbligatorio], [#tag-uc-num("err_range_invalido")],
     [#ref-req("ins_mail")], [Obbligatorio], [#tag-uc-num("ins_mail")],
+    [#ref-req("visualizzazione_lista_gateway_sistema")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_lista_gateway_sistema")],
+
+    [#ref-req("visualizzazione_singolo_gateway_sistema")],
+    [Obbligatorio],
+    [#tag-uc-num("visualizzazione_singolo_gateway_sistema") \ #tag-uc-num("visualizzazione_id_fabbrica_gateway_sistema")
+      \ #tag-uc-num("visualizzazione_id_tenant_gateway") \ #tag-uc-num("visualizzazione_id_tenant_gateway_nd") \
+      #tag-uc-num("visualizzazione_id_tenant_gateway_provisionato"),],
+
     [#ref-req("visualizzazione_lista_gateway_simulati")],
     [Obbligatorio],
     [#tag-uc-num("visualizzazione_lista_gateway_simulati")],
@@ -2742,7 +2796,7 @@
   #table(
     columns: (auto, auto, auto, auto),
     [Tipologia], [Obbligatori], [Desiderabili], [Totale],
-    [Funzionali], [132], [9], [141],
+    [Funzionali], [134], [9], [143],
     [Qualità], [9], [0], [9],
     [Vincolo], [6], [0], [6],
     [Sicurezza], [4], [2], [6],

@@ -12,11 +12,11 @@
   postconds: (
     "L'Attore visualizza l'elenco di tutti i Gateway associati al suo Tenant",
   ),
-  trigger: "L'Attore vuole visualizzare i Gateway del proprio tenant",
+  trigger: "L'Attore vuole visualizzare i Gateway del proprio Tenant",
   main-scen: (
     (descr: "L'Attore accede alla sezione dedicata alla visualizzazione dei dispositivi"),
     (
-      descr: "L'Attore visualizza la lista dei Gateway associati al proprio tenant",
+      descr: "L'Attore visualizza la lista dei Gateway associati al proprio Tenant",
       inc: "visualizzazione_singolo_gateway_tenant",
     ),
   ),
