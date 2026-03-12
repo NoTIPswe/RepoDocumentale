@@ -143,6 +143,25 @@ accepted_words:
   - RESTful
   - JavaDoc
   - asdf
+  - goroutine
+  - GCM
+  - WebCrypto
+  - microsoft
+  - nestjs
+  - RxJS
+  - keycloak
+  - OIDC
+  - PKCE
+  - jetstream
+  - Nginx
+  - jwt
+  - iframe
+  - HttpOnly
+  - jwks
+  - PapaParse
+  - CSP
+  - HSTS
+  
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -202,6 +221,18 @@ accepted_words:
   - monorepo
   - microservizio
   - Dev
+  - ipertabella
+  - acknowledgement
+  - localStorage
+  - EventSource
+  - sessionStorage
+  - cachata
+  - rsa
+  - keystore
+  - extractable
+  - liveness
+  - deployato
+  - passthrough
 
   # --- Terminologia Standard Progetto ---
   - req
@@ -250,6 +281,8 @@ accepted_words:
   - QP
   - DataAPI
   - notipdo
+  - notip
+  - CryptoKey
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
@@ -298,3 +331,6 @@ accepted_words:
   - containerizzazione
   - containerizzate
   - transazionalità
+  - possiedono
+  - riconnessione
+  - versionato

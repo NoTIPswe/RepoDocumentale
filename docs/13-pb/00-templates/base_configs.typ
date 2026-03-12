@@ -50,7 +50,7 @@
 
   show glossary-regex: t => {
     if glossary-highlighted {
-      [#t#sub("G")]
+      [_#t#sub("G")_]
     } else {
       t
     }
