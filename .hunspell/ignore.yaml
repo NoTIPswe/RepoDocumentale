@@ -149,16 +149,19 @@ accepted_words:
   - microsoft
   - nestjs
   - RxJS
-  - Keycloak
+  - keycloak
   - OIDC
   - PKCE
-  - Jetstream
+  - jetstream
   - Nginx
   - jwt
   - iframe
   - HttpOnly
-  - JWKS
-
+  - jwks
+  - PapaParse
+  - CSP
+  - HSTS
+  
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -220,6 +223,16 @@ accepted_words:
   - Dev
   - ipertabella
   - acknowledgement
+  - localStorage
+  - EventSource
+  - sessionStorage
+  - cachata
+  - rsa
+  - keystore
+  - extractable
+  - liveness
+  - deployato
+  - 
 
   # --- Terminologia Standard Progetto ---
   - req
@@ -269,6 +282,7 @@ accepted_words:
   - DataAPI
   - notipdo
   - notip
+  - CryptoKey
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
