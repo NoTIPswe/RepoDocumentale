@@ -232,6 +232,7 @@ accepted_words:
   - extractable
   - liveness
   - deployato
+  - passthrough
 
   # --- Terminologia Standard Progetto ---
   - req
