@@ -78,7 +78,7 @@ accepted_words:
   # --- Tecnologie e Formati ---
   - AES
   - csv
-  - EE    # for End to End Encryption (spellcheck keeps failing)
+  - EE # for End to End Encryption (spellcheck keeps failing)
   - Gin
   - GO
   - gRPC
@@ -99,6 +99,7 @@ accepted_words:
   - NestJS
   - TypeScript
   - OpenAI
+  - OpenAPI
   - Grafana
   - OTA
   - OTP
@@ -128,6 +129,7 @@ accepted_words:
   - SDK
   - BRD
   - DevOps
+  - devcontainers
   - ERP
   - ESLint
   - GDPR
@@ -138,6 +140,8 @@ accepted_words:
   - Markdown
   - NLP
   - OWASP
+  - RESTful
+  - JavaDoc
   - asdf
 
   # --- Terminologia Software Engineering (SWE) ---
@@ -154,7 +158,7 @@ accepted_words:
   - DTO
   - EAC
   - EV
-  - Frontend
+  - frontend
   - Gulpease
   - IEC
   - IoT
@@ -200,7 +204,7 @@ accepted_words:
   - Dev
 
   # --- Terminologia Standard Progetto ---
-  - REQ
+  - req
   - docest
   - docint
   - verbest
@@ -210,7 +214,9 @@ accepted_words:
   - RO # --- Starebbe per RO1 all'interno del PdP, ma scrivendo RO1 non lo prende ---
   - rtb
   - microservizi
+  - observability
   - onboarding
+  - sysadm
   - L'Auth
   - ErroreRangeInvalido
   - ValoreNumericoInvalido
@@ -237,7 +243,7 @@ accepted_words:
   - NessunDato
   - burnup
   - RepoDocumentale
-  - uc 
+  - uc
   - authd
   - usr
   - sym
@@ -245,8 +251,8 @@ accepted_words:
   - DataAPI
   - notipdo
 
-
   # --- Parole Italiane mancanti / Neologismi ---
+  - aggregatori
   - autoconsistente
   - autoconsistenza
   - automiglioramento
@@ -291,3 +297,4 @@ accepted_words:
   - istanziata
   - containerizzazione
   - containerizzate
+  - transazionalità

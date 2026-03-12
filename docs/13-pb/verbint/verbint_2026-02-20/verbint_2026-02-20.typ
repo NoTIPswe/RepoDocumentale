@@ -129,7 +129,7 @@
         url: "https://notipswe.atlassian.net/browse/NT-477",
       ),
     ),
-  ),
+  )
 
 ][
 

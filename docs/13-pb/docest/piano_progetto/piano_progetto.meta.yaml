@@ -1,12 +1,19 @@
 title: Piano di Progetto
 changelog:
-  - version: "1.0.1"
+  - version: "1.1.1"
     date: "2026-03-09"
     authors:
       - Leonardo Preo
     verifier: TBD
     description: >
       Uniformazione struttura Riferimenti del documento
+  - version: "1.1.0"
+    date: "2026-03-09"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Valerio Solito
+    description: >
+      Completamento sprint 7 e inserito template per sprint successivi
   - version: 1.0.0
     date: "2026-02-16"
     approver: Valerio Solito

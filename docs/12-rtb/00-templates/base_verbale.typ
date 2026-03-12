@@ -52,6 +52,7 @@
     scope: scope,
     front-info: front-info,
     glossary-highlighted: glossary-highlighted,
+    show-changelog: false,
   )[
 
     = Info e ordine del giorno
