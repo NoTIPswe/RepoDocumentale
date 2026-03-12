@@ -25,7 +25,7 @@
   - Documentare i *design pattern architetturali* adottati, motivando le scelte progettuali in relazione alle tecnologie
     selezionate e ai requisiti del sistema
   - Identificare gli *idiomi implementativi* impiegati a livello di dettaglio, con riferimento alle
-    ottimizzazioniapportate alla *qualità* e alla *leggibilità* del codice;
+    ottimizzazioni apportate alla *qualità* e alla *leggibilità* del codice;
   - Fornire approfondimenti progettuali a supporto della comprensione, della *manutenibilità* e dell'*evoluzione futura*
     del prodotto.
 
@@ -63,7 +63,7 @@
   == Linguaggi di Programmazione
   #table(
     columns: (1fr, auto, 4fr),
-    [Tenologia], [Versione], [Descrizione],
+    [Tecnologia], [Versione], [Descrizione],
     [Go],
     [],
     [Go è un linguaggio compilato e staticamente tipizzato che combina semplicità sintattica e prestazioni di alto
@@ -86,7 +86,7 @@
   == Framework per la Codifica
   #table(
     columns: (1fr, auto, 4fr),
-    [Tenologia], [Versione], [Descrizione],
+    [Tecnologia], [Versione], [Descrizione],
     [NestJS],
     [],
     [NestJS è un framework Node.js per la costruzione di applicazioni server-side modulari e scalabili, ispirato
@@ -116,7 +116,7 @@
   == Tecnologie per la Gestione di Dati Temporali
   #table(
     columns: (1fr, auto, 4fr),
-    [Tenologia], [Versione], [Descrizione],
+    [Tecnologia], [Versione], [Descrizione],
     [PostgreSQL],
     [],
     [PostgreSQL è un sistema di gestione di database relazionale open-source, noto per la sua conformità agli standard
@@ -136,7 +136,7 @@
   == Tecnologie per la Comunicazione e Messaggistica
   #table(
     columns: (1fr, auto, 4fr),
-    [Tenologia], [Versione], [Descrizione],
+    [Tecnologia], [Versione], [Descrizione],
     [NATS Jetstream],
     [],
     [NATS JetStream è un sistema di messaggistica ad alte prestazioni con supporto nativo alla persistenza dei messaggi,
@@ -159,7 +159,7 @@
   == Tecnologie per Virtualizzazione e Deployment
   #table(
     columns: (1fr, auto, 4fr),
-    [Tenologia], [Versione], [Descrizione],
+    [Tecnologia], [Versione], [Descrizione],
     [Docker],
     [],
     [Docker è una piattaforma di containerizzazione che consente di impacchettare applicazioni e relative dipendenze in
@@ -187,7 +187,7 @@
   == Tecnologie per Monitoraggio dei Microservizi
   #table(
     columns: (1fr, auto, 4fr),
-    [Tenologia], [Versione], [Descrizione],
+    [Tecnologia], [Versione], [Descrizione],
     [Prometheus],
     [],
     [Prometheus è un sistema open-source di monitoraggio e alerting progettato per ambienti cloud-native e architetture
@@ -210,7 +210,7 @@
   == Librerie
   #table(
     columns: (1fr, auto, 4fr),
-    [Tenologia], [Versione], [Descrizione],
+    [Tecnologia], [Versione], [Descrizione],
     [keycloak-angular],
     [],
     [keycloak-angular è una libreria Angular che integra il client JavaScript ufficiale di Keycloak, semplificando la
@@ -263,7 +263,7 @@
   == Tecnologie per Analisi Statica
   #table(
     columns: (1fr, auto, 4fr),
-    [Tenologia], [Versione], [Descrizione],
+    [Tecnologia], [Versione], [Descrizione],
     [], [], [],
     [], [], [],
   )
@@ -271,7 +271,7 @@
   == Tecnologie per Analisi Dinamica
   #table(
     columns: (1fr, auto, 4fr),
-    [Tenologia], [Versione], [Descrizione],
+    [Tecnologia], [Versione], [Descrizione],
     [], [], [],
     [], [], [],
   )
@@ -281,7 +281,7 @@
 
 
   == Architettura di Deployment
-  L'architettura del sistema è basata su un *modello a microservizi*, in cui ogni componenete funzionale viene eseguito
+  L'architettura del sistema è basata su un *modello a microservizi*, in cui ogni componente funzionale viene eseguito
   come un'unità indipendente e isolata all'interno di un container Docker, garantendo portabilità tra gli ambienti di
   esecuzione e semplificando le procedure di *manutenzione* e *aggiornamento*. L'orchestrazione dell'intero sistema è
   affidata a Docker Compose, che coordina il ciclo di vita di tutti i container, gestisce la rete interna tra i servizi
