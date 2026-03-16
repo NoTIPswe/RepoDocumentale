@@ -14,7 +14,6 @@
         Alessandro Contarini \
         Alessandro Mazzariol \
         Valerio Solito \
-        Leonardo Preo \
         Matteo Mantoan \
       ],
     ),
