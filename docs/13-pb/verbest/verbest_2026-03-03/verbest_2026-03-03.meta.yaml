@@ -4,7 +4,7 @@ changelog:
     date: "2026-03-16"
     authors:
       - Matteo Mantoan
-    verifier: TBD
+    verifier: Valerio Solito
     description: >
       Correzione assenze
   - version: "0.0.1"
