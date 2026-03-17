@@ -44,11 +44,11 @@ Qualifica*.
 
   *Collocazione dei test nelle repository*
 
-  La posizione fisica dei test segue la seguente classificazione, coerente con la struttura delle
-  repository definita nella @repo-strategy:
+  La posizione fisica dei test segue la seguente classificazione, coerente con la struttura delle repository definita
+  nella @repo-strategy:
   - *Test di unità*: risiedono nella repository del servizio di riferimento;
-  - *Test di integrazione interna* (es. tra un servizio e il proprio database): risiedono nella
-    repository del servizio di riferimento;
+  - *Test di integrazione interna* (es. tra un servizio e il proprio database): risiedono nella repository del servizio
+    di riferimento;
   - *Test di integrazione multi-servizio*: risiedono in `notip-infra/tests/integration/`;
   - *Test di sistema (e2e)*, se automatizzati: risiedono in `notip-infra/tests/system/`.
 ]
