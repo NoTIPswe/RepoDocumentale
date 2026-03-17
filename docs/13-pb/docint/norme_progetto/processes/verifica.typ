@@ -41,6 +41,16 @@ Qualifica*.
   - *Test di Sistema*: Verifica del comportamento dell'intero sistema rispetto ai requisiti funzionali e non funzionali.
   - *Test di Regressione*: Riesecuzione dei test esistenti dopo delle modifiche per garantire che non siano stati
     introdotti nuovi difetti non previsti.
+
+  *Collocazione dei test nelle repository*
+
+  La posizione fisica dei test segue la seguente classificazione, coerente con la struttura delle
+  repository definita nella @repo-strategy:
+  - *Test di unità*: risiedono nella repository del servizio di riferimento;
+  - *Test di integrazione interna* (es. tra un servizio e il proprio database): risiedono nella
+    repository del servizio di riferimento;
+  - *Test di integrazione multi-servizio*: risiedono in `notip-infra/tests/integration/`;
+  - *Test di sistema (e2e)*, se automatizzati: risiedono in `notip-infra/tests/system/`.
 ]
 
 #norm(

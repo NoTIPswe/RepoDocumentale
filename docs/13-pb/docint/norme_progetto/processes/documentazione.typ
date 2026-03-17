@@ -213,6 +213,9 @@ svolgimento del progetto.
     - `docs(norme_progetto): aggiunta sezione git`
     - `style(norme_progetto): formattazione file con typstyle`
     - `chore: inserimento font Noto Sans`
+
+  Per la disciplina generale sui commit (amend/reset), valida sia per la documentazione che per
+  il codice sorgente, si rimanda alla @disciplina-commit.
 ]
 
 #norm(title: "Co-authoring singole versioni di documento", label: <co-authoring-docs>)[
