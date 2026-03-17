@@ -270,6 +270,99 @@ le norme relative a ciascuno.
   aggiornando le funzionalità qualora errori o cambiamenti lo rendano necessario.
 ]
 
+#norm(
+  title: "DevContainers",
+  label: <devcontainers>,
+  rationale: [
+    *Zero Onboarding*: i nuovi sviluppatori non devono installare Node, Go o configurare variabili d'ambiente sul
+    proprio sistema. È sufficiente clonare la repository e aprire l'IDE.
+
+    *Consistenza*: elimina definitivamente il problema "sul mio computer funziona". Tutto il team utilizza lo stesso
+    identico ambiente.
+
+    *Ambienti puliti*: le dipendenze rimangono confinate nel container, senza inquinare il sistema operativo host.
+  ],
+)[
+  Il gruppo adotta DevContainers per garantire isolamento, portabilità e riproducibilità degli ambienti di sviluppo.
+
+  *Organizzazione (Centralizzazione e Specializzazione)*
+
+  In `notip-infra/devcontainers/` sono definiti i Dockerfile base per stack tecnologico: uno per NestJS, uno per
+  Angular, uno per Go.
+
+  Ogni repository (o singolo servizio nel caso dei monorepo `notip-infra` e `notip-simulator`) ha il proprio file
+  `.devcontainer/devcontainer.json`, che estende l'immagine base di `notip-infra` iniettando tool specifici, permessi
+  utente e le estensioni IDE necessarie per quel particolare dominio.
+
+  I Dockerfile base e i file `devcontainer.json` sono elementi di configurazione soggetti a versionamento (vedi
+  @config-items). La manutenzione dei Dockerfile base in `notip-infra` è responsabilità dell'Amministratore, in coerenza
+  con quanto definito nella @manutenzione-infrastruttura.
+
+  *Architettura Multi-Stage dei Dockerfile Base*
+
+  I Dockerfile base sono strutturati a strati (multi-stage) per ottimizzare i pesi e separare le responsabilità:
+  - `base`: fondamenta comuni, contenente il sistema operativo e il runtime del linguaggio (es. Node o Go);
+  - `dev`: utilizzato dallo Sviluppatore tramite DevContainer e dalla CI di validazione (test e linting). Contiene le
+    devDependencies e i tool di sistema (git, curl). Il codice sorgente non fa parte dell'immagine, ma viene montato
+    dinamicamente come volume;
+  - `builder`: utilizzato esclusivamente dalla CI di Rilascio. È l'ambiente in cui viene copiato il codice sorgente per
+    essere compilato (es. transpile TypeScript → JavaScript o build binario Go);
+  - `prod`: utilizzato dai server in produzione. È l'artefatto finale immutabile, privo dei tool di sviluppo del livello
+    `dev` e del codice sorgente del livello `builder`. Contiene solo il compilato e le dipendenze di runtime
+    strettamente necessarie.
+
+  Per il setup dell'ambiente DevContainer da parte di ogni sviluppatore si rimanda alla @setup-devcontainer.
+]
+
+#norm(
+  title: "Container Registry (GHCR)",
+  label: <ghcr>,
+)[
+  Il gruppo utilizza *GitHub Container Registry (GHCR)* come registry per le immagini Docker dei servizi applicativi. La
+  scelta è motivata dalla semplicità di integrazione con GitHub Actions e dall'assenza di quote sui pull, a differenza
+  di Docker Hub.
+
+  I servizi applicativi eseguono il push automatico delle proprie immagini su GHCR ad ogni merge su `main`. La
+  repository `notip-infra` seleziona le versioni delle immagini da comporre e le avvia tramite le logiche di deploy e
+  orchestrazione.
+
+  La documentazione relativa alla build e al publish delle immagini dev è disponibile in
+  `notip-infra/containers/README.md`.
+]
+
+#norm(
+  title: "Processo di Build e Rilascio dei Servizi",
+  label: <build-release-process>,
+  rationale: [
+    *Manutenzione Centralizzata (Single Source of Truth)*: Se è necessario aggiornare la versione di un linguaggio (es.
+    un aggiornamento di sicurezza di Node.js o Go), basta modificare un solo file in `notip-infra`. Tutti i microservizi
+    erediteranno automaticamente il miglioramento alla loro successiva build, senza dover aggiornare decine di
+    repository.
+
+    *Zero Duplicazioni (DRY)*: Le logiche infrastrutturali vivono esclusivamente nel repository dell'infrastruttura,
+    evitando la duplicazione delle istruzioni di compilazione in ogni servizio.
+
+    *Autonomia e Isolamento*: Il repository centrale non accede al codice né conosce la logica di business dei
+    microservizi. Ogni servizio rimane indipendente e decide autonomamente quando avviare la propria pipeline di
+    rilascio.
+
+    *Consistenza Assoluta*: Tutti i servizi basati sulla stessa tecnologia vengono impacchettati, ottimizzati e messi in
+    sicurezza nello stesso identico modo, azzerando discrepanze e comportamenti anomali in produzione.
+  ],
+)[
+  Per la build e il rilascio dei servizi vengono utilizzate le immagini definite dai Dockerfile base contenuti in
+  `notip-infra/containers/`, separate per tecnologia. Durante la fase di rilascio tramite CI/CD, la pipeline di ogni
+  singolo microservizio utilizza il Dockerfile centralizzato di `notip-infra` come ricetta, applicandola al proprio
+  codice sorgente per generare l'artefatto finale pronto per la produzione.
+
+  I Dockerfile base in `notip-infra/containers/` sono elementi di configurazione soggetti a versionamento (vedi
+  @config-items). La manutenzione di questi Dockerfile è responsabilità dell'Amministratore, in coerenza con quanto
+  definito nella @manutenzione-infrastruttura.
+
+  Per la norma sul pin delle versioni dei tool e delle immagini base si rimanda alla @pin-versioni. Per la gestione del
+  container registry si rimanda alla @ghcr.
+]
+
 === Attività del processo
 
 #activity(
@@ -359,10 +452,13 @@ le norme relative a ciascuno.
 
 #activity(
   title: "Setup iniziale dell'ambiente di versionamento",
+  label: <setup-ambiente-versionamento>,
   roles: (ROLES.aut,),
   norms: ("git-config-env", "git-ignore-policy"),
   input: [Nuova postazione di lavoro o nuovo membro del team],
   output: [Ambiente Git configurato e repository clonato],
+  rationale: [Per il setup dell'ambiente di sviluppo isolato tramite DevContainer, da eseguire contestualmente, si
+    rimanda alla @setup-devcontainer.],
   procedure: (
     (
       name: "Installazione",
@@ -383,6 +479,58 @@ le norme relative a ciascuno.
     (
       name: "Cloning",
       desc: [Clonare il repository utilizzando la stringa di connessione SSH.],
+    ),
+  ),
+)
+
+#activity(
+  title: "Setup dell'Ambiente DevContainer",
+  label: <setup-devcontainer>,
+  roles: (ROLES.progr, ROLES.proge),
+  norms: ("devcontainers", "gestione-segreti", "pre-commit-hooks"),
+  input: [Nuova postazione di lavoro o nuovo membro del team],
+  output: [Ambiente di sviluppo isolato, riproducibile e funzionante],
+  procedure: (
+    (
+      name: "Prerequisiti",
+      desc: [
+        Verificare l'installazione di Docker e dell'IDE con supporto DevContainers (es. VS Code con l'estensione Dev
+        Containers).
+      ],
+    ),
+    (
+      name: "Clone della repository",
+      desc: [
+        Clonare la repository di riferimento secondo le istruzioni della @setup-ambiente-versionamento.
+      ],
+    ),
+    (
+      name: "Apertura nel DevContainer",
+      desc: [
+        Aprire la directory della repository nell'IDE e accettare il prompt di riapertura nel DevContainer. L'IDE
+        scarica automaticamente l'immagine base da `notip-infra` e configura l'ambiente.
+      ],
+    ),
+    (
+      name: "Configurazione dell'ambiente",
+      desc: [
+        Copiare il file `.env.example` in `.env` e popolarlo con i valori locali di sviluppo. Per la politica di
+        gestione dei segreti si rimanda alla @gestione-segreti.
+      ],
+    ),
+    (
+      name: "Verifica",
+      desc: [
+        Assicurarsi che l'ambiente sia operativo eseguendo il comando di verifica previsto dal `README.md` della
+        repository.
+      ],
+    ),
+    (
+      name: "Installazione Pre-commit Hooks",
+      desc: [
+        Installare e attivare gli hook locali eseguendo `pre-commit install` nella radice della repository. Per la norma
+        di riferimento si rimanda alla @pre-commit-hooks.
+      ],
     ),
   ),
 )
