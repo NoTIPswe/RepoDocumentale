@@ -161,7 +161,16 @@ accepted_words:
   - PapaParse
   - CSP
   - HSTS
-  
+  - DevContainers
+  - Dockerfile
+  - devcontainer
+  - GitFlow
+  - DevContainer
+  - GHCR
+  - AsyncAPI
+  - transpile
+  - devDependencies
+  - nats
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -233,6 +242,7 @@ accepted_words:
   - liveness
   - deployato
   - passthrough
+  - dev
 
   # --- Terminologia Standard Progetto ---
   - req
@@ -283,6 +293,9 @@ accepted_words:
   - notipdo
   - notip
   - CryptoKey
+  - ManagementDB
+  - MeasuresDB
+  - lockfile
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
@@ -334,3 +347,12 @@ accepted_words:
   - possiedono
   - riconnessione
   - versionato
+  - committate
+  - committati
+  - versionate
+  - versionano
+  - committato
+  - pinnare
+  - pushato
+  - triggerati
+  - autogenerare
