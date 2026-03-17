@@ -1,0 +1,9 @@
+title: Diario di Bordo 2026-03-18
+changelog:
+  - version: "0.0.1"
+    date: "2026-03-18"
+    authors:
+      - Alessandro Contarini
+    verifier: Alessandro Mazzariol
+    description: >
+      Creazione del diario di Bordo
