@@ -1,5 +1,12 @@
 title: Verbale Esterno 2026-03-10 (M31)
 changelog:
+  - version: "0.1.0"
+    date: "2026-03-17"
+    authors:
+      - Matteo Mantoan
+    verifier: Valerio Solito
+    description: >
+      Aggiunta firma dell'Azienda
   - version: "0.0.1"
     date: "2026-03-16"
     authors:
