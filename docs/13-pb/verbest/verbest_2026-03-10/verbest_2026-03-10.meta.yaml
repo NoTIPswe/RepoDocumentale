@@ -1,4 +1,4 @@
-title: Verbale Esterno 2026-03-03 (M31)
+title: Verbale Esterno 2026-03-10 (M31)
 changelog:
   - version: "0.1.0"
     date: "2026-03-17"
@@ -7,17 +7,10 @@ changelog:
     verifier: Valerio Solito
     description: >
       Aggiunta firma dell'Azienda
-  - version: "0.0.2"
+  - version: "0.0.1"
     date: "2026-03-16"
     authors:
       - Matteo Mantoan
-    verifier: Valerio Solito
-    description: >
-      Correzione assenze
-  - version: "0.0.1"
-    date: "2026-02-24"
-    authors:
-      - Francesco Marcon
     verifier: Valerio Solito
     description: >
       Prima bozza del verbale

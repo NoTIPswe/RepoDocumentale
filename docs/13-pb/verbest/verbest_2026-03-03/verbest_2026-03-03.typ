@@ -1,6 +1,6 @@
 #import "../../00-templates/base_verbale.typ" as base-report
 
-#let metadata = yaml("verbest_2026-03-03.meta.yaml")
+#let metadata = yaml(sys.inputs.meta-path)
 
 #base-report.apply-base-verbale(
   date: "2026-03-03",
@@ -14,7 +14,6 @@
         Alessandro Contarini \
         Alessandro Mazzariol \
         Valerio Solito \
-        Leonardo Preo \
         Matteo Mantoan \
       ],
     ),
@@ -118,7 +117,7 @@
   La presente sezione certifica che il verbale è stato esaminato e approvato dai rappresentanti di _M31_. L’avvenuta
   approvazione è formalmente confermata dalle firme riportate di seguito dei referenti Aziendali.
 
-  /*#align(right)[
+  #align(right)[
     #image("assets/sign.png")
-  ] */
+  ]
 ]
