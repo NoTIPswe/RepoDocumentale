@@ -86,7 +86,7 @@ progetto.
 
   *Gestione dei Monorepo*
 
-  I repository `notip-infra`è strutturato come monorepo, contenendo più componenti con cicli di vita distinti.
+  Il repository `notip-infra`è strutturato come monorepo, contenendo più componenti con cicli di vita distinti.
 
   *Versionamento*: Per `notip-infra` non si traccia una versione globale, in quanto funge da contenitore di
   infrastruttura condivisa. Per la politica di versionamento automatico tramite CI/CD si rimanda alla
