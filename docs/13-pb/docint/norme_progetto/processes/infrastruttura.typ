@@ -290,7 +290,7 @@ le norme relative a ciascuno.
   In `notip-infra/devcontainers/` sono definiti i Dockerfile base per stack tecnologico: uno per NestJS, uno per
   Angular, uno per Go.
 
-  Ogni repository (o singolo servizio nel caso dei monorepo `notip-infra` e `notip-simulator`) ha il proprio file
+  Ogni repository (o singolo servizio nel caso del monorepo `notip-infra`) ha il proprio file
   `.devcontainer/devcontainer.json`, che estende l'immagine base di `notip-infra` iniettando tool specifici, permessi
   utente e le estensioni IDE necessarie per quel particolare dominio.
 
