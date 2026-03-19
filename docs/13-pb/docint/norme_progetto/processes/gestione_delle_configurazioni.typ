@@ -78,24 +78,19 @@ progetto.
       api-contracts e test di sistema e integrazione multi-servizio. È un monorepo;
     - `notip-data-api`: backend NestJS e MeasuresDB (PostgreSQL + TimescaleDB);
     - `notip-frontend`: web app Angular;
-    - `notip-simulator`: simulatore completo (backend Go, frontend Angular, database SQLite). È un monorepo;
+    - `notip-simulator-backend`: contiene il backend in Go e il database SQLite del simulatore;
+    - `notip-simulator-frontend`: contiene la web app Angular del simulatore;
     - `notip-data-consumer`: data-consumer in Go;
     - `notip-provisioning-service`: provisioning service in NestJS;
     - `notip-management-api`: management API in NestJS.
 
   *Gestione dei Monorepo*
 
-  I repository `notip-infra` e `notip-simulator` sono strutturati come monorepo, contenendo più componenti con cicli di
-  vita distinti.
-
-  *Path Filtering*: I workflow di CI vengono triggerati esclusivamente dai commit che modificano file nella
-  sottodirectory del componente interessato. Ad esempio, il workflow del frontend di `notip-simulator` viene attivato
-  solo da modifiche sotto `notip-simulator/sim-dashboard/`; quello del backend solo da modifiche sotto
-  `notip-simulator/simulator/`.
+  Il repository `notip-infra`è strutturato come monorepo, contenendo più componenti con cicli di vita distinti.
 
   *Versionamento*: Per `notip-infra` non si traccia una versione globale, in quanto funge da contenitore di
-  infrastruttura condivisa. Per `notip-simulator` si adotta invece una singola versione globale dell'intero ecosistema
-  simulatore. Per la politica di versionamento automatico tramite CI/CD si rimanda alla @versionamento-codice.
+  infrastruttura condivisa. Per la politica di versionamento automatico tramite CI/CD si rimanda alla
+  @versionamento-codice.
 
   *Struttura delle directory di test in `notip-infra`*
 
