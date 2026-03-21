@@ -26,7 +26,15 @@ Per il workflow del nuovo sistema basato su YAML, vedi:
 Comandi minimi consigliati:
 
 ```bash
-./env/bin/notipdo data validate
-./env/bin/notipdo data index
 ./env/bin/notipdo build baseline
 ```
+
+Il comando `build` esegue automaticamente il prebuild YAML (validate/index/diagrammi) e, per default, rimuove gli artefatti generati al termine (`ephemeral-generated`).
+
+Se vuoi conservare i file generati (debug o ispezione), usa:
+
+```bash
+./env/bin/notipdo build baseline --keep-generated
+```
+
+Lo stesso comportamento (ephemeral di default, `--keep-generated` opzionale) vale anche per `notipdo build all`, `notipdo build changes`, `notipdo build doc`, `notipdo check ... --yaml-data` e `notipdo generate site`.

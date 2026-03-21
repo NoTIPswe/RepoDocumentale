@@ -68,7 +68,7 @@ tests:
 - id: t_u_14
   description: Verificare il mapping dello stato gateway verso label testuale
   requirements:
-  - visualizzazione_singolo_gateway
+  - visualizzazione_singolo_gateway_tenant
   status: not_implemented
 - id: t_u_15
   description: Verificare la formattazione del timestamp ultimo invio gateway
