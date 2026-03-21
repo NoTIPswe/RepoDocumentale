@@ -1,10 +1,28 @@
 import typer
 from pathlib import Path
 from lib import builder
+from lib import configs
+from lib import docs_factory
+from lib import git_comparer
+from lib import local_scanner
+from lib import model
 from lib import requirements_data
 from . import defaults
 
 app = typer.Typer(help="Build all, one, or changed documents.")
+
+
+def _doc_needs_yaml_pipeline(doc_dir_path: Path) -> bool:
+    normalized = doc_dir_path.resolve()
+    targets = {
+        defaults.ANALISI_REQ_DIR_PATH.resolve(),
+        defaults.PIANO_QUALIFICA_DIR_PATH.resolve(),
+    }
+    return normalized in targets
+
+
+def _docs_need_yaml_pipeline(docs_model: list[model.Document]) -> bool:
+    return any(_doc_needs_yaml_pipeline(doc.doc_dir_path) for doc in docs_model)
 
 
 def _run_yaml_prebuild_pipeline(clean: bool = False) -> None:
@@ -101,13 +119,18 @@ def build_all(
     ),
 ):
     """Builds all documents."""
-    _run_yaml_prebuild_pipeline(clean=clean)
+    scanner = local_scanner.LocalScanner(meta_schema_path)
+    raw_docs = scanner.discover_all_docs(docs_dir_path)
+    docs_model = docs_factory.create_documents(raw_docs)
+
+    needs_yaml = _docs_need_yaml_pipeline(docs_model)
+    if needs_yaml:
+        _run_yaml_prebuild_pipeline(clean=clean)
+
     try:
-        builder.build_all(
-            docs_dir_path, output_dir_path, meta_schema_path, fonts_dir_path
-        )
+        builder.build_from_docs_model(docs_model, output_dir_path, fonts_dir_path)
     finally:
-        _run_yaml_postbuild_cleanup(enabled=ephemeral_generated)
+        _run_yaml_postbuild_cleanup(enabled=ephemeral_generated and needs_yaml)
 
 
 @app.command("baseline")
@@ -128,13 +151,23 @@ def build_baseline(
     ),
 ):
     """Builds all the docs of the latest baseline."""
-    _run_yaml_prebuild_pipeline(clean=clean)
+    scanner = local_scanner.LocalScanner(meta_schema_path)
+    raw_docs = scanner.discover_all_docs(docs_dir_path)
+    docs_model = docs_factory.create_documents(raw_docs)
+    latest_baseline_docs = [
+        doc for doc in docs_model if doc.group == configs.VALID_GROUPS_ORDERED[-1]
+    ]
+
+    needs_yaml = _docs_need_yaml_pipeline(latest_baseline_docs)
+    if needs_yaml:
+        _run_yaml_prebuild_pipeline(clean=clean)
+
     try:
-        builder.build_baseline(
-            docs_dir_path, output_dir_path, meta_schema_path, fonts_dir_path
+        builder.build_from_docs_model(
+            latest_baseline_docs, output_dir_path, fonts_dir_path
         )
     finally:
-        _run_yaml_postbuild_cleanup(enabled=ephemeral_generated)
+        _run_yaml_postbuild_cleanup(enabled=ephemeral_generated and needs_yaml)
 
 
 @app.command("doc")
@@ -155,13 +188,16 @@ def build_doc(
     ),
 ):
     """Builds a specific document."""
-    _run_yaml_prebuild_pipeline(clean=clean)
+    needs_yaml = _doc_needs_yaml_pipeline(doc_dir_path)
+    if needs_yaml:
+        _run_yaml_prebuild_pipeline(clean=clean)
+
     try:
         builder.build_doc(
             doc_dir_path, output_dir_path, meta_schema_path, fonts_dir_path
         )
     finally:
-        _run_yaml_postbuild_cleanup(enabled=ephemeral_generated)
+        _run_yaml_postbuild_cleanup(enabled=ephemeral_generated and needs_yaml)
 
 
 @app.command("changes")
@@ -181,15 +217,25 @@ def build_changes(
     ),
 ):
     """Builds docs that changed against some base revision."""
-    _run_yaml_prebuild_pipeline(clean=clean)
+    diff = git_comparer.compare_against_revision(
+        repo_root_path,
+        base_revision,
+        defaults.DOCS_DIR_PATH,
+        defaults.META_SCHEMA_PATH,
+    )
+    docs_to_build = [c.local_document for c in diff.created] + [
+        m.local_document for m in diff.modified
+    ]
+
+    needs_yaml = _docs_need_yaml_pipeline(docs_to_build)
+    if needs_yaml:
+        _run_yaml_prebuild_pipeline(clean=clean)
+
     try:
-        builder.build_changes(
-            repo_root_path,
-            defaults.DOCS_DIR_PATH,
-            defaults.META_SCHEMA_PATH,
-            defaults.FONTS_DIR_PATH,
-            base_revision,
+        builder.build_from_docs_model(
+            docs_to_build,
             output_dir_path,
+            repo_root_path / defaults.FONTS_DIR_PATH,
         )
     finally:
-        _run_yaml_postbuild_cleanup(enabled=ephemeral_generated)
+        _run_yaml_postbuild_cleanup(enabled=ephemeral_generated and needs_yaml)
