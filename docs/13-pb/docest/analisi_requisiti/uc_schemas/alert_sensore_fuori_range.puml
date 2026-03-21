@@ -1,0 +1,28 @@
+@startuml alert_sensore_fuori_range
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Tenant User" as tenant_usr
+actor "Provisioned Gateway" as p_gway
+
+rectangle "Sistema Cloud" {
+  usecase "UC5 - Ricezione alert dati sensore fuori range" as UC5
+  usecase "UC100 - Visualizzazione ID sensore" as UC100
+  usecase "UC109 - Visualizzazione range accettato" as UC109
+  usecase "UC113 - Visualizzazione timestamp registrazione dato irregolare" as UC113
+  usecase "UC116 - Visualizzazione valore del dato registrato" as UC116
+}
+
+tenant_usr -- UC5
+p_gway -- UC5
+
+UC5 ..> UC100 : <<include>>
+UC5 ..> UC116 : <<include>>
+UC5 ..> UC109 : <<include>>
+UC5 ..> UC113 : <<include>>
+
+@enduml

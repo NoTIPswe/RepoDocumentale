@@ -1,0 +1,18 @@
+@startuml inserimento_valore_numerico
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Tenant Admin" as tenant_adm
+
+rectangle "Sistema Cloud" {
+  usecase "UC48 - Inserimento valore numerico" as UC48
+}
+
+tenant_adm -- UC48
+
+
+@enduml

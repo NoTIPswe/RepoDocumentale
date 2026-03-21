@@ -1,0 +1,32 @@
+@startuml autenticazione_client_api
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Client API" as api_client
+actor "Auth Server" as auth_server
+
+rectangle "Sistema Cloud" {
+  usecase "UC6 - Autenticazione del client API" as UC6
+  usecase "UC22 - Errore dati di autenticazione non validi" as UC22
+  usecase "UC19 - Errore Auth Server non disponibile" as UC19
+}
+
+api_client -- UC6
+auth_server -- UC6
+
+UC22 ..> UC6 : <<extend>>
+note on link
+  Extension Point: ErroreAuthServer
+  Condition: ClientID e/o ClientSecret forniti non sono validi
+end note
+UC19 ..> UC6 : <<extend>>
+note on link
+  Extension Point: ErroreAuthServer
+  Condition: L’Auth Server esterno non è raggiungibile
+end note
+
+@enduml

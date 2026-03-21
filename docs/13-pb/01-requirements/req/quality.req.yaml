@@ -1,0 +1,106 @@
+type: quality
+requirements:
+- id: qualita_documentazione
+  priority: mandatory
+  description: È necessario produrre il documento "Specifica Tecnica" contenente diagrammi e specifica
+    architetturale del software
+  sources:
+  - text: Capitolato C7
+    url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+  - text: Sez. "Documentazione"
+- id: qualita_testbook
+  priority: mandatory
+  description: 'È necessario produrre una documentazione dettagliata riguardante i test previsti ed eseguiti
+    (contenuta nel documento #link( "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_qualifica.pdf",
+    )[Piano di Qualifica v1.1.0])'
+  sources:
+  - text: Capitolato C7
+    url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+  - text: Sez. "Documentazione"
+- id: qualita_manuale_utente
+  priority: mandatory
+  description: È necessario produrre il documento "Manuale Utente" con indicazioni chiare riguardanti
+    l'uso del software lato utente
+  sources:
+  - text: Capitolato C7
+    url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+  - text: Sez. "Documentazione"
+- id: qualita_manuale_amministratore
+  priority: mandatory
+  description: È necessario produrre il documento "Manuale Amministratore" con indicazioni chiare riguardanti
+    l'uso del software lato amministrazione
+  sources:
+  - text: Capitolato C7
+    url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+  - text: Sez. "Documentazione"
+- id: qualita_manuale_api
+  priority: mandatory
+  description: È necessario produrre documentazione tecnica riguardante le API per ricezione dei dati
+    storici e real-time
+  sources:
+  - text: Capitolato C7
+    url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+  - text: Sez. "Documentazione"
+- id: qualita_norme_progetto
+  priority: mandatory
+  description: È necessario rispettare tutte le norme presenti nel documento interno Norme di Progetto
+  sources:
+  - text: Interno
+- id: qualita_piano_qualifica
+  priority: mandatory
+  description: I test e le metriche relative devono essere elencate e descritte nel documento interno
+    Piano di Qualifica
+  sources:
+  - text: Interno
+- id: qualita_git
+  priority: mandatory
+  description: È necessario utilizzare Git come Software di versionamento
+  sources:
+  - text: Capitolato C7
+    url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+  - text: Sez. "Requisiti non Funzionali"
+- id: qualita_test_integrazione_sensore_gateway
+  priority: mandatory
+  description: È necessario eseguire test di integrazione che verifichino la corretta comunicazione tra
+    i sensori BLE simulati e il Gateway, assicurando che i dati vengano trasmessi e ricevuti senza perdita
+    o corruzione
+  sources:
+  - text: Capitolato C7
+    url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+- id: qualita_test_sincronizzazione_cloud
+  priority: mandatory
+  description: È necessario eseguire test che verifichino la corretta sincronizzazione dei dati tra Gateway
+    e piattaforma Cloud, garantendo che tutti i dati inviati dal Gateway vengano ricevuti e persistiti
+    correttamente
+  sources:
+  - text: Capitolato C7
+    url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+- id: qualita_test_sicurezza
+  priority: mandatory
+  description: È necessario eseguire test di sicurezza che verifichino la robustezza del sistema rispetto
+    ad accessi non autorizzati, garantendo la corretta applicazione dei meccanismi di autenticazione e
+    autorizzazione
+  sources:
+  - text: Capitolato C7
+    url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+- id: qualita_test_scalabilita_carico
+  priority: mandatory
+  description: È necessario eseguire test di carico che verifichino la scalabilità del sistema al crescere
+    del numero di Gateway, sensori e dati gestiti, assicurando che le prestazioni rimangano accettabili
+    sotto carico elevato
+  sources:
+  - text: Capitolato C7
+    url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+- id: qualita_test_multi_tenant
+  priority: mandatory
+  description: È necessario eseguire test che verifichino il corretto isolamento dei dati tra Tenant distinti,
+    assicurando che nessun Tenant possa accedere ai dati o alle risorse di un altro Tenant
+  sources:
+  - text: Capitolato C7
+    url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+- id: qualita_test_unita_coverage
+  priority: mandatory
+  description: È necessario che la copertura dei test unitari raggiunga almeno l'80% del codice prodotto,
+    con copertura quanto più vicina al 100% nelle sezioni critiche del sistema
+  sources:
+  - text: Interno

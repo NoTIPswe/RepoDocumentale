@@ -1,0 +1,20 @@
+@startuml visualizzazione_dettagli_singolo_alert
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Tenant User" as tenant_usr
+
+rectangle "Sistema Cloud" {
+  usecase "UC95 - Visualizzazione dettagli singolo alert" as UC95
+  usecase "UC114 - Visualizzazione timestamp emissione alert" as UC114
+}
+
+tenant_usr -- UC95
+
+UC95 ..> UC114 : <<include>>
+
+@enduml

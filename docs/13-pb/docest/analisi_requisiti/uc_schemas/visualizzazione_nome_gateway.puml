@@ -1,0 +1,18 @@
+@startuml visualizzazione_nome_gateway
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Tenant User" as tenant_usr
+
+rectangle "Sistema Cloud" {
+  usecase "UC107 - Visualizzazione nome Gateway" as UC107
+}
+
+tenant_usr -- UC107
+
+
+@enduml

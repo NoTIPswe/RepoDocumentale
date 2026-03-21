@@ -1,0 +1,233 @@
+# yaml-language-server: $schema=https://json-schema.org/draft/2020-12/schema
+#
+# Use Case YAML Schema
+# ====================
+#
+# Each .yaml file contains use cases for ONE system (set at file level).
+# Extensions and generalizations are separate first-class use cases in their own files.
+#
+# File naming: {uc_id}.uc.yaml
+# Directory convention: uc/ → cloud (system: cloud), ucs/ → simulator (system: sim).
+#
+# Numbering is automatic: position in the file determines the number.
+# Top-level UCs: UC1, UC2, ... (cloud) or UCS1, UCS2, ... (sim)
+# Subcases (nested): UC1.1, UC1.2, UC1.2.1, ... (depth = nesting level)
+
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "uc.schema.yaml"
+title: "Use Case Definition"
+description: >
+  Schema for YAML-based use case definitions.
+
+type: object
+required: [system, use_cases]
+additionalProperties: false
+properties:
+  system:
+    type: string
+    enum: [cloud, sim]
+    description: >
+      Target system for ALL use cases in this file.
+      Determines numbering prefix and actor registry:
+        cloud → UC prefix  (UC1, UC2...)
+        sim   → UCS prefix (UCS1, UCS2...)
+
+  use_cases:
+    type: array
+    items:
+      $ref: "#/$defs/use_case"
+    minItems: 1
+    description: >
+      List of top-level use cases defined in this file.
+
+$defs:
+  # ---------------------------------------------------------------------------
+  # Use Case
+  # ---------------------------------------------------------------------------
+  # A use case describes a goal-directed interaction between actors and the system.
+  # Subcases are UCs included by ONE and ONLY ONE parent — they are nested
+  # recursively under the parent's `subcases` field.
+  # Extensions and generalizations are NOT subcases — they are first-class UCs
+  # defined at the top level.
+  # ---------------------------------------------------------------------------
+  use_case:
+    type: object
+    required: [id, title, actors, preconditions, postconditions, main_scenario]
+    additionalProperties: false
+    properties:
+      id:
+        type: string
+        pattern: "^[a-z][a-z0-9_]*$"
+        description: >
+          Unique slug identifier across ALL UC files. Convention: snake_case.
+          Examples: "login", "ins_mail", "err_cred_errate".
+
+      title:
+        type: string
+        pattern: "^.*[^.]$"
+        description: >
+          Human-readable title. Do NOT end with a period.
+          Example: "Login", "Inserimento email".
+
+      gen_parent:
+        type: string
+        description: >
+          ID of the parent UC in a generalization hierarchy.
+          Only for top-level UCs that specialize another UC.
+          Example: login_2fa has gen_parent: "login".
+          The inverse relationship (specialized_by) is computed automatically by tooling.
+
+      actors:
+        $ref: "#/$defs/actors"
+
+      preconditions:
+        type: array
+        items:
+          type: string
+          pattern: "^.*[^.]$"
+        minItems: 1
+        description: >
+          List of preconditions. Each string is one precondition.
+          Do NOT end with a period.
+
+      postconditions:
+        type: array
+        items:
+          type: string
+          pattern: "^.*[^.]$"
+        minItems: 1
+        description: >
+          List of postconditions. Each string is one postcondition.
+          Do NOT end with a period.
+
+      trigger:
+        type: string
+        pattern: "^.*[^.]$"
+        description: >
+          Event that triggers this use case. Omit if not applicable.
+          Do NOT end with a period.
+
+      main_scenario:
+        type: array
+        items:
+          $ref: "#/$defs/scenario_step"
+        minItems: 1
+        description: >
+          Ordered list of steps in the main (happy path) scenario.
+
+      extensions:
+        type: array
+        items:
+          $ref: "#/$defs/extension"
+        description: >
+          Alternative scenarios triggered at extension points.
+          Each references an extension_point from main_scenario
+          and a first-class UC defined as a separate top-level entry.
+          Multiple extensions can share the same extension_point.
+
+      subcases:
+        type: array
+        items:
+          $ref: "#/$defs/use_case"
+        description: >
+          Sub use cases included EXCLUSIVELY by this UC (recursive).
+          A subcase is a UC that exists solely as a decomposition of this UC.
+          Referenced via 'include' in main_scenario steps.
+          Subcases inherit the file-level 'system'.
+          Subcases CAN themselves have subcases (arbitrary depth).
+
+  # ---------------------------------------------------------------------------
+  # Actor key (shared enum)
+  # ---------------------------------------------------------------------------
+  actor_key:
+    type: string
+    enum:
+      # Cloud primary actors (CA)
+      - non-authd-usr # Utente Non Autenticato
+      - authd-usr # Utente Autenticato
+      - tenant-usr # Tenant User
+      - tenant-adm # Tenant Admin
+      - sys-adm # Amministratore di Sistema
+      - api-client # Client API
+      - p-gway # Provisioned Gateway
+      - np-gway # Not Provisioned Gateway
+      # Simulator primary actors (SA)
+      - sim-usr # Utente del Simulatore
+      - cloud # Sistema Cloud
+      # Secondary actors (CSA)
+      - auth-server # Auth Server
+
+  # ---------------------------------------------------------------------------
+  # Actors
+  # ---------------------------------------------------------------------------
+  actors:
+    type: object
+    required: [primary]
+    additionalProperties: false
+    properties:
+      primary:
+        type: array
+        items:
+          $ref: "#/$defs/actor_key"
+        minItems: 1
+        description: >
+          Primary actor keys.
+
+      secondary:
+        type: array
+        items:
+          $ref: "#/$defs/actor_key"
+        description: >
+          Secondary actor keys.
+
+  # ---------------------------------------------------------------------------
+  # Scenario Step
+  # ---------------------------------------------------------------------------
+  scenario_step:
+    type: object
+    required: [description]
+    additionalProperties: false
+    properties:
+      description:
+        type: string
+        pattern: "^.*[^.]$"
+        description: >
+          Action description for this step. Do NOT end with a period.
+
+      include:
+        type: string
+        description: >
+          ID of an included UC. Typically references a subcase of this UC,
+          but can also reference an external UC defined elsewhere.
+
+      extension_point:
+        type: string
+        description: >
+          Name of an extension point at this step.
+          Must correspond to at least one entry in the 'extensions' list.
+
+  # ---------------------------------------------------------------------------
+  # Extension (Alternative Scenario)
+  # ---------------------------------------------------------------------------
+  extension:
+    type: object
+    required: [extension_point, condition, uc]
+    additionalProperties: false
+    properties:
+      extension_point:
+        type: string
+        description: >
+          Name matching an extension_point declared in main_scenario.
+
+      condition:
+        type: string
+        pattern: "^.*[^.]$"
+        description: >
+          Guard condition that activates this extension.
+          Do NOT end with a period.
+
+      uc:
+        type: string
+        description: >
+          ID of the extending use case.
+          Must be a first-class UC defined as a separate top-level entry.

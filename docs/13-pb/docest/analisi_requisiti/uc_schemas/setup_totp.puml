@@ -1,0 +1,20 @@
+@startuml setup_totp
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Utente Non Autenticato" as non_authd_usr
+
+rectangle "Sistema Cloud" {
+  usecase "UC85 - Setup TOTP" as UC85
+  usecase "UC47 - Inserimento OTP" as UC47
+}
+
+non_authd_usr -- UC85
+
+UC85 ..> UC47 : <<include>>
+
+@enduml

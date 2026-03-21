@@ -1,0 +1,24 @@
+@startuml visualizzazione_stato_gateway
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Tenant User" as tenant_usr
+
+rectangle "Sistema Cloud" {
+  usecase "UC97 - Visualizzazione Gateway Offline" as UC97
+  usecase "UC98 - Visualizzazione Gateway Online" as UC98
+  usecase "UC99 - Visualizzazione Gateway Sospeso" as UC99
+  usecase "UC110 - Visualizzazione stato Gateway" as UC110
+}
+
+tenant_usr -- UC110
+
+UC110 <|-- UC97
+UC110 <|-- UC98
+UC110 <|-- UC99
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml visualizzazione_lista_tenant
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Amministratore di Sistema" as sys_adm
+
+rectangle "Sistema Cloud" {
+  usecase "UC103 - Visualizzazione lista Tenant" as UC103
+  usecase "UC103.1 - Visualizzazione singolo Tenant" as UC103_1
+  usecase "UC101 - Visualizzazione ID Tenant" as UC101
+  usecase "UC108 - Visualizzazione nome Tenant" as UC108
+  usecase "UC111 - Visualizzazione stato Tenant" as UC111
+}
+
+sys_adm -- UC103
+
+UC103 ..> UC103_1 : <<include>>
+UC103_1 ..> UC108 : <<include>>
+UC103_1 ..> UC111 : <<include>>
+UC103_1 ..> UC101 : <<include>>
+
+@enduml

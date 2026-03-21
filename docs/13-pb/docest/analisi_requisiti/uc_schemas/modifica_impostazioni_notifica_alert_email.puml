@@ -1,0 +1,22 @@
+@startuml modifica_impostazioni_notifica_alert_email
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Tenant User" as tenant_usr
+
+rectangle "Sistema Cloud" {
+  usecase "UC2 - Abilitazione notifica alert via email" as UC2
+  usecase "UC12 - Disabilitazione notifica alert via email" as UC12
+  usecase "UC58 - Modifica impostazioni notifica alert via email" as UC58
+}
+
+tenant_usr -- UC58
+
+UC58 <|-- UC2
+UC58 <|-- UC12
+
+@enduml

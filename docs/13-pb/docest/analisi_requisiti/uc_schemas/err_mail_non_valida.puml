@@ -1,0 +1,18 @@
+@startuml err_mail_non_valida
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Utente Autenticato" as authd_usr
+
+rectangle "Sistema Cloud" {
+  usecase "UC29 - Errore mail non valida" as UC29
+}
+
+authd_usr -- UC29
+
+
+@enduml

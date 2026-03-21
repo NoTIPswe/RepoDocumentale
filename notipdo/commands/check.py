@@ -1,7 +1,7 @@
 import typer
 from pathlib import Path
 from . import defaults
-from lib import docs_checker, pr_checker
+from lib import docs_checker, pr_checker, requirements_data
 
 
 app = typer.Typer(help="Run validation checks on the repository.")
@@ -13,6 +13,7 @@ def check_pr(
     base_branch: str = defaults.BASE_BRANCH,
     formatting: bool = True,
     spelling: bool = True,
+    yaml_data: bool = True,
     merge_ready: bool = False,
 ):
     """
@@ -21,6 +22,17 @@ def check_pr(
     - Verifies that changed documents have advanced their version.
     - If --merge-ready, checks for 'TBD' verifiers.
     """
+
+    if yaml_data and defaults.REQ_DATA_DIR_PATH.exists():
+        errors = requirements_data.validate_data(
+            data_root=defaults.REQ_DATA_DIR_PATH,
+            schemas_root=repo_root_path / ".schemas",
+            order_file=defaults.REQ_DATA_DIR_PATH / "order.yaml",
+        )
+        if errors:
+            for err in errors:
+                typer.echo(f"ERROR: {err}")
+            raise typer.Exit(1)
 
     docs_checker.check_changed_docs(
         repo_root_path=repo_root_path,
@@ -48,12 +60,24 @@ def check_doc(
     hunspell_dir_path: Path = defaults.HUNSPELL_DIR_PATH,
     formatting: bool = True,
     spelling: bool = True,
+    yaml_data: bool = True,
 ):
     """
     Checks doc validity for desired attributes:
     - '--spelling' performs a spellcheck with 'hunspell' (requires doc building).
     - '--formatting' checks .typ files formatting with 'typstyle'.
     """
+    if yaml_data and defaults.REQ_DATA_DIR_PATH.exists():
+        errors = requirements_data.validate_data(
+            data_root=defaults.REQ_DATA_DIR_PATH,
+            schemas_root=defaults.REPO_ROOT_PATH / ".schemas",
+            order_file=defaults.REQ_DATA_DIR_PATH / "order.yaml",
+        )
+        if errors:
+            for err in errors:
+                typer.echo(f"ERROR: {err}")
+            raise typer.Exit(1)
+
     docs_checker.check_doc(
         doc_dir_path=doc_dir_path,
         meta_schema_path=meta_schema_path,
@@ -70,10 +94,22 @@ def check_docs(
     hunspell_dir_path: Path = defaults.HUNSPELL_DIR_PATH,
     formatting: bool = True,
     spelling: bool = True,
+    yaml_data: bool = True,
 ):
     """
     Like 'check-doc' but checks all docs.
     """
+    if yaml_data and defaults.REQ_DATA_DIR_PATH.exists():
+        errors = requirements_data.validate_data(
+            data_root=defaults.REQ_DATA_DIR_PATH,
+            schemas_root=defaults.REPO_ROOT_PATH / ".schemas",
+            order_file=defaults.REQ_DATA_DIR_PATH / "order.yaml",
+        )
+        if errors:
+            for err in errors:
+                typer.echo(f"ERROR: {err}")
+            raise typer.Exit(1)
+
     docs_checker.check_all_docs(
         docs_dir_path=docs_dir_path,
         meta_schema_path=meta_schema_path,
@@ -90,10 +126,22 @@ def changed_docs(
     hunspell_dir_path: Path = defaults.HUNSPELL_DIR_PATH,
     formatting: bool = True,
     spelling: bool = True,
+    yaml_data: bool = True,
 ):
     """
     Like 'check-doc' but checks only docs that changed against 'base-revision'.
     """
+    if yaml_data and defaults.REQ_DATA_DIR_PATH.exists():
+        errors = requirements_data.validate_data(
+            data_root=defaults.REQ_DATA_DIR_PATH,
+            schemas_root=defaults.REPO_ROOT_PATH / ".schemas",
+            order_file=defaults.REQ_DATA_DIR_PATH / "order.yaml",
+        )
+        if errors:
+            for err in errors:
+                typer.echo(f"ERROR: {err}")
+            raise typer.Exit(1)
+
     docs_checker.check_changed_docs(
         repo_root_path,
         defaults.DOCS_DIR_PATH,
@@ -112,10 +160,22 @@ def baseline_docs(
     hunspell_dir_path: Path = defaults.HUNSPELL_DIR_PATH,
     formatting: bool = True,
     spelling: bool = True,
+    yaml_data: bool = True,
 ):
     """
     Like 'check-doc' but checks only the docs of the latest baseline.
     """
+    if yaml_data and defaults.REQ_DATA_DIR_PATH.exists():
+        errors = requirements_data.validate_data(
+            data_root=defaults.REQ_DATA_DIR_PATH,
+            schemas_root=defaults.REPO_ROOT_PATH / ".schemas",
+            order_file=defaults.REQ_DATA_DIR_PATH / "order.yaml",
+        )
+        if errors:
+            for err in errors:
+                typer.echo(f"ERROR: {err}")
+            raise typer.Exit(1)
+
     docs_checker.check_baseline_docs(
         docs_dir_path=docs_dir_path,
         meta_schema_path=meta_schema_path,

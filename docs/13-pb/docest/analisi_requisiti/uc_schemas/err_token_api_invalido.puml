@@ -1,0 +1,18 @@
+@startuml err_token_api_invalido
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Client API" as api_client
+
+rectangle "Sistema Cloud" {
+  usecase "UC34 - Errore token autenticazione API invalido" as UC34
+}
+
+api_client -- UC34
+
+
+@enduml

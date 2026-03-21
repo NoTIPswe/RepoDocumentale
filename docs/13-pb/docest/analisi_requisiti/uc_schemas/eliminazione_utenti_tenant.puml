@@ -1,0 +1,20 @@
+@startuml eliminazione_utenti_tenant
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Tenant Admin" as tenant_adm
+
+rectangle "Sistema Cloud" {
+  usecase "UC15 - Eliminazione Utenti del Tenant" as UC15
+  usecase "UC15.1 - Selezione lista utenti" as UC15_1
+}
+
+tenant_adm -- UC15
+
+UC15 ..> UC15_1 : <<include>>
+
+@enduml

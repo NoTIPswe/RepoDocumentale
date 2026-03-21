@@ -1,0 +1,83 @@
+# yaml-language-server: $schema=https://json-schema.org/draft/2020-12/schema
+#
+# Test YAML Schema
+# ================
+#
+# Each file contains tests of ONE type (set at file level).
+# One file per type:
+#   unit.test.yaml        → T-U-{n}
+#   integration.test.yaml → T-I-{n}
+#   system.test.yaml      → T-S-{n}
+#
+# Numbering is automatic: position in the array determines the number.
+#
+# Each test traces to one or more requirements via their IDs.
+
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "test.schema.yaml"
+title: "Test Definition"
+description: >
+  Schema for YAML-based test definitions with automatic numbering
+  and traceability to requirements.
+
+type: object
+required: [type, tests]
+additionalProperties: false
+properties:
+  type:
+    type: string
+    enum: [unit, integration, system]
+    description: >
+      Test type for ALL entries in this file.
+      Determines numbering prefix:
+        unit        → T-U-{n}
+        integration → T-I-{n}
+        system      → T-S-{n}
+
+  tests:
+    type: array
+    items:
+      $ref: "#/$defs/test"
+    minItems: 1
+    description: >
+      List of tests. Order determines the auto-assigned number.
+
+$defs:
+  # ---------------------------------------------------------------------------
+  # Test
+  # ---------------------------------------------------------------------------
+  test:
+    type: object
+    required: [id, description, requirements]
+    additionalProperties: false
+    properties:
+      id:
+        type: string
+        pattern: "^[a-z][a-z0-9_]*$"
+        description: >
+          Unique slug identifier for cross-referencing.
+          Convention: snake_case, e.g. "validazione_email_login".
+
+      description:
+        type: string
+        description: >
+          What this test verifies.
+
+      requirements:
+        type: array
+        items:
+          type: string
+        minItems: 1
+        description: >
+          Requirement IDs this test covers (traceability).
+          Each string must match an 'id' in a requirement YAML file.
+
+      status:
+        type: string
+        enum: [not_implemented, passed, failed]
+        default: not_implemented
+        description: >
+          Current execution status:
+            not_implemented → NI  (not yet implemented/executed)
+            passed          → S   (superato)
+            failed          → NS  (non superato)

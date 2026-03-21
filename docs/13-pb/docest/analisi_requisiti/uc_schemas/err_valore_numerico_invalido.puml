@@ -1,0 +1,18 @@
+@startuml err_valore_numerico_invalido
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Utente del Simulatore" as sim_usr
+
+rectangle "Simulatore Gateway" {
+  usecase "UCS14 - Errore valore numerico invalido" as UCS14
+}
+
+sim_usr -- UCS14
+
+
+@enduml

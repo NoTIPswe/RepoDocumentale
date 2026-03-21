@@ -1,0 +1,14 @@
+uc:
+- all.uc.yaml
+ucs:
+- all.uc.yaml
+req:
+- functional.req.yaml
+- functional_sim.req.yaml
+- quality.req.yaml
+- constraint.req.yaml
+- security.req.yaml
+test:
+- unit.test.yaml
+- integration.test.yaml
+- system.test.yaml

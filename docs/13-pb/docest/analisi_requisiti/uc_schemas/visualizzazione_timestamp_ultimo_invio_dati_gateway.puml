@@ -1,0 +1,18 @@
+@startuml visualizzazione_timestamp_ultimo_invio_dati_gateway
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Tenant User" as tenant_usr
+
+rectangle "Sistema Cloud" {
+  usecase "UC115 - Visualizzazione timestamp ultimo invio dati Gateway" as UC115
+}
+
+tenant_usr -- UC115
+
+
+@enduml

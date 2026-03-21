@@ -1,0 +1,20 @@
+@startuml modifica_mail_account
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Utente Autenticato" as authd_usr
+
+rectangle "Sistema Cloud" {
+  usecase "UC61 - Modifica mail account" as UC61
+  usecase "UC44 - Impostazione mail" as UC44
+}
+
+authd_usr -- UC61
+
+UC61 ..> UC44 : <<include>>
+
+@enduml

@@ -1,0 +1,18 @@
+@startuml eliminazione_gateway_simulato
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Utente del Simulatore" as sim_usr
+
+rectangle "Simulatore Gateway" {
+  usecase "UCS7 - Eliminazione Gateway simulato" as UCS7
+}
+
+sim_usr -- UCS7
+
+
+@enduml

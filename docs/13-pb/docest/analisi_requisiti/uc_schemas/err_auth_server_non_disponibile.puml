@@ -1,0 +1,20 @@
+@startuml err_auth_server_non_disponibile
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Client API" as api_client
+actor "Auth Server" as auth_server
+
+rectangle "Sistema Cloud" {
+  usecase "UC19 - Errore Auth Server non disponibile" as UC19
+}
+
+api_client -- UC19
+auth_server -- UC19
+
+
+@enduml

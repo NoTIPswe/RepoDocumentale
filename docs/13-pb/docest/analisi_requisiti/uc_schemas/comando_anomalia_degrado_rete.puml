@@ -1,0 +1,24 @@
+@startuml comando_anomalia_degrado_rete
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Utente del Simulatore" as sim_usr
+
+rectangle "Simulatore Gateway" {
+  usecase "UCS1 - Comando anomalia Gateway - degrado rete" as UCS1
+  usecase "UCS14 - Errore valore numerico invalido" as UCS14
+}
+
+sim_usr -- UCS1
+
+UCS14 ..> UCS1 : <<extend>>
+note on link
+  Extension Point: ValoreNumericoInvalido
+  Condition: È stato inserito un valore numerico non valido
+end note
+
+@enduml

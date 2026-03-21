@@ -1,0 +1,67 @@
+type: integration
+tests:
+- id: t_i_1
+  description: Verificare la corretta ricezione e validazione dei pacchetti JSON inviati dal Simulatore
+    al Cloud Ingestion Service
+  requirements:
+  - invio_dati_crittografati_cloud
+  status: not_implemented
+- id: t_i_2
+  description: 'Verificare il flusso di controllo bidirezionale: invio e corretta applicazione dei comandi
+    di configurazione dal Cloud al Simulatore'
+  requirements:
+  - impostazione_configurazione_gateway
+  status: not_implemented
+- id: t_i_3
+  description: Verificare la gestione del buffer locale del Simulatore e della successiva integrazione
+    con il Cloud dopo un ripristino di rete
+  requirements:
+  - comando_anomalia_disconnessione_temporanea
+  status: not_implemented
+- id: t_i_4
+  description: Verificare la persistenza dei dati nel database e dell’isolamento dei dati per ciascun
+    Tenant
+  requirements:
+  - invio_dati_crittografati_cloud
+  - sicurezza_segregazione_tenant
+  status: not_implemented
+- id: t_i_5
+  description: Verificare l’attivazione dei trigger di allerta tra il modulo di analisi dati e il servizio
+    notifiche al superamento delle soglie
+  requirements:
+  - alert_sensore_fuori_range
+  status: not_implemented
+- id: t_i_6
+  description: Verificare l’integrazione del Sistema di autenticazione (JWT) tra l’API Gateway e i microservizi
+    interni
+  requirements:
+  - sicurezza_autenticazione_accessi
+  status: not_implemented
+- id: t_i_7
+  description: Verificare la gestione degli errori di configurazione del Gateway simulato in caso di payload
+    invalido o frequenza fuori range
+  requirements:
+  - err_sintattico_config_gateway
+  - err_config_frequenza_fuori_range
+  status: not_implemented
+- id: t_i_8
+  description: Verificare la propagazione e gestione di misure anomale (outlier) dal Simulatore al Cloud
+  requirements:
+  - comando_anomalia_outliers_misurazioni
+  status: not_implemented
+- id: t_i_9
+  description: Verificare l’integrazione del Sistema con più Gateway simulati attivi in parallelo
+  requirements:
+  - creazione_gateway_multipli_default
+  status: not_implemented
+- id: t_i_10
+  description: Verificare che i dati scambiati tra le diverse componenti del Sistema distribuito siano
+    cifrati e trasmessi tramite protocollo TLS
+  requirements:
+  - sicurezza_cifratura_dati
+  status: not_implemented
+- id: t_i_11
+  description: Verificare l’isolamento dei dati tra Tenant tramite API e persistenza su database
+  requirements:
+  - sicurezza_segregazione_tenant
+  status: not_implemented

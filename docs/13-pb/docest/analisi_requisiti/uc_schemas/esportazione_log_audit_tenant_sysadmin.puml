@@ -1,0 +1,29 @@
+@startuml esportazione_log_audit_tenant_sysadmin
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Amministratore di Sistema" as sys_adm
+actor "Tenant Admin" as tenant_adm
+
+rectangle "Sistema Cloud" {
+  usecase "UC38.1.2 - Download log Audit esportati" as UC38_1_2
+  usecase "UC38.1 - Esportazione log di Audit del Tenant" as UC38_1
+  usecase "UC38 - Esportazione log di Audit di un Tenant" as UC38
+  usecase "UC38.1.1 - Selezione intervallo temporale" as UC38_1_1
+  usecase "UC82 - Selezione Tenant" as UC82
+}
+
+sys_adm -- UC38
+tenant_adm -- UC38
+
+UC38_1 ..> UC82 : <<include>>
+UC38_1 ..> UC38_1_1 : <<include>>
+UC38_1 ..> UC38_1_2 : <<include>>
+UC38 ..> UC82 : <<include>>
+UC38 ..> UC38_1 : <<include>>
+
+@enduml

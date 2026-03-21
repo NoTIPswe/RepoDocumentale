@@ -1,0 +1,18 @@
+@startuml err_account_inesistente
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Utente Non Autenticato" as non_authd_usr
+
+rectangle "Sistema Cloud" {
+  usecase "UC16 - Errore account non esistente" as UC16
+}
+
+non_authd_usr -- UC16
+
+
+@enduml

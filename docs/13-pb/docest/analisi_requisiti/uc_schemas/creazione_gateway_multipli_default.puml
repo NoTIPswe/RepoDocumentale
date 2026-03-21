@@ -1,0 +1,30 @@
+@startuml creazione_gateway_multipli_default
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Utente del Simulatore" as sim_usr
+
+rectangle "Simulatore Gateway" {
+  usecase "UCS5 - Creazione Gateway multipli con configurazione di default" as UCS5
+  usecase "UCS14 - Errore valore numerico invalido" as UCS14
+  usecase "UCS11 - Errore Deploy Gateway simulato" as UCS11
+}
+
+sim_usr -- UCS5
+
+UCS14 ..> UCS5 : <<extend>>
+note on link
+  Extension Point: ValoreNumericoInvalido
+  Condition: È stato inserito un valore numerico non valido
+end note
+UCS11 ..> UCS5 : <<extend>>
+note on link
+  Extension Point: ErroreDeploy
+  Condition: Errore di sistema nella creazione delle istanze
+end note
+
+@enduml

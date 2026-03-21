@@ -14,3 +14,8 @@ FONTS_DIR_PATH = Path("docs/00-common_assets/fonts")
 META_SCHEMA_PATH = Path(".schemas/meta.schema.json")
 
 BASE_BRANCH = "origin/main"
+
+REQ_DATA_DIR_PATH = Path("docs/13-pb/01-requirements")
+ANALISI_REQ_DIR_PATH = Path("docs/13-pb/docest/analisi_requisiti")
+PIANO_QUALIFICA_DIR_PATH = Path("docs/13-pb/docest/piano_qualifica")
+UC_SCHEMAS_OUTPUT_DIR_PATH = ANALISI_REQ_DIR_PATH / "uc_schemas"

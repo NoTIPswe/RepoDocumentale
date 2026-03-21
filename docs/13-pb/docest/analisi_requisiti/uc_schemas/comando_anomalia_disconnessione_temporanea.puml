@@ -1,0 +1,24 @@
+@startuml comando_anomalia_disconnessione_temporanea
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Utente del Simulatore" as sim_usr
+
+rectangle "Simulatore Gateway" {
+  usecase "UCS2 - Comando anomalia Gateway - disconnessione temporanea" as UCS2
+  usecase "UCS14 - Errore valore numerico invalido" as UCS14
+}
+
+sim_usr -- UCS2
+
+UCS14 ..> UCS2 : <<extend>>
+note on link
+  Extension Point: ValoreNumericoInvalido
+  Condition: È stato inserito un valore numerico non valido
+end note
+
+@enduml

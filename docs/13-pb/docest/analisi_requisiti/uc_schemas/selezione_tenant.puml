@@ -1,0 +1,18 @@
+@startuml selezione_tenant
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Amministratore di Sistema" as sys_adm
+
+rectangle "Sistema Cloud" {
+  usecase "UC82 - Selezione Tenant" as UC82
+}
+
+sys_adm -- UC82
+
+
+@enduml
