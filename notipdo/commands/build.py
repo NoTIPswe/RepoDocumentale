@@ -65,6 +65,24 @@ def _run_yaml_prebuild_pipeline(clean: bool = False) -> None:
     typer.echo("[prebuild] YAML prebuild completed.")
 
 
+def _run_yaml_postbuild_cleanup(enabled: bool = False) -> None:
+    if not enabled:
+        return
+
+    data_root = defaults.REQ_DATA_DIR_PATH
+    if not data_root.exists():
+        return
+
+    typer.echo("[postbuild] Cleaning YAML-generated artifacts...")
+    removed = requirements_data.clean_generated_outputs(
+        data_root=data_root,
+        analisi_dir=defaults.ANALISI_REQ_DIR_PATH,
+        pq_dir=defaults.PIANO_QUALIFICA_DIR_PATH,
+        diagrams_dir=defaults.UC_SCHEMAS_OUTPUT_DIR_PATH,
+    )
+    typer.echo(f"[postbuild] Removed {len(removed)} generated artifacts")
+
+
 @app.command("all")
 def build_all(
     docs_dir_path: Path = defaults.DOCS_DIR_PATH,
@@ -76,10 +94,20 @@ def build_all(
         "--clean",
         help="Clean YAML-generated Typst/diagram artifacts before prebuild generation.",
     ),
+    ephemeral_generated: bool = typer.Option(
+        True,
+        "--ephemeral-generated/--keep-generated",
+        help="If enabled, remove YAML-generated Typst/diagram artifacts after build.",
+    ),
 ):
     """Builds all documents."""
     _run_yaml_prebuild_pipeline(clean=clean)
-    builder.build_all(docs_dir_path, output_dir_path, meta_schema_path, fonts_dir_path)
+    try:
+        builder.build_all(
+            docs_dir_path, output_dir_path, meta_schema_path, fonts_dir_path
+        )
+    finally:
+        _run_yaml_postbuild_cleanup(enabled=ephemeral_generated)
 
 
 @app.command("baseline")
@@ -93,12 +121,20 @@ def build_baseline(
         "--clean",
         help="Clean YAML-generated Typst/diagram artifacts before prebuild generation.",
     ),
+    ephemeral_generated: bool = typer.Option(
+        True,
+        "--ephemeral-generated/--keep-generated",
+        help="If enabled, remove YAML-generated Typst/diagram artifacts after build.",
+    ),
 ):
     """Builds all the docs of the latest baseline."""
     _run_yaml_prebuild_pipeline(clean=clean)
-    builder.build_baseline(
-        docs_dir_path, output_dir_path, meta_schema_path, fonts_dir_path
-    )
+    try:
+        builder.build_baseline(
+            docs_dir_path, output_dir_path, meta_schema_path, fonts_dir_path
+        )
+    finally:
+        _run_yaml_postbuild_cleanup(enabled=ephemeral_generated)
 
 
 @app.command("doc")
@@ -112,10 +148,20 @@ def build_doc(
         "--clean",
         help="Clean YAML-generated Typst/diagram artifacts before prebuild generation.",
     ),
+    ephemeral_generated: bool = typer.Option(
+        True,
+        "--ephemeral-generated/--keep-generated",
+        help="If enabled, remove YAML-generated Typst/diagram artifacts after build.",
+    ),
 ):
     """Builds a specific document."""
     _run_yaml_prebuild_pipeline(clean=clean)
-    builder.build_doc(doc_dir_path, output_dir_path, meta_schema_path, fonts_dir_path)
+    try:
+        builder.build_doc(
+            doc_dir_path, output_dir_path, meta_schema_path, fonts_dir_path
+        )
+    finally:
+        _run_yaml_postbuild_cleanup(enabled=ephemeral_generated)
 
 
 @app.command("changes")
@@ -128,14 +174,22 @@ def build_changes(
         "--clean",
         help="Clean YAML-generated Typst/diagram artifacts before prebuild generation.",
     ),
+    ephemeral_generated: bool = typer.Option(
+        True,
+        "--ephemeral-generated/--keep-generated",
+        help="If enabled, remove YAML-generated Typst/diagram artifacts after build.",
+    ),
 ):
     """Builds docs that changed against some base revision."""
     _run_yaml_prebuild_pipeline(clean=clean)
-    builder.build_changes(
-        repo_root_path,
-        defaults.DOCS_DIR_PATH,
-        defaults.META_SCHEMA_PATH,
-        defaults.FONTS_DIR_PATH,
-        base_revision,
-        output_dir_path,
-    )
+    try:
+        builder.build_changes(
+            repo_root_path,
+            defaults.DOCS_DIR_PATH,
+            defaults.META_SCHEMA_PATH,
+            defaults.FONTS_DIR_PATH,
+            base_revision,
+            output_dir_path,
+        )
+    finally:
+        _run_yaml_postbuild_cleanup(enabled=ephemeral_generated)

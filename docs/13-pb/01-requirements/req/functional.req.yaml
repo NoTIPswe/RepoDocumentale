@@ -107,20 +107,20 @@ requirements:
   description: Il Sistema deve permettere all'utente autenticato di poter eseguire il logout dal Sistema
   sources:
   - uc: logout
-- id: lista_gateway
+- id: visualizzazione_lista_gateway_tenant
   priority: mandatory
   description: Il Sistema deve permettere al Tenant User di visualizzare i Gateway appartenenti al proprio
     Tenant
   sources:
-  - uc: lista_gateway
-- id: visualizzazione_singolo_gateway
+  - uc: visualizzazione_lista_gateway_tenant
+- id: visualizzazione_singolo_gateway_tenant
   priority: mandatory
   description: Il Sistema deve permettere al Tenant User di visualizzare un singolo Gateway nella lista,
     in particolare il nome e lo stato
   sources:
-  - uc: visualizzazione_singolo_gateway
-  - uc: visualizzazione_nome_gateway
-  - uc: visualizzazione_stato_gateway
+  - uc: visualizzazione_singolo_gateway_tenant
+  - uc: visualizzazione_nome_gateway_tenant
+  - uc: visualizzazione_stato_gateway_tenant
 - id: visualizzazione_dettagli_gateway
   priority: mandatory
   description: Il Sistema deve permettere al Tenant User di visualizzare ultimo timestamp dati inviati
@@ -695,3 +695,19 @@ requirements:
     mail per autenticarsi
   sources:
   - uc: ins_mail
+- id: visualizzazione_lista_gateway_sistema
+  priority: mandatory
+  description: Il Sistema deve permettere all'Amministratore di Sistema di poter visualizzare la lista
+    di Gateway conosciuti dal Sistema
+  sources:
+  - uc: visualizzazione_lista_gateway_sistema
+- id: visualizzazione_singolo_gateway_sistema
+  priority: mandatory
+  description: Il Sistema deve permettere all'Amministratore di Sistema di poter visualizzare un singolo
+    Gateway conosciuto dal Sistema, in particolare l'ID di fabbrica e l'ID del Tenant a cui è associato
+  sources:
+  - uc: visualizzazione_singolo_gateway_sistema
+  - uc: visualizzazione_id_fabbrica_gateway_sistema
+  - uc: visualizzazione_id_tenant_gateway
+  - uc: visualizzazione_id_tenant_gateway_nd
+  - uc: visualizzazione_id_tenant_gateway_provisionato

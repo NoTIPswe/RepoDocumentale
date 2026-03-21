@@ -86,13 +86,13 @@ tests:
   description: Verificare che un utente autenticato possa visualizzare la lista dei Gateway associati
     al proprio Tenant
   requirements:
-  - lista_gateway
+  - visualizzazione_lista_gateway_tenant
   status: not_implemented
 - id: t_s_015
   description: Verificare che il sistema mostri correttamente nome, stato, timestamp dell’ultimo invio
     dati e lista sensori di un Gateway selezionato
   requirements:
-  - visualizzazione_singolo_gateway
+  - visualizzazione_singolo_gateway_tenant
   - visualizzazione_dettagli_gateway
   status: not_implemented
 - id: t_s_016

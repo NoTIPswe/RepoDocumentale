@@ -13,3 +13,13 @@ node_modules
 **/build
 
 venv
+
+# YAML pipeline generated artifacts (created at build time)
+docs/13-pb/docest/analisi_requisiti/generated/_yaml_*.typ
+docs/13-pb/docest/piano_qualifica/generated/_yaml_*.typ
+docs/13-pb/docest/analisi_requisiti/uc_schemas/*.puml
+docs/13-pb/docest/analisi_requisiti/uc_schemas/*.png
+!docs/13-pb/docest/analisi_requisiti/uc_schemas/attori_cloud.png
+!docs/13-pb/docest/analisi_requisiti/uc_schemas/attori_sim.png
+docs/13-pb/01-requirements/req/_req_codes.generated.json
+docs/13-pb/01-requirements/req/_legacy_req_codes.generated.json

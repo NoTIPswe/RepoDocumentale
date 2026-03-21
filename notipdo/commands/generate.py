@@ -65,6 +65,24 @@ def _run_yaml_prebuild_pipeline(clean: bool = False) -> None:
     typer.echo("[prebuild] YAML prebuild completed.")
 
 
+def _run_yaml_postbuild_cleanup(enabled: bool = False) -> None:
+    if not enabled:
+        return
+
+    data_root = defaults.REQ_DATA_DIR_PATH
+    if not data_root.exists():
+        return
+
+    typer.echo("[postbuild] Cleaning YAML-generated artifacts...")
+    removed = requirements_data.clean_generated_outputs(
+        data_root=data_root,
+        analisi_dir=defaults.ANALISI_REQ_DIR_PATH,
+        pq_dir=defaults.PIANO_QUALIFICA_DIR_PATH,
+        diagrams_dir=defaults.UC_SCHEMAS_OUTPUT_DIR_PATH,
+    )
+    typer.echo(f"[postbuild] Removed {len(removed)} generated artifacts")
+
+
 @app.command("site")
 def site(
     site_dir_path: Path = defaults.SITE_DIR_PATH,
@@ -77,16 +95,24 @@ def site(
         "--clean",
         help="Clean YAML-generated Typst/diagram artifacts before prebuild generation.",
     ),
+    ephemeral_generated: bool = typer.Option(
+        True,
+        "--ephemeral-generated/--keep-generated",
+        help="If enabled, remove YAML-generated Typst/diagram artifacts after site generation.",
+    ),
 ):
     """Builds all docs and statically generates the site."""
 
     _run_yaml_prebuild_pipeline(clean=clean)
 
-    site_generator.generate_site(
-        site_dir_path=site_dir_path,
-        docs_dir_path=docs_dir_path,
-        fonts_dir_path=fonts_dir_path,
-        site_output_dir_path=output_dir_path,
-        docs_output_dir_path=output_dir_path / defaults.DOCS_OUTPUT_DIR_NAME,
-        meta_schema_path=meta_schema_path,
-    )
+    try:
+        site_generator.generate_site(
+            site_dir_path=site_dir_path,
+            docs_dir_path=docs_dir_path,
+            fonts_dir_path=fonts_dir_path,
+            site_output_dir_path=output_dir_path,
+            docs_output_dir_path=output_dir_path / defaults.DOCS_OUTPUT_DIR_NAME,
+            meta_schema_path=meta_schema_path,
+        )
+    finally:
+        _run_yaml_postbuild_cleanup(enabled=ephemeral_generated)

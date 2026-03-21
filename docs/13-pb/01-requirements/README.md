@@ -32,6 +32,10 @@ Tutti i file Typst di supporto generati, le tabelle di tracciabilita e i diagram
 - `docs/13-pb/docest/analisi_requisiti/uc_schemas/`
 - il nome file usa l'id UC normalizzato (per esempio `visualizzazione_dettagli_tenant.puml`/`.png`)
 - la didascalia nei documenti e generata automaticamente come `Diagramma <UC-number> <Title>`
+6. Con i comandi `notipdo build`, `notipdo check ... --yaml-data` e `notipdo generate site`, questi artefatti generati sono temporanei per default:
+- vengono creati in prebuild
+- vengono rimossi automaticamente a fine comando
+- per mantenerli su disco usare `--keep-generated`
 
 Durante la migrazione, i casi d'uso vengono mantenuti nell'ordine di discovery e scritti in un unico file per sistema (`uc/all.uc.yaml` e `ucs/all.uc.yaml`).
 
@@ -82,19 +86,19 @@ Esegue migrazione + validazione + generazione indici + generazione diagrammi in 
 ## Workflow tipico
 
 1. Modifica i dati YAML in `uc/`, `ucs/`, `req/`, `test/`.
-2. Esegui `./env/bin/notipdo data validate`.
-3. Esegui `./env/bin/notipdo data index`.
-4. Opzionalmente esegui `./env/bin/notipdo data diagrams --render-png`.
-5. Compila i documenti con il normale flusso `notipdo build`.
+2. Esegui `./env/bin/notipdo build baseline` (o un altro comando `build`) per validare, generare artefatti e compilare i documenti.
+3. Opzionalmente usa `--keep-generated` se vuoi ispezionare i file generati.
+4. Usa i comandi `data ...` solo quando vuoi eseguire singoli step manuali (migrazione, sola validazione, sola generazione indici/diagrammi).
 
 Controllo completo consigliato:
 
 ```bash
-./env/bin/notipdo data validate && ./env/bin/notipdo data index && ./env/bin/notipdo build baseline
+./env/bin/notipdo build baseline
 ```
 
 ## Note
 
 - Mantieni stabili gli ID (i campi `id` sono chiavi di riferimento incrociato).
 - Mantieni aggiornato `order.yaml` quando aggiungi o rinomini file.
-- I file generati in `docs/13-pb/docest/**/generated/` non vanno modificati manualmente.
+- I file generati in `docs/13-pb/docest/**/generated/` e `docs/13-pb/docest/analisi_requisiti/uc_schemas/` non vanno modificati manualmente.
+- Se compili Typst fuori da `notipdo`, prima devi generare manualmente gli artefatti con `notipdo data index` e `notipdo data diagrams --render-png`.
