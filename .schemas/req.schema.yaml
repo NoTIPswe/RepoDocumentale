@@ -1,0 +1,130 @@
+# yaml-language-server: $schema=https://json-schema.org/draft/2020-12/schema
+#
+# Requirement YAML Schema
+# =======================
+#
+# Each file contains requirements of ONE type (set at file level).
+# One file per type:
+#   functional.req.yaml      → R-{n}-F
+#   functional_sim.req.yaml  → R-S-{n}-F
+#   quality.req.yaml         → R-{n}-Q
+#   constraint.req.yaml      → R-{n}-V
+#   security.req.yaml        → R-{n}-S
+#
+# Numbering is automatic: position in the array determines the number.
+#
+# Each requirement traces back to its sources: use cases, capitolato
+# sections, internal documents, or other artifacts.
+
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "req.schema.yaml"
+title: "Requirement Definition"
+description: >
+  Schema for YAML-based requirement definitions with automatic numbering
+  and traceability to use cases and other sources.
+
+type: object
+required: [type, requirements]
+additionalProperties: false
+properties:
+  type:
+    type: string
+    enum: [functional_cloud, functional_sim, quality, constraint, security]
+    description: >
+      Requirement type for ALL entries in this file.
+      Determines numbering prefix:
+        functional_cloud → R-{n}-F     (cloud functional)
+        functional_sim   → R-S-{n}-F   (simulator functional)
+        quality          → R-{n}-Q
+        constraint       → R-{n}-V     (vincolo)
+        security         → R-{n}-S
+
+  requirements:
+    type: array
+    items:
+      $ref: "#/$defs/requirement"
+    minItems: 1
+    description: >
+      List of requirements. Order determines the auto-assigned number
+      within the file-level type counter.
+
+$defs:
+  # ---------------------------------------------------------------------------
+  # Requirement
+  # ---------------------------------------------------------------------------
+  requirement:
+    type: object
+    required: [id, priority, description]
+    additionalProperties: false
+    properties:
+      id:
+        type: string
+        pattern: "^[a-z][a-z0-9_]*$"
+        description: >
+          Unique slug identifier for cross-referencing.
+          Convention: snake_case, e.g. "login", "qualita_documentazione".
+
+      priority:
+        type: string
+        enum: [mandatory, desirable, optional]
+        description: >
+          Requirement priority:
+            mandatory   → Obbligatorio
+            desirable   → Desiderabile
+            optional    → Opzionale
+
+      description:
+        type: string
+        pattern: "^.*[^.]$"
+        description: >
+          Full requirement description text.
+          Do NOT end with a period.
+
+      sources:
+        type: array
+        items:
+          $ref: "#/$defs/source"
+        description: >
+          Traceability sources. Links this requirement to use cases,
+          capitolato sections, internal documents, or other artifacts.
+
+  # ---------------------------------------------------------------------------
+  # Source (traceability reference)
+  # ---------------------------------------------------------------------------
+  # A source is either a use case reference or a textual reference.
+  # Use the `uc` field for use case IDs, or `text` (+optional `url`) for
+  # external/internal document references.
+  #
+  # Examples:
+  #   - uc: login                                        # UC reference
+  #   - uc: visualizzazione_singolo_gateway              # UC reference
+  #   - text: "Capitolato C7, Sez. Documentazione"       # external ref
+  #     url: "https://example.com/capitolato.pdf"
+  #   - text: "Interno"                                  # internal ref
+  # ---------------------------------------------------------------------------
+  source:
+    type: object
+    oneOf:
+      - type: object
+        required: [uc]
+        additionalProperties: false
+        properties:
+          uc:
+            type: string
+            description: >
+              Use case ID reference. Must match an 'id' in a UC YAML file.
+      - type: object
+        required: [text]
+        additionalProperties: false
+        properties:
+          text:
+            type: string
+            pattern: "^.*[^.]$"
+            description: >
+              Source description for external or internal references.
+              Do NOT end with a period.
+          url:
+            type: string
+            format: uri
+            description: >
+              Optional URL for external document sources.

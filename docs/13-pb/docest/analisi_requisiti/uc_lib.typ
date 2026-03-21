@@ -26,7 +26,7 @@
 )
 
 // Render UC tag
-#let tag-uc(uc-id) = context {
+#let tag_uc(uc-id) = context {
   let lbl = label("UC:" + uc-id)
   let results = query(lbl)
   if results.len() == 0 {
@@ -37,7 +37,7 @@
   }
 }
 
-#let tag-uc-num(uc-id) = context {
+#let tag_uc_num(uc-id) = context {
   let lbl = label("UC:" + uc-id)
   let results = query(lbl)
   if results.len() == 0 {
@@ -50,6 +50,10 @@
 
 #let uc-counter = counter("uc")
 #let ucs-counter = counter("ucs")
+
+#let _diagram-id(raw-id) = {
+  str(raw-id).replace(regex("[^a-z0-9]+"), "_")
+}
 
 
 /*
@@ -102,8 +106,8 @@
  * - preconds: (string | array) Lista delle precondizioni. Verranno renderizzate come elenco puntato.
  * - postconds: (string | array) Lista delle postcondizioni. Verranno renderizzate come elenco puntato.
  * - trigger: (string | content) [Opzionale] L'evento che innesca il caso d'uso.
- * - uml-descr: (string) [Opzionale] Didascalia del diagramma UML. Se fornita, inserisce automaticamente
- *   l'immagine "uc_schemas/{UCn}.png" prima della tabella, senza bisogno di hardcodare il numero.
+ * - il diagramma UML viene incluso automaticamente per i casi d'uso di livello 1,
+ *   usando l'immagine "uc_schemas/{id_normalized}.png" e una didascalia generata automaticamente.
  *
  * - main-scen: (array di dizionari) Lo scenario principale. Ogni elemento è un passo:
  * (
@@ -134,7 +138,6 @@
   trigger: none,
   show-trigger: false,
   specialized-by: none,
-  uml-descr: none,
   ..args,
 ) = {
   let body = args.pos().at(0, default: none)
@@ -156,21 +159,14 @@
 
       let anchor = if id != none { label("UC:" + id) } else { none }
 
-      let inclusions = main-scen
-        .map(step => step.at("inc", default: none))
-        .filter(inc => inc != none)
-        .map(inc => tag-uc(inc))
-
-      let extensions = alt-scen.map(alt => alt.uc).map(alt => tag-uc(alt))
-
       [
         #heading(title, level: 2 + level, numbering: (..nums) => uc-num-str + ".") #anchor
       ]
 
-      if uml-descr != none {
+      if level == 1 and gen-parent == none {
         figure(
-          image("uc_schemas/" + uc-num-str + ".png", width: 90%),
-          caption: uml-descr,
+          image("uc_schemas/" + _diagram-id(id) + ".png", width: 90%),
+          caption: "Diagramma " + uc-num-str + " " + title,
         )
       }
 
@@ -192,7 +188,7 @@
         ..if gen-parent != none {
           (
             [*Generalizza*],
-            [#tag-uc(gen-parent)],
+            [#tag_uc(gen-parent)],
           )
         },
 
@@ -212,13 +208,6 @@
         [*Postcondizioni*],
         [#if type(postconds) == array { list(..postconds) } else { list(postconds) } ],
 
-        ..if trigger != none and show-trigger {
-          (
-            [*Trigger*],
-            [#trigger],
-          )
-        },
-
         [*Scenario Principale*],
         [
           #if main-scen.len() > 0 {
@@ -226,7 +215,7 @@
               step.descr
               if step.at("inc", default: none) != none {
                 linebreak()
-                "Include: " + tag-uc(step.inc)
+                "Include: " + tag_uc(step.inc)
               }
               if step.at("ep", default: none) != none {
                 linebreak()
@@ -240,43 +229,25 @@
 
         ..if alt-scen.len() > 0 {
           (
-            [*Scenari alternativi*],
+            [*Estensioni*],
             [
               #list(..alt-scen.map(ext => [
                 EP: #ext.ep \
                 Condition: #ext.cond \
-                UC: #tag-uc(ext.uc)
+                UC: #tag_uc(ext.uc)
               ]))
             ],
           )
         } else { () },
-
-        ..if inclusions.len() > 0 {
-          (
-            [*Inclusioni*],
-            [
-              #list(..inclusions)
-            ],
-          )
-        },
-
-        ..if extensions.len() > 0 {
-          (
-            [*Estensioni*],
-            [
-              #list(..extensions)
-            ],
-          )
-        },
 
         ..if specialized-by != none and specialized-by.len() > 0 {
           (
             [*Generalizzato da*],
             [
               #if type(specialized-by) == array {
-                list(..specialized-by.map(uc => tag-uc(uc)))
+                list(..specialized-by.map(uc => tag_uc(uc)))
               } else {
-                tag-uc(specialized-by)
+                tag_uc(specialized-by)
               }
 
             ],
@@ -285,5 +256,89 @@
       )
     }
   ]
+}
+
+#let _actor-labels = (
+  non-authd-usr: "Utente Non Autenticato",
+  authd-usr: "Utente Autenticato",
+  tenant-usr: "Tenant User",
+  tenant-adm: "Tenant Admin",
+  sys-adm: "Amministratore di Sistema",
+  api-client: "Client API",
+  p-gway: "Provisioned Gateway",
+  np-gway: "Not Provisioned Gateway",
+  sim-usr: "Utente del Simulatore",
+  cloud: "Sistema Cloud",
+  auth-server: "Auth Server",
+)
+
+#let _map-actors(actor-keys) = {
+  if actor-keys == none {
+    ()
+  } else {
+    actor-keys.map(a => _actor-labels.at(a, default: a))
+  }
+}
+
+#let _render-uc-node(node, system, all-nodes, level: 1) = {
+  let actors = node.actors
+  let prim-actors = _map-actors(actors.primary)
+  let sec-actors = _map-actors(actors.at("secondary", default: none))
+  let specialized-by = all-nodes.filter(n => n.at("gen_parent", default: none) == node.id).map(n => n.id)
+
+  let main-scen = node.main_scenario.map(step => {
+    let mapped = (descr: step.description)
+    if step.at("include", default: none) != none {
+      mapped = (..mapped, inc: step.include)
+    }
+    if step.at("extension_point", default: none) != none {
+      mapped = (..mapped, ep: step.extension_point)
+    }
+    mapped
+  })
+
+  let alt-scen = node
+    .at("extensions", default: ())
+    .map(ext => (
+      ep: ext.extension_point,
+      cond: ext.condition,
+      uc: ext.uc,
+    ))
+
+  uc(
+    system: if system == "cloud" { CLOUD_SYS } else { SIM_SYS },
+    id: node.id,
+    level: level,
+    title: node.title,
+    gen-parent: node.at("gen_parent", default: none),
+    prim-actors: prim-actors,
+    sec-actors: sec-actors,
+    preconds: node.preconditions,
+    postconds: node.postconditions,
+    main-scen: main-scen,
+    alt-scen: alt-scen,
+    specialized-by: specialized-by,
+  )
+
+  for child in node.at("subcases", default: ()) {
+    _render-uc-node(child, system, all-nodes, level: level + 1)
+  }
+}
+
+#let _collect-uc-nodes(nodes) = {
+  let out = ()
+  for node in nodes {
+    out += (node,)
+    out += _collect-uc-nodes(node.at("subcases", default: ()))
+  }
+  out
+}
+
+#let render_uc_file(path) = {
+  let data = yaml(path)
+  let all-nodes = _collect-uc-nodes(data.use_cases)
+  for uc-node in data.use_cases {
+    _render-uc-node(uc-node, data.system, all-nodes)
+  }
 }
 

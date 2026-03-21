@@ -1,0 +1,18 @@
+@startuml visualizzazione_tipo_sensore_simulato
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Utente del Simulatore" as sim_usr
+
+rectangle "Simulatore Gateway" {
+  usecase "UCS23 - Visualizzazione tipo sensore simulato" as UCS23
+}
+
+sim_usr -- UCS23
+
+
+@enduml

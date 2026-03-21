@@ -1,0 +1,18 @@
+@startuml modifica_intervallo_sospensione_tenant
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Amministratore di Sistema" as sys_adm
+
+rectangle "Sistema Cloud" {
+  usecase "UC60 - Modifica intervallo minimo sospensione pre-eliminazione Tenant" as UC60
+}
+
+sys_adm -- UC60
+
+
+@enduml

@@ -16,3 +16,17 @@ L'interfaccia pubblica della documentazione è il nostro sito: [notipswe.github.
 - Installa le dipendenze tramite `pip install -r notipdo/requirements.txt`
 - Installa il tool tramite `pip install -e notipdo/`
 - Esegui `notipdo --help`
+
+### Guida rapida sistema YAML (UC/REQ/TEST)
+
+Per il workflow del nuovo sistema basato su YAML, vedi:
+
+- [docs/13-pb/01-requirements/README.md](docs/13-pb/01-requirements/README.md)
+
+Comandi minimi consigliati:
+
+```bash
+./env/bin/notipdo data validate
+./env/bin/notipdo data index
+./env/bin/notipdo build baseline
+```

@@ -1,0 +1,20 @@
+@startuml eliminazione_credenziali_api
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Tenant Admin" as tenant_adm
+
+rectangle "Sistema Cloud" {
+  usecase "UC13 - Eliminazione credenziali API" as UC13
+  usecase "UC13.1 - Selezione credenziali client API" as UC13_1
+}
+
+tenant_adm -- UC13
+
+UC13 ..> UC13_1 : <<include>>
+
+@enduml

@@ -1,0 +1,18 @@
+@startuml modifica_impostazioni_impersonificazione
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Tenant Admin" as tenant_adm
+
+rectangle "Sistema Cloud" {
+  usecase "UC56 - Modifica impostazioni impersonificazione" as UC56
+}
+
+tenant_adm -- UC56
+
+
+@enduml

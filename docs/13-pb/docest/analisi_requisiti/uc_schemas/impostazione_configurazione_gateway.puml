@@ -1,0 +1,42 @@
+@startuml impostazione_configurazione_gateway
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Sistema Cloud" as cloud
+actor "Utente del Simulatore" as sim_usr
+
+rectangle "Simulatore Gateway" {
+  usecase "UCS15 - Impostazione configurazione del Gateway" as UCS15
+  usecase "UCS15.1 - Impostazione frequenza di invio dati" as UCS15_1
+  usecase "UCS15.2 - Impostazione stato sospensione" as UCS15_2
+  usecase "UCS13 - Errore sintattico configurazione Gateway" as UCS13
+  usecase "UCS9 - Errore configurazione frequenza invio dati fuori range ammesso" as UCS9
+  usecase "UCS14 - Errore valore numerico invalido" as UCS14
+}
+
+cloud -- UCS15
+sim_usr -- UCS15
+
+UCS15 ..> UCS15_1 : <<include>>
+UCS15 ..> UCS15_2 : <<include>>
+UCS13 ..> UCS15 : <<extend>>
+note on link
+  Extension Point: ConfigurazioneInvalida
+  Condition: Il messaggio contiene errori di sintassi o un formato non riconosciuto
+end note
+UCS9 ..> UCS15 : <<extend>>
+note on link
+  Extension Point: ConfigurazioneInvalida
+  Condition: La frequenza richiesta non è supportata dal Gateway simulato
+end note
+UCS14 ..> UCS15_1 : <<extend>>
+note on link
+  Extension Point: ValoreNumericoInvalido
+  Condition: Il valore numerico inserito non è valido
+end note
+
+@enduml

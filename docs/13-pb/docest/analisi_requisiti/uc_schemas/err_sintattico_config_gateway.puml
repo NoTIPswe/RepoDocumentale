@@ -1,0 +1,18 @@
+@startuml err_sintattico_config_gateway
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Sistema Cloud" as cloud
+
+rectangle "Simulatore Gateway" {
+  usecase "UCS13 - Errore sintattico configurazione Gateway" as UCS13
+}
+
+cloud -- UCS13
+
+
+@enduml

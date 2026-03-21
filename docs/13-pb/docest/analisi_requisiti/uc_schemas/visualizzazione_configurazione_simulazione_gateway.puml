@@ -1,0 +1,28 @@
+@startuml visualizzazione_configurazione_simulazione_gateway
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Utente del Simulatore" as sim_usr
+
+rectangle "Simulatore Gateway" {
+  usecase "UCS17.1 - Visualizzazione chiave di fabbrica simulazione" as UCS17_1
+  usecase "UCS17 - Visualizzazione configurazione simulazione Gateway" as UCS17
+  usecase "UCS17.4 - Visualizzazione modello del Gateway simulato" as UCS17_4
+  usecase "UCS17.2 - Visualizzazione serial number del gateway simulato" as UCS17_2
+  usecase "UCS17.3 - Visualizzazione versione software del gateway simulato" as UCS17_3
+  usecase "UCS19 - Visualizzazione ID di fabbrica simulazione" as UCS19
+}
+
+sim_usr -- UCS17
+
+UCS17 ..> UCS19 : <<include>>
+UCS17 ..> UCS17_1 : <<include>>
+UCS17 ..> UCS17_2 : <<include>>
+UCS17 ..> UCS17_3 : <<include>>
+UCS17 ..> UCS17_4 : <<include>>
+
+@enduml

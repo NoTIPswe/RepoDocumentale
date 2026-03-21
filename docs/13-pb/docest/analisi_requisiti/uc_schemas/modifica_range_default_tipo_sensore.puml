@@ -1,0 +1,20 @@
+@startuml modifica_range_default_tipo_sensore
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Tenant Admin" as tenant_adm
+
+rectangle "Sistema Cloud" {
+  usecase "UC68 - Modifica range alert default per tipo sensore" as UC68
+  usecase "UC80 - Selezione range numerico misurazioni" as UC80
+}
+
+tenant_adm -- UC68
+
+UC68 ..> UC80 : <<include>>
+
+@enduml

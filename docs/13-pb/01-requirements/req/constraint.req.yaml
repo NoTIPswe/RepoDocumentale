@@ -1,0 +1,46 @@
+type: constraint
+requirements:
+- id: vincolo_architettura_tre_livelli
+  priority: mandatory
+  description: 'È necessario che il Sistema realizzato sia organizzato su tre livelli: BLE, Gateway BLE-WiFi
+    e Cloud'
+  sources:
+  - text: Capitolato C7
+    url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+  - text: Sez."Architettura"
+- id: vincolo_angular
+  priority: mandatory
+  description: È necessario che l'interfaccia sia realizzata in Angular v21
+  sources:
+  - text: Capitolato C7
+    url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+  - text: Sez."Tecnologie di Riferimento"
+  - text: Interno (scelta versione)
+- id: vincolo_go_nestjs
+  priority: mandatory
+  description: È necessario che la parte di microservizi sia realizzata in Go v1.26.x e NestJS v11.1.x
+  sources:
+  - text: Capitolato C7
+    url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+  - text: Sez."Tecnologie di Riferimento"
+  - text: Interno (scelta versioni)
+- id: vincolo_nats
+  priority: mandatory
+  description: È necessario che la parte di scambio di messaggi tra microservizi sia realizzata in NATS
+  sources:
+  - text: Capitolato C7
+    url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+  - text: Sez."Tecnologie di Riferimento"
+- id: vincolo_docker
+  priority: mandatory
+  description: È necessario l'utilizzo di Docker
+  sources:
+  - text: Capitolato C7
+    url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+  - text: Sez."Tecnologie di Riferimento"
+- id: vincolo_browser
+  priority: mandatory
+  description: Le componenti web del sistema devono essere compatibili con le versioni di Chrome 120+,
+    Safari 17+ e Firefox 120+
+  sources:
+  - text: Interno

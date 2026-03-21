@@ -1,0 +1,22 @@
+@startuml alert_gateway_irraggiungibile
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Tenant User" as tenant_usr
+
+rectangle "Sistema Cloud" {
+  usecase "UC4 - Ricezione alert Gateway non raggiungibile" as UC4
+  usecase "UC107 - Visualizzazione nome Gateway" as UC107
+  usecase "UC115 - Visualizzazione timestamp ultimo invio dati Gateway" as UC115
+}
+
+tenant_usr -- UC4
+
+UC4 ..> UC107 : <<include>>
+UC4 ..> UC115 : <<include>>
+
+@enduml

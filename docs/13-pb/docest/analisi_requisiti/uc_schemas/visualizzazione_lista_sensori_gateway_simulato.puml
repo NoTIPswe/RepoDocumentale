@@ -1,0 +1,24 @@
+@startuml visualizzazione_lista_sensori_gateway_simulato
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Utente del Simulatore" as sim_usr
+
+rectangle "Simulatore Gateway" {
+  usecase "UCS22 - Visualizzazione lista sensori Gateway simulato" as UCS22
+  usecase "UCS22.1 - Visualizzazione singolo sensore simulato" as UCS22_1
+  usecase "UCS20 - Visualizzazione identificativo sensore" as UCS20
+  usecase "UCS23 - Visualizzazione tipo sensore simulato" as UCS23
+}
+
+sim_usr -- UCS22
+
+UCS22 ..> UCS22_1 : <<include>>
+UCS22_1 ..> UCS20 : <<include>>
+UCS22_1 ..> UCS23 : <<include>>
+
+@enduml

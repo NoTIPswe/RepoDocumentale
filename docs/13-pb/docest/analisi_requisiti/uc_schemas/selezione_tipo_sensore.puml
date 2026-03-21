@@ -1,0 +1,18 @@
+@startuml selezione_tipo_sensore
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Tenant Admin" as tenant_adm
+
+rectangle "Sistema Cloud" {
+  usecase "UC83 - Selezione tipo di sensore" as UC83
+}
+
+tenant_adm -- UC83
+
+
+@enduml

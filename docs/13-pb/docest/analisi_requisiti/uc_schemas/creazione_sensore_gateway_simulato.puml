@@ -1,0 +1,28 @@
+@startuml creazione_sensore_gateway_simulato
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Utente del Simulatore" as sim_usr
+
+rectangle "Simulatore Gateway" {
+  usecase "UCS6 - Creazione sensore Gateway simulato" as UCS6
+  usecase "UCS6.1 - Inserimento dati configurazione simulazione sensore" as UCS6_1
+  usecase "UCS16 - Inserimento range generazione dati" as UCS16
+  usecase "UCS10 - Errore creazione Sensore simulato" as UCS10
+}
+
+sim_usr -- UCS6
+
+UCS6 ..> UCS6_1 : <<include>>
+UCS6_1 ..> UCS16 : <<include>>
+UCS10 ..> UCS6 : <<extend>>
+note on link
+  Extension Point: ErroreCreazione
+  Condition: Errore di sistema nella creazione del sensore simulato
+end note
+
+@enduml

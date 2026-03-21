@@ -176,6 +176,12 @@
   )
 
   == Diagrammi e Descrizioni Casi d'Uso
+  // manual resolution
+
+  // use this to include the generated UCs
+  // #include "generated/_yaml_uc_index_cloud.typ"
+
+  // old - imported UCs
   #include "uc/login.typ"
   #include "uc/ins_pw.typ"
   #include "uc/err_cred_errate.typ"
@@ -371,43 +377,7 @@
   )
 
   == Diagrammi e Descrizioni Casi d'Uso
-
-  #include "ucs/visualizzazione_lista_gateway_simulati.typ"
-  #include "ucs/visualizzazione_singolo_gateway_simulato.typ"
-  #include "ucs/visualizzazione_data_creazione_simulazione.typ"
-  #include "ucs/visualizzazione_id_fabbrica_simulazione.typ"
-  #include "ucs/visualizzazione_configurazione_simulazione_gateway.typ"
-  #include "ucs/visualizzazione_chiave_fabbrica_simulazione.typ"
-  #include "ucs/visualizzazione_serial_number_gateway_simulato.typ"
-  #include "ucs/visualizzazione_software_gateway_simulato.typ"
-  #include "ucs/visualizzazione_modello_gateway_simulato.typ"
-  #include "ucs/visualizzazione_lista_sensori_gateway_simulato.typ"
-  #include "ucs/visualizzazione_singolo_sensore_simulato.typ"
-  #include "ucs/visualizzazione_configurazione_simulazione_sensore.typ"
-  #include "ucs/visualizzazione_range_generazione_dati.typ"
-  #include "ucs/visualizzazione_algoritmo_generazione_dati.typ"
-  #include "ucs/visualizzazione_identificativo_sensore.typ"
-  #include "ucs/visualizzazione_tipo_sensore_simulato.typ"
-  #include "ucs/eliminazione_gateway_simulato.typ"
-  #include "ucs/eliminazione_sensore_simulato.typ"
-  #include "ucs/creazione_deploy_gateway_simulato.typ"
-  #include "ucs/inserimento_dati_config_sim_gateway.typ"
-  #include "ucs/err_deploy_gateway_simulato.typ"
-  #include "ucs/creazione_sensore_gateway_simulato.typ"
-  #include "ucs/inserimento_dati_config_sim_sensore.typ"
-  #include "ucs/inserimento_range_generazione_dati.typ"
-  #include "ucs/err_range_invalido_simulazione.typ"
-  #include "ucs/err_creazione_sensore_simulato.typ"
-  #include "ucs/creazione_gateway_multipli_default.typ"
-  #include "ucs/err_valore_numerico_invalido.typ"
-  #include "ucs/comando_anomalia_degrado_rete.typ"
-  #include "ucs/comando_anomalia_disconnessione_temporanea.typ"
-  #include "ucs/comando_anomalia_outliers_misurazioni.typ"
-  #include "ucs/impostazione_configurazione_gateway.typ"
-  #include "ucs/impostazione_frequenza_invio_dati.typ"
-  #include "ucs/impostazione_stato_sospensione.typ"
-  #include "ucs/err_sintattico_config_gateway.typ"
-  #include "ucs/err_config_frequenza_fuori_range.typ"
+  #include "generated/_yaml_uc_index_sim.typ"
 
   \
   \
@@ -430,6 +400,10 @@
   Per la nomenclatura usata di seguito si faccia riferimento alla sezione relativa all'interno del documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf",
   )[Norme di Progetto v1.1.0].
+
+  #include "generated/_yaml_req_index.typ"
+
+  /* Legacy inline requirements retained for historical reference.
 
   == Requisiti Funzionali
 
@@ -1994,7 +1968,13 @@
         Sicurezza"],
     ),
   )
+  */
+
   = Tracciamento Requisiti
+  #include "generated/_yaml_traceability.typ"
+
+  /* Legacy manual traceability retained for historical reference.
+
   == Tracciamento Fonte - Requisiti
   #table(
     columns: (auto, auto, auto),
@@ -2791,6 +2771,8 @@
     [#ref-req("sicurezza_protezione_attacchi")], [Desiderabile], [Capitolato],
     [#ref-req("sicurezza_autenticazione_accessi")], [Obbligatorio], [Capitolato],
   )
+  */
+
   == Riepilogo Requisiti per Categoria
   #table(
     columns: (auto, auto, auto, auto),

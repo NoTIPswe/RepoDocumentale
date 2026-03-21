@@ -1,4 +1,5 @@
 #import "../../00-templates/base_document.typ" as base-document
+#import "test_lib.typ": *
 
 #let metadata = yaml(sys.inputs.meta-path)
 
@@ -856,6 +857,11 @@
   - *Integration Testing*: verifica delle interazioni tra unità, assicurando che collaborino correttamente.
   - *System Testing*: test end-to-end del Sistema completo in ambiente simulato.
 
+  #include "generated/_yaml_test_index.typ"
+  #include "generated/_yaml_traceability.typ"
+
+  /* Legacy inline testing tables retained for historical reference.
+
   == Test di Unità
 
   #table(
@@ -1270,6 +1276,8 @@
 
     [T-S-058], [Verificare la corretta trasmissione del flusso di dati tra sensore e relativo gateway], [R-113-F], [NI],
   )
+
+  */
 
   = Cruscotto di valutazione
   Di seguito vengono presentate le misurazioni raccolte nel periodo compreso tra l’aggiudicazione del capitolato e la

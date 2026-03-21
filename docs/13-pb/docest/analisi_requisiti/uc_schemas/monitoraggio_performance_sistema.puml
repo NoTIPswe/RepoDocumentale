@@ -1,0 +1,24 @@
+@startuml monitoraggio_performance_sistema
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Amministratore di Sistema" as sys_adm
+
+rectangle "Sistema Cloud" {
+  usecase "UC71.1 - Monitoraggio latenza" as UC71_1
+  usecase "UC71 - Monitoraggio performance Sistema" as UC71
+  usecase "UC71.3 - Monitoraggio Storage" as UC71_3
+  usecase "UC71.2 - Monitoraggio Volumi di Traffico" as UC71_2
+}
+
+sys_adm -- UC71
+
+UC71 ..> UC71_1 : <<include>>
+UC71 ..> UC71_2 : <<include>>
+UC71 ..> UC71_3 : <<include>>
+
+@enduml

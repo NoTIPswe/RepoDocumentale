@@ -1,0 +1,18 @@
+@startuml err_nome_gateway_duplicato
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Tenant Admin" as tenant_adm
+
+rectangle "Sistema Cloud" {
+  usecase "UC30 - Errore nome Gateway duplicato" as UC30
+}
+
+tenant_adm -- UC30
+
+
+@enduml

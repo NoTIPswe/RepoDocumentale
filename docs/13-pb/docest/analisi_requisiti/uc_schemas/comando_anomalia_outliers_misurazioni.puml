@@ -1,0 +1,26 @@
+@startuml comando_anomalia_outliers_misurazioni
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Utente del Simulatore" as sim_usr
+
+rectangle "Simulatore Gateway" {
+  usecase "UCS3 - Comando anomalia sensore - outliers nelle misurazioni" as UCS3
+  usecase "UCS16 - Inserimento range generazione dati" as UCS16
+  usecase "UCS14 - Errore valore numerico invalido" as UCS14
+}
+
+sim_usr -- UCS3
+
+UCS3 ..> UCS16 : <<include>>
+UCS14 ..> UCS3 : <<extend>>
+note on link
+  Extension Point: ValoreNumericoInvalido
+  Condition: È stato inserito un valore numerico non valido
+end note
+
+@enduml

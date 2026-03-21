@@ -1,0 +1,24 @@
+@startuml creazione_credenziali_api
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Tenant Admin" as tenant_adm
+
+rectangle "Sistema Cloud" {
+  usecase "UC8 - Creazione credenziali Client API" as UC8
+  usecase "UC8.1 - Inserimento nome Client API" as UC8_1
+  usecase "UC8.2 - Visualizzazione Client Secret" as UC8_2
+  usecase "UC89 - Visualizzazione Client ID" as UC89
+}
+
+tenant_adm -- UC8
+
+UC8 ..> UC8_1 : <<include>>
+UC8 ..> UC89 : <<include>>
+UC8 ..> UC8_2 : <<include>>
+
+@enduml

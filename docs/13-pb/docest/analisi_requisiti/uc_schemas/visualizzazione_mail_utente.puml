@@ -1,0 +1,18 @@
+@startuml visualizzazione_mail_utente
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Tenant Admin" as tenant_adm
+
+rectangle "Sistema Cloud" {
+  usecase "UC106 - Visualizzazione mail dell’Utente" as UC106
+}
+
+tenant_adm -- UC106
+
+
+@enduml

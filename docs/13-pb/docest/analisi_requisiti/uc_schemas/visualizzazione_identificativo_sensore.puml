@@ -1,0 +1,18 @@
+@startuml visualizzazione_identificativo_sensore
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Utente del Simulatore" as sim_usr
+
+rectangle "Simulatore Gateway" {
+  usecase "UCS20 - Visualizzazione identificativo sensore" as UCS20
+}
+
+sim_usr -- UCS20
+
+
+@enduml

@@ -105,6 +105,7 @@ def _build_doc(
     complete_output_path = os.path.join(output_dir_path, doc.output_rel_path)
     os.makedirs(os.path.dirname(complete_output_path), exist_ok=True)
 
+    logging.info(f"BUILDING: '{doc.output_rel_path}'...")
     logging.debug(
         f"Building '{doc.title}' ({mode.value} mode): {doc.source_path} -> {complete_output_path}"
     )

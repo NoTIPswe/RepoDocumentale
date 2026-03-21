@@ -1,0 +1,24 @@
+@startuml visualizzazione_lista_gateway_simulati
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Utente del Simulatore" as sim_usr
+
+rectangle "Simulatore Gateway" {
+  usecase "UCS21.1.1 - Visualizzazione data di creazione del Gateway Simulato" as UCS21_1_1
+  usecase "UCS21 - Visualizzazione lista Gateway simulati" as UCS21
+  usecase "UCS21.1 - Visualizzazione singolo Gateway simulato" as UCS21_1
+  usecase "UCS19 - Visualizzazione ID di fabbrica simulazione" as UCS19
+}
+
+sim_usr -- UCS21
+
+UCS21 ..> UCS21_1 : <<include>>
+UCS21_1 ..> UCS21_1_1 : <<include>>
+UCS21_1 ..> UCS19 : <<include>>
+
+@enduml

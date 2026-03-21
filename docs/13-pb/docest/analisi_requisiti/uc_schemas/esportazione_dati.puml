@@ -1,0 +1,22 @@
+@startuml esportazione_dati
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Tenant User" as tenant_usr
+
+rectangle "Sistema Cloud" {
+  usecase "UC35 - Esportazione dati" as UC35
+  usecase "UC36 - Esportazione dati in formato CSV" as UC36
+  usecase "UC37 - Esportazione dati in formato JSON" as UC37
+}
+
+tenant_usr -- UC35
+
+UC35 <|-- UC36
+UC35 <|-- UC37
+
+@enduml

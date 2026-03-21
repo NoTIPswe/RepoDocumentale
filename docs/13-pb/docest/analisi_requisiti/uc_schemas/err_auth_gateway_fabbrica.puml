@@ -1,0 +1,18 @@
+@startuml err_auth_gateway_fabbrica
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Not Provisioned Gateway" as np_gway
+
+rectangle "Sistema Cloud" {
+  usecase "UC18 - Errore autenticazione Gateway di fabbrica" as UC18
+}
+
+np_gway -- UC18
+
+
+@enduml

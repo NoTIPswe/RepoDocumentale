@@ -1,0 +1,20 @@
+@startuml modifica_mail_utente
+left to right direction
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFECE
+  BorderColor #A80036
+}
+
+actor "Tenant Admin" as tenant_adm
+
+rectangle "Sistema Cloud" {
+  usecase "UC62 - Modifica mail Utente del Tenant" as UC62
+  usecase "UC44 - Impostazione mail" as UC44
+}
+
+tenant_adm -- UC62
+
+UC62 ..> UC44 : <<include>>
+
+@enduml
