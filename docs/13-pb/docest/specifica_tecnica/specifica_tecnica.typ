@@ -1,4 +1,5 @@
 #import "../../00-templates/base_document.typ" as base-document
+#import "st_lib.typ" as st
 
 #let metadata = yaml(sys.inputs.meta-path)
 
@@ -264,21 +265,107 @@
   #table(
     columns: (1fr, auto, 4fr),
     [Tecnologia], [Versione], [Descrizione],
-    [], [], [],
-    [], [], [],
+
+    [golangci-lint],
+    [],
+    [Aggregatore di linter per Go che integra oltre cinquanta analizzatori statici in un'unica esecuzione
+      parallelizzata. Nel progetto è configurato per i servizi Go (Data Consumer, Simulator Backend) con controlli su
+      errori non gestiti, shadow di variabili, complessità ciclomatica e conformità alle convenzioni idiomatiche del
+      linguaggio. Integrato nella pipeline CI come gate bloccante: il merge è impedito in presenza di violazioni non
+      risolte.],
+
+    [ESLint],
+    [],
+    [Strumento di analisi statica per TypeScript e JavaScript che applica regole di stile, individua anti-pattern e
+      verifica la conformità alle best practice dei framework adottati. Nel progetto è configurato per tutti i
+      microservizi NestJS e le applicazioni Angular, con regole specifiche per la gestione delle promise, l'uso corretto
+      dei decoratori e le convenzioni di denominazione del team.],
+
+    [SonarCloud],
+    [],
+    [Piattaforma di analisi continua della qualità del codice che identifica bug, vulnerabilità di sicurezza, code smell
+      e duplicazioni. Nel progetto è integrata nella pipeline GitHub Actions e analizza l'intero codebase a ogni pull
+      request. Le quality gate bloccano il merge di modifiche che non soddisfano le soglie configurate per copertura,
+      tasso di duplicazione e affidabilità complessiva.],
   )
 
   == Tecnologie per Analisi Dinamica
   #table(
     columns: (1fr, auto, 4fr),
     [Tecnologia], [Versione], [Descrizione],
-    [], [], [],
-    [], [], [],
+
+    [Go test + Race Detector],
+    [],
+    [Framework di testing nativo di Go, utilizzato con il flag `-race` per il rilevamento di data race a runtime tramite
+      instrumentazione del compilatore. Nel progetto viene impiegato per i test unitari e di integrazione dei servizi
+      Go, garantendo la correttezza della concorrenza nelle goroutine del Data Consumer e del Simulator Backend. Il race
+      detector è abilitato in tutte le esecuzioni CI.],
+
+    [Testcontainers-go],
+    [],
+    [Libreria per l'avvio programmatico di container Docker effimeri durante i test di integrazione. Nel progetto viene
+      utilizzata per istanziare ambienti NATS con mTLS e database TimescaleDB reali, consentendo di verificare il
+      comportamento end-to-end dei servizi Go contro infrastruttura autentica, senza ricorrere a mock
+      infrastrutturali.],
+
+    [Jest],
+    [],
+    [Framework di testing per TypeScript e JavaScript con supporto nativo per mock, snapshot testing e code coverage.
+      Nel progetto esegue test unitari e di integrazione per i microservizi NestJS (Management API, Data API, Command
+      API, Provisioning Service) e per le applicazioni Angular, inclusi i test dei componenti e dei servizi reattivi.],
   )
 
   = Architettura
   == Architettura Logica
 
+  === notip-data-consumer
+  Il `notip-data-consumer` adotta l'architettura esagonale (Ports & Adapters) come principio organizzativo primario. La
+  logica di dominio, interamente contenuta nel servizio `HeartbeatTracker`, è isolata da ogni dipendenza
+  infrastrutturale tramite interfacce (_port_) che definiscono i confini del sistema.
+
+  ==== Strati architetturali
+  Il servizio è decomposto in tre livelli con dipendenze unidirezionali verso l'interno:
+
+  - *Dominio* (`internal/domain`, `internal/service`): contiene gli "oggetti" puri (`TelemetryEnvelope`, `TelemetryRow`,
+    `AlertPayload`, `GatewayStatusUpdate`, `OpaqueBlob`), le definizioni dei port e il servizio `HeartbeatTracker`.
+    Questo parte volontariamente non importa alcun package di infrastruttura e non ha dipendenze verso l'esterno. In
+    particolare, conosce solo la definizione delle interfacce che esso stesso definisce.
+
+  - *Driving adapter* (`internal/adapter/driving`): traducono eventi esterni in chiamate ai driving port del dominio.
+    Tre adapter coprono le tre sorgenti di eventi: messaggi telemetrici da JetStream, eventi di decommissione da
+    JetStream e tick periodici da un timer interno.
+
+  - *Driven adapter* (`internal/adapter/driven`): implementano i driven port per raggiungere risorse esterne. Cinque
+    adapter coprono: persistenza su TimescaleDB, pubblicazione alert su JetStream, notifica di stato al Management API
+    via NATS Request-Reply, cache delle configurazioni di alert e astrazione del clock di sistema.
+
+  ==== Flusso dei dati
+  Il dati attraversano il servizio in modo lineare e unidirezionale:
+
+  + Un driving adapter riceve il messaggio NATS, estrae il `tenantID` dal subject e deserializza l'envelope.
+  + Il driving adapter invoca il driving port `TelemetryMessageHandler`, che registra l'heartbeat del gateway e gestisce
+    eventuali transizioni di stato (prima comparsa o recupero da offline).
+  + Lo stesso driving adapter accumula il record normalizzato in un buffer e, al raggiungimento della soglia o alla
+    scadenza del timer di flush, invoca il driven port `TelemetryWriter` per la persistenza batch.
+  + I tre campi crittografici (`EncryptedData`, `IV`, `AuthTag`) attraversano tutti gli strati come `OpaqueBlob` senza
+    mai essere ispezionati, nel completo rispetto della pipeline opaca.
+
+  In parallelo, il timer di heartbeat invoca periodicamente `HeartbeatTicker.Tick`, che valuta se effettivamente di ogni
+  gateway è "vivo" confrontando `lastSeen` con il timeout consentito, ottenuto da `AlertConfigProvider`. Le transizioni
+  a offline generano la pubblicazione di un alert tramite `AlertPublisher` e una notifica asincrona tramite
+  `GatewayStatusUpdater`.
+
+  ==== Confini del microservizio
+  Il `notip-data-consumer` interagisce con quattro sistemi esterni, ciascuno mediato da un driven port dedicato:
+  - *TimescaleDB* tramite `TelemetryWriter`: persistenza dei blob di dati opachi;
+  - *NATS JetStream* tramite `AlertPublisher`: pubblicazione degli alert gateway-offline;
+  - *Management API* tramite `GatewayStatusUpdater` e `AlertConfigProvider`: notifica delle transizioni di stato e
+    recupero delle configurazioni di timeout;
+  - *Clock di sistema* tramite `ClockProvider`: astrazione del tempo per rendere i test deterministici.
+
+  Il servizio non espone API REST né comunica direttamente con altri microservizi: le uniche interfacce HTTP sono
+  l'endpoint Prometheus `/metrics` per l'osservabilità e `/healthz` per la verifica della raggiungibilità del database.
+  Tutto il traffico in ingresso e in uscita transita attraverso NATS.
 
   == Architettura di Deployment
   L'architettura del sistema è basata su un *modello a microservizi*, in cui ogni componente funzionale viene eseguito
@@ -329,11 +416,127 @@
 
   Di seguito vengono descritti i principali pattern utilizzati, con una spiegazione dettagliata delle motivazioni alla
   base della loro scelta e del loro impiego all'interno dell'architettura complessiva del sistema.
-  === pattern1
-  ==== Descrizione
-  ==== Motivi per la Scelta
-  ==== Utilizzo nel Progetto
+  #st.design-pattern(
+    name: "Architettura Esagonale",
+    problem: [
+      Alcuni servizi della piattaforma NoTIP interagiscono con molteplici tecnologie infrastrutturali (NATS JetStream,
+      TimescaleDB, NATS Request-Reply, Prometheus) che evolvono indipendentemente dalla logica applicativa. Un
+      accoppiamento diretto tra dominio e infrastruttura renderebbe i test unitari dipendenti da componenti esterni e
+      l'eventuale sostituzione di una tecnologia si tramuterebbe in un intervento troppo invasivo.
+    ],
+    decision: [
+      Ogni servizio Go adotta l'architettura esagonale, in cui il dominio dipende esclusivamente da interfacce (_port_)
+      e non da implementazioni concrete. Le _driving port_ sono interfacce implementate dal dominio e invocate dagli
+      adapter per immettere eventi nel sistema. I _driven port_ sono interfacce invocate dal dominio e implementate
+      dagli adapter per raggiungere risorse esterne. Nessun tipo concreto interno all'infrastruttura fuoriesce dal
+      confine del dominio.
+    ],
+    alternatives: [
+      *Architettura layered tradizionale:* più semplice da implementare, ma crea dipendenze discendenti rigide tra i
+      livelli. Un cambio di tecnologia di persistenza si propaga verso l'alto, violando il principio di inversione delle
+      dipendenze.
+    ],
+    consequences: [
+      - *Testabilità:* ogni driven port può essere sostituito da un mock, rendendo i test unitari deterministici e
+        indipendenti dall'infrastruttura.
+      - *Sostituibilità:* un adapter può essere sostituito senza modificare il dominio, quindi è resa estremamente più
+        semplice la possibilità di migrare da TimescaleDB a un altro servizio di storage, richiedendo solamente un nuovo
+        adapter che implementi `TelemetryWriter`.
+      - *Trade-off:* il numero di interfacce e adapter è particolamente elevato e proporzionale alle dipendenze esterne.
+    ],
+  )
+
+  #st.design-pattern(
+    name: "Pipeline Opaca (Zero-Knowledge Server-Side)",
+    problem: [
+      I payload contengono misurazioni che il committente ha classificato come dati sensibili. La piattaforma deve, di
+      conseguenza, garantire che, anche in caso di compromissione di un servizio backend o del database, i dati restino
+      inaccessibili.
+    ],
+    decision: [
+      I payload sono cifrati con AES-256-GCM dal gateway al momento dell'acquisizione (nel nostro caso simulata). I tre
+      campi crittografici (`EncryptedData`, `IV`, `AuthTag`) attraversano l'intero backend come blob opachi in base64,
+      senza mai essere decifrati, ispezionati o trasformati. La decifratura avviene esclusivamente nel browser
+      dell'utente tramite la WebCrypto API. Un tipo di dominio nominale (`OpaqueBlob`) rende questa invariante visibile
+      nel type system: qualsiasi tentativo di decodifica è un'evidente violazione di tipo.
+    ],
+    alternatives: [
+      - *End-to-End Encryption (E2EE) con decifratura intermedia:* Questa era l'impostazione iniziale. Prevedeva la
+        cifratura dei dati. Sebbene garantisca il massimo livello di cifratura, come inizialmente richiesto dall'azienda
+        proponente, è stato scartato a seguito di discussioni approfondite con la stessa a causa della sua complessità
+        troppo elevata rispetto alle tempistiche disponibili.
+      - *Cifratura del solo canale (TLS):* Protegge i dati esclusivamente durante il transito tra gateway e backend. È
+        stata ritenuta insufficiente in quanto i dati risulterebbero in chiaro sia nella memoria volatile dei
+        microservizi (RAM) sia sul database, rendendo ogni componente del sistema un Single Point of Failure per la
+        riservatezza delle informazioni sensibili.
+    ],
+    consequences: [
+      - *Sicurezza:* la superficie di attacco server-side è minimale; il server non possiede le chiavi e non può
+        accedere ai dati in chiaro neppure in caso di compromissione completa.
+      - *Limitazione architetturale:* nessuna elaborazione server-side è possibile sui dati telemetrici. Gli alert di
+        soglia possono essere valutati solo nel client, con le limitazioni documentate (richiedono sessione browser
+        attiva, non sono persistenti).
+      - *Responsabilità del client:* la correttezza della decifratura e la gestione sicura delle chiavi nel browser
+        diventano critiche. Le chiavi sono importate con `extractable: false` e risiedono esclusivamente nel contesto
+        del Web Worker.
+    ],
+  )
+
+  #st.design-pattern(
+    name: "Dependency Injection tramite Costruttore",
+    problem: [
+      L'architettura esagonale introduce numerose interfacce (port) che separano dominio e infrastruttura. Occorre
+      stabilire _chi_ crea le implementazioni concrete e _come_ vengono collegate ai componenti che le richiedono,
+      senza vanificare il disaccoppiamento ottenuto dai port.
+    ],
+    decision: [
+      Ogni componente riceve le proprie dipendenze come parametri del costruttore. Un unico _Composition Root_ (`cmd/consumer/main.go`) istanzia
+      l'intero grafo delle dipendenze all'avvio, rendendo il cablaggio esplicito e leggibile in un solo punto.
+    ],
+    consequences: [
+      - *Verificabilità statica:* il compilatore rileva dipendenze mancanti o incompatibili prima dell'esecuzione.
+      - *Testabilità diretta:* sostituire un adapter con un mock o uno stub richiede solo il passaggio al costruttore.
+      - *Trade-off:* il codice di inizializzazione nel Composition Root cresce linearmente con il numero di componenti.
+    ],
+  )
+
+  #st.design-pattern(
+    name: "Dispatch Asincrono Non-bloccante",
+    problem: [
+      Il Data Consumer esegue operazioni di I/O secondarie (come la notifica di stato online/offline al Management API
+      via NATS Request-Reply) il cui tempo di risposta è variabile e non predicibile. Se eseguite in modo sincrono
+      all'interno del ciclo di heartbeat o del handler telemetrico, una singola chiamata lenta bloccherebbe
+      l'elaborazione di tutti i messaggi in coda, degradando il throughput complessivo.
+    ],
+    decision: [
+      Le operazioni di I/O secondarie sono accodate in un canale con capacità limitata e processate
+      serialmente da un goroutine worker dedicato in background. Il path dove la velocità è un fattore critico non attende mai il completamento di queste operazioni. Se il canale è pieno, l'aggiornamento viene
+      scartato e una metrica Prometheus dedicata viene incrementata, rendendo la perdita osservabile.
+    ],
+    alternatives: [
+      - *Dispatch sincrono:* garantisce la consegna ma accoppia la latenza del path critico a quella delle operazioni
+        secondarie, creando un collo di bottiglia sotto carico.
+      - *Goroutine per ogni operazione:* disaccoppia la latenza ma crea un numero illimitato di goroutine sotto carico,
+        con rischio di esaurimento delle risorse e impossibilità di applicare backpressure.
+      - *Worker pool con coda illimitata:* bilancia il parallelismo ma una coda illimitata può consumare memoria
+        indefinitamente durante picchi prolungati.
+    ],
+    consequences: [
+      - *Throughput costante:* il path critico non è mai bloccato da operazioni secondarie.
+      - *Perdita controllata:* sotto carico estremo, gli aggiornamenti di stato vengono scartati in modo deterministico
+        e osservabile, anziché causare degradazione imprevedibile.
+      - *Trade-off:* la semantica è _at-most-once_ per gli aggiornamenti di stato: un aggiornamento scartato non viene
+        ritentato. Questo è accettabile solamente perché il successivo ciclo di heartbeat genererà un nuovo aggiornamento se la
+        condizione persiste.
+    ],
+  )
   == Microservizi Sviluppati
+  Questa sezione documenta la progettazione architetturale di ciascun microservizio sviluppato internamente dal team,
+  con focus sulle decisioni progettuali, la decomposizione in livelli e la definizione dei confini tramite port.
+
+  #include "services/data-consumer.typ"
+
+  // insert all the other services
 
   = Stato dei requisiti funzionali
 ]
