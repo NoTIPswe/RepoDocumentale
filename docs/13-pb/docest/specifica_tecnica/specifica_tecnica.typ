@@ -58,8 +58,9 @@
   - #link("https://prometheus.io/docs/introduction/overview/")[Documentazione Prometheus] \ _Ultimo Accesso: 2026-03-11_
   - #link("https://docs.timescale.com/")[Documentazione TimescaleDB] \ _Ultimo Accesso: 2026-03-11_
 
-  = Tecnologie
+  #pagebreak()
 
+  = Tecnologie
 
   == Linguaggi di Programmazione
   #table(
@@ -268,11 +269,10 @@
 
     [golangci-lint],
     [],
-    [Aggregatore di linter per Go che integra oltre cinquanta analizzatori statici in un'unica esecuzione
-      parallelizzata. Nel progetto è configurato per i servizi Go (Data Consumer, Simulator Backend) con controlli su
-      errori non gestiti, shadow di variabili, complessità ciclomatica e conformità alle convenzioni idiomatiche del
-      linguaggio. Integrato nella pipeline CI come gate bloccante: il merge è impedito in presenza di violazioni non
-      risolte.],
+    [Aggrega vari linter per Go che integra oltre cinquanta analizzatori statici in un'unica esecuzione parallelizzata.
+      Nel progetto è configurato per i servizi Go (Data Consumer, Simulator Backend) con controlli su errori non
+      gestiti, shadow di variabili, complessità ciclomatica e conformità alle convenzioni idiomatiche del linguaggio.
+      Integrato nella pipeline CI come gate bloccante: il merge è impedito in presenza di violazioni non risolte.],
 
     [ESLint],
     [],
@@ -297,15 +297,15 @@
     [Go test + Race Detector],
     [],
     [Framework di testing nativo di Go, utilizzato con il flag `-race` per il rilevamento di data race a runtime tramite
-      instrumentazione del compilatore. Nel progetto viene impiegato per i test unitari e di integrazione dei servizi
-      Go, garantendo la correttezza della concorrenza nelle goroutine del Data Consumer e del Simulator Backend. Il race
+      strumentazione del compilatore. Nel progetto viene impiegato per i test unitari e di integrazione dei servizi Go,
+      garantendo la correttezza della concorrenza nelle goroutine del Data Consumer e del Simulator Backend. Il race
       detector è abilitato in tutte le esecuzioni CI.],
 
     [Testcontainers-go],
     [],
     [Libreria per l'avvio programmatico di container Docker effimeri durante i test di integrazione. Nel progetto viene
-      utilizzata per istanziare ambienti NATS con mTLS e database TimescaleDB reali, consentendo di verificare il
-      comportamento end-to-end dei servizi Go contro infrastruttura autentica, senza ricorrere a mock
+      utilizzata per simulare la creazione di ambienti NATS con mTLS e database TimescaleDB reali, consentendo di
+      verificare il comportamento end-to-end dei servizi Go contro infrastruttura autentica, senza ricorrere a mock
       infrastrutturali.],
 
     [Jest],
@@ -314,6 +314,8 @@
       Nel progetto esegue test unitari e di integrazione per i microservizi NestJS (Management API, Data API, Command
       API, Provisioning Service) e per le applicazioni Angular, inclusi i test dei componenti e dei servizi reattivi.],
   )
+
+  #pagebreak()
 
   = Architettura
   == Architettura Logica
@@ -332,7 +334,7 @@
     particolare, conosce solo la definizione delle interfacce che esso stesso definisce.
 
   - *Driving adapter* (`internal/adapter/driving`): traducono eventi esterni in chiamate ai driving port del dominio.
-    Tre adapter coprono le tre sorgenti di eventi: messaggi telemetrici da JetStream, eventi di decommissione da
+    Tre adapter coprono le tre sorgenti di eventi: messaggi telemetrici da JetStream, eventi di decommission da
     JetStream e tick periodici da un timer interno.
 
   - *Driven adapter* (`internal/adapter/driven`): implementano i driven port per raggiungere risorse esterne. Cinque
@@ -421,8 +423,8 @@
     problem: [
       Alcuni servizi della piattaforma NoTIP interagiscono con molteplici tecnologie infrastrutturali (NATS JetStream,
       TimescaleDB, NATS Request-Reply, Prometheus) che evolvono indipendentemente dalla logica applicativa. Un
-      accoppiamento diretto tra dominio e infrastruttura renderebbe i test unitari dipendenti da componenti esterni e
-      l'eventuale sostituzione di una tecnologia si tramuterebbe in un intervento troppo invasivo.
+      accoppiamento diretto tra dominio e infrastruttura renderebbe i test unitari troppo dipendenti da componenti
+      esterni e l'eventuale sostituzione di una tecnologia si tramuterebbe in un intervento estremamente invasivo.
     ],
     decision: [
       Ogni servizio Go adotta l'architettura esagonale, in cui il dominio dipende esclusivamente da interfacce (_port_)
@@ -442,7 +444,8 @@
       - *Sostituibilità:* un adapter può essere sostituito senza modificare il dominio, quindi è resa estremamente più
         semplice la possibilità di migrare da TimescaleDB a un altro servizio di storage, richiedendo solamente un nuovo
         adapter che implementi `TelemetryWriter`.
-      - *Trade-off:* il numero di interfacce e adapter è particolamente elevato e proporzionale alle dipendenze esterne.
+      - *Trade-off:* il numero di interfacce e adapter è particolarmente elevato e proporzionale alle dipendenze
+        esterne.
     ],
   )
 
@@ -461,21 +464,19 @@
       nel type system: qualsiasi tentativo di decodifica è un'evidente violazione di tipo.
     ],
     alternatives: [
-      - *End-to-End Encryption (E2EE) con decifratura intermedia:* Questa era l'impostazione iniziale. Prevedeva la
-        cifratura dei dati. Sebbene garantisca il massimo livello di cifratura, come inizialmente richiesto dall'azienda
-        proponente, è stato scartato a seguito di discussioni approfondite con la stessa a causa della sua complessità
-        troppo elevata rispetto alle tempistiche disponibili.
+      - *End-to-End Encryption (E2EE):* Questa era l'impostazione iniziale. Sebbene garantisca il massimo livello di
+        cifratura, come inizialmente richiesto dall'azienda proponente, è stato scartato a seguito di discussioni
+        approfondite con la stessa a causa della sua complessità troppo elevata rispetto alle tempistiche disponibili.
       - *Cifratura del solo canale (TLS):* Protegge i dati esclusivamente durante il transito tra gateway e backend. È
         stata ritenuta insufficiente in quanto i dati risulterebbero in chiaro sia nella memoria volatile dei
         microservizi (RAM) sia sul database, rendendo ogni componente del sistema un Single Point of Failure per la
         riservatezza delle informazioni sensibili.
     ],
     consequences: [
-      - *Sicurezza:* la superficie di attacco server-side è minimale; il server non possiede le chiavi e non può
-        accedere ai dati in chiaro neppure in caso di compromissione completa.
-      - *Limitazione architetturale:* nessuna elaborazione server-side è possibile sui dati telemetrici. Gli alert di
-        soglia possono essere valutati solo nel client, con le limitazioni documentate (richiedono sessione browser
-        attiva, non sono persistenti).
+      - *Sicurezza:* la superficie di attacco server-side è ridotta.
+      - *Limitazione architetturale:* l'elaborazione server-side è possibile sui dati telemetrici, in quanto le chiavi
+        vengono salvate sul DB. Comunque l'applicazione non sfrutta questa decisione presa in fase di progettazione per
+        l'MVP, ad esempio, per gli alert di soglia, i quali possono essere valutati solo nel client.
       - *Responsabilità del client:* la correttezza della decifratura e la gestione sicura delle chiavi nel browser
         diventano critiche. Le chiavi sono importate con `extractable: false` e risiedono esclusivamente nel contesto
         del Web Worker.
@@ -485,7 +486,7 @@
   #st.design-pattern(
     name: "Dependency Injection tramite Costruttore",
     problem: [
-      L'architettura esagonale introduce numerose interfacce (port) che separano dominio e infrastruttura. Occorre
+      L'architettura esagonale introduce numerose interfacce (port) che separano dominio e infrastruttura. Cercare di
       stabilire _chi_ crea le implementazioni concrete e _come_ vengono collegate ai componenti che le richiedono, senza
       vanificare il disaccoppiamento ottenuto dai port.
     ],
@@ -539,6 +540,8 @@
   #include "services/data-consumer.typ"
 
   // insert all the other services
+
+  #pagebreak()
 
   = Stato dei requisiti funzionali
 ]

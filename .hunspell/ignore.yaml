@@ -171,6 +171,10 @@ accepted_words:
   - transpile
   - devDependencies
   - nats
+  - golangci
+  - SonarCloud
+  - Testcontainers
+  - struct
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -243,6 +247,10 @@ accepted_words:
   - deployato
   - passthrough
   - dev
+  - linter
+  - codebase
+  - backpressure
+  - deserializzato
 
   # --- Terminologia Standard Progetto ---
   - req
@@ -356,3 +364,14 @@ accepted_words:
   - pushato
   - triggerati
   - autogenerare
+  - Testabilità
+  - istanzia
+  - TelemetryWriterDRIVEN
+  - AlertPublisherDRIVEN
+  - GatewayStatusUpdaterDRIVEN
+  - AlertConfigProviderDRIVEN
+  - ClockProviderDRIVEN
+  - TelemetryMessageHandlerDRIVING
+  - DecommissionEventHandlerDRIVING
+  - HeartbeatTickerDRIVING
+  - riacquisizione
