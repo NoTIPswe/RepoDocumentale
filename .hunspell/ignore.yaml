@@ -171,6 +171,7 @@ accepted_words:
   - transpile
   - devDependencies
   - nats
+  - TestContainers
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
