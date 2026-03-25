@@ -486,12 +486,13 @@
     name: "Dependency Injection tramite Costruttore",
     problem: [
       L'architettura esagonale introduce numerose interfacce (port) che separano dominio e infrastruttura. Occorre
-      stabilire _chi_ crea le implementazioni concrete e _come_ vengono collegate ai componenti che le richiedono,
-      senza vanificare il disaccoppiamento ottenuto dai port.
+      stabilire _chi_ crea le implementazioni concrete e _come_ vengono collegate ai componenti che le richiedono, senza
+      vanificare il disaccoppiamento ottenuto dai port.
     ],
     decision: [
-      Ogni componente riceve le proprie dipendenze come parametri del costruttore. Un unico _Composition Root_ (`cmd/consumer/main.go`) istanzia
-      l'intero grafo delle dipendenze all'avvio, rendendo il cablaggio esplicito e leggibile in un solo punto.
+      Ogni componente riceve le proprie dipendenze come parametri del costruttore. Un unico _Composition Root_
+      (`cmd/consumer/main.go`) istanzia l'intero grafo delle dipendenze all'avvio, rendendo il cablaggio esplicito e
+      leggibile in un solo punto.
     ],
     consequences: [
       - *Verificabilità statica:* il compilatore rileva dipendenze mancanti o incompatibili prima dell'esecuzione.
@@ -509,9 +510,10 @@
       l'elaborazione di tutti i messaggi in coda, degradando il throughput complessivo.
     ],
     decision: [
-      Le operazioni di I/O secondarie sono accodate in un canale con capacità limitata e processate
-      serialmente da un goroutine worker dedicato in background. Il path dove la velocità è un fattore critico non attende mai il completamento di queste operazioni. Se il canale è pieno, l'aggiornamento viene
-      scartato e una metrica Prometheus dedicata viene incrementata, rendendo la perdita osservabile.
+      Le operazioni di I/O secondarie sono accodate in un canale con capacità limitata e processate serialmente da un
+      goroutine worker dedicato in background. Il path dove la velocità è un fattore critico non attende mai il
+      completamento di queste operazioni. Se il canale è pieno, l'aggiornamento viene scartato e una metrica Prometheus
+      dedicata viene incrementata, rendendo la perdita osservabile.
     ],
     alternatives: [
       - *Dispatch sincrono:* garantisce la consegna ma accoppia la latenza del path critico a quella delle operazioni
@@ -526,8 +528,8 @@
       - *Perdita controllata:* sotto carico estremo, gli aggiornamenti di stato vengono scartati in modo deterministico
         e osservabile, anziché causare degradazione imprevedibile.
       - *Trade-off:* la semantica è _at-most-once_ per gli aggiornamenti di stato: un aggiornamento scartato non viene
-        ritentato. Questo è accettabile solamente perché il successivo ciclo di heartbeat genererà un nuovo aggiornamento se la
-        condizione persiste.
+        ritentato. Questo è accettabile solamente perché il successivo ciclo di heartbeat genererà un nuovo
+        aggiornamento se la condizione persiste.
     ],
   )
   == Microservizi Sviluppati

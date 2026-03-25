@@ -9,7 +9,7 @@
 
 #import "../../00-templates/base_configs.typ" as base
 
-// Design Pattern 
+// Design Pattern
 
 #let design-pattern(
   name: "",
@@ -29,7 +29,7 @@
   consequences
 }
 
-// Port Interface 
+// Port Interface
 
 #let port-interface(
   name: "",
@@ -63,7 +63,7 @@
   ]
 }
 
-// Design Rationale 
+// Design Rationale
 
 #let design-rationale(title: "", body) = {
   block(
