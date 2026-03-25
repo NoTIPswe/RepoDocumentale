@@ -111,7 +111,7 @@
       Progetto per garantire uniformità tra i membri.
     ],
     decisions: [
-      Si è deciso di andare completare la sezione riguardante il processo di sviluppo, andando a riportare quelle che
+      Si è deciso di andare a completare la sezione riguardante il processo di sviluppo, andando a riportare quelle che
       sono le decisioni condivise che il gruppo ha preso a riguardo dello stesso.
     ],
     actions: (
