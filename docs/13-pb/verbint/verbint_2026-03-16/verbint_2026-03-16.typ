@@ -57,6 +57,28 @@
       Si è deciso di iniziare immediatamente lo sviluppo dei servizi progettati, distribuendo il lavoro tra i membri del
       team secondo la suddivisione concordata.
     ],
+    actions: (
+      (
+        desc: "Sviluppo Simulator-Backend",
+        url: "https://notipswe.atlassian.net/browse/NT-623",
+      ),
+      (
+        desc: "Sviluppo Data-Consumer",
+        url: "https://notipswe.atlassian.net/browse/NT-629",
+      ),
+      (
+        desc: "Sviluppo Provisioning-Service",
+        url: "https://notipswe.atlassian.net/browse/NT-645",
+      ),
+      (
+        desc: "Sviluppo Data-Api",
+        url: "https://notipswe.atlassian.net/browse/NT-602",
+      ),
+      (
+        desc: "Sviluppo Management-Api",
+        url: "https://notipswe.atlassian.net/browse/NT-593",
+      ),
+    ),
   )
 
   #base-report.report-point(
@@ -70,6 +92,57 @@
       Si è deciso di dare avvio alla progettazione del frontend e di proseguire successivamente con il suo sviluppo,
       coordinando le attività con l'evoluzione dei servizi backend.
     ],
+    actions: (
+      (
+        desc: "Progettazione Leonardo",
+        url: "https://notipswe.atlassian.net/browse/NT-620",
+      ),
+      (
+        desc: "Progettazione Valerio",
+        url: "https://notipswe.atlassian.net/browse/NT-626",
+      ),
+    ),
+  )
+
+  #base-report.report-point(
+    discussion_point: [Aggiornamento Norme di Progetto.],
+    discussion: [
+      Nel gruppo è emersa l'esigenza di formalizzare i processi di sviluppo finora decisi all'interno delle Norme di
+      Progetto per garantire uniformità tra i membri.
+    ],
+    decisions: [
+      Si è deciso di andare completare la sezione riguardante il processo di sviluppo, andando a riportare quelle che
+      sono le decisioni condivise che il gruppo ha preso a riguardo dello stesso.
+    ],
+    actions: (
+      (
+        desc: "doc-norme_progetto-v1.2.0 - Inserimento Norme per sviluppo",
+        url: "https://notipswe.atlassian.net/browse/NT-561",
+      ),
+    ),
+  )
+
+  #base-report.report-point(
+    discussion_point: [Setup infrastruttura di sviluppo e CI/CD.],
+    discussion: [
+      Per minimizzare i tempi di configurazione e garantire la coerenza tra i diversi sistemi operativi dei membri, è
+      stata discussa l'adozione di Dev Containers. Inoltre, è stata sottolineata l'importanza di automatizzare i test e
+      il linting tramite GitHub Workflows per mantenere alto lo standard qualitativo del codice fin dai primi commit.
+    ],
+    decisions: [
+      Si è deciso di configurare in ogni repository i file necessari per i Dev Containers e di predisporre i workflow di
+      GitHub per l'integrazione continua.
+    ],
+    actions: (
+      (
+        desc: "Setup repo servizi MVP",
+        url: "https://notipswe.atlassian.net/browse/NT-521",
+      ),
+      (
+        desc: "Setup devcontainers MVP",
+        url: "https://notipswe.atlassian.net/browse/NT-552",
+      ),
+    ),
   )
 
 ][
