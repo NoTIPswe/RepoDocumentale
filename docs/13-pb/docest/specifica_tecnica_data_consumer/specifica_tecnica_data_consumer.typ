@@ -14,9 +14,9 @@
 
   Questo documento illustra l'architettura interna e le scelte implementative del microservizio `notip-data-consumer`.
   Sviluppato in Go, questo componente opera esclusivamente nel backend e ha la duplice responsabilità di consumare i
-  flussi telemetrici da NATS JetStream per persisterli in batch come blob opachi in TimescaleDB, e di tracciare la
-  liveness dei gateway IoT tramite un meccanismo di heartbeat in-memory. Espone un server HTTP con due endpoint:
-  `/metrics` (Prometheus) e `/healthz` (health check con verifica DB).
+  flussi telemetrici da NATS JetStream per persisterli in batch sotto forma di blob opachi in TimescaleDB, e di
+  tracciare la liveness dei gateway IoT tramite un meccanismo di heartbeat in-memory. Espone un server HTTP con due
+  endpoint: `/metrics` (Prometheus) e `/healthz` (health check con verifica DB).
 
   Per l'esatta struttura dei payload e i contratti delle interfacce, il codice sorgente costituisce la Single Source of
   Truth.
@@ -287,9 +287,9 @@
     [Tipo], [Descrizione e campi],
     [`OpaqueBlob`],
     [Named type con campo `Value string` (blob base64). Il tipo rende visibile nel type system l'invariante della
-      pipeline opaca: qualunque tentativo di decodifica del contenuto è una violazione di tipo. Espone `MarshalJSON` /
-      `UnmarshalJSON` custom che serializzano `Value` come stringa JSON plain, preservando il payload base64 invariato
-      attraverso qualsiasi round-trip JSON.],
+      pipeline opaca: qualunque tentativo di decodifica del contenuto è considerato una violazione di tipo. Espone
+      `MarshalJSON` / `UnmarshalJSON` custom che serializzano `Value` come stringa JSON plain, preservando il payload
+      base64 invariato attraverso qualsiasi round-trip JSON.],
 
     [`TelemetryEnvelope`],
     [Wire format di un messaggio NATS su `telemetry.data.{tenantId}.{gwId}`. Campi con JSON tag: `GatewayID string`
@@ -601,7 +601,7 @@
 
     [`UpdateGatewayStatus`],
     [`(ctx context.Context, update GatewayStatusUpdate) error`],
-    [Serializza l'update in JSON, invia verso `internal.mgmt.gateway.update-status`; body risposta ignorato],
+    [Serializza l'update in JSON, invia verso `internal.mgmt.gateway.update-status`; il body della risposta è ignorato],
   )
 
   Ogni metodo crea un context derivato con il timeout configurato (Go applica il più restrittivo tra il timeout del
