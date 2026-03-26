@@ -18,8 +18,8 @@
   liveness dei gateway IoT tramite un meccanismo di heartbeat in-memory. Espone un server HTTP con due endpoint:
   `/metrics` (Prometheus) e `/healthz` (health check con verifica DB).
 
-  Per l'esatta struttura dei payload e i contratti delle interfacce, il codice sorgente costituisce la Single Source
-  of Truth.
+  Per l'esatta struttura dei payload e i contratti delle interfacce, il codice sorgente costituisce la Single Source of
+  Truth.
 
   = Dipendenze e Configurazione
 
@@ -55,8 +55,8 @@
     [`MetricsAddr`], [`METRICS_ADDR`], [`":9090"`], [No],
   )
 
-  `Config` espone il metodo `GetDatabaseDSN() (string, error)`: legge la password dal Docker secret file indicato
-  da `DBPasswordFile` (trimming whitespace), e costruisce il DSN nel formato
+  `Config` espone il metodo `GetDatabaseDSN() (string, error)`: legge la password dal Docker secret file indicato da
+  `DBPasswordFile` (trimming whitespace), e costruisce il DSN nel formato
   `postgres://user:pass@host:port/dbname?sslmode=<DBSSLMode>`.
 
   == Sequenza di Avvio
@@ -97,15 +97,12 @@
     [Costruisce il servizio con tutte le dipendenze; avvia la goroutine `dispatchWorker`],
     [No],
 
-    [8],
-    [Driving adapter],
-    [Istanzia `HeartbeatTickTimer`, `NATSDecommissionConsumer`, `NATSTelemetryConsumer`],
-    [No],
+    [8], [Driving adapter], [Istanzia `HeartbeatTickTimer`, `NATSDecommissionConsumer`, `NATSTelemetryConsumer`], [No],
 
     [9],
     [Prometheus HTTP],
-    [Avvia il server HTTP su `MetricsAddr` in una goroutine di background; `/healthz` verifica la raggiungibilità
-      del DB via `pool.Ping`],
+    [Avvia il server HTTP su `MetricsAddr` in una goroutine di background; `/healthz` verifica la raggiungibilità del DB
+      via `pool.Ping`],
     [No],
 
     [10],
@@ -119,9 +116,9 @@
     [13], [`NATSTelemetryConsumer.Run`], [Avvia il consumer JetStream (blocca il main goroutine)], [Sì],
     [—],
     [Signal handler],
-    [Su SIGTERM/SIGINT: cancella il root context → consumer telemetria si ferma → consumer decommission si
-      ferma → tick timer si ferma → cache alert si ferma → metrics server shutdown → `tracker.Close()` drena il
-      canale di dispatch → pool chiude → NATS drain],
+    [Su SIGTERM/SIGINT: cancella il root context → consumer telemetria si ferma → consumer decommission si ferma → tick
+      timer si ferma → cache alert si ferma → metrics server shutdown → `tracker.Close()` drena il canale di dispatch →
+      pool chiude → NATS drain],
     [—],
   )
 
@@ -137,9 +134,8 @@
 
   Il servizio adotta l'*architettura esagonale* (Ports & Adapters). La logica di dominio, contenuta interamente in
   `HeartbeatTracker`, dipende esclusivamente da interfacce (_port_) e mai da implementazioni concrete.
-  
-  Il "composition root" in `cmd/consumer/main.go` istanzia l'intero grafo di dipendenze tramite constructor
-  injection.
+
+  Il "composition root" in `cmd/consumer/main.go` istanzia l'intero grafo di dipendenze tramite constructor injection.
 
   == Layout dei Package
 
@@ -171,18 +167,18 @@
     [Strato], [Package], [Contenuto],
     [Dominio],
     [`internal/domain/model`\ `internal/domain/port`\ `internal/service`],
-    [Value object puri, definizioni dei port, `HeartbeatTracker`. Nessun package di questo strato contiene
-      importazioni infrastrutturali.],
+    [Value object puri, definizioni dei port, `HeartbeatTracker`. Nessun package di questo strato contiene importazioni
+      infrastrutturali.],
 
     [Driving Adapter],
     [`internal/adapter/driving`],
-    [Traduce eventi esterni in chiamate ai driving port. Tre adapter: messaggi NATS telemetrici (con
-      batch-processing), eventi di decommission NATS, tick periodico del timer.],
+    [Traduce eventi esterni in chiamate ai driving port. Tre adapter: messaggi NATS telemetrici (con batch-processing),
+      eventi di decommission NATS, tick periodico del timer.],
 
     [Driven Adapter],
     [`internal/adapter/driven`],
-    [Implementazioni dei driven port verso risorse esterne: TimescaleDB, NATS JetStream, Management API
-      (via NATS RR), clock di sistema.],
+    [Implementazioni dei driven port verso risorse esterne: TimescaleDB, NATS JetStream, Management API (via NATS RR),
+      clock di sistema.],
   )
 
   = Definizione dei Port
@@ -205,8 +201,8 @@
   #st.port-interface(
     name: "AlertPublisher",
     kind: "driven",
-    description: [Confine di pubblicazione degli alert infrastrutturali. Disaccoppia la logica di rilevazione
-      offline dal meccanismo di distribuzione (JetStream).],
+    description: [Confine di pubblicazione degli alert infrastrutturali. Disaccoppia la logica di rilevazione offline
+      dal meccanismo di distribuzione (JetStream).],
     methods: (
       ("Publish", [Pubblica un alert gateway-offline per un tenant specifico]),
     ),
@@ -215,8 +211,8 @@
   #st.port-interface(
     name: "GatewayStatusUpdater",
     kind: "driven",
-    description: [Confine di notifica delle transizioni di stato. Isola il dominio dal protocollo NATS
-      Request-Reply verso il Management API.],
+    description: [Confine di notifica delle transizioni di stato. Isola il dominio dal protocollo NATS Request-Reply
+      verso il Management API.],
     methods: (
       ("UpdateStatus", [Notifica una transizione di stato online/offline al Management API]),
     ),
@@ -225,8 +221,8 @@
   #st.port-interface(
     name: "AlertConfigProvider",
     kind: "driven",
-    description: [Confine di accesso alla configurazione degli alert. Permette al dominio di richiedere il
-      timeout senza conoscere la sorgente. Lookup: override gateway → default tenant → default di sistema.],
+    description: [Confine di accesso alla configurazione degli alert. Permette al dominio di richiedere il timeout senza
+      conoscere la sorgente. Lookup: override gateway → default tenant → default di sistema.],
     methods: (
       ("TimeoutFor", [Restituisce il timeout offline configurato per uno specifico gateway (ms)]),
     ),
@@ -235,8 +231,8 @@
   #st.port-interface(
     name: "ClockProvider",
     kind: "driven",
-    description: [Astrazione del clock di sistema. Consente l'iniezione di un clock deterministico nei test,
-      eliminando la dipendenza diretta da `time.Now()` nella logica di dominio e di servizio.],
+    description: [Astrazione del clock di sistema. Consente l'iniezione di un clock deterministico nei test, eliminando
+      la dipendenza diretta da `time.Now()` nella logica di dominio e di servizio.],
     methods: (
       ("Now", [Restituisce il timestamp corrente]),
     ),
@@ -249,13 +245,12 @@
   #st.port-interface(
     name: "TelemetryMessageHandler",
     kind: "driving",
-    description: [Punto di ingresso per gli eventi telemetrici decodificati. L'adapter NATS invoca questo
-      port dopo aver estratto il `tenantID` dal subject e deserializzato l'envelope.],
+    description: [Punto di ingresso per gli eventi telemetrici decodificati. L'adapter NATS invoca questo port dopo aver
+      estratto il `tenantID` dal subject e deserializzato l'envelope.],
     methods: (
       (
         "HandleTelemetry",
-        [Aggiorna l'heartbeat del gateway e gestisce le transizioni di stato (prima comparsa, recovery da
-          offline)],
+        [Aggiorna l'heartbeat del gateway e gestisce le transizioni di stato (prima comparsa, recovery da offline)],
       ),
     ),
   )
@@ -263,8 +258,8 @@
   #st.port-interface(
     name: "DecommissionEventHandler",
     kind: "driving",
-    description: [Punto di ingresso per gli eventi di decommission gateway. Rimuove il gateway dalla mappa
-      di heartbeat per prevenire falsi alert su gateway dismessi.],
+    description: [Punto di ingresso per gli eventi di decommission gateway. Rimuove il gateway dalla mappa di heartbeat
+      per prevenire falsi alert su gateway dismessi.],
     methods: (
       ("HandleDecommission", [Rimuove un gateway dalla mappa di liveness]),
     ),
@@ -273,8 +268,8 @@
   #st.port-interface(
     name: "HeartbeatTicker",
     kind: "driving",
-    description: [Punto di ingresso per il tick periodico di liveness. Invocato dal timer adapter a
-      intervalli configurabili.],
+    description: [Punto di ingresso per il tick periodico di liveness. Invocato dal timer adapter a intervalli
+      configurabili.],
     methods: (
       ("Tick", [Valuta la liveness di tutti i gateway tracciati e genera alert per quelli offline]),
     ),
@@ -292,17 +287,17 @@
     columns: (1.5fr, 4fr),
     [Tipo], [Descrizione e campi],
     [`OpaqueBlob`],
-    [Named type con campo `Value string` (blob base64). Il tipo rende visibile nel type system l'invariante
-      della pipeline opaca: qualunque tentativo di decodifica del contenuto è una violazione di tipo. Espone
-      `MarshalJSON` / `UnmarshalJSON` custom che serializzano `Value` come stringa JSON plain, preservando
-      il payload base64 invariato attraverso qualsiasi round-trip JSON.],
+    [Named type con campo `Value string` (blob base64). Il tipo rende visibile nel type system l'invariante della
+      pipeline opaca: qualunque tentativo di decodifica del contenuto è una violazione di tipo. Espone `MarshalJSON` /
+      `UnmarshalJSON` custom che serializzano `Value` come stringa JSON plain, preservando il payload base64 invariato
+      attraverso qualsiasi round-trip JSON.],
 
     [`TelemetryEnvelope`],
-    [Wire format di un messaggio NATS su `telemetry.data.{tenantId}.{gwId}`. Campi con JSON tag:
-      `GatewayID string` (`gatewayId`), `SensorID string` (`sensorId`), `SensorType string` (`sensorType`),
-      `Timestamp time.Time` (`timestamp`), `KeyVersion int` (`keyVersion`),
-      `EncryptedData OpaqueBlob` (`encryptedData`), `IV OpaqueBlob` (`iv`), `AuthTag OpaqueBlob` (`authTag`).
-      `TenantID` non è nel body JSON: è estratto dal subject NATS dall'adapter.],
+    [Wire format di un messaggio NATS su `telemetry.data.{tenantId}.{gwId}`. Campi con JSON tag: `GatewayID string`
+      (`gatewayId`), `SensorID string` (`sensorId`), `SensorType string` (`sensorType`), `Timestamp time.Time`
+      (`timestamp`), `KeyVersion int` (`keyVersion`), `EncryptedData OpaqueBlob` (`encryptedData`), `IV OpaqueBlob`
+      (`iv`), `AuthTag OpaqueBlob` (`authTag`). `TenantID` non è nel body JSON: è estratto dal subject NATS
+      dall'adapter.],
 
     [`TelemetryRow`],
     [Record normalizzato scritto su TimescaleDB. Aggiunge `TenantID string` (dal subject NATS) e `Time time.Time`
@@ -310,19 +305,15 @@
 
     [`AlertPayload`],
     [Payload pubblicato su `alert.{tenantId}.gw_offline`. Campi con JSON tag: `GatewayID string` (`gatewayId`),
-      `LastSeen time.Time` (`lastSeen`), `TimeoutMs int64` (`timeoutMs`),
-      `Timestamp time.Time` (`timestamp`).],
+      `LastSeen time.Time` (`lastSeen`), `TimeoutMs int64` (`timeoutMs`), `Timestamp time.Time` (`timestamp`).],
 
-    [`AlertConfig`],
-    [`TenantID string`; `GatewayID *string` (nil = default tenant); `TimeoutMs int64`.],
+    [`AlertConfig`], [`TenantID string`; `GatewayID *string` (nil = default tenant); `TimeoutMs int64`.],
 
     [`GatewayStatusUpdate`],
-    [Payload per la chiamata NATS RR su `internal.mgmt.gateway.update-status`. Campi con JSON tag:
-      `GatewayID string` (`gatewayId`), `Status GatewayStatus` (`status`),
-      `LastSeenAt time.Time` (`lastSeenAt`).],
+    [Payload per la chiamata NATS RR su `internal.mgmt.gateway.update-status`. Campi con JSON tag: `GatewayID string`
+      (`gatewayId`), `Status GatewayStatus` (`status`), `LastSeenAt time.Time` (`lastSeenAt`).],
 
-    [`GatewayStatus`],
-    [Enum: `Online = "online"`, `Offline = "offline"`.],
+    [`GatewayStatus`], [Enum: `Online = "online"`, `Offline = "offline"`.],
   )
 
   === Tipi Interni al Package `service`
@@ -331,8 +322,8 @@
     columns: (1.5fr, 4fr),
     [Tipo], [Descrizione e campi],
     [`gatewayKey`],
-    [Chiave composita per la mappa heartbeat. Usa una struct invece di una stringa formattata per evitare
-      allocazioni e ambiguità di collision. Campi unexported: `tenantID string`, `gatewayID string`.],
+    [Chiave composita per la mappa heartbeat. Usa una struct invece di una stringa formattata per evitare allocazioni e
+      ambiguità di collision. Campi unexported: `tenantID string`, `gatewayID string`.],
 
     [`heartbeatEntry`],
     [Entry per gateway tracciato nella mappa heartbeat. Tipo unexported, manipolato esclusivamente da
@@ -345,10 +336,9 @@
 
   == HeartbeatTracker (`internal/service`)
 
-  Unico servizio di dominio. Implementa i tre driving port `TelemetryMessageHandler`,
-  `DecommissionEventHandler` e `HeartbeatTicker`. Gli status update sono inviati in modo asincrono tramite
-  un canale a capacità limitata processato da una goroutine worker dedicata, mantenendo `Tick` e
-  `HandleTelemetry` non-bloccanti.
+  Unico servizio di dominio. Implementa i tre driving port `TelemetryMessageHandler`, `DecommissionEventHandler` e
+  `HeartbeatTicker`. Gli status update sono inviati in modo asincrono tramite un canale a capacità limitata processato
+  da una goroutine worker dedicata, mantenendo `Tick` e `HandleTelemetry` non-bloccanti.
 
   === Interfaccia Metrica Ristretta
 
@@ -394,8 +384,8 @@
   ) *HeartbeatTracker
   ```
 
-  Inizializza la mappa heartbeat vuota, crea il canale di dispatch con capacità `statusUpdateBufSize` e avvia
-  la goroutine `dispatchWorker`.
+  Inizializza la mappa heartbeat vuota, crea il canale di dispatch con capacità `statusUpdateBufSize` e avvia la
+  goroutine `dispatchWorker`.
 
   === Metodi Pubblici
 
@@ -414,29 +404,29 @@
   *`HandleTelemetry`*
   + Deriva la chiave composita `gatewayKey{tenantID, envelope.GatewayID}`.
   + Acquisisce write-lock.
-  + Se l'entry *non esiste*: crea una nuova entry con `lastSeen = clock.Now()` e `knownStatus = Online`;
-    aggiorna la metrica della dimensione della mappa; esegue dispatch di un status update `Online`; ritorna.
+  + Se l'entry *non esiste*: crea una nuova entry con `lastSeen = clock.Now()` e `knownStatus = Online`; aggiorna la
+    metrica della dimensione della mappa; esegue dispatch di un status update `Online`; ritorna.
   + Se l'entry *esiste*: aggiorna `lastSeen = clock.Now()`.
   + Se l'entry aveva `knownStatus = Offline`: transiziona a `Online` e dispatcha un status update `Online`.
 
   *`HandleDecommission`*\
-  Acquisisce write-lock. Cancella l'entry per `gatewayKey{tenantID, gatewayID}`. Aggiorna la metrica della
-  dimensione della mappa. Nessun altro side effect.
+  Acquisisce write-lock. Cancella l'entry per `gatewayKey{tenantID, gatewayID}`. Aggiorna la metrica della dimensione
+  della mappa. Nessun altro side effect.
 
   *`Tick` — approccio a tre fasi*
   + *Grace period check:* se `clock.Now()` è prima di `startTime + gracePeriod`, ritorna immediatamente.
-  + *Fase 1 — RLock snapshot:* acquisisce read-lock, copia tutte le entry in uno slice locale (value copy),
-    rilascia read-lock.
-  + *Fase 2 — I/O fuori dal lock:* per ogni entry nello snapshot: se `knownStatus == Offline` salta; recupera
-    il timeout via `configProvider.TimeoutFor`; se non scaduto salta; pubblica alert via
-    `alertPublisher.Publish`; esegue dispatch `Offline` via il canale asincrono.
-  + *Fase 3 — WLock con re-validazione:* acquisisce write-lock; rilege l'entry reale dalla mappa; se
-    `lastSeen` è avanzato rispetto allo snapshot (telemetria arrivata durante la Fase 2), annulla la
-    transizione. Altrimenti imposta `knownStatus = Offline`.
+  + *Fase 1 — RLock snapshot:* acquisisce read-lock, copia tutte le entry in uno slice locale (value copy), rilascia
+    read-lock.
+  + *Fase 2 — I/O fuori dal lock:* per ogni entry nello snapshot: se `knownStatus == Offline` salta; recupera il timeout
+    via `configProvider.TimeoutFor`; se non scaduto salta; pubblica alert via `alertPublisher.Publish`; esegue dispatch
+    `Offline` via il canale asincrono.
+  + *Fase 3 — WLock con re-validazione:* acquisisce write-lock; rilege l'entry reale dalla mappa; se `lastSeen` è
+    avanzato rispetto allo snapshot (telemetria arrivata durante la Fase 2), annulla la transizione. Altrimenti imposta
+    `knownStatus = Offline`.
 
   *`Close`*\
-  Chiude `dispatchCh` (idempotente via `sync.Once`). Attende che `dispatchWorker` termini di drenare la
-  coda e chiuda `done`.
+  Chiude `dispatchCh` (idempotente via `sync.Once`). Attende che `dispatchWorker` termini di drenare la coda e chiuda
+  `done`.
 
   === Metodi Privati
 
@@ -444,27 +434,23 @@
     columns: (1.5fr, 3.5fr),
     [Metodo], [Comportamento],
     [`dispatchStatusUpdate(update GatewayStatusUpdate)`],
-    [Invio non-bloccante su `dispatchCh`; se il canale è pieno, scarta e incrementa
-      `StatusUpdateDropped`.],
+    [Invio non-bloccante su `dispatchCh`; se il canale è pieno, scarta e incrementa `StatusUpdateDropped`.],
 
     [`dispatchWorker()`],
     [Goroutine di background; processa serialmente i `statusUpdateJob` da `dispatchCh`; chiude `done` alla
       terminazione.],
-
-    [`isInGracePeriod()`],
-    [Confronta `clock.Now()` con `startTime + gracePeriod`.],
   )
 
   == Adapter Driven (`internal/adapter/driven`)
 
-  Ogni adapter definisce un'interfaccia metrica ristretta con i soli metodi che effettivamente emette.
-  La struct `Metrics` soddisfa tutte queste interfacce.
+  Ogni adapter definisce un'interfaccia metrica ristretta con i soli metodi che effettivamente emette. La struct
+  `Metrics` soddisfa tutte queste interfacce.
 
   === PostgresTelemetryWriter
 
-  Implementa `TelemetryWriter`. Scrive `TelemetryRow` verbatim su TimescaleDB — i tre `OpaqueBlob`
-  (`EncryptedData`, `IV`, `AuthTag`) sono scritti as-is, senza alcuna decodifica. Dipende dall'interfaccia
-  `dbPool` (soddisfatta da `*pgxpool.Pool`).
+  Implementa `TelemetryWriter`. Scrive `TelemetryRow` verbatim su TimescaleDB — i tre `OpaqueBlob` (`EncryptedData`,
+  `IV`, `AuthTag`) sono scritti as-is, senza alcuna decodifica. Dipende dall'interfaccia `dbPool` (soddisfatta da
+  `*pgxpool.Pool`).
 
   *Interfaccia `dbPool`:*
 
@@ -482,17 +468,17 @@
     [`Write`], [`(ctx context.Context, row TelemetryRow) error`], [Singolo INSERT via `pool.Exec`],
     [`WriteBatch`],
     [`(ctx context.Context, rows []TelemetryRow) error`],
-    [Costruisce un `pgx.Batch` con un INSERT per riga; singolo round-trip via `pool.SendBatch`; fallisce al
-      primo errore; no-op su slice vuoto],
+    [Costruisce un `pgx.Batch` con un INSERT per riga; singolo round-trip via `pool.SendBatch`; fallisce al primo
+      errore; no-op su slice vuoto],
 
     [`Close`], [`()`], [Rilascia tutte le connessioni del pool],
   )
 
   === NATSAlertPublisher
 
-  Implementa `AlertPublisher`. Serializza `AlertPayload` in JSON e pubblica su
-  `alert.{tenantId}.gw_offline` via JetStream. Il subject è assemblato al momento della pubblicazione.
-  Dipende dall'interfaccia `natsJSPublisher` (soddisfatta da `nats.JetStreamContext`).
+  Implementa `AlertPublisher`. Serializza `AlertPayload` in JSON e pubblica su `alert.{tenantId}.gw_offline` via
+  JetStream. Il subject è assemblato al momento della pubblicazione. Dipende dall'interfaccia `natsJSPublisher`
+  (soddisfatta da `nats.JetStreamContext`).
 
   *Interfaccia `natsJSPublisher`:*
 
@@ -511,14 +497,13 @@
     [`IncAlertPublishErrors()`], [—],
   )
 
-  Il context è accettato per compliance con l'interfaccia ma non propagato a `js.Publish`, la cui API
-  sincrona non supporta cancellazione per-chiamata.
+  Il context è accettato per compliance con l'interfaccia ma non propagato a `js.Publish`, la cui API sincrona non
+  supporta cancellazione per-chiamata.
 
   === NATSGatewayStatusUpdater
 
-  Implementa `GatewayStatusUpdater`. Delega la meccanica NATS RR all'interfaccia
-  `gatewayStatusUpdateCaller` (soddisfatta da `NATSRRClient`). Incrementa la metrica di errore sui
-  fallimenti.
+  Implementa `GatewayStatusUpdater`. Delega la meccanica NATS RR all'interfaccia `gatewayStatusUpdateCaller`
+  (soddisfatta da `NATSRRClient`). Incrementa la metrica di errore sui fallimenti.
 
   *Interfaccia `gatewayStatusUpdateCaller`:*
 
@@ -538,10 +523,10 @@
 
   === AlertConfigCache
 
-  Implementa `AlertConfigProvider`. Mantiene uno snapshot atomicamente sostituibile delle configurazioni
-  di alert, aggiornato periodicamente via NATS RR (`internal.mgmt.alert-configs.list`). Le letture in
-  `TimeoutFor` sono lock-free tramite `atomic.Pointer[alertConfigSnapshot]`. Il costruttore inizializza con
-  uno snapshot vuoto, rendendo `TimeoutFor` sicuro da chiamare immediatamente.
+  Implementa `AlertConfigProvider`. Mantiene uno snapshot atomicamente sostituibile delle configurazioni di alert,
+  aggiornato periodicamente via NATS RR (`internal.mgmt.alert-configs.list`). Le letture in `TimeoutFor` sono lock-free
+  tramite `atomic.Pointer[alertConfigSnapshot]`. Il costruttore inizializza con uno snapshot vuoto, rendendo
+  `TimeoutFor` sicuro da chiamare immediatamente.
 
   Lookup in `TimeoutFor`: override gateway → default tenant → `defaultTimeoutMs`.
 
@@ -575,14 +560,16 @@
   )
 
   #table(
-    columns: (1.2fr, 2fr, 2.8fr),
+    columns: (1.2fr, 2.5fr, 2.3fr),
     [Metodo], [Firma], [Note],
     [`TimeoutFor`], [`(tenantID, gatewayID string) int64`], [Lock-free; legge dall'atomic pointer],
-    [`Run`], [`(ctx context.Context)`],
+    [`Run`],
+    [`(ctx context.Context)`],
     [Bloccante; fetch iniziale con backoff (`1s → 30s cap`, max `maxRetries`), poi loop di refresh],
 
     [`refresh`], [`(ctx context.Context) error`], [Fetch e swap atomico dello snapshot],
-    [`fetchWithBackoff`], [`(ctx context.Context) error`],
+    [`fetchWithBackoff`],
+    [`(ctx context.Context) error`],
     [Retry con backoff esponenziale; incrementa metrica ad ogni tentativo fallito],
   )
 
@@ -595,8 +582,8 @@
 
   Helper infrastrutturale condiviso (non un port). Incapsula i meccanismi di NATS Request-Reply (timeout,
   serializzazione, gestione errori). Usato da `AlertConfigCache` (via `alertConfigFetcher`) e da
-  `NATSGatewayStatusUpdater` (via `gatewayStatusUpdateCaller`). Dipende dall'interfaccia `natsRequester`
-  (soddisfatta da `*nats.Conn`).
+  `NATSGatewayStatusUpdater` (via `gatewayStatusUpdateCaller`). Dipende dall'interfaccia `natsRequester` (soddisfatta da
+  `*nats.Conn`).
 
   *Interfaccia `natsRequester`:*
 
@@ -607,7 +594,7 @@
   )
 
   #table(
-    columns: (1.2fr, 2.5fr, 2.3fr),
+    columns: (auto, 2.5fr, 2.3fr),
     [Metodo], [Firma], [Note],
     [`FetchAlertConfigs`],
     [`(ctx context.Context) ([]AlertConfig, error)`],
@@ -618,40 +605,39 @@
     [Serializza l'update in JSON, invia verso `internal.mgmt.gateway.update-status`; body risposta ignorato],
   )
 
-  Ogni metodo crea un context derivato con il timeout configurato (Go applica il più restrittivo tra il
-  timeout del chiamante e quello configurato).
+  Ogni metodo crea un context derivato con il timeout configurato (Go applica il più restrittivo tra il timeout del
+  chiamante e quello configurato).
 
   === SystemClock
 
-  Implementa `ClockProvider`. Adapter stateless che delega a `time.Now()`. Esiste esclusivamente per
-  soddisfare l'interfaccia in produzione, permettendo ai test di iniettare un clock controllato.
+  Implementa `ClockProvider`. Adapter stateless che delega a `time.Now()`. Esiste esclusivamente per soddisfare
+  l'interfaccia in produzione, permettendo ai test di iniettare un clock controllato.
 
   == Adapter Driving (`internal/adapter/driving`)
 
-  `NATSTelemetryConsumer` e `NATSDecommissionConsumer` dipendono dall'interfaccia condivisa
-  `natsJSSubscriber` (soddisfatta da `nats.JetStreamContext`):
+  `NATSTelemetryConsumer` e `NATSDecommissionConsumer` dipendono dall'interfaccia condivisa `natsJSSubscriber`
+  (soddisfatta da `nats.JetStreamContext`):
 
   #table(
     columns: (1fr, 3fr),
     [Metodo], [Firma],
-    [`Subscribe`],
-    [`(subj string, cb nats.MsgHandler, opts ...nats.SubOpt) (*nats.Subscription, error)`],
+    [`Subscribe`], [`(subj string, cb nats.MsgHandler, opts ...nats.SubOpt) (*nats.Subscription, error)`],
   )
 
   === NATSTelemetryConsumer
 
-  Sottoscrive `telemetry.data.>` come durable consumer JetStream. I messaggi sono bufferizzati e scritti
-  in batch per il throughput.
+  Sottoscrive `telemetry.data.>` come durable consumer JetStream. I messaggi sono bufferizzati e scritti in batch per il
+  throughput.
 
   Per ogni messaggio NATS:
   + Incrementa la metrica `MessagesReceived`.
-  + `processMessage` esegue: parse del body JSON in `TelemetryEnvelope`; estrazione del `tenantID` dal
-    subject; chiamata a `TelemetryMessageHandler.HandleTelemetry`; costruzione della `TelemetryRow`.
+  + `processMessage` esegue: parse del body JSON in `TelemetryEnvelope`; estrazione del `tenantID` dal subject; chiamata
+    a `TelemetryMessageHandler.HandleTelemetry`; costruzione della `TelemetryRow`.
   + Il risultato è inviato al canale pending per il batch.
-  + `flushLoop` accumula i pending e chiama `WriteBatch` al raggiungimento di `batchSize`, allo scadere
-    di `flushEvery`, o alla cancellazione del context (flush finale).
-  + Dopo `WriteBatch`: ACK su successo; NAK con delay 5s per errori transitori; Term per errori permanenti
-    di parsing (NATS non rideliverarà).
+  + `flushLoop` accumula i pending e chiama `WriteBatch` al raggiungimento di `batchSize`, allo scadere di `flushEvery`,
+    o alla cancellazione del context (flush finale).
+  + Dopo `WriteBatch`: ACK su successo; NAK con delay 5s per errori transitori; Term per errori permanenti di parsing
+    (NATS non rideliverarà).
 
   #table(
     columns: (1.2fr, 1.8fr),
@@ -684,28 +670,23 @@
     [`(ctx context.Context, msg *nats.Msg) (TelemetryRow, error)`],
     [Orchestrazione parse → handle → build; ritorna `permanentError` o errore transitorio],
 
-    [`flushLoop`],
-    [`(ctx context.Context, pending <-chan pendingMsg)`],
-    [Batch con tre trigger di flush],
+    [`flushLoop`], [`(ctx context.Context, pending <-chan pendingMsg)`], [Batch con tre trigger di flush],
 
     [`writeBatch`],
     [`(ctx context.Context, batch []pendingMsg)`],
     [Separa errori permanenti dalle righe valide; chiama `WriteBatch`; ACK/NAK/Term per messaggio],
 
     [`extractTenantID`], [`(subject string) (string, error)`], [Parsing del subject NATS],
-    [`buildRow`],
-    [`(tenantID string, envelope TelemetryEnvelope) TelemetryRow`],
-    [Mapping envelope + tenantID → row],
+    [`buildRow`], [`(tenantID string, envelope TelemetryEnvelope) TelemetryRow`], [Mapping envelope + tenantID → row],
   )
 
-  *Tipi interni:* `permanentError` — wrappa un error per segnalare fallimenti non-retriable.
-  `pendingMsg` — accoppia un'interfaccia `msgAcknowledger` (soddisfatta da `*nats.Msg`) con la
-  `TelemetryRow` decodificata e l'eventuale errore.
+  *Tipi interni:* `permanentError` — wrappa un error per segnalare fallimenti non-retriable. `pendingMsg` — accoppia
+  un'interfaccia `msgAcknowledger` (soddisfatta da `*nats.Msg`) con la `TelemetryRow` decodificata e l'eventuale errore.
 
   === NATSDecommissionConsumer
 
-  Sottoscrive `gateway.decommissioned.>` via JetStream con ACK manuale. Per ogni messaggio estrae
-  `tenantID` e `gatewayID` dal subject (attesi esattamente 4 segmenti dot-separated) e invoca
+  Sottoscrive `gateway.decommissioned.>` via JetStream con ACK manuale. Per ogni messaggio estrae `tenantID` e
+  `gatewayID` dal subject (attesi esattamente 4 segmenti dot-separated) e invoca
   `DecommissionEventHandler.HandleDecommission`. Errori di parsing sono Term()'d.
 
   #table(
@@ -725,8 +706,8 @@
 
   === HeartbeatTickTimer
 
-  Possiede un `time.Ticker` con intervallo `HeartbeatTickMs`. A ogni scatto invoca
-  `HeartbeatTicker.Tick(ctx)`. Si ferma alla cancellazione del context.
+  Possiede un `time.Ticker` con intervallo `HeartbeatTickMs`. A ogni scatto invoca `HeartbeatTicker.Tick(ctx)`. Si ferma
+  alla cancellazione del context.
 
   #table(
     columns: (1.2fr, 1.8fr),
@@ -737,136 +718,130 @@
 
   == Metriche Prometheus (`internal/metrics`)
 
-  La struct `Metrics` è costruita una volta nel composition root tramite `New(reg prometheus.Registerer)`,
-  che accetta un registrer esplicito (anziché il global default) per isolare le registrazioni nei test.
-  Iniettata agli adapter tramite interfacce metriche ristrette.
+  La struct `Metrics` è costruita una volta nel composition root tramite `New(reg prometheus.Registerer)`, che accetta
+  un registrer esplicito (anziché il global default) per isolare le registrazioni nei test. Iniettata agli adapter
+  tramite interfacce metriche ristrette.
 
   #table(
-    columns: (2fr, 1fr, 2.8fr, 1.5fr),
+    columns: (2fr, 1.2fr, 3.5fr, 2.5fr),
     [Campo], [Tipo], [Nome Prometheus], [Descrizione],
-    [`MessagesReceived`],
-    [Counter],
-    [`notip_consumer_messages_received_total`],
-    [Messaggi NATS dequeued],
 
-    [`MessagesWritten`],
+    [`MessagesReceived`], [Counter], [`notip_consumer_messages_received_total`], [Messaggi NATS dequeued],
+    [`MessageParsingErrors`],
     [Counter],
-    [`notip_consumer_messages_written_total`],
-    [Scritture TimescaleDB riuscite],
+    [`notip_consumer_message_parsing_errors_total`],
+    [Messaggi scartati definitivamente (Term) per JSON malformato o subject errato],
 
-    [`WriteErrors`],
-    [Counter],
-    [`notip_consumer_write_errors_total`],
-    [Scritture TimescaleDB fallite],
-
-    [`WriteLatency`],
+    [`MessagesWritten`], [Counter], [`notip_consumer_messages_written_total`], [Scritture TimescaleDB riuscite],
+    [`WriteErrors`], [Counter], [`notip_consumer_write_errors_total`], [Scritture TimescaleDB fallite],
+    [`WriteLatency`], [Histogram], [`notip_consumer_write_duration_seconds`], [Durata scrittura su TimescaleDB],
+    [`BatchSize`],
     [Histogram],
-    [`notip_consumer_write_duration_seconds`],
-    [Durata scrittura TimescaleDB (DefBuckets)],
+    [`notip_consumer_batch_size`],
+    [Numero di record telemetrici per ogni operazione di flush batch],
 
-    [`AlertsPublished`],
-    [Counter],
-    [`notip_consumer_alerts_published_total`],
-    [Alert gateway-offline pubblicati],
+    [`AlertsPublished`], [Counter], [`notip_consumer_alerts_published_total`], [Alert gateway-offline pubblicati],
+    [`AlertPublishErrors`], [Counter], [`notip_consumer_alert_publish_errors_total`], [Errori di pubblicazione alert],
+    [`HeartbeatMapSize`],
+    [Gauge],
+    [`notip_consumer_heartbeat_map_size`],
+    [Gateway attualmente tracciati nella mappa heartbeat],
 
-    [`AlertPublishErrors`],
-    [Counter],
-    [`notip_consumer_alert_publish_errors_total`],
-    [Errori di pubblicazione alert],
+    [`HeartbeatTickDuration`],
+    [Histogram],
+    [`notip_consumer_heartbeat_tick_duration_seconds`],
+    [Tempo di esecuzione del ciclo di Tick completo],
 
-    [`StatusUpdateErrors`],
-    [Counter],
-    [`notip_consumer_status_update_errors_total`],
-    [Errori NATS RR status update],
-
+    [`StatusUpdateErrors`], [Counter], [`notip_consumer_status_update_errors_total`], [Errori NATS RR status update],
     [`StatusUpdateDropped`],
     [Counter],
     [`notip_consumer_status_update_dropped_total`],
     [Status update scartati (canale pieno)],
+
+    [`DispatchQueueLength`],
+    [Gauge],
+    [`notip_consumer_dispatch_queue_length`],
+    [Numero di job attualmente in coda nel canale asincrono],
 
     [`AlertCacheRefreshErrors`],
     [Counter],
     [`notip_consumer_alert_cache_refresh_errors_total`],
     [Errori refresh cache configurazioni alert],
 
-    [`NATSReconnects`],
-    [Counter],
-    [`notip_consumer_nats_reconnects_total`],
-    [Riconnessioni NATS],
-
-    [`HeartbeatMapSize`],
+    [`AlertCacheLastSuccess`],
     [Gauge],
-    [`notip_consumer_heartbeat_map_size`],
-    [Gateway attualmente tracciati nella mappa heartbeat],
+    [`notip_consumer_alert_cache_last_success_timestamp`],
+    [Timestamp Unix dell'ultimo fetch configurazioni riuscito],
+
+    [`NATSReconnects`], [Counter], [`notip_consumer_nats_reconnects_total`], [Riconnessioni NATS],
   )
 
-  La struct `Metrics` soddisfa tutte le narrow metric interface tramite i metodi:
-  `IncMessagesReceived`, `IncMessagesWritten`, `IncWriteErrors`, `ObserveWriteLatency(d time.Duration)`,
-  `IncAlertsPublished`, `IncAlertPublishErrors`, `IncStatusUpdateErrors`, `IncStatusUpdateDropped`,
-  `IncAlertCacheRefreshErrors`, `IncNATSReconnects`, `SetHeartbeatMapSize(v float64)`.
+  La struct `Metrics` soddisfa tutte le narrow metric interface tramite i metodi: `IncMessagesReceived`,
+  `IncMessageParsingErrors`, `IncMessagesWritten`, `IncWriteErrors`, `ObserveWriteLatency(d time.Duration)`,
+  `ObserveBatchSize(size float64)`, `IncAlertsPublished`, `IncAlertPublishErrors`, `SetHeartbeatMapSize(v float64)`,
+  `ObserveHeartbeatTickDuration(d time.Duration)`, `IncStatusUpdateErrors`, `IncStatusUpdateDropped`,
+  `SetDispatchQueueLength(v float64)`, `IncAlertCacheRefreshErrors`, `SetAlertCacheLastSuccess(ts float64)`,
+  `IncNATSReconnects`.
 
   == Decisioni Implementative
 
   #st.design-rationale(title: "Tick a tre fasi con re-validazione")[
-    Il ciclo di heartbeat opera in tre fasi distinte: (1) acquisizione di uno snapshot in sola lettura della
-    mappa; (2) operazioni di I/O (pubblicazione alert, dispatch status update) senza lock mantenuto; (3)
-    riacquisizione del write-lock con re-validazione dello stato. Se durante la fase I/O è arrivato un nuovo
-    messaggio dal gateway (`lastSeen` avanzato), la transizione a offline viene annullata. Minimizza la
-    contesa sul lock e previene falsi positivi causati dalla latenza delle operazioni di rete.
+    Il ciclo di heartbeat opera in tre fasi distinte:
+    + acquisizione di uno snapshot in sola lettura della mappa;
+    + operazioni di I/O (pubblicazione alert, dispatch status update) senza lock mantenuto;
+    + riacquisizione del write-lock con re-validazione dello stato. Se durante la fase I/O è arrivato un nuovo messaggio
+      dal gateway (`lastSeen` avanzato), la transizione a offline viene annullata. Minimizza la contesa sul lock e
+      previene falsi positivi causati dalla latenza delle operazioni di rete.
   ]
 
   #st.design-rationale(title: "Grace period all'avvio")[
-    Per `HeartbeatGracePeriodMs` dall'avvio, `Tick` non emette alert. Consente ai gateway di stabilire la
-    connessione e inviare il primo messaggio prima che il meccanismo di liveness diventi attivo, evitando
-    alert spurii durante il warm-up.
+    Per `HeartbeatGracePeriodMs` dall'avvio, `Tick` non emette alert. Consente ai gateway di stabilire la connessione e
+    inviare il primo messaggio prima che il meccanismo di liveness diventi attivo, evitando alert spurii durante il
+    warm-up.
   ]
 
   #st.design-rationale(title: "Batch write con flush periodico")[
-    I record vengono accumulati in un buffer interno e scritti in batch con un singolo round-trip di rete. Il
-    flush avviene al raggiungimento della soglia dimensionale (`telemetryBatchSize = 100`) o allo scadere del
-    timer (`telemetryFlushInterval = 500ms`). Gli ACK NATS sono emessi solo dopo la scrittura riuscita del
-    batch, garantendo semantica at-least-once delivery.
+    I record vengono accumulati in un buffer interno e scritti in batch con un singolo round-trip di rete. Il flush
+    avviene al raggiungimento della soglia dimensionale (`telemetryBatchSize = 100`) o allo scadere del timer
+    (`telemetryFlushInterval = 500ms`). Gli ACK NATS sono emessi solo dopo la scrittura riuscita del batch, garantendo
+    semantica at-least-once delivery.
   ]
 
   #st.design-rationale(title: "Dispatch asincrono non-bloccante per status update")[
     Le chiamate a `GatewayStatusUpdater.UpdateStatus` sono accodate in un canale a capacità limitata
     (`GatewayBufferSize`) e processate da una goroutine worker dedicata. Il path del tick di heartbeat e di
-    `HandleTelemetry` non attendono mai il completamento della chiamata RR. Se il canale è pieno,
-    l'aggiornamento è scartato deterministicamente e `status_update_dropped_total` viene incrementato. La
-    perdita è accettabile: il ciclo successivo genererà un nuovo aggiornamento se la condizione persiste.
+    `HandleTelemetry` non attendono mai il completamento della chiamata RR. Se il canale è pieno, l'aggiornamento è
+    scartato deterministicamente e `status_update_dropped_total` viene incrementato. La perdita è accettabile: il ciclo
+    successivo genererà un nuovo aggiornamento se la condizione persiste.
   ]
 
   #st.design-rationale(title: "Interfacce metriche ristrette per adapter")[
-    Ogni adapter definisce un'interfaccia metrica minimale con i soli metodi necessari. La struct `Metrics`
-    soddisfa tutte queste interfacce, ma ogni adapter è accoppiato esclusivamente ai propri contatori.
-    Semplifica la creazione di mock nei test e impedisce a un adapter di acquisire visibilità sulle metriche
-    di altri componenti.
+    Ogni adapter definisce un'interfaccia metrica minimale con i soli metodi necessari. La struct `Metrics` soddisfa
+    tutte queste interfacce, ma ogni adapter è accoppiato esclusivamente ai propri contatori. Semplifica la creazione di
+    mock nei test e impedisce a un adapter di acquisire visibilità sulle metriche di altri componenti.
   ]
 
   #st.design-rationale(title: "Snapshot atomico per AlertConfigCache")[
-    La cache delle configurazioni di alert usa `atomic.Pointer[alertConfigSnapshot]` per garantire letture
-    lock-free in `TimeoutFor`. Il refresh periodico costruisce un nuovo snapshot immutabile e lo sostituisce
-    atomicamente. In caso di errore nel refresh, l'ultimo snapshot valido rimane in uso senza degradare la
-    disponibilità del servizio.
+    La cache delle configurazioni di alert usa `atomic.Pointer[alertConfigSnapshot]` per garantire letture lock-free in
+    `TimeoutFor`. Il refresh periodico costruisce un nuovo snapshot immutabile e lo sostituisce atomicamente. In caso di
+    errore nel refresh, l'ultimo snapshot valido rimane in uso senza degradare la disponibilità del servizio.
   ]
 
   #st.design-rationale(title: "Struct key per la mappa heartbeat")[
-    `gatewayKey` usa una struct come chiave della mappa invece di una stringa `"tenantID/gatewayID"`
-    formattata. Elimina l'allocazione per la costruzione della chiave stringa e previene ambiguità di
-    collision (es. `"a/b/c"` e `"a/b"` + `"c"`).
+    `gatewayKey` usa una struct come chiave della mappa invece di una stringa `"tenantID/gatewayID"` formattata. Elimina
+    l'allocazione per la costruzione della chiave stringa e previene ambiguità di collision (es. `"a/b/c"` e `"a/b"` +
+    `"c"`).
   ]
 
   #st.design-rationale(title: "mTLS per autenticazione NATS")[
-    L'autenticazione NATS usa mTLS (`RootCAs`, `ClientCert`) al posto del file `.creds`. Ogni servizio
-    dispone di un certificato client firmato dalla CA interna (step-ca), garantendo mutual authentication e
-    consentendo la revoca per certificato senza rotazione di credenziali condivise.
+    L'autenticazione NATS usa mTLS (`RootCAs`, `ClientCert`) al posto del file `.creds`. Ogni servizio dispone di un
+    certificato client firmato dalla CA interna (step-ca), garantendo mutual authentication e consentendo la revoca per
+    certificato senza rotazione di credenziali condivise.
   ]
 
   #pagebreak()
 
   = Schema Database
-
-  == Migrazione `migrations/001_create_telemetry_hypertable.sql`
 
   ```sql
   CREATE TABLE IF NOT EXISTS telemetry (
@@ -889,20 +864,20 @@
       ON telemetry (tenant_id, gateway_id, time DESC);
   ```
 
-  Le colonne `encrypted_data`, `iv`, `auth_tag` sono memorizzate come `TEXT` (stringhe base64) e non
-  vengono mai decodificate server-side — Rule Zero.
+  Le colonne `encrypted_data`, `iv`, `auth_tag` sono memorizzate come `TEXT` (stringhe base64) e non vengono mai
+  decodificate server-side — Rule Zero.
 
   #pagebreak()
 
   = Metodologie di Testing
 
-  Il race detector Go (`-race`) è abilitato in tutte le esecuzioni CI, sia per i test di unità sia per
-  quelli di integrazione.
+  Il race detector Go (`-race`) è abilitato in tutte le esecuzioni CI, sia per i test di unità sia per quelli di
+  integrazione.
 
   == Test di Unità
 
-  Le dipendenze sono sostituite da mock o stub iniettati tramite constructor. Il clock è sempre un
-  `FakeClock` controllato per rendere i test deterministici.
+  Le dipendenze sono sostituite da mock o stub iniettati tramite constructor. Il clock è sempre un `FakeClock`
+  controllato per rendere i test deterministici.
 
   *`HeartbeatTracker`*
 
@@ -910,8 +885,8 @@
     columns: (3fr, 2fr),
     [Caso di test], [Postcondizione verificata],
     [`HandleTelemetry` — primo messaggio da gateway sconosciuto],
-    [Entry inserita in `beats`; `knownStatus = Online`; `dispatchCh` riceve un job `Online`;
-      metrica `HeartbeatMapSize` incrementata],
+    [Entry inserita in `beats`; `knownStatus = Online`; `dispatchCh` riceve un job `Online`; metrica `HeartbeatMapSize`
+      incrementata],
 
     [`HandleTelemetry` — messaggio da gateway con `knownStatus = Offline`],
     [`dispatchCh` riceve un job `Online`; `knownStatus` aggiornato a `Online`],
@@ -923,20 +898,17 @@
     [`HandleDecommission` — gateway assente in mappa], [Nessun errore; nessun side effect],
     [`Tick` — grace period attivo], [`alertPublisher.Publish` non chiamato],
     [`Tick` — timeout superato, nessun aggiornamento intervenuto],
-    [`alertPublisher.Publish` chiamato; `dispatchCh` riceve job `Offline`; `knownStatus` aggiornato a
-      `Offline` dopo Fase 3],
+    [`alertPublisher.Publish` chiamato; `dispatchCh` riceve job `Offline`; `knownStatus` aggiornato a `Offline` dopo
+      Fase 3],
 
     [`Tick` — re-validazione: heartbeat arrivato durante Fase 2 simulata],
     [Transizione annullata; `alertPublisher.Publish` non chiamato; `knownStatus` rimane `Online`],
 
-    [`Tick` — gateway già `knownStatus = Offline`],
-    [Nessun alert duplicato; `alertPublisher.Publish` non chiamato],
+    [`Tick` — gateway già `knownStatus = Offline`], [Nessun alert duplicato; `alertPublisher.Publish` non chiamato],
 
-    [`dispatchStatusUpdate` — canale pieno],
-    [Job scartato; `IncStatusUpdateDropped` invocato],
+    [`dispatchStatusUpdate` — canale pieno], [Job scartato; `IncStatusUpdateDropped` invocato],
 
-    [`Close` — drain del canale],
-    [Tutti i job in `dispatchCh` prima della chiusura sono processati; `done` chiuso],
+    [`Close` — drain del canale], [Tutti i job in `dispatchCh` prima della chiusura sono processati; `done` chiuso],
   )
 
   *`AlertConfigCache`*
@@ -960,8 +932,7 @@
     [`buildRow` — mapping da `TelemetryEnvelope` con `tenantID`],
     [`TenantID` propagato correttamente; campi `OpaqueBlob` passati intatti senza accesso a `Value`],
 
-    [`processMessage` — body JSON non valido],
-    [Ritorna `permanentError`; handler non invocato],
+    [`processMessage` — body JSON non valido], [Ritorna `permanentError`; handler non invocato],
 
     [`writeBatch` — errore permanente per un messaggio nel batch],
     [Messaggio Term()'d; gli altri messaggi validi del batch sono ACK()'d],
