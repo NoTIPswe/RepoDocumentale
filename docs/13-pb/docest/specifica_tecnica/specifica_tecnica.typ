@@ -219,9 +219,9 @@
   - *Application Layer*: Ogni microservizio backend esegue la validazione stateless del JWT, estrae il `tenant_id` e lo
     impone come vincolo architetturale e filtro obbligatorio per qualsiasi operazione di lettura o scrittura sui
     database.
-  - *Messaging Layer (NATS)*: L'isolamento a livello di broker è applicato tramite convenzioni di naming dei
-    subject (es. `telemetry.data.{tenantId}.{gwId}`) combinate con liste di permessi statiche che confinano i
-    gateway al proprio perimetro operativo.
+  - *Messaging Layer (NATS)*: L'isolamento a livello di broker è applicato tramite convenzioni di naming dei subject
+    (es. `telemetry.data.{tenantId}.{gwId}`) combinate con liste di permessi statiche che confinano i gateway al proprio
+    perimetro operativo.
 
   == Gestione Certificati e Zero Touch Provisioning
   L'autenticazione dei gateway fisici si basa su certificati mTLS rilasciati dinamicamente tramite un processo di

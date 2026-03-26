@@ -175,6 +175,15 @@ accepted_words:
   - SonarCloud
   - Testcontainers
   - struct
+  - DSN
+  - stderr
+  - env
+  - SIGTERM
+  - SIGINT
+  - Enum
+  - RLock
+  - WLock
+  - NAK
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -251,6 +260,9 @@ accepted_words:
   - codebase
   - backpressure
   - deserializzato
+  - backoff
+  - loggati
+  - unexported
 
   # --- Terminologia Standard Progetto ---
   - req
@@ -304,6 +316,25 @@ accepted_words:
   - ManagementDB
   - MeasuresDB
   - lockfile
+  - TelemetryWriterDRIVEN
+  - AlertPublisherDRIVEN
+  - GatewayStatusUpdaterDRIVEN
+  - AlertConfigProviderDRIVEN
+  - ClockProviderDRIVEN
+  - TelemetryMessageHandlerDRIVING
+  - DecommissionEventHandlerDRIVING
+  - HeartbeatTickerDRIVING
+  - HeartbeatTracker
+  - PostgresTelemetryWriter
+  - NATSAlertPublisher
+  - NATSGatewayStatusUpdater
+  - AlertConfigCache
+  - NATSRRClient
+  - SystemClock
+  - NATSTelemetryConsumer
+  - NATSDecommissionConsumer
+  - HeartbeatTickTimer
+  - tenantID
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
@@ -366,12 +397,9 @@ accepted_words:
   - autogenerare
   - Testabilità
   - istanzia
-  - TelemetryWriterDRIVEN
-  - AlertPublisherDRIVEN
-  - GatewayStatusUpdaterDRIVEN
-  - AlertConfigProviderDRIVEN
-  - ClockProviderDRIVEN
-  - TelemetryMessageHandlerDRIVING
-  - DecommissionEventHandlerDRIVING
-  - HeartbeatTickerDRIVING
   - riacquisizione
+  - deserializza
+  - registrer
+  - responder
+  - Riconnessioni
+  - Postcondizione

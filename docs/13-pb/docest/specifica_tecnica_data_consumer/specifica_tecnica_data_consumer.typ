@@ -31,7 +31,7 @@
 
   #table(
     columns: (2fr, 2.2fr, 1.2fr, auto),
-    [Campo], [Variabile d'ambiente], [Default], [Obbl.?],
+    [Campo], [Variabile d'ambiente], [Default], [Obbligatorio],
     [`NATSUrl`], [`NATS_URL`], [—], [Sì],
     [`NATSTlsCa`], [`NATS_TLS_CA`], [—], [Sì],
     [`NATSTlsCert`], [`NATS_TLS_CERT`], [—], [Sì],
@@ -56,8 +56,7 @@
   )
 
   `Config` espone il metodo `GetDatabaseDSN() (string, error)`: legge la password dal Docker secret file indicato da
-  `DBPasswordFile` (trimming whitespace), e costruisce il DSN nel formato
-  `postgres://user:pass@host:port/dbname?sslmode=<DBSSLMode>`.
+  `DBPasswordFile`, e costruisce il DSN nel formato `postgres://user:pass@host:port/dbname?sslmode=<DBSSLMode>`.
 
   == Sequenza di Avvio
 
@@ -407,7 +406,7 @@
   + Se l'entry *non esiste*: crea una nuova entry con `lastSeen = clock.Now()` e `knownStatus = Online`; aggiorna la
     metrica della dimensione della mappa; esegue dispatch di un status update `Online`; ritorna.
   + Se l'entry *esiste*: aggiorna `lastSeen = clock.Now()`.
-  + Se l'entry aveva `knownStatus = Offline`: transiziona a `Online` e dispatcha un status update `Online`.
+  + Se l'entry aveva `knownStatus = Offline`: passa a `Online` e inoltra uno status update `Online`.
 
   *`HandleDecommission`*\
   Acquisisce write-lock. Cancella l'entry per `gatewayKey{tenantID, gatewayID}`. Aggiorna la metrica della dimensione
@@ -420,7 +419,7 @@
   + *Fase 2 — I/O fuori dal lock:* per ogni entry nello snapshot: se `knownStatus == Offline` salta; recupera il timeout
     via `configProvider.TimeoutFor`; se non scaduto salta; pubblica alert via `alertPublisher.Publish`; esegue dispatch
     `Offline` via il canale asincrono.
-  + *Fase 3 — WLock con re-validazione:* acquisisce write-lock; rilege l'entry reale dalla mappa; se `lastSeen` è
+  + *Fase 3 — WLock con re-validazione:* acquisisce write-lock; rilegge l'entry reale dalla mappa; se `lastSeen` è
     avanzato rispetto allo snapshot (telemetria arrivata durante la Fase 2), annulla la transizione. Altrimenti imposta
     `knownStatus = Offline`.
 
@@ -637,7 +636,7 @@
   + `flushLoop` accumula i pending e chiama `WriteBatch` al raggiungimento di `batchSize`, allo scadere di `flushEvery`,
     o alla cancellazione del context (flush finale).
   + Dopo `WriteBatch`: ACK su successo; NAK con delay 5s per errori transitori; Term per errori permanenti di parsing
-    (NATS non rideliverarà).
+    (NATS non invia nuovamente).
 
   #table(
     columns: (1.2fr, 1.8fr),
@@ -680,8 +679,9 @@
     [`buildRow`], [`(tenantID string, envelope TelemetryEnvelope) TelemetryRow`], [Mapping envelope + tenantID → row],
   )
 
-  *Tipi interni:* `permanentError` — wrappa un error per segnalare fallimenti non-retriable. `pendingMsg` — accoppia
-  un'interfaccia `msgAcknowledger` (soddisfatta da `*nats.Msg`) con la `TelemetryRow` decodificata e l'eventuale errore.
+  *Tipi interni:* `permanentError` — arricchisce un error per segnalare fallimenti non eseguibili nuovamente.
+  `pendingMsg` — accoppia un'interfaccia `msgAcknowledger` (soddisfatta da `*nats.Msg`) con la `TelemetryRow`
+  decodificata e l'eventuale errore.
 
   === NATSDecommissionConsumer
 
@@ -959,7 +959,7 @@
 
     [`AlertConfigCache.refresh` — fetch e sostituzione snapshot],
     [NATS mock responder],
-    [Snapshot aggiornato atomicamente; `TimeoutFor` restituisce i valori refreshati],
+    [Snapshot aggiornato atomicamente; `TimeoutFor` restituisce i nuovi valori],
 
     [Connessione NATS con mTLS — certificato client valido],
     [NATS con TLS],
