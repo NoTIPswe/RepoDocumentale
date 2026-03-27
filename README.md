@@ -38,3 +38,9 @@ Se vuoi conservare i file generati (debug o ispezione), usa:
 ```
 
 Lo stesso comportamento (ephemeral di default, `--keep-generated` opzionale) vale anche per `notipdo build all`, `notipdo build changes`, `notipdo build doc`, `notipdo check ... --yaml-data` e `notipdo generate site`.
+
+Se ti serve solo validare i dati YAML senza compilare documenti, usa:
+
+```bash
+./env/bin/notipdo data validate
+```

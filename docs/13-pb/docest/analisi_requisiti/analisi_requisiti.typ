@@ -236,12 +236,7 @@
   #include "generated/_yaml_traceability.typ"
 
   == Riepilogo Requisiti per Categoria
-  #table(
-    columns: (auto, auto, auto, auto),
-    [Tipologia], [Obbligatori], [Desiderabili], [Totale],
-    [Funzionali], [134], [9], [143],
-    [Qualità], [9], [0], [9],
-    [Vincolo], [6], [0], [6],
-    [Sicurezza], [4], [2], [6],
-  )
+
+  // DON'T TOUCH - this gets injected by the build system
+  #include "generated/_yaml_req_summary.typ"
 ]

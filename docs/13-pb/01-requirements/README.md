@@ -5,7 +5,7 @@ Questa cartella e la singola fonte di verita per:
 - requisiti (`req/`)
 - test (`test/`)
 
-Tutti i file Typst di supporto generati, le tabelle di tracciabilita e i diagrammi UC derivano da questi dati tramite `notipdo data`.
+Tutti i file Typst di supporto generati, le tabelle di tracciabilita e i diagrammi UC derivano da questi dati tramite il prebuild YAML di `notipdo`.
 
 ## Struttura cartelle
 
@@ -37,14 +37,12 @@ Tutti i file Typst di supporto generati, le tabelle di tracciabilita e i diagram
 - vengono rimossi automaticamente a fine comando
 - per mantenerli su disco usare `--keep-generated`
 
-Durante la migrazione, i casi d'uso vengono mantenuti nell'ordine di discovery e scritti in un unico file per sistema (`uc/all.uc.yaml` e `ucs/all.uc.yaml`).
-
 Note:
 - YAML non richiede piu `uml_description`.
 - i collegamenti attore sono renderizzati come associazioni (linee rette).
 - tutti i target degli include UC vengono renderizzati dentro il confine del sistema.
 
-## Comandi piu comuni
+## Comandi consigliati
 
 Eseguire dalla root del repository.
 
@@ -54,41 +52,44 @@ Eseguire dalla root del repository.
 Valida i file YAML contro schemi e riferimenti incrociati.
 
 ```bash
-./env/bin/notipdo data index
+./env/bin/notipdo build baseline
 ```
-Genera i file Typst di include/indice e tracciabilita.
-
-Include:
-- matrice UC -> Requisiti (ordinata per UC)
-- matrice Requisiti -> UC (ordinata per requisito)
-- matrice Requisiti -> Test (usa codici canonici requisito/test)
+Valida i dati YAML, genera artefatti (indici/tracciabilita/diagrammi) e compila i documenti della baseline corrente.
 
 ```bash
-./env/bin/notipdo data diagrams
+./env/bin/notipdo build doc docs/13-pb/docest/analisi_requisiti
 ```
-Genera i file PlantUML `.puml` per i casi d'uso.
+Compila un documento specifico con prebuild YAML automatico.
 
 ```bash
-./env/bin/notipdo data diagrams --render-png
+./env/bin/notipdo watch doc docs/13-pb/docest/analisi_requisiti
 ```
-Genera i `.puml` e renderizza i diagrammi `.png` (richiede `plantuml`).
+Avvia l'editing con hot reload e prebuild YAML automatico.
+
+## File Typst generati: come usarli quando modifichi i documenti
+
+Quando lavori su `analisi_requisiti.typ` o `piano_qualifica.typ`, gli include sotto `generated/` e i diagrammi in `uc_schemas/` vengono creati automaticamente dai comandi `build`, `check`, `watch` e `generate site`.
 
 ```bash
-./env/bin/notipdo data migrate
+./env/bin/notipdo build doc docs/13-pb/docest/analisi_requisiti --keep-generated
 ```
-Migra contenuti legacy Typst UC/REQ/TEST nei file YAML.
+Usa `--keep-generated` quando vuoi ispezionare i file generati su disco (debug/review).
 
-```bash
-./env/bin/notipdo data all
-```
-Esegue migrazione + validazione + generazione indici + generazione diagrammi in un solo comando.
+Percorsi principali:
+- `docs/13-pb/docest/analisi_requisiti/generated/`
+- `docs/13-pb/docest/piano_qualifica/generated/`
+- `docs/13-pb/docest/analisi_requisiti/uc_schemas/`
+
+I file generati sono artefatti: non vanno modificati manualmente.
+
+Se lavori fuori da `notipdo`, assicurati prima di aver eseguito almeno un comando `build`/`watch` con prebuild YAML per avere include e diagrammi allineati.
 
 ## Workflow tipico
 
 1. Modifica i dati YAML in `uc/`, `ucs/`, `req/`, `test/`.
 2. Esegui `./env/bin/notipdo build baseline` (o un altro comando `build`) per validare, generare artefatti e compilare i documenti.
 3. Opzionalmente usa `--keep-generated` se vuoi ispezionare i file generati.
-4. Usa i comandi `data ...` solo quando vuoi eseguire singoli step manuali (migrazione, sola validazione, sola generazione indici/diagrammi).
+4. Usa `./env/bin/notipdo data validate` solo quando vuoi un controllo YAML veloce senza build.
 
 Controllo completo consigliato:
 
@@ -101,4 +102,4 @@ Controllo completo consigliato:
 - Mantieni stabili gli ID (i campi `id` sono chiavi di riferimento incrociato).
 - Mantieni aggiornato `order.yaml` quando aggiungi o rinomini file.
 - I file generati in `docs/13-pb/docest/**/generated/` e `docs/13-pb/docest/analisi_requisiti/uc_schemas/` non vanno modificati manualmente.
-- Se compili Typst fuori da `notipdo`, prima devi generare manualmente gli artefatti con `notipdo data index` e `notipdo data diagrams --render-png`.
+- Se compili Typst fuori da `notipdo`, prima esegui un comando `notipdo build ... --keep-generated` o `notipdo watch doc ...` per rigenerare gli artefatti necessari.
