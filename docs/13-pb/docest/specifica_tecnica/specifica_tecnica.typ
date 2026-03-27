@@ -127,8 +127,8 @@
     [Keycloak],
     [],
     [Provider IAM centralizzato per flussi OIDC (utenti web) e OAuth2 (Client API e Service Account). Tramite custom
-      _Protocol Mapper_, inietta forzatamente i claim `tenant_id` e `role` in ogni JWT emesso, costituendo la base
-      fondante per la validazione stateless e l'isolamento multi-tenant nei backend.],
+      _Protocol Mapper_, inietta forzatamente i claim `tenant_id` e `role` in ogni JWT emesso, rappresentando il
+      fondamento per la validazione stateless e l'isolamento multi-tenant nei backend.],
   )
 
   #pagebreak()
