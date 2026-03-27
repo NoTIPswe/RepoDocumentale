@@ -5,7 +5,7 @@
 
 #base-document.apply-base-document(
   title: metadata.title,
-  abstract: "Specifica tecnica del microservizio data-api: architettura logica, contratti REST, port applicativi, design di dettaglio dei componenti, gestione errori e strategia di test del servizio di consultazione delle misure cifrate NoTIP.",
+  abstract: "Specifica tecnica del microservizio data-api: architettura logica, contratti REST, port applicativi, design di dettaglio dei componenti, gestione errori e strategia di test del servizio di consultazione delle misure cifrate.",
   changelog: metadata.changelog,
   scope: base-document.EXTERNAL_SCOPE,
 )[
@@ -13,8 +13,8 @@
   = Introduzione
 
   Il servizio `data-api` è un microservizio applicativo sviluppato con framework NestJS, deputato all'esposizione di
-  funzionalità di consultazione delle misure cifrate raccolte dal sistema NoTIP. Il servizio rende disponibili endpoint
-  HTTP per l'interrogazione paginata delle misure, l'esportazione completa di un intervallo temporale, la fruizione in
+  funzionalità di consultazione delle misure cifrate raccolte dal sistema. Il servizio rende disponibili endpoint HTTP
+  per l'interrogazione paginata delle misure, l'esportazione completa di un intervallo temporale, la fruizione in
   streaming dei dati e l'elenco dei sensori osservati di recente.
 
   L'obiettivo del componente è fornire un punto di accesso unificato ai dati telemetrici già acquisiti e persistiti,
@@ -39,11 +39,10 @@
   - Jest per unit test e integration test.
 
   Le dipendenze del progetto mostrano inoltre la presenza di AsyncAPI CLI, utilizzata per la gestione dei contratti di
-  messaggistica del dominio NoTIP.
+  messaggistica del dominio.
 
   == Variabili d'Ambiente
-
-  Dall'analisi del bootstrap applicativo, l'unica variabile d'ambiente esplicitamente utilizzata è:
+  ....
 
   #table(
     columns: (1.4fr, 2.5fr, 1.2fr, 1.2fr),
@@ -54,7 +53,7 @@
     [`DBName`], [DB_NAME], [`-`], [Sì],
     [`DBUser`], [DB_USER], [`-`], [Sì],
   )
-  . INCOMPLETO: bisogna aggiungere al servizio le variabili d'ambiente
+  INCOMPLETO: bisogna aggiungere al servizio le variabili d'ambiente. Poi lo completerò
 
   == Sequenza di Avvio
 
@@ -72,6 +71,11 @@
 
   = Architettura Logica
 
+  #align(center)[
+    #image("./assets/data-api.jpg", width: 100%)
+  ]
+
+
   == Impostazione Architetturale
 
   Il servizio adotta un'architettura modulare a responsabilità separate, basata sui concetti nativi di NestJS. Le
@@ -87,7 +91,7 @@
   Il sistema implementa una _layered architecture_. Infatti, è presente una distinzione chiara tra: strato di
   esposizione, strato applicativo e strato di accesso ai dati.
 
-  == Layout dei Package (da completare)
+  == Layout dei Package (da completare a servizio terminato)
 
   ```text
   src/
@@ -497,8 +501,8 @@
   Il contratto generato è disponibile nel file `api-contracts/openapi/openapi.yaml`.
 
   Nel repository è presente anche un contratto AsyncAPI condiviso (`api-contracts/asyncapi/nats-contracts.yaml`)
-  relativo ai subject NATS dell'ecosistema NoTIP. Tale file descrive il contesto di integrazione complessivo, pur non
-  essendo direttamente consumato dal bootstrap corrente del servizio `data-api`.
+  relativo ai subject NATS dell'ecosistema. Tale file descrive il contesto di integrazione complessivo, pur non essendo
+  direttamente consumato dal bootstrap corrente del servizio `data-api`.
 
   = Test e Verifica
 
@@ -507,7 +511,7 @@
   - unit test sui servizi applicativi;
   - unit test sui controller;
   - unit test sul componente di streaming;
-  - integration test applicativi con persistenza in memoria e stream mockato.
+  - integration test applicativi con persistenza in memoria e stream mockato (ATTUALMENTE!).
 
   Le verifiche coperte dai test includono in particolare:
 
@@ -523,7 +527,7 @@
 
   = Considerazioni Finali
 
-  Il servizio `data-api` costituisce il punto di accesso applicativo ai dati telemetrici cifrati del sistema NoTIP. La
+  Il servizio `data-api` costituisce il punto di accesso applicativo ai dati telemetrici cifrati del sistema. La
   soluzione è costruita con una separazione chiara tra API, logica applicativa, mapping e accesso ai dati, ed è
   predisposta per evolvere verso integrazioni più complete lato persistenza e streaming.
 
