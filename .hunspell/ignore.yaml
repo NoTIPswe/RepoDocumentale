@@ -335,6 +335,41 @@ accepted_words:
   - NATSDecommissionConsumer
   - HeartbeatTickTimer
   - tenantID
+  - KeycloakRealm
+  - KeycloakClientId
+  - MGMT
+  - KeycloakClientSecret
+  - NATSUrl
+  - DBHost
+  - DBPort
+  - DBName
+  - DBUser
+  - DBPassword
+  - DBEncryptionKey
+  - ApiPort
+  - AuthModule
+  - AdminModule
+  - GatewaysModule
+  - KeysModule
+  - UsersModule
+  - CommandModule
+  - AuditLogModule
+  - ApiClientModule
+  - AlertsModule
+  - ThresholdsModule
+  - CostsModule
+  - CommonModule
+  - TenantEntity
+  - UserEntity
+  - GatewayEntity
+  - GatewayMetadataEntity
+  - KeyEntity
+  - AlertsEntity
+  - AlertsConfigEntity
+  - ThresholdEntity
+  - AuditLogEntity
+  - ApiClientEntity
+  - CommandEntity
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
@@ -403,3 +438,6 @@ accepted_words:
   - responder
   - Riconnessioni
   - Postcondizione
+  - impersonazione
+  - impersonare
+  - intra

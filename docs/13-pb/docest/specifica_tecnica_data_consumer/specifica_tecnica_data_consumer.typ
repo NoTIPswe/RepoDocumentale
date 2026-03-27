@@ -635,7 +635,8 @@
 
     [`UpdateGatewayStatus`],
     [`(ctx context.Context, update GatewayStatusUpdate) error`],
-    [Serializza l'update in JSON, invia verso `internal.mgmt.gateway.update-status`; deserializza `GatewayStatusUpdateResponse` e ritorna errore se `success` è false],
+    [Serializza l'update in JSON, invia verso `internal.mgmt.gateway.update-status`; deserializza
+      `GatewayStatusUpdateResponse` e ritorna errore se `success` è false],
   )
 
   Ogni metodo delega a `requestWithRetry`: fino a `maxRetries` tentativi, timeout per-tentativo derivato da `timeout`,
