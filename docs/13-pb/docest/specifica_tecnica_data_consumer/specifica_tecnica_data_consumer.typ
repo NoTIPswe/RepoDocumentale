@@ -293,24 +293,29 @@
 
     [`TelemetryEnvelope`],
     [Wire format di un messaggio NATS su `telemetry.data.{tenantId}.{gwId}`. Campi con JSON tag: `GatewayID string`
-      (`gatewayId`), `SensorID string` (`sensorId`), `SensorType string` (`sensorType`), `Timestamp time.Time`
+      (`gatewayId`), `SensorID string` (`sensorId`), `SensorType SensorType` (`sensorType`), `Timestamp time.Time`
       (`timestamp`), `KeyVersion int` (`keyVersion`), `EncryptedData OpaqueBlob` (`encryptedData`), `IV OpaqueBlob`
       (`iv`), `AuthTag OpaqueBlob` (`authTag`). `TenantID` non è nel body JSON: è estratto dal subject NATS
       dall'adapter.],
+
+    [`SensorType`],
+    [Named string type. Vincola `TelemetryEnvelope.SensorType` ai cinque valori definiti nel contratto AsyncAPI:
+      `SensorTypeTemperature = "temperature"`, `SensorTypeHumidity = "humidity"`, `SensorTypeMovement = "movement"`,
+      `SensorTypePressure = "pressure"`, `SensorTypeBiometric = "biometric"`.],
 
     [`TelemetryRow`],
     [Record normalizzato scritto su TimescaleDB. Aggiunge `TenantID string` (dal subject NATS) e `Time time.Time`
       (partition key dell'ipertabella) a `TelemetryEnvelope`. I tre `OpaqueBlob` sono passati invariati.],
 
     [`AlertPayload`],
-    [Payload pubblicato su `alert.{tenantId}.gw_offline`. Campi con JSON tag: `GatewayID string` (`gatewayId`),
+    [Payload pubblicato su `alert.gw_offline.{tenantId}`. Campi con JSON tag: `GatewayID string` (`gatewayId`),
       `LastSeen time.Time` (`lastSeen`), `TimeoutMs int64` (`timeoutMs`), `Timestamp time.Time` (`timestamp`).],
 
     [`AlertConfig`], [`TenantID string`; `GatewayID *string` (nil = default tenant); `TimeoutMs int64`.],
 
     [`GatewayStatusUpdate`],
     [Payload per la chiamata NATS RR su `internal.mgmt.gateway.update-status`. Campi con JSON tag: `GatewayID string`
-      (`gatewayId`), `Status GatewayStatus` (`status`), `LastSeenAt time.Time` (`lastSeenAt`).],
+      (`gateway_id`), `Status GatewayStatus` (`status`), `LastSeenAt time.Time` (`last_seen_at`).],
 
     [`GatewayStatus`], [Enum: `Online = "online"`, `Offline = "offline"`.],
   )
@@ -451,6 +456,12 @@
   `IV`, `AuthTag`) sono scritti as-is, senza alcuna decodifica. Dipende dall'interfaccia `dbPool` (soddisfatta da
   `*pgxpool.Pool`).
 
+  #table(
+    columns: (1.2fr, 1.8fr),
+    [Campo], [Tipo],
+    [`pool`], [`dbPool`],
+  )
+
   *Interfaccia `dbPool`:*
 
   #table(
@@ -475,7 +486,7 @@
 
   === NATSAlertPublisher
 
-  Implementa `AlertPublisher`. Serializza `AlertPayload` in JSON e pubblica su `alert.{tenantId}.gw_offline` via
+  Implementa `AlertPublisher`. Serializza `AlertPayload` in JSON e pubblica su `alert.gw_offline.{tenantId}` via
   JetStream. Il subject è assemblato al momento della pubblicazione. Dipende dall'interfaccia `natsJSPublisher`
   (soddisfatta da `nats.JetStreamContext`).
 
@@ -518,6 +529,19 @@
     columns: (2fr, 1fr),
     [Metodo], [Ritorno],
     [`IncStatusUpdateErrors()`], [—],
+  )
+
+  #table(
+    columns: (1.2fr, 1.8fr),
+    [Campo], [Tipo],
+    [`client`], [`gatewayStatusUpdateCaller`],
+    [`metrics`], [`statusUpdateErrRecorder`],
+  )
+
+  #table(
+    columns: (1.2fr, 2.8fr),
+    [Metodo], [Firma],
+    [`UpdateStatus`], [`(ctx context.Context, update GatewayStatusUpdate) error`],
   )
 
   === AlertConfigCache
@@ -584,6 +608,16 @@
   `NATSGatewayStatusUpdater` (via `gatewayStatusUpdateCaller`). Dipende dall'interfaccia `natsRequester` (soddisfatta da
   `*nats.Conn`).
 
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`nc`], [`natsRequester`], [],
+    [`timeout`], [`time.Duration`], [Applicato per-tentativo],
+    [`maxRetries`], [`int`], [Default: 3],
+    [`backoff`], [`[]time.Duration`], [Default: `[1s, 2s, 4s]`],
+    [`sleep`], [`func(time.Duration)`], [Iniettato per controllo nei test; produzione usa `time.Sleep`],
+  )
+
   *Interfaccia `natsRequester`:*
 
   #table(
@@ -601,11 +635,11 @@
 
     [`UpdateGatewayStatus`],
     [`(ctx context.Context, update GatewayStatusUpdate) error`],
-    [Serializza l'update in JSON, invia verso `internal.mgmt.gateway.update-status`; body risposta ignorato],
+    [Serializza l'update in JSON, invia verso `internal.mgmt.gateway.update-status`; deserializza `GatewayStatusUpdateResponse` e ritorna errore se `success` è false],
   )
 
-  Ogni metodo crea un context derivato con il timeout configurato (Go applica il più restrittivo tra il timeout del
-  chiamante e quello configurato).
+  Ogni metodo delega a `requestWithRetry`: fino a `maxRetries` tentativi, timeout per-tentativo derivato da `timeout`,
+  backoff esponenziale dalla slice `backoff`, con verifica della cancellazione del context tra un tentativo e l'altro.
 
   === SystemClock
 
