@@ -1,13 +1,15 @@
-import re
 import hashlib
+import json
 import yaml
-import git 
+import git
+from datetime import datetime, timedelta, timezone
 from dataclasses import dataclass
 from pathlib import Path
 from packaging.version import Version
 
+
 @dataclass(frozen=True)
-class StabilityResult: 
+class StabilityResult:
     baseline_version: Version
     total_baseline: int
     added: frozenset
@@ -15,70 +17,76 @@ class StabilityResult:
     modified: frozenset
 
     @property
-    def changed(self) -> int: 
+    def changed(self) -> int:
         return len(self.added) + len(self.removed) + len(self.modified)
 
     @property
-    def index(self) -> float: 
-        if self.total_baseline == 0: 
+    def index(self) -> float:
+        if self.total_baseline == 0:
             return 0.0 if self.changed > 0 else 1.0
-        return 1.0 - self.changed / self.total_baseline
-    
-def _extract_req_blocks(source: str) -> list[tuple[str, str]]:
-    results = []
-    marker = "..req("
-    start = 0
 
-    while True:
-        idx = source.find(marker, start)
-        if idx == -1:
-            break
+        # Stability formula:
+        # S = (B - R - M) / (B + A)
+        # where B=baseline, A=added, R=removed, M=modified.
+        unchanged = self.total_baseline - len(self.removed) - len(self.modified)
+        denominator = self.total_baseline + len(self.added)
 
-        open_pos = idx + len(marker)
-        depth = 1
-        i = open_pos
+        if denominator <= 0:
+            return 1.0
 
-        while i < len(source) and depth > 0:
-            if source[i] == "(":
-                depth += 1
-            elif source[i] == ")":
-                depth -= 1
-            i += 1
+        # Clamp to guard against malformed counters while keeping monotonicity.
+        return max(0.0, min(1.0, unchanged / denominator))
 
-        block = source[open_pos : i - 1]
-        id_match = re.search(r'id:\s*"([^"]+)"', block)
-        if id_match:
-            results.append((id_match.group(1), block))
 
-        start = i
+def _hash_requirement(req: dict) -> str:
+    # Canonical JSON serialization avoids whitespace/order noise from YAML formatting.
+    canonical = json.dumps(
+        req, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+    )
+    return hashlib.sha1(canonical.encode("utf-8")).hexdigest()[:8]
 
-    return results
 
-def extract_reqs(source: str) -> dict[str, str]:
-    result = {}
-    for req_id, block in _extract_req_blocks(source):
-        normalized = " ".join(block.split())
-        content_hash = hashlib.sha1(normalized.encode()).hexdigest()[:8]
-        result[req_id] = content_hash
-    return result
-
-def get_reqs_from_local(doc_dir: Path) -> dict[str, str]:
-    reqs = {}
-    for typ_file in doc_dir.rglob("*.typ"):
-        reqs.update(extract_reqs(typ_file.read_text(encoding="utf-8")))
+def _reqs_from_loaded_yaml_docs(req_docs: list[dict]) -> dict[str, str]:
+    reqs: dict[str, str] = {}
+    for doc in req_docs:
+        for req in doc.get("requirements", []) or []:
+            req_id = req.get("id")
+            if not req_id:
+                continue
+            reqs[str(req_id)] = _hash_requirement(req)
     return reqs
 
-def get_reqs_at_commit(repo: git.Repo, commit: git.Commit, doc_rel_path: Path) -> dict[str, str]:
-    reqs = {}
+
+def get_reqs_from_local(req_dir: Path) -> dict[str, str]:
+    if not req_dir.exists():
+        return {}
+
+    req_docs: list[dict] = []
+    for req_file in sorted(req_dir.glob("*.req.yaml")):
+        req_docs.append(yaml.safe_load(req_file.read_text(encoding="utf-8")) or {})
+    return _reqs_from_loaded_yaml_docs(req_docs)
+
+
+def get_reqs_at_commit(
+    repo: git.Repo,
+    commit: git.Commit,
+    req_rel_path: Path,
+) -> dict[str, str]:
+    req_docs: list[dict] = []
+    tree = None
     try:
-        tree = commit.tree / doc_rel_path.as_posix()
+        tree = commit.tree / req_rel_path.as_posix()
     except KeyError:
-        return reqs
-    for blob in tree.traverse():
-        if blob.type == "blob" and blob.path.endswith(".typ"):
-            source = blob.data_stream.read().decode("utf-8")
-            reqs.update(extract_reqs(source))
-    return reqs
+        tree = None
+
+    if tree is not None:
+        for blob in tree.traverse():
+            if blob.type == "blob" and blob.path.endswith(".req.yaml"):
+                source = blob.data_stream.read().decode("utf-8")
+                req_docs.append(yaml.safe_load(source) or {})
+
+    return _reqs_from_loaded_yaml_docs(req_docs)
+
 
 def find_baseline_commit(
     repo: git.Repo, meta_rel_path: Path, target_version: Version
@@ -95,7 +103,26 @@ def find_baseline_commit(
                 break
         except Exception:
             continue
-    return last_matching
+
+    if last_matching is not None:
+        return last_matching
+
+    # Fallback for rewritten changelog histories where the target version may
+    # not have ever been the top entry in commit history available locally.
+    history = list(repo.iter_commits(paths=str(meta_rel_path)))[::-1]
+    for commit in history:
+        try:
+            blob = commit.tree / meta_rel_path.as_posix()
+            meta = yaml.safe_load(blob.data_stream.read().decode("utf-8"))
+            versions = {
+                Version(entry["version"]) for entry in meta.get("changelog", [])
+            }
+            if target_version in versions:
+                return commit
+        except Exception:
+            continue
+
+    return None
 
 
 def find_total_baseline_version(meta_path: Path) -> Version | None:
@@ -126,8 +153,8 @@ def compute_stability(
 ) -> StabilityResult:
     b_ids = set(baseline_reqs)
     c_ids = set(current_reqs)
-    added    = c_ids - b_ids
-    removed  = b_ids - c_ids
+    added = c_ids - b_ids
+    removed = b_ids - c_ids
     modified = {rid for rid in b_ids & c_ids if baseline_reqs[rid] != current_reqs[rid]}
     return StabilityResult(
         baseline_version=baseline_version,
@@ -136,3 +163,29 @@ def compute_stability(
         removed=frozenset(removed),
         modified=frozenset(modified),
     )
+
+
+def find_yaml_commit_before_rolling_window(
+    repo: git.Repo,
+    req_rel_path: Path,
+    window_days: int,
+) -> git.Commit | None:
+    cutoff = datetime.now(timezone.utc) - timedelta(days=window_days)
+
+    oldest_yaml_within_window = None
+
+    for commit in repo.iter_commits("HEAD", paths=str(req_rel_path)):
+        if not get_reqs_at_commit(repo, commit, req_rel_path):
+            continue
+
+        committed_at = datetime.fromtimestamp(commit.committed_date, tz=timezone.utc)
+        if committed_at <= cutoff:
+            return commit
+        oldest_yaml_within_window = commit
+
+    # If there is not enough YAML history to reach the full window,
+    # use the oldest YAML snapshot available.
+    if oldest_yaml_within_window is not None:
+        return oldest_yaml_within_window
+
+    return None
