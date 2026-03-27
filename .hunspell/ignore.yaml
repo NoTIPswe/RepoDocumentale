@@ -184,6 +184,23 @@ accepted_words:
   - RLock
   - WLock
   - NAK
+  - MeasureController
+  - MeasureService
+  - SensorController
+  - SensorService
+  - MeasurePersistenceService
+  - StreamListenerService
+  - MeasureMapper
+  - NpQueryPersistenceService
+  - MeasurePersistenceServiceDRIVEN
+  - NpQueryPersistenceServiceDRIVEN
+  - StreamListenerServiceDRIVEN
+  - paginata
+  - paginato
+  - rimappatura
+  - deduplicare
+  - deduplicazione
+  - mockato
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK

@@ -13,7 +13,7 @@
   = Introduzione
 
   Il servizio `data-api` è un microservizio applicativo sviluppato con framework NestJS, deputato all'esposizione di
-  funzionalita di consultazione delle misure cifrate raccolte dal sistema NoTIP. Il servizio rende disponibili endpoint
+  funzionalità di consultazione delle misure cifrate raccolte dal sistema NoTIP. Il servizio rende disponibili endpoint
   HTTP per l'interrogazione paginata delle misure, l'esportazione completa di un intervallo temporale, la fruizione in
   streaming dei dati e l'elenco dei sensori osservati di recente.
 
@@ -22,7 +22,7 @@
   verso i client esclusivamente payload cifrati e metadati tecnici associati alla misura, senza effettuare operazioni di
   decifratura.
 
-  Il progetto è strutturato in moduli NestJS distinti per le funzionalita `measure` e `sensor`, con utilizzo di DTO per
+  Il progetto è strutturato in moduli NestJS distinti per le funzionalità `measure` e `sensor`, con utilizzo di DTO per
   i contratti esposti, model interni per la logica applicativa e servizi dedicati per orchestrazione, filtraggio e
   accesso ai dati.
 
@@ -51,8 +51,8 @@
     [`PORT`], [Porta di ascolto del servizio HTTP], [`3000`],
   )
 
-  Ulteriori configurazioni infrastrutturali risultano implicite nell'uso di TypeORM e del repository `MeasureEntity`,
-  ma non sono ancora esplicitate nel bootstrap mostrato nel codice analizzato. In un deployment completo si prevede
+  Ulteriori configurazioni infrastrutturali risultano implicite nell'uso di TypeORM e del repository `MeasureEntity`, ma
+  non sono ancora esplicitate nel bootstrap mostrato nel codice analizzato. In un deployment completo si prevede
   pertanto la presenza di configurazioni aggiuntive relative almeno a:
 
   - connessione al database;
@@ -78,8 +78,8 @@
 
   == Impostazione Architetturale
 
-  Il servizio adotta un'architettura modulare a responsabilita separate, basata sui concetti nativi di NestJS. Le
-  responsabilita principali sono suddivise come segue:
+  Il servizio adotta un'architettura modulare a responsabilità separate, basata sui concetti nativi di NestJS. Le
+  responsabilità principali sono suddivise come segue:
 
   - `controller`: esposizione degli endpoint HTTP e trasformazione dei parametri di input;
   - `service`: orchestrazione della logica applicativa, validazione e gestione delle eccezioni;
@@ -113,7 +113,7 @@
 
   #table(
     columns: (1.2fr, 2fr, 3fr),
-    [Strato], [Componenti], [Responsabilita],
+    [Strato], [Componenti], [Responsabilità],
     [API],
     [`MeasureController`, `SensorController`],
     [Riceve richieste HTTP, legge i parametri di query e costruisce gli input applicativi.],
@@ -122,9 +122,7 @@
     [`MeasureService`, `SensorService`, `StreamListenerService`],
     [Applica validazioni, filtri, trasformazioni e rimappatura delle eccezioni.],
 
-    [Persistenza],
-    [`MeasurePersistenceService`],
-    [Interroga la persistenza tramite `Repository<MeasureEntity>`.],
+    [Persistenza], [`MeasurePersistenceService`], [Interroga la persistenza tramite `Repository<MeasureEntity>`.],
 
     [Mapping],
     [`MeasureMapper`],
@@ -174,7 +172,7 @@
   #st.port-interface(
     name: "GET /sensor",
     kind: "driving",
-    description: [Restituisce l'elenco univoco dei sensori visti negli ultimi dieci minuti, con possibilita di filtro
+    description: [Restituisce l'elenco univoco dei sensori visti negli ultimi dieci minuti, con possibilità di filtro
       per `gatewayId`.],
     methods: (
       ("gatewayId", [Filtro opzionale per gateway]),
@@ -264,7 +262,7 @@
 
   Il controller `MeasureController` espone gli endpoint del dominio `measures`.
 
-  Le principali responsabilita del componente sono:
+  Le principali responsabilità del componente sono:
 
   - lettura dei query parameter HTTP;
   - normalizzazione dei filtri singoli in array tramite `normalizeArrayParam`;
@@ -279,7 +277,7 @@
 
   `MeasureService` implementa la logica applicativa relativa a query ed export delle misure.
 
-  Le responsabilita principali sono:
+  Le responsabilità principali sono:
 
   - validazione del parametro `limit`;
   - validazione dell'intervallo temporale richiesto;
@@ -372,8 +370,8 @@
   - `PaginatedQueryModel` e `QueryResponseDto`;
   - `SensorModel` e `SensorDto`.
 
-  La presenza del mapper consente di isolare la logica di conversione e di mantenere separati il modello di
-  persistenza, il modello interno e il contratto esposto.
+  La presenza del mapper consente di isolare la logica di conversione e di mantenere separati il modello di persistenza,
+  il modello interno e il contratto esposto.
 
   = Contratti API
 
