@@ -16,6 +16,7 @@ venv
 
 # YAML pipeline generated artifacts (created at build time)
 **/docest/analisi_requisiti/generated/
+**/docest/piano_qualifica/generated/
 **/docest/analisi_requisiti/uc_schemas/
 **/01-requirements/req/_req_codes.generated.json
 **/01-requirements/req/_legacy_req_codes.generated.json
