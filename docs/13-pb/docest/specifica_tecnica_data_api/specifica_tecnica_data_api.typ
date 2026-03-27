@@ -46,19 +46,15 @@
   Dall'analisi del bootstrap applicativo, l'unica variabile d'ambiente esplicitamente utilizzata è:
 
   #table(
-    columns: (1.4fr, 2.5fr, 1.2fr),
-    [Variabile], [Descrizione], [Default],
-    [`PORT`], [Porta di ascolto del servizio HTTP], [`3000`],
+    columns: (1.4fr, 2.5fr, 1.2fr, 1.2fr),
+    [Variabile], [Variabile d'ambiente], [Default], [obbligatorio],
+    [`PORT`], [PORT], [`3000`], [Sì],
+    [`DBHost`], [DB_HOST], [`-`], [Sì],
+    [`DBPort`], [DB_PORT], [`5432`], [Sì],
+    [`DBName`], [DB_NAME], [`-`], [Sì],
+    [`DBUser`], [DB_USER], [`-`], [Sì],
   )
-
-  Ulteriori configurazioni infrastrutturali risultano implicite nell'uso di TypeORM e del repository `MeasureEntity`, ma
-  non sono ancora esplicitate nel bootstrap mostrato nel codice analizzato. In un deployment completo si prevede
-  pertanto la presenza di configurazioni aggiuntive relative almeno a:
-
-  - connessione al database;
-  - credenziali di accesso alla persistenza;
-  - eventuali parametri di sicurezza applicativa;
-  - eventuali endpoint o subject di integrazione con altri servizi.
+  . INCOMPLETO: bisogna aggiungere al servizio le variabili d'ambiente
 
   == Sequenza di Avvio
 
@@ -88,10 +84,10 @@
   - `dto`: definizione del contratto di risposta verso i client;
   - `interfaces`: definizione dei contratti di input e delle porte applicative.
 
-  L'architettura non implementa in modo rigido una esagono completa come nel modello di riferimento, ma presenta una
-  chiara separazione tra strato di esposizione, strato applicativo e strato di accesso ai dati.
+  Il sistema implementa una _layered architecture_. Infatti, è presente una distinzione chiara tra: strato di
+  esposizione, strato applicativo e strato di accesso ai dati.
 
-  == Layout dei Package
+  == Layout dei Package (da completare)
 
   ```text
   src/
