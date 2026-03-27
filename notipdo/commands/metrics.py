@@ -44,6 +44,27 @@ def _resolve_baseline_display_name(baseline_rel_dir: Path) -> str:
     return configs.GROUP_TO_TITLE.get(key, key)
 
 
+def _resolve_gulpease_target_dir(pdf_dir: Path, repo_root: Path) -> tuple[Path, str]:
+    baseline_rel = _resolve_default_baseline_dir(repo_root)
+    if baseline_rel is None:
+        raise ValueError("unable to resolve a default baseline directory")
+
+    baseline_name = baseline_rel.name
+    baseline_title = _resolve_baseline_display_name(baseline_rel)
+
+    # Prefer dist/docs/<baseline>, fallback to already-scoped directories.
+    candidate = pdf_dir / baseline_name
+    if candidate.exists():
+        return candidate, baseline_title
+
+    if pdf_dir.name == baseline_name:
+        return pdf_dir, baseline_title
+
+    raise ValueError(
+        f"could not find built PDFs for baseline '{baseline_name}' under '{pdf_dir}'"
+    )
+
+
 @app.command("gulpease")
 def compute_gulpease(
     pdf_dir: Path = defaults.DOCS_OUTPUT_DIR_PATH,
@@ -51,12 +72,22 @@ def compute_gulpease(
         False, "--jira", help="Compute average and send to Jira."
     ),
 ):
-    """Compute gulpease index for all the built PDFs and optionally send average to Jira."""
-    results = gulpease.calculate_for_dir(pdf_dir)
+    """Compute gulpease index for the latest baseline PDFs and optionally send average to Jira."""
+    try:
+        target_dir, baseline_title = _resolve_gulpease_target_dir(
+            pdf_dir, defaults.REPO_ROOT_PATH
+        )
+    except ValueError as e:
+        typer.echo(f"Error: {e}")
+        raise typer.Exit(code=1)
+
+    results = gulpease.calculate_for_dir(target_dir)
 
     if not results:
-        typer.echo("No PDFs found")
+        typer.echo(f"No PDFs found for latest baseline in: {target_dir}")
         raise typer.Exit(code=1)
+
+    typer.echo(f"Latest baseline: {baseline_title} ({target_dir})")
 
     typer.echo(
         f"\n{'Document':<60} {'Gulpease':>10} {'Words':>8} {'Sentences':>10} {'Letters':>9}"
@@ -65,7 +96,7 @@ def compute_gulpease(
 
     total_index = 0
     for r in results:
-        name = r.pdf_path.relative_to(pdf_dir)
+        name = r.pdf_path.relative_to(target_dir)
         typer.echo(
             f"{str(name):<60} {r.index:>10.2f} {r.words:>8} {r.sentences:>10} {r.letters:>9}"
         )
