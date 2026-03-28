@@ -1,5 +1,12 @@
 title: Piano di Qualifica
 changelog:
+  - version: "1.1.2"
+    date: "2026-03-28"
+    authors:
+      - Matteo Mantoan
+    verifier: TBD
+    description: >
+      Modifiche stilistiche causa automazione generazione Requisiti e Test
   - version: "1.1.1"
     date: "2026-03-09"
     authors:
@@ -11,7 +18,7 @@ changelog:
     date: "2026-02-25"
     authors:
       - Francesco Marcon
-      - Matteo Mantoan 
+      - Matteo Mantoan
     verifier: Valerio Solito
     description: >
       Aggiustamento test a seguito a seguito dell'aggiornamento dell'AdR a v1.1.0
