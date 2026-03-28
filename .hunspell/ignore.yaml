@@ -201,6 +201,7 @@ accepted_words:
   - deduplicare
   - deduplicazione
   - mockato
+  - TestContainers
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
