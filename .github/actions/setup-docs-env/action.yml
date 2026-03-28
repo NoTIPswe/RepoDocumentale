@@ -4,6 +4,12 @@ description: "Bootstraps UTF-8 locale and Python virtualenv dependencies for doc
 runs:
   using: "composite"
   steps:
+    - name: Trust checked-out workspace for Git commands
+      run: |
+        workspace_path="${GITHUB_WORKSPACE:-$PWD}"
+        git config --global --add safe.directory "$workspace_path"
+      shell: bash
+
     - name: Configure UTF-8 locale
       run: |
         echo "LANG=C.UTF-8" >> "$GITHUB_ENV"
