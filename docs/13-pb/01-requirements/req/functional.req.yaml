@@ -17,38 +17,6 @@ requirements:
     non andato a buon fine
   sources:
   - uc: err_cred_errate
-- id: setup_totp
-  priority: desirable
-  description: Il Sistema deve permettere all'utente non autenticato di effettuare la configurazione iniziale
-    del TOTP in modo da garantire il login 2FA
-  sources:
-  - uc: setup_totp
-- id: login_2fa
-  priority: desirable
-  description: Il Sistema deve permettere all'utente non autenticato di effettuare il login 2FA
-  sources:
-  - uc: login_2fa
-- id: ins_otp
-  priority: desirable
-  description: Il Sistema deve permettere all'utente di inserire il codice numerico nel Sistema
-  sources:
-  - uc: ins_otp
-- id: err_otp_errato
-  priority: desirable
-  description: Il Sistema deve notificare l'utente non autenticato in seguito ad un inserimento errato
-    del codice OTP nel Sistema
-  sources:
-  - uc: err_otp_errato
-- id: recupero_password
-  priority: mandatory
-  description: Il Sistema deve permettere all'utente di recuperare la password persa/dimenticata
-  sources:
-  - uc: recupero_password
-- id: cambio_password_req
-  priority: mandatory
-  description: Il Sistema deve permettere all'utente di cambiare la password nel Sistema
-  sources:
-  - uc: cambio_password
 - id: err_account_inesistente
   priority: mandatory
   description: Il Sistema deve notificare all'utente non autenticato di aver inserito un'email non associata
@@ -425,12 +393,6 @@ requirements:
     API di un Tenant
   sources:
   - uc: selezione_credenziali_api
-- id: modifica_impostazioni_2fa
-  priority: mandatory
-  description: Il Sistema deve permettere al Tenant Admin di modificare le impostazioni del login 2FA
-    di un Tenant
-  sources:
-  - uc: modifica_impostazioni_2fa
 - id: visualizzazione_log_audit_tenant
   priority: mandatory
   description: Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare

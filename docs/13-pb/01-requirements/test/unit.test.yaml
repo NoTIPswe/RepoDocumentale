@@ -15,36 +15,6 @@ tests:
   requirements:
   - err_cred_errate
   status: not_implemented
-- id: t_u_4
-  description: Verificare la generazione del segreto TOTP (formato e lunghezza)
-  requirements:
-  - setup_totp
-  status: not_implemented
-- id: t_u_5
-  description: Verificare la serializzazione del segreto TOTP
-  requirements:
-  - setup_totp
-  status: not_implemented
-- id: t_u_6
-  description: Verificare la valutazione della condizione “2FA richiesto”
-  requirements:
-  - login_2fa
-  status: not_implemented
-- id: t_u_7
-  description: Verificare la validazione dell’input OTP (solo cifre, lunghezza)
-  requirements:
-  - ins_otp
-  status: not_implemented
-- id: t_u_8
-  description: Verificare il mapping dell’errore “OTP errato”
-  requirements:
-  - err_otp_errato
-  status: not_implemented
-- id: t_u_9
-  description: Verificare la validazione della richiesta di recupero password
-  requirements:
-  - recupero_password
-  status: not_implemented
 - id: t_u_10
   description: Verificare il mapping dell’errore “account non esistente”
   requirements:

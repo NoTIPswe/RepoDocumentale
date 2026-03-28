@@ -14,43 +14,6 @@ tests:
   requirements:
   - err_cred_errate
   status: not_implemented
-- id: t_s_003
-  description: Verificare che un utente possa configurare correttamente il meccanismo 2FA durante il primo
-    accesso
-  requirements:
-  - setup_totp
-  - sicurezza_mfa
-  status: not_implemented
-- id: t_s_004
-  description: Verificare che un utente possa effettuare il login tramite codice OTP valido
-  requirements:
-  - login_2fa
-  - ins_otp
-  - sicurezza_mfa
-  status: not_implemented
-- id: t_s_005
-  description: Verificare che il Sistema notifichi un errore in caso di inserimento di codice OTP errato
-  requirements:
-  - err_otp_errato
-  status: not_implemented
-- id: t_s_006
-  description: Verificare che tutti gli endpoint UI e API rifiutino richieste provenienti da utenti non
-    autenticati
-  requirements:
-  - sicurezza_autenticazione_accessi
-  status: not_implemented
-- id: t_s_007
-  description: Verificare che un utente non autenticato possa avviare la procedura di recupero password
-    inserendo una mail valida
-  requirements:
-  - recupero_password
-  status: not_implemented
-- id: t_s_008
-  description: Verificare che il Sistema permetta la modifica della password tramite procedura di recupero
-  requirements:
-  - cambio_password_req
-  - impostazione_password
-  status: not_implemented
 - id: t_s_009
   description: Verificare che il Sistema notifichi un errore in caso di email non associata ad alcun account
   requirements:
@@ -241,11 +204,6 @@ tests:
   - visualizzazione_singole_api
   - eliminazione_credenziali_api
   - selezione_credenziali_api
-  status: not_implemented
-- id: t_s_037
-  description: Verificare che il Tenant Admin possa modificare le impostazioni del login 2FA per il Tenant
-  requirements:
-  - modifica_impostazioni_2fa
   status: not_implemented
 - id: t_s_039
   description: Verificare che un utente autorizzato possa consultare, filtrare per intervallo temporale,
