@@ -25,12 +25,6 @@ tests:
   - invio_dati_crittografati_cloud
   - sicurezza_segregazione_tenant
   status: not_implemented
-- id: t_i_5
-  description: Verificare l’attivazione dei trigger di allerta tra il modulo di analisi dati e il servizio
-    notifiche al superamento delle soglie
-  requirements:
-  - alert_sensore_fuori_range
-  status: not_implemented
 - id: t_i_6
   description: Verificare l’integrazione del Sistema di autenticazione (JWT) tra l’API Gateway e i microservizi
     interni

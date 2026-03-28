@@ -154,16 +154,6 @@ requirements:
   description: Il Sistema deve notificare il Tenant User dell'irraggiungibilità di un gateway
   sources:
   - uc: alert_gateway_irraggiungibile
-- id: alert_sensore_fuori_range
-  priority: mandatory
-  description: Il Sistema deve notificare il Tenant User delle irregolarità presenti nelle misurazioni
-    di un sensore. In particolare deve permettere di visualizzare il valore del dato registrato, il range
-    accettato e il timestamp di registrazione del dato irregolare del sensore in questione
-  sources:
-  - uc: alert_sensore_fuori_range
-  - uc: visualizzazione_valore_dato_registrato
-  - uc: visualizzazione_range_accettato
-  - uc: visualizzazione_timestamp_dato_irregolare
 - id: visualizzazione_storico_alert
   priority: mandatory
   description: Il Sistema deve permettere al Tenant User di visualizzare la lista degli alert registrati
@@ -190,12 +180,6 @@ requirements:
     non raggiungibile
   sources:
   - uc: visualizzazione_dettagli_alert_gateway_irraggiungibile
-- id: visualizzazione_dettagli_alert_sensore_fuori_range
-  priority: mandatory
-  description: Il Sistema deve permettere al Tenant User di visualizzare i dettagli di un sensore fuori
-    range
-  sources:
-  - uc: visualizzazione_dettagli_alert_sensore_fuori_range
 - id: modifica_impostazioni_notifica_alert_email
   priority: desirable
   description: Il Sistema deve permettere al Tenant User di attivare/disattivare la ricezione di alert

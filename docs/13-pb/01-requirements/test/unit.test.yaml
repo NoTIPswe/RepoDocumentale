@@ -80,21 +80,6 @@ tests:
   requirements:
   - esportazione_dati
   status: not_implemented
-- id: t_u_23
-  description: Verificare la formattazione del valore fuori range
-  requirements:
-  - alert_sensore_fuori_range
-  status: not_implemented
-- id: t_u_24
-  description: Verificare la formattazione del range accettato
-  requirements:
-  - alert_sensore_fuori_range
-  status: not_implemented
-- id: t_u_25
-  description: Verificare la formattazione del timestamp di un dato irregolare
-  requirements:
-  - alert_sensore_fuori_range
-  status: not_implemented
 - id: t_u_26
   description: Verificare il mapping del tipo di alert verso descrizione testuale
   requirements:

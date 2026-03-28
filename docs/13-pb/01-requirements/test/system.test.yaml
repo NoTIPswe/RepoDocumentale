@@ -104,23 +104,10 @@ tests:
   requirements:
   - alert_gateway_irraggiungibile
   status: not_implemented
-- id: t_s_024
-  description: Verificare che il sistema generi un alert in caso di valore sensore fuori range
-  requirements:
-  - alert_sensore_fuori_range
-  status: not_implemented
 - id: t_s_025
   description: Verificare che l’utente possa visualizzare lo storico degli alert generati
   requirements:
   - visualizzazione_storico_alert
-  status: not_implemented
-- id: t_s_026
-  description: Verificare che il sistema mostri i dettagli completi di un alert selezionato
-  requirements:
-  - visualizzazione_singolo_alert
-  - visualizzazione_dettagli_singolo_alert
-  - visualizzazione_dettagli_alert_gateway_irraggiungibile
-  - visualizzazione_dettagli_alert_sensore_fuori_range
   status: not_implemented
 - id: t_s_027
   description: Verificare che l’utente possa attivare e disattivare la ricezione di notifiche alert via
