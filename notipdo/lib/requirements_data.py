@@ -667,20 +667,11 @@ def generate_diagrams(
 
         walk_focus(top)
 
-        primary_actors: set[str] = set()
-        secondary_actors: set[str] = set()
-        for focus_id in focus_ids:
-            p, s = _actor_list_for_diagram(uc_index[focus_id], uc_index)
-            primary_actors.update(p)
-            secondary_actors.update(s)
-
-        for actor_id in sorted(primary_actors):
-            label = ACTOR_LABELS.get(actor_id, actor_id)
-            lines.append(f'actor "{label}" as {_sanitize_alias(actor_id)}')
-
-        for actor_id in sorted(secondary_actors):
-            label = ACTOR_LABELS.get(actor_id, actor_id)
-            lines.append(f'actor "{label}" as {_sanitize_alias(actor_id)}')
+        def _direct_actor_sets(node: dict[str, Any]) -> tuple[set[str], set[str]]:
+            actors = node.get("actors", {}) or {}
+            primary = {str(a) for a in actors.get("primary", []) or []}
+            secondary = {str(a) for a in actors.get("secondary", []) or []}
+            return primary, secondary
 
         lines.append("")
         lines.append(f'rectangle "{system_label}" {{')
@@ -718,12 +709,29 @@ def generate_diagrams(
         lines.append("}")
         lines.append("")
 
-        main_alias = _sanitize_alias(num)
+        actor_edges: set[tuple[str, str]] = set()
+        primary_actors: set[str] = set()
+        secondary_actors: set[str] = set()
 
-        for actor_id in sorted(primary_actors - secondary_actors):
-            lines.append(f"{_sanitize_alias(actor_id)} -- {main_alias}")
-        for actor_id in sorted(secondary_actors):
-            lines.append(f"{_sanitize_alias(actor_id)} -- {main_alias}")
+        p, s = _direct_actor_sets(top)
+        primary_actors.update(p)
+        secondary_actors.update(s)
+        top_alias = _sanitize_alias(num)
+        for actor_id in sorted(p - s):
+            actor_edges.add((_sanitize_alias(actor_id), top_alias))
+        for actor_id in sorted(s):
+            actor_edges.add((_sanitize_alias(actor_id), top_alias))
+
+        for actor_id in sorted(primary_actors):
+            label = ACTOR_LABELS.get(actor_id, actor_id)
+            lines.append(f'actor "{label}" as {_sanitize_alias(actor_id)}')
+
+        for actor_id in sorted(secondary_actors - primary_actors):
+            label = ACTOR_LABELS.get(actor_id, actor_id)
+            lines.append(f'actor "{label}" as {_sanitize_alias(actor_id)}')
+
+        for actor_alias, uc_alias in sorted(actor_edges):
+            lines.append(f"{actor_alias} -- {uc_alias}")
 
         lines.append("")
 
