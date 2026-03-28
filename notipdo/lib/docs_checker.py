@@ -344,12 +344,17 @@ def _run_hunspell_check(
     try:
         env = os.environ.copy()
         env["DICPATH"] = str(hunspell_dir_path)
+        env.setdefault("LANG", "C.UTF-8")
+        env.setdefault("LC_ALL", "C.UTF-8")
+        env.setdefault("PYTHONUTF8", "1")
 
         main_dicts_paths = [str(hunspell_dir_path / d) for d in configs.HUNSPELL_DICTS]
         main_dicts_arg = ",".join(main_dicts_paths)
 
         cmd: List[str] = [
             "hunspell",
+            "-i",
+            "UTF-8",
             "-d",
             main_dicts_arg,
             "-p",

@@ -13,6 +13,7 @@ node_modules
 **/build
 
 venv
+.venv
 
 # YAML pipeline generated artifacts (created at build time)
 **/docest/analisi_requisiti/generated/
