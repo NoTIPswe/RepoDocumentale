@@ -286,7 +286,7 @@ use_cases:
       include: sel_versione_sw_gateway
     subcases:
     - id: sel_sn_gateway
-      title: Sel Sn Gateway
+      title: Selezione Serial Number Gateway
       actors:
         primary:
         - sim-usr
@@ -297,7 +297,7 @@ use_cases:
       main_scenario:
       - description: Scenario non specificato
     - id: sel_modello_gateway
-      title: Sel Modello Gateway
+      title: Selezione Modello Gateway
       actors:
         primary:
         - sim-usr
@@ -308,7 +308,7 @@ use_cases:
       main_scenario:
       - description: Scenario non specificato
     - id: sel_versione_sw_gateway
-      title: Sel Versione Sw Gateway
+      title: Selezione Versione Software Gateway
       actors:
         primary:
         - sim-usr

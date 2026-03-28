@@ -5,7 +5,7 @@ Questa cartella e la singola fonte di verita per:
 - requisiti (`req/`)
 - test (`test/`)
 
-Tutti i file Typst di supporto generati, le tabelle di tracciabilita e i diagrammi UC derivano da questi dati tramite il prebuild YAML di `notipdo`.
+Tutti i file Typst di supporto generati, le tabelle di tracciabilità e i diagrammi UC derivano da questi dati tramite il prebuild YAML di `notipdo`.
 
 ## Struttura cartelle
 
@@ -25,7 +25,7 @@ Tutti i file Typst di supporto generati, le tabelle di tracciabilita e i diagram
 - numeri UC/UCS da ordine file + annidamento (`UC1`, `UC1.1`, `UCS2`, ...)
 - codici requisiti (`R-<n>-F|Q|V|S`, `R-S-<n>-F`)
 - codici test (`T-U-<n>`, `T-I-<n>`, `T-S-<n>`)
-4. I file Typst di indice/tracciabilita vengono generati in:
+4. I file Typst di indice/tracciabilità vengono generati in:
 - `docs/13-pb/docest/analisi_requisiti/generated/`
 - `docs/13-pb/docest/piano_qualifica/generated/`
 5. I diagrammi UC vengono generati in:
@@ -54,7 +54,7 @@ Valida i file YAML contro schemi e riferimenti incrociati.
 ```bash
 ./env/bin/notipdo build baseline
 ```
-Valida i dati YAML, genera artefatti (indici/tracciabilita/diagrammi) e compila i documenti della baseline corrente.
+Valida i dati YAML, genera artefatti (indici/tracciabilità/diagrammi) e compila i documenti della baseline corrente.
 
 ```bash
 ./env/bin/notipdo build doc docs/13-pb/docest/analisi_requisiti
