@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "docs/12-rtb/docest/analisi_requisiti/**"
+      - "**/docest/analisi_requisiti/**"
   workflow_dispatch:
 
 jobs:
