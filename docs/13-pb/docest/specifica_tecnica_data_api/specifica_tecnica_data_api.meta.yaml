@@ -1,0 +1,16 @@
+title: Specifica Tecnica - Data-API
+changelog:
+  - version: "0.1.0"
+    date: "2026-03-27"
+    authors:
+      - Alessandro Contarini
+    verifier: Alessandro Mazzariol
+    description: >
+      Sviluppo bozza del documento
+  - version: "0.0.1"
+    date: "2026-03-27"
+    authors:
+      - Alessandro Contarini
+    verifier: Alessandro Mazzariol
+    description: >
+      Creazione del documento prima bozza del documento

@@ -171,6 +171,36 @@ accepted_words:
   - transpile
   - devDependencies
   - nats
+  - golangci
+  - SonarCloud
+  - Testcontainers
+  - struct
+  - DSN
+  - stderr
+  - env
+  - SIGTERM
+  - SIGINT
+  - Enum
+  - RLock
+  - WLock
+  - NAK
+  - MeasureController
+  - MeasureService
+  - SensorController
+  - SensorService
+  - MeasurePersistenceService
+  - StreamListenerService
+  - MeasureMapper
+  - NpQueryPersistenceService
+  - MeasurePersistenceServiceDRIVEN
+  - NpQueryPersistenceServiceDRIVEN
+  - StreamListenerServiceDRIVEN
+  - paginata
+  - paginato
+  - rimappatura
+  - deduplicare
+  - deduplicazione
+  - mockato
   - TestContainers
 
   # --- Terminologia Software Engineering (SWE) ---
@@ -244,6 +274,13 @@ accepted_words:
   - deployato
   - passthrough
   - dev
+  - linter
+  - codebase
+  - backpressure
+  - deserializzato
+  - backoff
+  - loggati
+  - unexported
 
   # --- Terminologia Standard Progetto ---
   - req
@@ -297,6 +334,60 @@ accepted_words:
   - ManagementDB
   - MeasuresDB
   - lockfile
+  - TelemetryWriterDRIVEN
+  - AlertPublisherDRIVEN
+  - GatewayStatusUpdaterDRIVEN
+  - AlertConfigProviderDRIVEN
+  - ClockProviderDRIVEN
+  - TelemetryMessageHandlerDRIVING
+  - DecommissionEventHandlerDRIVING
+  - HeartbeatTickerDRIVING
+  - HeartbeatTracker
+  - PostgresTelemetryWriter
+  - NATSAlertPublisher
+  - NATSGatewayStatusUpdater
+  - AlertConfigCache
+  - NATSRRClient
+  - SystemClock
+  - NATSTelemetryConsumer
+  - NATSDecommissionConsumer
+  - HeartbeatTickTimer
+  - tenantID
+  - KeycloakRealm
+  - KeycloakClientId
+  - MGMT
+  - KeycloakClientSecret
+  - NATSUrl
+  - DBHost
+  - DBPort
+  - DBName
+  - DBUser
+  - DBPassword
+  - DBEncryptionKey
+  - ApiPort
+  - AuthModule
+  - AdminModule
+  - GatewaysModule
+  - KeysModule
+  - UsersModule
+  - CommandModule
+  - AuditLogModule
+  - ApiClientModule
+  - AlertsModule
+  - ThresholdsModule
+  - CostsModule
+  - CommonModule
+  - TenantEntity
+  - UserEntity
+  - GatewayEntity
+  - GatewayMetadataEntity
+  - KeyEntity
+  - AlertsEntity
+  - AlertsConfigEntity
+  - ThresholdEntity
+  - AuditLogEntity
+  - ApiClientEntity
+  - CommandEntity
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
@@ -357,3 +448,14 @@ accepted_words:
   - pushato
   - triggerati
   - autogenerare
+  - Testabilità
+  - istanzia
+  - riacquisizione
+  - deserializza
+  - registrer
+  - responder
+  - Riconnessioni
+  - Postcondizione
+  - impersonazione
+  - impersonare
+  - intra
