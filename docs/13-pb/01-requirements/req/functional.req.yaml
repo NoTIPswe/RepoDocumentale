@@ -1,0 +1,713 @@
+type: functional_cloud
+requirements:
+- id: login
+  priority: mandatory
+  description: Il Sistema deve permettere all'utente non autenticato di effettuare il login
+  sources:
+  - uc: login
+- id: ins_pw
+  priority: mandatory
+  description: Il Sistema, durante il login, deve permettere all'utente non autenticato di inserire la
+    password per autenticarsi
+  sources:
+  - uc: ins_pw
+- id: err_cred_errate
+  priority: mandatory
+  description: Il Sistema deve notificare l'utente non autenticato in seguito ad un tentativo di autenticazione
+    non andato a buon fine
+  sources:
+  - uc: err_cred_errate
+- id: setup_totp
+  priority: desirable
+  description: Il Sistema deve permettere all'utente non autenticato di effettuare la configurazione iniziale
+    del TOTP in modo da garantire il login 2FA
+  sources:
+  - uc: setup_totp
+- id: login_2fa
+  priority: desirable
+  description: Il Sistema deve permettere all'utente non autenticato di effettuare il login 2FA
+  sources:
+  - uc: login_2fa
+- id: ins_otp
+  priority: desirable
+  description: Il Sistema deve permettere all'utente di inserire il codice numerico nel Sistema
+  sources:
+  - uc: ins_otp
+- id: err_otp_errato
+  priority: desirable
+  description: Il Sistema deve notificare l'utente non autenticato in seguito ad un inserimento errato
+    del codice OTP nel Sistema
+  sources:
+  - uc: err_otp_errato
+- id: recupero_password
+  priority: mandatory
+  description: Il Sistema deve permettere all'utente di recuperare la password persa/dimenticata
+  sources:
+  - uc: recupero_password
+- id: cambio_password_req
+  priority: mandatory
+  description: Il Sistema deve permettere all'utente di cambiare la password nel Sistema
+  sources:
+  - uc: cambio_password
+- id: err_account_inesistente
+  priority: mandatory
+  description: Il Sistema deve notificare all'utente non autenticato di aver inserito un'email non associata
+    ad un account nel Sistema
+  sources:
+  - uc: err_account_inesistente
+- id: impostazione_password
+  priority: mandatory
+  description: Il Sistema, durante la procedura di cambio password, deve permettere all'utente non autenticato
+    di inserire la nuova password nel Sistema e confermarla
+  sources:
+  - uc: impostazione_password
+- id: err_campi_diversi
+  priority: mandatory
+  description: Il Sistema deve notificare all'utente non autenticato di aver inserito un valore diverso
+    da quello inserito precedentemente
+  sources:
+  - uc: err_campi_diversi
+- id: err_password_invalida
+  priority: mandatory
+  description: Il Sistema deve notificare all'utente non autenticato di aver inserito una password non
+    valida
+  sources:
+  - uc: err_password_invalida
+- id: modifica_mail_account
+  priority: mandatory
+  description: Il Sistema deve permettere all'Utente Autenticato di modificare la propria mail
+  sources:
+  - uc: modifica_mail_account
+- id: impostazione_mail
+  priority: mandatory
+  description: Il Sistema, durante la procedura di modifica mail dell'account, deve permettere all'Utente
+    autenticato di inserire e confermare la nuova mail
+  sources:
+  - uc: impostazione_mail
+- id: err_mail_non_valida
+  priority: mandatory
+  description: Il Sistema, in fase di registrazione di una mail, deve notificare all'Utente autenticato
+    di aver inserito una mail non valida
+  sources:
+  - uc: err_mail_non_valida
+- id: err_mail_gia_registrata
+  priority: mandatory
+  description: Il Sistema deve notificare all'utente autenticato di aver inserito un'email già associata
+    ad un altro account
+  sources:
+  - uc: err_mail_gia_registrata
+- id: modifica_password_account
+  priority: mandatory
+  description: Il Sistema deve permettere all'utente autenticato di poter modificare la password del proprio
+    account
+  sources:
+  - uc: modifica_password_account
+- id: logout
+  priority: mandatory
+  description: Il Sistema deve permettere all'utente autenticato di poter eseguire il logout dal Sistema
+  sources:
+  - uc: logout
+- id: visualizzazione_lista_gateway_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant User di visualizzare i Gateway appartenenti al proprio
+    Tenant
+  sources:
+  - uc: visualizzazione_lista_gateway_tenant
+- id: visualizzazione_singolo_gateway_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant User di visualizzare un singolo Gateway nella lista,
+    in particolare il nome e lo stato
+  sources:
+  - uc: visualizzazione_singolo_gateway_tenant
+  - uc: visualizzazione_nome_gateway_tenant
+  - uc: visualizzazione_stato_gateway_tenant
+- id: visualizzazione_dettagli_gateway
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant User di visualizzare ultimo timestamp dati inviati
+    ed i sensori del Gateway
+  sources:
+  - uc: visualizzazione_dettagli_gateway
+  - uc: visualizzazione_timestamp_ultimo_invio_dati_gateway
+  - uc: visualizzazione_lista_sensori
+- id: visualizzazione_singolo_sensore
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant User di visualizzare un singolo sensore dalla lista
+    dei sensori. Di tale sensore interessa visualizzare l'ID e il timestamp dell'ultimo invio dati
+  sources:
+  - uc: visualizzazione_singolo_sensore
+  - uc: visualizzazione_timestamp_ultimo_invio_dati_sensore
+  - uc: visualizzazione_id_sensore
+- id: visualizzazione_dati_stream
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant User di visualizzare i dati sullo Stream
+  sources:
+  - uc: visualizzazione_dati_stream
+- id: visualizzazione_tabellare_dati_stream
+  priority: desirable
+  description: Il Sistema deve permettere al Tenant User di visualizzare lo Stream di dati in tabella
+  sources:
+  - uc: visualizzazione_tabellare_dati_stream
+- id: visualizzazione_grafico_dati_stream
+  priority: desirable
+  description: Il Sistema deve permettere al Tenant User di visualizzare lo Stream di dati su grafici
+  sources:
+  - uc: visualizzazione_grafico_dati_stream
+- id: filtraggio_gateway
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant User di filtrare i dati per soli Gateway
+  sources:
+  - uc: filtraggio_gateway
+  - uc: filtraggio_singolo_gateway
+- id: filtraggio_sensore
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant User di filtrare i dati per soli sensori
+  sources:
+  - uc: filtraggio_sensore
+  - uc: filtraggio_singolo_sensore
+- id: filtraggio_intervallo_temporale
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant User di visualizzare i dati relativi ad uno specifico
+    intervallo temporale
+  sources:
+  - uc: filtraggio_intervallo_temporale
+- id: err_dati_non_disponibili
+  priority: mandatory
+  description: Il Sistema deve notificare al Tenant User della non disponibilità dei dati (non temporaneamente
+    disponibili o inesistenti)
+  sources:
+  - uc: err_dati_non_disponibili
+- id: esportazione_dati
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant User di poter esportare i dati che sta visualizzando
+  sources:
+  - uc: esportazione_dati
+- id: alert_gateway_irraggiungibile
+  priority: mandatory
+  description: Il Sistema deve notificare il Tenant User dell'irraggiungibilità di un gateway
+  sources:
+  - uc: alert_gateway_irraggiungibile
+- id: alert_sensore_fuori_range
+  priority: mandatory
+  description: Il Sistema deve notificare il Tenant User delle irregolarità presenti nelle misurazioni
+    di un sensore. In particolare deve permettere di visualizzare il valore del dato registrato, il range
+    accettato e il timestamp di registrazione del dato irregolare del sensore in questione
+  sources:
+  - uc: alert_sensore_fuori_range
+  - uc: visualizzazione_valore_dato_registrato
+  - uc: visualizzazione_range_accettato
+  - uc: visualizzazione_timestamp_dato_irregolare
+- id: visualizzazione_storico_alert
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant User di visualizzare la lista degli alert registrati
+  sources:
+  - uc: visualizzazione_storico_alert
+- id: visualizzazione_singolo_alert
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant User di visualizzare i dettagli di un singolo alert,
+    in particolare deve permettere di visualizzare il tipo di alert, l'hardware interessato e il timestamp
+    di emissione dell'alert
+  sources:
+  - uc: visualizzazione_singolo_alert
+  - uc: visualizzazione_tipo_alert
+  - uc: visualizzazione_hardware_interessato
+  - uc: visualizzazione_timestamp_emissione_alert
+- id: visualizzazione_dettagli_singolo_alert
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant User di visualizzare i dettagli di un alert selezionato
+  sources:
+  - uc: visualizzazione_dettagli_singolo_alert
+- id: visualizzazione_dettagli_alert_gateway_irraggiungibile
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant User di visualizzare i dettagli di un alert Gateway
+    non raggiungibile
+  sources:
+  - uc: visualizzazione_dettagli_alert_gateway_irraggiungibile
+- id: visualizzazione_dettagli_alert_sensore_fuori_range
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant User di visualizzare i dettagli di un sensore fuori
+    range
+  sources:
+  - uc: visualizzazione_dettagli_alert_sensore_fuori_range
+- id: modifica_impostazioni_notifica_alert_email
+  priority: desirable
+  description: Il Sistema deve permettere al Tenant User di attivare/disattivare la ricezione di alert
+    via email
+  sources:
+  - uc: modifica_impostazioni_notifica_alert_email
+- id: modifica_impostazioni_notifica_alert_dashboard
+  priority: desirable
+  description: Il Sistema deve permettere al Tenant User di attivare/disattivare la ricezione di alert
+    via dashboard
+  sources:
+  - uc: modifica_impostazioni_notifica_alert_dashboard
+- id: modifica_nome_gateway
+  priority: desirable
+  description: Il Sistema deve permettere al Tenant Admin di modificare il nome di un Gateway che possiede
+  sources:
+  - uc: modifica_nome_gateway
+- id: err_nome_gateway_duplicato
+  priority: mandatory
+  description: Il Sistema deve notificare al Tenant Admin di aver inserito un nome già presente nella
+    lista
+  sources:
+  - uc: err_nome_gateway_duplicato
+- id: modifica_stato_gateway
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di modificare lo stato del Gateway
+  sources:
+  - uc: modifica_stato_gateway
+- id: selezione_stato_gateway
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di selezionare lo stato desiderato per i Gateway
+    che ha selezionato
+  sources:
+  - uc: selezione_stato_gateway
+- id: modifica_range_sensore
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di cambiare il range dell'alert per un determinato
+    sensore
+  sources:
+  - uc: modifica_range_sensore
+- id: selezione_specifico_sensore
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di selezionare uno specifico sensore
+  sources:
+  - uc: selezione_specifico_sensore
+- id: selezione_range_numerico
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di selezionare un range per le misurazioni,
+    inserendo un valore minimo e uno di massimo
+  sources:
+  - uc: selezione_range_numerico
+- id: inserimento_valore_numerico
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di inserire un valore numerico quando richiesto
+  sources:
+  - uc: inserimento_valore_numerico
+- id: modifica_range_default_tipo_sensore
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di modificare il range dell'alert di default
+    per tutti i sensori di un determinato tipo
+  sources:
+  - uc: modifica_range_default_tipo_sensore
+- id: selezione_tipo_sensore
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di selezionare un determinato tipo di sensore
+  sources:
+  - uc: selezione_tipo_sensore
+- id: modifica_intervallo_alert_gateway
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di cambiare il timeout che determina se un Gateway
+    è irraggiungibile
+  sources:
+  - uc: modifica_intervallo_alert_gateway
+- id: visualizzazione_costi_stimati
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati del Tenant di
+    cui è amministratore
+  sources:
+  - uc: visualizzazione_costi_stimati
+- id: visualizzazione_costi_storage
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati relativi allo
+    storage del Gateway selezionato
+  sources:
+  - uc: visualizzazione_costi_storage
+- id: visualizzazione_costi_banda
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di visualizzare i costi stimati dei Gateway
+    associati al Tenant raggruppati in base alla banda
+  sources:
+  - uc: visualizzazione_costi_banda
+- id: visualizzazione_lista_utenti_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di visualizzare gli Utenti associati al proprio
+    Tenant
+  sources:
+  - uc: visualizzazione_lista_utenti_tenant
+- id: visualizzazione_singolo_utente_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di visualizzare un singolo utente del Tenant.
+    Le informazioni che devono essere visualizzate sono il ruolo dell'Utente, il nome dell'Utente, la
+    mail dell'Utente e l'ultimo accesso dell'utente
+  sources:
+  - uc: visualizzazione_singolo_utente_tenant
+  - uc: visualizzazione_ruolo_utente
+  - uc: visualizzazione_nome_utente
+  - uc: visualizzazione_ultimo_accesso_utente
+  - uc: visualizzazione_mail_utente
+- id: creazione_utente_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di creare un nuovo Utente del Tenant
+  sources:
+  - uc: creazione_utente_tenant
+- id: inserimento_nome_utente
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di assegnare un nome all'Utente Tenant creato
+  sources:
+  - uc: inserimento_nome_utente
+- id: selezione_utente_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di selezionare un Utente del Tenant
+  sources:
+  - uc: selezione_utente_tenant
+- id: selezione_permessi_utente
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di selezionare e modificare un permesso dell'Utente
+    Tenant
+  sources:
+  - uc: selezione_permessi_utente
+  - uc: modifica_permessi_utente
+- id: modifica_mail_utente
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di modificare l'email di un singolo Utente del
+    Tenant
+  sources:
+  - uc: modifica_mail_utente
+- id: modifica_password_utente
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di modificare la password di un Utente Tenant
+  sources:
+  - uc: modifica_password_utente
+- id: eliminazione_utenti_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di eliminare uno o più Utenti di un Tenant
+  sources:
+  - uc: eliminazione_utenti_tenant
+- id: selezione_lista_utenti
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di selezionare più Utenti Tenant contemporaneamente
+  sources:
+  - uc: selezione_lista_utenti
+- id: creazione_credenziali_api
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di abilitare l'accesso ai dati del Tenant da
+    un Sistema esterno creando delle credenziali
+  sources:
+  - uc: creazione_credenziali_api
+  - uc: inserimento_nome_client_api
+- id: visualizzazione_client_id
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di visualizzare il Client ID di alcune credenziali
+    API
+  sources:
+  - uc: visualizzazione_client_id
+- id: visualizzazione_secret_api
+  priority: mandatory
+  description: Il Sistema a termine della creazione delle credenziali API deve mostrare al Tenant Admin
+    la Client Secret
+  sources:
+  - uc: visualizzazione_secret_api
+- id: visualizzazione_lista_api
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di visualizzare la lista delle credenziali API
+    relative ad un Tenant
+  sources:
+  - uc: visualizzazione_lista_api
+- id: visualizzazione_singole_api
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di visualizzare delle specifiche credenziali
+    API di un Tenant, in particolare deve permettere di visualizzare il nome descrittivo delle credenziali
+    e il timestamp di creazione delle credenziali
+  sources:
+  - uc: visualizzazione_singole_api
+  - uc: visualizzazione_nome_descrittivo_api
+  - uc: visualizzazione_timestamp_api
+- id: eliminazione_credenziali_api
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di eliminare delle credenziali API specifiche
+    di un Tenant
+  sources:
+  - uc: eliminazione_credenziali_api
+- id: selezione_credenziali_api
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di selezionare delle specifiche credenziali
+    API di un Tenant
+  sources:
+  - uc: selezione_credenziali_api
+- id: modifica_impostazioni_2fa
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di modificare le impostazioni del login 2FA
+    di un Tenant
+  sources:
+  - uc: modifica_impostazioni_2fa
+- id: visualizzazione_log_audit_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare
+    i log di Audit del Tenant
+  sources:
+  - uc: visualizzazione_log_audit_tenant
+- id: visualizzazione_singolo_log_audit
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare
+    una singola entry di log di Audit, in particolare deve permettere di visualizzare il timestamp, l'utente
+    relativo e l'azione relativa della singola entry
+  sources:
+  - uc: visualizzazione_singolo_log_audit
+  - uc: visualizzazione_timestamp_log_entry
+  - uc: visualizzazione_utente_log_entry
+  - uc: visualizzazione_operazione_log_entry
+- id: esportazione_log_audit_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di esportare
+    i log per fare Audit del Tenant
+  sources:
+  - uc: esportazione_log_audit_tenant
+- id: selezione_intervallo_temporale
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di inserire
+    un intervallo temporale per visualizzare i log
+  sources:
+  - uc: selezione_intervallo_temporale
+- id: download_log_audit_esportati
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di scaricare
+    i log sul proprio dispositivo
+  sources:
+  - uc: download_log_audit_esportati
+- id: modifica_impostazioni_impersonificazione
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di modificare
+    le impostazioni di impersonificazione relative al Tenant
+  sources:
+  - uc: modifica_impostazioni_impersonificazione
+- id: aggiornamento_firmware_gateway
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di installare
+    una nuova versione firmware sul Gateway
+  sources:
+  - uc: aggiornamento_firmware_gateway
+  - uc: selezione_firmware
+- id: selezione_gateway
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di selezionare
+    uno o più Gateway tramite il loro ID
+  sources:
+  - uc: selezione_gateway
+- id: modifica_frequenza_invio_gateway
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant Admin di modificare la frequenza di invio dati di
+    un Gateway
+  sources:
+  - uc: modifica_frequenza_invio_gateway
+- id: autenticazione_client_api
+  priority: mandatory
+  description: Il Sistema deve permettere al Client API di autenticarsi per contattare le API
+  sources:
+  - uc: autenticazione_client_api
+- id: err_dati_autenticazione_invalidi
+  priority: mandatory
+  description: Il Sistema deve notificare il Client API che i dati di autenticazione non sono validi
+  sources:
+  - uc: err_dati_autenticazione_invalidi
+- id: err_auth_server_non_disponibile
+  priority: mandatory
+  description: Il Sistema deve notificare il Client API che è avvenuto un errore interno di rete
+  sources:
+  - uc: err_auth_server_non_disponibile
+- id: richiesta_dati_on_demand
+  priority: mandatory
+  description: Il Sistema deve permettere al Client API di recuperare i dati storici tramite chiamata
+    API
+  sources:
+  - uc: richiesta_dati_on_demand
+- id: err_token_api_invalido
+  priority: mandatory
+  description: Il Sistema deve notificare il Client API che il token di autenticazione non è valido
+  sources:
+  - uc: err_token_api_invalido
+- id: err_id_gateway_invalido
+  priority: mandatory
+  description: Il Sistema deve notificare il Client API che uno o più ID Gateway inseriti risultano invalidi
+  sources:
+  - uc: err_id_gateway_invalido
+- id: err_id_sensore_invalido
+  priority: mandatory
+  description: Il Sistema deve notificare il Client API che l'ID sensore inserito non esiste
+  sources:
+  - uc: err_id_sensore_invalido
+- id: err_intervallo_temporale_invalido
+  priority: mandatory
+  description: Il Sistema deve notificare il Client API che l'intervallo temporale fornito non è valido
+  sources:
+  - uc: err_intervallo_temporale_invalido
+- id: richiesta_dati_streaming
+  priority: mandatory
+  description: Il Sistema deve permettere al Client API di recuperare dati real-time tramite un endpoint
+    API
+  sources:
+  - uc: richiesta_dati_streaming
+- id: visualizzazione_lista_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere all'Amministratore di Sistema di visualizzare la lista di Tenant
+    registrati nel Sistema
+  sources:
+  - uc: visualizzazione_lista_tenant
+- id: visualizzazione_singolo_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere all'Amministratore di Sistema di visualizzare un singolo Tenant
+    all'interno della lista
+  sources:
+  - uc: visualizzazione_singolo_tenant
+- id: visualizzazione_dettagli_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere all'Amministratore di Sistema di visualizzare in dettaglio un
+    Tenant
+  sources:
+  - uc: visualizzazione_dettagli_tenant
+- id: visualizzazione_nome_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere all'Amministratore di Sistema di visualizzare il nome identificativo
+    del singolo Tenant
+  sources:
+  - uc: visualizzazione_nome_tenant
+- id: visualizzazione_stato_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere all'Amministratore di Sistema di visualizzare lo stato operativo
+    del Tenant
+  sources:
+  - uc: visualizzazione_stato_tenant
+- id: visualizzazione_id_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere all'Amministratore di Sistema di visualizzare l'ID del Tenant
+    scelto
+  sources:
+  - uc: visualizzazione_id_tenant
+- id: visualizzazione_intervallo_sospensione_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere all'Amministratore di Sistema di visualizzare l'intervallo temporale
+    minimo di sospensione (pre-eliminazione) del Tenant scelto
+  sources:
+  - uc: visualizzazione_intervallo_sospensione_tenant
+- id: modifica_intervallo_sospensione_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere all'Amministratore di Sistema di modificare l'intervallo temporale
+    minimo di sospensione (pre-eliminazione) del Tenant scelto
+  sources:
+  - uc: modifica_intervallo_sospensione_tenant
+- id: modifica_nome_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere all'Amministratore di Sistema di modificare il nome di un Tenant
+  sources:
+  - uc: modifica_nome_tenant
+- id: creazione_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere all'Amministratore di Sistema di creare un nuovo Tenant
+  sources:
+  - uc: creazione_tenant
+- id: inserimento_anagrafica_tenant
+  priority: mandatory
+  description: Il Sistema, durante la creazione del tenant, deve permettere all'Amministratore di Sistema
+    di inserire i dati anagrafici del Tenant
+  sources:
+  - uc: inserimento_anagrafica_tenant
+- id: err_interno_creazione_tenant
+  priority: mandatory
+  description: Il Sistema deve poter notificare l'Amministratore di Sistema di un eventuale errore interno
+    nella creazione del Tenant
+  sources:
+  - uc: err_interno_creazione_tenant
+- id: selezione_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere all'Amministratore di Sistema di selezionare un Tenant
+  sources:
+  - uc: selezione_tenant
+- id: sospensione_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere all'Amministratore di Sistema di sospendere un Tenant di interesse
+  sources:
+  - uc: sospensione_tenant
+- id: riattivazione_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere all'Amministratore di Sistema di riattivare un Tenant precedentemente
+    disattivato
+  sources:
+  - uc: riattivazione_tenant
+- id: eliminazione_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere all'Amministratore di Sistema di eliminare un Tenant di interesse
+  sources:
+  - uc: eliminazione_tenant
+  - uc: conferma_eliminazione_tenant
+- id: impersonificazione_utente_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere all'Amministratore di Sistema di avviare una sessione di impersonificazione
+  sources:
+  - uc: impersonificazione_utente_tenant
+- id: registrazione_associazione_gateway
+  priority: mandatory
+  description: Il Sistema deve permettere all'Amministratore di Sistema di registrare e successivamente
+    associare un Gateway ad un Tenant di interesse
+  sources:
+  - uc: registrazione_associazione_gateway
+  - uc: inserimento_credenziali_fabbrica_gateway
+- id: creazione_utente_amministratore_tenant
+  priority: mandatory
+  description: Il Sistema deve permettere all'Amministratore di Sistema di creare un Utente con ruolo
+    Amministratore Tenant per un Tenant di interesse
+  sources:
+  - uc: creazione_utente_amministratore_tenant
+- id: monitoraggio_performance_sistema
+  priority: mandatory
+  description: Il Sistema deve permettere all'Amministratore di Sistema di monitorare le prestazioni complessive
+    del Sistema, in particolare, la latenza media, il volume di traffico e l'utilizzo dello storage
+  sources:
+  - uc: monitoraggio_performance_sistema
+  - uc: monitoraggio_latenza
+  - uc: monitoraggio_volumi_traffico
+  - uc: monitoraggio_storage
+- id: onboarding_gateway
+  priority: mandatory
+  description: Il Sistema deve permettere al non provisioned Gateway di attivarsi e connettersi correttamente
+    con il Sistema
+  sources:
+  - uc: onboarding_gateway
+- id: err_auth_gateway_fabbrica
+  priority: mandatory
+  description: Il Sistema deve permettere al non provisioned Gateway di ricevere una risposta di errore
+    di autenticazione
+  sources:
+  - uc: err_auth_gateway_fabbrica
+- id: invio_dati_crittografati_cloud
+  priority: mandatory
+  description: Il Sistema deve permettere al provisioned Gateway di inviare dati crittografati al Cloud
+  sources:
+  - uc: invio_dati_crittografati_cloud
+- id: instaurazione_connessione_sicura
+  priority: mandatory
+  description: Il Sistema deve permettere al non provisioned Gateway di aprire un canale di comunicazione
+    sicuro
+  sources:
+  - uc: instaurazione_connessione_sicura
+- id: err_autenticazione_gateway
+  priority: mandatory
+  description: Il Sistema deve notificare il provisioned Gateway che il processo di autenticazione è fallito
+  sources:
+  - uc: err_autenticazione_gateway
+- id: err_range_invalido
+  priority: mandatory
+  description: Il Sistema deve notificare il Tenant Admin che il range inserito è invalido
+  sources:
+  - uc: err_range_invalido
+- id: ins_mail
+  priority: mandatory
+  description: Il Sistema, durante il login, deve permettere all'utente non autenticato di inserire una
+    mail per autenticarsi
+  sources:
+  - uc: ins_mail
+- id: visualizzazione_lista_gateway_sistema
+  priority: mandatory
+  description: Il Sistema deve permettere all'Amministratore di Sistema di poter visualizzare la lista
+    di Gateway conosciuti dal Sistema
+  sources:
+  - uc: visualizzazione_lista_gateway_sistema
+- id: visualizzazione_singolo_gateway_sistema
+  priority: mandatory
+  description: Il Sistema deve permettere all'Amministratore di Sistema di poter visualizzare un singolo
+    Gateway conosciuto dal Sistema, in particolare l'ID di fabbrica e l'ID del Tenant a cui è associato
+  sources:
+  - uc: visualizzazione_singolo_gateway_sistema
+  - uc: visualizzazione_id_fabbrica_gateway_sistema
+  - uc: visualizzazione_id_tenant_gateway
+  - uc: visualizzazione_id_tenant_gateway_nd
+  - uc: visualizzazione_id_tenant_gateway_provisionato

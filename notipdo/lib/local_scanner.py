@@ -34,8 +34,20 @@ class LocalScanner(scanner.Scanner):
             relative_path = dir_path.relative_to(docs_dir_path)
             depth = len(relative_path.parts)
 
+            # Requirements YAML data folders are not Typst document directories.
+            if "01-requirements" in relative_path.parts:
+                dirs[:] = []
+                continue
+
             if depth == 3:
-                docs.append(self.discover_doc(dir_path))
+                doc_name: str = dir_path.name
+                source_path: Path = dir_path / f"{doc_name}.typ"
+                meta_path: Path = dir_path / f"{doc_name}.meta.yaml"
+
+                if source_path.exists() and meta_path.exists():
+                    docs.append(self.discover_doc(dir_path))
+                else:
+                    logging.debug(f"Skipping non-document directory: {dir_path}")
                 dirs[:] = []
                 continue
 

@@ -2,7 +2,7 @@ import typer
 import logging
 import os
 
-from commands import build, watch, generate, check, format, metrics
+from commands import build, watch, generate, check, format, metrics, data
 
 app = typer.Typer(help="NoTIP unified document tooling CLI.")
 
@@ -12,6 +12,8 @@ app.add_typer(generate.app, name="generate")
 app.add_typer(check.app, name="check")
 app.add_typer(format.app, name="format")
 app.add_typer(metrics.app, name="metrics")
+app.add_typer(data.app, name="data")
+
 
 def setup_logging():
     """Configures logging."""

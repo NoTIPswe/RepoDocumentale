@@ -9,6 +9,8 @@ jobs:
     # Only run if the specific label added was 'merge-ready'
     if: github.event.label.name == 'merge-ready'
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/notipswe/notip-docs-dev:v0.0.1
     steps:
       - name: Checkout PR branch
         uses: actions/checkout@v4

@@ -1,0 +1,51 @@
+type: security
+requirements:
+- id: sicurezza_cifratura_dati
+  priority: mandatory
+  description: I dati all'interno del Sistema devono essere cifrati sia in stato di transito (TLS) sia
+    a riposo (AES-256)
+  sources:
+  - text: Capitolato C7
+    url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+  - text: Sez."Requisiti di Sicurezza"
+  - text: Interno (scelta algoritmi)
+- id: sicurezza_segregazione_tenant
+  priority: mandatory
+  description: I dati appartenenti a diversi Tenant devono essere segregati sia a livello logico che fisico
+    (database e storage dedicati o virtualizzati)
+  sources:
+  - text: Capitolato C7
+    url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+  - text: Sez."Requisiti di Sicurezza"
+- id: sicurezza_mfa
+  priority: desirable
+  description: L'accesso alla UI e API deve essere concesso anche tramite l'utilizzo di autenticazione
+    a più fattori (MFA)
+  sources:
+  - text: Capitolato C7
+    url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+  - text: Sez."Requisiti di Sicurezza"
+- id: sicurezza_log_attivita
+  priority: mandatory
+  description: Il Sistema deve possedere un sistema di log completo delle attività, consultabile solo
+    da utenti autorizzati
+  sources:
+  - text: Capitolato C7
+    url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+  - text: Sez."Requisiti di Sicurezza"
+- id: sicurezza_protezione_attacchi
+  priority: desirable
+  description: Il Sistema deve essere protetto da attacchi informatici, tramite implementazione di meccanismi
+    di rate limiting, intrusion detection e failover automatico per garantire la continuità operativa
+  sources:
+  - text: Capitolato C7
+    url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+  - text: Sez."Requisiti di Sicurezza"
+- id: sicurezza_autenticazione_accessi
+  priority: mandatory
+  description: Tutti gli accessi al Sistema devono essere autenticati tramite meccanismi robusti (JWT,
+    OAuth2, mTLS) con ruoli granulari
+  sources:
+  - text: Capitolato C7
+    url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
+  - text: Sez."Requisiti di Sicurezza"

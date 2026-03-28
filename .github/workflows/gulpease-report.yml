@@ -7,22 +7,21 @@ on:
   workflow_dispatch:
 
 jobs:
-  gulpease-update: 
+  gulpease-update:
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/notipswe/notip-docs-dev:v0.0.1
 
-    steps: 
+    steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
-      - name: Setup environment
-        uses: ./.github/actions/setup-docs-env
 
-      - name: Install dependencies
-        run: pip install requests
+      - name: Setup Environment
+        uses: ./.github/actions/setup-docs-env
 
       - name: Build all docs
         run: notipdo build all
-      
+
       - name: Calculate Gulpease index and Send to Jira
         # Passiamo i secret come variabili d'ambiente
         env:

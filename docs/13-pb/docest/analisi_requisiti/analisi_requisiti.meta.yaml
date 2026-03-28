@@ -1,5 +1,12 @@
 title: Analisi dei Requisiti
 changelog:
+  - version: "1.2.1"
+    date: "2026-03-28"
+    authors:
+      - Matteo Mantoan
+    verifier: Alessandro Mazzariol
+    description: >
+      Modifiche stilistiche causa automazione generazione UC e Requisiti
   - version: "1.2.0"
     date: "2026-03-10"
     authors:
