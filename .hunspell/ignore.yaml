@@ -77,8 +77,15 @@ accepted_words:
 
   # --- Tecnologie e Formati ---
   - AES
+  - AESKeyGenerator
+  - CAProvider
+  - CARepository
   - csv
+  - CSR
+  - CSRSigner
+  - CSPRNG
   - EE # for End to End Encryption (spellcheck keeps failing)
+  - FactoryValidator
   - Gin
   - GO
   - gRPC
@@ -90,7 +97,11 @@ accepted_words:
   - Golang
   - PDF
   - pdf
+  - PEM
+  - PKI
+  - ProvisioningCompleter
   - Typst
+  - TTL
   - YAML
   - yaml
   - typ
@@ -388,12 +399,17 @@ accepted_words:
   - AuditLogEntity
   - ApiClientEntity
   - CommandEntity
+  - filesystem
+  - init
+  - cryptographically
+  - validator
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
   - autoconsistente
   - autoconsistenza
   - automiglioramento
+  - crittograficamente
   - collaborativamente
   - concatenabili
   - multimodale
