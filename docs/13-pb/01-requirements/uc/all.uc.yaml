@@ -49,17 +49,6 @@ use_cases:
   - L'Attore viene informato dell'errore
   main_scenario:
   - description: L'Attore viene informato del problema in fase di autenticazione
-- id: err_account_inesistente
-  title: Errore account non esistente
-  actors:
-    primary:
-    - non-authd-usr
-  preconditions:
-  - La mail fornita dall'Attore non risulta associata ad alcun account registrato nel Sistema
-  postconditions:
-  - L'Attore ricompila il campo mail
-  main_scenario:
-  - description: L'Attore viene notificato dell'inserimento di una mail non associata a nessun account
 - id: impostazione_password
   title: Impostazione password
   actors:
@@ -817,41 +806,6 @@ use_cases:
     - L’Attore visualizza il valore del dato registrato fuori range
     main_scenario:
     - description: L’Attore visualizza il valore del dato registrato fuori range
-- id: modifica_impostazioni_notifica_alert_email
-  title: Modifica impostazioni notifica alert via email
-  actors:
-    primary:
-    - tenant-usr
-  preconditions:
-  - Il Sistema sta mostrando le preferenze impostate per la ricezione delle notifiche di alert via email
-  postconditions:
-  - Il Sistema salva le nuove preferenze di ricezione alert via email
-  main_scenario:
-  - description: L’Attore modifica la preferenza di ricezione notifiche via email
-- id: abilitazione_notifica_alert_email
-  title: Abilitazione notifica alert via email
-  actors:
-    primary:
-    - tenant-usr
-  preconditions:
-  - L'attore sta visualizzando le preferenze e la ricezione via email è attualmente disattivata
-  postconditions:
-  - L'Attore potrà ricevere mail di notifica
-  main_scenario:
-  - description: L’Attore imposta la preferenza su Attivo (ON)
-  gen_parent: modifica_impostazioni_notifica_alert_email
-- id: disabilitazione_notifica_alert_email
-  title: Disabilitazione notifica alert via email
-  actors:
-    primary:
-    - tenant-usr
-  preconditions:
-  - L'Attore sta visualizzando le preferenze e la ricezione via email è attualmente attivata
-  postconditions:
-  - L'Attore smetterà di ricevere email di notifica
-  main_scenario:
-  - description: L’Attore imposta la preferenza su Disattivo (OFF)
-  gen_parent: modifica_impostazioni_notifica_alert_email
 - id: modifica_impostazioni_notifica_alert_dashboard
   title: Modifica impostazioni notifica alert via dashboard
   actors:

@@ -14,11 +14,6 @@ tests:
   requirements:
   - err_cred_errate
   status: not_implemented
-- id: t_s_009
-  description: Verificare che il Sistema notifichi un errore in caso di email non associata ad alcun account
-  requirements:
-  - err_account_inesistente
-  status: not_implemented
 - id: t_s_010
   description: Verificare che il sistema notifichi un errore in caso di password inserite non corrispondenti
     o non valide
@@ -110,10 +105,8 @@ tests:
   - visualizzazione_storico_alert
   status: not_implemented
 - id: t_s_027
-  description: Verificare che l’utente possa attivare e disattivare la ricezione di notifiche alert via
-    email e dashboard
+  description: Verificare che l’utente possa attivare e disattivare la ricezione di notifiche alert via dashboard
   requirements:
-  - modifica_impostazioni_notifica_alert_email
   - modifica_impostazioni_notifica_alert_dashboard
   status: not_implemented
 - id: t_s_028

@@ -15,11 +15,6 @@ tests:
   requirements:
   - err_cred_errate
   status: not_implemented
-- id: t_u_10
-  description: Verificare il mapping dell’errore “account non esistente”
-  requirements:
-  - err_account_inesistente
-  status: not_implemented
 - id: t_u_11
   description: Verificare la validazione della nuova password
   requirements:
@@ -94,12 +89,6 @@ tests:
   description: Verificare la formattazione del timestamp di emissione alert
   requirements:
   - visualizzazione_singolo_alert
-  status: not_implemented
-- id: t_u_29
-  description: Verificare la validazione delle impostazioni di notifica
-  requirements:
-  - modifica_impostazioni_notifica_alert_email
-  - modifica_impostazioni_notifica_alert_dashboard
   status: not_implemented
 - id: t_u_30
   description: Verificare la validazione del nome utente tenant

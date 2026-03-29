@@ -17,12 +17,6 @@ requirements:
     non andato a buon fine
   sources:
   - uc: err_cred_errate
-- id: err_account_inesistente
-  priority: mandatory
-  description: Il Sistema deve notificare all'utente non autenticato di aver inserito un'email non associata
-    ad un account nel Sistema
-  sources:
-  - uc: err_account_inesistente
 - id: impostazione_password
   priority: mandatory
   description: Il Sistema, durante la procedura di cambio password, deve permettere all'utente non autenticato
@@ -180,12 +174,6 @@ requirements:
     non raggiungibile
   sources:
   - uc: visualizzazione_dettagli_alert_gateway_irraggiungibile
-- id: modifica_impostazioni_notifica_alert_email
-  priority: desirable
-  description: Il Sistema deve permettere al Tenant User di attivare/disattivare la ricezione di alert
-    via email
-  sources:
-  - uc: modifica_impostazioni_notifica_alert_email
 - id: modifica_impostazioni_notifica_alert_dashboard
   priority: desirable
   description: Il Sistema deve permettere al Tenant User di attivare/disattivare la ricezione di alert
