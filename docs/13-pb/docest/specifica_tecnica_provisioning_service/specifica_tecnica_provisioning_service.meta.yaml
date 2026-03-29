@@ -1,0 +1,9 @@
+title: Specifica Tecnica - Provisioning Service
+changelog:
+  - version: "0.0.1"
+    date: "2026-03-29"
+    authors:
+      - Mario De Pasquale
+    verifier: TBD
+    description: >
+      Creazione prima bozza del documento
