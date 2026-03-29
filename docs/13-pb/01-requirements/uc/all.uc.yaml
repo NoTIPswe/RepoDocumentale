@@ -124,7 +124,7 @@ use_cases:
   postconditions:
   - La password inserita viene rifiutata
   main_scenario:
-  - description: L’Attore viene notificato che l’email inserita non è valida e viene invitato a sceglierne
+  - description: L’Attore viene notificato che la password inserita non è valida e viene invitato a sceglierne
       un’altra
 - id: modifica_mail_account
   title: Modifica mail account
@@ -461,6 +461,12 @@ use_cases:
       main_scenario:
       - description: L’Attore visualizza una riga della tabella con_:_ timestamp, Gateway, sensore, tipo
           misura, valore e unità
+      - description: L’Attore visualizza i singoli dati della tabella
+        include: visualizzazione_valore_dato_registrato
+      - description: L’Attore visualizza il timestamp del dato 
+        include: visualizzazione_timestamp_dato
+      - description: L’Attore visualizza l'identificativo del sensore
+        include: visualizzazione_id_sensore
   - id: visualizzazione_grafico_dati_stream
     title: Visualizzazione grafico dati Stream
     actors:
@@ -486,18 +492,11 @@ use_cases:
   postconditions:
   - L’Attore visualizza i dati fuori range evidenziati
   main_scenario:
-  - description: L’Attore visualizza i dati fuori range evidenziati in tabella o grafico
-    include: visualizzazione_valore_dato_registrato_fuori_range
-  - description: L’Attore visualizza il timestamp del dato irregolare
-    include: visualizzazione_timestamp_dato_irregolare
-  - description: L’Attore visualizza il range accettato
-    include: visualizzazione_range_accettato
-  - description: L’Attore visualizza l'identificativo del sensore
-    include: visualizzazione_id_sensore
+  - description: L’Attore visualizza i dati fuori range evidenziati nella singola riga dei dati stream
   gen_parent: visualizzazione_singola_riga_dati_stream
   subcases:
-  - id: visualizzazione_valore_dato_registrato_fuori_range
-    title: Visualizzazione valore dato registrato fuori range
+  - id: visualizzazione_valore_dato_registrato
+    title: Visualizzazione valore dato registrato
     actors:
       primary:
       - tenant-usr
@@ -508,8 +507,8 @@ use_cases:
     - L’Attore visualizza il valore del dato registrato evidenziato come fuori range
     main_scenario:
     - description: L’Attore visualizza il valore del dato registrato evidenziato come fuori range
-  - id: visualizzazione_timestamp_dato_irregolare
-    title: Visualizzazione timestamp dato irregolare
+  - id: visualizzazione_timestamp_dato
+    title: Visualizzazione timestamp dato
     actors:
       primary:
       - tenant-usr
@@ -517,21 +516,21 @@ use_cases:
     - Esiste almeno un sensore associato al Gateway di un Tenant gestito dall’Attore primario
     - Esiste almeno un dato registrato da un sensore che risulta fuori dal range accettato
     postconditions:
-    - L’Attore visualizza il timestamp di registrazione del dato irregolare
+    - L’Attore visualizza il timestamp di registrazione del dato
     main_scenario:
-    - description: L’Attore visualizza il timestamp di registrazione del dato irregolare
-  - id: visualizzazione_range_accettato
-    title: Visualizzazione range accettato
-    actors:
-      primary:
-      - tenant-usr
-    preconditions:
-    - Esiste almeno un sensore associato al Gateway di un Tenant gestito dall’Attore primario
-    - Esiste almeno un dato registrato da un sensore che risulta fuori dal range accettato
-    postconditions:
-    - L’Attore visualizza il range accettato per il sensore in questione
-    main_scenario:
-    - description: L’Attore visualizza il range accettato per il sensore in questione
+    - description: L’Attore visualizza il timestamp di registrazione del dato
+- id: visualizzazione_range_accettato
+  title: Visualizzazione range accettato
+  actors:
+    primary:
+    - tenant-usr
+  preconditions:
+  - Esiste almeno un sensore associato al Gateway di un Tenant gestito dall’Attore primario
+  - Esiste almeno un dato registrato da un sensore che risulta fuori dal range accettato
+  postconditions:
+  - L’Attore visualizza il range accettato per il sensore in questione
+  main_scenario:
+  - description: L’Attore visualizza il range accettato per il sensore in questione
 - id: filtraggio_dati
   title: Filtraggio dati
   actors:
@@ -791,21 +790,9 @@ use_cases:
   - description: L’Attore visualizza il valore del dato registrato fuori range
     include: visualizzazione_valore_dato_registrato
   - description: L’Attore visualizza l’orario di registrazione del dato
-    include: visualizzazione_timestamp_dato_irregolare
+    include: visualizzazione_timestamp_dato
   - description: L’Attore visualizza il range accettato
     include: visualizzazione_range_accettato
-  subcases:
-  - id: visualizzazione_valore_dato_registrato
-    title: Visualizzazione valore dato registrato
-    actors:
-      primary:
-      - tenant-usr
-    preconditions:
-    - Il Sistema sta mostrando i dettagli di un alert riferito a un sensore fuori dal range previsto
-    postconditions:
-    - L’Attore visualizza il valore del dato registrato fuori range
-    main_scenario:
-    - description: L’Attore visualizza il valore del dato registrato fuori range
 - id: modifica_impostazioni_notifica_alert_dashboard
   title: Modifica impostazioni notifica alert via dashboard
   actors:
