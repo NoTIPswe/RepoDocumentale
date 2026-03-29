@@ -1,7 +1,10 @@
+#let table-with-caption(table-content, caption-text) = [
+  table-content text(italic, 9pt)[caption-text]
+]
 #import "../../00-templates/base_document.typ" as base-document
 #import "../specifica_tecnica/st_lib.typ" as st
 
-#let metadata = yaml(sys.inputs.meta-path)
+#let metadata = yaml("specifica_tecnica_management_api.meta.yaml")
 
 
 #base-document.apply-base-document(
@@ -24,6 +27,7 @@
   Tutte le variabili d'ambiente necessarie per il funzionamento del microservizio sono elencate di seguito, una
   eventuale mancanza di una di queste variabili comporterà un errore all'avvio del microservizio:
 
+
   #table(
     columns: (auto, auto, auto, auto),
     [Campo], [Variabile d'ambiente], [Default], [Obbligatorio],
@@ -40,10 +44,12 @@
     [ApiPort], [MGMT_API_PORT], [3001], [No],
   )
 
+
   == Sequenza di avvio
 
   I passi bloccanti interrompono l'avvio del microservizio, pertanto è necessario assicurarsi che tutti i servizi
   esterni siano operativi prima di avviare `notip-management-api`. La sequenza di avvio è la seguente:
+
   #table(
     columns: (auto, 1.5fr, 2.5fr, auto),
     [Step], [Componente], [Azione], [Bloccante?],
@@ -56,6 +62,7 @@
     [6], [keys.module], [Registra il modulo per la gestione delle chiavi], [Si],
     [7], [main], [Crea l’applicazione NestJS, registra pipe, filtri globali e documentazione Swagger.], [Si],
   )
+
 
   #pagebreak()
 
@@ -71,6 +78,11 @@
   == Layout dei moduli
   Di seguito è riportata la struttura dei moduli interni al microservizio e delle cartelle di contorno, in particolare
   questa è la struttura del modulo `gateways`:
+
+  #align(center)[
+    #figure([#image("./assets/gatewaysDiagram.png", width: 100%)], caption: "Architettura interna del modulo Gateways")
+
+  ]
 
   ```text
   notip-management-api/
@@ -90,8 +102,9 @@
   │   ├── test/                   Test unitari e di integrazione del servizio
   │   └── migrations/             TypeORM migrations per la gestione dello schema del database
   ```
-
+  #pagebreak()
   == Strati Architetturali
+
   #table(
     columns: (1.5fr, 2fr, 2.5fr),
     [Strato], [Package], [Contenuto],
@@ -110,7 +123,8 @@
     [`src/*/entities`\ `src/*/services/*.persistence.ts`\ `src/database`\ `src/migrations`],
     [Gestione dell'accesso ai dati tramite TypeORM, definizione delle entità e dei repository, gestione delle migrazioni
       del database, implementazione dei servizi di persistenza che interagiscono con il database PostgreSQL.],
-  )
+  ),
+
 
   = Design di Dettaglio
 
@@ -156,7 +170,9 @@
       condivise.],
   )
 
+
   == Entità
+
   #table(
     columns: (1.5fr, 2fr),
     [Entità], [Campi],
@@ -205,13 +221,16 @@
       `(enum)`, `issuedAt`: `Date`, `ackReceivedAt`: `Date | null`, `createdAt`: `Date`],
   )
 
+
   == Endpoint API
   Di seguito è riportato l'elenco completo degli endpoint esposti dal microservizio divisi per area di interesse. Non
   tutti gli endpoint sono accessibili via frontend, alcuni sono utilizzati esclusivamente per la comunicazione tra
   microservizi o per operazioni di amministrazione via terminale:
+  #pagebreak()
 
   === Admin
   Questi endpoint sono accessibili solo agli utenti con ruolo `system_admin`:
+
   #table(
     columns: (1fr, auto, 2.2fr, 2.4fr, 2fr),
     align: (left, left, left, left, left),
@@ -304,9 +323,11 @@
     ]],
   )
 
+
   === Auth
   Questi endpoint sono accessibili agli utenti autenticati; l’endpoint di impersonazione è riservato agli utenti con
   ruolo `system_admin`:
+
 
   #table(
     columns: (1fr, auto, 2.2fr, 2.4fr, 2fr),
@@ -346,6 +367,7 @@
       `expires_in`: `number`
     ]],
   )
+
 
   === Gateways
   Questi endpoint sono accessibili agli utenti del Tenant; le operazioni di modifica sono riservate ai `tenant_admin`:
@@ -407,8 +429,10 @@
     ]],
   )
 
+
   === Users
   Questi endpoint sono accessibili agli utenti con ruolo `tenant_admin`:
+
 
   #table(
     columns: (1fr, auto, 2.2fr, 2.4fr, 2fr),
@@ -491,8 +515,10 @@
     ]],
   )
 
+
   === API Clients
   Questi endpoint sono accessibili agli utenti con ruolo `tenant_admin`:
+
 
   #table(
     columns: (1fr, auto, 2.2fr, 2.4fr, 2fr),
@@ -536,12 +562,13 @@
     ]],
   )
 
-  #pagebreak()
+
 
   === Keys e Provisioning
   Gli endpoint `/keys` sono accessibili agli utenti del Tenant, ma sono bloccati se è in corso una operazione di
   impersonazione; Gli endpoint di provisioning interno sono usati nel flusso di attivazione dei gateway e non sono
   esposti al frontend né destinati all’uso diretto da parte degli utenti.
+
 
   #table(
     columns: (1fr, auto, 2.2fr, 2.4fr, 2fr),
@@ -587,9 +614,13 @@
     ]],
   )
 
+
+  #pagebreak()
+
   === Alerts
   Questi endpoint sono accessibili agli utenti del Tenant; le modifiche alla configurazione sono riservate ai
   `tenant_admin`:
+
 
   #table(
     columns: (1fr, 1.5fr, 2.2fr, auto, 2fr),
@@ -662,10 +693,11 @@
     ]],
   )
 
-  #pagebreak()
+
 
   === Thresholds
   Questi endpoint sono accessibili agli utenti del Tenant; le modifiche sono riservate ai `tenant_admin`:
+
 
   #table(
     columns: (1fr, auto, 2.2fr, 2.4fr, 2fr),
@@ -738,8 +770,10 @@
     ]],
   )
 
+
   === Commands
   Questi endpoint sono accessibili agli utenti con ruolo `tenant_admin`:
+
 
   #table(
     columns: (1fr, auto, 2.2fr, 2.4fr, 2fr),
@@ -789,10 +823,11 @@
     ]],
   )
 
-  #pagebreak()
+
 
   === Audit
   Questi endpoint sono accessibili agli utenti con ruolo `tenant_admin`:
+
 
   #table(
     columns: (1fr, auto, 2.2fr, 2.4fr, 2fr),
@@ -810,8 +845,10 @@
     ]],
   )
 
+
   === Costs
   Questi endpoint sono accessibili agli utenti con ruolo `tenant_admin`:
+
 
   #table(
     columns: (1fr, auto, 2.2fr, 2.4fr, 2fr),
@@ -830,8 +867,12 @@
     ]],
   )
 
+
+  #pagebreak()
   === Errori
-  #table(
+  Di seguito sono elencati i principali codici di errore restituiti dagli endpoint del microservizio, con una breve
+  descrizione di ciascuno. In caso di errori non gestiti o eccezioni impreviste, il microservizio restituisce un errore
+  generico 500 Internal Server Error. #table(
     columns: (auto, auto, 2.2fr),
     align: (left, left, left),
     [Codice], [Errore], [Descrizione],
@@ -848,10 +889,13 @@
     [Conflitto nello stato della risorsa, ad esempio tentativo di creare un Gateway con factory_id già esistente.],
 
     [500], [Internal Server Error], [Errore generico del server, in caso di eccezioni non gestite o errori imprevisti.],
+
     [503], [Service Unavailable],
 
     [Il servizio non è disponibile, ad esempio in caso di problemi di connessione con NATS o a Keycloak.],
   )
+
+
 
 
   == Flussi di Esecuzione
