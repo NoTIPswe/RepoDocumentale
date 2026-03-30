@@ -9,7 +9,6 @@
   changelog: metadata.changelog,
   scope: base-document.EXTERNAL_SCOPE,
 )[
-
   = Introduzione
 
   Il servizio `data-api` è un microservizio applicativo sviluppato con framework NestJS, deputato all'esposizione di
@@ -51,7 +50,6 @@
     [`DBName`], [MEASURES_DB_NAME], [`-`], [Sì],
     [`DBUser`], [MEASURES_DB_USER], [`-`], [Sì],
     [`DBPassword`], [MEASURES_DB_PASSWORD], [`-`], [Sì],
-    [`NATSUrl`], [NATS_URL], [`nats://nats:4222`], [Sì],
   )
 
   == Sequenza di Avvio
@@ -96,27 +94,52 @@ diversi livelli dell’applicazione.
 
   ```text
   notip-data-api/
-  ├──src/
-  │  ├── app.*                        Bootstrap e modulo applicativo principale
-  │  ├── data-api/
-  │  │   ├── controller/              Controller REST del dominio data API
-  │  │   ├── services/                Servizi applicativi e servizi di persistenza
-  │  │   ├── dto/                    Oggetti di trasferimento dati esposti dagli endpoint
-  │  │   ├── models/                  Modelli interni applicativi
-  │  │   ├── entity/                  Rappresentazione della misura a livello persistence
-  │  │   ├── interfaces/              Contratti di input, porte e token di injection
-  │  │   └── openapi.decorators.ts    Definizione centralizzata della documentazione OpenAPI
-  │  ├── api-contracts/
-  │  │   ├── openapi/                 Contratto OpenAPI generato
-  │  │   └── asyncapi/                Contratti AsyncAPI condivisi a livello di ecosistema
+  ├── src/
+  │   ├── data-api/                        Logica API di misure e sensori
+  │   │   ├── controller/                  Controller HTTP NestJS
+  │   │   │                                (MeasureController, SensorController)
+  │   │   │   
+  │   │   ├── services/                    Logica applicativa e accesso ai dati
+  │   │   │                                (MeasureService, SensorService,
+  │   │   │                                MeasurePersistenceService, StreamListenerService)
+  │   │   │    
+  │   │   ├── entity/                      Entity TypeORM (MeasureEntity)
+  │   │   │                                
+  │   │   ├── models/                      Modelli dominio interni (EncryptedEnvelopeModel,
+  │   │   │                                PaginatedQueryModel, SensorModel)
+  │   │   │                                
+  │   │   ├── dto/                         DTO esposti dall'API
+  │   │   │                                (EncryptedEnvelopeDto, QueryResponseDto,
+  │   │   │                                SensorDto, ErrorResponseDto)
+  │   │   │
+  │   │   ├── interfaces/                  Contratti e token di injection
+  │   │   │                                (QueryInput, ExportInput, StreamInput,
+  │   │   │                                GetSensorsInput, persistence interfaces)
+  │   │   │   
+  │   │   ├── measure.module.ts            Modulo NestJS per la parte misure
+  │   │   │ 
+  │   │   ├── sensor.module.ts             Modulo NestJS per la parte sensori
+  │   │   │ 
+  │   │   ├── measure.mapper.ts            Mapper tra Entity, Model e DTO
+  │   │   │ 
+  │   │   └── openapi.decorators.ts        Decoratori condivisi Swagger/OpenAPI
+  │   │
+  │   ├── app.module.ts                    Modulo root e configurazione TypeORM
+  │   │
+  │   ├── app.controller.ts                Controller base dell'app
+  │   │
+  │   ├── app.service.ts                   Service base dell'app
+  │   │
+  │   └── main.ts                          Bootstrap NestJS
+
   ```
+
 
   == Strati Architetturali
 
   #table(
     columns: (1.2fr, 2fr, 3fr),
     [Strato], [Package], [Contenuto],
-    [API],
     [Presentation],
     [src/controller
     src/dto], [Gestione delle richieste HTTO, esposizione delle API REST, validazione dei payload, autenticazione e definizione
