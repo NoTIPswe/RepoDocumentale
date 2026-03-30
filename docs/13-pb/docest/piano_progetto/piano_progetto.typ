@@ -1,6 +1,6 @@
 #import "../../00-templates/base_document.typ" as base-document
 
-#let metadata = yaml(sys.inputs.meta-path)
+#let metadata = yaml("piano_progetto.meta.yaml")
 #base-document.apply-base-document(
   title: metadata.title,
   abstract: "Documento relativo al Piano di Progetto realizzato dal Gruppo NoTIP per la realizzazione del progetto Sistema di Acquisizione Dati da Sensori BLE",
@@ -1210,9 +1210,9 @@
 
   == Product Baseline (PB)
   === Sprint 8
-  Inizio: *2026* \
-  Fine prevista: *2026* \
-  Fine reale: *2026*\
+  Inizio: *2026-03-04* \
+  Fine prevista: *2026-03-15* \
+  Fine reale: *2026-03-15*\
   Giorni di ritardo: 0 \
 
   ==== Informazioni generali e attività pianificate
@@ -1243,18 +1243,20 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [-], [-], [-], [-], [-], [-], [*-*],
-        [Francesco \ Marcon], [-], [-], [-], [-], [-], [-], [*-*],
-        [Alessandro \ Mazzariol], [-], [-], [-], [-], [-], [-], [*-*],
-        [Leonardo \ Preo], [-], [-], [-], [-], [-], [-], [*-*],
-        [Valerio \ Solito], [-], [-], [-], [-], [-], [-], [*-*],
-        [Matteo \ Mantoan], [-], [-], [-], [-], [-], [-], [*-*],
-        [Mario De\ Pasquale], [-], [-], [-], [-], [-], [-], [*-*],
+        [Alessandro \ Contarini], [0], [0], [0], [10], [4], [0], [*14*],
+        [Francesco \ Marcon], [0], [1], [0], [10], [4], [0], [*15*],
+        [Alessandro \ Mazzariol], [0], [0], [1], [10], [6], [0], [*17*],
+        [Leonardo \ Preo], [0], [1], [0], [10], [4], [4,5], [*19*],
+        [Valerio \ Solito], [0], [0], [0], [10], [1], [3], [*14*],
+        [Matteo \ Mantoan], [5], [0], [0], [10], [4], [0], [*16*],
+        [Mario De\ Pasquale], [0], [0], [1], [10], [4], [0], [*15*],
       )
     ],
   )<tab:Sprint8-ore-previste>
   ==== Possibili rischi
-  Da Definire
+  Il gruppo pensa sia possibile che possano presentarsi i seguenti rischi:
+  - RO1: Rischio organizzativo legato al mancato rispetto delle scadenze stabilite;
+  - RT1: Rischio legato all'apprendimento delle tecnologie richieste.
 
   ==== Ore effettive
   #figure(
@@ -1279,22 +1281,28 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [-], [-], [-], [-], [-], [-], [*-*],
-        [Francesco \ Marcon], [-], [-], [-], [-], [-], [-], [*-*],
-        [Alessandro \ Mazzariol], [-], [-], [-], [-], [-], [-], [*-*],
-        [Leonardo \ Preo], [-], [-], [-], [-], [-], [-], [*-*],
-        [Valerio \ Solito], [-], [-], [-], [-], [-], [-], [*-*],
-        [Matteo \ Mantoan], [-], [-], [-], [-], [-], [-], [*-*],
-        [Mario De\ Pasquale], [-], [-], [-], [-], [-], [-], [*-*],
+        [Alessandro \ Contarini], [0], [0], [0], [10], [4], [0], [*14*],
+        [Francesco \ Marcon], [0], [1], [0], [10], [4], [0], [*15*],
+        [Alessandro \ Mazzariol], [0], [0], [1], [10], [6], [0], [*17*],
+        [Leonardo \ Preo], [0], [1], [0], [10], [4], [4,5], [*19,5*],
+        [Valerio \ Solito], [0], [0], [0], [10], [1], [3], [*14*],
+        [Matteo \ Mantoan], [5], [0], [0], [10], [4], [0], [*16*],
+        [Mario De\ Pasquale], [0], [0], [1], [10], [4], [0], [*15*],
       )
     ],
   )<tab:Sprint8-ore-effettive>
 
-
-
   ==== Rischi incontrati
+  Durante lo sprint corrente, il team si è ritrovato ad affrontare difficoltà nella progettazione del sistema, in
+  particolare nella definizione dell'architettura dei singoli microservizi e nella stesura di un piano completo per la
+  fase di implementazione. Queste sfide insieme ai ritardi accumulati nelle fasi precedenti hanno portato ad un mancato
+  rispetto delle scadenze stabilite internamente, proiettando così il verificarsi del rischio RO1 (Ritardo Operativo).
 
   ==== Retrospettiva
+  Al netto dei problemi descritti nella sezione precedente, lo Sprint 8 ha visto il Team immerso positivamente nella
+  progettazione, portando ad avere anche grazie alle ore di palestra una visione del Sistema uniforme per tutti i
+  membri. Tuttavia, è emersa la necessità di migliorare le ore produttive, al fine di rispettare le scadenze e
+  recuperare il ritardo accumulato.
 
   ==== Aggiornamento risorse monetarie rimanenti
   #figure(
@@ -1305,24 +1313,27 @@
       inset: 0.8em,
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
-      [Responsabile], [-], [-],
-      [Amministratore], [-], [-],
-      [Analista], [-], [-],
-      [Progettista], [-], [-],
-      [Programmatore], [-], [-],
-      [Verificatore], [-], [-],
-      [*Totale*], [*-*], [*-*],
+      [Responsabile], [16], [480],
+      [Amministratore], [-2], [-40],
+      [Analista], [-1,5], [-37,5],
+      [Progettista], [67], [1675],
+      [Programmatore], [97], [1455],
+      [Verificatore], [34,25], [513,75],
+      [*Totale*], [*210,75*], [*4046,25*],
     ),
   )<tab:Sprint8-costi>
 
   === Sprint 9
-  Inizio: *-* \
-  Fine prevista: *2026* \
-  Fine reale: *2026*\
+  Inizio: *2026-03-16* \
+  Fine prevista: *2026-03-22* \
+  Fine reale: *2026-03-22*\
   Giorni di ritardo: 0 \
 
   ==== Informazioni generali e attività pianificate
-
+  Da questo sprint in poi, il Team ha deciso di passare da periodi di 2 settimane a periodi di 1 settimana, al fine di
+  aumentare il monte di lavoro svolto per periodo, permettendo il raggiungimento della quota ore nel tempo previsto.
+  Alcune parti del team in questo periodo sono passati dal progettare, alla codifica, iniziando con un periodo intenso
+  di palestra.
 
   ==== Ore previste
   #figure(
@@ -1347,18 +1358,20 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [-], [-], [-], [-], [-], [-], [*-*],
-        [Francesco \ Marcon], [-], [-], [-], [-], [-], [-], [*-*],
-        [Alessandro \ Mazzariol], [-], [-], [-], [-], [-], [-], [*-*],
-        [Leonardo \ Preo], [-], [-], [-], [-], [-], [-], [*-*],
-        [Valerio \ Solito], [-], [-], [-], [-], [-], [-], [*-*],
-        [Matteo \ Mantoan], [-], [-], [-], [-], [-], [-], [*-*],
-        [Mario De\ Pasquale], [-], [-], [-], [-], [-], [-], [*-*],
+        [Alessandro \ Contarini], [1,5], [0], [0], [4], [7], [3,5], [*16*],
+        [Francesco \ Marcon], [0], [0], [1], [4], [5], [4,25], [*14,25*],
+        [Alessandro \ Mazzariol], [0], [0], [1], [5], [6], [0], [*12*],
+        [Leonardo \ Preo], [0], [0], [0], [5], [5], [2], [*12*],
+        [Valerio \ Solito], [0], [1], [0], [4], [8], [0], [*13*],
+        [Matteo \ Mantoan], [0], [0], [0], [5], [9], [3], [*17*],
+        [Mario De\ Pasquale], [0], [0], [0], [5], [5], [0], [*10*],
       )
     ],
   )<tab:Sprint9-ore-previste>
   ==== Possibili rischi
-
+  - RP1: Rischio personale legato a problematiche personali o attività universitarie.
+  - RT1: Rischio legato all'apprendimento delle tecnologie richieste.
+  - RT2: Rischio tecnologico legato ad errori di programmazione.
 
   ==== Ore effettive
   #figure(
@@ -1383,22 +1396,29 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [-], [-], [-], [-], [-], [-], [*-*],
-        [Francesco \ Marcon], [-], [-], [-], [-], [-], [-], [*-*],
-        [Alessandro \ Mazzariol], [-], [-], [-], [-], [-], [-], [*-*],
-        [Leonardo \ Preo], [-], [-], [-], [-], [-], [-], [*-*],
-        [Valerio \ Solito], [-], [-], [-], [-], [-], [-], [*-*],
-        [Matteo \ Mantoan], [-], [-], [-], [-], [-], [-], [*-*],
-        [Mario De\ Pasquale], [-], [-], [-], [-], [-], [-], [*-*],
+        [Alessandro \ Contarini], [1,5], [0], [0], [4], [7], [3,5], [*16*],
+        [Francesco \ Marcon], [0], [0], [1], [4], [5], [4,25], [*14,25*],
+        [Alessandro \ Mazzariol], [0], [0], [1], [5], [6], [0], [*12*],
+        [Leonardo \ Preo], [0], [0], [0], [5], [5], [2], [*12*],
+        [Valerio \ Solito], [0], [1], [0], [4], [8], [0], [*13*],
+        [Matteo \ Mantoan], [0], [0], [0], [5], [9], [3], [*17*],
+        [Mario De\ Pasquale], [0], [0], [0], [5], [5], [0], [*10*],
       )
     ],
   )<tab:Sprint9-ore-effettive>
 
-
-
   ==== Rischi incontrati
-
+  Durante lo Sprint corrente, il Team si é ritrovato ad affrontare la complessità notevole che il Sistema presentava
+  quindi il verificarsi di RT1 (Rischio tecnologico legato all'apprendimento delle tecnologie richieste), in particolare
+  nella fase di implementazione. La difficoltà principale è stata quella di riuscire ad adattare la tecnologia richiesta
+  alle esigenze del progetto, portando ad un aumento significativo del carico di lavoro di codifica. Durante le prime
+  fasi di rilascio del codice, sono state implementate regole per diminuire il verificarsi di RT2 (Rischio tecnologico
+  legato ad errori di programmazione), come ad esempio l'adozione di un sistema di code review automatico.
   ==== Retrospettiva
+  In conclusione, il Team afferma che il periodo ha portato un miglioramento della qualità del lavoro svolto, grazie
+  alla maggiore frequenza degli Sprint, che ha permesso di aumentare l'efficienza. Il Team tuttavia ha deciso di
+  posticipare la consegna del MVP al 3 aprile 2026, al fine di poter avere il tempo necessario a completare le attività
+  fissate.
 
   ==== Aggiornamento risorse monetarie rimanenti
   #figure(
@@ -1409,14 +1429,120 @@
       inset: 0.8em,
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
-      [Responsabile], [-], [-],
-      [Amministratore], [-], [-],
-      [Analista], [-], [-],
-      [Progettista], [-], [-],
-      [Programmatore], [-], [-],
-      [Verificatore], [-], [-],
-      [*Totale*], [*-*], [*-*],
+      [Responsabile], [14,5], [435],
+      [Amministratore], [-3], [-60],
+      [Analista], [-3,5], [-87,5],
+      [Progettista], [35], [875],
+      [Programmatore], [52], [780],
+      [Verificatore], [21,5], [322,5],
+      [*Totale*], [*116,5*], [*2265*],
     ),
   )<tab:Sprint9-costi>
 
+
+
+  === Sprint 10
+  Inizio: *2026-03-23* \
+  Fine prevista: *2026-03-29* \
+  Fine reale: *2026-03-29*\
+  Giorni di ritardo: 0 \
+
+  ==== Informazioni generali e attività pianificate
+  In questo Sprint, il Team si è concentrato principalmente sulla fase di implementazione, con l'obiettivo di completare
+  l'infrastruttura del sistema e di implementare i test necessari per garantire una qualità conforme del MVP.
+  ==== Ore previste
+  #figure(
+    numbering: "1",
+    caption: [Sprint 10 - Ore previste per componente],
+    [
+      #set text(size: 9pt)
+
+      #table(
+        columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+        align: (left, center, center, center, center, center, center, center),
+        inset: 0.6em,
+
+        table.header(
+          [],
+          [*Responsabile*],
+          [*Amministratore*],
+          [*Analista*],
+          [*Progettista*],
+          [*Programmatore*],
+          [*Verificatore*],
+          [*Totale*],
+        ),
+
+        [Alessandro \ Contarini], [1,5], [0], [0], [4], [7], [3,5], [*16*],
+        [Francesco \ Marcon], [0], [0], [1], [4], [5], [4,25], [*14,25*],
+        [Alessandro \ Mazzariol], [0], [0], [1], [5], [6], [0], [*12*],
+        [Leonardo \ Preo], [0], [0], [0], [5], [5], [2], [*12*],
+        [Valerio \ Solito], [0], [1], [0], [4], [8], [0], [*13*],
+        [Matteo \ Mantoan], [0], [0], [0], [5], [9], [3], [*17*],
+        [Mario De\ Pasquale], [0], [0], [0], [5], [5], [0], [*10*],
+      )
+    ],
+  )<tab:Sprint10-ore-previste>
+  ==== Possibili rischi
+  - RP1: Rischio personale legato a problematiche personali o attività universitarie.
+  - RT1: Rischio legato all'apprendimento delle tecnologie richieste.
+  - RT2: Rischio tecnologico legato ad errori di programmazione.
+
+  ==== Ore effettive
+  #figure(
+    numbering: "1",
+    caption: [Sprint 10 - Ore effettive per componente],
+    [
+      #set text(size: 9pt)
+
+      #table(
+        columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+        align: (left, center, center, center, center, center, center, center),
+        inset: 0.6em,
+
+        table.header(
+          [],
+          [*Responsabile*],
+          [*Amministratore*],
+          [*Analista*],
+          [*Progettista*],
+          [*Programmatore*],
+          [*Verificatore*],
+          [*Totale*],
+        ),
+
+        [Alessandro \ Contarini], [1,5], [0], [0], [4], [7], [3,5], [*16*],
+        [Francesco \ Marcon], [0], [0], [1], [4], [5], [4,25], [*14,25*],
+        [Alessandro \ Mazzariol], [0], [0], [1], [5], [6], [0], [*12*],
+        [Leonardo \ Preo], [0], [0], [0], [5], [5], [2], [*12*],
+        [Valerio \ Solito], [0], [1], [0], [4], [8], [0], [*13*],
+        [Matteo \ Mantoan], [0], [0], [0], [5], [9], [3], [*17*],
+        [Mario De\ Pasquale], [0], [0], [0], [5], [5], [0], [*10*],
+      )
+    ],
+  )<tab:Sprint10-ore-effettive>
+
+  ==== Rischi incontrati
+
+  ==== Retrospettiva
+
+
+  ==== Aggiornamento risorse monetarie rimanenti
+  #figure(
+    numbering: "1",
+    caption: [Sprint 10 - Variazione risorse monetarie rimanenti],
+    table(
+      columns: (2fr, 1fr, 1fr),
+      inset: 0.8em,
+      table.header([*Ruolo*], [*Ore*], [*Costo*]),
+
+      [Responsabile], [14,5], [435],
+      [Amministratore], [-3], [-60],
+      [Analista], [-3,5], [-87,5],
+      [Progettista], [35], [875],
+      [Programmatore], [52], [780],
+      [Verificatore], [21,5], [322,5],
+      [*Totale*], [*116,5*], [*2265*],
+    ),
+  )<tab:Sprint10-costi>
 ]
