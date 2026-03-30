@@ -38,15 +38,14 @@
   - Swagger/OpenAPI per la generazione del contratto REST.
   - Jest per unit test e integration test.
 
-  Le dipendenze del progetto mostrano inoltre la presenza di AsyncAPI CLI, utilizzata per la gestione dei contratti di
-  messaggistica del dominio.
-
   == Variabili d'Ambiente
-
+  Tutte le variabili d’ambiente necessarie per il funzionamento del microservizio sono elencate
+  di seguito, una eventuale mancanza di una di queste variabili comporterà un errore all’avvio
+  del microservizio:
   #table(
     columns: (1.4fr, 2.5fr, 1.2fr, 1.2fr),
     [Campo], [Variabile d'ambiente], [Default], [obbligatorio],
-    [`DataApiPort`], [DATA_API_PORT], [`3002`], [Sì],
+    [`DataApiPort`], [DATA_API_PORT], [`3000`], [Sì],
     [`DBHost`], [MEASURES_DB_HOST], [`-`], [Sì],
     [`DBPort`], [MEASURES_DB_PORT], [`5432`], [Sì],
     [`DBName`], [MEASURES_DB_NAME], [`-`], [Sì],
@@ -56,8 +55,7 @@
   )
 
   == Sequenza di Avvio
-
-  All'avvio del processo il servizio:
+  La sequenza di avvio è la seguente:
 
   #table(
     columns: (auto, 2fr, 3fr),
@@ -89,40 +87,51 @@
   - `interfaces`: definizione dei contratti di input e delle porte applicative.
 
   Il sistema implementa una _layered architecture_. Infatti, è presente una distinzione chiara tra: strato di
-  esposizione, strato applicativo e strato di accesso ai dati.
+  esposizione, strato applicativo e strato di accesso ai dati. I componenti collaborano tramite Dependency Injection
+e, dove opportuno, tramite interfacce e contratti applicativi. La presenza di Business Models,
+DTO ed Entities ha portato all’introduzione di Mappers per la conversione dei dati tra i
+diversi livelli dell’applicazione.
 
   == Layout dei Package
 
   ```text
-  src/
-  ├── app.*                         Bootstrap e modulo applicativo principale
-  ├── data-api/
-  │   ├── controller/              Controller REST del dominio data API
-  │   ├── services/                Servizi applicativi e servizi di persistenza
-  │   ├── dto/                     Oggetti di trasferimento dati esposti dagli endpoint
-  │   ├── models/                  Modelli interni applicativi
-  │   ├── entity/                  Rappresentazione della misura a livello persistence
-  │   ├── interfaces/              Contratti di input, porte e token di injection
-  │   └── openapi.decorators.ts    Definizione centralizzata della documentazione OpenAPI
-  ├── api-contracts/
-  │   ├── openapi/                 Contratto OpenAPI generato
-  │   └── asyncapi/                Contratti AsyncAPI condivisi a livello di ecosistema
+  notip-data-api/
+  ├──src/
+  │  ├── app.*                        Bootstrap e modulo applicativo principale
+  │  ├── data-api/
+  │  │   ├── controller/              Controller REST del dominio data API
+  │  │   ├── services/                Servizi applicativi e servizi di persistenza
+  │  │   ├── dto/                    Oggetti di trasferimento dati esposti dagli endpoint
+  │  │   ├── models/                  Modelli interni applicativi
+  │  │   ├── entity/                  Rappresentazione della misura a livello persistence
+  │  │   ├── interfaces/              Contratti di input, porte e token di injection
+  │  │   └── openapi.decorators.ts    Definizione centralizzata della documentazione OpenAPI
+  │  ├── api-contracts/
+  │  │   ├── openapi/                 Contratto OpenAPI generato
+  │  │   └── asyncapi/                Contratti AsyncAPI condivisi a livello di ecosistema
   ```
 
   == Strati Architetturali
 
   #table(
     columns: (1.2fr, 2fr, 3fr),
-    [Strato], [Componenti], [Responsabilità],
+    [Strato], [Package], [Contenuto],
     [API],
-    [`MeasureController`, `SensorController`],
-    [Riceve richieste HTTP, legge i parametri di query e costruisce gli input applicativi.],
+    [Presentation],
+    [src/controller
+    src/dto], [Gestione delle richieste HTTO, esposizione delle API REST, validazione dei payload, autenticazione e definizione
+    dei contratti di ingresso/uscita dei dati.],
 
-    [Applicativo],
-    [`MeasureService`, `SensorService`, `StreamListenerService`],
-    [Applica validazioni, filtri, trasformazioni e rimappatura delle eccezioni.],
+    [Business],
+    [src/services
+    src/models
+    src/interfaces
+    src/measure.mapper.ts,
+    src/interfaces],
+    [Logica di business, regole di dominio, orchestrazione dei processi, definizione dei modelli di dominio e delle interfacce tra i servizi.],
 
-    [Persistenza], [`MeasurePersistenceService`], [Interroga la persistenza tramite `Repository<MeasureEntity>`.],
+    [Persistenza], [src/entity
+    src/service], [Interroga la persistenza tramite `Repository<MeasureEntity>`.],
 
     [Mapping],
     [`MeasureMapper`],
