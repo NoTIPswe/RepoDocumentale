@@ -42,18 +42,18 @@
   messaggistica del dominio.
 
   == Variabili d'Ambiente
-  ....
 
   #table(
     columns: (1.4fr, 2.5fr, 1.2fr, 1.2fr),
-    [Variabile], [Variabile d'ambiente], [Default], [obbligatorio],
-    [`PORT`], [PORT], [`3000`], [Sì],
-    [`DBHost`], [DB_HOST], [`-`], [Sì],
-    [`DBPort`], [DB_PORT], [`5432`], [Sì],
-    [`DBName`], [DB_NAME], [`-`], [Sì],
-    [`DBUser`], [DB_USER], [`-`], [Sì],
+    [Campo], [Variabile d'ambiente], [Default], [obbligatorio],
+    [`DataApiPort`], [DATA_API_PORT], [`3002`], [Sì],
+    [`DBHost`], [MEASURES_DB_HOST], [`-`], [Sì],
+    [`DBPort`], [MEASURES_DB_PORT], [`5432`], [Sì],
+    [`DBName`], [MEASURES_DB_NAME], [`-`], [Sì],
+    [`DBUser`], [MEASURES_DB_USER], [`-`], [Sì],
+    [`DBPassword`], [MEASURES_DB_PASSWORD], [`-`], [Sì],
+    [`NATSUrl`], [NATS_URL], [`nats://nats:4222`], [Sì],
   )
-  INCOMPLETO: bisogna aggiungere al servizio le variabili d'ambiente. Poi lo completerò
 
   == Sequenza di Avvio
 
@@ -91,7 +91,7 @@
   Il sistema implementa una _layered architecture_. Infatti, è presente una distinzione chiara tra: strato di
   esposizione, strato applicativo e strato di accesso ai dati.
 
-  == Layout dei Package (da completare a servizio terminato)
+  == Layout dei Package
 
   ```text
   src/
