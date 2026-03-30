@@ -114,6 +114,12 @@ requirements:
   description: Il Sistema deve permettere al Tenant User di visualizzare lo Stream di dati su grafici
   sources:
   - uc: visualizzazione_grafico_dati_stream
+- id: visualizzazione_dati_fuori_range
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant User di visualizzare i dati fuori range evidenziandoli
+    in modo chiaro
+  sources:
+  - uc: visualizzazione_dati_fuori_range
 - id: filtraggio_gateway
   priority: mandatory
   description: Il Sistema deve permettere al Tenant User di filtrare i dati per soli Gateway
