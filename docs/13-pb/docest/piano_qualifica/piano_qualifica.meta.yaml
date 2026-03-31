@@ -1,5 +1,12 @@
 title: Piano di Qualifica
 changelog:
+  - version: "1.2.0"
+    date: "2026-03-31"
+    authors:
+      - Mario De Pasquale
+    verifier: TBD
+    description: >
+      Aggiunto supporto per la categorizzazione dei test
   - version: "1.1.2"
     date: "2026-03-28"
     authors:
