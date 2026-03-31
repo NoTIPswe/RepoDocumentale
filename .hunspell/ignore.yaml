@@ -395,6 +395,16 @@ accepted_words:
   - CommandEntity
   - AppModule
   - UCs
+  - KeycloakHostname
+  - Enums
+  - HOSTNAME
+  - localhost
+  - TenantStatus
+  - UsersRole
+  - GatewayStatus
+  - AlertType
+  - CommandType
+  - CommandStatus
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
