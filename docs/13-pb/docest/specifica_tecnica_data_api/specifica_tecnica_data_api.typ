@@ -1,7 +1,7 @@
 #import "../../00-templates/base_document.typ" as base-document
 #import "../specifica_tecnica/st_lib.typ" as st
 
-#let metadata = yaml(sys.inputs.meta-path)
+#let metadata = yaml("specifica_tecnica_data_api.meta.yaml")
 
 #base-document.apply-base-document(
   title: metadata.title,
@@ -10,8 +10,8 @@
   scope: base-document.EXTERNAL_SCOPE,
 )[
   = Introduzione
-  Questo documento illustra l'architettura interna e le scelte implentative del microservizio `data-api`. Sviluppato in
-  NestJS, questo componente è responsabile dell'esposizione di funzionalità di consultazione delle misure cifrate
+  Questo documento illustra l'architettura interna e le scelte implementative del microservizio `data-api`. Sviluppato
+  in NestJS, questo componente è responsabile dell'esposizione di funzionalità di consultazione delle misure cifrate
   raccolte dal sistema. Il servizio rende disponibili endpoint HTTP per l'interrogazione paginata delle misure,
   l'esportazione completa di un intervallo temporale, la fruizione in streaming dei dati e l'elenco dei sensori
   osservati di recente.
@@ -219,60 +219,87 @@
     [#par(justify: false)[
       Restituisce una query paginata delle misure cifrate filtrabili per intervallo temporale, gateway, sensore e tipo
       di sensore.]],
-    [#par(justify: false)[
-      *`from`*: `string` \
-      *`to`*: `string` \
-      *`limit?`*: `number` \
-      *`gatewayId?`*: `string` \
-      *`sensorId?`*: `string` \
-      *`sensorType?`*: `string` \
-      *`cursor?`*: `string`]],
-    [#par(justify: false)[
-      [{ *`gatewayId`*: `string` \
-      *`sensorId`*: `string` \
-      *`sensorType`*: `string` \
-      *`timestamp`*: `string` \
-      *`encryptedData`*: `string` \
-      *`iv`*: `string` \
-      *`authTag`*: `string` \
-      *`keyVersion`*: `number` }], \
-      *`nextCursor?`*: `string`, \
-      *`hasMore`*: `boolean`]],
+    [```json
+    {
+      "from": "string",
+      "to": "string",
+      "limit?": "number",
+      "gatewayId?": "string",
+      "sensorId?": "string",
+      "sensorType?": "string",
+      "cursor?": "string"
+    }
+    ```],
+    [```json
+    {
+      "data":
+        [{
+            "gatewayId": "string",
+            "sensorId": "string",
+            "sensorType": "string",
+            "timestamp": "string",
+            "encryptedData": "string",
+            "iv": "string",
+            "authTag": "string",
+            "keyVersion": "number",
+        }],
+    "nextCursor?": "string",
+    "hasMore": "boolean"
+    }
+    ```],
 
     [`GET`],
     [`/measures/export`],
     [#par(justify: false)[
       Restituisce l'export completo delle misure cifrate in un intervallo temporale, senza paginazione.]],
-    [#par(justify: false)[
-      *`from`*: `string` \
-      *`to`*: `string` \
-      *`gatewayId?`*: `string` \
-      *`sensorId?`*: `string` \
-      *`sensorType?`*: `string`]],
-    [#par(justify: false)[
-      [{ *`gatewayId`*: `string` \
-      *`sensorId`*: `string` \
-      *`sensorType`*: `string` \
-      *`timestamp`*: `string` \
-      *`encryptedData`*: `string` \
-      *`iv`*: `string` \
-      *`authTag`*: `string` \
-      *`keyVersion`*: `number` }]]],
+    [```json
+    {
+     "from": "string",
+     "to": "string",
+     "gatewayId?": "string",
+     "sensorId?": "string",
+     "sensorType?": "string"
+     }
+    ```],
+    [```json
+      {"data":
+        [{
+          "gatewayId": "string",
+          "sensorId": "string",
+          "sensorType": "string",
+          "timestamp": "string",
+          "encryptedData": "string",
+          "iv": "string",
+          "authTag": "string",
+          "keyVersion": "number"
+        }]
+        }
+      ```}],
 
     [`SSE`],
     [`/measures/stream`],
     [#par(justify: false)[
       Espone uno stream Server-Sent Events di misure cifrate filtrabile per gateway, sensore e tipo di sensore.]],
-    [#par(justify: false)[
-      *`gatewayId?`*: `string` \
-      *`sensorId?`*: `string` \
-      *`sensorType?`*: `string`]],
-    [#par(justify: false)[
-      `text/event-stream`: \
-      { *`gatewayId`*: `string` \
-      *`sensorId`*: `string` \
-      *`sensorType`*: `string` \ *`timestamp`*: `string` \
-      *`encryptedData`*: `string` \ *`iv`*: `string` \ *`authTag`*: `string` \ *`keyVersion`*: `number` }]],
+    [```json
+    {
+      "gatewayId?": "string",
+      "sensorId?": "string",
+      "sensorType?": "string"
+      }
+    ```],
+    [```json
+    `text/event-stream`:
+    {
+      "gatewayId": "string",
+      "sensorId": "string",
+      "sensorType": "string",
+      "timestamp": "string",
+      "encryptedData": "string",
+      "iv": "string",
+      "authTag": "string",
+      "keyVersion": "number"
+    }
+    ```],
   )
 
   === Sensor
@@ -287,13 +314,16 @@
     [#par(justify: false)[
       Restituisce l'elenco dei sensori osservati di recente, con possibilità di filtro per gateway e indicazione
       dell'ultimo timestamp disponibile.]],
-    [#par(justify: false)[ *`gatewayId`*: `string` ]],
-    [#par(justify: false)[
-      [{ *`sensorId`*: `string` \
-      *`sensorType`*: `string` \
-      *`gatewayId`*: `string` \
-      *`lastSeen`*: `string` }]
-    ]],
+    [```json {"gatewayId": "string"}``` ],
+    [```json
+      [{
+        "sensorId": "string",
+        "sensorType": "string",
+        "gatewayId": "string",
+        "lastSeen": "string"
+      }]
+      ```
+    ],
   )
   === Errori
 
@@ -360,7 +390,7 @@
 
   #st.design-rationale(title: "Introduzioni di Mappers tra i layer")[
     L'utilizzo di *`Persistence Entities`*, *`Business Models`* e *`DTO`* ha portato alla necessità di introdurre
-    componenti di mapping dedicati per permettere una conversione corretta e centrallizzata dei dati tra i diversi layer
+    componenti di mapping dedicati per permettere una conversione corretta e centralizzata dei dati tra i diversi layer
     del modulo. I *`Mapper`* consentono di incapsulare la logica di trasformazione dei dati, mantenendo i controller e i
     servizi focalizzati sulle rispettive responsabilità di esposizione API e logica applicativa, senza doversi
     preoccupare dei dettagli di conversione tra i formati dei dati. Questa scelta migliora la manutenibilità del codice,

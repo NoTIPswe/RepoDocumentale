@@ -393,6 +393,7 @@ accepted_words:
   - AuditLogEntity
   - ApiClientEntity
   - CommandEntity
+  - AppModule
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
@@ -464,3 +465,5 @@ accepted_words:
   - impersonazione
   - impersonare
   - intra
+  - centralizzata
+  - testabilità
