@@ -84,7 +84,7 @@
   - `dto`: definizione del contratto di risposta verso i client;
   - `interfaces`: definizione dei contratti di input e delle porte applicative.
 
-  Il sistema implementa una _layered architecture_. Infatti, è presente una distinzione chiara tra: strato di
+  Il sistema implementa una _layered architecture_. È presente infatti una distinzione chiara tra: strato di
   esposizione, strato applicativo e strato di accesso ai dati. I componenti collaborano tramite Dependency Injection
 e, dove opportuno, tramite interfacce e contratti applicativi. La presenza di Business Models,
 DTO ed Entities ha portato all’introduzione di Mappers per la conversione dei dati tra i
@@ -138,28 +138,58 @@ diversi livelli dell’applicazione.
   == Strati Architetturali
 
   #table(
-    columns: (1.2fr, 2fr, 3fr),
-    [Strato], [Package], [Contenuto],
+    columns: (18%, 35%, 47%),
+    inset: 8pt,
+    stroke: 0.6pt + rgb("#666"),
+    fill: (_, y) => if y == 0 { luma(230) },
+    align: (x, y) => if x == 1 { left } else { left + top },
+
+    table.header(
+      [*Strato*],
+      [*Package*],
+      [*Contenuto*],
+    ),
+
     [Presentation],
-    [src/controller
-    src/dto], [Gestione delle richieste HTTO, esposizione delle API REST, validazione dei payload, autenticazione e definizione
-    dei contratti di ingresso/uscita dei dati.],
+    [
+      `src/app.controller.ts` \
+      `src/data-api/controller` \
+      `src/data-api/dto` \
+      `src/data-api/openapi.decorators.ts` \
+      `src/generated/openapi`
+    ],
+    [
+      Esposizione delle API HTTP, definizione dei contratti di ingresso/uscita,
+      documentazione OpenAPI e gestione del livello di interazione con i client.
+    ],
 
-    [Business],
-    [src/services
-    src/models
-    src/interfaces
-    src/measure.mapper.ts,
-    src/interfaces],
-    [Logica di business, regole di dominio, orchestrazione dei processi, definizione dei modelli di dominio e delle interfacce tra i servizi.],
+    [Application / Business],
+    [
+      `src/app.service.ts` \
+      `src/data-api/services` \
+      `src/data-api/models` \
+      `src/data-api/interfaces` \
+      `src/data-api/measure.mapper.ts`
+    ],
+    [
+      Logica applicativa e di dominio: validazione dei parametri di query,
+      orchestrazione dei casi d'uso, trasformazione tra entity/model/DTO,
+      filtraggio dei dati e definizione delle interfacce tra componenti.
+    ],
 
-    [Persistenza], [src/entity
-    src/service], [Interroga la persistenza tramite `Repository<MeasureEntity>`.],
-
-    [Mapping],
-    [`MeasureMapper`],
-    [Centralizza la conversione tra entity di persistenza, model interni e DTO di output.],
+    [Persistence],
+    [
+      `src/data-api/entity` \
+      `src/data-api/services/`\
+      `measure.persistence.service.ts`
+    ],
+    [
+      Accesso ai dati tramite TypeORM, definizione dell'entità `MeasureEntity`,
+      costruzione delle query paginated e non-paginated su PostgreSQL e
+      incapsulamento delle operazioni di persistenza.
+    ],
   )
+
 
   = Definizione dei Port
 
