@@ -77,8 +77,15 @@ accepted_words:
 
   # --- Tecnologie e Formati ---
   - AES
+  - AESKeyGenerator
+  - CAProvider
+  - CARepository
   - csv
+  - CSR
+  - CSRSigner
+  - CSPRNG
   - EE # for End to End Encryption (spellcheck keeps failing)
+  - FactoryValidator
   - Gin
   - GO
   - gRPC
@@ -90,7 +97,11 @@ accepted_words:
   - Golang
   - PDF
   - pdf
+  - PEM
+  - PKI
+  - ProvisioningCompleter
   - Typst
+  - TTL
   - YAML
   - yaml
   - typ
@@ -393,8 +404,7 @@ accepted_words:
   - AuditLogEntity
   - ApiClientEntity
   - CommandEntity
-  - AppModule
-  - UCs
+<<<<<<< doc-specifica_tecnica_mgmt_api
   - KeycloakHostname
   - Enums
   - HOSTNAME
@@ -405,12 +415,34 @@ accepted_words:
   - AlertType
   - CommandType
   - CommandStatus
+=======
+  - filesystem
+  - init
+  - cryptographically
+  - validator
+  - AppModule
+  - UCs
+<<<<<<< HEAD
+  - KeycloakHostname
+  - Enums
+  - HOSTNAME
+  - localhost
+  - TenantStatus
+  - UsersRole
+  - GatewayStatus
+  - AlertType
+  - CommandType
+  - CommandStatus
+=======
+>>>>>>> main
+>>>>>>> feb4aefdf84aabc0a9670549526aaf3561bd8ae2
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
   - autoconsistente
   - autoconsistenza
   - automiglioramento
+  - crittograficamente
   - collaborativamente
   - concatenabili
   - multimodale
@@ -476,5 +508,10 @@ accepted_words:
   - impersonazione
   - impersonare
   - intra
+<<<<<<< doc-specifica_tecnica_mgmt_api
+  - testabilità
+  - centralizzata
+=======
   - centralizzata
   - testabilità
+>>>>>>> main
