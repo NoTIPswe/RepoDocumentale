@@ -38,9 +38,8 @@
   - Jest per unit test e integration test.
 
   == Variabili d'Ambiente
-  Tutte le variabili d’ambiente necessarie per il funzionamento del microservizio sono elencate
-  di seguito, una eventuale mancanza di una di queste variabili comporterà un errore all’avvio
-  del microservizio:
+  Tutte le variabili d’ambiente necessarie per il funzionamento del microservizio sono elencate di seguito, una
+  eventuale mancanza di una di queste variabili comporterà un errore all’avvio del microservizio:
   #table(
     columns: (1.4fr, 2.5fr, 1.2fr, 1.2fr),
     [Campo], [Variabile d'ambiente], [Default], [obbligatorio],
@@ -85,10 +84,9 @@
   - `interfaces`: definizione dei contratti di input e delle porte applicative.
 
   Il sistema implementa una _layered architecture_. È presente infatti una distinzione chiara tra: strato di
-  esposizione, strato applicativo e strato di accesso ai dati. I componenti collaborano tramite Dependency Injection
-e, dove opportuno, tramite interfacce e contratti applicativi. La presenza di Business Models,
-DTO ed Entities ha portato all’introduzione di Mappers per la conversione dei dati tra i
-diversi livelli dell’applicazione.
+  esposizione, strato applicativo e strato di accesso ai dati. I componenti collaborano tramite Dependency Injection e,
+  dove opportuno, tramite interfacce e contratti applicativi. La presenza di Business Models, DTO ed Entities ha portato
+  all’introduzione di Mappers per la conversione dei dati tra i diversi livelli dell’applicazione.
 
   == Layout dei Package
 
@@ -98,16 +96,16 @@ diversi livelli dell’applicazione.
   │   ├── data-api/                        Logica API di misure e sensori
   │   │   ├── controller/                  Controller HTTP NestJS
   │   │   │                                (MeasureController, SensorController)
-  │   │   │   
+  │   │   │
   │   │   ├── services/                    Logica applicativa e accesso ai dati
   │   │   │                                (MeasureService, SensorService,
   │   │   │                                MeasurePersistenceService, StreamListenerService)
-  │   │   │    
+  │   │   │
   │   │   ├── entity/                      Entity TypeORM (MeasureEntity)
-  │   │   │                                
+  │   │   │
   │   │   ├── models/                      Modelli dominio interni (EncryptedEnvelopeModel,
   │   │   │                                PaginatedQueryModel, SensorModel)
-  │   │   │                                
+  │   │   │
   │   │   ├── dto/                         DTO esposti dall'API
   │   │   │                                (EncryptedEnvelopeDto, QueryResponseDto,
   │   │   │                                SensorDto, ErrorResponseDto)
@@ -115,13 +113,13 @@ diversi livelli dell’applicazione.
   │   │   ├── interfaces/                  Contratti e token di injection
   │   │   │                                (QueryInput, ExportInput, StreamInput,
   │   │   │                                GetSensorsInput, persistence interfaces)
-  │   │   │   
+  │   │   │
   │   │   ├── measure.module.ts            Modulo NestJS per la parte misure
-  │   │   │ 
+  │   │   │
   │   │   ├── sensor.module.ts             Modulo NestJS per la parte sensori
-  │   │   │ 
+  │   │   │
   │   │   ├── measure.mapper.ts            Mapper tra Entity, Model e DTO
-  │   │   │ 
+  │   │   │
   │   │   └── openapi.decorators.ts        Decoratori condivisi Swagger/OpenAPI
   │   │
   │   ├── app.module.ts                    Modulo root e configurazione TypeORM
@@ -144,11 +142,7 @@ diversi livelli dell’applicazione.
     fill: (_, y) => if y == 0 { luma(230) },
     align: (x, y) => if x == 1 { left } else { left + top },
 
-    table.header(
-      [*Strato*],
-      [*Package*],
-      [*Contenuto*],
-    ),
+    table.header([*Strato*], [*Package*], [*Contenuto*]),
 
     [Presentation],
     [
@@ -159,8 +153,8 @@ diversi livelli dell’applicazione.
       `src/generated/openapi`
     ],
     [
-      Esposizione delle API HTTP, definizione dei contratti di ingresso/uscita,
-      documentazione OpenAPI e gestione del livello di interazione con i client.
+      Esposizione delle API HTTP, definizione dei contratti di ingresso/uscita, documentazione OpenAPI e gestione del
+      livello di interazione con i client.
     ],
 
     [Application / Business],
@@ -172,9 +166,8 @@ diversi livelli dell’applicazione.
       `src/data-api/measure.mapper.ts`
     ],
     [
-      Logica applicativa e di dominio: validazione dei parametri di query,
-      orchestrazione dei casi d'uso, trasformazione tra entity/model/DTO,
-      filtraggio dei dati e definizione delle interfacce tra componenti.
+      Logica applicativa e di dominio: validazione dei parametri di query, orchestrazione dei casi d'uso, trasformazione
+      tra entity/model/DTO, filtraggio dei dati e definizione delle interfacce tra componenti.
     ],
 
     [Persistence],
@@ -184,9 +177,8 @@ diversi livelli dell’applicazione.
       `measure.persistence.service.ts`
     ],
     [
-      Accesso ai dati tramite TypeORM, definizione dell'entità `MeasureEntity`,
-      costruzione delle query paginated e non-paginated su PostgreSQL e
-      incapsulamento delle operazioni di persistenza.
+      Accesso ai dati tramite TypeORM, definizione dell'entità `MeasureEntity`, costruzione delle query paginated e
+      non-paginated su PostgreSQL e incapsulamento delle operazioni di persistenza.
     ],
   )
 
@@ -290,6 +282,55 @@ diversi livelli dell’applicazione.
   )
 
   = Design di Dettaglio
+
+  == Moduli del microservizio
+  #table(
+    columns: (34%, 66%),
+    inset: 8pt,
+    stroke: 0.6pt + rgb("#666"),
+    align: left + top,
+
+    table.header([*Modulo*], [*Responsabilità*]),
+
+    [MeasureModule],
+    [
+      Gestione delle funzionalità di interrogazione ed esportazione delle misure. Espone gli endpoint dedicati,
+      orchestra la logica applicativa tramite `MeasureService` e delega l'accesso ai dati a `MeasurePersistenceService`
+      usando TypeORM sull'entità `MeasureEntity`.
+    ],
+
+    [SensorModule],
+    [
+      Gestione delle funzionalità di discovery e consultazione dei sensori disponibili. Espone gli endpoint relativi ai
+      sensori, utilizza `SensorService` per costruire la vista logica dei sensori a partire dalle misure persistite e
+      riusa `MeasurePersistenceService` come dipendenza di persistenza.
+    ],
+  )
+
+
+  == Entità
+  #table(
+    columns: (32%, 68%),
+    inset: 8pt,
+    stroke: 0.6pt + rgb("#666"),
+    align: left + top,
+
+    table.header([*Entita*], [*Campi*]),
+
+    [MeasureEntity],
+    [
+      `time`: timestamptz (primary key), \
+      `tenantId`: uuid, \
+      `gatewayId`: uuid, \
+      `sensorId`: uuid, \
+      `sensorType`: string, \
+      `encryptedData`: string, \
+      `iv`: string, \
+      `authTag`: string, \
+      `keyVersion`: number
+    ],
+  )
+
 
   == Modello Dati del Dominio
 
@@ -435,136 +476,220 @@ diversi livelli dell’applicazione.
   La presenza del mapper consente di isolare la logica di conversione e di mantenere separati il modello di persistenza,
   il modello interno e il contratto esposto.
 
-  = Contratti API
+  == Endpoint API
+  Di seguito è riportato l’elenco completo degli endpoint esposti dal microservizio divisi per area di interesse.
 
-  == Endpoint `GET /measures/query`
+  === Measure
 
-  Scopo: recupero paginato delle misure cifrate.
+  #set par(justify: false)
 
-  Parametri obbligatori:
+  #let cell(body) = align(center + horizon, block(width: 100%)[#body])
+  #let text-cell(body) = align(left + top, block(width: 100%)[#body])
+  #let code-cell(body) = align(left + top, text(font: "DejaVu Sans Mono", size: 0.8em)[#body])
 
-  - `from`
-  - `to`
 
-  Parametri opzionali:
+  #table(
+    columns: (10%, 19%, 23%, 21%, 27%),
+    inset: 8pt,
+    stroke: 0.6pt + rgb("#666"),
+    align: (x, y) => if y == 0 or x <= 1 { center + horizon } else { left + top },
 
-  - `limit`
-  - `cursor`
-  - `gatewayId`
-  - `sensorId`
-  - `sensorType`
+    table.header(
+      cell[*Metodo*],
+      cell[*Endpoint*],
+      cell[*Descrizione*],
+      cell[*Body Request*],
+      cell[*Response*],
+    ),
 
-  Output:
+    cell[GET],
+    cell[`/measures/query`],
+    text-cell[
+      Restituisce una query paginata delle misure cifrate filtrabili per intervallo temporale, gateway, sensore e tipo
+      di sensore.
+    ],
+    text-cell[
+      Nessun body. \
+      Parametri query: `from`, `to`, `limit?`, `gatewayId?`, `sensorId?`, `sensorType?`, `cursor?`
+    ],
+    code-cell[
+      \[ { data: EncryptedEnvelopeDto[]\, nextCursor?: string, hasMore: boolean } \]
+    ],
 
-  - struttura `QueryResponseDto`
+    cell[GET],
+    cell[`/measures/export`],
+    text-cell[
+      Restituisce l'export completo delle misure cifrate in un intervallo temporale, senza paginazione.
+    ],
+    text-cell[
+      Nessun body. \
+      Parametri query: `from`, `to`, `gatewayId?`, `sensorId?`, `sensorType?`
+    ],
+    code-cell[
+      \[ { gatewayId: string, sensorId: string, sensorType: string, timestamp: string, encryptedData: string, iv:
+      string, authTag: string, keyVersion: number } \]
+    ],
 
-  Codici di risposta previsti:
+    cell[SSE],
+    cell[`/measures/stream`],
+    text-cell[
+      Espone uno stream Server-Sent Events di misure cifrate filtrabile per gateway, sensore e tipo di sensore.
+    ],
+    text-cell[
+      Nessun body. \
+      Parametri query: `gatewayId?`, `sensorId?`, `sensorType?`
+    ],
+    code-cell[
+      text/event-stream \
+      { data: { gatewayId: string, sensorId: string, sensorType: string, timestamp: string, encryptedData: string, iv:
+      string, authTag: string, keyVersion: number } }
+    ],
+  )
 
-  - `200 OK`
-  - `400 Bad Request`
-  - `401 Unauthorized`
-  - `403 Forbidden`
+  === Sensor
+  #table(
+    columns: (12%, 24%, 28%, 16%, 20%),
+    inset: 8pt,
+    stroke: 0.6pt + rgb("#666"),
+    align: (x, y) => if y == 0 or x <= 1 { center + horizon } else { left + top },
 
-  == Endpoint `GET /measures/export`
+    table.header(
+      cell[*Metodo*],
+      cell[*Endpoint*],
+      cell[*Descrizione*],
+      cell[*Body Request*],
+      cell[*Response*],
+    ),
 
-  Scopo: esportazione completa delle misure cifrate in una finestra temporale.
+    cell[GET],
+    cell[`/sensor`],
+    text-cell[
+      Restituisce l'elenco dei sensori osservati di recente, con possibilita di filtro per gateway e indicazione
+      dell'ultimo timestamp disponibile.
+    ],
+    text-cell[
+      Nessun body. \
+      Parametri query: `gatewayId?`
+    ],
+    code-cell[
+      \[ { sensorId: string, sensorType: string, gatewayId: string, lastSeen: string } \]
+    ],
+  )
 
-  Parametri obbligatori:
 
-  - `from`
-  - `to`
 
-  Parametri opzionali:
+  == Gestione Errori
 
-  - `gatewayId`
-  - `sensorId`
-  - `sensorType`
+  Di seguito sono elencati i principali codici di errore restituiti dagli endpoint del microservizio, con una breve
+  descrizione di ciascuno. In caso di errori non gestiti o eccezioni impreviste, il microservizio restituisce un errore
+  generico 500 Internal Server Error.
 
-  Output:
+  #set par(justify: false)
 
-  - array di `EncryptedEnvelopeDto`
+  #table(
+    columns: (12%, 23%, 65%),
+    inset: 8pt,
+    stroke: 0.6pt + rgb("#666"),
+    align: center + horizon,
 
-  Codici di risposta previsti:
+    table.header([*Codice*], [*Errore*], [*Descrizione*]),
 
-  - `200 OK`
-  - `400 Bad Request`
-  - `401 Unauthorized`
-  - `403 Forbidden`
+    [400],
+    [Bad Request],
+    [
+      Richiesta non valida. Nel contesto degli endpoint `measure` viene restituito quando i parametri di query sono
+      errati, quando `limit` supera `1000` oppure quando la finestra temporale eccede `24` ore. Possono comparire i
+      codici applicativi `QUERY_LIMIT_EXCEEDED`, `QUERY_WINDOW_EXCEEDED` ed `EXPORT_WINDOW_EXCEEDED`.
+    ],
 
-  == Endpoint `GET /measures/stream`
+    [401],
+    [Unauthorized],
+    [
+      Client non autenticato o autenticazione fallita. Questo errore e documentato per gli endpoint `measure` e
+      `sensor`.
+    ],
 
-  Scopo: sottoscrizione a stream live di misure cifrate.
+    [403],
+    [Forbidden],
+    [
+      Accesso negato alla risorsa richiesta. Nel progetto viene restituito quando il chiamante non ha i permessi
+      necessari per consultare misure o sensori.
+    ],
 
-  Parametri opzionali:
+    [404],
+    [Not Found],
+    [
+      Risorsa non trovata. Nel contesto dell'endpoint `sensor` puo indicare che il gateway richiesto o la risorsa
+      associata non e disponibile.
+    ],
 
-  - `gatewayId`
-  - `sensorId`
-  - `sensorType`
+    [500],
+    [Internal Server Error],
+    [
+      Errore generico del server in presenza di eccezioni non gestite o condizioni impreviste non mappate esplicitamente
+      a un codice HTTP applicativo.
+    ],
+  )
 
-  Output:
 
-  - stream `text/event-stream` con eventi SSE contenenti una misura cifrata per evento
+  == Flussi di Esecuzione
 
-  Codice di risposta previsto:
+  Di seguito sono descritti i principali flussi di esecuzione del servizio `notip-data-api`, con particolare attenzione
+  ai componenti applicativi coinvolti nell'elaborazione delle richieste e nell'accesso ai dati.
 
-  - `200 OK`
+  === Query Paginata delle Misure
 
-  == Endpoint `GET /sensor`
+  Il client invia una richiesta `GET` all'endpoint `/measures/query`, specificando l'intervallo temporale di interesse
+  ed eventuali filtri su `gatewayId`, `sensorId` e `sensorType`. Il `MeasureController` raccoglie i parametri di query e
+  costruisce l'oggetto di input per il `MeasureService`.
 
-  Scopo: recupero dei sensori osservati negli ultimi dieci minuti.
+  Il `MeasureService` valida i parametri ricevuti, verificando in particolare il limite massimo degli elementi richiesti
+  e la dimensione della finestra temporale. In caso di validazione positiva, la richiesta viene delegata al
+  `MeasurePersistenceService`, che costruisce una query TypeORM sull'entita `MeasureEntity` e recupera una pagina di
+  risultati dal database PostgreSQL.
 
-  Parametri opzionali:
+  I dati ottenuti vengono poi trasformati tramite `MeasureMapper` in oggetti `QueryResponseDto`, comprensivi della lista
+  delle misure, dell'eventuale `nextCursor` e dell'informazione `hasMore`, quindi restituiti al client.
 
-  - `gatewayId`
+  === Export Completo delle Misure
 
-  Output:
+  Il flusso di export viene attivato tramite una richiesta `GET` all'endpoint `/measures/export`. Anche in questo caso
+  il `MeasureController` estrae i parametri di filtro e li inoltra al `MeasureService`.
 
-  - array di `SensorDto`
+  Il servizio applicativo verifica la correttezza dell'intervallo temporale richiesto e, se i parametri risultano
+  validi, invoca il `MeasurePersistenceService` per eseguire una query non paginata sull'insieme delle misure
+  persistite. I record recuperati vengono successivamente convertiti in `EncryptedEnvelopeDto` mediante `MeasureMapper`.
 
-  Codici di risposta previsti:
+  Il client riceve quindi l'elenco completo delle misure cifrate compatibili con i filtri indicati.
 
-  - `200 OK`
-  - `401 Unauthorized`
-  - `403 Forbidden`
-  - `404 Not Found`
+  === Streaming delle Misure
 
-  = Gestione Errori
+  Il servizio espone un flusso continuo di eventi tramite l'endpoint `/measures/stream`, implementato come Server-Sent
+  Events. Il `MeasureController` raccoglie gli eventuali filtri su gateway, sensore e tipo di sensore, quindi delega la
+  gestione dello stream a `StreamListenerService`.
 
-  La gestione errori è centralizzata nei servizi applicativi, che intercettano gli errori provenienti dallo strato di
-  persistenza o da servizi esterni e li rimappano in eccezioni HTTP NestJS.
+  Il `StreamListenerService` genera un flusso osservabile di eventi e applica i filtri richiesti dal client. Ogni evento
+  compatibile viene trasformato dal controller nel formato previsto per SSE, incapsulando i dati della misura cifrata
+  all'interno del campo `data`.
 
-  Per il dominio `measures` sono previste in particolare le seguenti condizioni:
+  Questo flusso consente al client di ricevere aggiornamenti continui senza dover effettuare polling esplicito sugli
+  endpoint di query.
 
-  - finestra temporale superiore a `24` ore;
-  - limite di paginazione maggiore di `1000`;
-  - errori di autenticazione;
-  - errori di autorizzazione.
+  === Elenco dei Sensori Disponibili
 
-  La struttura di errore esposta è rappresentata da `ErrorResponseDto`, che può includere:
+  Il client puo richiedere l'elenco dei sensori osservati di recente tramite l'endpoint `GET /sensor`. Il
+  `SensorController` costruisce l'input applicativo e lo inoltra al `SensorService`.
 
-  - `statusCode`
-  - `code`
-  - `message`
-  - `error`
+  Il `SensorService` definisce automaticamente una finestra temporale degli ultimi dieci minuti e interroga il livello
+  di persistenza attraverso l'interfaccia `NpQueryPersistenceService`, concretamente implementata da
+  `MeasurePersistenceService`. Le misure recuperate vengono aggregate in memoria per identificare i sensori univoci e
+  calcolare, per ciascuno di essi, l'ultimo istante di osservazione.
 
-  Tale approccio consente di mantenere uniforme la comunicazione degli errori verso i client e di propagare, quando
-  disponibile, il codice applicativo originario.
+  Il risultato finale viene convertito in `SensorDto` e restituito come elenco dei sensori disponibili, eventualmente
+  filtrato per `gatewayId`.
 
-  = Documentazione del Contratto
 
-  La documentazione OpenAPI è definita centralmente nel file `openapi.decorators.ts` e viene utilizzata per descrivere:
 
-  - `summary` e `description` delle operation;
-  - parametri di query;
-  - esempi di request e response;
-  - media type prodotto;
-  - codici di risposta e DTO associati.
-
-  Il contratto generato è disponibile nel file `api-contracts/openapi/openapi.yaml`.
-
-  Nel repository è presente anche un contratto AsyncAPI condiviso (`api-contracts/asyncapi/nats-contracts.yaml`)
-  relativo ai subject NATS dell'ecosistema. Tale file descrive il contesto di integrazione complessivo, pur non essendo
-  direttamente consumato dal bootstrap corrente del servizio `data-api`.
 
   = Test e Verifica
 
@@ -573,7 +698,7 @@ diversi livelli dell’applicazione.
   - unit test sui servizi applicativi;
   - unit test sui controller;
   - unit test sul componente di streaming;
-  - integration test applicativi con persistenza in memoria e stream mockato (ATTUALMENTE!).
+  - integration test applicativi con persistenza in memoria e stream mockato.
 
   Le verifiche coperte dai test includono in particolare:
 
