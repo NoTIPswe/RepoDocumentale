@@ -10,11 +10,11 @@
   scope: base-document.EXTERNAL_SCOPE,
 )[
   = Introduzione
-
-  Il servizio `data-api` è un microservizio applicativo sviluppato con framework NestJS, deputato all'esposizione di
-  funzionalità di consultazione delle misure cifrate raccolte dal sistema. Il servizio rende disponibili endpoint HTTP
-  per l'interrogazione paginata delle misure, l'esportazione completa di un intervallo temporale, la fruizione in
-  streaming dei dati e l'elenco dei sensori osservati di recente.
+  Questo documento illustra l'architettura interna e le scelte implentative del microservizio `data-api`. Sviluppato in
+  NestJS, questo componente è responsabile dell'esposizione di funzionalità di consultazione delle misure cifrate
+  raccolte dal sistema. Il servizio rende disponibili endpoint HTTP per l'interrogazione paginata delle misure,
+  l'esportazione completa di un intervallo temporale, la fruizione in streaming dei dati e l'elenco dei sensori
+  osservati di recente.
 
   L'obiettivo del componente è fornire un punto di accesso unificato ai dati telemetrici già acquisiti e persistiti,
   mantenendo separata la logica di esposizione API dalla logica di accesso alla persistenza. Il servizio restituisce
@@ -26,26 +26,15 @@
   accesso ai dati.
 
   = Dipendenze e Configurazione
-
-  == Stack Tecnologico
-
-  Il servizio è implementato in TypeScript su piattaforma Node.js, utilizzando le seguenti tecnologie principali:
-
-  - NestJS come framework applicativo e di dependency injection.
-  - TypeORM per l'accesso astratto alla persistenza.
-  - RxJS per la gestione dello stream di eventi.
-  - Swagger/OpenAPI per la generazione del contratto REST.
-  - Jest per unit test e integration test.
-
   == Variabili d'Ambiente
   Tutte le variabili d’ambiente necessarie per il funzionamento del microservizio sono elencate di seguito, una
   eventuale mancanza di una di queste variabili comporterà un errore all’avvio del microservizio:
   #table(
     columns: (1.4fr, 2.5fr, 1.2fr, 1.2fr),
     [Campo], [Variabile d'ambiente], [Default], [obbligatorio],
-    [`DataApiPort`], [DATA_API_PORT], [`3000`], [Sì],
+    [`ApiPort`], [DATA_API_PORT], [`3000`], [No],
     [`DBHost`], [MEASURES_DB_HOST], [`-`], [Sì],
-    [`DBPort`], [MEASURES_DB_PORT], [`5432`], [Sì],
+    [`DBPort`], [MEASURES_DB_PORT], [`-`], [Sì],
     [`DBName`], [MEASURES_DB_NAME], [`-`], [Sì],
     [`DBUser`], [MEASURES_DB_USER], [`-`], [Sì],
     [`DBPassword`], [MEASURES_DB_PASSWORD], [`-`], [Sì],
@@ -57,12 +46,16 @@
   #table(
     columns: (auto, 2fr, 3fr),
     [Step], [Componente], [Azione],
-    [1], [`NestFactory`], [Istanzia l'applicazione NestJS],
-    [2], [`AppModule`], [Carica il modulo radice dell'applicazione],
-    [3], [`MeasureModule` e `SensorModule`], [Importa i moduli funzionali esposti dal servizio],
-    [4], [HTTP listener], [Espone il listener HTTP sulla porta configurata],
-    [5], [`/`], [Rende disponibile un endpoint base di test che restituisce `Hello World!`],
+    [1], [`NestFactory`], [Istanzia l'applicazione NestJS a partire dall'`AppModule`.],
+    [2], [`AppModule`], [Valida le variabili d'ambiente critiche e carica la configurazione globale.],
+    [3], [`TypeOrmModule`], [Stabilisce la connessione al database PostgreSQL per la persistenza delle misure.],
+    [4],
+    [`MeasureModule` e `SensorModule`],
+    [Istanzia i moduli funzionali, i service di logica e i repository di dati.],
+
+    [5], [HTTP listener], [Espone il servizio sulla porta configurata e attiva l'endpoint `/` di health check.],
   )
+
 
   = Architettura Logica
 
@@ -73,22 +66,15 @@
 
   == Impostazione Architetturale
 
-  Il servizio adotta un'architettura modulare a responsabilità separate, basata sui concetti nativi di NestJS. Le
-  responsabilità principali sono suddivise come segue:
+  Il servizio adotta una Layered Architecture con organizzazione interna di tipo Modular Monolith. All'interno dei vari
+  moduli è utilizzato prevalentemente il pattern Controller-Service-Persistence, che consente una chiara separazione
+  delle responsabilità tra esposizione API, logica di business e accesso ai dati. I componenti collaborano tramite
+  Dependency Injection e, dove opportuno, tramite interfacce e contratti applicativi. La presenza di Business Models,
+  DTO ed Entities ha portato all’introduzione di Mappers per la conversione dei dati tra i diversi livelli
+  dell’applicazione.
 
-  - `controller`: esposizione degli endpoint HTTP e trasformazione dei parametri di input;
-  - `service`: orchestrazione della logica applicativa, validazione e gestione delle eccezioni;
-  - `persistence service`: accesso alla persistenza tramite repository TypeORM;
-  - `mapper`: conversione tra entity di persistenza, model interni e DTO esposti;
-  - `dto`: definizione del contratto di risposta verso i client;
-  - `interfaces`: definizione dei contratti di input e delle porte applicative.
 
-  Il sistema implementa una _layered architecture_. È presente infatti una distinzione chiara tra: strato di
-  esposizione, strato applicativo e strato di accesso ai dati. I componenti collaborano tramite Dependency Injection e,
-  dove opportuno, tramite interfacce e contratti applicativi. La presenza di Business Models, DTO ed Entities ha portato
-  all’introduzione di Mappers per la conversione dei dati tra i diversi livelli dell’applicazione.
-
-  == Layout dei Package
+  == Layout dei Moduli
 
   ```text
   notip-data-api/
@@ -157,7 +143,7 @@
       livello di interazione con i client.
     ],
 
-    [Application / Business],
+    [Business],
     [
       `src/app.service.ts` \
       `src/data-api/services` \
@@ -182,116 +168,12 @@
     ],
   )
 
-
-  = Definizione dei Port
-
-  == Driving Port
-
-  I driving port del servizio sono gli endpoint HTTP esposti ai client consumer.
-
-  #st.port-interface(
-    name: "GET /measures/query",
-    kind: "driving",
-    description: [Restituisce una pagina di misure cifrate comprese in una finestra temporale richiesta.],
-    methods: (
-      ("from / to", [Timestamp iniziale e finale inclusivi in formato ISO 8601]),
-      ("limit / cursor", [Paginazione con default `1000`, massimo `1000` e cursore opaco]),
-      ("gatewayId / sensorId / sensorType", [Filtri ripetibili applicati alla query]),
-      ("response", [`data`, `nextCursor`, `hasMore`]),
-    ),
-  )
-
-  #st.port-interface(
-    name: "GET /measures/export",
-    kind: "driving",
-    description: [Restituisce tutte le misure cifrate che ricadono nella finestra temporale richiesta, senza
-      paginazione.],
-    methods: (
-      ("from / to", [Intervallo temporale richiesto]),
-      ("gatewayId / sensorId / sensorType", [Filtri opzionali]),
-      ("response", [Array di buste cifrate con metadati della misura e payload cifrato]),
-    ),
-  )
-
-  #st.port-interface(
-    name: "GET /measures/stream",
-    kind: "driving",
-    description: [Espone uno stream Server-Sent Events (`text/event-stream`) di misure cifrate.],
-    methods: (
-      ("gatewayId / sensorId / sensorType", [Filtri opzionali per lo stream live]),
-      ("response", [Eventi SSE contenenti una misura cifrata per evento]),
-    ),
-  )
-
-  #st.port-interface(
-    name: "GET /sensor",
-    kind: "driving",
-    description: [Restituisce l'elenco univoco dei sensori visti negli ultimi dieci minuti, con possibilità di filtro
-      per `gatewayId`.],
-    methods: (
-      ("gatewayId", [Filtro opzionale per gateway]),
-      ("response", [`sensorId`, `sensorType`, `gatewayId`, `lastSeen`]),
-    ),
-  )
-
-  == Driven Port
-
-  I driven port del servizio rappresentano le dipendenze verso componenti esterni o infrastrutturali.
-
-  #st.port-interface(
-    name: "MeasurePersistenceService",
-    kind: "driven",
-    description: [Adapter verso la persistenza delle misure, utilizzato dal dominio applicativo per interrogazioni
-      paginate e non paginate.],
-    methods: (
-      ("paginatedQuery", [Recupera una pagina ordinata di misure con supporto a `limit` e `cursor`]),
-      ("nonPaginatedQuery", [Recupera tutte le misure corrispondenti ai filtri richiesti]),
-    ),
-  )
-
-  #st.port-interface(
-    name: "NpQueryPersistenceService",
-    kind: "driven",
-    description: [Interfaccia utilizzata dal servizio sensori mediante token di injection `NP_QUERY_PERSISTENCE`, per
-      mantenere basso l'accoppiamento rispetto all'implementazione concreta.],
-    methods: (
-      ("nonPaginatedQuery", [Fornisce le misure necessarie alla costruzione dell'elenco sensori recenti]),
-    ),
-  )
-
-  #st.port-interface(
-    name: "Repository<MeasureEntity>",
-    kind: "driven",
-    description: [Dipendenza TypeORM utilizzata per costruire query dinamiche in base ai filtri ricevuti.],
-    methods: (
-      ("where / andWhere", [Applica i filtri su intervallo temporale e attributi funzionali]),
-      ("orderBy", [Ordina i risultati per timestamp decrescente]),
-      ("getMany", [Recupera i record corrispondenti alla query]),
-    ),
-  )
-
-  #st.port-interface(
-    name: "StreamListenerService",
-    kind: "driven",
-    description: [Porta verso la sorgente eventi live. Nella versione corrente la sorgente è simulata internamente
-      tramite `interval(1000)`, ma il componente è il punto naturale di integrazione con broker o stream processor
-      reali.],
-    methods: (
-      ("listen", [Produce lo stream di misure cifrate filtrabili]),
-    ),
-  )
-
   = Design di Dettaglio
 
   == Moduli del microservizio
   #table(
-    columns: (34%, 66%),
-    inset: 8pt,
-    stroke: 0.6pt + rgb("#666"),
-    align: left + top,
-
-    table.header([*Modulo*], [*Responsabilità*]),
-
+    columns: (0.5fr, 1fr),
+    [Modulo], [Responsabilità],
     [MeasureModule],
     [
       Gestione delle funzionalità di interrogazione ed esportazione delle misure. Espone gli endpoint dedicati,
@@ -310,275 +192,110 @@
 
   == Entità
   #table(
-    columns: (32%, 68%),
-    inset: 8pt,
-    stroke: 0.6pt + rgb("#666"),
-    align: left + top,
-
-    table.header([*Entità*], [*Campi*]),
+    columns: (1.5fr, 2fr),
+    [Entità], [Campi],
 
     [MeasureEntity],
-    [
-      `time`: timestamptz (primary key), \
-      `tenantId`: uuid, \
-      `gatewayId`: uuid, \
-      `sensorId`: uuid, \
-      `sensorType`: string, \
-      `encryptedData`: string, \
-      `iv`: string, \
-      `authTag`: string, \
-      `keyVersion`: number
-    ],
+    [#par(justify: false)[
+      *`time`*: `timestamptz`, *`tenantId`*: `uuid`, *`gatewayId`*: `uuid`, *`sensorId`*: `uuid`, *`sensorType`*:
+      `string`, *`encryptedData`*: `string`, *`iv`*: `string`, *`authTag`*: `string`, *`keyVersion`*: `number`
+    ]],
   )
-
-
-  == Modello Dati del Dominio
-
-  La misura persistita è rappresentata da `MeasureEntity`, che include i seguenti campi:
-
-  - `time`
-  - `tenantId`
-  - `gatewayId`
-  - `sensorId`
-  - `sensorType`
-  - `encryptedData`
-  - `iv`
-  - `authTag`
-  - `keyVersion`
-
-  La rappresentazione esposta verso l'esterno è `EncryptedEnvelopeDto`, che mantiene i dati cifrati e i metadati
-  essenziali della misura:
-
-  - identificativo gateway;
-  - identificativo sensore;
-  - tipo sensore;
-  - timestamp;
-  - payload cifrato;
-  - initialization vector;
-  - authentication tag;
-  - versione della chiave.
-
-  Per la query paginata viene usato `QueryResponseDto`, che incapsula lista dati, cursore successivo e flag `hasMore`.
-  Per l'elenco sensori viene usato `SensorDto`, che espone l'ultima osservazione disponibile per ogni sensore univoco.
-
-  == MeasureController
-
-  Il controller `MeasureController` espone gli endpoint del dominio `measures`.
-
-  Le principali responsabilità del componente sono:
-
-  - lettura dei query parameter HTTP;
-  - normalizzazione dei filtri singoli in array tramite `normalizeArrayParam`;
-  - costruzione degli input applicativi `QueryInput`, `ExportInput` e `StreamInput`;
-  - invocazione dei servizi applicativi;
-  - mapping finale delle risposte tramite `MeasureMapper`.
-
-  Il controller non contiene logica di business significativa; delega interamente validazioni e gestione funzionale ai
-  servizi.
-
-  == MeasureService
-
-  `MeasureService` implementa la logica applicativa relativa a query ed export delle misure.
-
-  Le responsabilità principali sono:
-
-  - validazione del parametro `limit`;
-  - validazione dell'intervallo temporale richiesto;
-  - trasformazione degli input API in input di persistenza;
-  - invocazione del servizio di persistenza;
-  - mapping delle eccezioni provenienti dal layer sottostante in eccezioni HTTP NestJS.
-
-  Le regole applicative esplicite attualmente implementate sono:
-
-  - `limit` massimo consentito: `1000`;
-  - ampiezza massima della finestra temporale: `24` ore.
-
-  In caso di violazione vengono generati i codici applicativi:
-
-  - `QUERY_LIMIT_EXCEEDED`
-  - `QUERY_WINDOW_EXCEEDED`
-  - `EXPORT_WINDOW_EXCEEDED`
-
-  Le eccezioni gestite verso l'esterno sono:
-
-  - `400 Bad Request`
-  - `401 Unauthorized`
-  - `403 Forbidden`
-
-  == SensorController
-
-  `SensorController` espone l'endpoint `GET /sensor` e delega a `SensorService` il recupero dei sensori osservati di
-  recente. Il controller raccoglie l'eventuale filtro `gatewayId` e restituisce il risultato trasformato in `SensorDto`.
-
-  == SensorService
-
-  `SensorService` implementa la logica applicativa per la costruzione dell'elenco sensori. Il componente:
-
-  - calcola una finestra temporale mobile degli ultimi dieci minuti;
-  - invoca la porta di persistenza non paginata;
-  - aggrega le misure per tripletta `gatewayId`, `sensorId`, `sensorType`;
-  - mantiene per ogni chiave il valore `lastSeen` più recente.
-
-  L'algoritmo costruisce una mappa in memoria per deduplicare i sensori e produrre la vista finale destinata ai client.
-
-  Le eccezioni mappate sono:
-
-  - `401 Unauthorized`
-  - `403 Forbidden`
-  - `404 Not Found`
-
-  == MeasurePersistenceService
-
-  `MeasurePersistenceService` implementa l'accesso alla persistenza tramite TypeORM.
-
-  *Query paginata*
-
-  La query paginata:
-
-  - applica filtri opzionali su gateway, sensore e tipo sensore;
-  - applica il range temporale richiesto;
-  - applica il filtro su `cursor`, se presente;
-  - ordina i risultati in ordine decrescente sul tempo;
-  - recupera `limit + 1` record per determinare la presenza di ulteriori pagine;
-  - valorizza `hasMore`;
-  - calcola `nextCursor` con il timestamp dell'ultimo elemento utile.
-
-  *Query non paginata*
-
-  La query non paginata:
-
-  - applica filtri opzionali;
-  - applica la finestra temporale;
-  - ordina i risultati in ordine decrescente sul tempo;
-  - restituisce tutti i record corrispondenti.
-
-  == StreamListenerService
-
-  `StreamListenerService` è il componente responsabile dell'emissione dello stream live. Attualmente il servizio:
-
-  - genera un evento ogni secondo;
-  - costruisce un payload cifrato di esempio;
-  - filtra gli eventi in base ai criteri ricevuti in input.
-
-  Il componente rappresenta una implementazione placeholder o mock evolutivo, utile a dimostrare l'interfaccia di
-  streaming prima dell'integrazione con una sorgente eventi reale.
-
-  == MeasureMapper
-
-  `MeasureMapper` centralizza le trasformazioni tra:
-
-  - `MeasureEntity` e `EncryptedEnvelopeModel`;
-  - `EncryptedEnvelopeModel` e `EncryptedEnvelopeDto`;
-  - `PaginatedQuery` e `PaginatedQueryModel`;
-  - `PaginatedQueryModel` e `QueryResponseDto`;
-  - `SensorModel` e `SensorDto`.
-
-  La presenza del mapper consente di isolare la logica di conversione e di mantenere separati il modello di persistenza,
-  il modello interno e il contratto esposto.
 
   == Endpoint API
   Di seguito è riportato l’elenco completo degli endpoint esposti dal microservizio divisi per area di interesse.
 
+  I campi indicati con *`?`* sono opzionali.
   === Measure
 
-  #set par(justify: false)
-
-  #let cell(body) = align(center + horizon, block(width: 100%)[#body])
-  #let text-cell(body) = align(left + top, block(width: 100%)[#body])
-  #let code-cell(body) = align(left + top, text(font: "DejaVu Sans Mono", size: 0.8em)[#body])
-
-
   #table(
-    columns: (10%, 19%, 23%, 21%, 27%),
-    inset: 8pt,
-    stroke: 0.6pt + rgb("#666"),
-    align: (x, y) => if y == 0 or x <= 1 { center + horizon } else { left + top },
+    columns: (1fr, auto, 2.2fr, auto, auto),
+    align: (left, left, left, left, left),
 
-    table.header(
-      cell[*Metodo*],
-      cell[*Endpoint*],
-      cell[*Descrizione*],
-      cell[*Body Request*],
-      cell[*Response*],
-    ),
+    [Metodo], [Endpoint], [Descrizione], [Query Parameters], [Response],
 
-    cell[GET],
-    cell[`/measures/query`],
-    text-cell[
+    [`GET`],
+    [`/measures/query`],
+    [#par(justify: false)[
       Restituisce una query paginata delle misure cifrate filtrabili per intervallo temporale, gateway, sensore e tipo
-      di sensore.
-    ],
-    text-cell[
-      Nessun body. \
-      Parametri query: `from`, `to`, `limit?`, `gatewayId?`, `sensorId?`, `sensorType?`, `cursor?`
-    ],
-    code-cell[
-      \[ { data: EncryptedEnvelopeDto[]\, nextCursor?: string, hasMore: boolean } \]
-    ],
+      di sensore.]],
+    [#par(justify: false)[
+      *`from`*: `string` \
+      *`to`*: `string` \
+      *`limit?`*: `number` \
+      *`gatewayId?`*: `string` \
+      *`sensorId?`*: `string` \
+      *`sensorType?`*: `string` \
+      *`cursor?`*: `string`]],
+    [#par(justify: false)[
+      [{ *`gatewayId`*: `string` \
+      *`sensorId`*: `string` \
+      *`sensorType`*: `string` \
+      *`timestamp`*: `string` \
+      *`encryptedData`*: `string` \
+      *`iv`*: `string` \
+      *`authTag`*: `string` \
+      *`keyVersion`*: `number` }], \
+      *`nextCursor?`*: `string`, \
+      *`hasMore`*: `boolean`]],
 
-    cell[GET],
-    cell[`/measures/export`],
-    text-cell[
-      Restituisce l'export completo delle misure cifrate in un intervallo temporale, senza paginazione.
-    ],
-    text-cell[
-      Nessun body. \
-      Parametri query: `from`, `to`, `gatewayId?`, `sensorId?`, `sensorType?`
-    ],
-    code-cell[
-      \[ { gatewayId: string, sensorId: string, sensorType: string, timestamp: string, encryptedData: string, iv:
-      string, authTag: string, keyVersion: number } \]
-    ],
+    [`GET`],
+    [`/measures/export`],
+    [#par(justify: false)[
+      Restituisce l'export completo delle misure cifrate in un intervallo temporale, senza paginazione.]],
+    [#par(justify: false)[
+      *`from`*: `string` \
+      *`to`*: `string` \
+      *`gatewayId?`*: `string` \
+      *`sensorId?`*: `string` \
+      *`sensorType?`*: `string`]],
+    [#par(justify: false)[
+      [{ *`gatewayId`*: `string` \
+      *`sensorId`*: `string` \
+      *`sensorType`*: `string` \
+      *`timestamp`*: `string` \
+      *`encryptedData`*: `string` \
+      *`iv`*: `string` \
+      *`authTag`*: `string` \
+      *`keyVersion`*: `number` }]]],
 
-    cell[SSE],
-    cell[`/measures/stream`],
-    text-cell[
-      Espone uno stream Server-Sent Events di misure cifrate filtrabile per gateway, sensore e tipo di sensore.
-    ],
-    text-cell[
-      Nessun body. \
-      Parametri query: `gatewayId?`, `sensorId?`, `sensorType?`
-    ],
-    code-cell[
-      text/event-stream \
-      { data: { gatewayId: string, sensorId: string, sensorType: string, timestamp: string, encryptedData: string, iv:
-      string, authTag: string, keyVersion: number } }
-    ],
+    [`SSE`],
+    [`/measures/stream`],
+    [#par(justify: false)[
+      Espone uno stream Server-Sent Events di misure cifrate filtrabile per gateway, sensore e tipo di sensore.]],
+    [#par(justify: false)[
+      *`gatewayId?`*: `string` \
+      *`sensorId?`*: `string` \
+      *`sensorType?`*: `string`]],
+    [#par(justify: false)[
+      `text/event-stream`: \
+      { *`gatewayId`*: `string` \
+      *`sensorId`*: `string` \
+      *`sensorType`*: `string` \ *`timestamp`*: `string` \
+      *`encryptedData`*: `string` \ *`iv`*: `string` \ *`authTag`*: `string` \ *`keyVersion`*: `number` }]],
   )
 
   === Sensor
   #table(
-    columns: (12%, 24%, 28%, 16%, 20%),
-    inset: 8pt,
-    stroke: 0.6pt + rgb("#666"),
-    align: (x, y) => if y == 0 or x <= 1 { center + horizon } else { left + top },
+    columns: (1fr, auto, 2.2fr, auto, auto),
+    align: (left, left, left, left, left),
 
-    table.header(
-      cell[*Metodo*],
-      cell[*Endpoint*],
-      cell[*Descrizione*],
-      cell[*Body Request*],
-      cell[*Response*],
-    ),
+    [Metodo], [Endpoint], [Descrizione], [Query Parameters], [Response],
 
-    cell[GET],
-    cell[`/sensor`],
-    text-cell[
-      Restituisce l'elenco dei sensori osservati di recente, con possibilita di filtro per gateway e indicazione
-      dell'ultimo timestamp disponibile.
-    ],
-    text-cell[
-      Nessun body. \
-      Parametri query: `gatewayId?`
-    ],
-    code-cell[
-      \[ { sensorId: string, sensorType: string, gatewayId: string, lastSeen: string } \]
-    ],
+    [`GET`],
+    [`/sensor`],
+    [#par(justify: false)[
+      Restituisce l'elenco dei sensori osservati di recente, con possibilità di filtro per gateway e indicazione
+      dell'ultimo timestamp disponibile.]],
+    [#par(justify: false)[ *`gatewayId`*: `string` ]],
+    [#par(justify: false)[
+      [{ *`sensorId`*: `string` \
+      *`sensorType`*: `string` \
+      *`gatewayId`*: `string` \
+      *`lastSeen`*: `string` }]
+    ]],
   )
-
-
-
-  == Gestione Errori
+  === Errori
 
   Di seguito sono elencati i principali codici di errore restituiti dagli endpoint del microservizio, con una breve
   descrizione di ciascuno. In caso di errori non gestiti o eccezioni impreviste, il microservizio restituisce un errore
@@ -631,7 +348,35 @@
     ],
   )
 
+  == Decisioni implementative
+  #st.design-rationale(title: "Interfacce tra le componenti dei moduli")[
+    Sono state definite interfacce specifiche per la comunicazione tra i componenti dei moduli, in particolare per il
+    passaggio dei parametri dei metodi tra *`Controller`* e *`Service`* e tra *`Service`* e *`PersistenceService`*.
+    Questa scelta è stata motivata dalla volontà di mantenere una chiara separazione tra i livelli dell'applicazione,
+    evitando di esporre direttamente i dati delle richieste fatte dal controller ai layer inferiori. Le interfacce
+    consentono di definire contratti chiari e stabili tra i componenti, facilitando la manutenzione e l'evoluzione del
+    codice, oltre a migliorare la testabilità isolata dei singoli componenti.
+  ]
 
+  #st.design-rationale(title: "Introduzioni di Mappers tra i layer")[
+    L'utilizzo di *`Persistence Entities`*, *`Business Models`* e *`DTO`* ha portato alla necessità di introdurre
+    componenti di mapping dedicati per permettere una conversione corretta e centrallizzata dei dati tra i diversi layer
+    del modulo. I *`Mapper`* consentono di incapsulare la logica di trasformazione dei dati, mantenendo i controller e i
+    servizi focalizzati sulle rispettive responsabilità di esposizione API e logica applicativa, senza doversi
+    preoccupare dei dettagli di conversione tra i formati dei dati. Questa scelta migliora la manutenibilità del codice,
+    riduce la duplicazione e facilita l'introduzione di eventuali modifiche future nei formati dei dati o nelle
+    strutture delle entità senza impattare direttamente la logica di business o i contratti esposti.
+  ]
+
+  #st.design-rationale(title: "Utilizzo di TypeORM")[
+    La scelta di utilizzare TypeORM come strumento di accesso alla persistenza è stata guidata dalla necessità di
+    interagire con un database PostgreSQL in modo efficiente e strutturato. TypeORM offre un'astrazione di alto livello
+    per la definizione delle entità, la costruzione delle query e la gestione delle connessioni al database,
+    semplificando notevolmente lo sviluppo del livello di persistenza. Inoltre, TypeORM si integra bene con NestJS,
+    consentendo di sfruttare appieno le funzionalità di Dependency Injection e la modularità del framework. L'adozione
+    di TypeORM ha permesso di implementare in modo rapido e robusto le operazioni di query paginata e non paginata sulle
+    misure, garantendo al contempo una buona manutenibilità e scalabilità del codice di accesso ai dati.
+  ]
   == Flussi di Esecuzione
 
   Di seguito sono descritti i principali flussi di esecuzione del servizio `notip-data-api`, con particolare attenzione
@@ -687,9 +432,6 @@
 
   Il risultato finale viene convertito in `SensorDto` e restituito come elenco dei sensori disponibili, eventualmente
   filtrato per `gatewayId`.
-
-
-
 
   = Test e Verifica
 
