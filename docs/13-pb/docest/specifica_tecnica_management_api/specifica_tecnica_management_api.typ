@@ -4,7 +4,7 @@
 #import "../../00-templates/base_document.typ" as base-document
 #import "../specifica_tecnica/st_lib.typ" as st
 
-#let metadata = yaml("specifica_tecnica_management_api.meta.yaml")
+#let metadata = yaml(sys.inputs.meta-path)
 #show figure.where(kind: table): set block(breakable: true)
 
 #base-document.apply-base-document(
@@ -24,8 +24,8 @@
 
   == Variabili d'ambiente
 
-  Tutte le variabili d'ambiente necessarie per il funzionamento del microservizio sono elencate di seguito, una
-  eventuale mancanza di una di queste variabili comporterà un errore all'avvio del microservizio:
+  Tutte le variabili d'ambiente necessarie per il funzionamento del microservizio sono elencate di seguito, un'eventuale
+  mancanza di una di queste variabili comporterà un errore all'avvio del microservizio:
 
   #figure(
     [#table(
@@ -395,7 +395,7 @@
 
   #figure(
     table(
-      columns: (1fr, auto, 2.2fr, 2.4fr, 2fr),
+      columns: (1fr, auto, 2.2fr, 1.4fr, 2fr),
       align: (left, left, left, left, left),
       [*Metodo*], [*Endpoint*], [*Descrizione*], [*Body Request*], [*Response*],
 
@@ -716,7 +716,6 @@
                     "timeout_ms":
                     "integer"
                                            }]
-        }
       }
       ```],
 
@@ -846,9 +845,7 @@
       desc[Elimina la soglia specifica di un sensore, ripristinando quella di default per tipologia.],
       [-],
       [```json
-      {
-        "status": 200
-      }
+      {"status": 200}
       ```],
 
       [`DELETE`],
@@ -856,9 +853,7 @@
       desc[Elimina la soglia di default per una intera tipologia di sensori.],
       [-],
       [```json
-      {
-        "status": 200
-      }
+      {"status": 200}
       ```],
     ),
     caption: [Endpoint per le soglie],
@@ -953,9 +948,8 @@
     [Accesso negato, mancanza di permessi necessari, oppure nei casi di endpoint bloccati a chi sta impersonando un
       altro utente.],
 
-    [404],
-
-    [Not Found], [Risorsa richiesta non trovata.], [409],
+    [404], [Not Found], [Risorsa richiesta non trovata.],
+    [409],
     [Conflict],
     [Conflitto nello stato della risorsa, ad esempio tentativo di creare un Gateway con factory_id già esistente.],
 
@@ -976,7 +970,7 @@
     codice, oltre a migliorare la testabilità isolata dei singoli componenti.
   ]
 
-  #st.design-rationale(title: "Introduzioni di Mappers tra i layer")[
+  #st.design-rationale(title: "Introduzione di Mappers tra i layer")[
     L'utilizzo di *`Persistence Entities`*, *`Business Models`* e *`DTO`* ha portato alla necessità di introdurre
     componenti di mapping dedicati per permettere una conversione corretta e centralizzata dei dati tra i diversi layer
     del modulo. I *`Mapper`* consentono di incapsulare la logica di trasformazione dei dati, mantenendo i controller e i
