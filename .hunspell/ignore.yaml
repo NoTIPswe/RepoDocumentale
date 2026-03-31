@@ -388,6 +388,16 @@ accepted_words:
   - AuditLogEntity
   - ApiClientEntity
   - CommandEntity
+  - KeycloakHostname
+  - Enums
+  - HOSTNAME
+  - localhost
+  - TenantStatus
+  - UsersRole
+  - GatewayStatus
+  - AlertType
+  - CommandType
+  - CommandStatus
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
@@ -459,3 +469,5 @@ accepted_words:
   - impersonazione
   - impersonare
   - intra
+  - testabilità
+  - centralizzata
