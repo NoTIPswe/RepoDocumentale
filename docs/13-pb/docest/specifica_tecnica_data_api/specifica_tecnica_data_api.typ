@@ -315,7 +315,7 @@
     stroke: 0.6pt + rgb("#666"),
     align: left + top,
 
-    table.header([*Entita*], [*Campi*]),
+    table.header([*Entità*], [*Campi*]),
 
     [MeasureEntity],
     [
@@ -619,7 +619,7 @@
     [404],
     [Not Found],
     [
-      Risorsa non trovata. Nel contesto dell'endpoint `sensor` puo indicare che il gateway richiesto o la risorsa
+      Risorsa non trovata. Nel contesto dell'endpoint `sensor` può indicare che il gateway richiesto o la risorsa
       associata non e disponibile.
     ],
 
@@ -645,7 +645,7 @@
 
   Il `MeasureService` valida i parametri ricevuti, verificando in particolare il limite massimo degli elementi richiesti
   e la dimensione della finestra temporale. In caso di validazione positiva, la richiesta viene delegata al
-  `MeasurePersistenceService`, che costruisce una query TypeORM sull'entita `MeasureEntity` e recupera una pagina di
+  `MeasurePersistenceService`, che costruisce una query TypeORM sull'entità `MeasureEntity` e recupera una pagina di
   risultati dal database PostgreSQL.
 
   I dati ottenuti vengono poi trasformati tramite `MeasureMapper` in oggetti `QueryResponseDto`, comprensivi della lista
@@ -677,7 +677,7 @@
 
   === Elenco dei Sensori Disponibili
 
-  Il client puo richiedere l'elenco dei sensori osservati di recente tramite l'endpoint `GET /sensor`. Il
+  Il client può richiedere l'elenco dei sensori osservati di recente tramite l'endpoint `GET /sensor`. Il
   `SensorController` costruisce l'input applicativo e lo inoltra al `SensorService`.
 
   Il `SensorService` definisce automaticamente una finestra temporale degli ultimi dieci minuti e interroga il livello
