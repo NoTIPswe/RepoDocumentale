@@ -81,3 +81,10 @@ $defs:
             not_implemented → NI  (not yet implemented/executed)
             passed          → S   (superato)
             failed          → NS  (non superato)
+
+      component:
+        type: string
+        description: >
+          Optional component/service this test belongs to.
+          Used to create nested subsections in test documentation.
+          If not specified, test appears in the main section.
