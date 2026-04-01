@@ -1,6 +1,3 @@
-#let table-with-caption(table-content, caption-text) = [
-  table-content text(italic, 9pt)[caption-text]
-]
 #import "../../00-templates/base_document.typ" as base-document
 #import "../specifica_tecnica/st_lib.typ" as st
 
@@ -28,7 +25,9 @@
   mancanza di una di queste variabili comporterà un errore all'avvio del microservizio:
 
   #figure(
-    [#table(
+    caption: [Variabili d'ambiente del microservizio `notip-management-api`],
+  )[
+    #table(
       columns: (auto, auto, auto, auto),
       [Campo], [Variabile d'ambiente], [Default], [Obbligatorio],
       [KeycloakRealm], [KEYCLOAK_REALM], [-], [Si],
@@ -43,9 +42,8 @@
       [DBPassword], [MGMT_DB_PASSWORD], [—], [Sì],
       [DBEncryptionKey], [MGMT_DB_ENCRYPTION_KEY], [-], [Si],
       [ApiPort], [MGMT_API_PORT], [3001], [No],
-    )],
-    caption: "Tabella delle variabili d'ambiente",
-  )
+    )
+  ]
 
 
   == Sequenza di avvio
@@ -54,7 +52,9 @@
   esterni siano operativi prima di avviare `notip-management-api`. La sequenza di avvio è la seguente:
 
   #figure(
-    [#table(
+    caption: [Sequenza di avvio del microservizio `notip-management-api`],
+  )[
+    #table(
       columns: (auto, 1.5fr, 2.5fr, auto),
       [Step], [Componente], [Azione], [Bloccante?],
       [0], [.env], [Carica le variabili d'ambiente del servizio], [Si],
@@ -65,9 +65,8 @@
       [5], [jwt.strategy], [Configura la strategia JWT con Keycloak], [Si],
       [6], [keys.module], [Registra il modulo per la gestione delle chiavi], [Si],
       [7], [main], [Crea l’applicazione NestJS, registra pipe, filtri globali e documentazione Swagger.], [Si],
-    )],
-    caption: "Sequenza di avvio del microservizio",
-  )
+    )
+  ]
 
 
 
@@ -87,9 +86,10 @@
   dei moduli interni al microservizio e delle cartelle di contorno, in particolare questa è la struttura del modulo
   `gateways`:
 
-  #align(center)[
-    #figure([#image("./assets/gatewaysDiagram.png", width: 100%)], caption: "Architettura interna del modulo Gateways")
-
+  #figure(
+    caption: [Architettura interna del modulo `Gateways`],
+  )[
+    #image("./assets/gatewaysDiagram.png", width: 100%)
   ]
 
   ```text
@@ -116,7 +116,9 @@
   dei componenti principali:
 
   #figure(
-    [#table(
+    caption: [Strati architetturali del microservizio `notip-management-api`],
+  )[
+    #table(
       columns: (1.5fr, 2fr, 2.5fr),
       [Strato], [Package], [Contenuto],
       [Presentation],
@@ -135,9 +137,8 @@
       [Gestione dell'accesso ai dati tramite TypeORM, definizione delle entità e dei repository, gestione delle
         migrazioni del database, implementazione dei servizi di persistenza che interagiscono con il database
         PostgreSQL.],
-    )],
-    caption: "Strati architetturali del microservizio",
-  )
+    )
+  ]
 
 
   = Design di Dettaglio
@@ -145,7 +146,9 @@
   == Moduli del microservizio
 
   #figure(
-    [#table(
+    caption: [Moduli interni del microservizio `notip-management-api`],
+  )[
+    #table(
       columns: (0.5fr, 1fr),
       [Modulo], [Responsabilità],
       [AuthModule],
@@ -182,83 +185,84 @@
       [CommonModule],
       [Contiene componenti trasversali come decoratori, filtri, intercettori, validazione configurazione e utility
         condivise.],
-    )],
-    caption: "Moduli interni al microservizio",
-  )
+    )
+  ]
 
 
 
   == Entità
   #figure(
-    [#table(
-        columns: (1.5fr, 2fr),
-        [Entità], [Campi],
+    caption: [Entità principali del microservizio `notip-management-api`],
+  )[
+    #table(
+      columns: (1.5fr, 2fr),
+      [Entità], [Campi],
 
-        [TenantEntity],
-        [#par(justify: false)[
-          *`id`*: `uuid v4`, *`name`*: `string`, *`status`*: `TenantStatus` `(enum)`, *`suspensionIntervalDays`*:
-          `number | null`, *`createdAt`*: `Date`, *`updatedAt`*: `Date`]],
+      [TenantEntity],
+      [#par(justify: false)[
+        *`id`*: `uuid v4`, *`name`*: `string`, *`status`*: `TenantStatus` `(enum)`, *`suspensionIntervalDays`*:
+        `number | null`, *`createdAt`*: `Date`, *`updatedAt`*: `Date`]],
 
-        [UserEntity],
-        [#par(justify: false)[
-          *`id`*: `uuid`, *`tenantId`*: `string`, *`name`*: `string`, *`email`*: `string`, *`role`*: `UsersRole`
-          `(enum)`, *`permissions`*: `string[] | null`, *`lastAccess`*: `Date | null`, *`createdAt`*: `Date`]],
+      [UserEntity],
+      [#par(justify: false)[
+        *`id`*: `uuid`, *`tenantId`*: `string`, *`name`*: `string`, *`email`*: `string`, *`role`*: `UsersRole` `(enum)`,
+        *`permissions`*: `string[] | null`, *`lastAccess`*: `Date | null`, *`createdAt`*: `Date`]],
 
-        [GatewayEntity],
-        [#par(justify: false)[
-          *`id`*: `uuid v4`, *`tenantId`*: `string`, *`factoryId`*: `string`, *`factoryKeyHash`*: `string | null`,
-          *`provisioned`*: `boolean`, *`model`*: `string`, *`firmwareVersion`*: `string`, *`createdAt`*: `Date`,
-          *`updatedAt`*:
-          `Date`]],
+      [GatewayEntity],
+      [#par(justify: false)[
+        *`id`*: `uuid v4`, *`tenantId`*: `string`, *`factoryId`*: `string`, *`factoryKeyHash`*: `string | null`,
+        *`provisioned`*: `boolean`, *`model`*: `string`, *`firmwareVersion`*: `string`, *`createdAt`*: `Date`,
+        *`updatedAt`*:
+        `Date`]],
 
-        [GatewayMetadataEntity],
-        [#par(justify: false)[
-          *`gatewayId`*: `uuid`, *`name`*: `string`, *`status`*: `GatewayStatus` `(enum)`, *`lastSeenAt`*: `Date`,
-          *`sendFrequencyMs`*:
-          `number | null`]],
+      [GatewayMetadataEntity],
+      [#par(justify: false)[
+        *`gatewayId`*: `uuid`, *`name`*: `string`, *`status`*: `GatewayStatus` `(enum)`, *`lastSeenAt`*: `Date`,
+        *`sendFrequencyMs`*:
+        `number | null`]],
 
-        [KeyEntity],
-        [#par(justify: false)[
-          *`id`*: `uuid v4`, *`gatewayId`*: `uuid`, *`keyMaterial`*: `Buffer`, *`keyVersion`*: `number`, *`createdAt`*:
-          `Date`, *`revokedAt`*: `Date | null`]],
+      [KeyEntity],
+      [#par(justify: false)[
+        *`id`*: `uuid v4`, *`gatewayId`*: `uuid`, *`keyMaterial`*: `Buffer`, *`keyVersion`*: `number`, *`createdAt`*:
+        `Date`, *`revokedAt`*: `Date | null`]],
 
-        [AlertsEntity],
-        [#par(justify: false)[
-          *`id`*: `uuid v4`, *`tenantId`*: `uuid`, *`type`*: `AlertType` `(enum)`, *`gatewayId`*: `uuid`, *`details`*:
-          `jsonb`, *`createdAt`*: `Date`]],
+      [AlertsEntity],
+      [#par(justify: false)[
+        *`id`*: `uuid v4`, *`tenantId`*: `uuid`, *`type`*: `AlertType` `(enum)`, *`gatewayId`*: `uuid`, *`details`*:
+        `jsonb`, *`createdAt`*: `Date`]],
 
-        [AlertsConfigEntity],
-        [#par(justify: false)[
-          *`id`*: `uuid v4`, *`tenantId`*: `string`, *`gatewayId`*: `uuid | null`, *`gatewayTimeoutMs`*: `number`,
-          *`updatedAt`*:
-          `Date`]],
+      [AlertsConfigEntity],
+      [#par(justify: false)[
+        *`id`*: `uuid v4`, *`tenantId`*: `string`, *`gatewayId`*: `uuid | null`, *`gatewayTimeoutMs`*: `number`,
+        *`updatedAt`*:
+        `Date`]],
 
-        [ThresholdEntity],
-        [#par(justify: false)[
-          *`id`*: `uuid v4`, *`tenantId`*: `uuid`, *`sensorType`*: `string | null`, *`sensorId`*: `uuid | null`,
-          *`minValue`*: `number`, *`maxValue`*: `number`, *`createdAt`*: `Date`, *`updatedAt`*: `Date`]],
+      [ThresholdEntity],
+      [#par(justify: false)[
+        *`id`*: `uuid v4`, *`tenantId`*: `uuid`, *`sensorType`*: `string | null`, *`sensorId`*: `uuid | null`,
+        *`minValue`*: `number`, *`maxValue`*: `number`, *`createdAt`*: `Date`, *`updatedAt`*: `Date`]],
 
-        [AuditLogEntity],
-        [#par(justify: false)[
-          *`id`*: `uuid v4`, *`tenantId`*: `uuid`, *`userId`*: `uuid`, *`action`*: `string`, *`resource`*: `string`,
-          *`details`*: `jsonb`, *`timestamp`*: `Date`]],
+      [AuditLogEntity],
+      [#par(justify: false)[
+        *`id`*: `uuid v4`, *`tenantId`*: `uuid`, *`userId`*: `uuid`, *`action`*: `string`, *`resource`*: `string`,
+        *`details`*: `jsonb`, *`timestamp`*: `Date`]],
 
-        [ApiClientEntity],
-        [#par(justify: false)[
-          *`id`*: `string`, *`tenantId`*: `uuid`, *`name`*: `string`, *`keycloakClientId`*: `string`, *`createdAt`*:
-          `Date`]],
+      [ApiClientEntity],
+      [#par(justify: false)[
+        *`id`*: `string`, *`tenantId`*: `uuid`, *`name`*: `string`, *`keycloakClientId`*: `string`, *`createdAt`*:
+        `Date`]],
 
-        [CommandEntity],
-        [#par(justify: false)[
-          *`id`*: `uuid v4`, *`gatewayId`*: `uuid`, *`tenantId`*: `uuid`, *`type`*: `CommandType` `(enum)`, *`status`*:
-          `CommandStatus` `(enum)`, *`issuedAt`*: `Date`, *`ackReceivedAt`*: `Date | null`, *`createdAt`*: `Date`]],
-      )
-    ],
-    caption: "Entità principali del microservizio",
-  )
+      [CommandEntity],
+      [#par(justify: false)[
+        *`id`*: `uuid v4`, *`gatewayId`*: `uuid`, *`tenantId`*: `uuid`, *`type`*: `CommandType` `(enum)`, *`status`*:
+        `CommandStatus` `(enum)`, *`issuedAt`*: `Date`, *`ackReceivedAt`*: `Date | null`, *`createdAt`*: `Date`]],
+    )
+  ]
   == Enums
   #figure(
-    table(
+    caption: [Enumerazioni principali del microservizio `notip-management-api`],
+  )[
+    #table(
       columns: (1fr, 2fr),
       [Enum], [Valori],
       [TenantStatus], [*`active`*, *`suspended`*],
@@ -267,8 +271,8 @@
       [AlertType], [*`gateway_offline`*],
       [CommandType], [*`config`*, *`firmware`*, *`suspend`*],
       [CommandStatus], [*`queued`*, *`ack`*, *`nack`*, *`expired`*, *`timeout`*],
-    ),
-  )
+    )
+  ]
   == Endpoint API
   Di seguito è riportato l'elenco completo degli endpoint esposti dal microservizio divisi per area di interesse. Non
   tutti gli endpoint sono accessibili via frontend, alcuni sono utilizzati esclusivamente per la comunicazione tra
@@ -277,15 +281,18 @@
     set par(justify: false)
     body
   })
+  #show raw.where(lang: "json"): set text(size: 7pt)
 
   === Admin
   Questi endpoint sono accessibili solo agli utenti con ruolo `system_admin`:
 
   #figure(
-    table(
-      columns: (1fr, auto, 2.2fr, 2.4fr, 2fr),
+    caption: [Endpoint riservati agli amministratori di sistema],
+  )[
+    #table(
+      columns: (0.8fr, 1.4fr, 1.6fr, 2.4fr, 2.2fr),
       align: (left, left, left, left, left),
-      [*Metodo*], [*Endpoint*], [*Descrizione*], [*Body Request*], [*Response*],
+      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
 
       [`GET`],
       [`/admin/tenants`],
@@ -378,7 +385,8 @@
       {
         "factory_id": "string",
         "tenant_id": "string",
-        "factory_key_hash": "string"
+        "factory_key_hash":
+        "string"
       }
       ```],
       [```json
@@ -386,18 +394,19 @@
         "id": "string"
       }
       ```],
-    ),
-    caption: [Endpoint riservati agli amministratori di sistema],
-  )
+    )
+  ]
 
   === Auth
   Questi endpoint sono accessibili agli utenti autenticati; l’endpoint di impersonazione è riservato ai `system_admin`:
 
   #figure(
-    table(
-      columns: (1fr, auto, 2.2fr, 1.4fr, 2fr),
+    caption: [Endpoint di autenticazione e impersonazione],
+  )[
+    #table(
+      columns: (0.8fr, 1.4fr, 1.6fr, 2.4fr, 3fr),
       align: (left, left, left, left, left),
-      [*Metodo*], [*Endpoint*], [*Descrizione*], [*Body Request*], [*Response*],
+      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
 
       [`GET`],
       [`/auth/me`],
@@ -433,18 +442,19 @@
         "expires_in": "number"
       }
       ```],
-    ),
-    caption: [Endpoint di autenticazione e impersonazione],
-  )
+    )
+  ]
 
   === Gateways
   Questi endpoint sono accessibili agli utenti del Tenant; le modifiche sono riservate ai `tenant_admin`:
 
   #figure(
-    table(
-      columns: (1fr, auto, 1.5fr, 1.5fr, 2fr),
+    caption: [Endpoint per la gestione dei `Gateway`],
+  )[
+    #table(
+      columns: (0.8fr, 1.4fr, 1.6fr, 2.4fr, 2.7fr),
       align: (left, left, left, left, left),
-      [*Metodo*], [*Endpoint*], [*Descrizione*], [*Body Request*], [*Response*],
+      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
 
       [`GET`],
       [`/gateways`],
@@ -500,18 +510,19 @@
       [```json
       { "status": 200 }
       ```],
-    ),
-    caption: [Endpoint per la gestione dei Gateway],
-  )
+    )
+  ]
 
   === Users
   Questi endpoint sono accessibili ai `tenant_admin`:
 
   #figure(
-    table(
-      columns: (1fr, auto, 2.2fr, 2.4fr, 2fr),
+    caption: [Endpoint per la gestione degli utenti del `Tenant`],
+  )[
+    #table(
+      columns: (1fr, 1.5fr, 2.2fr, 2.4fr, 2.5fr),
       align: (left, left, left, left, left),
-      [*Metodo*], [*Endpoint*], [*Descrizione*], [*Body Request*], [*Response*],
+      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
 
       [`GET`],
       [`/users`],
@@ -594,16 +605,17 @@
         "failed": ["string"]
       }
       ```],
-    ),
-    caption: [Endpoint per la gestione degli utenti del Tenant],
-  )
+    )
+  ]
 
   === API Clients
   #figure(
-    table(
-      columns: (1fr, auto, 1.5fr, 1.2fr, 2fr),
+    caption: [Endpoint per la gestione degli `API Client`],
+  )[
+    #table(
+      columns: (1fr, 1.8fr, 1.5fr, 1.6fr, 2.3fr),
       align: (left, left, left, left, left),
-      [*Metodo*], [*Endpoint*], [*Descrizione*], [*Body Request*], [*Response*],
+      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
 
       [`GET`],
       [`/api-clients`],
@@ -641,16 +653,17 @@
       [```json
       { "status": 200 }
       ```],
-    ),
-    caption: [Endpoint per la gestione degli API Client],
-  )
+    )
+  ]
 
   === Keys e Provisioning
   #figure(
-    table(
-      columns: (1fr, auto, 1.7fr, 2.1fr, 2fr),
+    caption: [Endpoint per chiavi e provisioning],
+  )[
+    #table(
+      columns: (1fr, 1.8fr, 1.7fr, 2.5fr, 2.5fr),
       align: (left, left, left, left, left),
-      [*Metodo*], [*Endpoint*], [*Descrizione*], [*Body Request*], [*Response*],
+      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
 
       [`GET`],
       [`/keys?id=:gatewayId`],
@@ -693,16 +706,17 @@
       [```json
       { "success": "boolean" }
       ```],
-    ),
-    caption: [Endpoint per chiavi e provisioning],
-  )
+    )
+  ]
 
   === Alerts
   #figure(
-    table(
-      columns: (1fr, 1.6fr, 1.5fr, auto, 2fr),
+    caption: [Endpoint per la gestione degli alert],
+  )[
+    #table(
+      columns: (1fr, 1.6fr, 1.5fr, 1.8fr, 2.5fr),
       align: (left, left, left, left, left),
-      [*Metodo*], [*Endpoint*], [*Descrizione*], [*Body Request*], [*Response*],
+      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
 
       [`GET`],
       [`/alerts/config`],
@@ -721,8 +735,11 @@
 
       [`GET`],
       [
-        `/alerts?from=:from&to=:to
-&gatewayId=:gatewayId`],
+        `/alerts?from=:from&` \
+        `to=:to&` \
+        `gatewayId=
+        :gatewayId`
+      ],
       desc[Restituisce gli alert del Tenant nel range richiesto],
       [-],
       [```json
@@ -731,11 +748,12 @@
         "gateway_id": "string",
         "type": "AlertType",
         "details":
-                  {
-                    "last_seen": "string",
-                    "timeout_configured":
-                      "number"
-                  },
+            {
+              "last_seen":
+              "string",
+              "timeout_configured":
+              "number"
+            },
         "created_at": "string"
       }]
       ```],
@@ -744,7 +762,8 @@
       [`/alerts/config/default`],
       desc[Imposta la configurazione alert di default],
       [```json
-      { "timeout_ms": "number" }
+      { "timeout_ms":
+        "number" }
       ```],
       [```json
       {
@@ -755,10 +774,12 @@
       ```],
 
       [`PUT`],
-      [`/alerts/config/gateway/:gatewayId`],
+      [`/alerts/config/gateway/
+      :gatewayId`],
       desc[Imposta la configurazione alert specifica per un Gateway],
       [```json
-      { "timeout_ms": "number" }
+      { "timeout_ms":
+        "number" }
       ```],
       [```json
       {
@@ -769,7 +790,8 @@
       ```],
 
       [`DELETE`],
-      [`/alerts/config/gateway/:gatewayId`],
+      [`/alerts/config/gateway/
+      :gatewayId`],
       desc[Elimina la configurazione alert specifica per un Gateway, tornando a utilizzare la configurazione di
         default],
       [-],
@@ -778,16 +800,17 @@
         "status": 200,
       }
       ```],
-    ),
-    caption: [Endpoint per la gestione degli alert],
-  )
+    )
+  ]
 
   === Thresholds
   #figure(
-    table(
-      columns: (1fr, auto, 2.2fr, 2fr, 2fr),
+    caption: [Endpoint per la gestione delle soglie],
+  )[
+    #table(
+      columns: (1fr, 2fr, 2.2fr, 2.7fr, 2.7fr),
       align: (left, left, left, left, left),
-      [*Metodo*], [*Endpoint*], [*Descrizione*], [*Body Request*], [*Response*],
+      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
 
       [`GET`],
       [`/thresholds`],
@@ -795,7 +818,8 @@
       [-],
       [```json
       [{
-        "sensor_type?": "string",
+        "sensor_type?":
+        "string",
         "sensor_id?": "string",
         "min_value": "number",
         "max_value": "number",
@@ -849,35 +873,39 @@
       ```],
 
       [`DELETE`],
-      [`/thresholds/type/:sensor_type`],
+      [`/thresholds/type/
+      :sensor_type`],
       desc[Elimina la soglia di default per una intera tipologia di sensori.],
       [-],
       [```json
       {"status": 200}
       ```],
-    ),
-    caption: [Endpoint per le soglie],
-  )
+    )
+  ]
 
   === Commands
   #figure(
-    table(
-      columns: (1fr, 1.4fr, 1.8fr, 2.0fr, 2fr),
+    caption: [Endpoint per l'invio e il tracciamento dei comandi],
+  )[
+    #table(
+      columns: (1fr, 1.8fr, 1.8fr, 2.0fr, 2fr),
       align: (left, left, left, left, left),
-      [*Metodo*], [*Endpoint*], [*Descrizione*], [*Body Request*], [*Response*],
+      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
 
       [`POST`],
       [`/cmd/:gatewayId/config`],
       desc[Invia una configurazione a un Gateway],
       [```json
       {
-        "send_frequency_ms?": "number",
+        "send_frequency_ms?":
+        "number",
         "status?": "string"
       }
       ```],
       [```json
       {
-        "command_id": "string",
+        "command_id":
+        "string",
         "status": "queued",
         "issued_at": "string"
       }
@@ -888,39 +916,46 @@
       desc[Invia un comando di aggiornamento firmware a uno specifico Gateway.],
       [```json
       {
-        "firmware_version": "string",
-        "download_url": "string"
+        "firmware_version":
+        "string",
+        "download_url":
+        "string"
       }
       ```],
       [```json
       {
-        "command_id": "string",
+        "command_id":
+        "string",
         "status": "queued",
         "issued_at": "string"
       }
       ```],
 
       [`GET`],
-      [`/cmd/:gatewayId/status/:commandId`],
+      [`/cmd/:gatewayId/status/
+      :commandId`],
       desc[Restituisce lo stato corrente di esecuzione di un comando specifico.],
       [-],
       [```json
       {
-        "command_id": "string",
-        "status": "CommandStatus",
+        "command_id":
+        "string",
+        "status":
+        "CommandStatus",
         "timestamp?": "string"
       }
       ```],
-    ),
-    caption: [Endpoint per i comandi],
-  )
+    )
+  ]
 
   === Costs
   #figure(
-    table(
-      columns: (1fr, auto, 2.2fr, 2.4fr, 2fr),
+    caption: [Endpoint per la consultazione dei costi],
+  )[
+    #table(
+      columns: (1fr, 1.7fr, 2.2fr, 2.4fr, 2fr),
       align: (left, left, left, left, left),
-      [*Metodo*], [*Endpoint*], [*Descrizione*], [*Body Request*], [*Response*],
+      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
 
       [`GET`],
       [`/costs`],
@@ -928,37 +963,46 @@
       [-],
       [```json
       {
-        "storage_gb": "number",
-        "bandwidth_gb": "number"
+        "storage_gb":
+        "number",
+        "bandwidth_gb":
+        "number"
       }
       ```],
-    ),
-    caption: [Endpoint per la consultazione dei costi],
-  )
+    )
+  ]
   === Errori
   Di seguito sono elencati i principali codici di errore restituiti dagli endpoint del microservizio, con una breve
   descrizione di ciascuno. In caso di errori non gestiti o eccezioni impreviste, il microservizio restituisce un errore
-  generico 500 Internal Server Error. #table(
-    columns: (auto, auto, 2.2fr),
-    align: (left, left, left),
-    [Codice], [Errore], [Descrizione],
-    [401], [Unauthorized], [Client non autorizzato.],
-    [403],
-    [Forbidden],
-    [Accesso negato, mancanza di permessi necessari, oppure nei casi di endpoint bloccati a chi sta impersonando un
-      altro utente.],
+  generico 500 Internal Server Error.
 
-    [404], [Not Found], [Risorsa richiesta non trovata.],
-    [409],
-    [Conflict],
-    [Conflitto nello stato della risorsa, ad esempio tentativo di creare un Gateway con factory_id già esistente.],
+  #figure(
+    caption: [Codici di errore del microservizio `notip-management-api`],
+  )[
+    #table(
+      columns: (auto, auto, 2.2fr),
+      align: (left, left, left),
+      [Codice], [Errore], [Descrizione],
+      [401], [Unauthorized], [Client non autorizzato.],
+      [403],
+      [Forbidden],
+      [Accesso negato, mancanza di permessi necessari, oppure nei casi di endpoint bloccati a chi sta impersonando un
+        altro utente.],
 
-    [500], [Internal Server Error], [Errore generico del server, in caso di eccezioni non gestite o errori imprevisti.],
+      [404], [Not Found], [Risorsa richiesta non trovata.],
+      [409],
+      [Conflict],
+      [Conflitto nello stato della risorsa, ad esempio tentativo di creare un Gateway con factory_id già esistente.],
 
-    [503], [Service Unavailable],
+      [500],
+      [Internal Server Error],
+      [Errore generico del server, in caso di eccezioni non gestite o errori imprevisti.],
 
-    [Il servizio non è disponibile, ad esempio in caso di problemi di connessione con NATS o a Keycloak.],
-  )
+      [503], [Service Unavailable],
+
+      [Il servizio non è disponibile, ad esempio in caso di problemi di connessione con NATS o a Keycloak.],
+    )
+  ]
   == Decisioni implementative
 
   #st.design-rationale(title: "Interfacce tra le componenti dei moduli")[
