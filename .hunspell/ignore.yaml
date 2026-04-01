@@ -196,8 +196,11 @@ accepted_words:
   - WLock
   - NAK
   - MeasureController
+  - MeasureEntity
+  - MeasureModule
   - MeasureService
   - SensorController
+  - SensorModule
   - SensorService
   - MeasurePersistenceService
   - StreamListenerService
@@ -213,6 +216,8 @@ accepted_words:
   - deduplicazione
   - mockato
   - TestContainers
+  - timestamptz
+  - uuid
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -403,6 +408,7 @@ accepted_words:
   - init
   - cryptographically
   - validator
+  - AppModule
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
@@ -475,3 +481,5 @@ accepted_words:
   - impersonazione
   - impersonare
   - intra
+  - centralizzata
+  - testabilità
