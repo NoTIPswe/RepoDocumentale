@@ -33,15 +33,27 @@
       [KeycloakRealm], [KEYCLOAK_REALM], [-], [Si],
       [KeycloakClientId], [KEYCLOAK_MGMT_CLIENT_ID], [-], [Si],
       [KeycloakClientSecret], [KEYCLOAK_MGMT_CLIENT_SECRET], [-], [Si],
-      [KeycloakHostname], [KEYCLOAK_HOSTNAME], [localhost], [No],
+      [KeycloakUrl], [KEYCLOAK_URL], [-], [Si],
       [NATSUrl], [NATS_URL], [-], [Si],
       [DBHost], [MGMT_DB_HOST], [—], [Sì],
       [DBPort], [MGMT_DB_PORT], [5432], [No],
       [DBName], [MGMT_DB_NAME], [—], [Sì],
       [DBUser], [MGMT_DB_USER], [—], [Sì],
       [DBPassword], [MGMT_DB_PASSWORD], [—], [Sì],
-      [DBEncryptionKey], [MGMT_DB_ENCRYPTION_KEY], [-], [Si],
-      [ApiPort], [MGMT_API_PORT], [3001], [No],
+      [DBEncryptionKey], [DB_ENCRYPTION_KEY], [-], [Si],
+      [ApiPort], [MGMT_API_PORT], [3000], [No],
+      [NodeEnv], [NODE_ENV], [development], [No],
+      [MockAuth], [MOCK_AUTH], [false], [No],
+      [MockNats], [MOCK_NATS], [true], [No],
+      [NatsServers], [NATS_SERVERS], [NATS_URL], [No],
+      [NatsClientName], [NATS_CLIENT_NAME], [management-api], [No],
+      [NatsDurablePrefix], [NATS_DURABLE_PREFIX], [management-api], [No],
+      [NatsTlsCa], [NATS_TLS_CA], [-], [No],
+      [NatsTlsCert], [NATS_TLS_CERT], [-], [No],
+      [NatsTlsKey], [NATS_TLS_KEY], [-], [No],
+      [NatsToken], [NATS_TOKEN], [-], [No],
+      [NatsUser], [NATS_USER], [-], [No],
+      [NatsPassword], [NATS_PASSWORD], [-], [No],
     )
   ]
 
@@ -59,18 +71,23 @@
       [Step], [Componente], [Azione], [Bloccante?],
       [0], [.env], [Carica le variabili d'ambiente del servizio], [Si],
       [1], [env.validation], [Verifica la validità delle variabili d'ambiente], [Si],
-      [2], [bootstrap.nestjs], [Inizializza i moduli, controller e provider dell'applicazione NestJS], [Si],
-      [3], [app.module], [Inizializza TypeORM], [Si],
-      [4], [auth.module], [Registra guard, e servizi di autenticazione], [Si],
-      [5], [jwt.strategy], [Configura la strategia JWT con Keycloak], [Si],
-      [6], [keys.module], [Registra il modulo per la gestione delle chiavi], [Si],
-      [7], [main], [Crea l’applicazione NestJS, registra pipe, filtri globali e documentazione Swagger.], [Si],
+      [2], [ConfigModule], [Carica e valida la configurazione globale del microservizio], [Si],
+      [3], [app.module], [Registra i moduli applicativi, EventEmitter e il provider globale di audit], [Si],
+      [4], [TypeORM], [Inizializza la connessione PostgreSQL, tranne in ambiente di test], [Si],
+      [5],
+      [auth.module],
+      [Registra i guard globali di autenticazione, ruoli, policy di accesso e blocco impersonazione],
+      [Si],
+
+      [6], [jwt.strategy], [Configura la strategia JWT con Keycloak e JWKS], [Si],
+      [7],
+      [main],
+      [Crea l’applicazione NestJS, registra ValidationPipe, filtri globali e documentazione Swagger su `/docs`.],
+      [Si],
+
+      [8], [http.server], [Avvia il listener HTTP sulla porta configurata], [Si],
     )
   ]
-
-
-
-  #pagebreak()
 
   = Architettura Logica
 
@@ -89,26 +106,26 @@
   #figure(
     caption: [Architettura interna del modulo `Gateways`],
   )[
-    #image("./assets/gatewaysDiagram.png", width: 100%)
+    #image("./assets/gatewaysDiagram.png", width: 90%)
   ]
 
   ```text
   notip-management-api/
   ├── src/
   │   ├── gateways/
-  │   │   ├── controller/         GatewaysController
-  │   │   ├── services/           GatewaysService, GatewaysPersistenceService
-  │   │   ├── models/             GatewayModel
-  │   │   ├── entities/           GatewayEntity del relativo Repository TypeORM
-  │   │   ├── interfaces/         controller-service-interfaces, service-persistence-interfaces
-  │   │   ├── dto/                Tutti i request e response DTO relativi ai Gateway
-  │   │   ├── enums/              Eventuali enumerazioni specifiche dei Gateway ad esempio GatewayStatus
+  │   │   ├── controller/     GatewaysController
+  │   │   ├── services/       GatewaysService, GatewaysPersistenceService
+  │   │   ├── models/         GatewayModel
+  │   │   ├── entities/       GatewayEntity del relativo Repository TypeORM
+  │   │   ├── interfaces/     Controller-service-interfaces, service-persistence-interfaces
+  │   │   ├── dto/            Tutti i request e response DTO relativi ai Gateway
+  │   │   ├── enums/          Eventuali enumerazioni specifiche dei Gateway ad esempio GatewayStatus
   │   │   ├── gateways.module.ts
   │   │   └── gateways.mapper.ts
   │   │
-  │   ├── common/                 Componenti condivisi tra i moduli, ad esempio decoratori, interceptor, pipe
-  │   ├── test/                   Test unitari e di integrazione del servizio
-  │   └── migrations/             TypeORM migrations per la gestione dello schema del database
+  │   ├── common/             Componenti condivisi tra i moduli, ad esempio decoratori
+  │   ├── test/               Test unitari e di integrazione del servizio
+  │   └── migrations/         TypeORM migrations per la gestione dello schema del database
   ```
   == Strati Architetturali
   Di seguito è riportata la suddivisione in strati architetturali del microservizio, con l'indicazione delle cartelle e
@@ -265,11 +282,33 @@
       columns: (1fr, 2fr),
       [Enum], [Valori],
       [TenantStatus], [*`active`*, *`suspended`*],
-      [UsersRole], [*`system_admin`*, *`tenant_admin`*, *`user`*],
-      [GatewayStatus], [*`online`*, *`offline`*, *`provisioning`*, *`suspended`*],
+      [UsersRole], [*`system_admin`*, *`tenant_admin`*, *`tenant_user`*],
+      [GatewayStatus], [*`gateway_online`*, *`gateway_offline`*, *`gateway_provisioning`*, *`gateway_suspended`*],
       [AlertType], [*`gateway_offline`*],
       [CommandType], [*`config`*, *`firmware`*, *`suspend`*],
       [CommandStatus], [*`queued`*, *`ack`*, *`nack`*, *`expired`*, *`timeout`*],
+    )
+  ]
+  == Policy di accesso
+
+  Il microservizio applica policy di accesso trasversali tramite decorator e guard globali. Le principali sono:
+
+  #figure(
+    caption: [Policy di accesso e vincoli di impersonazione],
+  )[
+    #table(
+      columns: (1.2fr, 2.5fr),
+      [Policy], [Descrizione],
+      [`Public`],
+      [Endpoint accessibili senza autenticazione, come `/`, `/health` e gli endpoint interni di provisioning.],
+
+      [`AdminOnly`], [Endpoint riservati a utenti con ruolo `system_admin`, tipicamente sotto il prefisso `/admin`.],
+      [`TenantScoped`],
+      [Endpoint accessibili solo nel contesto di un tenant autenticato, con controllo di ruolo applicativo.],
+
+      [`BlockImpersonation`],
+      [Vincolo aggiuntivo applicato a operazioni sensibili come gestione gateway, chiavi e invio comandi, non consentite
+        durante impersonazione.],
     )
   ]
   == Endpoint API
@@ -282,6 +321,35 @@
   })
   #show raw.where(lang: "json"): set text(size: 7pt)
 
+  === Public
+  Questi endpoint sono accessibili senza autenticazione:
+
+  #figure(
+    caption: [Endpoint pubblici del microservizio],
+  )[
+    #table(
+      columns: (0.8fr, 1.4fr, 1.6fr, 2.4fr, 2.2fr),
+      align: (left, left, left, left, left),
+      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
+
+      [`GET`],
+      [`/`],
+      desc[Restituisce una stringa di benvenuto/diagnostica del servizio],
+      [-],
+      [```json
+      "string"
+      ```],
+
+      [`GET`],
+      [`/health`],
+      desc[Restituisce lo stato di salute base del microservizio],
+      [-],
+      [```json
+      { "status": "ok" }
+      ```],
+    )
+  ]
+
   === Admin
   Questi endpoint sono accessibili solo agli utenti con ruolo `system_admin`:
 
@@ -289,7 +357,7 @@
     caption: [Endpoint riservati agli amministratori di sistema],
   )[
     #table(
-      columns: (0.8fr, 1.4fr, 1.6fr, 2.4fr, 2.2fr),
+      columns: (1.1fr, 1.4fr, 1.6fr, 2.4fr, 2.2fr),
       align: (left, left, left, left, left),
       [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
 
@@ -362,12 +430,14 @@
       [-],
       [```json
       {
-        "status": 200
+        "message": "Tenant deleted successfully"
       }
       ```],
 
       [`GET`],
-      [`/admin/gateways?id=:tenantId`],
+      [`/admin/gateways?`\
+        `tenant_id=
+      :tenantId`],
       desc[Restituisce tutti i Gateway, con filtro opzionale per Tenant],
       [-],
       [```json
@@ -385,7 +455,9 @@
         "factory_id": "string",
         "tenant_id": "string",
         "factory_key_hash":
-        "string"
+        "string",
+        "firmware_version": "string",
+        "model": "string"
       }
       ```],
       [```json
@@ -507,7 +579,7 @@
       desc[Elimina un Gateway],
       [-],
       [```json
-      { "status": 200 }
+      { "message": "deleted" }
       ```],
     )
   ]
@@ -645,13 +717,7 @@
       }
       ```],
 
-      [`DELETE`],
-      [`/api-clients/:id`],
-      desc[Elimina un client API],
-      [-],
-      [```json
-      { "status": 200 }
-      ```],
+      [`DELETE`], [`/api-clients/:id`], desc[Elimina un client API], [-], [-],
     )
   ]
 
@@ -699,7 +765,8 @@
       {
         "gateway_id": "string",
         "key_material": "string",
-        "key_version": "number"
+        "key_version": "number",
+        "send_frequency_ms": "number"
       }
       ```],
       [```json
@@ -736,7 +803,7 @@
       [
         `/alerts?from=:from&` \
         `to=:to&` \
-        `gatewayId=
+        `gateway_id=
         :gatewayId`
       ],
       desc[Restituisce gli alert del Tenant nel range richiesto],
@@ -761,7 +828,7 @@
       [`/alerts/config/default`],
       desc[Imposta la configurazione alert di default],
       [```json
-      { "timeout_ms":
+      { "tenant_unreachable_timeout_ms":
         "number" }
       ```],
       [```json
@@ -777,7 +844,7 @@
       :gatewayId`],
       desc[Imposta la configurazione alert specifica per un Gateway],
       [```json
-      { "timeout_ms":
+      { "gateway_unreachable_timeout_ms":
         "number" }
       ```],
       [```json
@@ -796,7 +863,7 @@
       [-],
       [```json
       {
-        "status": 200,
+        "message": "deleted"
       }
       ```],
     )
@@ -846,10 +913,12 @@
       ```],
 
       [`PUT`],
-      [`/thresholds/sensor/:id`],
+      [`/thresholds/sensor/
+      :sensorId`],
       desc[Imposta o aggiorna la soglia per uno specifico sensore (override della soglia di default).],
       [```json
       {
+        "sensor_type": "string",
         "min_value": "number",
         "max_value": "number"
       }
@@ -864,7 +933,8 @@
       ```],
 
       [`DELETE`],
-      [`/thresholds/sensor/:id`],
+      [`/thresholds/sensor/
+      :sensorId`],
       desc[Elimina la soglia specifica di un sensore, ripristinando quella di default per tipologia.],
       [-],
       [```json
@@ -873,7 +943,7 @@
 
       [`DELETE`],
       [`/thresholds/type/
-      :sensor_type`],
+      :sensorType`],
       desc[Elimina la soglia di default per una intera tipologia di sensori.],
       [-],
       [```json
@@ -970,7 +1040,95 @@
       ```],
     )
   ]
-  === Errori
+
+  === Audit
+  Questi endpoint sono accessibili ai `tenant_admin`:
+
+  #figure(
+    caption: [Endpoint per la consultazione dei log di audit],
+  )[
+    #table(
+      columns: (1fr, 1.8fr, 2fr, 2.2fr, 2.5fr),
+      align: (left, left, left, left, left),
+      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
+
+      [`GET`],
+      [`/audit?from=:
+      from&to=:
+      to&userId=:
+      userId&
+      action=:
+      action`],
+      desc[Restituisce i log di audit del tenant nel range richiesto. I parametri `from` e `to` sono obbligatori,
+        `userId` e `action` opzionali.],
+      [-],
+      [```json
+      [{
+        "id": "string",
+        "user_id": "string",
+        "action": "string",
+        "resource": "string",
+        "details": {},
+        "timestamp": "string"
+      }]
+      ```],
+    )
+  ]
+
+  == Integrazioni NATS e JetStream
+
+  Oltre alle API HTTP, il microservizio partecipa a diversi flussi asincroni e request-reply su NATS/JetStream. Di
+  seguito sono riportati i canali principali effettivamente gestiti dal servizio:
+
+  #figure(
+    caption: [Subject NATS e JetStream del microservizio `notip-management-api`],
+  )[
+    #set text(size: 9pt)
+    #table(
+      columns: (1.8fr, 1.2fr, 2.5fr),
+      [Subject], [Tipologia], [Responsabilità del microservizio],
+      [`internal.mgmt.gateway.update-status`],
+      [Core NATS Request-Reply],
+      [Riceve aggiornamenti di stato dei gateway e persiste `status` e `last_seen_at`.],
+
+      [`internal.mgmt.factory.validate`],
+      [Core NATS Request-Reply],
+      [Valida `factory_id` e `factory_key` durante il provisioning e restituisce `gateway_id` e `tenant_id`.],
+
+      [`internal.mgmt.gateway.get-status`],
+      [Core NATS Request-Reply],
+      [Restituisce lo stato lifecycle di un gateway in formato compatibile con i servizi chiamanti.],
+
+      [`internal.mgmt.alert-configs.list`],
+      [Core NATS Request-Reply],
+      [Espone la configurazione alert di tutti i tenant/gateway ad altri microservizi interni.],
+
+      [`internal.mgmt.provisioning.complete`],
+      [Core NATS Request-Reply],
+      [Completa il provisioning di un gateway e persiste il materiale chiave ricevuto.],
+
+      [`internal.cost`],
+      [Core NATS Request-Reply],
+      [Richiede dati di costo ad altri servizi per comporre la response dell’endpoint `/costs`.],
+
+      [`command.gw.{tenantId}.{gatewayId}`],
+      [JetStream Publish],
+      [Pubblica i comandi applicativi destinati a uno specifico gateway.],
+
+      [`command.ack.>`],
+      [JetStream Subscribe],
+      [Consuma gli acknowledgement dei gateway e aggiorna lo stato dei comandi persistiti.],
+
+      [`alert.{tenantId}.gw_offline`],
+      [JetStream Subscribe],
+      [Consuma gli alert di gateway offline e li persiste come eventi applicativi.],
+
+      [`gateway.decommissioned.{tenantId}.{gatewayId}`],
+      [JetStream Publish],
+      [Pubblica l’evento di decommissioning quando un gateway viene eliminato.],
+    )
+  ]
+  == Errori
   Di seguito sono elencati i principali codici di errore restituiti dagli endpoint del microservizio, con una breve
   descrizione di ciascuno. In caso di errori non gestiti o eccezioni impreviste, il microservizio restituisce un errore
   generico 500 Internal Server Error.
