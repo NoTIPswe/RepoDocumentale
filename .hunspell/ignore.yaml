@@ -296,7 +296,9 @@ accepted_words:
   - deserializzato
   - backoff
   - loggati
+  - loggato
   - unexported
+  - lifecycle
 
   # --- Terminologia Standard Progetto ---
   - req
@@ -410,6 +412,8 @@ accepted_words:
   - validator
   - AppModule
   - UCs
+  - HeartbeatTrackerConfig
+  - NATSGatewayLifecycleProvider
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
