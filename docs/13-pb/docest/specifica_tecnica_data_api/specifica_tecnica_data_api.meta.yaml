@@ -1,5 +1,19 @@
 title: Specifica Tecnica - Data-API
 changelog:
+  - version: "0.2.1"
+    date: "2026-04-01"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Alessandro Contarini
+    description: >
+      Fix indentazione
+  - version: "0.2.0"
+    date: "2026-03-31"
+    authors:
+      - Alessandro Contarini
+    verifier: Alessandro Mazzariol
+    description: >
+      Stesura finale del documento
   - version: "0.1.0"
     date: "2026-03-27"
     authors:

@@ -68,14 +68,19 @@
   )
 }
 
-#let render_test_table(path) = {
+#let render_test_table(path, component: none) = {
   let data = yaml(path)
+  let filtered_tests = if component == none {
+    data.tests.filter(test => test.at("component", default: none) == none)
+  } else {
+    data.tests.filter(test => test.at("component", default: none) == component)
+  }
   table(
     columns: (1fr, 3.5fr, 1.2fr, 0.8fr),
     stroke: 0.5pt,
     inset: 6pt,
     table.header([*Codice*], [*Descrizione*], [*Requisiti di riferimento*], [*Stato*]),
-    ..data.tests.map(test => _test_row(data.type, test)).flatten(),
+    ..filtered_tests.map(test => _test_row(data.type, test)).flatten(),
   )
 }
 

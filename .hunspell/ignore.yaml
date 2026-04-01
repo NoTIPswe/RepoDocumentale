@@ -77,8 +77,15 @@ accepted_words:
 
   # --- Tecnologie e Formati ---
   - AES
+  - AESKeyGenerator
+  - CAProvider
+  - CARepository
   - csv
+  - CSR
+  - CSRSigner
+  - CSPRNG
   - EE # for End to End Encryption (spellcheck keeps failing)
+  - FactoryValidator
   - Gin
   - GO
   - gRPC
@@ -90,7 +97,11 @@ accepted_words:
   - Golang
   - PDF
   - pdf
+  - PEM
+  - PKI
+  - ProvisioningCompleter
   - Typst
+  - TTL
   - YAML
   - yaml
   - typ
@@ -185,8 +196,11 @@ accepted_words:
   - WLock
   - NAK
   - MeasureController
+  - MeasureEntity
+  - MeasureModule
   - MeasureService
   - SensorController
+  - SensorModule
   - SensorService
   - MeasurePersistenceService
   - StreamListenerService
@@ -202,6 +216,8 @@ accepted_words:
   - deduplicazione
   - mockato
   - TestContainers
+  - timestamptz
+  - uuid
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -388,6 +404,7 @@ accepted_words:
   - AuditLogEntity
   - ApiClientEntity
   - CommandEntity
+<<<<<<< doc-specifica_tecnica_mgmt_api
   - KeycloakHostname
   - Enums
   - HOSTNAME
@@ -398,12 +415,21 @@ accepted_words:
   - AlertType
   - CommandType
   - CommandStatus
+=======
+  - filesystem
+  - init
+  - cryptographically
+  - validator
+  - AppModule
+  - UCs
+>>>>>>> main
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
   - autoconsistente
   - autoconsistenza
   - automiglioramento
+  - crittograficamente
   - collaborativamente
   - concatenabili
   - multimodale
@@ -469,5 +495,10 @@ accepted_words:
   - impersonazione
   - impersonare
   - intra
+<<<<<<< doc-specifica_tecnica_mgmt_api
   - testabilità
   - centralizzata
+=======
+  - centralizzata
+  - testabilità
+>>>>>>> main
