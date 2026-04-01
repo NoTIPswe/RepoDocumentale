@@ -1,10 +1,69 @@
 import typer
+import git
 from pathlib import Path
 from . import defaults
 from lib import docs_checker, pr_checker, requirements_data
 
 
 app = typer.Typer(help="Run validation checks on the repository.")
+
+
+def _doc_needs_yaml_pipeline(doc_dir_path: Path) -> bool:
+    normalized = doc_dir_path.resolve()
+    targets = {
+        defaults.ANALISI_REQ_DIR_PATH.resolve(),
+        defaults.PIANO_QUALIFICA_DIR_PATH.resolve(),
+    }
+    return normalized in targets
+
+
+def _iter_changed_paths(repo_root_path: Path, base_revision: str) -> set[str]:
+    repo = git.Repo(repo_root_path)
+    commit = repo.commit(base_revision)
+
+    changed: set[str] = set()
+    for diff in commit.diff(None):
+        if diff.a_path:
+            changed.add(diff.a_path)
+        if diff.b_path:
+            changed.add(diff.b_path)
+
+    changed.update(repo.untracked_files)
+    return changed
+
+
+def _changed_docs_need_yaml_pipeline(repo_root_path: Path, base_revision: str) -> bool:
+    changed = _iter_changed_paths(repo_root_path, base_revision)
+    analisi_prefix = defaults.ANALISI_REQ_DIR_PATH.as_posix() + "/"
+    pq_prefix = defaults.PIANO_QUALIFICA_DIR_PATH.as_posix() + "/"
+
+    return any(
+        path == defaults.ANALISI_REQ_DIR_PATH.as_posix()
+        or path.startswith(analisi_prefix)
+        or path == defaults.PIANO_QUALIFICA_DIR_PATH.as_posix()
+        or path.startswith(pq_prefix)
+        for path in changed
+    )
+
+
+def _requirements_data_changed(repo_root_path: Path, base_revision: str) -> bool:
+    changed = _iter_changed_paths(repo_root_path, base_revision)
+    req_prefix = defaults.REQ_DATA_DIR_PATH.as_posix() + "/"
+
+    return any(
+        path == defaults.REQ_DATA_DIR_PATH.as_posix() or path.startswith(req_prefix)
+        for path in changed
+    )
+
+
+def _pr_needs_yaml_pipeline(repo_root_path: Path, base_revision: str) -> bool:
+    return _changed_docs_need_yaml_pipeline(
+        repo_root_path=repo_root_path,
+        base_revision=base_revision,
+    ) or _requirements_data_changed(
+        repo_root_path=repo_root_path,
+        base_revision=base_revision,
+    )
 
 
 def _run_yaml_prebuild_pipeline(clean: bool = False) -> None:
@@ -98,7 +157,12 @@ def check_pr(
     - If --merge-ready, checks for 'TBD' verifiers.
     """
 
-    if yaml_data and defaults.REQ_DATA_DIR_PATH.exists():
+    needs_yaml = yaml_data and defaults.REQ_DATA_DIR_PATH.exists() and _pr_needs_yaml_pipeline(
+        repo_root_path=repo_root_path,
+        base_revision=base_branch,
+    )
+
+    if needs_yaml:
         _run_yaml_prebuild_pipeline(clean=False)
 
     try:
@@ -120,7 +184,7 @@ def check_pr(
             merge_ready=merge_ready,
         )
     finally:
-        _run_yaml_postcheck_cleanup(enabled=ephemeral_generated)
+        _run_yaml_postcheck_cleanup(enabled=ephemeral_generated and needs_yaml)
 
 
 @app.command("doc")
@@ -138,7 +202,13 @@ def check_doc(
     - '--spelling' performs a spellcheck with 'hunspell' (requires doc building).
     - '--formatting' checks .typ files formatting with 'typstyle'.
     """
-    if yaml_data and defaults.REQ_DATA_DIR_PATH.exists():
+    needs_yaml = (
+        yaml_data
+        and defaults.REQ_DATA_DIR_PATH.exists()
+        and _doc_needs_yaml_pipeline(doc_dir_path)
+    )
+
+    if needs_yaml:
         _run_yaml_prebuild_pipeline(clean=False)
 
     try:
@@ -150,7 +220,7 @@ def check_doc(
             spelling=spelling,
         )
     finally:
-        _run_yaml_postcheck_cleanup(enabled=ephemeral_generated)
+        _run_yaml_postcheck_cleanup(enabled=ephemeral_generated and needs_yaml)
 
 
 @app.command("all-docs")
@@ -194,7 +264,12 @@ def changed_docs(
     """
     Like 'check-doc' but checks only docs that changed against 'base-revision'.
     """
-    if yaml_data and defaults.REQ_DATA_DIR_PATH.exists():
+    needs_yaml = yaml_data and defaults.REQ_DATA_DIR_PATH.exists() and _pr_needs_yaml_pipeline(
+        repo_root_path=repo_root_path,
+        base_revision=base_revision,
+    )
+
+    if needs_yaml:
         _run_yaml_prebuild_pipeline(clean=False)
 
     try:
@@ -208,7 +283,7 @@ def changed_docs(
             spelling=spelling,
         )
     finally:
-        _run_yaml_postcheck_cleanup(enabled=ephemeral_generated)
+        _run_yaml_postcheck_cleanup(enabled=ephemeral_generated and needs_yaml)
 
 
 @app.command("baseline-docs")

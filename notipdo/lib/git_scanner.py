@@ -81,6 +81,10 @@ class GitScanner(scanner.Scanner):
                 continue
 
             for subgroup_tree in group_tree.trees:
+                # Requirements YAML data folders are not Typst document directories.
+                if subgroup_tree.name == "01-requirements":
+                    continue
+
                 for doc_dir_tree in subgroup_tree.trees:
                     doc_dir_paths.append(Path(doc_dir_tree.path))
 

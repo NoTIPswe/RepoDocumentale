@@ -1,3 +1,14 @@
+#Per inserire i test nel sotto capitolo mettere sotto id "component: _vostro servizio_"
+#component e' opzionale, nel caso non venga messo il test verra' messo sotto il capitolo "test di integrazione"
+#il titolo del capitolo sara' come il nome del component, quindi deve essere uguale per tutti i test del singolo servizio
+#_esempio_
+#- id: t_u_x
+#  component: Provisioning service
+#  description: "des"
+#  requirements:
+#  - req
+#  status: not_implemented
+
 type: integration
 tests:
 - id: t_i_1
