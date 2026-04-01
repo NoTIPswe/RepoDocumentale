@@ -37,41 +37,35 @@ tests:
   - sicurezza_segregazione_tenant
   status: not_implemented
 - id: t_i_5
-  description: Verificare l’attivazione dei trigger di allerta tra il modulo di analisi dati e il servizio
-    notifiche al superamento delle soglie
-  requirements:
-  - alert_sensore_fuori_range
-  status: not_implemented
-- id: t_i_6
   description: Verificare l’integrazione del Sistema di autenticazione (JWT) tra l’API Gateway e i microservizi
     interni
   requirements:
   - sicurezza_autenticazione_accessi
   status: not_implemented
-- id: t_i_7
+- id: t_i_6
   description: Verificare la gestione degli errori di configurazione del Gateway simulato in caso di payload
     invalido o frequenza fuori range
   requirements:
   - err_sintattico_config_gateway
   - err_config_frequenza_fuori_range
   status: not_implemented
-- id: t_i_8
+- id: t_i_7
   description: Verificare la propagazione e gestione di misure anomale (outlier) dal Simulatore al Cloud
   requirements:
   - comando_anomalia_outliers_misurazioni
   status: not_implemented
-- id: t_i_9
+- id: t_i_8
   description: Verificare l’integrazione del Sistema con più Gateway simulati attivi in parallelo
   requirements:
   - creazione_gateway_multipli_default
   status: not_implemented
-- id: t_i_10
+- id: t_i_9
   description: Verificare che i dati scambiati tra le diverse componenti del Sistema distribuito siano
     cifrati e trasmessi tramite protocollo TLS
   requirements:
   - sicurezza_cifratura_dati
   status: not_implemented
-- id: t_i_11
+- id: t_i_10
   description: Verificare l’isolamento dei dati tra Tenant tramite API e persistenza su database
   requirements:
   - sicurezza_segregazione_tenant
