@@ -1,6 +1,3 @@
-#let table-with-caption(table-content, caption-text) = [
-  table-content text(italic, 9pt)[caption-text]
-]
 #import "../../00-templates/base_document.typ" as base-document
 #import "../specifica_tecnica/st_lib.typ" as st
 
