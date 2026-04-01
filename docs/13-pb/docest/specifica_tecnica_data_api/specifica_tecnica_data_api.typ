@@ -1,8 +1,8 @@
 #import "../../00-templates/base_document.typ" as base-document
 #import "../specifica_tecnica/st_lib.typ" as st
 
-#let metadata = yaml("specifica_tecnica_data_api.meta.yaml")
-
+#let metadata = yaml(sys.inputs.meta-path)
+#show figure.where(kind: table): set block(breakable: true)
 #base-document.apply-base-document(
   title: metadata.title,
   abstract: "Specifica tecnica del microservizio data-api: architettura logica, contratti REST, port applicativi, design di dettaglio dei componenti, gestione errori e strategia di test del servizio di consultazione delle misure cifrate.",
@@ -29,37 +29,50 @@
   == Variabili d'Ambiente
   Tutte le variabili d’ambiente necessarie per il funzionamento del microservizio sono elencate di seguito, un'eventuale
   mancanza di una di queste variabili comporterà un errore all’avvio del microservizio:
-  #table(
-    columns: (1.4fr, 2.5fr, 1.2fr, 1.2fr),
-    [Campo], [Variabile d'ambiente], [Default], [obbligatorio],
-    [`ApiPort`], [DATA_API_PORT], [`3000`], [No],
-    [`DBHost`], [MEASURES_DB_HOST], [`-`], [Sì],
-    [`DBPort`], [MEASURES_DB_PORT], [`-`], [Sì],
-    [`DBName`], [MEASURES_DB_NAME], [`-`], [Sì],
-    [`DBUser`], [MEASURES_DB_USER], [`-`], [Sì],
-    [`DBPassword`], [MEASURES_DB_PASSWORD], [`-`], [Sì],
-  )
+
+  #figure(
+    caption: [Variabili d'ambiente del microservizio `data-api`],
+  )[
+    #table(
+      columns: (1.4fr, 2.5fr, 1.2fr, 1.2fr),
+      table.header([Campo], [Variabile d'ambiente], [Default], [Obbligatorio]),
+
+      [`ApiPort`], [DATA_API_PORT], [`3000`], [No],
+      [`DBHost`], [MEASURES_DB_HOST], [`-`], [Sì],
+      [`DBPort`], [MEASURES_DB_PORT], [`-`], [Sì],
+      [`DBName`], [MEASURES_DB_NAME], [`-`], [Sì],
+      [`DBUser`], [MEASURES_DB_USER], [`-`], [Sì],
+      [`DBPassword`], [MEASURES_DB_PASSWORD], [`-`], [Sì],
+    )
+  ]
 
   == Sequenza di Avvio
   La sequenza di avvio è la seguente:
 
-  #table(
-    columns: (auto, 2fr, 3fr),
-    [Step], [Componente], [Azione],
-    [1], [`NestFactory`], [Istanzia l'applicazione NestJS a partire dall'`AppModule`.],
-    [2], [`AppModule`], [Valida le variabili d'ambiente critiche e carica la configurazione globale.],
-    [3], [`TypeOrmModule`], [Stabilisce la connessione al database PostgreSQL per la persistenza delle misure.],
-    [4],
-    [`MeasureModule` e `SensorModule`],
-    [Istanzia i moduli funzionali, i service di logica e i repository di dati.],
+  #figure(
+    caption: [Sequenza di avvio del microservizio `data-api`],
+  )[
+    #table(
+      columns: (auto, 2fr, 3fr),
+      table.header([Step], [Componente], [Azione]),
 
-    [5], [HTTP listener], [Espone il servizio sulla porta configurata e attiva l'endpoint `/` di health check.],
-  )
+      [1], [`NestFactory`], [Istanzia l'applicazione NestJS a partire dall'`AppModule`.],
+      [2], [`AppModule`], [Valida le variabili d'ambiente critiche e carica la configurazione globale.],
+      [3], [`TypeOrmModule`], [Stabilisce la connessione al database PostgreSQL per la persistenza delle misure.],
+      [4],
+      [`MeasureModule` e `SensorModule`],
+      [Istanzia i moduli funzionali, i service di logica e i repository di dati.],
+
+      [5], [HTTP listener], [Espone il servizio sulla porta configurata e attiva l'endpoint `/` di health check.],
+    )
+  ]
 
 
   = Architettura Logica
 
-  #align(center)[
+  #figure(
+    caption: [Architettura logica del microservizio `data-api`],
+  )[
     #image("./assets/data-api.jpg", width: 100%)
   ]
 
@@ -121,86 +134,98 @@
 
   == Strati Architetturali
 
-  #table(
-    columns: (18%, 35%, 47%),
-    inset: 8pt,
-    stroke: 0.6pt + rgb("#666"),
-    fill: (_, y) => if y == 0 { luma(230) },
-    align: (x, y) => if x == 1 { left } else { left + top },
+  #figure(
+    caption: [Strati architetturali del microservizio `data-api`],
+  )[
+    #table(
+      columns: (18%, 35%, 47%),
+      inset: 8pt,
+      stroke: 0.6pt + rgb("#666"),
+      fill: (_, y) => if y == 0 { luma(230) },
+      align: (x, y) => if x == 1 { left } else { left + top },
 
-    table.header([*Strato*], [*Package*], [*Contenuto*]),
+      table.header([Strato], [Package], [Contenuto]),
 
-    [Presentation],
-    [
-      `src/app.controller.ts` \
-      `src/data-api/controller` \
-      `src/data-api/dto` \
-      `src/data-api/openapi.decorators.ts` \
-      `src/generated/openapi`
-    ],
-    [
-      Esposizione delle API HTTP, definizione dei contratti di ingresso/uscita, documentazione OpenAPI e gestione del
-      livello di interazione con i client.
-    ],
+      [Presentation],
+      [
+        `src/app.controller.ts` \
+        `src/data-api/controller` \
+        `src/data-api/dto` \
+        `src/data-api/openapi.decorators.ts` \
+        `src/generated/openapi`
+      ],
+      [
+        Esposizione delle API HTTP, definizione dei contratti di ingresso/uscita, documentazione OpenAPI e gestione del
+        livello di interazione con i client.
+      ],
 
-    [Business],
-    [
-      `src/app.service.ts` \
-      `src/data-api/services` \
-      `src/data-api/models` \
-      `src/data-api/interfaces` \
-      `src/data-api/measure.mapper.ts`
-    ],
-    [
-      Logica applicativa e di dominio: validazione dei parametri di query, orchestrazione dei casi d'uso, trasformazione
-      tra entity/model/DTO, filtraggio dei dati e definizione delle interfacce tra componenti.
-    ],
+      [Business],
+      [
+        `src/app.service.ts` \
+        `src/data-api/services` \
+        `src/data-api/models` \
+        `src/data-api/interfaces` \
+        `src/data-api/measure.mapper.ts`
+      ],
+      [
+        Logica applicativa e di dominio: validazione dei parametri di query, orchestrazione dei casi d'uso,
+        trasformazione tra entity/model/DTO, filtraggio dei dati e definizione delle interfacce tra componenti.
+      ],
 
-    [Persistence],
-    [
-      `src/data-api/entity` \
-      `src/data-api/services/`\
-      `measure.persistence.service.ts`
-    ],
-    [
-      Accesso ai dati tramite TypeORM, definizione dell'entità `MeasureEntity`, costruzione delle query paginated e
-      non-paginated su PostgreSQL e incapsulamento delle operazioni di persistenza.
-    ],
-  )
+      [Persistence],
+      [
+        `src/data-api/entity` \
+        `src/data-api/services/`\
+        `measure.persistence.service.ts`
+      ],
+      [
+        Accesso ai dati tramite TypeORM, definizione dell'entità `MeasureEntity`, costruzione delle query paginated e
+        non-paginated su PostgreSQL e incapsulamento delle operazioni di persistenza.
+      ],
+    )
+  ]
 
   = Design di Dettaglio
 
   == Moduli del microservizio
-  #table(
-    columns: (0.5fr, 1fr),
-    [Modulo], [Responsabilità],
-    [MeasureModule],
-    [
-      Gestione delle funzionalità di interrogazione ed esportazione delle misure. Espone gli endpoint dedicati,
-      orchestra la logica applicativa tramite `MeasureService` e delega l'accesso ai dati a `MeasurePersistenceService`
-      usando TypeORM sull'entità `MeasureEntity`.
-    ],
+  #figure(
+    caption: [Moduli funzionali del microservizio `data-api`],
+  )[
+    #table(
+      columns: (0.5fr, 1fr),
+      table.header([Modulo], [Responsabilità]),
+      [MeasureModule],
+      [
+        Gestione delle funzionalità di interrogazione ed esportazione delle misure. Espone gli endpoint dedicati,
+        orchestra la logica applicativa tramite `MeasureService` e delega l'accesso ai dati a
+        `MeasurePersistenceService` usando TypeORM sull'entità `MeasureEntity`.
+      ],
 
-    [SensorModule],
-    [
-      Gestione delle funzionalità di discovery e consultazione dei sensori disponibili. Espone gli endpoint relativi ai
-      sensori, utilizza `SensorService` per costruire la vista logica dei sensori a partire dalle misure persistite e
-      riusa `MeasurePersistenceService` come dipendenza di persistenza.
-    ],
-  )
+      [SensorModule],
+      [
+        Gestione delle funzionalità di discovery e consultazione dei sensori disponibili. Espone gli endpoint relativi
+        ai sensori, utilizza `SensorService` per costruire la vista logica dei sensori a partire dalle misure persistite
+        e riusa `MeasurePersistenceService` come dipendenza di persistenza.
+      ],
+    )
+  ]
 
 
   == Entità
-  #table(
-    columns: (1.5fr, 2fr),
-    [Entità], [Campi],
+  #figure(
+    caption: [Entità persistenti del microservizio `data-api`],
+  )[
+    #table(
+      columns: (1.5fr, 2fr),
+      table.header([Entità], [Campi]),
 
-    [MeasureEntity],
-    [#par(justify: false)[
-      *`timestamp`*: `timestamptz`, *`tenantId`*: `uuid`, *`gatewayId`*: `uuid`, *`sensorId`*: `uuid`, *`sensorType`*:
-      `string`, *`encryptedData`*: `string`, *`iv`*: `string`, *`authTag`*: `string`, *`keyVersion`*: `number`
-    ]],
-  )
+      [MeasureEntity],
+      [#par(justify: false)[
+        *`timestamp`*: `timestamptz`, *`tenantId`*: `uuid`, *`gatewayId`*: `uuid`, *`sensorId`*: `uuid`, *`sensorType`*:
+        `string`, *`encryptedData`*: `string`, *`iv`*: `string`, *`authTag`*: `string`, *`keyVersion`*: `number`
+      ]],
+    )
+  ]
 
   == Endpoint API
   Di seguito è riportato l’elenco completo degli endpoint esposti dal microservizio divisi per area di interesse.
@@ -208,19 +233,24 @@
   I campi indicati con *`?`* sono opzionali.
   === Measure
 
-  #table(
-    columns: (1fr, auto, 2.2fr, auto, auto),
-    align: (left, left, left, left, left),
+  #show raw.where(lang: "json"): set text(size: 7pt)
 
-    [Metodo], [Endpoint], [Descrizione], [Query Parameters], [Response],
+  #figure(
+    caption: [Endpoint dell'area `Measure` del microservizio `data-api`],
+  )[
+    #table(
+      columns: (0.8fr, 1.4fr, 2fr, 2.2fr, 2.6fr),
+      align: (left, left, left, left, left),
 
-    [`GET`],
-    [`/measures/query`],
-    [#par(justify: false)[
-      Restituisce una query paginata delle misure cifrate filtrabili per intervallo temporale, gateway, sensore e tipo
-      di sensore.]],
-    [```json
-    {
+      table.header([Metodo], [Endpoint], [Descrizione], [Query Parameters], [Response]),
+
+      [GET],
+      [`/measures/query`],
+      [#par(justify: false)[
+        Restituisce una query paginata delle misure cifrate filtrabili per intervallo temporale, gateway, sensore e tipo
+        di sensore.]],
+      [```json
+      {
       "from": "string",
       "to": "string",
       "limit?": "number",
@@ -228,41 +258,42 @@
       "sensorId?": "string",
       "sensorType?": "string",
       "cursor?": "string"
-    }
-    ```],
-    [```json
-    {
+      }
+      ```],
+      [```json
+      {
       "data":
         [{
-            "gatewayId": "string",
-            "sensorId": "string",
-            "sensorType": "string",
-            "timestamp": "string",
-            "encryptedData": "string",
-            "iv": "string",
-            "authTag": "string",
-            "keyVersion": "number",
+          "gatewayId": "string",
+          "sensorId": "string",
+          "sensorType": "string",
+          "timestamp": "string",
+          "encryptedData": "string",
+          "iv": "string",
+          "authTag": "string",
+          "keyVersion": "number"
         }],
-    "nextCursor?": "string",
-    "hasMore": "boolean"
-    }
-    ```],
+      "nextCursor?": "string",
+      "hasMore": "boolean"
+      }
+      ```],
 
-    [`GET`],
-    [`/measures/export`],
-    [#par(justify: false)[
-      Restituisce l'export completo delle misure cifrate in un intervallo temporale, senza paginazione.]],
-    [```json
-    {
-     "from": "string",
-     "to": "string",
-     "gatewayId?": "string",
-     "sensorId?": "string",
-     "sensorType?": "string"
-     }
-    ```],
-    [```json
-      {"data":
+      [GET],
+      [`/measures/export`],
+      [#par(justify: false)[
+        Restituisce l'export completo delle misure cifrate in un intervallo temporale, senza paginazione.]],
+      [```json
+      {
+       "from": "string",
+       "to": "string",
+       "gatewayId?": "string",
+       "sensorId?": "string",
+       "sensorType?": "string"
+       }
+      ```],
+      [```json
+      {
+        "data":
         [{
           "gatewayId": "string",
           "sensorId": "string",
@@ -273,58 +304,63 @@
           "authTag": "string",
           "keyVersion": "number"
         }]
-        }
-      ```}],
-
-    [`SSE`],
-    [`/measures/stream`],
-    [#par(justify: false)[
-      Espone uno stream Server-Sent Events di misure cifrate filtrabile per gateway, sensore e tipo di sensore.]],
-    [```json
-    {
-      "gatewayId?": "string",
-      "sensorId?": "string",
-      "sensorType?": "string"
       }
-    ```],
-    [```json
-    `text/event-stream`:
-    {
-      "gatewayId": "string",
-      "sensorId": "string",
-      "sensorType": "string",
-      "timestamp": "string",
-      "encryptedData": "string",
-      "iv": "string",
-      "authTag": "string",
-      "keyVersion": "number"
-    }
-    ```],
-  )
+      ```],
 
-  === Sensor
-  #table(
-    columns: (1fr, auto, 2.2fr, auto, auto),
-    align: (left, left, left, left, left),
-
-    [Metodo], [Endpoint], [Descrizione], [Query Parameters], [Response],
-
-    [`GET`],
-    [`/sensors`],
-    [#par(justify: false)[
-      Restituisce l'elenco dei sensori osservati di recente, con possibilità di filtro per gateway e indicazione
-      dell'ultimo timestamp disponibile.]],
-    [```json {"gatewayId": "string"}``` ],
-    [```json
-      [{
+      [SSE],
+      [`/measures/stream`],
+      [#par(justify: false)[
+        Espone uno stream Server-Sent Events di misure cifrate filtrabile per gateway, sensore e tipo di sensore.]],
+      [```json
+      {
+        "gatewayId?": "string",
+        "sensorId?": "string",
+        "sensorType?": "string"
+      }
+      ```],
+      [```json
+      `text/event-stream`:
+      {
+        "gatewayId": "string",
         "sensorId": "string",
         "sensorType": "string",
-        "gatewayId": "string",
-        "lastSeen": "string"
-      }]
-      ```
-    ],
-  )
+        "timestamp": "string",
+        "encryptedData": "string",
+        "iv": "string",
+        "authTag": "string",
+        "keyVersion": "number"
+      }
+      ```],
+    )
+  ]
+
+  === Sensor
+  #figure(
+    caption: [Endpoint dell'area `Sensor` del microservizio `data-api`],
+  )[
+    #table(
+      columns: (1fr, 1.1fr, 2.2fr, 2fr, 2fr),
+      align: (left, left, left, left, left),
+
+      [Metodo], [Endpoint], [Descrizione], [Query Parameters], [Response],
+
+      [GET],
+      [`/sensors`],
+      [#par(justify: false)[
+        Restituisce l'elenco dei sensori osservati di recente, con possibilità di filtro per gateway e indicazione
+        dell'ultimo timestamp disponibile.]],
+      [```json {"gatewayId": "string"}``` ],
+      [```json
+        [{
+          "sensorId": "string",
+          "sensorType": "string",
+          "gatewayId": "string",
+          "lastSeen": "string"
+        }]
+        ```
+      ],
+    )
+  ]
   === Errori
 
   Di seguito sono elencati i principali codici di errore restituiti dagli endpoint del microservizio, con una breve
@@ -333,50 +369,54 @@
 
   #set par(justify: false)
 
-  #table(
-    columns: (12%, 23%, 65%),
-    inset: 8pt,
-    stroke: 0.6pt + rgb("#666"),
-    align: center + horizon,
+  #figure(
+    caption: [Codici di errore del microservizio `data-api`],
+  )[
+    #table(
+      columns: (12%, 23%, 65%),
+      inset: 8pt,
+      stroke: 0.6pt + rgb("#666"),
+      align: center + horizon,
 
-    table.header([*Codice*], [*Errore*], [*Descrizione*]),
+      table.header([Codice], [Errore], [Descrizione]),
 
-    [400],
-    [Bad Request],
-    [
-      Richiesta non valida. Nel contesto degli endpoint `measure` viene restituito quando i parametri di query sono
-      errati, quando `limit` supera `1000` oppure quando la finestra temporale eccede `24` ore. Possono comparire i
-      codici applicativi `QUERY_LIMIT_EXCEEDED`, `QUERY_WINDOW_EXCEEDED` ed `EXPORT_WINDOW_EXCEEDED`.
-    ],
+      [400],
+      [Bad Request],
+      [
+        Richiesta non valida. Nel contesto degli endpoint `measure` viene restituito quando i parametri di query sono
+        errati, quando `limit` supera `1000` oppure quando la finestra temporale eccede `24` ore. Possono comparire i
+        codici applicativi `QUERY_LIMIT_EXCEEDED`, `QUERY_WINDOW_EXCEEDED` ed `EXPORT_WINDOW_EXCEEDED`.
+      ],
 
-    [401],
-    [Unauthorized],
-    [
-      Client non autenticato o autenticazione fallita. Questo errore è documentato per gli endpoint `measure` e
-      `sensor`.
-    ],
+      [401],
+      [Unauthorized],
+      [
+        Client non autenticato o autenticazione fallita. Questo errore è documentato per gli endpoint `measure` e
+        `sensor`.
+      ],
 
-    [403],
-    [Forbidden],
-    [
-      Accesso negato alla risorsa richiesta. Nel progetto viene restituito quando il chiamante non ha i permessi
-      necessari per consultare misure o sensori.
-    ],
+      [403],
+      [Forbidden],
+      [
+        Accesso negato alla risorsa richiesta. Nel progetto viene restituito quando il chiamante non ha i permessi
+        necessari per consultare misure o sensori.
+      ],
 
-    [404],
-    [Not Found],
-    [
-      Risorsa non trovata. Nel contesto dell'endpoint `sensor` può indicare che il gateway richiesto o la risorsa
-      associata non è disponibile.
-    ],
+      [404],
+      [Not Found],
+      [
+        Risorsa non trovata. Nel contesto dell'endpoint `sensor` può indicare che il gateway richiesto o la risorsa
+        associata non è disponibile.
+      ],
 
-    [500],
-    [Internal Server Error],
-    [
-      Errore generico del server in presenza di eccezioni non gestite o condizioni impreviste non mappate esplicitamente
-      a un codice HTTP applicativo.
-    ],
-  )
+      [500],
+      [Internal Server Error],
+      [
+        Errore generico del server in presenza di eccezioni non gestite o condizioni impreviste non mappate
+        esplicitamente a un codice HTTP applicativo.
+      ],
+    )
+  ]
 
   == Decisioni implementative
   #st.design-rationale(title: "Interfacce tra le componenti dei moduli")[

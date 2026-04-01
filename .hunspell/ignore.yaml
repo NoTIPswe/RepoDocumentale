@@ -409,6 +409,7 @@ accepted_words:
   - cryptographically
   - validator
   - AppModule
+  - UCs
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori

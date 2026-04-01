@@ -1,3 +1,14 @@
+#Per inserire i test nel sotto capitolo mettere sotto id "component: _vostro servizio_"
+#component e' opzionale, nel caso non venga messo il test verra' messo sotto il capitolo "test di unita"
+#il titolo del capitolo sara' come il nome del component, quindi deve essere uguale per tutti i test del singolo servizio
+#_esempio_
+#- id: t_u_x
+#  component: Provisioning service
+#  description: "des"
+#  requirements:
+#  - req
+#  status: not_implemented
+
 type: unit
 tests:
 - id: t_u_1
@@ -16,207 +27,151 @@ tests:
   - err_cred_errate
   status: not_implemented
 - id: t_u_4
-  description: Verificare la generazione del segreto TOTP (formato e lunghezza)
-  requirements:
-  - setup_totp
-  status: not_implemented
-- id: t_u_5
-  description: Verificare la serializzazione del segreto TOTP
-  requirements:
-  - setup_totp
-  status: not_implemented
-- id: t_u_6
-  description: Verificare la valutazione della condizione “2FA richiesto”
-  requirements:
-  - login_2fa
-  status: not_implemented
-- id: t_u_7
-  description: Verificare la validazione dell’input OTP (solo cifre, lunghezza)
-  requirements:
-  - ins_otp
-  status: not_implemented
-- id: t_u_8
-  description: Verificare il mapping dell’errore “OTP errato”
-  requirements:
-  - err_otp_errato
-  status: not_implemented
-- id: t_u_9
-  description: Verificare la validazione della richiesta di recupero password
-  requirements:
-  - recupero_password
-  status: not_implemented
-- id: t_u_10
-  description: Verificare il mapping dell’errore “account non esistente”
-  requirements:
-  - err_account_inesistente
-  status: not_implemented
-- id: t_u_11
   description: Verificare la validazione della nuova password
   requirements:
   - impostazione_password
   status: not_implemented
-- id: t_u_12
+- id: t_u_5
   description: Verificare il mapping dell’errore “password non corrispondenti”
   requirements:
   - err_campi_diversi
   status: not_implemented
-- id: t_u_13
+- id: t_u_6
   description: Verificare il rispetto della policy di complessità password
   requirements:
   - err_password_invalida
   status: not_implemented
-- id: t_u_14
+- id: t_u_7
   description: Verificare il mapping dello stato gateway verso label testuale
   requirements:
   - visualizzazione_singolo_gateway_tenant
   status: not_implemented
-- id: t_u_15
+- id: t_u_8
   description: Verificare la formattazione del timestamp ultimo invio gateway
   requirements:
   - visualizzazione_dettagli_gateway
   status: not_implemented
-- id: t_u_16
+- id: t_u_9
   description: Verificare la formattazione del timestamp ultimo invio sensore
   requirements:
   - visualizzazione_singolo_sensore
   status: not_implemented
-- id: t_u_17
+- id: t_u_10
   description: Verificare la normalizzazione e serializzazione dello stream dati
   requirements:
   - visualizzazione_dati_stream
   status: not_implemented
-- id: t_u_18
+- id: t_u_11
   description: Verificare la trasformazione dello stream in struttura tabellare
   requirements:
   - visualizzazione_tabellare_dati_stream
   status: not_implemented
-- id: t_u_19
+- id: t_u_12
   description: Verificare la trasformazione dello stream in serie per grafico
   requirements:
   - visualizzazione_grafico_dati_stream
   status: not_implemented
-- id: t_u_20
+- id: t_u_13
   description: Verificare la validazione dell’intervallo temporale (start ≤ end)
   requirements:
   - filtraggio_intervallo_temporale
   status: not_implemented
-- id: t_u_21
+- id: t_u_14
   description: Verificare il mapping dello stato “dati non disponibili”
   requirements:
   - err_dati_non_disponibili
   status: not_implemented
-- id: t_u_22
+- id: t_u_15
   description: Verificare la serializzazione dei dati per export
   requirements:
   - esportazione_dati
   status: not_implemented
-- id: t_u_23
-  description: Verificare la formattazione del valore fuori range
-  requirements:
-  - alert_sensore_fuori_range
-  status: not_implemented
-- id: t_u_24
-  description: Verificare la formattazione del range accettato
-  requirements:
-  - alert_sensore_fuori_range
-  status: not_implemented
-- id: t_u_25
-  description: Verificare la formattazione del timestamp di un dato irregolare
-  requirements:
-  - alert_sensore_fuori_range
-  status: not_implemented
-- id: t_u_26
+- id: t_u_16
   description: Verificare il mapping del tipo di alert verso descrizione testuale
   requirements:
   - visualizzazione_singolo_alert
   status: not_implemented
-- id: t_u_27
+- id: t_u_17
   description: Verificare il mapping dell’hardware interessato da un alert
   requirements:
   - visualizzazione_singolo_alert
   status: not_implemented
-- id: t_u_28
+- id: t_u_18
   description: Verificare la formattazione del timestamp di emissione alert
   requirements:
   - visualizzazione_singolo_alert
   status: not_implemented
-- id: t_u_29
-  description: Verificare la validazione delle impostazioni di notifica
-  requirements:
-  - modifica_impostazioni_notifica_alert_email
-  - modifica_impostazioni_notifica_alert_dashboard
-  status: not_implemented
-- id: t_u_30
+- id: t_u_19
   description: Verificare la validazione del nome utente tenant
   requirements:
   - inserimento_nome_utente
   status: not_implemented
-- id: t_u_31
+- id: t_u_20
   description: Verificare la validazione dei ruoli assegnabili
   requirements:
   - selezione_permessi_utente
   status: not_implemented
-- id: t_u_32
+- id: t_u_21
   description: Verificare l’assenza di duplicati nella selezione utenti
   requirements:
   - selezione_lista_utenti
   status: not_implemented
-- id: t_u_33
+- id: t_u_22
   description: Verificare la generazione del Client ID
   requirements:
   - visualizzazione_client_id
   status: not_implemented
-- id: t_u_34
+- id: t_u_23
   description: Verificare la generazione del Client Secret
   requirements:
   - visualizzazione_secret_api
   status: not_implemented
-- id: t_u_35
+- id: t_u_24
   description: Verificare la costruzione di una entry di audit (campi obbligatori)
   requirements:
   - visualizzazione_singolo_log_audit
   status: not_implemented
-- id: t_u_36
+- id: t_u_25
   description: Verificare il mapping dell’operazione di audit verso testo
   requirements:
   - visualizzazione_singolo_log_audit
   status: not_implemented
-- id: t_u_37
+- id: t_u_26
   description: Verificare la validazione di un token JWT (scadenza e formato)
   requirements:
   - err_token_api_invalido
   status: not_implemented
-- id: t_u_38
+- id: t_u_27
   description: Verificare la validazione dei permessi secondo policy
   requirements:
   - sicurezza_autenticazione_accessi
   status: not_implemented
-- id: t_u_39
+- id: t_u_28
   description: Verificare il mapping della lista gateway simulati
   requirements:
   - visualizzazione_lista_gateway_simulati
   status: not_implemented
-- id: t_u_40
+- id: t_u_29
   description: Verificare il mapping del gateway simulato
   requirements:
   - visualizzazione_singolo_gateway_simulato
   status: not_implemented
-- id: t_u_41
+- id: t_u_30
   description: Verificare la validazione della configurazione gateway simulato
   requirements:
   - inserimento_dati_config_sim_gateway
   status: not_implemented
-- id: t_u_42
+- id: t_u_31
   description: Verificare il mapping dell’errore di deploy gateway simulato
   requirements:
   - err_deploy_gateway_simulato
   status: not_implemented
-- id: t_u_43
+- id: t_u_32
   description: Verificare la validazione della configurazione sensore simulato
   requirements:
   - inserimento_dati_config_sim_sensore
   status: not_implemented
-- id: t_u_44
+- id: t_u_33
   description: Verificare il mapping dell’errore range invalido sensore
   requirements:
   - err_range_invalido_simulazione
