@@ -943,8 +943,27 @@ def generate_typst_indexes(
         t = str(test_doc.get("type"))
         rel = os.path.relpath(file_path, start=pq_dir).replace("\\", "/")
         test_section_lines.append(f"== {test_title.get(t, t)}")
-        test_section_lines.append(f'#render_test_table("{rel}")')
-        test_section_lines.append("")
+        
+        # Raggruppa i test per 'component' (se presente)
+        components = defaultdict(list)
+        tests_without_component = []
+        for test in test_doc.get("tests", []) or []:
+            component = test.get("component")
+            if component:
+                components[component].append(test)
+            else:
+                tests_without_component.append(test)
+        
+        # Renderizza prima i test senza component
+        if tests_without_component:
+            test_section_lines.append(f'#render_test_table("{rel}", component: none)')
+            test_section_lines.append("")
+        
+        # Poi crea sottocapitoli per ogni component
+        for component in sorted(components.keys()):
+            test_section_lines.append(f"=== {component}")
+            test_section_lines.append(f'#render_test_table("{rel}", component: "{component}")')
+            test_section_lines.append("")
 
     test_index_path = pq_dir / "generated" / "_yaml_test_index.typ"
     test_index_path.parent.mkdir(parents=True, exist_ok=True)
