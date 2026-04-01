@@ -4,7 +4,7 @@ changelog:
     date: "2026-04-01"
     authors:
       - Alessandro Mazzariol
-    verifier: TBD
+    verifier: Alessandro Contarini
     description: >
       Fix indentazione
   - version: "0.2.0"
