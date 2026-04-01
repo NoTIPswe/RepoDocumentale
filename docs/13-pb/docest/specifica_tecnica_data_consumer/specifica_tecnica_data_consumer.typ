@@ -295,7 +295,7 @@
   Tutti i tipi sono data struct, senza logica e senza importazioni infrastrutturali.
 
   #table(
-    columns: (1.5fr, 4fr),
+    columns: (1.8fr, 3fr),
     [Tipo], [Descrizione e campi],
     [`OpaqueBlob`],
     [Named type con campo `Value string` (blob base64). Il tipo rende visibile nel type system l'invariante della
@@ -336,10 +336,10 @@
       `Success bool` (`success`), `Error string` (`error,omitempty` — presente solo quando `Success` è false).],
 
     [`GatewayLifecycleState`],
-    [Named string type. Stato amministrativo del gateway impostato dagli operatori nel Management API. Distinto da
-      `GatewayStatus` (stato runtime osservato). Costanti: `LifecycleOnline = "online"`, `LifecycleOffline =
+    [Stato amministrativo del gateway impostato dagli operatori nel Management API. Distinto da `GatewayStatus` (stato
+      runtime osservato). Costanti: `LifecycleOnline = "online"`, `LifecycleOffline =
       "offline"`, `LifecyclePaused = "paused"` (sopprime gli alert offline), `LifecycleProvisioning =
-      "provisioning"`, `LifecycleUnknown = "unknown"` (sentinel locale per errori RR, mai trasmesso sul wire).],
+      "provisioning"`, `LifecycleUnknown = "unknown"` (locale per errori RR, mai trasmesso).],
 
     [`GatewayLifecycleRequest`],
     [Payload JSON per la chiamata RR su `internal.mgmt.gateway.get-status`. Campi con JSON tag: `GatewayID string`
@@ -484,7 +484,7 @@
   === Metodi Privati
 
   #table(
-    columns: (1.5fr, 3.5fr),
+    columns: (1.6fr, 3.5fr),
     [Metodo], [Comportamento],
     [`dispatchStatusUpdate(update GatewayStatusUpdate)`],
     [Invio non-bloccante su `dispatchCh`; se il canale è pieno, scarta e incrementa `StatusUpdateDropped`.],
@@ -829,9 +829,10 @@
 
   Sottoscrive `gateway.decommissioned.>` via JetStream come durable consumer (durable name:
   `"data-consumer-decommission-listener"`) con ACK manuale. Per ogni messaggio estrae `tenantID` e `gatewayID` dal
-  subject (attesi esattamente 4 segmenti dot-separated) e invoca `DecommissionEventHandler.HandleDecommission`. Errori
-  di parsing sono Term()'d. Alla cancellazione del context chiama `sub.Drain()` (non `Unsubscribe()`) per processare i
-  messaggi in-flight prima della chiusura — necessario con durable consumer per evitare perdita di messaggi.
+  subject (attesi esattamente 4 segmenti dot-separated) e invoca `DecommissionEventHandler.HandleDecommission`. Per
+  errori di parsing viene richiamato il metodo Term(). Alla cancellazione del context chiama `sub.Drain()` (non
+  `Unsubscribe()`) per processare i messaggi in-flight prima della chiusura — necessario con durable consumer per
+  evitare perdita di messaggi.
 
   #table(
     columns: (1.2fr, 1.8fr),
@@ -867,60 +868,59 @@
   tramite interfacce metriche ristrette.
 
   #table(
-    columns: (2fr, 1.2fr, 3.5fr, 2.5fr),
-    [Campo], [Tipo], [Nome Prometheus], [Descrizione],
+    columns: (2.5fr, 4.5fr, 2fr),
+    [Campo], [Tipo e Nome Prometheus], [Descrizione],
 
-    [`MessagesReceived`], [Counter], [`notip_consumer_messages_received_total`], [Messaggi NATS dequeued],
+    [`MessagesReceived`], [Counter \ `notip_consumer_messages_received_total`], [Messaggi NATS dequeued],
+
     [`MessageParsingErrors`],
-    [Counter],
-    [`notip_consumer_message_parsing_errors_total`],
+    [Counter \ `notip_consumer_message_parsing_errors_total`],
     [Messaggi scartati definitivamente (Term) per JSON malformato o subject errato],
 
-    [`MessagesWritten`], [Counter], [`notip_consumer_messages_written_total`], [Scritture TimescaleDB riuscite],
-    [`WriteErrors`], [Counter], [`notip_consumer_write_errors_total`], [Scritture TimescaleDB fallite],
-    [`WriteLatency`], [Histogram], [`notip_consumer_write_duration_seconds`], [Durata scrittura su TimescaleDB],
+    [`MessagesWritten`], [Counter \ `notip_consumer_messages_written_total`], [Scritture TimescaleDB riuscite],
+
+    [`WriteErrors`], [Counter \ `notip_consumer_write_errors_total`], [Scritture TimescaleDB fallite],
+
+    [`WriteLatency`], [Histogram \ `notip_consumer_write_duration_seconds`], [Durata scrittura su TimescaleDB],
+
     [`BatchSize`],
-    [Histogram],
-    [`notip_consumer_batch_size`],
+    [Histogram \ `notip_consumer_batch_size`],
     [Numero di record telemetrici per ogni operazione di flush batch],
 
-    [`AlertsPublished`], [Counter], [`notip_consumer_alerts_published_total`], [Alert gateway-offline pubblicati],
-    [`AlertPublishErrors`], [Counter], [`notip_consumer_alert_publish_errors_total`], [Errori di pubblicazione alert],
+    [`AlertsPublished`], [Counter \ `notip_consumer_alerts_published_total`], [Alert gateway-offline pubblicati],
+
+    [`AlertPublishErrors`], [Counter \ `notip_consumer_alert_publish_errors_total`], [Errori di pubblicazione alert],
+
     [`HeartbeatMapSize`],
-    [Gauge],
-    [`notip_consumer_heartbeat_map_size`],
+    [Gauge \ `notip_consumer_heartbeat_map_size`],
     [Gateway attualmente tracciati nella mappa heartbeat],
 
     [`HeartbeatTickDuration`],
-    [Histogram],
-    [`notip_consumer_heartbeat_tick_duration_seconds`],
+    [Histogram \ `notip_consumer_heartbeat_tick_duration_seconds`],
     [Tempo di esecuzione del ciclo di Tick completo],
 
-    [`StatusUpdateErrors`], [Counter], [`notip_consumer_status_update_errors_total`], [Errori NATS RR status update],
+    [`StatusUpdateErrors`], [Counter \ `notip_consumer_status_update_errors_total`], [Errori NATS RR status update],
+
     [`StatusUpdateDropped`],
-    [Counter],
-    [`notip_consumer_status_update_dropped_total`],
+    [Counter \ `notip_consumer_status_update_dropped_total`],
     [Status update scartati (canale pieno)],
 
     [`DispatchQueueLength`],
-    [Gauge],
-    [`notip_consumer_dispatch_queue_length`],
+    [Gauge \ `notip_consumer_dispatch_queue_length`],
     [Numero di job attualmente in coda nel canale asincrono],
 
     [`AlertCacheRefreshErrors`],
-    [Counter],
-    [`notip_consumer_alert_cache_refresh_errors_total`],
+    [Counter \ `notip_consumer_alert_cache_refresh_errors_total`],
     [Errori refresh cache configurazioni alert],
 
     [`AlertCacheLastSuccess`],
-    [Gauge],
-    [`notip_consumer_alert_cache_last_success_timestamp`],
+    [Gauge \ `notip_consumer_alert_cache_last_success_timestamp`],
     [Timestamp Unix dell'ultimo fetch configurazioni riuscito],
 
-    [`NATSReconnects`], [Counter], [`notip_consumer_nats_reconnects_total`], [Riconnessioni NATS],
+    [`NATSReconnects`], [Counter \ `notip_consumer_nats_reconnects_total`], [Riconnessioni NATS],
+
     [`LifecycleQueryErrors`],
-    [Counter],
-    [`notip_consumer_lifecycle_query_errors_total`],
+    [Counter \ `notip_consumer_lifecycle_query_errors_total`],
     [Query lifecycle state fallite (per chiamata `Tick`, non per singolo gateway)],
   )
 
