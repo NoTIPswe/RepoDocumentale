@@ -218,6 +218,7 @@ accepted_words:
   - TestContainers
   - timestamptz
   - uuid
+  - httptest
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -299,6 +300,7 @@ accepted_words:
   - loggato
   - unexported
   - lifecycle
+  - unmarshal
 
   # --- Terminologia Standard Progetto ---
   - req
@@ -414,6 +416,7 @@ accepted_words:
   - UCs
   - HeartbeatTrackerConfig
   - NATSGatewayLifecycleProvider
+  - Configs
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
@@ -488,3 +491,4 @@ accepted_words:
   - intra
   - centralizzata
   - testabilità
+  - deserializzate

@@ -761,9 +761,9 @@
     [`Subscribe`], [`(subj string, cb nats.MsgHandler, opts ...nats.SubOpt) (drainableSubscription, error)`],
   )
 
-  *`jsAdapter`* — struct interna che wrappa `nats.JetStreamContext` e implementa `natsJSSubscriber`. I costruttori
-  pubblici di entrambi i consumer accettano `nats.JetStreamContext` e lo wrappano in un `jsAdapter`; i costruttori
-  interni accettano `natsJSSubscriber` per iniettabilità nei test.
+  *`jsAdapter`* — struct interna che fugge da wrapper `nats.JetStreamContext` e implementa `natsJSSubscriber`. I
+  costruttori pubblici di entrambi i consumer accettano `nats.JetStreamContext` e lo "avvolgono" in un `jsAdapter`; i
+  costruttori interni accettano `natsJSSubscriber` per permettere l'iniezione nei test.
 
   === NATSTelemetryConsumer
 
@@ -1098,7 +1098,7 @@
     [`GetGatewayLifecycle` — risposta valida con stato `LifecyclePaused`],
     [Stato `LifecyclePaused` restituito; nessun errore],
 
-    [`GetGatewayLifecycle` — errore NATS (no responders)], [Errore restituito; stato è `LifecycleUnknown`],
+    [`GetGatewayLifecycle` — errore NATS], [Errore restituito; stato è `LifecycleUnknown`],
 
     [`GetGatewayLifecycle` — risposta JSON malformata], [Errore di unmarshal restituito; stato è `LifecycleUnknown`],
   )
