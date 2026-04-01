@@ -6,7 +6,7 @@
 )[
   - Microservizi del backend completati.
   - Specifica Tecnica portata avanti.
-  Finita Progettazione del Frontend e inizio della sua codifica.
+  - Finita Progettazione del Frontend e inizio della sua codifica.
 ][
   - Completare la verifica di tutti i microservizi.
   - Test Book Completo.
