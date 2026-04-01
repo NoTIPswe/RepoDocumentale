@@ -1,5 +1,12 @@
 title: Glossario
 changelog:
+- version: 2.1.0
+  date: '2026-03-29'
+  authors:
+  - Mario De Pasquale
+  verifier: Alessandro Mazzariol
+  description: |
+    Aggiunti termini per doc specifica tecnica provisioning-service
 - version: 2.0.0
   date: '2026-02-12'
   approver: Valerio Solito
