@@ -394,6 +394,7 @@ accepted_words:
   - ApiClientEntity
   - CommandEntity
   - AppModule
+  - UCs
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
