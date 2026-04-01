@@ -27,8 +27,8 @@
 
   = Dipendenze e Configurazione
   == Variabili d'Ambiente
-  Tutte le variabili d’ambiente necessarie per il funzionamento del microservizio sono elencate di seguito, una
-  eventuale mancanza di una di queste variabili comporterà un errore all’avvio del microservizio:
+  Tutte le variabili d’ambiente necessarie per il funzionamento del microservizio sono elencate di seguito, un'eventuale
+  mancanza di una di queste variabili comporterà un errore all’avvio del microservizio:
   #table(
     columns: (1.4fr, 2.5fr, 1.2fr, 1.2fr),
     [Campo], [Variabile d'ambiente], [Default], [obbligatorio],
@@ -197,7 +197,7 @@
 
     [MeasureEntity],
     [#par(justify: false)[
-      *`time`*: `timestamptz`, *`tenantId`*: `uuid`, *`gatewayId`*: `uuid`, *`sensorId`*: `uuid`, *`sensorType`*:
+      *`timestamp`*: `timestamptz`, *`tenantId`*: `uuid`, *`gatewayId`*: `uuid`, *`sensorId`*: `uuid`, *`sensorType`*:
       `string`, *`encryptedData`*: `string`, *`iv`*: `string`, *`authTag`*: `string`, *`keyVersion`*: `number`
     ]],
   )
@@ -310,7 +310,7 @@
     [Metodo], [Endpoint], [Descrizione], [Query Parameters], [Response],
 
     [`GET`],
-    [`/sensor`],
+    [`/sensors`],
     [#par(justify: false)[
       Restituisce l'elenco dei sensori osservati di recente, con possibilità di filtro per gateway e indicazione
       dell'ultimo timestamp disponibile.]],
@@ -352,7 +352,7 @@
     [401],
     [Unauthorized],
     [
-      Client non autenticato o autenticazione fallita. Questo errore e documentato per gli endpoint `measure` e
+      Client non autenticato o autenticazione fallita. Questo errore è documentato per gli endpoint `measure` e
       `sensor`.
     ],
 
@@ -367,7 +367,7 @@
     [Not Found],
     [
       Risorsa non trovata. Nel contesto dell'endpoint `sensor` può indicare che il gateway richiesto o la risorsa
-      associata non e disponibile.
+      associata non è disponibile.
     ],
 
     [500],
@@ -388,7 +388,7 @@
     codice, oltre a migliorare la testabilità isolata dei singoli componenti.
   ]
 
-  #st.design-rationale(title: "Introduzioni di Mappers tra i layer")[
+  #st.design-rationale(title: "Introduzione di Mappers tra i layer")[
     L'utilizzo di *`Persistence Entities`*, *`Business Models`* e *`DTO`* ha portato alla necessità di introdurre
     componenti di mapping dedicati per permettere una conversione corretta e centralizzata dei dati tra i diversi layer
     del modulo. I *`Mapper`* consentono di incapsulare la logica di trasformazione dei dati, mantenendo i controller e i
@@ -443,7 +443,7 @@
   Events. Il `MeasureController` raccoglie gli eventuali filtri su gateway, sensore e tipo di sensore, quindi delega la
   gestione dello stream a `StreamListenerService`.
 
-  Il `StreamListenerService` genera un flusso osservabile di eventi e applica i filtri richiesti dal client. Ogni evento
+  Lo `StreamListenerService` genera un flusso osservabile di eventi e applica i filtri richiesti dal client. Ogni evento
   compatibile viene trasformato dal controller nel formato previsto per SSE, incapsulando i dati della misura cifrata
   all'interno del campo `data`.
 
