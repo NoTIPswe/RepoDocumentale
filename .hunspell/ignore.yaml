@@ -404,25 +404,12 @@ accepted_words:
   - AuditLogEntity
   - ApiClientEntity
   - CommandEntity
-<<<<<<< doc-specifica_tecnica_mgmt_api
-  - KeycloakHostname
-  - Enums
-  - HOSTNAME
-  - localhost
-  - TenantStatus
-  - UsersRole
-  - GatewayStatus
-  - AlertType
-  - CommandType
-  - CommandStatus
-=======
   - filesystem
   - init
   - cryptographically
   - validator
   - AppModule
   - UCs
-<<<<<<< HEAD
   - KeycloakHostname
   - Enums
   - HOSTNAME
@@ -433,9 +420,6 @@ accepted_words:
   - AlertType
   - CommandType
   - CommandStatus
-=======
->>>>>>> main
->>>>>>> feb4aefdf84aabc0a9670549526aaf3561bd8ae2
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
@@ -508,10 +492,5 @@ accepted_words:
   - impersonazione
   - impersonare
   - intra
-<<<<<<< doc-specifica_tecnica_mgmt_api
-  - testabilità
-  - centralizzata
-=======
   - centralizzata
   - testabilità
->>>>>>> main

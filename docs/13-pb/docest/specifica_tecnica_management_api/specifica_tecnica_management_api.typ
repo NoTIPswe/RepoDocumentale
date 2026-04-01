@@ -110,7 +110,6 @@
   │   ├── test/                   Test unitari e di integrazione del servizio
   │   └── migrations/             TypeORM migrations per la gestione dello schema del database
   ```
-  #pagebreak()
   == Strati Architetturali
   Di seguito è riportata la suddivisione in strati architetturali del microservizio, con l'indicazione delle cartelle e
   dei componenti principali:
