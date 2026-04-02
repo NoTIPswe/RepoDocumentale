@@ -42,7 +42,16 @@
       [`DBPort`], [MEASURES_DB_PORT], [`-`], [Sì],
       [`DBName`], [MEASURES_DB_NAME], [`-`], [Sì],
       [`DBUser`], [MEASURES_DB_USER], [`-`], [Sì],
-      [`DBPassword`], [MEASURES_DB_PASSWORD], [`-`], [Sì],
+      [`DBPassword`], [MEASURES_DB_PASSWORD], [`-`], [No],
+      [`DBSsl`], [DB_SSL], [`false`], [No],
+      [`NatsUrl`], [NATS_URL], [`nats://localhost:4222`], [No],
+      [`NatsServers`], [NATS_SERVERS], [`-`], [No],
+      [`NatsToken`], [NATS_TOKEN], [`-`], [No],
+      [`NatsUser`], [NATS_USER], [`-`], [No],
+      [`NatsPassword`], [NATS_PASSWORD], [`-`], [No],
+      [`NatsTlsCa`], [NATS_TLS_CA], [`-`], [No],
+      [`NatsTlsCert`], [NATS_TLS_CERT], [`-`], [No],
+      [`NatsTlsKey`], [NATS_TLS_KEY], [`-`], [No],
     )
   ]
 
@@ -63,7 +72,12 @@
       [`MeasureModule` e `SensorModule`],
       [Istanzia i moduli funzionali, i service di logica e i repository di dati.],
 
-      [5], [HTTP listener], [Espone il servizio sulla porta configurata e attiva l'endpoint `/` di health check.],
+      [5],
+      [`TelemetryStreamBridgeService`],
+      [Se configurato, apre la connessione NATS e si sottoscrive al subject `telemetry.data.*.*` per alimentare il
+        flusso SSE real-time.],
+
+      [6], [HTTP listener], [Espone il servizio sulla porta configurata e attiva l'endpoint `/` di health check.],
     )
   ]
 
@@ -98,7 +112,8 @@
   │   │   │
   │   │   ├── services/                    Logica applicativa e accesso ai dati
   │   │   │                                (MeasureService, SensorService,
-  │   │   │                                MeasurePersistenceService, StreamListenerService)
+  │   │   │                                MeasurePersistenceService, StreamListenerService,
+  │   │   │                                TelemetryStreamBridgeService)
   │   │   │
   │   │   ├── entity/                      Entity TypeORM (MeasureEntity)
   │   │   │
@@ -235,92 +250,32 @@
 
   #show raw.where(lang: "json"): set text(size: 7pt)
 
-  #figure(
-    caption: [Endpoint dell'area `Measure` del microservizio `data-api`],
-  )[
-    #table(
-      columns: (0.8fr, 1.4fr, 2fr, 2.2fr, 2.6fr),
-      align: (left, left, left, left, left),
+  ==== GET `/measures/query`
+  #table(
+    columns: (1fr, 1.2fr),
+    align: (left, left),
+    [Campo], [Contenuto],
+    [Descrizione],
+    [Restituisce una query paginata delle misure cifrate filtrabili per intervallo temporale, gateway, sensore e tipo di
+      sensore.],
 
-      table.header([Metodo], [Endpoint], [Descrizione], [Query Parameters], [Response]),
-
-      [GET],
-      [`/measures/query`],
-      [#par(justify: false)[
-        Restituisce una query paginata delle misure cifrate filtrabili per intervallo temporale, gateway, sensore e tipo
-        di sensore.]],
-      [```json
-      {
+    [Query Parameters],
+    [```json
+    {
       "from": "string",
       "to": "string",
-      "limit?": "number",
-      "gatewayId?": "string",
-      "sensorId?": "string",
-      "sensorType?": "string",
+      "limit?": "number (< 1000, default 999)",
+      "gatewayId?": ["string"],
+      "sensorId?": ["string"],
+      "sensorType?": ["string"],
       "cursor?": "string"
-      }
-      ```],
-      [```json
-      {
-      "data":
-        [{
-          "gatewayId": "string",
-          "sensorId": "string",
-          "sensorType": "string",
-          "timestamp": "string",
-          "encryptedData": "string",
-          "iv": "string",
-          "authTag": "string",
-          "keyVersion": "number"
-        }],
-      "nextCursor?": "string",
-      "hasMore": "boolean"
-      }
-      ```],
+    }
+    ```],
 
-      [GET],
-      [`/measures/export`],
-      [#par(justify: false)[
-        Restituisce l'export completo delle misure cifrate in un intervallo temporale, senza paginazione.]],
-      [```json
-      {
-       "from": "string",
-       "to": "string",
-       "gatewayId?": "string",
-       "sensorId?": "string",
-       "sensorType?": "string"
-       }
-      ```],
-      [```json
-      {
-        "data":
-        [{
-          "gatewayId": "string",
-          "sensorId": "string",
-          "sensorType": "string",
-          "timestamp": "string",
-          "encryptedData": "string",
-          "iv": "string",
-          "authTag": "string",
-          "keyVersion": "number"
-        }]
-      }
-      ```],
-
-      [SSE],
-      [`/measures/stream`],
-      [#par(justify: false)[
-        Espone uno stream Server-Sent Events di misure cifrate filtrabile per gateway, sensore e tipo di sensore.]],
-      [```json
-      {
-        "gatewayId?": "string",
-        "sensorId?": "string",
-        "sensorType?": "string"
-      }
-      ```],
-      [```json
-      `text/event-stream`:
-      {
+    [Response],
+    [```json
+    [{
+      "data": [{
         "gatewayId": "string",
         "sensorId": "string",
         "sensorType": "string",
@@ -329,38 +284,112 @@
         "iv": "string",
         "authTag": "string",
         "keyVersion": "number"
-      }
-      ```],
-    )
-  ]
+      }],
+      "nextCursor?": "string",
+      "hasMore": "boolean"
+    }]
+    ```],
+  )
+
+  ==== GET `/measures/export`
+  #table(
+    columns: (1fr, 1.2fr),
+    align: (left, left),
+    [Campo], [Contenuto],
+    [Descrizione], [Restituisce l'export completo delle misure cifrate in un intervallo temporale, senza paginazione.],
+    [Query Parameters],
+    [```json
+    {
+      "from": "string",
+      "to": "string",
+      "gatewayId?": ["string"],
+      "sensorId?": ["string"],
+      "sensorType?": ["string"]
+    }
+    ```],
+
+    [Response],
+    [```json
+    [{
+      "gatewayId": "string",
+      "sensorId": "string",
+      "sensorType": "string",
+      "timestamp": "string",
+      "encryptedData": "string",
+      "iv": "string",
+      "authTag": "string",
+      "keyVersion": "number"
+    }]
+    ```],
+  )
+
+  ==== SSE `/measures/stream`
+  #table(
+    columns: (1fr, 1.2fr),
+    align: (left, left),
+    [Campo], [Contenuto],
+    [Descrizione],
+    [Espone uno stream Server-Sent Events di envelope cifrati filtrabile per gateway, sensore e tipo di sensore. Se il
+      parametro `since` è presente, il servizio emette prima i record storici da TimescaleDB e poi passa al flusso
+      real-time. In caso di JWT scaduto, invia un evento SSE di errore e chiude la connessione.],
+
+    [Query Parameters],
+    [```json
+    {
+      "gatewayId?": ["string"],
+      "sensorId?": ["string"],
+      "sensorType?": ["string"],
+      "since?": "string (ISO 8601)"
+    }
+    ```],
+
+    [Response],
+    [```json
+    `text/event-stream`:
+    {
+      "gatewayId": "string",
+      "sensorId": "string",
+      "sensorType": "string",
+      "timestamp": "string",
+      "encryptedData": "string",
+      "iv": "string",
+      "authTag": "string",
+      "keyVersion": "number"
+    }
+
+    `text/event-stream` (errore applicativo):
+    {
+      "type": "error",
+      "reason": "token_expired"
+    }
+    ```],
+  )
 
   === Sensor
-  #figure(
-    caption: [Endpoint dell'area `Sensor` del microservizio `data-api`],
-  )[
-    #table(
-      columns: (1fr, 1.1fr, 2.2fr, 2fr, 2fr),
-      align: (left, left, left, left, left),
+  ==== GET `/sensor`
+  #table(
+    columns: (1fr, 1.2fr),
+    align: (left, left),
+    [Campo], [Contenuto],
+    [Descrizione],
+    [Restituisce l'elenco dei sensori osservati di recente, con possibilità di filtro per gateway e indicazione
+      dell'ultimo timestamp disponibile.],
 
-      [Metodo], [Endpoint], [Descrizione], [Query Parameters], [Response],
+    [Query Parameters],
+    [```json
+    { "gatewayId": "string" }
+    ```],
 
-      [GET],
-      [`/sensors`],
-      [#par(justify: false)[
-        Restituisce l'elenco dei sensori osservati di recente, con possibilità di filtro per gateway e indicazione
-        dell'ultimo timestamp disponibile.]],
-      [```json {"gatewayId": "string"}``` ],
-      [```json
-        [{
-          "sensorId": "string",
-          "sensorType": "string",
-          "gatewayId": "string",
-          "lastSeen": "string"
-        }]
-        ```
-      ],
-    )
-  ]
+    [Response],
+    [```json
+    [{
+      "sensorId": "string",
+      "sensorType": "string",
+      "gatewayId": "string",
+      "lastSeen": "string"
+    }]
+    ```],
+  )
   === Errori
 
   Di seguito sono elencati i principali codici di errore restituiti dagli endpoint del microservizio, con una breve
@@ -384,8 +413,8 @@
       [Bad Request],
       [
         Richiesta non valida. Nel contesto degli endpoint `measure` viene restituito quando i parametri di query sono
-        errati, quando `limit` supera `1000` oppure quando la finestra temporale eccede `24` ore. Possono comparire i
-        codici applicativi `QUERY_LIMIT_EXCEEDED`, `QUERY_WINDOW_EXCEEDED` ed `EXPORT_WINDOW_EXCEEDED`.
+        errati, quando `limit` è maggiore o uguale a `1000` oppure quando la finestra temporale eccede `24` ore. Possono
+        comparire i codici applicativi `QUERY_LIMIT_EXCEEDED`, `QUERY_WINDOW_EXCEEDED` ed `EXPORT_WINDOW_EXCEEDED`.
       ],
 
       [401],
@@ -455,8 +484,8 @@
   === Query Paginata delle Misure
 
   Il client invia una richiesta `GET` all'endpoint `/measures/query`, specificando l'intervallo temporale di interesse
-  ed eventuali filtri su `gatewayId`, `sensorId` e `sensorType`. Il `MeasureController` raccoglie i parametri di query e
-  costruisce l'oggetto di input per il `MeasureService`.
+  ed eventuali filtri su `gatewayId`, `sensorId` e `sensorType`, ripetibili per supportare più valori. Il
+  `MeasureController` raccoglie i parametri di query e costruisce l'oggetto di input per il `MeasureService`.
 
   Il `MeasureService` valida i parametri ricevuti, verificando in particolare il limite massimo degli elementi richiesti
   e la dimensione della finestra temporale. In caso di validazione positiva, la richiesta viene delegata al
@@ -469,7 +498,8 @@
   === Export Completo delle Misure
 
   Il flusso di export viene attivato tramite una richiesta `GET` all'endpoint `/measures/export`. Anche in questo caso
-  il `MeasureController` estrae i parametri di filtro e li inoltra al `MeasureService`.
+  il `MeasureController` estrae i parametri di filtro, anch'essi ripetibili su più valori, e li inoltra al
+  `MeasureService`.
 
   Il servizio applicativo verifica la correttezza dell'intervallo temporale richiesto e, se i parametri risultano
   validi, invoca il `MeasurePersistenceService` per eseguire una query non paginata sull'insieme delle misure
@@ -479,16 +509,26 @@
 
   === Streaming delle Misure
 
-  Il servizio espone un flusso continuo di eventi tramite l'endpoint `/measures/stream`, implementato come Server-Sent
-  Events. Il `MeasureController` raccoglie gli eventuali filtri su gateway, sensore e tipo di sensore, quindi delega la
-  gestione dello stream a `StreamListenerService`.
+  Il servizio espone l'endpoint `/measures/stream`, implementato come Server-Sent Events. Il `MeasureController`
+  raccoglie gli eventuali filtri su gateway, sensore e tipo di sensore, anche in forma multi-valore, oltre al parametro
+  opzionale `since`, quindi delega la gestione dello stream a `StreamListenerService`.
 
-  Lo `StreamListenerService` genera un flusso osservabile di eventi e applica i filtri richiesti dal client. Ogni evento
-  compatibile viene trasformato dal controller nel formato previsto per SSE, incapsulando i dati della misura cifrata
-  all'interno del campo `data`.
+  Se `since` è valorizzato, il servizio esegue inizialmente un replay dei record storici presenti su TimescaleDB a
+  partire dal timestamp richiesto. Terminata questa fase, la connessione viene mantenuta aperta e il flusso prosegue in
+  modalità real-time.
 
-  Questo flusso consente al client di ricevere aggiornamenti continui senza dover effettuare polling esplicito sugli
-  endpoint di query.
+  Il realtime è alimentato da `TelemetryStreamBridgeService`, che si sottoscrive al subject NATS `telemetry.data.*.*`,
+  estrae il `tenantId` dal subject e inoltra gli envelope cifrati a `StreamListenerService`.
+
+  Il canale SSE restituisce envelope crittografati e viene consumato lato client tramite
+  `@microsoft/fetch-event-source`. La distribuzione verso i client connessi avviene tramite fan-out in-memory
+  organizzato per tenant, con isolamento applicato usando il `tenant_id` ricavato dal JWT del chiamante.
+
+  In caso di token JWT scaduto durante la sessione, il servizio invia prima un evento SSE con payload
+  `{ "type": "error", "reason": "token_expired" }` e successivamente chiude la connessione.
+
+  Questo flusso consente al client di ricevere prima l'eventuale backlog storico richiesto e poi gli aggiornamenti
+  continui senza dover effettuare polling esplicito sugli endpoint di query.
 
   === Elenco dei Sensori Disponibili
 
