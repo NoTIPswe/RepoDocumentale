@@ -42,7 +42,13 @@ difetti, ponendo maggiore attenzione nei confronti del processo rispetto al prod
     precisa di come il gruppo stia procedendo. In particolare tramite l'utilizzo di: Burndown Chart, Velocity Chart,
     distribuzione del carico di lavoro;
   - *GitHub Actions & `notipdo`*: Per la raccolta automatica delle metriche di prodotto. I log delle pipeline
-    costituiscono la prova oggettiva del superamento dei controlli implementati fino a quel momento.
+    costituiscono la prova oggettiva del superamento dei controlli implementati fino a quel momento;
+  - *SonarQube/SonarCloud*: Strumento di analisi statica continua del codice sorgente. Integrato nella pipeline CI
+    tramite il workflow `quality-checks.yml`, funge da *Quality Gate* automatizzato: il merge delle Pull Request è
+    bloccato se le metriche di prodotto (es. Code Coverage, _Code Smells_) non soddisfano le soglie minime definite nel
+    Piano di Qualifica;
+  - *`org-metrics`*: Repository dell'organizzazione contenente automazioni che aggiornano costantemente le metriche di
+    prodotto nel cruscotto di valutazione dell'organizzazione.
 ]
 
 === Attività del processo
@@ -77,8 +83,14 @@ difetti, ponendo maggiore attenzione nei confronti del processo rispetto al prod
     (
       name: "Verifica delle Metriche",
       desc: [
-        Confrontare le metriche di prodotto raccolte automaticamente (es. Code Coverage, Indice Gulpease) con le soglie
-        di accettabilità definite nel Piano di Qualifica.
+        Confrontare le metriche di prodotto raccolte automaticamente con le soglie di accettabilità definite nel Piano
+        di Qualifica:
+        - *Metriche del codice sorgente* (es. Code Coverage, Code Smells, Vulnerabilità): ricavate dal report
+          SonarQube/SonarCloud disponibile nella dashboard del progetto dopo l'esecuzione del workflow
+          `quality-checks.yml`;
+        - *Metriche documentali* (es. Indice Gulpease): ricavate dalle esecuzioni di `notipdo`, nelle pipeline GitHub
+          Actions, e dalle automazioni contenute nella repository `org-metrics`, che aggiornano costantemente i dati
+          raccolti nel cruscotto di valutazione dell'organizzazione.
       ],
     ),
     (
