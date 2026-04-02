@@ -252,4 +252,136 @@ tests:
   - eliminazione_sensore_simulato
   - qualita_test_unita_coverage
   status: not_implemented
+- id: t_u_45
+  component: Data Consumer
+  description: Verificare che run() fallisca con variabili d'ambiente mancanti e che main() chiami
+    os.Exit(1) su errore di configurazione
+  requirements:
+  - qualita_test_unita_coverage
+  status: passed
+- id: t_u_46
+  component: Data Consumer
+  description: Verificare la configurazione del Data Consumer; valori di default, campi obbligatori
+    mancanti, override opzionali, valori non validi e generazione del DSN da file password
+  requirements:
+  - qualita_test_unita_coverage
+  status: passed
+- id: t_u_47
+  component: Data Consumer
+  description: Verificare che OpaqueBlob esegua marshal/unmarshal verbatim (Rule Zero) e che vengano
+    rifiutati valori non stringa
+  requirements:
+  - sicurezza_cifratura_dati
+  - sicurezza_rule_zero
+  - qualita_test_unita_coverage
+  status: passed
+- id: t_u_48
+  component: Data Consumer
+  description: Verificare che le metriche Prometheus si inizializzino senza panic, che i campi siano
+    non-nil, che la doppia registrazione produca panic e che le interfacce narrow siano soddisfatte
+  requirements:
+  - monitoraggio_performance_sistema
+  - qualita_osservabilita_servizi
+  - qualita_test_unita_coverage
+  status: passed
+- id: t_u_49
+  component: Data Consumer
+  description: Verificare il client NATS Request-Reply; fetch config (successo, errore NATS, JSON malformato),
+    aggiornamento stato, query lifecycle e logica di retry
+  requirements:
+  - alert_gateway_irraggiungibile
+  - qualita_resilienza_servizi
+  - qualita_test_unita_coverage
+  status: passed
+- id: t_u_50
+  component: Data Consumer
+  description: Verificare l'alert publisher NATS; formato del subject per tenant diversi, pubblicazione
+    corretta e incremento della metrica di errore su fallimento NATS
+  requirements:
+  - alert_gateway_irraggiungibile
+  - sicurezza_segregazione_tenant
+  - qualita_test_unita_coverage
+  status: passed
+- id: t_u_51
+  component: Data Consumer
+  description: Verificare la scrittura singola e in batch su TimescaleDB con DB mock; Rule Zero,
+    timestamp estratto dalla riga, gestione errori DB e no-op su batch vuoto
+  requirements:
+  - invio_dati_crittografati_cloud
+  - sicurezza_cifratura_dati
+  - sicurezza_rule_zero
+  - qualita_test_unita_coverage
+  status: passed
+- id: t_u_52
+  component: Data Consumer
+  description: Verificare la gerarchia di fallback della cache (gateway, tenant, system default),
+    il refresh atomico, che un errore di fetch non cancelli la cache e il backoff con max retry
+  requirements:
+  - modifica_intervallo_alert_gateway
+  - alert_gateway_irraggiungibile
+  - qualita_resilienza_servizi
+  - qualita_test_unita_coverage
+  status: passed
+- id: t_u_53
+  component: Data Consumer
+  description: Verificare il gateway lifecycle provider; successo, stato Online e gestione errore
+    NATS con mock
+  requirements:
+  - modifica_stato_gateway
+  - alert_gateway_irraggiungibile
+  - qualita_resilienza_servizi
+  - qualita_test_unita_coverage
+  status: passed
+- id: t_u_54
+  component: Data Consumer
+  description: Verificare che lo stato venga inoltrato verbatim al RR client, la gestione dello stato
+    Offline e l'incremento della metrica di errore su fallimento NATS
+  requirements:
+  - modifica_stato_gateway
+  - qualita_test_unita_coverage
+  status: passed
+- id: t_u_55
+  component: Data Consumer
+  description: Verificare che Now() ritorni un tempo nell'intervallo corretto
+  requirements:
+  - qualita_test_unita_coverage
+  status: passed
+- id: t_u_56
+  component: Data Consumer
+  description: Verificare il consumer di telemetria NATS; parsing del subject, classificazione degli
+    errori (permanenti vs. transitori), batching per dimensione/tick/cancel e writeBatch per ogni
+    combinazione di esito
+  requirements:
+  - invio_dati_crittografati_cloud
+  - qualita_test_unita_coverage
+  status: passed
+- id: t_u_57
+  component: Data Consumer
+  description: Verificare l'estrazione degli ID dal subject, il dispatch al service, il Term per
+    subject invalidi e il run loop con context cancel
+  requirements:
+  - alert_gateway_irraggiungibile
+  - decommission_gateway
+  - qualita_test_unita_coverage
+  status: passed
+- id: t_u_58
+  component: Data Consumer
+  description: Verificare che Tick() venga chiamato all'intervallo configurato e che Run() si fermi
+    su context cancel
+  requirements:
+  - alert_gateway_irraggiungibile
+  - qualita_test_unita_coverage
+  status: passed
+- id: t_u_59
+  component: Data Consumer
+  description: Verificare HandleTelemetry (registrazione Online, no duplicati, recovery),
+    HandleDecommission (rimozione, soppressione alert, no-op) e Tick (grace period, timeout verso
+    Offline, alert, lifecycle gate, fail-open)
+  requirements:
+  - alert_gateway_irraggiungibile
+  - invio_dati_crittografati_cloud
+  - decommission_gateway
+  - qualita_resilienza_servizi
+  - qualita_test_unita_coverage
+  status: passed
 

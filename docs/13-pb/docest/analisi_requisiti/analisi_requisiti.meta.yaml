@@ -1,5 +1,12 @@
 title: Analisi dei Requisiti
 changelog:
+  - version: "1.4.0"
+    date: "2026-03-30"
+    authors:
+      - Francesco Marcon
+    verifier: TBD
+    description: >
+      Aggiunta requisiti riguardanti la 
   - version: "1.3.1"
     date: "2026-03-30"
     authors:

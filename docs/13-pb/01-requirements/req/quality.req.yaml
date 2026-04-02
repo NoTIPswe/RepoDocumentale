@@ -104,3 +104,16 @@ requirements:
     con copertura quanto più vicina al 100% nelle sezioni critiche del sistema
   sources:
   - text: Interno
+- id: qualita_resilienza_servizi
+  priority: mandatory
+  description: I microservizi Cloud devono implementare meccanismi di resilienza quali retry con backoff
+    esponenziale, fallback a valori di default e fail-open su dipendenze non critiche per garantire
+    la continuità operativa
+  sources:
+  - text: Interno
+- id: qualita_osservabilita_servizi
+  priority: mandatory
+  description: I microservizi Cloud devono esporre un endpoint di metriche operative (Prometheus) con
+    counter e gauge aggiornati in tempo reale, verificabili sia in scrittura che in scraping
+  sources:
+  - text: Interno

@@ -70,3 +70,101 @@ tests:
   requirements:
   - sicurezza_segregazione_tenant
   status: not_implemented
+- id: t_i_11
+  component: Data Consumer
+  description: Verificare il flusso end-to-end completo del Data Consumer; telemetria ricevuta da NATS
+    JetStream, persistita su TimescaleDB, gateway portato allo stato Online, timeout che genera alert
+    Offline, aggiornamento di stato successivo
+  requirements:
+  - invio_dati_crittografati_cloud
+  - alert_gateway_irraggiungibile
+  status: passed
+- id: t_i_12
+  component: Data Consumer
+  description: Verificare che un messaggio di telemetria valido venga scritto nel DB verbatim (Rule Zero)
+    e che un messaggio JSON malformato venga scartato (Term) senza riaccodamento
+  requirements:
+  - invio_dati_crittografati_cloud
+  - sicurezza_cifratura_dati
+  - sicurezza_rule_zero
+  status: passed
+- id: t_i_13
+  component: Data Consumer
+  description: Verificare la corretta estrazione di tenantID e gatewayID dal subject NATS; i subject
+    invalidi vengono "terminati"; lo stop è pulito sulla cancellazione del context
+  requirements:
+  - alert_gateway_irraggiungibile
+  - sicurezza_segregazione_tenant
+  - decommission_gateway
+  status: passed
+- id: t_i_14
+  component: Data Consumer
+  description: Verificare la pubblicazione degli alert sul subject NATS corretto con payload atteso e
+    l’isolamento multi-tenant degli alert
+  requirements:
+  - alert_gateway_irraggiungibile
+  - sicurezza_segregazione_tenant
+  status: passed
+- id: t_i_15
+  component: Data Consumer
+  description: Verificare la scrittura singola e in batch su TimescaleDB e che i blob cifrati vengano
+    salvati verbatim senza alterazioni (Rule Zero)
+  requirements:
+  - invio_dati_crittografati_cloud
+  - sicurezza_cifratura_dati
+  - sicurezza_rule_zero
+  status: passed
+- id: t_i_16
+  component: Data Consumer
+  description: Verificare le operazioni Request-Reply reali su NATS; fetch della configurazione alert,
+    aggiornamento stato gateway, query del lifecycle e gestione del timeout senza responder
+  requirements:
+  - alert_gateway_irraggiungibile
+  - modifica_intervallo_alert_gateway
+  - qualita_resilienza_servizi
+  status: passed
+- id: t_i_17
+  component: Data Consumer
+  description: Verificare che il provider restituisca correttamente gli stati Paused e Online e che
+    la metrica di errore venga incrementata su timeout
+  requirements:
+  - modifica_stato_gateway
+  - alert_gateway_irraggiungibile
+  - qualita_resilienza_servizi
+  status: passed
+- id: t_i_18
+  component: Data Consumer
+  description: Verificare il ciclo completo del heartbeat tracker; telemetria porta il gateway Online,
+    il timeout genera alert Offline, la recovery riporta Online; gestione del grace period, del decommission
+    e del lifecycle Paused
+  requirements:
+  - alert_gateway_irraggiungibile
+  - invio_dati_crittografati_cloud
+  - modifica_stato_gateway
+  - decommission_gateway
+  status: passed
+- id: t_i_19
+  component: Data Consumer
+  description: Verificare il popolamento della cache al bootstrap, il refresh periodico e il fallback
+    al default di sistema con incremento della metrica di errore in caso di fetch fallito
+  requirements:
+  - modifica_intervallo_alert_gateway
+  - alert_gateway_irraggiungibile
+  - qualita_resilienza_servizi
+  status: passed
+- id: t_i_20
+  component: Data Consumer
+  description: Verificare che l’endpoint /metrics esponga tutte le metriche Prometheus attese e che
+    i counter e i gauge riflettano i valori aggiornati dopo le operazioni
+  requirements:
+  - monitoraggio_performance_sistema
+  - qualita_osservabilita_servizi
+  status: passed
+- id: t_i_21
+  component: Data Consumer
+  description: Verificare che un client con certificato valido si connetta correttamente e che un client
+    privo di certificato venga rifiutato (enforcement mTLS)
+  requirements:
+  - sicurezza_autenticazione_accessi
+  - sicurezza_cifratura_dati
+  status: passed
