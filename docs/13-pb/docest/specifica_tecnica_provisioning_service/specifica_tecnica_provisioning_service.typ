@@ -45,6 +45,9 @@
     [Campo], [Variabile d'ambiente], [Default], [Obbligatorio],
     [`NATS_URL`], [NATS_URL], [-], [Si],
     [`NATS_CREDENTIALS`], [NATS_CREDENTIALS], [-], [Si],
+    [`NATS_TLS_CA`], [NATS_TLS_CA], [-], [No],
+    [`NATS_TLS_CERT`], [NATS_TLS_CERT], [-], [No],
+    [`NATS_TLS_KEY`], [NATS_TLS_KEY], [-], [No],
     [`NATS_REQUEST_TIMEOUT_MS`], [NATS_REQUEST_TIMEOUT_MS], [`5000`], [No],
     [`NATS_MAX_RETRIES`], [NATS_MAX_RETRIES], [`3`], [No],
     [`CA_CERTS_PATH`], [CA_CERTS_PATH], [`/certs`], [No],
@@ -154,7 +157,7 @@
     kind: "driving",
     description: [Endpoint pubblico di onboarding del gateway esposto dal controller di provisioning.],
     methods: (
-      ("request", [`factory_id`, `factory_key`, `csr`, `send_frequency_ms`]),
+      ("request", [`factory_id`, `factory_key`, `csr`, `send_frequency_ms >= 1`]),
       ("response", [`certificate`, `aeskey`, `send_frequency_ms`]),
       ("status", [201 in caso di successo]),
       ("auth model", [Autenticazione con credenziali di fabbrica nel body, senza JWT]),
@@ -246,7 +249,7 @@
 
     [`ProvisioningRequest`],
     [`credentials`, `csr`, `sendFrequencyMs: number`],
-    [Input applicativo del flusso onboarding.],
+    [Input applicativo del flusso onboarding. `sendFrequencyMs` deve essere un intero positivo maggiore o uguale a 1.],
 
     [`GatewayIdentity`],
     [`gatewayId: string`, `tenantId: string`],
@@ -331,7 +334,7 @@
 
   = Osservabilità e Metriche
 
-  Il servizio espone metriche tramite `ProvisioningMetrics`:
+  Il servizio registra metriche applicative tramite `ProvisioningMetrics`:
 
   #table(
     columns: (auto, auto),
