@@ -218,6 +218,9 @@ accepted_words:
   - TestContainers
   - timestamptz
   - uuid
+  - Crypto
+  - RBAC
+  - IAM
   - httptest
 
   # --- Terminologia Software Engineering (SWE) ---
@@ -301,6 +304,7 @@ accepted_words:
   - unexported
   - lifecycle
   - unmarshal
+  - Walkthrough
 
   # --- Terminologia Standard Progetto ---
   - req
@@ -417,6 +421,7 @@ accepted_words:
   - HeartbeatTrackerConfig
   - NATSGatewayLifecycleProvider
   - Configs
+  - encryptor
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
@@ -492,3 +497,6 @@ accepted_words:
   - centralizzata
   - testabilità
   - deserializzate
+  - Riesecuzione
+  - versionata
+  - versionati
