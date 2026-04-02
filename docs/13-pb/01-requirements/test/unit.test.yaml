@@ -176,3 +176,80 @@ tests:
   requirements:
   - err_range_invalido_simulazione
   status: not_implemented
+- id: t_u_34
+  description: Verificare la corretta cifratura dei payload telemetrici e la generazione univoca dei vettori di inizializzazione (IV)
+  requirements:
+  - sicurezza_cifratura_dati
+  status: not_implemented
+- id: t_u_35
+  description: Verificare la resilienza del buffer interno dei messaggi e la gestione dell'overflow in caso di disconnessioni
+  requirements:
+  - comando_anomalia_degrado_rete
+  - comando_anomalia_disconnessione_temporanea
+  - qualita_test_unita_coverage
+  status: not_implemented
+- id: t_u_36
+  description: Verificare la corretta ricezione, validazione e scarto (per timeout o malformazione) dei comandi provenienti dal sistema Cloud
+  requirements:
+  - err_sintattico_config_gateway
+  - err_config_frequenza_fuori_range
+  - qualita_test_unita_coverage
+  status: not_implemented
+- id: t_u_37
+  description: Verificare la robustezza della conversione dati (mapping) tra dominio e DTO, includendo la gestione di valori nulli e identificatori non validi
+  requirements:
+  - qualita_test_unita_coverage
+  status: not_implemented
+- id: t_u_38
+  description: Verificare la corretta esecuzione delle operazioni CRUD e le relative validazioni per i Gateway simulati tramite API
+  requirements:
+  - visualizzazione_lista_gateway_simulati
+  - visualizzazione_singolo_gateway_simulato
+  - eliminazione_gateway_simulato
+  - creazione_deploy_gateway_simulato
+  - inserimento_dati_config_sim_gateway
+  - err_deploy_gateway_simulato
+  - creazione_gateway_multipli_default
+  status: not_implemented
+- id: t_u_39
+  description: Verificare la corretta esecuzione delle operazioni CRUD e le relative validazioni sui range e configurazioni dei sensori simulati tramite API
+  requirements:
+  - visualizzazione_lista_sensori_gateway_simulato
+  - visualizzazione_singolo_sensore_simulato
+  - eliminazione_sensore_simulato
+  - creazione_sensore_gateway_simulato
+  - inserimento_dati_config_sim_sensore
+  - err_range_invalido_simulazione
+  - err_creazione_sensore_simulato
+  status: not_implemented
+- id: t_u_40
+  description: Verificare la corretta elaborazione e iniezione di anomalie di rete (degrado, disconnessione) e valori anomali (outliers)
+  requirements:
+  - comando_anomalia_degrado_rete
+  - comando_anomalia_disconnessione_temporanea
+  - comando_anomalia_outliers_misurazioni
+  status: not_implemented
+- id: t_u_41
+  description: Verificare il corretto ciclo di vita della goroutine del Gateway (avvio, terminazione pulita, e decommission)
+  requirements:
+  - eliminazione_gateway_simulato
+  - qualita_test_unita_coverage
+  status: not_implemented
+- id: t_u_42
+  description: Verificare la corretta applicazione dei cambi di stato operativi (Online, Offline, Paused) e il loro effetto sulla pubblicazione della telemetria
+  requirements:
+  - impostazione_configurazione_gateway
+  status: not_implemented
+- id: t_u_43
+  description: Verificare la corretta inizializzazione dell'applicazione, del database locale e l'applicazione dei valori di configurazione di fallback
+  requirements:
+  - qualita_test_unita_coverage
+  status: not_implemented
+- id: t_u_44
+  description: Verificare le corrette operazioni di persistenza, lettura e gestione chiavi sul database locale SQLite
+  requirements:
+  - sicurezza_cifratura_dati
+  - eliminazione_sensore_simulato
+  - qualita_test_unita_coverage
+  status: not_implemented
+
