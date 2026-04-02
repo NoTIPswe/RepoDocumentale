@@ -117,3 +117,15 @@ requirements:
     counter e gauge aggiornati in tempo reale, verificabili sia in scrittura che in scraping
   sources:
   - text: Interno
+
+- id: qualita_durabilita_persistenza
+  priority: mandatory
+  description: Il sistema deve garantire la durabilità dei dati di configurazione (Gateway e Sensori) nel database locale, assicurando che le informazioni persistano correttamente e siano recuperabili a seguito di riavvii del servizio o interruzioni di alimentazione
+  sources:
+  - text: Interno
+
+- id: qualita_spegnimento_controllato
+  priority: mandatory
+  description: Il sistema deve garantire un arresto pulito (graceful shutdown) alla ricezione di segnali di terminazione o alla cancellazione del contesto di esecuzione, assicurando la corretta chiusura dei canali di comunicazione, il rilascio delle risorse e l'interruzione sicura dei processi in background
+  sources:
+  - text: Interno
