@@ -22,9 +22,13 @@ Qualifica*.
   L'analisi statica viene effettuata senza l'esecuzione del prodotto software. Il metodo adottato è l'*Ispezione*:
   - *Documentazione*: Verifica della correttezza ortografica, sintattica e contenutistica. Per la parte maggiormente
     strutturale e ortografica, l'ispezione è supportata dal tool `notipdo`.
-  - *Codice*: Revisione del codice tramite Pull Request. Il verificatore controlla l'aderenza agli standard di codifica
-    e l'assenza di difetti logici evidenti. Riguardo questa sezione seguiranno aggiornamenti dopo il raggiungimento
-    della Requirements and Technology Baseline.
+  - *Codice*: La verifica statica del codice avviene su due livelli:
+    - *Revisione manuale tramite Pull Request*: Il verificatore controlla l'aderenza agli standard di codifica e
+      l'assenza di difetti logici evidenti.
+    - *Analisi automatizzata tramite SonarQube/SonarCloud*: Strumento primario per l'ispezione continua del codice,
+      eseguito nella pipeline CI (`quality-checks.yml`) ad ogni Pull Request. Rileva automaticamente _Code Smells_,
+      _Bug_ e _Vulnerabilità_. Funge da *Quality Gate*: il merge è bloccato se le metriche critiche (es. Code Coverage)
+      non soddisfano i criteri stabiliti.
 ]
 
 #norm(
@@ -51,6 +55,21 @@ Qualifica*.
     di riferimento;
   - *Test di integrazione multi-servizio*: risiedono in `notip-infra/tests/integration/`;
   - *Test di sistema (e2e)*, se automatizzati: risiedono in `notip-infra/tests/system/`.
+
+  *Convenzioni per stack tecnologico*
+
+  La collocazione fisica dei file di test all'interno delle singole repository di servizio segue le convenzioni
+  idiomatiche del linguaggio adottato:
+  - *NestJS (TypeScript)*:
+    - I test di unità sono collocati nelle stesse cartelle dei file sorgenti e seguiti dal suffisso `.spec.ts` (es.
+      `src/service/foo.service.spec.ts`);
+    - I test di sistema (e2e) risiedono nella cartella radice `test/` e sono seguiti dal suffisso `.e2e-spec.ts` (es.
+      `test/app.e2e-spec.ts`).
+  - *Go*:
+    - I test di unità risiedono all'interno del package `internal/` e sono seguiti dal suffisso `_test.go`, convenzione
+      idiomatica del linguaggio;
+    - I test di integrazione interni (es. tra il servizio e il proprio database) risiedono nella cartella
+      `tests/integration/` della repository del servizio.
 ]
 
 #norm(

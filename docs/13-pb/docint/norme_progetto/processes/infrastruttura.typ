@@ -58,14 +58,20 @@ le norme relative a ciascuno.
 ]
 
 #norm(title: "Strumenti per la raccolta e l'analisi delle metriche", label: <strumenti-metriche>)[
-  Per il monitoraggio quantitativo del progetto, la valutazione della qualità e la stesura dei grafici, il gruppo si
-  affida a:
-  - *Google Sheets*: utilizzato come centro dell'inserimento, la classificazione e la storicizzazione di tutte le
-    metriche (di processo, di prodotto e di qualità). Questo ci consente di elaborare i dati raccolti tramite script
-    automatici e generando automaticamente dei grafici per i report;
-  - *Git e GitHub*: oltre alla gestione del codice, vengono attivamente interrogati per estrarre metriche fondamentali
-    legate allo sviluppo (come la qualità dei commit o i tempi di risoluzione delle Pull Request), i cui risultati
-    vengono poi aggregati, inviati ed analizzati su Google Sheets.
+  Gli strumenti di raccolta e analisi delle metriche si dividono in due livelli distinti:
+
+  *Metriche di Processo e di Prodotto* (pianificazione, qualità documentale, avanzamento Sprint):
+  - *Google Sheets*: centro di inserimento, classificazione e storicizzazione delle metriche di processo e di prodotto.
+    I dati vengono elaborati tramite script automatici e aggregati in grafici per i report di qualità;
+  - *Git e GitHub*: interrogati per estrarre metriche di sviluppo (es. qualità dei commit, tempi di risoluzione delle
+    Pull Request), i cui risultati vengono aggregati su Google Sheets.
+
+  *Metriche Applicative e di Sistema* (osservabilità del prodotto a runtime):
+  - *Prometheus*: raccoglie in modalità pull le metriche esposte dai singoli microservizi e dall'infrastruttura NATS. La
+    configurazione dei target di scraping è versionata in `notip-infra/infra/monitoring/prometheus/`;
+  - *Grafana*: visualizza le metriche raccolte da Prometheus tramite dashboard pre-configurate e versionare in
+    `notip-infra/infra/monitoring/grafana/` (es. `nats-overview.json`). Costituisce il pannello di controllo principale
+    per verificare la salute del sistema distribuito in tempo reale.
 ]
 
 #norm(
