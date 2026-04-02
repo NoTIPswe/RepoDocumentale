@@ -43,8 +43,6 @@
       [DBEncryptionKey], [DB_ENCRYPTION_KEY], [-], [Si],
       [ApiPort], [MGMT_API_PORT], [3000], [No],
       [NodeEnv], [NODE_ENV], [development], [No],
-      [MockAuth], [MOCK_AUTH], [false], [No],
-      [MockNats], [MOCK_NATS], [true], [No],
       [NatsServers], [NATS_SERVERS], [NATS_URL], [No],
       [NatsClientName], [NATS_CLIENT_NAME], [management-api], [No],
       [NatsDurablePrefix], [NATS_DURABLE_PREFIX], [management-api], [No],
@@ -314,766 +312,668 @@
   == Endpoint API
   Di seguito è riportato l'elenco completo degli endpoint esposti dal microservizio divisi per area di interesse. Non
   tutti gli endpoint sono accessibili via frontend, alcuni sono utilizzati esclusivamente per la comunicazione tra
-  microservizi o per operazioni di amministrazione via terminale:
-  #let desc(body) = text(10pt, {
-    set par(justify: false)
-    body
-  })
+  microservizi o per operazioni di amministrazione via terminale.
+
+  #let endpoint-details(description, request, response) = {
+    table(
+      columns: (1fr, 3fr),
+      [Campo], [Valore],
+      [Descrizione], description,
+      [Body Request], request,
+      [Response], response,
+    )
+  }
+
   #show raw.where(lang: "json"): set text(size: 7pt)
 
   === Public
   Questi endpoint sono accessibili senza autenticazione:
 
-  #figure(
-    caption: [Endpoint pubblici del microservizio],
-  )[
-    #table(
-      columns: (0.8fr, 1.4fr, 1.6fr, 2.4fr, 2.2fr),
-      align: (left, left, left, left, left),
-      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
+  ==== `GET /`
+  #endpoint-details(
+    [Restituisce una stringa di benvenuto/diagnostica del servizio.],
+    [-],
+    [```json
+    "string"
+    ```],
+  )
 
-      [`GET`],
-      [`/`],
-      desc[Restituisce una stringa di benvenuto/diagnostica del servizio],
-      [-],
-      [```json
-      "string"
-      ```],
-
-      [`GET`],
-      [`/health`],
-      desc[Restituisce lo stato di salute base del microservizio],
-      [-],
-      [```json
-      { "status": "ok" }
-      ```],
-    )
-  ]
+  ==== `GET /health`
+  #endpoint-details(
+    [Restituisce lo stato di salute base del microservizio.],
+    [-],
+    [```json
+    { "status": "ok" }
+    ```],
+  )
 
   === Admin
   Questi endpoint sono accessibili solo agli utenti con ruolo `system_admin`:
 
-  #figure(
-    caption: [Endpoint riservati agli amministratori di sistema],
-  )[
-    #table(
-      columns: (1.1fr, 1.4fr, 1.6fr, 2.4fr, 2.2fr),
-      align: (left, left, left, left, left),
-      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
+  ==== `GET /admin/tenants`
+  #endpoint-details(
+    [Restituisce l’elenco dei Tenant.],
+    [-],
+    [```json
+    [{
+      "id": "string",
+      "name": "string",
+      "status": "TenantStatus",
+      "created_at": "string"
+    }]
+    ```],
+  )
 
-      [`GET`],
-      [`/admin/tenants`],
-      desc[Restituisce l’elenco dei Tenant],
-      [-],
-      [```json
-      [{
-        "id": "string",
-        "name": "string",
-        "status": "TenantStatus",
-        "created_at": "string"
-      }]
-      ```],
+  ==== `GET /admin/tenants/:id/users`
+  #endpoint-details(
+    [Restituisce gli utenti associati a uno specifico Tenant.],
+    [-],
+    [```json
+    [{
+      "user_id": "string",
+      "role": "UsersRole"
+    }]
+    ```],
+  )
 
-      [`GET`],
-      [`/admin/tenants/:id/users`],
-      desc[Restituisce gli utenti associati a uno specifico Tenant],
-      [-],
-      [```json
-      [{
-          "user_id": "string",
-          "role": "UsersRole"
-      }]
-      ```],
+  ==== `POST /admin/tenants`
+  #endpoint-details(
+    [Crea un nuovo Tenant e il relativo amministratore.],
+    [```json
+    {
+      "name": "string",
+      "admin_email": "string",
+      "admin_name": "string",
+      "admin_password": "string"
+    }
+    ```],
+    [```json
+    {
+      "id": "string",
+      "name": "string",
+      "status": "TenantStatus",
+      "created_at": "string"
+    }
+    ```],
+  )
 
-      [`POST`],
-      [`/admin/tenants`],
-      desc[Crea un nuovo Tenant e il relativo amministratore],
-      [```json
-      {
-        "name": "string",
-        "admin_email": "string",
-        "admin_name": "string",
-        "admin_password": "string"
-      }
-      ```],
-      [```json
-      {
-        "id": "string",
-        "name": "string",
-        "status": "TenantStatus",
-        "created_at": "string"
-      }
-      ```],
+  ==== `PATCH /admin/tenants/:id`
+  #endpoint-details(
+    [Aggiorna i dati di un Tenant.],
+    [```json
+    {
+      "name?": "string",
+      "status?": "TenantStatus",
+      "suspension_interval_days?": "number"
+    }
+    ```],
+    [```json
+    {
+      "id": "string",
+      "name": "string",
+      "status": "TenantStatus",
+      "updated_at": "string"
+    }
+    ```],
+  )
 
-      [`PATCH`],
-      [`/admin/tenants/:id`],
-      desc[Aggiorna i dati di un Tenant],
-      [```json
-      {
-        "name?": "string",
-        "status?": "TenantStatus",
-        "suspension_interval_days?": "number"
-      }
-      ```],
-      [```json
-      {
-        "id": "string",
-        "name": "string",
-        "status": "TenantStatus",
-        "updated_at": "string"
-      }
-      ```],
+  ==== `DELETE /admin/tenants/:id`
+  #endpoint-details(
+    [Elimina un Tenant.],
+    [-],
+    [```json
+    {
+      "status": 200
+    }
+    ```],
+  )
 
-      [`DELETE`],
-      [`/admin/tenants/:id`],
-      desc[Elimina un Tenant],
-      [-],
-      [```json
-      {
-        "message": "Tenant deleted successfully"
-      }
-      ```],
+  ==== `GET /admin/gateways?tenant_id=:tenantId`
+  #endpoint-details(
+    [Restituisce tutti i Gateway, con filtro opzionale per Tenant.],
+    [-],
+    [```json
+    [{
+      "id": "string",
+      "tenant_id": "string"
+    }]
+    ```],
+  )
 
-      [`GET`],
-      [`/admin/gateways?`\
-        `tenant_id=
-      :tenantId`],
-      desc[Restituisce tutti i Gateway, con filtro opzionale per Tenant],
-      [-],
-      [```json
-      [{
-        "id": "string",
-        "tenant_id": "string"
-      }]
-      ```],
-
-      [`POST`],
-      [`/admin/gateways`],
-      desc[Registra un nuovo Gateway per un Tenant],
-      [```json
-      {
-        "factory_id": "string",
-        "tenant_id": "string",
-        "factory_key_hash":
-        "string",
-        "firmware_version": "string",
-        "model": "string"
-      }
-      ```],
-      [```json
-      {
-        "id": "string"
-      }
-      ```],
-    )
-  ]
+  ==== `POST /admin/gateways`
+  #endpoint-details(
+    [Registra un nuovo Gateway per un Tenant.],
+    [```json
+    {
+      "factory_id": "string",
+      "tenant_id": "string",
+      "factory_key_hash": "string",
+      "firmware_version": "string",
+      "model": "string"
+    }
+    ```],
+    [```json
+    {
+      "id": "string"
+    }
+    ```],
+  )
 
   === Auth
   Questi endpoint sono accessibili agli utenti autenticati; l’endpoint di impersonazione è riservato ai `system_admin`:
 
-  #figure(
-    caption: [Endpoint di autenticazione e impersonazione],
-  )[
-    #table(
-      columns: (0.8fr, 1.4fr, 1.6fr, 2.4fr, 3fr),
-      align: (left, left, left, left, left),
-      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
+  ==== `GET /auth/me`
+  #endpoint-details(
+    [Restituisce i dati dell’utente autenticato.],
+    [-],
+    [```json
+    {
+      "actor_user_id?": "string",
+      "actor_email?": "string",
+      "actor_name?": "string",
+      "actor_role?": "UsersRole",
+      "actor_tenant_id?": "string",
+      "effective_user_id": "string",
+      "effective_email": "string",
+      "effective_name": "string",
+      "effective_role": "UsersRole",
+      "effective_tenant_id": "string",
+      "is_impersonating": "boolean"
+    }
+    ```],
+  )
 
-      [`GET`],
-      [`/auth/me`],
-      desc[Restituisce i dati dell’utente autenticato],
-      [-],
-      [```json
-      {
-        "actor_user_id?": "string",
-        "actor_email?": "string",
-        "actor_name?": "string",
-        "actor_role?": "UsersRole",
-        "actor_tenant_id?": "string",
-        "effective_user_id": "string",
-        "effective_email": "string",
-        "effective_name": "string",
-        "effective_role": "UsersRole",
-        "effective_tenant_id": "string",
-        "is_impersonating": "boolean"
-      }
-      ```],
-
-      [`POST`],
-      [`/auth/impersonate`],
-      desc[Genera un token di impersonazione per un utente],
-      [```json
-      {
-        "user_id": "string"
-      }
-      ```],
-      [```json
-      {
-        "access_token": "string",
-        "expires_in": "number"
-      }
-      ```],
-    )
-  ]
+  ==== `POST /auth/impersonate`
+  #endpoint-details(
+    [Genera un token di impersonazione per un utente.],
+    [```json
+    {
+      "user_id": "string"
+    }
+    ```],
+    [```json
+    {
+      "access_token": "string",
+      "expires_in": "number"
+    }
+    ```],
+  )
 
   === Gateways
   Questi endpoint sono accessibili agli utenti del Tenant; le modifiche sono riservate ai `tenant_admin`:
 
-  #figure(
-    caption: [Endpoint per la gestione dei `Gateway`],
-  )[
-    #table(
-      columns: (0.8fr, 1.4fr, 1.6fr, 2.4fr, 2.7fr),
-      align: (left, left, left, left, left),
-      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
+  ==== `GET /gateways`
+  #endpoint-details(
+    [Restituisce i Gateway del Tenant autenticato.],
+    [-],
+    [```json
+    [{
+      "id": "string",
+      "name": "string",
+      "status": "GatewayStatus",
+      "last_seen_at?": "string",
+      "provisioned": "boolean",
+      "firmware_version?": "string",
+      "send_frequency_ms?": "number"
+    }]
+    ```],
+  )
 
-      [`GET`],
-      [`/gateways`],
-      desc[Restituisce i Gateway del Tenant autenticato],
-      [-],
-      [```json
-      [{
-        "id": "string",
-        "name": "string",
-        "status": "GatewayStatus",
-        "last_seen_at?": "string",
-        "provisioned": "boolean",
-        "firmware_version?": "string",
-        "send_frequency_ms?": "number"
-      }]
-      ```],
+  ==== `GET /gateways/:id`
+  #endpoint-details(
+    [Restituisce il dettaglio di un Gateway.],
+    [-],
+    [```json
+    {
+      "id": "string",
+      "name": "string",
+      "status": "GatewayStatus",
+      "last_seen_at?": "string",
+      "provisioned": "boolean",
+      "firmware_version?": "string",
+      "send_frequency_ms?": "number"
+    }
+    ```],
+  )
 
-      [`GET`],
-      [`/gateways/:id`],
-      desc[Restituisce il dettaglio di un Gateway],
-      [-],
-      [```json
-      {
-        "id": "string",
-        "name": "string",
-        "status": "GatewayStatus",
-        "last_seen_at?": "string",
-        "provisioned": "boolean",
-        "firmware_version?": "string",
-        "send_frequency_ms?": "number"
-      }
-      ```],
+  ==== `PATCH /gateways/:id`
+  #endpoint-details(
+    [Aggiorna il nome di un Gateway.],
+    [```json
+    { "name": "string" }
+    ```],
+    [```json
+    {
+      "id": "string",
+      "name": "string",
+      "status": "GatewayStatus",
+      "updated_at": "string"
+    }
+    ```],
+  )
 
-      [`PATCH`],
-      [`/gateways/:id`],
-      desc[Aggiorna il nome di un Gateway],
-      [```json
-      { "name": "string" }
-      ```],
-      [```json
-      {
-        "id": "string",
-        "name": "string",
-        "status": "GatewayStatus",
-        "updated_at": "string"
-      }
-      ```],
-
-      [`DELETE`],
-      [`/gateways/:id`],
-      desc[Elimina un Gateway],
-      [-],
-      [```json
-      { "message": "deleted" }
-      ```],
-    )
-  ]
+  ==== `DELETE /gateways/:id`
+  #endpoint-details(
+    [Elimina un Gateway.],
+    [-],
+    [```json
+    { "status": 200 }
+    ```],
+  )
 
   === Users
   Questi endpoint sono accessibili ai `tenant_admin`:
 
-  #figure(
-    caption: [Endpoint per la gestione degli utenti del `Tenant`],
-  )[
-    #table(
-      columns: (1fr, 1.5fr, 2.2fr, 2.4fr, 2.5fr),
-      align: (left, left, left, left, left),
-      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
+  ==== `GET /users`
+  #endpoint-details(
+    [Restituisce gli utenti del Tenant.],
+    [-],
+    [```json
+    [{
+      "id": "string",
+      "name": "string",
+      "email": "string",
+      "role": "UsersRole",
+      "last_access?": "string"
+    }]
+    ```],
+  )
 
-      [`GET`],
-      [`/users`],
-      desc[Restituisce gli utenti del Tenant],
-      [-],
-      [```json
-      [{
-        "id": "string",
-        "name": "string",
-        "email": "string",
-        "role": "UsersRole",
-        "last_access?": "string"
-      }]
-      ```],
+  ==== `GET /users/:id`
+  #endpoint-details(
+    [Restituisce il dettaglio di un utente.],
+    [-],
+    [```json
+    {
+      "id": "string",
+      "name": "string",
+      "email": "string",
+      "role": "UsersRole",
+      "last_access?": "string"
+    }
+    ```],
+  )
 
-      [`GET`],
-      [`/users/:id`],
-      desc[Restituisce il dettaglio di un utente],
-      [-],
-      [```json
-      {
-        "id": "string",
-        "name": "string",
-        "email": "string",
-        "role": "UsersRole",
-        "last_access?": "string"
-      }
-      ```],
+  ==== `POST /users`
+  #endpoint-details(
+    [Crea un utente nel Tenant.],
+    [```json
+    {
+      "name": "string",
+      "email": "string",
+      "role": "UsersRole",
+      "password": "string"
+    }
+    ```],
+    [```json
+    {
+      "id": "string",
+      "name": "string",
+      "email": "string",
+      "role": "UsersRole",
+      "created_at": "string"
+    }
+    ```],
+  )
 
-      [`POST`],
-      [`/users`],
-      desc[Crea un utente nel Tenant],
-      [```json
-      {
-        "name": "string",
-        "email": "string",
-        "role": "UsersRole",
-        "password": "string"
-      }
-      ```],
-      [```json
-      {
-        "id": "string",
-        "name": "string",
-        "email": "string",
-        "role": "UsersRole",
-        "created_at": "string"
-      }
-      ```],
+  ==== `PATCH /users/:id`
+  #endpoint-details(
+    [Aggiorna un utente del Tenant.],
+    [```json
+    {
+      "name?": "string",
+      "email?": "string",
+      "role?": "UsersRole"
+    }
+    ```],
+    [```json
+    {
+      "id": "string",
+      "name": "string",
+      "email": "string",
+      "role": "UsersRole",
+      "updated_at": "string"
+    }
+    ```],
+  )
 
-      [`PATCH`],
-      [`/users/:id`],
-      desc[Aggiorna un utente del Tenant],
-      [```json
-      {
-        "name?": "string",
-        "email?": "string",
-        "role?": "UsersRole",
-      }
-      ```],
-      [```json
-      {
-        "id": "string",
-        "name": "string",
-        "email": "string",
-        "role": "UsersRole",
-        "updated_at": "string"
-      }
-      ```],
-
-      [`POST`],
-      [`/users/bulk-delete`],
-      desc[Elimina più utenti in un’unica richiesta],
-      [```json
-      { "ids": ["string"] }
-      ```],
-      [```json
-      {
-        "deleted": "number",
-        "failed": ["string"]
-      }
-      ```],
-    )
-  ]
+  ==== `POST /users/bulk-delete`
+  #endpoint-details(
+    [Elimina più utenti in un’unica richiesta.],
+    [```json
+    { "ids": ["string"] }
+    ```],
+    [```json
+    {
+      "deleted": "number",
+      "failed": ["string"]
+    }
+    ```],
+  )
 
   === API Clients
-  #figure(
-    caption: [Endpoint per la gestione degli `API Client`],
-  )[
-    #table(
-      columns: (1fr, 1.8fr, 1.5fr, 1.6fr, 2.3fr),
-      align: (left, left, left, left, left),
-      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
 
-      [`GET`],
-      [`/api-clients`],
-      desc[Restituisce i client API del Tenant],
-      [-],
-      [```json
-      [{
-        "id": "string",
-        "name": "string",
-        "client_id": "string",
-        "created_at": "string"
-      }]
-      ```],
+  ==== `GET /api-clients`
+  #endpoint-details(
+    [Restituisce i client API del Tenant.],
+    [-],
+    [```json
+    [{
+      "id": "string",
+      "name": "string",
+      "client_id": "string",
+      "created_at": "string"
+    }]
+    ```],
+  )
 
-      [`POST`],
-      [`/api-clients`],
-      desc[Crea un nuovo client API],
-      [```json
-      { "name": "string" }
-      ```],
-      [```json
-      {
-        "id": "string",
-        "name": "string",
-        "client_id": "string",
-        "client_secret": "string",
-        "created_at": "string"
-      }
-      ```],
+  ==== `POST /api-clients`
+  #endpoint-details(
+    [Crea un nuovo client API.],
+    [```json
+    { "name": "string" }
+    ```],
+    [```json
+    {
+      "id": "string",
+      "name": "string",
+      "client_id": "string",
+      "client_secret": "string",
+      "created_at": "string"
+    }
+    ```],
+  )
 
-      [`DELETE`], [`/api-clients/:id`], desc[Elimina un client API], [-], [-],
-    )
-  ]
+  ==== `DELETE /api-clients/:id`
+  #endpoint-details(
+    [Elimina un client API.],
+    [-],
+    [-],
+  )
 
   === Keys e Provisioning
-  #figure(
-    caption: [Endpoint per chiavi e provisioning],
-  )[
-    #table(
-      columns: (1fr, 1.8fr, 1.7fr, 2.5fr, 2.5fr),
-      align: (left, left, left, left, left),
-      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
 
-      [`GET`],
-      [`/keys?id=:gatewayId`],
-      desc[Restituisce le chiavi associate a un Gateway],
-      [-],
-      [```json
-      [{
-        "gateway_id": "string",
-        "key_material": "Buffer",
-        "key_version": "number"
-      }]
-      ```],
+  ==== `GET /keys?id=:gatewayId`
+  #endpoint-details(
+    [Restituisce le chiavi associate a un Gateway.],
+    [-],
+    [```json
+    [{
+      "gateway_id": "string",
+      "key_material": "Buffer",
+      "key_version": "number"
+    }]
+    ```],
+  )
 
-      [`POST`],
-      [`/internal/provisioning/validate`],
-      desc[Valida factory ID e factory key del Gateway],
-      [```json
-      {
-        "factory_id": "string",
-        "factory_key": "string"
-      }
-      ```],
-      [```json
-      {
-        "gateway_id": "string",
-        "tenant_id": "string"
-      }
-      ```],
+  ==== `POST /internal/provisioning/validate`
+  #endpoint-details(
+    [Valida factory ID e factory key del Gateway.],
+    [```json
+    {
+      "factory_id": "string",
+      "factory_key": "string"
+    }
+    ```],
+    [```json
+    {
+      "gateway_id": "string",
+      "tenant_id": "string"
+    }
+    ```],
+  )
 
-      [`POST`],
-      [`/internal/provisioning/complete`],
-      desc[Completa il provisioning del Gateway],
-      [```json
-      {
-        "gateway_id": "string",
-        "key_material": "string",
-        "key_version": "number",
-        "send_frequency_ms": "number"
-      }
-      ```],
-      [```json
-      { "success": "boolean" }
-      ```],
-    )
-  ]
+  ==== `POST /internal/provisioning/complete`
+  #endpoint-details(
+    [Completa il provisioning del Gateway.],
+    [```json
+    {
+      "gateway_id": "string",
+      "key_material": "string",
+      "key_version": "number",
+      "send_frequency_ms": "number"
+    }
+    ```],
+    [```json
+    { "success": "boolean" }
+    ```],
+  )
 
   === Alerts
-  #figure(
-    caption: [Endpoint per la gestione degli alert],
-  )[
-    #table(
-      columns: (1fr, 1.6fr, 1.5fr, 1.8fr, 2.5fr),
-      align: (left, left, left, left, left),
-      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
 
-      [`GET`],
-      [`/alerts/config`],
-      desc[Imposta la configurazione alert di default],
-      [-],
-      [```json
-      {
-        "default_timeout_ms": "integer",
-        "gateway_overrides":[{
-                    "gateway_id": "string",
-                    "timeout_ms":
-                    "integer"
-                                           }]
-      }
-      ```],
-
-      [`GET`],
-      [
-        `/alerts?from=:from&` \
-        `to=:to&` \
-        `gateway_id=
-        :gatewayId`
-      ],
-      desc[Restituisce gli alert del Tenant nel range richiesto],
-      [-],
-      [```json
-      [{
-        "id": "string",
+  ==== `GET /alerts/config`
+  #endpoint-details(
+    [Restituisce la configurazione alert di default.],
+    [-],
+    [```json
+    {
+      "default_timeout_ms": "integer",
+      "gateway_overrides": [{
         "gateway_id": "string",
-        "type": "AlertType",
-        "details":
-            {
-              "last_seen":
-              "string",
-              "timeout_configured":
-              "number"
-            },
-        "created_at": "string"
+        "timeout_ms": "integer"
       }]
-      ```],
+    }
+    ```],
+  )
 
-      [`PUT`],
-      [`/alerts/config/default`],
-      desc[Imposta la configurazione alert di default],
-      [```json
-      { "tenant_unreachable_timeout_ms":
-        "number" }
-      ```],
-      [```json
-      {
-        "tenant_id": "string",
-        "timeout_ms": "number",
-        "updated_at": "string"
-      }
-      ```],
+  ==== `GET /alerts?from=:from&to=:to&gateway_id=:gatewayId`
+  #endpoint-details(
+    [Restituisce gli alert del Tenant nel range richiesto.],
+    [-],
+    [```json
+    [{
+      "id": "string",
+      "gateway_id": "string",
+      "type": "AlertType",
+      "details": {
+        "last_seen": "string",
+        "timeout_configured": "number"
+      },
+      "created_at": "string"
+    }]
+    ```],
+  )
 
-      [`PUT`],
-      [`/alerts/config/gateway/
-      :gatewayId`],
-      desc[Imposta la configurazione alert specifica per un Gateway],
-      [```json
-      { "gateway_unreachable_timeout_ms":
-        "number" }
-      ```],
-      [```json
-      {
-        "gateway_id": "string",
-        "timeout_ms": "number",
-        "updated_at": "string"
-      }
-      ```],
+  ==== `PUT /alerts/config/default`
+  #endpoint-details(
+    [Imposta la configurazione alert di default.],
+    [```json
+    { "tenant_unreachable_timeout_ms": "number" }
+    ```],
+    [```json
+    {
+      "tenant_id": "string",
+      "timeout_ms": "number",
+      "updated_at": "string"
+    }
+    ```],
+  )
 
-      [`DELETE`],
-      [`/alerts/config/gateway/
-      :gatewayId`],
-      desc[Elimina la configurazione alert specifica per un Gateway, tornando a utilizzare la configurazione di
-        default],
-      [-],
-      [```json
-      {
-        "message": "deleted"
-      }
-      ```],
-    )
-  ]
+  ==== `PUT /alerts/config/gateway/:gatewayId`
+  #endpoint-details(
+    [Imposta la configurazione alert specifica per un Gateway.],
+    [```json
+    { "gateway_unreachable_timeout_ms": "number" }
+    ```],
+    [```json
+    {
+      "gateway_id": "string",
+      "timeout_ms": "number",
+      "updated_at": "string"
+    }
+    ```],
+  )
+
+  ==== `DELETE /alerts/config/gateway/:gatewayId`
+  #endpoint-details(
+    [Elimina la configurazione alert specifica per un Gateway, tornando a utilizzare la configurazione di default.],
+    [-],
+    [```json
+    {
+      "status": 200
+    }
+    ```],
+  )
 
   === Thresholds
-  #figure(
-    caption: [Endpoint per la gestione delle soglie],
-  )[
-    #table(
-      columns: (1fr, 2fr, 2.2fr, 2.7fr, 2.7fr),
-      align: (left, left, left, left, left),
-      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
 
-      [`GET`],
-      [`/thresholds`],
-      desc[Restituisce le soglie del Tenant],
-      [-],
-      [```json
-      [{
-        "sensor_type?":
-        "string",
-        "sensor_id?": "string",
-        "min_value": "number",
-        "max_value": "number",
-        "updated_at": "string"
-      }]
-      ```],
+  ==== `GET /thresholds`
+  #endpoint-details(
+    [Restituisce le soglie del Tenant.],
+    [-],
+    [```json
+    [{
+      "sensor_type?": "string",
+      "sensor_id?": "string",
+      "min_value": "number",
+      "max_value": "number",
+      "updated_at": "string"
+    }]
+    ```],
+  )
 
-      [`PUT`],
-      [`/thresholds/default`],
-      desc[Imposta la soglia di default per tipologia],
-      [```json
-      {
-        "sensor_type": "string",
-        "min_value": "number",
-        "max_value": "number"
-      }
-      ```],
-      [```json
-      {
-        "sensor_type": "string",
-        "min_value": "number",
-        "max_value": "number",
-        "updated_at": "string"
-      }
-      ```],
+  ==== `PUT /thresholds/default`
+  #endpoint-details(
+    [Imposta la soglia di default per tipologia.],
+    [```json
+    {
+      "sensor_type": "string",
+      "min_value": "number",
+      "max_value": "number"
+    }
+    ```],
+    [```json
+    {
+      "sensor_type": "string",
+      "min_value": "number",
+      "max_value": "number",
+      "updated_at": "string"
+    }
+    ```],
+  )
 
-      [`PUT`],
-      [`/thresholds/sensor/
-      :sensorId`],
-      desc[Imposta o aggiorna la soglia per uno specifico sensore (override della soglia di default).],
-      [```json
-      {
-        "sensor_type": "string",
-        "min_value": "number",
-        "max_value": "number"
-      }
-      ```],
-      [```json
-      {
-        "sensor_id": "string",
-        "min_value": "number",
-        "max_value": "number",
-        "updated_at": "string"
-      }
-      ```],
+  ==== `PUT /thresholds/sensor/:sensorId`
+  #endpoint-details(
+    [Imposta o aggiorna la soglia per uno specifico sensore (override della soglia di default).],
+    [```json
+    {
+      "sensor_type": "string",
+      "min_value": "number",
+      "max_value": "number"
+    }
+    ```],
+    [```json
+    {
+      "sensor_id": "string",
+      "min_value": "number",
+      "max_value": "number",
+      "updated_at": "string"
+    }
+    ```],
+  )
 
-      [`DELETE`],
-      [`/thresholds/sensor/
-      :sensorId`],
-      desc[Elimina la soglia specifica di un sensore, ripristinando quella di default per tipologia.],
-      [-],
-      [```json
-      {"status": 200}
-      ```],
+  ==== `DELETE /thresholds/sensor/:sensorId`
+  #endpoint-details(
+    [Elimina la soglia specifica di un sensore, ripristinando quella di default per tipologia.],
+    [-],
+    [```json
+    { "status": 200 }
+    ```],
+  )
 
-      [`DELETE`],
-      [`/thresholds/type/
-      :sensorType`],
-      desc[Elimina la soglia di default per una intera tipologia di sensori.],
-      [-],
-      [```json
-      {"status": 200}
-      ```],
-    )
-  ]
+  ==== `DELETE /thresholds/type/:sensorType`
+  #endpoint-details(
+    [Elimina la soglia di default per una intera tipologia di sensori.],
+    [-],
+    [```json
+    { "status": 200 }
+    ```],
+  )
 
   === Commands
-  #figure(
-    caption: [Endpoint per l'invio e il tracciamento dei comandi],
-  )[
-    #table(
-      columns: (1fr, 1.8fr, 1.8fr, 2.0fr, 2fr),
-      align: (left, left, left, left, left),
-      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
 
-      [`POST`],
-      [`/cmd/:gatewayId/config`],
-      desc[Invia una configurazione a un Gateway],
-      [```json
-      {
-        "send_frequency_ms?":
-        "number",
-        "status?": "string"
-      }
-      ```],
-      [```json
-      {
-        "command_id":
-        "string",
-        "status": "queued",
-        "issued_at": "string"
-      }
-      ```],
+  ==== `POST /cmd/:gatewayId/config`
+  #endpoint-details(
+    [Invia una configurazione a un Gateway.],
+    [```json
+    {
+      "send_frequency_ms?": "number",
+      "status?": "string"
+    }
+    ```],
+    [```json
+    {
+      "command_id": "string",
+      "status": "queued",
+      "issued_at": "string"
+    }
+    ```],
+  )
 
-      [`POST`],
-      [`/cmd/:gatewayId/firmware`],
-      desc[Invia un comando di aggiornamento firmware a uno specifico Gateway.],
-      [```json
-      {
-        "firmware_version":
-        "string",
-        "download_url":
-        "string"
-      }
-      ```],
-      [```json
-      {
-        "command_id":
-        "string",
-        "status": "queued",
-        "issued_at": "string"
-      }
-      ```],
+  ==== `POST /cmd/:gatewayId/firmware`
+  #endpoint-details(
+    [Invia un comando di aggiornamento firmware a uno specifico Gateway.],
+    [```json
+    {
+      "firmware_version": "string",
+      "download_url": "string"
+    }
+    ```],
+    [```json
+    {
+      "command_id": "string",
+      "status": "queued",
+      "issued_at": "string"
+    }
+    ```],
+  )
 
-      [`GET`],
-      [`/cmd/:gatewayId/status/
-      :commandId`],
-      desc[Restituisce lo stato corrente di esecuzione di un comando specifico.],
-      [-],
-      [```json
-      {
-        "command_id":
-        "string",
-        "status":
-        "CommandStatus",
-        "timestamp?": "string"
-      }
-      ```],
-    )
-  ]
+  ==== `GET /cmd/:gatewayId/status/:commandId`
+  #endpoint-details(
+    [Restituisce lo stato corrente di esecuzione di un comando specifico.],
+    [-],
+    [```json
+    {
+      "command_id": "string",
+      "status": "CommandStatus",
+      "timestamp?": "string"
+    }
+    ```],
+  )
 
   === Costs
-  #figure(
-    caption: [Endpoint per la consultazione dei costi],
-  )[
-    #table(
-      columns: (1fr, 1.7fr, 2.2fr, 2.4fr, 2fr),
-      align: (left, left, left, left, left),
-      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
 
-      [`GET`],
-      [`/costs`],
-      desc[Restituisce i costi correnti del Tenant],
-      [-],
-      [```json
-      {
-        "storage_gb":
-        "number",
-        "bandwidth_gb":
-        "number"
-      }
-      ```],
-    )
-  ]
+  ==== `GET /costs`
+  #endpoint-details(
+    [Restituisce i costi correnti del Tenant.],
+    [-],
+    [```json
+    {
+      "storage_gb": "number",
+      "bandwidth_gb": "number"
+    }
+    ```],
+  )
 
   === Audit
   Questi endpoint sono accessibili ai `tenant_admin`:
 
-  #figure(
-    caption: [Endpoint per la consultazione dei log di audit],
-  )[
-    #table(
-      columns: (1fr, 1.8fr, 2fr, 2.2fr, 2.5fr),
-      align: (left, left, left, left, left),
-      [Metodo], [Endpoint], [Descrizione], [Body Request], [Response],
-
-      [`GET`],
-      [`/audit?from=:
-      from&to=:
-      to&userId=:
-      userId&
-      action=:
-      action`],
-      desc[Restituisce i log di audit del tenant nel range richiesto. I parametri `from` e `to` sono obbligatori,
-        `userId` e `action` opzionali.],
-      [-],
-      [```json
-      [{
-        "id": "string",
-        "user_id": "string",
-        "action": "string",
-        "resource": "string",
-        "details": {},
-        "timestamp": "string"
-      }]
-      ```],
-    )
-  ]
+  ==== `GET /audit?from=:from&to=:to&userId=:userId&action=:action`
+  #endpoint-details(
+    [Restituisce i log di audit del tenant nel range richiesto. I parametri `from` e `to` sono obbligatori, `userId` e
+      `action` opzionali.],
+    [-],
+    [```json
+    [{
+      "id": "string",
+      "user_id": "string",
+      "action": "string",
+      "resource": "string",
+      "details": {},
+      "timestamp": "string"
+    }]
+    ```],
+  )
 
   == Integrazioni NATS e JetStream
 

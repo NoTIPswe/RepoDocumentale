@@ -420,6 +420,21 @@ accepted_words:
   - AlertType
   - CommandType
   - CommandStatus
+  - KeycloakUrl
+  - NodeEnv
+  - NatsServers
+  - NatsClientName
+  - NatsDurablePrefix
+  - NatsTlsCert
+  - NatsTlsKey
+  - NatsTlsCa
+  - NatsToken
+  - NatsUser
+  - NatsPassword
+  - ConfigModule
+  - EventEmitter
+  - ValidationPipe
+  - lifecycle
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
