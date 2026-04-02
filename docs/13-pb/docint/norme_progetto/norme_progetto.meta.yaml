@@ -4,7 +4,7 @@ changelog:
     date: "2026-03-19"
     authors:
       - Francesco Marcon
-    verifier: TBD
+    verifier: Mario De Pasquale
     description: >
       Aggiornamento norme di sviluppo riguardanti sviluppo MVP, gestione di configurazioni e infrastruttura
   - version: "1.3.0"
