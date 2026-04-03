@@ -241,7 +241,7 @@
     name: "GatewayLifecycleProvider",
     kind: "driven",
     description: [Interrogato da `HeartbeatTracker.Tick` immediatamente prima di emettere un alert offline,
-      assicurandosi dell' stato amministrativo del gateway. In caso di errore, il chiamante deve procedere _fail-open_
+      assicurandosi dello stato amministrativo del gateway. In caso di errore, il chiamante deve procedere _fail-open_
       (emettere comunque l'alert) per evitare di mascherare eventi offline reali quando il Management API non è
       raggiungibile.],
     methods: (
@@ -383,6 +383,7 @@
     [Metodo], [Ritorno],
     [`IncStatusUpdateDropped()`], [—],
     [`SetHeartbeatMapSize(v float64)`], [—],
+    [`SetDispatchQueueLength(v float64)`], [—],
   )
 
   === Campi
@@ -761,7 +762,7 @@
     [`Subscribe`], [`(subj string, cb nats.MsgHandler, opts ...nats.SubOpt) (drainableSubscription, error)`],
   )
 
-  *`jsAdapter`* — struct interna che fugge da wrapper `nats.JetStreamContext` e implementa `natsJSSubscriber`. I
+  *`jsAdapter`* — struct interna che funge da wrapper `nats.JetStreamContext` e implementa `natsJSSubscriber`. I
   costruttori pubblici di entrambi i consumer accettano `nats.JetStreamContext` e lo "avvolgono" in un `jsAdapter`; i
   costruttori interni accettano `natsJSSubscriber` per permettere l'iniezione nei test.
 
@@ -921,7 +922,7 @@
 
     [`LifecycleQueryErrors`],
     [Counter \ `notip_consumer_lifecycle_query_errors_total`],
-    [Query lifecycle state fallite (per chiamata `Tick`, non per singolo gateway)],
+    [Query lifecycle state fallite (per singola query gateway lifecycle)],
   )
 
   La struct `Metrics` soddisfa tutte le narrow metric interface tramite i metodi: `IncMessagesReceived`,
@@ -1027,8 +1028,8 @@
 
   = Metodologie di Testing
 
-  Il race detector Go (`-race`) è abilitato in tutte le esecuzioni CI, sia per i test di unità sia per quelli di
-  integrazione.
+  Il race detector Go (`-race`) viene eseguito in job dedicati quando esplicitamente previsto dalla pipeline CI; non
+  costituisce un requisito implicito di tutte le esecuzioni di test (unità e integrazione).
 
   == Test di Unità
 
@@ -1295,7 +1296,7 @@
     [Caso di test], [Infrastruttura], [Verifica],
     [Tutti i metric name esposti],
     [— (httptest)],
-    [Tutti i 12 nomi attesi presenti nell'output text-format; `Content-Type` corretto],
+    [Tutti i nomi attesi presenti nell'output text-format; `Content-Type` corretto],
 
     [Valore counter riflette gli incrementi],
     [— (httptest)],
