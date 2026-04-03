@@ -4,7 +4,7 @@ changelog:
     date: "2026-03-24"
     authors:
       - Francesco Marcon
-    verifier: TBD
+    verifier: Alessandro Contarini
     description: >
       Aggiornamento con le modifiche effettuate al servizio per gestione coerente degli stati del Gateway
   - version: "0.2.0"
