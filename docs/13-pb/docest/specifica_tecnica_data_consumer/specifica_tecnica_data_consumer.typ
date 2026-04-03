@@ -88,7 +88,7 @@
     [6],
     [Driven adapter],
     [Istanzia `NATSRRClient`, `AlertConfigCache`, `NATSAlertPublisher`, `NATSGatewayStatusUpdater`,
-      `PostgresTelemetryWriter`, `SystemClock`],
+      `NATSGatewayLifecycleProvider`, `PostgresTelemetryWriter`, `SystemClock`],
     [No],
 
     [7],
@@ -149,8 +149,8 @@
   │   ├── service/            HeartbeatTracker
   │   ├── adapter/
   │   │   ├── driven/         PostgresTelemetryWriter, NATSAlertPublisher,
-  │   │   │                   NATSGatewayStatusUpdater, AlertConfigCache,
-  │   │   │                   NATSRRClient, SystemClock
+  │   │   │                   NATSGatewayStatusUpdater, NATSGatewayLifecycleProvider,
+  │   │   │                   AlertConfigCache, NATSRRClient, SystemClock
   │   │   └── driving/        NATSTelemetryConsumer, NATSDecommissionConsumer,
   │   │                       HeartbeatTickTimer
   │   └── metrics/            Prometheus metric handles e narrow-interface methods
@@ -237,6 +237,18 @@
     ),
   )
 
+  #st.port-interface(
+    name: "GatewayLifecycleProvider",
+    kind: "driven",
+    description: [Interrogato da `HeartbeatTracker.Tick` immediatamente prima di emettere un alert offline,
+      assicurandosi dello stato amministrativo del gateway. In caso di errore, il chiamante deve procedere _fail-open_
+      (emettere comunque l'alert) per evitare di mascherare eventi offline reali quando il Management API non è
+      raggiungibile.],
+    methods: (
+      ("GetGatewayLifecycle", [Restituisce lo stato amministrativo corrente di un gateway]),
+    ),
+  )
+
   == Driving Port
 
   Interfacce implementate dal dominio, invocate dagli adapter per immettere eventi nel sistema.
@@ -283,7 +295,7 @@
   Tutti i tipi sono data struct, senza logica e senza importazioni infrastrutturali.
 
   #table(
-    columns: (1.5fr, 4fr),
+    columns: (1.8fr, 3fr),
     [Tipo], [Descrizione e campi],
     [`OpaqueBlob`],
     [Named type con campo `Value string` (blob base64). Il tipo rende visibile nel type system l'invariante della
@@ -318,6 +330,24 @@
       (`gateway_id`), `Status GatewayStatus` (`status`), `LastSeenAt time.Time` (`last_seen_at`).],
 
     [`GatewayStatus`], [Enum: `Online = "online"`, `Offline = "offline"`.],
+
+    [`GatewayStatusUpdateResponse`],
+    [Risposta JSON del Management API per la chiamata RR su `internal.mgmt.gateway.update-status`. Campi con JSON tag:
+      `Success bool` (`success`), `Error string` (`error,omitempty` — presente solo quando `Success` è false).],
+
+    [`GatewayLifecycleState`],
+    [Stato amministrativo del gateway impostato dagli operatori nel Management API. Distinto da `GatewayStatus` (stato
+      runtime osservato). Costanti: `LifecycleOnline = "online"`, `LifecycleOffline =
+      "offline"`, `LifecyclePaused = "paused"` (sopprime gli alert offline), `LifecycleProvisioning =
+      "provisioning"`, `LifecycleUnknown = "unknown"` (locale per errori RR, mai trasmesso).],
+
+    [`GatewayLifecycleRequest`],
+    [Payload JSON per la chiamata RR su `internal.mgmt.gateway.get-status`. Campi con JSON tag: `GatewayID string`
+      (`gateway_id`), `TenantID string` (`tenant_id`).],
+
+    [`GatewayLifecycleResponse`],
+    [Risposta JSON del Management API per la chiamata RR su `internal.mgmt.gateway.get-status`. Campi con JSON tag:
+      `GatewayID string` (`gateway_id`), `State GatewayLifecycleState` (`state`).],
   )
 
   === Tipi Interni al Package `service`
@@ -353,6 +383,7 @@
     [Metodo], [Ritorno],
     [`IncStatusUpdateDropped()`], [—],
     [`SetHeartbeatMapSize(v float64)`], [—],
+    [`SetDispatchQueueLength(v float64)`], [—],
   )
 
   === Campi
@@ -364,6 +395,10 @@
     [`alertPublisher`], [`AlertPublisher`], [Driven port iniettato],
     [`statusUpdater`], [`GatewayStatusUpdater`], [Driven port iniettato],
     [`configProvider`], [`AlertConfigProvider`], [Driven port iniettato],
+    [`lifecycleProvider`],
+    [`GatewayLifecycleProvider`],
+    [Driven port iniettato; interrogato in `Tick` prima di ogni alert offline],
+
     [`metrics`], [`HeartbeatTrackerMetrics`], [Driven port iniettato],
     [`startTime`], [`time.Time`], [Registrato alla costruzione via `clock.Now()`],
     [`gracePeriod`], [`time.Duration`], [Derivata da `HeartbeatGracePeriodMs`; soppressione alert post-avvio],
@@ -374,21 +409,33 @@
     [`closeOnce`], [`sync.Once`], [Garantisce che `Close()` esegua una sola volta],
   )
 
+  === HeartbeatTrackerConfig
+
+  Struct di configurazione che raggruppa i parametri scalari per mantenere la firma del costruttore entro i limiti del
+  linter.
+
+  #table(
+    columns: (1.5fr, 1.5fr, 3fr),
+    [Campo], [Tipo], [Note],
+    [`StatusUpdateBufSize`], [`int`], [Capacità del canale asincrono di dispatch degli status update],
+    [`GracePeriod`], [`time.Duration`], [Soppressione alert offline per questa durata dopo l'avvio],
+  )
+
   === Costruttore
 
   ```
   NewHeartbeatTracker(
-    clock          ClockProvider,
-    alertPublisher AlertPublisher,
-    statusUpdater  GatewayStatusUpdater,
-    configProvider AlertConfigProvider,
-    metrics        HeartbeatTrackerMetrics,
-    statusUpdateBufSize int,
-    gracePeriod    time.Duration,
+    clock             ClockProvider,
+    alertPublisher    AlertPublisher,
+    statusUpdater     GatewayStatusUpdater,
+    configProvider    AlertConfigProvider,
+    lifecycleProvider GatewayLifecycleProvider,
+    metrics           HeartbeatTrackerMetrics,
+    cfg               HeartbeatTrackerConfig,
   ) *HeartbeatTracker
   ```
 
-  Inizializza la mappa heartbeat vuota, crea il canale di dispatch con capacità `statusUpdateBufSize` e avvia la
+  Inizializza la mappa heartbeat vuota, crea il canale di dispatch con capacità `cfg.StatusUpdateBufSize` e avvia la
   goroutine `dispatchWorker`.
 
   === Metodi Pubblici
@@ -422,7 +469,10 @@
   + *Fase 1 — RLock snapshot:* acquisisce read-lock, copia tutte le entry in uno slice locale (value copy), rilascia
     read-lock.
   + *Fase 2 — I/O fuori dal lock:* per ogni entry nello snapshot: se `knownStatus == Offline` salta; recupera il timeout
-    via `configProvider.TimeoutFor`; se non scaduto salta; pubblica alert via `alertPublisher.Publish`; esegue dispatch
+    via `configProvider.TimeoutFor`; se non scaduto salta; *lifecycle gate*: chiama
+    `lifecycleProvider.GetGatewayLifecycle` — se lo stato è `LifecyclePaused` salta (nessun alert, nessun status
+    update); in caso di errore procede _fail-open_ (logga `slog.Warn` e continua) per evitare di mascherare offline
+    reali quando il Management API non è raggiungibile; pubblica alert via `alertPublisher.Publish`; esegue dispatch
     `Offline` via il canale asincrono.
   + *Fase 3 — WLock con re-validazione:* acquisisce write-lock; rilegge l'entry reale dalla mappa; se `lastSeen` è
     avanzato rispetto allo snapshot (telemetria arrivata durante la Fase 2), annulla la transizione. Altrimenti imposta
@@ -435,7 +485,7 @@
   === Metodi Privati
 
   #table(
-    columns: (1.5fr, 3.5fr),
+    columns: (1.6fr, 3.5fr),
     [Metodo], [Comportamento],
     [`dispatchStatusUpdate(update GatewayStatusUpdate)`],
     [Invio non-bloccante su `dispatchCh`; se il canale è pieno, scarta e incrementa `StatusUpdateDropped`.],
@@ -637,6 +687,11 @@
     [`(ctx context.Context, update GatewayStatusUpdate) error`],
     [Serializza l'update in JSON, invia verso `internal.mgmt.gateway.update-status`; deserializza
       `GatewayStatusUpdateResponse` e ritorna errore se `success` è false],
+
+    [`GetGatewayLifecycle`],
+    [`(ctx context.Context, tenantID string, gatewayID string) (GatewayLifecycleState, error)`],
+    [Serializza `GatewayLifecycleRequest` in JSON, invia verso `internal.mgmt.gateway.get-status`; deserializza
+      `GatewayLifecycleResponse` e ritorna il campo `State`],
   )
 
   Ogni metodo delega a `requestWithRetry`: fino a `maxRetries` tentativi, timeout per-tentativo derivato da `timeout`,
@@ -647,16 +702,69 @@
   Implementa `ClockProvider`. Adapter stateless che delega a `time.Now()`. Esiste esclusivamente per soddisfare
   l'interfaccia in produzione, permettendo ai test di iniettare un clock controllato.
 
-  == Adapter Driving (`internal/adapter/driving`)
+  === NATSGatewayLifecycleProvider
 
-  `NATSTelemetryConsumer` e `NATSDecommissionConsumer` dipendono dall'interfaccia condivisa `natsJSSubscriber`
-  (soddisfatta da `nats.JetStreamContext`):
+  Implementa `GatewayLifecycleProvider`. Delega la meccanica NATS RR all'interfaccia `gatewayLifecycleCaller`
+  (soddisfatta da `NATSRRClient`). Incrementa la metrica di errore sui fallimenti e restituisce l'errore al chiamante
+  (la politica fail-open è responsabilità del chiamante).
+
+  *Interfaccia `gatewayLifecycleCaller`:*
 
   #table(
     columns: (1fr, 3fr),
     [Metodo], [Firma],
-    [`Subscribe`], [`(subj string, cb nats.MsgHandler, opts ...nats.SubOpt) (*nats.Subscription, error)`],
+    [`GetGatewayLifecycle`],
+    [`(ctx context.Context, tenantID string, gatewayID string) (GatewayLifecycleState, error)`],
   )
+
+  *Interfaccia `lifecycleQueryErrRecorder`:*
+
+  #table(
+    columns: (2fr, 1fr),
+    [Metodo], [Ritorno],
+    [`IncLifecycleQueryErrors()`], [—],
+  )
+
+  #table(
+    columns: (1.2fr, 1.8fr),
+    [Campo], [Tipo],
+    [`client`], [`gatewayLifecycleCaller`],
+    [`metrics`], [`lifecycleQueryErrRecorder`],
+  )
+
+  #table(
+    columns: (1.2fr, 2.8fr),
+    [Metodo], [Firma],
+    [`GetGatewayLifecycle`],
+    [`(ctx context.Context, tenantID string, gatewayID string) (GatewayLifecycleState, error)`],
+  )
+
+  == Adapter Driving (`internal/adapter/driving`)
+
+  `NATSTelemetryConsumer` e `NATSDecommissionConsumer` dipendono dall'interfaccia condivisa `natsJSSubscriber`.
+  L'interfaccia `drainableSubscription` astrae `*nats.Subscription` per disaccoppiare i test dal tipo concreto NATS e
+  per supportare la chiamata `Drain()` richiesta dai durable consumer in shutdown.
+
+  *Interfaccia `drainableSubscription`:*
+
+  #table(
+    columns: (1fr, 3fr),
+    [Metodo], [Firma],
+    [`Drain`], [`() error`],
+    [`Unsubscribe`], [`() error`],
+  )
+
+  *Interfaccia `natsJSSubscriber`:*
+
+  #table(
+    columns: (1fr, 3fr),
+    [Metodo], [Firma],
+    [`Subscribe`], [`(subj string, cb nats.MsgHandler, opts ...nats.SubOpt) (drainableSubscription, error)`],
+  )
+
+  *`jsAdapter`* — struct interna che funge da wrapper `nats.JetStreamContext` e implementa `natsJSSubscriber`. I
+  costruttori pubblici di entrambi i consumer accettano `nats.JetStreamContext` e lo "avvolgono" in un `jsAdapter`; i
+  costruttori interni accettano `natsJSSubscriber` per permettere l'iniezione nei test.
 
   === NATSTelemetryConsumer
 
@@ -720,9 +828,12 @@
 
   === NATSDecommissionConsumer
 
-  Sottoscrive `gateway.decommissioned.>` via JetStream con ACK manuale. Per ogni messaggio estrae `tenantID` e
-  `gatewayID` dal subject (attesi esattamente 4 segmenti dot-separated) e invoca
-  `DecommissionEventHandler.HandleDecommission`. Errori di parsing sono Term()'d.
+  Sottoscrive `gateway.decommissioned.>` via JetStream come durable consumer (durable name:
+  `"data-consumer-decommission-listener"`) con ACK manuale. Per ogni messaggio estrae `tenantID` e `gatewayID` dal
+  subject (attesi esattamente 4 segmenti dot-separated) e invoca `DecommissionEventHandler.HandleDecommission`. Per
+  errori di parsing viene richiamato il metodo Term(). Alla cancellazione del context chiama `sub.Drain()` (non
+  `Unsubscribe()`) per processare i messaggi in-flight prima della chiusura — necessario con durable consumer per
+  evitare perdita di messaggi.
 
   #table(
     columns: (1.2fr, 1.8fr),
@@ -758,57 +869,60 @@
   tramite interfacce metriche ristrette.
 
   #table(
-    columns: (2fr, 1.2fr, 3.5fr, 2.5fr),
-    [Campo], [Tipo], [Nome Prometheus], [Descrizione],
+    columns: (2.5fr, 4.5fr, 2fr),
+    [Campo], [Tipo e Nome Prometheus], [Descrizione],
 
-    [`MessagesReceived`], [Counter], [`notip_consumer_messages_received_total`], [Messaggi NATS dequeued],
+    [`MessagesReceived`], [Counter \ `notip_consumer_messages_received_total`], [Messaggi NATS dequeued],
+
     [`MessageParsingErrors`],
-    [Counter],
-    [`notip_consumer_message_parsing_errors_total`],
+    [Counter \ `notip_consumer_message_parsing_errors_total`],
     [Messaggi scartati definitivamente (Term) per JSON malformato o subject errato],
 
-    [`MessagesWritten`], [Counter], [`notip_consumer_messages_written_total`], [Scritture TimescaleDB riuscite],
-    [`WriteErrors`], [Counter], [`notip_consumer_write_errors_total`], [Scritture TimescaleDB fallite],
-    [`WriteLatency`], [Histogram], [`notip_consumer_write_duration_seconds`], [Durata scrittura su TimescaleDB],
+    [`MessagesWritten`], [Counter \ `notip_consumer_messages_written_total`], [Scritture TimescaleDB riuscite],
+
+    [`WriteErrors`], [Counter \ `notip_consumer_write_errors_total`], [Scritture TimescaleDB fallite],
+
+    [`WriteLatency`], [Histogram \ `notip_consumer_write_duration_seconds`], [Durata scrittura su TimescaleDB],
+
     [`BatchSize`],
-    [Histogram],
-    [`notip_consumer_batch_size`],
+    [Histogram \ `notip_consumer_batch_size`],
     [Numero di record telemetrici per ogni operazione di flush batch],
 
-    [`AlertsPublished`], [Counter], [`notip_consumer_alerts_published_total`], [Alert gateway-offline pubblicati],
-    [`AlertPublishErrors`], [Counter], [`notip_consumer_alert_publish_errors_total`], [Errori di pubblicazione alert],
+    [`AlertsPublished`], [Counter \ `notip_consumer_alerts_published_total`], [Alert gateway-offline pubblicati],
+
+    [`AlertPublishErrors`], [Counter \ `notip_consumer_alert_publish_errors_total`], [Errori di pubblicazione alert],
+
     [`HeartbeatMapSize`],
-    [Gauge],
-    [`notip_consumer_heartbeat_map_size`],
+    [Gauge \ `notip_consumer_heartbeat_map_size`],
     [Gateway attualmente tracciati nella mappa heartbeat],
 
     [`HeartbeatTickDuration`],
-    [Histogram],
-    [`notip_consumer_heartbeat_tick_duration_seconds`],
+    [Histogram \ `notip_consumer_heartbeat_tick_duration_seconds`],
     [Tempo di esecuzione del ciclo di Tick completo],
 
-    [`StatusUpdateErrors`], [Counter], [`notip_consumer_status_update_errors_total`], [Errori NATS RR status update],
+    [`StatusUpdateErrors`], [Counter \ `notip_consumer_status_update_errors_total`], [Errori NATS RR status update],
+
     [`StatusUpdateDropped`],
-    [Counter],
-    [`notip_consumer_status_update_dropped_total`],
+    [Counter \ `notip_consumer_status_update_dropped_total`],
     [Status update scartati (canale pieno)],
 
     [`DispatchQueueLength`],
-    [Gauge],
-    [`notip_consumer_dispatch_queue_length`],
+    [Gauge \ `notip_consumer_dispatch_queue_length`],
     [Numero di job attualmente in coda nel canale asincrono],
 
     [`AlertCacheRefreshErrors`],
-    [Counter],
-    [`notip_consumer_alert_cache_refresh_errors_total`],
+    [Counter \ `notip_consumer_alert_cache_refresh_errors_total`],
     [Errori refresh cache configurazioni alert],
 
     [`AlertCacheLastSuccess`],
-    [Gauge],
-    [`notip_consumer_alert_cache_last_success_timestamp`],
+    [Gauge \ `notip_consumer_alert_cache_last_success_timestamp`],
     [Timestamp Unix dell'ultimo fetch configurazioni riuscito],
 
-    [`NATSReconnects`], [Counter], [`notip_consumer_nats_reconnects_total`], [Riconnessioni NATS],
+    [`NATSReconnects`], [Counter \ `notip_consumer_nats_reconnects_total`], [Riconnessioni NATS],
+
+    [`LifecycleQueryErrors`],
+    [Counter \ `notip_consumer_lifecycle_query_errors_total`],
+    [Query lifecycle state fallite (per singola query gateway lifecycle)],
   )
 
   La struct `Metrics` soddisfa tutte le narrow metric interface tramite i metodi: `IncMessagesReceived`,
@@ -816,7 +930,7 @@
   `ObserveBatchSize(size float64)`, `IncAlertsPublished`, `IncAlertPublishErrors`, `SetHeartbeatMapSize(v float64)`,
   `ObserveHeartbeatTickDuration(d time.Duration)`, `IncStatusUpdateErrors`, `IncStatusUpdateDropped`,
   `SetDispatchQueueLength(v float64)`, `IncAlertCacheRefreshErrors`, `SetAlertCacheLastSuccess(ts float64)`,
-  `IncNATSReconnects`.
+  `IncNATSReconnects`, `IncLifecycleQueryErrors()`.
 
   == Decisioni Implementative
 
@@ -868,6 +982,14 @@
     `"c"`).
   ]
 
+  #st.design-rationale(title: "Lifecycle gate con politica fail-open")[
+    Prima di emettere un alert offline, `Tick` interroga il Management API per lo stato amministrativo del gateway. Se
+    lo stato è `LifecyclePaused`, sia l'alert sia lo status update vengono soppressi: il gateway è intenzionalmente in
+    pausa e non costituisce un evento anomalo. Se la query RR fallisce (Management API irraggiungibile), il sistema
+    procede comunque con l'alert (_fail-open_): è preferibile un falso positivo operatore-visibile a mascherare un
+    offline reale. L'errore è loggato come `slog.Warn` e incrementa `lifecycle_query_errors_total`.
+  ]
+
   #st.design-rationale(title: "mTLS per autenticazione NATS")[
     L'autenticazione NATS usa mTLS (`RootCAs`, `ClientCert`) al posto del file `.creds`. Ogni servizio dispone di un
     certificato client firmato dalla CA interna (step-ca), garantendo mutual authentication e consentendo la revoca per
@@ -906,8 +1028,8 @@
 
   = Metodologie di Testing
 
-  Il race detector Go (`-race`) è abilitato in tutte le esecuzioni CI, sia per i test di unità sia per quelli di
-  integrazione.
+  Il race detector Go (`-race`) viene eseguito in job dedicati quando esplicitamente previsto dalla pipeline CI; non
+  costituisce un requisito implicito di tutte le esecuzioni di test (unità e integrazione).
 
   == Test di Unità
 
@@ -941,9 +1063,45 @@
 
     [`Tick` — gateway già `knownStatus = Offline`], [Nessun alert duplicato; `alertPublisher.Publish` non chiamato],
 
+    [`Tick` — lifecycle gate: stato `LifecyclePaused`],
+    [`lifecycleProvider.GetGatewayLifecycle` restituisce `LifecyclePaused`; `alertPublisher.Publish` non chiamato;
+      nessun dispatch `Offline`; `knownStatus` rimane `Online`],
+
+    [`Tick` — lifecycle gate: errore RR (fail-open)],
+    [`lifecycleProvider.GetGatewayLifecycle` restituisce errore; `alertPublisher.Publish` chiamato comunque;
+      `IncLifecycleQueryErrors` invocato],
+
     [`dispatchStatusUpdate` — canale pieno], [Job scartato; `IncStatusUpdateDropped` invocato],
 
     [`Close` — drain del canale], [Tutti i job in `dispatchCh` prima della chiusura sono processati; `done` chiuso],
+  )
+
+  *`NATSGatewayLifecycleProvider`*
+
+  #table(
+    columns: (3fr, 2fr),
+    [Caso di test], [Postcondizione verificata],
+    [`GetGatewayLifecycle` — client restituisce `LifecyclePaused`],
+    [Stato `LifecyclePaused` propagato al chiamante; `IncLifecycleQueryErrors` non invocato],
+
+    [`GetGatewayLifecycle` — client restituisce `LifecycleOnline`],
+    [Stato `LifecycleOnline` propagato al chiamante; nessun errore],
+
+    [`GetGatewayLifecycle` — client restituisce errore NATS],
+    [Errore propagato; `IncLifecycleQueryErrors` invocato esattamente una volta; stato restituito è `LifecycleUnknown`],
+  )
+
+  *`NATSRRClient` — `GetGatewayLifecycle`*
+
+  #table(
+    columns: (3fr, 2fr),
+    [Caso di test], [Postcondizione verificata],
+    [`GetGatewayLifecycle` — risposta valida con stato `LifecyclePaused`],
+    [Stato `LifecyclePaused` restituito; nessun errore],
+
+    [`GetGatewayLifecycle` — errore NATS], [Errore restituito; stato è `LifecycleUnknown`],
+
+    [`GetGatewayLifecycle` — risposta JSON malformata], [Errore di unmarshal restituito; stato è `LifecycleUnknown`],
   )
 
   *`AlertConfigCache`*
@@ -973,35 +1131,190 @@
     [Messaggio Term()'d; gli altri messaggi validi del batch sono ACK()'d],
   )
 
+  *`NATSDecommissionConsumer`*
+
+  I test di unità usano l'interfaccia `drainableSubscription` e uno stub `fakeSubscription` per disaccoppiare i test dal
+  tipo concreto `*nats.Subscription`, necessario dopo l'introduzione di `sub.Drain()` per i consumer durevoli.
+
+  #table(
+    columns: (3fr, 2fr),
+    [Caso di test], [Postcondizione verificata],
+    [`Run` — context cancellato], [`sub.Drain()` chiamato; `Run` restituisce `nil`],
+    [`extractIDs` — subject valido `gateway.decommissioned.t1.gw-1`], [`tenantID` e `gatewayID` estratti correttamente],
+    [`extractIDs` — subject con numero di token errato], [Restituisce errore],
+    [`handleMsg` — subject valido], [`HandleDecommission` invocato con i parametri corretti; messaggio ACK()'d],
+    [`handleMsg` — subject malformato], [`HandleDecommission` non invocato; messaggio Term()'d],
+  )
+
   == Test di Integrazione
 
-  I test di integrazione avviano infrastruttura reale tramite Testcontainers-go.
+  I test di integrazione avviano infrastruttura reale tramite Testcontainers-go: NATS JetStream con mTLS (certificati
+  effimeri generati a runtime) e TimescaleDB. I test Prometheus non richiedono container: usano `httptest.NewServer` con
+  `promhttp.HandlerFor` su un registry isolato.
+
+  *`PostgresTelemetryWriter`*
 
   #table(
     columns: (2fr, 1fr, 2fr),
     [Caso di test], [Infrastruttura], [Verifica],
-    [`PostgresTelemetryWriter.Write` contro TimescaleDB reale],
+    [`Write` — singola riga],
     [TimescaleDB],
-    [Record presente in `telemetry`; campi `OpaqueBlob` invariati rispetto all'input],
+    [Record presente in `telemetry`; campi `OpaqueBlob` invariati rispetto all'input (Rule Zero)],
 
-    [`PostgresTelemetryWriter.WriteBatch` contro TimescaleDB reale],
+    [`WriteBatch` — batch di più righe],
     [TimescaleDB],
-    [Tutti i record del batch persistiti; count post-inserimento corrisponde alla dimensione del batch],
+    [Tutti i record persistiti; order preservato; campi `OpaqueBlob` invariati (Rule Zero)],
+  )
 
-    [Pipeline completa `NATSTelemetryConsumer`: messaggio NATS → parse → handler → writer → ACK],
+  *`NATSTelemetryConsumer`*
+
+  #table(
+    columns: (2fr, 1fr, 2fr),
+    [Caso di test], [Infrastruttura], [Verifica],
+    [Messaggio NATS valido → TimescaleDB],
     [NATS + TimescaleDB],
-    [Record su TimescaleDB; ACK emesso; entry heartbeat presente in `HeartbeatTracker`],
+    [Record su `telemetry`; campi `OpaqueBlob` invariati; ACK emesso],
 
-    [`AlertConfigCache.refresh` — fetch e sostituzione snapshot],
-    [NATS mock responder],
-    [Snapshot aggiornato atomicamente; `TimeoutFor` restituisce i nuovi valori],
+    [Messaggio NATS con JSON malformato],
+    [NATS + TimescaleDB],
+    [Nessun record su DB; messaggio Term()'d (`NumPending = 0`, `NumAckPending = 0`)],
+  )
 
-    [Connessione NATS con mTLS — certificato client valido],
-    [NATS con TLS],
-    [Connessione stabilita; subscribe riuscita],
+  *`NATSDecommissionConsumer`*
 
-    [Connessione NATS con mTLS — certificato client non valido],
-    [NATS con TLS],
-    [Connessione rifiutata; errore propagato],
+  #table(
+    columns: (2fr, 1fr, 2fr),
+    [Caso di test], [Infrastruttura], [Verifica],
+    [Evento decommission valido],
+    [NATS],
+    [`HandleDecommission` invocato con `tenantID` e `gatewayID` estratti dal subject],
+
+    [Tre eventi per tenant/gateway distinti], [NATS], [Tutti e tre gli eventi processati; nessuno perso],
+
+    [Subject con token extra (malformato)], [NATS], [Messaggio Term()'d (`NumPending = 0`); handler non invocato],
+
+    [`Run` — context cancellato], [NATS], [`Run` restituisce `nil` entro 3 secondi dalla cancellazione],
+  )
+
+  *`NATSAlertPublisher`*
+
+  #table(
+    columns: (2fr, 1fr, 2fr),
+    [Caso di test], [Infrastruttura], [Verifica],
+    [Publish su subject corretto],
+    [NATS],
+    [Messaggio ricevuto su `alert.gw_offline.{tenantId}`; payload JSON corrispondente all'input],
+
+    [Isolamento multi-tenant], [NATS], [Subscriber del tenant A non riceve l'alert del tenant B e viceversa],
+  )
+
+  *`NATSRRClient`*
+
+  #table(
+    columns: (2fr, 1fr, 2fr),
+    [Caso di test], [Infrastruttura], [Verifica],
+    [`FetchAlertConfigs` — risposta valida],
+    [NATS],
+    [Configs deserializzate correttamente; gateway-specific e tenant-level distinti],
+
+    [`FetchAlertConfigs` — nessun responder], [NATS], [Errore di timeout restituito],
+
+    [`UpdateGatewayStatus` — risposta valida],
+    [NATS],
+    [Payload della richiesta ricevuto dal mock responder con i campi corretti],
+
+    [`UpdateGatewayStatus` — nessun responder], [NATS], [Errore di timeout restituito],
+
+    [`GetGatewayLifecycle` — risposta valida],
+    [NATS],
+    [Stato `LifecyclePaused` restituito; payload della richiesta verificato (`gateway_id`, `tenant_id`)],
+
+    [`GetGatewayLifecycle` — nessun responder], [NATS], [Errore di timeout restituito],
+  )
+
+  *`AlertConfigCache`*
+
+  #table(
+    columns: (2fr, 1fr, 2fr),
+    [Caso di test], [Infrastruttura], [Verifica],
+    [Fetch iniziale popola la cache],
+    [NATS],
+    [`TimeoutFor` restituisce il valore gateway-specific; fallback a tenant-level; fallback a default per tenant
+      sconosciuto],
+
+    [Refresh periodico aggiorna la cache],
+    [NATS],
+    [Dopo aggiornamento del mock responder, `TimeoutFor` riflette i nuovi valori entro il ciclo di refresh],
+
+    [Nessun responder disponibile],
+    [NATS],
+    [Cache rimane sul default; metrica `IncAlertCacheRefreshErrors` incrementata],
+  )
+
+  *`NATSGatewayLifecycleProvider`*
+
+  #table(
+    columns: (2fr, 1fr, 2fr),
+    [Caso di test], [Infrastruttura], [Verifica],
+    [Stato `LifecyclePaused` dal Management API],
+    [NATS],
+    [Stato `LifecyclePaused` restituito; payload della richiesta verificato (`gateway_id`, `tenant_id`); nessun errore
+      metrica],
+
+    [Stato `LifecycleOnline` dal Management API], [NATS], [Stato `LifecycleOnline` restituito; nessun errore],
+
+    [Nessun responder (timeout)], [NATS], [Errore restituito; `IncLifecycleQueryErrors` invocato esattamente una volta],
+  )
+
+  *`HeartbeatTracker`*
+
+  #table(
+    columns: (2fr, 1fr, 2fr),
+    [Caso di test], [Infrastruttura], [Verifica],
+    [Ciclo completo Online → Offline → Online],
+    [NATS],
+    [Alert offline pubblicato su stream `ALERTS` con payload corretto; dispatch `Offline` e secondo dispatch `Online`
+      (recovery) emessi],
+
+    [Grace period sopprime gli alert],
+    [NATS],
+    [Nessun alert sul JetStream durante la finestra di grace, anche con clock avanzato oltre il timeout],
+
+    [Decommission rimuove il gateway],
+    [NATS],
+    [Dopo `HandleDecommission`, nessun alert su `Tick`; `HeartbeatMapSize = 0`],
+
+    [Lifecycle gate: stato `LifecyclePaused` via NATS reale],
+    [NATS],
+    [Nessun alert sul JetStream; nessun dispatch `Offline`; mock responder su `get-status` verificato],
+  )
+
+  *Prometheus — endpoint `/metrics`*
+
+  #table(
+    columns: (2fr, 1fr, 2fr),
+    [Caso di test], [Infrastruttura], [Verifica],
+    [Tutti i metric name esposti],
+    [— (httptest)],
+    [Tutti i nomi attesi presenti nell'output text-format; `Content-Type` corretto],
+
+    [Valore counter riflette gli incrementi],
+    [— (httptest)],
+    [Dopo 3 chiamate a `IncMessagesReceived`, scrape riporta `...messages_received_total 3`],
+
+    [Valore gauge riflette `Set`],
+    [— (httptest)],
+    [Dopo `SetHeartbeatMapSize(7)`, scrape riporta `...heartbeat_map_size 7`],
+  )
+
+  *Pipeline E2E*
+
+  #table(
+    columns: (2fr, 1fr, 2fr),
+    [Caso di test], [Infrastruttura], [Verifica],
+    [Flusso dati completo: NATS → DB → alert → status],
+    [NATS + TimescaleDB],
+    [Telemetria persistita su TimescaleDB (Rule Zero verificata sui blob); gateway Online; dopo timeout alert offline su
+      stream `ALERTS`; dispatch `Offline` emesso],
   )
 ]

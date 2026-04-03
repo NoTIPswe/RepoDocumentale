@@ -221,6 +221,7 @@ accepted_words:
   - Crypto
   - RBAC
   - IAM
+  - httptest
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -299,7 +300,10 @@ accepted_words:
   - deserializzato
   - backoff
   - loggati
+  - loggato
   - unexported
+  - lifecycle
+  - unmarshal
   - Walkthrough
 
   # --- Terminologia Standard Progetto ---
@@ -414,6 +418,9 @@ accepted_words:
   - validator
   - AppModule
   - UCs
+  - HeartbeatTrackerConfig
+  - NATSGatewayLifecycleProvider
+  - Configs
   - os
   - OpaqueBlob
   - config
@@ -498,6 +505,7 @@ accepted_words:
   - intra
   - centralizzata
   - testabilità
+  - deserializzate
   - riaccodamento
   - concorrentemente
   - Riesecuzione
