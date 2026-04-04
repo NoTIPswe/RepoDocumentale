@@ -49,6 +49,14 @@ TEST_TYPE_TO_CODE = {
     "system": "T-S-",
 }
 
+TEST_TYPE_TO_ID_TOKEN = {
+    "unit": "u",
+    "integration": "i",
+    "system": "s",
+}
+
+TEST_ID_NUMBER_RE = re.compile(r"^t_([uis])_(\d+)$")
+
 ACTOR_LABELS = {
     "non-authd-usr": "Utente Non Autenticato",
     "authd-usr": "Utente Autenticato",
@@ -423,6 +431,18 @@ def assign_req_codes(bundle: DataBundle) -> dict[str, str]:
 def assign_test_codes(bundle: DataBundle) -> dict[str, str]:
     counters: dict[str, int] = defaultdict(int)
     id_to_code: dict[str, str] = {}
+    used_codes: set[str] = set()
+
+    def _extract_test_number(test_type: str, test_id: str) -> str | None:
+        match = TEST_ID_NUMBER_RE.match(test_id)
+        if not match:
+            return None
+
+        token, number = match.groups()
+        if token != TEST_TYPE_TO_ID_TOKEN.get(test_type):
+            return None
+
+        return number
 
     for _, test_doc in bundle.test_files:
         test_type = str(test_doc.get("type"))
@@ -431,8 +451,24 @@ def assign_test_codes(bundle: DataBundle) -> dict[str, str]:
 
         prefix = TEST_TYPE_TO_CODE[test_type]
         for test in test_doc.get("tests", []) or []:
-            counters[test_type] += 1
-            id_to_code[str(test.get("id"))] = f"{prefix}{counters[test_type]}"
+            test_id = str(test.get("id"))
+            explicit_number = _extract_test_number(test_type, test_id)
+
+            if explicit_number is not None:
+                code = f"{prefix}{explicit_number}"
+                try:
+                    counters[test_type] = max(counters[test_type], int(explicit_number))
+                except ValueError:
+                    pass
+            else:
+                counters[test_type] += 1
+                code = f"{prefix}{counters[test_type]}"
+                while code in used_codes:
+                    counters[test_type] += 1
+                    code = f"{prefix}{counters[test_type]}"
+
+            used_codes.add(code)
+            id_to_code[test_id] = code
 
     return id_to_code
 

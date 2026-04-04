@@ -27,6 +27,27 @@
   }
 }
 
+#let _test_id_token(test_type) = {
+  if test_type == "unit" {
+    "u"
+  } else if test_type == "integration" {
+    "i"
+  } else {
+    "s"
+  }
+}
+
+#let _test_code_from_id(test_type, test-id, fallback) = {
+  let raw-id = str(test-id)
+  let raw-prefix = "t_" + _test_id_token(test_type) + "_"
+
+  if raw-id.starts-with(raw-prefix) and raw-id.len() > raw-prefix.len() {
+    _test_prefix(test_type) + raw-id.slice(raw-prefix.len())
+  } else {
+    fallback
+  }
+}
+
 #let _test_status(status) = {
   if status == "passed" {
     "S"
@@ -55,7 +76,8 @@
     #ctr.step()
     #context {
       let n = ctr.get().first()
-      let test-code = _test_prefix(test_type) + str(n)
+      let fallback-code = _test_prefix(test_type) + str(n)
+      let test-code = _test_code_from_id(test_type, test.at("id", default: ""), fallback-code)
       [#metadata(test-code) #label("TEST:" + test-code) #test-code]
     }
   ]
