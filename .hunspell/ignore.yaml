@@ -421,6 +421,15 @@ accepted_words:
   - HeartbeatTrackerConfig
   - NATSGatewayLifecycleProvider
   - Configs
+  - os
+  - OpaqueBlob
+  - config
+  - lifecycle
+  - writeBatch
+  - HandleTelemetry
+  - HandleDecommission
+  - gatewayID
+  - unmarshal
   - encryptor
 
   # --- Parole Italiane mancanti / Neologismi ---
@@ -497,6 +506,8 @@ accepted_words:
   - centralizzata
   - testabilità
   - deserializzate
+  - riaccodamento
+  - concorrentemente
   - Riesecuzione
   - versionata
   - versionati

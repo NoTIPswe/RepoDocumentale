@@ -635,6 +635,12 @@ requirements:
     mail per autenticarsi
   sources:
   - uc: ins_mail
+- id: decommission_gateway
+  priority: mandatory
+  description: Il Sistema Cloud deve gestire l'evento di decommission di un Gateway cessando il monitoraggio
+    heartbeat e sopprimendo i futuri alert relativi a quel Gateway
+  sources:
+  - text: Interno
 - id: visualizzazione_lista_gateway_sistema
   priority: mandatory
   description: Il Sistema deve permettere all'Amministratore di Sistema di poter visualizzare la lista
