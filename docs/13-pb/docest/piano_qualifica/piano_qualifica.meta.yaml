@@ -5,7 +5,7 @@ changelog:
     authors:
       - Valerio Solito
       - Francesco Marcon
-    verifier: TBD
+    verifier: Mario De Pasquale
     description: >
       Aggiunta test unità e integrazione per Data Consumer e Simulatore
   - version: "1.2.0"
