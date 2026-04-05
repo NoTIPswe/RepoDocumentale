@@ -348,15 +348,18 @@
       table.cell(align: center)[*Periodo*],
     ),
     [
-      - Da Definire
+      - Definizione struttura del documento
+      - Descrizione ambiente di esecuzione dei test
+      - Elenco e descrizione dei test di unità, integrazione e sistema
+      - Procedura di esecuzione e verifica dei risultati
     ],
     [
-      - Sprint 7
-      - Sprint 8
       - Sprint 9
-
+      - Sprint 10
+      - Sprint 11
+      - Sprint 12
     ],
-    table.cell(colspan: 2, align: center)[*Non completato*],
+    table.cell(colspan: 2, align: center)[*Completato per PB*],
   )
 
   === Redazione Manuale Utente
@@ -367,15 +370,17 @@
       table.cell(align: center)[*Periodo*],
     ),
     [
-      - Da Definire
+      - Requisiti di installazione e avvio
+      - Configurazione del sistema
+      - Guida all'utilizzo delle funzionalità principali
+      - Gestione errori comuni e troubleshooting
     ],
     [
-      - Sprint 7
-      - Sprint 8
-      - Sprint 9
-
+      - Sprint 10
+      - Sprint 11
+      - Sprint 12
     ],
-    table.cell(colspan: 2, align: center)[*Non completato*],
+    table.cell(colspan: 2, align: center)[*Completato per PB*],
   )
 
   === Realizzazione Minimum Viable Product (MVP)
@@ -386,23 +391,30 @@
       table.cell(align: center)[*Periodo*],
     ),
     [
-      - Da Definire
+      - Correzione criticità emerse in RTB
+      - Definizione e consolidamento dell'architettura
+      - Implementazione dei componenti principali del sistema
+      - Integrazione tra i componenti
+      - Validazione del MVP
     ],
     [
       - Sprint 7
       - Sprint 8
       - Sprint 9
-
+      - Sprint 10
+      - Sprint 11
+      - Sprint 12
     ],
-    table.cell(colspan: 2, align: center)[*Non completato*],
+    table.cell(colspan: 2, align: center)[*Completato per PB*],
   )
 
   = Pianificazione nel breve termine
   == Introduzione
-  Il gruppo NoTIP ha deciso di adottare un approccio Agile per tutta la durata del progetto, suddividendo lo sviluppo in
-  sprint di due settimane. Il gruppo si impegna a definire, all'inizio di ogni periodo, la pianificazione delle
-  settimane successive e una rotazione dei ruoli coerente, mantenendo la flessibilità necessaria per eventuali
-  cambiamenti organizzativi.
+  Il gruppo NoTIP ha deciso di adottare un approccio Agile per tutta la durata del progetto, suddividendo inizialmente
+  lo sviluppo in sprint di due settimane. A partire dallo Sprint 9, la durata degli sprint è stata ridotta a una
+  settimana, al fine di aumentare la frequenza di pianificazione e monitoraggio delle attività. Il gruppo si impegna a
+  definire, all'inizio di ogni periodo, la pianificazione delle settimane successive e una rotazione dei ruoli coerente,
+  mantenendo la flessibilità necessaria per eventuali cambiamenti organizzativi.
 
   Il gruppo si impegna, inoltre, a concordare incontri settimanali con la proponente (M31) per ricevere feedback su
   quanto realizzato e favorire momenti di brainstorming collettivo, garantendo scelte di sviluppo ottimali.
