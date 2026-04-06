@@ -432,6 +432,7 @@ def assign_test_codes(bundle: DataBundle) -> dict[str, str]:
     counters: dict[str, int] = defaultdict(int)
     id_to_code: dict[str, str] = {}
     used_codes: set[str] = set()
+    code_to_test_id: dict[str, str] = {}
 
     def _extract_test_number(test_type: str, test_id: str) -> str | None:
         match = TEST_ID_NUMBER_RE.match(test_id)
@@ -456,6 +457,12 @@ def assign_test_codes(bundle: DataBundle) -> dict[str, str]:
 
             if explicit_number is not None:
                 code = f"{prefix}{explicit_number}"
+                if code in used_codes:
+                    owner = code_to_test_id.get(code, "<unknown>")
+                    raise ValueError(
+                        "duplicate test code generated from explicit id: "
+                        f"{test_id} -> {code}, already used by {owner}"
+                    )
                 try:
                     counters[test_type] = max(counters[test_type], int(explicit_number))
                 except ValueError:
@@ -468,6 +475,7 @@ def assign_test_codes(bundle: DataBundle) -> dict[str, str]:
                     code = f"{prefix}{counters[test_type]}"
 
             used_codes.add(code)
+            code_to_test_id[code] = test_id
             id_to_code[test_id] = code
 
     return id_to_code

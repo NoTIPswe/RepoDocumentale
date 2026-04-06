@@ -40,9 +40,10 @@
 #let _test_code_from_id(test_type, test-id, fallback) = {
   let raw-id = str(test-id)
   let raw-prefix = "t_" + _test_id_token(test_type) + "_"
+  let suffix = raw-id.slice(raw-prefix.len())
 
-  if raw-id.starts-with(raw-prefix) and raw-id.len() > raw-prefix.len() {
-    _test_prefix(test_type) + raw-id.slice(raw-prefix.len())
+  if raw-id.starts-with(raw-prefix) and suffix.len() > 0 and suffix.matches(regex("^[0-9]+$")).len() > 0 {
+    _test_prefix(test_type) + suffix
   } else {
     fallback
   }
