@@ -316,6 +316,7 @@
 
 
   == Attività fissate per la Product Baseline (PB)
+  Al termine della fase di RTB, preso atto del ritardo accumulato, il gruppo ha rivisto la pianificazione a lungo termine della seconda parte, estendendola fino al dodicesimo sprint con l’obiettivo di portare a termine il progetto. Di seguito sono riportate le attività previste per la fase di PB, suddivise per argomento.
   === Correzione errori nei documenti segnalati
   #figure(
     table(
@@ -1534,12 +1535,34 @@
     ],
   )<tab:Sprint10-ore-effettive>
 
-  ==== Rischi incontrati
+  ==== Consuntivo del periodo
+  Nel corso dello Sprint 10, il Team ha portato avanti soprattutto le attività di implementazione e verifica del MVP,
+  concentrandosi sul completamento dell'infrastruttura di sistema e sull'avanzamento dei test. Le attività pianificate
+  sono state svolte senza scostamenti significativi rispetto al monte ore previsto, ma l'implementazione effettiva ha
+  evidenziato una complessità tecnica e infrastrutturale superiore a quanto inizialmente stimato.
 
   ==== Retrospettiva
+  Lo Sprint 10 ha permesso al Team di consolidare in modo significativo l'avanzamento del MVP, con una buona
+  progressione nella codifica e nella verifica dei microservizi di backend e con il proseguimento della progettazione
+  delle componenti frontend. È emerso però che la fase di implementazione ha reso evidenti alcune complessità tecniche e
+  infrastrutturali sottostimate in precedenza, in particolare nella comprensione operativa delle tecnologie adottate e
+  nella stabilizzazione dell'infrastruttura di supporto ai test.
 
+  ==== Misure correttive e aggiornamento dei rischi
+  A seguito delle criticità emerse, il Team ha confermato il verificarsi di RT1 (Rischio tecnologico legato
+  all'apprendimento delle tecnologie richieste), poiché alcune difficoltà si sono manifestate pienamente solo durante
+  l'implementazione concreta del sistema. Parallelamente, per mitigare RT2 (Rischio tecnologico legato ad errori di
+  programmazione), il gruppo ha intensificato le attività di verifica e consolidato il processo di integrazione tramite
+  pull request di dimensioni ridotte, così da individuare più rapidamente eventuali difetti e ridurre il rischio di
+  regressioni.
 
-  ==== Aggiornamento risorse monetarie rimanenti
+  ==== Aggiornamento pianificazione futura
+  Alla luce di quanto osservato, il Team ha ricalibrato le priorità degli sprint successivi, assegnando maggiore
+  attenzione alla stabilizzazione dell'infrastruttura e al completamento dei test di integrazione e di sistema. La
+  pianificazione a breve termine mantiene quindi sprint brevi e un monitoraggio ravvicinato dell'avanzamento, così da
+  consentire un recupero più rapido delle criticità emerse e un migliore controllo sul completamento del MVP.
+
+  ==== Preventivo a finire
   #figure(
     numbering: "1",
     caption: [Sprint 10 - Variazione risorse monetarie rimanenti],
@@ -1557,4 +1580,219 @@
       [*Totale*], [*116,5*], [*2265*],
     ),
   )<tab:Sprint10-costi>
+
+
+  === Sprint 11
+  Inizio: *2026-03-30* \
+  Fine prevista: *2026-04-05* \
+  Fine reale: *2026-04-05*\
+  Giorni di ritardo: 0 \
+
+  ==== Informazioni generali e attività pianificate
+  In questo Sprint, il Team si è concentrato principalmente sulla fase di sviluppo, implementazione dei test e stabilizzazione dell'infrastruttura, con l'obiettivo di completare il MVP entro la scadenza prevista. Inoltre, si è dedicato tempo alla documentazione tecnica in visione del termine del progetto.
+  ==== Ore previste
+  #figure(
+    numbering: "1",
+    caption: [Sprint 11 - Ore previste per componente],
+    [
+      #set text(size: 9pt)
+
+      #table(
+        columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+        align: (left, center, center, center, center, center, center, center),
+        inset: 0.6em,
+
+        table.header(
+          [],
+          [*Responsabile*],
+          [*Amministratore*],
+          [*Analista*],
+          [*Progettista*],
+          [*Programmatore*],
+          [*Verificatore*],
+          [*Totale*],
+        ),
+
+        [Alessandro \ Contarini], [0], [0], [0], [0], [0], [0], [*0*],
+        [Francesco \ Marcon], [0], [0], [0], [0], [0], [0], [*0*],
+        [Alessandro \ Mazzariol], [0], [0], [0], [0], [0], [0], [*0*],
+        [Leonardo \ Preo], [0], [0], [0], [0], [0], [0], [*0*],
+        [Valerio \ Solito], [0], [0], [0], [0], [0], [0], [*0*],
+        [Matteo \ Mantoan], [0], [0], [0], [0], [0], [0], [*0*],
+        [Mario De\ Pasquale], [0], [0], [0], [0], [0], [0], [*0*],
+      )
+    ],
+  )<tab:Sprint11-ore-previste>
+  ==== Possibili rischi
+  - RP1: Rischio personale legato a problematiche personali o attività universitarie.
+  - RT1: Rischio legato all'apprendimento delle tecnologie richieste.
+  - RT2: Rischio tecnologico legato ad errori di programmazione.
+
+  ==== Ore effettive
+  #figure(
+    numbering: "1",
+    caption: [Sprint 11 - Ore effettive per componente],
+    [
+      #set text(size: 9pt)
+
+      #table(
+        columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+        align: (left, center, center, center, center, center, center, center),
+        inset: 0.6em,
+
+        table.header(
+          [],
+          [*Responsabile*],
+          [*Amministratore*],
+          [*Analista*],
+          [*Progettista*],
+          [*Programmatore*],
+          [*Verificatore*],
+          [*Totale*],
+        ),
+
+        [Alessandro \ Contarini], [0], [0], [0], [0], [0], [0], [*0*],
+        [Francesco \ Marcon], [0], [0], [0], [0], [0], [0], [*0*],
+        [Alessandro \ Mazzariol], [0], [0], [0], [0], [0], [0], [*0*],
+        [Leonardo \ Preo], [0], [0], [0], [0], [0], [0], [*0*],
+        [Valerio \ Solito], [0], [0], [0], [0], [0], [0], [*0*],
+        [Matteo \ Mantoan], [0], [0], [0], [0], [0], [0], [*0*],
+        [Mario De\ Pasquale], [0], [0], [0], [0], [0], [0], [*0*],
+      )
+    ],
+  )<tab:Sprint11-ore-effettive>
+
+  ==== Rischi incontrati
+
+
+  ==== Retrospettiva
+
+
+
+  ==== Aggiornamento risorse monetarie rimanenti
+  #figure(
+    numbering: "1",
+    caption: [Sprint 11 - Variazione risorse monetarie rimanenti],
+    table(
+      columns: (2fr, 1fr, 1fr),
+      inset: 0.8em,
+      table.header([*Ruolo*], [*Ore*], [*Costo*]),
+
+      [Responsabile], [0], [0],
+      [Amministratore], [0], [0],
+      [Analista], [0], [0],
+      [Progettista], [0], [0],
+      [Programmatore], [0], [0],
+      [Verificatore], [0], [0],
+      [*Totale*], [*0*], [*0*],
+    ),
+  )<tab:Sprint11-costi>
+
+
+
+  === Sprint 12
+  Inizio: *2026-04-06* \
+  Fine prevista: *2026-04-13* \
+  Fine reale: *2026-04-06*\
+  Giorni di ritardo: 0 \
+
+  ==== Informazioni generali e attività pianificate
+
+  ==== Ore previste
+  #figure(
+    numbering: "1",
+    caption: [Sprint 12 - Ore previste per componente],
+    [
+      #set text(size: 9pt)
+
+      #table(
+        columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+        align: (left, center, center, center, center, center, center, center),
+        inset: 0.6em,
+
+        table.header(
+          [],
+          [*Responsabile*],
+          [*Amministratore*],
+          [*Analista*],
+          [*Progettista*],
+          [*Programmatore*],
+          [*Verificatore*],
+          [*Totale*],
+        ),
+
+        [Alessandro \ Contarini], [0], [0], [0], [0], [0], [0], [*0*],
+        [Francesco \ Marcon], [0], [0], [0], [0], [0], [0], [*0*],
+        [Alessandro \ Mazzariol], [0], [0], [0], [0], [0], [0], [*0*],
+        [Leonardo \ Preo], [0], [0], [0], [0], [0], [0], [*0*],
+        [Valerio \ Solito], [0], [0], [0], [0], [0], [0], [*0*],
+        [Matteo \ Mantoan], [0], [0], [0], [0], [0], [0], [*0*],
+        [Mario De\ Pasquale], [0], [0], [0], [0], [0], [0], [*0*],
+      )
+    ],
+  )<tab:Sprint12-ore-previste>
+  ==== Possibili rischi
+  - RP1: Rischio personale legato a problematiche personali o attività universitarie.
+  - RT1: Rischio legato all'apprendimento delle tecnologie richieste.
+  - RT2: Rischio tecnologico legato ad errori di programmazione.
+
+  ==== Ore effettive
+  #figure(
+    numbering: "1",
+    caption: [Sprint 12 - Ore effettive per componente],
+    [
+      #set text(size: 9pt)
+
+      #table(
+        columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+        align: (left, center, center, center, center, center, center, center),
+        inset: 0.6em,
+
+        table.header(
+          [],
+          [*Responsabile*],
+          [*Amministratore*],
+          [*Analista*],
+          [*Progettista*],
+          [*Programmatore*],
+          [*Verificatore*],
+          [*Totale*],
+        ),
+
+        [Alessandro \ Contarini], [0], [0], [0], [0], [0], [0], [*0*],
+        [Francesco \ Marcon], [0], [0], [0], [0], [0], [0], [*0*],
+        [Alessandro \ Mazzariol], [0], [0], [0], [0], [0], [0], [*0*],
+        [Leonardo \ Preo], [0], [0], [0], [0], [0], [0], [*0*],
+        [Valerio \ Solito], [0], [0], [0], [0], [0], [0], [*0*],
+        [Matteo \ Mantoan], [0], [0], [0], [0], [0], [0], [*0*],
+        [Mario De\ Pasquale], [0], [0], [0], [0], [0], [0], [*0*],
+      )
+    ],
+  )<tab:Sprint12-ore-effettive>
+
+  ==== Rischi incontrati
+
+
+  ==== Retrospettiva
+
+
+
+  ==== Aggiornamento risorse monetarie rimanenti
+  #figure(
+    numbering: "1",
+    caption: [Sprint 12 - Variazione risorse monetarie rimanenti],
+    table(
+      columns: (2fr, 1fr, 1fr),
+      inset: 0.8em,
+      table.header([*Ruolo*], [*Ore*], [*Costo*]),
+
+      [Responsabile], [0], [0],
+      [Amministratore], [0], [0],
+      [Analista], [0], [0],
+      [Progettista], [0], [0],
+      [Programmatore], [0], [0],
+      [Verificatore], [0], [0],
+      [*Totale*], [*0*], [*0*],
+    ),
+  )<tab:Sprint12-costi>
 ]
