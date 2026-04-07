@@ -1,5 +1,12 @@
 title: Specifica Tecnica - Data-API
 changelog:
+  - version: "0.2.2"
+    date: "2026-04-01"
+    authors:
+      - Alessandro Contarini
+    verifier: Francesco Marcon
+    description: >
+      Aggiunta parti di stream SSE e NATS
   - version: "0.2.1"
     date: "2026-04-01"
     authors:
