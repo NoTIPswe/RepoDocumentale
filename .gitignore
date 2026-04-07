@@ -26,3 +26,5 @@ venv
 .zed
 
 .direnv
+
+tmp
