@@ -69,7 +69,7 @@ tests:
   status: not_implemented
 - id: t_i_9
   service: -Placeholder
-  description: Verificare che i dati scambiati tra le diverse servicei del Sistema distribuito siano
+  description: Verificare che i dati scambiati tra le diverse componenti del Sistema distribuito siano
     cifrati e trasmessi tramite protocollo TLS
   requirements:
   - sicurezza_cifratura_dati
