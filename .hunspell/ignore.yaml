@@ -218,6 +218,10 @@ accepted_words:
   - TestContainers
   - timestamptz
   - uuid
+  - Crypto
+  - RBAC
+  - IAM
+  - httptest
   - SSL
   - realtime
 
@@ -298,7 +302,11 @@ accepted_words:
   - deserializzato
   - backoff
   - loggati
+  - loggato
   - unexported
+  - lifecycle
+  - unmarshal
+  - Walkthrough
 
   # --- Terminologia Standard Progetto ---
   - req
@@ -412,6 +420,19 @@ accepted_words:
   - validator
   - AppModule
   - UCs
+  - HeartbeatTrackerConfig
+  - NATSGatewayLifecycleProvider
+  - Configs
+  - os
+  - OpaqueBlob
+  - config
+  - lifecycle
+  - writeBatch
+  - HandleTelemetry
+  - HandleDecommission
+  - gatewayID
+  - unmarshal
+  - encryptor
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
@@ -486,3 +507,9 @@ accepted_words:
   - intra
   - centralizzata
   - testabilità
+  - deserializzate
+  - riaccodamento
+  - concorrentemente
+  - Riesecuzione
+  - versionata
+  - versionati
