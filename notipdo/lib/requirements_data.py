@@ -49,14 +49,6 @@ TEST_TYPE_TO_CODE = {
     "system": "T-S-",
 }
 
-TEST_TYPE_TO_ID_TOKEN = {
-    "unit": "u",
-    "integration": "i",
-    "system": "s",
-}
-
-TEST_ID_NUMBER_RE = re.compile(r"^t_([uis])_(\d+)$")
-
 ACTOR_LABELS = {
     "non-authd-usr": "Utente Non Autenticato",
     "authd-usr": "Utente Autenticato",
@@ -431,19 +423,6 @@ def assign_req_codes(bundle: DataBundle) -> dict[str, str]:
 def assign_test_codes(bundle: DataBundle) -> dict[str, str]:
     counters: dict[str, int] = defaultdict(int)
     id_to_code: dict[str, str] = {}
-    used_codes: set[str] = set()
-    code_to_test_id: dict[str, str] = {}
-
-    def _extract_test_number(test_type: str, test_id: str) -> str | None:
-        match = TEST_ID_NUMBER_RE.match(test_id)
-        if not match:
-            return None
-
-        token, number = match.groups()
-        if token != TEST_TYPE_TO_ID_TOKEN.get(test_type):
-            return None
-
-        return number
 
     for _, test_doc in bundle.test_files:
         test_type = str(test_doc.get("type"))
@@ -453,29 +432,8 @@ def assign_test_codes(bundle: DataBundle) -> dict[str, str]:
         prefix = TEST_TYPE_TO_CODE[test_type]
         for test in test_doc.get("tests", []) or []:
             test_id = str(test.get("id"))
-            explicit_number = _extract_test_number(test_type, test_id)
-
-            if explicit_number is not None:
-                code = f"{prefix}{explicit_number}"
-                if code in used_codes:
-                    owner = code_to_test_id.get(code, "<unknown>")
-                    raise ValueError(
-                        "duplicate test code generated from explicit id: "
-                        f"{test_id} -> {code}, already used by {owner}"
-                    )
-                try:
-                    counters[test_type] = max(counters[test_type], int(explicit_number))
-                except ValueError:
-                    pass
-            else:
-                counters[test_type] += 1
-                code = f"{prefix}{counters[test_type]}"
-                while code in used_codes:
-                    counters[test_type] += 1
-                    code = f"{prefix}{counters[test_type]}"
-
-            used_codes.add(code)
-            code_to_test_id[code] = test_id
+            counters[test_type] += 1
+            code = f"{prefix}{counters[test_type]}"
             id_to_code[test_id] = code
 
     return id_to_code
@@ -987,26 +945,27 @@ def generate_typst_indexes(
         t = str(test_doc.get("type"))
         rel = os.path.relpath(file_path, start=pq_dir).replace("\\", "/")
         test_section_lines.append(f"== {test_title.get(t, t)}")
-        
-        # Raggruppa i test per 'component' (se presente)
-        components = defaultdict(list)
-        tests_without_component = []
-        for test in test_doc.get("tests", []) or []:
-            component = test.get("component")
-            if component:
-                components[component].append(test)
-            else:
-                tests_without_component.append(test)
-        
-        # Renderizza prima i test senza component
-        if tests_without_component:
-            test_section_lines.append(f'#render_test_table("{rel}", component: none)')
-            test_section_lines.append("")
-        
-        # Poi crea sottocapitoli per ogni component
-        for component in sorted(components.keys()):
-            test_section_lines.append(f"=== {component}")
-            test_section_lines.append(f'#render_test_table("{rel}", component: "{component}")')
+        tests = test_doc.get("tests", []) or []
+
+        if t in ("unit", "integration"):
+            services: set[str] = set()
+            for test in tests:
+                service = str(test.get("service", "")).strip()
+                test_id = str(test.get("id", "<missing-id>"))
+                if not service:
+                    raise ValueError(
+                        f"{file_path}: test {test_id} of type {t} is missing required 'service'"
+                    )
+                services.add(service)
+
+            for service in sorted(services):
+                test_section_lines.append(f"=== {service}")
+                test_section_lines.append(
+                    f'#render_test_table("{rel}", service: {_to_typst_literal(service)})'
+                )
+                test_section_lines.append("")
+        else:
+            test_section_lines.append(f'#render_test_table("{rel}")')
             test_section_lines.append("")
 
     test_index_path = pq_dir / "generated" / "_yaml_test_index.typ"

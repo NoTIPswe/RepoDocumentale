@@ -1,9 +1,9 @@
-#Per inserire i test nel sotto capitolo mettere sotto id "component: _vostro servizio_"
-#component e' opzionale, nel caso non venga messo il test verra' messo sotto il capitolo "test di integrazione"
-#il titolo del capitolo sara' come il nome del component, quindi deve essere uguale per tutti i test del singolo servizio
+#Per inserire i test nel sotto capitolo mettere sotto id "service: _vostro servizio_"
+#service NON e' opzionale, ho messo a i test pre-esistenti senza un service "-Placeholder"
+#il titolo del capitolo sara' come il nome del service, quindi deve essere uguale per tutti i test del singolo servizio
 #_esempio_
 #- id: t_i_x
-#  component: Provisioning service
+#  service: Provisioning service
 #  description: "des"
 #  requirements:
 #  - req
@@ -12,24 +12,28 @@
 type: integration
 tests:
 - id: t_i_1
+  service: -Placeholder
   description: Verificare la corretta ricezione e validazione dei pacchetti JSON inviati dal Simulatore
     al Cloud Ingestion Service
   requirements:
   - invio_dati_crittografati_cloud
   status: not_implemented
 - id: t_i_2
+  service: -Placeholder
   description: 'Verificare il flusso di controllo bidirezionale: invio e corretta applicazione dei comandi
     di configurazione dal Cloud al Simulatore'
   requirements:
   - impostazione_configurazione_gateway
   status: not_implemented
 - id: t_i_3
+  service: -Placeholder
   description: Verificare la gestione del buffer locale del Simulatore e della successiva integrazione
     con il Cloud dopo un ripristino di rete
   requirements:
   - comando_anomalia_disconnessione_temporanea
   status: not_implemented
 - id: t_i_4
+  service: -Placeholder
   description: Verificare la persistenza dei dati nel database e dell’isolamento dei dati per ciascun
     Tenant
   requirements:
@@ -37,12 +41,14 @@ tests:
   - sicurezza_segregazione_tenant
   status: not_implemented
 - id: t_i_5
+  service: -Placeholder
   description: Verificare l’integrazione del Sistema di autenticazione (JWT) tra l’API Gateway e i microservizi
     interni
   requirements:
   - sicurezza_autenticazione_accessi
   status: not_implemented
 - id: t_i_6
+  service: -Placeholder
   description: Verificare la gestione degli errori di configurazione del Gateway simulato in caso di payload
     invalido o frequenza fuori range
   requirements:
@@ -50,28 +56,32 @@ tests:
   - err_config_frequenza_fuori_range
   status: not_implemented
 - id: t_i_7
+  service: -Placeholder
   description: Verificare la propagazione e gestione di misure anomale (outlier) dal Simulatore al Cloud
   requirements:
   - comando_anomalia_outliers_misurazioni
   status: not_implemented
 - id: t_i_8
+  service: -Placeholder
   description: Verificare l’integrazione del Sistema con più Gateway simulati attivi in parallelo
   requirements:
   - creazione_gateway_multipli_default
   status: not_implemented
 - id: t_i_9
-  description: Verificare che i dati scambiati tra le diverse componenti del Sistema distribuito siano
+  service: -Placeholder
+  description: Verificare che i dati scambiati tra le diverse servicei del Sistema distribuito siano
     cifrati e trasmessi tramite protocollo TLS
   requirements:
   - sicurezza_cifratura_dati
   status: not_implemented
 - id: t_i_10
+  service: -Placeholder
   description: Verificare l’isolamento dei dati tra Tenant tramite API e persistenza su database
   requirements:
   - sicurezza_segregazione_tenant
   status: not_implemented
 - id: t_i_11
-  component: Data Consumer
+  service: Data Consumer
   description: Verificare il flusso end-to-end completo del Data Consumer; telemetria ricevuta da NATS
     JetStream, persistita su TimescaleDB, gateway portato allo stato Online, timeout che genera alert
     Offline, aggiornamento di stato successivo
@@ -80,7 +90,7 @@ tests:
   - alert_gateway_irraggiungibile
   status: passed
 - id: t_i_12
-  component: Data Consumer
+  service: Data Consumer
   description: Verificare che un messaggio di telemetria valido venga scritto nel DB verbatim (Rule Zero)
     e che un messaggio JSON malformato venga scartato (Term) senza riaccodamento
   requirements:
@@ -89,7 +99,7 @@ tests:
   - sicurezza_rule_zero
   status: passed
 - id: t_i_13
-  component: Data Consumer
+  service: Data Consumer
   description: Verificare la corretta estrazione di tenantID e gatewayID dal subject NATS; i subject
     invalidi vengono "terminati"; lo stop è pulito sulla cancellazione del context
   requirements:
@@ -98,7 +108,7 @@ tests:
   - decommission_gateway
   status: passed
 - id: t_i_14
-  component: Data Consumer
+  service: Data Consumer
   description: Verificare la pubblicazione degli alert sul subject NATS corretto con payload atteso e
     l’isolamento multi-tenant degli alert
   requirements:
@@ -106,7 +116,7 @@ tests:
   - sicurezza_segregazione_tenant
   status: passed
 - id: t_i_15
-  component: Data Consumer
+  service: Data Consumer
   description: Verificare la scrittura singola e in batch su TimescaleDB e che i blob cifrati vengano
     salvati verbatim senza alterazioni (Rule Zero)
   requirements:
@@ -115,7 +125,7 @@ tests:
   - sicurezza_rule_zero
   status: passed
 - id: t_i_16
-  component: Data Consumer
+  service: Data Consumer
   description: Verificare le operazioni Request-Reply reali su NATS; fetch della configurazione alert,
     aggiornamento stato gateway, query del lifecycle e gestione del timeout senza responder
   requirements:
@@ -124,7 +134,7 @@ tests:
   - qualita_resilienza_servizi
   status: passed
 - id: t_i_17
-  component: Data Consumer
+  service: Data Consumer
   description: Verificare che il provider restituisca correttamente gli stati Paused e Online e che
     la metrica di errore venga incrementata su timeout
   requirements:
@@ -133,7 +143,7 @@ tests:
   - qualita_resilienza_servizi
   status: passed
 - id: t_i_18
-  component: Data Consumer
+  service: Data Consumer
   description: Verificare il ciclo completo del heartbeat tracker; telemetria porta il gateway Online,
     il timeout genera alert Offline, la recovery riporta Online; gestione del grace period, del decommission
     e del lifecycle Paused
@@ -144,7 +154,7 @@ tests:
   - decommission_gateway
   status: passed
 - id: t_i_19
-  component: Data Consumer
+  service: Data Consumer
   description: Verificare il popolamento della cache al bootstrap, il refresh periodico e il fallback
     al default di sistema con incremento della metrica di errore in caso di fetch fallito
   requirements:
@@ -153,7 +163,7 @@ tests:
   - qualita_resilienza_servizi
   status: passed
 - id: t_i_20
-  component: Data Consumer
+  service: Data Consumer
   description: Verificare che l’endpoint /metrics esponga tutte le metriche Prometheus attese e che
     i counter e i gauge riflettano i valori aggiornati dopo le operazioni
   requirements:
@@ -161,7 +171,7 @@ tests:
   - qualita_osservabilita_servizi
   status: passed
 - id: t_i_21
-  component: Data Consumer
+  service: Data Consumer
   description: Verificare che un client con certificato valido si connetta correttamente e che un client
     privo di certificato venga rifiutato (enforcement mTLS)
   requirements:
@@ -170,35 +180,35 @@ tests:
   status: passed
 
 - id: t_i_22
-  component: Simulator Backend
+  service: Simulator Backend
   description: Verificare che un messaggio pubblicato sul broker di messaggistica arrivi correttamente al subscriber
   requirements:
     - vincolo_nats
   status: passed
 
 - id: t_i_23
-  component: Simulator Backend
+  service: Simulator Backend
   description: Verificare la resilienza del subscriber scartando i comandi scaduti al limite del TTL e rigettando i payload malformati
   requirements:
     - err_sintattico_config_gateway
   status: passed
 
 - id: t_i_24
-  component: Simulator Backend
+  service: Simulator Backend
   description: Verificare che il listener di decommission processi correttamente gli eventi validi e ignori le richieste malformate o con identificativi errati
   requirements:
     - eliminazione_gateway_simulato
   status: passed
 
 - id: t_i_25
-  component: Simulator Backend
+  service: Simulator Backend
   description: Verificare che il listener si arresti in modo pulito alla cancellazione del contesto di esecuzione
   requirements:
     - qualita_spegnimento_controllato
   status: passed
 
 - id: t_i_26
-  component: Simulator Backend
+  service: Simulator Backend
   description: Verificare che la telemetria cifrata venga pubblicata correttamente sul broker dopo la creazione e l'avvio del dispositivo simulato
   requirements:
     - creazione_deploy_gateway_simulato
@@ -207,49 +217,49 @@ tests:
   status: passed
 
 - id: t_i_27
-  component: Simulator Backend
+  service: Simulator Backend
   description: Verificare che l'operazione di arresto blocchi immediatamente la pubblicazione della telemetria
   requirements:
     - impostazione_configurazione_gateway
   status: passed
 
 - id: t_i_28
-  component: Simulator Backend
+  service: Simulator Backend
   description: Verificare che l'operazione di cancellazione rimuova definitivamente il dispositivo simulato dal database locale
   requirements:
     - eliminazione_gateway_simulato
   status: passed
 
 - id: t_i_29
-  component: Simulator Backend
+  service: Simulator Backend
   description: Verificare l'intero flusso di decommission innescato tramite la ricezione di un evento asincrono
   requirements:
     - eliminazione_gateway_simulato
   status: passed
 
 - id: t_i_30
-  component: Simulator Backend
+  service: Simulator Backend
   description: Verificare che l'operazione di creazione massiva avvii correttamente e concorrentemente i worker in parallelo
   requirements:
     - creazione_gateway_multipli_default
   status: passed
 
 - id: t_i_31
-  component: Simulator Backend
+  service: Simulator Backend
   description: Verificare che il comando di iniezione di anomalie di rete venga accettato e instradato senza errori
   requirements:
     - comando_anomalia_degrado_rete
   status: passed
 
 - id: t_i_32
-  component: Simulator Backend
+  service: Simulator Backend
   description: Verificare la corretta propagazione di misure anomale (outlier) generate dal sensore simulato fino alla pubblicazione sul broker
   requirements:
     - comando_anomalia_outliers_misurazioni
   status: passed
 
 - id: t_i_33
-  component: Simulator Backend
+  service: Simulator Backend
   description: Verificare il corretto funzionamento delle operazioni di lettura e scrittura (CRUD) sul database persistente
   requirements:
     - creazione_deploy_gateway_simulato
@@ -257,7 +267,7 @@ tests:
   status: passed
 
 - id: t_i_34
-  component: Simulator Backend
+  service: Simulator Backend
   description: Verificare l'isolamento logico dei sensori appartenenti a dispositivi simulati differenti all'interno del database
   requirements:
     - sicurezza_segregazione_tenant
@@ -265,14 +275,14 @@ tests:
   status: passed
 
 - id: t_i_35
-  component: Simulator Backend
+  service: Simulator Backend
   description: Verificare la reale persistenza dei dati simulando una chiusura e riapertura del database locale
   requirements:
     - qualita_durabilita_persistenza
   status: passed
 
 - id: t_i_36
-  component: Simulator Backend
+  service: Simulator Backend
   description: Verificare che la connessione verso il broker avvenga esclusivamente tramite canale sicuro mTLS con certificati validi, rifiutando attivamente i client non autorizzati
   requirements:
     - sicurezza_cifratura_dati
