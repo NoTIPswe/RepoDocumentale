@@ -48,20 +48,28 @@ progetto.
   - *File di configurazione degli ambienti* (`.env.example`): Ogni repository deve contenere il file `.env.example`
     committato, che documenta tutte le variabili d'ambiente necessarie all'esecuzione del servizio senza esporre valori
     reali. Per la politica di gestione dei segreti si rimanda alla @gestione-segreti;
-  - *Migrazioni del database*: I file di migrazione generati da TypeORM per i database principali (MeasuresDB e
-    ManagementDB) sono elementi di configurazione soggetti a versionamento obbligatorio. Per le norme di utilizzo dello
-    strumento si rimanda alla @database-migrazioni;
-  - *Lockfile delle API* (`openapi.json`): Il file `openapi.json` scaricato da `notip-infra` e committato nella
-    repository di ogni servizio consumatore costituisce un elemento di configurazione. Esso rappresenta la fotografia
-    dell'esatta versione dell'API contro cui il consumer è compilato (es. FE v1.0.0 sa di usare BE v0.6.7 perché lo dice
-    il JSON). Per il workflow di aggiornamento si rimanda alla @workflow-api-contracts;
+  - *Migrazioni del database*: I file di migrazione (generati da TypeORM per i servizi NestJS, o file SQL puri per i
+    servizi Go) sono elementi di configurazione soggetti a versionamento obbligatorio. Per le norme di utilizzo si
+    rimanda alla @database-migrazioni;
+  - *Contratti OpenAPI (produttore)*: Il file `openapi.yaml` generato dai decoratori NestJS è committato nella
+    repository del servizio backend produttore (es. `api-contracts/openapi/openapi.yaml`) ed è un elemento di
+    configurazione soggetto a versionamento;
+  - *Lockfile delle API (consumatore)*: Il file `{service}-openapi.yaml` scaricato dalla repository del servizio
+    produttore e committato nella repository del consumatore costituisce un lockfile. Esso rappresenta la fotografia
+    dell'esatta versione dell'API contro cui il consumer è compilato (es. `management-api-openapi.yaml`). Per il
+    workflow di aggiornamento si rimanda alla @workflow-api-contracts;
   - *Definizioni degli ambienti di sviluppo* (DevContainers): I Dockerfile base contenuti in
     `notip-infra/devcontainers/` e i file `.devcontainer/devcontainer.json` presenti in ogni repository sono elementi di
     configurazione soggetti a versionamento. Essi garantiscono la riproducibilità degli ambienti di sviluppo. Per la
     struttura e l'architettura si rimanda alla @devcontainers.
   - *Immagini Docker di build e rilascio* (`notip-infra/containers/`): I Dockerfile base per la build e il rilascio in
     produzione dei servizi applicativi sono elementi di configurazione soggetti a versionamento. Per la policy di
-    utilizzo si rimanda alla @build-release-process.
+    utilizzo si rimanda alla @build-release-process;
+  - *Topologia Event-Driven (NATS JetStream Streams)*: I file JSON che definiscono i flussi JetStream, le loro policy di
+    retention e le configurazioni dei consumer (es. `TELEMETRY.json`, `AUDIT_LOG.json`, `COMMANDS.json`) devono essere
+    versionati in `notip-infra/infra/nats/streams/`. È vietato creare o modificare stream direttamente sull'istanza NATS
+    senza prima di eseguire il commit della definizione corrispondente; ogni modifica alla topologia del message broker
+    passa obbligatoriamente per Pull Request.
 ]
 
 #norm(
@@ -135,8 +143,16 @@ progetto.
   regole su GitHub):
   - *Merge Restriction*: Il merge è consentito solo tramite Pull Request approvata da almeno un membro del team che in
     quel momento sta ricoprendo il ruolo di *Verificatore*.
-  - *Status Check*: Il merge è bloccato se i check automatici (`pr-check-n-build`) falliscono, indicando cosa correggere
-    per allinearsi alle norme finora descritte.
+  - *Status Check*: Il merge è bloccato se i check automatici della pipeline CI/CD falliscono, indicando cosa correggere
+    per allinearsi alle norme finora descritte. La struttura dei workflow varia per tipologia di repository:
+    - *Repository Documentale*: Il workflow `pr-check-n-build` esegue `notipdo check pr` (validazione sintattica,
+      controllo ortografico e schemi) e `notipdo build changes` (compilazione di anteprima degli artefatti modificati);
+    - *Repository di Prodotto*: La pipeline è articolata in tre workflow distinti:
+      - `pr-check.yml`: Validazioni rapide (linting, build, test di unità) eseguite ad ogni aggiornamento di PR;
+      - `quality-checks.yml`: Analisi approfondita tramite SonarQube/SonarCloud (Code Coverage, Code Smells,
+        Vulnerabilità);
+      - `release.yml`: Calcolo automatico della versione semantica tramite *Semantic Release* e pubblicazione
+        dell'immagine Docker sul GitHub Container Registry (GHCR), eseguito al merge su `main`.
 ]
 
 #norm(
@@ -152,8 +168,9 @@ progetto.
   `main` tramite Pull Request piccole e frequenti, senza overhead derivante da strategie come GitFlow.
 
   Le versioni (Major, Minor, Patch) e i relativi tag Git vengono calcolati e generati automaticamente dalla CI/CD
-  leggendo i prefissi dei commit secondo lo standard Conventional Commits. Ogni repository di prodotto avanza di
-  versione in modo indipendente.
+  tramite il tool *Semantic Release* (configurato tramite il file `.releaserc.json` presente in ogni repository di
+  prodotto), che legge i prefissi dei commit secondo lo standard Conventional Commits. Ogni repository di prodotto
+  avanza di versione in modo indipendente.
 
   Per i prefissi dei commit e il loro peso nella determinazione della versione si rimanda alla
   @branching-conventional-commits. Per le norme sulla strategia dei repository e la gestione dei monorepo si rimanda
