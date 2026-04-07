@@ -1534,8 +1534,8 @@
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
       [Responsabile], [14,5], [435],
-      [Amministratore], [-3], [-60],
-      [Analista], [-3,5], [-87,5],
+      [Amministratore], [0], [0],
+      [Analista], [0], [0],
       [Progettista], [35], [875],
       [Programmatore], [52], [780],
       [Verificatore], [21,5], [322,5],
@@ -1680,7 +1680,10 @@
   Giorni di ritardo: 0 \
 
   ==== Informazioni generali e attività pianificate
-  In questo Sprint, il Team si è concentrato principalmente sulla fase di sviluppo, implementazione dei test e stabilizzazione dell'infrastruttura, con l'obiettivo di completare il MVP entro la scadenza prevista. Inoltre, si è dedicato tempo alla documentazione tecnica in visione del termine del progetto.
+  In questo Sprint, il Team si è concentrato sul consolidamento finale del prodotto, proseguendo l'avanzamento della
+  documentazione di progetto, lo sviluppo delle componenti frontend e l'integrazione operativa dei microservizi. In
+  parallelo, sono state definite le principali attività di test di sistema, così da arrivare allo Sprint 12 con un
+  prodotto sostanzialmente completo e con le sole rifiniture finali ancora da svolgere.
   ==== Ore previste
   #figure(
     numbering: "1",
@@ -1704,13 +1707,13 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [0], [0], [0], [0], [0], [0], [*0*],
-        [Francesco \ Marcon], [0], [0], [0], [0], [0], [0], [*0*],
-        [Alessandro \ Mazzariol], [0], [0], [0], [0], [0], [0], [*0*],
-        [Leonardo \ Preo], [0], [0], [0], [0], [0], [0], [*0*],
-        [Valerio \ Solito], [0], [0], [0], [0], [0], [0], [*0*],
-        [Matteo \ Mantoan], [0], [0], [0], [0], [0], [0], [*0*],
-        [Mario De\ Pasquale], [0], [0], [0], [0], [0], [0], [*0*],
+        [Alessandro \ Contarini], [2], [0], [0], [4], [4], [3], [*13*],
+        [Francesco \ Marcon], [2], [0], [0], [4], [4], [4], [*14*],
+        [Alessandro \ Mazzariol], [0], [0], [0], [4], [6], [0], [*10*],
+        [Leonardo \ Preo], [0], [0], [0], [4], [5], [2], [*11*],
+        [Valerio \ Solito], [0], [0], [0], [3], [6], [0], [*9*],
+        [Matteo \ Mantoan], [2], [0], [0], [4], [6], [2], [*14*],
+        [Mario De\ Pasquale], [3], [0], [0], [3], [4], [3], [*13*],
       )
     ],
   )<tab:Sprint11-ore-previste>
@@ -1742,27 +1745,46 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [0], [0], [0], [0], [0], [0], [*0*],
-        [Francesco \ Marcon], [0], [0], [0], [0], [0], [0], [*0*],
-        [Alessandro \ Mazzariol], [0], [0], [0], [0], [0], [0], [*0*],
-        [Leonardo \ Preo], [0], [0], [0], [0], [0], [0], [*0*],
-        [Valerio \ Solito], [0], [0], [0], [0], [0], [0], [*0*],
-        [Matteo \ Mantoan], [0], [0], [0], [0], [0], [0], [*0*],
-        [Mario De\ Pasquale], [0], [0], [0], [0], [0], [0], [*0*],
+        [Alessandro \ Contarini], [2], [0], [0], [4], [4], [3], [*13*],
+        [Francesco \ Marcon], [2], [0], [0], [4], [4], [4], [*14*],
+        [Alessandro \ Mazzariol], [0], [0], [0], [4], [6], [0], [*10*],
+        [Leonardo \ Preo], [0], [0], [0], [4], [5], [2], [*11*],
+        [Valerio \ Solito], [0], [0], [0], [3], [6], [0], [*9*],
+        [Matteo \ Mantoan], [2], [0], [0], [4], [6], [2], [*14*],
+        [Mario De\ Pasquale], [3], [0], [0], [3], [4], [3], [*13*],
       )
     ],
   )<tab:Sprint11-ore-effettive>
 
   ==== Consuntivo del periodo
-
+  Nel corso dello Sprint 11, il Team ha concentrato il lavoro sulle attività necessarie a portare il progetto in una
+  fase prossima alla conclusione. In particolare, è proseguita la redazione e l'aggiornamento della documentazione
+  tecnica, sono state completate ulteriori funzionalità lato frontend e si è lavorato all'integrazione dei
+  microservizi, verificando la correttezza del flusso complessivo del sistema. Parallelamente, sono stati definiti i
+  principali scenari e criteri di esecuzione dei test di sistema, in modo da predisporre una validazione finale più
+  ordinata nello Sprint successivo.
 
   ==== Retrospettiva
-
+  Lo Sprint 11 ha rappresentato un passaggio decisivo verso la chiusura del progetto. Il Team è riuscito a ridurre in
+  modo significativo le attività aperte, migliorando il livello di integrazione tra le componenti sviluppate e
+  aumentando la maturità complessiva del prodotto. La scelta di dedicare spazio sia alla documentazione sia alla
+  definizione dei test di sistema si è rivelata utile per arrivare all'ultimo Sprint con una visione più chiara delle
+  ultime verifiche da completare.
 
 
   ==== Misure correttive e aggiornamento dei rischi
+  Durante lo Sprint, il rischio RT2 (Rischio tecnologico legato ad errori di programmazione) è rimasto sotto
+  osservazione, in particolare nelle fasi di integrazione tra i microservizi e di verifica delle interazioni con il
+  frontend. Per contenerne l'impatto, il Team ha continuato ad adottare verifiche incrementali e revisioni puntuali
+  delle modifiche introdotte. Il rischio RT1 (Rischio legato all'apprendimento delle tecnologie richieste), pur ancora
+  presente, ha avuto un'incidenza più contenuta rispetto agli sprint precedenti, grazie alla maggiore familiarità
+  maturata dal gruppo con l'infrastruttura e con gli strumenti adottati.
 
   ==== Aggiornamento pianificazione futura
+  Alla conclusione dello Sprint 11, la pianificazione futura è stata aggiornata prevedendo per lo Sprint 12 il solo
+  completamento delle ultime attività di rifinitura, la chiusura della documentazione rimanente e l'esecuzione finale
+  delle verifiche conclusive. Il progetto risulta quindi impostato per terminare entro lo Sprint 12, senza la necessità
+  di introdurre ulteriori sprint di sviluppo.
 
   ==== Preventivo a finire
   #figure(
@@ -1773,13 +1795,13 @@
       inset: 0.8em,
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
-      [Responsabile], [0], [0],
-      [Amministratore], [0], [0],
-      [Analista], [0], [0],
-      [Progettista], [0], [0],
-      [Programmatore], [0], [0],
-      [Verificatore], [0], [0],
-      [*Totale*], [*0*], [*0*],
+      [Responsabile], [5,5], [165],
+      [Amministratore], [-3], [-60],
+      [Analista], [-3,5], [-87,5],
+      [Progettista], [9], [225],
+      [Programmatore], [17], [255],
+      [Verificatore], [7,5], [112,5],
+      [*Totale*], [*32,5*], [*610*],
     ),
   )<tab:Sprint11-costi>
 
@@ -1792,6 +1814,9 @@
   Giorni di ritardo: 0 \
 
   ==== Informazioni generali e attività pianificate
+  In questo Sprint conclusivo, il Team ha pianificato il completamento delle attività residue emerse dallo Sprint 11,
+  concentrandosi sulle ultime rifiniture del frontend, sulla chiusura dell'integrazione tra i microservizi, sul
+  consolidamento dei test di sistema e sulla finalizzazione della documentazione necessaria alla consegna del prodotto.
 
   ==== Ore previste
   #figure(
@@ -1816,13 +1841,13 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [0], [0], [0], [0], [0], [0], [*0*],
-        [Francesco \ Marcon], [0], [0], [0], [0], [0], [0], [*0*],
-        [Alessandro \ Mazzariol], [0], [0], [0], [0], [0], [0], [*0*],
-        [Leonardo \ Preo], [0], [0], [0], [0], [0], [0], [*0*],
-        [Valerio \ Solito], [0], [0], [0], [0], [0], [0], [*0*],
-        [Matteo \ Mantoan], [0], [0], [0], [0], [0], [0], [*0*],
-        [Mario De\ Pasquale], [0], [0], [0], [0], [0], [0], [*0*],
+        [Alessandro \ Contarini], [1], [0], [0], [1], [2], [1,5], [*5,5*],
+        [Francesco \ Marcon], [1], [0], [0], [1], [2], [2], [*6*],
+        [Alessandro \ Mazzariol], [0], [0], [0], [2], [3], [0], [*5*],
+        [Leonardo \ Preo], [0], [0], [0], [2], [3], [1], [*6*],
+        [Valerio \ Solito], [0], [0], [0], [1], [3], [0], [*4*],
+        [Matteo \ Mantoan], [1,5], [0], [0], [1], [2], [1], [*5,5*],
+        [Mario De\ Pasquale], [2], [0], [0], [1], [2], [2], [*7*],
       )
     ],
   )<tab:Sprint12-ore-previste>
@@ -1854,27 +1879,41 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [0], [0], [0], [0], [0], [0], [*0*],
-        [Francesco \ Marcon], [0], [0], [0], [0], [0], [0], [*0*],
-        [Alessandro \ Mazzariol], [0], [0], [0], [0], [0], [0], [*0*],
-        [Leonardo \ Preo], [0], [0], [0], [0], [0], [0], [*0*],
-        [Valerio \ Solito], [0], [0], [0], [0], [0], [0], [*0*],
-        [Matteo \ Mantoan], [0], [0], [0], [0], [0], [0], [*0*],
-        [Mario De\ Pasquale], [0], [0], [0], [0], [0], [0], [*0*],
+        [Alessandro \ Contarini], [1], [0], [0], [1], [2], [1,5], [*5,5*],
+        [Francesco \ Marcon], [1], [0], [0], [1], [2], [2], [*6*],
+        [Alessandro \ Mazzariol], [0], [0], [0], [2], [3], [0], [*5*],
+        [Leonardo \ Preo], [0], [0], [0], [2], [3], [1], [*6*],
+        [Valerio \ Solito], [0], [0], [0], [1], [3], [0], [*4*],
+        [Matteo \ Mantoan], [1,5], [0], [0], [1], [2], [1], [*5,5*],
+        [Mario De\ Pasquale], [2], [0], [0], [1], [2], [2], [*7*],
       )
     ],
   )<tab:Sprint12-ore-effettive>
 
   ==== Consuntivo del periodo
-
+  Nel corso dello Sprint 12, il Team ha completato le attività residue lasciate aperte al termine dello Sprint 11,
+  portando a chiusura il prodotto e la documentazione collegata. Le ore sono state impiegate soprattutto per le ultime
+  rifiniture del frontend, per la verifica finale delle integrazioni tra i microservizi e per l'esecuzione conclusiva
+  dei test di sistema pianificati in precedenza. Questo ha permesso di confermare il raggiungimento dello stato finale
+  del progetto entro la data effettiva di conclusione.
 
   ==== Retrospettiva
-
+  Lo Sprint 12 ha confermato la bontà della scelta di distribuire una parte delle attività finali su un periodo
+  conclusivo dedicato. La disponibilità di uno sprint breve ma focalizzato ha consentito di effettuare le ultime
+  verifiche con maggiore attenzione, riducendo il rischio di chiudere il progetto con attività ancora parzialmente
+  aperte. Il Team valuta quindi positivamente la gestione dell'ultima fase di lavoro.
 
 
   ==== Misure correttive e aggiornamento dei rischi
+  Nel corso dello Sprint conclusivo, i rischi RT1 e RT2 sono rimasti monitorati ma non hanno prodotto impatti tali da
+  compromettere la consegna. Le verifiche finali e il completamento incrementale delle integrazioni hanno permesso di
+  contenere il rischio di difetti residui, mentre il rischio RP1 non ha inciso in modo significativo sulla conclusione
+  delle attività previste.
 
   ==== Aggiornamento pianificazione futura
+  Con la chiusura dello Sprint 12, non risultano ulteriori attività pianificate all'interno del progetto. La
+  pianificazione futura si considera quindi conclusa, avendo il Team terminato lo sviluppo, le verifiche e la
+  documentazione entro l'orizzonte temporale stabilito.
 
   ==== Preventivo a finire
   #figure(
@@ -1886,8 +1925,8 @@
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
       [Responsabile], [0], [0],
-      [Amministratore], [0], [0],
-      [Analista], [0], [0],
+      [Amministratore], [-3], [-60],
+      [Analista], [-3,5], [-87,5],
       [Progettista], [0], [0],
       [Programmatore], [0], [0],
       [Verificatore], [0], [0],
