@@ -4,7 +4,7 @@ changelog:
     date: "2026-04-01"
     authors:
       - Alessandro Contarini
-    verifier: TBD
+    verifier: Francesco Marcon
     description: >
       Aggiunta parti di stream SSE e NATS
   - version: "0.2.1"

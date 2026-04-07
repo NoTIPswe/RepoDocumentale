@@ -4,7 +4,7 @@ changelog:
     date: "2026-04-01"
     authors:
       - Mario De Pasquale
-    verifier: TBD
+    verifier: Francesco Marcon
     description: >
       Fix dati mancanti
   - version: "0.0.1"
