@@ -1662,13 +1662,13 @@
       inset: 0.8em,
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
-      [Responsabile], [14,5], [435],
+      [Responsabile], [11], [330],
       [Amministratore], [-3], [-60],
-      [Analista], [-3,5], [-87,5],
+      [Analista], [0], [0],
       [Progettista], [35], [875],
       [Programmatore], [52], [780],
       [Verificatore], [21,5], [322,5],
-      [*Totale*], [*116,5*], [*2265*],
+      [*Totale*], [*116,5*], [*2247,5*],
     ),
   )<tab:Sprint10-costi>
 
@@ -1795,13 +1795,13 @@
       inset: 0.8em,
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
-      [Responsabile], [5,5], [165],
+      [Responsabile], [2], [60],
       [Amministratore], [-3], [-60],
-      [Analista], [-3,5], [-87,5],
+      [Analista], [0], [0],
       [Progettista], [9], [225],
       [Programmatore], [17], [255],
       [Verificatore], [7,5], [112,5],
-      [*Totale*], [*32,5*], [*610*],
+      [*Totale*], [*32,5*], [*592,5*],
     ),
   )<tab:Sprint11-costi>
 
@@ -1925,8 +1925,8 @@
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
       [Responsabile], [0], [0],
-      [Amministratore], [-3], [-60],
-      [Analista], [-3,5], [-87,5],
+      [Amministratore], [0], [0],
+      [Analista], [0], [0],
       [Progettista], [0], [0],
       [Programmatore], [0], [0],
       [Verificatore], [0], [0],
