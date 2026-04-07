@@ -9,7 +9,7 @@
 #  - req
 #  status: not_implemented
 
-type: integration
+type: integration-intra
 tests:
 - id: t_i_1
   service: -Placeholder
