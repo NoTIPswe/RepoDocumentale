@@ -1,6 +1,6 @@
 #import "lib.typ": ROLES, activity, cite-norm, norm
 
-== Processo di Formazione
+== Processo di formazione
 
 Il *Processo di Formazione* ha lo scopo di mantenere i membri del gruppo aggiornati sulle tecnologie adottate e sulle
 procedure interne, facendo in modo che ogni componente acquisisca le competenze necessarie per operare efficacemente
@@ -16,7 +16,7 @@ all'interno del progetto. Il gruppo ha individuato le seguenti tecnologie come o
 === Norme e strumenti del processo di formazione
 
 #norm(
-  title: "Auto-formazione e Consolidamento",
+  title: "Auto-formazione e consolidamento",
   label: <auto-formazione>,
 )[
   La fonte primaria di formazione per le procedure è il presente documento (*Norme di Progetto*). \
@@ -27,7 +27,7 @@ all'interno del progetto. Il gruppo ha individuato le seguenti tecnologie come o
 ]
 
 #norm(
-  title: "Apprendimento tra Pari",
+  title: "Apprendimento tra pari",
   label: <peer-learning>,
 )[
   Per favorire la condivisione della conoscenza e gestire al meglio la rotazione dei ruoli, il gruppo adotta il
@@ -142,12 +142,12 @@ all'interno del progetto. Il gruppo ha individuato le seguenti tecnologie come o
         Norme di Progetto.],
     ),
     (
-      name: "Sessione di Spiegazione (Nuovi Strumenti)",
+      name: "Sessione di spiegazione (nuovi strumenti)",
       desc: [In caso di nuove tecnologie, viene organizzata una call su Discord in cui il membro più esperto mostra
         esempi pratici di utilizzo.],
     ),
     (
-      name: "Passaggio di Consegne (Rotazione Ruoli)",
+      name: "Passaggio di consegne (rotazione ruoli)",
       desc: [Il membro che sta assumendo un nuovo ruolo contatta uno dei membri che lo hanno precedentemente svolto per
         ricevere consigli operativi.],
     ),

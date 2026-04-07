@@ -218,7 +218,7 @@ accepted_words:
   - TestContainers
   - timestamptz
   - uuid
-  - Crypto
+  - crypto
   - RBAC
   - IAM
   - httptest

@@ -1,5 +1,12 @@
 title: Verbale Esterno 2026-03-17 (M31)
 changelog:
+  - version: "0.1.1"
+    date: "2026-04-07"
+    authors:
+      - Matteo Mantoan
+    verifier: TBD
+    description: >
+      Uniformazione titoli e intestazioni: solo prima lettera maiuscola
   - version: "0.1.0"
     date: "2026-03-23"
     authors:

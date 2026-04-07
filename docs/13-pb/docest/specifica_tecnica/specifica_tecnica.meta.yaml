@@ -1,5 +1,12 @@
-title: Specifica Tecnica
+title: Specifica tecnica
 changelog:
+  - version: "0.2.1"
+    date: "2026-04-07"
+    authors:
+      - Matteo Mantoan
+    verifier: TBD
+    description: >
+      Uniformazione titoli e intestazioni: solo prima lettera maiuscola
   - version: "0.2.0"
     date: "2026-03-24"
     authors:
