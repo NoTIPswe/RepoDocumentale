@@ -433,6 +433,31 @@ accepted_words:
   - gatewayID
   - unmarshal
   - encryptor
+  - KeycloakHostname
+  - Enums
+  - HOSTNAME
+  - localhost
+  - TenantStatus
+  - UsersRole
+  - GatewayStatus
+  - AlertType
+  - CommandType
+  - CommandStatus
+  - KeycloakUrl
+  - NodeEnv
+  - NatsServers
+  - NatsClientName
+  - NatsDurablePrefix
+  - NatsTlsCert
+  - NatsTlsKey
+  - NatsTlsCa
+  - NatsToken
+  - NatsUser
+  - NatsPassword
+  - ConfigModule
+  - EventEmitter
+  - ValidationPipe
+  - lifecycle
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
