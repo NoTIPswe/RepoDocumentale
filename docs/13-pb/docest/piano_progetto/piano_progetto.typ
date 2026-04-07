@@ -497,7 +497,7 @@
     ],
   )<tab:Sprint1-ore-effettive>
 
-  ==== Rischi incontrati
+  ==== Consuntivo del periodo
   Durante questo sprint il gruppo ha avuto difficoltà nel capire come organizzare il lavoro tra i vari componenti e,
   come si può evincere dalla @tab:Sprint1-ore-effettive, ci sono componenti che non hanno impiegato più di un'ora nel
   fare le mansioni, questo sia a causa del rischio *RP1*, sia per l'inesperienza generale.
@@ -506,7 +506,17 @@
   Questo Sprint è stato dedicato nel risolvere questioni importanti come il trasferimento del workflow su Jira, e la
   prima stesura dei documenti più importanti. Tutte le attività previste sono state comunque eseguite senza ritardi.
 
-  ==== Aggiornamento risorse monetarie rimanenti
+  ==== Misure correttive e aggiornamento dei rischi
+  Per mitigare gli squilibri emersi nella distribuzione del lavoro, il Team ha deciso di definire con maggiore
+  precisione la suddivisione delle task e il monte ore individuale del successivo sprint. I rischi RP1 e RT1 rimangono
+  attivi e monitorati, poiché l'esperienza limitata del gruppo e gli impegni personali possono continuare a incidere
+  sull'andamento delle attività.
+
+  ==== Aggiornamento pianificazione futura
+  Nel prossimo sprint il gruppo prevede di consolidare il workflow adottato, migliorare la pianificazione delle ore e
+  proseguire con la stesura dei documenti avviati, così da rendere più regolare l'avanzamento complessivo del progetto.
+
+  ==== Preventivo a finire
   #figure(
     numbering: "1",
     caption: [Sprint 1 - Variazione risorse monetarie rimanenti],
@@ -615,7 +625,7 @@
       )
     ],
   )<tab:Sprint2-ore-effettive>
-  ==== Rischi incontrati
+  ==== Consuntivo del periodo
   Rallentamento nello sviluppo dell'Analisi dei Requisiti (RT1).
 
   ==== Retrospettiva
@@ -625,7 +635,17 @@
   )[Analisi dei Requisiti v1.1.0] che hanno causato un rinvio al prossimo Sprint del raggiungimento della versione
   *0.3.0* e *0.4.0*.
 
-  ==== Aggiornamento risorse monetarie rimanenti
+  ==== Misure correttive e aggiornamento dei rischi
+  Per contenere gli effetti del rallentamento sull'Analisi dei Requisiti, il Team ha deciso di riallocare parte del
+  lavoro documentale sullo sprint successivo e di monitorare più da vicino le attività soggette a maggiore incertezza.
+  I rischi RP1, RT1 e RO1 rimangono quindi aperti, con particolare attenzione alle attività di analisi e al rispetto
+  delle scadenze interne.
+
+  ==== Aggiornamento pianificazione futura
+  La pianificazione futura prevede il completamento delle sezioni dell'Analisi dei Requisiti rinviate e il
+  consolidamento del workflow documentale introdotto in questo periodo, in modo da recuperare lo scostamento emerso.
+
+  ==== Preventivo a finire
   #figure(
     numbering: "1",
     caption: [Sprint 2 - Variazione risorse monetarie rimanenti],
@@ -728,7 +748,7 @@
       )
     ],
   )<tab:Sprint3-ore-effettive>
-  ==== Rischi incontrati
+  ==== Consuntivo del periodo
   A causa delle festività natalizie, si è deciso di estendere la durata dello sprint a tre settimane. Per questo motivo
   risultano 0 giorni di ritardo, nonostante la data di fine prevista differisca da quella effettiva (RO1). (RP1)
   L’Analisi dei Requisiti si è rivelata più complessa del previsto; di conseguenza, sono state dedicate numerose ore di
@@ -739,7 +759,16 @@
   di Progetto, le attività sono proseguite regolarmente; sono state inoltre sviluppate alcune sezioni delle Norme di
   Progetto e riviste le metriche del Piano di Qualifica. Non tutti gli obiettivi prefissati sono stati raggiunti, ma si
   prevede di completarli nei prossimi sprint.
-  ==== Aggiornamento risorse monetarie rimanenti
+  ==== Misure correttive e aggiornamento dei rischi
+  In risposta alle difficoltà emerse, il Team ha accettato una rimodulazione temporale dello sprint dovuta alle
+  festività e ha mantenuto alta l'attenzione sui rischi RP1, RT1 e RO1. Per il periodo successivo si è deciso di
+  concentrare l'impegno sul completamento dell'Analisi dei Requisiti, riducendo la dispersione su attività secondarie.
+
+  ==== Aggiornamento pianificazione futura
+  Lo sprint successivo sarà dedicato in via prioritaria alla chiusura delle parti ancora aperte dell'Analisi dei
+  Requisiti e all'avvio più strutturato delle attività progettuali, con aggiornamento continuo del Piano di Progetto.
+
+  ==== Preventivo a finire
   #figure(
     numbering: "1",
     caption: [Sprint 3 - Variazione risorse monetarie rimanenti],
@@ -846,7 +875,7 @@
 
 
 
-  ==== Rischi incontrati
+  ==== Consuntivo del periodo
   In seguito ad un incontro con il Prof. Cardin e, successivamente con l'azienda, sono stati rivisti molti Use Case,
   sicuramente frutto dell'inesperienza del gruppo nell'analizzare correttamente il capitolato (RT1). Inoltre, dato
   l'inizio della sessione d'esami invernale, il lavoro ha subito alcuni rallentamenti (RP1).
@@ -854,7 +883,17 @@
   Nel corso di questo Sprint il team si è concentrato sugli obiettivi stabiliti. Sebbene diversi membri abbiano
   registrato un numero inferiore di ore, a causa dell’attenzione dedicata all’analisi dello stato dell’arte e al Proof
   of Concept (POC), gli obiettivi prefissati sono stati comunque raggiunti senza ritardi significativi.
-  ==== Aggiornamento risorse monetarie rimanenti
+  ==== Misure correttive e aggiornamento dei rischi
+  A fronte delle revisioni apportate ai casi d'uso e dell'avvio della sessione d'esami, il Team ha deciso di mantenere
+  sotto osservazione i rischi RT1, RP1 e RO1, prevedendo maggiore confronto interno e momenti di riallineamento con i
+  riferimenti esterni quando necessario. Le attività di palestra continueranno a supportare la comprensione del dominio
+  e della soluzione progettuale.
+
+  ==== Aggiornamento pianificazione futura
+  Per lo sprint successivo è previsto il completamento dell'Analisi dei Requisiti e l'avanzamento del PoC, così da
+  arrivare con una base più solida alle attività preparatorie per la RTB.
+
+  ==== Preventivo a finire
   #figure(
     numbering: "1",
     caption: [Sprint 4 - Variazione risorse monetarie rimanenti],
@@ -884,7 +923,7 @@
   dell'Analisi dei Requisiti al fine di assicurarsi la piena completezza del documento per la revisione RTB. Inoltre, si
   porterà avanti il Piano di Qualifica, aggiungendo una sezione dedicata ai test, le Norme di Progetto e il Piano di
   Progetto, completando e aggiungendo la sezione dedicata allo Sprint 4 e 5.
-  ==== Ore Previste
+  ==== Ore previste
   #figure(
     numbering: "1",
     caption: [Sprint 5 - Ore previste per componente],
@@ -960,14 +999,24 @@
 
 
 
-  ==== Rischi incontrati
+  ==== Consuntivo del periodo
   Il Team ha speso ore di palestra nel comprendere come svolgere al meglio la fase di Progettazione e Programmazione del
   PoC (RT1 e RT2). Inoltre, dati gli esami universitari svolti in questo periodo, ci sono stati lievi rallentamenti nel
   lavoro da svolgere (RP1).
   ==== Retrospettiva
   Nello Sprint 5 anche se il gruppo ha incontrato alcuni rallentamenti, i compiti assegnati sono stati svolti. Anche in
   questo caso alcuni membri hanno meno ore registrate, perché hanno ultimato la progettazione del PoC.
-  ==== Aggiornamento risorse monetarie rimanenti
+  ==== Misure correttive e aggiornamento dei rischi
+  Per ridurre l'impatto dei rallentamenti incontrati, il Team ha deciso di proseguire con attività di approfondimento
+  tecnico sul PoC e di rafforzare la verifica interna delle attività di programmazione. I rischi RP1, RT1, RT2 e RO1
+  restano monitorati, in quanto sia la fase tecnica sia il periodo universitario continuano a influenzare
+  l'avanzamento.
+
+  ==== Aggiornamento pianificazione futura
+  Nel prossimo sprint il gruppo prevede di ultimare il PoC e di completare la documentazione necessaria alla RTB,
+  sfruttando l'esperienza accumulata in questa fase di progettazione e sviluppo iniziale.
+
+  ==== Preventivo a finire
   #figure(
     numbering: "1",
     caption: [Sprint 5 - Variazione risorse monetarie rimanenti],
@@ -1077,14 +1126,24 @@
 
 
 
-  ==== Rischi incontrati
+  ==== Consuntivo del periodo
   Come preventivato, a causa degli impegni universitari dei componenti del Team, è stato difficile incastrare le ore di
   lavoro (RP1); tuttavia, tutti gli obiettivi prefissati sono stati raggiunti con successo.
   ==== Retrospettiva
   Nello Sprint 6, il Team si è concentrato principalmente sull'ultimare il PoC e sull'aggiornare i documenti in vista
   della RTB. Nonostante le ore dedicate siano state inferiori alla media, sono stati raggiunti tutti gli obiettivi
   prefissati.
-  ==== Aggiornamento risorse monetarie rimanenti
+  ==== Misure correttive e aggiornamento dei rischi
+  Considerata la ridotta disponibilità oraria del periodo, il Team ha adottato una pianificazione più essenziale e
+  focalizzata sugli obiettivi indispensabili per la RTB. Il rischio RP1 rimane quello maggiormente rilevante, mentre i
+  rischi RT1 e RT2 risultano sotto controllo grazie al completamento delle attività previste e al consolidamento dei
+  documenti prodotti.
+
+  ==== Aggiornamento pianificazione futura
+  La pianificazione successiva si concentrerà sulla revisione finale, verifica e approvazione dei documenti, oltre
+  all'aggiornamento del Glossario, così da presentarsi alla RTB con una baseline documentale completa.
+
+  ==== Preventivo a finire
   #figure(
     numbering: "1",
     caption: [Sprint 6 - Variazione risorse monetarie rimanenti],
@@ -1187,7 +1246,7 @@
     ],
   )<tab:Sprint7-ore-effettive>
 
-  ==== Rischi incontrati
+  ==== Consuntivo del periodo
   Durante lo sprint corrente, il team ha riscontrato delle criticità nel rispettare le tempistiche previste per la
   revisione RTB. Tali ritardi sono stati causati da difficoltà operative nel completamento e nella successiva
   approvazione della documentazione necessaria, determinando il verificarsi del rischio RO1 (Ritardo Operativo). La
@@ -1201,7 +1260,17 @@
   Responsabile, garantendo così la copertura delle attività burocratiche e di coordinamento senza intaccare il budget
   totale previsto per il progetto.
 
-  ==== Aggiornamento risorse monetarie rimanenti
+  ==== Misure correttive e aggiornamento dei rischi
+  Per fronteggiare il verificarsi di RO1 e RP1, il Team ha riorganizzato il carico di lavoro e ha deliberato il
+  riutilizzo delle ore residue del ruolo di Responsabile per coprire le esigenze amministrative ancora aperte. I rischi
+  legati alle scadenze e alla disponibilità dei componenti restano pertanto monitorati fino alla chiusura delle
+  attività collegate alla RTB.
+
+  ==== Aggiornamento pianificazione futura
+  Conclusa la fase di preparazione alla RTB, il gruppo prevede di spostare progressivamente il focus verso la
+  correzione delle osservazioni ricevute e l'avvio della progettazione tecnica del prodotto.
+
+  ==== Preventivo a finire
   #figure(
     numbering: "1",
     caption: [Sprint 7 - Variazione risorse monetarie rimanenti],
@@ -1305,7 +1374,7 @@
     ],
   )<tab:Sprint8-ore-effettive>
 
-  ==== Rischi incontrati
+  ==== Consuntivo del periodo
   Durante lo sprint corrente, il team si è ritrovato ad affrontare difficoltà nella progettazione del sistema, in
   particolare nella definizione dell'architettura dei singoli microservizi e nella stesura di un piano completo per la
   fase di implementazione. Queste sfide insieme ai ritardi accumulati nelle fasi precedenti hanno portato ad un mancato
@@ -1317,7 +1386,18 @@
   membri. Tuttavia, è emersa la necessità di migliorare le ore produttive, al fine di rispettare le scadenze e
   recuperare il ritardo accumulato.
 
-  ==== Aggiornamento risorse monetarie rimanenti
+  ==== Misure correttive e aggiornamento dei rischi
+  Per mitigare il rischio RO1 emerso durante la progettazione, il Team ha deciso di rafforzare il coordinamento interno
+  e di mantenere attive le attività di palestra, così da uniformare la comprensione architetturale tra tutti i membri.
+  Il rischio RT1 resta anch'esso monitorato, poiché la complessità progettuale del sistema richiede ulteriore
+  consolidamento tecnico.
+
+  ==== Aggiornamento pianificazione futura
+  Nei prossimi sprint la pianificazione verrà orientata verso una transizione più rapida dalla progettazione
+  all'implementazione, includendo il recupero del ritardo accumulato e la definizione più precisa delle attività di
+  sviluppo del MVP.
+
+  ==== Preventivo a finire
   #figure(
     numbering: "1",
     caption: [Sprint 8 - Variazione risorse monetarie rimanenti],
@@ -1420,7 +1500,7 @@
     ],
   )<tab:Sprint9-ore-effettive>
 
-  ==== Rischi incontrati
+  ==== Consuntivo del periodo
   Durante lo Sprint corrente, il Team si é ritrovato ad affrontare la complessità notevole che il Sistema presentava
   quindi il verificarsi di RT1 (Rischio tecnologico legato all'apprendimento delle tecnologie richieste), in particolare
   nella fase di implementazione. La difficoltà principale è stata quella di riuscire ad adattare la tecnologia richiesta
@@ -1433,7 +1513,18 @@
   posticipare la consegna del MVP al 3 aprile 2026, al fine di poter avere il tempo necessario a completare le attività
   fissate.
 
-  ==== Aggiornamento risorse monetarie rimanenti
+  ==== Misure correttive e aggiornamento dei rischi
+  Per rispondere alle difficoltà incontrate, il Team ha introdotto pratiche di verifica più strette durante il rilascio
+  del codice e ha confermato il monitoraggio dei rischi RT1 e RT2, entrambi risultati rilevanti in questa fase di
+  transizione verso l'implementazione. Il rischio RP1 rimane presente ma non ha compromesso in modo significativo il
+  completamento delle attività pianificate.
+
+  ==== Aggiornamento pianificazione futura
+  La pianificazione futura prevede sprint brevi e ravvicinati, con priorità al completamento del MVP, alla
+  stabilizzazione dell'infrastruttura e all'aumento della produttività complessiva del Team entro la nuova scadenza
+  interna fissata.
+
+  ==== Preventivo a finire
   #figure(
     numbering: "1",
     caption: [Sprint 9 - Variazione risorse monetarie rimanenti],
@@ -1662,14 +1753,18 @@
     ],
   )<tab:Sprint11-ore-effettive>
 
-  ==== Rischi incontrati
+  ==== Consuntivo del periodo
 
 
   ==== Retrospettiva
 
 
 
-  ==== Aggiornamento risorse monetarie rimanenti
+  ==== Misure correttive e aggiornamento dei rischi
+
+  ==== Aggiornamento pianificazione futura
+
+  ==== Preventivo a finire
   #figure(
     numbering: "1",
     caption: [Sprint 11 - Variazione risorse monetarie rimanenti],
@@ -1770,14 +1865,18 @@
     ],
   )<tab:Sprint12-ore-effettive>
 
-  ==== Rischi incontrati
+  ==== Consuntivo del periodo
 
 
   ==== Retrospettiva
 
 
 
-  ==== Aggiornamento risorse monetarie rimanenti
+  ==== Misure correttive e aggiornamento dei rischi
+
+  ==== Aggiornamento pianificazione futura
+
+  ==== Preventivo a finire
   #figure(
     numbering: "1",
     caption: [Sprint 12 - Variazione risorse monetarie rimanenti],
