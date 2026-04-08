@@ -1,0 +1,16 @@
+title: Specifica Tecnica - Simulator Backend & CLI
+changelog:
+  - version: "0.1.0"
+    date: "2026-04-08"
+    authors:
+      - Francesco Marcon
+    verifier: TBD
+    description: >
+      Prima bozza della struttura del servizio simulator-cli
+  - version: "0.0.1"
+    date: "2026-04-08"
+    authors:
+      - Valerio Solito
+    verifier: TBD
+    description: >
+      Prima bozza del documento
