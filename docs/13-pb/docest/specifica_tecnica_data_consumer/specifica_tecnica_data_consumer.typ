@@ -64,7 +64,8 @@
 
   `Config` espone il metodo `GetDatabaseDSN() (string, error)`: legge la password dal Docker secret file indicato da
   `DBPasswordFile`, rimuove gli spazi/newline finali, e costruisce il DSN nel formato
-  `postgres://user:pass@host:port/dbname?sslmode=<DBSSLMode>`.
+  `postgres://user:pass@host:port/dbname?sslmode=<DBSSLMode>`. Quando `DBSSLMode` è `verify-ca` o `verify-full` e
+  `DBSSLRootCert` è non vuoto, aggiunge anche il parametro `sslrootcert=<DBSSLRootCert>` alla query string.
 
   == Sequenza di Avvio
 
@@ -92,6 +93,8 @@
     [Parse DSN, configura `MaxConns`/`MinConns`, crea il pool TimescaleDB; crea il context di segnale (`SIGTERM`,
       `SIGINT`)],
     [Sì],
+
+    [5b], [`migrations`], [Applica le migrazioni SQL al database via `migrations.Apply`], [Sì],
 
     [6],
     [Driven adapter],
@@ -733,8 +736,9 @@
       `GatewayLifecycleResponse` e ritorna il campo `State`],
   )
 
-  Ogni metodo delega a `requestWithRetry`: fino a `maxRetries` tentativi, timeout per-tentativo derivato da `timeout`,
-  backoff esponenziale dalla slice `backoff`, con verifica della cancellazione del context tra un tentativo e l'altro.
+  Ogni metodo delega a `requestWithRetry`: 1 tentativo iniziale più fino a `maxRetries` retry aggiuntivi (totale
+  `maxRetries + 1` tentativi), timeout per-tentativo derivato da `timeout`, backoff esponenziale dalla slice `backoff`,
+  con verifica della cancellazione del context tra un tentativo e l'altro.
 
   === SystemClock
 
@@ -812,7 +816,7 @@
 
   Per ogni messaggio NATS:
   + Incrementa la metrica `MessagesReceived`.
-  + `processMessage` esegue: parse del body JSON in `TelemetryEnvelope`; estrazione del `tenantID` dal subject; chiamata
+  + `processMessage` esegue: estrazione del `tenantID` dal subject; parse del body JSON in `TelemetryEnvelope`; chiamata
     a `TelemetryMessageHandler.HandleTelemetry`; costruzione della `TelemetryRow`.
   + Il risultato è inviato al canale pending per il batch.
   + `flushLoop` accumula i pending e chiama `WriteBatch` al raggiungimento di `batchSize`, allo scadere di `flushEvery`,
@@ -849,7 +853,11 @@
   #table(
     columns: (1.2fr, 2.2fr, 2.6fr),
     [Metodo], [Firma], [Note],
-    [`Run`], [`(ctx context.Context) error`], [Bloccante; ritorna alla cancellazione del context],
+    [`Run`],
+    [`(ctx context.Context) error`],
+    [Bloccante; alla cancellazione del context esegue un flush finale del buffer e chiama `sub.Drain()` per processare i
+      messaggi in-flight prima della chiusura],
+
     [`processMessage`],
     [`(ctx context.Context, msg *nats.Msg) (TelemetryRow, error)`],
     [Orchestrazione parse → handle → build; ritorna `permanentError` o errore transitorio],
