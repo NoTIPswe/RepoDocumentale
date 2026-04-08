@@ -1330,13 +1330,13 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [-], [-], [-], [3,5], [1], [0,5], [*5*],
-        [Francesco \ Marcon], [-], [-], [-], [3,5], [1], [0,5], [*5*],
-        [Alessandro \ Mazzariol], [-], [-], [-], [4,5], [1], [0,5], [*6*],
-        [Leonardo \ Preo], [-], [-], [-], [4,5], [1], [0,5], [*6*],
-        [Valerio \ Solito], [-], [-], [-], [2,5], [-], [0,5], [*3*],
-        [Matteo \ Mantoan], [4,5], [-], [-], [2], [1,5], [0,5], [*8,5*],
-        [Mario De\ Pasquale], [-], [-], [-], [6,5], [-], [-], [*6,5*],
+        [Alessandro \ Contarini], [-], [-], [-], [4], [1], [1], [*6*],
+        [Francesco \ Marcon], [-], [-], [-], [4], [1], [1], [*6*],
+        [Alessandro \ Mazzariol], [-], [-], [-], [5], [1], [1], [*7*],
+        [Leonardo \ Preo], [-], [-], [-], [4,5], [1], [1], [*6,5*],
+        [Valerio \ Solito], [-], [-], [-], [2], [-], [1], [*3*],
+        [Matteo \ Mantoan], [5], [-], [-], [2], [1,5], [1], [*9,5*],
+        [Mario De\ Pasquale], [-], [-], [-], [6], [-], [-], [*6*],
       )
     ],
   )<tab:Sprint8-ore-previste>
@@ -1370,7 +1370,7 @@
 
         [Alessandro \ Contarini], [-], [-], [-], [4], [1], [1], [*6*],
         [Francesco \ Marcon], [-], [-], [-], [4], [1], [1], [*6*],
-        [Alessandro \ Mazzariol], [-], [-], [-], [5], [1], [1], [*7*],
+        [Alessandro \ Mazzariol], [-], [-], [-], [6], [1], [1], [*8*],
         [Leonardo \ Preo], [-], [-], [-], [5], [1], [1], [*7*],
         [Valerio \ Solito], [-], [-], [-], [3], [-], [1], [*4*],
         [Matteo \ Mantoan], [5], [-], [-], [2], [2], [1], [*10*],
@@ -1418,10 +1418,10 @@
       [Responsabile], [16], [480],
       [Amministratore], [-0,25], [-5],
       [Analista], [0,5], [12,5],
-      [Progettista], [107], [2675],
+      [Progettista], [106], [2650],
       [Programmatore], [115], [1725],
       [Verificatore], [35,75], [536,25],
-      [*Totale*], [*274*], [*5423,75*],
+      [*Totale*], [*273*], [*5398,75*],
     ),
   )<tab:Sprint8-costi>
 
@@ -1460,13 +1460,13 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [4,5], [-], [-], [4,5], [3,5], [1,5], [*14*],
+        [Alessandro \ Contarini], [3], [-], [-], [6], [4], [2], [*15*],
         [Francesco \ Marcon], [-], [-], [-], [4,5], [3,5], [1], [*9*],
-        [Alessandro \ Mazzariol], [-], [-], [-], [4,5], [4,5], [0,5], [*9,5*],
-        [Leonardo \ Preo], [-], [-], [-], [4,5], [3,5], [0,5], [*8,5*],
-        [Valerio \ Solito], [-], [-], [-], [3,5], [2,5], [0,5], [*6,5*],
-        [Matteo \ Mantoan], [-], [-], [-], [3,5], [3,5], [0,5], [*7,5*],
-        [Mario De\ Pasquale], [-], [-], [-], [3,5], [3,5], [0,5], [*7,5*],
+        [Alessandro \ Mazzariol], [-], [-], [-], [4,5], [4,5], [1], [*10*],
+        [Leonardo \ Preo], [-], [-], [-], [4,5], [3,5], [1], [*9*],
+        [Valerio \ Solito], [-], [-], [-], [4], [3], [1], [*4*],
+        [Matteo \ Mantoan], [-], [-], [-], [4], [4], [1], [*9*],
+        [Mario De\ Pasquale], [-], [-], [-], [4], [4], [1], [*9*],
       )
     ],
   )<tab:Sprint9-ore-previste>
@@ -1498,9 +1498,9 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [5], [-], [-], [5], [4], [2], [*16*],
-        [Francesco \ Marcon], [-], [-], [-], [5], [4], [1,25], [*10,25*],
-        [Alessandro \ Mazzariol], [-], [-], [-], [5], [5], [1], [*11*],
+        [Alessandro \ Contarini], [3], [-], [-], [6], [4], [2], [*15*],
+        [Francesco \ Marcon], [-], [-], [-], [6], [4], [1,25], [*11,25*],
+        [Alessandro \ Mazzariol], [-], [-], [-], [6], [5], [1], [*12*],
         [Leonardo \ Preo], [-], [-], [-], [5], [4], [1], [*10*],
         [Valerio \ Solito], [-], [-], [-], [4], [3], [1], [*8*],
         [Matteo \ Mantoan], [-], [-], [-], [4], [4], [1], [*9*],
@@ -1542,13 +1542,13 @@
       inset: 0.8em,
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
-      [Responsabile], [11], [330],
+      [Responsabile], [13], [390],
       [Amministratore], [-0,25], [-5],
       [Analista], [0,5], [12,5],
-      [Progettista], [75], [1875],
+      [Progettista], [71], [1775],
       [Programmatore], [87], [1305],
       [Verificatore], [27,5], [412,5],
-      [*Totale*], [*200,75*], [*3930*],
+      [*Totale*], [*198,75*], [*3890*],
     ),
   )<tab:Sprint9-costi>
 
@@ -1586,13 +1586,13 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [-], [-], [-], [4,5], [4,5], [1,5], [*10,5*],
-        [Francesco \ Marcon], [-], [-], [-], [4,5], [3,5], [1], [*9*],
-        [Alessandro \ Mazzariol], [-], [-], [-], [3,5], [5,5], [0,5], [*9,5*],
-        [Leonardo \ Preo], [-], [-], [-], [4,5], [3,5], [0,5], [*8,5*],
-        [Valerio \ Solito], [-], [-], [-], [3,5], [2,5], [0,5], [*6,5*],
-        [Matteo \ Mantoan], [3,5], [-], [-], [2,5], [2,5], [0,5], [*9*],
-        [Mario De\ Pasquale], [-], [-], [-], [3,5], [1], [-], [*4,5*],
+        [Alessandro \ Contarini], [-], [-], [-], [5], [5], [2], [*12*],
+        [Francesco \ Marcon], [-], [-], [-], [5], [4], [1], [*10*],
+        [Alessandro \ Mazzariol], [-], [-], [-], [4], [6], [1], [*11*],
+        [Leonardo \ Preo], [-], [-], [-], [6], [4], [1], [*11*],
+        [Valerio \ Solito], [-], [-], [-], [3], [3], [1], [*7*],
+        [Matteo \ Mantoan], [3], [-], [-], [5], [3], [1], [*12*],
+        [Mario De\ Pasquale], [-], [-], [-], [4], [4], [-], [*8*],
       )
     ],
   )<tab:Sprint10-ore-previste>
@@ -1624,13 +1624,13 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [-], [-], [-], [5], [5], [2], [*12*],
+        [Alessandro \ Contarini], [-], [-], [-], [6], [5], [2], [*13*],
         [Francesco \ Marcon], [-], [-], [-], [5], [4], [1,5], [*10,5*],
         [Alessandro \ Mazzariol], [-], [-], [-], [4], [6], [1], [*11*],
-        [Leonardo \ Preo], [-], [-], [-], [5], [4], [1], [*10*],
+        [Leonardo \ Preo], [-], [-], [-], [6], [4], [1], [*11*],
         [Valerio \ Solito], [-], [-], [-], [4], [3], [1], [*8*],
-        [Matteo \ Mantoan], [4], [-], [-], [3], [3], [1], [*11*],
-        [Mario De\ Pasquale], [-], [-], [-], [4], [1], [-], [*5*],
+        [Matteo \ Mantoan], [3], [-], [-], [5], [3], [1], [*12*],
+        [Mario De\ Pasquale], [-], [-], [-], [4], [5], [-], [*9*],
       )
     ],
   )<tab:Sprint10-ore-effettive>
@@ -1673,13 +1673,13 @@
       inset: 0.8em,
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
-      [Responsabile], [7], [210],
+      [Responsabile], [10], [300],
       [Amministratore], [-0,25], [-5],
       [Analista], [0,5], [12,5],
-      [Progettista], [45], [1125],
-      [Programmatore], [61], [915],
+      [Progettista], [37], [925],
+      [Programmatore], [57], [855],
       [Verificatore], [20], [300],
-      [*Totale*], [*133,25*], [*2557,5*],
+      [*Totale*], [*124,25*], [*2387,5*],
     ),
   )<tab:Sprint10-costi>
 
@@ -1718,13 +1718,13 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [-], [-], [-], [2,5], [3,5], [1,5], [*7,5*],
-        [Francesco \ Marcon], [-], [-], [-], [3,5], [2,5], [1,5], [*7,5*],
-        [Alessandro \ Mazzariol], [-], [-], [-], [3,5], [4,5], [0,5], [*8,5*],
-        [Leonardo \ Preo], [-], [-], [-], [3,5], [4,5], [0,5], [*8,5*],
-        [Valerio \ Solito], [2,5], [-], [-], [1,5], [4,5], [1,5], [*10*],
-        [Matteo \ Mantoan], [-], [-], [-], [3,5], [2,5], [1,5], [*7,5*],
-        [Mario De\ Pasquale], [-], [-], [-], [2,5], [3,5], [-], [*6*],
+        [Alessandro \ Contarini], [-], [-], [-], [3], [3], [2], [*8*],
+        [Francesco \ Marcon], [-], [-], [-], [4], [3], [2], [*9*],
+        [Alessandro \ Mazzariol], [-], [-], [-], [4], [4], [1], [*9*],
+        [Leonardo \ Preo], [-], [-], [-], [5], [5], [1], [*11*],
+        [Valerio \ Solito], [4], [-], [-], [4], [4], [2], [*14*],
+        [Matteo \ Mantoan], [-], [-], [-], [5], [3], [2], [*10*],
+        [Mario De\ Pasquale], [-], [-], [-], [5], [5], [-], [*10*],
       )
     ],
   )<tab:Sprint11-ore-previste>
@@ -1759,10 +1759,10 @@
         [Alessandro \ Contarini], [-], [-], [-], [3], [4], [2], [*9*],
         [Francesco \ Marcon], [-], [-], [-], [4], [3], [2], [*9*],
         [Alessandro \ Mazzariol], [-], [-], [-], [4], [5], [1], [*10*],
-        [Leonardo \ Preo], [-], [-], [-], [4], [5], [1], [*10*],
-        [Valerio \ Solito], [3], [-], [-], [2], [5], [2], [*12*],
-        [Matteo \ Mantoan], [-], [-], [-], [4], [3], [2], [*9*],
-        [Mario De\ Pasquale], [-], [-], [-], [3], [4], [-], [*7*],
+        [Leonardo \ Preo], [-], [-], [-], [5], [5], [1], [*11*],
+        [Valerio \ Solito], [4], [-], [-], [4], [5], [2], [*15*],
+        [Matteo \ Mantoan], [-], [-], [-], [5], [3], [2], [*10*],
+        [Mario De\ Pasquale], [-], [-], [-], [5], [5], [-], [*10*],
       )
     ],
   )<tab:Sprint11-ore-effettive>
@@ -1808,13 +1808,13 @@
       inset: 0.8em,
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
-      [Responsabile], [4], [120],
+      [Responsabile], [6], [180],
       [Amministratore], [-0,25], [-5],
       [Analista], [0,5], [12,5],
-      [Progettista], [21], [525],
-      [Programmatore], [32], [480],
+      [Progettista], [7], [175],
+      [Programmatore], [27], [405],
       [Verificatore], [10], [150],
-      [*Totale*], [*67,25*], [*1282,5*],
+      [*Totale*], [*50,25*], [*917,5*],
     ),
   )<tab:Sprint11-costi>
 
@@ -1854,13 +1854,13 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [-], [-], [-], [1,5], [3,5], [1], [*6*],
-        [Francesco \ Marcon], [-], [-], [-], [1,5], [2,5], [2], [*6*],
-        [Alessandro \ Mazzariol], [-], [-], [-], [1,5], [4,5], [0,5], [*6,5*],
-        [Leonardo \ Preo], [-], [-], [-], [1,5], [5,5], [1,5], [*8,5*],
-        [Valerio \ Solito], [-], [-], [-], [0,5], [5,5], [0,5], [*6,5*],
-        [Matteo \ Mantoan], [-], [-], [0,5], [4,5], [2,5], [1,5], [*9*],
-        [Mario De\ Pasquale], [3,75], [-], [-], [6,5], [4,5], [-], [*14,75*],
+        [Alessandro \ Contarini], [-], [-], [-], [-], [5], [0,5], [*5,5*],
+        [Francesco \ Marcon], [-], [1], [-], [-], [2], [3,5], [*6,5*],
+        [Alessandro \ Mazzariol], [-], [-], [-], [-], [5], [-], [*5*],
+        [Leonardo \ Preo], [4], [-], [-], [-], [3], [1], [*8*],
+        [Valerio \ Solito], [-], [1], [-], [3], [5], [1], [*10*],
+        [Matteo \ Mantoan], [-], [-], [-], [4], [2], [3,25], [*9,25*],
+        [Mario De\ Pasquale], [-], [-], [-], [-], [4], [2,75], [*6,75*],
       )
     ],
   )<tab:Sprint12-ore-previste>
@@ -1892,13 +1892,13 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [-], [-], [-], [2], [4], [1,5], [*7,5*],
-        [Francesco \ Marcon], [-], [-], [-], [2], [3], [2,5], [*7,5*],
-        [Alessandro \ Mazzariol], [-], [-], [-], [2], [5], [1], [*8*],
-        [Leonardo \ Preo], [-], [-], [-], [2], [6], [2], [*10*],
-        [Valerio \ Solito], [-], [-], [-], [1], [6], [1], [*8*],
-        [Matteo \ Mantoan], [-], [-], [0,5], [5], [3], [2], [*10,5*],
-        [Mario De\ Pasquale], [3,75], [-], [-], [7], [5], [-], [*15,75*],
+        [Alessandro \ Contarini], [-], [-], [-], [-], [5], [0,5], [*5,5*],
+        [Francesco \ Marcon], [-], [1], [-], [-], [2], [3,5], [*6,5*],
+        [Alessandro \ Mazzariol], [-], [-], [-], [-], [5], [-], [*5*],
+        [Leonardo \ Preo], [4], [-], [-], [-], [3], [1], [*8*],
+        [Valerio \ Solito], [-], [1], [-], [3], [5], [1], [*10*],
+        [Matteo \ Mantoan], [-], [-], [-], [4], [2], [3,25], [*9,25*],
+        [Mario De\ Pasquale], [-], [-], [-], [-], [4], [2,75], [*6,75*],
       )
     ],
   )<tab:Sprint12-ore-effettive>
@@ -1938,13 +1938,13 @@
       inset: 0.8em,
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
-      [Responsabile], [0,25], [7,5],
-      [Amministratore], [-0,25], [-5],
-      [Analista], [0], [0],
+      [Responsabile], [2], [60],
+      [Amministratore], [-2,25], [-45],
+      [Analista], [0,5], [12,5],
       [Progettista], [0], [0],
-      [Programmatore], [0], [0],
-      [Verificatore], [0], [0],
-      [*Totale*], [*0*], [*2,5*],
+      [Programmatore], [1], [15],
+      [Verificatore], [-2], [-30],
+      [*Totale*], [*-0,75*], [*12,5*],
     ),
   )<tab:Sprint12-costi>
 ]
