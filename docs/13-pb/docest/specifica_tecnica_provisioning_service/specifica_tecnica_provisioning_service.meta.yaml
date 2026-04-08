@@ -1,5 +1,12 @@
 title: Specifica Tecnica - Provisioning Service
 changelog:
+  - version: "0.0.3"
+    date: "2026-04-07"
+    authors:
+      - Mario De Pasquale
+    verifier: TBD
+    description: >
+      Portata specifica up to date con le modifiche effettuate al codice
   - version: "0.0.2"
     date: "2026-04-01"
     authors:

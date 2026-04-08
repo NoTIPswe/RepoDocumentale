@@ -51,6 +51,7 @@
     [`NATS_REQUEST_TIMEOUT_MS`], [NATS_REQUEST_TIMEOUT_MS], [`5000`], [No],
     [`NATS_MAX_RETRIES`], [NATS_MAX_RETRIES], [`3`], [No],
     [`CA_CERTS_PATH`], [CA_CERTS_PATH], [`/certs`], [No],
+    [`CA_KEY_PATH`], [CA_KEY_PATH], [-], [No],
     [`CERT_TTL_DAYS`], [CERT_TTL_DAYS], [`90`], [No],
     [`PORT`], [PORT], [`3004`], [No],
   )
@@ -157,8 +158,8 @@
     kind: "driving",
     description: [Endpoint pubblico di onboarding del gateway esposto dal controller di provisioning.],
     methods: (
-      ("request", [`factory_id`, `factory_key`, `csr`, `send_frequency_ms >= 1`]),
-      ("response", [`certificate`, `aeskey`, `send_frequency_ms`]),
+      ("request", [`credentials.factoryId`, `credentials.factoryKey`, `csr`, `sendFrequencyMs >= 1`, `firmwareVersion?`]),
+      ("response", [`certPem`, `aesKey`, `identity.gatewayId`, `identity.tenantId`, `sendFrequencyMs`]),
       ("status", [201 in caso di successo]),
       ("auth model", [Autenticazione con credenziali di fabbrica nel body, senza JWT]),
     ),
@@ -198,7 +199,7 @@
     kind: "driven",
     description: [Completa il provisioning nel Management API tramite `internal.mgmt.provisioning.complete`.],
     methods: (
-      ("complete(identity, aeskey, sendFrequencyMs)", [Persistenza key material, key version e frequenza invio]),
+      ("complete(identity, aeskey, sendFrequencyMs, firmwareVersion)", [Persistenza key material, key version, frequenza invio e versione firmware opzionale]),
     ),
   )
 
@@ -229,10 +230,10 @@
     [3], [Generazione chiave AES], [Chiama `AESKeyGenerator.generate`; produce 32 byte random e `version = 1`.],
     [4],
     [Completamento provisioning],
-    [Chiama `ProvisioningCompleter.complete` con identity, chiave e `send_frequency_ms`.],
+    [Chiama `ProvisioningCompleter.complete` con identity, chiave, `send_frequency_ms` e `firmware_version` opzionale.],
 
     [5], [Aggiornamento metriche], [Incrementa counter success/failure e osserva durate delle operazioni critiche.],
-    [6], [Mapping output], [Restituisce `certificate`, `aeskey` (base64) e `send_frequency_ms` con status 201.],
+    [6], [Mapping output], [Restituisce `certPem`, `aesKey` (base64), `identity` e `sendFrequencyMs` con status 201.],
   )
 
   == Modello Dati del Dominio
@@ -248,8 +249,8 @@
     [`GatewayCSR`], [`pemData: string`], [Valida header PEM `-----BEGIN CERTIFICATE REQUEST-----` in costruzione.],
 
     [`ProvisioningRequest`],
-    [`credentials`, `csr`, `sendFrequencyMs: number`],
-    [Input applicativo del flusso onboarding. `sendFrequencyMs` deve essere un intero positivo maggiore o uguale a 1.],
+    [`credentials`, `csr`, `sendFrequencyMs: number`, `firmwareVersion?: string`],
+    [Input applicativo del flusso onboarding. `sendFrequencyMs` deve essere un intero positivo maggiore o uguale a 1; `firmwareVersion` e opzionale.],
 
     [`GatewayIdentity`],
     [`gatewayId: string`, `tenantId: string`],
@@ -294,6 +295,10 @@
   - `outcome` (`success`, `invalid_credentials`, `already_provisioned`, `malformed_csr`, `service_unavailable`, `error`)
   - `gateway_id` e `tenant_id` solo nei casi di successo
 
+  Nei casi di successo con `tenant_id` disponibile, l'interceptor pubblica anche un evento audit su NATS
+  nel subject `log.audit.<tenant_id>`, con action `PROVISIONING_ONBOARD_<OUTCOME>` e dettagli contestuali
+  (`factoryId`, `sourceIp`, `gatewayId`, `tenantId`).
+
   Campi sensibili esclusi dai log:
 
   - `factory_key`
@@ -306,9 +311,10 @@
   Il client condiviso `NATSRRClient` implementa:
 
   - timeout per request (`NATS_REQUEST_TIMEOUT_MS`);
-  - retry con backoff esponenziale: 1s, 2s, 4s (in base a `NATS_MAX_RETRIES`);
+  - retry con backoff esponenziale `2^(attempt-1)` secondi (es. 1s, 2s, 4s, 8s ... in base a `NATS_MAX_RETRIES`);
   - riconnessione automatica in caso di `NatsError`;
-  - incremento metrica `nats_retries_total` ad ogni retry.
+  - incremento metrica `nats_retries_total` ad ogni retry;
+  - supporto retry sia per chiamate request-reply sia per publish.
 
   Subject usati dal servizio:
 
