@@ -15,6 +15,6 @@
   - Controllare AdR per eventuali modifiche concodate con proponente: obiettivo rispecchiare MVP.
 ][
   - Difficoltà nel setup dell'infrastruttura per i microservizi, in particolare per `auth` tramite Keycloak.
-  - Problemi di integrazione tr i microservizi, specialmente tra dashboard e management-api e data-api.
+  - Problemi di integrazione tra i microservizi, specialmente tra dashboard e management-api e data-api.
   - Più tempo del previsto per risoluzione di bug e problemi di sicurezza della funzionalità di impersonazione.
 ]
