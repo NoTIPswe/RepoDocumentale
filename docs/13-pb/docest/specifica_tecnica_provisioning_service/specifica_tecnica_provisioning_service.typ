@@ -11,8 +11,9 @@
 )[
   = Introduzione
 
-  Il servizio `notip-provisioning-service` è un microservizio NestJS che espone un singolo endpoint HTTP per il
-  provisioning iniziale dei gateway. Durante la richiesta di onboarding, il servizio valida le credenziali di fabbrica
+  Il servizio `notip-provisioning-service` è un microservizio NestJS che espone un endpoint HTTP per il
+  provisioning iniziale dei gateway e un endpoint HTTP per l'esposizione delle metriche Prometheus. Durante la
+  richiesta di onboarding, il servizio valida le credenziali di fabbrica
   verso il Management API tramite NATS Request-Reply, firma il CSR del gateway con la CA interna, genera una chiave
   AES-256 e completa il provisioning persistendo il materiale chiave nel dominio management.
 
@@ -51,7 +52,7 @@
     [`NATS_REQUEST_TIMEOUT_MS`], [NATS_REQUEST_TIMEOUT_MS], [`5000`], [No],
     [`NATS_MAX_RETRIES`], [NATS_MAX_RETRIES], [`3`], [No],
     [`CA_CERTS_PATH`], [CA_CERTS_PATH], [`/certs`], [No],
-    [`CA_KEY_PATH`], [CA_KEY_PATH], [-], [No],
+    [`CA_KEY_PATH`], [CA_KEY_PATH], [`CA_CERTS_PATH/ca.key`], [No],
     [`CERT_TTL_DAYS`], [CERT_TTL_DAYS], [`90`], [No],
     [`PORT`], [PORT], [`3004`], [No],
   )
@@ -120,6 +121,9 @@
   │   │   └── aes-key-generator.service.ts
   │   └── metrics/
   │       ├── metrics.module.ts
+  │       ├── metrics.controller.ts
+  │       ├── metrics.interceptor.ts
+  │       ├── metrics.service.ts
   │       └── provisioning.metrics.ts
   └── test/
   ```
@@ -132,8 +136,8 @@
 
     [Presentation],
     [`ProvisioningController`, `OnboardRequestDto`, `OnboardResponseDto`, `ProvisioningExceptionFilter`,
-      `AuditLogInterceptor`],
-    [Gestione endpoint `POST /provision/onboard`, validazione input e mapping errori HTTP.],
+      `AuditLogInterceptor`, `MetricsController`],
+    [Gestione endpoint `POST /provision/onboard` e `GET /metrics`, validazione input e mapping errori HTTP.],
 
     [Application],
     [`ProvisioningService`, `CAInitializerService`, interfacce in `provisioning/interfaces`],
@@ -162,6 +166,18 @@
       ("response", [`certPem`, `aesKey`, `identity.gatewayId`, `identity.tenantId`, `sendFrequencyMs`]),
       ("status", [201 in caso di successo]),
       ("auth model", [Autenticazione con credenziali di fabbrica nel body, senza JWT]),
+    ),
+  )
+
+  #st.port-interface(
+    name: "GET /metrics",
+    kind: "driving",
+    description: [Endpoint operativo per scraping Prometheus esposto dal `MetricsController`.],
+    methods: (
+      ("request", [`nessun payload`]),
+      ("response", [`text/plain` Prometheus exposition format]),
+      ("status", [200 in caso di successo]),
+      ("auth model", [Nessuna autenticazione applicativa implementata nel servizio]),
     ),
   )
 
@@ -249,8 +265,8 @@
     [`GatewayCSR`], [`pemData: string`], [Valida header PEM `-----BEGIN CERTIFICATE REQUEST-----` in costruzione.],
 
     [`ProvisioningRequest`],
-    [`credentials`, `csr`, `sendFrequencyMs: number`, `firmwareVersion?: string`],
-    [Input applicativo del flusso onboarding. `sendFrequencyMs` deve essere un intero positivo maggiore o uguale a 1; `firmwareVersion` e opzionale.],
+    [`credentials`, `csr`, `sendFrequencyMs: number`, `firmwareVersion: string = ""`],
+    [Input applicativo del flusso onboarding. `sendFrequencyMs` deve essere un intero positivo maggiore o uguale a 1; `firmwareVersion` e normalizzato a stringa vuota quando omesso nel DTO.],
 
     [`GatewayIdentity`],
     [`gatewayId: string`, `tenantId: string`],
@@ -311,7 +327,8 @@
   Il client condiviso `NATSRRClient` implementa:
 
   - timeout per request (`NATS_REQUEST_TIMEOUT_MS`);
-  - retry con backoff esponenziale `2^(attempt-1)` secondi (es. 1s, 2s, 4s, 8s ... in base a `NATS_MAX_RETRIES`);
+  - numero tentativi totali pari a `NATS_MAX_RETRIES` (include il primo tentativo);
+  - retry con backoff esponenziale `2^(attempt-1)` secondi tra un tentativo e il successivo (es. con `NATS_MAX_RETRIES=3`: 1s, 2s);
   - riconnessione automatica in caso di `NatsError`;
   - incremento metrica `nats_retries_total` ad ogni retry;
   - supporto retry sia per chiamate request-reply sia per publish.
@@ -340,7 +357,7 @@
 
   = Osservabilità e Metriche
 
-  Il servizio registra metriche applicative tramite `ProvisioningMetrics`:
+  Il servizio registra metriche applicative tramite `ProvisioningMetrics` e metriche HTTP/process tramite `MetricsService` (`prom-client` default metrics):
 
   #table(
     columns: (auto, auto),
@@ -351,7 +368,7 @@
     [`csr_signing_duration_ms`], [Istogramma durata firma CSR],
     [`nats_validate_duration_ms`], [Istogramma durata chiamata validate],
     [`nats_complete_duration_ms`], [Istogramma durata chiamata complete],
-    [`nats_retries_total`], [Numero totale retry NATS RR],
+    [`nats_retries_total`], [Numero totale retry NATS (request-reply e publish)],
   )
 
   = Strategia di Test
