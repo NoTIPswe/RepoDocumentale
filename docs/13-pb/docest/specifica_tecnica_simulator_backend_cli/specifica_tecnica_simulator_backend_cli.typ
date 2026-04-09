@@ -155,6 +155,11 @@
   └── main.go                     Entrypoint dell'applicazione
   ```
 
+   #figure(
+    caption: [Architettura Logica del Simulator Backend],
+    image("assets/architettura_logica.png", width: 80%),
+  )
+
   === Strati Architetturali
 
   #figure(
@@ -181,6 +186,56 @@
       [ Scambio dati verso l'infrastruttura Cloud (Provisioning via REST, Telemetria e Comandi via JetStream). ],
     ),
   )
+
+  === Decisioni Architetturali
+
+  Per garantire le performance, la resilienza e la manutenibilità del simulatore senza appesantire l'infrastruttura,
+  sono state prese le seguenti decisioni architetturali chiave:
+
+  - *Modello di Concorrenza (1 Goroutine = 1 Gateway):* Ogni gateway simulato è gestito da un `GatewayWorker` isolato
+    eseguito in una propria goroutine dedicata. Questo approccio mappa 1:1 il comportamento, garantendo che la
+  congestione o il crash di un gateway virtuale non impatti l'esecuzione degli altri. La sincronizzazione e il ciclo
+    di vita sono orchestrati in sicurezza tramite `context.Context` e `sync.RWMutex` nel registro centrale.
+  - *Gestione della Backpressure (Drop-Oldest):* Per scongiurare l'esaurimento della memoria (Out-Of-Memory) o il blocco
+    permanente delle goroutine in caso di prolungata irraggiungibilità di NATS, è stato implementato il componente
+    `MessageBuffer`. Questo canale a capacità limitata adotta una politica "Drop-Oldest": in caso di saturazione,
+    espelle silenziosamente il pacchetto telemetrico più vecchio per fare spazio al nuovo, privilegiando sempre il dato
+    più recente.
+  - *Persistenza Locale Embedded:* L'utilizzo di SQLite (`modernc.org/sqlite` cross-platform) garantisce sufficiente
+    persistenza per la funzionalità di riavvio a caldo (`RecoveryMode`), mantenendo il microservizio completamente
+    *self-contained*.
+  - *Pipeline Crittografica Opaca (AES-GCM):* Rispettando il vincolo architetturale della piattaforma NoTIP, il payload
+    telemetrico non viene mai esposto in chiaro sul broker di messaggistica. Il `GatewayWorker` utilizza
+    l'`AESGCMEncryptor` locale per sigillare i dati prima dell'invio. La `EncryptionKey` è gestita come un _Value
+    Object_ immutabile che impedisce l'accesso diretto ai byte della chiave, garantendo che i campi `EncryptedData`,
+    `IV` e `AuthTag` viaggino come blob Base64 totalmente opachi.
+
+  === Relazioni tra Componenti
+
+  Di seguito viene sintetizzata la catena delle dipendenze interne, che evidenzia la corretta applicazione
+  dell'inversione del controllo (Ports & Adapters):
+
+  #figure(
+    caption: [Relazioni funzionali interne],
+    table(
+      columns: (1.5fr, 1fr, 1.5fr),
+      [ *Componente Core* ], [ *Relazione* ], [ *Porta / Adapter* ],
+      [ `GatewayHandler`], [ Gestisce ciclo di vita via ], [ `GatewayRegistry`],
+      [ `SensorHandler`], [ Gestisce entità via ], [ `GatewayRegistry`],
+      [ `AnomalyHandler`], [ Inietta alterazioni via ], [ `GatewayRegistry` ],
+      [ `GatewayRegistry` ], [ Delega a ], [ `ProvisioningServiceClient` (HTTP) ],
+      [ `GatewayRegistry` ], [ Crea ed orchestra ], [ `GatewayWorker` (Goroutine) ],
+      [ `GatewayRegistry` ], [ Persiste lo stato su ], [ `GatewayStore` / SQLite (Driven) ],
+      [ `GatewayRegistry` ], [ Richiede connessioni a ], [ `NATSMTLSConnector` (Driven) ],
+      [ `GatewayWorker` ], [ Cifra tramite ], [ `AESGCMEncryptor` ],
+      [ `GatewayWorker` ], [ Interroga ], [ `Generator` (`SineWave`, ecc.) ],
+      [ `GatewayWorker` ], [ Accoda in ], [ `MessageBuffer` ],
+      [ `MessageBuffer` ], [ Pubblica su ], [ `NATSGatewayPublisher` (NATS) ],
+      [ `NATSGatewaySubscriber` ], [ Inoltra i comandi cloud a ], [ `GatewayWorker` (Core) ],
+      [ `NATSDecommissionListener` ], [ Notifica ], [ `GatewayRegistry` ],
+    ),
+  )
+
 
   == Design di Dettaglio
 
@@ -426,6 +481,53 @@
     ),
   )
 
+  === Metriche Operative
+
+  Il microservizio espone internamente le proprie metriche in formato Prometheus sulla porta configurata
+  (`METRICS_ADDR`). L'uso estensivo di `GaugeVec` e `CounterVec` permette il monitoraggio granulare della "salute" di
+  ciascun gateway simulato e l'identificazione di colli di bottiglia verso NATS.
+
+  #figure(
+    caption: [Metriche Prometheus esposte dal simulatore],
+    table(
+      columns: (2.2fr, 1.2fr, 2.5fr),
+      [ *Nome Metrica* ], [ *Tipo Prometheus* ], [ *Descrizione / Help* ],
+      [ `notip_sim_gateways_running` ], [ Gauge ], [ Numero di worker (`GatewayWorker`) attualmente in esecuzione. ],
+      [ `notip_sim_buffer_fill_level` ],
+      [ GaugeVec (per `gateway_id`) ],
+      [ Livello attuale di occupazione del canale del `MessageBuffer`. ],
+
+      [ `notip_sim_buffer_dropped_total` ],
+      [ CounterVec (per `gateway_id`) ],
+      [ Messaggi scartati per saturazione della coda (Drop-Oldest). ],
+
+      [ `notip_sim_envelopes_published_total` ],
+      [ CounterVec (per `gateway_id`) ],
+      [ Tentativi di pubblicazione NATS conclusi con successo. ],
+
+      [ `notip_sim_publish_errors_total` ],
+      [ CounterVec (per `gateway_id`) ],
+      [ Errori intercettati durante la pubblicazione NATS. ],
+
+      [ `notip_sim_nats_reconnects_total` ],
+      [ CounterVec (per `gateway_id`) ],
+      [ Riconnessioni forzate eseguite dal connettore NATS mTLS. ],
+
+      [ `notip_sim_provisioning_success_total` ],
+      [ Counter ],
+      [ Onboarding completati con successo verso il Provisioning Cloud. ],
+
+      [ `notip_sim_provisioning_errors_total` ],
+      [ Counter ],
+      [ Errori o rifiuti durante il processo di provisioning HTTP. ],
+
+      [ `notip_sim_anomalies_injected_total` ],
+      [ CounterVec (per `type`) ],
+      [ Anomalie iniettate via API (classificate per tipo di anomalia). ],
+    ),
+  )
+
+
   === Errori
 
   #figure(
@@ -445,7 +547,13 @@
   Per comprendere l'orchestrazione interna del microservizio, vengono delineati i flussi delle operazioni principali,
   tracciando le chiamate attraverso gli strati esagonali dell'architettura.
 
-  ==== 1. Flusso di Provisioning e Avvio
+  ==== Flusso di Provisioning e Avvio
+
+  #align(center)[
+    #image("assets/provisioning.png", width: 118%)
+    Provisioning e Avvio
+  ]
+
   1. Il client effettua una chiamata `POST /sim/gateways`.
   2. Il `GatewayHandler` converte il payload in DTO di dominio e invoca il `GatewayRegistry`.
   3. Il Registry orchestra l'operazione delegando l'`Onboard` (`ProvisioningServiceClient`).
@@ -457,7 +565,13 @@
   8. Il Registry crea un nuovo `GatewayWorker`, istanzia una connessione NATS isolata con i nuovi certificati, e avvia
     la goroutine di background.
 
-  ==== 2. Flusso di Pubblicazione Telemetria
+  ==== Flusso di Pubblicazione Telemetria
+
+  #align(center)[
+    #image("assets/pubblicazione_telemetria.png", width: 110%)
+    Pubblicazione Telemetria
+  ]
+
   1. Il `GatewayWorker` esegue ciclicamente operazioni non bloccanti basate sul `time.Ticker` della frequenza
     configurata.
   2. Per ogni `SimSensor` associato, viene invocata l'interfaccia `Generator.Next()` (es. onda sinusoidale o outlier
@@ -469,7 +583,7 @@
   6. Il Buffer tenta l'invio a JetStream; in caso di congestione o offline, scarta l'elemento più vecchio in coda per
     far spazio al nuovo, aggiornando le metriche Prometheus (`notip_sim_buffer_dropped_total`).
 
-  ==== 3. Flusso di Decommissioning
+  ==== Flusso di Decommissioning
   1. L'adapter `NATSDecommissionListener` rimane in perenne ascolto sul subject wildcard `gateway.decommissioned.>`.
   2. Ricevuto l'evento, estrae UUID e TenantID dalla rotta NATS.
   3. Tramite l'interfaccia (Porta) `DecommissionEventReceiver`, inoltra la richiesta al Core applicativo chiamando il
@@ -481,37 +595,49 @@
 
   == Metodologie di Testing
 
-  Il microservizio garantisce standard qualitativi tramite una pipeline di test automatizzata.
+  Il microservizio adotta una strategia di testing multi-livello progettata per validare il corretto coordinamento dei
+  worker concorrenti, la rigorosa segregazione dei dati e la validità della generazione matematica.
 
-  === Test di unità
+  === Test d'Unità
 
-  I test di unità verificano i singoli componenti in isolamento, sostituendo le dipendenze esterne con implementazioni
-  mock delle interfacce (Ports). Le aree coperte sono:
+   I test di unità coprono i generatori matematici, il core applicativo (worker e registry), gli handler HTTP, le utilità
+  crittografiche e i componenti di dominio, avvalendosi di _fake adapter_ in memoria per isolare la logica
+  dall'infrastruttura. In particolare, devono essere verificati i seguenti aspetti:
 
-  - *Generator*: verifica della correttezza matematica di ogni algoritmo (`sine_wave`, `uniform_random`, `spike`,
-    `constant`) rispetto ai parametri `minRange`/`maxRange` e del meccanismo `InjectOutlier`.
-  - *AESGCMEncryptor*: verifica che la cifratura produca output distinti per ogni invocazione (unicità IV) e che la
-    decifratura restituisca il payload originale.
-  - *GatewayRegistry*: verifica della gestione concorrente dei lock (`RWMutex`) mediante goroutine parallele, assenza di
-    data race rilevabili con `-race`.
-  - *MessageBuffer*: verifica della politica drop-oldest al raggiungimento della capienza e dell'aggiornamento delle
-    metriche associate.
-  - *config*: verifica del caricamento e della validazione delle variabili d'ambiente, compreso il fallimento atteso su
-    variabili obbligatorie mancanti.
+  - Corretta generazione dei valori matematici (`SineWave`, `Spike`, `UniformRandom`, `Constant`) all'interno dei rigidi
+    limiti `MinRange` e `MaxRange`;
+  - Corretta iniezione temporanea di anomalie (outlier) e successivo e immediato ripristino dell'algoritmo matematico
+    originario;
+  - Corretta cifratura e strutturazione dei payload (AES-256-GCM), verificando la generazione dell'IV, l'apposizione
+    dell'AuthTag e il rifiuto di chiavi non conformi ai 32 byte;
+  - Corretta gestione del ciclo di vita dei `GatewayWorker` e della concorrenza sicura nel `GatewayRegistry` tramite
+    `RWMutex`;
+  - Corretta applicazione della politica _Drop-Oldest_ nel `MessageBuffer` in caso di overflow o indisponibilità della
+    rete;
+  - Corretta elaborazione e scarto di comandi JetStream obsoleti (scaduti da oltre 60 secondi) con conseguente invio di
+    esiti NACK o Expired;
+  - Corretta validazione, trasformazione in DTO e mappatura centralizzata degli errori di dominio nei corrispondenti
+    codici di stato HTTP (400, 401, 404, 409, 500) all'interno degli handler REST;
+  - Corretto popolamento isolato delle metriche Prometheus e validazione della configurazione applicativa con
+    attivazione dei valori di fallback.
 
   === Test di integrazione
+  I test di integrazione verificano il comportamento coordinato di più componenti interni al microservizio, sfruttando
+  istanze reali per la persistenza (SQLite temporanei) e per il message brokering (tramite container generati con
+  `testcontainers-go`). In particolare, devono essere coperti i seguenti aspetti:
 
-  I test di integrazione verificano la collaborazione tra i componenti reali del microservizio, senza mock
-  dell'infrastruttura esterna:
-
-  - *SQLiteStore*: verifica delle operazioni CRUD su gateway e sensori con database SQLite reale in memoria
-    (`?mode=memory`), inclusi i test di atomicità delle transazioni e di esecuzione delle migrazioni.
-  - *HTTP Handler*: verifica end-to-end degli handler REST tramite `httptest.Server`, coprendo i casi nominali e le
-    risposte di errore (404, 409, 400) con `GatewayRegistry` reale.
-  - *RecoveryMode*: verifica che al riavvio del processo con `RECOVERY_MODE=true` i gateway persistiti nel DB vengano
-    correttamente reidratati e i worker riavviati.
-  - *NATSDecommissionListener*: verifica dell'integrazione con un broker NATS embedded che il listener gestisca
-    correttamente gli eventi di decommissioning e che il cleanup del DB avvenga.
+  - Corretta esecuzione, transazionalità e idem-potenza delle migrazioni SQL su database locale, inclusa la validazione
+    a basso livello (`PRAGMA table_info`) per i rimpiazzi di schema;
+  - Corretto comportamento dei vincoli di integrità relazionale, come le policy `ON DELETE CASCADE` tra gateway e
+    sensori logici;
+  - Corretta instaurazione della connessione mTLS al broker NATS JetStream, verificata generando materialmente
+    certificati e chiavi crittografiche _on-the-fly_;
+  - Corretta pubblicazione e sottoscrizione dei messaggi sui subject JetStream, verificando l'inoltro della telemetria
+    cifrata e l'ascolto resiliente, con scarto automatico dei payload malformati, sugli eventi di `decommission`;
+  - Corretta simulazione del flusso di provisioning cloud tramite mock HTTP (`httptest.Server`), verificando il
+    comportamento dei client a fronte di successi e fallimenti (es. HTTP 401 per credenziali di fabbrica rifiutate);
+  - Corretto recupero dello stato applicativo e riavvio automatico e isolato dei worker al bootstrap del servizio in
+    scenari di caduta del processo (`RecoveryMode`).
 
   === Obiettivi di copertura funzionale
 
