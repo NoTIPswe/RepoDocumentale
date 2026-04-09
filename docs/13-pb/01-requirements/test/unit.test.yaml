@@ -451,7 +451,7 @@ tests:
     status: passed
   - id: t_provisioning_csr_error_mapping_malformed
     service: Provisioning service
-    description: Verificare la propagazione degli errori CSR e il mapping del fallimento malformed_csr
+    description: Verificare la propagazione degli errori CSR e il mapping del fallimento malformed_CSR
     requirements:
     - onboarding_gateway
     status: passed
