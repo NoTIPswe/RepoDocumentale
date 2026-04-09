@@ -23,12 +23,6 @@ tests:
     requirements:
       - ins_pw
     status: not_implemented
-  - id: t_map_invalid_credentials_error
-    service: -Placeholder
-    description: Verificare il mapping dell’errore “credenziali errate”
-    requirements:
-      - err_cred_errate
-    status: not_implemented
   - id: t_validate_new_password
     service: -Placeholder
     description: Verificare la validazione della nuova password

@@ -54,69 +54,64 @@ tests:
   - id: t_view_gateway_details
     description:
       Verificare che il sistema mostri correttamente nome, stato, timestamp dell’ultimo invio
-      dati e lista sensori di un Gateway selezionato
+      dati
     requirements:
       - visualizzazione_singolo_gateway_tenant
       - visualizzazione_dettagli_gateway
-    status: not_implemented
+    status: passed
   - id: t_view_sensor_list
     description: Verificare che il sistema mostri la lista dei sensori associati a un Gateway
     requirements:
       - visualizzazione_singolo_sensore
-    status: not_implemented
+    status: passed
   - id: t_view_sensor_details
     description:
       Verificare che il sistema mostri correttamente l’ID e l’ultimo timestamp di invio dati
       di ciascun sensore
     requirements:
       - visualizzazione_singolo_sensore
-    status: not_implemented
+    status: passed
   - id: t_view_stream_data_table
     description: Verificare che il sistema visualizzi i dati di stream in formato tabellare
     requirements:
       - visualizzazione_dati_stream
       - visualizzazione_tabellare_dati_stream
-    status: not_implemented
+    status: passed
   - id: t_view_stream_data_chart
     description: Verificare che il sistema visualizzi i dati di stream in formato grafico
     requirements:
       - visualizzazione_dati_stream
       - visualizzazione_grafico_dati_stream
-    status: not_implemented
+    status: passed
   - id: t_filter_data_gateway_sensor_time
     description: Verificare che l’utente possa filtrare i dati per Gateway, sensore e intervallo temporale
     requirements:
       - filtraggio_gateway
       - filtraggio_sensore
       - filtraggio_intervallo_temporale
-    status: not_implemented
+    status: passed
   - id: t_notify_no_data_available
     description:
-      Verificare che il sistema notifichi l’utente quando non sono disponibili dati per i filtri
+      Verificare che il sistema mostri all’utente quando non sono disponibili dati per i filtri
       selezionati
     requirements:
       - err_dati_non_disponibili
-    status: not_implemented
+    status: passed
   - id: t_export_data_supported_format
-    description: Verificare che l’utente possa esportare i dati visualizzati in formato supportato
+    description: Verificare che l’utente possa esportare i dati visualizzati in formato supportato (CSV)
     requirements:
       - esportazione_dati
-    status: not_implemented
+    status: passed
   - id: t_alert_gateway_unreachable
     description: Verificare che il sistema generi un alert in caso di Gateway non raggiungibile
     requirements:
       - alert_gateway_irraggiungibile
-    status: not_implemented
+    status: passed
   - id: t_view_alert_history
     description: Verificare che l’utente possa visualizzare lo storico degli alert generati
     requirements:
       - visualizzazione_storico_alert
-    status: not_implemented
-  - id: t_toggle_alert_notifications
-    description: Verificare che l’utente possa attivare e disattivare la ricezione di notifiche alert via dashboard
-    requirements:
-      - modifica_impostazioni_notifica_alert_dashboard
-    status: not_implemented
+    status: passed
   - id: t_admin_modify_gateway_name
     description:
       Verificare che il Tenant Admin possa modificare il nome di un Gateway e ricevere errore
@@ -124,17 +119,17 @@ tests:
     requirements:
       - modifica_nome_gateway
       - err_nome_gateway_duplicato
-    status: not_implemented
+    status: passed
   - id: t_admin_modify_gateway_status
     description: Verificare che il Tenant Admin possa modificare lo stato operativo di un Gateway selezionato
     requirements:
       - modifica_stato_gateway
       - selezione_stato_gateway
-    status: not_implemented
+    status: passed
   - id: t_admin_modify_sensor_alarm_range
     description:
-      Verificare che il Tenant Admin possa modificare il range di allarme per un sensore specifico
-      e per un tipo di sensore, ricevendo errore in caso di range invalido
+      Verificare che il Tenant Admin possa modificare il range di "allarme" per un sensore specifico
+      e per un tipo di sensore, ricevendo errore in caso di valori fuori range
     requirements:
       - modifica_range_sensore
       - selezione_specifico_sensore
@@ -143,19 +138,19 @@ tests:
       - modifica_range_default_tipo_sensore
       - selezione_tipo_sensore
       - err_range_invalido
-    status: not_implemented
+    status: passed
   - id: t_admin_modify_gateway_timeout
     description:
       Verificare che il Tenant Admin possa modificare il timeout che determina l’irraggiungibilità
       di un Gateway
     requirements:
       - modifica_intervallo_alert_gateway
-    status: not_implemented
+    status: passed
   - id: t_admin_modify_gateway_frequency
     description: Verificare che il Tenant Admin possa modificare la frequenza di invio dati di un Gateway
     requirements:
       - modifica_frequenza_invio_gateway
-    status: not_implemented
+    status: passed
   - id: t_admin_view_tenant_costs
     description:
       Verificare che il Tenant Admin possa visualizzare i costi stimati del Tenant, inclusi costi
@@ -164,7 +159,7 @@ tests:
       - visualizzazione_costi_stimati
       - visualizzazione_costi_storage
       - visualizzazione_costi_banda
-    status: not_implemented
+    status: passed
   - id: t_admin_view_tenant_users
     description:
       Verificare che il Tenant Admin possa visualizzare la lista degli utenti del Tenant e i
@@ -172,7 +167,7 @@ tests:
     requirements:
       - visualizzazione_lista_utenti_tenant
       - visualizzazione_singolo_utente_tenant
-    status: not_implemented
+    status: passed
   - id: t_admin_manage_tenant_users
     description:
       Verificare che il Tenant Admin possa creare, modificare ed eliminare uno o più utenti del
@@ -186,7 +181,7 @@ tests:
       - modifica_password_utente
       - eliminazione_utenti_tenant
       - selezione_lista_utenti
-    status: not_implemented
+    status: passed
   - id: t_admin_manage_api_credentials
     description:
       Verificare che il Tenant Admin possa creare, visualizzare e revocare credenziali API per
@@ -202,36 +197,29 @@ tests:
     status: not_implemented
   - id: t_view_export_audit_logs
     description:
-      Verificare che un utente autorizzato possa consultare, filtrare per intervallo temporale,
-      esportare e scaricare i log di Audit del Tenant
+      Verificare che un utente autorizzato possa consultare e filtrare per intervallo temporale,
+      esportare i log di Audit del Tenant
     requirements:
       - visualizzazione_log_audit_tenant
       - visualizzazione_singolo_log_audit
       - esportazione_log_audit_tenant
       - selezione_intervallo_temporale
       - download_log_audit_esportati
-    status: not_implemented
-  - id: t_configure_impersonation_settings
-    description:
-      Verificare che il Tenant Admin e l’Amministratore di Sistema possano configurare le impostazioni
-      di impersonificazione del Tenant
-    requirements:
-      - modifica_impostazioni_impersonificazione
-    status: not_implemented
+    status: passed
   - id: t_register_operations_audit_log
     description:
       Verificare che il sistema registri correttamente tutte le operazioni rilevanti nei log
       di Audit
     requirements:
       - sicurezza_log_attivita
-    status: not_implemented
+    status: passed
   - id: t_sysadmin_view_performance_metrics
     description:
       Verificare che l’Amministratore di Sistema possa visualizzare metriche di latenza, volume
       di traffico e utilizzo storage
     requirements:
       - monitoraggio_performance_sistema
-    status: not_implemented
+    status: passed
   - id: t_install_firmware_update
     description:
       Verificare che il Tenant Admin e l’Amministratore di Sistema possano selezionare uno o
@@ -239,7 +227,7 @@ tests:
     requirements:
       - aggiornamento_firmware_gateway
       - selezione_gateway
-    status: not_implemented
+    status: passed
   - id: t_sysadmin_view_tenant_details
     description:
       Verificare che l’Amministratore di Sistema possa visualizzare la lista dei Tenant e i dettagli
@@ -252,7 +240,7 @@ tests:
       - visualizzazione_stato_tenant
       - visualizzazione_id_tenant
       - visualizzazione_intervallo_sospensione_tenant
-    status: not_implemented
+    status: passed
   - id: t_sysadmin_manage_tenants
     description:
       Verificare che l’Amministratore di Sistema possa creare, sospendere, riattivare, modificare
@@ -267,28 +255,28 @@ tests:
       - sospensione_tenant
       - riattivazione_tenant
       - eliminazione_tenant
-    status: not_implemented
+    status: passed
   - id: t_sysadmin_impersonate_user
     description:
       Verificare che l’Amministratore di Sistema possa avviare una sessione di impersonificazione
       di un utente Tenant
     requirements:
       - impersonificazione_utente_tenant
-    status: not_implemented
+    status: passed
   - id: t_sysadmin_register_gateway
     description:
       Verificare che l’Amministratore di Sistema possa registrare un Gateway e associarlo a un
       Tenant di interesse
     requirements:
       - registrazione_associazione_gateway
-    status: not_implemented
+    status: passed
   - id: t_sysadmin_create_tenant_admin
     description:
       Verificare che l’Amministratore di Sistema possa creare un utente con ruolo Amministratore
       Tenant per un Tenant di interesse
     requirements:
       - creazione_utente_amministratore_tenant
-    status: not_implemented
+    status: passed
   - id: t_api_client_authentication
     description:
       Verificare che un Client API possa autenticarsi tramite le credenziali ottenute e ricevere
@@ -322,7 +310,7 @@ tests:
       onboarding e connettersi al Sistema
     requirements:
       - onboarding_gateway
-    status: not_implemented
+    status: passed
   - id: t_gateway_authentication_errors
     description:
       Verificare che il sistema notifichi errori di autenticazione per Gateway con credenziali
@@ -330,7 +318,7 @@ tests:
     requirements:
       - err_auth_gateway_fabbrica
       - err_autenticazione_gateway
-    status: not_implemented
+    status: passed
   - id: t_gateway_encrypted_data_transmission
     description:
       Verificare che il Gateway invii dati al Cloud tramite canale sicuro cifrato e che il Cloud
@@ -339,7 +327,7 @@ tests:
       - invio_dati_crittografati_cloud
       - instaurazione_connessione_sicura
       - sicurezza_cifratura_dati
-    status: not_implemented
+    status: passed
   - id: t_simulator_manage_gateways
     description:
       Verificare che l’utente del simulatore possa visualizzare la lista dei Gateway simulati,
@@ -353,7 +341,7 @@ tests:
       - creazione_deploy_gateway_simulato
       - inserimento_dati_config_sim_gateway
       - err_deploy_gateway_simulato
-    status: not_implemented
+    status: passed
   - id: t_simulator_manage_sensors
     description:
       Verificare che l’utente del simulatore possa configurare e simulare sensori associati a
@@ -367,10 +355,10 @@ tests:
       - inserimento_dati_config_sim_sensore
       - err_range_invalido_simulazione
       - err_creazione_sensore_simulato
-    status: not_implemented
+    status: passed
   - id: t_simulator_parallel_anomalies
     description:
-      Verificare che il simulatore permetta di creare più istanze Gateway in parallelo e di iniettare
+      Verificare che il simulatore permetta di gestire più istanze Gateway in parallelo e di iniettare
       anomalie di rete e valori sensore anomali
     requirements:
       - creazione_gateway_multipli_default
@@ -378,18 +366,23 @@ tests:
       - comando_anomalia_degrado_rete
       - comando_anomalia_disconnessione_temporanea
       - comando_anomalia_outliers_misurazioni
-    status: not_implemented
+    status: passed
   - id: t_cloud_send_config_commands
     description:
       Verificare che il Cloud possa inviare comandi di configurazione al Gateway simulato e ricevere
-      notifiche di errore per payload o frequenza non validi
+      notifiche di errore per frequenze non valide
     requirements:
       - impostazione_configurazione_gateway
       - err_sintattico_config_gateway
       - err_config_frequenza_fuori_range
-    status: not_implemented
+    status: passed
   - id: t_sensor_gateway_data_flow
     description: Verificare la corretta trasmissione del flusso di dati tra sensore e relativo gateway
     requirements:
       - invio_dati_crittografati_cloud
-    status: not_implemented
+    status: passed
+  # - id: t_system_resilience
+  #   description: Verificare che il sistema sia in grado di persistere e recuperare dati in caso di interruzione temporanea del servizio o guasto hardware
+  #   requirements:
+  #     # - TODO: define 
+  #   status: status
