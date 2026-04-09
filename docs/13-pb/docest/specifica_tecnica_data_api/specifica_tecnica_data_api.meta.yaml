@@ -1,12 +1,19 @@
 title: Specifica Tecnica - Data-API
 changelog:
+  - version: "0.3.0"
+    date: "2026-03-31"
+    authors:
+      - Alessandro Mazzariol
+    verifier: TBD
+    description: >
+      Stesura finale del documento
   - version: "0.2.0"
     date: "2026-03-31"
     authors:
       - Alessandro Contarini
     verifier: Alessandro Mazzariol
     description: >
-      Stesura finale del documento
+      Stesura bozza completa del documento
   - version: "0.1.0"
     date: "2026-03-27"
     authors:
