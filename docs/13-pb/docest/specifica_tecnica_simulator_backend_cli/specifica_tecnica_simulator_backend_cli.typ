@@ -156,7 +156,7 @@
   ```
 
   #align(center)[
-    #image("assets/architettura_logica.png", width: 80%)
+    #image("assets/notip-simulator-backend.svg", width: 100%)
     Architettura Logica del Simulator Backend.
   ]
 
@@ -560,10 +560,7 @@
   8. Il Registry crea un nuovo `GatewayWorker`, istanzia una connessione NATS isolata con i nuovi certificati, e avvia
     la goroutine di background.
 
-  //#align(center)[
-  //#image("assets/provisioning.png", width: 110%)
-  //Provisioning e Avvio
-  //]
+
 
   ==== Flusso di Pubblicazione Telemetria
 
@@ -578,10 +575,7 @@
   6. Il Buffer tenta l'invio a JetStream; in caso di congestione o offline, scarta l'elemento più vecchio in coda per
     far spazio al nuovo, aggiornando le metriche Prometheus (`notip_sim_buffer_dropped_total`).
 
-  //#align(center)[
-  //#image("assets/pubblicazione_telemetria.png", width: 110%)
-  //Pubblicazione Telemetria
-  //]
+
 
   ==== Flusso di Decommissioning
   1. L'adapter `NATSDecommissionListener` rimane in perenne ascolto sul subject wildcard `gateway.decommissioned.>`.
@@ -741,9 +735,9 @@
 
   == Architettura Logica
 
-  //#align(center)[
-  //#image("./assets/simulator_cli.png", width: 100%)
-  //]
+  #align(center)[
+    #image("./assets/simulator_cli.png", width: 100%)
+  ]
 
   === Layout dei Pacchetti
 
