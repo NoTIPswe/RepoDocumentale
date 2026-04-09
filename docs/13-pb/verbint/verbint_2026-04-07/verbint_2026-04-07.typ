@@ -43,7 +43,7 @@
       È emersa inoltre la necessità di aggiornare le metriche di progetto basandosi sugli ultimi dati estratti dai tool di analisi (come SonarQube).
     ],
     decisions: [
-      Francesco si occuperà di completare il Piano di Qualifica, assicurandosi che i test coprano adeguatamente i test di sistema definiti in precendenza dal gruppo. Valerio si occuperà dell'aggiornamento delle metriche nello stesso documento, operazione da completare entro mercoledì.
+      Francesco si occuperà di completare il Piano di Qualifica, assicurandosi che i test coprano adeguatamente i test di sistema definiti in precedenza dal gruppo. Valerio si occuperà dell'aggiornamento delle metriche nello stesso documento, operazione da completare entro mercoledì.
     ],
     actions: (
       (
@@ -84,7 +84,7 @@
   #base-report.report-point(
     discussion_point: [Stesura della Manualistica],
     discussion: [
-      L'ultima fase operativa discusa riguarda la stesura dei manuali. 
+      L'ultima fase operativa discussa riguarda la stesura dei manuali. 
       Per mantenere i documenti chiari e mirati, si è confermata la decisione di suddividere i manuali in base alla tipologia di utente. 
       
       Il gruppo ha concordato sull'importanza di inserire screenshot per facilitare la comprensione del prodotto.
