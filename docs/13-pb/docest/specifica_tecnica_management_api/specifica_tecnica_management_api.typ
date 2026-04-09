@@ -72,31 +72,6 @@
       [NatsToken], [NATS_TOKEN], [-], [No],
 
       [NatsUser], [NATS_USER], [-], [No],
-
-      columns: (auto, auto, auto, auto),
-      [Campo], [Variabile d'ambiente], [Default], [Obbligatorio],
-      [KeycloakRealm], [KEYCLOAK_REALM], [-], [Si],
-      [KeycloakClientId], [KEYCLOAK_MGMT_CLIENT_ID], [-], [Si],
-      [KeycloakClientSecret], [KEYCLOAK_MGMT_CLIENT_SECRET], [-], [Si],
-      [KeycloakUrl], [KEYCLOAK_URL], [-], [Si],
-      [NATSUrl], [NATS_URL], [-], [Si],
-      [DBHost], [MGMT_DB_HOST], [—], [Sì],
-      [DBPort], [MGMT_DB_PORT], [5432], [No],
-      [DBName], [MGMT_DB_NAME], [—], [Sì],
-      [DBUser], [MGMT_DB_USER], [—], [Sì],
-      [DBPassword], [MGMT_DB_PASSWORD], [—], [Sì],
-      [DBEncryptionKey], [DB_ENCRYPTION_KEY], [-], [Si],
-      [ApiPort], [MGMT_API_PORT], [3000], [No],
-      [NodeEnv], [NODE_ENV], [development], [No],
-      [NatsServers], [NATS_SERVERS], [NATS_URL], [No],
-      [NatsClientName], [NATS_CLIENT_NAME], [management-api], [No],
-      [NatsDurablePrefix], [NATS_DURABLE_PREFIX], [management-api], [No],
-      [NatsTlsCa], [NATS_TLS_CA], [-], [No],
-      [NatsTlsCert], [NATS_TLS_CERT], [-], [No],
-      [NatsTlsKey], [NATS_TLS_KEY], [-], [No],
-      [NatsToken], [NATS_TOKEN], [-], [No],
-      [NatsUser], [NATS_USER], [-], [No],
-      [NatsPassword], [NATS_PASSWORD], [-], [No],
     )
   ]
 
