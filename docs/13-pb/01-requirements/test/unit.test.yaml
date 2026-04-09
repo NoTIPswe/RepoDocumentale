@@ -150,29 +150,23 @@ tests:
       - visualizzazione_secret_api
     status: not_implemented
   - id: t_build_audit_entry
-    service: -Placeholder
+    service: Provisioning service
     description: Verificare la costruzione di una entry di audit (campi obbligatori)
     requirements:
       - visualizzazione_singolo_log_audit
-    status: not_implemented
+    status: passed
   - id: t_map_audit_operation_text
-    service: -Placeholder
+    service: Provisioning service
     description: Verificare il mapping dell’operazione di audit verso testo
     requirements:
       - visualizzazione_singolo_log_audit
-    status: not_implemented
-  - id: t_validate_jwt_token
-    service: -Placeholder
-    description: Verificare la validazione di un token JWT (scadenza e formato)
-    requirements:
-      - err_token_api_invalido
-    status: not_implemented
+    status: passed
   - id: t_validate_policy_permissions
-    service: -Placeholder
+    service: Provisioning service
     description: Verificare la validazione dei permessi secondo policy
     requirements:
       - sicurezza_autenticazione_accessi
-    status: not_implemented
+    status: passed
   - id: t_map_simulated_gateway_list
     service: Simulator Backend
     description: Verificare il mapping della lista gateway simulati
@@ -441,4 +435,66 @@ tests:
       - decommission_gateway
       - qualita_resilienza_servizi
       - qualita_test_unita_coverage
+    status: passed
+  - id: t_provisioning_orchestration_success
+    service: Provisioning service
+    description: Verificare l’orchestrazione del provisioning con validazione factory, firma CSR, generazione chiave AES e completamento finale
+    requirements:
+    - onboarding_gateway
+    status: passed
+  - id: t_provisioning_factory_validation_error_propagation
+    service: Provisioning service
+    description: Verificare la propagazione degli errori di validazione factory e il tracciamento del motivo di fallimento
+    requirements:
+    - err_auth_gateway_fabbrica
+    - err_autenticazione_gateway
+    status: passed
+  - id: t_provisioning_csr_error_mapping_malformed
+    service: Provisioning service
+    description: Verificare la propagazione degli errori CSR e il mapping del fallimento malformed_csr
+    requirements:
+    - onboarding_gateway
+    status: passed
+  - id: t_provisioning_request_mapping_invalid_csr
+    service: Provisioning service
+    description: Verificare il mapping della request DTO in dominio e la gestione del CSR non valido
+    requirements:
+    - onboarding_gateway
+    status: passed
+  - id: t_provisioning_factory_credentials_validation_mapping
+    service: Provisioning service
+    description: Verificare la validazione delle credenziali factory e il mapping delle risposte INVALID, ALREADY_PROVISIONED e payload non valido
+    requirements:
+    - onboarding_gateway
+    - err_auth_gateway_fabbrica
+    - err_dati_autenticazione_invalidi
+    status: passed
+  - id: t_provisioning_csr_signing_validation
+    service: Provisioning service
+    description: Verificare la firma di un CSR valido e il rifiuto di CSR malformati o con firma non valida
+    requirements:
+    - onboarding_gateway
+    status: passed
+  - id: t_provisioning_aes256_key_generation_base64
+    service: Provisioning service
+    description: Verificare la generazione di una chiave AES-256 e la sua serializzazione base64
+    requirements:
+    - sicurezza_cifratura_dati
+    - invio_dati_crittografati_cloud
+    status: passed
+  - id: t_provisioning_exception_http_mapping
+    service: Provisioning service
+    description: Verificare il mapping delle eccezioni di provisioning verso i codici HTTP attesi
+    requirements:
+    - err_auth_gateway_fabbrica
+    - err_dati_autenticazione_invalidi
+    - err_autenticazione_gateway
+    status: passed
+  - id: t_provisioning_completion_payload_error_handling
+    service: Provisioning service
+    description: Verificare l’invio del payload di completamento provisioning e la gestione delle risposte non di successo
+    requirements:
+    - onboarding_gateway
+    - err_dati_autenticazione_invalidi
+    - err_autenticazione_gateway
     status: passed

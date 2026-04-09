@@ -45,13 +45,13 @@ tests:
       - sicurezza_segregazione_tenant
     status: not_implemented
   - id: t_intra_jwt_auth_integration
-    service: -Placeholder
+    service: Provisioning service
     description:
       Verificare l’integrazione del Sistema di autenticazione (JWT) tra l’API Gateway e i microservizi
       interni
     requirements:
       - sicurezza_autenticazione_accessi
-    status: not_implemented
+    status: passed
   - id: t_intra_gateway_config_errors
     service: -Placeholder
     description:
@@ -305,4 +305,12 @@ tests:
     requirements:
       - sicurezza_cifratura_dati
       - sicurezza_autenticazione_accessi
+    status: passed
+  - id: t_intra_provisioning_e2e_flow
+    service: Provisioning service
+    description: Verificare il flusso end-to-end del provisioning con onboarding completato, certificato generato e chiave AES restituita
+    requirements:
+    - onboarding_gateway
+    - sicurezza_cifratura_dati
+    - instaurazione_connessione_sicura
     status: passed
