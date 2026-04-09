@@ -4,9 +4,10 @@ changelog:
     date: "2026-04-09"
     authors:
       - Francesco Marcon
+      - Mario De Pasquale
     verifier: TBD
     description: >
-      Aggiunta test unità e integrazione per il servizio Simulator CLI 
+      Aggiunta test unità e integrazione per il servizio Simulator CLI e aggiornai test del servizio di Provisioning
   - version: "1.4.0"
     date: "2026-04-09"
     authors:

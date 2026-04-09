@@ -149,6 +149,12 @@ tests:
     requirements:
       - visualizzazione_secret_api
     status: not_implemented
+  - id: t_map_invalid_credentials_error
+    service: Provisioning service
+    description: Verificare il mapping dell’errore “credenziali errate”
+    requirements:
+      - err_dati_autenticazione_invalidi
+    status: passed
   - id: t_build_audit_entry
     service: Provisioning service
     description: Verificare la costruzione di una entry di audit (campi obbligatori)
@@ -614,4 +620,38 @@ tests:
     description: Verificare il punto di ingresso dell’applicazione; nessuna uscita per il percorso help, nessuna uscita per comandi validi, uscita con codice 1 su errore del comando
     requirements:
       - qualita_test_unita_coverage
+    status: passed
+
+  - id: t_provisioning_nats_rr_client_resilience
+    service: Provisioning service
+    description: Verificare la resilienza del client NATS request-reply del provisioning (retry, riconnessione e gestione errori di connessione)
+    requirements:
+    - onboarding_gateway
+    - err_autenticazione_gateway
+    status: passed
+  - id: t_provisioning_ca_store_init_load_permissions
+    service: Provisioning service
+    description: Verificare inizializzazione, persistenza e ricarica del materiale CA/NATS nel file store con i permessi attesi
+    requirements:
+    - instaurazione_connessione_sicura
+    - sicurezza_cifratura_dati
+    status: passed
+  - id: t_provisioning_ca_initializer_bootstrap
+    service: Provisioning service
+    description: Verificare il bootstrap del componente CA (load materiale esistente, initialize nuovo materiale e gestione errori repository)
+    requirements:
+    - instaurazione_connessione_sicura
+    status: passed
+  - id: t_provisioning_configuration_env_loading
+    service: Provisioning service
+    description: Verificare il caricamento della configurazione da variabili d’ambiente con validazione campi obbligatori, default e override
+    requirements:
+    - onboarding_gateway
+    status: passed
+  - id: t_provisioning_aes_key_domain_validation
+    service: Provisioning service
+    description: Verificare la validazione del dominio AESKey (lunghezza 32 byte) e la serializzazione base64 del materiale
+    requirements:
+    - sicurezza_cifratura_dati
+    - invio_dati_crittografati_cloud
     status: passed
