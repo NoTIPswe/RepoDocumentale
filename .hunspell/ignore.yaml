@@ -467,6 +467,22 @@ accepted_words:
   - EventEmitter
   - ValidationPipe
   - lifecycle
+  - sensorId
+  - ProvisioningUrl
+  - NATSCACertPath
+  - NATSTLSCertPath
+  - NATSTLSKeyPath
+  - SQLitePath
+  - HttpAddr
+  - DefaultSendFreq
+  - GatewayBufferSize
+  - RecoveryMode
+  - CertPool
+  - AESGCMEncryptor
+  - TenantID
+  - AuthTag
+  - NACK
+  - MetricsAddr
   - TenantID
   - GatewayRegistry
   - MessageBuffer
