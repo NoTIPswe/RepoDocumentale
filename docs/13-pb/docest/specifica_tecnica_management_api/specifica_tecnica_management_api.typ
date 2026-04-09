@@ -1,8 +1,8 @@
 #import "../../00-templates/base_document.typ" as base-document
 #import "../specifica_tecnica/st_lib.typ" as st
 
-#let metadata = yaml(sys.inputs.meta-path)
-#show figure.where(kind: table): set block(breakable: true)
+#let metadata = yaml("specifica_tecnica_management_api.meta.yaml")
+
 
 #base-document.apply-base-document(
   title: metadata.title,
@@ -151,935 +151,1817 @@
       [Gestione dell'accesso ai dati tramite TypeORM, definizione delle entità e dei repository, gestione delle
         migrazioni del database, implementazione dei servizi di persistenza che interagiscono con il database
         PostgreSQL.],
-    )
-  ]
-
+    )]
 
   = Design di Dettaglio
-
   == Moduli del microservizio
+  I moduli principali all'interno del microservizio sono i seguenti:
 
-  #figure(
-    caption: [Moduli interni del microservizio `notip-management-api`],
-  )[
-    #table(
-      columns: (0.5fr, 1fr),
-      [Modulo], [Responsabilità],
-      [AuthModule],
-      [Gestione autenticazione e autorizzazione tramite Keycloak, implementazione della strategia JWT, definizione dei
-        guard e delle policy di accesso agli endpoint.],
+  === AdminModule
+  Funzionalità amministrative di livello di sistema, in particolare gestione dei Tenant e di tutte le operazioni che
+  richiedono privilegi elevati. Tra queste è inclusa la possibilità di impersonare un utente per conto del quale agire.
+  ==== Admin Tenants
+  #figure(caption: "Diagramma del modulo AdminModule")[#image("assets/02-admin-tenants.svg")]
 
-      [AdminModule],
-      [Funzionalità amministrative di livello di sistema, in particolare gestione dei Tenant e di tutte le operazioni
-        che richiedono privilegi elevati. Tra queste è inclusa la possibilità di impersonare un utente per conto del
-        quale agire.],
+  Il sottosistema di gestione dei Tenant si occupa di tutte le operazioni amministrative relative ai tenant del sistema:
+  creazione, modifica, sospensione, riattivazione ed eliminazione. È il punto di ingresso per la gestione del ciclo di
+  vita dei tenant e dei loro utenti.
 
-      [GatewaysModule],
-      [Gestisce le operazioni CRUD sui Gateway e gestisce gli endpoint accessibili agli utenti del Tenant.],
+  ===== TenantsController
 
-      [KeysModule],
-      [Gestisce il provisioning, il recupero e la persistenza delle chiavi AES-256 associate ai gateway, inclusa la
-        protezione del materiale sensibile nel database.],
+  Controller NestJS esposto sotto il prefisso `/admin/tenants`. Protetto dal decoratore `@AdminOnly()`, espone cinque
+  endpoint REST. Delega ogni operazione a `TenantsService` e utilizza `TenantsMapper` per trasformare i risultati nei
+  DTO di risposta appropriati.
 
-      [UsersModule], [Gestisce le operazioni CRUD sugli utenti del Tenant, inclusa la sincronizzazione con Keycloak.],
-      [CommandModule],
-      [Gestisce l’invio dei comandi verso i gateway e l’integrazione con NATS/JetStream per la pubblicazione e il
-        tracciamento dello stato dei comandi.],
+  #table(
+    columns: (1.2fr, 2.5fr, 2.3fr),
+    [Metodo], [Endpoint], [Note],
+    [`getTenants()`], [`GET /admin/tenants`], [Restituisce la lista di tutti i tenant con i relativi dettagli],
 
-      [AuditLogModule],
-      [Gestisce la registrazione e la persistenza dei log di Audit delle operazioni eseguite dal microservizio.],
+    [`getTenantUsers(id)`], [`GET /admin/tenants/:id/users`], [Restituisce gli utenti associati a un tenant specifico],
 
-      [ApiClientModule], [Gestisce i client associati ai Tenant e la loro integrazione con Keycloak.],
-      [AlertsModule],
-      [Gestisce la configurazione e le operazioni relative agli alert sui Gateway, inclusa la definizione delle soglie
-        di notifica.],
+    [`createTenant(dto)`], [`POST /admin/tenants`], [Crea un nuovo tenant con il relativo utente amministratore],
 
-      [ThresholdsModule], [Gestisce le soglie applicative associate ai Gateway o ai Tenant.],
-      [CostsModule], [ Gestisce le informazioni e la logica applicativa relative ai costi.],
-      [CommonModule],
-      [Contiene componenti trasversali come decoratori, filtri, intercettori, validazione configurazione e utility
-        condivise.],
-    )
-  ]
+    [`updateTenant(id, dto)`],
+    [`PATCH /admin/tenants/:id`],
+    [Aggiorna nome, stato o intervallo di sospensione di un tenant],
 
-
-
-  == Entità
-  #figure(
-    caption: [Entità principali del microservizio `notip-management-api`],
-  )[
-    #table(
-      columns: (1.5fr, 2fr),
-      [Entità], [Campi],
-
-      [TenantEntity],
-      [#par(justify: false)[
-        *`id`*: `uuid v4`, *`name`*: `string`, *`status`*: `TenantStatus` `(enum)`, *`suspensionIntervalDays`*:
-        `number | null`, *`createdAt`*: `Date`, *`updatedAt`*: `Date`]],
-
-      [UserEntity],
-      [#par(justify: false)[
-        *`id`*: `uuid`, *`tenantId`*: `string`, *`name`*: `string`, *`email`*: `string`, *`role`*: `UsersRole` `(enum)`,
-        *`permissions`*: `string[] | null`, *`lastAccess`*: `Date | null`, *`createdAt`*: `Date`]],
-
-      [GatewayEntity],
-      [#par(justify: false)[
-        *`id`*: `uuid v4`, *`tenantId`*: `string`, *`factoryId`*: `string`, *`factoryKeyHash`*: `string | null`,
-        *`provisioned`*: `boolean`, *`model`*: `string`, *`firmwareVersion`*: `string`, *`createdAt`*: `Date`,
-        *`updatedAt`*:
-        `Date`]],
-
-      [GatewayMetadataEntity],
-      [#par(justify: false)[
-        *`gatewayId`*: `uuid`, *`name`*: `string`, *`status`*: `GatewayStatus` `(enum)`, *`lastSeenAt`*: `Date`,
-        *`sendFrequencyMs`*:
-        `number | null`]],
-
-      [KeyEntity],
-      [#par(justify: false)[
-        *`id`*: `uuid v4`, *`gatewayId`*: `uuid`, *`keyMaterial`*: `Buffer`, *`keyVersion`*: `number`, *`createdAt`*:
-        `Date`, *`revokedAt`*: `Date | null`]],
-
-      [AlertsEntity],
-      [#par(justify: false)[
-        *`id`*: `uuid v4`, *`tenantId`*: `uuid`, *`type`*: `AlertType` `(enum)`, *`gatewayId`*: `uuid`, *`details`*:
-        `jsonb`, *`createdAt`*: `Date`]],
-
-      [AlertsConfigEntity],
-      [#par(justify: false)[
-        *`id`*: `uuid v4`, *`tenantId`*: `string`, *`gatewayId`*: `uuid | null`, *`gatewayTimeoutMs`*: `number`,
-        *`updatedAt`*:
-        `Date`]],
-
-      [ThresholdEntity],
-      [#par(justify: false)[
-        *`id`*: `uuid v4`, *`tenantId`*: `uuid`, *`sensorType`*: `string | null`, *`sensorId`*: `uuid | null`,
-        *`minValue`*: `number`, *`maxValue`*: `number`, *`createdAt`*: `Date`, *`updatedAt`*: `Date`]],
-
-      [AuditLogEntity],
-      [#par(justify: false)[
-        *`id`*: `uuid v4`, *`tenantId`*: `uuid`, *`userId`*: `uuid`, *`action`*: `string`, *`resource`*: `string`,
-        *`details`*: `jsonb`, *`timestamp`*: `Date`]],
-
-      [ApiClientEntity],
-      [#par(justify: false)[
-        *`id`*: `string`, *`tenantId`*: `uuid`, *`name`*: `string`, *`keycloakClientId`*: `string`, *`createdAt`*:
-        `Date`]],
-
-      [CommandEntity],
-      [#par(justify: false)[
-        *`id`*: `uuid v4`, *`gatewayId`*: `uuid`, *`tenantId`*: `uuid`, *`type`*: `CommandType` `(enum)`, *`status`*:
-        `CommandStatus` `(enum)`, *`issuedAt`*: `Date`, *`ackReceivedAt`*: `Date | null`, *`createdAt`*: `Date`]],
-    )
-  ]
-  == Enums
-  #figure(
-    caption: [Enumerazioni principali del microservizio `notip-management-api`],
-  )[
-    #table(
-      columns: (1fr, 2fr),
-      [Enum], [Valori],
-      [TenantStatus], [*`active`*, *`suspended`*],
-      [UsersRole], [*`system_admin`*, *`tenant_admin`*, *`tenant_user`*],
-      [GatewayStatus], [*`gateway_online`*, *`gateway_offline`*, *`gateway_provisioning`*, *`gateway_suspended`*],
-      [AlertType], [*`gateway_offline`*],
-      [CommandType], [*`config`*, *`firmware`*, *`suspend`*],
-      [CommandStatus], [*`queued`*, *`ack`*, *`nack`*, *`expired`*, *`timeout`*],
-    )
-  ]
-  == Policy di accesso
-
-  Il microservizio applica policy di accesso trasversali tramite decorator e guard globali. Le principali sono:
-
-  #figure(
-    caption: [Policy di accesso e vincoli di impersonazione],
-  )[
-    #table(
-      columns: (1.2fr, 2.5fr),
-      [Policy], [Descrizione],
-      [`Public`],
-      [Endpoint accessibili senza autenticazione, come `/`, `/health` e gli endpoint interni di provisioning.],
-
-      [`AdminOnly`], [Endpoint riservati a utenti con ruolo `system_admin`, tipicamente sotto il prefisso `/admin`.],
-      [`TenantScoped`],
-      [Endpoint accessibili solo nel contesto di un tenant autenticato, con controllo di ruolo applicativo.],
-
-      [`BlockImpersonation`],
-      [Vincolo aggiuntivo applicato a operazioni sensibili come gestione gateway, chiavi e invio comandi, non consentite
-        durante impersonazione.],
-    )
-  ]
-  == Endpoint API
-  Di seguito è riportato l'elenco completo degli endpoint esposti dal microservizio divisi per area di interesse. Non
-  tutti gli endpoint sono accessibili via frontend, alcuni sono utilizzati esclusivamente per la comunicazione tra
-  microservizi o per operazioni di amministrazione via terminale.
-
-  #let endpoint-details(description, request, response) = {
-    table(
-      columns: (1fr, 3fr),
-      [Campo], [Valore],
-      [Descrizione], description,
-      [Body Request], request,
-      [Response], response,
-    )
-  }
-
-  #show raw.where(lang: "json"): set text(size: 7pt)
-
-  === Public
-  Questi endpoint sono accessibili senza autenticazione:
-
-  ==== `GET /`
-  #endpoint-details(
-    [Restituisce una stringa di benvenuto/diagnostica del servizio.],
-    [-],
-    [```json
-    "string"
-    ```],
+    [`deleteTenant(id)`], [`DELETE /admin/tenants/:id`], [Elimina un tenant e cascata tutti i dati associati],
   )
 
-  ==== `GET /health`
-  #endpoint-details(
-    [Restituisce lo stato di salute base del microservizio.],
-    [-],
-    [```json
-    { "status": "ok" }
-    ```],
+  ===== TenantsService
+
+  Contiene la logica di business principale. Coordina `TenantsPersistenceService`, `KeycloakAdminService` e
+  `ApiClientService`.
+
+  _Campi:_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`tenantsPersistenceService`], [`TenantsPersistenceService`], [Iniettato via constructor],
+    [`keycloakAdminService`], [`KeycloakAdminService`], [Iniettato via constructor],
+    [`apiClientService`], [`ApiClientService`], [Iniettato via constructor],
   )
 
-  === Admin
-  Questi endpoint sono accessibili solo agli utenti con ruolo `system_admin`:
+  _Metodi pubblici:_
 
-  ==== `GET /admin/tenants`
-  #endpoint-details(
-    [Restituisce l’elenco dei Tenant.],
-    [-],
-    [```json
-    [{
-      "id": "string",
-      "name": "string",
-      "status": "TenantStatus",
-      "created_at": "string"
-    }]
-    ```],
+  #table(
+    columns: (1.5fr, 2.6fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`getTenants()`],
+    [`(): Promise<TenantsModel[]>`],
+    [Recupera tutti i tenant dal database e li restituisce come array di modelli],
+
+    [`getTenantUsers(tenantId)`],
+    [`(tenantId: string): Promise<UserEntity[]>`],
+    [Recupera gli utenti di un tenant specifico],
+
+    [`createTenant(input)`],
+    [`(input: CreateTenantInput): Promise<TenantsModel>`],
+    [Crea un tenant in modo transazionale: entità DB, gruppo Keycloak, utente admin, client API. Rollback completo in
+      caso di errore],
+
+    [`updateTenant(input)`],
+    [`(input: UpdateTenantInput): Promise<TenantsModel>`],
+    [Aggiorna un tenant esistente; sincronizza il nome del gruppo su Keycloak se il nome è cambiato],
+
+    [`deleteTenant(input)`],
+    [`(input: DeleteTenantInput): Promise<void>`],
+    [Elimina un tenant e tutti i dati correlati: utenti, gateway, gruppo Keycloak, client API],
   )
 
-  ==== `GET /admin/tenants/:id/users`
-  #endpoint-details(
-    [Restituisce gli utenti associati a uno specifico Tenant.],
-    [-],
-    [```json
-    [{
-      "user_id": "string",
-      "role": "UsersRole"
-    }]
-    ```],
+  _Metodi privati:_
+  #table(
+    columns: (2fr, 3.5fr),
+    [Metodo], [Comportamento],
+    [`isSuspensionExpired(tenant)`],
+    [Verifica se un tenant sospeso ha superato il periodo di sospensione configurato confrontando `suspensionUntil` con
+      la data corrente],
+
+    [`reactivateTenantIfExpired(tenant)`],
+    [Riattiva automaticamente un tenant il cui periodo di sospensione è scaduto, impostando lo stato ad `ACTIVE`],
+
+    [`syncTenantUsersEnabledState(tenantId, status)`],
+    [Sincronizza lo stato enabled/disabled di tutti gli utenti del tenant su Keycloak in base allo stato del tenant],
   )
 
-  ==== `POST /admin/tenants`
-  #endpoint-details(
-    [Crea un nuovo Tenant e il relativo amministratore.],
-    [```json
-    {
-      "name": "string",
-      "admin_email": "string",
-      "admin_name": "string",
-      "admin_password": "string"
-    }
-    ```],
-    [```json
-    {
-      "id": "string",
-      "name": "string",
-      "status": "TenantStatus",
-      "created_at": "string"
-    }
-    ```],
+  ===== KeycloakAdminService
+
+  Servizio di integrazione con Keycloak IAM. Utilizza `ConfigService` per recuperare le credenziali di accesso e
+  comunica con le API REST di Keycloak tramite `fetch()`.
+
+  _Campi:_
+
+  #table(
+    columns: (2fr, 2.5fr, 2fr),
+    [Campo], [Tipo], [Note],
+    [`configService`], [`ConfigService`], [Iniettato; fornisce URL, realm, admin username/password],
   )
 
-  ==== `PATCH /admin/tenants/:id`
-  #endpoint-details(
-    [Aggiorna i dati di un Tenant.],
-    [```json
-    {
-      "name?": "string",
-      "status?": "TenantStatus",
-      "suspension_interval_days?": "number"
-    }
-    ```],
-    [```json
-    {
-      "id": "string",
-      "name": "string",
-      "status": "TenantStatus",
-      "updated_at": "string"
-    }
-    ```],
+  _Metodi pubblici:_
+
+  #table(
+    columns: (2fr, 2.5fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`createApiClient(name, tenantId)`],
+    [`(name: string, tenantId: string): Promise<ClientRepresentation>`],
+    [Crea un client OIDC su Keycloak per un tenant],
+
+    [`deleteApiClient(clientUuid)`], [`(clientUuid: string): Promise<void>`], [Elimina un client OIDC da Keycloak],
+
+    [`updateApiClient(clientUuid, name)`],
+    [`(clientUuid: string, name: string): Promise<void>`],
+    [Aggiorna il nome di un client OIDC],
+
+    [`createTenantAdminUser(input)`],
+    [`(input: CreateUserInput): Promise<string>`],
+    [Crea l'utente amministratore del tenant su Keycloak; restituisce l'ID utente],
+
+    [`createTenantUser(input)`],
+    [`(input: CreateUserInput): Promise<string>`],
+    [Crea un utente generico del tenant su Keycloak; restituisce l'ID utente],
+
+    [`getClientCredentialsToken()`],
+    [`(): Promise<string>`],
+    [Ottiene un token di accesso tramite client credentials grant],
+
+    [`deleteUser(userId)`], [`(userId: string): Promise<void>`], [Elimina un utente da Keycloak],
+
+    [`syncUserApplicationRole(userId, role)`],
+    [`(userId: string, role: string): Promise<void>`],
+    [Assegna o rimuove il ruolo applicativo a un utente],
+
+    [`updateUser(userId, updates)`],
+    [`(userId: string, updates: UserRepresentation): Promise<void>`],
+    [Aggiorna i dati di un utente su Keycloak],
+
+    [`setUserEnabled(userId, enabled)`],
+    [`(userId: string, enabled: boolean): Promise<void>`],
+    [Abilita o disabilita un utente su Keycloak],
+
+    [`updateTenantGroup(oldId, newId)`],
+    [`(oldId: string, newId: string): Promise<void>`],
+    [Rinomina il gruppo tenant su Keycloak],
+
+    [`deleteTenantGroup(tenantId)`], [`(tenantId: string): Promise<void>`], [Elimina il gruppo tenant da Keycloak],
   )
 
-  ==== `DELETE /admin/tenants/:id`
-  #endpoint-details(
-    [Elimina un Tenant.],
-    [-],
-    [```json
-    {
-      "status": 200
-    }
-    ```],
+  _Metodi privati:_
+
+  #table(
+    columns: (1.5fr, 3.5fr),
+    [Metodo], [Comportamento],
+    [`deleteUserWithToken(userId, token)`], [Elimina un utente utilizzando un token di accesso specifico],
+
+    [`ensureExclusiveAppRole(token, userId, role)`],
+    [Garantisce che l'utente abbia un solo ruolo applicativo, rimuovendo ruoli conflittuali],
+
+    [`ensureTenantGroup(token, tenantId)`], [Verifica o crea il gruppo tenant su Keycloak; restituisce il gruppo ID],
+
+    [`assignUserToGroup(token, userId, groupId)`], [Assegna un utente a un gruppo specifico su Keycloak],
+
+    [`getAdminAccessToken()`], [Ottiene il token di accesso amministrativo tramite le credenziali configurate],
+
+    [`getRequiredEnv(key)`], [Recupera una variabile d'ambiente obbligatoria; lancia se non presente],
+
+    [`buildTenantGroupName(tenantId)`], [Costruisce il nome del gruppo tenant: `tenant-<tenantId>`],
+
+    [`buildUserAttributes(input)`], [Costruisce la mappa degli attributi utente per Keycloak],
   )
 
-  ==== `GET /admin/gateways?tenant_id=:tenantId`
-  #endpoint-details(
-    [Restituisce tutti i Gateway, con filtro opzionale per Tenant.],
-    [-],
-    [```json
-    [{
-      "id": "string",
-      "tenant_id": "string"
-    }]
-    ```],
+  ===== TenantsPersistenceService
+
+  Layer di accesso ai dati. Utilizza due repository separati gestiti tramite TypeORM: `tenantRepo` per `TenantEntity` e
+  `userRepo` per `UserEntity`. Supporta le transazioni tramite `DataSource` (il parametro opzionale `manager` consente
+  di partecipare a una transazione esterna).
+
+  _Campi:_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`tenantRepo`], [`Repository<TenantEntity>`], [Repository TypeORM, schema `common`],
+    [`userRepo`], [`Repository<UserEntity>`], [Repository TypeORM, schema `users`],
+    [`dataSource`], [`DataSource`], [Iniettato per supporto transazioni],
   )
 
-  ==== `POST /admin/gateways`
-  #endpoint-details(
-    [Registra un nuovo Gateway per un Tenant.],
-    [```json
-    {
-      "factory_id": "string",
-      "tenant_id": "string",
-      "factory_key_hash": "string",
-      "firmware_version": "string",
-      "model": "string"
-    }
-    ```],
-    [```json
-    {
-      "id": "string"
-    }
-    ```],
+  _Metodi pubblici:_
+
+  #table(
+    columns: (2fr, 2.5fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`getTenants()`], [`(): Promise<TenantEntity[]>`], [Recupera tutti i tenant],
+
+    [`createTenant(input, manager?)`],
+    [`(input, manager?): Promise<TenantEntity>`],
+    [Crea un tenant con supporto transazionale],
+
+    [`updateTenant(input, manager?)`], [`(input, manager?): Promise<TenantEntity>`], [Aggiorna un tenant esistente],
+
+    [`deleteTenant(input, manager?)`],
+    [`(input, manager?): Promise<boolean>`],
+    [Elimina un tenant; restituisce `true` se eliminato],
+
+    [`createTenantAdminLocalUser(input, manager?)`],
+    [`(input, manager?): Promise<UserEntity>`],
+    [Crea l'utente amministratore locale nel database],
+
+    [`getTenantAdminUsers(tenantId)`],
+    [`(tenantId: string): Promise<UserEntity[]>`],
+    [Recupera solo gli utenti admin di un tenant],
+
+    [`getUsersByTenant(tenantId)`],
+    [`(tenantId: string): Promise<UserEntity[]>`],
+    [Recupera tutti gli utenti di un tenant],
   )
 
-  === Auth
-  Questi endpoint sono accessibili agli utenti autenticati; l’endpoint di impersonazione è riservato ai `system_admin`:
+  _Metodi privati:_
 
-  ==== `GET /auth/me`
-  #endpoint-details(
-    [Restituisce i dati dell’utente autenticato.],
-    [-],
-    [```json
-    {
-      "actor_user_id?": "string",
-      "actor_email?": "string",
-      "actor_name?": "string",
-      "actor_role?": "UsersRole",
-      "actor_tenant_id?": "string",
-      "effective_user_id": "string",
-      "effective_email": "string",
-      "effective_name": "string",
-      "effective_role": "UsersRole",
-      "effective_tenant_id": "string",
-      "is_impersonating": "boolean"
-    }
-    ```],
+  #table(
+    columns: (1.5fr, 3.5fr),
+    [Metodo], [Comportamento],
+    [`getTenantRepo(manager?)`],
+    [Restituisce il repository tenant: se `manager` è fornito usa il suo repository, altrimenti il default],
+
+    [`getUserRepo(manager?)`],
+    [Restituisce il repository user: se `manager` è fornito usa il suo repository, altrimenti il default],
   )
 
-  ==== `POST /auth/impersonate`
-  #endpoint-details(
-    [Genera un token di impersonazione per un utente.],
-    [```json
-    {
-      "user_id": "string"
-    }
-    ```],
-    [```json
-    {
-      "access_token": "string",
-      "expires_in": "number"
-    }
-    ```],
+  ===== TenantsMapper
+
+  Classe con metodi statici per la conversione tra i layer. Non ha dipendenze iniettate.
+
+  #table(
+    columns: (1.5fr, 3.5fr),
+    [Metodo], [Comportamento],
+    [`toModel(entity)`], [Converte `TenantEntity` in `TenantsModel`: mappa i campi uno-a-uno],
+
+    [`toResponseDto(model)`], [Converte `TenantsModel` in `TenantsResponseDto`: adatta i nomi per la risposta HTTP],
+
+    [`toUpdateResponseDto(model)`], [Converte `TenantsModel` in `UpdateTenantsResponseDto`: include `updatedAt`],
+
+    [`toSuspensionIntervalDays(model)`], [Calcola i giorni di sospensione dal modello, gestendo il caso `null`],
   )
 
-  === Gateways
-  Questi endpoint sono accessibili agli utenti del Tenant; le modifiche sono riservate ai `tenant_admin`:
+  ===== DTO e Input
 
-  ==== `GET /gateways`
-  #endpoint-details(
-    [Restituisce i Gateway del Tenant autenticato.],
-    [-],
-    [```json
-    [{
-      "id": "string",
-      "name": "string",
-      "status": "GatewayStatus",
-      "last_seen_at?": "string",
-      "provisioned": "boolean",
-      "firmware_version?": "string",
-      "send_frequency_ms?": "number"
-    }]
-    ```],
+  _CreateTenantRequestDto_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`name`], [`string`], [Nome del tenant],
+    [`adminEmail`], [`string`], [Email dell'utente amministratore],
+    [`adminUsername`], [`string`], [Username dell'utente amministratore],
+    [`adminPassword`], [`string`], [Password iniziale dell'amministratore],
   )
 
-  ==== `GET /gateways/:id`
-  #endpoint-details(
-    [Restituisce il dettaglio di un Gateway.],
-    [-],
-    [```json
-    {
-      "id": "string",
-      "name": "string",
-      "status": "GatewayStatus",
-      "last_seen_at?": "string",
-      "provisioned": "boolean",
-      "firmware_version?": "string",
-      "send_frequency_ms?": "number"
-    }
-    ```],
+  _UpdateTenantRequestDto_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`name`], [`string | null`], [Nuovo nome del tenant],
+    [`status`], [`TenantStatus | null`], [Nuovo stato del tenant],
+    [`suspensionIntervalDays`], [`number | null`], [Giorni prima della sospensione automatica],
   )
 
-  ==== `PATCH /gateways/:id`
-  #endpoint-details(
-    [Aggiorna il nome di un Gateway.],
-    [```json
-    { "name": "string" }
-    ```],
-    [```json
-    {
-      "id": "string",
-      "name": "string",
-      "status": "GatewayStatus",
-      "updated_at": "string"
-    }
-    ```],
+  _TenantsResponseDto_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`id`], [`string`], [Identificativo univoco del tenant],
+    [`name`], [`string`], [Nome del tenant],
+    [`status`], [`TenantStatus`], [Stato corrente del tenant],
+    [`createdAt`], [`string`], [Data di creazione in formato ISO 8601],
+    [`suspensionIntervalDays`], [`number`], [Giorni prima della sospensione automatica],
   )
 
-  ==== `DELETE /gateways/:id`
-  #endpoint-details(
-    [Elimina un Gateway.],
-    [-],
-    [```json
-    { "status": 200 }
-    ```],
+  _UpdateTenantsResponseDto_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`id`], [`string`], [Identificativo univoco del tenant],
+    [`name`], [`string`], [Nome del tenant],
+    [`status`], [`TenantStatus`], [Stato corrente del tenant],
+    [`updatedAt`], [`string`], [Data dell'ultimo aggiornamento in formato ISO 8601],
   )
 
-  === Users
-  Questi endpoint sono accessibili ai `tenant_admin`:
+  _DeleteTenantResponseDto_
 
-  ==== `GET /users`
-  #endpoint-details(
-    [Restituisce gli utenti del Tenant.],
-    [-],
-    [```json
-    [{
-      "id": "string",
-      "name": "string",
-      "email": "string",
-      "role": "UsersRole",
-      "last_access?": "string"
-    }]
-    ```],
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`message`], [`string`], [Messaggio di conferma dell'eliminazione],
   )
 
-  ==== `GET /users/:id`
-  #endpoint-details(
-    [Restituisce il dettaglio di un utente.],
-    [-],
-    [```json
-    {
-      "id": "string",
-      "name": "string",
-      "email": "string",
-      "role": "UsersRole",
-      "last_access?": "string"
-    }
-    ```],
+  _CreateTenantInput_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`name`], [`string`], [Nome del tenant],
+    [`adminEmail`], [`string`], [Email dell'utente amministratore],
+    [`adminUsername`], [`string`], [Username dell'utente amministratore],
+    [`adminPassword`], [`string`], [Password iniziale dell'amministratore],
   )
 
-  ==== `POST /users`
-  #endpoint-details(
-    [Crea un utente nel Tenant.],
-    [```json
-    {
-      "name": "string",
-      "email": "string",
-      "role": "UsersRole",
-      "password": "string"
-    }
-    ```],
-    [```json
-    {
-      "id": "string",
-      "name": "string",
-      "email": "string",
-      "role": "UsersRole",
-      "created_at": "string"
-    }
-    ```],
+  _UpdateTenantInput_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`id`], [`string`], [Identificativo del tenant da aggiornare],
+    [`name`], [`string | null`], [Nuovo nome del tenant],
+    [`status`], [`TenantStatus | null`], [Nuovo stato del tenant],
+    [`suspensionIntervalDays`], [`number | null`], [Giorni prima della sospensione automatica],
   )
 
-  ==== `PATCH /users/:id`
-  #endpoint-details(
-    [Aggiorna un utente del Tenant.],
-    [```json
-    {
-      "name?": "string",
-      "email?": "string",
-      "role?": "UsersRole"
-    }
-    ```],
-    [```json
-    {
-      "id": "string",
-      "name": "string",
-      "email": "string",
-      "role": "UsersRole",
-      "updated_at": "string"
-    }
-    ```],
+  _DeleteTenantInput_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`id`], [`string`], [Identificativo del tenant da eliminare],
   )
 
-  ==== `POST /users/bulk-delete`
-  #endpoint-details(
-    [Elimina più utenti in un’unica richiesta.],
-    [```json
-    { "ids": ["string"] }
-    ```],
-    [```json
-    {
-      "deleted": "number",
-      "failed": ["string"]
-    }
-    ```],
+  ===== Enum
+
+  _TenantStatus_
+
+  #table(
+    columns: (1.5fr, 4fr),
+    [Valore], [Descrizione],
+    [`ACTIVE`], [Tenant operativo, tutti i servizi sono attivi],
+    [`SUSPENDED`], [Tenant sospeso, gli utenti non possono accedere ai servizi],
   )
 
-  === API Clients
+  _UsersRole_
 
-  ==== `GET /api-clients`
-  #endpoint-details(
-    [Restituisce i client API del Tenant.],
-    [-],
-    [```json
-    [{
-      "id": "string",
-      "name": "string",
-      "client_id": "string",
-      "created_at": "string"
-    }]
-    ```],
+  #table(
+    columns: (1.5fr, 4fr),
+    [Valore], [Descrizione],
+    [`SYSTEM_ADMIN`], [Amministratore di sistema, accesso completo a tutti i tenant],
+    [`TENANT_ADMIN`], [Amministratore del tenant, gestisce utenti e configurazione del proprio tenant],
+    [`TENANT_USER`], [Utente standard del tenant, accesso limitato alle funzionalità concesse],
   )
 
-  ==== `POST /api-clients`
-  #endpoint-details(
-    [Crea un nuovo client API.],
-    [```json
-    { "name": "string" }
-    ```],
-    [```json
-    {
-      "id": "string",
-      "name": "string",
-      "client_id": "string",
-      "client_secret": "string",
-      "created_at": "string"
-    }
-    ```],
+  ===== Entità
+
+  _TenantEntity_ (schema `common`)
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`id`], [`uuid v4`], [Identificativo univoco generato automaticamente],
+    [`name`], [`string`], [Nome del tenant],
+    [`status`], [`TenantStatus`], [Stato corrente del tenant],
+    [`suspensionIntervalDays`], [`number | null`], [Giorni di sospensione],
+    [`suspensionUntil`], [`Date | null`], [Data di sospensione programmata],
+    [`createdAt`], [`Date`], [Timestamp di creazione del record],
+    [`updatedAt`], [`Date`], [Timestamp dell'ultimo aggiornamento],
   )
 
-  ==== `DELETE /api-clients/:id`
-  #endpoint-details(
-    [Elimina un client API.],
-    [-],
-    [-],
+  Relazioni: OneToMany con `UserEntity` (tramite `tenantId`), OneToMany con `GatewayEntity` (tramite `tenantId`).
+
+  _UserEntity_ (schema `users`)
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`id`], [`uuid`], [Identificativo univoco dell'utente],
+    [`tenantId`], [`string`], [FK verso `TenantEntity.id`],
+    [`username`], [`string`], [Username dell'utente],
+    [`email`], [`string`], [Email dell'utente],
+    [`role`], [`UsersRole`], [Ruolo dell'utente nel sistema],
+    [`permissions`], [`string[] | null`], [Permessi specifici aggiuntivi],
+    [`lastAccess`], [`Date | null`], [Timestamp dell'ultimo accesso],
+    [`createdAt`], [`Date`], [Timestamp di creazione del record],
   )
 
-  === Keys e Provisioning
+  ==== Admin Gateways
+  #figure(caption: "Diagramma del modulo Admin Gateways")[#image("assets/03-admin-gateways.svg")]
 
-  ==== `GET /keys?id=:gatewayId`
-  #endpoint-details(
-    [Restituisce le chiavi associate a un Gateway.],
-    [-],
-    [```json
-    [{
-      "gateway_id": "string",
-      "key_material": "Buffer",
-      "key_version": "number"
-    }]
-    ```],
+  Il sottosistema di gestione dei Gateway amministrativi si occupa della registrazione e consultazione dei gateway
+  associati ai tenant. Espone endpoint per elencare tutti i gateway (con filtro opzionale per tenant) e per registrare
+  nuovi gateway a partire da un factory ID e una chiave di provisioning.
+
+  ===== GatewaysController
+
+  Controller NestJS esposto sotto il prefisso `/admin/gateways`. Protetto dal decoratore `@AdminOnly()`, espone due
+  endpoint REST. Delega ogni operazione a `GatewaysService` e utilizza `GatewaysMapper` per trasformare i risultati nei
+  DTO di risposta appropriati.
+
+  #table(
+    columns: (2fr, 2fr, 3fr),
+    [Metodo], [Endpoint], [Note],
+    [`getAdminGateways(tenantId?)`],
+    [`GET /admin/gateways`],
+    [Restituisce la lista di tutti i gateway, con filtro opzionale per tenantId],
+
+    [`addGateway(input)`],
+    [`POST /admin/gateways`],
+    [Registra un nuovo gateway per un tenant a partire da factoryId, tenantId, factoryKey e model],
   )
 
-  ==== `POST /internal/provisioning/validate`
-  #endpoint-details(
-    [Valida factory ID e factory key del Gateway.],
-    [```json
-    {
-      "factory_id": "string",
-      "factory_key": "string"
-    }
-    ```],
-    [```json
-    {
-      "gateway_id": "string",
-      "tenant_id": "string"
-    }
-    ```],
+  ===== GatewaysService
+
+  Contiene la logica di business principale. Coordina `GatewaysPersistenceService` e utilizza il mapper per convertire
+  tra DTO e modelli di dominio.
+
+  _Campi:_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`gatewaysPersistenceService`], [`GatewaysPersistenceService`], [Iniettato via constructor],
   )
 
-  ==== `POST /internal/provisioning/complete`
-  #endpoint-details(
-    [Completa il provisioning del Gateway.],
-    [```json
-    {
-      "gateway_id": "string",
-      "key_material": "string",
-      "key_version": "number",
-      "send_frequency_ms": "number"
-    }
-    ```],
-    [```json
-    { "success": "boolean" }
-    ```],
+  _Metodi pubblici:_
+
+  #table(
+    columns: (1.2fr, 2.8fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`getGateways(input)`],
+    [`(input: GetGatewaysInput): Promise<GatewayModel[]>`],
+    [Recupera tutti i gateway dal database; se `tenantId` è fornito, filtra per tenant],
+
+    [`addGateway(input)`],
+    [`(input: AddGatewayInput): Promise<GatewayModel>`],
+    [Registra un nuovo gateway: hash della factoryKey con bcrypt, crea l'entità nel database con metadata di default],
   )
 
-  === Alerts
+  ===== GatewaysPersistenceService
 
-  ==== `GET /alerts/config`
-  #endpoint-details(
-    [Restituisce la configurazione alert di default.],
-    [-],
-    [```json
-    {
-      "default_timeout_ms": "integer",
-      "gateway_overrides": [{
-        "gateway_id": "string",
-        "timeout_ms": "integer"
-      }]
-    }
-    ```],
+  Layer di accesso ai dati. Utilizza due repository separati gestiti tramite TypeORM: `gatewayRepo` per `GatewayEntity`
+  e `metadataRepo` per `GatewayMetadataEntity`. Supporta le transazioni tramite `DataSource`.
+
+  _Campi:_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`gatewayRepo`], [`Repository<GatewayEntity>`], [Repository TypeORM, schema `gateways`],
+    [`metadataRepo`], [`Repository<GatewayMetadataEntity>`], [Repository TypeORM, schema `gateways`],
+    [`dataSource`], [`DataSource`], [Iniettato per supporto transazioni],
   )
 
-  ==== `GET /alerts?from=:from&to=:to&gateway_id=:gatewayId`
-  #endpoint-details(
-    [Restituisce gli alert del Tenant nel range richiesto.],
-    [-],
-    [```json
-    [{
-      "id": "string",
-      "gateway_id": "string",
-      "type": "AlertType",
-      "details": {
-        "last_seen": "string",
-        "timeout_configured": "number"
-      },
-      "created_at": "string"
-    }]
-    ```],
+  _Metodi pubblici:_
+
+  #table(
+    columns: (1.3fr, 2.8fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`getGateways(input)`],
+    [`(input: GetGatewaysInput): Promise<GatewayEntity[]>`],
+    [Recupera tutti i gateway; se `tenantId` è fornito, filtra con clausola WHERE],
+
+    [`addGateway(input)`],
+    [`(input: AddGatewayPersistenceInput): Promise<GatewayEntity>`],
+    [Crea il gateway e il relativo metadata in modo transazionale],
   )
 
-  ==== `PUT /alerts/config/default`
-  #endpoint-details(
-    [Imposta la configurazione alert di default.],
-    [```json
-    { "tenant_unreachable_timeout_ms": "number" }
-    ```],
-    [```json
-    {
-      "tenant_id": "string",
-      "timeout_ms": "number",
-      "updated_at": "string"
-    }
-    ```],
+  ===== GatewaysMapper
+
+  Classe con metodi statici per la conversione tra i layer. Non ha dipendenze iniettate.
+
+  #table(
+    columns: (1.5fr, 3.5fr),
+    [Metodo], [Comportamento],
+    [`toModel(entity)`], [Converte `GatewayEntity` in `GatewayModel`: mappa i campi uno-a-uno],
+
+    [`toResponseDto(model)`], [Converte `GatewayModel` in `GatewayResponseDto`: adatta i nomi per la risposta HTTP],
+
+    [`toAddGatewayInput(dto)`],
+    [Converte `AddGatewayRequestDto` in `AddGatewayInput`: hash della factoryKey con bcrypt],
+
+    [`toAddGatewayResponseDto(model)`], [Converte `GatewayModel` in `AddGatewayResponseDto`: restituisce solo l'`id`],
   )
 
-  ==== `PUT /alerts/config/gateway/:gatewayId`
-  #endpoint-details(
-    [Imposta la configurazione alert specifica per un Gateway.],
-    [```json
-    { "gateway_unreachable_timeout_ms": "number" }
-    ```],
-    [```json
-    {
-      "gateway_id": "string",
-      "timeout_ms": "number",
-      "updated_at": "string"
-    }
-    ```],
+  ===== DTO e Input
+
+  _AddGatewayRequestDto_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`factoryId`], [`string`], [Identificativo del factory di produzione],
+    [`tenantId`], [`string`], [Identificativo del tenant proprietario],
+    [`factoryKey`], [`string`], [Chiave di provisioning del gateway],
+    [`model`], [`string`], [Modello del gateway],
   )
 
-  ==== `DELETE /alerts/config/gateway/:gatewayId`
-  #endpoint-details(
-    [Elimina la configurazione alert specifica per un Gateway, tornando a utilizzare la configurazione di default.],
-    [-],
-    [```json
-    {
-      "status": 200
-    }
-    ```],
+  _AddGatewayResponseDto_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`id`], [`string`], [Identificativo univoco del gateway creato],
   )
 
-  === Thresholds
+  _GatewayResponseDto_
 
-  ==== `GET /thresholds`
-  #endpoint-details(
-    [Restituisce le soglie del Tenant.],
-    [-],
-    [```json
-    [{
-      "sensor_type?": "string",
-      "sensor_id?": "string",
-      "min_value": "number",
-      "max_value": "number",
-      "updated_at": "string"
-    }]
-    ```],
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`id`], [`string`], [Identificativo univoco del gateway],
+    [`tenantId`], [`string`], [Identificativo del tenant proprietario],
+    [`factoryId`], [`string`], [Identificativo del factory di produzione],
+    [`model`], [`string`], [Modello del gateway],
+    [`provisioned`], [`boolean`], [Indica se il gateway è stato provisionato],
+    [`firmwareVersion`], [`string | undefined`], [Versione del firmware installato],
+    [`createdAt`], [`string`], [Data di creazione in formato ISO 8601],
   )
 
-  ==== `PUT /thresholds/default`
-  #endpoint-details(
-    [Imposta la soglia di default per tipologia.],
-    [```json
-    {
-      "sensor_type": "string",
-      "min_value": "number",
-      "max_value": "number"
-    }
-    ```],
-    [```json
-    {
-      "sensor_type": "string",
-      "min_value": "number",
-      "max_value": "number",
-      "updated_at": "string"
-    }
-    ```],
+  _GetGatewaysInput_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`tenantId`], [`string | undefined`], [Filtro opzionale per tenant],
   )
 
-  ==== `PUT /thresholds/sensor/:sensorId`
-  #endpoint-details(
-    [Imposta o aggiorna la soglia per uno specifico sensore (override della soglia di default).],
-    [```json
-    {
-      "sensor_type": "string",
-      "min_value": "number",
-      "max_value": "number"
-    }
-    ```],
-    [```json
-    {
-      "sensor_id": "string",
-      "min_value": "number",
-      "max_value": "number",
-      "updated_at": "string"
-    }
-    ```],
+  _AddGatewayInput_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`factoryId`], [`string`], [Identificativo del factory di produzione],
+    [`tenantId`], [`string`], [Identificativo del tenant proprietario],
+    [`factoryKey`], [`string`], [Chiave di provisioning (in chiaro, verrà hashata)],
+    [`model`], [`string`], [Modello del gateway],
+    [`firmwareVersion`], [`string | undefined`], [Versione del firmware (opzionale)],
   )
 
-  ==== `DELETE /thresholds/sensor/:sensorId`
-  #endpoint-details(
-    [Elimina la soglia specifica di un sensore, ripristinando quella di default per tipologia.],
-    [-],
-    [```json
-    { "status": 200 }
-    ```],
+  _AddGatewayPersistenceInput_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`factoryId`], [`string`], [Identificativo del factory di produzione],
+    [`tenantId`], [`string`], [Identificativo del tenant proprietario],
+    [`factoryKeyHash`], [`string`], [Hash bcrypt della factoryKey],
+    [`model`], [`string`], [Modello del gateway],
+    [`firmwareVersion`], [`string | undefined`], [Versione del firmware (opzionale)],
   )
 
-  ==== `DELETE /thresholds/type/:sensorType`
-  #endpoint-details(
-    [Elimina la soglia di default per una intera tipologia di sensori.],
-    [-],
-    [```json
-    { "status": 200 }
-    ```],
+  ===== Enum
+
+  _GatewayStatus_
+
+  #table(
+    columns: (1.5fr, 4fr),
+    [Valore], [Descrizione],
+    [`GATEWAY_ONLINE`], [Gateway attivo e comunicante],
+    [`GATEWAY_OFFLINE`], [Gateway non raggiungibile],
+    [`GATEWAY_SUSPENDED`], [Gateway sospeso manualmente o automaticamente],
   )
 
-  === Commands
+  ===== Entità
 
-  ==== `POST /cmd/:gatewayId/config`
-  #endpoint-details(
-    [Invia una configurazione a un Gateway.],
-    [```json
-    {
-      "send_frequency_ms?": "number",
-      "status?": "string"
-    }
-    ```],
-    [```json
-    {
-      "command_id": "string",
-      "status": "queued",
-      "issued_at": "string"
-    }
-    ```],
+  _GatewayEntity_ (schema `gateways`)
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`id`], [`uuid v4`], [Identificativo univoco generato automaticamente],
+    [`tenantId`], [`string`], [FK verso `TenantEntity.id`],
+    [`factoryId`], [`string`], [Identificativo del factory di produzione],
+    [`factoryKeyHash`], [`string`], [Hash bcrypt della chiave di provisioning; `select: false` per sicurezza],
+    [`provisioned`], [`boolean`], [Indica se il gateway è stato provisionato],
+    [`model`], [`string`], [Modello del gateway],
+    [`firmwareVersion`], [`string`], [Versione del firmware installato],
+    [`createdAt`], [`Date`], [Timestamp di creazione del record],
+    [`updatedAt`], [`Date`], [Timestamp dell'ultimo aggiornamento],
   )
 
-  ==== `POST /cmd/:gatewayId/firmware`
-  #endpoint-details(
-    [Invia un comando di aggiornamento firmware a uno specifico Gateway.],
-    [```json
-    {
-      "firmware_version": "string",
-      "download_url": "string"
-    }
-    ```],
-    [```json
-    {
-      "command_id": "string",
-      "status": "queued",
-      "issued_at": "string"
-    }
-    ```],
+  Relazioni: ManyToOne con `TenantEntity` (tramite `tenantId`, cascade delete), OneToOne con `GatewayMetadataEntity`
+  (cascade).
+
+  _GatewayMetadataEntity_ (schema `gateways`)
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`gatewayId`], [`uuid`], [FK verso `GatewayEntity.id`, chiave primaria],
+    [`name`], [`string`], [Nome descrittivo del gateway; offuscato alla vista dell'admin],
+    [`status`], [`GatewayStatus`], [Stato corrente del gateway],
+    [`lastSeenAt`], [`Date`], [Timestamp dell'ultima comunicazione ricevuta],
+    [`sendFrequencyMs`], [`number`], [Frequenza di invio dati in millisecondi; default: 30000],
   )
 
-  ==== `GET /cmd/:gatewayId/status/:commandId`
-  #endpoint-details(
-    [Restituisce lo stato corrente di esecuzione di un comando specifico.],
-    [-],
-    [```json
-    {
-      "command_id": "string",
-      "status": "CommandStatus",
-      "timestamp?": "string"
-    }
-    ```],
+  === AuthModule
+  #figure(caption: "Diagramma del modulo Auth")[#image("assets/05-auth.png")]
+
+  Il modulo di autenticazione gestisce la validazione JWT tramite Keycloak, il controllo degli accessi basato sui ruoli,
+  la politica di accesso per endpoint e il meccanismo di impersonificazione utente.
+
+  ==== AuthController
+
+  Controller NestJS esposto sotto il prefisso `/auth`. Espone endpoint per consultare i dati dell'utente autenticato,
+  verificare lo stato del tenant e generare token di impersonificazione.
+
+  #table(
+    columns: (1.2fr, 2.5fr, 2.3fr),
+    [Metodo], [Endpoint], [Note],
+    [`getMe(req)`],
+    [`GET /auth/me`],
+    [Restituisce i dati dell'utente autenticato come `AuthenticatedUser`; include informazioni su actor ed effective
+      user],
+
+    [`getTenantStatus(req)`],
+    [`GET /auth/tenant-status`],
+    [Restituisce lo stato del tenant corrente; riattiva automaticamente le sospensioni scadute],
+
+    [`impersonate(body, req)`],
+    [`POST /auth/impersonate`],
+    [Genera un token di impersonificazione per un utente target; riservato ai `SYSTEM_ADMIN`; protetto da
+      `@AdminOnly()`],
   )
 
-  === Costs
+  _Metodi privati:_
 
-  ==== `GET /costs`
-  #endpoint-details(
-    [Restituisce i costi correnti del Tenant.],
-    [-],
-    [```json
-    {
-      "storage_gb": "number",
-      "bandwidth_gb": "number"
-    }
-    ```],
+  #table(
+    columns: (1.5fr, 3.5fr),
+    [Metodo], [Comportamento],
+    [`isSuspensionExpired(tenant)`], [Verifica se `status === SUSPENDED` e `suspensionUntil` è nel passato],
+
+    [`reactivateTenantIfExpired(tenant)`],
+    [Se la sospensione è scaduta: imposta `status = ACTIVE`, `suspensionIntervalDays = null`,
+      `suspensionUntil = null`],
   )
 
-  === Audit
-  Questi endpoint sono accessibili ai `tenant_admin`:
+  ==== ImpersonationService
 
-  ==== `GET /audit?from=:from&to=:to&userId=:userId&action=:action`
-  #endpoint-details(
-    [Restituisce i log di audit del tenant nel range richiesto. I parametri `from` e `to` sono obbligatori, `userId` e
-      `action` opzionali.],
-    [-],
-    [```json
-    [{
-      "id": "string",
-      "user_id": "string",
-      "action": "string",
-      "resource": "string",
-      "details": {},
-      "timestamp": "string"
-    }]
-    ```],
+  Servizio per il token exchange con Keycloak. Consente a un amministratore di sistema di ottenere un token JWT per
+  impersonare un altro utente.
+
+  _Campi:_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`config`], [`ConfigService`], [Iniettato; fornisce credenziali Keycloak],
   )
 
-  == Integrazioni NATS e JetStream
+  _Metodi pubblici:_
 
-  Oltre alle API HTTP, il microservizio partecipa a diversi flussi asincroni e request-reply su NATS/JetStream. Di
-  seguito sono riportati i canali principali effettivamente gestiti dal servizio:
+  #table(
+    columns: (1.5fr, 2.5fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`impersonateUser(...)`],
+    [`({ adminAccessToken, targetUserId }): Promise<{ access_token, expires_in }>`],
+    [Esegue token exchange OAuth 2.0 con Keycloak; `grant_type: urn:ietf:params:oauth:grant-type:token-exchange`],
+  )
 
-  #figure(
-    caption: [Subject NATS e JetStream del microservizio `notip-management-api`],
-  )[
-    #set text(size: 9pt)
-    #table(
-      columns: (1.8fr, 1.2fr, 2.5fr),
-      [Subject], [Tipologia], [Responsabilità del microservizio],
-      [`internal.mgmt.gateway.update-status`],
-      [Core NATS Request-Reply],
-      [Riceve aggiornamenti di stato dei gateway e persiste `status` e `last_seen_at`.],
+  ==== JwtStrategy
 
-      [`internal.mgmt.factory.validate`],
-      [Core NATS Request-Reply],
-      [Valida `factory_id` e `factory_key` durante il provisioning e restituisce `gateway_id` e `tenant_id`.],
+  Strategia Passport per la validazione JWT. Verifica i token JWT provenienti da Keycloak tramite JWKS.
 
-      [`internal.mgmt.gateway.get-status`],
-      [Core NATS Request-Reply],
-      [Restituisce lo stato lifecycle di un gateway in formato compatibile con i servizi chiamanti.],
+  _Campi:_
 
-      [`internal.mgmt.alert-configs.list`],
-      [Core NATS Request-Reply],
-      [Espone la configurazione alert di tutti i tenant/gateway ad altri microservizi interni.],
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`configService`], [`ConfigService`], [Iniettato; fornisce URL, realm, issuer, client ID],
+    [`managementClientId`], [`string`], [Memorizzato per il matching dell'audience],
+  )
 
-      [`internal.mgmt.provisioning.complete`],
-      [Core NATS Request-Reply],
-      [Completa il provisioning di un gateway e persiste il materiale chiave ricevuto.],
+  _Metodi pubblici:_
 
-      [`internal.cost`],
-      [Core NATS Request-Reply],
-      [Richiede dati di costo ad altri servizi per comporre la response dell’endpoint `/costs`.],
+  #table(
+    columns: (1.5fr, 2.5fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`validate(payload)`],
+    [`(payload: JwtClaims): AuthenticatedUser`],
+    [Estrae ruolo, tenant, informazioni di impersonazione dal payload JWT; costruisce `AuthenticatedUser`],
+  )
 
-      [`command.gw.{tenantId}.{gatewayId}`],
-      [JetStream Publish],
-      [Pubblica i comandi applicativi destinati a uno specifico gateway.],
+  ==== Guards
 
-      [`command.ack.>`],
-      [JetStream Subscribe],
-      [Consuma gli acknowledgement dei gateway e aggiorna lo stato dei comandi persistiti.],
+  Il modulo registra quattro guard globali come `APP_GUARD`:
 
-      [`alert.{tenantId}.gw_offline`],
-      [JetStream Subscribe],
-      [Consuma gli alert di gateway offline e li persiste come eventi applicativi.],
+  _JwtAuthGuard_ — Estende `AuthGuard('jwt')`. Se la policy è `PUBLIC` (decoratore `@Public()`), bypassa la validazione
+  JWT. Altrimenti delega a Passport per la validazione del token.
 
-      [`gateway.decommissioned.{tenantId}.{gatewayId}`],
-      [JetStream Publish],
-      [Pubblica l’evento di decommissioning quando un gateway viene eliminato.],
-    )
-  ]
-  == Errori
-  Di seguito sono elencati i principali codici di errore restituiti dagli endpoint del microservizio, con una breve
-  descrizione di ciascuno. In caso di errori non gestiti o eccezioni impreviste, il microservizio restituisce un errore
-  generico 500 Internal Server Error.
+  _AccessPolicyGuard_ — Applica le policy di accesso: `ADMIN` richiede `SYSTEM_ADMIN`, `TENANT` richiede un
+  `effectiveTenantId`. Se il tenant è `SUSPENDED`, solleva `ForbiddenException`. Riattiva automaticamente le sospensioni
+  scadute.
 
-  #figure(
-    caption: [Codici di errore del microservizio `notip-management-api`],
-  )[
-    #table(
-      columns: (auto, auto, 2.2fr),
-      align: (left, left, left),
-      [Codice], [Errore], [Descrizione],
-      [401], [Unauthorized], [Client non autorizzato.],
-      [403],
-      [Forbidden],
-      [Accesso negato, mancanza di permessi necessari, oppure nei casi di endpoint bloccati a chi sta impersonando un
-        altro utente.],
+  _RolesGuard_ — Verifica che `user.effectiveRole` sia presente nell'array di ruoli richiesto dal decoratore `@Roles()`.
 
-      [404], [Not Found], [Risorsa richiesta non trovata.],
-      [409],
-      [Conflict],
-      [Conflitto nello stato della risorsa, ad esempio tentativo di creare un Gateway con factory_id già esistente.],
+  _BlockImpersonationGuard_ — Se il decoratore `@BlockImpersonation()` è impostato e l'utente sta impersonando, registra
+  un evento audit `IMPERSONATION_BLOCKED` e solleva `ForbiddenException`.
 
-      [500],
-      [Internal Server Error],
-      [Errore generico del server, in caso di eccezioni non gestite o errori imprevisti.],
+  ==== Interfacce
 
-      [503], [Service Unavailable],
+  _AuthenticatedUser_
 
-      [Il servizio non è disponibile, ad esempio in caso di problemi di connessione con NATS o a Keycloak.],
-    )
-  ]
-  == Decisioni implementative
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`actorUserId`], [`string`], [ID dell'utente che sta agendo (impersonante)],
+    [`actorEmail`], [`string | undefined`], [Email dell'attore],
+    [`actorName`], [`string | undefined`], [Nome dell'attore],
+    [`actorRole`], [`UsersRole`], [Ruolo dell'attore],
+    [`actorTenantId`], [`string | undefined`], [Tenant ID dell'attore],
+    [`effectiveUserId`], [`string`], [ID dell'utente target (effettivo)],
+    [`effectiveEmail`], [`string | undefined`], [Email dell'utente effettivo],
+    [`effectiveName`], [`string | undefined`], [Nome dell'utente effettivo],
+    [`effectiveRole`], [`UsersRole`], [Ruolo dell'utente effettivo],
+    [`effectiveTenantId`], [`string | undefined`], [Tenant ID dell'utente effettivo],
+    [`isImpersonating`], [`boolean`], [Indica se è attiva l'impersonificazione],
+  )
 
-  #st.design-rationale(title: "Interfacce tra le componenti dei moduli")[
-    Sono state definite interfacce specifiche per la comunicazione tra i componenti dei moduli, in particolare per il
-    passaggio dei parametri dei metodi tra *`Controller`* e *`Service`* e tra *`Service`* e *`PersistenceService`*.
-    Questa scelta è stata motivata dalla volontà di mantenere una chiara separazione tra i livelli dell'applicazione,
-    evitando di esporre direttamente i dati delle richieste fatte dal controller ai layer inferiori. Le interfacce
-    consentono di definire contratti chiari e stabili tra i componenti, facilitando la manutenzione e l'evoluzione del
-    codice, oltre a migliorare la testabilità isolata dei singoli componenti.
-  ]
+  === KeysModule
+  #figure(caption: "Diagramma del modulo KeysModule")[#image("assets/09-keys.svg")]
 
-  #st.design-rationale(title: "Introduzione di Mappers tra i layer")[
-    L'utilizzo di *`Persistence Entities`*, *`Business Models`* e *`DTO`* ha portato alla necessità di introdurre
-    componenti di mapping dedicati per permettere una conversione corretta e centralizzata dei dati tra i diversi layer
-    del modulo. I *`Mapper`* consentono di incapsulare la logica di trasformazione dei dati, mantenendo i controller e i
-    servizi focalizzati sulle rispettive responsabilità di esposizione API e logica applicativa, senza doversi
-    preoccupare dei dettagli di conversione tra i formati dei dati. Questa scelta migliora la manutenibilità del codice,
-    riduce la duplicazione e facilita l'introduzione di eventuali modifiche future nei formati dei dati o nelle
-    strutture delle entità senza impattare direttamente la logica di business o i contratti esposti.
-  ]
+  Il modulo di gestione delle chiavi gestisce il provisioning delle chiavi AES-256 per i gateway, la validazione delle
+  chiavi di fabbrica e il completamento del provisioning. Implementa crittografia trasparente a livello di persistenza.
+
+  ==== KeysController
+
+  Controller NestJS esposto sotto il prefisso `/keys`. Protetto da `@TenantScoped()` e `@BlockImpersonation()`.
+
+  #table(
+    columns: (1.2fr, 2.5fr, 2.3fr),
+    [Metodo], [Endpoint], [Note],
+    [`getKeys(tenantId, id)`],
+    [`GET /keys?id=<gatewayId>`],
+    [Restituisce tutte le chiavi per un gateway specifico; richiede `tenantId` dal contesto],
+  )
+
+  ==== ProvisioningController
+
+  Controller pubblico per il provisioning interno. Protetto da `@Public()`.
+
+  #table(
+    columns: (1.2fr, 2.5fr, 2.3fr),
+    [Metodo], [Endpoint], [Note],
+    [`validate(dto)`],
+    [`POST /internal/provisioning/validate`],
+    [Valida una chiave di fabbrica; restituisce `gateway_id` e `tenant_id` se valida],
+
+    [`complete(dto)`],
+    [`POST /internal/provisioning/complete`],
+    [Completa il provisioning con materiale crittografico; restituisce `{ success: true }`],
+  )
+
+  ==== KeysService
+
+  Contiene la logica di business principale. Coordina `GatewaysKeysPersistenceService`, `GatewaysService` e
+  `DataSource`.
+
+  _Campi:_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`gkp`], [`GatewaysKeysPersistenceService`], [Iniettato via constructor],
+    [`gs`], [`GatewaysService`], [Iniettato via constructor],
+    [`dataSource`], [`DataSource`], [Iniettato per supporto transazioni],
+  )
+
+  _Metodi pubblici:_
+
+  #table(
+    columns: (1.5fr, 2.5fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`getKeys(id, tenantId?)`],
+    [`(id: string, tenantId?): Promise<KeyModel[]>`],
+    [Verifica ownership del gateway; solleva `ForbiddenException` se tenantId non corrisponde; restituisce le chiavi],
+
+    [`saveKeys(id, keyMaterial, keyVersion)`],
+    [`(id, keyMaterial, keyVersion): Promise<KeyModel>`],
+    [Persiste una nuova chiave per il gateway],
+
+    [`validateFactoryKey(factoryId, factoryKey)`],
+    [`(factoryId, factoryKey): Promise<{ gatewayId, tenantId }>`],
+    [Cerca gateway per factoryId; verifica hash con bcrypt; solleva `UnauthorizedException` o `ConflictException`],
+
+    [`completeProvisioning(...)`],
+    [`(gatewayId, keyMaterial, keyVersion, sendFrequencyMs, firmwareVersion?): Promise<void>`],
+    [Transazione: crea KeyEntity, aggiorna GatewayMetadata, imposta provisioned=true, factoryKeyHash=null],
+
+    [`provisionGateway(...)`],
+    [`(factoryId, factoryKey, keyMaterial, firmwareVersion, model): Promise<void>`],
+    [Valida factory key, calcola nextVersion, salva nuova KeyEntity, aggiorna gateway],
+  )
+
+  ==== GatewaysKeysPersistenceService
+
+  Layer di accesso ai dati per le chiavi.
+
+  _Campi:_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`r`], [`Repository<KeyEntity>`], [Repository TypeORM iniettato],
+  )
+
+  _Metodi pubblici:_
+
+  #table(
+    columns: (1.5fr, 2.5fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`getKeys(id)`], [`(id: string): Promise<KeyEntity[]>`], [Trova tutte le chiavi per `gatewayId`],
+
+    [`saveKeys(id, keyMaterial, keyVersion)`],
+    [`(id, keyMaterial, keyVersion): Promise<KeyEntity>`],
+    [Crea e salva una nuova `KeyEntity`],
+  )
+
+  ==== Crittografia del Materiale Chiave
+
+  Il file `key-material-encryption.ts` fornisce crittografia AES-256-GCM trasparente per la colonna `keyMaterial` di
+  `KeyEntity` tramite un `ValueTransformer` TypeORM.
+
+  _Costanti:_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Costante], [Tipo], [Valore],
+    [`ENCRYPTION_PREFIX`], [`Buffer`], [`Buffer.from('enc:v1:')` — 7 byte],
+    [`IV_LENGTH`], [`number`], [12 byte],
+    [`AUTH_TAG_LENGTH`], [`number`], [16 byte],
+    [`AES_256_KEY_LENGTH`], [`number`], [32 byte],
+  )
+
+  _Funzioni esportate:_
+
+  #table(
+    columns: (1.5fr, 2.5fr, 2fr),
+    [Funzione], [Firma], [Note],
+    [`encryptKeyMaterial(value)`],
+    [`(value: Buffer): Buffer`],
+    [Genera IV casuale, cifra con AES-256-GCM, restituisce `[prefix | IV | authTag | encrypted]`],
+
+    [`decryptKeyMaterial(value)`],
+    [`(value: Buffer): Buffer`],
+    [Se inizia con prefix: estrae IV, authTag, decripta. Altrimenti (legacy): restituisce unchanged],
+  )
+
+  _keyMaterialTransformer_ — Oggetto `ValueTransformer` TypeORM con metodi `to` (cripta in scrittura) e `from` (decripta
+  in lettura). Applicato alla colonna `keyMaterial` di `KeyEntity`.
+
+  _Funzioni helper (non esportate):_
+
+  #table(
+    columns: (1.5fr, 3.5fr),
+    [Funzione], [Comportamento],
+    [`normalizeKey(rawKey)`],
+    [Normalizza la chiave di crittografia da `DB_ENCRYPTION_KEY`: accetta hex (64 char), base64, o UTF-8 (32 byte)],
+
+    [`getEncryptionKey()`],
+    [Legge `DB_ENCRYPTION_KEY` dall'env e chiama `normalizeKey()` per produrre il buffer a 32 byte],
+  )
+
+  ==== DTO e Input
+
+  _ValidateFactoryKeyRequestDto_ — `factory_id: string`, `factory_key: string`.
+
+  _ValidateFactoryKeyResponseDto_ — `gateway_id: string`, `tenant_id: string`.
+
+  _ProvisioningCompleteRequestDto_ — `gateway_id: string`, `key_material: string`, `key_version: number`,
+  `send_frequency_ms: number`, `firmware_version?: string`.
+
+  _ProvisioningCompleteResponseDto_ — `success: boolean`.
+
+  _KeysResponseDto_ — `gateway_id: string`, `key_material: string` (base64), `key_version: number`.
+
+  ==== Entità
+
+  _KeyEntity_ (tabella `keys`)
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`id`], [`uuid v4`], [Identificativo univoco generato automaticamente],
+    [`gatewayId`], [`uuid`], [FK verso `GatewayEntity.id`; cascade delete],
+    [`keyMaterial`], [`Buffer`], [Materiale crittografato con AES-256-GCM; trasformatore automatico],
+    [`keyVersion`], [`number`], [Versione della chiave],
+    [`createdAt`], [`Date`], [Timestamp di creazione],
+    [`revokedAt`], [`Date | null`], [Timestamp di revoca (opzionale)],
+  )
+
+  === UsersModule
+  #figure(caption: "Diagramma del modulo UsersModule")[#image("assets/12-users.svg")]
+
+  Il modulo di gestione degli utenti gestisce le operazioni CRUD sugli utenti del tenant, inclusa la sincronizzazione
+  con Keycloak per la creazione, l'aggiornamento dei ruoli e l'eliminazione.
+
+  ==== UsersController
+
+  Controller NestJS esposto sotto il prefisso `/users`. Protetto da `@TenantScoped()`. Tutti gli endpoint richiedono
+  `TENANT_ADMIN`.
+
+  #table(
+    columns: (1.2fr, 2.5fr, 2.3fr),
+    [Metodo], [Endpoint], [Note],
+    [`getUsers(tenantId)`], [`GET /users`], [Restituisce la lista di tutti gli utenti del tenant],
+
+    [`getUserById(tenantId, id)`], [`GET /users/:id`], [Restituisce il dettaglio di un singolo utente],
+
+    [`createUser(tenantId, dto)`],
+    [`POST /users`],
+    [Crea un nuovo utente; protetto da `@Audit` e `@Roles(TENANT_ADMIN)`],
+
+    [`updateUser(tenantId, id, dto)`],
+    [`PATCH /users/:id`],
+    [Aggiorna un utente esistente; sincronizza ruolo e dati con Keycloak],
+
+    [`deleteUsers(tenantId, requesterId, requesterRole, dto)`],
+    [`POST /users/bulk-delete`],
+    [Eliminazione bulk di utenti; previene auto-eliminazione e protezione TENANT_ADMIN],
+  )
+
+  ==== UsersService
+
+  Contiene la logica di business. Coordina `UsersPersistenceService` e `KeycloakAdminService`.
+
+  _Campi:_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`ps`], [`UsersPersistenceService`], [Iniettato via constructor],
+    [`keycloakAdminService`], [`KeycloakAdminService`], [Iniettato via constructor],
+    [`logger`], [`Logger`], [Logger interno],
+  )
+
+  _Metodi pubblici:_
+
+  #table(
+    columns: (1.5fr, 2.5fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`getUsers(input)`],
+    [`(input: GetUsersInput): Promise<UserModel[]>`],
+    [Recupera gli utenti del tenant; solleva `NotFoundException` se la lista è vuota],
+
+    [`createUser(input)`],
+    [`(input: CreateUserInput): Promise<UserModel>`],
+    [Blocca `SYSTEM_ADMIN`; crea utente su Keycloak; salva nel DB; rollback Keycloak se il DB fallisce],
+
+    [`updateUser(input)`],
+    [`(input: UpdateUserInput): Promise<UserModel>`],
+    [Blocca `SYSTEM_ADMIN`; aggiorna DB; sincronizza ruolo e dati con Keycloak se cambiati],
+
+    [`deleteUsers(input)`],
+    [`(input: DeleteUsersInput): Promise<number>`],
+    [Filtra auto-eliminazione; blocca eliminazione TENANT_ADMIN da non-SYSTEM_ADMIN; cancella da Keycloak e DB],
+  )
+
+  _Metodi privati:_
+
+  #table(
+    columns: (1.5fr, 3.5fr),
+    [Metodo], [Comportamento],
+    [`normalizeUsername(username)`],
+    [Trim, lowercase, capitalizza prima lettera; restituisce stringa vuota se risultato vuoto],
+  )
+
+  ==== UsersPersistenceService
+
+  Layer di accesso ai dati per gli utenti.
+
+  _Campi:_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`r`], [`Repository<UserEntity>`], [Repository TypeORM iniettato],
+  )
+
+  _Metodi pubblici:_
+
+  #table(
+    columns: (1.5fr, 2.5fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`getUsers(tenantId)`], [`(tenantId: string): Promise<UserEntity[]>`], [Trova tutti gli utenti per `tenantId`],
+
+    [`getTenantAdmins(tenantId)`], [`(tenantId: string): Promise<UserEntity[]>`], [Trova gli amministratori del tenant],
+
+    [`createUser(input)`], [`(input): Promise<UserEntity>`], [Crea e salva un nuovo `UserEntity`],
+
+    [`updateUser(input)`],
+    [`(input): Promise<UserEntity | null>`],
+    [Trova per `id + tenantId`; aggiorna solo i campi forniti; restituisce `null` se non trovato],
+
+    [`getUsersByIds(ids, tenantId)`],
+    [`(ids, tenantId): Promise<UserEntity[]>`],
+    [Trova utenti per lista di ID con clausola `In(ids)`],
+
+    [`touchLastAccess(userId, timestamp?)`],
+    [`(userId, timestamp?): Promise<void>`],
+    [Aggiorna `lastAccess` al timestamp corrente o fornito],
+
+    [`deleteUsersByIds(ids, tenantId)`],
+    [`(ids, tenantId): Promise<number>`],
+    [Elimina utenti per lista di ID; restituisce il numero di righe eliminate],
+  )
+
+  ==== DTO
+
+  _CreateUserRequestDto_ — `username: string`, `email: string`, `role: UsersRole`, `password: string`.
+
+  _CreateUserResponseDto_ — `id: string`, `username: string`, `email: string`, `role: UsersRole`, `created_at: string`.
+
+  _UpdateUserRequestDto_ — `username?: string`, `email?: string`, `role?: UsersRole`, `permissions?: string[]`.
+
+  _UpdateUserResponseDto_ — `id: string`, `username: string`, `email: string`, `role: UsersRole`, `updated_at: string`.
+
+  _DeleteUserRequestDto_ — `ids: string[]` (UUID v4).
+
+  _DeleteUserResponseDto_ — `deleted: number`, `failed: string[]`.
+
+  _UserResponseDto_ — `id: string`, `username: string`, `email: string`, `role: UsersRole`,
+  `last_access: string | null`.
+
+  ==== Entità
+
+  _UserEntity_ (tabella `users`)
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`id`], [`uuid`], [Chiave primaria],
+    [`tenantId`], [`string`], [FK verso `TenantEntity.id`; cascade delete],
+    [`username`], [`string`], [Username dell'utente],
+    [`email`], [`string`], [Email dell'utente],
+    [`role`], [`UsersRole`], [Ruolo; default: `TENANT_USER`],
+    [`permissions`], [`string[] | null`], [Permessi specifici in formato JSONB],
+    [`lastAccess`], [`Date | null`], [Ultimo accesso],
+    [`createdAt`], [`Date`], [Timestamp di creazione],
+  )
+
+  Relazione: ManyToOne con `TenantEntity` (tramite `tenantId`, cascade delete).
+
+  === AlertsModule
+  #figure(caption: "Diagramma del modulo AlertsModule")[#image("assets/04-alerts.svg")]
+
+  Il modulo di gestione degli alert gestisce la configurazione dei timeout di irraggiungibilità dei gateway e la
+  registrazione degli eventi di gateway offline. Supporta configurazioni di default per tenant e override per singolo
+  gateway.
+
+  ==== AlertsController
+
+  Controller NestJS esposto sotto il prefisso `/alerts`. Protetto da `@TenantScoped()`.
+
+  #table(
+    columns: (1.2fr, 2.5fr, 2.3fr),
+    [Metodo], [Endpoint], [Note],
+    [`getAlerts(tenantId, from?, to?, gatewayId?)`],
+    [`GET /alerts`],
+    [Restituisce gli alert del tenant con filtri opzionali per data e gateway],
+
+    [`getAlertsConfig(tenantId)`],
+    [`GET /alerts/config`],
+    [Restituisce la configurazione degli alert: timeout di default e override per gateway],
+
+    [`setDefaultAlertsConfig(tenantId, dto)`],
+    [`PUT /alerts/config/default`],
+    [Imposta il timeout di default per il tenant; protetto da `@Audit` e `@Roles(TENANT_ADMIN)`],
+
+    [`setGatewayAlertsConfig(tenantId, gatewayId, dto)`],
+    [`PUT /alerts/config/gateway/:gatewayId`],
+    [Imposta il timeout per un gateway specifico; protetto da `@Audit` e `@Roles(TENANT_ADMIN)`],
+
+    [`deleteGatewayAlertsConfig(tenantId, gatewayId)`],
+    [`DELETE /alerts/config/gateway/:gatewayId`],
+    [Elimina la configurazione per un gateway; protetto da `@Audit` e `@Roles(TENANT_ADMIN)`],
+  )
+
+  ==== AlertsService
+
+  Contiene la logica di business. Coordina `AlertsPersistenceService` e `GatewaysService`.
+
+  _Campi:_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`aps`], [`AlertsPersistenceService`], [Iniettato via constructor],
+    [`gatewayService`], [`GatewaysService`], [Iniettato via constructor per validazione ownership],
+  )
+
+  _Metodi pubblici:_
+
+  #table(
+    columns: (1.5fr, 2.5fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`setGatewayAlertsConfig(input)`],
+    [`(input): Promise<AlertsConfigEntity>`],
+    [Verifica ownership gateway; solleva `NotFoundException` o `ForbiddenException`; upsert della configurazione],
+
+    [`deleteGatewayAlertsConfig(tenantId, gatewayId)`],
+    [`(tenantId, gatewayId): Promise<void>`],
+    [Verifica ownership; elimina configurazione; solleva `NotFoundException` se non eliminata],
+
+    [`setDefaultAlertsConfig(input)`],
+    [`(input): Promise<AlertsConfigEntity>`],
+    [Imposta o aggiorna il timeout di default per il tenant],
+
+    [`getAlertsConfig(input)`],
+    [`(input): Promise<AlertsConfigModel>`],
+    [Recupera tutte le configurazioni del tenant; mappa in modello con default + override],
+
+    [`getAlerts(input)`],
+    [`(input): Promise<AlertsModel[]>`],
+    [Recupera gli alert con filtri opzionali per data e gateway],
+  )
+
+  ==== AlertsPersistenceService
+
+  Layer di accesso ai dati per alert e configurazioni.
+
+  _Campi:_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`r`], [`Repository<AlertsEntity>`], [Repository per gli alert],
+    [`rac`], [`Repository<AlertsConfigEntity>`], [Repository per le configurazioni],
+  )
+
+  _Metodi pubblici:_
+
+  #table(
+    columns: (1.5fr, 2.5fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`setGatewayAlertsConfig(input)`],
+    [`(input): Promise<AlertsConfigEntity>`],
+    [Upsert su `['tenantId', 'gatewayId']`; restituisce l'entità aggiornata],
+
+    [`deleteGatewayAlertsConfig(tenantId, gatewayId)`],
+    [`(tenantId, gatewayId): Promise<boolean>`],
+    [Elimina configurazione; restituisce `true` se righe eliminate],
+
+    [`setDefaultAlertsConfig(input)`],
+    [`(input): Promise<AlertsConfigEntity>`],
+    [Trova l'ultimo default esistente; aggiorna o crea nuovo; elimina duplicati stale],
+
+    [`getAlertsConfig(tenantId)`],
+    [`(tenantId): Promise<AlertsConfigEntity[]>`],
+    [Trova tutte le configurazioni del tenant con relazione gateway],
+
+    [`findAllAlertConfigs()`],
+    [`(): Promise<AlertsConfigEntity[]>`],
+    [Trova tutte le configurazioni (usato dal NATS responder)],
+
+    [`getAlerts(input)`],
+    [`(input): Promise<AlertsEntity[]>`],
+    [Filtra per `tenantId`, `createdAt` (range), `gatewayId`; ordina per `createdAt DESC`],
+
+    [`countAlerts(tenantId)`], [`(tenantId): Promise<number>`], [Conta gli alert per un tenant],
+
+    [`saveAlert(alert)`], [`(alert): Promise<AlertsEntity>`], [Crea e salva un nuovo alert],
+  )
+
+  ==== AlertsNatsService
+
+  Servizio NATS per la ricezione degli alert. Implementa `OnModuleInit`. Si sottoscrive a due subject:
+  `internal.mgmt.alert-configs.list` (request-reply per le configurazioni) e `alert.*.gw_offline` (JetStream per gli
+  alert gateway offline).
+
+  ==== DTO
+
+  _AlertsResponseDto_ — `id: string`, `gateway_id: string`, `type: AlertType`,
+  `details: { last_seen: string, timeout_configured: number }`, `created_at: string`.
+
+  _AlertsConfigResponseDto_ — `default_timeout_ms: number`, `default_updated_at?: string`,
+  `gateway_overrides: [{ gateway_id, timeout_ms, updated_at? }]`.
+
+  _SetAlertsConfigDefaultRequestDto_ — `tenant_unreachable_timeout_ms: number`.
+
+  _SetAlertsConfigDefaultResponseDto_ — `tenant_id: string`, `default_timeout_ms: number`, `default_updated_at: string`.
+
+  _SetGatewayAlertsConfigRequestDto_ — `gateway_unreachable_timeout_ms: number`.
+
+  _SetGatewayAlertsConfigResponseDto_ — `gateway_id: string`, `timeout_ms: number`, `updated_at: string`.
+
+  ==== Enum
+
+  _AlertType_
+
+  #table(
+    columns: (1.5fr, 4fr),
+    [Valore], [Descrizione],
+    [`GATEWAY_OFFLINE`], [Gateway non raggiungibile entro il timeout configurato],
+  )
+
+  ==== Entità
+
+  _AlertsEntity_ (tabella `alerts`)
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`id`], [`uuid v4`], [Identificativo univoco],
+    [`tenantId`], [`uuid`], [FK verso il tenant],
+    [`type`], [`AlertType`], [Tipo di alert; default: `GATEWAY_OFFLINE`],
+    [`gatewayId`], [`uuid`], [ID del gateway che ha generato l'alert],
+    [`details`], [`jsonb`], [Dettagli: `lastSeen`, `timeoutConfigured`],
+    [`createdAt`], [`Date`], [Timestamp di creazione],
+  )
+
+  _AlertsConfigEntity_ (tabella `alert_configs`)
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`id`], [`uuid v4`], [Identificativo univoco],
+    [`tenantId`], [`string`], [FK verso `TenantEntity`; cascade delete],
+    [`gatewayId`], [`string | null`], [FK verso `GatewayEntity`; `null` = configurazione di default],
+    [`gatewayTimeoutMs`], [`number`], [Timeout in millisecondi; default: 60000],
+    [`updatedAt`], [`Date`], [Timestamp dell'ultimo aggiornamento],
+  )
+
+  Indice composito unico su `['tenantId', 'gatewayId']`.
+
+  === CommandModule
+  #figure(caption: "Diagramma del modulo CommandModule")[#image("assets/06-command.svg")]
+
+  Il modulo di gestione dei comandi gestisce l'invio di comandi ai gateway (configurazione e firmware) e il tracciamento
+  dello stato attraverso ACK ricevuti via NATS JetStream.
+
+  ==== CommandController
+
+  Controller NestJS esposto sotto il prefisso `/cmd`. Protetto da `@TenantScoped()`.
+
+  #table(
+    columns: (1.2fr, 2.5fr, 2.3fr),
+    [Metodo], [Endpoint], [Note],
+    [`sendConfig(tenantId, gatewayId, dto)`],
+    [`POST :gatewayId/config`],
+    [Invia un comando di configurazione; protetto da `@Audit` e `@Roles(TENANT_ADMIN)`],
+
+    [`sendFirmware(tenantId, gatewayId, dto)`],
+    [`POST :gatewayId/firmware`],
+    [Invia un comando di aggiornamento firmware; protetto da `@Audit` e `@Roles(TENANT_ADMIN)`],
+
+    [`getStatus(tenantId, gatewayId, commandId)`],
+    [`GET :gatewayId/status/:commandId`],
+    [Restituisce lo stato di esecuzione di un comando],
+  )
+
+  ==== CommandService
+
+  Contiene la logica di business. Coordina `CommandPersistenceService`, `GatewaysService` e `JetStreamClient`.
+
+  _Campi:_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`cps`], [`CommandPersistenceService`], [Iniettato via constructor],
+    [`gatewaysService`], [`GatewaysService`], [Iniettato per validazione ownership],
+    [`jetStreamClient`], [`JetStreamClient`], [Iniettato per pubblicazione NATS],
+    [`logger`], [`Logger`], [Logger interno],
+  )
+
+  _Metodi pubblici:_
+
+  #table(
+    columns: (1.5fr, 2.5fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`sendConfig(input)`],
+    [`(input): Promise<CommandModel>`],
+    [Valida input; verifica ownership; coda comando; pubblica su NATS `command.gw.<tenantId>.<gatewayId>`],
+
+    [`sendFirmware(input)`],
+    [`(input): Promise<CommandModel>`],
+    [Verifica ownership; coda comando con tipo `FIRMWARE`; pubblica su NATS],
+
+    [`getStatus(input)`],
+    [`(input): Promise<CommandModel>`],
+    [Trova comando per ID; solleva `NotFoundException` se non trovato],
+  )
+
+  _Metodi privati:_
+
+  #table(
+    columns: (1.5fr, 3.5fr),
+    [Metodo], [Comportamento],
+    [`publishToNats(model, type, payload)`],
+    [Costruisce subject `command.gw.<tenantId>.<gatewayId>`; pubblica JSON con `command_id`, `type`, `payload`,
+      `issued_at`; non solleva errori in caso di fallimento],
+
+    [`ensureGatewayOwnership(tenantId, gatewayId)`],
+    [Delega a `gatewaysService.findById()`; solleva `NotFoundException` se il gateway non appartiene al tenant],
+  )
+
+  ==== CommandsAckConsumer
+
+  Consumer NATS JetStream per gli ACK. Si sottoscrive a `command.ack.>`. Aggiorna lo stato del comando nel database e,
+  se lo stato è `ACK`, applica gli effetti del comando sull'entità gateway.
+
+  _Metodi privati:_
+
+  #table(
+    columns: (1.5fr, 3.5fr),
+    [Metodo], [Comportamento],
+    [`processMessage(message)`],
+    [Parsa payload; risolve commandId (supporta `command_id` e `commandId`); normalizza stato; valida timestamp;
+      aggiorna stato; se ACK applica effetti; ack del messaggio],
+
+    [`parsePayload(buffer)`], [Decodifica buffer UTF-8 e pars JSON],
+
+    [`resolveCommandId(payload)`], [Controlla `command_id` poi `commandId`; restituisce primo valore valido o `null`],
+
+    [`normalizeStatus(value)`], [Mappa stringa a `CommandStatus` enum tramite tabella di normalizzazione],
+  )
+
+  ==== CommandWritingPersistenceService
+
+  Servizio di scrittura per i comandi. Gestisce l'aggiornamento dello stato e l'applicazione degli effetti sui gateway.
+
+  _Metodi pubblici:_
+
+  #table(
+    columns: (1.5fr, 2.5fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`updateStatus(input)`],
+    [`(input): Promise<CommandEntity | null>`],
+    [Trova comando per ID; aggiorna `status` e `ackReceivedAt`; restituisce `null` se non trovato],
+
+    [`applyAckedCommandEffects(command)`],
+    [`(command): Promise<void>`],
+    [Se `ACK` e tipo `CONFIG`: aggiorna `sendFrequencyMs` e/o `status` su gateway metadata. Se `FIRMWARE`: aggiorna
+      `firmwareVersion` su gateway. Salva solo se ci sono modifiche],
+  )
+
+  _Metodi privati:_
+
+  #table(
+    columns: (1.5fr, 3.5fr),
+    [Metodo], [Comportamento],
+    [`mapCommandGatewayStatus(status)`],
+    [Mappa stringa a `GatewayStatus`: `online`/`gateway_online` → `GATEWAY_ONLINE`, `paused`/`suspended` →
+      `GATEWAY_SUSPENDED`, `offline` → `GATEWAY_OFFLINE`],
+  )
+
+  ==== CommandPersistenceService
+
+  Layer di accesso ai dati per i comandi (read/create).
+
+  _Metodi pubblici:_
+
+  #table(
+    columns: (1.5fr, 2.5fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`queueCommand(input)`],
+    [`(input): Promise<CommandEntity>`],
+    [Crea e salva un nuovo `CommandEntity` con stato `QUEUED`],
+
+    [`findCommand(input)`], [`(input): Promise<CommandEntity | null>`], [Trova comando per `id + tenantId + gatewayId`],
+
+    [`countCommands(tenantId)`], [`(tenantId): Promise<number>`], [Conta i comandi per un tenant],
+  )
+
+  ==== Enum
+
+  _CommandStatus_
+
+  #table(
+    columns: (1.5fr, 4fr),
+    [Valore], [Descrizione],
+    [`QUEUED`], [Comando accodato in attesa di invio],
+    [`ACK`], [Comando confermato dal gateway],
+    [`NACK`], [Comando negato dal gateway],
+    [`EXPIRED`], [Comando scaduto],
+    [`TIMEOUT`], [Timeout nella ricezione dell'ACK],
+  )
+
+  _CommandType_
+
+  #table(
+    columns: (1.5fr, 4fr),
+    [Valore], [Descrizione],
+    [`CONFIG`], [Aggiornamento configurazione: frequenza di invio, stato operativo],
+    [`FIRMWARE`], [Aggiornamento firmware],
+    [`SUSPEND`], [Sospensione del gateway],
+  )
+
+  ==== Entità
+
+  _CommandEntity_ (tabella `commands`)
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`id`], [`uuid v4`], [Identificativo univoco],
+    [`gatewayId`], [`uuid`], [FK verso `GatewayEntity`; cascade delete],
+    [`tenantId`], [`uuid`], [FK verso `TenantEntity`; cascade delete],
+    [`type`], [`CommandType`], [Tipo di comando],
+    [`status`], [`CommandStatus`], [Stato corrente],
+    [`issuedAt`], [`Date`], [Timestamp di emissione],
+    [`ackReceivedAt`], [`Date | null`], [Timestamp di ricezione ACK],
+    [`requestedSendFrequencyMs`], [`number | null`], [Frequenza richiesta (per comandi CONFIG)],
+    [`requestedStatus`], [`string | null`], [Stato richiesto (per comandi CONFIG)],
+    [`requestedFirmwareVersion`], [`string | null`], [Versione firmware richiesta (per comandi FIRMWARE)],
+    [`createdAt`], [`Date`], [Timestamp di creazione],
+  )
+
+  ==== DTO
+
+  _SendConfigRequestDto_ — `send_frequency_ms?: number` (min 0), `status?: string`.
+
+  _SendFirmwareRequestDto_ — `firmware_version: string`, `download_url: string` (URL valido).
+
+  _CommandResponseDto_ — `command_id: string`, `status: CommandStatus`, `issued_at: string`.
+
+  _CommandStatusResponseDto_ — `command_id: string`, `status: CommandStatus`, `timestamp: string`.
+
+  === AuditLogModule
+  #figure(caption: "Diagramma del modulo AuditLogModule")[#image("assets/13-audit-log.svg")]
+
+  Il modulo di audit log gestisce la registrazione e la consultazione delle operazioni eseguite sul microservizio.
+  Supporta la registrazione di eventi provenienti da altri microservizi tramite NATS.
+
+  ==== AuditLogController
+
+  Controller NestJS esposto sotto il prefisso `/audit`. Protetto da `@TenantScoped()` e `@Roles(TENANT_ADMIN)`.
+
+  #table(
+    columns: (1.2fr, 2.5fr, 2.3fr),
+    [Metodo], [Endpoint], [Note],
+    [`getAuditLogs(tenantId, from, to, userId?, action?)`],
+    [`GET /audit`],
+    [Restituisce i log di audit del tenant con filtri per data, utente e azione; offusca i nomi dei gateway durante
+      l'impersonificazione],
+  )
+
+  ==== AuditLogService
+
+  Servizio di registrazione e consultazione dei log di audit.
+
+  _Campi:_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`alps`], [`AuditLogPersistenceService`], [Iniettato via constructor],
+  )
+
+  _Metodi pubblici:_
+
+  #table(
+    columns: (1.5fr, 2.5fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`getAuditLogs(input)`],
+    [`(input): Promise<AuditLogModel[]>`],
+    [Delega al persistence layer e mappa le entità in modelli],
+
+    [`logAuditEvent(...)`],
+    [`({ userId, action, resource, details, tenantId }): Promise<void>`],
+    [Crea e salva un nuovo evento di audit],
+  )
+
+  ==== ProvisioningAuditConsumer
+
+  Consumer NATS JetStream per gli eventi di audit provenienti da altri microservizi. Si sottoscrive a `log.audit.>`.
+  Parsa i payload, valida i campi richiesti, risolve tenant ID e user ID, e registra l'evento.
+
+  _Metodi privati:_
+
+  #table(
+    columns: (1.5fr, 3.5fr),
+    [Metodo], [Comportamento],
+    [`processMessage(message)`],
+    [Parsa payload; valida action/resource/timestamp/tenantId; risolve userId; registra evento; ack del messaggio],
+
+    [`resolveTenantId(subject, details)`],
+    [Estrae tenant ID dal subject NATS o dall'oggetto details; valida formato UUID],
+
+    [`resolveUserId(value)`], [Restituisce UUID string o `SYSTEM_USER_ID` (`00000000-0000-0000-0000-000000000000`)],
+
+    [`parseTimestamp(value)`], [Parsa stringa in Date; restituisce `undefined` se non valida],
+
+    [`toDetailsObject(value, subject)`], [Avvolge i dettagli; aggiunge `sourceSubject` se il subject esiste],
+  )
+
+  ==== AuditLogMapper
+
+  _Metodi statici:_
+
+  #table(
+    columns: (1.5fr, 3.5fr),
+    [Metodo], [Comportamento],
+    [`toModel(entity)`], [Converte `AuditLogEntity` in `AuditLogModel`],
+
+    [`toDto(model)`], [Converte in `AuditLogResponseDto`; offusca userId per audit di provisioning (restituisce `-`)],
+  )
+
+  _Metodi privati:_
+
+  #table(
+    columns: (1.5fr, 3.5fr),
+    [Metodo], [Comportamento],
+    [`resolveUserId(model)`], [Restituisce `-` se è un audit di provisioning (`sourceSubject` inizia con `log.audit.`)],
+
+    [`isProvisioningAudit(details)`], [Verifica se `sourceSubject` inizia con `log.audit.`],
+  )
+
+  ==== Entità
+
+  _AuditLogEntity_ (tabella `audits`)
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`id`], [`uuid v4`], [Identificativo univoco],
+    [`tenantId`], [`uuid`], [FK verso `TenantEntity`; cascade delete],
+    [`userId`], [`uuid`], [ID dell'utente che ha eseguito l'azione],
+    [`action`], [`string`], [Tipo di azione eseguita],
+    [`resource`], [`string`], [Risorsa su cui è stata eseguita l'azione],
+    [`details`], [`jsonb`], [Dettagli aggiuntivi dell'evento],
+    [`timestamp`], [`Date`], [Timestamp dell'evento],
+  )
+
+  === ApiClientModule
+
+  Il modulo di gestione dei client API gestisce la creazione, consultazione ed eliminazione dei client OIDC associati ai
+  tenant, con sincronizzazione su Keycloak.
+
+  ==== ApiClientController
+
+  Controller NestJS esposto sotto il prefisso `/api-clients`. Protetto da `@TenantScoped()` e `@Roles(TENANT_ADMIN)`.
+
+  #table(
+    columns: (1.2fr, 2.5fr, 2.3fr),
+    [Metodo], [Endpoint], [Note],
+    [`getApiClients(tenantId)`], [`GET /api-clients`], [Restituisce tutti i client API del tenant],
+
+    [`createApiClient(tenantId, input)`], [`POST /api-clients`], [Crea un nuovo client API; protetto da `@Audit`],
+
+    [`deleteApiClient(tenantId, id)`], [`DELETE /api-clients/:id`], [Elimina un client API; protetto da `@Audit`],
+  )
+
+  ==== ApiClientService
+
+  _Campi:_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`acps`], [`ApiClientPersistenceService`], [Iniettato via constructor],
+    [`keycloakAdminService`], [`KeycloakAdminService`], [Iniettato via constructor],
+    [`logger`], [`Logger`], [Logger interno],
+  )
+
+  _Metodi pubblici:_
+
+  #table(
+    columns: (1.5fr, 2.5fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`createApiClient(tenantId, name)`],
+    [`(tenantId, name): Promise<{ model, clientSecret }>`],
+    [Verifica conflitto nome; crea client su Keycloak; salva nel DB; rollback Keycloak se DB fallisce],
+
+    [`getApiClients(tenantId)`], [`(tenantId): Promise<ApiClientModel[]>`], [Recupera tutti i client API del tenant],
+
+    [`deleteApiClient(tenantId, id)`],
+    [`(tenantId, id): Promise<void>`],
+    [Elimina dal DB, poi da Keycloak (warn se Keycloak fallisce)],
+
+    [`deleteApiClientsForTenant(tenantId)`],
+    [`(tenantId): Promise<void>`],
+    [Elimina bulk di tutti i client API per un tenant],
+  )
+
+  ==== ApiClientPersistenceService
+
+  _Metodi pubblici:_
+
+  #table(
+    columns: (1.5fr, 2.5fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`createApiClient(id, tenantId, name, keycloakClientId)`],
+    [`(...): Promise<ApiClientEntity>`],
+    [Crea e salva un nuovo `ApiClientEntity`],
+
+    [`findByName(tenantId, name)`],
+    [`(tenantId, name): Promise<ApiClientEntity | null>`],
+    [Trova client per `tenantId + name`],
+
+    [`getApiClients(tenantId)`], [`(tenantId): Promise<ApiClientEntity[]>`], [Trova tutti i client per `tenantId`],
+
+    [`deleteApiClient(tenantId, id)`],
+    [`(tenantId, id): Promise<string | null>`],
+    [Trova entity, rimuove dal DB, restituisce il `keycloakClientId` o `null`],
+  )
+
+  ==== Entità
+
+  _ApiClientEntity_ (tabella `api_clients`)
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`id`], [`string`], [Chiave primaria (stringa, non UUID)],
+    [`tenantId`], [`uuid`], [FK verso `TenantEntity`; cascade delete],
+    [`name`], [`string`], [Nome del client; indice unico],
+    [`keycloakClientId`], [`string`], [Client ID su Keycloak; indice unico],
+    [`createdAt`], [`Date`], [Timestamp di creazione],
+  )
+
+  === ThresholdsModule
+  #figure(caption: "Diagramma del modulo ThresholdsModule")[#image("assets/11-thresholds.svg")]
+
+  Il modulo di gestione delle soglie gestisce i valori minimi e massimi per i sensori, sia a livello di tipo di sensore
+  (default per tenant) che a livello di singolo sensore.
+
+  ==== ThresholdsController
+
+  Controller NestJS esposto sotto il prefisso `/thresholds`. Protetto da `@TenantScoped()`.
+
+  #table(
+    columns: (2fr, 2.5fr, 2.3fr),
+    [Metodo], [Endpoint], [Note],
+    [`getThresholds(tenantId)`],
+    [`GET /thresholds`],
+    [Restituisce tutte le soglie del tenant; accessibile a `TENANT_USER` e `TENANT_ADMIN`],
+
+    [`setDefaultThreshold(tenantId, input)`],
+    [`PUT /thresholds/default`],
+    [Imposta la soglia di default per un tipo di sensore; protetto da `@Audit` e `@Roles(TENANT_ADMIN)`],
+
+    [`setSensorThreshold(tenantId, sensorId, input)`],
+    [`PUT /thresholds/sensor/:sensorId`],
+    [Imposta la soglia per un sensore specifico; protetto da `@Audit` e `@Roles(TENANT_ADMIN)`],
+
+    [`deleteSensorThreshold(tenantId, sensorId)`],
+    [`DELETE /thresholds/sensor/:sensorId`],
+    [Elimina la soglia per un sensore; protetto da `@Audit` e `@Roles(TENANT_ADMIN)`],
+
+    [`deleteThresholdType(tenantId, sensorType)`],
+    [`DELETE /thresholds/type/:sensorType`],
+    [Elimina la soglia di default per un tipo di sensore; protetto da `@Audit` e `@Roles(TENANT_ADMIN)`],
+  )
+
+  ==== ThresholdsService
+
+  _Campi:_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`tps`], [`ThresholdsPersistenceService`], [Iniettato via constructor],
+  )
+
+  _Metodi pubblici:_
+
+  #table(
+    columns: (1.5fr, 2.5fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`getThresholds(input)`], [`(input): Promise<ThresholdModel[]>`], [Recupera tutte le soglie del tenant],
+
+    [`setThresholdDefaultType(input)`],
+    [`(input): Promise<ThresholdModel>`],
+    [Valida `sensorType` e range valori; delega al persistence layer],
+
+    [`setThresholdSensor(input)`],
+    [`(input): Promise<ThresholdModel>`],
+    [Valida `sensorId` e range valori; delega al persistence layer],
+
+    [`deleteSensorThreshold(input)`], [`(input): Promise<void>`], [Solleva `NotFoundException` se non trovato],
+
+    [`deleteThresholdType(input)`], [`(input): Promise<void>`], [Solleva `NotFoundException` se non trovato],
+  )
+
+  _Metodi privati:_
+
+  #table(
+    columns: (1.5fr, 3.5fr),
+    [Metodo], [Comportamento],
+    [`ensureSensorType(sensorType)`], [Trim e valida che non sia vuoto; solleva `BadRequestException`],
+
+    [`ensureSensorId(sensorId)`], [Trim e valida che non sia vuoto; solleva `BadRequestException`],
+
+    [`validateValueRange(minValue, maxValue)`],
+    [Valida che i numeri siano validi e `minValue < maxValue`; solleva `BadRequestException`],
+  )
+
+  ==== ThresholdsPersistenceService
+
+  _Metodi pubblici:_
+
+  #table(
+    columns: (1.5fr, 2.5fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`getThresholds(input)`],
+    [`(input): Promise<ThresholdEntity[]>`],
+    [Trova per `tenantId`; ordina per `updatedAt DESC`],
+
+    [`setThresholdDefaultType(input)`],
+    [`(input): Promise<ThresholdEntity>`],
+    [Upsert: trova per `tenantId + sensorType + sensorId IS NULL`; aggiorna o crea],
+
+    [`setThresholdSensor(input)`],
+    [`(input): Promise<ThresholdEntity>`],
+    [Upsert: trova per `tenantId + sensorId`; aggiorna o crea],
+
+    [`deleteSensorThreshold(input)`],
+    [`(input): Promise<boolean>`],
+    [Elimina per `tenantId + sensorId`; restituisce `true` se eliminato],
+
+    [`deleteThresholdType(input)`],
+    [`(input): Promise<boolean>`],
+    [Elimina per `tenantId + sensorType + sensorId IS NULL`; restituisce `true` se eliminato],
+  )
+
+  ==== Entità
+
+  _ThresholdEntity_ (tabella `thresholds`)
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`id`], [`uuid v4`], [Identificativo univoco],
+    [`tenantId`], [`uuid`], [FK verso `TenantEntity`; cascade delete],
+    [`sensorType`], [`string | null`], [Tipo di sensore (per soglie di default)],
+    [`sensorId`], [`uuid | null`], [ID del sensore specifico (per override)],
+    [`minValue`], [`number`], [Valore minimo (float)],
+    [`maxValue`], [`number`], [Valore massimo (float)],
+    [`createdAt`], [`Date`], [Timestamp di creazione],
+    [`updatedAt`], [`Date`], [Timestamp dell'ultimo aggiornamento],
+  )
+
+  Indici unici composti: uno su `['tenantId', 'sensorType']` dove `sensor_id IS NULL`, uno su `['tenantId', 'sensorId']`
+  dove `sensor_id IS NOT NULL`.
+
+  === CostsModule
+  #figure(caption: "Diagramma del modulo CostsModule")[#image("assets/07-costs.svg")]
+
+  Il modulo di gestione dei costi calcola lo storage e la banda utilizzati da un tenant, combinando dati da NATS, alert
+  e comandi.
+
+  ==== CostsController
+
+  Controller NestJS esposto sotto il prefisso `/costs`. Protetto da `@TenantScoped()` e `@Roles(TENANT_ADMIN)`.
+
+  #table(
+    columns: (1.2fr, 2.5fr, 2.3fr),
+    [Metodo], [Endpoint], [Note],
+    [`getTenantCost(tenantId)`], [`GET /costs`], [Restituisce i costi stimati del tenant: storage e banda in GB],
+  )
+
+  ==== CostsService
+
+  _Campi:_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`cps`], [`CostsPersistenceService`], [Iniettato via constructor],
+  )
+
+  _Metodi pubblici:_
+
+  #table(
+    columns: (1.5fr, 2.5fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`getTenantCost(tenantId)`],
+    [`(tenantId): Promise<CostModel>`],
+    [Delega al persistence layer; solleva `NotFoundException` se nessun dato; mappa errori HTTP-like a eccezioni
+      NestJS],
+  )
+
+  ==== CostsPersistenceService
+
+  _Campi:_
+
+  #table(
+    columns: (1.5fr, 2fr, 2.5fr),
+    [Campo], [Tipo], [Note],
+    [`nats`], [`JetStreamClient`], [Iniettato per richiesta NATS],
+    [`alerts`], [`AlertsPersistenceService`], [Iniettato per conteggio alert],
+    [`commands`], [`CommandPersistenceService`], [Iniettato per conteggio comandi],
+  )
+
+  _Metodi pubblici:_
+
+  #table(
+    columns: (1.5fr, 2.5fr, 2fr),
+    [Metodo], [Firma], [Note],
+    [`getTenantCost(tenantId)`],
+    [`(tenantId): Promise<CostData>`],
+    [Invia richiesta NATS a `internal.cost` con `{ tenant_id }`; calcola `storageGb = dataSizeAtRest / 1GB` e
+      `bandwidthGb = (alertsCount + commandsCount) * 1KB / 1GB`; entrambi arrotondati a 4 decimali],
+  )
+
+  ==== DTO
+
+  _CostResponseDto_ — `storage_gb: number`, `bandwidth_gb: number`.
+
+  ==== Modelli
+
+  _CostModel_ — `storageGb: number`, `bandwidthGb: number`.
+
+  _CostData_ — `storageGb: number`, `bandwidthGb: number`.
 
 
 
@@ -1219,4 +2101,5 @@
   - invio e tracciamento dei comandi;
   - audit delle operazioni rilevanti;
   - corretto caricamento della configurazione e bootstrap del servizio.
+
 ]

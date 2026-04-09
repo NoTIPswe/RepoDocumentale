@@ -1,0 +1,104 @@
+@startuml
+title Costs Module - Class Diagram
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 10
+skinparam defaultFontColor #000000
+skinparam class {
+  BackgroundColor #F3E5F5
+  BorderColor #9C27B0
+  ArrowColor #7B1FA2
+}
+skinparam nodesep 10
+skinparam ranksep 10
+skinparam linetype ortho
+skinparam packageStyle rectangle
+
+package "costs" <<Rectangle>> {
+  class "CostsController" as CostsController {
+    -cs: CostsService
+    +getTenantCost(tenantId): CostResponseDto
+  }
+
+  class "CostsService" as CostsService {
+    -cps: CostsPersistenceService
+    +getTenantCost(tenantId): CostModel
+  }
+
+  class "CostsPersistenceService" as CostsPersistenceService {
+    -nats: JetStreamClient
+    -alerts: AlertsPersistenceService
+    -commands: CommandPersistenceService
+    +getTenantCost(tenantId): CostData
+  }
+
+  class "CostsMapper" as CostsMapper {
+    {static} toModel(data): CostModel
+    {static} toResponseDto(model): CostResponseDto
+  }
+
+  class "CostResponseDto" as CostResponseDto {
+    +storageGb: number
+    +bandwidthGb: number
+  }
+
+  class "CostModel" as CostModel {
+    +storageGb: number
+    +bandwidthGb: number
+  }
+
+  class "CostData" as CostData {
+    +storageGb: number
+    +bandwidthGb: number
+  }
+
+  class "JetStreamClient" as JetStreamClient
+  class "AlertsPersistenceService" as AlertsPersistenceService
+  class "CommandPersistenceService" as CommandPersistenceService
+
+  CostsController --> CostsService : uses
+  CostsController --> CostsMapper : maps to DTO
+  CostsController --> CostResponseDto : returns
+
+  CostsService --> CostsPersistenceService : uses
+  CostsService --> CostModel : returns
+
+  CostsPersistenceService --> JetStreamClient : requests data size
+  CostsPersistenceService --> AlertsPersistenceService : counts alerts
+  CostsPersistenceService --> CommandPersistenceService : counts commands
+  CostsPersistenceService --> CostData : returns
+
+  CostsMapper --> CostData : from
+  CostsMapper --> CostModel : to
+  CostsMapper --> CostResponseDto : to
+}
+
+note top of CostsController
+  @Controller('costs')
+  @TenantScoped()
+  @Roles(TENANT_ADMIN)
+  Endpoint: GET /
+end note
+
+note top of CostsService
+  Business logic layer
+  - Validates cost data presence
+  - Maps CostData to CostModel
+  - Error handling:
+    * 401 -> UnauthorizedException
+    * 403 -> ForbiddenException
+    * 405 -> MethodNotAllowedException
+end note
+
+note top of CostsPersistenceService
+  Data aggregation layer
+  1. Requests dataSizeAtRest from NATS
+     subject: internal.cost
+  2. Counts alerts via AlertsPersistenceService
+  3. Counts commands via CommandPersistenceService
+  4. Calculates:
+     - storageGb = dataSizeAtRest / 1024³
+     - bandwidthGb = ((alerts + commands) * 1024) / 1024³
+end note
+
+@enduml

@@ -1,0 +1,254 @@
+@startuml
+title Gateways Module - Class Diagram
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 10
+skinparam defaultFontColor #000000
+skinparam class {
+  BackgroundColor #E0F7FA
+  BorderColor #00BCD4
+  ArrowColor #0097A7
+}
+skinparam enum {
+  BackgroundColor #FFF3E0
+  BorderColor #FF9800
+}
+skinparam interface {
+  BackgroundColor #F3E5F5
+  BorderColor #9C27B0
+}
+skinparam nodesep 10
+skinparam ranksep 10
+skinparam linetype ortho
+skinparam packageStyle rectangle
+
+package "gateways" <<Rectangle>> {
+  class "GatewaysController" as GatewaysController {
+    -gs: GatewaysService
+    +getGateways(tenantId, req): GatewayResponseDto[]
+    +getGatewayById(tenantId, gatewayId, req): GatewayResponseDto
+    +updateGateway(tenantId, gatewayId, dto): UpdateGatewayResponseDto
+    +deleteGateway(tenantId, gatewayId): void
+  }
+
+  class "GatewaysService" as GatewaysService {
+    -gps: GatewaysPersistenceService
+    -eventEmitter: EventEmitter2
+    -logger: Logger
+    +getAlertsForGateway(gatewayId): []
+    +getGateways(input): GatewayModel[]
+    +findById(input): GatewayModel
+    +findByIdUnscoped(gatewayId): GatewayModel
+    +findByFactoryId(factoryId): GatewayModel
+    +updateGateway(input): GatewayModel
+    +deleteGateway(input): void
+    +updateGatewayRuntimeStatus(gatewayId, status, lastSeenAt): boolean
+  }
+
+  class "GatewaysPersistenceService" as GatewaysPersistenceService {
+    -r: Repository<GatewayEntity>
+    -metadataRepo: Repository<GatewayMetadataEntity>
+    +getGateways(input): GatewayEntity[]
+    +findById(input): GatewayEntity
+    +findByIdUnscoped(gatewayId): GatewayEntity
+    +findByFactoryId(factoryId): GatewayEntity
+    +updateGatewayRuntimeStatus(input): GatewayEntity
+    +updateGateway(input): GatewayEntity
+    +deleteGateway(input): GatewayEntity
+  }
+
+  class "GatewayStatusNatsResponderService" as GatewayStatusNatsResponderService {
+    -gatewaysService: GatewaysService
+    -logger: Logger
+    -codec: JSONCodec
+    -connection: NatsConnection
+    -subscription: Subscription
+    +onModuleInit(): void
+    +onModuleDestroy(): void
+    -consumeRequests(subscription): void
+    -handleUpdate(msg): GatewayStatusUpdateResponse
+    -decodeRecord(msg): Record
+    -normalizeStatus(value): GatewayStatus
+    -parseTimestamp(value): Date
+    -resolveServers(): string[]
+    -buildConnectionOptions(servers): ConnectionOptions
+    -applyTlsOptions(options): boolean
+  }
+
+  class "GatewaysListener" as GatewaysListener {
+    -nats: JetStreamClient
+    -logger: Logger
+    +handleGatewayDecommissioned(payload): void
+  }
+
+  class "GatewaysMapper" as GatewaysMapper {
+    {static} toModel(entity): GatewayModel
+    {static} toResponseDto(model): GatewayResponseDto
+    {static} toUpdateResponseDto(model): UpdateGatewayResponseDto
+  }
+
+  class "GatewayResponseDto" as GatewayResponseDto {
+    +id: string
+    +name: string
+    +status: GatewayStatus
+    +lastSeenAt: string
+    +provisioned: boolean
+    +firmwareVersion?: string
+    +sendFrequencyMs: number
+  }
+
+  class "UpdateGatewayRequestDto" as UpdateGatewayRequestDto {
+    +name: string
+  }
+
+  class "UpdateGatewayResponseDto" as UpdateGatewayResponseDto {
+    +id: string
+    +name: string
+    +status: GatewayStatus
+    +updatedAt: string
+  }
+
+  class "GatewayModel" as GatewayModel {
+    +id: string
+    +name: string
+    +status: GatewayStatus
+    +lastSeenAt: Date
+    +sendFrequencyMs: number
+    +factoryKey: string
+    +factoryId: string
+    +createdAt: Date
+    +firmwareVersion: string
+    +model: string
+    +tenantId: string
+    +provisioned: boolean
+    +updatedAt: Date
+  }
+
+  class "GatewayEntity" as GatewayEntity {
+    +id: string
+    +tenantId: string
+    +tenant: TenantEntity
+    +factoryId: string
+    +factoryKeyHash: string
+    +provisioned: boolean
+    +model: string
+    +firmwareVersion: string
+    +createdAt: Date
+    +updatedAt: Date
+    +metadata: GatewayMetadataEntity
+  }
+
+  class "GatewayMetadataEntity" as GatewayMetadataEntity {
+    +gatewayId: string
+    +name: string
+    +status: GatewayStatus
+    +lastSeenAt: Date
+    +sendFrequencyMs: number
+    +gateway: GatewayEntity
+  }
+
+  enum "GatewayStatus" as GatewayStatus {
+    GATEWAY_ONLINE
+    GATEWAY_OFFLINE
+    GATEWAY_SUSPENDED
+    GATEWAYS_PROVISIONING
+  }
+
+  class "DEFAULT_GATEWAY_SEND_FREQUENCY_MS" as DefaultFreq {
+    {static} value: 30000
+  }
+
+  interface "GetGatewaysInput" as GetGatewaysInput {
+    +tenantId: string
+  }
+
+  interface "GetGatewayByIdInput" as GetGatewayByIdInput {
+    +tenantId: string
+    +gatewayId: string
+  }
+
+  interface "UpdateGatewayInput" as UpdateGatewayInput {
+    +tenantId: string
+    +gatewayId: string
+    +name?: string
+  }
+
+  interface "DeleteGatewayInput" as DeleteGatewayInput {
+    +tenantId: string
+    +gatewayId: string
+  }
+
+  class "TenantEntity" as TenantEntity
+  class "EventEmitter2" as EventEmitter2
+  class "JetStreamClient" as JetStreamClient
+
+  GatewaysController --> GatewaysService : uses
+  GatewaysController --> GatewaysMapper : maps to DTO
+
+  GatewaysService --> GatewaysPersistenceService : uses
+  GatewaysService --> GatewayModel : returns
+  GatewaysService --> EventEmitter2 : emits events
+  GatewaysService ..> GetGatewaysInput : receives
+  GatewaysService ..> UpdateGatewayInput : receives
+
+  GatewaysPersistenceService --> GatewayEntity : CRUD
+  GatewaysPersistenceService --> GatewayMetadataEntity : CRUD
+  GatewaysPersistenceService --> DefaultFreq : uses constant
+
+  GatewayStatusNatsResponderService --> GatewaysService : updates status
+
+  GatewaysListener --> JetStreamClient : publishes events
+
+  GatewaysMapper --> GatewayEntity : from
+  GatewaysMapper --> GatewayModel : to
+  GatewaysMapper --> GatewayResponseDto : to
+  GatewaysMapper --> UpdateGatewayResponseDto : to
+
+  GatewayEntity --> TenantEntity : ManyToOne (CASCADE)
+  GatewayEntity --> GatewayMetadataEntity : OneToOne (cascade)
+  GatewayMetadataEntity --> GatewayStatus : enum
+}
+
+note top of GatewaysController
+  @Controller('gateways')
+  @TenantScoped()
+  Endpoints:
+  - GET / (list with obfuscation)
+  - GET /:id (with obfuscation)
+  - PATCH /:id (block impersonation)
+  - DELETE /:id (block impersonation, emit event)
+end note
+
+note top of GatewaysService
+  Business logic layer
+  - Tenant-scoped gateway operations
+  - Emits 'gateway.decommissioned' on delete
+  - Runtime status updates
+  - Factory ID lookups
+end note
+
+note top of GatewaysPersistenceService
+  Data access layer
+  - Filters by tenantId
+  - Joins with metadata relation
+  - Auto-creates metadata if missing
+  - Excludes factoryKeyHash by default
+end note
+
+note top of GatewayStatusNatsResponderService
+  Direct NATS responder
+  - Conditional on MOCK_NATS env
+  - Full TLS/mTLS support
+  - Updates gateway runtime status
+  - Normalizes status strings
+end note
+
+note top of GatewaysListener
+  Event listener
+  - @OnEvent('gateway.decommissioned')
+  - Publishes to NATS:
+    gateway.decommissioned.{tenantId}.{gatewayId}
+  - Bridges EventEmitter2 to NATS
+end note
+
+@enduml

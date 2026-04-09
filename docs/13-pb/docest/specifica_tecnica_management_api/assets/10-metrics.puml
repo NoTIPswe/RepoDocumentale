@@ -1,0 +1,150 @@
+@startuml
+title Metrics Module - Class Diagram
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 13
+skinparam defaultFontColor #000000
+skinparam class {
+  BackgroundColor #E8F5E9
+  BorderColor #8BC34A
+  ArrowColor #689F38
+}
+
+package "metrics" {
+  package "Module" {
+    class "MetricsModule" as MetricsModule {
+      +controllers: MetricsController
+      +providers: MetricsService
+      +exports: MetricsService
+    }
+  }
+
+  package "Controller" {
+    class "MetricsController" as MetricsController {
+      -metricsService: MetricsService
+      +metrics(res): void
+    }
+  }
+
+  package "Service" {
+    class "MetricsService" as MetricsService {
+      -registry: Registry
+      -httpRequestsTotal: Counter
+      -httpRequestDurationSeconds: Histogram
+      -httpRequestsInFlight: Gauge
+      {get} contentType: string
+      +getMetrics(): string
+      +incInFlight(method): void
+      +decInFlight(method): void
+      +observeHttpRequest(method, route, statusCode, duration): void
+      +resolveRouteLabel(req): string
+      -extractRoutePath(routePath): string
+    }
+  }
+
+  package "Interceptor" {
+    class "MetricsInterceptor" as MetricsInterceptor {
+      -metricsService: MetricsService
+      +intercept(context, next): Observable
+    }
+  }
+
+  package "Types" {
+    interface "HTTPLabelValues" as HTTPLabelValues {
+      +method: string
+      +route: string
+      +status_code: string
+    }
+  }
+
+  package "External" {
+    class "Registry\n(prom-client)" as Registry
+    class "Counter\n(prom-client)" as Counter
+    class "Histogram\n(prom-client)" as Histogram
+    class "Gauge\n(prom-client)" as Gauge
+    class "Response\n(express)" as Response
+    class "ExecutionContext\n(@nestjs/common)" as ExecutionContext
+    class "CallHandler\n(@nestjs/common)" as CallHandler
+  }
+}
+
+' Relationships
+MetricsModule --> MetricsController
+MetricsModule --> MetricsService
+
+MetricsController --> MetricsService : uses
+MetricsController --> Response : sets Content-Type
+
+MetricsService --> Registry : owns instance
+MetricsService --> Counter : http_requests_total
+MetricsService --> Histogram : request_duration_seconds
+MetricsService --> Gauge : requests_in_flight
+MetricsService --> HTTPLabelValues : type definition
+
+MetricsInterceptor --> MetricsService : tracks metrics
+MetricsInterceptor --> ExecutionContext : extracts HTTP context
+MetricsInterceptor --> CallHandler : delegates to next
+MetricsInterceptor --> RxJS : finalize operator
+
+Registry --> Counter : registers
+Registry --> Histogram : registers
+Registry --> Gauge : registers
+
+note top of MetricsController
+  @Controller() (root level)
+  @Public() (bypasses auth)
+  Endpoint: GET /metrics
+  Returns Prometheus metrics format
+  Sets Content-Type header
+end note
+
+note bottom of MetricsService
+  Core metrics service
+  - Owns Prometheus Registry
+  - Collects default Node.js metrics
+    (prefix: notip_mgmt_)
+  - Custom HTTP metrics:
+    * Requests total (counter)
+    * Request duration (histogram)
+    * In-flight requests (gauge)
+  - Histogram buckets: 0.005s to 10s
+end note
+
+note right of MetricsInterceptor
+  Global interceptor (APP_INTERCEPTER)
+  - Tracks all HTTP requests
+  - Measures duration with hrtime
+  - Labels: method, route, status_code
+  - Increments/decrements in-flight gauge
+  - Falls back to '_unmatched' for route
+end note
+
+note right of HTTPLabelValues
+  TypeScript interface
+  Defines labels for HTTP metrics:
+  - method: HTTP method (GET, POST, etc.)
+  - route: route path (or '_unmatched')
+  - status_code: response status (200, 404, etc.)
+end note
+
+note bottom of MetricsService
+  Prometheus metric types:
+  
+  1. Counter (cumulative):
+     notip_mgmt_http_requests_total
+  
+  2. Histogram (distribution):
+     notip_mgmt_http_request_duration_seconds
+     Buckets: [0.005, 0.01, 0.025, 0.05, 0.1,
+               0.25, 0.5, 1, 2.5, 5, 10]
+  
+  3. Gauge (current value):
+     notip_mgmt_http_requests_in_flight
+  
+  Plus default Node.js metrics:
+  - process_cpu_seconds_total
+  - process_resident_memory_bytes
+  - nodejs_eventloop_lag_*
+end note
+
+@enduml

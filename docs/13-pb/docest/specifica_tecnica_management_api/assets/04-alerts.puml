@@ -1,0 +1,225 @@
+@startuml
+title Alerts Module - Class Diagram
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 10
+skinparam defaultFontColor #000000
+skinparam class {
+  BackgroundColor #FFEBEE
+  BorderColor #F44336
+  ArrowColor #D32F2F
+}
+skinparam enum {
+  BackgroundColor #FFF3E0
+  BorderColor #FF9800
+}
+skinparam interface {
+  BackgroundColor #F3E5F5
+  BorderColor #9C27B0
+}
+skinparam nodesep 10
+skinparam ranksep 10
+skinparam linetype ortho
+skinparam packageStyle rectangle
+
+package "alerts" <<Rectangle>> {
+  class "AlertsController" as AlertsController {
+    -as: AlertsService
+    +getAlerts(tenantId, from?, to?, gatewayId?): AlertsResponseDto[]
+    +getAlertsConfig(tenantId): AlertsConfigResponseDto
+    +setDefaultAlertsConfig(tenantId, dto): SetAlertsConfigDefaultResponseDto
+    +setGatewayAlertsConfig(tenantId, gatewayId, dto): SetGatewayAlertsConfigResponseDto
+    +deleteGatewayAlertsConfig(tenantId, gatewayId): void
+  }
+
+  class "AlertsService" as AlertsService {
+    -aps: AlertsPersistenceService
+    -gatewayService: GatewaysService
+    +setGatewayAlertsConfig(input): AlertsConfigEntity
+    +deleteGatewayAlertsConfig(tenantId, gatewayId): void
+    +setDefaultAlertsConfig(input): AlertsConfigEntity
+    +getAlertsConfig(input): AlertsConfigModel
+    +getAlerts(input): AlertsModel[]
+  }
+
+  class "AlertsPersistenceService" as AlertsPersistenceService {
+    -r: Repository<AlertsEntity>
+    -rac: Repository<AlertsConfigEntity>
+    +setGatewayAlertsConfig(input): AlertsConfigEntity
+    +deleteGatewayAlertsConfig(tenantId, gatewayId): boolean
+    +setDefaultAlertsConfig(input): AlertsConfigEntity
+    +getAlertsConfig(tenantId): AlertsConfigEntity[]
+    +findAllAlertConfigs(): AlertsConfigEntity[]
+    +getAlerts(input): AlertsEntity[]
+    +countAlerts(tenantId): number
+    +saveAlert(alert): AlertsEntity
+    +findAllAlertsConfigs(): AlertsConfigEntity[]
+  }
+
+  class "AlertConfigNatsResponderService" as AlertConfigNatsResponderService {
+    -alertsPersistenceService: AlertsPersistenceService
+    -logger: Logger
+    -codec: JSONCodec
+    -connection: NatsConnection
+    -subscription: Subscription
+    +onModuleInit(): void
+    +onModuleDestroy(): void
+    -consumeRequests(subscription): void
+    -resolveServers(): string[]
+    -buildConnectionOptions(servers): ConnectionOptions
+    -applyTlsOptions(options): boolean
+  }
+
+  class "AlertsMapper" as AlertsMapper {
+    {static} toAlertsModel(entity): AlertsModel
+    {static} toAlertsConfigModel(entities[]): AlertsConfigModel
+    {static} toAlertsResponseDto(model): AlertsResponseDto
+    {static} toSetAlertsConfigDefaultResponseDto(entity): SetAlertsConfigDefaultResponseDto
+    {static} toSetGatewayAlertsConfigResponseDto(entity): SetGatewayAlertsConfigResponseDto
+    {static} toAlertsConfigResponseDto(model): AlertsConfigResponseDto
+  }
+
+  class "SetGatewayAlertsConfigRequestDto" as SetGatewayAlertsConfigRequestDto {
+    +gatewayUnreachableTimeoutMs: number
+  }
+
+  class "SetGatewayAlertsConfigResponseDto" as SetGatewayAlertsConfigResponseDto {
+    +gatewayId: string
+    +timeoutMs: number
+    +updatedAt: string
+  }
+
+  class "SetAlertsConfigDefaultRequestDto" as SetAlertsConfigDefaultRequestDto {
+    +tenantUnreachableTimeoutMs: number
+  }
+
+  class "SetAlertsConfigDefaultResponseDto" as SetAlertsConfigDefaultResponseDto {
+    +tenantId: string
+    +defaultTimeoutMs: number
+    +defaultUpdatedAt: string
+  }
+
+  class "AlertsResponseDto" as AlertsResponseDto {
+    +id: string
+    +gatewayId: string
+    +type: AlertType
+    +details: AlertsDetailsDto
+    +createdAt: string
+  }
+
+  class "AlertsDetailsDto" as AlertsDetailsDto {
+    +lastSeen: string
+    +timeoutConfigured: number
+  }
+
+  class "AlertsConfigResponseDto" as AlertsConfigResponseDto {
+    +defaultTimeoutMs: number
+    +defaultUpdatedAt?: string
+    +gatewayOverrides: AlertsGatewayOverridesResponseDto[]
+  }
+
+  class "AlertsGatewayOverridesResponseDto" as AlertsGatewayOverridesResponseDto {
+    +gatewayId: string
+    +timeoutMs: number
+    +updatedAt?: string
+  }
+
+  class "AlertsModel" as AlertsModel {
+    +id: string
+    +tenantId: string
+    +type: AlertType
+    +details: AlertsDetails
+    +gatewayId: string
+    +createdAt: Date
+  }
+
+  class "AlertsConfigModel" as AlertsConfigModel {
+    +defaultTimeoutMs: number
+    +defaultUpdatedAt?: string
+    +gatewayOverrides: GatewayOverride[]
+  }
+
+  class "AlertsEntity" as AlertsEntity {
+    +id: string
+    +tenantId: string
+    +type: AlertType
+    +gatewayId: string
+    +details: Record<string, unknown>
+    +createdAt: Date
+  }
+
+  class "AlertsConfigEntity" as AlertsConfigEntity {
+    +id: string
+    +tenantId: string
+    +gatewayId: string
+    +gatewayTimeoutMs: number
+    +updatedAt: Date
+  }
+
+  enum "AlertType" as AlertType {
+    GATEWAY_OFFLINE
+  }
+
+  interface "AlertsDetails" as AlertsDetails {
+    +lastSeen: Date
+    +timeoutConfigured: number
+  }
+
+  AlertsController --> AlertsService : uses
+  AlertsController --> AlertsMapper : maps to DTO
+
+  AlertsService --> AlertsPersistenceService : uses
+  AlertsService --> AlertsModel : returns
+  AlertsService --> AlertsConfigModel : returns
+
+  AlertsPersistenceService --> AlertsEntity : CRUD
+  AlertsPersistenceService --> AlertsConfigEntity : CRUD
+
+  AlertConfigNatsResponderService --> AlertsPersistenceService : reads configs
+
+  AlertsMapper --> AlertsEntity : from
+  AlertsMapper --> AlertsConfigEntity : from
+  AlertsMapper --> AlertsModel : to
+  AlertsMapper --> AlertsConfigModel : to
+  AlertsMapper --> AlertsResponseDto : to
+  AlertsMapper --> AlertsConfigResponseDto : to
+
+  AlertsConfigEntity --> TenantEntity : ManyToOne
+  AlertsConfigEntity --> GatewayEntity : ManyToOne
+
+  AlertsModel --> AlertType
+  AlertsEntity --> AlertType
+  AlertsResponseDto --> AlertType
+  
+  class "TenantEntity" as TenantEntity
+  class "GatewayEntity" as GatewayEntity
+}
+
+note top of AlertsController
+  @Controller('alerts')
+  @TenantScoped()
+  Endpoints: GET alerts, GET/PUT/DELETE config
+end note
+
+note top of AlertsService
+  Business logic layer
+  - Validates gateway ownership
+  - Maps entities to models
+  - Delegates config ops to persistence
+end note
+
+note top of AlertsPersistenceService
+  Data access layer
+  - Upserts config on [tenantId, gatewayId]
+  - Handles default config deduplication
+  - Time-range queries with Between operator
+end note
+
+note top of AlertConfigNatsResponderService
+  Direct NATS responder
+  - Conditional on MOCK_NATS env
+  - Full TLS/mTLS support
+  - Responds to config list requests
+end note
+
+@enduml

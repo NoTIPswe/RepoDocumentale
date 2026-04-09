@@ -1,0 +1,247 @@
+@startuml
+title Users Module - Class Diagram
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 10
+skinparam defaultFontColor #000000
+skinparam class {
+  BackgroundColor #E1F5FE
+  BorderColor #03A9F4
+  ArrowColor #0288D1
+}
+skinparam enum {
+  BackgroundColor #FFF3E0
+  BorderColor #FF9800
+}
+skinparam interface {
+  BackgroundColor #F3E5F5
+  BorderColor #9C27B0
+}
+skinparam nodesep 10
+skinparam ranksep 10
+skinparam linetype ortho
+skinparam packageStyle rectangle
+
+package "users" <<Rectangle>> {
+  class "UsersController" as UsersController {
+    -s: UsersService
+    +getUserById(tenantId, id): UserResponseDto
+    +getUsers(tenantId): UserResponseDto[]
+    +createUser(tenantId, dto): CreateUserResponseDto
+    +updateUser(tenantId, id, dto): UpdateUserResponseDto
+    +deleteUsers(tenantId, requesterId, requesterRole, dto): DeleteUserResponseDto
+  }
+
+  class "UsersService" as UsersService {
+    -ps: UsersPersistenceService
+    -keycloakAdmin: KeycloakAdminService
+    -logger: Logger
+    +getUsers(input): UserModel[]
+    +createUser(input): UserModel
+    +updateUser(input): UserModel
+    +deleteUsers(input): number
+    -normalizeUsername(username): string
+  }
+
+  class "UsersPersistenceService" as UsersPersistenceService {
+    -r: Repository<UserEntity>
+    +getUsers(tenantId): UserEntity[]
+    +getTenantAdmins(tenantId): UserEntity[]
+    +createUser(input): UserEntity
+    +updateUser(input): UserEntity
+    +getUsersByIds(ids, tenantId): UserEntity[]
+    +touchLastAccess(userId, timestamp): void
+    +deleteUsersByIds(ids, tenantId): number
+  }
+
+  class "KeycloakAdminService" as KeycloakAdminService {
+    -configService: ConfigService
+    +createTenantUser(input): string
+    +syncUserApplicationRole(userId, role): void
+    +updateUser(userId, {email?, username?}): void
+    +deleteUser(userId): void
+    -getAdminAccessToken(): string
+    -ensureExclusiveAppRole(token, userId, role): void
+    -ensureTenantGroup(token, tenantId): string
+    -assignUserToGroup(token, userId, groupId): void
+  }
+
+  class "UsersMapper" as UsersMapper {
+    {static} toModel(entity): UserModel
+    {static} toUserResponseDto(model): UserResponseDto
+    {static} toCreateUserResponseDto(model): CreateUserResponseDto
+    {static} toUpdateUserResponseDto(model): UpdateUserResponseDto
+  }
+
+  class "CreateUserRequestDto" as CreateUserRequestDto {
+    +username: string
+    +email: string
+    +role: UsersRole
+    +password: string
+  }
+
+  class "UpdateUserRequestDto" as UpdateUserRequestDto {
+    +username?: string
+    +email?: string
+    +role?: UsersRole
+    +permissions?: string[]
+  }
+
+  class "DeleteUserRequestDto" as DeleteUserRequestDto {
+    +ids: string[]
+  }
+
+  class "UserResponseDto" as UserResponseDto {
+    +id: string
+    +username: string
+    +email: string
+    +role: UsersRole
+    +lastAccess: string
+  }
+
+  class "CreateUserResponseDto" as CreateUserResponseDto {
+    +id: string
+    +username: string
+    +email: string
+    +role: UsersRole
+    +createdAt: string
+  }
+
+  class "UpdateUserResponseDto" as UpdateUserResponseDto {
+    +id: string
+    +username: string
+    +email: string
+    +role: UsersRole
+    +updatedAt: string
+  }
+
+  class "DeleteUserResponseDto" as DeleteUserResponseDto {
+    +deleted: number
+    +failed: string[]
+  }
+
+  class "UserModel" as UserModel {
+    +id: string
+    +tenantId: string
+    +username: string
+    +email: string
+    +role: UsersRole
+    +permissions: string[]
+    +lastAccess: Date
+    +createdAt: Date
+  }
+
+  class "UserEntity" as UserEntity {
+    +id: string
+    +tenantId: string
+    +tenant: TenantEntity
+    +username: string
+    +email: string
+    +role: UsersRole
+    +permissions: string[]
+    +lastAccess: Date
+    +createdAt: Date
+  }
+
+  enum "UsersRole" as UsersRole {
+    SYSTEM_ADMIN
+    TENANT_ADMIN
+    TENANT_USER
+  }
+
+  interface "GetUsersInput" as GetUsersInput {
+    +tenantId: string
+  }
+
+  interface "CreateUserInput" as CreateUserInput {
+    +email: string
+    +username: string
+    +role: UsersRole
+    +tenantId: string
+    +password: string
+  }
+
+  interface "UpdateUserInput" as UpdateUserInput {
+    +id: string
+    +tenantId: string
+    +email?: string
+    +username?: string
+    +role?: UsersRole
+    +password?: string
+    +permissions?: string[]
+  }
+
+  interface "DeleteUsersInput" as DeleteUsersInput {
+    +tenantId: string
+    +ids: string[]
+    +requesterId?: string
+    +requesterRole?: UsersRole
+  }
+
+  class "TenantEntity" as TenantEntity
+  class "ConfigService" as ConfigService
+
+  UsersController --> UsersService : uses
+  UsersController --> UsersMapper : maps to DTO
+
+  UsersService --> UsersPersistenceService : uses
+  UsersService --> KeycloakAdminService : syncs with Keycloak
+  UsersService --> UserModel : returns
+  UsersService ..> CreateUserInput : receives
+  UsersService ..> UpdateUserInput : receives
+  UsersService ..> DeleteUsersInput : receives
+
+  UsersPersistenceService --> UserEntity : CRUD
+
+  KeycloakAdminService --> ConfigService : reads env vars
+
+  UsersMapper --> UserEntity : from
+  UsersMapper --> UserModel : to
+  UsersMapper --> UserResponseDto : to
+  UsersMapper --> CreateUserResponseDto : to
+  UsersMapper --> UpdateUserResponseDto : to
+
+  UserEntity --> TenantEntity : ManyToOne (CASCADE)
+  UserEntity --> UsersRole : enum
+}
+
+note top of UsersController
+  @Controller('users')
+  @TenantScoped()
+  @Audit() on mutating endpoints
+  All endpoints require TENANT_ADMIN role
+  Endpoints:
+  - GET /:id, GET /, POST /, PATCH /:id
+  - POST /bulk-delete
+end note
+
+note top of UsersService
+  Business logic layer
+  Business rules:
+  1. SYSTEM_ADMIN role forbidden in tenant APIs
+  2. Only SYSTEM_ADMIN can delete TENANT_ADMIN
+  3. Self-deletion prevented
+  4. Cascading Keycloak deletion for last admin
+  5. Transactional create with Keycloak rollback
+  6. Username normalization (trim, capitalize)
+end note
+
+note top of UsersPersistenceService
+  Data access layer
+  - TypeORM repository operations
+  - Bulk operations (getUsersByIds, deleteUsersByIds)
+  - Specialized queries (getTenantAdmins)
+  - Last access timestamp updates
+end note
+
+note top of KeycloakAdminService
+  Keycloak IAM integration
+  - Creates tenant users in Keycloak
+  - Syncs application roles
+  - Updates user details
+  - Deletes users
+  - Manages tenant group assignments
+  - OAuth2 client credentials flow
+end note
+
+@enduml

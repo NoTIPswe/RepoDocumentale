@@ -1,0 +1,335 @@
+@startuml
+title NOTIP Management API - Application Architecture
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 14
+skinparam defaultFontColor #000000
+skinparam class {
+  BackgroundColor #E8F4FD
+  BorderColor #2196F3
+  ArrowColor #1976D2
+}
+skinparam note {
+  BackgroundColor #FFF9C4
+  BorderColor #FBC02D
+}
+
+package "NOTIP Management API" {
+  class "AppModule" as AppModule {
+    +imports: ConfigModule
+    +imports: EventEmitterModule
+    +imports: MetricsModule
+    +imports: TypeOrmModule
+    +imports: AuthModule
+    +imports: AdminModule
+    +imports: GatewaysModule
+    +imports: AlertsModule
+    +imports: ThresholdsModule
+    +imports: AuditLogModule
+    +imports: ApiClientModule
+    +imports: CostsModule
+    +imports: KeysModule
+    +imports: UsersModule
+    +imports: CommandModule
+  }
+
+  class "AppController" as AppController {
+    +getHello(): string
+    +getHealth(): {status}
+  }
+
+  class "AppService" as AppService {
+    +getHello(): string
+  }
+
+  class "MetricsInterceptor" as MetricsInterceptor {
+    -metricsService: MetricsService
+    +intercept(context, next): Observable
+  }
+
+  class "LastAccessInterceptor" as LastAccessInterceptor {
+    +intercept(context, next): Observable
+  }
+
+  class "AuditInterceptor" as AuditInterceptor {
+    +intercept(context, next): Observable
+  }
+}
+
+package "Common" {
+  class "TenantEntity" as TenantEntity {
+    +id: string
+    +name: string
+    +status: TenantStatus
+    +suspensionIntervalDays: number
+    +suspensionUntil: Date
+    +createdAt: Date
+    +updatedAt: Date
+    +users: UserEntity[]
+    +gateways: GatewayEntity[]
+  }
+
+  class "EnvValidation" as EnvValidation {
+    +validate(config): AppConfig
+  }
+}
+
+package "Auth Module" {
+  class "AuthModule" as AuthModule
+  class "JwtStrategy" as JwtStrategy
+  class "JwtAuthGuard" as JwtAuthGuard
+  class "RolesGuard" as RolesGuard
+  class "AccessPolicyGuard" as AccessPolicyGuard
+  class "BlockImpersonationGuard" as BlockImpersonationGuard
+  class "MockAuthGuard" as MockAuthGuard
+  class "ImpersonationService" as ImpersonationService
+  class "AuthController" as AuthController
+}
+
+package "Admin Module" {
+  class "AdminModule" as AdminModule
+  class "TenantsController" as TenantsController
+  class "TenantsService" as TenantsService
+  class "TenantsPersistenceService" as TenantsPersistenceService
+  class "KeycloakAdminService" as KeycloakAdminService
+  class "GatewaysController" as AdminGatewaysController
+  class "GatewaysService" as AdminGatewaysService
+  class "GatewaysPersistenceService" as AdminGatewaysPersistenceService
+}
+
+package "Gateways Module" {
+  class "GatewaysModule" as GatewaysModule
+  class "GatewaysController" as GatewaysController
+  class "GatewaysService" as GatewaysService
+  class "GatewaysPersistenceService" as GatewaysPersistenceService
+  class "GatewaysNatsService" as GatewaysNatsService
+  class "GatewayStatusNatsResponderService" as GatewayStatusNatsResponderService
+  class "GatewaysListener" as GatewaysListener
+  class "GatewayEntity" as GatewayEntity
+  class "GatewayMetadataEntity" as GatewayMetadataEntity
+}
+
+package "Alerts Module" {
+  class "AlertsModule" as AlertsModule
+  class "AlertsController" as AlertsController
+  class "AlertsService" as AlertsService
+  class "AlertsPersistenceService" as AlertsPersistenceService
+  class "AlertsNatsService" as AlertsNatsService
+  class "AlertConfigNatsResponderService" as AlertConfigNatsResponderService
+  class "AlertsEntity" as AlertsEntity
+  class "AlertsConfigEntity" as AlertsConfigEntity
+}
+
+package "Command Module" {
+  class "CommandModule" as CommandModule
+  class "CommandController" as CommandController
+  class "CommandService" as CommandService
+  class "CommandPersistenceService" as CommandPersistenceService
+  class "CommandWritingPersistenceService" as CommandWritingPersistenceService
+  class "CommandsAckConsumer" as CommandsAckConsumer
+  class "CommandEntity" as CommandEntity
+}
+
+package "Costs Module" {
+  class "CostsModule" as CostsModule
+  class "CostsController" as CostsController
+  class "CostsService" as CostsService
+  class "CostsPersistenceService" as CostsPersistenceService
+}
+
+package "Keys Module" {
+  class "KeysModule" as KeysModule
+  class "KeysController" as KeysController
+  class "ProvisioningController" as ProvisioningController
+  class "KeysService" as KeysService
+  class "GatewaysKeysPersistenceService" as GatewaysKeysPersistenceService
+  class "KeysNatsService" as KeysNatsService
+  class "ProvisioningNatsResponderService" as ProvisioningNatsResponderService
+  class "KeyEntity" as KeyEntity
+}
+
+package "Users Module" {
+  class "UsersModule" as UsersModule
+  class "UsersController" as UsersController
+  class "UsersService" as UsersService
+  class "UsersPersistenceService" as UsersPersistenceService
+  class "KeycloakAdminService" as UsersKeycloakAdminService
+  class "UserEntity" as UserEntity
+}
+
+package "Thresholds Module" {
+  class "ThresholdsModule" as ThresholdsModule
+  class "ThresholdsController" as ThresholdsController
+  class "ThresholdsService" as ThresholdsService
+  class "ThresholdsPersistenceService" as ThresholdsPersistenceService
+  class "ThresholdEntity" as ThresholdEntity
+}
+
+package "Audit-Log Module" {
+  class "AuditLogModule" as AuditLogModule
+  class "AuditLogController" as AuditLogController
+  class "AuditLogService" as AuditLogService
+  class "AuditLogPersistenceService" as AuditLogPersistenceService
+  class "ProvisioningAuditConsumer" as ProvisioningAuditConsumer
+  class "AuditLogEntity" as AuditLogEntity
+}
+
+package "Metrics Module" {
+  class "MetricsModule" as MetricsModule
+  class "MetricsController" as MetricsController
+  class "MetricsService" as MetricsService
+  class "MetricsInterceptor" as ModuleMetricsInterceptor
+}
+
+' Relationships
+AppController --> AppService
+AppModule --> AppController
+AppModule --> AppService
+
+AppModule -down-> MetricsInterceptor
+AppModule -down-> LastAccessInterceptor
+AppModule -down-> AuditInterceptor
+
+MetricsInterceptor --> MetricsService
+LastAccessInterceptor ..> UserEntity
+AuditInterceptor --> AuditLogService
+
+' Auth relationships
+AppModule --> AuthModule
+AuthModule --> JwtStrategy
+AuthModule --> JwtAuthGuard
+AuthModule --> RolesGuard
+AuthModule --> AccessPolicyGuard
+AuthModule --> BlockImpersonationGuard
+AuthModule --> MockAuthGuard
+AuthModule --> ImpersonationService
+AuthModule --> AuthController
+JwtStrategy ..> ConfigService
+AccessPolicyGuard ..> TenantEntity
+BlockImpersonationGuard --> AuditLogService
+
+' Admin relationships
+AppModule --> AdminModule
+AdminModule --> TenantsController
+AdminModule --> AdminGatewaysController
+TenantsController --> TenantsService
+TenantsService --> TenantsPersistenceService
+TenantsService --> KeycloakAdminService
+TenantsPersistenceService --> TenantEntity
+TenantsPersistenceService --> UserEntity
+AdminGatewaysController --> AdminGatewaysService
+AdminGatewaysService --> AdminGatewaysPersistenceService
+
+' Gateways relationships
+AppModule --> GatewaysModule
+GatewaysModule --> GatewaysController
+GatewaysController --> GatewaysService
+GatewaysService --> GatewaysPersistenceService
+GatewaysService --> GatewaysNatsService
+GatewaysService --> GatewayStatusNatsResponderService
+GatewaysService --> GatewaysListener
+GatewaysPersistenceService --> GatewayEntity
+GatewaysPersistenceService --> GatewayMetadataEntity
+GatewayEntity --> TenantEntity
+GatewayEntity --> GatewayMetadataEntity
+
+' Alerts relationships
+AppModule --> AlertsModule
+AlertsModule --> AlertsController
+AlertsController --> AlertsService
+AlertsService --> AlertsPersistenceService
+AlertsService --> AlertsNatsService
+AlertsService --> AlertConfigNatsResponderService
+AlertsPersistenceService --> AlertsEntity
+AlertsPersistenceService --> AlertsConfigEntity
+AlertsConfigEntity --> TenantEntity
+AlertsConfigEntity --> GatewayEntity
+
+' Command relationships
+AppModule --> CommandModule
+CommandModule --> CommandController
+CommandController --> CommandService
+CommandService --> CommandPersistenceService
+CommandService --> CommandWritingPersistenceService
+CommandService --> CommandsAckConsumer
+CommandPersistenceService --> CommandEntity
+CommandWritingPersistenceService --> CommandEntity
+CommandWritingPersistenceService --> GatewayEntity
+CommandEntity --> GatewayEntity
+CommandEntity --> TenantEntity
+
+' Costs relationships
+AppModule --> CostsModule
+CostsModule --> CostsController
+CostsController --> CostsService
+CostsService --> CostsPersistenceService
+CostsPersistenceService ..> AlertsPersistenceService
+CostsPersistenceService ..> CommandPersistenceService
+
+' Keys relationships
+AppModule --> KeysModule
+KeysModule --> KeysController
+KeysModule --> ProvisioningController
+KeysController --> KeysService
+ProvisioningController --> KeysService
+KeysService --> GatewaysKeysPersistenceService
+KeysService --> GatewaysService
+GatewaysKeysPersistenceService --> KeyEntity
+KeyEntity --> GatewayEntity
+
+' Users relationships
+AppModule --> UsersModule
+UsersModule --> UsersController
+UsersController --> UsersService
+UsersService --> UsersPersistenceService
+UsersService --> UsersKeycloakAdminService
+UsersPersistenceService --> UserEntity
+UserEntity --> TenantEntity
+
+' Thresholds relationships
+AppModule --> ThresholdsModule
+ThresholdsModule --> ThresholdsController
+ThresholdsController --> ThresholdsService
+ThresholdsService --> ThresholdsPersistenceService
+ThresholdsPersistenceService --> ThresholdEntity
+ThresholdEntity --> TenantEntity
+
+' Audit-Log relationships
+AppModule --> AuditLogModule
+AuditLogModule --> AuditLogController
+AuditLogController --> AuditLogService
+AuditLogService --> AuditLogPersistenceService
+AuditLogModule --> ProvisioningAuditConsumer
+AuditLogPersistenceService --> AuditLogEntity
+AuditLogEntity --> TenantEntity
+ProvisioningAuditConsumer --> AuditLogService
+
+' Metrics relationships
+AppModule --> MetricsModule
+MetricsModule --> MetricsController
+MetricsModule --> MetricsService
+MetricsModule --> ModuleMetricsInterceptor
+MetricsController --> MetricsService
+ModuleMetricsInterceptor --> MetricsService
+
+note top of AppModule
+  Main application module
+  Orchestrates all feature modules
+  Configures global interceptors
+  Sets up TypeORM database connection
+end note
+
+note bottom of TenantEntity
+  Core entity shared across modules
+  ManyToOne/OneToMany relationships
+  with Users, Gateways, Alerts, etc.
+end note
+
+note right of AuthModule
+  Handles JWT authentication
+  Role-based access control
+  Tenant suspension checks
+  User impersonation support
+end note
+
+@enduml
