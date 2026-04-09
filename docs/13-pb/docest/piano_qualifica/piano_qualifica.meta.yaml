@@ -4,7 +4,7 @@ changelog:
     date: "2026-04-09"
     authors:
       - Mario De Pasquale
-    verifier: TBD
+    verifier: Francesco Marcon
     description: >
       Aggiunta test unità e integrazione per Provisioning service
   - version: "1.3.1"
