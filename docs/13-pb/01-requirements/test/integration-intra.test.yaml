@@ -429,3 +429,17 @@ tests:
       - visualizzazione_singolo_gateway_simulato
       - visualizzazione_lista_sensori_gateway_simulato
     status: passed
+
+  - id: t_intra_provisioning_di_wiring_adapters
+    service: Provisioning service
+    description: Verificare l’integrazione tramite dependency injection tra ProvisioningService e adapter NATS nel flusso di onboarding
+    requirements:
+    - onboarding_gateway
+    status: passed
+  - id: t_intra_provisioning_http_error_mapping
+    service: Provisioning service
+    description: Verificare il mapping HTTP end-to-end degli errori di onboarding (credenziali factory invalide e CSR malformato)
+    requirements:
+    - err_auth_gateway_fabbrica
+    - err_dati_autenticazione_invalidi
+    status: passed
