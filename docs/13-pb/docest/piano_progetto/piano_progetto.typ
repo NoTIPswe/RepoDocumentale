@@ -156,8 +156,8 @@
   Come anticipato nella #link(
     "https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/dichiarazione_impegni.pdf",
   )[Dichiarazione degli impegni v1.0.0], e alla luce del ritardo accumulato durante la fase di RTB, il gruppo ha
-  aggiornato la pianificazione e prevede di terminare il progetto entro il giorno *13 Aprile 2026*, mantenendo un
-  budget di spesa fissato a *12.940 Euro*.\
+  aggiornato la pianificazione e prevede di terminare il progetto entro il giorno *13 Aprile 2026*, mantenendo un budget
+  di spesa fissato a *12.940 Euro*.\
   Al momento della candidatura si è teorizzato la seguente previsione dei costi: #figure(
     numbering: "1",
     table(
@@ -317,7 +317,9 @@
 
 
   == Attività fissate per la Product Baseline (PB)
-  Al termine della fase di RTB, preso atto del ritardo accumulato, il gruppo ha rivisto la pianificazione a lungo termine della seconda parte, estendendola fino al dodicesimo sprint con l’obiettivo di portare a termine il progetto. Di seguito sono riportate le attività previste per la fase di PB, suddivise per argomento.
+  Al termine della fase di RTB, preso atto del ritardo accumulato, il gruppo ha rivisto la pianificazione a lungo
+  termine della seconda parte, estendendola fino al dodicesimo sprint con l’obiettivo di portare a termine il progetto.
+  Di seguito sono riportate le attività previste per la fase di PB, suddivise per argomento.
   === Correzione errori nei documenti segnalati
   #figure(
     table(
@@ -638,9 +640,9 @@
 
   ==== Misure correttive e aggiornamento dei rischi
   Per contenere gli effetti del rallentamento sull'Analisi dei Requisiti, il Team ha deciso di riallocare parte del
-  lavoro documentale sullo sprint successivo e di monitorare più da vicino le attività soggette a maggiore incertezza.
-  I rischi RP1, RT1 e RO1 rimangono quindi aperti, con particolare attenzione alle attività di analisi e al rispetto
-  delle scadenze interne.
+  lavoro documentale sullo sprint successivo e di monitorare più da vicino le attività soggette a maggiore incertezza. I
+  rischi RP1, RT1 e RO1 rimangono quindi aperti, con particolare attenzione alle attività di analisi e al rispetto delle
+  scadenze interne.
 
   ==== Aggiornamento pianificazione futura
   La pianificazione futura prevede il completamento delle sezioni dell'Analisi dei Requisiti rinviate e il
@@ -1010,8 +1012,7 @@
   ==== Misure correttive e aggiornamento dei rischi
   Per ridurre l'impatto dei rallentamenti incontrati, il Team ha deciso di proseguire con attività di approfondimento
   tecnico sul PoC e di rafforzare la verifica interna delle attività di programmazione. I rischi RP1, RT1, RT2 e RO1
-  restano monitorati, in quanto sia la fase tecnica sia il periodo universitario continuano a influenzare
-  l'avanzamento.
+  restano monitorati, in quanto sia la fase tecnica sia il periodo universitario continuano a influenzare l'avanzamento.
 
   ==== Aggiornamento pianificazione futura
   Nel prossimo sprint il gruppo prevede di ultimare il PoC e di completare la documentazione necessaria alla RTB,
@@ -1272,8 +1273,8 @@
   componenti restano pertanto monitorati fino alla chiusura delle attività collegate alla RTB.
 
   ==== Aggiornamento pianificazione futura
-  Conclusa la fase di preparazione alla RTB, il gruppo prevede di spostare progressivamente il focus verso la
-  correzione delle osservazioni ricevute e l'avvio della progettazione tecnica del prodotto.
+  Conclusa la fase di preparazione alla RTB, il gruppo prevede di spostare progressivamente il focus verso la correzione
+  delle osservazioni ricevute e l'avvio della progettazione tecnica del prodotto.
 
   ==== Preventivo a finire
   #figure(
@@ -1629,7 +1630,7 @@
         [Alessandro \ Mazzariol], [-], [-], [-], [4], [6], [1], [*11*],
         [Leonardo \ Preo], [-], [-], [-], [6], [4], [1], [*11*],
         [Valerio \ Solito], [-], [-], [-], [4], [3], [1], [*8*],
-        [Matteo \ Mantoan], [3], [-], [-], [5], [3], [1], [*12*],
+        [Matteo \ Mantoan], [3], [-], [0,25], [5], [3], [1], [*12,25*],
         [Mario De\ Pasquale], [-], [-], [-], [4], [5], [-], [*9*],
       )
     ],
@@ -1675,11 +1676,11 @@
 
       [Responsabile], [10], [300],
       [Amministratore], [-0,25], [-5],
-      [Analista], [0,5], [12,5],
+      [Analista], [0,25], [6,25],
       [Progettista], [37], [925],
       [Programmatore], [57], [855],
       [Verificatore], [20], [300],
-      [*Totale*], [*124,25*], [*2387,5*],
+      [*Totale*], [*124*], [*2381,25*],
     ),
   )<tab:Sprint10-costi>
 
@@ -1759,7 +1760,7 @@
         [Alessandro \ Contarini], [-], [-], [-], [3], [4], [2], [*9*],
         [Francesco \ Marcon], [-], [-], [-], [4], [3], [2], [*9*],
         [Alessandro \ Mazzariol], [-], [-], [-], [4], [5], [1], [*10*],
-        [Leonardo \ Preo], [-], [-], [-], [5], [5], [1], [*11*],
+        [Leonardo \ Preo], [-], [-], [-], [4], [6], [1], [*11*],
         [Valerio \ Solito], [4], [-], [-], [4], [5], [2], [*15*],
         [Matteo \ Mantoan], [-], [-], [-], [5], [3], [2], [*10*],
         [Mario De\ Pasquale], [-], [-], [-], [5], [5], [-], [*10*],
@@ -1770,10 +1771,10 @@
   ==== Consuntivo del periodo
   Nel corso dello Sprint 11, il Team ha concentrato il lavoro sulle attività necessarie a portare il progetto in una
   fase prossima alla conclusione. In particolare, è proseguita la redazione e l'aggiornamento della documentazione
-  tecnica, sono state completate ulteriori funzionalità lato frontend e si è lavorato all'integrazione dei
-  microservizi, verificando la correttezza del flusso complessivo del sistema. Parallelamente, sono stati definiti i
-  principali scenari e criteri di esecuzione dei test di sistema, in modo da predisporre una validazione finale più
-  ordinata nello Sprint successivo.
+  tecnica, sono state completate ulteriori funzionalità lato frontend e si è lavorato all'integrazione dei microservizi,
+  verificando la correttezza del flusso complessivo del sistema. Parallelamente, sono stati definiti i principali
+  scenari e criteri di esecuzione dei test di sistema, in modo da predisporre una validazione finale più ordinata nello
+  Sprint successivo.
 
   ==== Retrospettiva
   Lo Sprint 11 ha rappresentato un passaggio decisivo verso la chiusura del progetto. Il Team è riuscito a ridurre in
@@ -1810,11 +1811,11 @@
 
       [Responsabile], [6], [180],
       [Amministratore], [-0,25], [-5],
-      [Analista], [0,5], [12,5],
-      [Progettista], [7], [175],
-      [Programmatore], [27], [405],
+      [Analista], [0,25], [6,25],
+      [Progettista], [8], [200],
+      [Programmatore], [26], [390],
       [Verificatore], [10], [150],
-      [*Totale*], [*50,25*], [*917,5*],
+      [*Totale*], [*50*], [*921,25*],
     ),
   )<tab:Sprint11-costi>
 
@@ -1855,12 +1856,12 @@
         ),
 
         [Alessandro \ Contarini], [-], [-], [-], [-], [5], [0,5], [*5,5*],
-        [Francesco \ Marcon], [-], [1], [-], [-], [2], [3,5], [*6,5*],
+        [Francesco \ Marcon], [-], [1], [1], [-], [2], [2,5], [*6,5*],
         [Alessandro \ Mazzariol], [-], [-], [-], [-], [5], [-], [*5*],
         [Leonardo \ Preo], [4], [-], [-], [-], [3], [1], [*8*],
         [Valerio \ Solito], [-], [1], [-], [3], [5], [1], [*10*],
-        [Matteo \ Mantoan], [-], [-], [-], [4], [2], [3,25], [*9,25*],
-        [Mario De\ Pasquale], [-], [-], [-], [-], [4], [2,75], [*6,75*],
+        [Matteo \ Mantoan], [-], [-], [-], [4], [2], [2], [*8*],
+        [Mario De\ Pasquale], [-], [-], [-], [-], [4], [3], [*7*],
       )
     ],
   )<tab:Sprint12-ore-previste>
@@ -1940,11 +1941,11 @@
 
       [Responsabile], [2], [60],
       [Amministratore], [-2,25], [-45],
-      [Analista], [0,5], [12,5],
-      [Progettista], [0], [0],
-      [Programmatore], [1], [15],
-      [Verificatore], [-2], [-30],
-      [*Totale*], [*-0,75*], [*12,5*],
+      [Analista], [-0,75], [-18,75],
+      [Progettista], [1], [25],
+      [Programmatore], [0], [0],
+      [Verificatore], [0], [0],
+      [*Totale*], [*0*], [*21,25*],
     ),
   )<tab:Sprint12-costi>
 ]
