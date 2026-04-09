@@ -1,5 +1,12 @@
 title: Analisi dei Requisiti
 changelog:
+  - version: "1.4.0"
+    date: "2026-03-30"
+    authors:
+      - Francesco Marcon
+    verifier: Mario De Pasquale
+    description: >
+      Aggiornamento dei requisiti mancanti riguardanti notip-data-consumer e notip-simulator-backend
   - version: "1.3.1"
     date: "2026-03-30"
     authors:

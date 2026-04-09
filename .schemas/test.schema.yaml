@@ -6,7 +6,8 @@
 # Each file contains tests of ONE type (set at file level).
 # One file per type:
 #   unit.test.yaml        → T-U-{n}
-#   integration.test.yaml → T-I-{n}
+#   integration-intra.test.yaml → T-I-{n}
+#   integration-inter.test.yaml → T-I-{n}
 #   system.test.yaml      → T-S-{n}
 #
 # Numbering is automatic: position in the array determines the number.
@@ -26,21 +27,46 @@ additionalProperties: false
 properties:
   type:
     type: string
-    enum: [unit, integration, system]
+    enum: [unit, integration-intra, integration-inter, system]
     description: >
       Test type for ALL entries in this file.
       Determines numbering prefix:
         unit        → T-U-{n}
-        integration → T-I-{n}
+        integration-intra → T-I-{n}
+        integration-inter → T-I-{n}
         system      → T-S-{n}
 
   tests:
     type: array
     items:
       $ref: "#/$defs/test"
-    minItems: 1
+    minItems: 0
     description: >
       List of tests. Order determines the auto-assigned number.
+
+allOf:
+  - if:
+      properties:
+        type:
+          const: unit
+    then:
+      properties:
+        tests:
+          items:
+            allOf:
+              - $ref: "#/$defs/test"
+              - required: [service]
+  - if:
+      properties:
+        type:
+          const: integration-intra
+    then:
+      properties:
+        tests:
+          items:
+            allOf:
+              - $ref: "#/$defs/test"
+              - required: [service]
 
 $defs:
   # ---------------------------------------------------------------------------
@@ -82,9 +108,9 @@ $defs:
             passed          → S   (superato)
             failed          → NS  (non superato)
 
-      component:
+      service:
         type: string
         description: >
-          Optional component/service this test belongs to.
+          Service this test belongs to.
           Used to create nested subsections in test documentation.
-          If not specified, test appears in the main section.
+          Required for unit and integration-intra tests.

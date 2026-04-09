@@ -1,9 +1,8 @@
 #import "../../00-templates/base_document.typ" as base-document
 #import "../specifica_tecnica/st_lib.typ" as st
 
-#let metadata = yaml("specifica_tecnica_management_api.meta.yaml")
-
-#show figure: set block(breakable: true)
+#let metadata = yaml(sys.inputs.meta-path)
+#show figure.where(kind: table): set block(breakable: true)
 
 #base-document.apply-base-document(
   title: metadata.title,
@@ -74,6 +73,29 @@
 
       [NatsUser], [NATS_USER], [-], [No],
 
+      columns: (auto, auto, auto, auto),
+      [Campo], [Variabile d'ambiente], [Default], [Obbligatorio],
+      [KeycloakRealm], [KEYCLOAK_REALM], [-], [Si],
+      [KeycloakClientId], [KEYCLOAK_MGMT_CLIENT_ID], [-], [Si],
+      [KeycloakClientSecret], [KEYCLOAK_MGMT_CLIENT_SECRET], [-], [Si],
+      [KeycloakUrl], [KEYCLOAK_URL], [-], [Si],
+      [NATSUrl], [NATS_URL], [-], [Si],
+      [DBHost], [MGMT_DB_HOST], [—], [Sì],
+      [DBPort], [MGMT_DB_PORT], [5432], [No],
+      [DBName], [MGMT_DB_NAME], [—], [Sì],
+      [DBUser], [MGMT_DB_USER], [—], [Sì],
+      [DBPassword], [MGMT_DB_PASSWORD], [—], [Sì],
+      [DBEncryptionKey], [DB_ENCRYPTION_KEY], [-], [Si],
+      [ApiPort], [MGMT_API_PORT], [3000], [No],
+      [NodeEnv], [NODE_ENV], [development], [No],
+      [NatsServers], [NATS_SERVERS], [NATS_URL], [No],
+      [NatsClientName], [NATS_CLIENT_NAME], [management-api], [No],
+      [NatsDurablePrefix], [NATS_DURABLE_PREFIX], [management-api], [No],
+      [NatsTlsCa], [NATS_TLS_CA], [-], [No],
+      [NatsTlsCert], [NATS_TLS_CERT], [-], [No],
+      [NatsTlsKey], [NATS_TLS_KEY], [-], [No],
+      [NatsToken], [NATS_TOKEN], [-], [No],
+      [NatsUser], [NATS_USER], [-], [No],
       [NatsPassword], [NATS_PASSWORD], [-], [No],
     )
   ]
@@ -120,7 +142,6 @@
       [8], [http.server], [Avvia il listener HTTP sulla porta configurata], [Si],
     )
   ]
-
 
   = Architettura Logica
 
@@ -296,7 +317,6 @@
 
   = Design di Dettaglio
   == Moduli del microservizio
-  I moduli principali all'interno del microservizio sono i seguenti:
 
   === AdminModule
   Funzionalità amministrative di livello di sistema, in particolare gestione dei Tenant e di tutte le operazioni che
@@ -3018,5 +3038,4 @@
   - invio e tracciamento dei comandi;
   - audit delle operazioni rilevanti;
   - corretto caricamento della configurazione e bootstrap del servizio.
-
 ]
