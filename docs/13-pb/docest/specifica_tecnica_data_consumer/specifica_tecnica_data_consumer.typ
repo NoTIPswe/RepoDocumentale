@@ -46,17 +46,26 @@
     [`DBMaxConns`], [`DB_MAX_CONNS`], [`10`], [No],
     [`DBMinConns`], [`DB_MIN_CONNS`], [`2`], [No],
     [`DBSSLMode`], [`DB_SSL_MODE`], [`"require"`], [No],
+    [`DBSSLRootCert`],
+    [`DB_SSL_ROOT_CERT`],
+    [`""`],
+    [Condizionale#footnote[Obbligatorio quando `DB_SSL_MODE` è `verify-ca` o `verify-full`]],
+
     [`GatewayBufferSize`], [`GATEWAY_BUFFER_SIZE`], [`1000`], [No],
     [`HeartbeatTickMs`], [`HEARTBEAT_TICK_MS`], [`10000`], [No],
     [`HeartbeatGracePeriodMs`], [`HEARTBEAT_GRACE_PERIOD_MS`], [`120000`], [No],
-    [`AlertConfigRefreshMs`], [`ALERT_CONFIG_REFRESH_MS`], [`300000`], [No],
+    [`AlertConfigRefreshMs`], [`ALERT_CONFIG_REFRESH_MS`], [`120000`], [No],
     [`AlertConfigDefaultTimeoutMs`], [`ALERT_CONFIG_DEFAULT_TIMEOUT_MS`], [`60000`], [No],
     [`AlertConfigMaxRetries`], [`ALERT_CONFIG_MAX_RETRIES`], [`10`], [No],
+    [`AlertConfigInitialBackoffMs`], [`ALERT_CONFIG_INITIAL_BACKOFF_MS`], [`1000`], [No],
+    [`AlertConfigMaxBackoffMs`], [`ALERT_CONFIG_MAX_BACKOFF_MS`], [`30000`], [No],
     [`MetricsAddr`], [`METRICS_ADDR`], [`":9090"`], [No],
   )
 
   `Config` espone il metodo `GetDatabaseDSN() (string, error)`: legge la password dal Docker secret file indicato da
-  `DBPasswordFile`, e costruisce il DSN nel formato `postgres://user:pass@host:port/dbname?sslmode=<DBSSLMode>`.
+  `DBPasswordFile`, rimuove gli spazi/newline finali, e costruisce il DSN nel formato
+  `postgres://user:pass@host:port/dbname?sslmode=<DBSSLMode>`. Quando `DBSSLMode` è `verify-ca` o `verify-full` e
+  `DBSSLRootCert` è non vuoto, aggiunge anche il parametro `sslrootcert=<DBSSLRootCert>` alla query string.
 
   == Sequenza di Avvio
 
@@ -85,6 +94,8 @@
       `SIGINT`)],
     [Sì],
 
+    [5b], [`migrations`], [Applica le migrazioni SQL al database via `migrations.Apply`], [Sì],
+
     [6],
     [Driven adapter],
     [Istanzia `NATSRRClient`, `AlertConfigCache`, `NATSAlertPublisher`, `NATSGatewayStatusUpdater`,
@@ -93,7 +104,8 @@
 
     [7],
     [`HeartbeatTracker`],
-    [Costruisce il servizio con tutte le dipendenze; avvia la goroutine `dispatchWorker`],
+    [Costruisce il servizio con tutte le dipendenze (incluso `lifecycleProvider`) tramite `HeartbeatTrackerConfig`;
+      avvia la goroutine `dispatchWorker`],
     [No],
 
     [8], [Driving adapter], [Istanzia `HeartbeatTickTimer`, `NATSDecommissionConsumer`, `NATSTelemetryConsumer`], [No],
@@ -400,6 +412,7 @@
     [Driven port iniettato; interrogato in `Tick` prima di ogni alert offline],
 
     [`metrics`], [`HeartbeatTrackerMetrics`], [Driven port iniettato],
+    [`logger`], [`*slog.Logger`], [],
     [`startTime`], [`time.Time`], [Registrato alla costruzione via `clock.Now()`],
     [`gracePeriod`], [`time.Duration`], [Derivata da `HeartbeatGracePeriodMs`; soppressione alert post-avvio],
     [`mu`], [`sync.RWMutex`], [Read-lock per snapshot, write-lock per mutazione di `beats`],
@@ -459,6 +472,7 @@
     metrica della dimensione della mappa; esegue dispatch di un status update `Online`; ritorna.
   + Se l'entry *esiste*: aggiorna `lastSeen = clock.Now()`.
   + Se l'entry aveva `knownStatus = Offline`: passa a `Online` e inoltra uno status update `Online`.
+  + *Non* scrive su TimescaleDB — è responsabilità dell'adapter driving.
 
   *`HandleDecommission`*\
   Acquisisce write-lock. Cancella l'entry per `gatewayKey{tenantID, gatewayID}`. Aggiorna la metrica della dimensione
@@ -540,6 +554,14 @@
   JetStream. Il subject è assemblato al momento della pubblicazione. Dipende dall'interfaccia `natsJSPublisher`
   (soddisfatta da `nats.JetStreamContext`).
 
+  #table(
+    columns: (1.2fr, 1.8fr),
+    [Campo], [Tipo],
+    [`js`], [`natsJSPublisher`],
+    [`metrics`], [`alertPublisherMetrics`],
+    [`logger`], [`*slog.Logger`],
+  )
+
   *Interfaccia `natsJSPublisher`:*
 
   #table(
@@ -555,6 +577,12 @@
     [Metodo], [Ritorno],
     [`IncAlertsPublished()`], [—],
     [`IncAlertPublishErrors()`], [—],
+  )
+
+  #table(
+    columns: (1.2fr, 2.8fr),
+    [Metodo], [Firma],
+    [`Publish`], [`(ctx context.Context, tenantID string, payload AlertPayload) error`],
   )
 
   Il context è accettato per compliance con l'interfaccia ma non propagato a `js.Publish`, la cui API sincrona non
@@ -586,6 +614,7 @@
     [Campo], [Tipo],
     [`client`], [`gatewayStatusUpdateCaller`],
     [`metrics`], [`statusUpdateErrRecorder`],
+    [`logger`], [`*slog.Logger`],
   )
 
   #table(
@@ -610,10 +639,19 @@
     [Campo], [Tipo], [Note],
     [`snapshot`], [`atomic.Pointer[alertConfigSnapshot]`], [Sostituito atomicamente ad ogni refresh],
     [`rrClient`], [`alertConfigFetcher`], [Fetch configurazioni dal Management API],
-    [`metrics`], [`alertCacheErrRecorder`], [Contatore errori di refresh],
+    [`metrics`], [`alertCacheMetrics`], [Contatore errori e timestamp ultimo refresh],
+    [`logger`], [`*slog.Logger`], [],
     [`defaultTimeoutMs`], [`int64`], [Fallback in assenza di configurazione],
-    [`refreshInterval`], [`time.Duration`], [Default: 5 minuti],
+    [`refreshInterval`], [`time.Duration`], [Default: 2 minuti],
     [`maxRetries`], [`int`], [Default: 10; con backoff esponenziale],
+    [`initialBackoff`], [`time.Duration`], [Default: 1 s; configurabile via `ALERT_CONFIG_INITIAL_BACKOFF_MS`],
+    [`maxBackoff`],
+    [`time.Duration`],
+    [Cap del backoff; configurabile via `ALERT_CONFIG_MAX_BACKOFF_MS` (default 30 s)],
+
+    [`wait`],
+    [`func(ctx context.Context, d time.Duration) error`],
+    [Sleep context-aware iniettato alla costruzione; ritorna `ctx.Err()` alla cancellazione],
   )
 
   *Interfaccia `alertConfigFetcher`:*
@@ -624,12 +662,13 @@
     [`FetchAlertConfigs`], [`(ctx context.Context) ([]AlertConfig, error)`],
   )
 
-  *Interfaccia `alertCacheErrRecorder`:*
+  *Interfaccia `alertCacheMetrics`:*
 
   #table(
     columns: (2fr, 1fr),
     [Metodo], [Ritorno],
     [`IncAlertCacheRefreshErrors()`], [—],
+    [`SetAlertCacheLastSuccess(ts float64)`], [—],
   )
 
   #table(
@@ -654,18 +693,21 @@
   === NATSRRClient
 
   Helper infrastrutturale condiviso (non un port). Incapsula i meccanismi di NATS Request-Reply (timeout,
-  serializzazione, gestione errori). Usato da `AlertConfigCache` (via `alertConfigFetcher`) e da
-  `NATSGatewayStatusUpdater` (via `gatewayStatusUpdateCaller`). Dipende dall'interfaccia `natsRequester` (soddisfatta da
-  `*nats.Conn`).
+  serializzazione, gestione errori). Aggregato da `AlertConfigCache` (via `alertConfigFetcher`),
+  `NATSGatewayStatusUpdater` (via `gatewayStatusUpdateCaller`) e `NATSGatewayLifecycleProvider` (via
+  `gatewayLifecycleCaller`). Dipende dall'interfaccia `natsRequester` (soddisfatta da `*nats.Conn`).
 
   #table(
     columns: (1.5fr, 2fr, 2.5fr),
     [Campo], [Tipo], [Note],
     [`nc`], [`natsRequester`], [],
+    [`logger`], [`*slog.Logger`], [],
     [`timeout`], [`time.Duration`], [Applicato per-tentativo],
     [`maxRetries`], [`int`], [Default: 3],
     [`backoff`], [`[]time.Duration`], [Default: `[1s, 2s, 4s]`],
-    [`sleep`], [`func(time.Duration)`], [Iniettato per controllo nei test; produzione usa `time.Sleep`],
+    [`sleep`],
+    [`func(ctx context.Context, d time.Duration) error`],
+    [Sleep context-aware; ritorna `ctx.Err()` se cancellato],
   )
 
   *Interfaccia `natsRequester`:*
@@ -691,11 +733,14 @@
     [`GetGatewayLifecycle`],
     [`(ctx context.Context, tenantID string, gatewayID string) (GatewayLifecycleState, error)`],
     [Serializza `GatewayLifecycleRequest` in JSON, invia verso `internal.mgmt.gateway.get-status`; deserializza
-      `GatewayLifecycleResponse` e ritorna il campo `State`],
+      `GatewayLifecycleResponse`; valida la risposta tramite `validateGatewayLifecycleResponse` (verifica che
+      `gateway_id` non sia vuoto, che corrisponda all'ID atteso, e che `state` sia uno dei valori ammessi); ritorna
+      `LifecycleUnknown` + errore in caso di risposta non valida],
   )
 
-  Ogni metodo delega a `requestWithRetry`: fino a `maxRetries` tentativi, timeout per-tentativo derivato da `timeout`,
-  backoff esponenziale dalla slice `backoff`, con verifica della cancellazione del context tra un tentativo e l'altro.
+  Ogni metodo delega a `requestWithRetry`: 1 tentativo iniziale più fino a `maxRetries` retry aggiuntivi (totale
+  `maxRetries + 1` tentativi), timeout per-tentativo derivato da `timeout`, backoff esponenziale dalla slice `backoff`,
+  con verifica della cancellazione del context tra un tentativo e l'altro.
 
   === SystemClock
 
@@ -773,7 +818,7 @@
 
   Per ogni messaggio NATS:
   + Incrementa la metrica `MessagesReceived`.
-  + `processMessage` esegue: parse del body JSON in `TelemetryEnvelope`; estrazione del `tenantID` dal subject; chiamata
+  + `processMessage` esegue: estrazione del `tenantID` dal subject; parse del body JSON in `TelemetryEnvelope`; chiamata
     a `TelemetryMessageHandler.HandleTelemetry`; costruzione della `TelemetryRow`.
   + Il risultato è inviato al canale pending per il batch.
   + `flushLoop` accumula i pending e chiama `WriteBatch` al raggiungimento di `batchSize`, allo scadere di `flushEvery`,
@@ -788,6 +833,7 @@
     [`handler`], [`TelemetryMessageHandler`],
     [`writer`], [`TelemetryWriter`],
     [`metrics`], [`telemetryConsumerMetrics`],
+    [`logger`], [`*slog.Logger`],
     [`durableName`], [`string`],
     [`batchSize`], [`int`],
     [`flushEvery`], [`time.Duration`],
@@ -799,15 +845,21 @@
     columns: (2fr, 1fr),
     [Metodo], [Ritorno],
     [`IncMessagesReceived()`], [—],
+    [`IncMessageParsingErrors()`], [—],
     [`IncMessagesWritten()`], [—],
     [`IncWriteErrors()`], [—],
     [`ObserveWriteLatency(d time.Duration)`], [—],
+    [`ObserveBatchSize(size float64)`], [—],
   )
 
   #table(
     columns: (1.2fr, 2.2fr, 2.6fr),
     [Metodo], [Firma], [Note],
-    [`Run`], [`(ctx context.Context) error`], [Bloccante; ritorna alla cancellazione del context],
+    [`Run`],
+    [`(ctx context.Context) error`],
+    [Bloccante; alla cancellazione del context esegue un flush finale del buffer e chiama `sub.Drain()` per processare i
+      messaggi in-flight prima della chiusura],
+
     [`processMessage`],
     [`(ctx context.Context, msg *nats.Msg) (TelemetryRow, error)`],
     [Orchestrazione parse → handle → build; ritorna `permanentError` o errore transitorio],
@@ -840,6 +892,7 @@
     [Campo], [Tipo],
     [`js`], [`natsJSSubscriber`],
     [`handler`], [`DecommissionEventHandler`],
+    [`logger`], [`*slog.Logger`],
   )
 
   #table(
@@ -853,13 +906,29 @@
   === HeartbeatTickTimer
 
   Possiede un `time.Ticker` con intervallo `HeartbeatTickMs`. A ogni scatto invoca `HeartbeatTicker.Tick(ctx)`. Si ferma
-  alla cancellazione del context.
+  alla cancellazione del context. Emette telemetria sulla durata del tick tramite un'interfaccia metrica ristretta, in
+  modo che la salute dello scheduler sia osservabile senza accoppiamento alla struct `Metrics` concreta.
+
+  *Interfaccia `heartbeatTickDurationObserver`:*
+
+  #table(
+    columns: (2fr, 1fr),
+    [Metodo], [Ritorno],
+    [`ObserveHeartbeatTickDuration(d time.Duration)`], [—],
+  )
 
   #table(
     columns: (1.2fr, 1.8fr),
     [Campo], [Tipo],
     [`ticker`], [`HeartbeatTicker`],
+    [`metrics`], [`heartbeatTickDurationObserver`],
     [`interval`], [`time.Duration`],
+  )
+
+  #table(
+    columns: (1.2fr, 2.8fr),
+    [Metodo], [Firma],
+    [`Run`], [`(ctx context.Context)`],
   )
 
   == Metriche Prometheus (`internal/metrics`)
@@ -1102,6 +1171,12 @@
     [`GetGatewayLifecycle` — errore NATS], [Errore restituito; stato è `LifecycleUnknown`],
 
     [`GetGatewayLifecycle` — risposta JSON malformata], [Errore di unmarshal restituito; stato è `LifecycleUnknown`],
+
+    [`GetGatewayLifecycle` — stato non valido nella risposta (`"broken"`)],
+    [Errore `"invalid gateway lifecycle state"` restituito; stato è `LifecycleUnknown`],
+
+    [`GetGatewayLifecycle` — `gateway_id` nella risposta non corrisponde all'atteso],
+    [Errore `"gateway_id mismatch"` restituito; stato è `LifecycleUnknown`],
   )
 
   *`AlertConfigCache`*
@@ -1230,6 +1305,10 @@
     [Stato `LifecyclePaused` restituito; payload della richiesta verificato (`gateway_id`, `tenant_id`)],
 
     [`GetGatewayLifecycle` — nessun responder], [NATS], [Errore di timeout restituito],
+
+    [`GetGatewayLifecycle` — risposta con stato non valido (`"invalid-state"`)],
+    [NATS],
+    [Errore restituito; stato è `LifecycleUnknown`],
   )
 
   *`AlertConfigCache`*
