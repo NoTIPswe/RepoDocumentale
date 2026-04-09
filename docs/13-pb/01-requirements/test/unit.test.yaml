@@ -511,7 +511,7 @@ tests:
 
   - id: t_u_cli_http_client_gateway_crud
     service: Simulator CLI
-    description: Verificare le operazioni CRUD sui gateway tramite il client HTTP interno; successo, errori server, risposte JSON invalide e inclusione di status code e body negli errori
+    description: Verificare le operazioni CRUD sui gateway tramite il client HTTP interno; successo, errori server, risposte JSON invalide, inclusione di status code/body e gestione URL base non valido
     requirements:
       - visualizzazione_lista_gateway_simulati
       - visualizzazione_singolo_gateway_simulato
@@ -530,12 +530,19 @@ tests:
 
   - id: t_u_cli_http_client_sensor_crud
     service: Simulator CLI
-    description: Verificare le operazioni CRUD sui sensori tramite il client HTTP interno; successo, gateway non trovato, sensore non trovato e risposta JSON invalida
+    description: Verificare le operazioni CRUD sui sensori tramite il client HTTP interno; successo, gateway non trovato, sensore non trovato, risposta JSON invalida ed errore di encoding payload
     requirements:
       - visualizzazione_lista_sensori_gateway_simulato
       - creazione_sensore_gateway_simulato
       - eliminazione_sensore_simulato
       - err_creazione_sensore_simulato
+    status: passed
+
+  - id: t_u_cli_http_client_context
+    service: Simulator CLI
+    description: Verificare il comportamento di WithContext nel client HTTP; fallback a context.Background() su nil e propagazione di context cancellato
+    requirements:
+      - qualita_test_unita_coverage
     status: passed
 
   - id: t_u_cli_http_client_anomalies
@@ -576,7 +583,14 @@ tests:
 
   - id: t_u_cli_shell_rendering
     service: Simulator CLI
-    description: Verificare il rendering del prompt interattivo e del banner di benvenuto sia in modalità raw (no TTY) sia in modalità styled (TTY presente)
+    description: Verificare il rendering del prompt interattivo e del banner di benvenuto sia in modalità raw (no TTY) sia in modalità styled (TTY presente), inclusa gestione errore di render
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+
+  - id: t_u_cli_shell_line_editor
+    service: Simulator CLI
+    description: Verificare il comportamento della shell con line-editor e fallback; EOF, errori di lettura/raw/restore, esecuzione con line-editor e fallback su reader classico
     requirements:
       - qualita_test_unita_coverage
     status: passed

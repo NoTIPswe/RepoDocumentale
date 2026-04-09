@@ -370,14 +370,14 @@ tests:
 
   - id: t_intra_cli_sensor_list
     service: Simulator CLI
-    description: Verificare il flusso end-to-end di sensors list con identificativo numerico e UUID; lista piena, lista vuota ed errore server
+    description: Verificare il flusso end-to-end di sensors list con identificativo numerico e UUID; lista piena, lista vuota, errore server ed errore durante il lookup del gateway
     requirements:
       - visualizzazione_lista_sensori_gateway_simulato
     status: passed
 
   - id: t_intra_cli_sensor_add
     service: Simulator CLI
-    description: Verificare la traduzione dei flag in payload JSON e il flusso end-to-end di sensors add; successo, range negativo rifiutato, identificatore gateway invalido, flag obbligatori mancanti ed errore server
+    description: Verificare la traduzione dei flag in payload JSON e il flusso end-to-end di sensors add; successo, range negativo rifiutato, identificatore gateway invalido, flag obbligatori mancanti, errore server e fallimento post-lookup gateway
     requirements:
       - creazione_sensore_gateway_simulato
       - inserimento_dati_config_sim_sensore
@@ -409,7 +409,7 @@ tests:
 
   - id: t_intra_cli_anomaly_outlier
     service: Simulator CLI
-    description: Verificare la traduzione del flag --value (omesso se assente) e il flusso end-to-end di anomalies outlier; successo, argomento gateway mancante ed errore server
+    description: Verificare la traduzione del flag --value (omesso se assente) e il flusso end-to-end di anomalies outlier; successo con valore esplicito e implicito, argomento gateway mancante ed errore server
     requirements:
       - comando_anomalia_outliers_misurazioni
     status: passed
@@ -423,7 +423,7 @@ tests:
 
   - id: t_intra_cli_display_helpers
     service: Simulator CLI
-    description: Verificare i formatter di output della CLI; varianti di stile per lo stato gateway, tabella sensori vuota senza output e comando help eseguibile
+    description: Verificare i formatter di output della CLI; varianti di stile stato gateway, mapping UUID gateway, tabelle vuote senza output e comando help eseguibile
     requirements: 
       - visualizzazione_lista_gateway_simulati
       - visualizzazione_singolo_gateway_simulato
