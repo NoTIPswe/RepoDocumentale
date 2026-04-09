@@ -7,12 +7,12 @@
   - Completamento scrittura codice funzionale.
   - Inizio fase di testing e bug fixing.
   - Inizio scrittura manuali utente.
-  - Scrttura delle specifiche tecniche dei servizi debuggati.
+  - Scrittura delle specifiche tecniche dei servizi debuggati.
 ][
   - Completare il testing e bug fixing.
   - Completare la scrittura dei manuali utente.
   - Completare la scrittura delle specifiche tecniche.
-  - Controllare AdR per eventuali modifiche concodate con proponente: obiettivo rispecchiare MVP.
+  - Controllare AdR per eventuali modifiche concordate con proponente: obiettivo rispecchiare MVP.
 ][
   - Difficoltà nel setup dell'infrastruttura per i microservizi, in particolare per `auth` tramite Keycloak.
   - Problemi di integrazione tra i microservizi, specialmente tra dashboard e management-api e data-api.
