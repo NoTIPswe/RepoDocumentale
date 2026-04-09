@@ -121,9 +121,6 @@
   │   │   └── aes-key-generator.service.ts
   │   └── metrics/
   │       ├── metrics.module.ts
-  │       ├── metrics.controller.ts
-  │       ├── metrics.interceptor.ts
-  │       ├── metrics.service.ts
   │       └── provisioning.metrics.ts
   └── test/
   ```
