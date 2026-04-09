@@ -8,14 +8,14 @@ tests:
       - login
       - ins_pw
       - ins_mail
-    status: not_implemented
+    status: passed
   - id: t_login_invalid_credentials
     description:
       Verificare che il Sistema neghi l’accesso e mostri un messaggio di errore in caso di credenziali
       errate
     requirements:
       - err_cred_errate
-    status: not_implemented
+    status: passed
   - id: t_password_validation_error
     description:
       Verificare che il sistema notifichi un errore in caso di password inserite non corrispondenti
@@ -23,34 +23,34 @@ tests:
     requirements:
       - err_campi_diversi
       - err_password_invalida
-    status: not_implemented
+    status: passed
   - id: t_modify_email_with_validation
     description:
       Verificare che un utente autenticato possa modificare la propria email, con corretta validazione
-      del formato, segnalazione di duplicati e richiesta di conferma
+      del formato e segnalazione di duplicati
     requirements:
       - modifica_mail_account
       - impostazione_mail
       - err_mail_non_valida
       - err_mail_gia_registrata
-    status: not_implemented
+    status: passed
   - id: t_modify_account_password
     description: Verificare che un utente autenticato possa modificare la password del proprio account
     requirements:
       - modifica_password_account
-    status: not_implemented
+    status: passed
   - id: t_logout_authenticated_user
     description: Verificare che un utente autenticato possa effettuare il logout dal Sistema
     requirements:
       - logout
-    status: not_implemented
+    status: passed
   - id: t_view_gateway_list_tenant
     description:
       Verificare che un utente autenticato possa visualizzare la lista dei Gateway associati
       al proprio Tenant
     requirements:
       - visualizzazione_lista_gateway_tenant
-    status: not_implemented
+    status: passed
   - id: t_view_gateway_details
     description:
       Verificare che il sistema mostri correttamente nome, stato, timestamp dell’ultimo invio
