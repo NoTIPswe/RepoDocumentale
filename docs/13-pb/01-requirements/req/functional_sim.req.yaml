@@ -153,3 +153,10 @@ requirements:
     corretto, ma non accettabile
   sources:
   - uc: err_config_frequenza_fuori_range
+- id: modifica_algoritmo_generazione_dati
+  priority: mandatory
+  description:
+    Il Sistema deve permettere all'Utente del Simulatore di modificare l'algoritmo
+    di generazione dati di un sensore simulato
+  sources:
+  - uc: modifica_algoritmo_generazione_dati
