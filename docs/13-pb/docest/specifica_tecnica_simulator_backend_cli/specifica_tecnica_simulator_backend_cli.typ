@@ -155,10 +155,10 @@
   └── main.go                     Entrypoint dell'applicazione
   ```
 
-   #figure(
-    caption: [Architettura Logica del Simulator Backend],
-    image("assets/architettura_logica.png", width: 80%),
-  )
+  #align(center)[
+    #image("assets/architettura_logica.png", width: 80%)
+    Architettura Logica del Simulator Backend.
+  ]
 
   === Strati Architetturali
 
@@ -194,8 +194,8 @@
 
   - *Modello di Concorrenza (1 Goroutine = 1 Gateway):* Ogni gateway simulato è gestito da un `GatewayWorker` isolato
     eseguito in una propria goroutine dedicata. Questo approccio mappa 1:1 il comportamento, garantendo che la
-  congestione o il crash di un gateway virtuale non impatti l'esecuzione degli altri. La sincronizzazione e il ciclo
-    di vita sono orchestrati in sicurezza tramite `context.Context` e `sync.RWMutex` nel registro centrale.
+  congestione o il crash di un gateway virtuale non impatti l'esecuzione degli altri. La sincronizzazione e il ciclo di
+  vita sono orchestrati in sicurezza tramite `context.Context` e `sync.RWMutex` nel registro centrale.
   - *Gestione della Backpressure (Drop-Oldest):* Per scongiurare l'esaurimento della memoria (Out-Of-Memory) o il blocco
     permanente delle goroutine in caso di prolungata irraggiungibilità di NATS, è stato implementato il componente
     `MessageBuffer`. Questo canale a capacità limitata adotta una politica "Drop-Oldest": in caso di saturazione,
@@ -549,11 +549,6 @@
 
   ==== Flusso di Provisioning e Avvio
 
-  #align(center)[
-    #image("assets/provisioning.png", width: 118%)
-    Provisioning e Avvio
-  ]
-
   1. Il client effettua una chiamata `POST /sim/gateways`.
   2. Il `GatewayHandler` converte il payload in DTO di dominio e invoca il `GatewayRegistry`.
   3. Il Registry orchestra l'operazione delegando l'`Onboard` (`ProvisioningServiceClient`).
@@ -565,12 +560,12 @@
   8. Il Registry crea un nuovo `GatewayWorker`, istanzia una connessione NATS isolata con i nuovi certificati, e avvia
     la goroutine di background.
 
-  ==== Flusso di Pubblicazione Telemetria
+  //#align(center)[
+  //#image("assets/provisioning.png", width: 110%)
+  //Provisioning e Avvio
+  //]
 
-  #align(center)[
-    #image("assets/pubblicazione_telemetria.png", width: 110%)
-    Pubblicazione Telemetria
-  ]
+  ==== Flusso di Pubblicazione Telemetria
 
   1. Il `GatewayWorker` esegue ciclicamente operazioni non bloccanti basate sul `time.Ticker` della frequenza
     configurata.
@@ -582,6 +577,11 @@
   5. La `TelemetryEnvelope` finale (con campi offuscati in Base64) viene spinta nel `MessageBuffer`.
   6. Il Buffer tenta l'invio a JetStream; in caso di congestione o offline, scarta l'elemento più vecchio in coda per
     far spazio al nuovo, aggiornando le metriche Prometheus (`notip_sim_buffer_dropped_total`).
+
+  //#align(center)[
+  //#image("assets/pubblicazione_telemetria.png", width: 110%)
+  //Pubblicazione Telemetria
+  //]
 
   ==== Flusso di Decommissioning
   1. L'adapter `NATSDecommissionListener` rimane in perenne ascolto sul subject wildcard `gateway.decommissioned.>`.
@@ -600,7 +600,7 @@
 
   === Test d'Unità
 
-   I test di unità coprono i generatori matematici, il core applicativo (worker e registry), gli handler HTTP, le utilità
+  I test di unità coprono i generatori matematici, il core applicativo (worker e registry), gli handler HTTP, le utilità
   crittografiche e i componenti di dominio, avvalendosi di _fake adapter_ in memoria per isolare la logica
   dall'infrastruttura. In particolare, devono essere verificati i seguenti aspetti:
 
@@ -741,9 +741,9 @@
 
   == Architettura Logica
 
-  #align(center)[
-    #image("./assets/simulator_cli.png", width: 100%)
-  ]
+  //#align(center)[
+  //#image("./assets/simulator_cli.png", width: 100%)
+  //]
 
   === Layout dei Pacchetti
 
