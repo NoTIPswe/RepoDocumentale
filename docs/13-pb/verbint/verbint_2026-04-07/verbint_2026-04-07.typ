@@ -24,8 +24,9 @@
   changelog: metadata.changelog,
 )[
 
-  In data *7 aprile 2026* si è svolta una riunione interna del gruppo per allineare i membri in vista della scadenza di giovedì. 
-  
+  In data *7 aprile 2026* si è svolta una riunione interna del gruppo per allineare i membri in vista della scadenza di
+  giovedì.
+
   I punti all'ordine del giorno sono stati:
   - Verifica del Piano di Progetto e delle Norme di Progetto;
   - Completamento del Piano di Qualifica e aggiornamento delle metriche;
@@ -38,12 +39,17 @@
   #base-report.report-point(
     discussion_point: [Verifica documenti, Qualità e Metriche],
     discussion: [
-      Il gruppo ha verificato che il Piano di Progetto (PdP) e le Norme di Progetto (NdP) sono completi e approvati. L'attenzione si è poi spostata sul Piano di Qualifica (PdQ), che richiede ancora del lavoro per l'integrazione dei test di sistema e la verifica di quelli relativi ai singoli servizi. 
-      
-      È emersa inoltre la necessità di aggiornare le metriche di progetto basandosi sugli ultimi dati estratti dai tool di analisi (come SonarQube).
+      Il gruppo ha verificato che il Piano di Progetto (PdP) e le Norme di Progetto (NdP) sono completi e approvati.
+      L'attenzione si è poi spostata sul Piano di Qualifica (PdQ), che richiede ancora del lavoro per l'integrazione dei
+      test di sistema e la verifica di quelli relativi ai singoli servizi.
+
+      È emersa inoltre la necessità di aggiornare le metriche di progetto basandosi sugli ultimi dati estratti dai tool
+      di analisi (come SonarQube).
     ],
     decisions: [
-      Francesco si occuperà di completare il Piano di Qualifica, assicurandosi che i test coprano adeguatamente i test di sistema definiti in precedenza dal gruppo. Valerio si occuperà dell'aggiornamento delle metriche nello stesso documento, operazione da completare entro mercoledì.
+      Francesco si occuperà di completare il Piano di Qualifica, assicurandosi che i test coprano adeguatamente i test
+      di sistema definiti in precedenza dal gruppo. Valerio si occuperà dell'aggiornamento delle metriche nello stesso
+      documento, operazione da completare entro mercoledì.
     ],
     actions: (
       (
@@ -60,14 +66,17 @@
   #base-report.report-point(
     discussion_point: [Completamento delle Specifiche Tecniche],
     discussion: [
-      Analizzando le Specifiche Tecniche, è emerso che il documento principale necessita dell'aggiunta della sezione riguardante la *scalabilità*. 
-      
-      Inoltre, a seguito di alcuni recenti aggiornamenti al codice, la documentazione relativa ad alcuni servizi risulta disallineata e richiede una revisione diretta da parte degli sviluppatori coinvolti.
+      Analizzando le Specifiche Tecniche, è emerso che il documento principale necessita dell'aggiunta della sezione
+      riguardante la *scalabilità*.
+
+      Inoltre, a seguito di alcuni recenti aggiornamenti al codice, la documentazione relativa ad alcuni servizi risulta
+      disallineata e richiede una revisione diretta da parte degli sviluppatori coinvolti.
     ],
     decisions: [
-      Matteo si occuperà di completare la specifica tecnica di sistema redigendo la parte sulla scalabilità. 
-      
-      L'aggiornamento delle specifiche dei singoli servizi è stato invece assegnato ai rispettivi responsabili, che dovranno allineare i diagrammi e le descrizioni al codice attuale.
+      Matteo si occuperà di completare la specifica tecnica di sistema redigendo la parte sulla scalabilità.
+
+      L'aggiornamento delle specifiche dei singoli servizi è stato invece assegnato ai rispettivi responsabili, che
+      dovranno allineare i diagrammi e le descrizioni al codice attuale.
     ],
     actions: (
       (
@@ -84,17 +93,19 @@
   #base-report.report-point(
     discussion_point: [Stesura della Manualistica],
     discussion: [
-      L'ultima fase operativa discussa riguarda la stesura dei manuali. 
-      Per mantenere i documenti chiari e mirati, si è confermata la decisione di suddividere i manuali in base alla tipologia di utente. 
-      
+      L'ultima fase operativa discussa riguarda la stesura dei manuali. Per mantenere i documenti chiari e mirati, si è
+      confermata la decisione di suddividere i manuali in base alla tipologia di utente.
+
       Il gruppo ha concordato sull'importanza di inserire screenshot per facilitare la comprensione del prodotto.
     ],
     decisions: [
       Per ottimizzare i tempi, la stesura dei manuali è stata così suddivisa:
       - Il manuale utente e per l'amministratore tenant è affidato ad Alessandro Contarini;
       - Il manuale per l'API client sarà redatto da Matteo Mantoan;
-      - Il manuale per l'amministratore di sistema è assegnato a Mario De Pasquale, con focus sulla configurazione dell'ambiente;
-      - Il manuale dell'infrastruttura spetterà ad Alessandro Mazzariol, che descriverà le procedure di deployment e gestione dei container.
+      - Il manuale per l'amministratore di sistema è assegnato a Mario De Pasquale, con focus sulla configurazione
+        dell'ambiente;
+      - Il manuale dell'infrastruttura spetterà ad Alessandro Mazzariol, che descriverà le procedure di deployment e
+        gestione dei container.
     ],
     actions: (
       (
@@ -121,7 +132,9 @@
   #pagebreak()
 
   = Esiti e decisioni finali
-  La riunione ha permesso di definire chiaramente gli ultimi passi necessari prima della candidatura alla PB. 
-  
-  Per garantire il rispetto della scadenza di giovedì, si è deciso di fissare un termine interno per il completamento delle modifiche al codice e ai documenti entro mercoledì sera. In questo modo, il Responsabile di progetto avrà il tempo necessario per effettuare l'approvazione finale e preparare la documentazione per la consegna.
+  La riunione ha permesso di definire chiaramente gli ultimi passi necessari prima della candidatura alla PB.
+
+  Per garantire il rispetto della scadenza di giovedì, si è deciso di fissare un termine interno per il completamento
+  delle modifiche al codice e ai documenti entro mercoledì sera. In questo modo, il Responsabile di progetto avrà il
+  tempo necessario per effettuare l'approvazione finale e preparare la documentazione per la consegna.
 ]
