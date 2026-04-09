@@ -1,5 +1,12 @@
 title: Piano di Progetto
 changelog:
+  - version: "1.4.0"
+    date: "2026-04-09"
+    authors:
+      - Alessandro Contarini
+    verifier: TBD
+    description: >
+      Ristrutturazione finale del documento
   - version: "1.3.0"
     date: "2026-04-05"
     authors:

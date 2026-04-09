@@ -310,6 +310,7 @@
       - Sprint 4
       - Sprint 5
       - Sprint 6
+      - Sprint 7
 
     ],
     table.cell(colspan: 2, align: center)[*Completato per RTB*],
@@ -338,7 +339,7 @@
           - Correzione requisiti.
       ],
       [
-        - Sprint 7
+        - Sprint 8
       ],
       table.cell(colspan: 2, align: center)[*Completato per PB*],
     ),
@@ -1948,4 +1949,8 @@
       [*Totale*], [*0*], [*21,25*],
     ),
   )<tab:Sprint12-costi>
+
+  A chiusura del progetto risulta pertanto un avanzo economico complessivo pari a *21,25 Euro* rispetto al budget
+  preventivato, dovuto alle riallocazioni effettuate nel corso degli sprint finali e al mancato utilizzo integrale
+  delle risorse monetarie inizialmente stimate.
 ]
