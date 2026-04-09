@@ -1,5 +1,12 @@
 title: Piano di Qualifica
 changelog:
+  - version: "1.5.0"
+    date: "2026-04-09"
+    authors:
+      - Francesco Marcon
+    verifier: TBD
+    description: >
+      Aggiunta test unità e integrazione per il servizio Simulator CLI 
   - version: "1.4.0"
     date: "2026-04-09"
     authors:

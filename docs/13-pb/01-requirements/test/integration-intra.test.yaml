@@ -314,3 +314,118 @@ tests:
     - sicurezza_cifratura_dati
     - instaurazione_connessione_sicura
     status: passed
+
+  - id: t_intra_cli_command_tree
+    service: Simulator CLI
+    description: Verificare che tutti i sottocomandi (gateways, sensors, anomalies, shell) siano registrati correttamente nell'albero Cobra e che l'esecuzione senza argomenti non produca errori
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+
+  - id: t_intra_cli_gateway_list
+    service: Simulator CLI
+    description: Verificare il flusso end-to-end del comando gateways list contro un server mock; risposta 200 con dati, lista vuota e errore server propagato all'utente
+    requirements:
+      - visualizzazione_lista_gateway_simulati
+    status: passed
+
+  - id: t_intra_cli_gateway_get
+    service: Simulator CLI
+    description: Verificare il flusso end-to-end del comando gateways get; risposta 200 con dati gateway, 404, argomento UUID mancante ed errore server
+    requirements:
+      - visualizzazione_singolo_gateway_simulato
+    status: passed
+
+  - id: t_intra_cli_gateway_create
+    service: Simulator CLI
+    description: Verificare la traduzione dei flag CLI nel payload JSON atteso dal backend e il flusso end-to-end di gateways create; successo, flag obbligatori mancanti ed errore server
+    requirements:
+      - creazione_deploy_gateway_simulato
+      - inserimento_dati_config_sim_gateway
+      - err_deploy_gateway_simulato
+    status: passed
+
+  - id: t_intra_cli_gateway_bulk
+    service: Simulator CLI
+    description: Verificare il flusso end-to-end di gateways bulk; traduzione flag, successo totale, errori parziali per singolo gateway e flag --count mancante
+    requirements:
+      - creazione_gateway_multipli_default
+      - err_deploy_gateway_simulato
+    status: passed
+
+  - id: t_intra_cli_gateway_lifecycle
+    service: Simulator CLI
+    description: Verificare i comandi gateways start e gateways stop contro un server mock; risposta 200 e propagazione dell'errore server
+    requirements:
+      - impostazione_configurazione_gateway
+      - impostazione_stato_sospensione
+    status: passed
+
+  - id: t_intra_cli_gateway_delete
+    service: Simulator CLI
+    description: Verificare il flusso end-to-end di gateways delete; successo, UUID mancante ed errore server
+    requirements:
+      - eliminazione_gateway_simulato
+    status: passed
+
+  - id: t_intra_cli_sensor_list
+    service: Simulator CLI
+    description: Verificare il flusso end-to-end di sensors list con identificativo numerico e UUID; lista piena, lista vuota ed errore server
+    requirements:
+      - visualizzazione_lista_sensori_gateway_simulato
+    status: passed
+
+  - id: t_intra_cli_sensor_add
+    service: Simulator CLI
+    description: Verificare la traduzione dei flag in payload JSON e il flusso end-to-end di sensors add; successo, range negativo rifiutato, identificatore gateway invalido, flag obbligatori mancanti ed errore server
+    requirements:
+      - creazione_sensore_gateway_simulato
+      - inserimento_dati_config_sim_sensore
+      - err_range_invalido_simulazione
+      - err_creazione_sensore_simulato
+      - err_valore_numerico_invalido
+    status: passed
+
+  - id: t_intra_cli_sensor_delete
+    service: Simulator CLI
+    description: Verificare il flusso end-to-end di sensors delete; successo, argomento mancante ed errore server
+    requirements:
+      - eliminazione_sensore_simulato
+    status: passed
+
+  - id: t_intra_cli_anomaly_disconnect
+    service: Simulator CLI
+    description: Verificare la traduzione del flag --duration nel campo JSON e il flusso end-to-end di anomalies disconnect; successo, durata mancante ed errore server
+    requirements:
+      - comando_anomalia_disconnessione_temporanea
+    status: passed
+
+  - id: t_intra_cli_anomaly_network_degradation
+    service: Simulator CLI
+    description: Verificare la traduzione dei flag e il flusso end-to-end di anomalies network-degradation; successo, omissione di packet_loss se non fornito, durata mancante ed errore server
+    requirements:
+      - comando_anomalia_degrado_rete
+    status: passed
+
+  - id: t_intra_cli_anomaly_outlier
+    service: Simulator CLI
+    description: Verificare la traduzione del flag --value (omesso se assente) e il flusso end-to-end di anomalies outlier; successo, argomento gateway mancante ed errore server
+    requirements:
+      - comando_anomalia_outliers_misurazioni
+    status: passed
+
+  - id: t_intra_cli_shell_repl
+    service: Simulator CLI
+    description: Verificare il ciclo della shell interattiva; quit esplicito, EOF su stdin, riga vuota ignorata, tentativo di shell annidata rifiutato, flag azzerati tra comandi e propagazione degli errori
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+
+  - id: t_intra_cli_display_helpers
+    service: Simulator CLI
+    description: Verificare i formatter di output della CLI; varianti di stile per lo stato gateway, tabella sensori vuota senza output e comando help eseguibile
+    requirements: 
+      - visualizzazione_lista_gateway_simulati
+      - visualizzazione_singolo_gateway_simulato
+      - visualizzazione_lista_sensori_gateway_simulato
+    status: passed

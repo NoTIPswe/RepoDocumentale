@@ -436,6 +436,16 @@ tests:
       - qualita_resilienza_servizi
       - qualita_test_unita_coverage
     status: passed
+  - id: t_dataconsumer_db_migrations
+    service: Data Consumer
+    description:
+      Verificare il caricamento, il filtraggio, l'ordinamento e l'esecuzione delle
+      migrazioni SQL embedded; propagazione degli errori di listing, lettura ed
+      esecuzione
+    requirements:
+      - qualita_durabilita_persistenza
+      - qualita_test_unita_coverage
+    status: passed
   - id: t_provisioning_orchestration_success
     service: Provisioning service
     description: Verificare l’orchestrazione del provisioning con validazione factory, firma CSR, generazione chiave AES e completamento finale
@@ -497,4 +507,97 @@ tests:
     - onboarding_gateway
     - err_dati_autenticazione_invalidi
     - err_autenticazione_gateway
+    status: passed
+
+  - id: t_u_cli_http_client_gateway_crud
+    service: Simulator CLI
+    description: Verificare le operazioni CRUD sui gateway tramite il client HTTP interno; successo, errori server, risposte JSON invalide e inclusione di status code e body negli errori
+    requirements:
+      - visualizzazione_lista_gateway_simulati
+      - visualizzazione_singolo_gateway_simulato
+      - creazione_deploy_gateway_simulato
+      - eliminazione_gateway_simulato
+      - err_deploy_gateway_simulato
+    status: passed
+
+  - id: t_u_cli_http_client_bulk
+    service: Simulator CLI
+    description: Verificare la creazione massiva di gateway tramite il client HTTP; successo totale, risposta parziale 207 con errori per singolo gateway e risposta JSON invalida
+    requirements:
+      - creazione_gateway_multipli_default
+      - err_deploy_gateway_simulato
+    status: passed
+
+  - id: t_u_cli_http_client_sensor_crud
+    service: Simulator CLI
+    description: Verificare le operazioni CRUD sui sensori tramite il client HTTP interno; successo, gateway non trovato, sensore non trovato e risposta JSON invalida
+    requirements:
+      - visualizzazione_lista_sensori_gateway_simulato
+      - creazione_sensore_gateway_simulato
+      - eliminazione_sensore_simulato
+      - err_creazione_sensore_simulato
+    status: passed
+
+  - id: t_u_cli_http_client_anomalies
+    service: Simulator CLI
+    description: Verificare l’iniezione di anomalie tramite il client HTTP; disconnessione, degrado di rete con e senza packet loss, outlier con e senza valore, sensore non trovato
+    requirements:
+      - comando_anomalia_disconnessione_temporanea
+      - comando_anomalia_degrado_rete
+      - comando_anomalia_outliers_misurazioni
+    status: passed
+
+  - id: t_u_cli_request_construction_gateway
+    service: Simulator CLI
+    description: Verificare la corretta costruzione delle richieste HTTP per i gateway; metodo, path, corpo JSON, omissione dei campi opzionali a zero, assenza di body per GET/DELETE
+    requirements:
+      - creazione_deploy_gateway_simulato
+      - inserimento_dati_config_sim_gateway
+      - creazione_gateway_multipli_default
+      - impostazione_configurazione_gateway
+    status: passed
+
+  - id: t_u_cli_request_construction_sensor_anomaly
+    service: Simulator CLI
+    description: Verificare la corretta costruzione delle richieste HTTP per sensori e anomalie; path con ID, nomi dei campi JSON attesi, omissione dei campi opzionali (packet_loss, outlier value)
+    requirements:
+      - inserimento_dati_config_sim_sensore
+      - comando_anomalia_disconnessione_temporanea
+      - comando_anomalia_degrado_rete
+      - comando_anomalia_outliers_misurazioni
+    status: passed
+
+  - id: t_u_cli_default_url_config
+    service: Simulator CLI
+    description: Verificare che il client HTTP utilizzi il valore di default corretto per l’URL del simulatore quando la variabile d’ambiente non è impostata
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+
+  - id: t_u_cli_shell_rendering
+    service: Simulator CLI
+    description: Verificare il rendering del prompt interattivo e del banner di benvenuto sia in modalità raw (no TTY) sia in modalità styled (TTY presente)
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+
+  - id: t_u_cli_spinner
+    service: Simulator CLI
+    description: Verificare che lo spinner restituisca un’implementazione no-op in assenza di TTY, che il pterm spinner sia nil-safe e che i metodi diretti del no-op siano sicuri da invocare
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+
+  - id: t_u_cli_must_mark_required
+    service: Simulator CLI
+    description: Verificare l’helper mustMarkRequired; successo su flag esistente e uscita controllata con codice di errore su flag inesistente
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+
+  - id: t_u_cli_main_exit_codes
+    service: Simulator CLI
+    description: Verificare il punto di ingresso dell’applicazione; nessuna uscita per il percorso help, nessuna uscita per comandi validi, uscita con codice 1 su errore del comando
+    requirements:
+      - qualita_test_unita_coverage
     status: passed
