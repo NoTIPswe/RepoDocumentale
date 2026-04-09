@@ -1,0 +1,308 @@
+#Per inserire i test nel sotto capitolo mettere sotto id "service: _vostro servizio_"
+#service NON e' opzionale, ho messo a i test pre-esistenti senza un service "-Placeholder"
+#il titolo del capitolo sara' come il nome del service, quindi deve essere uguale per tutti i test del singolo servizio
+#_esempio_
+#- id: t_i_x
+#  service: Provisioning service
+#  description: "des"
+#  requirements:
+#  - req
+#  status: not_implemented
+
+type: integration-intra
+tests:
+  - id: t_intra_simulator_cloud_ingestion
+    service: -Placeholder
+    description:
+      Verificare la corretta ricezione e validazione dei pacchetti JSON inviati dal Simulatore
+      al Cloud Ingestion Service
+    requirements:
+      - invio_dati_crittografati_cloud
+    status: not_implemented
+  - id: t_intra_bidirectional_control_flow
+    service: -Placeholder
+    description:
+      "Verificare il flusso di controllo bidirezionale: invio e corretta applicazione dei comandi
+      di configurazione dal Cloud al Simulatore"
+    requirements:
+      - impostazione_configurazione_gateway
+    status: not_implemented
+  - id: t_intra_buffer_network_recovery
+    service: -Placeholder
+    description:
+      Verificare la gestione del buffer locale del Simulatore e della successiva integrazione
+      con il Cloud dopo un ripristino di rete
+    requirements:
+      - comando_anomalia_disconnessione_temporanea
+    status: not_implemented
+  - id: t_intra_db_persistence_tenant_isolation
+    service: -Placeholder
+    description:
+      Verificare la persistenza dei dati nel database e dell’isolamento dei dati per ciascun
+      Tenant
+    requirements:
+      - invio_dati_crittografati_cloud
+      - sicurezza_segregazione_tenant
+    status: not_implemented
+  - id: t_intra_jwt_auth_integration
+    service: -Placeholder
+    description:
+      Verificare l’integrazione del Sistema di autenticazione (JWT) tra l’API Gateway e i microservizi
+      interni
+    requirements:
+      - sicurezza_autenticazione_accessi
+    status: not_implemented
+  - id: t_intra_gateway_config_errors
+    service: -Placeholder
+    description:
+      Verificare la gestione degli errori di configurazione del Gateway simulato in caso di payload
+      invalido o frequenza fuori range
+    requirements:
+      - err_sintattico_config_gateway
+      - err_config_frequenza_fuori_range
+    status: not_implemented
+  - id: t_intra_outlier_propagation
+    service: -Placeholder
+    description: Verificare la propagazione e gestione di misure anomale (outlier) dal Simulatore al Cloud
+    requirements:
+      - comando_anomalia_outliers_misurazioni
+    status: not_implemented
+  - id: t_intra_multiple_gateways_parallel
+    service: -Placeholder
+    description: Verificare l’integrazione del Sistema con più Gateway simulati attivi in parallelo
+    requirements:
+      - creazione_gateway_multipli_default
+    status: not_implemented
+  - id: t_intra_tls_encryption
+    service: -Placeholder
+    description:
+      Verificare che i dati scambiati tra le diverse componenti del Sistema distribuito siano
+      cifrati e trasmessi tramite protocollo TLS
+    requirements:
+      - sicurezza_cifratura_dati
+    status: not_implemented
+  - id: t_intra_tenant_isolation
+    service: -Placeholder
+    description: Verificare l’isolamento dei dati tra Tenant tramite API e persistenza su database
+    requirements:
+      - sicurezza_segregazione_tenant
+    status: not_implemented
+  - id: t_intra_dataconsumer_e2e_flow
+    service: Data Consumer
+    description:
+      Verificare il flusso end-to-end completo del Data Consumer; telemetria ricevuta da NATS
+      JetStream, persistita su TimescaleDB, gateway portato allo stato Online, timeout che genera alert
+      Offline, aggiornamento di stato successivo
+    requirements:
+      - invio_dati_crittografati_cloud
+      - alert_gateway_irraggiungibile
+    status: passed
+  - id: t_intra_telemetry_rule_zero
+    service: Data Consumer
+    description:
+      Verificare che un messaggio di telemetria valido venga scritto nel DB verbatim (Rule Zero)
+      e che un messaggio JSON malformato venga scartato (Term) senza riaccodamento
+    requirements:
+      - invio_dati_crittografati_cloud
+      - sicurezza_cifratura_dati
+      - sicurezza_rule_zero
+    status: passed
+  - id: t_intra_nats_subject_extraction
+    service: Data Consumer
+    description:
+      Verificare la corretta estrazione di tenantID e gatewayID dal subject NATS; i subject
+      invalidi vengono "terminati"; lo stop è pulito sulla cancellazione del context
+    requirements:
+      - alert_gateway_irraggiungibile
+      - sicurezza_segregazione_tenant
+      - decommission_gateway
+    status: passed
+  - id: t_intra_alert_publication
+    service: Data Consumer
+    description:
+      Verificare la pubblicazione degli alert sul subject NATS corretto con payload atteso e
+      l’isolamento multi-tenant degli alert
+    requirements:
+      - alert_gateway_irraggiungibile
+      - sicurezza_segregazione_tenant
+    status: passed
+  - id: t_intra_timescaledb_write
+    service: Data Consumer
+    description:
+      Verificare la scrittura singola e in batch su TimescaleDB e che i blob cifrati vengano
+      salvati verbatim senza alterazioni (Rule Zero)
+    requirements:
+      - invio_dati_crittografati_cloud
+      - sicurezza_cifratura_dati
+      - sicurezza_rule_zero
+    status: passed
+  - id: t_intra_nats_request_reply
+    service: Data Consumer
+    description:
+      Verificare le operazioni Request-Reply reali su NATS; fetch della configurazione alert,
+      aggiornamento stato gateway, query del lifecycle e gestione del timeout senza responder
+    requirements:
+      - alert_gateway_irraggiungibile
+      - modifica_intervallo_alert_gateway
+      - qualita_resilienza_servizi
+    status: passed
+  - id: t_intra_lifecycle_provider
+    service: Data Consumer
+    description:
+      Verificare che il provider restituisca correttamente gli stati Paused e Online e che
+      la metrica di errore venga incrementata su timeout
+    requirements:
+      - modifica_stato_gateway
+      - alert_gateway_irraggiungibile
+      - qualita_resilienza_servizi
+    status: passed
+  - id: t_intra_heartbeat_tracker_cycle
+    service: Data Consumer
+    description:
+      Verificare il ciclo completo del heartbeat tracker; telemetria porta il gateway Online,
+      il timeout genera alert Offline, la recovery riporta Online; gestione del grace period, del decommission
+      e del lifecycle Paused
+    requirements:
+      - alert_gateway_irraggiungibile
+      - invio_dati_crittografati_cloud
+      - modifica_stato_gateway
+      - decommission_gateway
+    status: passed
+  - id: t_intra_cache_refresh_fallback
+    service: Data Consumer
+    description:
+      Verificare il popolamento della cache al bootstrap, il refresh periodico e il fallback
+      al default di sistema con incremento della metrica di errore in caso di fetch fallito
+    requirements:
+      - modifica_intervallo_alert_gateway
+      - alert_gateway_irraggiungibile
+      - qualita_resilienza_servizi
+    status: passed
+  - id: t_intra_prometheus_metrics_endpoint
+    service: Data Consumer
+    description:
+      Verificare che l’endpoint /metrics esponga tutte le metriche Prometheus attese e che
+      i counter e i gauge riflettano i valori aggiornati dopo le operazioni
+    requirements:
+      - monitoraggio_performance_sistema
+      - qualita_osservabilita_servizi
+    status: passed
+  - id: t_intra_mtls_enforcement
+    service: Data Consumer
+    description:
+      Verificare che un client con certificato valido si connetta correttamente e che un client
+      privo di certificato venga rifiutato (enforcement mTLS)
+    requirements:
+      - sicurezza_autenticazione_accessi
+      - sicurezza_cifratura_dati
+    status: passed
+
+  - id: t_intra_nats_pub_sub
+    service: Simulator Backend
+    description: Verificare che un messaggio pubblicato sul broker di messaggistica arrivi correttamente al subscriber
+    requirements:
+      - vincolo_nats
+    status: passed
+
+  - id: t_intra_subscriber_resilience
+    service: Simulator Backend
+    description: Verificare la resilienza del subscriber scartando i comandi scaduti al limite del TTL e rigettando i payload malformati
+    requirements:
+      - err_sintattico_config_gateway
+    status: passed
+
+  - id: t_intra_decommission_listener
+    service: Simulator Backend
+    description: Verificare che il listener di decommission processi correttamente gli eventi validi e ignori le richieste malformate o con identificativi errati
+    requirements:
+      - eliminazione_gateway_simulato
+    status: passed
+
+  - id: t_intra_listener_graceful_shutdown
+    service: Simulator Backend
+    description: Verificare che il listener si arresti in modo pulito alla cancellazione del contesto di esecuzione
+    requirements:
+      - qualita_spegnimento_controllato
+    status: passed
+
+  - id: t_intra_telemetry_publication
+    service: Simulator Backend
+    description: Verificare che la telemetria cifrata venga pubblicata correttamente sul broker dopo la creazione e l'avvio del dispositivo simulato
+    requirements:
+      - creazione_deploy_gateway_simulato
+      - sicurezza_cifratura_dati
+      - qualita_test_sincronizzazione_cloud
+    status: passed
+
+  - id: t_intra_gateway_stop_blocks_telemetry
+    service: Simulator Backend
+    description: Verificare che l'operazione di arresto blocchi immediatamente la pubblicazione della telemetria
+    requirements:
+      - impostazione_configurazione_gateway
+    status: passed
+
+  - id: t_intra_gateway_deletion_persistence
+    service: Simulator Backend
+    description: Verificare che l'operazione di cancellazione rimuova definitivamente il dispositivo simulato dal database locale
+    requirements:
+      - eliminazione_gateway_simulato
+    status: passed
+
+  - id: t_intra_decommission_async_event
+    service: Simulator Backend
+    description: Verificare l'intero flusso di decommission innescato tramite la ricezione di un evento asincrono
+    requirements:
+      - eliminazione_gateway_simulato
+    status: passed
+
+  - id: t_intra_bulk_gateway_creation
+    service: Simulator Backend
+    description: Verificare che l'operazione di creazione massiva avvii correttamente e concorrentemente i worker in parallelo
+    requirements:
+      - creazione_gateway_multipli_default
+    status: passed
+
+  - id: t_intra_network_anomaly_injection
+    service: Simulator Backend
+    description: Verificare che il comando di iniezione di anomalie di rete venga accettato e instradato senza errori
+    requirements:
+      - comando_anomalia_degrado_rete
+    status: passed
+
+  - id: t_intra_outlier_propagation_full
+    service: Simulator Backend
+    description: Verificare la corretta propagazione di misure anomale (outlier) generate dal sensore simulato fino alla pubblicazione sul broker
+    requirements:
+      - comando_anomalia_outliers_misurazioni
+    status: passed
+
+  - id: t_intra_db_crud_operations
+    service: Simulator Backend
+    description: Verificare il corretto funzionamento delle operazioni di lettura e scrittura (CRUD) sul database persistente
+    requirements:
+      - creazione_deploy_gateway_simulato
+      - qualita_durabilita_persistenza
+    status: passed
+
+  - id: t_intra_sensor_isolation
+    service: Simulator Backend
+    description: Verificare l'isolamento logico dei sensori appartenenti a dispositivi simulati differenti all'interno del database
+    requirements:
+      - sicurezza_segregazione_tenant
+      - qualita_test_multi_tenant
+    status: passed
+
+  - id: t_intra_db_persistence_reopen
+    service: Simulator Backend
+    description: Verificare la reale persistenza dei dati simulando una chiusura e riapertura del database locale
+    requirements:
+      - qualita_durabilita_persistenza
+    status: passed
+
+  - id: t_intra_mtls_broker_connection
+    service: Simulator Backend
+    description: Verificare che la connessione verso il broker avvenga esclusivamente tramite canale sicuro mTLS con certificati validi, rifiutando attivamente i client non autorizzati
+    requirements:
+      - sicurezza_cifratura_dati
+      - sicurezza_autenticazione_accessi
+    status: passed
