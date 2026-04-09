@@ -54,7 +54,7 @@
     [`GatewayBufferSize`], [`GATEWAY_BUFFER_SIZE`], [`1000`], [No],
     [`HeartbeatTickMs`], [`HEARTBEAT_TICK_MS`], [`10000`], [No],
     [`HeartbeatGracePeriodMs`], [`HEARTBEAT_GRACE_PERIOD_MS`], [`120000`], [No],
-    [`AlertConfigRefreshMs`], [`ALERT_CONFIG_REFRESH_MS`], [`300000`], [No],
+    [`AlertConfigRefreshMs`], [`ALERT_CONFIG_REFRESH_MS`], [`120000`], [No],
     [`AlertConfigDefaultTimeoutMs`], [`ALERT_CONFIG_DEFAULT_TIMEOUT_MS`], [`60000`], [No],
     [`AlertConfigMaxRetries`], [`ALERT_CONFIG_MAX_RETRIES`], [`10`], [No],
     [`AlertConfigInitialBackoffMs`], [`ALERT_CONFIG_INITIAL_BACKOFF_MS`], [`1000`], [No],
@@ -642,7 +642,7 @@
     [`metrics`], [`alertCacheMetrics`], [Contatore errori e timestamp ultimo refresh],
     [`logger`], [`*slog.Logger`], [],
     [`defaultTimeoutMs`], [`int64`], [Fallback in assenza di configurazione],
-    [`refreshInterval`], [`time.Duration`], [Default: 5 minuti],
+    [`refreshInterval`], [`time.Duration`], [Default: 2 minuti],
     [`maxRetries`], [`int`], [Default: 10; con backoff esponenziale],
     [`initialBackoff`], [`time.Duration`], [Default: 1 s; configurabile via `ALERT_CONFIG_INITIAL_BACKOFF_MS`],
     [`maxBackoff`],
@@ -733,7 +733,9 @@
     [`GetGatewayLifecycle`],
     [`(ctx context.Context, tenantID string, gatewayID string) (GatewayLifecycleState, error)`],
     [Serializza `GatewayLifecycleRequest` in JSON, invia verso `internal.mgmt.gateway.get-status`; deserializza
-      `GatewayLifecycleResponse` e ritorna il campo `State`],
+      `GatewayLifecycleResponse`; valida la risposta tramite `validateGatewayLifecycleResponse` (verifica che
+      `gateway_id` non sia vuoto, che corrisponda all'ID atteso, e che `state` sia uno dei valori ammessi); ritorna
+      `LifecycleUnknown` + errore in caso di risposta non valida],
   )
 
   Ogni metodo delega a `requestWithRetry`: 1 tentativo iniziale più fino a `maxRetries` retry aggiuntivi (totale
@@ -1169,6 +1171,12 @@
     [`GetGatewayLifecycle` — errore NATS], [Errore restituito; stato è `LifecycleUnknown`],
 
     [`GetGatewayLifecycle` — risposta JSON malformata], [Errore di unmarshal restituito; stato è `LifecycleUnknown`],
+
+    [`GetGatewayLifecycle` — stato non valido nella risposta (`"broken"`)],
+    [Errore `"invalid gateway lifecycle state"` restituito; stato è `LifecycleUnknown`],
+
+    [`GetGatewayLifecycle` — `gateway_id` nella risposta non corrisponde all'atteso],
+    [Errore `"gateway_id mismatch"` restituito; stato è `LifecycleUnknown`],
   )
 
   *`AlertConfigCache`*
@@ -1297,6 +1305,10 @@
     [Stato `LifecyclePaused` restituito; payload della richiesta verificato (`gateway_id`, `tenant_id`)],
 
     [`GetGatewayLifecycle` — nessun responder], [NATS], [Errore di timeout restituito],
+
+    [`GetGatewayLifecycle` — risposta con stato non valido (`"invalid-state"`)],
+    [NATS],
+    [Errore restituito; stato è `LifecycleUnknown`],
   )
 
   *`AlertConfigCache`*
