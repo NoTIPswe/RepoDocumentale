@@ -192,7 +192,8 @@
   altre anomalie. Per facilitare la gestione degli alert, è possibile applicare i seguenti *filtri*:
   - intervallo temporale (data e ora di inizio e fine);
   - filtro per gateway (Gateway ID).
-  È possibile infine visualizzare la configurazione degli alert premendo l'apposito pulsante *View Alert Configuration*.
+  È possibile infine visualizzare la configurazione degli alert premendo l'apposito pulsante *View Alert Configuration*
+  (timeout di default ed eventuali override configurati per specifici dispositivi).
   #figure(
     image("assets/alert_config.png", width: 80%),
     caption: [Schermata della configurazione degli alert],
@@ -235,5 +236,143 @@
   - *Logout*: consente di terminare la sessione corrente, disconnettendo l'utente dalla piattaforma e reindirizzandolo
     alla schermata di login.
 
+  #pagebreak()
 
+  = Utente Tenant Admin
+  L’utente *Tenant Admin* rappresenta il ruolo con privilegi avanzati all’interno della piattaforma NoTIP. A differenza
+  dell’utente tenant standard, il Tenant Admin dispone di funzionalità aggiuntive che consentono la gestione e la
+  configurazione delle risorse associate al tenant, tra cui gateway, utenti, soglie e configurazioni di sistema. Il
+  Tenant Admin ha accesso a tutte le funzionalità descritte nella Sezione 3 (Utente Tenant), inclusa la visualizzazione
+  dei dati in tempo reale e storico. Per evitare ridondanze, in questa sezione vengono descritte esclusivamente le
+  funzionalità aggiuntive disponibili per il Tenant Admin.
+
+  == Gestione gateway
+  #figure(
+    image("assets/gateway_admin.png", width: 45%),
+    caption: [Schermata della gestione gateway per il Tenant Admin],
+  )
+  A differenza dell’utente tenant standard, il Tenant Admin può eseguire operazioni di gestione sui gateway. Nella
+  pagina di dettaglio di un certo gateway infatti, sono disponibili le seguenti funzionalità aggiuntive:
+  - *Rename*: consente di modificare il nome del gateway;
+  - *Configure*: permette di accedere alle impostazioni di configurazioni del dispositivo (frequenza di trasmissione e
+    stato);
+  - *Firmware*: consente di aggiornare il firmware del gateway (firmware version e download URL);
+  - *Delete*: permette di eliminare il gateway dalla piattaforma.
+  === Comportamento del sistema
+  - Le modifiche vengono applicate immediatamente al gateway selezionato;
+  - L'eliminazione di un gateway comporta la rimozione di tutti i dati associati al gateway stesso.
+
+  == Configurazione alert
+  #figure(
+    image("assets/alert_admin.png", width: 45%),
+    caption: [Schermata della configurazione degli alert per il Tenant Admin],
+  )
+  In questa sezione, tramite il pulsante *Edit configuration* il Tenant Admin può modificare la configurazione degli
+  alert, personalizzando il comportamento del sistema in funzione delle esigenze operative del tenant (timeout di
+  default ed eventuale gateway override).
+
+  === Utilità
+  Questa sezione è particolarmente utile per personalizzare il comportamento del sistema in caso di anomalie e per
+  adattare i tempi di rilevamento degli errori alle esigenze operative.
+
+  == Threshold settings
+  A differenza dell’utente tenant standard, il Tenant Admin può modificare le soglie dei sensori.
+  === Funzionalità disponibili
+  ==== New Threshold
+  #figure(
+    image("assets/new_threshold.png", width: 45%),
+    caption: [Schermata per l'aggiunta di un nuovo threshold],
+  )
+  Consente di aggiungere un nuovo threshold per un sensore specifico, definendo i seguenti parametri:
+  - *Sensor ID* o *Sensor Type*: identificativo del sensore o tipologia del sensore a cui applicare il threshold;
+  - *Min value*: valore minimo per il threshold;
+  - *Max value*: valore massimo per il threshold;
+
+  ==== Delete Threshold
+  #figure(
+    image("assets/delete_threshold.png", width: 90%),
+    caption: [Schermata per l'eliminazione di un threshold],
+  )
+  Consente di eliminare un threshold esistente, rimuovendo la soglia associata al sensore selezionato.
+  === Comportamento del sistema
+  - Le soglie definiscono i limiti entro cui i dati sono considerabili validi;
+  - Il superamento delle soglie genera segnalazioni visive (es. dashboard);
+  - Le modifiche hanno effetto immediato nel sistema.
+
+  == Gestione utenti
+  #figure(
+    image("assets/user_admin.png", width: 90%),
+    caption: [Schermata della gestione utenti per il Tenant Admin],
+  )
+  Il Tenant Admin può gestire gli utenti appartenenti al proprio tenant. Di ciascun utente è possibile visualizzare:
+  - ID utente;
+  - Username;
+  - Email;
+  - Ruolo (Tenant User o Tenant Admin);
+  - Data e ora dell'ultimo accesso.
+  === Azioni disponibili
+  ==== New User
+  #figure(
+    image("assets/new_user.png", width: 45%),
+    caption: [Schermata per l'aggiunta di un nuovo utente],
+  )
+  Consente di creare un nuovo utente per il tenant, definendo i seguenti parametri:
+  - *Username*: identificativo univoco dell'utente;
+  - *Email*: indirizzo email associato all'utente;
+  - *Role*: ruolo dell'utente (Tenant User o Tenant Admin);
+  - *Password*: chiave di accesso personale (almeno 8 caratteri).
+  === Edit User
+  Consente di modificare le informazioni di un utente esistente, inclusi username, email e ruolo.
+  ==== Delete User
+  Consente di eliminare un utente esistente, rimuovendo l'accessoo alla piattaforma per l'utente selezionato.
+  === Comportamento del sistema
+  - Le modifiche ai ruoli degli utenti hanno effetto immediato sui permessi di accesso alla piattaforma;
+  - L'eliminazione di un utente comporta la revoca immediata dell'accesso alla piattaforma per quell'utente.
+
+  == Gestione API Clients
+  #figure(
+    image("assets/api_client.png", width: 90%),
+    caption: [Schermata della gestione API Clients per il Tenant Admin],
+  )
+  La sezione *Api Clients* consente al Tenant Admin di gestire le integrazioni esterne con la piattaforma.
+  === Funzionalità disponibili
+  - *New API Client*: consente di creare un nuovo client API (client Name);
+  - Visualizzazione dei client registrati;
+  - *Delete*: consente di eliminare un client API esistente, revocando l'accesso alle integrazioni esterne per quel
+    client.
+
+  === Utilità
+  Questa sezione è particolarmente utile per gestire le integrazioni esterne con la piattaforma, consentendo di
+  automatizzare l'accesso ai dati della piattaforma.
+
+  == Audit Log
+  #figure(
+    image("assets/audit_log.png", width: 90%),
+    caption: [Schermata della sezione audit log per il Tenant Admin],
+  )
+  Il Tenant Admin ha accesso alla sezione *Audit Log*, che consente di visualizzare un registro dettagliato delle
+  attività degli utenti all'interno del tenant.
+  === Filtri disponibili
+  Per facilitare la consultazione del registro, è possibile applicare i seguenti filtri:
+  - intervallo temporale (data e ora di inizio e fine);
+  - filtro per utente/i (User IDs);
+  - filtro per tipo di attività (ad esempio, login, modifica gateway, gestione utenti).
+  === Utilità
+  Questa sezione è particolarmente utile per monitorare le attività degli utenti all'interno del tenant, garantendo la
+  sicurezza e la tracciabilità delle operazioni eseguite sulla piattaforma.
+
+  == Monitoraggio Costi
+  #figure(
+    image("assets/costs.png", width: 90%),
+    caption: [Schermata della sezione costi per il Tenant Admin],
+  )
+  La sezione *Costs* consente al Tenant Admin di visualizzare il consumo delle risorse.
+  === Informazioni disponibili
+  - *Storage*: spazio di archiviazione utilizzato per i dati del tenant;
+  - *Bandwidth*: traffico dati generato dai sensori associati al tenant;
+  - *Total*: consumo complessivo.
+  === Utilità
+  Questa sezione è particolarmente utile per monitorare i costi associati all'utilizzo della piattaforma, consentendo al
+  Tenant Admin di gestire in modo efficiente le risorse e di pianificare eventuali espansioni o riduzioni in base alle
+  esigenze operative del tenant.
 ]
