@@ -53,7 +53,7 @@
     ],
     actions: (
       (
-        desc: "doc-piano_qualifica-v1.4.0 - Inserimento dei test di sistema e risultati annessi",
+        desc: "doc-piano_qualifica-v1.5.0 - Inserimento dei test di sistema e risultati annessi",
         url: "https://notipswe.atlassian.net/browse/NT-741",
       ),
       (
