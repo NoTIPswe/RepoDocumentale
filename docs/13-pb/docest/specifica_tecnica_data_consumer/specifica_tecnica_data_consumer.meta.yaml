@@ -4,7 +4,7 @@ changelog:
     date: "2026-04-08"
     authors:
       - Francesco Marcon
-    verifier: TBD
+    verifier: Valerio Solito
     description: >
       Aggiunta di logging avanzato e monitoraggio per il servizio Data-Consumer per migliorare la tracciabilità e la diagnosi dei problemi
   - version: "0.3.0"
