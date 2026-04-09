@@ -10,5 +10,6 @@ req:
 - security.req.yaml
 test:
 - unit.test.yaml
-- integration.test.yaml
+- integration-intra.test.yaml
+- integration-inter.test.yaml
 - system.test.yaml
