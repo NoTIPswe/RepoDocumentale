@@ -227,6 +227,7 @@ accepted_words:
   - AESGCMEncryptor
   - PTerm
   - Stdout
+  - stdout
   - stdin
   - NaN
   - omitempty
@@ -316,6 +317,8 @@ accepted_words:
   - unmarshal
   - Walkthrough
   - REPL
+  - renderer
+  - EOF
 
   # --- Terminologia Standard Progetto ---
   - req

@@ -1317,6 +1317,36 @@
 
     [`printPrompt` / `printWelcomeBanner`],
     [In modalità raw stampano output plain text scansionabile; in modalità styled usano i widget grafici PTerm],
+
+    [`printWelcomeBanner` — errore di render],
+    [Se il renderer PTerm restituisce un errore, il banner viene silenziosamente omesso senza causare panic],
+  )
+
+  *Shell con Line-Editor (`cmd`)*
+
+  #table(
+    columns: (2fr, 3fr),
+    [Caso di test], [Postcondizione verificata],
+    [`RunShell` con line-editor — EOF],
+    [Alla fine dello stream di input il loop REPL termina in modo pulito senza panic],
+
+    [`RunShell` con line-editor — errore di lettura],
+    [Un errore `Read` sul terminale viene propagato e il comando REPL restituisce un errore non nil],
+
+    [`RunShell` con line-editor — errore di ripristino terminale],
+    [Se `Restore` fallisce dopo `MakeRaw`, il comando restituisce comunque l'errore di ripristino],
+
+    [`RunShell` con line-editor — errore `MakeRaw` tra comandi],
+    [Se `MakeRaw` fallisce dopo l'esecuzione di un sottocomando, l'errore viene propagato e la shell si arresta],
+
+    [`shell` — esecuzione con line-editor attivo],
+    [Il comando letto dal line-editor viene eseguito correttamente da Cobra],
+
+    [`shell` — fallback a reader classico se line-editor non disponibile],
+    [Se il costruttore del line-editor fallisce, la shell passa automaticamente alla modalità `bufio.Scanner`],
+
+    [`shell` — copertura hook di default (`DefaultHooks`)],
+    [La funzione `DefaultHooks` restituisce i callback `BeforeCommand` e `AfterCommand` senza errori],
   )
 
   *Client HTTP e Costruzione Richieste (`internal/client`)*
@@ -1344,6 +1374,19 @@
 
     [Gestione HTTP 404 (Not Found)],
     [I metodi restituiscono un errore mappato per mancata risorsa, non mascherato da unparseable struct],
+
+    [`ListGateways` — URL base non valido],
+    [Un URL su cui non può essere fatto il parsing passato al client produce un errore di costruzione della richiesta,
+      senza panic],
+
+    [`AddSensor` — errore di encoding payload],
+    [Se la serializzazione JSON del payload fallisce, viene restituito un errore prima di contattare il server],
+
+    [`WithContext` — `nil` come argomento],
+    [Il client usa automaticamente `context.Background()` come fallback senza panic],
+
+    [`WithContext` — context cancellato],
+    [La richiesta HTTP in-flight viene interrotta e viene restituito un errore di cancellazione],
   )
 
   === Test di Integrazione
@@ -1394,6 +1437,16 @@
     [La pre-validazione `GetGateway` via HTTP fallisce (404); il comando si arresta senza mai chiamare l'endpoint POST
       del sensore],
 
+    [`sensors list` — errore durante il lookup gateway],
+    [`httptest`],
+    [Se la risoluzione UUID/ID del gateway fallisce, il comando restituisce l'errore senza invocare l'endpoint della
+      lista sensori],
+
+    [`sensors add` — fallimento dopo lookup gateway riuscito],
+    [`httptest`],
+    [Se il lookup del gateway ha successo ma la POST del sensore ritorna un errore server, il comando lo propaga
+      correttamente],
+
     [`gateways get` — gateway inesistente (404)],
     [`httptest`],
     [Il comando rileva l'errore HTTP 404 e restituisce un log informativo di errore per l'operatore],
@@ -1420,6 +1473,22 @@
     [`httptest` + `os.Pipe`],
     [L'errore del comando (`gateways list`) viene intercettato da `pterm.Error` e stampato, *senza* causare
       l'interruzione della sessione di shell interattiva],
+
+    [`anomalies outlier` — successo senza flag `--value`],
+    [`httptest`],
+    [L'outlier viene iniettato omettendo la chiave `value` dal JSON; il backend applica il valore di default],
+
+    [`gateways list` — tabella vuota senza output],
+    [Locale],
+    [Se la slice dei gateway è vuota, la funzione di rendering non produce righe su stdout],
+
+    [`sensors list` — tabella vuota senza output],
+    [Locale],
+    [Se la slice dei sensori è vuota, la funzione di rendering non produce righe su stdout],
+
+    [Risoluzione UUID gateway (`GetGatewayUUID`)],
+    [`httptest`],
+    [Dato un identificativo numerico, il helper risolve e restituisce l'UUID corretto del gateway tramite GET],
   )
 
   === Obiettivi di copertura funzionale
