@@ -121,6 +121,9 @@
   │   │   └── aes-key-generator.service.ts
   │   └── metrics/
   │       ├── metrics.module.ts
+  │       ├── metrics.controller.ts
+  │       ├── metrics.interceptor.ts
+  │       ├── metrics.service.ts
   │       └── provisioning.metrics.ts
   └── test/
   ```
@@ -286,11 +289,13 @@
 
   == Gestione Errori
 
-  Il filtro `ProvisioningExceptionFilter` converte gli errori di dominio in risposte HTTP stabili:
+  Il filtro `ProvisioningExceptionFilter` converte gli errori di dominio in risposte HTTP stabili e preserva
+  gli `HttpException` già costruiti da NestJS:
 
   #table(
     columns: (2fr, 1fr, 2fr),
     [Errore], [HTTP], [Body],
+    [`HttpException` / validation error], [status originale], [body originale],
     [`MalformedCSRError`], [400], [`{ "error": "MALFORMED_CSR" }`],
     [`InvalidFactoryCredentialsError`], [401], [`{ "error": "INVALID_CREDENTIALS" }`],
     [`GatewayAlreadyProvisionedError`], [409], [`{ "error": "ALREADY_PROVISIONED" }`],
@@ -354,7 +359,8 @@
 
   = Osservabilità e Metriche
 
-  Il servizio registra metriche applicative tramite `ProvisioningMetrics` e metriche HTTP/process tramite `MetricsService` (`prom-client` default metrics):
+  Il servizio registra metriche applicative tramite `ProvisioningMetrics` e metriche HTTP/process tramite
+  `MetricsService` (`prom-client` default metrics, oltre alle metriche HTTP custom):
 
   #table(
     columns: (auto, auto),
@@ -366,6 +372,9 @@
     [`nats_validate_duration_ms`], [Istogramma durata chiamata validate],
     [`nats_complete_duration_ms`], [Istogramma durata chiamata complete],
     [`nats_retries_total`], [Numero totale retry NATS (request-reply e publish)],
+    [`notip_provisioning_http_requests_total`], [Counter HTTP per metodo, route e status code],
+    [`notip_provisioning_http_request_duration_seconds`], [Istogramma durata delle richieste HTTP],
+    [`notip_provisioning_http_requests_in_flight`], [Gauge delle richieste HTTP in corso per metodo],
   )
 
   = Strategia di Test
