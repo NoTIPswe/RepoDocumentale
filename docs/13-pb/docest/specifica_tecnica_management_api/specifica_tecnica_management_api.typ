@@ -3,6 +3,7 @@
 
 #let metadata = yaml("specifica_tecnica_management_api.meta.yaml")
 
+#show figure: set block(breakable: true)
 
 #base-document.apply-base-document(
   title: metadata.title,
@@ -98,33 +99,15 @@
 
   == Layout dei moduli
   Essendo il microservizio troppo grande per essere contenuto in un unico diagramma, di seguito è riportata la struttura
-  dei moduli interni al microservizio e delle cartelle di contorno, in particolare questa è la struttura del modulo
-  `gateways`:
+  completa dei moduli interni al microservizio e delle cartelle di contorno:
 
   #figure(
-    caption: [Architettura interna del modulo `Gateways`],
+    caption: [Architettura del microservizio],
   )[
-    #image("./assets/gatewaysDiagram.png", width: 90%)
+    #image("./assets/01-app-architecture.svg")
   ]
 
-  ```text
-  notip-management-api/
-  ├── src/
-  │   ├── gateways/
-  │   │   ├── controller/     GatewaysController
-  │   │   ├── services/       GatewaysService, GatewaysPersistenceService
-  │   │   ├── models/         GatewayModel
-  │   │   ├── entities/       GatewayEntity del relativo Repository TypeORM
-  │   │   ├── interfaces/     Controller-service-interfaces, service-persistence-interfaces
-  │   │   ├── dto/            Tutti i request e response DTO relativi ai Gateway
-  │   │   ├── enums/          Eventuali enumerazioni specifiche dei Gateway ad esempio GatewayStatus
-  │   │   ├── gateways.module.ts
-  │   │   └── gateways.mapper.ts
-  │   │
-  │   ├── common/             Componenti condivisi tra i moduli, ad esempio decoratori
-  │   ├── test/               Test unitari e di integrazione del servizio
-  │   └── migrations/         TypeORM migrations per la gestione dello schema del database
-  ```
+
   == Strati Architetturali
   Di seguito è riportata la suddivisione in strati architetturali del microservizio, con l'indicazione delle cartelle e
   dei componenti principali:
@@ -133,25 +116,117 @@
     caption: [Strati architetturali del microservizio `notip-management-api`],
   )[
     #table(
-      columns: (1.5fr, 2fr, 2.5fr),
-      [Strato], [Package], [Contenuto],
+      columns: (1.5fr, 2fr, 2.5fr, 3fr),
+      [Strato], [Package], [Componenti], [Responsabilità],
       [Presentation],
       [`src/*/controller`\ `src/auth`\ `src/common/decorators`\ `src/auth/guards`\ `src/common/interceptors`\
         `src/common/pipes`\ `src/common/filters`\ `src/*/dto`],
+      [Controller, Guards, Interceptors, Filters, Decorators, DTO, Pipes],
       [Gestione delle richieste HTTP, esposizione delle API REST, validazione dei payload, autenticazione e definizione
-        dei contratti di ingresso/uscita dei dati.],
+        dei contratti di ingresso/uscita dei dati. I Guards applicano le policy di accesso (JWT, ruoli, impersonazione).
+        Gli Interceptors gestono metriche, audit log e iniezione del tenant context. I filtri globali gestiscono le
+        eccezioni e le mappano verso risposte HTTP strutturate.],
 
       [Business],
-      [`src/*/services`\ `src/*/models`\ `src/*/interfaces`\ `src/*/enums`\ `src/*/*.mapper.ts`],
+      [`src/*/services`\ `src/*/models`\ `src/*/interfaces`\ `src/*/enums`\ `src/*/*.mapper.ts`\ `src/*/listeners`\
+        `src/*/encryption`],
+      [Services, Models, Mappers, Listeners, Enum, Encryption utilities],
       [Logica di business, regole di dominio, orchestrazione dei processi, definizione dei modelli di dominio e delle
-        interfacce tra i servizi, gestione delle richieste verso servizi esterni come Keycloak e NATS.],
+        interfacce tra i servizi. Gestione delle richieste verso servizi esterni come Keycloak (token exchange, CRUD
+        utenti/ruoli/gruppi) e NATS (publish, subscribe, request-reply). I Mappers convertono dati tra Entity, Model e
+        DTO. I Listener reagiscono agli eventi interni del sistema (es. gateway decommissioned). Le utilities di
+        crittografia gestiscono AES-256-GCM per il materiale delle chiavi.],
 
       [Persistence],
       [`src/*/entities`\ `src/*/services/*.persistence.ts`\ `src/database`\ `src/migrations`],
+      [Entities, Persistence Services, Repository, Data Source, Migrations],
       [Gestione dell'accesso ai dati tramite TypeORM, definizione delle entità e dei repository, gestione delle
         migrazioni del database, implementazione dei servizi di persistenza che interagiscono con il database
-        PostgreSQL.],
+        PostgreSQL. Ogni modulo ha un proprio persistence service che astrae le operazioni CRUD sul repository TypeORM.
+        Il DataSource centralizza la configurazione della connessione e il supporto transazionale.],
+
+      [Infrastructure],
+      [`src/nats`\ `src/common/env.validation.ts`\ `src/metrics`],
+      [NATS JetStream Client, Config Validation, Prometheus Metrics],
+      [Componenti infrastrutturali trasversali: connessione e interazione con NATS JetStream (pubblicazione comandi,
+        consumo ACK, request-reply per provisioning e alert), validazione della configurazione da variabili d'ambiente,
+        esposizione di metriche Prometheus (request count, duration, in-flight).],
     )]
+
+  === Pattern architetturali
+
+  Il microservizio adotta diversi pattern architetturali che garantiscono manutenibilità, testabilità e separazione
+  delle responsabilità:
+
+  #table(
+    columns: (1.5fr, 3.5fr),
+    [Pattern], [Descrizione],
+    [Controller-Service-Persistence],
+    [Ogni modulo segue questa tripartizione: il *Controller* espone endpoint HTTP, il *Service* contiene la logica di
+      business e coordina i servizi esterni, il *Persistence Service* gestisce le operazioni CRUD su TypeORM. Questo
+      pattern garantisce una chiara separazione tra i livelli dell'applicazione.],
+
+    [Dependency Injection],
+    [Tutti i componenti sono registrati come provider NestJS e iniettati tramite constructor injection. Il grafo delle
+      dipendenze è configurato nel composition root di ciascun modulo (`*.module.ts`).],
+
+    [Mapper],
+    [Le classi mapper statiche (`*Mapper`) convertono dati tra i diversi livelli: Entity → Model → DTO. Questo evita che
+      i dettagli di persistenza (TypeORM decorators) o di presentazione (class-transformer) si propaghino tra i layer.],
+
+    [Event-driven],
+    [Il modulo Gateways emette eventi interni tramite `EventEmitter2` (es. `gateway.decommissioned`). I listener
+      (`GatewaysListener`) li traducono in messaggi NATS. Questo disaccoppia la logica di dominio dal meccanismo di
+      trasporto.],
+
+    [NATS Request-Reply],
+    [Alcuni servizi espongono API interne tramite NATS RR: `ProvisioningNatsResponderService` (factory key validation),
+      `GatewayStatusNatsResponderService` (aggiornamento stato runtime), `AlertConfigNatsResponderService` (config
+      listing). Questo permette la comunicazione asincrona tra microservizi.],
+
+    [Guard pattern],
+    [I Guards globali (`JwtAuthGuard`, `RolesGuard`, `AccessPolicyGuard`, `BlockImpersonationGuard`) applicano politiche
+      di accesso su ogni richiesta. I decoratori (`@AdminOnly()`, `@TenantScoped()`, `@Roles()`,
+      `@BlockImpersonation()`) configurano il comportamento per-endpoint tramite metadati.],
+  )
+
+  === Flusso di una richiesta
+
+  Una richiesta HTTP attraversa i seguenti strati prima di raggiungere la logica di dominio:
+
+  #table(
+    columns: (auto, 1.5fr, 3fr),
+    [Step], [Strato], [Comportamento],
+    [1],
+    [Guards],
+    [`JwtAuthGuard` valida il token JWT. `AccessPolicyGuard` verifica la policy (`@AdminOnly/@TenantScoped`).
+      `RolesGuard` controlla i ruoli richiesti. `BlockImpersonationGuard` blocca se in impersonazione su endpoint
+      protetti.],
+
+    [2],
+    [Interceptors],
+    [`MetricsInterceptor` registra la richiesta. `LastAccessInterceptor` aggiorna l'ultimo accesso dell'utente.
+      `TenantInterceptor` inietta il tenant context nella richiesta. `AuditInterceptor` registra l'evento di audit.],
+
+    [3],
+    [Pipes],
+    [Validazione automatica dei DTO tramite `class-validator` e `class-transformer`. I decorator `@IsString()`,
+      `@IsEnum()`, `@IsUUID()` garantiscono l'integrità dei dati in ingresso.],
+
+    [4],
+    [Controller],
+    [Il controller riceve la richiesta valida, delega al Service e mappa la risposta tramite il Mapper.],
+
+    [5],
+    [Service],
+    [Il Service applica le regole di business (validazione ownership, transazioni, chiamate a Keycloak/NATS).],
+
+    [6], [Persistence], [Il Persistence Service esegue le operazioni TypeORM sul database PostgreSQL.],
+
+    [7],
+    [Response],
+    [La risposta viene mappata dal Mapper al DTO appropriato e restituita al client con il formato JSON corretto.],
+  )
 
   = Design di Dettaglio
   == Moduli del microservizio
@@ -612,7 +687,7 @@
   _Metodi pubblici:_
 
   #table(
-    columns: (1.3fr, 2.8fr, 2fr),
+    columns: (1.3fr, 3.3fr, 2fr),
     [Metodo], [Firma], [Note],
     [`getGateways(input)`],
     [`(input: GetGatewaysInput): Promise<GatewayEntity[]>`],
@@ -942,7 +1017,7 @@
     [Cerca gateway per factoryId; verifica hash con bcrypt; solleva `UnauthorizedException` o `ConflictException`],
 
     [`completeProvisioning(...)`],
-    [`(gatewayId, keyMaterial, keyVersion, sendFrequencyMs, firmwareVersion?): Promise<void>`],
+    [#par(justify: false)[`(gatewayId, keyMaterial, keyVersion, sendFrequencyMs, firmwareVersion?): Promise<void>`]],
     [Transazione: crea KeyEntity, aggiorna GatewayMetadata, imposta provisioned=true, factoryKeyHash=null],
 
     [`provisionGateway(...)`],
@@ -959,7 +1034,7 @@
   #table(
     columns: (1.5fr, 2fr, 2.5fr),
     [Campo], [Tipo], [Note],
-    [`r`], [`Repository<KeyEntity>`], [Repository TypeORM iniettato],
+    [`repository`], [`Repository<KeyEntity>`], [Repository TypeORM iniettato],
   )
 
   _Metodi pubblici:_
@@ -1132,7 +1207,7 @@
   #table(
     columns: (1.5fr, 2fr, 2.5fr),
     [Campo], [Tipo], [Note],
-    [`r`], [`Repository<UserEntity>`], [Repository TypeORM iniettato],
+    [`repository`], [`Repository<UserEntity>`], [Repository TypeORM iniettato],
   )
 
   _Metodi pubblici:_
@@ -1211,7 +1286,7 @@
   Controller NestJS esposto sotto il prefisso `/alerts`. Protetto da `@TenantScoped()`.
 
   #table(
-    columns: (1.2fr, 2.5fr, 2.3fr),
+    columns: (2fr, 2.5fr, 2.3fr),
     [Metodo], [Endpoint], [Note],
     [`getAlerts(tenantId, from?, to?, gatewayId?)`],
     [`GET /alerts`],
@@ -1250,7 +1325,7 @@
   _Metodi pubblici:_
 
   #table(
-    columns: (1.5fr, 2.5fr, 2fr),
+    columns: (2fr, 2.5fr, 2fr),
     [Metodo], [Firma], [Note],
     [`setGatewayAlertsConfig(input)`],
     [`(input): Promise<AlertsConfigEntity>`],
@@ -1282,14 +1357,14 @@
   #table(
     columns: (1.5fr, 2fr, 2.5fr),
     [Campo], [Tipo], [Note],
-    [`r`], [`Repository<AlertsEntity>`], [Repository per gli alert],
-    [`rac`], [`Repository<AlertsConfigEntity>`], [Repository per le configurazioni],
+    [`repository`], [`Repository<AlertsEntity>`], [Repository per gli alert],
+    [`alertsConfigRepository`], [`Repository<AlertsConfigEntity>`], [Repository per le configurazioni],
   )
 
   _Metodi pubblici:_
 
   #table(
-    columns: (1.5fr, 2.5fr, 2fr),
+    columns: (2fr, 2.5fr, 2fr),
     [Metodo], [Firma], [Note],
     [`setGatewayAlertsConfig(input)`],
     [`(input): Promise<AlertsConfigEntity>`],
@@ -1481,7 +1556,7 @@
   _Metodi pubblici:_
 
   #table(
-    columns: (1.5fr, 2.5fr, 2fr),
+    columns: (2.2fr, 2.5fr, 2fr),
     [Metodo], [Firma], [Note],
     [`updateStatus(input)`],
     [`(input): Promise<CommandEntity | null>`],
@@ -1715,7 +1790,7 @@
   _Metodi pubblici:_
 
   #table(
-    columns: (1.5fr, 2.5fr, 2fr),
+    columns: (1.9fr, 2.5fr, 2fr),
     [Metodo], [Firma], [Note],
     [`createApiClient(tenantId, name)`],
     [`(tenantId, name): Promise<{ model, clientSecret }>`],

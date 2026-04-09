@@ -5,9 +5,9 @@ skinparam backgroundColor #FFFFFF
 skinparam defaultFontSize 10
 skinparam defaultFontColor #000000
 skinparam class {
-  BackgroundColor #F3E5F5
-  BorderColor #9C27B0
-  ArrowColor #7B1FA2
+  BackgroundColor #E8F4FD
+  BorderColor #2196F3
+  ArrowColor #1976D2
 }
 skinparam nodesep 10
 skinparam ranksep 10

@@ -5,17 +5,17 @@ skinparam backgroundColor #FFFFFF
 skinparam defaultFontSize 10
 skinparam defaultFontColor #000000
 skinparam class {
-  BackgroundColor #E0F7FA
-  BorderColor #00BCD4
-  ArrowColor #0097A7
+  BackgroundColor #E8F4FD
+  BorderColor #2196F3
+  ArrowColor #1976D2
 }
 skinparam enum {
   BackgroundColor #FFF3E0
   BorderColor #FF9800
 }
 skinparam interface {
-  BackgroundColor #F3E5F5
-  BorderColor #9C27B0
+  BackgroundColor #E8F4FD
+  BorderColor #2196F3
 }
 skinparam nodesep 10
 skinparam ranksep 10
