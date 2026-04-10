@@ -3,21 +3,21 @@ changelog:
   - version: "0.2.0"
     date: "2026-04-09"
     authors:
-      - Alessandro Contarini 
-    verifier: TBD
+      - Alessandro Contarini
+    verifier: Alessandro Mazzariol
     description: >
       Finita prima versione del documento
   - version: "0.1.0"
     date: "2026-04-08"
     authors:
-      - Alessandro Contarini 
-    verifier: TBD
+      - Alessandro Contarini
+    verifier: Alessandro Mazzariol
     description: >
       Stesura prima versione del documento
   - version: "0.0.1"
     date: "2026-04-08"
     authors:
-      - Alessandro Contarini 
-    verifier: TBD
+      - Alessandro Contarini
+    verifier: Alessandro Mazzariol
     description: >
       Creazione del documento
