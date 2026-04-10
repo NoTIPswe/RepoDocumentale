@@ -1,6 +1,6 @@
 #import "../../00-templates/base_document.typ" as base-document
 
-#let metadata = yaml("manuale_infrastruttura.meta.yaml")
+#let metadata = yaml(sys.inputs.meta-path)
 
 #base-document.apply-base-document(
   title: metadata.title,
@@ -52,7 +52,7 @@
       sim-cli (si possono scegliere più immagini separandole con una virgola).
   - _*make up-monitoring*_
     - esegue il comando `docker compose -f compose/docker-compose-monitoring.yml up -d` e avvia i container docker di
-      prometheus e grafana.
+      Prometheus e Grafana.
   - _*make down*_
     - esegue il comando `docker compose --project-directory . -f compose/docker-compose.yml down`
   - _*make reset*_

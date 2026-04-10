@@ -202,6 +202,12 @@ accepted_words:
   - deduplicazione
   - mockato
   - TestContainers
+  - Grafana
+  - prometheus
+  - grafana
+  - powershell
+  - svc
+  - ps
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -459,3 +465,5 @@ accepted_words:
   - impersonazione
   - impersonare
   - intra
+  - riconnessioni
+  - restartare
