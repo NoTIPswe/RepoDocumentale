@@ -1,6 +1,6 @@
 #import "../../00-templates/base_document.typ" as base-document
 
-#let metadata = yaml(sys.inputs.meta-path)
+#let metadata = yaml("manuale_utente.meta.yaml")
 
 #base-document.apply-base-document(
   title: metadata.title,
@@ -26,7 +26,7 @@
   == Accesso alla piattaforma
   === Schermata di login
   #figure(
-    image("assets/login.png", width: 90%),
+    image("assets/login.png", width: 180%),
     caption: [Schermata di accesso alla piattaforma],
   )
 
@@ -37,10 +37,6 @@
   *Campi disponibili:*
   - *Username o email*: identificativo univoco dell'utente;
   - *Password*: chiave di accesso personale, che deve essere mantenuta segreta per garantire la sicurezza dell'account.
-  *Funzionalità:*
-  - *Sign in*: avvia il processo di autenticazione, verificando le credenziali inserite;
-  - *Forgot Password*: consente agli utenti di recuperare l'accesso al proprio account in caso di smarrimento della
-    password, avviando una procedura di reset tramite email.
   *Comportamento del sistema*:
   - Se le credenziali sono corrette, l'utente viene autenticato e reindirizzato alla piattaforma, con accesso alle
     funzionalità e ai dati consentiti dal proprio ruolo.
@@ -50,7 +46,7 @@
   = Utente Tenant
   == Dashboard
   #figure(
-    image("assets/dashboard.png", width: 90%),
+    image("assets/dashboard.png", width: 100%),
     caption: [Schermata della dashboard],
   )
   La dashboard rappresenta il punto di accesso principale per gli utenti tenant, offrendo una panoramica completa dei
@@ -210,7 +206,7 @@
 
   == Threshold Settings
   #figure(
-    image("assets/threshold_setting.png", width: 90%),
+    image("assets/threshold_setting.png", width: 80%),
     caption: [Schermata della sezione threshold settings],
   )
   Questa sezione consente agli utenti tenant di visualizzare i threshold attivi per i sensori associati ai gateway del
@@ -224,13 +220,13 @@
   funzionalità:
   - *Open profile*: consente di visualizzare e modificare le informazioni personali
     #figure(
-      image("assets/account.png", width: 90%),
+      image("assets/account.png", width: 60%),
       caption: [Schermata della gestione account],
     )
   - *Change password*: permette di modificare la password di accesso all'account, garantendo la sicurezza dell'account
-    stesso.
+    stesso. Per questioni di sicurezza potrebbe essere richiesta un ulteriore autenticazione.
   #figure(
-    image("assets/password.png", width: 90%),
+    image("assets/password.png", width: 60%),
     caption: [Schermata della modifica password],
   )
   - *Logout*: consente di terminare la sessione corrente, disconnettendo l'utente dalla piattaforma e reindirizzandolo
