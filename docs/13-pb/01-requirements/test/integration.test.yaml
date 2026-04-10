@@ -20,7 +20,7 @@ tests:
       - invio_dati_crittografati_cloud
     status: not_implemented
   - id: t_intra_bidirectional_control_flow
-    service: -Placeholder
+    service: Management API
     description:
       "Verificare il flusso di controllo bidirezionale: invio e corretta applicazione dei comandi
       di configurazione dal Cloud al Simulatore"
@@ -28,7 +28,7 @@ tests:
       - impostazione_configurazione_gateway
     status: not_implemented
   - id: t_intra_buffer_network_recovery
-    service: -Placeholder
+    service: Management API
     description:
       Verificare la gestione del buffer locale del Simulatore e della successiva integrazione
       con il Cloud dopo un ripristino di rete
@@ -36,7 +36,7 @@ tests:
       - comando_anomalia_disconnessione_temporanea
     status: not_implemented
   - id: t_intra_db_persistence_tenant_isolation
-    service: -Placeholder
+    service: Management API
     description:
       Verificare la persistenza dei dati nel database e dell’isolamento dei dati per ciascun
       Tenant
@@ -310,9 +310,9 @@ tests:
     service: Provisioning service
     description: Verificare il flusso end-to-end del provisioning con onboarding completato, certificato generato e chiave AES restituita
     requirements:
-    - onboarding_gateway
-    - sicurezza_cifratura_dati
-    - instaurazione_connessione_sicura
+      - onboarding_gateway
+      - sicurezza_cifratura_dati
+      - instaurazione_connessione_sicura
     status: passed
 
   - id: t_intra_cli_command_tree
@@ -424,7 +424,7 @@ tests:
   - id: t_intra_cli_display_helpers
     service: Simulator CLI
     description: Verificare i formatter di output della CLI; varianti di stile stato gateway, mapping UUID gateway, tabelle vuote senza output e comando help eseguibile
-    requirements: 
+    requirements:
       - visualizzazione_lista_gateway_simulati
       - visualizzazione_singolo_gateway_simulato
       - visualizzazione_lista_sensori_gateway_simulato
@@ -434,12 +434,13 @@ tests:
     service: Provisioning service
     description: Verificare l’integrazione tramite dependency injection tra ProvisioningService e adapter NATS nel flusso di onboarding
     requirements:
-    - onboarding_gateway
+      - onboarding_gateway
     status: passed
   - id: t_intra_provisioning_http_error_mapping
     service: Provisioning service
     description: Verificare il mapping HTTP end-to-end degli errori di onboarding (credenziali factory invalide e CSR malformato)
     requirements:
+<<<<<<< Updated upstream
     - err_auth_gateway_fabbrica
     - err_dati_autenticazione_invalidi
     status: passed
@@ -486,3 +487,8 @@ tests:
     requirements:
       - visualizzazione_costi_stimati
     status: not_implemented
+=======
+      - err_auth_gateway_fabbrica
+      - err_dati_autenticazione_invalidi
+    status: passed
+>>>>>>> Stashed changes

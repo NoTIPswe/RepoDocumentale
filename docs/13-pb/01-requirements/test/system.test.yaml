@@ -427,7 +427,7 @@ tests:
   - id: t_view_single_alert_details
     description:
       Verificare che il Tenant User possa visualizzare un alert dalla lista storica e
-      visualizzarne i dettagli 
+      visualizzarne i dettagli
     requirements:
       - visualizzazione_singolo_alert
       - visualizzazione_dettagli_singolo_alert
