@@ -1,5 +1,27 @@
 title: Piano di Qualifica
 changelog:
+  - version: "1.7.0"
+    date: "2026-04-10"
+    authors:
+      - Leonardo Preo
+    verifier: Francesco Marcon
+    description: >
+      Aggiunta test unità per servizio WebApp Frontend
+  - version: "1.6.0"
+    date: "2026-04-10"
+    authors:
+      - Alessandro Contarini
+    verifier: Francesco Marcon
+    description: >
+      Aggiunta test unità e integrazione per il servizio Data API
+  - version: "1.5.0"
+    date: "2026-04-09"
+    authors:
+      - Francesco Marcon
+      - Mario De Pasquale
+    verifier: Leonardo Preo
+    description: >
+      Aggiunta test unità e integrazione per il servizio Simulator CLI e aggiornai test del servizio di Provisioning
   - version: "1.4.0"
     date: "2026-04-09"
     authors:

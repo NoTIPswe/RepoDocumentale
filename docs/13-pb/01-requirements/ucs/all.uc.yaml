@@ -581,6 +581,20 @@ use_cases:
   main_scenario:
   - description: L’Attore riceve una notifica di errore di configurazione con indicazione della natura
       sintattica del problema
+- id: modifica_algoritmo_generazione_dati
+  title: Modifica algoritmo di generazione dati sensore simulato
+  actors:
+    primary:
+    - sim-usr
+  preconditions:
+  - Esiste un sensore simulato selezionato di cui si vuole modificare la configurazione
+  postconditions:
+  - L'algoritmo di generazione dati del sensore è stato aggiornato
+  - Le successive misurazioni generate utilizzano il nuovo algoritmo
+  main_scenario:
+  - description: L'Attore accede alla configurazione del sensore simulato
+  - description: L'Attore indica il nuovo algoritmo di generazione dati tra quelli disponibili
+  - description: L'Attore invia la modifica
 - id: err_config_frequenza_fuori_range
   title: Errore configurazione frequenza invio dati fuori range ammesso
   actors:

@@ -77,6 +77,7 @@ accepted_words:
 
   # --- Tecnologie e Formati ---
   - AES
+  - AESKey
   - AESKeyGenerator
   - CAProvider
   - CARepository
@@ -101,7 +102,9 @@ accepted_words:
   - PKI
   - ProvisioningCompleter
   - Typst
+  - EOF
   - TTL
+  - TTY
   - YAML
   - yaml
   - typ
@@ -188,6 +191,7 @@ accepted_words:
   - struct
   - DSN
   - stderr
+  - stdin
   - env
   - SIGTERM
   - SIGINT
@@ -209,6 +213,8 @@ accepted_words:
   - MeasurePersistenceServiceDRIVEN
   - NpQueryPersistenceServiceDRIVEN
   - StreamListenerServiceDRIVEN
+  - formatter
+  - pterm
   - paginata
   - paginato
   - rimappatura
@@ -437,7 +443,10 @@ accepted_words:
   - NATSGatewayLifecycleProvider
   - Configs
   - os
+  - mustMarkRequired
   - OpaqueBlob
+  - ProvisioningService
+  - WithContext
   - config
   - lifecycle
   - writeBatch
@@ -532,6 +541,7 @@ accepted_words:
   - yyyy
   - sottocasi
   - sottocaso
+  - sottocomandi
   - impersonificare
   - pre
   - Sez
@@ -584,6 +594,7 @@ accepted_words:
   - versionata
   - versionati
   - debuggati
+  - WebApp
   - opz
   - sottocomandi
   - sottocomando
