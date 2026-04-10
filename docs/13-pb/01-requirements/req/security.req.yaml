@@ -49,3 +49,9 @@ requirements:
   - text: Capitolato C7
     url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf
   - text: Sez."Requisiti di Sicurezza"
+- id: sicurezza_rule_zero
+  priority: mandatory
+  description: I payload telemetrici cifrati devono essere trasmessi e persistiti verbatim senza alcuna
+    modifica o ispezione del contenuto lungo tutta la pipeline Cloud
+  sources:
+  - text: Interno

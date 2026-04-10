@@ -21,3 +21,8 @@ venv
 **/docest/analisi_requisiti/uc_schemas/
 **/01-requirements/req/_req_codes.generated.json
 **/01-requirements/req/_legacy_req_codes.generated.json
+
+.vscode
+.zed
+
+.direnv

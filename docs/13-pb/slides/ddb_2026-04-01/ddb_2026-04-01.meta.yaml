@@ -1,0 +1,16 @@
+title: Diario di Bordo 2026-04-01
+changelog:
+  - version: "0.1.0"
+    date: "2026-04-09"
+    authors:
+      - Leonardo Preo
+    verifier: Francesco Marcon
+    description: >
+      Aggiornamento numero sprint
+  - version: "0.0.1"
+    date: "2026-04-01"
+    authors:
+      - Valerio Solito
+    verifier: Mario De Pasquale
+    description: >
+      Creazione del diario di Bordo

@@ -2,7 +2,7 @@
 #import "../specifica_tecnica/st_lib.typ" as st
 
 #let metadata = yaml(sys.inputs.meta-path)
-
+#show figure.where(kind: table): set block(breakable: true)
 #base-document.apply-base-document(
   title: metadata.title,
   abstract: "Specifica tecnica del microservizio data-api: architettura logica, contratti REST, port applicativi, design di dettaglio dei componenti, gestione errori e strategia di test del servizio di consultazione delle misure cifrate.",

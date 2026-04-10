@@ -1,223 +1,500 @@
+#Per inserire i test nel sotto capitolo mettere sotto id "service: _vostro servizio_"
+#service NON e' opzionale, ho messo a i test pre-esistenti senza un service "-Placeholder"
+#il titolo del capitolo sara' come il nome del service, quindi deve essere uguale per tutti i test del singolo servizio
+#_esempio_
+#- id: t_u_x
+#  service: Provisioning service
+#  description: "des"
+#  requirements:
+#  - req
+#  status: not_implemented
+
 type: unit
 tests:
-- id: t_u_1
-  description: Verificare la validazione del campo email nella richiesta di login (presenza e formato)
-  requirements:
-  - ins_mail
-  status: not_implemented
-- id: t_u_2
-  description: Verificare la validazione del campo password nella richiesta di login
-  requirements:
-  - ins_pw
-  status: not_implemented
-- id: t_u_3
-  description: Verificare il mapping dell’errore “credenziali errate”
-  requirements:
-  - err_cred_errate
-  status: not_implemented
-- id: t_u_4
-  description: Verificare la generazione del segreto TOTP (formato e lunghezza)
-  requirements:
-  - setup_totp
-  status: not_implemented
-- id: t_u_5
-  description: Verificare la serializzazione del segreto TOTP
-  requirements:
-  - setup_totp
-  status: not_implemented
-- id: t_u_6
-  description: Verificare la valutazione della condizione “2FA richiesto”
-  requirements:
-  - login_2fa
-  status: not_implemented
-- id: t_u_7
-  description: Verificare la validazione dell’input OTP (solo cifre, lunghezza)
-  requirements:
-  - ins_otp
-  status: not_implemented
-- id: t_u_8
-  description: Verificare il mapping dell’errore “OTP errato”
-  requirements:
-  - err_otp_errato
-  status: not_implemented
-- id: t_u_9
-  description: Verificare la validazione della richiesta di recupero password
-  requirements:
-  - recupero_password
-  status: not_implemented
-- id: t_u_10
-  description: Verificare il mapping dell’errore “account non esistente”
-  requirements:
-  - err_account_inesistente
-  status: not_implemented
-- id: t_u_11
-  description: Verificare la validazione della nuova password
-  requirements:
-  - impostazione_password
-  status: not_implemented
-- id: t_u_12
-  description: Verificare il mapping dell’errore “password non corrispondenti”
-  requirements:
-  - err_campi_diversi
-  status: not_implemented
-- id: t_u_13
-  description: Verificare il rispetto della policy di complessità password
-  requirements:
-  - err_password_invalida
-  status: not_implemented
-- id: t_u_14
-  description: Verificare il mapping dello stato gateway verso label testuale
-  requirements:
-  - visualizzazione_singolo_gateway_tenant
-  status: not_implemented
-- id: t_u_15
-  description: Verificare la formattazione del timestamp ultimo invio gateway
-  requirements:
-  - visualizzazione_dettagli_gateway
-  status: not_implemented
-- id: t_u_16
-  description: Verificare la formattazione del timestamp ultimo invio sensore
-  requirements:
-  - visualizzazione_singolo_sensore
-  status: not_implemented
-- id: t_u_17
-  description: Verificare la normalizzazione e serializzazione dello stream dati
-  requirements:
-  - visualizzazione_dati_stream
-  status: not_implemented
-- id: t_u_18
-  description: Verificare la trasformazione dello stream in struttura tabellare
-  requirements:
-  - visualizzazione_tabellare_dati_stream
-  status: not_implemented
-- id: t_u_19
-  description: Verificare la trasformazione dello stream in serie per grafico
-  requirements:
-  - visualizzazione_grafico_dati_stream
-  status: not_implemented
-- id: t_u_20
-  description: Verificare la validazione dell’intervallo temporale (start ≤ end)
-  requirements:
-  - filtraggio_intervallo_temporale
-  status: not_implemented
-- id: t_u_21
-  description: Verificare il mapping dello stato “dati non disponibili”
-  requirements:
-  - err_dati_non_disponibili
-  status: not_implemented
-- id: t_u_22
-  description: Verificare la serializzazione dei dati per export
-  requirements:
-  - esportazione_dati
-  status: not_implemented
-- id: t_u_23
-  description: Verificare la formattazione del valore fuori range
-  requirements:
-  - alert_sensore_fuori_range
-  status: not_implemented
-- id: t_u_24
-  description: Verificare la formattazione del range accettato
-  requirements:
-  - alert_sensore_fuori_range
-  status: not_implemented
-- id: t_u_25
-  description: Verificare la formattazione del timestamp di un dato irregolare
-  requirements:
-  - alert_sensore_fuori_range
-  status: not_implemented
-- id: t_u_26
-  description: Verificare il mapping del tipo di alert verso descrizione testuale
-  requirements:
-  - visualizzazione_singolo_alert
-  status: not_implemented
-- id: t_u_27
-  description: Verificare il mapping dell’hardware interessato da un alert
-  requirements:
-  - visualizzazione_singolo_alert
-  status: not_implemented
-- id: t_u_28
-  description: Verificare la formattazione del timestamp di emissione alert
-  requirements:
-  - visualizzazione_singolo_alert
-  status: not_implemented
-- id: t_u_29
-  description: Verificare la validazione delle impostazioni di notifica
-  requirements:
-  - modifica_impostazioni_notifica_alert_email
-  - modifica_impostazioni_notifica_alert_dashboard
-  status: not_implemented
-- id: t_u_30
-  description: Verificare la validazione del nome utente tenant
-  requirements:
-  - inserimento_nome_utente
-  status: not_implemented
-- id: t_u_31
-  description: Verificare la validazione dei ruoli assegnabili
-  requirements:
-  - selezione_permessi_utente
-  status: not_implemented
-- id: t_u_32
-  description: Verificare l’assenza di duplicati nella selezione utenti
-  requirements:
-  - selezione_lista_utenti
-  status: not_implemented
-- id: t_u_33
-  description: Verificare la generazione del Client ID
-  requirements:
-  - visualizzazione_client_id
-  status: not_implemented
-- id: t_u_34
-  description: Verificare la generazione del Client Secret
-  requirements:
-  - visualizzazione_secret_api
-  status: not_implemented
-- id: t_u_35
-  description: Verificare la costruzione di una entry di audit (campi obbligatori)
-  requirements:
-  - visualizzazione_singolo_log_audit
-  status: not_implemented
-- id: t_u_36
-  description: Verificare il mapping dell’operazione di audit verso testo
-  requirements:
-  - visualizzazione_singolo_log_audit
-  status: not_implemented
-- id: t_u_37
-  description: Verificare la validazione di un token JWT (scadenza e formato)
-  requirements:
-  - err_token_api_invalido
-  status: not_implemented
-- id: t_u_38
-  description: Verificare la validazione dei permessi secondo policy
-  requirements:
-  - sicurezza_autenticazione_accessi
-  status: not_implemented
-- id: t_u_39
-  description: Verificare il mapping della lista gateway simulati
-  requirements:
-  - visualizzazione_lista_gateway_simulati
-  status: not_implemented
-- id: t_u_40
-  description: Verificare il mapping del gateway simulato
-  requirements:
-  - visualizzazione_singolo_gateway_simulato
-  status: not_implemented
-- id: t_u_41
-  description: Verificare la validazione della configurazione gateway simulato
-  requirements:
-  - inserimento_dati_config_sim_gateway
-  status: not_implemented
-- id: t_u_42
-  description: Verificare il mapping dell’errore di deploy gateway simulato
-  requirements:
-  - err_deploy_gateway_simulato
-  status: not_implemented
-- id: t_u_43
-  description: Verificare la validazione della configurazione sensore simulato
-  requirements:
-  - inserimento_dati_config_sim_sensore
-  status: not_implemented
-- id: t_u_44
-  description: Verificare il mapping dell’errore range invalido sensore
-  requirements:
-  - err_range_invalido_simulazione
-  status: not_implemented
+  - id: t_validate_login_email
+    service: -Placeholder
+    description: Verificare la validazione del campo email nella richiesta di login (presenza e formato)
+    requirements:
+      - ins_mail
+    status: not_implemented
+  - id: t_validate_password_login
+    service: -Placeholder
+    description: Verificare la validazione del campo password nella richiesta di login
+    requirements:
+      - ins_pw
+    status: not_implemented
+  - id: t_map_invalid_credentials_error
+    service: -Placeholder
+    description: Verificare il mapping dell’errore “credenziali errate”
+    requirements:
+      - err_cred_errate
+    status: not_implemented
+  - id: t_validate_new_password
+    service: -Placeholder
+    description: Verificare la validazione della nuova password
+    requirements:
+      - impostazione_password
+    status: not_implemented
+  - id: t_map_password_mismatch_error
+    service: -Placeholder
+    description: Verificare il mapping dell’errore “password non corrispondenti”
+    requirements:
+      - err_campi_diversi
+    status: not_implemented
+  - id: t_validate_password_policy
+    service: -Placeholder
+    description: Verificare il rispetto della policy di complessità password
+    requirements:
+      - err_password_invalida
+    status: not_implemented
+  - id: t_map_gateway_status_label
+    service: -Placeholder
+    description: Verificare il mapping dello stato gateway verso label testuale
+    requirements:
+      - visualizzazione_singolo_gateway_tenant
+    status: not_implemented
+  - id: t_format_gateway_last_send_timestamp
+    service: -Placeholder
+    description: Verificare la formattazione del timestamp ultimo invio gateway
+    requirements:
+      - visualizzazione_dettagli_gateway
+    status: not_implemented
+  - id: t_format_sensor_last_send_timestamp
+    service: -Placeholder
+    description: Verificare la formattazione del timestamp ultimo invio sensore
+    requirements:
+      - visualizzazione_singolo_sensore
+    status: not_implemented
+  - id: t_normalize_serialize_stream_data
+    service: -Placeholder
+    description: Verificare la normalizzazione e serializzazione dello stream dati
+    requirements:
+      - visualizzazione_dati_stream
+    status: not_implemented
+  - id: t_transform_stream_to_table
+    service: -Placeholder
+    description: Verificare la trasformazione dello stream in struttura tabellare
+    requirements:
+      - visualizzazione_tabellare_dati_stream
+    status: not_implemented
+  - id: t_transform_stream_to_chart
+    service: -Placeholder
+    description: Verificare la trasformazione dello stream in serie per grafico
+    requirements:
+      - visualizzazione_grafico_dati_stream
+    status: not_implemented
+  - id: t_validate_time_interval
+    service: -Placeholder
+    description: Verificare la validazione dell’intervallo temporale (start ≤ end)
+    requirements:
+      - filtraggio_intervallo_temporale
+    status: not_implemented
+  - id: t_map_no_data_available_status
+    service: -Placeholder
+    description: Verificare il mapping dello stato “dati non disponibili”
+    requirements:
+      - err_dati_non_disponibili
+    status: not_implemented
+  - id: t_serialize_data_for_export
+    service: -Placeholder
+    description: Verificare la serializzazione dei dati per export
+    requirements:
+      - esportazione_dati
+    status: not_implemented
+  - id: t_map_alert_type_description
+    service: -Placeholder
+    description: Verificare il mapping del tipo di alert verso descrizione testuale
+    requirements:
+      - visualizzazione_singolo_alert
+    status: not_implemented
+  - id: t_map_alert_hardware
+    service: -Placeholder
+    description: Verificare il mapping dell’hardware interessato da un alert
+    requirements:
+      - visualizzazione_singolo_alert
+    status: not_implemented
+  - id: t_format_alert_timestamp
+    service: -Placeholder
+    description: Verificare la formattazione del timestamp di emissione alert
+    requirements:
+      - visualizzazione_singolo_alert
+    status: not_implemented
+  - id: t_validate_tenant_username
+    service: -Placeholder
+    description: Verificare la validazione del nome utente tenant
+    requirements:
+      - inserimento_nome_utente
+    status: not_implemented
+  - id: t_validate_assignable_roles
+    service: -Placeholder
+    description: Verificare la validazione dei ruoli assegnabili
+    requirements:
+      - selezione_permessi_utente
+    status: not_implemented
+  - id: t_validate_unique_user_selection
+    service: -Placeholder
+    description: Verificare l’assenza di duplicati nella selezione utenti
+    requirements:
+      - selezione_lista_utenti
+    status: not_implemented
+  - id: t_generate_client_id
+    service: -Placeholder
+    description: Verificare la generazione del Client ID
+    requirements:
+      - visualizzazione_client_id
+    status: not_implemented
+  - id: t_generate_client_secret
+    service: -Placeholder
+    description: Verificare la generazione del Client Secret
+    requirements:
+      - visualizzazione_secret_api
+    status: not_implemented
+  - id: t_build_audit_entry
+    service: Provisioning service
+    description: Verificare la costruzione di una entry di audit (campi obbligatori)
+    requirements:
+      - visualizzazione_singolo_log_audit
+    status: passed
+  - id: t_map_audit_operation_text
+    service: Provisioning service
+    description: Verificare il mapping dell’operazione di audit verso testo
+    requirements:
+      - visualizzazione_singolo_log_audit
+    status: passed
+  - id: t_validate_policy_permissions
+    service: Provisioning service
+    description: Verificare la validazione dei permessi secondo policy
+    requirements:
+      - sicurezza_autenticazione_accessi
+    status: passed
+  - id: t_map_simulated_gateway_list
+    service: Simulator Backend
+    description: Verificare il mapping della lista gateway simulati
+    requirements:
+      - visualizzazione_lista_gateway_simulati
+    status: passed
+  - id: t_map_simulated_gateway
+    service: Simulator Backend
+    description: Verificare il mapping del gateway simulato
+    requirements:
+      - visualizzazione_singolo_gateway_simulato
+    status: passed
+  - id: t_validate_simulated_gateway_config
+    service: Simulator Backend
+    description: Verificare la validazione della configurazione gateway simulato
+    requirements:
+      - inserimento_dati_config_sim_gateway
+    status: passed
+  - id: t_map_deploy_error
+    service: Simulator Backend
+    description: Verificare il mapping dell’errore di deploy gateway simulato
+    requirements:
+      - err_deploy_gateway_simulato
+    status: passed
+  - id: t_validate_simulated_sensor_config
+    service: Simulator Backend
+    description: Verificare la validazione della configurazione sensore simulato
+    requirements:
+      - inserimento_dati_config_sim_sensore
+    status: passed
+  - id: t_map_invalid_range_error
+    service: Simulator Backend
+    description: Verificare il mapping dell’errore range invalido sensore
+    requirements:
+      - err_range_invalido_simulazione
+    status: passed
+  - id: t_encrypt_telemetry_unique_iv
+    description: Verificare la corretta cifratura dei payload telemetrici e la generazione univoca dei vettori di inizializzazione (IV)
+    service: Simulator Backend
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_buffer_resilience_overflow
+    service: Simulator Backend
+    description: Verificare la resilienza del buffer interno dei messaggi e la gestione dell'overflow in caso di disconnessioni
+    requirements:
+      - comando_anomalia_degrado_rete
+      - comando_anomalia_disconnessione_temporanea
+    status: passed
+  - id: t_validate_cloud_commands
+    service: Simulator Backend
+    description: Verificare la corretta ricezione, validazione e scarto (per timeout o malformazione) dei comandi provenienti dal sistema Cloud
+    requirements:
+      - err_sintattico_config_gateway
+      - err_config_frequenza_fuori_range
+    status: passed
+  - id: t_robust_dto_mapping
+    service: Simulator Backend
+    description: Verificare la robustezza della conversione dati (mapping) tra dominio e DTO, includendo la gestione di valori nulli e identificatori non validi
+    requirements:
+      - inserimento_dati_config_sim_gateway
+      - inserimento_dati_config_sim_sensore
+      - err_valore_numerico_invalido
+    status: passed
+  - id: t_crud_simulated_gateways
+    service: Simulator Backend
+    description: Verificare la corretta esecuzione delle operazioni CRUD e le relative validazioni per i Gateway simulati tramite API
+    requirements:
+      - visualizzazione_lista_gateway_simulati
+      - visualizzazione_singolo_gateway_simulato
+      - eliminazione_gateway_simulato
+      - creazione_deploy_gateway_simulato
+      - inserimento_dati_config_sim_gateway
+      - err_deploy_gateway_simulato
+      - creazione_gateway_multipli_default
+    status: passed
+  - id: t_crud_simulated_sensors
+    service: Simulator Backend
+    description: Verificare la corretta esecuzione delle operazioni CRUD e le relative validazioni sui range e configurazioni dei sensori simulati tramite API
+    requirements:
+      - visualizzazione_lista_sensori_gateway_simulato
+      - visualizzazione_singolo_sensore_simulato
+      - eliminazione_sensore_simulato
+      - creazione_sensore_gateway_simulato
+      - inserimento_dati_config_sim_sensore
+      - err_range_invalido_simulazione
+      - err_creazione_sensore_simulato
+    status: passed
+  - id: t_inject_anomalies
+    service: Simulator Backend
+    description: Verificare la corretta elaborazione e iniezione di anomalie di rete (degrado, disconnessione) e valori anomali (outliers)
+    requirements:
+      - comando_anomalia_degrado_rete
+      - comando_anomalia_disconnessione_temporanea
+      - comando_anomalia_outliers_misurazioni
+    status: passed
+  - id: t_gateway_goroutine_lifecycle
+    service: Simulator Backend
+    description: Verificare il corretto ciclo di vita della goroutine del Gateway (avvio, terminazione pulita, e decommission)
+    requirements:
+      - eliminazione_gateway_simulato
+      - qualita_spegnimento_controllato
+    status: passed
+  - id: t_operational_state_changes
+    service: Simulator Backend
+    description: Verificare la corretta applicazione dei cambi di stato operativi (Online, Offline, Paused) e il loro effetto sulla pubblicazione della telemetria
+    requirements:
+      - impostazione_configurazione_gateway
+    status: passed
+  - id: t_app_initialization
+    service: Simulator Backend
+    description: Verificare la corretta inizializzazione dell'applicazione, del database locale e l'applicazione dei valori di configurazione di fallback
+    requirements:
+      - creazione_gateway_multipli_default
+    status: passed
+  - id: t_sqlite_persistence_operations
+    service: Simulator Backend
+    description: Verificare le corrette operazioni di persistenza, lettura e gestione chiavi sul database locale SQLite
+    requirements:
+      - sicurezza_cifratura_dati
+      - qualita_durabilita_persistenza
+    status: passed
+
+  - id: t_dataconsumer_env_validation
+    service: Data Consumer
+    description:
+      Verificare che run() fallisca con variabili d'ambiente mancanti e che main() chiami
+      os.Exit(1) su errore di configurazione
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_dataconsumer_configuration
+    service: Data Consumer
+    description:
+      Verificare la configurazione del Data Consumer; valori di default, campi obbligatori
+      mancanti, override opzionali, valori non validi e generazione del DSN da file password
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_opaque_blob_rule_zero
+    service: Data Consumer
+    description:
+      Verificare che OpaqueBlob esegua marshal/unmarshal verbatim (Rule Zero) e che vengano
+      rifiutati valori non stringa
+    requirements:
+      - sicurezza_cifratura_dati
+      - sicurezza_rule_zero
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_prometheus_metrics_init
+    service: Data Consumer
+    description:
+      Verificare che le metriche Prometheus si inizializzino senza panic, che i campi siano
+      non-nil, che la doppia registrazione produca panic e che le interfacce narrow siano soddisfatte
+    requirements:
+      - monitoraggio_performance_sistema
+      - qualita_osservabilita_servizi
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_nats_request_reply_client
+    service: Data Consumer
+    description:
+      Verificare il client NATS Request-Reply; fetch config (successo, errore NATS, JSON malformato),
+      aggiornamento stato, query lifecycle e logica di retry
+    requirements:
+      - alert_gateway_irraggiungibile
+      - qualita_resilienza_servizi
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_nats_alert_publisher
+    service: Data Consumer
+    description:
+      Verificare l'alert publisher NATS; formato del subject per tenant diversi, pubblicazione
+      corretta e incremento della metrica di errore su fallimento NATS
+    requirements:
+      - alert_gateway_irraggiungibile
+      - sicurezza_segregazione_tenant
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_timescaledb_write
+    service: Data Consumer
+    description:
+      Verificare la scrittura singola e in batch su TimescaleDB con DB mock; Rule Zero,
+      timestamp estratto dalla riga, gestione errori DB e no-op su batch vuoto
+    requirements:
+      - invio_dati_crittografati_cloud
+      - sicurezza_cifratura_dati
+      - sicurezza_rule_zero
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_cache_fallback_hierarchy
+    service: Data Consumer
+    description:
+      Verificare la gerarchia di fallback della cache (gateway, tenant, system default),
+      il refresh atomico, che un errore di fetch non cancelli la cache e il backoff con max retry
+    requirements:
+      - modifica_intervallo_alert_gateway
+      - alert_gateway_irraggiungibile
+      - qualita_resilienza_servizi
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_gateway_lifecycle_provider
+    service: Data Consumer
+    description:
+      Verificare il gateway lifecycle provider; successo, stato Online e gestione errore
+      NATS con mock
+    requirements:
+      - modifica_stato_gateway
+      - alert_gateway_irraggiungibile
+      - qualita_resilienza_servizi
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_gateway_state_forwarding
+    service: Data Consumer
+    description:
+      Verificare che lo stato venga inoltrato verbatim al RR client, la gestione dello stato
+      Offline e l'incremento della metrica di errore su fallimento NATS
+    requirements:
+      - modifica_stato_gateway
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_clock_now_time
+    service: Data Consumer
+    description: Verificare che Now() ritorni un tempo nell'intervallo corretto
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_telemetry_consumer_batching
+    service: Data Consumer
+    description:
+      Verificare il consumer di telemetria NATS; parsing del subject, classificazione degli
+      errori (permanenti vs. transitori), batching per dimensione/tick/cancel e writeBatch per ogni
+      combinazione di esito
+    requirements:
+      - invio_dati_crittografati_cloud
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_telemetry_dispatcher_service
+    service: Data Consumer
+    description:
+      Verificare l'estrazione degli ID dal subject, il dispatch al service, il Term per
+      subject invalidi e il run loop con context cancel
+    requirements:
+      - alert_gateway_irraggiungibile
+      - decommission_gateway
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_ticker_interval_cancel
+    service: Data Consumer
+    description:
+      Verificare che Tick() venga chiamato all'intervallo configurato e che Run() si fermi
+      su context cancel
+    requirements:
+      - alert_gateway_irraggiungibile
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_heartbeat_tracker_lifecycle
+    service: Data Consumer
+    description:
+      Verificare HandleTelemetry (registrazione Online, no duplicati, recovery),
+      HandleDecommission (rimozione, soppressione alert, no-op) e Tick (grace period, timeout verso
+      Offline, alert, lifecycle gate, fail-open)
+    requirements:
+      - alert_gateway_irraggiungibile
+      - invio_dati_crittografati_cloud
+      - decommission_gateway
+      - qualita_resilienza_servizi
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_provisioning_orchestration_success
+    service: Provisioning service
+    description: Verificare l’orchestrazione del provisioning con validazione factory, firma CSR, generazione chiave AES e completamento finale
+    requirements:
+    - onboarding_gateway
+    status: passed
+  - id: t_provisioning_factory_validation_error_propagation
+    service: Provisioning service
+    description: Verificare la propagazione degli errori di validazione factory e il tracciamento del motivo di fallimento
+    requirements:
+    - err_auth_gateway_fabbrica
+    - err_autenticazione_gateway
+    status: passed
+  - id: t_provisioning_csr_error_mapping_malformed
+    service: Provisioning service
+    description: Verificare la propagazione degli errori CSR e il mapping del fallimento malformed_CSR
+    requirements:
+    - onboarding_gateway
+    status: passed
+  - id: t_provisioning_request_mapping_invalid_csr
+    service: Provisioning service
+    description: Verificare il mapping della request DTO in dominio e la gestione del CSR non valido
+    requirements:
+    - onboarding_gateway
+    status: passed
+  - id: t_provisioning_factory_credentials_validation_mapping
+    service: Provisioning service
+    description: Verificare la validazione delle credenziali factory e il mapping delle risposte INVALID, ALREADY_PROVISIONED e payload non valido
+    requirements:
+    - onboarding_gateway
+    - err_auth_gateway_fabbrica
+    - err_dati_autenticazione_invalidi
+    status: passed
+  - id: t_provisioning_csr_signing_validation
+    service: Provisioning service
+    description: Verificare la firma di un CSR valido e il rifiuto di CSR malformati o con firma non valida
+    requirements:
+    - onboarding_gateway
+    status: passed
+  - id: t_provisioning_aes256_key_generation_base64
+    service: Provisioning service
+    description: Verificare la generazione di una chiave AES-256 e la sua serializzazione base64
+    requirements:
+    - sicurezza_cifratura_dati
+    - invio_dati_crittografati_cloud
+    status: passed
+  - id: t_provisioning_exception_http_mapping
+    service: Provisioning service
+    description: Verificare il mapping delle eccezioni di provisioning verso i codici HTTP attesi
+    requirements:
+    - err_auth_gateway_fabbrica
+    - err_dati_autenticazione_invalidi
+    - err_autenticazione_gateway
+    status: passed
+  - id: t_provisioning_completion_payload_error_handling
+    service: Provisioning service
+    description: Verificare l’invio del payload di completamento provisioning e la gestione delle risposte non di successo
+    requirements:
+    - onboarding_gateway
+    - err_dati_autenticazione_invalidi
+    - err_autenticazione_gateway
+    status: passed

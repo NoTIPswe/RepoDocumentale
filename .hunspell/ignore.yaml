@@ -77,8 +77,15 @@ accepted_words:
 
   # --- Tecnologie e Formati ---
   - AES
+  - AESKeyGenerator
+  - CAProvider
+  - CARepository
   - csv
+  - CSR
+  - CSRSigner
+  - CSPRNG
   - EE # for End to End Encryption (spellcheck keeps failing)
+  - FactoryValidator
   - Gin
   - GO
   - gRPC
@@ -90,7 +97,11 @@ accepted_words:
   - Golang
   - PDF
   - pdf
+  - PEM
+  - PKI
+  - ProvisioningCompleter
   - Typst
+  - TTL
   - YAML
   - yaml
   - typ
@@ -207,6 +218,12 @@ accepted_words:
   - TestContainers
   - timestamptz
   - uuid
+  - Crypto
+  - RBAC
+  - IAM
+  - httptest
+  - SSL
+  - realtime
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -285,7 +302,11 @@ accepted_words:
   - deserializzato
   - backoff
   - loggati
+  - loggato
   - unexported
+  - lifecycle
+  - unmarshal
+  - Walkthrough
 
   # --- Terminologia Standard Progetto ---
   - req
@@ -394,12 +415,57 @@ accepted_words:
   - ApiClientEntity
   - CommandEntity
   - AppModule
+  - filesystem
+  - init
+  - cryptographically
+  - validator
+  - AppModule
+  - UCs
+  - HeartbeatTrackerConfig
+  - NATSGatewayLifecycleProvider
+  - Configs
+  - os
+  - OpaqueBlob
+  - config
+  - lifecycle
+  - writeBatch
+  - HandleTelemetry
+  - HandleDecommission
+  - gatewayID
+  - unmarshal
+  - encryptor
+  - KeycloakHostname
+  - Enums
+  - HOSTNAME
+  - localhost
+  - TenantStatus
+  - UsersRole
+  - GatewayStatus
+  - AlertType
+  - CommandType
+  - CommandStatus
+  - KeycloakUrl
+  - NodeEnv
+  - NatsServers
+  - NatsClientName
+  - NatsDurablePrefix
+  - NatsTlsCert
+  - NatsTlsKey
+  - NatsTlsCa
+  - NatsToken
+  - NatsUser
+  - NatsPassword
+  - ConfigModule
+  - EventEmitter
+  - ValidationPipe
+  - lifecycle
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
   - autoconsistente
   - autoconsistenza
   - automiglioramento
+  - crittograficamente
   - collaborativamente
   - concatenabili
   - multimodale
@@ -467,3 +533,10 @@ accepted_words:
   - intra
   - centralizzata
   - testabilità
+  - deserializzate
+  - riaccodamento
+  - concorrentemente
+  - Riesecuzione
+  - versionata
+  - versionati
+  - debuggati

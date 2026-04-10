@@ -7,6 +7,20 @@ changelog:
     verifier: TBD
     description: >
       Stesura finale del documento
+  - version: "0.2.2"
+    date: "2026-04-01"
+    authors:
+      - Alessandro Contarini
+    verifier: Francesco Marcon
+    description: >
+      Aggiunta parti di stream SSE e NATS
+  - version: "0.2.1"
+    date: "2026-04-01"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Alessandro Contarini
+    description: >
+      Fix indentazione
   - version: "0.2.0"
     date: "2026-03-31"
     authors:
