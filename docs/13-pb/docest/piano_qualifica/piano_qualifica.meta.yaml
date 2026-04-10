@@ -19,7 +19,7 @@ changelog:
     authors:
       - Francesco Marcon
       - Mario De Pasquale
-    verifier: Francesco Marcon
+    verifier: Leonardo Preo
     description: >
       Aggiunta test unità e integrazione per il servizio Simulator CLI e aggiornai test del servizio di Provisioning
   - version: "1.4.0"
