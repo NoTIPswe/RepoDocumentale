@@ -11,11 +11,11 @@
 )[
   = Introduzione
 
-  Il servizio `notip-provisioning-service` è un microservizio NestJS che espone un endpoint HTTP per il
-  provisioning iniziale dei gateway e un endpoint HTTP per l'esposizione delle metriche Prometheus. Durante la
-  richiesta di onboarding, il servizio valida le credenziali di fabbrica
-  verso il Management API tramite NATS Request-Reply, firma il CSR del gateway con la CA interna, genera una chiave
-  AES-256 e completa il provisioning persistendo il materiale chiave nel dominio management.
+  Il servizio `notip-provisioning-service` è un microservizio NestJS che espone un endpoint HTTP per il provisioning
+  iniziale dei gateway e un endpoint HTTP per l'esposizione delle metriche Prometheus. Durante la richiesta di
+  onboarding, il servizio valida le credenziali di fabbrica verso il Management API tramite NATS Request-Reply, firma il
+  CSR del gateway con la CA interna, genera una chiave AES-256 e completa il provisioning persistendo il materiale
+  chiave nel dominio management.
 
   Il servizio è progettato con layering esplicito e dipendenze tramite interfacce, in modo da mantenere separati:
 
@@ -162,7 +162,10 @@
     kind: "driving",
     description: [Endpoint pubblico di onboarding del gateway esposto dal controller di provisioning.],
     methods: (
-      ("request", [`credentials.factoryId`, `credentials.factoryKey`, `csr`, `sendFrequencyMs >= 1`, `firmwareVersion?`]),
+      (
+        "request",
+        [`credentials.factoryId`, `credentials.factoryKey`, `csr`, `sendFrequencyMs >= 1`, `firmwareVersion?`],
+      ),
       ("response", [`certPem`, `aesKey`, `identity.gatewayId`, `identity.tenantId`, `sendFrequencyMs`]),
       ("status", [201 in caso di successo]),
       ("auth model", [Autenticazione con credenziali di fabbrica nel body, senza JWT]),
@@ -215,7 +218,10 @@
     kind: "driven",
     description: [Completa il provisioning nel Management API tramite `internal.mgmt.provisioning.complete`.],
     methods: (
-      ("complete(identity, aeskey, sendFrequencyMs, firmwareVersion)", [Persistenza key material, key version, frequenza invio e versione firmware opzionale]),
+      (
+        "complete(identity, aeskey, sendFrequencyMs, firmwareVersion)",
+        [Persistenza key material, key version, frequenza invio e versione firmware opzionale],
+      ),
     ),
   )
 
@@ -266,7 +272,8 @@
 
     [`ProvisioningRequest`],
     [`credentials`, `csr`, `sendFrequencyMs: number`, `firmwareVersion: string = ""`],
-    [Input applicativo del flusso onboarding. `sendFrequencyMs` deve essere un intero positivo maggiore o uguale a 1; `firmwareVersion` e normalizzato a stringa vuota quando omesso nel DTO.],
+    [Input applicativo del flusso onboarding. `sendFrequencyMs` deve essere un intero positivo maggiore o uguale a 1;
+      `firmwareVersion` e normalizzato a stringa vuota quando omesso nel DTO.],
 
     [`GatewayIdentity`],
     [`gatewayId: string`, `tenantId: string`],
@@ -289,8 +296,8 @@
 
   == Gestione Errori
 
-  Il filtro `ProvisioningExceptionFilter` converte gli errori di dominio in risposte HTTP stabili e preserva
-  gli `HttpException` già costruiti da NestJS:
+  Il filtro `ProvisioningExceptionFilter` converte gli errori di dominio in risposte HTTP stabili e preserva gli
+  `HttpException` già costruiti da NestJS:
 
   #table(
     columns: (2fr, 1fr, 2fr),
@@ -313,9 +320,9 @@
   - `outcome` (`success`, `invalid_credentials`, `already_provisioned`, `malformed_csr`, `service_unavailable`, `error`)
   - `gateway_id` e `tenant_id` solo nei casi di successo
 
-  Nei casi di successo con `tenant_id` disponibile, l'interceptor pubblica anche un evento audit su NATS
-  nel subject `log.audit.<tenant_id>`, con action `PROVISIONING_ONBOARD_<OUTCOME>` e dettagli contestuali
-  (`factoryId`, `sourceIp`, `gatewayId`, `tenantId`).
+  Nei casi di successo con `tenant_id` disponibile, l'interceptor pubblica anche un evento audit su NATS nel subject
+  `log.audit.<tenant_id>`, con action `PROVISIONING_ONBOARD_<OUTCOME>` e dettagli contestuali (`factoryId`, `sourceIp`,
+  `gatewayId`, `tenantId`).
 
   Campi sensibili esclusi dai log:
 
@@ -330,7 +337,8 @@
 
   - timeout per request (`NATS_REQUEST_TIMEOUT_MS`);
   - numero tentativi totali pari a `NATS_MAX_RETRIES` (include il primo tentativo);
-  - retry con backoff esponenziale `2^(attempt-1)` secondi tra un tentativo e il successivo (es. con `NATS_MAX_RETRIES=3`: 1s, 2s);
+  - retry con backoff esponenziale `2^(attempt-1)` secondi tra un tentativo e il successivo (es. con
+    `NATS_MAX_RETRIES=3`: 1s, 2s);
   - riconnessione automatica in caso di `NatsError`;
   - incremento metrica `nats_retries_total` ad ogni retry;
   - supporto retry sia per chiamate request-reply sia per publish.
