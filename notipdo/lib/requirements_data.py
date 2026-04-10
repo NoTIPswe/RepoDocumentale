@@ -45,8 +45,7 @@ REQ_TYPE_TO_CODE = {
 
 TEST_TYPE_TO_CODE = {
     "unit": "T-U-",
-    "integration-intra": "T-I-",
-    "integration-inter": "T-I-",
+    "integration": "T-I-",
     "system": "T-S-",
 }
 
@@ -425,22 +424,16 @@ def assign_test_codes(bundle: DataBundle) -> dict[str, str]:
     counters: dict[str, int] = defaultdict(int)
     id_to_code: dict[str, str] = {}
 
-    def _counter_bucket(test_type: str) -> str:
-        if test_type in ("integration-intra", "integration-inter"):
-            return "integration"
-        return test_type
-
     for _, test_doc in bundle.test_files:
         test_type = str(test_doc.get("type"))
         if test_type not in TEST_TYPE_TO_CODE:
             continue
 
-        bucket = _counter_bucket(test_type)
         prefix = TEST_TYPE_TO_CODE[test_type]
         for test in test_doc.get("tests", []) or []:
             test_id = str(test.get("id"))
-            counters[bucket] += 1
-            code = f"{prefix}{counters[bucket]}"
+            counters[test_type] += 1
+            code = f"{prefix}{counters[test_type]}"
             id_to_code[test_id] = code
 
     return id_to_code
@@ -944,8 +937,7 @@ def generate_typst_indexes(
     ]
     test_title = {
         "unit": "Test di Unita",
-        "integration-intra": "Test di Integrazione Intra",
-        "integration-inter": "Test di Integrazione Inter",
+        "integration": "Test di Integrazione",
         "system": "Test di Sistema",
     }
 
@@ -955,7 +947,7 @@ def generate_typst_indexes(
         test_section_lines.append(f"== {test_title.get(t, t)}")
         tests = test_doc.get("tests", []) or []
 
-        if t in ("unit", "integration-intra"):
+        if t in ("unit", "integration"):
             services: set[str] = set()
             for test in tests:
                 service = str(test.get("service", "")).strip()
@@ -1635,7 +1627,7 @@ def migrate_tests(
         if code.startswith("T-U-"):
             test_type = "unit"
         elif code.startswith("T-I-"):
-            test_type = "integration-intra"
+            test_type = "integration"
         else:
             test_type = "system"
 
@@ -1668,7 +1660,7 @@ def migrate_tests(
     written_files: list[str] = []
     file_names = {
         "unit": "unit.test.yaml",
-        "integration-intra": "integration-intra.test.yaml",
+        "integration": "integration.test.yaml",
         "system": "system.test.yaml",
     }
 
@@ -1685,7 +1677,7 @@ def migrate_tests(
 
     return {
         "unit": len(grouped.get("unit", [])),
-        "integration-intra": len(grouped.get("integration-intra", [])),
+        "integration": len(grouped.get("integration", [])),
         "system": len(grouped.get("system", [])),
         "total": sum(len(v) for v in grouped.values()),
     }

@@ -11,7 +11,7 @@ changelog:
     date: "2026-04-09"
     authors:
       - Alessandro Contarini
-    verifier: TBD
+    verifier: Alessandro Mazzariol
     description: >
       Finita prima versione del documento
   - version: "0.1.0"
