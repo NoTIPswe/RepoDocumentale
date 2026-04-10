@@ -337,6 +337,13 @@
   - *Delete*: consente di eliminare un client API esistente, revocando l'accesso alle integrazioni esterne per quel
     client.
 
+  === Comportamento del sistema
+  #figure(caption: [Schermata per la creazione di un nuovo API Client], image("assets/new_api-client.png", width: 100%))
+  - La creazione di un nuovo client API genera una chiave segreta che sarà mostrata una sola volta e che dovrà essere
+    salvata in modo sicuro, poiché non sarà più possibile recuperarla in futuro;
+  - La chiave segreta mostrata è necessaria per permettere l'autenticazione e l'accesso ai dati della piattaforma da
+    sistemi esterni.
+
   === Utilità
   Questa sezione è particolarmente utile per gestire le integrazioni esterne con la piattaforma, consentendo di
   automatizzare l'accesso ai dati della piattaforma.
