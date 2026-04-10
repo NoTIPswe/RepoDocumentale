@@ -4,7 +4,7 @@ changelog:
     date: "2026-04-07"
     authors:
       - Mario De Pasquale
-    verifier: TBD
+    verifier: Alessandro Mazzariol
     description: >
       Portata specifica up to date con le modifiche effettuate al codice
   - version: "0.0.2"

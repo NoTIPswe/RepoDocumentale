@@ -219,7 +219,7 @@
     description: [Completa il provisioning nel Management API tramite `internal.mgmt.provisioning.complete`.],
     methods: (
       (
-        "complete(identity, aeskey, sendFrequencyMs, firmwareVersion)",
+        "complete(identity, aesKey, sendFrequencyMs, firmwareVersion)",
         [Persistenza key material, key version, frequenza invio e versione firmware opzionale],
       ),
     ),
@@ -273,7 +273,7 @@
     [`ProvisioningRequest`],
     [`credentials`, `csr`, `sendFrequencyMs: number`, `firmwareVersion: string = ""`],
     [Input applicativo del flusso onboarding. `sendFrequencyMs` deve essere un intero positivo maggiore o uguale a 1;
-      `firmwareVersion` e normalizzato a stringa vuota quando omesso nel DTO.],
+      `firmwareVersion` è normalizzato a stringa vuota quando omesso nel DTO.],
 
     [`GatewayIdentity`],
     [`gatewayId: string`, `tenantId: string`],
@@ -284,7 +284,7 @@
     [`SignedCertificate`], [`pemData: string`], [Certificato foglia firmato dalla CA interna.],
 
     [`ProvisioningResult`],
-    [`certificate`, `aeskey`, `identity`, `sendFrequencyMs`],
+    [`certificate`, `aesKey`, `identity`, `sendFrequencyMs`],
     [Output applicativo consumato dal controller e dall'audit interceptor.],
 
     [`CAMaterial`], [`privateKeyPem`, `certificatePem`], [Materiale CA in memoria process-wide dopo bootstrap.],
