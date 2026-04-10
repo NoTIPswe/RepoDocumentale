@@ -459,6 +459,28 @@ accepted_words:
   - EventEmitter
   - ValidationPipe
   - lifecycle
+  - TelemetryStreamBridgeService
+  - CostNatsResponderService
+  - TenantAccessGuard
+  - TenantId
+  - MetricsModule
+  - MetricsService
+  - MetricsController
+  - MetricsInterceptor
+  - tenantId
+  - gatewayId
+  - sensorId
+  - sensorType
+  - Splitta
+  - wrappa
+  - deduplica
+  - Deduplica
+  - TenantAccessContext
+  - readonly
+  - getter
+  - DataSource
+  - authTag
+  - encryptedData
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
