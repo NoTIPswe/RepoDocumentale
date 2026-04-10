@@ -573,6 +573,8 @@ accepted_words:
   - userId
   - ValidateFactoryKeyRequestDto
   - ValidateFactoryKeyResponseDto
+  - ImpersonationService
+  - authTag
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
