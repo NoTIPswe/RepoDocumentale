@@ -1,5 +1,12 @@
 title: Manuale Utente - Tenant User e Admin
 changelog:
+  - version: "0.3.0"
+    date: "2026-04-10"
+    authors:
+      - Alessandro Contarini
+    verifier: TBD
+    description: >
+      Aggiunta parte mancante API Client
   - version: "0.2.0"
     date: "2026-04-09"
     authors:

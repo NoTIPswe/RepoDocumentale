@@ -1,6 +1,6 @@
 #import "../../00-templates/base_document.typ" as base-document
 
-#let metadata = yaml("manuale_utente.meta.yaml")
+#let metadata = yaml(sys.inputs.meta-path)
 
 #base-document.apply-base-document(
   title: metadata.title,
