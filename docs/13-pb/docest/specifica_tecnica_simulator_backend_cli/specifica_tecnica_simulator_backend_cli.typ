@@ -194,14 +194,14 @@
 
   - *Modello di Concorrenza (1 Goroutine = 1 Gateway):* Ogni gateway simulato è gestito da un `GatewayWorker` isolato
     eseguito in una propria goroutine dedicata. Questo approccio mappa 1:1 il comportamento, garantendo che la
-  congestione o il crash di un gateway virtuale non impatti l'esecuzione degli altri. La sincronizzazione e il ciclo di
-  vita sono orchestrati in sicurezza tramite `context.Context` e `sync.RWMutex` nel registro centrale.
+    congestione o il crash di un gateway virtuale non impatti l'esecuzione degli altri. La sincronizzazione e il ciclo
+    di vita sono orchestrati in sicurezza tramite `context.Context` e `sync.RWMutex` nel registro centrale.
   - *Gestione della Backpressure (Drop-Oldest):* Per scongiurare l'esaurimento della memoria (Out-Of-Memory) o il blocco
     permanente delle goroutine in caso di prolungata irraggiungibilità di NATS, è stato implementato il componente
     `MessageBuffer`. Questo canale a capacità limitata adotta una politica "Drop-Oldest": in caso di saturazione,
     espelle silenziosamente il pacchetto telemetrico più vecchio per fare spazio al nuovo, privilegiando sempre il dato
     più recente.
-  - *Persistenza Locale Embedded:* L'utilizzo di SQLite (`modernc.org/sqlite` cross-platform) garantisce sufficiente
+  - *Persistenza Locale:* L'utilizzo di SQLite (`modernc.org/sqlite` cross-platform) garantisce sufficiente
     persistenza per la funzionalità di riavvio a caldo (`RecoveryMode`), mantenendo il microservizio completamente
     *self-contained*.
   - *Pipeline Crittografica Opaca (AES-GCM):* Rispettando il vincolo architetturale della piattaforma NoTIP, il payload
@@ -282,11 +282,11 @@
       [ `gateways` ],
       [
         `id`, `management_gateway_id`, `factory_id`, `factory_key`, `model`, `firmware_version`, `provisioned`,
-        `cert_pem`, `private_key_pem`, `encryption_key` (BLOB), `send_frequency_ms`, `status`, `tenant_id`, `created_at`
+        `cert_pem`, `private_key_pem`, `encryption_key`, `send_frequency_ms`, `status`, `tenant_id`, `created_at`
       ],
 
       [ `sensors` ],
-      [ `id`, `gateway_id` (FK), `sensor_id`, `type`, `min_range`, `max_range`, `algorithm`, `created_at` ],
+      [ `id`, `gateway_id`, `sensor_id`, `type`, `min_range`, `max_range`, `algorithm`, `created_at` ],
     ),
   )
 
@@ -324,7 +324,7 @@
       columns: (1fr, 3fr),
       [ *Rotta* ], [ `POST /sim/gateways/bulk` ],
       [ *Descrizione* ], [ Creazione massiva di N gateway. Utile per test di carico. ],
-      [ *Body Request* ], [ `{"count": 10, "baseFactoryId": "sim-", "factoryKey": "...", "model": "..."}` ],
+      [ *Body Request* ], [ `{"baseFactoryIds": "sim-", "factoryKey": "...", "model": "..."}` ],
       [ *Response* ], [ Array combinato di successi e fallimenti. HTTP 200. ],
     ),
   )
@@ -490,7 +490,7 @@
   #figure(
     caption: [Metriche Prometheus esposte dal simulatore],
     table(
-      columns: (2.2fr, 1.2fr, 2.5fr),
+      columns: (2.5fr, 1.2fr, 2fr),
       [ *Nome Metrica* ], [ *Tipo Prometheus* ], [ *Descrizione / Help* ],
       [ `notip_sim_gateways_running` ], [ Gauge ], [ Numero di worker (`GatewayWorker`) attualmente in esecuzione. ],
       [ `notip_sim_buffer_fill_level` ],
@@ -533,7 +533,7 @@
   #figure(
     caption: [Mappatura Errori di Dominio],
     table(
-      columns: (1fr, 1fr, 2fr),
+      columns: (2fr, 1fr, 2fr),
       [ *Errore Dominio* ], [ *Status HTTP* ], [ *Causa* ],
       [ `ErrGatewayNotFound` ], [ 404 ], [ Il gateway richiesto non esiste nel DB locale o nel registro. ],
       [ `ErrInvalidFactoryCredentials` ], [ 401 ], [ Le credenziali fornite sono rifiutate dal Provisioning Service. ],
@@ -590,60 +590,148 @@
   == Metodologie di Testing
 
   Il microservizio adotta una strategia di testing multi-livello progettata per validare il corretto coordinamento dei
-  worker concorrenti, la rigorosa segregazione dei dati e la validità della generazione matematica.
+  worker concorrenti, la rigorosa segregazione dei dati e la validità della generazione matematica. I test di unità
+  si avvalgono di _fake adapter_ in memoria per isolare la logica dall'infrastruttura; i test di integrazione
+  utilizzano istanze reali (SQLite temporanei, container NATS via `testcontainers-go`).
 
-  === Test d'Unità
+  === Test di Unità
 
-  I test di unità coprono i generatori matematici, il core applicativo (worker e registry), gli handler HTTP, le utilità
-  crittografiche e i componenti di dominio, avvalendosi di _fake adapter_ in memoria per isolare la logica
-  dall'infrastruttura. In particolare, devono essere verificati i seguenti aspetti:
+  *Generatori Matematici e Crittografia*
 
-  - Corretta generazione dei valori matematici (`SineWave`, `Spike`, `UniformRandom`, `Constant`) all'interno dei rigidi
-    limiti `MinRange` e `MaxRange`;
-  - Corretta iniezione temporanea di anomalie (outlier) e successivo e immediato ripristino dell'algoritmo matematico
-    originario;
-  - Corretta cifratura e strutturazione dei payload (AES-256-GCM), verificando la generazione dell'IV, l'apposizione
-    dell'AuthTag e il rifiuto di chiavi non conformi ai 32 byte;
-  - Corretta gestione del ciclo di vita dei `GatewayWorker` e della concorrenza sicura nel `GatewayRegistry` tramite
-    `RWMutex`;
-  - Corretta applicazione della politica _Drop-Oldest_ nel `MessageBuffer` in caso di overflow o indisponibilità della
-    rete;
-  - Corretta elaborazione e scarto di comandi JetStream obsoleti (scaduti da oltre 60 secondi) con conseguente invio di
-    esiti NACK o Expired;
-  - Corretta validazione, trasformazione in DTO e mappatura centralizzata degli errori di dominio nei corrispondenti
-    codici di stato HTTP (400, 401, 404, 409, 500) all'interno degli handler REST;
-  - Corretto popolamento isolato delle metriche Prometheus e validazione della configurazione applicativa con
-    attivazione dei valori di fallback.
+  #table(
+    columns: (2fr, 3fr),
+    [Caso di test], [Postcondizione verificata],
+    [`SineWave` — valori entro i limiti],
+    [Tutti i campioni generati ricadono nell'intervallo `[MinRange, MaxRange]` per l'intera durata del ciclo],
 
-  === Test di integrazione
-  I test di integrazione verificano il comportamento coordinato di più componenti interni al microservizio, sfruttando
-  istanze reali per la persistenza (SQLite temporanei) e per il message brokering (tramite container generati con
-  `testcontainers-go`). In particolare, devono essere coperti i seguenti aspetti:
+    [`Spike` — picco e ritorno],
+    [Il valore anomalo viene emesso esattamente una volta; i campioni successivi tornano all'algoritmo di base],
 
-  - Corretta esecuzione, transazionalità e idem-potenza delle migrazioni SQL su database locale, inclusa la validazione
-    a basso livello (`PRAGMA table_info`) per i rimpiazzi di schema;
-  - Corretto comportamento dei vincoli di integrità relazionale, come le policy `ON DELETE CASCADE` tra gateway e
-    sensori logici;
-  - Corretta instaurazione della connessione mTLS al broker NATS JetStream, verificata generando materialmente
-    certificati e chiavi crittografiche _on-the-fly_;
-  - Corretta pubblicazione e sottoscrizione dei messaggi sui subject JetStream, verificando l'inoltro della telemetria
-    cifrata e l'ascolto resiliente, con scarto automatico dei payload malformati, sugli eventi di `decommission`;
-  - Corretta simulazione del flusso di provisioning cloud tramite mock HTTP (`httptest.Server`), verificando il
-    comportamento dei client a fronte di successi e fallimenti (es. HTTP 401 per credenziali di fabbrica rifiutate);
-  - Corretto recupero dello stato applicativo e riavvio automatico e isolato dei worker al bootstrap del servizio in
-    scenari di caduta del processo (`RecoveryMode`).
+    [`UniformRandom` — distribuzione nei limiti],
+    [I valori generati rispettano i bound configurati; nessun campione supera `MaxRange` o scende sotto `MinRange`],
 
-  === Obiettivi di copertura funzionale
+    [`Constant` — valore fisso],
+    [Tutti i campioni restituiscono invariabilmente il valore configurato indipendentemente dall'iterazione],
 
-  Le attività di test automatizzate garantiscono che il microservizio sia verificato almeno rispetto ai seguenti scenari
-  e metriche:
+    [Cifratura AES-256-GCM — struttura payload],
+    [Il payload prodotto contiene un IV generato casualmente, il ciphertext e l'AuthTag; il campo `keyVersion` è
+      popolato correttamente],
 
-  - *Copertura minima dell'80%* del codice di dominio e del core applicativo.
-  - Test di stress per verificare la gestione concorrente dei lock (`RWMutex`) nel `GatewayRegistry` senza data races.
-  - Verifica della persistenza atomica tramite transazioni SQLite durante le migrazioni.
-  - Corretta estrazione e avvio dei gateway in caso di riavvio del demone (`RecoveryMode`).
-  - Tolleranza e resilienza di fronte a NATS congestionato o assente, validando la politica di *Drop-Oldest* del buffer
-    in memoria.
+    [Cifratura AES-256-GCM — chiave non conforme],
+    [Una chiave con lunghezza diversa da 32 byte provoca un errore esplicito senza produrre output parziale],
+  )
+
+  *Core Applicativo — Worker e Registry*
+
+  #table(
+    columns: (2fr, 3fr),
+    [Caso di test], [Postcondizione verificata],
+    [`GatewayWorker` — ciclo di vita start/stop],
+    [Il worker avvia la goroutine di emissione, risponde ai comandi di stop e termina senza goroutine in fuga],
+
+    [`GatewayRegistry` — accesso concorrente],
+    [Operazioni concorrenti di lettura e scrittura tramite `RWMutex` non producono data race rilevabili con `-race`],
+
+    [`MessageBuffer` — politica Drop-Oldest in overflow],
+    [Quando il buffer è pieno, il messaggio più vecchio viene scartato e il nuovo viene accodato correttamente],
+
+    [`MessageBuffer` — Drop-Oldest su rete assente],
+    [In assenza di connettività NATS, il buffer accumula fino al limite e applica Drop-Oldest senza bloccare],
+
+    [Comandi JetStream — scarto obsoleti],
+    [Un comando con timestamp superiore a 60 secondi viene scartato con esito NACK o Expired senza essere elaborato],
+
+    [Comandi JetStream — elaborazione valida],
+    [Un comando recente viene applicato al worker corretto e l'ACK viene inviato al broker],
+  )
+
+  *Handler HTTP e Configurazione*
+
+  #table(
+    columns: (2fr, 3fr),
+    [Caso di test], [Postcondizione verificata],
+    [Handler — validazione input e mapping errori],
+    [Input non conformi producono risposte 400; risorse mancanti producono 404; conflitti producono 409; errori
+      interni producono 500],
+
+    [Handler — trasformazione DTO],
+    [I campi del dominio vengono serializzati nelle chiavi JSON contrattualmente attese dal client CLI],
+
+    [Metriche Prometheus — popolamento isolato],
+    [I counter e gli histogram vengono incrementati correttamente senza interferenze tra test paralleli],
+
+    [Configurazione — valori di fallback],
+    [Le variabili d'ambiente assenti attivano i default definiti; una variabile obbligatoria mancante causa errore
+      all'avvio],
+  )
+
+  === Test di Integrazione
+
+  *Persistenza e Migrazioni (SQLite)*
+
+  #table(
+    columns: (2fr, 1fr, 2fr),
+    [Caso di test], [Infrastruttura], [Verifica],
+    [Migrazioni — esecuzione e idempotenza],
+    [SQLite temporaneo],
+    [Le migrazioni vengono applicate correttamente; una seconda esecuzione è idempotente e non altera lo schema],
+
+    [Migrazioni — rimpiazzo schema],
+    [SQLite temporaneo],
+    [La validazione a basso livello via `PRAGMA table_info` conferma che le colonne attese siano presenti dopo il
+      rimpiazzo],
+
+    [Vincoli relazionali — `ON DELETE CASCADE`],
+    [SQLite temporaneo],
+    [L'eliminazione di un gateway rimuove automaticamente tutti i sensori logici associati],
+  )
+
+  *Message Brokering (NATS JetStream)*
+
+  #table(
+    columns: (2fr, 1fr, 2fr),
+    [Caso di test], [Infrastruttura], [Verifica],
+    [Connessione mTLS al broker],
+    [`testcontainers-go`],
+    [La connessione al broker NATS con certificati generati _on-the-fly_ viene stabilita correttamente],
+
+    [Pubblicazione telemetria cifrata],
+    [`testcontainers-go`],
+    [I payload prodotti dal worker vengono pubblicati sul subject corretto e ricevuti da un subscriber di controllo],
+
+    [Sottoscrizione eventi `decommission`],
+    [`testcontainers-go`],
+    [I payload malformati vengono scartati silenziosamente; i payload validi avviano il decommission del gateway],
+  )
+
+  *Provisioning e Recovery*
+
+  #table(
+    columns: (2fr, 1fr, 2fr),
+    [Caso di test], [Infrastruttura], [Verifica],
+    [Provisioning — successo],
+    [`httptest.Server`],
+    [Il flusso completo produce un gateway provisionato con certificato e chiave AES persistiti nello Store],
+
+    [Provisioning — credenziali rifiutate (HTTP 401)],
+    [`httptest.Server`],
+    [Il client riceve l'errore 401 e lo propaga senza lasciare dati parziali nello Store],
+
+    [`RecoveryMode` — riavvio worker],
+    [SQLite temporaneo],
+    [Al bootstrap, i gateway già presenti nello Store vengono estratti e i rispettivi worker vengono riavviati in
+      isolamento],
+  )
+
+  === Obiettivi di Copertura Funzionale
+
+  Le attività di test automatizzate garantiscono che il microservizio sia verificato almeno rispetto ai seguenti scenari:
+
+  - Copertura minima dell'*80%* del codice di dominio e del core applicativo.
+  - Assenza di data race nel `GatewayRegistry` verificata con il flag `-race` su scenari di accesso concorrente.
+  - Persistenza atomica tramite transazioni SQLite durante le migrazioni, incluso il caso di interruzione parziale.
+  - Corretta estrazione e riavvio dei gateway esistenti in `RecoveryMode` dopo caduta del processo.
+  - Tolleranza di fronte a NATS congestionato o assente, con applicazione verificabile della politica Drop-Oldest.
 
   = Parte II — notip-simulator-cli
 
@@ -701,20 +789,6 @@
         `Client.WithContext(ctx)` restituisce una copia superficiale del client legata a un nuovo `context.Context`.
         Ogni comando passa `cmd.Context()` tramite questo metodo, assicurando che la gestione dei segnali di Cobra si
         propaghi alle richieste HTTP in corso.
-      ],
-
-      [ *Reset dei flag sul riuso REPL* ],
-      [
-        `resetAllCommandFlags` percorre l'intero albero dei comandi Cobra e reimposta ogni flag al suo default
-        dichiarato prima di ogni iterazione della shell. Cobra non resetta lo stato dei flag tra chiamate successive di
-        `Execute()` nello stesso processo; omettere questo reset causerebbe flag persistenti tra comandi della shell.
-      ],
-
-      [ *Adapter no-op per spinner non-TTY* ],
-      [
-        L'interfaccia `spinner` è soddisfatta sia da `ptermSpinner` (spinner animato reale) sia da `noopSpinner` (tutti
-        i metodi sono no-op). La factory `startSpinner` restituisce l'implementazione corretta in base a
-        `pterm.RawOutput`, evitando la creazione di goroutine in ambienti non interattivi o di test.
       ],
 
       [ *Identificatori UUID-first* ],
@@ -848,8 +922,7 @@
     table(
       columns: (1.2fr, 0.8fr, 2fr, 0.6fr, 1.2fr),
       [ *Campo* ], [ *Tipo* ], [ *Tag JSON* ], [ *Req.* ], [ *Note* ],
-      [ `Count` ], [ `int` ], [ `count` ], [ Sì ], [ Numero di gateway da creare. ],
-      [ `FactoryID` ], [ `string` ], [ `factoryId` ], [ Sì ], [ ],
+      [ `FactoryIDs` ], [ `[]string` ], [ `factoryId` ], [ Sì ], [ ],
       [ `FactoryKey` ], [ `string` ], [ `factoryKey` ], [ Sì ], [ ],
       [ `Model` ], [ `string` ], [ `model,omitempty` ], [ No ], [ ],
       [ `FirmwareVersion` ], [ `string` ], [ `firmwareVersion,omitempty` ], [ No ], [ ],

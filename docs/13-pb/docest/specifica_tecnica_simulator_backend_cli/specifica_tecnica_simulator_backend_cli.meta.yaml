@@ -1,16 +1,41 @@
 title: Specifica Tecnica - Simulator Backend & CLI
 changelog:
+  - version: "1.0.0"
+    approver: Leonardo Preo
+    baseline: PB
+    date: "2026-04-11"
+  - version: "0.5.0"
+    date: "2026-04-10"
+    authors:
+      - Francesco Marcon
+    verifier: Valerio Solito
+    description: >
+      Stesura delle metodologie di testing multi-livello per backend e CLI
+  - version: "0.4.0"
+    date: "2026-04-10"
+    authors:
+      - Valerio Solito
+    verifier: Francesco Marcon
+    description: >
+      Definizione dell'architettura della CLI
+  - version: "0.3.0"
+    date: "2026-04-09"
+    authors:
+      - Francesco Marcon
+    verifier: Mario De Pasquale
+    description: >
+      Definizione API REST, payload e integrazione NATS mTLS per il backend
+  - version: "0.2.0"
+    date: "2026-04-09"
+    authors:
+      - Francesco Marcon
+    verifier: Mario De Pasquale
+    description: >
+      Stesura architettura logica Ports & Adapters e componenti del simulator-backend
   - version: "0.1.0"
     date: "2026-04-08"
     authors:
-      - Francesco Marcon
-    verifier: TBD
-    description: >
-      Prima bozza della struttura del servizio simulator-cli
-  - version: "0.0.1"
-    date: "2026-04-08"
-    authors:
       - Valerio Solito
-    verifier: TBD
+    verifier: Francesco Marcon
     description: >
-      Prima bozza del documento
+      Prima stesura del documento e definizione della configurazione di base
