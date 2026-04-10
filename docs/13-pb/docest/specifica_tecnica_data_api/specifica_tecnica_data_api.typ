@@ -1,7 +1,7 @@
 #import "../../00-templates/base_document.typ" as base-document
 #import "../specifica_tecnica/st_lib.typ" as st
 
-#let metadata = yaml("specifica_tecnica_data_api.meta.yaml")
+#let metadata = yaml(sys.inputs.meta-path)
 
 #base-document.apply-base-document(
   title: metadata.title,
@@ -32,115 +32,122 @@
   Tutte le variabili d'ambiente necessarie per il funzionamento del microservizio sono elencate di seguito, una
   eventuale mancanza di una di queste variabili comporterà un errore all'avvio del microservizio:
 
-  #table(
-    columns: (auto, auto, auto, auto),
-    [#par(justify: false)[Campo]],
-    [#par(justify: false)[Variabile d'ambiente]],
-    [#par(justify: false)[Default]],
-    [#par(justify: false)[Obbligatorio]],
+  #figure(caption: "Variabili d'ambiente richieste da data-api")[
+    #table(
+      columns: (auto, auto, auto, auto),
+      [#par(justify: false)[Campo]],
+      [#par(justify: false)[Variabile d'ambiente]],
+      [#par(justify: false)[Default]],
+      [#par(justify: false)[Obbligatorio]],
 
-    [#par(justify: false)[`ApiPort`]],
-    [#par(justify: false)[DATA_API_PORT]],
-    [#par(justify: false)[`3000`]],
-    [#par(justify: false)[No]],
+      [#par(justify: false)[`ApiPort`]],
+      [#par(justify: false)[DATA_API_PORT]],
+      [#par(justify: false)[`3000`]],
+      [#par(justify: false)[No]],
 
-    [#par(justify: false)[`DBHost`]],
-    [#par(justify: false)[MEASURES_DB_HOST]],
-    [#par(justify: false)[`-`]],
-    [#par(justify: false)[Sì]],
+      [#par(justify: false)[`DBHost`]],
+      [#par(justify: false)[MEASURES_DB_HOST]],
+      [#par(justify: false)[`-`]],
+      [#par(justify: false)[Sì]],
 
-    [#par(justify: false)[`DBPort`]],
-    [#par(justify: false)[MEASURES_DB_PORT]],
-    [#par(justify: false)[`5432`]],
-    [#par(justify: false)[No]],
+      [#par(justify: false)[`DBPort`]],
+      [#par(justify: false)[MEASURES_DB_PORT]],
+      [#par(justify: false)[`5432`]],
+      [#par(justify: false)[No]],
 
-    [#par(justify: false)[`DBName`]],
-    [#par(justify: false)[MEASURES_DB_NAME]],
-    [#par(justify: false)[`-`]],
-    [#par(justify: false)[Sì]],
+      [#par(justify: false)[`DBName`]],
+      [#par(justify: false)[MEASURES_DB_NAME]],
+      [#par(justify: false)[`-`]],
+      [#par(justify: false)[Sì]],
 
-    [#par(justify: false)[`DBUser`]],
-    [#par(justify: false)[MEASURES_DB_USER]],
-    [#par(justify: false)[`-`]],
-    [#par(justify: false)[Sì]],
+      [#par(justify: false)[`DBUser`]],
+      [#par(justify: false)[MEASURES_DB_USER]],
+      [#par(justify: false)[`-`]],
+      [#par(justify: false)[Sì]],
 
-    [#par(justify: false)[`DBPassword`]],
-    [#par(justify: false)[MEASURES_DB_PASSWORD]],
-    [#par(justify: false)[`-`]],
-    [#par(justify: false)[Sì]],
+      [#par(justify: false)[`DBPassword`]],
+      [#par(justify: false)[MEASURES_DB_PASSWORD]],
+      [#par(justify: false)[`-`]],
+      [#par(justify: false)[Sì]],
 
-    [#par(justify: false)[`DBSSL`]],
-    [#par(justify: false)[DB_SSL]],
-    [#par(justify: false)[`false`]],
-    [#par(justify: false)[No]],
+      [#par(justify: false)[`DBSSL`]],
+      [#par(justify: false)[DB_SSL]],
+      [#par(justify: false)[`false`]],
+      [#par(justify: false)[No]],
 
-    [#par(justify: false)[`NatsUrl`]],
-    [#par(justify: false)[NATS_URL]],
-    [#par(justify: false)[`-`]],
-    [#par(justify: false)[No]],
+      [#par(justify: false)[`NatsUrl`]],
+      [#par(justify: false)[NATS_URL]],
+      [#par(justify: false)[`-`]],
+      [#par(justify: false)[No]],
 
-    [#par(justify: false)[`NatsServers`]],
-    [#par(justify: false)[NATS_SERVERS]],
-    [#par(justify: false)[`-`]],
-    [#par(justify: false)[No]],
+      [#par(justify: false)[`NatsServers`]],
+      [#par(justify: false)[NATS_SERVERS]],
+      [#par(justify: false)[`-`]],
+      [#par(justify: false)[No]],
 
-    [#par(justify: false)[`MgmtApiUrl`]],
-    [#par(justify: false)[MGMT_API_URL]],
-    [#par(justify: false)[`http://management-api:3000`]],
-    [#par(justify: false)[Sì]],
-  )
+      [#par(justify: false)[`MgmtApiUrl`]],
+      [#par(justify: false)[MGMT_API_URL]],
+      [#par(justify: false)[`http://management-api:3000`]],
+      [#par(justify: false)[Sì]],
+    )
+  ]
 
   == Sequenza di avvio
 
   I passi bloccanti interrompono l'avvio del microservizio, pertanto è necessario assicurarsi che tutti i servizi
   esterni siano operativi prima di avviare `notip-data-api`. La sequenza di avvio è la seguente:
-  #table(
-    columns: (auto, 1.5fr, 2.5fr, auto),
-    [#par(justify: false)[Step]],
-    [#par(justify: false)[Componente]],
-    [#par(justify: false)[Azione]],
-    [#par(justify: false)[Bloccante?]],
+  #figure(caption: "Sequenza di avvio del microservizio data-api")[
+    #table(
+      columns: (auto, 1.5fr, 2.5fr, auto),
+      [#par(justify: false)[Step]],
+      [#par(justify: false)[Componente]],
+      [#par(justify: false)[Azione]],
+      [#par(justify: false)[Bloccante?]],
 
-    [#par(justify: false)[0]],
-    [#par(justify: false)[.env]],
-    [#par(justify: false)[Carica le variabili d'ambiente del servizio]],
-    [#par(justify: false)[Si]],
+      [#par(justify: false)[0]],
+      [#par(justify: false)[.env]],
+      [#par(justify: false)[Carica le variabili d'ambiente del servizio]],
+      [#par(justify: false)[Si]],
 
-    [#par(justify: false)[1]],
-    [#par(justify: false)[env.validation]],
-    [#par(justify: false)[Verifica la validità delle variabili d'ambiente]],
-    [#par(justify: false)[Si]],
+      [#par(justify: false)[1]],
+      [#par(justify: false)[env.validation]],
+      [#par(justify: false)[Verifica la validità delle variabili d'ambiente]],
+      [#par(justify: false)[Si]],
 
-    [#par(justify: false)[2]],
-    [#par(justify: false)[bootstrap.nestjs]],
-    [#par(justify: false)[Inizializza i moduli, controller e provider dell'applicazione NestJS]],
-    [#par(justify: false)[Si]],
+      [#par(justify: false)[2]],
+      [#par(justify: false)[bootstrap.nestjs]],
+      [#par(justify: false)[Inizializza i moduli, controller e provider dell'applicazione NestJS]],
+      [#par(justify: false)[Si]],
 
-    [#par(justify: false)[3]],
-    [#par(justify: false)[app.module]],
-    [#par(justify: false)[Inizializza TypeORM e registra i moduli Measure e Sensor]],
-    [#par(justify: false)[Si]],
+      [#par(justify: false)[3]],
+      [#par(justify: false)[app.module]],
+      [#par(justify: false)[Inizializza TypeORM e registra i moduli Measure e Sensor]],
+      [#par(justify: false)[Si]],
 
-    [#par(justify: false)[4]],
-    [#par(justify: false)[auth.guard]],
-    [#par(justify: false)[Registra il TenantAccessGuard globale per la validazione del tenant]],
-    [#par(justify: false)[Si]],
+      [#par(justify: false)[4]],
+      [#par(justify: false)[auth.guard]],
+      [#par(justify: false)[Registra il TenantAccessGuard globale per la validazione del tenant]],
+      [#par(justify: false)[Si]],
 
-    [#par(justify: false)[5]],
-    [#par(justify: false)[metrics.module]],
-    [#par(justify: false)[Registra MetricsService e MetricsInterceptor per il monitoraggio]],
-    [#par(justify: false)[Si]],
+      [#par(justify: false)[5]],
+      [#par(justify: false)[metrics.module]],
+      [#par(justify: false)[Registra MetricsService e MetricsInterceptor per il monitoraggio]],
+      [#par(justify: false)[Si]],
 
-    [#par(justify: false)[6]],
-    [#par(justify: false)[main]],
-    [#par(justify: false)[Crea l'applicazione NestJS e avvia il listener HTTP sulla porta configurata]],
-    [#par(justify: false)[Si]],
-  )
+      [#par(justify: false)[6]],
+      [#par(justify: false)[main]],
+      [#par(justify: false)[Crea l'applicazione NestJS e avvia il listener HTTP sulla porta configurata]],
+      [#par(justify: false)[Si]],
+    )
+  ]
 
   = Architettura Logica
 
   #align(center)[
-    #image("./assets/01-app-architecture.svg", width: 100%)
+    #figure(caption: "Architettura del microservizio")[
+      #image("./assets/01-app-architecture.svg", width: 110%)
+    ]
+
   ]
 
   Il servizio adotta una Layered Architecture con organizzazione interna di tipo Modular Monolith. All'interno dei vari
@@ -151,27 +158,29 @@
   dell'applicazione.
 
   == Strati Architetturali
-  #table(
-    columns: (1.5fr, 2.4fr, 2.5fr),
-    [#par(justify: false)[Strato]], [#par(justify: false)[Package]], [#par(justify: false)[Contenuto]],
-    [#par(justify: false)[Presentation]],
-    [#par(justify: false)[`src/app.controller.ts`\ `src/data-api/controller`\ `src/data-api/dto`\
-      `src/data-api/openapi.decorators.ts`]],
-    [#par(justify: false)[Gestione delle richieste HTTP, esposizione delle API REST, validazione dei payload,
-      autenticazione e definizione dei contratti di ingresso/uscita dei dati.]],
+  #figure(caption: "Strati architetturali")[
+    #table(
+      columns: (1.5fr, 2.4fr, 2.5fr),
+      [#par(justify: false)[Strato]], [#par(justify: false)[Package]], [#par(justify: false)[Contenuto]],
+      [#par(justify: false)[Presentation]],
+      [#par(justify: false)[`src/app.controller.ts`\ `src/data-api/controller`\ `src/data-api/dto`\
+        `src/data-api/openapi.decorators.ts`]],
+      [#par(justify: false)[Gestione delle richieste HTTP, esposizione delle API REST, validazione dei payload,
+        autenticazione e definizione dei contratti di ingresso/uscita dei dati.]],
 
-    [#par(justify: false)[Business]],
-    [#par(justify: false)[`src/data-api/services`\ `src/data-api/models`\ `src/data-api/interfaces`\
-      `src/data-api/measure.mapper.ts`]],
-    [#par(justify: false)[Logica applicativa e di dominio: validazione dei parametri di query, orchestrazione dei casi
-      d'uso, trasformazione tra entity/model/DTO, filtraggio dei dati e definizione delle interfacce tra componenti.]],
+      [#par(justify: false)[Business]],
+      [#par(justify: false)[`src/data-api/services`\ `src/data-api/models`\ `src/data-api/interfaces`\
+        `src/data-api/measure.mapper.ts`]],
+      [#par(justify: false)[Logica applicativa e di dominio: validazione dei parametri di query, orchestrazione dei casi
+        d'uso, trasformazione tra entity/model/DTO, filtraggio dei dati e definizione delle interfacce tra
+        componenti.]],
 
-    [#par(justify: false)[Persistence]],
-    [#par(justify: false)[`src/data-api/entity`\ `src/data-api/services/measure.persistence.service.ts`]],
-    [#par(justify: false)[Accesso ai dati tramite TypeORM, definizione dell'entità `MeasureEntity`, costruzione delle
-      query paginated e non-paginated su PostgreSQL e incapsulamento delle operazioni di persistenza.]],
-  )
-
+      [#par(justify: false)[Persistence]],
+      [#par(justify: false)[`src/data-api/entity`\ `src/data-api/services/measure.persistence.service.ts`]],
+      [#par(justify: false)[Accesso ai dati tramite TypeORM, definizione dell'entità `MeasureEntity`, costruzione delle
+        query paginated e non-paginated su PostgreSQL e incapsulamento delle operazioni di persistenza.]],
+    )
+  ]
   = Design di Dettaglio
 
   == Moduli del microservizio
@@ -185,104 +194,106 @@
   ===== MeasureController
 
   Controller NestJS esposto sotto il prefisso `/measures`. Gestisce tre endpoint principali.
+  #figure(caption: "Endpoint esposti da MeasureController")[
+    #table(
+      columns: (1.2fr, 2.5fr, 2.3fr),
+      [#par(justify: false)[Metodo]], [#par(justify: false)[Endpoint]], [#par(justify: false)[Note]],
+      [#par(justify: false)[`query(...)`]],
+      [#par(justify: false)[`GET /measures/query`]],
+      [#par(justify: false)[Query paginata con cursor-based pagination; valida limit <= 999 e finestra <= 24h]],
 
-  #table(
-    columns: (1.2fr, 2.5fr, 2.3fr),
-    [#par(justify: false)[Metodo]], [#par(justify: false)[Endpoint]], [#par(justify: false)[Note]],
-    [#par(justify: false)[`query(...)`]],
-    [#par(justify: false)[`GET /measures/query`]],
-    [#par(justify: false)[Query paginata con cursor-based pagination; valida limit <= 999 e finestra <= 24h]],
+      [#par(justify: false)[`stream(...)`]],
+      [#par(justify: false)[`SSE /measures/stream`]],
+      [#par(justify: false)[Server-Sent Events; replay storico + live; termina con `token_expired` alla scadenza del
+        JWT]],
 
-    [#par(justify: false)[`stream(...)`]],
-    [#par(justify: false)[`SSE /measures/stream`]],
-    [#par(justify: false)[Server-Sent Events; replay storico + live; termina con `token_expired` alla scadenza del
-      JWT]],
-
-    [#par(justify: false)[`export(...)`]],
-    [#par(justify: false)[`GET /measures/export`]],
-    [#par(justify: false)[Export completo senza paginazione; valida finestra <= 24h]],
-  )
+      [#par(justify: false)[`export(...)`]],
+      [#par(justify: false)[`GET /measures/export`]],
+      [#par(justify: false)[Export completo senza paginazione; valida finestra <= 24h]],
+    )
+  ]
 
   _Metodi privati:_
+  #figure(caption: "Metodi privati di MeasureController")[
+    #table(
+      columns: (2.5fr, 3.5fr),
+      [#par(justify: false)[Funzione]], [#par(justify: false)[Comportamento]],
+      [#par(justify: false)[`normalizeLimit(value)`]],
+      [#par(justify: false)[Parsing del parametro limit; default 999; scarta valori non interi]],
 
-  #table(
-    columns: (2.5fr, 3.5fr),
-    [#par(justify: false)[Funzione]], [#par(justify: false)[Comportamento]],
-    [#par(justify: false)[`normalizeLimit(value)`]],
-    [#par(justify: false)[Parsing del parametro limit; default 999; scarta valori non interi]],
+      [#par(justify: false)[`normalizeArrayParam(value)`]],
+      [#par(justify: false)[Converte parametro singolo o array in `string[]`]],
 
-    [#par(justify: false)[`normalizeArrayParam(value)`]],
-    [#par(justify: false)[Converte parametro singolo o array in `string[]`]],
+      [#par(justify: false)[`parseBearerToken(authorization)`]],
+      [#par(justify: false)[Estrae il token Bearer dall'header Authorization]],
 
-    [#par(justify: false)[`parseBearerToken(authorization)`]],
-    [#par(justify: false)[Estrae il token Bearer dall'header Authorization]],
-
-    [#par(justify: false)[`extractTokenExpiresAt(authorization)`]],
-    [#par(justify: false)[Decodifica il payload JWT e estrae il claim `exp` in millisecondi]],
-  )
-
+      [#par(justify: false)[`extractTokenExpiresAt(authorization)`]],
+      [#par(justify: false)[Decodifica il payload JWT e estrae il claim `exp` in millisecondi]],
+    )
+  ]
   ===== MeasureService
 
   Contiene la logica di business per query ed export. Coordina `MeasurePersistenceService`.
 
   _Campi:_
-
-  #table(
-    columns: (1.5fr, 2fr, 2.5fr),
-    [#par(justify: false)[Campo]], [#par(justify: false)[Tipo]], [#par(justify: false)[Note]],
-    [#par(justify: false)[`mps`]],
-    [#par(justify: false)[`MeasurePersistenceService`]],
-    [#par(justify: false)[Iniettato via constructor]],
-  )
+  #figure(caption: "Campi di MeasureService")[
+    #table(
+      columns: (1.5fr, 2fr, 2.5fr),
+      [#par(justify: false)[Campo]], [#par(justify: false)[Tipo]], [#par(justify: false)[Note]],
+      [#par(justify: false)[`mps`]],
+      [#par(justify: false)[`MeasurePersistenceService`]],
+      [#par(justify: false)[Iniettato via constructor]],
+    )]
 
   _Costanti:_
+  #figure(caption: "Costanti di MeasureService")[
+    #table(
+      columns: (1.5fr, 2fr, 2.5fr),
+      [#par(justify: false)[Costante]], [#par(justify: false)[Valore]], [#par(justify: false)[Note]],
+      [#par(justify: false)[`MAX_QUERY_LIMIT`]],
+      [#par(justify: false)[`999`]],
+      [#par(justify: false)[Limite massimo di righe per pagina]],
 
-  #table(
-    columns: (1.5fr, 2fr, 2.5fr),
-    [#par(justify: false)[Costante]], [#par(justify: false)[Valore]], [#par(justify: false)[Note]],
-    [#par(justify: false)[`MAX_QUERY_LIMIT`]],
-    [#par(justify: false)[`999`]],
-    [#par(justify: false)[Limite massimo di righe per pagina]],
-
-    [#par(justify: false)[`MAX_WINDOW_MS`]],
-    [#par(justify: false)[`86400000`]],
-    [#par(justify: false)[Finestra temporale massima: 24 ore]],
-  )
+      [#par(justify: false)[`MAX_WINDOW_MS`]],
+      [#par(justify: false)[`86400000`]],
+      [#par(justify: false)[Finestra temporale massima: 24 ore]],
+    )]
 
   _Metodi pubblici:_
+  #figure(caption: "Metodi pubblici di MeasureService")[
+    #table(
+      columns: (1.5fr, 2.5fr, 2fr),
+      [#par(justify: false)[Metodo]], [#par(justify: false)[Firma]], [#par(justify: false)[Note]],
+      [#par(justify: false)[`query(input)`]],
+      [#par(justify: false)[`(input: QueryInput): Promise<PaginatedQueryModel>`]],
+      [#par(justify: false)[Valida input; chiama `mps.paginatedQuery()`; mappa risultato via `MeasureMapper`]],
 
-  #table(
-    columns: (1.5fr, 2.5fr, 2fr),
-    [#par(justify: false)[Metodo]], [#par(justify: false)[Firma]], [#par(justify: false)[Note]],
-    [#par(justify: false)[`query(input)`]],
-    [#par(justify: false)[`(input: QueryInput): Promise<PaginatedQueryModel>`]],
-    [#par(justify: false)[Valida input; chiama `mps.paginatedQuery()`; mappa risultato via `MeasureMapper`]],
-
-    [#par(justify: false)[`export(input)`]],
-    [#par(justify: false)[`(input: ExportInput): Promise<EncryptedEnvelopeModel[]>`]],
-    [#par(justify: false)[Valida input; chiama `mps.nonPaginatedQuery()`; mappa risultato via `MeasureMapper`]],
-  )
+      [#par(justify: false)[`export(input)`]],
+      [#par(justify: false)[`(input: ExportInput): Promise<EncryptedEnvelopeModel[]>`]],
+      [#par(justify: false)[Valida input; chiama `mps.nonPaginatedQuery()`; mappa risultato via `MeasureMapper`]],
+    )]
 
   _Metodi privati:_
+  #figure(caption: "Metodi privati di MeasureService")[
+    #table(
+      columns: (1.5fr, 3.5fr),
+      [#par(justify: false)[Metodo]], [#par(justify: false)[Comportamento]],
+      [#par(justify: false)[`validateQueryInput(input)`]],
+      [#par(justify: false)[Verifica `limit <= MAX_QUERY_LIMIT` (code `QUERY_LIMIT_EXCEEDED`); chiama
+        `validateWindow`]],
 
-  #table(
-    columns: (1.5fr, 3.5fr),
-    [#par(justify: false)[Metodo]], [#par(justify: false)[Comportamento]],
-    [#par(justify: false)[`validateQueryInput(input)`]],
-    [#par(justify: false)[Verifica `limit <= MAX_QUERY_LIMIT` (code `QUERY_LIMIT_EXCEEDED`); chiama `validateWindow`]],
+      [#par(justify: false)[`validateExportInput(input)`]],
+      [#par(justify: false)[Chiama `validateWindow` con code `EXPORT_WINDOW_EXCEEDED`]],
 
-    [#par(justify: false)[`validateExportInput(input)`]],
-    [#par(justify: false)[Chiama `validateWindow` con code `EXPORT_WINDOW_EXCEEDED`]],
+      [#par(justify: false)[`validateWindow(from, to, code)`]],
+      [#par(justify: false)[Parsa le date; se finestra > 24h solleva `BadRequestException` con il code fornito]],
 
-    [#par(justify: false)[`validateWindow(from, to, code)`]],
-    [#par(justify: false)[Parsa le date; se finestra > 24h solleva `BadRequestException` con il code fornito]],
+      [#par(justify: false)[`handleQueryError(error)`]],
+      [#par(justify: false)[Mappa errori: 400/BadRequest, 401/Unauthorized, 403/Forbidden]],
 
-    [#par(justify: false)[`handleQueryError(error)`]],
-    [#par(justify: false)[Mappa errori: 400/BadRequest, 401/Unauthorized, 403/Forbidden]],
-
-    [#par(justify: false)[`handleExportError(error)`]],
-    [#par(justify: false)[Mappa errori: 400/BadRequest, 401/Unauthorized, 403/Forbidden]],
-  )
+      [#par(justify: false)[`handleExportError(error)`]],
+      [#par(justify: false)[Mappa errori: 400/BadRequest, 401/Unauthorized, 403/Forbidden]],
+    )]
 
   ===== MeasurePersistenceService
 
@@ -290,14 +301,15 @@
   (tabella `telemetry`).
 
   _Campi:_
-
-  #table(
-    columns: (1.5fr, 2fr, 2.5fr),
-    [#par(justify: false)[Campo]], [#par(justify: false)[Tipo]], [#par(justify: false)[Note]],
-    [#par(justify: false)[`repository`]],
-    [#par(justify: false)[`Repository<MeasureEntity>`]],
-    [#par(justify: false)[Repository TypeORM iniettato]],
-  )
+  #figure(caption: "Campi di MeasurePersistenceService")[
+    #table(
+      columns: (1.5fr, 2fr, 2.5fr),
+      [#par(justify: false)[Campo]], [#par(justify: false)[Tipo]], [#par(justify: false)[Note]],
+      [#par(justify: false)[`repository`]],
+      [#par(justify: false)[`Repository<MeasureEntity>`]],
+      [#par(justify: false)[Repository TypeORM iniettato]],
+    )
+  ]
 
   _Metodi pubblici:_
 
@@ -321,20 +333,23 @@
 
   _Metodi privati:_
 
-  #table(
-    columns: (1.9fr, 3.5fr),
-    [#par(justify: false)[Metodo]], [#par(justify: false)[Comportamento]],
-    [#par(justify: false)[`applyScalarFilter(qb, column, param, value)`]],
-    [#par(justify: false)[Aggiunge `WHERE column = :param` se value è definito]],
+  #figure(caption: "Metodi privati di MeasurePersistenceService")[
+    #table(
+      columns: (1.9fr, 3.5fr),
+      [#par(justify: false)[Metodo]], [#par(justify: false)[Comportamento]],
+      [#par(justify: false)[`applyScalarFilter(qb, column, param, value)`]],
+      [#par(justify: false)[Aggiunge `WHERE column = :param` se value è definito]],
 
-    [#par(justify: false)[`applyArrayFilter(qb, column, param, values)`]],
-    [#par(justify: false)[Aggiunge `WHERE column IN (:...param)` se l'array ha elementi]],
+      [#par(justify: false)[`applyArrayFilter(qb, column, param, values)`]],
+      [#par(justify: false)[Aggiunge `WHERE column IN (:...param)` se l'array ha elementi]],
 
-    [#par(justify: false)[`parseCompositeCursor(cursor)`]],
-    [#par(justify: false)[Splitta il cursor sull'ultimo `|`; restituisce `{ time, sensorId }` o `undefined`]],
+      [#par(justify: false)[`parseCompositeCursor(cursor)`]],
+      [#par(justify: false)[Splitta il cursor sull'ultimo `|`; restituisce `{ time, sensorId }` o `undefined`]],
 
-    [#par(justify: false)[`toCompositeCursor(time, sensorId)`]], [#par(justify: false)[Formatta come `time|sensorId`]],
-  )
+      [#par(justify: false)[`toCompositeCursor(time, sensorId)`]],
+      [#par(justify: false)[Formatta come `time|sensorId`]],
+    )
+  ]
 
   ===== StreamListenerService
 
@@ -342,50 +357,57 @@
 
   _Campi:_
 
-  #table(
-    columns: (1.5fr, 2.6fr, 2.5fr),
-    [#par(justify: false)[Campo]], [#par(justify: false)[Tipo]], [#par(justify: false)[Note]],
-    [#par(justify: false)[`tenantStreams`]],
-    [#par(justify: false)[`Map<string, Subject<EncryptedEnvelopeModel>>`]],
-    [#par(justify: false)[Soggetti per tenant (lazy-created)]],
+  #figure(caption: "Campi di StreamListenerService")[
+    #table(
+      columns: (1.5fr, 2.6fr, 2.5fr),
+      [#par(justify: false)[Campo]], [#par(justify: false)[Tipo]], [#par(justify: false)[Note]],
+      [#par(justify: false)[`tenantStreams`]],
+      [#par(justify: false)[`Map<string, Subject<EncryptedEnvelopeModel>>`]],
+      [#par(justify: false)[Soggetti per tenant (lazy-created)]],
 
-    [#par(justify: false)[`mps`]],
-    [#par(justify: false)[`MeasurePersistenceService`]],
-    [#par(justify: false)[Iniettato per replay storico]],
-  )
+      [#par(justify: false)[`mps`]],
+      [#par(justify: false)[`MeasurePersistenceService`]],
+      [#par(justify: false)[Iniettato per replay storico]],
+    )
+  ]
 
   _Metodi pubblici:_
 
-  #table(
-    columns: (1.5fr, 2.5fr, 2fr),
-    [#par(justify: false)[Metodo]], [#par(justify: false)[Firma]], [#par(justify: false)[Note]],
-    [#par(justify: false)[`stream(input)`]],
-    [#par(justify: false)[`(input: StreamInput): Observable<StreamEmission>`]],
-    [#par(justify: false)[Concatena replay storico + live events; filtra per gatewayId/sensorId/sensorType; termina con
-      `token_expired`]],
+  #figure(caption: "Metodi pubblici di StreamListenerService")[
+    #table(
+      columns: (2.2fr, 2.5fr, 2fr),
+      [#par(justify: false)[Metodo]], [#par(justify: false)[Firma]], [#par(justify: false)[Note]],
+      [#par(justify: false)[`stream(input)`]],
+      [#par(justify: false)[`(input: StreamInput): Observable<StreamEmission>`]],
+      [#par(justify: false)[Concatena replay storico + live events; filtra per gatewayId/sensorId/sensorType; termina
+        con `token_expired`]],
 
-    [#par(justify: false)[`publishLiveMeasure(tenantId, event)`]],
-    [#par(justify: false)[`(tenantId: string, event: EncryptedEnvelopeModel): void`]],
-    [#par(justify: false)[Pubblica una misura live sul Subject del tenant]],
-  )
+      [#par(justify: false)[`publishLiveMeasure(tenantId, event)`]],
+      [#par(justify: false)[`(tenantId: string, event: EncryptedEnvelopeModel): void`]],
+      [#par(justify: false)[Pubblica una misura live sul Subject del tenant]],
+    )
+  ]
 
   _Metodi privati:_
 
-  #table(
-    columns: (1.5fr, 3.5fr),
-    [#par(justify: false)[Metodo]], [#par(justify: false)[Comportamento]],
-    [#par(justify: false)[`replayHistorical(input)`]],
-    [#par(justify: false)[Se `since` è definito, query `[since, now]` ed emette ogni misura come evento `data`]],
+  #figure(caption: "Metodi privati di StreamListenerService")[
+    #table(
+      columns: (1.5fr, 3.5fr),
+      [#par(justify: false)[Metodo]], [#par(justify: false)[Comportamento]],
+      [#par(justify: false)[`replayHistorical(input)`]],
+      [#par(justify: false)[Se `since` è definito, query `[since, now]` ed emette ogni misura come evento `data`]],
 
-    [#par(justify: false)[`listenToSource(input)`]],
-    [#par(justify: false)[Sottoscrive al Subject del tenant e wrappa come Observable]],
+      [#par(justify: false)[`listenToSource(input)`]],
+      [#par(justify: false)[Sottoscrive al Subject del tenant e wrappa come Observable]],
 
-    [#par(justify: false)[`getTenantStream(tenantId?)`]],
-    [#par(justify: false)[Crea lazy il Subject per il tenant (default: `'anonymous'`)]],
+      [#par(justify: false)[`getTenantStream(tenantId?)`]],
+      [#par(justify: false)[Crea lazy il Subject per il tenant (default: `'anonymous'`)]],
 
-    [#par(justify: false)[`matchesFilters(event, input)`]],
-    [#par(justify: false)[Verifica se l'evento soddisfa i filtri gatewayId/sensorId/sensorType (OR dentro ogni array)]],
-  )
+      [#par(justify: false)[`matchesFilters(event, input)`]],
+      [#par(justify: false)[Verifica se l'evento soddisfa i filtri gatewayId/sensorId/sensorType (OR dentro ogni
+        array)]],
+    )
+  ]
 
   ===== TelemetryStreamBridgeService
 
@@ -394,59 +416,65 @@
 
   _Campi:_
 
-  #table(
-    columns: (1.5fr, 2fr, 2.5fr),
-    [#par(justify: false)[Campo]], [#par(justify: false)[Tipo]], [#par(justify: false)[Note]],
-    [#par(justify: false)[`logger`]], [#par(justify: false)[`Logger`]], [#par(justify: false)[Logger interno]],
-    [#par(justify: false)[`connection`]],
-    [#par(justify: false)[`NatsConnection | null`]],
-    [#par(justify: false)[Connessione NATS]],
+  #figure(caption: "Campi di TelemetryStreamBridgeService")[
+    #table(
+      columns: (1.5fr, 2fr, 2.5fr),
+      [#par(justify: false)[Campo]], [#par(justify: false)[Tipo]], [#par(justify: false)[Note]],
+      [#par(justify: false)[`logger`]], [#par(justify: false)[`Logger`]], [#par(justify: false)[Logger interno]],
+      [#par(justify: false)[`connection`]],
+      [#par(justify: false)[`NatsConnection | null`]],
+      [#par(justify: false)[Connessione NATS]],
 
-    [#par(justify: false)[`subscription`]],
-    [#par(justify: false)[`Subscription | null`]],
-    [#par(justify: false)[Sottoscrizione NATS]],
+      [#par(justify: false)[`subscription`]],
+      [#par(justify: false)[`Subscription | null`]],
+      [#par(justify: false)[Sottoscrizione NATS]],
 
-    [#par(justify: false)[`streamListener`]],
-    [#par(justify: false)[`StreamListenerService`]],
-    [#par(justify: false)[Iniettato per pubblicare misure live]],
-  )
+      [#par(justify: false)[`streamListener`]],
+      [#par(justify: false)[`StreamListenerService`]],
+      [#par(justify: false)[Iniettato per pubblicare misure live]],
+    )
+  ]
 
   _Metodi pubblici:_
 
-  #table(
-    columns: (1.5fr, 2.5fr, 2fr),
-    [#par(justify: false)[Metodo]], [#par(justify: false)[Firma]], [#par(justify: false)[Note]],
-    [#par(justify: false)[`onModuleInit()`]],
-    [#par(justify: false)[`(): Promise<void>`]],
-    [#par(justify: false)[Salta in test mode; chiama `connectAndSubscribe()`]],
+  #figure(caption: "Metodi pubblici di TelemetryStreamBridgeService")[
+    #table(
+      columns: (1.5fr, 2.5fr, 2fr),
+      [#par(justify: false)[Metodo]], [#par(justify: false)[Firma]], [#par(justify: false)[Note]],
+      [#par(justify: false)[`onModuleInit()`]],
+      [#par(justify: false)[`(): Promise<void>`]],
+      [#par(justify: false)[Salta in test mode; chiama `connectAndSubscribe()`]],
 
-    [#par(justify: false)[`onModuleDestroy()`]],
-    [#par(justify: false)[`(): Promise<void>`]],
-    [#par(justify: false)[Unsubscribe, drain e close della connessione NATS]],
-  )
+      [#par(justify: false)[`onModuleDestroy()`]],
+      [#par(justify: false)[`(): Promise<void>`]],
+      [#par(justify: false)[Unsubscribe, drain e close della connessione NATS]],
+    )
+  ]
 
   _Metodi privati:_
 
-  #table(
-    columns: (1.5fr, 3.5fr),
-    [#par(justify: false)[Metodo]], [#par(justify: false)[Comportamento]],
-    [#par(justify: false)[`connectAndSubscribe()`]],
-    [#par(justify: false)[Connette a NATS con TLS/token/user-pass; sottoscrive `telemetry.data.*.*`; avvia
-      `consumeMessages()`]],
+  #figure(caption: "Metodi privati di TelemetryStreamBridgeService")[
+    #table(
+      columns: (1.8fr, 3.5fr),
+      [#par(justify: false)[Metodo]], [#par(justify: false)[Comportamento]],
+      [#par(justify: false)[`connectAndSubscribe()`]],
+      [#par(justify: false)[Connette a NATS con TLS/token/user-pass; sottoscrive `telemetry.data.*.*`; avvia
+        `consumeMessages()`]],
 
-    [#par(justify: false)[`consumeMessages(subscription)`]],
-    [#par(justify: false)[Itera messaggi NATS; estrae tenantId dal subject; pars envelope; pubblica su
-      `streamListener`]],
+      [#par(justify: false)[`consumeMessages(subscription)`]],
+      [#par(justify: false)[Itera messaggi NATS; estrae tenantId dal subject; pars envelope; pubblica su
+        `streamListener`]],
 
-    [#par(justify: false)[`buildConnectionOptions()`]],
-    [#par(justify: false)[Costruisce opzioni NATS: servers da env, TLS mTLS, token o user/pass]],
+      [#par(justify: false)[`buildConnectionOptions()`]],
+      [#par(justify: false)[Costruisce opzioni NATS: servers da env, TLS mTLS, token o user/pass]],
 
-    [#par(justify: false)[`extractTenantId(subject)`]],
-    [#par(justify: false)[Estrae tenantId da `telemetry.data.{tenantId}.{something}` (parte 2)]],
+      [#par(justify: false)[`extractTenantId(subject)`]],
+      [#par(justify: false)[Estrae tenantId da `telemetry.data.{tenantId}.{something}` (parte 2)]],
 
-    [#par(justify: false)[`parseEnvelope(data)`]],
-    [#par(justify: false)[JSON-parsa i dati e valida tutti i campi richiesti; restituisce `undefined` se invalido]],
-  )
+      [#par(justify: false)[`parseEnvelope(data)`]],
+      [#par(justify: false)[JSON-parsa i dati e valida tutti i campi richiesti; restituisce `undefined` se invalido]],
+    )
+  ]
 
   ===== CostNatsResponderService
 
@@ -812,9 +840,9 @@
   stream a `StreamListenerService`.
 
   Lo `StreamListenerService` genera un flusso osservabile che concatena:
-  1. **Replay storico**: se `since` è definito, esegue una query non paginata su `[since, now]` ed emette ogni misura
-    come evento `data`.
-  2. **Eventi live**: sottoscrive al `Subject` del tenant e filtra gli eventi per `gatewayId`/`sensorId`/`sensorType`.
+  1. *Replay storico*: se `since` è definito, esegue una query non paginata su `[since, now]` ed emette ogni misura come
+    evento `data`.
+  2. *Eventi live*: sottoscrive al `Subject` del tenant e filtra gli eventi per `gatewayId`/`sensorId`/`sensorType`.
 
   Se il token JWT è già scaduto (`tokenExpiresAt <= Date.now()`), emette immediatamente un evento di errore
   `token_expired`. Altrimenti, usa `takeUntil` per terminare lo stream alla scadenza del token.

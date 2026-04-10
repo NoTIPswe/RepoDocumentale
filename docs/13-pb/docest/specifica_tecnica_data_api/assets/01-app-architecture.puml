@@ -4,8 +4,8 @@ title NOTIP Data API - Application Architecture
 skinparam backgroundColor #FFFFFF
 skinparam defaultFontSize 10
 skinparam defaultFontColor #000000
-skinparam nodesep 8
-skinparam ranksep 8
+skinparam nodesep 25
+skinparam ranksep 25
 skinparam linetype ortho
 skinparam packageStyle rectangle
 
@@ -123,6 +123,52 @@ package "NOTIP Data API" <<Rectangle>> {
       +getSensors(input): SensorModel[]
       -toSensorModels(measures): SensorModel[]
     }
+
+    interface "NpQueryPersistenceService" as NpQueryPersistenceService {
+      +nonPaginatedQuery(input): MeasureEntity[]
+    }
+  }
+
+  ' === Input Interfaces ===
+  interface "NpQueryPersistenceInput" as NpQueryPersistenceInput {
+    +tenantId?: string
+    +gatewayId?: string[]
+    +sensorId?: string[]
+    +sensorType?: string[]
+    +from: string
+    +to: string
+  }
+
+  interface "PQueryPersistenceInput" as PQueryPersistenceInput {
+    +extends: NpQueryPersistenceInput
+    +cursor?: string
+    +limit: number
+  }
+
+  interface "StreamInput" as StreamInput {
+    +gatewayId?: string[]
+    +sensorId?: string[]
+    +sensorType?: string[]
+    +since?: string
+    +tenantId?: string
+    +tokenExpiresAt?: number
+  }
+
+  interface "QueryInput" as QueryInput {
+    +extends: NpQueryPersistenceInput
+    +cursor?: string
+    +limit: number
+  }
+
+  interface "GetSensorsInput" as GetSensorsInput {
+    +tenantId?: string
+    +gatewayId?: string
+  }
+
+  interface "ExportInput" as ExportInput {
+    +extends: StreamInput
+    +from: string
+    +to: string
   }
 
   ' Core relationships
@@ -139,13 +185,13 @@ package "NOTIP Data API" <<Rectangle>> {
 
   ' Auth relationships
   TenantAccessGuard --> ConfigService
-  TenantAccessGuard --> ManagementAPI : GET /auth/tenant-status
+  TenantAccessGuard --> ManagementAPI
 
   ' Metrics relationships
   MetricsModule --> MetricsController
   MetricsModule --> MetricsService
   MetricsController --> MetricsService
-  MetricsService --> Prometheus : expose metrics
+  MetricsService --> Prometheus
 
   ' Measure relationships
   MeasureModule --> MeasureController
@@ -161,24 +207,34 @@ package "NOTIP Data API" <<Rectangle>> {
   MeasureService --> MeasurePersistenceService
 
   MeasurePersistenceService --> MeasureEntity
-  MeasurePersistenceService --> PostgreSQL : queries
+  MeasurePersistenceService --> PostgreSQL
 
-  StreamListenerService --> MeasurePersistenceService : historical replay
-  TelemetryStreamBridgeService --> StreamListenerService : publish live
-  TelemetryStreamBridgeService --> NATS : sub telemetry.data.*.*
+  StreamListenerService --> MeasurePersistenceService
+  TelemetryStreamBridgeService --> StreamListenerService
+  TelemetryStreamBridgeService --> NATS
 
-  CostNatsResponderService --> MeasurePersistenceService : get size
-  CostNatsResponderService --> NATS : reply internal.cost
+  CostNatsResponderService --> MeasurePersistenceService
+  CostNatsResponderService --> NATS
 
   ' Sensor relationships
   SensorModule --> SensorController
   SensorModule --> SensorService
 
   SensorController --> SensorService
-  SensorService --> MeasurePersistenceService : NP_QUERY_PERSISTENCE
+  SensorService --> NpQueryPersistenceService
+  MeasurePersistenceService ..|> NpQueryPersistenceService
 
   ' Entity relationships
-  MeasureEntity --> PostgreSQL : persists
+  MeasureEntity --> PostgreSQL
+
+  ' Input interface relationships
+  MeasureService ..> QueryInput
+  MeasureService ..> ExportInput
+  MeasurePersistenceService ..> PQueryPersistenceInput
+  MeasurePersistenceService ..> NpQueryPersistenceInput
+  StreamListenerService ..> StreamInput
+  SensorService ..> GetSensorsInput
+  PQueryPersistenceInput ..|> NpQueryPersistenceInput
 }
 
 note top of AppModule
