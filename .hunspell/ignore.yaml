@@ -77,8 +77,15 @@ accepted_words:
 
   # --- Tecnologie e Formati ---
   - AES
+  - AESKeyGenerator
+  - CAProvider
+  - CARepository
   - csv
+  - CSR
+  - CSRSigner
+  - CSPRNG
   - EE # for End to End Encryption (spellcheck keeps failing)
+  - FactoryValidator
   - Gin
   - GO
   - gRPC
@@ -90,7 +97,11 @@ accepted_words:
   - Golang
   - PDF
   - pdf
+  - PEM
+  - PKI
+  - ProvisioningCompleter
   - Typst
+  - TTL
   - YAML
   - yaml
   - typ
@@ -185,8 +196,11 @@ accepted_words:
   - WLock
   - NAK
   - MeasureController
+  - MeasureEntity
+  - MeasureModule
   - MeasureService
   - SensorController
+  - SensorModule
   - SensorService
   - MeasurePersistenceService
   - StreamListenerService
@@ -202,6 +216,23 @@ accepted_words:
   - deduplicazione
   - mockato
   - TestContainers
+  - timestamptz
+  - uuid
+  - Crypto
+  - RBAC
+  - IAM
+  - httptest
+  - SSL
+  - realtime
+  - AESGCMEncryptor
+  - PTerm
+  - Stdout
+  - stdout
+  - stdin
+  - NaN
+  - omitempty
+  - unparseable
+  - TTY
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -280,7 +311,15 @@ accepted_words:
   - deserializzato
   - backoff
   - loggati
+  - loggato
   - unexported
+  - lifecycle
+  - unmarshal
+  - Walkthrough
+  - REPL
+  - renderer
+  - EOF
+  - ciphertext
 
   # --- Terminologia Standard Progetto ---
   - req
@@ -388,12 +427,88 @@ accepted_words:
   - AuditLogEntity
   - ApiClientEntity
   - CommandEntity
+  - filesystem
+  - init
+  - cryptographically
+  - validator
+  - AppModule
+  - UCs
+  - HeartbeatTrackerConfig
+  - NATSGatewayLifecycleProvider
+  - Configs
+  - os
+  - OpaqueBlob
+  - config
+  - lifecycle
+  - writeBatch
+  - HandleTelemetry
+  - HandleDecommission
+  - gatewayID
+  - unmarshal
+  - encryptor
+  - KeycloakHostname
+  - Enums
+  - HOSTNAME
+  - localhost
+  - TenantStatus
+  - UsersRole
+  - GatewayStatus
+  - AlertType
+  - CommandType
+  - CommandStatus
+  - KeycloakUrl
+  - NodeEnv
+  - NatsServers
+  - NatsClientName
+  - NatsDurablePrefix
+  - NatsTlsCert
+  - NatsTlsKey
+  - NatsTlsCa
+  - NatsToken
+  - NatsUser
+  - NatsPassword
+  - ConfigModule
+  - EventEmitter
+  - ValidationPipe
+  - lifecycle
+  - sensorId
+  - ProvisioningUrl
+  - NATSCACertPath
+  - NATSTLSCertPath
+  - NATSTLSKeyPath
+  - SQLitePath
+  - HttpAddr
+  - DefaultSendFreq
+  - GatewayBufferSize
+  - RecoveryMode
+  - CertPool
+  - AESGCMEncryptor
+  - TenantID
+  - AuthTag
+  - NACK
+  - MetricsAddr
+  - TenantID
+  - GatewayRegistry
+  - MessageBuffer
+  - SQLiteStore
+  - RecoveryMode
+  - NATSDecommissionListener
+  - SimulatorURL
+  - CreateGatewayRequest
+  - BulkCreateGatewaysRequest
+  - BulkCreateResponse
+  - AddSensorRequest
+  - NetworkDegradationRequest
+  - DisconnectRequest
+  - OutlierRequest
+  - cmd
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
   - autoconsistente
   - autoconsistenza
   - automiglioramento
+  - crittograficamente
   - collaborativamente
   - concatenabili
   - multimodale
@@ -431,6 +546,7 @@ accepted_words:
   - deployata
   - loggata
   - idempotente
+  - idempotenza
   - istanziazione
   - istanziata
   - containerizzazione
@@ -459,3 +575,23 @@ accepted_words:
   - impersonazione
   - impersonare
   - intra
+  - centralizzata
+  - testabilità
+  - deserializzate
+  - riaccodamento
+  - concorrentemente
+  - Riesecuzione
+  - versionata
+  - versionati
+  - debuggati
+  - opz
+  - sottocomandi
+  - sottocomando
+  - disconnette
+  - riconfigurabile
+  - iniettabilità
+  - sottoprocesso
+  - deserializzazione
+  - scansionabile
+  - istanziato
+  - parsando

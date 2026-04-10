@@ -1,5 +1,12 @@
 title: Specifica Tecnica - Management API
 changelog:
+  - version: "0.1.0"
+    date: "2026-03-31"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Francesco Marcon
+    description: >
+      Stesura finale del documento
   - version: "0.0.1"
     date: "2026-03-26"
     authors:

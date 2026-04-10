@@ -1,5 +1,34 @@
 title: Piano di Qualifica
 changelog:
+  - version: "1.4.0"
+    date: "2026-04-09"
+    authors:
+      - Mario De Pasquale
+    verifier: Francesco Marcon
+    description: >
+      Aggiunta test unità e integrazione per Provisioning service
+  - version: "1.3.1"
+    date: "2026-04-04"
+    authors:
+      - Mario De Pasquale
+    verifier: Matteo Mantoan
+    description: >
+      Allineamento id tra il codice e il documento
+  - version: "1.3.0"
+    date: "2026-03-31"
+    authors:
+      - Valerio Solito
+      - Francesco Marcon
+    verifier: Mario De Pasquale
+    description: >
+      Aggiunta test unità e integrazione per Data Consumer e Simulatore
+  - version: "1.2.0"
+    date: "2026-03-31"
+    authors:
+      - Mario De Pasquale
+    verifier: Alessandro Contarini
+    description: >
+      Aggiunto supporto per la categorizzazione dei test
   - version: "1.1.2"
     date: "2026-03-28"
     authors:
