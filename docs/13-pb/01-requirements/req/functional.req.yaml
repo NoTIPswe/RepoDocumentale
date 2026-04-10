@@ -641,6 +641,55 @@ requirements:
     heartbeat e sopprimendo i futuri alert relativi a quel Gateway
   sources:
   - text: Interno
+- id: alert_sensore_fuori_range
+  priority: mandatory
+  description:
+    Il Sistema deve permettere di visualizzare in modo evidente quando il valore rilevato da un sensore supera
+    il range di allarme configurato per quel sensore
+  sources:
+  - uc: ricezione_alert_sensore_fuori_range
+- id: sessione_scaduta
+  priority: mandatory
+  description:
+    Il Sistema deve invalidare la sessione corrente alla scadenza del token e
+    reindirizzare automaticamente l'utente alla schermata di login
+  sources:
+  - uc: scadenza_sessione
+- id: blocco_accesso_tenant_sospeso
+  priority: mandatory
+  description:
+    Il Sistema deve impedire il login a qualsiasi utente appartenente a un Tenant
+    che si trova in stato di sospensione, notificando l'utente
+  sources:
+  - uc: err_tenant_sospeso
+- id: ripristino_alert_gateway_raggiungibile
+  priority: mandatory
+  description:
+    Il Sistema deve indicare automaticamente come "Online" i Gateway che tornano a comunicare correttamente con il Cloud
+  sources:
+  - uc: ricezione_risoluzione_alert_gateway
+- id: persistenza_dati_telemetria
+  priority: mandatory
+  description:
+    Il Sistema deve garantire che i dati di telemetria già ricevuti e i log di
+    Audit non vengano persi in seguito al riavvio o al guasto temporaneo di un
+    microservizio Cloud
+  sources:
+  - text: Interno
+- id: endpoint_metriche_prometheus
+  priority: mandatory
+  description:
+    Ogni microservizio Cloud deve esporre un endpoint HTTP compatibile con
+    Prometheus che restituisca metriche operative nel formato standard
+  sources:
+  - text: Interno
+- id: visualizzazione_info_account
+  priority: mandatory
+  description:
+    Il Sistema deve permettere all'utente autenticato di visualizzare le informazioni
+    del proprio account
+  sources:
+  - uc: visualizzazione_profilo_personale
 - id: visualizzazione_lista_gateway_sistema
   priority: mandatory
   description: Il Sistema deve permettere all'Amministratore di Sistema di poter visualizzare la lista

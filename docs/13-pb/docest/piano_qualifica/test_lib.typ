@@ -10,7 +10,7 @@
 #let _test_counter(test_type) = {
   if test_type == "unit" {
     _test_u_counter
-  } else if test_type == "integration-intra" or test_type == "integration-inter" {
+  } else if test_type == "integration" {
     _test_i_counter
   } else {
     _test_s_counter
@@ -20,7 +20,7 @@
 #let _test_prefix(test_type) = {
   if test_type == "unit" {
     "T-U-"
-  } else if test_type == "integration-intra" or test_type == "integration-inter" {
+  } else if test_type == "integration" {
     "T-I-"
   } else {
     "T-S-"
