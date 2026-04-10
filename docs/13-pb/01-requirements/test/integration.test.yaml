@@ -9,7 +9,7 @@
 #  - req
 #  status: not_implemented
 
-type: integration-intra
+type: integration
 tests:
   - id: t_intra_simulator_cloud_ingestion
     service: -Placeholder
