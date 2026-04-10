@@ -224,6 +224,15 @@ accepted_words:
   - httptest
   - SSL
   - realtime
+  - AESGCMEncryptor
+  - PTerm
+  - Stdout
+  - stdout
+  - stdin
+  - NaN
+  - omitempty
+  - unparseable
+  - TTY
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -307,6 +316,10 @@ accepted_words:
   - lifecycle
   - unmarshal
   - Walkthrough
+  - REPL
+  - renderer
+  - EOF
+  - ciphertext
 
   # --- Terminologia Standard Progetto ---
   - req
@@ -458,6 +471,37 @@ accepted_words:
   - EventEmitter
   - ValidationPipe
   - lifecycle
+  - sensorId
+  - ProvisioningUrl
+  - NATSCACertPath
+  - NATSTLSCertPath
+  - NATSTLSKeyPath
+  - SQLitePath
+  - HttpAddr
+  - DefaultSendFreq
+  - GatewayBufferSize
+  - RecoveryMode
+  - CertPool
+  - AESGCMEncryptor
+  - TenantID
+  - AuthTag
+  - NACK
+  - MetricsAddr
+  - TenantID
+  - GatewayRegistry
+  - MessageBuffer
+  - SQLiteStore
+  - RecoveryMode
+  - NATSDecommissionListener
+  - SimulatorURL
+  - CreateGatewayRequest
+  - BulkCreateGatewaysRequest
+  - BulkCreateResponse
+  - AddSensorRequest
+  - NetworkDegradationRequest
+  - DisconnectRequest
+  - OutlierRequest
+  - cmd
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
@@ -502,6 +546,7 @@ accepted_words:
   - deployata
   - loggata
   - idempotente
+  - idempotenza
   - istanziazione
   - istanziata
   - containerizzazione
@@ -539,3 +584,14 @@ accepted_words:
   - versionata
   - versionati
   - debuggati
+  - opz
+  - sottocomandi
+  - sottocomando
+  - disconnette
+  - riconfigurabile
+  - iniettabilità
+  - sottoprocesso
+  - deserializzazione
+  - scansionabile
+  - istanziato
+  - parsando
