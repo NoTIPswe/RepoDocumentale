@@ -563,13 +563,13 @@ tests:
     status: passed
   - id: t_u_fe_threshold_prefetch_service
     service: Frontend
-    description: "Verificare che le soglie di allarme vengano precaricate periodicamente per garantire una valutazione tempestiva delle misurazioni in arrivo"
+    description: "Verificare che le soglie di allarme vengano ricaricate periodicamente per garantire una valutazione tempestiva delle misurazioni in arrivo"
     requirements:
       - qualita_test_unita_coverage
     status: passed
   - id: t_u_fe_obfuscated_stream_manager_service
     service: Frontend
-    description: "Verificare che l'applicazione possa ricevere e visualizzare i dati di telemetria in modalità obfuscativa durante la sessione di impersonificazione"
+    description: "Verificare che l'applicazione possa ricevere e visualizzare i dati di telemetria in modalità offuscata durante la sessione di impersonificazione"
     requirements:
       - qualita_test_unita_coverage
       - visualizzazione_dati_stream
@@ -606,7 +606,7 @@ tests:
     status: passed
   - id: t_u_fe_dashboard_resolver
     service: Frontend
-    description: "Verificare che la dashboard visualizzi i dati in forma chiara o obfuscata a seconda che l'utente stia operando in modalità impersonazione"
+    description: "Verificare che la dashboard visualizzi i dati in forma chiara o offuscata a seconda che l'utente stia operando in modalità impersonazione"
     requirements:
       - qualita_test_unita_coverage
     status: passed

@@ -6,7 +6,7 @@ changelog:
       - Leonardo Preo
     verifier: TBD
     description: >
-      Aggiunta test unità per servizio Webapp Frontend
+      Aggiunta test unità per servizio WebApp Frontend
   - version: "1.6.0"
     date: "2026-04-10"
     authors:

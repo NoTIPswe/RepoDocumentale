@@ -446,7 +446,7 @@ tests:
 
   - id: t_query_data_for_visualization
     service: Data API
-    description: Verificare il recupero delle misure storiche tramite endpoint di quety
+    description: Verificare il recupero delle misure storiche tramite endpoint di query
     requirements:
       - richiesta_dati_on_demand
     status: not_implemented
