@@ -78,7 +78,7 @@ tests:
       - visualizzazione_grafico_dati_stream
     status: not_implemented
   - id: t_validate_time_interval
-    service: -Placeholder
+    service: Data API
     description: Verificare la validazione dell’intervallo temporale (start ≤ end)
     requirements:
       - filtraggio_intervallo_temporale
@@ -90,7 +90,7 @@ tests:
       - err_dati_non_disponibili
     status: not_implemented
   - id: t_serialize_data_for_export
-    service: -Placeholder
+    service: Data API
     description: Verificare la serializzazione dei dati per export
     requirements:
       - esportazione_dati
@@ -649,3 +649,31 @@ tests:
     - sicurezza_cifratura_dati
     - invio_dati_crittografati_cloud
     status: passed
+  - id: t_hystorical_measures
+    service: Data API
+    description: Verificare la corretta gestione delle richieste di interrogazione storica delle misure
+    requirements:
+      - richiesta_dati_on_demand
+    status: passed
+  - id: t_export_measures
+    service: Data API
+    description: Verificare la corretta gestione delle richieste di esportazione delle misure
+    requirements:
+      - esportazione_dati
+    status: passed
+  - id: t_visualize_stream_data
+    service: Data API
+    description: Verificare la corretta gestione delle richieste di visualizzazione dei dati in streaming
+    requirements:
+      - richiesta_dati_streaming
+    status: passed
+  - id: t_visualize_elenco_sensori
+    service: Data API
+    description: Verificare la corretta gestione delle richieste di visualizzazione dell’elenco dei sensori
+    requirements:
+      - visualizzazione_dettagli_gateway
+    status: passed
+  
+
+
+  

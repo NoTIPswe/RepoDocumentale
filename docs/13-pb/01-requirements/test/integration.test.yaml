@@ -82,7 +82,7 @@ tests:
       - sicurezza_cifratura_dati
     status: not_implemented
   - id: t_intra_tenant_isolation
-    service: -Placeholder
+    service: Data API
     description: Verificare l’isolamento dei dati tra Tenant tramite API e persistenza su database
     requirements:
       - sicurezza_segregazione_tenant
@@ -443,3 +443,46 @@ tests:
     - err_auth_gateway_fabbrica
     - err_dati_autenticazione_invalidi
     status: passed
+
+  - id: t_query_data_for_visualization
+    service: Data API
+    description: Verificare il recupero delle misure storiche tramite endpoint di quety
+    requirements:
+      - richiesta_dati_on_demand
+    status: not_implemented
+
+  - id: t_export_data_for_visualization
+    service: Data API
+    description: Verificare l’esportazione delle misure tramite endpoint dedicato
+    requirements:
+      - esportazione_dati
+    status: not_implemented
+
+  - id: t_visualize_lista_dati_sensori
+    service: Data API
+    description: Verificare il recupero della lista dei sensori tramite endpoint dedicato
+    requirements:
+      - visualizzazione_dettagli_gateway
+    status: passed
+
+  - id: t_streaming_visualization_integration
+    service: Data API
+    description: Verificare il comportamento del canale di streaming real-time delle misure.
+    requirements:
+      - richiesta_dati_streaming
+    status: passed
+
+  - id: t_dati_nats
+    service: Data API
+    description: Verificare la ricezione dei dati di telemetria tramite NATS e la loro corretta persistenza su database
+    requirements:
+      - invio_dati_crittografati_cloud
+      - persistenza_dati_telemetria
+    status: passed
+
+  - id: t_costo_tenant
+    service: Data API
+    description: Verificare la risposta del servizio al subject interno di costo tenant
+    requirements:
+      - visualizzazione_costi_stimati
+    status: not_implemented
