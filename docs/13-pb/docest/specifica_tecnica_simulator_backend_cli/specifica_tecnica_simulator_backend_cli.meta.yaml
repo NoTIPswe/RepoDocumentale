@@ -38,4 +38,11 @@ changelog:
       - Valerio Solito
     verifier: Francesco Marcon
     description: >
-      Prima stesura del documento e definizione della configurazione di base
+      Definizione della configurazione di base dei servizi
+  - version: "0.0.1"
+    date: "2026-04-08"
+    authors:
+      - Francesco Marcon
+    verifier: Valerio Solito
+    description: >
+      Prima stesura del documento

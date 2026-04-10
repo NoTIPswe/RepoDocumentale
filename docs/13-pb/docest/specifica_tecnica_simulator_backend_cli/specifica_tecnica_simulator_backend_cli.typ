@@ -201,9 +201,8 @@
     `MessageBuffer`. Questo canale a capacità limitata adotta una politica "Drop-Oldest": in caso di saturazione,
     espelle silenziosamente il pacchetto telemetrico più vecchio per fare spazio al nuovo, privilegiando sempre il dato
     più recente.
-  - *Persistenza Locale:* L'utilizzo di SQLite (`modernc.org/sqlite` cross-platform) garantisce sufficiente
-    persistenza per la funzionalità di riavvio a caldo (`RecoveryMode`), mantenendo il microservizio completamente
-    *self-contained*.
+  - *Persistenza Locale:* L'utilizzo di SQLite (`modernc.org/sqlite` cross-platform) garantisce sufficiente persistenza
+    per la funzionalità di riavvio a caldo (`RecoveryMode`), mantenendo il microservizio completamente *self-contained*.
   - *Pipeline Crittografica Opaca (AES-GCM):* Rispettando il vincolo architetturale della piattaforma NoTIP, il payload
     telemetrico non viene mai esposto in chiaro sul broker di messaggistica. Il `GatewayWorker` utilizza
     l'`AESGCMEncryptor` locale per sigillare i dati prima dell'invio. La `EncryptionKey` è gestita come un _Value
@@ -285,8 +284,7 @@
         `cert_pem`, `private_key_pem`, `encryption_key`, `send_frequency_ms`, `status`, `tenant_id`, `created_at`
       ],
 
-      [ `sensors` ],
-      [ `id`, `gateway_id`, `sensor_id`, `type`, `min_range`, `max_range`, `algorithm`, `created_at` ],
+      [ `sensors` ], [ `id`, `gateway_id`, `sensor_id`, `type`, `min_range`, `max_range`, `algorithm`, `created_at` ],
     ),
   )
 
@@ -590,9 +588,9 @@
   == Metodologie di Testing
 
   Il microservizio adotta una strategia di testing multi-livello progettata per validare il corretto coordinamento dei
-  worker concorrenti, la rigorosa segregazione dei dati e la validità della generazione matematica. I test di unità
-  si avvalgono di _fake adapter_ in memoria per isolare la logica dall'infrastruttura; i test di integrazione
-  utilizzano istanze reali (SQLite temporanei, container NATS via `testcontainers-go`).
+  worker concorrenti, la rigorosa segregazione dei dati e la validità della generazione matematica. I test di unità si
+  avvalgono di _fake adapter_ in memoria per isolare la logica dall'infrastruttura; i test di integrazione utilizzano
+  istanze reali (SQLite temporanei, container NATS via `testcontainers-go`).
 
   === Test di Unità
 
@@ -651,8 +649,8 @@
     columns: (2fr, 3fr),
     [Caso di test], [Postcondizione verificata],
     [Handler — validazione input e mapping errori],
-    [Input non conformi producono risposte 400; risorse mancanti producono 404; conflitti producono 409; errori
-      interni producono 500],
+    [Input non conformi producono risposte 400; risorse mancanti producono 404; conflitti producono 409; errori interni
+      producono 500],
 
     [Handler — trasformazione DTO],
     [I campi del dominio vengono serializzati nelle chiavi JSON contrattualmente attese dal client CLI],
@@ -725,7 +723,8 @@
 
   === Obiettivi di Copertura Funzionale
 
-  Le attività di test automatizzate garantiscono che il microservizio sia verificato almeno rispetto ai seguenti scenari:
+  Le attività di test automatizzate garantiscono che il microservizio sia verificato almeno rispetto ai seguenti
+  scenari:
 
   - Copertura minima dell'*80%* del codice di dominio e del core applicativo.
   - Assenza di data race nel `GatewayRegistry` verificata con il flag `-race` su scenari di accesso concorrente.

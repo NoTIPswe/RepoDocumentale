@@ -319,6 +319,7 @@ accepted_words:
   - REPL
   - renderer
   - EOF
+  - ciphertext
 
   # --- Terminologia Standard Progetto ---
   - req
@@ -545,6 +546,7 @@ accepted_words:
   - deployata
   - loggata
   - idempotente
+  - idempotenza
   - istanziazione
   - istanziata
   - containerizzazione
