@@ -4,7 +4,7 @@ changelog:
     date: "2026-04-10"
     authors:
       - Alessandro Mazzariol
-    verifier: TBD
+    verifier: Mario De Pasquale
     description: >
       Stesura finale del documento
   - version: "0.2.3"
