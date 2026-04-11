@@ -332,6 +332,7 @@ accepted_words:
   - renderer
   - EOF
   - ciphertext
+  - PowerShell
 
   # --- Terminologia Standard Progetto ---
   - req
