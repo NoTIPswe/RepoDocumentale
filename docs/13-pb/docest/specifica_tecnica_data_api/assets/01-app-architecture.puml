@@ -1,0 +1,275 @@
+@startuml
+title NOTIP Data API - Application Architecture
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 10
+skinparam defaultFontColor #000000
+skinparam nodesep 25
+skinparam ranksep 25
+skinparam linetype ortho
+skinparam packageStyle rectangle
+
+package "NOTIP Data API" <<Rectangle>> {
+  class "AppModule" as AppModule {
+    +imports: ConfigModule, MetricsModule, TypeOrmModule, MeasureModule, SensorModule
+    +providers: MetricsInterceptor, TenantAccessGuard
+  }
+
+  class "AppController" as AppController {
+    +getHello(): string
+  }
+
+  class "AppService" as AppService {
+    +getHello(): string
+  }
+
+  class "EnvValidation" as EnvValidation {
+    +validate(config): DataApiEnv
+  }
+
+  class "MeasureEntity" as MeasureEntity {
+    +time: timestamptz
+    +tenantId: uuid
+    +gatewayId: uuid
+    +sensorId: uuid
+    +sensorType: string
+    +encryptedData: string
+    +iv: string
+    +authTag: string
+    +keyVersion: int
+  }
+
+  class "MetricsInterceptor" as MetricsInterceptor {
+    -metricsService: MetricsService
+    +intercept(context, next): Observable
+  }
+
+  package "Auth" {
+    class "TenantAccessGuard" as TenantAccessGuard {
+      -configService: ConfigService
+      +canActivate(context): boolean
+      -resolveTenantAccess(auth): TenantAccessContext
+    }
+  }
+
+  package "Metrics Module" as MetricsModule {
+    class "MetricsController" as MetricsController {
+      -metricsService: MetricsService
+      +metrics(@Res() res): void
+    }
+
+    class "MetricsService" as MetricsService {
+      -registry: Registry
+      +getMetrics(): string
+      +incInFlight(method): void
+      +decInFlight(method): void
+      +observeHttpRequest(...): void
+    }
+  }
+
+  package "Measure Module" as MeasureModule {
+    class "MeasureController" as MeasureController {
+      -ms: MeasureService
+      -sl: StreamListenerService
+      +query(...): QueryResponseDto
+      +export(...): EncryptedEnvelopeDto[]
+      +stream(...): Observable
+    }
+
+    class "MeasureService" as MeasureService {
+      -mps: MeasurePersistenceService
+      +query(input): PaginatedQueryModel
+      +export(input): EncryptedEnvelopeModel[]
+      -validateQueryInput(input): void
+      -validateExportInput(input): void
+    }
+
+    class "MeasurePersistenceService" as MeasurePersistenceService {
+      -r: Repository<MeasureEntity>
+      +paginatedQuery(input): PaginatedQuery
+      +nonPaginatedQuery(input): MeasureEntity[]
+      +getTenantDataSizeAtRest(tenantId): number
+    }
+
+    class "StreamListenerService" as StreamListenerService {
+      -tenantStreams: Map
+      +stream(input): Observable
+      +publishLiveMeasure(...): void
+    }
+
+    class "TelemetryStreamBridgeService" as TelemetryStreamBridgeService {
+      -streamListener: StreamListenerService
+      +onModuleInit(): void
+      +onModuleDestroy(): void
+      -consumeMessages(subscription): void
+    }
+
+    class "CostNatsResponderService" as CostNatsResponderService {
+      -persistence: MeasurePersistenceService
+      +onModuleInit(): void
+      +onModuleDestroy(): void
+      -consumeMessages(subscription): void
+    }
+  }
+
+  package "Sensor Module" as SensorModule {
+    class "SensorController" as SensorController {
+      -ss: SensorService
+      +getSensors(gatewayId?, tenantId?): SensorDto[]
+    }
+
+    class "SensorService" as SensorService {
+      -npqps: NpQueryPersistenceService
+      +getSensors(input): SensorModel[]
+      -toSensorModels(measures): SensorModel[]
+    }
+
+    interface "NpQueryPersistenceService" as NpQueryPersistenceService {
+      +nonPaginatedQuery(input): MeasureEntity[]
+    }
+  }
+
+  ' === Input Interfaces ===
+  interface "NpQueryPersistenceInput" as NpQueryPersistenceInput {
+    +tenantId?: string
+    +gatewayId?: string[]
+    +sensorId?: string[]
+    +sensorType?: string[]
+    +from: string
+    +to: string
+  }
+
+  interface "PQueryPersistenceInput" as PQueryPersistenceInput {
+    +extends: NpQueryPersistenceInput
+    +cursor?: string
+    +limit: number
+  }
+
+  interface "StreamInput" as StreamInput {
+    +gatewayId?: string[]
+    +sensorId?: string[]
+    +sensorType?: string[]
+    +since?: string
+    +tenantId?: string
+    +tokenExpiresAt?: number
+  }
+
+  interface "QueryInput" as QueryInput {
+    +extends: NpQueryPersistenceInput
+    +cursor?: string
+    +limit: number
+  }
+
+  interface "GetSensorsInput" as GetSensorsInput {
+    +tenantId?: string
+    +gatewayId?: string
+  }
+
+  interface "ExportInput" as ExportInput {
+    +extends: StreamInput
+    +from: string
+    +to: string
+  }
+
+  ' Core relationships
+  AppController --> AppService
+  AppModule --> AppController
+  AppModule --> AppService
+  AppModule --> MetricsInterceptor
+  AppModule --> Auth
+  AppModule --> MetricsModule
+  AppModule --> MeasureModule
+  AppModule --> SensorModule
+
+  MetricsInterceptor --> MetricsService
+
+  ' Auth relationships
+  TenantAccessGuard --> ConfigService
+  TenantAccessGuard --> ManagementAPI
+
+  ' Metrics relationships
+  MetricsModule --> MetricsController
+  MetricsModule --> MetricsService
+  MetricsController --> MetricsService
+  MetricsService --> Prometheus
+
+  ' Measure relationships
+  MeasureModule --> MeasureController
+  MeasureModule --> MeasureService
+  MeasureModule --> MeasurePersistenceService
+  MeasureModule --> StreamListenerService
+  MeasureModule --> TelemetryStreamBridgeService
+  MeasureModule --> CostNatsResponderService
+
+  MeasureController --> MeasureService
+  MeasureController --> StreamListenerService
+
+  MeasureService --> MeasurePersistenceService
+
+  MeasurePersistenceService --> MeasureEntity
+  MeasurePersistenceService --> PostgreSQL
+
+  StreamListenerService --> MeasurePersistenceService
+  TelemetryStreamBridgeService --> StreamListenerService
+  TelemetryStreamBridgeService --> NATS
+
+  CostNatsResponderService --> MeasurePersistenceService
+  CostNatsResponderService --> NATS
+
+  ' Sensor relationships
+  SensorModule --> SensorController
+  SensorModule --> SensorService
+
+  SensorController --> SensorService
+  SensorService --> NpQueryPersistenceService
+  MeasurePersistenceService ..|> NpQueryPersistenceService
+
+  ' Entity relationships
+  MeasureEntity --> PostgreSQL
+
+  ' Input interface relationships
+  MeasureService ..> QueryInput
+  MeasureService ..> ExportInput
+  MeasurePersistenceService ..> PQueryPersistenceInput
+  MeasurePersistenceService ..> NpQueryPersistenceInput
+  StreamListenerService ..> StreamInput
+  SensorService ..> GetSensorsInput
+  PQueryPersistenceInput ..|> NpQueryPersistenceInput
+}
+
+note top of AppModule
+  Main application module
+  Orchestrates Measure, Sensor, Metrics
+  Configures global interceptors & guards
+  Sets up TypeORM database connection
+end note
+
+note top of MeasureEntity
+  Core entity for telemetry data
+  Composite Primary Key: (time, sensor_id)
+  Stores encrypted measures (AES-256-GCM)
+  No decryption logic here (Data API passes through)
+end note
+
+note top of TelemetryStreamBridgeService
+  NATS Subscriber
+  - Subscribes to telemetry.data.*.*
+  - Extracts tenantId from subject
+  - Publishes to StreamListenerService
+end note
+
+note top of CostNatsResponderService
+  NATS Responder
+  - Listens on internal.cost
+  - Returns DB size from persistence
+  - Used by Management API for cost calc
+end note
+
+note top of TenantAccessGuard
+  Global Guard
+  - Validates tenant state via Management API
+  - Enforces read-only mode if suspended
+  - Extracts tenantId for requests
+end note
+
+@enduml
