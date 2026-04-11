@@ -1,609 +1,625 @@
 system: sim
 use_cases:
-- id: visualizzazione_lista_gateway_simulati
-  title: Visualizzazione lista Gateway simulati
-  actors:
-    primary:
-    - sim-usr
-  preconditions:
-  - Il Sistema si trova nella sezione dedicata alla visualizzazione dei Gateway simulati istanziati
-  postconditions:
-  - L’Attore visualizza la lista dei gateway simulati
-  main_scenario:
-  - description: L’Attore visualizza la lista dei gateway simulati
-    include: visualizzazione_singolo_gateway_simulato
-  subcases:
-  - id: visualizzazione_singolo_gateway_simulato
-    title: Visualizzazione singolo Gateway simulato
+  - id: visualizzazione_lista_gateway_simulati
+    title: Visualizzazione lista Gateway simulati
     actors:
       primary:
-      - sim-usr
-    preconditions:
-    - Il Sistema si trova nella sezione dedicata alla visualizzazione dei Gateway simulati istanziati
-    postconditions:
-    - L’Attore visualizza una entry della lista dei gateway simulati
-    main_scenario:
-    - description: L’Attore visualizza la data di creazione del Gateway simulato
-      include: visualizzazione_data_creazione_simulazione
-    - description: L’Attore visualizza l’ID di fabbrica del Gateway simulato
-      include: visualizzazione_id_fabbrica_simulazione
-    subcases:
-    - id: visualizzazione_data_creazione_simulazione
-      title: Visualizzazione data di creazione del Gateway Simulato
-      actors:
-        primary:
         - sim-usr
-      preconditions:
+    preconditions:
+      - Il Sistema si trova nella sezione dedicata alla visualizzazione dei Gateway simulati istanziati
+    postconditions:
+      - L’Attore visualizza la lista dei gateway simulati
+    main_scenario:
+      - description: L’Attore visualizza la lista dei gateway simulati
+        include: visualizzazione_singolo_gateway_simulato
+    subcases:
+      - id: visualizzazione_singolo_gateway_simulato
+        title: Visualizzazione singolo Gateway simulato
+        actors:
+          primary:
+            - sim-usr
+        preconditions:
+          - Il Sistema si trova nella sezione dedicata alla visualizzazione dei Gateway simulati istanziati
+        postconditions:
+          - L’Attore visualizza una entry della lista dei gateway simulati
+        main_scenario:
+          - description: L’Attore visualizza l'identificativo del Gateway simulato
+            include: visualizzazione_id_gateway_simulato
+          - description: L’Attore visualizza lo stato del Gateway simulato
+            include: visualizzazione_stato_gateway_simulato
+          - description: L'Attore visualizza il modello del Gateway simulato
+            include: visualizzazione_modello_gateway_simulato
+          - description: L'Attore visualizza la frequenza di invio dati del Gateway simulato
+            include: visualizzazione_frequenza_invio_dati_gateway_simulato
+          - description: L'Attore visualizza l'identificativo del tenant associato al Gateway simulato
+            include: visualizzazione_id_tenant_gateway_simulato
+        subcases:
+          - id: visualizzazione_stato_gateway_simulato
+            title: Visualizzazione stato del Gateway simulato
+            actors:
+              primary:
+                - sim-usr
+            preconditions:
+              - Il Sistema si trova nella sezione dedicata alla visualizzazione dei Gateway simulati istanziati
+            postconditions:
+              - L’Attore visualizza lo stato operativo del Gateway simulato (es. attivo, sospeso, offline)
+            main_scenario:
+              - description: L’Attore visualizza lo stato operativo del Gateway simulato
+          - id: visualizzazione_frequenza_invio_dati_gateway_simulato
+            title: Visualizzazione frequenza di invio dati del Gateway simulato
+            actors:
+              primary:
+                - sim-usr
+            preconditions:
+              - Il Sistema si trova nella sezione dedicata alla visualizzazione dei Gateway simulati istanziati
+            postconditions:
+              - L’Attore visualizza la frequenza di invio dati configurata per il Gateway simulato
+            main_scenario:
+              - description: L’Attore visualizza la frequenza di invio dati del Gateway simulato
+  - id: visualizzazione_id_tenant_gateway_simulato
+    title: Visualizzazione identificativo tenant associato al Gateway simulato
+    actors:
+      primary:
+        - sim-usr
+    preconditions:
+      - Il Sistema si trova nella sezione dedicata alla visualizzazione dei Gateway simulati istanziati
+    postconditions:
+      - L’Attore visualizza l’identificativo del tenant associato al Gateway simulato
+    main_scenario:
+      - description: L’Attore visualizza l’identificativo del tenant associato al Gateway simulato
+  - id: visualizzazione_id_gateway_simulato
+    title: Visualizzazione identificativo del Gateway simulato
+    actors:
+      primary:
+        - sim-usr
+    preconditions:
+      - Il Sistema si trova nella sezione dedicata alla visualizzazione dei Gateway simulati istanziati
+    postconditions:
+      - L’Attore visualizza l'identificativo del Gateway simulato
+    main_scenario:
+      - description: L’Attore visualizza l'identificativo del Gateway simulato
+  - id: visualizzazione_id_fabbrica_simulazione
+    title: Visualizzazione ID di fabbrica simulazione
+    actors:
+      primary:
+        - sim-usr
+    preconditions:
       - Il Sistema si trova nella sezione dedicata alla visualizzazione dei Gateway simulati istanziati
       - Esiste un Gateway simulato selezionato di cui si stanno visualizzando i dettagli
-      postconditions:
-      - L’Attore visualizza correttamente la data di creazione del Gateway simulato selezionato
-      main_scenario:
-      - description: L’Attore visualizza la data di creazione del Gateway simulato
-- id: visualizzazione_id_fabbrica_simulazione
-  title: Visualizzazione ID di fabbrica simulazione
-  actors:
-    primary:
-    - sim-usr
-  preconditions:
-  - Il Sistema si trova nella sezione dedicata alla visualizzazione dei Gateway simulati istanziati
-  - Esiste un Gateway simulato selezionato di cui si stanno visualizzando i dettagli
-  postconditions:
-  - L’Attore visualizza l'identificativo di fabbrica di un Gateway
-  main_scenario:
-  - description: L’Attore visualizza l'ID di fabbrica generato dal simulatore
-- id: visualizzazione_configurazione_simulazione_gateway
-  title: Visualizzazione configurazione simulazione Gateway
-  actors:
-    primary:
-    - sim-usr
-  preconditions:
-  - Esiste un Gateway simulato di cui si vuole visualizzare la configurazione
-  postconditions:
-  - L’Attore visualizza i dati di configurazione della simulazione del Gateway simulato
-  main_scenario:
-  - description: L’attore seleziona il Gateway simulato desiderato
-  - description: L’Attore visualizza l’ID di fabbrica del Gateway simulato
-    include: visualizzazione_id_fabbrica_simulazione
-  - description: L’Attore visualizza la chiave di fabbrica del Gateway simulato
-    include: visualizzazione_chiave_fabbrica_simulazione
-  - description: L’attore visualizza il serial number del Gateway simulato
-    include: visualizzazione_serial_number_gateway_simulato
-  - description: L'attore visualizza la versione del software del Gateway simulato
-    include: visualizzazione_software_gateway_simulato
-  - description: L'attore visualizza il modello del Gateway simulato
-    include: visualizzazione_modello_gateway_simulato
-  subcases:
-  - id: visualizzazione_chiave_fabbrica_simulazione
-    title: Visualizzazione chiave di fabbrica simulazione
+    postconditions:
+      - L’Attore visualizza l'identificativo di fabbrica di un Gateway
+    main_scenario:
+      - description: L’Attore visualizza l'ID di fabbrica generato dal simulatore
+  - id: visualizzazione_configurazione_simulazione_gateway
+    title: Visualizzazione configurazione simulazione Gateway
     actors:
       primary:
-      - sim-usr
+        - sim-usr
     preconditions:
-    - Esiste un Gateway simulato di cui si sta visualizzando la configurazione
+      - Esiste un Gateway simulato di cui si vuole visualizzare la configurazione
     postconditions:
-    - L’Attore visualizza la chiave segreta di fabbrica
+      - L’Attore visualizza i dati di configurazione della simulazione del Gateway simulato
     main_scenario:
-    - description: L’Attore visualizza la chiave segreta del Gateway simulato
-  - id: visualizzazione_serial_number_gateway_simulato
-    title: Visualizzazione serial number del gateway simulato
-    actors:
-      primary:
-      - sim-usr
-    preconditions:
-    - Esiste un Gateway simulato di cui si sta visualizzando la configurazione
-    postconditions:
-    - L’attore visualizza correttamente i dati desiderati
-    main_scenario:
-    - description: L’attore visualizza il serial number del Gateway simulato
-  - id: visualizzazione_software_gateway_simulato
-    title: Visualizzazione versione software del gateway simulato
-    actors:
-      primary:
-      - sim-usr
-    preconditions:
-    - Esiste un Gateway simulato di cui si sta visualizzando la configurazione
-    postconditions:
-    - L’attore visualizza correttamente i dati desiderati
-    main_scenario:
-    - description: L’attore visualizza la versione del software del Gateway simulato
+      - description: L’attore seleziona il Gateway simulato desiderato
+      - description: L'Attore visualizza l'identificativo del Gateway simulato
+        include: visualizzazione_id_gateway_simulato
+      - description: L’Attore visualizza l’ID di fabbrica del Gateway simulato
+        include: visualizzazione_id_fabbrica_simulazione
+      - description: L'Attore visualizza la versione del firmware del Gateway simulato
+        include: visualizzazione_firmware_gateway_simulato
+      - description: L'Attore visualizza il modello del Gateway simulato
+        include: visualizzazione_modello_gateway_simulato
+      - description: L’Attore visualizza la frequenza di invio dati del Gateway simulato
+        include: visualizzazione_frequenza_invio_dati_gateway_simulato
+      - description: L'Attore visualizza l'identificativo del tenant associato al Gateway simulato
+        include: visualizzazione_id_tenant_gateway_simulato
+      - description: L'Attore visualizza il timestamp di creazione del Gateway simulato
+        include: visualizzazione_timestamp_creazione_gateway_simulato
+      - description: L'Attore visualizza lo stato di provisioning del Gateway simulato
+        include: visualizzazione_stato_provisioning_gateway_simulato
+    subcases:
+      - id: visualizzazione_firmware_gateway_simulato
+        title: Visualizzazione versione firmware del gateway simulato
+        actors:
+          primary:
+            - sim-usr
+        preconditions:
+          - Esiste un Gateway simulato di cui si sta visualizzando la configurazione
+        postconditions:
+          - L’attore visualizza correttamente i dati desiderati
+        main_scenario:
+          - description: L’attore visualizza la versione del firmware del Gateway simulato
+      - id: visualizzazione_timestamp_creazione_gateway_simulato
+        title: Visualizzazione timestamp di creazione del Gateway simulato
+        actors:
+          primary:
+            - sim-usr
+        preconditions:
+          - Esiste un Gateway simulato di cui si sta visualizzando la configurazione
+        postconditions:
+          - L’attore visualizza correttamente i dati desiderati
+        main_scenario:
+          - description: L’attore visualizza il timestamp di creazione del Gateway simulato
+      - id: visualizzazione_stato_provisioning_gateway_simulato
+        title: Visualizzazione stato di provisioning del Gateway simulato
+        actors:
+          primary:
+            - sim-usr
+        preconditions:
+          - Esiste un Gateway simulato di cui si sta visualizzando la configurazione
+        postconditions:
+          - L’attore visualizza correttamente i dati desiderati
+        main_scenario:
+          - description: L’attore visualizza lo stato di provisioning del Gateway simulato
+
   - id: visualizzazione_modello_gateway_simulato
     title: Visualizzazione modello del Gateway simulato
     actors:
       primary:
-      - sim-usr
+        - sim-usr
     preconditions:
-    - Esiste un Gateway simulato di cui si sta visualizzando la configurazione
+      - Esiste un Gateway simulato di cui si sta visualizzando la configurazione
     postconditions:
-    - L’attore visualizza correttamente i dati desiderati
+      - L’attore visualizza correttamente i dati desiderati
     main_scenario:
-    - description: L’attore visualizza il modello del Gateway simulato
-- id: visualizzazione_lista_sensori_gateway_simulato
-  title: Visualizzazione lista sensori Gateway simulato
-  actors:
-    primary:
-    - sim-usr
-  preconditions:
-  - Il Sistema si trova nella sezione dedicata alla visualizzazione dei sensori del Gateway simulato selezionato
-  postconditions:
-  - L’Attore visualizza la lista dei sensori simulati relativi al Gateway selezionato
-  main_scenario:
-  - description: L’Attore visualizza la lista dei sensori simulati relativi al gateway selezionato
-    include: visualizzazione_singolo_sensore_simulato
-  subcases:
-  - id: visualizzazione_singolo_sensore_simulato
-    title: Visualizzazione singolo sensore simulato
+      - description: L’attore visualizza il modello del Gateway simulato
+  - id: visualizzazione_lista_sensori_gateway_simulato
+    title: Visualizzazione lista sensori Gateway simulato
     actors:
       primary:
-      - sim-usr
+        - sim-usr
     preconditions:
-    - Il Sistema si trova nella sezione dedicata alla visualizzazione dei sensori del Gateway simulato
-      selezionato
-    - Esiste un sensore che è stato selezionato di cui si vogliono visualizzare i dettagli
+      - Il Sistema si trova nella sezione dedicata alla visualizzazione dei sensori del Gateway simulato selezionato
     postconditions:
-    - L’Attore visualizza i dettagli della entry selezionata dalla lista dei sensori simulati relativi
-      al Gateway selezionato
+      - L’Attore visualizza la lista dei sensori simulati relativi al Gateway selezionato
     main_scenario:
-    - description: L’Attore visualizza l’identificativo del sensore
-      include: visualizzazione_identificativo_sensore
-    - description: L’Attore visualizza il tipo di sensore
-      include: visualizzazione_tipo_sensore_simulato
-- id: visualizzazione_configurazione_simulazione_sensore
-  title: Visualizzazione configurazione simulazione sensore
-  actors:
-    primary:
-    - sim-usr
-  preconditions:
-  - Esiste un sensore che è stato selezionato di cui si vogliono visualizzare i dettagli di configurazione
-    della simulazione
-  postconditions:
-  - L’Attore visualizza i dati di configurazione del sensore selezionato
-  main_scenario:
-  - description: L'Attore seleziona il sensore simulato desiderato
-  - description: L’Attore visualizza l’identificativo del sensore
-    include: visualizzazione_identificativo_sensore
-  - description: L’Attore visualizza il tipo di sensore
-    include: visualizzazione_tipo_sensore_simulato
-  - description: L’Attore visualizza il range di generazione dei dati
-    include: visualizzazione_range_generazione_dati
-  - description: L’Attore visualizza l’algoritmo di generazione dei dati
-    include: visualizzazione_algoritmo_generazione_dati
-  subcases:
-  - id: visualizzazione_range_generazione_dati
-    title: Visualizzazione range generazione dati
-    actors:
-      primary:
-      - sim-usr
-    preconditions:
-    - Esiste un sensore che è stato selezionato di cui si stanno visualizzando i dettagli di configurazione
-      della simulazione
-    postconditions:
-    - L’Attore visualizza i limiti numerici entro cui vengono generati i dati
-    main_scenario:
-    - description: L’Attore visualizza il valore minimo impostato per la generazione dei dati
-    - description: L’Attore visualizza il valore massimo impostato per la generazione dei dati simulati
-  - id: visualizzazione_algoritmo_generazione_dati
-    title: Visualizzazione algoritmo generazione dati
-    actors:
-      primary:
-      - sim-usr
-    preconditions:
-    - Esiste un sensore che è stato selezionato di cui si stanno visualizzando i dettagli di configurazione
-      della simulazione
-    postconditions:
-    - L’Attore visualizza l'algoritmo utilizzato per la sintesi dei dati
-    main_scenario:
-    - description: L’Attore visualizza il nome dell'algoritmo utilizzato per generare i valori
-- id: visualizzazione_identificativo_sensore
-  title: Visualizzazione identificativo sensore
-  actors:
-    primary:
-    - sim-usr
-  preconditions:
-  - Esiste un sensore che è stato selezionato di cui si stanno visualizzando i dettagli di configurazione
-    di simulazione
-  postconditions:
-  - L'Attore visualizza l’identificativo del sensore
-  main_scenario:
-  - description: L’Attore visualizza l’identificativo del sensore simulato
-- id: visualizzazione_tipo_sensore_simulato
-  title: Visualizzazione tipo sensore simulato
-  actors:
-    primary:
-    - sim-usr
-  preconditions:
-  - Esiste un sensore che è stato selezionato di cui si stanno visualizzando i dettagli di configurazione
-    di simulazione
-  postconditions:
-  - L’Attore visualizza la tipologia del sensore
-  main_scenario:
-  - description: L’Attore visualizza la tipologia di sensore simulato
-- id: eliminazione_gateway_simulato
-  title: Eliminazione Gateway simulato
-  actors:
-    primary:
-    - sim-usr
-  preconditions:
-  - Il Sistema si trova nella sezione di gestione dei Gateway simulati ed è stato selezionato un Gateway
-    simulato
-  postconditions:
-  - L’istanza di simulazione del Gateway è stata eliminata
-  - Il Gateway non comunica più i dati al Sistema Cloud
-  main_scenario:
-  - description: L’Attore seleziona l’opzione di eliminazione del Gateway
-  - description: L’Attore conferma la decisione di eliminare il Gateway selezionato
-  - description: L’Attore riceve una notifica di operazione avvenuta con successo
-- id: eliminazione_sensore_simulato
-  title: Eliminazione sensore simulato
-  actors:
-    primary:
-    - sim-usr
-  preconditions:
-  - Il Sistema si trova nella sezione di gestione dei Gateway simulati ed è stato selezionato un sensore
-    appartenente ad un Gateway simulato
-  postconditions:
-  - L'istanza di simulazione del sensore è stata eliminata
-  main_scenario:
-  - description: L’Attore seleziona l’opzione di eliminazione del sensore
-  - description: L’Attore conferma la decisione di eliminare il sensore selezionato
-  - description: L’Attore riceve una notifica di operazione avvenuta con successo
-- id: creazione_deploy_gateway_simulato
-  title: Creazione e Deploy di un Gateway simulato
-  actors:
-    primary:
-    - sim-usr
-  preconditions:
-  - Il Sistema si trova nella sezione di gestione della simulazione
-  postconditions:
-  - L’istanza del Gateway simulato è stata creata e deployata correttamente
-  main_scenario:
-  - description: L’Attore avvia la procedura di creazione
-  - description: L’Attore inserisce i dati relativi alla configurazione della simulazione
-    include: inserimento_dati_config_sim_gateway
-  - description: L’Attore conferma l’operazione di creazione
-  - description: L’Attore viene informato del successo dell’operazione
-    extension_point: ErroreDeploy
-  extensions:
-  - extension_point: ErroreDeploy
-    condition: Errore di sistema nella creazione delle istanze
-    uc: err_deploy_gateway_simulato
-  subcases:
-  - id: inserimento_dati_config_sim_gateway
-    title: Inserimento dati configurazione simulazione Gateway
-    actors:
-      primary:
-      - sim-usr
-    preconditions:
-    - Il Sistema si trova nella sezione di configurazione del Gateway simulato
-    postconditions:
-    - L’Attore ha inserito dati validi per la configurazione della simulazione di un Gateway
-    main_scenario:
-    - description: L'Attore seleziona il serial number del Gateway tra quelli a disposizione
-      include: sel_sn_gateway
-    - description: L'Attore seleziona il modello del Gateway tra quelli a disposizione
-      include: sel_modello_gateway
-    - description: L'Attore seleziona la versione del software del Gateway tra quelli a disposizione
-      include: sel_versione_sw_gateway
+      - description: L’Attore visualizza la lista dei sensori simulati relativi al gateway selezionato
+        include: visualizzazione_singolo_sensore_simulato
     subcases:
-    - id: sel_sn_gateway
-      title: Selezione Serial Number Gateway
-      actors:
-        primary:
-        - sim-usr
-      preconditions:
-      - Non specificata
-      postconditions:
-      - Non specificata
-      main_scenario:
-      - description: Scenario non specificato
-    - id: sel_modello_gateway
-      title: Selezione Modello Gateway
-      actors:
-        primary:
-        - sim-usr
-      preconditions:
-      - Non specificata
-      postconditions:
-      - Non specificata
-      main_scenario:
-      - description: Scenario non specificato
-    - id: sel_versione_sw_gateway
-      title: Selezione Versione Software Gateway
-      actors:
-        primary:
-        - sim-usr
-      preconditions:
-      - Non specificata
-      postconditions:
-      - Non specificata
-      main_scenario:
-      - description: Scenario non specificato
-- id: err_deploy_gateway_simulato
-  title: Errore Deploy Gateway simulato
-  actors:
-    primary:
-    - sim-usr
-  preconditions:
-  - È stato richiesto il deploy di una o più istanze di Gateway
-  - Si è verificato un errore tecnico durante il deploy del Gateway
-  postconditions:
-  - Le istanze non vengono create
-  - L'Attore viene notificato dell’errore di deploy
-  main_scenario:
-  - description: L’operazione di creazione viene annullata
-  - description: L’Attore viene notificato dell’errore
-- id: creazione_sensore_gateway_simulato
-  title: Creazione sensore Gateway simulato
-  actors:
-    primary:
-    - sim-usr
-  preconditions:
-  - Il Sistema si trova nella sezione di Gestione Gateway simulato
-  - È stato selezionato un Gateway simulato esistente
-  postconditions:
-  - Il nuovo sensore simulato viene creato con successo
-  - Il nuovo sensore viene associato al Gateway simulato
-  main_scenario:
-  - description: L’Attore inserisce i dati relativi alla configurazione della simulazione del sensore
-    include: inserimento_dati_config_sim_sensore
-  - description: L’Attore principale conferma la creazione del sensore
-  - description: L’Attore viene informato del successo della creazione del sensore simulato
-    extension_point: ErroreCreazione
-  extensions:
-  - extension_point: ErroreCreazione
-    condition: Errore di sistema nella creazione del sensore simulato
-    uc: err_creazione_sensore_simulato
-  subcases:
-  - id: inserimento_dati_config_sim_sensore
-    title: Inserimento dati configurazione simulazione sensore
+      - id: visualizzazione_singolo_sensore_simulato
+        title: Visualizzazione singolo sensore simulato
+        actors:
+          primary:
+            - sim-usr
+        preconditions:
+          - Il Sistema si trova nella sezione dedicata alla visualizzazione dei sensori del Gateway simulato
+            selezionato
+          - Esiste un sensore che è stato selezionato di cui si vogliono visualizzare i dettagli
+        postconditions:
+          - L’Attore visualizza i dettagli della entry selezionata dalla lista dei sensori simulati relativi
+            al Gateway selezionato
+        main_scenario:
+          - description: L'Attore seleziona il sensore simulato desiderato
+          - description: L’Attore visualizza l’identificativo del sensore
+            include: visualizzazione_identificativo_sensore
+          - description: L’Attore visualizza il tipo di sensore
+            include: visualizzazione_tipo_sensore_simulato
+          - description: L’Attore visualizza il range di generazione dei dati
+            include: visualizzazione_range_generazione_dati
+          - description: L’Attore visualizza l’algoritmo di generazione dei dati
+            include: visualizzazione_algoritmo_generazione_dati
+        subcases:
+          - id: visualizzazione_range_generazione_dati
+            title: Visualizzazione range generazione dati
+            actors:
+              primary:
+                - sim-usr
+            preconditions:
+              - Esiste un sensore che è stato selezionato di cui si stanno visualizzando i dettagli di configurazione
+                della simulazione
+            postconditions:
+              - L’Attore visualizza i limiti numerici entro cui vengono generati i dati
+            main_scenario:
+              - description: L’Attore visualizza il valore minimo impostato per la generazione dei dati
+              - description: L’Attore visualizza il valore massimo impostato per la generazione dei dati simulati
+          - id: visualizzazione_algoritmo_generazione_dati
+            title: Visualizzazione algoritmo generazione dati
+            actors:
+              primary:
+                - sim-usr
+            preconditions:
+              - Esiste un sensore che è stato selezionato di cui si stanno visualizzando i dettagli di configurazione
+                della simulazione
+            postconditions:
+              - L’Attore visualizza l'algoritmo utilizzato per la sintesi dei dati
+            main_scenario:
+              - description: L’Attore visualizza il nome dell'algoritmo utilizzato per generare i valori
+  - id: visualizzazione_identificativo_sensore
+    title: Visualizzazione identificativo sensore
     actors:
       primary:
-      - sim-usr
+        - sim-usr
     preconditions:
-    - Il Sistema si trova nella sezione di Gestione Gateway simulato
-    - È stato selezionato un Gateway simulato esistente al quale si vuole associare un nuovo sensore simulato
+      - Esiste un sensore che è stato selezionato di cui si stanno visualizzando i dettagli di configurazione
+        di simulazione
     postconditions:
-    - L’Attore ha inserito dati validi per la configurazione della simulazione di un sensore
+      - L'Attore visualizza l’identificativo del sensore
     main_scenario:
-    - description: L’Attore principale seleziona il tipo di sensore
-    - description: L’Attore inserisce il range di generazione dei dati
-      include: inserimento_range_generazione_dati
-    - description: L’Attore seleziona l’algoritmo di generazione dei dati
-- id: inserimento_range_generazione_dati
-  title: Inserimento range generazione dati
-  actors:
-    primary:
-    - sim-usr
-  preconditions:
-  - È stato selezionato un Gateway simulato esistente
-  postconditions:
-  - L’Attore ha inserito in intervallo di generazione dati valido
-  main_scenario:
-  - description: L’Attore inserisce un valore minimo
-  - description: L’Attore inserisce un valore massimo maggiore o uguale al minimo
-  - description: L'operazione va a buon fine
-    extension_point: ErroreRangeInvalido
-  extensions:
-  - extension_point: ErroreRangeInvalido
-    condition: I valori inseriti non sono validi
-    uc: err_range_invalido_simulazione
-- id: err_range_invalido_simulazione
-  title: Errore range invalido del sensore simulato
-  actors:
-    primary:
-    - sim-usr
-  preconditions:
-  - Il Sistema richiede di inserire dei valori per il range di un sensore simulato
-  - Il range inserito non è un valore accettato
-  postconditions:
-  - L'Attore principale viene notificato dell'errore
-  main_scenario:
-  - description: L’Attore viene notificato dell'invalidità del range inserito
-  - description: L'Attore viene invitato ad inserire un valore accettabile
-- id: err_creazione_sensore_simulato
-  title: Errore creazione Sensore simulato
-  actors:
-    primary:
-    - sim-usr
-  preconditions:
-  - È stato richiesta la creazione di un nuovo sensore simulato da associare ad un Gateway
-  - Si è verificato un errore tecnico durante la creazione del sensore
-  postconditions:
-  - Il Sensore non viene creato
-  - L'Attore viene notificato dell’errore
-  main_scenario:
-  - description: L’operazione di creazione viene annullata
-  - description: L’Attore viene notificato dell’errore
-- id: creazione_gateway_multipli_default
-  title: Creazione Gateway multipli con configurazione di default
-  actors:
-    primary:
-    - sim-usr
-  preconditions:
-  - Il Sistema si trova in una sezione dedicata alla Gestione della simulazione
-  postconditions:
-  - Vengono avviate più istanze di Gateway simulati in parallelo con una configurazione di sistema di
-    default e credenziali di fabbrica casuali
-  main_scenario:
-  - description: L’Attore inserisce il numero di istanze di Gateway da simulare in parallelo
-    extension_point: ValoreNumericoInvalido
-  - description: L’Attore avvia la creazione delle nuove istanze
-  - description: L’Attore riceve una notifica della corretta istanziazione dei processi simulati richiesti
-    extension_point: ErroreDeploy
-  extensions:
-  - extension_point: ValoreNumericoInvalido
-    condition: È stato inserito un valore numerico non valido
-    uc: err_valore_numerico_invalido
-  - extension_point: ErroreDeploy
-    condition: Errore di sistema nella creazione delle istanze
-    uc: err_deploy_gateway_simulato
-- id: err_valore_numerico_invalido
-  title: Errore valore numerico invalido
-  actors:
-    primary:
-    - sim-usr
-  preconditions:
-  - Il Sistema richiede di inserire un valore numerico
-  - Il valore inserito non è un valore accettato (negativo o non numerico)
-  postconditions:
-  - L'Attore principale viene notificato dell'errore
-  main_scenario:
-  - description: L’Attore viene notificato dell'invalidità del valore inserito
-  - description: L'Attore viene invitato ad inserire un valore accettabile
-- id: comando_anomalia_degrado_rete
-  title: Comando anomalia Gateway - degrado rete
-  actors:
-    primary:
-    - sim-usr
-  preconditions:
-  - Il Sistema si trova in una sezione dedicata all’invio di comandi per simulazione eventi
-  postconditions:
-  - Il Gateway selezionato simula una situazione di degrado della rete
-  main_scenario:
-  - description: L’attore seleziona un gateway
-  - description: L’attore inserisce la latenza desiderata in millisecondi
-    extension_point: ValoreNumericoInvalido
-  - description: L’attore inserisce la percentuale di pacchetti persi
-    extension_point: ValoreNumericoInvalido
-  - description: L’attore inserisce la durata dell’evento in secondi
-    extension_point: ValoreNumericoInvalido
-  - description: L’attore conferma l’invio del comando
-  - description: L’attore viene informato della corretta ricezione del comando e inizio dell’evento
-  extensions:
-  - extension_point: ValoreNumericoInvalido
-    condition: È stato inserito un valore numerico non valido
-    uc: err_valore_numerico_invalido
-- id: comando_anomalia_disconnessione_temporanea
-  title: Comando anomalia Gateway - disconnessione temporanea
-  actors:
-    primary:
-    - sim-usr
-  preconditions:
-  - Il Sistema si trova in una sezione dedicata all’invio di comandi per simulazione eventi
-  postconditions:
-  - Il Gateway selezionato simula una situazione di disconnessione temporanea
-  main_scenario:
-  - description: L’Attore seleziona un gateway
-  - description: L’Attore inserisce la durata dell’evento in secondi
-    extension_point: ValoreNumericoInvalido
-  - description: L’Attore conferma l’invio del comando
-  - description: L’Attore viene informato della corretta ricezione del comando e inizio dell’evento
-  extensions:
-  - extension_point: ValoreNumericoInvalido
-    condition: È stato inserito un valore numerico non valido
-    uc: err_valore_numerico_invalido
-- id: comando_anomalia_outliers_misurazioni
-  title: Comando anomalia sensore - outliers nelle misurazioni
-  actors:
-    primary:
-    - sim-usr
-  preconditions:
-  - Il Sistema si trova in una sezione dedicata all’invio di comandi per simulazione eventi
-  postconditions:
-  - Il sensore selezionato simula una situazione di misurazioni fuori scala
-  main_scenario:
-  - description: L’Attore inserisce la durata dell’evento in secondi
-    extension_point: ValoreNumericoInvalido
-  - description: L’Attore inserisce un range fuori scala per le misurazioni
-    include: inserimento_range_generazione_dati
-  - description: L’Attore conferma l’invio del comando
-  - description: L’Attore viene informato della corretta ricezione del comando e inizio dell’evento
-  extensions:
-  - extension_point: ValoreNumericoInvalido
-    condition: È stato inserito un valore numerico non valido
-    uc: err_valore_numerico_invalido
-- id: impostazione_configurazione_gateway
-  title: Impostazione configurazione del Gateway
-  actors:
-    primary:
-    - cloud
-  preconditions:
-  - Il Gateway simulato risulta connesso e autenticato
-  postconditions:
-  - Il Gateway simulato aggiorna il proprio stato interno in base alla configurazione ricevuta
-  main_scenario:
-  - description: L’Attore prepara una nuova configurazione per il Gateway
-  - description: L’Attore aggiorna la frequenza
-    include: impostazione_frequenza_invio_dati
-  - description: L’Attore aggiorna lo stato
-    include: impostazione_stato_sospensione
-  - description: L’Attore riceve una notifica di conferma dell'avvenuta configurazione
-    extension_point: ConfigurazioneInvalida
-  extensions:
-  - extension_point: ConfigurazioneInvalida
-    condition: Il messaggio contiene errori di sintassi o un formato non riconosciuto
-    uc: err_sintattico_config_gateway
-  - extension_point: ConfigurazioneInvalida
-    condition: La frequenza richiesta non è supportata dal Gateway simulato
-    uc: err_config_frequenza_fuori_range
-  subcases:
-  - id: impostazione_frequenza_invio_dati
-    title: Impostazione frequenza di invio dati
+      - description: L’Attore visualizza l’identificativo del sensore simulato
+  - id: visualizzazione_tipo_sensore_simulato
+    title: Visualizzazione tipo sensore simulato
     actors:
       primary:
-      - cloud
+        - sim-usr
     preconditions:
-    - Il Gateway simulato risulta connesso e autenticato
-    - Il messaggio di configurazione contiene un valore valido per la frequenza di invio
+      - Esiste un sensore che è stato selezionato di cui si stanno visualizzando i dettagli di configurazione
+        di simulazione
     postconditions:
-    - Il timer di invio dati viene aggiornato con il nuovo valore
+      - L’Attore visualizza la tipologia del sensore
     main_scenario:
-    - description: L’Attore modifica il valore della frequenza di invio dati del Gateway selezionato
-      extension_point: ValoreNumericoInvalido
-    - description: L’Attore viene notificato del buon esito della modifica
+      - description: L’Attore visualizza la tipologia di sensore simulato
+  - id: eliminazione_gateway_simulato
+    title: Eliminazione Gateway simulato
+    actors:
+      primary:
+        - sim-usr
+    preconditions:
+      - Il Sistema si trova nella sezione di gestione dei Gateway simulati ed è stato selezionato un Gateway
+        simulato
+    postconditions:
+      - L’istanza di simulazione del Gateway è stata eliminata
+      - Il Gateway non comunica più i dati al Sistema Cloud
+    main_scenario:
+      - description: L’Attore seleziona l’opzione di eliminazione del Gateway
+      - description: L’Attore conferma la decisione di eliminare il Gateway selezionato
+      - description: L’Attore riceve una notifica di operazione avvenuta con successo
+  - id: eliminazione_sensore_simulato
+    title: Eliminazione sensore simulato
+    actors:
+      primary:
+        - sim-usr
+    preconditions:
+      - Il Sistema si trova nella sezione di gestione dei Gateway simulati ed è stato selezionato un sensore
+        appartenente ad un Gateway simulato
+    postconditions:
+      - L'istanza di simulazione del sensore è stata eliminata
+    main_scenario:
+      - description: L’Attore seleziona l’opzione di eliminazione del sensore
+      - description: L’Attore conferma la decisione di eliminare il sensore selezionato
+      - description: L’Attore riceve una notifica di operazione avvenuta con successo
+  - id: creazione_deploy_gateway_simulato
+    title: Creazione e Deploy di un Gateway simulato
+    actors:
+      primary:
+        - sim-usr
+    preconditions:
+      - Il Sistema si trova nella sezione di gestione della simulazione
+    postconditions:
+      - L’istanza del Gateway simulato è stata creata e deployata correttamente
+    main_scenario:
+      - description: L’Attore avvia la procedura di creazione
+      - description: L’Attore inserisce i dati relativi alla configurazione della simulazione
+        include: inserimento_dati_config_sim_gateway
+      - description: L’Attore conferma l’operazione di creazione
+      - description: L’Attore viene informato del successo dell’operazione
+        extension_point: ErroreDeploy
     extensions:
-    - extension_point: ValoreNumericoInvalido
-      condition: Il valore numerico inserito non è valido
-      uc: err_valore_numerico_invalido
-  - id: impostazione_stato_sospensione
-    title: Impostazione stato sospensione
+      - extension_point: ErroreDeploy
+        condition: Errore di sistema nella creazione delle istanze
+        uc: err_deploy_gateway_simulato
+    subcases:
+      - id: inserimento_dati_config_sim_gateway
+        title: Inserimento dati configurazione simulazione Gateway
+        actors:
+          primary:
+            - sim-usr
+        preconditions:
+          - Il Sistema si trova nella sezione di configurazione del Gateway simulato
+        postconditions:
+          - L’Attore ha inserito dati validi per la configurazione della simulazione di un Gateway
+        main_scenario:
+          - description: L'Attore inserisce l'identificativo di fabbrica del Gateway
+            include: ins_id_fabbrica_gateway
+          - description: L'Attore inserisce la frequenza di invio dati del Gateway
+            include: ins_frequenza_invio_dati_gateway
+          - description: L'Attore inserisce la chiave di fabbrica del Gateway
+            include: ins_chiave_fabbrica_gateway
+          - description: L'Attore inserisce il modello del Gateway
+            include: ins_modello_gateway
+          - description: L'Attore inserisce la versione del firmware del Gateway
+            include: ins_firmware_sw_gateway
+        subcases:
+          - id: ins_id_fabbrica_gateway
+            title: Inserimento Identificativo Fabbrica Gateway
+            actors:
+              primary:
+                - sim-usr
+            preconditions:
+              - Il Sistema si trova nella sezione di configurazione del Gateway simulato
+            postconditions:
+              - L'Attore ha inserito un identificativo di fabbrica valido per il Gateway simulato
+            main_scenario:
+              - description: L'Attore inserisce un identificativo di fabbrica valido per il Gateway simulato
+          - id: ins_modello_gateway
+            title: Inserimento Modello Gateway
+            actors:
+              primary:
+                - sim-usr
+            preconditions:
+              - Il Sistema si trova nella sezione di configurazione del Gateway simulato
+            postconditions:
+              - L'Attore ha inserito un modello valido per il Gateway simulato
+            main_scenario:
+              - description: L'Attore inserisce un modello valido per il Gateway simulato
+          - id: ins_firmware_sw_gateway
+            title: Inserimento versione Software Gateway
+            actors:
+              primary:
+                - sim-usr
+            preconditions:
+              - Il Sistema si trova nella sezione di configurazione del Gateway simulato
+            postconditions:
+              - L'Attore ha inserito una versione di firmware valida per il Gateway simulato
+            main_scenario:
+              - description: L'Attore inserisce una versione di firmware valida per il Gateway simulato
+          - id: ins_frequenza_invio_dati_gateway
+            title: Inserimento frequenza di invio dati del Gateway
+            actors:
+              primary:
+                - sim-usr
+            preconditions:
+              - Il Sistema si trova nella sezione di configurazione del Gateway simulato
+            postconditions:
+              - L'Attore ha inserito una frequenza di invio dati valida per il Gateway simulato
+            main_scenario:
+              - description: L'Attore inserisce una frequenza di invio dati valida per il Gateway simulato
+          - id: ins_chiave_fabbrica_gateway
+            title: Inserimento chiave di fabbrica del Gateway
+            actors:
+              primary:
+                - sim-usr
+            preconditions:
+              - Il Sistema si trova nella sezione di configurazione del Gateway simulato
+            postconditions:
+              - L'Attore ha inserito una chiave di fabbrica valida per il Gateway simulato
+            main_scenario:
+              - description: L'Attore inserisce una chiave di fabbrica valida per il Gateway simulato
+  - id: err_deploy_gateway_simulato
+    title: Errore Deploy Gateway simulato
     actors:
       primary:
-      - cloud
+        - sim-usr
     preconditions:
-    - Il Gateway simulato risulta connesso e autenticato
-    - Il messaggio di configurazione contiene un flag di abilitazione/disabilitazione valido
+      - È stato richiesto il deploy di una o più istanze di Gateway
+      - Si è verificato un errore tecnico durante il deploy del Gateway
     postconditions:
-    - Il Gateway simulato entra o esce dallo stato di sospensione
+      - Le istanze non vengono create
+      - L'Attore viene notificato dell’errore di deploy
     main_scenario:
-    - description: L’Attore modifica lo stato operativo del Gateway selezionato
-    - description: L’Attore viene notificato del buon esito della modifica
-- id: err_sintattico_config_gateway
-  title: Errore sintattico configurazione Gateway
-  actors:
-    primary:
-    - cloud
-  preconditions:
-  - Il payload di configurazione ricevuto è corrotto, incompleto o non conforme allo schema previsto
-  postconditions:
-  - La configurazione viene scartata
-  - L’Attore riceve una notifica di errore
-  main_scenario:
-  - description: L’Attore riceve una notifica di errore di configurazione con indicazione della natura
-      sintattica del problema
-- id: modifica_algoritmo_generazione_dati
-  title: Modifica algoritmo di generazione dati sensore simulato
-  actors:
-    primary:
-    - sim-usr
-  preconditions:
-  - Esiste un sensore simulato selezionato di cui si vuole modificare la configurazione
-  postconditions:
-  - L'algoritmo di generazione dati del sensore è stato aggiornato
-  - Le successive misurazioni generate utilizzano il nuovo algoritmo
-  main_scenario:
-  - description: L'Attore accede alla configurazione del sensore simulato
-  - description: L'Attore indica il nuovo algoritmo di generazione dati tra quelli disponibili
-  - description: L'Attore invia la modifica
-- id: err_config_frequenza_fuori_range
-  title: Errore configurazione frequenza invio dati fuori range ammesso
-  actors:
-    primary:
-    - cloud
-  preconditions:
-  - Il valore di frequenza ricevuto è sintatticamente corretto ma non accettabile dal Gateway
-  postconditions:
-  - La modifica della frequenza viene ignorata
-  - L'Attore riceve una notifica di errore
-  main_scenario:
-  - description: L’Attore riceve una notifica di errore di configurazione per errore semantico nel range
+      - description: L’operazione di creazione viene annullata
+      - description: L’Attore viene notificato dell’errore
+  - id: creazione_sensore_gateway_simulato
+    title: Creazione sensore Gateway simulato
+    actors:
+      primary:
+        - sim-usr
+    preconditions:
+      - Il Sistema si trova nella sezione di Gestione Gateway simulato
+      - È stato selezionato un Gateway simulato esistente
+    postconditions:
+      - Il nuovo sensore simulato viene creato con successo
+      - Il nuovo sensore viene associato al Gateway simulato
+    main_scenario:
+      - description: L’Attore inserisce i dati relativi alla configurazione della simulazione del sensore
+        include: inserimento_dati_config_sim_sensore
+      - description: L’Attore principale conferma la creazione del sensore
+      - description: L’Attore viene informato del successo della creazione del sensore simulato
+        extension_point: ErroreCreazione
+    extensions:
+      - extension_point: ErroreCreazione
+        condition: Errore di sistema nella creazione del sensore simulato
+        uc: err_creazione_sensore_simulato
+    subcases:
+      - id: inserimento_dati_config_sim_sensore
+        title: Inserimento dati configurazione simulazione sensore
+        actors:
+          primary:
+            - sim-usr
+        preconditions:
+          - Il Sistema si trova nella sezione di Gestione Gateway simulato
+          - È stato selezionato un Gateway simulato esistente al quale si vuole associare un nuovo sensore simulato
+        postconditions:
+          - L’Attore ha inserito dati validi per la configurazione della simulazione di un sensore
+        main_scenario:
+          - description: L’Attore inserisce il tipo di sensore simulato
+            include: inserimento_tipo_sensore_simulato
+          - description: L’Attore inserisce l'algoritmo di generazione dei dati del sensore simulato
+            include: inserimento_algoritmo_generazione_dati
+          - description: L’Attore inserisce il range di generazione dei dati
+            include: inserimento_range_generazione_dati
+          - description: L’Attore seleziona l’algoritmo di generazione dei dati
+        subcases:
+          - id: inserimento_tipo_sensore_simulato
+            title: Inserimento tipo di sensore simulato
+            actors:
+              primary:
+                - sim-usr
+            preconditions:
+              - Il Sistema si trova nella sezione di Gestione Gateway simulato
+              - È stato selezionato un Gateway simulato esistente al quale si vuole associare un nuovo sensore simulato
+            postconditions:
+              - L’Attore ha inserito un tipo di sensore valido per il sensore simulato
+            main_scenario:
+              - description: L’Attore inserisce un tipo di sensore valido per il sensore simulato
+          - id: inserimento_algoritmo_generazione_dati
+            title: Inserimento algoritmo di generazione dei dati del sensore simulato
+            actors:
+              primary:
+                - sim-usr
+            preconditions:
+              - Il Sistema si trova nella sezione di Gestione Gateway simulato
+              - È stato selezionato un Gateway simulato esistente al quale si vuole associare un nuovo sensore simulato
+            postconditions:
+              - L’Attore ha inserito un algoritmo valido per la generazione dei dati del sensore simulato
+            main_scenario:
+              - description: L’Attore inserisce un algoritmo valido per la generazione dei dati del sensore simulato
+  - id: inserimento_range_generazione_dati
+    title: Inserimento range generazione dati
+    actors:
+      primary:
+        - sim-usr
+    preconditions:
+      - È stato selezionato un Gateway simulato esistente
+    postconditions:
+      - L’Attore ha inserito in intervallo di generazione dati valido
+    main_scenario:
+      - description: L’Attore inserisce un valore minimo
+      - description: L’Attore inserisce un valore massimo maggiore o uguale al minimo
+      - description: L'operazione va a buon fine
+        extension_point: ErroreRangeInvalido
+    extensions:
+      - extension_point: ErroreRangeInvalido
+        condition: I valori inseriti non sono validi
+        uc: err_range_invalido_simulazione
+
+  - id: err_range_invalido_simulazione
+    title: Errore range invalido del sensore simulato
+    actors:
+      primary:
+        - sim-usr
+    preconditions:
+      - Il Sistema richiede di inserire dei valori per il range di un sensore simulato
+      - Il range inserito non è un valore accettato
+    postconditions:
+      - L'Attore principale viene notificato dell'errore
+    main_scenario:
+      - description: L’Attore viene notificato dell'invalidità del range inserito
+      - description: L'Attore viene invitato ad inserire un valore accettabile
+  - id: err_creazione_sensore_simulato
+    title: Errore creazione Sensore simulato
+    actors:
+      primary:
+        - sim-usr
+    preconditions:
+      - È stato richiesta la creazione di un nuovo sensore simulato da associare ad un Gateway
+      - Si è verificato un errore tecnico durante la creazione del sensore
+    postconditions:
+      - Il Sensore non viene creato
+      - L'Attore viene notificato dell’errore
+    main_scenario:
+      - description: L’operazione di creazione viene annullata
+      - description: L’Attore viene notificato dell’errore
+  - id: creazione_gateway_multipli_default
+    title: Creazione Gateway multipli con configurazione di default
+    actors:
+      primary:
+        - sim-usr
+    preconditions:
+      - Il Sistema si trova in una sezione dedicata alla Gestione della simulazione
+    postconditions:
+      - Vengono avviate più istanze di Gateway simulati in parallelo con una configurazione di sistema di
+        default e credenziali di fabbrica casuali
+    main_scenario:
+      - description: L’Attore inserisce il numero di istanze di Gateway da simulare in parallelo
+        extension_point: ValoreNumericoInvalido
+      - description: L’Attore avvia la creazione delle nuove istanze
+      - description: L’Attore riceve una notifica della corretta istanziazione dei processi simulati richiesti
+        extension_point: ErroreDeploy
+    extensions:
+      - extension_point: ValoreNumericoInvalido
+        condition: È stato inserito un valore numerico non valido
+        uc: err_valore_numerico_invalido
+      - extension_point: ErroreDeploy
+        condition: Errore di sistema nella creazione delle istanze
+        uc: err_deploy_gateway_simulato
+  - id: err_valore_numerico_invalido
+    title: Errore valore numerico invalido
+    actors:
+      primary:
+        - sim-usr
+    preconditions:
+      - Il Sistema richiede di inserire un valore numerico
+      - Il valore inserito non è un valore accettato (negativo o non numerico)
+    postconditions:
+      - L'Attore principale viene notificato dell'errore
+    main_scenario:
+      - description: L’Attore viene notificato dell'invalidità del valore inserito
+      - description: L'Attore viene invitato ad inserire un valore accettabile
+  - id: comando_anomalia_degrado_rete
+    title: Comando anomalia Gateway - degrado rete
+    actors:
+      primary:
+        - sim-usr
+    preconditions:
+      - Il Sistema si trova in una sezione dedicata all’invio di comandi per simulazione eventi
+    postconditions:
+      - Il Gateway selezionato simula una situazione di degrado della rete
+    main_scenario:
+      - description: L’attore seleziona un gateway
+      - description: L’attore inserisce la latenza desiderata in millisecondi
+        extension_point: ValoreNumericoInvalido
+      - description: L’attore inserisce la percentuale di pacchetti persi
+        extension_point: ValoreNumericoInvalido
+      - description: L’attore inserisce la durata dell’evento in secondi
+        extension_point: ValoreNumericoInvalido
+      - description: L’attore conferma l’invio del comando
+      - description: L’attore viene informato della corretta ricezione del comando e inizio dell’evento
+    extensions:
+      - extension_point: ValoreNumericoInvalido
+        condition: È stato inserito un valore numerico non valido
+        uc: err_valore_numerico_invalido
+  - id: comando_anomalia_disconnessione_temporanea
+    title: Comando anomalia Gateway - disconnessione temporanea
+    actors:
+      primary:
+        - sim-usr
+    preconditions:
+      - Il Sistema si trova in una sezione dedicata all’invio di comandi per simulazione eventi
+    postconditions:
+      - Il Gateway selezionato simula una situazione di disconnessione temporanea
+    main_scenario:
+      - description: L’Attore seleziona un gateway
+      - description: L’Attore inserisce la durata dell’evento in secondi
+        extension_point: ValoreNumericoInvalido
+      - description: L’Attore conferma l’invio del comando
+      - description: L’Attore viene informato della corretta ricezione del comando e inizio dell’evento
+    extensions:
+      - extension_point: ValoreNumericoInvalido
+        condition: È stato inserito un valore numerico non valido
+        uc: err_valore_numerico_invalido
+  - id: comando_anomalia_outliers_misurazioni
+    title: Comando anomalia sensore - outliers nelle misurazioni
+    actors:
+      primary:
+        - sim-usr
+    preconditions:
+      - Il Sistema si trova in una sezione dedicata all’invio di comandi per simulazione eventi
+    postconditions:
+      - Il sensore selezionato simula una situazione di misurazioni fuori scala
+    main_scenario:
+      - description: L’Attore inserisce la durata dell’evento in secondi
+        extension_point: ValoreNumericoInvalido
+      - description: L’Attore inserisce un range fuori scala per le misurazioni
+        include: inserimento_range_generazione_dati
+      - description: L’Attore conferma l’invio del comando
+      - description: L’Attore viene informato della corretta ricezione del comando e inizio dell’evento
+    extensions:
+      - extension_point: ValoreNumericoInvalido
+        condition: È stato inserito un valore numerico non valido
+        uc: err_valore_numerico_invalido
+  - id: err_sintattico_config_gateway
+    title: Errore sintattico configurazione Gateway
+    actors:
+      primary:
+        - cloud
+    preconditions:
+      - Il payload di configurazione ricevuto è corrotto, incompleto o non conforme allo schema previsto
+    postconditions:
+      - La configurazione viene scartata
+      - L’Attore riceve una notifica di errore
+    main_scenario:
+      - description:
+          L’Attore riceve una notifica di errore di configurazione con indicazione della natura
+          sintattica del problema
+  - id: err_config_frequenza_fuori_range
+    title: Errore configurazione frequenza invio dati fuori range ammesso
+    actors:
+      primary:
+        - cloud
+    preconditions:
+      - Il valore di frequenza ricevuto è sintatticamente corretto ma non accettabile dal Gateway
+    postconditions:
+      - La modifica della frequenza viene ignorata
+      - L'Attore riceve una notifica di errore
+    main_scenario:
+      - description: L’Attore riceve una notifica di errore di configurazione per errore semantico nel range

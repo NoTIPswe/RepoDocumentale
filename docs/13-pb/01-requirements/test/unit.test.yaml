@@ -138,12 +138,6 @@ tests:
       - eliminazione_gateway_simulato
       - qualita_spegnimento_controllato
     status: passed
-  - id: t_operational_state_changes
-    service: Simulator Backend
-    description: Verificare la corretta applicazione dei cambi di stato operativi (Online, Offline, Paused) e il loro effetto sulla pubblicazione della telemetria
-    requirements:
-      - impostazione_configurazione_gateway
-    status: passed
   - id: t_app_initialization
     service: Simulator Backend
     description: Verificare la corretta inizializzazione dell'applicazione, del database locale e l'applicazione dei valori di configurazione di fallback
@@ -200,7 +194,6 @@ tests:
       Verificare il client NATS Request-Reply; fetch config (successo, errore NATS, JSON malformato),
       aggiornamento stato, query lifecycle e logica di retry
     requirements:
-      - alert_gateway_irraggiungibile
       - qualita_resilienza_servizi
       - qualita_test_unita_coverage
     status: passed
@@ -210,7 +203,6 @@ tests:
       Verificare l'alert publisher NATS; formato del subject per tenant diversi, pubblicazione
       corretta e incremento della metrica di errore su fallimento NATS
     requirements:
-      - alert_gateway_irraggiungibile
       - sicurezza_segregazione_tenant
       - qualita_test_unita_coverage
     status: passed
@@ -232,7 +224,7 @@ tests:
       il refresh atomico, che un errore di fetch non cancelli la cache e il backoff con max retry
     requirements:
       - modifica_intervallo_alert_gateway
-      - alert_gateway_irraggiungibile
+
       - qualita_resilienza_servizi
       - qualita_test_unita_coverage
     status: passed
@@ -243,7 +235,7 @@ tests:
       NATS con mock
     requirements:
       - modifica_stato_gateway
-      - alert_gateway_irraggiungibile
+
       - qualita_resilienza_servizi
       - qualita_test_unita_coverage
     status: passed
@@ -278,8 +270,6 @@ tests:
       Verificare l'estrazione degli ID dal subject, il dispatch al service, il Term per
       subject invalidi e il run loop con context cancel
     requirements:
-      - alert_gateway_irraggiungibile
-      - decommission_gateway
       - qualita_test_unita_coverage
     status: passed
   - id: t_ticker_interval_cancel
@@ -288,7 +278,6 @@ tests:
       Verificare che Tick() venga chiamato all'intervallo configurato e che Run() si fermi
       su context cancel
     requirements:
-      - alert_gateway_irraggiungibile
       - qualita_test_unita_coverage
     status: passed
   - id: t_heartbeat_tracker_lifecycle
@@ -298,9 +287,7 @@ tests:
       HandleDecommission (rimozione, soppressione alert, no-op) e Tick (grace period, timeout verso
       Offline, alert, lifecycle gate, fail-open)
     requirements:
-      - alert_gateway_irraggiungibile
       - invio_dati_crittografati_cloud
-      - decommission_gateway
       - qualita_resilienza_servizi
       - qualita_test_unita_coverage
     status: passed
@@ -318,63 +305,63 @@ tests:
     service: Provisioning service
     description: Verificare l’orchestrazione del provisioning con validazione factory, firma CSR, generazione chiave AES e completamento finale
     requirements:
-    - onboarding_gateway
+      - onboarding_gateway
     status: passed
   - id: t_provisioning_factory_validation_error_propagation
     service: Provisioning service
     description: Verificare la propagazione degli errori di validazione factory e il tracciamento del motivo di fallimento
     requirements:
-    - err_auth_gateway_fabbrica
-    - err_autenticazione_gateway
+      - err_auth_gateway_fabbrica
+      - err_autenticazione_gateway
     status: passed
   - id: t_provisioning_csr_error_mapping_malformed
     service: Provisioning service
     description: Verificare la propagazione degli errori CSR e il mapping del fallimento malformed_CSR
     requirements:
-    - onboarding_gateway
+      - onboarding_gateway
     status: passed
   - id: t_provisioning_request_mapping_invalid_csr
     service: Provisioning service
     description: Verificare il mapping della request DTO in dominio e la gestione del CSR non valido
     requirements:
-    - onboarding_gateway
+      - onboarding_gateway
     status: passed
   - id: t_provisioning_factory_credentials_validation_mapping
     service: Provisioning service
     description: Verificare la validazione delle credenziali factory e il mapping delle risposte INVALID, ALREADY_PROVISIONED e payload non valido
     requirements:
-    - onboarding_gateway
-    - err_auth_gateway_fabbrica
-    - err_dati_autenticazione_invalidi
+      - onboarding_gateway
+      - err_auth_gateway_fabbrica
+      - err_dati_autenticazione_invalidi
     status: passed
   - id: t_provisioning_csr_signing_validation
     service: Provisioning service
     description: Verificare la firma di un CSR valido e il rifiuto di CSR malformati o con firma non valida
     requirements:
-    - onboarding_gateway
+      - onboarding_gateway
     status: passed
   - id: t_provisioning_aes256_key_generation_base64
     service: Provisioning service
     description: Verificare la generazione di una chiave AES-256 e la sua serializzazione base64
     requirements:
-    - sicurezza_cifratura_dati
-    - invio_dati_crittografati_cloud
+      - sicurezza_cifratura_dati
+      - invio_dati_crittografati_cloud
     status: passed
   - id: t_provisioning_exception_http_mapping
     service: Provisioning service
     description: Verificare il mapping delle eccezioni di provisioning verso i codici HTTP attesi
     requirements:
-    - err_auth_gateway_fabbrica
-    - err_dati_autenticazione_invalidi
-    - err_autenticazione_gateway
+      - err_auth_gateway_fabbrica
+      - err_dati_autenticazione_invalidi
+      - err_autenticazione_gateway
     status: passed
   - id: t_provisioning_completion_payload_error_handling
     service: Provisioning service
     description: Verificare l’invio del payload di completamento provisioning e la gestione delle risposte non di successo
     requirements:
-    - onboarding_gateway
-    - err_dati_autenticazione_invalidi
-    - err_autenticazione_gateway
+      - onboarding_gateway
+      - err_dati_autenticazione_invalidi
+      - err_autenticazione_gateway
     status: passed
 
   - id: t_u_cli_http_client_gateway_crud
@@ -429,7 +416,6 @@ tests:
       - creazione_deploy_gateway_simulato
       - inserimento_dati_config_sim_gateway
       - creazione_gateway_multipli_default
-      - impostazione_configurazione_gateway
     status: passed
 
   - id: t_u_cli_request_construction_sensor_anomaly
@@ -488,34 +474,34 @@ tests:
     service: Provisioning service
     description: Verificare la resilienza del client NATS request-reply del provisioning (retry, riconnessione e gestione errori di connessione)
     requirements:
-    - onboarding_gateway
-    - err_autenticazione_gateway
+      - onboarding_gateway
+      - err_autenticazione_gateway
     status: passed
   - id: t_provisioning_ca_store_init_load_permissions
     service: Provisioning service
     description: Verificare inizializzazione, persistenza e ricarica del materiale CA/NATS nel file store con i permessi attesi
     requirements:
-    - instaurazione_connessione_sicura
-    - sicurezza_cifratura_dati
+      - instaurazione_connessione_sicura
+      - sicurezza_cifratura_dati
     status: passed
   - id: t_provisioning_ca_initializer_bootstrap
     service: Provisioning service
     description: Verificare il bootstrap del componente CA (load materiale esistente, initialize nuovo materiale e gestione errori repository)
     requirements:
-    - instaurazione_connessione_sicura
+      - instaurazione_connessione_sicura
     status: passed
   - id: t_provisioning_configuration_env_loading
     service: Provisioning service
     description: Verificare il caricamento della configurazione da variabili d’ambiente con validazione campi obbligatori, default e override
     requirements:
-    - onboarding_gateway
+      - onboarding_gateway
     status: passed
   - id: t_provisioning_aes_key_domain_validation
     service: Provisioning service
     description: Verificare la validazione del dominio AESKey (lunghezza 32 byte) e la serializzazione base64 del materiale
     requirements:
-    - sicurezza_cifratura_dati
-    - invio_dati_crittografati_cloud
+      - sicurezza_cifratura_dati
+      - invio_dati_crittografati_cloud
     status: passed
   - id: t_hystorical_measures
     service: Data API
@@ -541,10 +527,6 @@ tests:
     requirements:
       - visualizzazione_dettagli_gateway
     status: passed
-  
-
-
-  
 
   # Frontend Unit Tests
   - id: t_u_fe_auth_service
@@ -646,7 +628,7 @@ tests:
     description: "Verificare che l'amministratore di sistema possa visualizzare gli utenti associati a un tenant e avviare la funzionalità di impersonazione"
     requirements:
       - qualita_test_unita_coverage
-      - selezione_lista_utenti
+      - selezione_utente_tenant
     status: passed
   - id: t_u_fe_impersonate_button_component
     service: Frontend
@@ -794,7 +776,6 @@ tests:
     description: "Verificare che l'amministratore del tenant possa creare nuovi utenti o modificare quelli esistenti, assegnando il ruolo e i permessi appropriati"
     requirements:
       - qualita_test_unita_coverage
-      - selezione_permessi_utente
     status: passed
   - id: t_u_fe_threshold_form_component
     service: Frontend

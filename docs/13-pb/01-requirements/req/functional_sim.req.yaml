@@ -1,162 +1,145 @@
 type: functional_sim
 requirements:
-- id: visualizzazione_lista_gateway_simulati
-  priority: mandatory
-  description: Il Sistema deve permettere all'Utente del Simulatore di poter visualizzare la lista di
-    Gateway simulati
-  sources:
-  - uc: visualizzazione_lista_gateway_simulati
-- id: visualizzazione_singolo_gateway_simulato
-  priority: mandatory
-  description: Il Sistema deve permettere di poter visualizzare un singolo Gateway simulato, comprendendo
-    anche la data della sua creazione
-  sources:
-  - uc: visualizzazione_singolo_gateway_simulato
-  - uc: visualizzazione_data_creazione_simulazione
-- id: visualizzazione_id_fabbrica_simulazione
-  priority: mandatory
-  description: Il Sistema deve permettere di visualizzare l'ID di fabbrica di un Gateway simulato
-  sources:
-  - uc: visualizzazione_id_fabbrica_simulazione
-- id: visualizzazione_configurazione_simulazione_gateway
-  priority: mandatory
-  description: 'Il Sistema deve permettere di visualizzare la configurazione di simulazione di un Gateway,
-    di cui fanno parte: chiave segreta, numero di serie, versione del software e modello'
-  sources:
-  - uc: visualizzazione_configurazione_simulazione_gateway
-  - uc: visualizzazione_chiave_fabbrica_simulazione
-  - uc: visualizzazione_serial_number_gateway_simulato
-  - uc: visualizzazione_software_gateway_simulato
-  - uc: visualizzazione_modello_gateway_simulato
-- id: visualizzazione_lista_sensori_gateway_simulato
-  priority: mandatory
-  description: Il Sistema deve permettere di visualizzare la lista di sensori di un Gateway simulato
-  sources:
-  - uc: visualizzazione_lista_sensori_gateway_simulato
-- id: visualizzazione_singolo_sensore_simulato
-  priority: mandatory
-  description: Il Sistema deve permettere di visualizzare un singolo sensore di un Gateway simulato
-  sources:
-  - uc: visualizzazione_singolo_sensore_simulato
-- id: visualizzazione_configurazione_simulazione_sensore
-  priority: mandatory
-  description: 'Il Sistema deve permettere di visualizzare la configurazione di un sensore simulato, di
-    cui fanno parte: range generazione dati, algoritmo di generazione dati, identificativo e tipologia
-    di sensore'
-  sources:
-  - uc: visualizzazione_configurazione_simulazione_sensore
-  - uc: visualizzazione_range_generazione_dati
-  - uc: visualizzazione_algoritmo_generazione_dati
-  - uc: visualizzazione_identificativo_sensore
-  - uc: visualizzazione_tipo_sensore_simulato
-- id: eliminazione_gateway_simulato
-  priority: mandatory
-  description: Il Sistema deve permettere di eliminare un Gateway simulato
-  sources:
-  - uc: eliminazione_gateway_simulato
-- id: eliminazione_sensore_simulato
-  priority: mandatory
-  description: Il Sistema deve permettere di eliminare un sensore simulato
-  sources:
-  - uc: eliminazione_sensore_simulato
-- id: creazione_deploy_gateway_simulato
-  priority: mandatory
-  description: Il Sistema deve permettere di creare e fare il deploy di un Gateway simulato
-  sources:
-  - uc: creazione_deploy_gateway_simulato
-- id: inserimento_dati_config_sim_gateway
-  priority: mandatory
-  description: Il Sistema deve permettere di inserire i dati di configurazione di un Gateway simulato
-  sources:
-  - uc: inserimento_dati_config_sim_gateway
-- id: err_deploy_gateway_simulato
-  priority: mandatory
-  description: Il Sistema deve notificare all'Utente del Simulatore che si è verificato un errore durante
-    il deploy del Gateway
-  sources:
-  - uc: err_deploy_gateway_simulato
-- id: creazione_sensore_gateway_simulato
-  priority: mandatory
-  description: Il Sistema deve permettere di creare un sensore di un Gateway simulato
-  sources:
-  - uc: creazione_sensore_gateway_simulato
-- id: inserimento_dati_config_sim_sensore
-  priority: mandatory
-  description: Il Sistema deve permettere di inserire i dati di configurazione di un sensore simulato
-  sources:
-  - uc: inserimento_dati_config_sim_sensore
-- id: err_range_invalido_simulazione
-  priority: mandatory
-  description: Il Sistema deve notificare all'Utente del Simulatore che il range di generazione dati inserito
-    è invalido
-  sources:
-  - uc: err_range_invalido_simulazione
-- id: err_creazione_sensore_simulato
-  priority: mandatory
-  description: Il Sistema deve notificare all'Utente del Simulatore che si è verificato un errore durante
-    la creazione di un sensore simulato
-  sources:
-  - uc: err_creazione_sensore_simulato
-- id: creazione_gateway_multipli_default
-  priority: mandatory
-  description: Il Sistema deve permettere di testare il suo comportamento qualora ci fossero più istanze
-    di Gateway simulati in parallelo
-  sources:
-  - uc: creazione_gateway_multipli_default
-- id: err_valore_numerico_invalido
-  priority: mandatory
-  description: Il Sistema deve notificare all'Utente del Simulatore che il valore numerico inserito risulta
-    non valido
-  sources:
-  - uc: err_valore_numerico_invalido
-- id: comando_anomalia_degrado_rete
-  priority: mandatory
-  description: Il Sistema deve permettere di testare il suo comportamento qualora ci fosse un degrado
-    della rete
-  sources:
-  - uc: comando_anomalia_degrado_rete
-- id: comando_anomalia_disconnessione_temporanea
-  priority: mandatory
-  description: Il Sistema deve permettere di testare il suo comportamento in caso di disconnessione temporanea
-    della rete
-  sources:
-  - uc: comando_anomalia_disconnessione_temporanea
-- id: comando_anomalia_outliers_misurazioni
-  priority: mandatory
-  description: Il Sistema deve permettere di testare il suo comportamento qualora un sensore misurasse
-    valori inaspettati
-  sources:
-  - uc: comando_anomalia_outliers_misurazioni
-- id: impostazione_configurazione_gateway
-  priority: mandatory
-  description: Il Sistema deve permettere al Sistema Cloud di modificare le impostazioni di configurazione
-    di un Gateway, di modificare la frequenza di invio dati e dello stato di sospensione
-  sources:
-  - uc: impostazione_configurazione_gateway
-  - uc: impostazione_frequenza_invio_dati
-  - uc: impostazione_stato_sospensione
-- id: impostazione_stato_sospensione
-  priority: mandatory
-  description: Il Sistema deve permettere al Sistema Cloud di modificare lo stato di sospensione di un
-    Gateway simulato (avvio e arresto della pubblicazione della telemetria)
-  sources:
-  - uc: impostazione_stato_sospensione
-- id: err_sintattico_config_gateway
-  priority: mandatory
-  description: Il Sistema deve notificare al Sistema Cloud che il payload di configurazione ricevuto risulta
-    invalido
-  sources:
-  - uc: err_sintattico_config_gateway
-- id: err_config_frequenza_fuori_range
-  priority: mandatory
-  description: Il Sistema deve notificare al Sistema Cloud che il valore di frequenza ricevuto è sintatticamente
-    corretto, ma non accettabile
-  sources:
-  - uc: err_config_frequenza_fuori_range
-- id: modifica_algoritmo_generazione_dati
-  priority: mandatory
-  description:
-    Il Sistema deve permettere all'Utente del Simulatore di modificare l'algoritmo
-    di generazione dati di un sensore simulato
-  sources:
-  - uc: modifica_algoritmo_generazione_dati
+  - id: visualizzazione_lista_gateway_simulati
+    priority: mandatory
+    description:
+      Il Sistema deve permettere all'Utente del Simulatore di poter visualizzare la lista di
+      Gateway simulati
+    sources:
+      - uc: visualizzazione_lista_gateway_simulati
+  - id: visualizzazione_singolo_gateway_simulato
+    priority: mandatory
+    description:
+      Il Sistema deve permettere di poter visualizzare un singolo Gateway simulato, comprendendo
+      anche la data della sua creazione
+    sources:
+      - uc: visualizzazione_singolo_gateway_simulato
+  - id: visualizzazione_id_fabbrica_simulazione
+    priority: mandatory
+    description: Il Sistema deve permettere di visualizzare l'ID di fabbrica di un Gateway simulato
+    sources:
+      - uc: visualizzazione_id_fabbrica_simulazione
+  - id: visualizzazione_configurazione_simulazione_gateway
+    priority: mandatory
+    description:
+      "Il Sistema deve permettere di visualizzare la configurazione di simulazione di un Gateway,
+      di cui fanno parte: frequenza di invio dati, identificativo di fabbrica, versione del firmware, modello, identificativo del Gateway simulato, stato del Gateway simulato"
+    sources:
+      - uc: visualizzazione_configurazione_simulazione_gateway
+      - uc: visualizzazione_frequenza_invio_dati_gateway_simulato
+      - uc: visualizzazione_id_fabbrica_simulazione
+      - uc: visualizzazione_id_gateway_simulato
+      - uc: visualizzazione_firmware_gateway_simulato
+      - uc: visualizzazione_stato_gateway_simulato
+      - uc: visualizzazione_modello_gateway_simulato
+  - id: visualizzazione_lista_sensori_gateway_simulato
+    priority: mandatory
+    description: Il Sistema deve permettere di visualizzare la lista di sensori di un Gateway simulato
+    sources:
+      - uc: visualizzazione_lista_sensori_gateway_simulato
+  - id: visualizzazione_singolo_sensore_simulato
+    priority: mandatory
+    description: Il Sistema deve permettere di visualizzare un singolo sensore di un Gateway simulato
+    sources:
+      - uc: visualizzazione_singolo_sensore_simulato
+
+  - id: eliminazione_gateway_simulato
+    priority: mandatory
+    description: Il Sistema deve permettere di eliminare un Gateway simulato
+    sources:
+      - uc: eliminazione_gateway_simulato
+  - id: eliminazione_sensore_simulato
+    priority: mandatory
+    description: Il Sistema deve permettere di eliminare un sensore simulato
+    sources:
+      - uc: eliminazione_sensore_simulato
+  - id: creazione_deploy_gateway_simulato
+    priority: mandatory
+    description: Il Sistema deve permettere di creare e fare il deploy di un Gateway simulato
+    sources:
+      - uc: creazione_deploy_gateway_simulato
+  - id: inserimento_dati_config_sim_gateway
+    priority: mandatory
+    description: Il Sistema deve permettere di inserire i dati di configurazione di un Gateway simulato
+    sources:
+      - uc: inserimento_dati_config_sim_gateway
+  - id: err_deploy_gateway_simulato
+    priority: mandatory
+    description:
+      Il Sistema deve notificare all'Utente del Simulatore che si è verificato un errore durante
+      il deploy del Gateway
+    sources:
+      - uc: err_deploy_gateway_simulato
+  - id: creazione_sensore_gateway_simulato
+    priority: mandatory
+    description: Il Sistema deve permettere di creare un sensore di un Gateway simulato
+    sources:
+      - uc: creazione_sensore_gateway_simulato
+  - id: inserimento_dati_config_sim_sensore
+    priority: mandatory
+    description: Il Sistema deve permettere di inserire i dati di configurazione di un sensore simulato
+    sources:
+      - uc: inserimento_dati_config_sim_sensore
+  - id: err_range_invalido_simulazione
+    priority: mandatory
+    description:
+      Il Sistema deve notificare all'Utente del Simulatore che il range di generazione dati inserito
+      è invalido
+    sources:
+      - uc: err_range_invalido_simulazione
+  - id: err_creazione_sensore_simulato
+    priority: mandatory
+    description:
+      Il Sistema deve notificare all'Utente del Simulatore che si è verificato un errore durante
+      la creazione di un sensore simulato
+    sources:
+      - uc: err_creazione_sensore_simulato
+  - id: creazione_gateway_multipli_default
+    priority: mandatory
+    description:
+      Il Sistema deve permettere di testare il suo comportamento qualora ci fossero più istanze
+      di Gateway simulati in parallelo
+    sources:
+      - uc: creazione_gateway_multipli_default
+  - id: err_valore_numerico_invalido
+    priority: mandatory
+    description:
+      Il Sistema deve notificare all'Utente del Simulatore che il valore numerico inserito risulta
+      non valido
+    sources:
+      - uc: err_valore_numerico_invalido
+  - id: comando_anomalia_degrado_rete
+    priority: mandatory
+    description:
+      Il Sistema deve permettere di testare il suo comportamento qualora ci fosse un degrado
+      della rete
+    sources:
+      - uc: comando_anomalia_degrado_rete
+  - id: comando_anomalia_disconnessione_temporanea
+    priority: mandatory
+    description:
+      Il Sistema deve permettere di testare il suo comportamento in caso di disconnessione temporanea
+      della rete
+    sources:
+      - uc: comando_anomalia_disconnessione_temporanea
+  - id: comando_anomalia_outliers_misurazioni
+    priority: mandatory
+    description:
+      Il Sistema deve permettere di testare il suo comportamento qualora un sensore misurasse
+      valori inaspettati
+    sources:
+      - uc: comando_anomalia_outliers_misurazioni
+  - id: err_sintattico_config_gateway
+    priority: mandatory
+    description:
+      Il Sistema deve notificare al Sistema Cloud che il payload di configurazione ricevuto risulta
+      invalido
+    sources:
+      - uc: err_sintattico_config_gateway
+  - id: err_config_frequenza_fuori_range
+    priority: mandatory
+    description:
+      Il Sistema deve notificare al Sistema Cloud che il valore di frequenza ricevuto è sintatticamente
+      corretto, ma non accettabile
+    sources:
+      - uc: err_config_frequenza_fuori_range

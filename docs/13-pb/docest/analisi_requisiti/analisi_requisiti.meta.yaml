@@ -1,5 +1,12 @@
 title: Analisi dei requisiti
 changelog:
+  - version: "1.5.1"
+    date: "2026-04-12"
+    authors:
+      - Alessandro Mazzariol
+    verifier: TBD
+    description: >
+      Verifica e aggiornamento UC e UCs
   - version: "1.4.1"
     date: "2026-04-07"
     authors:

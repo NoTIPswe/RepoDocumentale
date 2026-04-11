@@ -215,7 +215,11 @@
               step.descr
               if step.at("inc", default: none) != none {
                 linebreak()
-                "Include: " + tag_uc(step.inc)
+                if type(step.inc) == array {
+                  "Include: " + step.inc.map(i => tag_uc(i)).join(", ")
+                } else {
+                  "Include: " + tag_uc(step.inc)
+                }
               }
               if step.at("ep", default: none) != none {
                 linebreak()
@@ -288,8 +292,13 @@
 
   let main-scen = node.main_scenario.map(step => {
     let mapped = (descr: step.description)
-    if step.at("include", default: none) != none {
-      mapped = (..mapped, inc: step.include)
+    let inc_val = step.at("include", default: none)
+    if inc_val != none {
+      if type(inc_val) == array {
+        mapped = (..mapped, inc: (..inc_val,))
+      } else {
+        mapped = (..mapped, inc: inc_val)
+      }
     }
     if step.at("extension_point", default: none) != none {
       mapped = (..mapped, ep: step.extension_point)

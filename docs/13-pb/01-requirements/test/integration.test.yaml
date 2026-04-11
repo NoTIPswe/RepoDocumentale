@@ -19,14 +19,6 @@ tests:
     requirements:
       - invio_dati_crittografati_cloud
     status: not_implemented
-  - id: t_intra_bidirectional_control_flow
-    service: -Placeholder
-    description:
-      "Verificare il flusso di controllo bidirezionale: invio e corretta applicazione dei comandi
-      di configurazione dal Cloud al Simulatore"
-    requirements:
-      - impostazione_configurazione_gateway
-    status: not_implemented
   - id: t_intra_buffer_network_recovery
     service: -Placeholder
     description:
@@ -95,7 +87,7 @@ tests:
       Offline, aggiornamento di stato successivo
     requirements:
       - invio_dati_crittografati_cloud
-      - alert_gateway_irraggiungibile
+
     status: passed
   - id: t_intra_telemetry_rule_zero
     service: Data Consumer
@@ -113,9 +105,7 @@ tests:
       Verificare la corretta estrazione di tenantID e gatewayID dal subject NATS; i subject
       invalidi vengono "terminati"; lo stop è pulito sulla cancellazione del context
     requirements:
-      - alert_gateway_irraggiungibile
       - sicurezza_segregazione_tenant
-      - decommission_gateway
     status: passed
   - id: t_intra_alert_publication
     service: Data Consumer
@@ -123,7 +113,6 @@ tests:
       Verificare la pubblicazione degli alert sul subject NATS corretto con payload atteso e
       l’isolamento multi-tenant degli alert
     requirements:
-      - alert_gateway_irraggiungibile
       - sicurezza_segregazione_tenant
     status: passed
   - id: t_intra_timescaledb_write
@@ -142,7 +131,6 @@ tests:
       Verificare le operazioni Request-Reply reali su NATS; fetch della configurazione alert,
       aggiornamento stato gateway, query del lifecycle e gestione del timeout senza responder
     requirements:
-      - alert_gateway_irraggiungibile
       - modifica_intervallo_alert_gateway
       - qualita_resilienza_servizi
     status: passed
@@ -153,7 +141,7 @@ tests:
       la metrica di errore venga incrementata su timeout
     requirements:
       - modifica_stato_gateway
-      - alert_gateway_irraggiungibile
+
       - qualita_resilienza_servizi
     status: passed
   - id: t_intra_heartbeat_tracker_cycle
@@ -163,10 +151,8 @@ tests:
       il timeout genera alert Offline, la recovery riporta Online; gestione del grace period, del decommission
       e del lifecycle Paused
     requirements:
-      - alert_gateway_irraggiungibile
       - invio_dati_crittografati_cloud
       - modifica_stato_gateway
-      - decommission_gateway
     status: passed
   - id: t_intra_cache_refresh_fallback
     service: Data Consumer
@@ -175,7 +161,7 @@ tests:
       al default di sistema con incremento della metrica di errore in caso di fetch fallito
     requirements:
       - modifica_intervallo_alert_gateway
-      - alert_gateway_irraggiungibile
+
       - qualita_resilienza_servizi
     status: passed
   - id: t_intra_prometheus_metrics_endpoint
@@ -232,13 +218,6 @@ tests:
       - creazione_deploy_gateway_simulato
       - sicurezza_cifratura_dati
       - qualita_test_sincronizzazione_cloud
-    status: passed
-
-  - id: t_intra_gateway_stop_blocks_telemetry
-    service: Simulator Backend
-    description: Verificare che l'operazione di arresto blocchi immediatamente la pubblicazione della telemetria
-    requirements:
-      - impostazione_configurazione_gateway
     status: passed
 
   - id: t_intra_gateway_deletion_persistence
@@ -310,9 +289,9 @@ tests:
     service: Provisioning service
     description: Verificare il flusso end-to-end del provisioning con onboarding completato, certificato generato e chiave AES restituita
     requirements:
-    - onboarding_gateway
-    - sicurezza_cifratura_dati
-    - instaurazione_connessione_sicura
+      - onboarding_gateway
+      - sicurezza_cifratura_dati
+      - instaurazione_connessione_sicura
     status: passed
 
   - id: t_intra_cli_command_tree
@@ -351,14 +330,6 @@ tests:
     requirements:
       - creazione_gateway_multipli_default
       - err_deploy_gateway_simulato
-    status: passed
-
-  - id: t_intra_cli_gateway_lifecycle
-    service: Simulator CLI
-    description: Verificare i comandi gateways start e gateways stop contro un server mock; risposta 200 e propagazione dell'errore server
-    requirements:
-      - impostazione_configurazione_gateway
-      - impostazione_stato_sospensione
     status: passed
 
   - id: t_intra_cli_gateway_delete
@@ -424,7 +395,7 @@ tests:
   - id: t_intra_cli_display_helpers
     service: Simulator CLI
     description: Verificare i formatter di output della CLI; varianti di stile stato gateway, mapping UUID gateway, tabelle vuote senza output e comando help eseguibile
-    requirements: 
+    requirements:
       - visualizzazione_lista_gateway_simulati
       - visualizzazione_singolo_gateway_simulato
       - visualizzazione_lista_sensori_gateway_simulato
@@ -434,14 +405,14 @@ tests:
     service: Provisioning service
     description: Verificare l’integrazione tramite dependency injection tra ProvisioningService e adapter NATS nel flusso di onboarding
     requirements:
-    - onboarding_gateway
+      - onboarding_gateway
     status: passed
   - id: t_intra_provisioning_http_error_mapping
     service: Provisioning service
     description: Verificare il mapping HTTP end-to-end degli errori di onboarding (credenziali factory invalide e CSR malformato)
     requirements:
-    - err_auth_gateway_fabbrica
-    - err_dati_autenticazione_invalidi
+      - err_auth_gateway_fabbrica
+      - err_dati_autenticazione_invalidi
     status: passed
 
   - id: t_query_data_for_visualization
