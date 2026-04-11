@@ -218,6 +218,9 @@ accepted_words:
   - paginata
   - paginato
   - rimappatura
+  - riallocare
+  - riallocato
+  - riallocazioni
   - deduplicare
   - deduplicazione
   - mockato
@@ -326,6 +329,9 @@ accepted_words:
   - renderer
   - EOF
   - ciphertext
+  - AOP
+  - GitOps
+  - middleware
 
   # --- Terminologia Standard Progetto ---
   - req
@@ -534,6 +540,8 @@ accepted_words:
   - DisconnectRequest
   - OutlierRequest
   - cmd
+  - committare
+  - committata
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
@@ -632,3 +640,4 @@ accepted_words:
   - impersonabile
   - configurativa
   - popolabili
+  - retrocompatibilità
