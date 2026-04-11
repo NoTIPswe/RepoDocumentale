@@ -157,7 +157,7 @@ le funzionalità qualora errori o cambiamenti lo rendano necessario.
 #pagebreak()
 
 
-= Metriche e standard per la Qualità <standard-qualità>
+= Metriche e standard per la qualità <standard-qualità>
 Le metriche e standard per la qualità fanno riferimento allo standard ISO/IEC 12207:1995. Attraverso un’operazione di
 tailoring, il team ha selezionato gli standard della qualità pertinenti al contesto del progetto, classificandoli in tre
 macro-categorie:
@@ -165,15 +165,15 @@ macro-categorie:
 2. Standard di Prodotto;
 3. Standard di Documentazione.
 
-== Standard del Processo
+== Standard del processo
 Il gruppo adotta le norme dettate dallo standard ISO/IEC 12207:1995, ed in particolare la quality_assurance definita nel
 medesimo standard. In particolare il gruppo si impegna a rispettare:
 
-=== Pianificazione dell'Assicurazione Qualità
+=== Pianificazione dell'assicurazione qualità
 Ogni attività di verifica deve essere definita nel documeto Piano di Qualifica, il quale specifica lo standard , le
 procedure e gli strumenti da utilizzare.
 
-=== Indipendenza e Autorità
+=== Indipendenza e autorità
 Per garantire imparzialità nella verifica, chi svolge il ruolo di Verificatore deve essere libero di poter segnalare
 ogni tipo di anomalia senza subire conseguenze o influenza da altri membri del gruppo, per garantira imparzialità da
 esso. La persona che svolge l'attività di Verificatore per un determinato prodotto non può essere l'Autore dello stesso.
@@ -186,9 +186,9 @@ ai piani ed ai requisiti prima della consegna.
 Il gruppo si impegna ad assicurare che i processi di fornitura, sviluppo e supporto siano conformi alle norme stabilite
 in questo documento.
 
-== Standard di Prodotto
+== Standard di prodotto
 
-=== Idoneità Funzionale
+=== Idoneità funzionale
 Capacità del prodotto di rispettare e soddisfare le funzioni richieste.
 
 === Affidabilità
@@ -197,7 +197,7 @@ Capacità di mantenere le prestazioni.
 === Manutenibilità
 Facilità con cui il software può essere modificato.
 
-== Standard di Documentazione
+== Standard di documentazione
 
 === Standard per il formato data-ora
 Lo standard di rappresentazione della data e ora è definito nello standard *ISO 8601* con il formato AAAA-MM-GG.
@@ -208,8 +208,8 @@ fissato a 60.
 
 #pagebreak()
 
-= Metriche di Qualità del Processo <qualità-processo>
-== Processi Primari
+= Metriche di qualità del processo <qualità-processo>
+== Processi primari
 
 === Fornitura
 ==== MP01 - Earned Value
@@ -308,7 +308,7 @@ $
   text("RSI") = frac(text("Requisiti modificati"), text("Requisiti totali"))
 $
 
-== Processi di Supporto
+== Processi di supporto
 === Documentazione
 ==== MP11 - Indice di Gulpease
 *Descrizione*: Valuta la leggibilità della documentazione tecnica.
@@ -367,7 +367,7 @@ $
   text("Defect Discovery Rate") = frac(text("Difetti scoperti"), text("Tempo di verifica")) times 100
 $
 
-=== Gestione della Configurazione
+=== Gestione della configurazione
 ==== MP17 - Commit Message Quality Score
 *Descrizione*: Valuta la qualità dei messaggi di commit in base a criteri predefiniti.
 
@@ -376,7 +376,7 @@ $
   text("Commit Message Quality Score") = frac(text("Commit con messaggi conformi"), text("Commit totali")) times 100
 $
 
-=== Gestione della Qualità
+=== Gestione della qualità
 ==== MP18 - Quality Metrics Satisfied
 *Descrizione*: Misura la percentuale di metriche di qualità soddisfatte rispetto al totale delle metriche definite.
 
@@ -395,8 +395,8 @@ $
   text("Quality Gate Pass Rate") = frac(text("Gate di qualità superati"), text("Gate di qualità totali")) times 100
 $
 
-== Processi Organizzativi
-=== Gestione dei Processi
+== Processi organizzativi
+=== Gestione dei processi
 ==== MP20 - Time Efficiency
 *Descrizione*: Misura l'efficienza produttiva delle ore.
 
@@ -436,7 +436,7 @@ $
 
 #pagebreak()
 
-= Metriche di Qualità del Prodotto <qualità-prodotto>
+= Metriche di qualità del prodotto <qualità-prodotto>
 == Funzionalità
 === MQ01 - Requisiti Obbligatori Soddisfatti
 *Descrizione*: Misura la percentuale di requisiti obbligatori soddisfatti rispetto al totale dei requisiti obbligatori

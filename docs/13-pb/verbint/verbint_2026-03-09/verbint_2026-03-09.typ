@@ -36,7 +36,7 @@
 ][
 
   #base-report.report-point(
-    discussion_point: [Suddivisione microservizi e comunicazione interna/esterna.],
+    discussion_point: [Suddivisione microservizi e comunicazione interna/esterna],
     discussion: [
 
       - *Accoppiamento e Granularità:* La comunicazione sincrona genera forti dipendenze (disponibilità simultanea,
@@ -73,7 +73,7 @@
   )
 
   #base-report.report-point(
-    discussion_point: [Strategia di separazione delle repository.],
+    discussion_point: [Strategia di separazione delle repository],
     discussion: [
       Il Prof. Cardin sconsiglia nettamente l'uso di monorepo, ritenendole raramente giustificate. Con un'architettura a
       microservizi la scelta consigliata è *una repository per microservizio*, così da permettere a sotto-gruppi del
@@ -91,7 +91,7 @@
   )
 
   #base-report.report-point(
-    discussion_point: [Approccio alla documentazione architetturale per la PB.],
+    discussion_point: [Approccio alla documentazione architetturale per la PB],
     discussion: [
       Per la Product Baseline è fondamentale descrivere le *scelte architetturali*, non i dettagli implementativi.
       Vengono valutate le relazioni fra le componenti, le motivazioni, la correttezza e i trade-off (sincrono vs
@@ -111,7 +111,7 @@
   )
 
   #base-report.report-point(
-    discussion_point: [Struttura del Manuale Utente.],
+    discussion_point: [Struttura del manuale utente],
     discussion: [
       Servono *documenti distinti per tipologia di utente*: ad esempio, un utente frontend non necessita della
       documentazione API. La specifica OpenAPI è un artefatto utile, ben gestibile anche da strumenti automatici e LLM,

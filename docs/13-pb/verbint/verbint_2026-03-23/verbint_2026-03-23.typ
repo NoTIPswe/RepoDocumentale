@@ -117,7 +117,7 @@
   )
 
   #base-report.report-point(
-    discussion_point: [Assegnazione task ai membri del team.],
+    discussion_point: [Assegnazione task ai membri del team],
     discussion: [
       Il gruppo ha proceduto alla distribuzione puntuale dei task tra i membri, tenendo conto delle competenze, dei
       ruoli assegnati e delle priorità dello sprint. Sono stati definiti task di sviluppo, progettazione, verifica e
@@ -140,4 +140,3 @@
   completamento dello sviluppo dei singoli servizi entro la fine della settimana, così da avviare le attività di
   integrazione a partire da lunedì, parallelamente all'avanzamento dei documenti tecnici.
 ]
-

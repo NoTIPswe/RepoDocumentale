@@ -177,7 +177,7 @@
 
   == Attività fissate per la Requirements and Technology Baseline (RTB)
 
-  === Redazione Analisi dei Requisiti (AdR)
+  === Redazione analisi dei requisiti (AdR)
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -199,7 +199,7 @@
     ],
     table.cell(colspan: 2, align: center)[*Completato per RTB*],
   )
-  === Redazione Norme di Progetto (NdP)
+  === Redazione norme di progetto (NdP)
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -223,7 +223,7 @@
   )
 
 
-  === Redazione Piano di Progetto (PdP)
+  === Redazione piano di progetto (PdP)
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -249,7 +249,7 @@
   )
 
 
-  === Redazione Piano di Qualifica (PdQ)
+  === Redazione piano di qualifica (PdQ)
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -275,7 +275,7 @@
   )
 
 
-  === Redazione Glossario
+  === Redazione glossario
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -291,7 +291,7 @@
     table.cell(colspan: 2, align: center)[*Completato per RTB*],
   )
 
-  === Realizzazione del Proof of Concept
+  === Realizzazione del proof of concept
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -340,7 +340,7 @@
     ),
   )<tab:Correzione-RTB>
 
-  === Redazione Manuale Test
+  === Redazione manuale test
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -359,7 +359,7 @@
     table.cell(colspan: 2, align: center)[*Non completato*],
   )
 
-  === Redazione Manuale Utente
+  === Redazione manuale utente
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -871,7 +871,7 @@
   dell'Analisi dei Requisiti al fine di assicurarsi la piena completezza del documento per la revisione RTB. Inoltre, si
   porterà avanti il Piano di Qualifica, aggiungendo una sezione dedicata ai test, le Norme di Progetto e il Piano di
   Progetto, completando e aggiungendo la sezione dedicata allo Sprint 4 e 5.
-  ==== Ore Previste
+  ==== Ore previste
   #figure(
     numbering: "1",
     caption: [Sprint 5 - Ore previste per componente],

@@ -1,5 +1,12 @@
-title: Piano di Qualifica
+title: Piano di qualifica
 changelog:
+  - version: "1.8.0"
+    date: "2026-04-10"
+    authors:
+      - Francesco Marcon
+    verifier: Matteo Mantoan
+    description: >
+      Aggiornamento test unità e integrazione per il servizio data-consumer e aggiunta test unità per il servizio di Simulator CLI
   - version: "1.7.0"
     date: "2026-04-10"
     authors:
@@ -29,13 +36,20 @@ changelog:
     verifier: Francesco Marcon
     description: >
       Aggiunta test unità e integrazione per Provisioning service
-  - version: "1.3.1"
-    date: "2026-04-04"
+  - version: "1.3.2"
+    date: "2026-04-08"
     authors:
       - Mario De Pasquale
     verifier: Matteo Mantoan
     description: >
       Allineamento id tra il codice e il documento
+  - version: "1.3.1"
+    date: "2026-04-07"
+    authors:
+      - Matteo Mantoan
+    verifier: Francesco Marcon
+    description: >
+      Uniformazione titoli e intestazioni: solo prima lettera maiuscola
   - version: "1.3.0"
     date: "2026-03-31"
     authors:

@@ -21,9 +21,9 @@
   Per l'esatta struttura dei payload e i contratti delle interfacce, il codice sorgente costituisce la Single Source of
   Truth.
 
-  = Dipendenze e Configurazione
+  = Dipendenze e configurazione
 
-  == Variabili d'Ambiente
+  == Variabili d'ambiente
 
   Tutte le variabili sono caricate all'avvio da `internal/config`. La mancanza di una variabile obbligatoria causa un
   crash immediato. Il caricatore utilizza un pattern di accumulo dell'errore: la prima lettura fallita invalida tutte le
@@ -67,7 +67,7 @@
   `postgres://user:pass@host:port/dbname?sslmode=<DBSSLMode>`. Quando `DBSSLMode` è `verify-ca` o `verify-full` e
   `DBSSLRootCert` è non vuoto, aggiunge anche il parametro `sslrootcert=<DBSSLRootCert>` alla query string.
 
-  == Sequenza di Avvio
+  == Sequenza di avvio
 
   I passi bloccanti interrompono il processo in caso di fallimento. Il processo definisce tre costanti compile-time:
   `natsRRTimeout = 5s`, `telemetryBatchSize = 100`, `telemetryFlushInterval = 500ms`.
@@ -135,20 +135,20 @@
 
   #pagebreak()
 
-  = Architettura Logica
+  = Architettura logica
 
   #align(center)[
     #image("./assets/data-consumer.png", width: 100%)
   ]
 
-  == Pattern Architetturale: Architettura Esagonale
+  == Pattern architetturale: architettura esagonale
 
   Il servizio adotta l'*architettura esagonale* (Ports & Adapters). La logica di dominio, contenuta interamente in
   `HeartbeatTracker`, dipende esclusivamente da interfacce (_port_) e mai da implementazioni concrete.
 
   Il "composition root" in `cmd/consumer/main.go` istanzia l'intero grafo di dipendenze tramite constructor injection.
 
-  == Layout dei Package
+  == Layout dei package
 
   ```text
   notip-data-consumer/
@@ -171,7 +171,7 @@
   └── migrations/             SQL migrations TimescaleDB
   ```
 
-  == Strati Architetturali
+  == Strati architetturali
 
   #table(
     columns: (1.5fr, 2fr, 2.5fr),
@@ -192,9 +192,9 @@
       clock di sistema.],
   )
 
-  = Definizione dei Port
+  = Definizione dei port
 
-  == Driven Port
+  == Driven port
 
   Interfacce invocate dagli adapter (o dal dominio), implementate dagli adapter verso risorse esterne.
 
@@ -261,7 +261,7 @@
     ),
   )
 
-  == Driving Port
+  == Driving port
 
   Interfacce implementate dal dominio, invocate dagli adapter per immettere eventi nel sistema.
 
@@ -300,9 +300,9 @@
 
   #pagebreak()
 
-  = Design di Dettaglio
+  = Design di dettaglio
 
-  == Value Object del Dominio (`internal/domain/model`)
+  == Value object del dominio (`internal/domain/model`)
 
   Tutti i tipi sono data struct, senza logica e senza importazioni infrastrutturali.
 
@@ -362,7 +362,7 @@
       `GatewayID string` (`gateway_id`), `State GatewayLifecycleState` (`state`).],
   )
 
-  === Tipi Interni al Package `service`
+  === Tipi interni al package `service`
 
   #table(
     columns: (1.5fr, 4fr),
@@ -386,7 +386,7 @@
   `HeartbeatTicker`. Gli status update sono inviati in modo asincrono tramite un canale a capacità limitata processato
   da una goroutine worker dedicata, mantenendo `Tick` e `HandleTelemetry` non-bloccanti.
 
-  === Interfaccia Metrica Ristretta
+  === Interfaccia metrica ristretta
 
   `HeartbeatTrackerMetrics` — sottoinsieme delle metriche emesse dal tracker:
 
@@ -451,7 +451,7 @@
   Inizializza la mappa heartbeat vuota, crea il canale di dispatch con capacità `cfg.StatusUpdateBufSize` e avvia la
   goroutine `dispatchWorker`.
 
-  === Metodi Pubblici
+  === Metodi pubblici
 
   #table(
     columns: (1.5fr, 2.5fr, 1.5fr),
@@ -496,7 +496,7 @@
   Chiude `dispatchCh` (idempotente via `sync.Once`). Attende che `dispatchWorker` termini di drenare la coda e chiuda
   `done`.
 
-  === Metodi Privati
+  === Metodi privati
 
   #table(
     columns: (1.6fr, 3.5fr),
@@ -509,7 +509,7 @@
       terminazione.],
   )
 
-  == Adapter Driven (`internal/adapter/driven`)
+  == Adapter driven (`internal/adapter/driven`)
 
   Ogni adapter definisce un'interfaccia metrica ristretta con i soli metodi che effettivamente emette. La struct
   `Metrics` soddisfa tutte queste interfacce.
@@ -784,7 +784,7 @@
     [`(ctx context.Context, tenantID string, gatewayID string) (GatewayLifecycleState, error)`],
   )
 
-  == Adapter Driving (`internal/adapter/driving`)
+  == Adapter driving (`internal/adapter/driving`)
 
   `NATSTelemetryConsumer` e `NATSDecommissionConsumer` dipendono dall'interfaccia condivisa `natsJSSubscriber`.
   L'interfaccia `drainableSubscription` astrae `*nats.Subscription` per disaccoppiare i test dal tipo concreto NATS e
@@ -1001,7 +1001,7 @@
   `SetDispatchQueueLength(v float64)`, `IncAlertCacheRefreshErrors`, `SetAlertCacheLastSuccess(ts float64)`,
   `IncNATSReconnects`, `IncLifecycleQueryErrors()`.
 
-  == Decisioni Implementative
+  == Decisioni implementative
 
   #st.design-rationale(title: "Tick a tre fasi con re-validazione")[
     Il ciclo di heartbeat opera in tre fasi distinte:
@@ -1067,7 +1067,7 @@
 
   #pagebreak()
 
-  = Schema Database
+  = Schema database
 
   ```sql
   CREATE TABLE IF NOT EXISTS telemetry (
@@ -1095,12 +1095,12 @@
 
   #pagebreak()
 
-  = Metodologie di Testing
+  = Metodologie di testing
 
   Il race detector Go (`-race`) viene eseguito in job dedicati quando esplicitamente previsto dalla pipeline CI; non
   costituisce un requisito implicito di tutte le esecuzioni di test (unità e integrazione).
 
-  == Test di Unità
+  == Test di unità
 
   Le dipendenze sono sostituite da mock o stub iniettati tramite constructor. Il clock è sempre un `FakeClock`
   controllato per rendere i test deterministici.
@@ -1221,7 +1221,7 @@
     [`handleMsg` — subject malformato], [`HandleDecommission` non invocato; messaggio Term()'d],
   )
 
-  == Test di Integrazione
+  == Test di integrazione
 
   I test di integrazione avviano infrastruttura reale tramite Testcontainers-go: NATS JetStream con mTLS (certificati
   effimeri generati a runtime) e TimescaleDB. I test Prometheus non richiedono container: usano `httptest.NewServer` con

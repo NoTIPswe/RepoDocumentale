@@ -35,7 +35,7 @@
 ][
 
   #base-report.report-point(
-    discussion_point: [Definizione task e regole per il tracciamento delle ore su Jira.],
+    discussion_point: [Definizione task e regole per il tracciamento delle ore su Jira],
     discussion: [
       È stato presentato un nuovo set di task. È emersa la necessità di tracciare con più precisione il tempo per le ore
       di "palestra formativa". Al momento manca una pianificazione con ore certe, a causa della necessità di fare
@@ -55,7 +55,7 @@
   )
 
   #base-report.report-point(
-    discussion_point: [Organizzazione Palestra di Progettazione.],
+    discussion_point: [Organizzazione palestra di progettazione],
     discussion: [
       Al fine di migliorare le competenze tecniche del team, è stata organizzata una sessione dedicata alla "palestra di
       progettazione". L'approccio prevede prima uno studio individuale con generazione di idee. Segue poi un confronto
@@ -77,7 +77,7 @@
   )
 
   #base-report.report-point(
-    discussion_point: [Chiarimenti sui ruoli e nuova assegnazione.],
+    discussion_point: [Chiarimenti sui ruoli e nuova assegnazione],
     discussion: [
       Durante la riunione è emerso un dubbio sulle mansioni del Verificatore nel processo di sviluppo. Dopo aver
       chiarito il dubbio, il gruppo ha deciso di assegnare i ruoli in modo più dinamico rispetto ai precedenti Sprint.
@@ -96,7 +96,7 @@
   )
 
   #base-report.report-point(
-    discussion_point: [Pianificazione risoluzione criticità AdR, PdQ e NdP.],
+    discussion_point: [Pianificazione risoluzione criticità AdR, PdQ e NdP],
     discussion: [
       È stata discussa la necessità di risolvere i problemi emersi dal responso del Prof. Cardin, relativi ad AdR e PdQ.
       In parallelo, sarà urgente aggiornare le Norme di Progetto per adattarle alla nuova struttura tra "norme e
