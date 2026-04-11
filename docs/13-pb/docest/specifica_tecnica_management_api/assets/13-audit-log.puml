@@ -1,0 +1,193 @@
+@startuml
+title Audit-Log Module - Class Diagram
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 10
+skinparam defaultFontColor #000000
+skinparam class {
+  BackgroundColor #E8F4FD
+  BorderColor #2196F3
+  ArrowColor #1976D2
+}
+skinparam interface {
+  BackgroundColor #E8F4FD
+  BorderColor #2196F3
+}
+skinparam nodesep 10
+skinparam ranksep 10
+skinparam linetype ortho
+skinparam packageStyle rectangle
+
+package "audit-log" <<Rectangle>> {
+  class "AuditLogController" as AuditLogController {
+    -als: AuditLogService
+    +getAuditLogs(tenantId, from, to, userId?, action?, req): AuditLogResponseDto[]
+  }
+
+  class "AuditLogService" as AuditLogService {
+    -alps: AuditLogPersistenceService
+    +getAuditLogs(input): AuditLogModel[]
+    +logAuditEvent({userId, action, resource, details, tenantId}): void
+  }
+
+  class "AuditLogPersistenceService" as AuditLogPersistenceService {
+    -r: Repository<AuditLogEntity>
+    +getAuditLogs(input): AuditLogEntity[]
+    +saveAuditLog(entity): void
+    +createAuditLog(data): AuditLogEntity
+  }
+
+  class "ProvisioningAuditConsumer" as ProvisioningAuditConsumer {
+    -jetStreamClient: JetStreamClient
+    -auditLogService: AuditLogService
+    -logger: Logger
+    +onModuleInit(): void
+    -processMessage(message): void
+    -parsePayload(buffer): AuditPayload
+    -resolveTenantId(subject, details): string
+    -extractTenantFromSubject(subject): string
+    -resolveUserId(value): string
+    -parseTimestamp(value): Date
+    -toDetailsObject(value, subject): Record
+    -asNonEmptyString(value): string
+    -isUuid(value): boolean
+  }
+
+  class "AuditLogMapper" as AuditLogMapper {
+    {static} toDto(auditLogModel): AuditLogResponseDto
+    {static} toModel(auditLogEntity): AuditLogModel
+    -resolveUserId(auditLogModel): string
+    -isProvisioningAudit(details): boolean
+  }
+
+  class "AuditLogResponseDto" as AuditLogResponseDto {
+    +id: string
+    +userId: string
+    +action: string
+    +resource: string
+    +details: Record<string, unknown>
+    +timestamp: string
+  }
+
+  class "AuditLogModel" as AuditLogModel {
+    +id: string
+    +userId: string
+    +action: string
+    +resource: string
+    +details: Record<string, unknown>
+    +timestamp: Date
+    +tenantId: string
+  }
+
+  class "AuditLogEntity" as AuditLogEntity {
+    +id: string
+    +tenantId: string
+    +tenant: TenantEntity
+    +userId: string
+    +action: string
+    +resource: string
+    +details: Record<string, unknown>
+    +timestamp: Date
+  }
+
+  class "PROVISIONING_AUDIT_SUBJECT" as ProvisioningSubject {
+    {static} value: 'log.audit.>'
+  }
+
+  class "SYSTEM_USER_ID" as SystemUserId {
+    {static} value: '00000000-0000-0000-0000-000000000000'
+  }
+
+  interface "GetAuditLogsInput" as GetAuditLogsInput {
+    +tenantId: string
+    +from: Date
+    +to: Date
+    +userId?: string
+    +action?: string
+  }
+
+  interface "AuditPayload" as AuditPayload {
+    +userId?: unknown
+    +action?: unknown
+    +resource?: unknown
+    +details?: unknown
+    +timestamp?: unknown
+  }
+
+  class "TenantEntity" as TenantEntity
+  class "JetStreamClient" as JetStreamClient
+
+  AuditLogController --> AuditLogService : uses
+  AuditLogController --> AuditLogMapper : maps to DTO
+  AuditLogController --> AuditLogResponseDto : returns
+
+  AuditLogService --> AuditLogPersistenceService : uses
+  AuditLogService --> AuditLogModel : returns
+  AuditLogService ..> GetAuditLogsInput : receives
+
+  AuditLogPersistenceService --> AuditLogEntity : CRUD
+
+  ProvisioningAuditConsumer --> JetStreamClient : subscribes
+  ProvisioningAuditConsumer --> AuditLogService : logs events
+  ProvisioningAuditConsumer --> ProvisioningSubject : constant
+  ProvisioningAuditConsumer --> SystemUserId : constant
+
+  AuditLogMapper --> AuditLogEntity : from
+  AuditLogMapper --> AuditLogModel : to
+  AuditLogMapper --> AuditLogResponseDto : to
+
+  AuditLogEntity --> TenantEntity : ManyToOne (CASCADE)
+}
+
+note top of AuditLogController
+  @Controller('audit')
+  @TenantScoped()
+  @Roles(TENANT_ADMIN)
+  Endpoint: GET /
+  Required params: tenantId, from, to
+  Optional: userId, action
+
+  Obfuscation: If impersonating
+  and action='UPDATE_GATEWAY',
+  obfuscates name in details
+end note
+
+note top of AuditLogService
+  Service layer with dual purpose:
+  1. Read audit logs (query builder)
+  2. Log audit events (programmatic)
+
+  Used by @Audit() decorator
+  via AuditInterceptor
+end note
+
+note top of AuditLogPersistenceService
+  Data access layer
+  - TypeORM query builder with:
+    * Mandatory: tenantId, from, to
+    * Optional: userId, action
+  - Ordering: timestamp DESC, id DESC
+  - Deterministic ordering for pagination
+end note
+
+note top of ProvisioningAuditConsumer
+  JetStream consumer
+  - Subject: log.audit.>
+  - Listens to provisioning audit events
+  - Extracts tenant ID from subject or details
+  - Falls back to SYSTEM_USER_ID for userId
+  - Validates UUID format
+  - Does NOT ack on error (allows redelivery)
+end note
+
+note top of AuditLogMapper
+  Static mapper utility
+  - Entity -> Model (direct mapping)
+  - Model -> Response DTO
+  - Special handling for provisioning logs:
+    * Detects via details.sourceSubject
+    * Replaces userId with '-'
+  - Converts timestamp to ISO string
+end note
+
+@enduml

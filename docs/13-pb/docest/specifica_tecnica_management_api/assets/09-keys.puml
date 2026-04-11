@@ -1,0 +1,206 @@
+@startuml
+title Keys Module - Class Diagram
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 10
+skinparam defaultFontColor #000000
+skinparam class {
+  BackgroundColor #E8F4FD
+  BorderColor #2196F3
+  ArrowColor #1976D2
+}
+skinparam interface {
+  BackgroundColor #E8F4FD
+  BorderColor #2196F3
+}
+skinparam nodesep 10
+skinparam ranksep 10
+skinparam linetype ortho
+skinparam packageStyle rectangle
+
+package "keys" <<Rectangle>> {
+  class "KeysController" as KeysController {
+    -ks: KeysService
+    +getKeys(tenantId, id): KeysResponseDto[]
+  }
+
+  class "ProvisioningController" as ProvisioningController {
+    -ks: KeysService
+    +validate(dto): ValidateFactoryKeyResponseDto
+    +complete(dto): ProvisioningCompleteResponseDto
+  }
+
+  class "KeysService" as KeysService {
+    -gkp: GatewaysKeysPersistenceService
+    -gs: GatewaysService
+    -dataSource: DataSource
+    +getKeys(id, tenantId?): KeyModel[]
+    +saveKeys(id, keyMaterial, keyVersion): KeyModel
+    +validateFactoryKey(factoryId, factoryKey): {gatewayId, tenantId}
+    +completeProvisioning(gatewayId, keyMaterial, keyVersion, sendFrequencyMs, firmwareVersion?): void
+    +provisionGateway(factoryId, factoryKey, keyMaterial, firmwareVersion, model): void
+  }
+
+  class "GatewaysKeysPersistenceService" as GatewaysKeysPersistenceService {
+    -r: Repository<KeyEntity>
+    +getKeys(id): KeyEntity[]
+    +saveKeys(id, keyMaterial, keyVersion): KeyEntity
+  }
+
+  class "ProvisioningNatsResponderService" as ProvisioningNatsResponderService {
+    -keysService: KeysService
+    -logger: Logger
+    -codec: JSONCodec
+    -connection: NatsConnection
+    -subscriptions: Subscription[]
+    +onModuleInit(): void
+    +onModuleDestroy(): void
+    -startResponder(subject, handler): void
+    -handleValidate(msg): ValidateFactoryResponse
+    -handleComplete(msg): CompleteProvisioningResponse
+    -decodeRecord(msg): Record
+    -internalErrorResponse(subject): unknown
+    -resolveServers(): string[]
+    -buildConnectionOptions(servers): ConnectionOptions
+    -applyTlsOptions(options): boolean
+    -closeConnection(): void
+  }
+
+  class "KeyMapper" as KeyMapper {
+    {static} toKeyModels(keys[]): KeyModel[]
+    {static} toDto(model): KeysResponseDto
+  }
+
+  class "KeysResponseDto" as KeysResponseDto {
+    +gatewayId: string
+    +keyMaterial: string
+    +keyVersion: number
+  }
+
+  class "ValidateFactoryKeyRequestDto" as ValidateFactoryKeyRequestDto {
+    +factory_id: string
+    +factory_key: string
+  }
+
+  class "ValidateFactoryKeyResponseDto" as ValidateFactoryKeyResponseDto {
+    +gateway_id: string
+    +tenant_id: string
+  }
+
+  class "ProvisioningCompleteRequestDto" as ProvisioningCompleteRequestDto {
+    +gateway_id: string
+    +key_material: string
+    +key_version: number
+    +send_frequency_ms: number
+    +firmware_version?: string
+  }
+
+  class "ProvisioningCompleteResponseDto" as ProvisioningCompleteResponseDto {
+    +success: boolean
+  }
+
+  class "KeyModel" as KeyModel {
+    +id: string
+    +gatewayId: string
+    +keyMaterial: Buffer
+    +keyVersion: number
+    +createdAt: Date
+    +revokedAt: Date
+  }
+
+  class "KeyEntity" as KeyEntity {
+    +id: string
+    +gatewayId: string
+    +gateway: GatewayEntity
+    +keyMaterial: Buffer
+    +keyVersion: number
+    +createdAt: Date
+    +revokedAt: Date
+  }
+
+  class "Encryption Module" as EncryptionModule {
+    {static} ENCRYPTION_PREFIX: Buffer
+    {static} IV_LENGTH: 12
+    {static} AUTH_TAG_LENGTH: 16
+    {static} AES_256_KEY_LENGTH: 32
+    {static} encryptKeyMaterial(value): Buffer
+    {static} decryptKeyMaterial(value): Buffer
+    {static} keyMaterialTransformer: ValueTransformer
+    -normalizeKey(rawKey): Buffer
+    -getEncryptionKey(): Buffer
+  }
+
+  class "GatewayEntity" as GatewayEntity
+  class "GatewaysService" as GatewaysService
+  class "DataSource" as DataSource
+
+  KeysController --> KeysService : uses
+  KeysController --> KeyMapper : maps to DTO
+  KeysController --> KeysResponseDto : returns
+
+  ProvisioningController --> KeysService : uses
+  ProvisioningController --> ValidateFactoryKeyResponseDto : returns
+  ProvisioningController --> ProvisioningCompleteResponseDto : returns
+
+  KeysService --> GatewaysKeysPersistenceService : uses
+  KeysService --> GatewaysService : validates gateway
+  KeysService --> DataSource : transactions
+  KeysService --> KeyModel : returns
+
+  GatewaysKeysPersistenceService --> KeyEntity : CRUD
+
+  ProvisioningNatsResponderService --> KeysService : calls methods
+
+  KeyMapper --> KeyEntity : from
+  KeyMapper --> KeyModel : to
+  KeyMapper --> KeysResponseDto : to
+
+  KeyEntity --> GatewayEntity : ManyToOne (CASCADE)
+  KeyEntity ..> keyMaterialTransformer : uses on write/read
+  keyMaterialTransformer --> EncryptionModule : encrypt/decrypt
+}
+
+note top of KeysController
+  @Controller('keys')
+  @TenantScoped()
+  @BlockImpersonation()
+  Endpoint: GET /
+end note
+
+note top of ProvisioningController
+  @Controller('internal/provisioning')
+  @Public()
+  Endpoints:
+  - POST /validate (factory key)
+  - POST /complete (provisioning)
+end note
+
+note top of KeysService
+  Business logic layer
+  - Gateway key management
+  - Factory key validation (bcrypt)
+  - Provisioning with transactions:
+    1. Creates KeyEntity
+    2. Upserts GatewayMetadataEntity
+    3. Updates GatewayEntity
+    4. Clears factoryKeyHash
+end note
+
+note top of ProvisioningNatsResponderService
+  Direct NATS responder
+  - Subjects:
+    * internal.mgmt.factory.validate
+    * internal.mgmt.provisioning.complete
+  - Full TLS/mTLS support
+  - Maps exceptions to protocol errors
+end note
+
+note top of EncryptionModule
+  AES-256-GCM encryption
+  - Key from DB_ENCRYPTION_KEY env
+  - Supports hex, base64, raw 32-byte keys
+  - Format: prefix(7) + IV(12) + tag(16) + data
+  - Backward compatible with unencrypted data
+end note
+
+@enduml
