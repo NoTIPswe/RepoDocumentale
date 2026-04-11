@@ -17,44 +17,6 @@ requirements:
     non andato a buon fine
   sources:
   - uc: err_cred_errate
-- id: setup_totp
-  priority: desirable
-  description: Il Sistema deve permettere all'utente non autenticato di effettuare la configurazione iniziale
-    del TOTP in modo da garantire il login 2FA
-  sources:
-  - uc: setup_totp
-- id: login_2fa
-  priority: desirable
-  description: Il Sistema deve permettere all'utente non autenticato di effettuare il login 2FA
-  sources:
-  - uc: login_2fa
-- id: ins_otp
-  priority: desirable
-  description: Il Sistema deve permettere all'utente di inserire il codice numerico nel Sistema
-  sources:
-  - uc: ins_otp
-- id: err_otp_errato
-  priority: desirable
-  description: Il Sistema deve notificare l'utente non autenticato in seguito ad un inserimento errato
-    del codice OTP nel Sistema
-  sources:
-  - uc: err_otp_errato
-- id: recupero_password
-  priority: mandatory
-  description: Il Sistema deve permettere all'utente di recuperare la password persa/dimenticata
-  sources:
-  - uc: recupero_password
-- id: cambio_password_req
-  priority: mandatory
-  description: Il Sistema deve permettere all'utente di cambiare la password nel Sistema
-  sources:
-  - uc: cambio_password
-- id: err_account_inesistente
-  priority: mandatory
-  description: Il Sistema deve notificare all'utente non autenticato di aver inserito un'email non associata
-    ad un account nel Sistema
-  sources:
-  - uc: err_account_inesistente
 - id: impostazione_password
   priority: mandatory
   description: Il Sistema, durante la procedura di cambio password, deve permettere all'utente non autenticato
@@ -152,6 +114,12 @@ requirements:
   description: Il Sistema deve permettere al Tenant User di visualizzare lo Stream di dati su grafici
   sources:
   - uc: visualizzazione_grafico_dati_stream
+- id: visualizzazione_dati_fuori_range
+  priority: mandatory
+  description: Il Sistema deve permettere al Tenant User di visualizzare i dati fuori range evidenziandoli
+    in modo chiaro
+  sources:
+  - uc: visualizzazione_dati_fuori_range
 - id: filtraggio_gateway
   priority: mandatory
   description: Il Sistema deve permettere al Tenant User di filtrare i dati per soli Gateway
@@ -186,16 +154,6 @@ requirements:
   description: Il Sistema deve notificare il Tenant User dell'irraggiungibilità di un gateway
   sources:
   - uc: alert_gateway_irraggiungibile
-- id: alert_sensore_fuori_range
-  priority: mandatory
-  description: Il Sistema deve notificare il Tenant User delle irregolarità presenti nelle misurazioni
-    di un sensore. In particolare deve permettere di visualizzare il valore del dato registrato, il range
-    accettato e il timestamp di registrazione del dato irregolare del sensore in questione
-  sources:
-  - uc: alert_sensore_fuori_range
-  - uc: visualizzazione_valore_dato_registrato
-  - uc: visualizzazione_range_accettato
-  - uc: visualizzazione_timestamp_dato_irregolare
 - id: visualizzazione_storico_alert
   priority: mandatory
   description: Il Sistema deve permettere al Tenant User di visualizzare la lista degli alert registrati
@@ -222,18 +180,6 @@ requirements:
     non raggiungibile
   sources:
   - uc: visualizzazione_dettagli_alert_gateway_irraggiungibile
-- id: visualizzazione_dettagli_alert_sensore_fuori_range
-  priority: mandatory
-  description: Il Sistema deve permettere al Tenant User di visualizzare i dettagli di un sensore fuori
-    range
-  sources:
-  - uc: visualizzazione_dettagli_alert_sensore_fuori_range
-- id: modifica_impostazioni_notifica_alert_email
-  priority: desirable
-  description: Il Sistema deve permettere al Tenant User di attivare/disattivare la ricezione di alert
-    via email
-  sources:
-  - uc: modifica_impostazioni_notifica_alert_email
 - id: modifica_impostazioni_notifica_alert_dashboard
   priority: desirable
   description: Il Sistema deve permettere al Tenant User di attivare/disattivare la ricezione di alert
@@ -425,12 +371,6 @@ requirements:
     API di un Tenant
   sources:
   - uc: selezione_credenziali_api
-- id: modifica_impostazioni_2fa
-  priority: mandatory
-  description: Il Sistema deve permettere al Tenant Admin di modificare le impostazioni del login 2FA
-    di un Tenant
-  sources:
-  - uc: modifica_impostazioni_2fa
 - id: visualizzazione_log_audit_tenant
   priority: mandatory
   description: Il Sistema deve permettere al Tenant Admin e all'Amministratore di Sistema di visualizzare
@@ -695,6 +635,61 @@ requirements:
     mail per autenticarsi
   sources:
   - uc: ins_mail
+- id: decommission_gateway
+  priority: mandatory
+  description: Il Sistema Cloud deve gestire l'evento di decommission di un Gateway cessando il monitoraggio
+    heartbeat e sopprimendo i futuri alert relativi a quel Gateway
+  sources:
+  - text: Interno
+- id: alert_sensore_fuori_range
+  priority: mandatory
+  description:
+    Il Sistema deve permettere di visualizzare in modo evidente quando il valore rilevato da un sensore supera
+    il range di allarme configurato per quel sensore
+  sources:
+  - uc: ricezione_alert_sensore_fuori_range
+- id: sessione_scaduta
+  priority: mandatory
+  description:
+    Il Sistema deve invalidare la sessione corrente alla scadenza del token e
+    reindirizzare automaticamente l'utente alla schermata di login
+  sources:
+  - uc: scadenza_sessione
+- id: blocco_accesso_tenant_sospeso
+  priority: mandatory
+  description:
+    Il Sistema deve impedire il login a qualsiasi utente appartenente a un Tenant
+    che si trova in stato di sospensione, notificando l'utente
+  sources:
+  - uc: err_tenant_sospeso
+- id: ripristino_alert_gateway_raggiungibile
+  priority: mandatory
+  description:
+    Il Sistema deve indicare automaticamente come "Online" i Gateway che tornano a comunicare correttamente con il Cloud
+  sources:
+  - uc: ricezione_risoluzione_alert_gateway
+- id: persistenza_dati_telemetria
+  priority: mandatory
+  description:
+    Il Sistema deve garantire che i dati di telemetria già ricevuti e i log di
+    Audit non vengano persi in seguito al riavvio o al guasto temporaneo di un
+    microservizio Cloud
+  sources:
+  - text: Interno
+- id: endpoint_metriche_prometheus
+  priority: mandatory
+  description:
+    Ogni microservizio Cloud deve esporre un endpoint HTTP compatibile con
+    Prometheus che restituisca metriche operative nel formato standard
+  sources:
+  - text: Interno
+- id: visualizzazione_info_account
+  priority: mandatory
+  description:
+    Il Sistema deve permettere all'utente autenticato di visualizzare le informazioni
+    del proprio account
+  sources:
+  - uc: visualizzazione_profilo_personale
 - id: visualizzazione_lista_gateway_sistema
   priority: mandatory
   description: Il Sistema deve permettere all'Amministratore di Sistema di poter visualizzare la lista

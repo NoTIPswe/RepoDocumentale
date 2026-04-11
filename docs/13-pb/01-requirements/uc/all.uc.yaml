@@ -49,99 +49,6 @@ use_cases:
   - L'Attore viene informato dell'errore
   main_scenario:
   - description: L'Attore viene informato del problema in fase di autenticazione
-- id: setup_totp
-  title: Setup TOTP
-  actors:
-    primary:
-    - non-authd-usr
-  preconditions:
-  - L'Attore esegue il login per la prima volta
-  - L'account appartiene ad un
-  - o ad un tenant in cui la 2FA è abilitata
-  postconditions:
-  - La TOTP per l'account è attiva e verificata
-  main_scenario:
-  - description: L'Attore visualizza il QR-Code e il codice relativi alla TOTP
-  - description: L'Attore genera una TOTP con il suo meccanismo preferito
-  - description: L'Attore conferma la generazione del TOTP inserendo l'OTP
-    include: ins_otp
-  - description: L'Attore viene informato della buona riuscita del setup
-- id: login_2fa
-  title: Login 2FA
-  actors:
-    primary:
-    - non-authd-usr
-  preconditions:
-  - Le credenziali primarie dell’account dell'Attore sono valide
-  - Il Tenant, a cui l'account relativo alle credenziali afferisce, richiede 2FA
-  postconditions:
-  - L'Attore è autenticato e riconosciuto correttamente
-  main_scenario:
-  - description: Il Sistema richiede l'inserimento del codice OTP
-  - description: L'Attore inserisce il codice
-    include: ins_otp
-  gen_parent: login
-- id: ins_otp
-  title: Inserimento OTP
-  actors:
-    primary:
-    - non-authd-usr
-  preconditions:
-  - Le credenziali primarie dell'Attore sono state validate
-  - Il Sistema è in attesa del codice di verifica temporaneo
-  postconditions:
-  - L'Attore ha inserito un codice OTP valido
-  main_scenario:
-  - description: L'Attore inserisce il codice numerico nel Sistema
-    extension_point: OtpErrato
-  - description: L'Attore viene informato della correttezza del codice inserito
-  extensions:
-  - extension_point: OtpErrato
-    condition: L'OTP inserito non viene riconosciuto come valido dal Sistema
-    uc: err_otp_errato
-- id: err_otp_errato
-  title: Errore OTP errato
-  actors:
-    primary:
-    - non-authd-usr
-  preconditions:
-  - L'OTP inserito non viene riconosciuto come valido dal Sistema
-  postconditions:
-  - L'Attore non può procedere con l'operazione che richiede l'inserimento di OTP
-  main_scenario:
-  - description: L'Attore viene informato dell'errore riscontrato
-  - description: L'Attore viene invitato a riprovare
-- id: recupero_password
-  title: Recupero password
-  actors:
-    primary:
-    - non-authd-usr
-  preconditions:
-  - Esiste un account associato alla mail fornita
-  - Il Sistema consente l’avvio della procedura di recupero password
-  postconditions:
-  - La password è stata aggiornata e l'Utente può effettuare il login con le nuove credenziali
-  main_scenario:
-  - description: L'Attore inserisce la mail
-    include: ins_mail
-    extension_point: UtenteInesistente
-  - description: L'Attore inserisce il codice monouso ricevuto alla mail registrata
-  - description: L'Attore ha la possibilità di impostare una nuova password
-  extensions:
-  - extension_point: UtenteInesistente
-    condition: L'Attore inserisce una mail non registrata
-    uc: err_account_inesistente
-- id: err_account_inesistente
-  title: Errore account non esistente
-  actors:
-    primary:
-    - non-authd-usr
-  preconditions:
-  - La mail fornita dall'Attore non risulta associata ad alcun account registrato nel Sistema
-  postconditions:
-  - L'Attore ricompila il campo mail
-  main_scenario:
-  - description: L'Attore viene notificato dell'inserimento di una mail non associata a nessun account
 - id: impostazione_password
   title: Impostazione password
   actors:
@@ -217,7 +124,7 @@ use_cases:
   postconditions:
   - La password inserita viene rifiutata
   main_scenario:
-  - description: L’Attore viene notificato che l’email inserita non è valida e viene invitato a sceglierne
+  - description: L’Attore viene notificato che la password inserita non è valida e viene invitato a sceglierne
       un’altra
 - id: modifica_mail_account
   title: Modifica mail account
@@ -502,6 +409,17 @@ use_cases:
   - L’Attore visualizza l’ID del sensore
   main_scenario:
   - description: L’Attore visualizza l’identificativo del sensore (UUID)
+- id: visualizzazione_tipo_sensore
+  title: Visualizzazione tipo sensore
+  actors:
+    primary:
+    - tenant-usr
+  preconditions:
+  - Il Sistema mostra i dettagli di un sensore o un alert riguardante un sensore
+  postconditions:
+  - L’Attore visualizza la tipologia del sensore (es. temperatura, umidità, pressione)
+  main_scenario:
+  - description: L’Attore visualizza il tipo del sensore indicato dal Sistema
 - id: visualizzazione_dati_stream
   title: Visualizzazione dati Stream
   actors:
@@ -538,6 +456,28 @@ use_cases:
     main_scenario:
     - description: 'L’Attore visualizza una tabella con: timestamp, Gateway, sensore, tipo misura, valore,
         unità'
+      include: visualizzazione_singola_riga_dati_stream
+    subcases:
+    - id: visualizzazione_singola_riga_dati_stream
+      title: Visualizzazione singola riga dati Stream
+      actors:
+        primary:
+        - tenant-usr
+      preconditions:
+      - Esiste almeno un sensore associato al Gateway di un Tenant gestito dall’Attore primario
+      - L’Attore sta visionando i dati sullo stream
+      postconditions:
+      - L’Attore visualizza, nella singola riga della tabella, timestamp, Gateway, sensore, tipo misura,
+        valore e unità
+      main_scenario:
+      - description: L’Attore visualizza una riga della tabella con_:_ timestamp, Gateway, sensore, tipo
+          misura, valore e unità
+      - description: L’Attore visualizza i singoli dati della tabella
+        include: visualizzazione_valore_dato_registrato
+      - description: L’Attore visualizza il timestamp del dato 
+        include: visualizzazione_timestamp_dato
+      - description: L’Attore visualizza l'identificativo del sensore
+        include: visualizzazione_id_sensore
   - id: visualizzazione_grafico_dati_stream
     title: Visualizzazione grafico dati Stream
     actors:
@@ -552,6 +492,56 @@ use_cases:
     - description: L’Attore visualizza uno o più grafici (in base alla tipologia dato) su base temporale
     - description: Il Sistema distingue le serie nel caso i dati includano più sensori (es. per sensore
         o tipo misura)
+- id: visualizzazione_dati_fuori_range
+  title: Visualizzazione dati fuori range
+  actors:
+    primary:
+    - tenant-usr
+  preconditions:
+  - Esiste almeno un sensore associato al Gateway di un Tenant gestito dall’Attore primario
+  - Esiste almeno un dato registrato da un sensore che risulta fuori dal range accettato
+  postconditions:
+  - L’Attore visualizza i dati fuori range evidenziati
+  main_scenario:
+  - description: L’Attore visualizza i dati fuori range evidenziati nella singola riga dei dati stream
+  gen_parent: visualizzazione_singola_riga_dati_stream
+  subcases:
+  - id: visualizzazione_valore_dato_registrato
+    title: Visualizzazione valore dato registrato
+    actors:
+      primary:
+      - tenant-usr
+    preconditions:
+    - Esiste almeno un sensore associato al Gateway di un Tenant gestito dall’Attore primario
+    - Esiste almeno un dato registrato da un sensore che risulta fuori dal range accettato
+    postconditions:
+    - L’Attore visualizza il valore del dato registrato evidenziato come fuori range
+    main_scenario:
+    - description: L’Attore visualizza il valore del dato registrato evidenziato come fuori range
+  - id: visualizzazione_timestamp_dato
+    title: Visualizzazione timestamp dato
+    actors:
+      primary:
+      - tenant-usr
+    preconditions:
+    - Esiste almeno un sensore associato al Gateway di un Tenant gestito dall’Attore primario
+    - Esiste almeno un dato registrato da un sensore che risulta fuori dal range accettato
+    postconditions:
+    - L’Attore visualizza il timestamp di registrazione del dato
+    main_scenario:
+    - description: L’Attore visualizza il timestamp di registrazione del dato
+- id: visualizzazione_range_accettato
+  title: Visualizzazione range accettato
+  actors:
+    primary:
+    - tenant-usr
+  preconditions:
+  - Esiste almeno un sensore associato al Gateway di un Tenant gestito dall’Attore primario
+  - Esiste almeno un dato registrato da un sensore che risulta fuori dal range accettato
+  postconditions:
+  - L’Attore visualizza il range accettato per il sensore in questione
+  main_scenario:
+  - description: L’Attore visualizza il range accettato per il sensore in questione
 - id: filtraggio_dati
   title: Filtraggio dati
   actors:
@@ -701,64 +691,6 @@ use_cases:
     include: visualizzazione_nome_gateway_tenant
   - description: L’Attore visualizza il timestamp dell’ultima comunicazione
     include: visualizzazione_timestamp_ultimo_invio_dati_gateway
-- id: alert_sensore_fuori_range
-  title: Ricezione alert dati sensore fuori range
-  actors:
-    primary:
-    - tenant-usr
-    secondary:
-    - p-gway
-  preconditions:
-  - Esiste un'irregolarità nelle misurazioni del sensore
-  postconditions:
-  - L’Attore viene notificato dell'anomalia nei dati registrati dal sensore
-  main_scenario:
-  - description: Il Sistema rileva una irregolarità nelle misurazioni di un sensore
-  - description: Il Sistema notifica l’Attore
-  - description: L’Attore visualizza l’ID del sensore interessato
-    include: visualizzazione_id_sensore
-  - description: L’Attore visualizza il valore del dato registrato
-    include: visualizzazione_valore_dato_registrato
-  - description: L’Attore visualizza il range accettato
-    include: visualizzazione_range_accettato
-  - description: L’Attore visualizza timestamp di registrazione del dato
-    include: visualizzazione_timestamp_dato_irregolare
-- id: visualizzazione_valore_dato_registrato
-  title: Visualizzazione valore del dato registrato
-  actors:
-    primary:
-    - tenant-usr
-  preconditions:
-  - Esiste un'irregolarità nelle misurazioni del sensore
-  - Il Sistema sta mostrando un alert relativo a dati fuori range
-  postconditions:
-  - L’Attore visualizza il dato fuori range registrato
-  main_scenario:
-  - description: L’Attore visualizza il valore del dato registrato
-- id: visualizzazione_range_accettato
-  title: Visualizzazione range accettato
-  actors:
-    primary:
-    - tenant-usr
-  preconditions:
-  - Esiste un'irregolarità nelle misurazioni del sensore
-  - Il Sistema sta mostrando un alert relativo a dati fuori range
-  postconditions:
-  - L'Attore visualizza il valore del range accettato
-  main_scenario:
-  - description: L’Attore visualizza il valore del range accettato
-- id: visualizzazione_timestamp_dato_irregolare
-  title: Visualizzazione timestamp registrazione dato irregolare
-  actors:
-    primary:
-    - tenant-usr
-  preconditions:
-  - Esiste un'irregolarità nelle misurazioni del sensore
-  - Il Sistema sta mostrando un alert relativo a dati fuori range
-  postconditions:
-  - L’Attore visualizza il timestamp della registrazione del dato fuori range
-  main_scenario:
-  - description: L’Attore visualizza l’orario di registrazione del dato da parte del sensore
 - id: visualizzazione_storico_alert
   title: Visualizzazione storico alert
   actors:
@@ -869,44 +801,9 @@ use_cases:
   - description: L’Attore visualizza il valore del dato registrato fuori range
     include: visualizzazione_valore_dato_registrato
   - description: L’Attore visualizza l’orario di registrazione del dato
-    include: visualizzazione_timestamp_dato_irregolare
+    include: visualizzazione_timestamp_dato
   - description: L’Attore visualizza il range accettato
     include: visualizzazione_range_accettato
-- id: modifica_impostazioni_notifica_alert_email
-  title: Modifica impostazioni notifica alert via email
-  actors:
-    primary:
-    - tenant-usr
-  preconditions:
-  - Il Sistema sta mostrando le preferenze impostate per la ricezione delle notifiche di alert via email
-  postconditions:
-  - Il Sistema salva le nuove preferenze di ricezione alert via email
-  main_scenario:
-  - description: L’Attore modifica la preferenza di ricezione notifiche via email
-- id: abilitazione_notifica_alert_email
-  title: Abilitazione notifica alert via email
-  actors:
-    primary:
-    - tenant-usr
-  preconditions:
-  - L'attore sta visualizzando le preferenze e la ricezione via email è attualmente disattivata
-  postconditions:
-  - L'Attore potrà ricevere mail di notifica
-  main_scenario:
-  - description: L’Attore imposta la preferenza su Attivo (ON)
-  gen_parent: modifica_impostazioni_notifica_alert_email
-- id: disabilitazione_notifica_alert_email
-  title: Disabilitazione notifica alert via email
-  actors:
-    primary:
-    - tenant-usr
-  preconditions:
-  - L'Attore sta visualizzando le preferenze e la ricezione via email è attualmente attivata
-  postconditions:
-  - L'Attore smetterà di ricevere email di notifica
-  main_scenario:
-  - description: L’Attore imposta la preferenza su Disattivo (OFF)
-  gen_parent: modifica_impostazioni_notifica_alert_email
 - id: modifica_impostazioni_notifica_alert_dashboard
   title: Modifica impostazioni notifica alert via dashboard
   actors:
@@ -1555,17 +1452,6 @@ use_cases:
     - Delle credenziali API sono state correttamente selezionate
     main_scenario:
     - description: L’Attore seleziona una entry di credenziali API dalla lista
-- id: modifica_impostazioni_2fa
-  title: Modifica impostazioni 2FA login dashboard
-  actors:
-    primary:
-    - tenant-adm
-  preconditions:
-  - Il Sistema mostra all’Attore primario le impostazioni della 2FA
-  postconditions:
-  - Le impostazioni di 2FA per il login nel tenant sono state aggiornate
-  main_scenario:
-  - description: L’Attore abilita/disabilita la 2FA per gli account afferenti al Tenant
 - id: visualizzazione_log_audit_tenant
   title: Visualizzazione log di Audit del Tenant
   actors:
@@ -2416,18 +2302,6 @@ use_cases:
   - L'Attore ha inserito una mail
   main_scenario:
   - description: L'Attore inserisce la mail nel campo dedicato
-- id: cambio_password
-  title: Cambio password
-  actors:
-    primary:
-    - non-authd-usr
-  preconditions:
-  - Il Sistema ha validato il token di recupero password associato all’account
-  postconditions:
-  - La nuova password è salvata nel database
-  main_scenario:
-  - description: L'Attore inserisce la nuova password
-    include: impostazione_password
 - id: visualizzazione_lista_gateway_sistema
   title: Visualizzazione lista Gateway Sistema
   actors:
@@ -2500,3 +2374,127 @@ use_cases:
   - Il Sistema mostra l'ID del Tenant associato al Gateway provisionato
   main_scenario:
   - description: L'Attore visualizza l'ID del Tenant associato al Gateway
+- id: ricezione_alert_sensore_fuori_range
+  title: Ricezione alert sensore fuori range
+  actors:
+    primary:
+    - tenant-usr
+  preconditions:
+  - Il sensore è associato a un Gateway attivo del Tenant dell'Attore
+  - La sessione è attiva
+  - Il valore misurato dal sensore supera il range di allarme configurato
+  postconditions:
+  - L'Attore viene notificato del dato anomalo rilevato
+  main_scenario:
+  - description: Il Sistema notifica l’Attore del valore fuori range
+  - description: L’Attore visualizza l'ID del sensore interessato
+    include: visualizzazione_id_sensore
+  - description: L’Attore visualizza il Tenant ID del Gateway a cui è associato il sensore
+    include: visualizzazione_id_tenant_gateway
+  - description: L’Attore visualizza il valore del dato registrato fuori range
+    include: visualizzazione_valore_dato_registrato
+  - description: L’Attore visualizza l'orario di registrazione del dato
+    include: visualizzazione_timestamp_dato
+  - description: L'Attore visualizza il range accettato previsto per il sensore
+    include: visualizzazione_range_accettato
+  - description: L'Attore visualizza il tipo del sensore
+    include: visualizzazione_tipo_sensore
+
+- id: scadenza_sessione
+  title: Scadenza sessione
+  actors:
+    primary:
+    - authd-usr
+  preconditions:
+  - L'Attore è autenticato nel Sistema
+  - Il token di sessione è scaduto per superamento del tempo massimo di validità o inattività
+  postconditions:
+  - La sessione dell'Attore viene invalidata dal Sistema
+  - L'Attore viene reindirizzato alla schermata di login
+  main_scenario:
+  - description: Il Sistema rileva la scadenza del token di sessione dell'Attore
+  - description: Il Sistema invalida la sessione corrente
+  - description: L'Attore viene reindirizzato automaticamente alla pagina di login
+
+- id: err_tenant_sospeso
+  title: Errore accesso Tenant sospeso
+  actors:
+    primary:
+    - non-authd-usr
+  preconditions:
+  - L'Attore ha fornito credenziali primarie valide in fase di autenticazione
+  - Il Tenant di appartenenza dell'account risulta in stato sospeso
+  postconditions:
+  - Viene negato l'accesso al Sistema
+  - L'Attore viene informato del blocco
+  main_scenario:
+  - description: L'Attore viene informato in fase di autenticazione che l'accesso non è stato consentito
+
+- id: ricezione_risoluzione_alert_gateway
+  title: Ricezione risoluzione alert Gateway raggiungibile
+  actors:
+    primary:
+    - tenant-usr
+  preconditions:
+  - Esiste un alert attivo di tipo Gateway non raggiungibile per un Gateway del Tenant
+  - Il Gateway ha ripreso la comunicazione con il Cloud entro i timeout configurati
+  - La sessione è attiva
+  postconditions:
+  - L'Attore vede che il Gateway è di nuovo raggiungibile
+  main_scenario:
+  - description: L’Attore visualizza il nome del Gateway interessato
+    include: visualizzazione_nome_gateway_tenant
+  - description: L’Attore visualizza il stato del Gateway come “Online"
+    include: visualizzazione_stato_gateway_tenant
+
+- id: visualizzazione_profilo_personale
+  title: Visualizzazione profilo personale
+  actors:
+    primary:
+    - authd-usr
+  preconditions:
+  - L'Attore è autenticato nel Sistema
+  - Il Sistema mostra la sezione dedicata alla gestione del proprio profilo
+  postconditions:
+  - L'Attore visualizza le informazioni anagrafiche e di ruolo del proprio account
+  main_scenario:
+  - description: L'Attore visualizza il proprio nome
+    include: visualizzazione_username_personale
+  - description: L'Attore visualizza la propria mail
+    include: visualizzazione_mail_personale
+  - description: L'Attore visualizza il proprio ruolo
+    include: visualizzazione_ruolo_personale
+  subcases:
+  - id: visualizzazione_username_personale
+    title: Visualizzazione username personale
+    actors:
+      primary:
+      - authd-usr
+    preconditions:
+    - Il Sistema mostra la pagina del profilo personale dell'Attore
+    postconditions:
+    - L'Attore visualizza il nome associato al proprio account
+    main_scenario:
+    - description: L'Attore visualizza il proprio nome registrato a sistema
+  - id: visualizzazione_mail_personale
+    title: Visualizzazione mail personale
+    actors:
+      primary:
+      - authd-usr
+    preconditions:
+    - Il Sistema mostra la pagina del profilo personale dell'Attore
+    postconditions:
+    - L'Attore visualizza l'indirizzo email associato al proprio account
+    main_scenario:
+    - description: L'Attore visualizza la propria mail di login
+  - id: visualizzazione_ruolo_personale
+    title: Visualizzazione ruolo personale
+    actors:
+      primary:
+      - authd-usr
+    preconditions:
+    - Il Sistema mostra la pagina del profilo personale dell'Attore
+    postconditions:
+    - L'Attore visualizza il ruolo assegnatogli all'interno del Tenant
+    main_scenario:
+    - description: L'Attore visualizza il proprio livello di autorizzazione (es. Utente o Amministratore Tenant)

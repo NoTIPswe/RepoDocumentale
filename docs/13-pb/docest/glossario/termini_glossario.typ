@@ -1,5 +1,6 @@
 #let terms = (
   // A
+  "AESKeyGenerator": "Componente responsabile della generazione di chiavi AES-256 casuali utilizzando un generatore di numeri casuali crittograficamente sicuro",
   "Advertising": "Modalità operativa del protocollo BLE in cui il dispositivo periferico trasmette periodicamente pacchetti di dati senza necessità di connessione, ottimizzando il consumo energetico",
   "Agile": "Insieme di principi e pratiche di sviluppo software basate su iterazioni brevi, feedback continui e collaborazione costante tra i membri del team",
   "ACK": "Abbreviazione di Acknowledgement, in ambito informatico, è il simbolo che identifica un segnale di riconoscimento emesso in risposta alla ricezione di un'informazione completa",
@@ -32,6 +33,11 @@
   "Conventional Commits": "Standard strutturato per la formattazione dei messaggi di commit che garantisce leggibilità e tracciabilità della cronologia",
   "convention over configuration": "Principio di progettazione secondo cui scelte predefinite e convenzioni riducono la necessità di configurazioni esplicite, semplificando lo sviluppo",
   "cowork": "Sessione di lavoro condiviso tra i membri del gruppo, svolta in contemporanea per favorire la collaborazione e la produttività",
+  "CAProvider": "Interfaccia o componente che fornisce accesso al materiale della Certification Authority in memoria per operazioni di firma e gestione certificati",
+  "CARepository": "Componente di persistenza responsabile della memorizzazione e del caricamento del materiale della CA (chiavi e certificati) dal filesystem",
+  "CSR": "Acronimo di Certificate Signing Request, richiesta di firma per un certificato digitale che contiene la chiave pubblica del richiedente e informazioni di identità",
+  "CSRSigner": "Servizio o componente che firma richieste di certificato (CSR) usando la CA interna, generando certificati digitali validi",
+  "CSPRNG": "Acronimo di Cryptographically Secure Pseudo-Random Number Generator, generatore di numeri casuali con proprietà crittografiche idonee per scopi di sicurezza",
   // D
   "Dashboard": "Interfaccia grafica che visualizza in forma sintetica dati e metriche del sistema, permettendo monitoraggio e amministrazione",
   "Defense in Depth": "Strategia di sicurezza che applica molteplici livelli di protezione in parallelo, in modo che il compromesso di uno strato non comprometta l'intero sistema",
@@ -49,7 +55,9 @@
   "End-to-End Encryption": "Protocollo di sicurezza dove i dati vengono cifrati all'origine e decifrati solo a destinazione, garantendo che nessun intermediario possa accedere ai dati in chiaro",
   "editor": "Membro del gruppo incaricato della redazione o modifica di un documento all'interno del progetto",
   // F
+  "FactoryValidator": "Servizio responsabile della validazione delle credenziali di fabbrica (factory_id e factory_key) comunicate da un gateway durante l'onboarding",
   "Feature Branch": "Ramo del repository temporaneo creato per lo sviluppo di una specifica funzionalità, da integrare successivamente nel ramo principale",
+  "filesystem": "Sistema di archiviazione di file e directory su disco in cui sono organizzate le risorse persistenti del sistema, come certificati, chiavi crittografiche e configurazioni",
   "foglio elettronico": "Documento digitale strutturato in celle che consente di organizzare, calcolare e visualizzare dati utili al gruppo",
   "Frontend": "Componente del sistema che implementa l'interfaccia utente e interagisce con l'utente finale tramite browser",
   // G
@@ -72,6 +80,7 @@
   "Heartbeat": "Meccanismo di monitoraggio che invia segnali periodici per verificare che una connessione o un componente sia ancora attivo e funzionante",
   // I
   "Impersonificazione": "Funzionalità di sicurezza che consente a un utente amministratore di agire temporaneamente con i privilegi di un altro utente, con logging tracciato",
+  "init": "Fase di inizializzazione di un componente o servizio durante l'avvio, dove vengono caricate risorse, configurazioni e materiale chiave necessari per il funzionamento",
   "Integration Testing": "Metodologia di test che verifica le interazioni tra unità di codice integrate, assicurando che collaborino correttamente nel contesto di sistema",
   "IoT": "Acronimo di Internet of Things, ecosistema di dispositivi connessi a rete che raccolgono, elaborano e scambiano dati senza intervento umano diretto",
   "ISO 8601": "Standard internazionale per rappresentare date e orari in formato non ambiguo (es. yyyy-mm-dd)",
@@ -117,13 +126,16 @@
   // P
   "PDCA": "Acronimo di Plan-Do-Check-Act, ciclo di miglioramento continuo che articola la gestione della qualità in quattro fasi: pianificazione, esecuzione, controllo e correzione",
   "Patch": "Il terzo numero nella notazione SemVer (X.Y.Z). Viene incrementato per correzioni minori, come errori di battitura o piccoli aggiustamenti che non alterano in alcun modo la struttura principale del documento.",
+  "PEM": "Acronimo di Privacy Enhanced Mail, formato standard per rappresentare e trasmettere dati crittografici (chiavi, certificati) in forma di testo Base64 codificato",
   "pipeline": "Sequenza automatizzata di processi (script) eseguiti da un sistema CI/CD per compilare, testare e verificare il codice o la documentazione",
+  "PKI": "Acronimo di Public Key Infrastructure, infrastruttura per la gestione di certificati digitali e chiavi crittografiche asimmetriche nel contesto della comunicazione sicura",
   "POC": "Acronimo di Proof Of Concept, è una versione minimale e semplificata di un'idea o di un progetto software, creata per dimostrarne la fattibilità tecnica e la validità prima di investire risorse significative nello sviluppo completo, verificando se il concetto soddisfa gli obiettivi previsti e identificando precocemente rischi e problemi",
   "PostgreSQL": "Database relazionale open source caratterizzato da robustezza, conformità SQL avanzata e supporto di estensioni per casi d'uso specializzati",
   "Postman": "Strumento di sviluppo che consente di testare, documentare e condividere API tramite un'interfaccia intuitiva per richieste HTTP",
   "Prisma": "ORM moderno per Node.js e TypeScript che fornisce un'interfaccia type-safe per interagire con database relazionali, con generazione automatica di client",
   "Prometheus": "Sistema di monitoraggio e alerting open source che raccoglie metriche time-series da applicazioni e infrastruttura",
   "Provisioning": "Processo di allocazione e configurazione di risorse necessarie per il funzionamento di un sistema",
+  "ProvisioningCompleter": "Servizio responsabile del completamento della procedura di provisioning persistendo le credenziali e il materiale chiave nel Management API tramite NATS",
   "Pub/Sub": "Pattern di messaggistica dove produttori inviano messaggi a un broker e consumatori ricevono messaggi di loro interesse senza accoppiamento diretto",
   "pull-request": "Richiesta di integrazione di modifiche da un branch secondario al branch principale di un repository. Permette la revisione del codice prima dell'unione definitiva",
   "PR": "Abbreviazione di pull request. Utilizzata comunemente per indicare la richiesta di revisione o integrazione nel flusso di lavoro Git",
@@ -173,6 +185,7 @@
   "TLS": "Acronimo di Transport Layer Security, protocollo crittografico che garantisce comunicazione sicura su rete proteggendo dati in transito",
   "TOTP": "Acronimo per Time Based One Time Password, è un algoritmo che genera password temporanee, utilizzate per l'autenticazione a due fattori",
   "Trunk-Based Development": "Strategia di branching dove il ramo principale rimane sempre integro, con feature branch effimeri che si integrano frequentemente",
+  "TTL": "Acronimo di Time To Live, valore che specifica il periodo di validità di una risorsa (come un certificato digitale) prima della sua scadenza automatica",
   "TypeScript": "Linguaggio di programmazione basato su JavaScript che aggiunge tipizzazione statica per migliore manutenibilità e rilevazione di errori in fase di sviluppo",
   "Typstyle": "Strumento automatico di formattazione per file Typst che applica regole di stile definite dal team garantendo coerenza",
   "Typst": "Linguaggio di composizione testuale per la creazione di documenti strutturati, caratterizzato da una sintassi chiara e moderna, alternativo a LaTeX e adatto all'automazione della documentazione",

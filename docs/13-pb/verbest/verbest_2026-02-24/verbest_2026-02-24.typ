@@ -59,7 +59,7 @@
   )
 
   #base-report.report-point(
-    discussion_point: [Logging e Auditing],
+    discussion_point: [Logging e auditing],
 
     discussion: [
       Il Team ha chiesto all'Azienda indicazioni su come gestire il tracciamento e l'auditing. Si è domandato se fosse
@@ -79,7 +79,7 @@
   )
 
   #base-report.report-point(
-    discussion_point: [Servizio di Log tramite NATS],
+    discussion_point: [Servizio di log tramite NATS],
 
     discussion: [
       Il Team ha proposto la creazione di un servizio dedicato all'osservazione dei topic NATS. Lo scopo è intercettare
@@ -93,7 +93,7 @@
   )
 
   #base-report.report-point(
-    discussion_point: [NATS come motore principale e gestione degli Alert],
+    discussion_point: [NATS come motore principale e gestione degli alert],
 
     discussion: [
       Il Team ha discusso la validità di NATS come motore principale di comunicazione, portando come esempio il pattern
@@ -110,7 +110,7 @@
     ],
   )
 
-  = Epilogo della Riunione
+  = Epilogo della riunione
   L'incontro è stato fondamentale per superare alcuni blocchi progettuali. L'abbandono dell'E2EE puro a favore di una
   crittografia per singolo Gateway riduce la complessità dell'infrastruttura.
 
@@ -120,7 +120,7 @@
 
   #pagebreak()
 
-  = Approvazione Aziendale
+  = Approvazione aziendale
   La presente sezione certifica che il verbale è stato esaminato e approvato dai rappresentanti di _M31_. L’approvazione
   è confermata dalle firme dei referenti aziendali riportate di seguito.
 

@@ -135,6 +135,12 @@ requirements:
   - uc: impostazione_configurazione_gateway
   - uc: impostazione_frequenza_invio_dati
   - uc: impostazione_stato_sospensione
+- id: impostazione_stato_sospensione
+  priority: mandatory
+  description: Il Sistema deve permettere al Sistema Cloud di modificare lo stato di sospensione di un
+    Gateway simulato (avvio e arresto della pubblicazione della telemetria)
+  sources:
+  - uc: impostazione_stato_sospensione
 - id: err_sintattico_config_gateway
   priority: mandatory
   description: Il Sistema deve notificare al Sistema Cloud che il payload di configurazione ricevuto risulta
@@ -147,3 +153,10 @@ requirements:
     corretto, ma non accettabile
   sources:
   - uc: err_config_frequenza_fuori_range
+- id: modifica_algoritmo_generazione_dati
+  priority: mandatory
+  description:
+    Il Sistema deve permettere all'Utente del Simulatore di modificare l'algoritmo
+    di generazione dati di un sensore simulato
+  sources:
+  - uc: modifica_algoritmo_generazione_dati

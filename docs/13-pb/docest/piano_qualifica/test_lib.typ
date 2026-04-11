@@ -68,14 +68,19 @@
   )
 }
 
-#let render_test_table(path) = {
+#let render_test_table(path, service: none) = {
   let data = yaml(path)
+  let filtered_tests = if service == none {
+    data.tests
+  } else {
+    data.tests.filter(test => test.at("service", default: none) == service)
+  }
   table(
     columns: (1fr, 3.5fr, 1.2fr, 0.8fr),
     stroke: 0.5pt,
     inset: 6pt,
     table.header([*Codice*], [*Descrizione*], [*Requisiti di riferimento*], [*Stato*]),
-    ..data.tests.map(test => _test_row(data.type, test)).flatten(),
+    ..filtered_tests.map(test => _test_row(data.type, test)).flatten(),
   )
 }
 

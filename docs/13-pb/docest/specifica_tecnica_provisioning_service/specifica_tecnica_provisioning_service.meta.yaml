@@ -1,0 +1,23 @@
+title: Specifica tecnica - Provisioning Service
+changelog:
+  - version: "0.0.3"
+    date: "2026-04-07"
+    authors:
+      - Matteo Mantoan
+    verifier: Francesco Marcon
+    description: >
+      Uniformazione titoli e intestazioni: solo prima lettera maiuscola
+  - version: "0.0.2"
+    date: "2026-04-01"
+    authors:
+      - Mario De Pasquale
+    verifier: Francesco Marcon
+    description: >
+      Fix dati mancanti
+  - version: "0.0.1"
+    date: "2026-03-29"
+    authors:
+      - Mario De Pasquale
+    verifier: Alessandro Mazzariol
+    description: >
+      Creazione prima bozza del documento

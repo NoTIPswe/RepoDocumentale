@@ -70,7 +70,7 @@
         comunicazione via mail all'azienda.
     ],
   )
-  = Epilogo della Riunione
+  = Epilogo della riunione
   L'incontro si è concluso in maniera proficua e ha consentito di definire le aspettative dell'Azienda in merito alla
   documentazione di test, di condividere apertamente le difficoltà tecniche riscontrate e di pianificare i prossimi
   appuntamenti conclusivi. Il Team proseguirà con le attività secondo quanto stabilito.
@@ -79,7 +79,7 @@
 
   #pagebreak()
 
-  = Approvazione Aziendale
+  = Approvazione aziendale
   La presente sezione certifica che il verbale è stato esaminato e approvato dai rappresentanti di _M31_. L'avvenuta
   approvazione è formalmente confermata dalle firme riportate di seguito dei referenti Aziendali.
 ]

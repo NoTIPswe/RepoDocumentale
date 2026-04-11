@@ -31,7 +31,7 @@
   dell'utilizzo di strumenti di AI a supporto della futura fase di codifica.
 ][
   #base-report.report-point(
-    discussion_point: [Progettazione di Dettaglio e Suddivisione dei Microservizi],
+    discussion_point: [Progettazione di dettaglio e suddivisione dei microservizi],
 
     discussion: [
       Nel corso dell'incontro è stato richiamato il precedente confronto con il prof. Cardin, da cui erano emersi alcuni
@@ -59,7 +59,7 @@
   )
 
   #base-report.report-point(
-    discussion_point: [Pianificazione della Consegna],
+    discussion_point: [Pianificazione della consegna],
 
     discussion: [
       Il Team ha comunicato alla proponente la necessità di rivedere la pianificazione della consegna finale. Durante il
@@ -84,7 +84,7 @@
   )
 
   #base-report.report-point(
-    discussion_point: [Utilizzo di Strumenti di AI nella Fase di Codifica],
+    discussion_point: [Utilizzo di Strumenti di AI nella fase di codifica],
 
     discussion: [
       Si è discusso del fatto che, una volta completata la progettazione, la fase di codifica potrà essere affrontata
@@ -114,7 +114,7 @@
   )
 
   #base-report.report-point(
-    discussion_point: [Recap dello Stato di Avanzamento Lavori],
+    discussion_point: [Recap dello stato di avanzamento lavori],
 
     discussion: [
       Nella parte conclusiva della riunione è stato svolto un breve riepilogo dello stato di avanzamento dei lavori. Il
@@ -128,7 +128,7 @@
     ],
   )
 
-  = Epilogo della Riunione
+  = Epilogo della riunione
   L'incontro si è concluso in maniera proficua e ha consentito di chiarire le priorità operative per il prosieguo del
   progetto. In particolare, il confronto ha permesso di consolidare l'importanza della progettazione di dettaglio,
   definire una linea di massima per la revisione della data di consegna e raccogliere indicazioni pratiche sull'uso di
@@ -138,7 +138,7 @@
 
   #pagebreak()
 
-  = Approvazione Aziendale
+  = Approvazione aziendale
   La presente sezione certifica che il verbale è stato esaminato e approvato dai rappresentanti di _M31_. L’avvenuta
   approvazione è formalmente confermata dalle firme riportate di seguito dei referenti Aziendali.
 

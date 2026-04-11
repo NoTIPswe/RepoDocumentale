@@ -135,9 +135,16 @@ svolgimento del progetto.
     [Termini ambigui, poco conosciuti o malinterpretabili. La formattazione è automatica nei documenti Typst.],
     [La suddetta baseline...],
 
-    [Maiuscole],
-    [Nomi di ruoli, titoli dei documenti, espansione di acronimi.],
-    [Il Responsabile è tenuto all'approvazione delle Norme di Progetto.],
+    [Maiuscole], [Nomi di ruoli, espansione di acronimi.], [Il Responsabile è tenuto all'approvazione del documento.],
+
+    [Titoli],
+    [I titoli dei documenti e delle sezioni devono seguire il criterio \"Solo prima lettera maiuscola\". Eccezione: sono
+      ammesse maiuscole per nomi propri e prodotti specifici.],
+    [
+      - \"Processo di documentazione\" (standard);
+      - \"Integrazione con SonarQube\" (nome proprio);
+      - \"Analisi dei requisiti\" (standard).
+    ],
 
     [Elenchi puntati],
     [Ogni punto elenco inizia con lettera maiuscola e termina con un punto e virgola (;), eccetto l'ultimo che termina
@@ -180,7 +187,7 @@ svolgimento del progetto.
   momento della stesura.
 ]
 
-#norm(title: "Nomenclatura Work Items di documentazione", label: <work-items-docs>)[
+#norm(title: "Nomenclatura work items di documentazione", label: <work-items-docs>)[
   I work items di documentazione presenti su Jira devono seguire la seguente nomenclatura:
   #align(center)[`{nome_dir_documento}-v{nuova_versione_documento} - {Breve descrizione}`]
   Per l'approvazione di un documento (ossia scatti di Major version), la descrizione è sostituita da \"Approvazione\".
@@ -194,7 +201,7 @@ svolgimento del progetto.
 ]
 
 
-#norm(title: "Gestione Git: Branching e Commit", label: <branching-commit-docs>)[
+#norm(title: "Gestione Git: branching e commit", label: <branching-commit-docs>)[
   Il repository documentale segue una strategia di branching #link("https://trunkbaseddevelopment.com/")[Trunk-Based],
   dove l'unica fonte di verità persistente è il branch `main`. Ogni feature branch è effimero e deve essere collegato
   univocamente a un Work Item registrato su Jira.
@@ -277,7 +284,7 @@ svolgimento del progetto.
   )
 ]
 
-#norm(title: "Matrice Documento - Ruolo autore", label: <matr-ruolo-documento>)[
+#norm(title: "Matrice documento - ruolo autore", label: <matr-ruolo-documento>)[
   La seguente tabella rappresenta quale ruolo è responsabile della scrittura di ogni documento.
   #table(
     columns: (1fr, 1fr),
@@ -313,7 +320,7 @@ svolgimento del progetto.
     - Il riepilogo delle decisioni prese (`decisions`);
     - Eventuali azioni da intraprendere (`actions`), corredate da descrizione e URL diretto al relativo work item su
       Jira;
-  - *Approvazione Aziendale:* Per i verbali esterni, è obbligatorio includere la sezione finale dedicata alla firma dei
+  - *Approvazione aziendale:* Per i verbali esterni, è obbligatorio includere la sezione finale dedicata alla firma dei
     referenti per la validazione formale dei contenuti.
 
   #heading(level: 5, numbering: none, outlined: false)[Diari di Bordo (DdB)]

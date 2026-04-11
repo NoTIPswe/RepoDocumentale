@@ -1,422 +1,801 @@
 type: system
 tests:
-- id: t_s_001
-  description: Verificare che un utente non autenticato possa accedere al Sistema inserendo credenziali
-    valide tramite interfaccia UI
-  requirements:
-  - login
-  - ins_pw
-  - ins_mail
-  status: not_implemented
-- id: t_s_002
-  description: Verificare che il Sistema neghi l’accesso e mostri un messaggio di errore in caso di credenziali
-    errate
-  requirements:
-  - err_cred_errate
-  status: not_implemented
-- id: t_s_003
-  description: Verificare che un utente possa configurare correttamente il meccanismo 2FA durante il primo
-    accesso
-  requirements:
-  - setup_totp
-  - sicurezza_mfa
-  status: not_implemented
-- id: t_s_004
-  description: Verificare che un utente possa effettuare il login tramite codice OTP valido
-  requirements:
-  - login_2fa
-  - ins_otp
-  - sicurezza_mfa
-  status: not_implemented
-- id: t_s_005
-  description: Verificare che il Sistema notifichi un errore in caso di inserimento di codice OTP errato
-  requirements:
-  - err_otp_errato
-  status: not_implemented
-- id: t_s_006
-  description: Verificare che tutti gli endpoint UI e API rifiutino richieste provenienti da utenti non
-    autenticati
-  requirements:
-  - sicurezza_autenticazione_accessi
-  status: not_implemented
-- id: t_s_007
-  description: Verificare che un utente non autenticato possa avviare la procedura di recupero password
-    inserendo una mail valida
-  requirements:
-  - recupero_password
-  status: not_implemented
-- id: t_s_008
-  description: Verificare che il Sistema permetta la modifica della password tramite procedura di recupero
-  requirements:
-  - cambio_password_req
-  - impostazione_password
-  status: not_implemented
-- id: t_s_009
-  description: Verificare che il Sistema notifichi un errore in caso di email non associata ad alcun account
-  requirements:
-  - err_account_inesistente
-  status: not_implemented
-- id: t_s_010
-  description: Verificare che il sistema notifichi un errore in caso di password inserite non corrispondenti
-    o non valide
-  requirements:
-  - err_campi_diversi
-  - err_password_invalida
-  status: not_implemented
-- id: t_s_011
-  description: Verificare che un utente autenticato possa modificare la propria email, con corretta validazione
-    del formato, segnalazione di duplicati e richiesta di conferma
-  requirements:
-  - modifica_mail_account
-  - impostazione_mail
-  - err_mail_non_valida
-  - err_mail_gia_registrata
-  status: not_implemented
-- id: t_s_012
-  description: Verificare che un utente autenticato possa modificare la password del proprio account
-  requirements:
-  - modifica_password_account
-  status: not_implemented
-- id: t_s_013
-  description: Verificare che un utente autenticato possa effettuare il logout dal Sistema
-  requirements:
-  - logout
-  status: not_implemented
-- id: t_s_014
-  description: Verificare che un utente autenticato possa visualizzare la lista dei Gateway associati
-    al proprio Tenant
-  requirements:
-  - visualizzazione_lista_gateway_tenant
-  status: not_implemented
-- id: t_s_015
-  description: Verificare che il sistema mostri correttamente nome, stato, timestamp dell’ultimo invio
-    dati e lista sensori di un Gateway selezionato
-  requirements:
-  - visualizzazione_singolo_gateway_tenant
-  - visualizzazione_dettagli_gateway
-  status: not_implemented
-- id: t_s_016
-  description: Verificare che il sistema mostri la lista dei sensori associati a un Gateway
-  requirements:
-  - visualizzazione_singolo_sensore
-  status: not_implemented
-- id: t_s_017
-  description: Verificare che il sistema mostri correttamente l’ID e l’ultimo timestamp di invio dati
-    di ciascun sensore
-  requirements:
-  - visualizzazione_singolo_sensore
-  status: not_implemented
-- id: t_s_018
-  description: Verificare che il sistema visualizzi i dati di stream in formato tabellare
-  requirements:
-  - visualizzazione_dati_stream
-  - visualizzazione_tabellare_dati_stream
-  status: not_implemented
-- id: t_s_019
-  description: Verificare che il sistema visualizzi i dati di stream in formato grafico
-  requirements:
-  - visualizzazione_dati_stream
-  - visualizzazione_grafico_dati_stream
-  status: not_implemented
-- id: t_s_020
-  description: Verificare che l’utente possa filtrare i dati per Gateway, sensore e intervallo temporale
-  requirements:
-  - filtraggio_gateway
-  - filtraggio_sensore
-  - filtraggio_intervallo_temporale
-  status: not_implemented
-- id: t_s_021
-  description: Verificare che il sistema notifichi l’utente quando non sono disponibili dati per i filtri
-    selezionati
-  requirements:
-  - err_dati_non_disponibili
-  status: not_implemented
-- id: t_s_022
-  description: Verificare che l’utente possa esportare i dati visualizzati in formato supportato
-  requirements:
-  - esportazione_dati
-  status: not_implemented
-- id: t_s_023
-  description: Verificare che il sistema generi un alert in caso di Gateway non raggiungibile
-  requirements:
-  - alert_gateway_irraggiungibile
-  status: not_implemented
-- id: t_s_024
-  description: Verificare che il sistema generi un alert in caso di valore sensore fuori range
-  requirements:
-  - alert_sensore_fuori_range
-  status: not_implemented
-- id: t_s_025
-  description: Verificare che l’utente possa visualizzare lo storico degli alert generati
-  requirements:
-  - visualizzazione_storico_alert
-  status: not_implemented
-- id: t_s_026
-  description: Verificare che il sistema mostri i dettagli completi di un alert selezionato
-  requirements:
-  - visualizzazione_singolo_alert
-  - visualizzazione_dettagli_singolo_alert
-  - visualizzazione_dettagli_alert_gateway_irraggiungibile
-  - visualizzazione_dettagli_alert_sensore_fuori_range
-  status: not_implemented
-- id: t_s_027
-  description: Verificare che l’utente possa attivare e disattivare la ricezione di notifiche alert via
-    email e dashboard
-  requirements:
-  - modifica_impostazioni_notifica_alert_email
-  - modifica_impostazioni_notifica_alert_dashboard
-  status: not_implemented
-- id: t_s_028
-  description: Verificare che il Tenant Admin possa modificare il nome di un Gateway e ricevere errore
-    in caso di nome duplicato
-  requirements:
-  - modifica_nome_gateway
-  - err_nome_gateway_duplicato
-  status: not_implemented
-- id: t_s_029
-  description: Verificare che il Tenant Admin possa modificare lo stato operativo di un Gateway selezionato
-  requirements:
-  - modifica_stato_gateway
-  - selezione_stato_gateway
-  status: not_implemented
-- id: t_s_030
-  description: Verificare che il Tenant Admin possa modificare il range di allarme per un sensore specifico
-    e per un tipo di sensore, ricevendo errore in caso di range invalido
-  requirements:
-  - modifica_range_sensore
-  - selezione_specifico_sensore
-  - selezione_range_numerico
-  - inserimento_valore_numerico
-  - modifica_range_default_tipo_sensore
-  - selezione_tipo_sensore
-  - err_range_invalido
-  status: not_implemented
-- id: t_s_031
-  description: Verificare che il Tenant Admin possa modificare il timeout che determina l’irraggiungibilità
-    di un Gateway
-  requirements:
-  - modifica_intervallo_alert_gateway
-  status: not_implemented
-- id: t_s_032
-  description: Verificare che il Tenant Admin possa modificare la frequenza di invio dati di un Gateway
-  requirements:
-  - modifica_frequenza_invio_gateway
-  status: not_implemented
-- id: t_s_033
-  description: Verificare che il Tenant Admin possa visualizzare i costi stimati del Tenant, inclusi costi
-    di storage e banda
-  requirements:
-  - visualizzazione_costi_stimati
-  - visualizzazione_costi_storage
-  - visualizzazione_costi_banda
-  status: not_implemented
-- id: t_s_034
-  description: Verificare che il Tenant Admin possa visualizzare la lista degli utenti del Tenant e i
-    dettagli di un singolo utente
-  requirements:
-  - visualizzazione_lista_utenti_tenant
-  - visualizzazione_singolo_utente_tenant
-  status: not_implemented
-- id: t_s_035
-  description: Verificare che il Tenant Admin possa creare, modificare ed eliminare uno o più utenti del
-    Tenant
-  requirements:
-  - creazione_utente_tenant
-  - inserimento_nome_utente
-  - selezione_utente_tenant
-  - selezione_permessi_utente
-  - modifica_mail_utente
-  - modifica_password_utente
-  - eliminazione_utenti_tenant
-  - selezione_lista_utenti
-  status: not_implemented
-- id: t_s_036
-  description: Verificare che il Tenant Admin possa creare, visualizzare e revocare credenziali API per
-    il Tenant
-  requirements:
-  - creazione_credenziali_api
-  - visualizzazione_client_id
-  - visualizzazione_secret_api
-  - visualizzazione_lista_api
-  - visualizzazione_singole_api
-  - eliminazione_credenziali_api
-  - selezione_credenziali_api
-  status: not_implemented
-- id: t_s_037
-  description: Verificare che il Tenant Admin possa modificare le impostazioni del login 2FA per il Tenant
-  requirements:
-  - modifica_impostazioni_2fa
-  status: not_implemented
-- id: t_s_039
-  description: Verificare che un utente autorizzato possa consultare, filtrare per intervallo temporale,
-    esportare e scaricare i log di Audit del Tenant
-  requirements:
-  - visualizzazione_log_audit_tenant
-  - visualizzazione_singolo_log_audit
-  - esportazione_log_audit_tenant
-  - selezione_intervallo_temporale
-  - download_log_audit_esportati
-  status: not_implemented
-- id: t_s_038
-  description: Verificare che il Tenant Admin e l’Amministratore di Sistema possano configurare le impostazioni
-    di impersonificazione del Tenant
-  requirements:
-  - modifica_impostazioni_impersonificazione
-  status: not_implemented
-- id: t_s_040
-  description: Verificare che il sistema registri correttamente tutte le operazioni rilevanti nei log
-    di Audit
-  requirements:
-  - sicurezza_log_attivita
-  status: not_implemented
-- id: t_s_041
-  description: Verificare che l’Amministratore di Sistema possa visualizzare metriche di latenza, volume
-    di traffico e utilizzo storage
-  requirements:
-  - monitoraggio_performance_sistema
-  status: not_implemented
-- id: t_s_042
-  description: Verificare che il Tenant Admin e l’Amministratore di Sistema possano selezionare uno o
-    più Gateway e installare un aggiornamento firmware
-  requirements:
-  - aggiornamento_firmware_gateway
-  - selezione_gateway
-  status: not_implemented
-- id: t_s_043
-  description: Verificare che l’Amministratore di Sistema possa visualizzare la lista dei Tenant e i dettagli
-    di un singolo Tenant, inclusi nome, stato, ID e intervallo di sospensione
-  requirements:
-  - visualizzazione_lista_tenant
-  - visualizzazione_singolo_tenant
-  - visualizzazione_dettagli_tenant
-  - visualizzazione_nome_tenant
-  - visualizzazione_stato_tenant
-  - visualizzazione_id_tenant
-  - visualizzazione_intervallo_sospensione_tenant
-  status: not_implemented
-- id: t_s_044
-  description: Verificare che l’Amministratore di Sistema possa creare, sospendere, riattivare, modificare
-    ed eliminare un Tenant, con corretta gestione di errori interni durante la creazione
-  requirements:
-  - modifica_intervallo_sospensione_tenant
-  - modifica_nome_tenant
-  - creazione_tenant
-  - inserimento_anagrafica_tenant
-  - err_interno_creazione_tenant
-  - selezione_tenant
-  - sospensione_tenant
-  - riattivazione_tenant
-  - eliminazione_tenant
-  status: not_implemented
-- id: t_s_045
-  description: Verificare che l’Amministratore di Sistema possa avviare una sessione di impersonificazione
-    di un utente Tenant
-  requirements:
-  - impersonificazione_utente_tenant
-  status: not_implemented
-- id: t_s_046
-  description: Verificare che l’Amministratore di Sistema possa registrare un Gateway e associarlo a un
-    Tenant di interesse
-  requirements:
-  - registrazione_associazione_gateway
-  status: not_implemented
-- id: t_s_047
-  description: Verificare che l’Amministratore di Sistema possa creare un utente con ruolo Amministratore
-    Tenant per un Tenant di interesse
-  requirements:
-  - creazione_utente_amministratore_tenant
-  status: not_implemented
-- id: t_s_048
-  description: Verificare che un Client API possa autenticarsi tramite le credenziali ottenute e ricevere
-    notifica di errore in caso di credenziali invalide o server non disponibile
-  requirements:
-  - autenticazione_client_api
-  - err_dati_autenticazione_invalidi
-  - err_auth_server_non_disponibile
-  status: not_implemented
-- id: t_s_049
-  description: Verificare che un Client API autenticato possa recuperare dati storici on-demand e ricevere
-    notifiche di errore per token, ID Gateway, ID sensore o intervallo temporale non validi
-  requirements:
-  - richiesta_dati_on_demand
-  - err_token_api_invalido
-  - err_id_gateway_invalido
-  - err_id_sensore_invalido
-  - err_intervallo_temporale_invalido
-  status: not_implemented
-- id: t_s_050
-  description: Verificare che un Client API autenticato possa ricevere dati real-time tramite endpoint
-    di streaming
-  requirements:
-  - richiesta_dati_streaming
-  status: not_implemented
-- id: t_s_051
-  description: Verificare che un Gateway non provisioned possa completare correttamente il processo di
-    onboarding e connettersi al Sistema
-  requirements:
-  - onboarding_gateway
-  status: not_implemented
-- id: t_s_052
-  description: Verificare che il sistema notifichi errori di autenticazione per Gateway con credenziali
-    di fabbrica non valide o con processo di autenticazione fallito
-  requirements:
-  - err_auth_gateway_fabbrica
-  - err_autenticazione_gateway
-  status: not_implemented
-- id: t_s_053
-  description: Verificare che il Gateway invii dati al Cloud tramite canale sicuro cifrato e che il Cloud
-    li accetti correttamente
-  requirements:
-  - invio_dati_crittografati_cloud
-  - instaurazione_connessione_sicura
-  - sicurezza_cifratura_dati
-  status: not_implemented
-- id: t_s_054
-  description: Verificare che l’utente del simulatore possa visualizzare la lista dei Gateway simulati,
-    i dettagli di ciascuno e gestire creazione, deploy ed eliminazione
-  requirements:
-  - visualizzazione_lista_gateway_simulati
-  - visualizzazione_singolo_gateway_simulato
-  - visualizzazione_id_fabbrica_simulazione
-  - visualizzazione_configurazione_simulazione_gateway
-  - eliminazione_gateway_simulato
-  - creazione_deploy_gateway_simulato
-  - inserimento_dati_config_sim_gateway
-  - err_deploy_gateway_simulato
-  status: not_implemented
-- id: t_s_055
-  description: Verificare che l’utente del simulatore possa configurare e simulare sensori associati a
-    un Gateway simulato, inclusa la gestione degli errori di range e creazione
-  requirements:
-  - visualizzazione_lista_sensori_gateway_simulato
-  - visualizzazione_singolo_sensore_simulato
-  - visualizzazione_configurazione_simulazione_sensore
-  - eliminazione_sensore_simulato
-  - creazione_sensore_gateway_simulato
-  - inserimento_dati_config_sim_sensore
-  - err_range_invalido_simulazione
-  - err_creazione_sensore_simulato
-  status: not_implemented
-- id: t_s_056
-  description: Verificare che il simulatore permetta di creare più istanze Gateway in parallelo e di iniettare
-    anomalie di rete e valori sensore anomali
-  requirements:
-  - creazione_gateway_multipli_default
-  - err_valore_numerico_invalido
-  - comando_anomalia_degrado_rete
-  - comando_anomalia_disconnessione_temporanea
-  - comando_anomalia_outliers_misurazioni
-  status: not_implemented
-- id: t_s_057
-  description: Verificare che il Cloud possa inviare comandi di configurazione al Gateway simulato e ricevere
-    notifiche di errore per payload o frequenza non validi
-  requirements:
-  - impostazione_configurazione_gateway
-  - err_sintattico_config_gateway
-  - err_config_frequenza_fuori_range
-  status: not_implemented
-- id: t_s_058
-  description: Verificare la corretta trasmissione del flusso di dati tra sensore e relativo gateway
-  requirements:
-  - invio_dati_crittografati_cloud
-  status: not_implemented
+  - id: t_login_valid_credentials
+    description:
+      Verificare che un utente non autenticato possa accedere al Sistema inserendo credenziali
+      valide tramite interfaccia UI
+    requirements:
+      - login
+      - ins_pw
+      - ins_mail
+    status: passed
+  - id: t_login_invalid_credentials
+    description:
+      Verificare che il Sistema neghi l’accesso e mostri un messaggio di errore in caso di credenziali
+      errate
+    requirements:
+      - err_cred_errate
+    status: passed
+  - id: t_password_validation_error
+    description:
+      Verificare che il sistema notifichi un errore in caso di password inserite non corrispondenti
+      o non valide
+    requirements:
+      - err_campi_diversi
+      - err_password_invalida
+    status: passed
+  - id: t_modify_email_with_validation
+    description:
+      Verificare che un utente autenticato possa modificare la propria email, con corretta validazione
+      del formato e segnalazione di duplicati
+    requirements:
+      - modifica_mail_account
+      - impostazione_mail
+      - err_mail_non_valida
+      - err_mail_gia_registrata
+    status: passed
+  - id: t_modify_account_password
+    description: Verificare che un utente autenticato possa modificare la password del proprio account
+    requirements:
+      - modifica_password_account
+    status: passed
+  - id: t_logout_authenticated_user
+    description: Verificare che un utente autenticato possa effettuare il logout dal Sistema
+    requirements:
+      - logout
+    status: passed
+  - id: t_view_gateway_list_tenant
+    description:
+      Verificare che un utente autenticato possa visualizzare la lista dei Gateway associati
+      al proprio Tenant
+    requirements:
+      - visualizzazione_lista_gateway_tenant
+    status: passed
+  - id: t_view_gateway_details
+    description:
+      Verificare che il sistema mostri correttamente nome, stato, timestamp dell’ultimo invio
+      dati
+    requirements:
+      - visualizzazione_singolo_gateway_tenant
+      - visualizzazione_dettagli_gateway
+    status: passed
+  - id: t_view_sensor_list
+    description: Verificare che il sistema mostri la lista dei sensori associati a un Gateway
+    requirements:
+      - visualizzazione_singolo_sensore
+    status: passed
+  - id: t_view_sensor_details
+    description:
+      Verificare che il sistema mostri correttamente l’ID e l’ultimo timestamp di invio dati
+      di ciascun sensore
+    requirements:
+      - visualizzazione_singolo_sensore
+    status: passed
+  - id: t_view_stream_data_table
+    description: Verificare che il sistema visualizzi i dati di stream in formato tabellare
+    requirements:
+      - visualizzazione_dati_stream
+      - visualizzazione_tabellare_dati_stream
+    status: passed
+  - id: t_view_stream_data_chart
+    description: Verificare che il sistema visualizzi i dati di stream in formato grafico
+    requirements:
+      - visualizzazione_dati_stream
+      - visualizzazione_grafico_dati_stream
+    status: passed
+  - id: t_filter_data_gateway_sensor_time
+    description: Verificare che l’utente possa filtrare i dati per Gateway, sensore e intervallo temporale
+    requirements:
+      - filtraggio_gateway
+      - filtraggio_sensore
+      - filtraggio_intervallo_temporale
+    status: passed
+  - id: t_notify_no_data_available
+    description:
+      Verificare che il sistema mostri all’utente quando non sono disponibili dati per i filtri
+      selezionati
+    requirements:
+      - err_dati_non_disponibili
+    status: passed
+  - id: t_export_data_supported_format
+    description: Verificare che l’utente possa esportare i dati visualizzati in formato supportato (CSV)
+    requirements:
+      - esportazione_dati
+    status: passed
+  - id: t_alert_gateway_unreachable
+    description: Verificare che il sistema generi un alert in caso di Gateway non raggiungibile
+    requirements:
+      - alert_gateway_irraggiungibile
+    status: passed
+  - id: t_view_alert_history
+    description: Verificare che l’utente possa visualizzare lo storico degli alert generati
+    requirements:
+      - visualizzazione_storico_alert
+    status: passed
+  - id: t_admin_modify_gateway_name
+    description:
+      Verificare che il Tenant Admin possa modificare il nome di un Gateway e ricevere errore
+      in caso di nome duplicato
+    requirements:
+      - modifica_nome_gateway
+      - err_nome_gateway_duplicato
+    status: passed
+  - id: t_admin_modify_gateway_status
+    description: Verificare che il Tenant Admin possa modificare lo stato operativo di un Gateway selezionato
+    requirements:
+      - modifica_stato_gateway
+      - selezione_stato_gateway
+    status: passed
+  - id: t_admin_modify_sensor_alarm_range
+    description:
+      Verificare che il Tenant Admin possa modificare il range di "allarme" per un sensore specifico
+      e per un tipo di sensore, ricevendo errore in caso di valori fuori range
+    requirements:
+      - modifica_range_sensore
+      - selezione_specifico_sensore
+      - selezione_range_numerico
+      - inserimento_valore_numerico
+      - modifica_range_default_tipo_sensore
+      - selezione_tipo_sensore
+      - err_range_invalido
+    status: passed
+  - id: t_admin_modify_gateway_timeout
+    description:
+      Verificare che il Tenant Admin possa modificare il timeout che determina l’irraggiungibilità
+      di un Gateway
+    requirements:
+      - modifica_intervallo_alert_gateway
+    status: passed
+  - id: t_admin_modify_gateway_frequency
+    description: Verificare che il Tenant Admin possa modificare la frequenza di invio dati di un Gateway
+    requirements:
+      - modifica_frequenza_invio_gateway
+    status: passed
+  - id: t_admin_view_tenant_costs
+    description:
+      Verificare che il Tenant Admin possa visualizzare i costi stimati del Tenant, inclusi costi
+      di storage e banda
+    requirements:
+      - visualizzazione_costi_stimati
+      - visualizzazione_costi_storage
+      - visualizzazione_costi_banda
+    status: passed
+  - id: t_admin_view_tenant_users
+    description:
+      Verificare che il Tenant Admin possa visualizzare la lista degli utenti del Tenant e i
+      dettagli di un singolo utente
+    requirements:
+      - visualizzazione_lista_utenti_tenant
+      - visualizzazione_singolo_utente_tenant
+    status: passed
+  - id: t_admin_manage_tenant_users
+    description:
+      Verificare che il Tenant Admin possa creare, modificare ed eliminare uno o più utenti del
+      Tenant
+    requirements:
+      - creazione_utente_tenant
+      - inserimento_nome_utente
+      - selezione_utente_tenant
+      - selezione_permessi_utente
+      - modifica_mail_utente
+      - modifica_password_utente
+      - eliminazione_utenti_tenant
+      - selezione_lista_utenti
+    status: passed
+  - id: t_admin_manage_api_credentials
+    description:
+      Verificare che il Tenant Admin possa creare, visualizzare e revocare credenziali API per
+      il Tenant
+    requirements:
+      - creazione_credenziali_api
+      - visualizzazione_client_id
+      - visualizzazione_secret_api
+      - visualizzazione_lista_api
+      - visualizzazione_singole_api
+      - eliminazione_credenziali_api
+      - selezione_credenziali_api
+    status: not_implemented
+  - id: t_view_export_audit_logs
+    description:
+      Verificare che un utente autorizzato possa consultare e filtrare per intervallo temporale,
+      esportare i log di Audit del Tenant
+    requirements:
+      - visualizzazione_log_audit_tenant
+      - visualizzazione_singolo_log_audit
+      - esportazione_log_audit_tenant
+      - selezione_intervallo_temporale
+      - download_log_audit_esportati
+    status: passed
+  - id: t_register_operations_audit_log
+    description:
+      Verificare che il sistema registri correttamente tutte le operazioni rilevanti nei log
+      di Audit
+    requirements:
+      - sicurezza_log_attivita
+    status: passed
+  - id: t_sysadmin_view_performance_metrics
+    description:
+      Verificare che l’Amministratore di Sistema possa visualizzare metriche di latenza, volume
+      di traffico e utilizzo storage
+    requirements:
+      - monitoraggio_performance_sistema
+    status: passed
+  - id: t_install_firmware_update
+    description:
+      Verificare che il Tenant Admin e l’Amministratore di Sistema possano selezionare uno o
+      più Gateway e installare un aggiornamento firmware
+    requirements:
+      - aggiornamento_firmware_gateway
+      - selezione_gateway
+    status: passed
+  - id: t_sysadmin_view_tenant_details
+    description:
+      Verificare che l’Amministratore di Sistema possa visualizzare la lista dei Tenant e i dettagli
+      di un singolo Tenant, inclusi nome, stato, ID e intervallo di sospensione
+    requirements:
+      - visualizzazione_lista_tenant
+      - visualizzazione_singolo_tenant
+      - visualizzazione_dettagli_tenant
+      - visualizzazione_nome_tenant
+      - visualizzazione_stato_tenant
+      - visualizzazione_id_tenant
+      - visualizzazione_intervallo_sospensione_tenant
+    status: passed
+  - id: t_sysadmin_manage_tenants
+    description:
+      Verificare che l’Amministratore di Sistema possa creare, sospendere, riattivare, modificare
+      ed eliminare un Tenant, con corretta gestione di errori interni durante la creazione
+    requirements:
+      - modifica_intervallo_sospensione_tenant
+      - modifica_nome_tenant
+      - creazione_tenant
+      - inserimento_anagrafica_tenant
+      - err_interno_creazione_tenant
+      - selezione_tenant
+      - sospensione_tenant
+      - riattivazione_tenant
+      - eliminazione_tenant
+    status: passed
+  - id: t_sysadmin_impersonate_user
+    description:
+      Verificare che l’Amministratore di Sistema possa avviare una sessione di impersonificazione
+      di un utente Tenant
+    requirements:
+      - impersonificazione_utente_tenant
+    status: passed
+  - id: t_sysadmin_register_gateway
+    description:
+      Verificare che l’Amministratore di Sistema possa registrare un Gateway e associarlo a un
+      Tenant di interesse
+    requirements:
+      - registrazione_associazione_gateway
+    status: passed
+  - id: t_sysadmin_create_tenant_admin
+    description:
+      Verificare che l’Amministratore di Sistema possa creare un utente con ruolo Amministratore
+      Tenant per un Tenant di interesse
+    requirements:
+      - creazione_utente_amministratore_tenant
+    status: passed
+  - id: t_api_client_authentication
+    description:
+      Verificare che un Client API possa autenticarsi tramite le credenziali ottenute e ricevere
+      notifica di errore in caso di credenziali invalide o server non disponibile
+    requirements:
+      - autenticazione_client_api
+      - err_dati_autenticazione_invalidi
+      - err_auth_server_non_disponibile
+    status: not_implemented
+  - id: t_api_retrieve_historical_data
+    description:
+      Verificare che un Client API autenticato possa recuperare dati storici on-demand e ricevere
+      notifiche di errore per token, ID Gateway, ID sensore o intervallo temporale non validi
+    requirements:
+      - richiesta_dati_on_demand
+      - err_token_api_invalido
+      - err_id_gateway_invalido
+      - err_id_sensore_invalido
+      - err_intervallo_temporale_invalido
+    status: not_implemented
+  - id: t_api_receive_realtime_streaming
+    description:
+      Verificare che un Client API autenticato possa ricevere dati real-time tramite endpoint
+      di streaming
+    requirements:
+      - richiesta_dati_streaming
+    status: not_implemented
+  - id: t_gateway_onboarding_process
+    description:
+      Verificare che un Gateway non provisioned possa completare correttamente il processo di
+      onboarding e connettersi al Sistema
+    requirements:
+      - onboarding_gateway
+    status: passed
+  - id: t_gateway_authentication_errors
+    description:
+      Verificare che il sistema notifichi errori di autenticazione per Gateway con credenziali
+      di fabbrica non valide o con processo di autenticazione fallito
+    requirements:
+      - err_auth_gateway_fabbrica
+      - err_autenticazione_gateway
+    status: passed
+  - id: t_gateway_encrypted_data_transmission
+    description:
+      Verificare che il Gateway invii dati al Cloud tramite canale sicuro cifrato e che il Cloud
+      li accetti correttamente
+    requirements:
+      - invio_dati_crittografati_cloud
+      - instaurazione_connessione_sicura
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_simulator_manage_gateways
+    description:
+      Verificare che l’utente del simulatore possa visualizzare la lista dei Gateway simulati,
+      i dettagli di ciascuno e gestire creazione, deploy ed eliminazione
+    requirements:
+      - visualizzazione_lista_gateway_simulati
+      - visualizzazione_singolo_gateway_simulato
+      - visualizzazione_id_fabbrica_simulazione
+      - visualizzazione_configurazione_simulazione_gateway
+      - eliminazione_gateway_simulato
+      - creazione_deploy_gateway_simulato
+      - inserimento_dati_config_sim_gateway
+      - err_deploy_gateway_simulato
+    status: passed
+  - id: t_simulator_manage_sensors
+    description:
+      Verificare che l’utente del simulatore possa configurare e simulare sensori associati a
+      un Gateway simulato, inclusa la gestione degli errori di range e creazione
+    requirements:
+      - visualizzazione_lista_sensori_gateway_simulato
+      - visualizzazione_singolo_sensore_simulato
+      - visualizzazione_configurazione_simulazione_sensore
+      - eliminazione_sensore_simulato
+      - creazione_sensore_gateway_simulato
+      - inserimento_dati_config_sim_sensore
+      - err_range_invalido_simulazione
+      - err_creazione_sensore_simulato
+    status: passed
+  - id: t_simulator_parallel_anomalies
+    description:
+      Verificare che il simulatore permetta di gestire più istanze Gateway in parallelo e di iniettare
+      anomalie di rete e valori sensore anomali
+    requirements:
+      - creazione_gateway_multipli_default
+      - err_valore_numerico_invalido
+      - comando_anomalia_degrado_rete
+      - comando_anomalia_disconnessione_temporanea
+      - comando_anomalia_outliers_misurazioni
+    status: passed
+  - id: t_cloud_send_config_commands
+    description:
+      Verificare che il Cloud possa inviare comandi di configurazione al Gateway simulato e ricevere
+      notifiche di errore per frequenze non valide
+    requirements:
+      - impostazione_configurazione_gateway
+      - err_sintattico_config_gateway
+      - err_config_frequenza_fuori_range
+    status: passed
+  - id: t_sensor_gateway_data_flow
+    description: Verificare la corretta trasmissione del flusso di dati tra sensore e relativo gateway
+    requirements:
+      - invio_dati_crittografati_cloud
+    status: passed
+  - id: t_tenant_user_cannot_access_admin_features
+    description:
+      Verificare che un Tenant User non possa accedere alle funzionalità riservate al
+      Tenant Admin (gestione utenti, configurazione Gateway, modifica range sensori)
+    requirements:
+      - sicurezza_autenticazione_accessi
+    status: passed
+  - id: t_tenant_admin_cannot_access_sysadmin_features
+    description:
+      Verificare che il Tenant Admin non possa accedere alle funzionalità riservate
+      all'Amministratore di Sistema (gestione Tenant, monitoraggio sistema globale)
+    requirements:
+      - sicurezza_autenticazione_accessi
+    status: passed
+  - id: t_tenant_data_isolation_verified
+    description:
+      Verificare che un utente autenticato di un Tenant non possa visualizzare né
+      accedere ai Gateway, sensori o dati appartenenti a un Tenant differente
+    requirements:
+      - sicurezza_segregazione_tenant
+    status: passed
+  - id: t_suspended_tenant_user_cannot_login
+    description:
+      Verificare che un utente appartenente a un Tenant sospeso non possa effettuare
+      l'accesso al Sistema e riceva un messaggio di errore appropriato
+    requirements:
+      - blocco_accesso_tenant_sospeso
+    status: passed
+  - id: t_session_expiry_redirect_to_login
+    description:
+      Verificare che alla scadenza del token di sessione il Sistema invalidi la
+      sessione corrente e reindirizzi automaticamente l'utente alla schermata di login
+    requirements:
+      - sessione_scaduta
+    status: passed
+  - id: t_impersonation_tenant_view_restricted
+    description:
+      Verificare che l'Amministratore di Sistema durante una sessione di
+      impersonificazione visualizzi il Sistema dal punto di vista del Tenant
+      impersonato, senza avere accesso diretto ai dati
+    requirements:
+      - impersonificazione_utente_tenant
+    status: passed
+  - id: t_view_single_alert_details
+    description:
+      Verificare che il Tenant User possa visualizzare un alert dalla lista storica e
+      visualizzarne i dettagli 
+    requirements:
+      - visualizzazione_singolo_alert
+      - visualizzazione_dettagli_singolo_alert
+    status: passed
+  - id: t_view_alert_gateway_unreachable_details
+    description:
+      Verificare che il Tenant User possa visualizzare i dettagli specifici di un
+      alert relativo a Gateway non raggiungibile
+    requirements:
+      - visualizzazione_dettagli_alert_gateway_irraggiungibile
+    status: passed
+  - id: t_alert_sensor_out_of_range_generated
+    description:
+      Verificare che il Sistema renda chiaramente visibile quando il valore misurato da un
+      sensore supera il range di allarme configurato per quel sensore
+    requirements:
+      - alert_sensore_fuori_range
+    status: passed
+  - id: t_filter_alert_history_by_time_range
+    description:
+      Verificare che il Tenant User possa filtrare lo storico degli alert per
+      intervallo temporale e che i risultati mostrati siano coerenti con il filtro
+      applicato
+    requirements:
+      - visualizzazione_storico_alert
+      - selezione_intervallo_temporale
+    status: passed
+  - id: t_view_out_of_range_data_highlighted
+    description:
+      Verificare che il Sistema evidenzi chiaramente in tabella i valori
+      di telemetria che superano il range di allarme configurato per il sensore
+    requirements:
+      - visualizzazione_dati_fuori_range
+    status: passed
+  - id: t_export_filtered_data_subset
+    description:
+      Verificare che il Sistema esporti esclusivamente i dati corrispondenti ai filtri
+      attualmente applicati (Gateway, sensore, intervallo temporale)
+    requirements:
+      - esportazione_dati
+      - filtraggio_gateway
+      - filtraggio_sensore
+      - filtraggio_intervallo_temporale
+    status: passed
+  - id: t_stream_data_real_time_update
+    description:
+      Verificare che la visualizzazione dei dati di stream si aggiorni automaticamente
+      all'arrivo di nuovi dati dal Gateway, senza necessità di ricaricare la pagina
+    requirements:
+      - visualizzazione_dati_stream
+    status: passed
+  - id: t_filter_by_multiple_sensors_same_gateway
+    description:
+      Verificare che l'utente possa filtrare i dati selezionando più sensori
+      appartenenti allo stesso Gateway e visualizzare correttamente i dati combinati
+    requirements:
+      - filtraggio_sensore
+      - filtraggio_gateway
+    status: passed
+  - id: t_sysadmin_view_all_gateways_in_system
+    description:
+      Verificare che l'Amministratore di Sistema possa visualizzare la lista completa
+      di tutti i Gateway registrati nel Sistema, indipendentemente dal Tenant di
+      appartenenza
+    requirements:
+      - visualizzazione_lista_gateway_sistema
+    status: passed
+  - id: t_sysadmin_view_single_gateway_details_system
+    description:
+      Verificare che l'Amministratore di Sistema possa visualizzare i dettagli di un
+      singolo Gateway conosciuto dal Sistema, inclusi ID di fabbrica e ID del Tenant
+      associato
+    requirements:
+      - visualizzazione_singolo_gateway_sistema
+    status: passed
+  - id: t_gateway_decommission_stops_monitoring_and_alerts
+    description:
+      Verificare che dopo il decommissioning di un Gateway il Sistema cessi il
+      monitoraggio heartbeat e non generi ulteriori alert relativi a quel Gateway
+    requirements:
+      - decommission_gateway
+    status: passed
+  - id: t_admin_bulk_gateway_status_change
+    description:
+      Verificare che il Tenant Admin possa modificare lo stato operativo di un
+      Gateway selezionandolo dalla lista
+    requirements:
+      - modifica_stato_gateway
+      - selezione_gateway
+    status: passed
+  - id: t_gateway_frequency_change_reflected_in_stream
+    description:
+      Verificare che una modifica alla frequenza di invio dati di un Gateway si
+      rifletta correttamente nella cadenza dei dati visualizzati nella sezione stream
+    requirements:
+      - modifica_frequenza_invio_gateway
+    status: passed
+  - id: t_sysadmin_view_audit_logs_for_any_tenant
+    description:
+      Verificare che l'Amministratore di Sistema possa visualizzare ed esportare i
+      log di Audit di qualsiasi Tenant registrato nel Sistema
+    requirements:
+      - visualizzazione_log_audit_tenant
+      - esportazione_log_audit_tenant
+    status: passed
+  - id: t_tenant_deletion_requires_suspension_period
+    description:
+      Verificare che l'eliminazione di un Tenant richieda una preventiva fase di
+      sospensione
+    requirements:
+      - sospensione_tenant
+      - eliminazione_tenant
+      - modifica_intervallo_sospensione_tenant
+    status: passed
+  - id: t_admin_view_user_last_login_timestamp
+    description:
+      Verificare che il Tenant Admin possa visualizzare il timestamp dell'ultimo
+      accesso di ciascun utente del Tenant nella lista utenti
+    requirements:
+      - visualizzazione_singolo_utente_tenant
+    status: passed
+  - id: t_sysadmin_full_tenant_onboarding_flow
+    description:
+      Verificare il flusso completo di registrazione di un nuovo Tenant da parte
+      dell'Amministratore di Sistema, nelle fasi di creazione Tenant, creazione
+      Tenant Admin, registrazione e associazione Gateway
+    requirements:
+      - creazione_tenant
+      - creazione_utente_amministratore_tenant
+      - registrazione_associazione_gateway
+    status: passed
+  - id: t_gateway_invalid_mtls_certificate_rejected
+    description:
+      Verificare che il Sistema rifiuti la connessione di un Gateway che presenta un
+      certificato mTLS non valido o non firmato dalla CA riconosciuta dal Sistema
+    requirements:
+      - instaurazione_connessione_sicura
+      - err_autenticazione_gateway
+    status: passed
+  - id: t_rule_zero_encrypted_payload_unmodified
+    description:
+      Verificare che il payload cifrato inviato dal Gateway venga trasmesso e
+      persistito nel Cloud senza alcuna modifica del contenuto, in conformità alla
+      Regola Zero
+    requirements:
+      - invio_dati_crittografati_cloud
+      - sicurezza_rule_zero
+    status: passed
+  - id: t_audit_log_captures_all_critical_operations
+    description:
+      Verificare che tutte le operazioni critiche (creazione/eliminazione utenti,
+      modifica configurazioni Gateway, modifiche ai
+      permessi) vengano registrate nei log di Audit
+    requirements:
+      - sicurezza_log_attivita
+    status: passed
+  - id: t_brute_force_login_protection
+    description:
+      Verificare che il Sistema blocchi o rallenti i tentativi di login ripetuti
+      falliti per lo stesso account, proteggendo dall'attacco brute-force
+    requirements:
+      - sicurezza_protezione_attacchi
+    status: not_implemented
+  - id: t_non_tls_gateway_connection_rejected
+    description:
+      Verificare che il Sistema rifiuti connessioni di Gateway che non utilizzano TLS,
+      restituendo un errore
+    requirements:
+      - instaurazione_connessione_sicura
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_data_persistence_after_service_restart
+    description:
+      Verificare che i dati di telemetria già ricevuti e i log di Audit non vengano
+      persi in seguito al riavvio di un microservizio Cloud
+    requirements:
+      - persistenza_dati_telemetria
+    status: passed
+  - id: t_gateway_reconnects_data_resumes_after_disconnect
+    description:
+      Verificare che dopo una disconnessione temporanea un Gateway si riconnetta
+      automaticamente al Sistema e riprenda l'invio di dati senza intervento manuale
+    requirements:
+      - onboarding_gateway
+      - invio_dati_crittografati_cloud
+    status: passed
+  - id: t_graceful_shutdown_no_in_flight_data_loss
+    description:
+      Verificare che in caso di shutdown ordinato di un microservizio i messaggi già
+      ricevuti ma non ancora elaborati vengano processati correttamente prima
+      dell'arresto, senza perdita di dati
+    requirements:
+      - persistenza_dati_telemetria
+    status: not_implemented
+  - id: t_service_prometheus_metrics_endpoint_accessible
+    description:
+      Verificare che l'endpoint di metriche Prometheus esposto dai microservizi sia
+      raggiungibile e restituisca metriche valide nel formato atteso
+    requirements:
+      - endpoint_metriche_prometheus
+    status: passed
+  - id: t_nats_message_delivery_after_broker_reconnect
+    description:
+      Verificare che i messaggi NATS non ancora consegnati vengano recapitati
+      correttamente dopo un breve periodo di disconnessione tra i microservizi interni
+    requirements:
+      - persistenza_dati_telemetria
+    status: not_implemented
+  - id: t_simulator_receives_cloud_suspend_command
+    description:
+      Verificare che il Gateway simulato smetta di pubblicare dati di telemetria quando
+      riceve il comando di sospensione dal Cloud e riprenda alla ricezione del comando
+      di riattivazione
+    requirements:
+      - impostazione_stato_sospensione
+    status: passed
+  - id: t_simulator_data_within_configured_range
+    description:
+      Verificare che i valori generati dal simulatore per ciascun sensore rientrino nel
+      range di generazione configurato per quel sensore
+    requirements:
+      - visualizzazione_configurazione_simulazione_sensore
+    status: passed
+  - id: t_simulator_change_sensor_data_algorithm
+    description:
+      Verificare che l'utente del simulatore possa modificare l'algoritmo di
+      generazione dati di un sensore e che il cambiamento venga applicato a partire
+      dalla successiva pubblicazione
+    requirements:
+      - inserimento_dati_config_sim_sensore
+      - modifica_algoritmo_generazione_dati
+    status: passed
+  - id: t_simulator_reconnect_after_network_anomaly_resolved
+    description:
+      Verificare che dopo la cessazione di un'anomalia di rete (degrado o
+      disconnessione temporanea) il Gateway simulato si riconnetta automaticamente e
+      riprenda la pubblicazione dei dati senza intervento manuale
+    requirements:
+      - comando_anomalia_degrado_rete
+      - comando_anomalia_disconnessione_temporanea
+    status: passed
+  - id: t_simulator_multiple_sensors_simultaneous_publish
+    description:
+      Verificare che un Gateway simulato possa gestire e pubblicare contemporaneamente
+      dati da più sensori associati, senza perdita o sovrapposizione di messaggi
+    requirements:
+      - visualizzazione_lista_sensori_gateway_simulato
+      - creazione_sensore_gateway_simulato
+    status: passed
+  - id: t_simulator_configuration_persistence_after_restart
+    description:
+      Verificare che la configurazione di Gateway e sensori simulati persista
+      correttamente attraverso un riavvio del backend del simulatore
+    requirements:
+      - creazione_deploy_gateway_simulato
+      - visualizzazione_configurazione_simulazione_gateway
+    status: not_implemented
+  - id: t_simulator_cli_displays_help
+    description:
+      Verificare che la CLI del simulatore mostri la lista dei comandi disponibili con
+      la rispettiva descrizione di utilizzo quando si invoca il comando di aiuto
+    requirements:
+      - visualizzazione_lista_gateway_simulati
+    status: passed
+
+  # ── Client API (non implementato) ────────────────────────────────────────
+  - id: t_api_client_filter_data_by_gateway
+    description:
+      Verificare che un Client API autenticato possa recuperare dati storici
+      specificando uno o più ID Gateway e ottenere solo i dati relativi ai Gateway
+      indicati
+    requirements:
+      - richiesta_dati_on_demand
+      - err_id_gateway_invalido
+    status: not_implemented
+  - id: t_api_client_filter_data_by_sensor
+    description:
+      Verificare che un Client API autenticato possa recuperare dati storici
+      specificando l'ID di un sensore e ottenere solo i dati relativi a quel sensore
+    requirements:
+      - richiesta_dati_on_demand
+      - err_id_sensore_invalido
+    status: not_implemented
+  - id: t_api_client_invalid_time_range_rejected
+    description:
+      Verificare che il Sistema rifiuti la richiesta di un Client API che specifica un
+      intervallo temporale non valido (es. data di inizio successiva alla data di fine)
+    requirements:
+      - richiesta_dati_on_demand
+      - err_intervallo_temporale_invalido
+    status: not_implemented
+  - id: t_api_streaming_graceful_disconnect
+    description:
+      Verificare che il Sistema gestisca correttamente la chiusura della connessione
+      di streaming da parte del Client API, liberando le risorse associate
+    requirements:
+      - richiesta_dati_streaming
+    status: not_implemented
+  - id: t_api_credentials_secret_displayed_once_only
+    description:
+      Verificare che la Client Secret venga mostrata al Tenant Admin esclusivamente al
+      momento della creazione delle credenziali API e non sia recuperabile
+      successivamente tramite l'interfaccia
+    requirements:
+      - visualizzazione_secret_api
+      - creazione_credenziali_api
+    status: not_implemented
+
+  - id: t_user_view_own_account_info
+    description:
+      Verificare che un utente autenticato possa visualizzare le informazioni del
+      proprio account
+    requirements:
+      - visualizzazione_info_account
+    status: passed
+  - id: t_admin_reset_user_password
+    description:
+      Verificare che il Tenant Admin possa reimpostare la password di un utente del
+      Tenant selezionato
+    requirements:
+      - modifica_password_utente
+    status: passed
+  - id: t_user_cannot_modify_other_user_profile
+    description:
+      Verificare che un Tenant User non possa modificare il profilo, le credenziali o
+      i permessi di altri utenti del Tenant
+    requirements:
+      - sicurezza_autenticazione_accessi
+    status: passed
+  - id: t_gateway_status_reflects_real_connectivity
+    description:
+      Verificare che lo stato del Gateway visualizzato nel pannello Tenant (online,
+      offline, sospeso) si aggiorni automaticamente per riflettere la connettività
+      reale del dispositivo
+    requirements:
+      - visualizzazione_singolo_gateway_tenant
+      - alert_gateway_irraggiungibile
+    status: passed
+  - id: t_sensor_data_timestamp_accuracy
+    description:
+      Verificare che il timestamp associato a ciascuna misurazione di un sensore
+      corrisponda al momento effettivo di acquisizione del dato
+    requirements:
+      - visualizzazione_singolo_sensore
+    status: passed
+  - id: t_gateway_provisioning_certificate_issuance
+    description:
+      Verificare che durante il processo di provisioning il Sistema generi ed emetta
+      correttamente un certificato mTLS al Gateway richiedente
+    requirements:
+      - onboarding_gateway
+      - instaurazione_connessione_sicura
+    status: passed
+  - id: t_admin_view_cost_breakdown_by_gateway
+    description:
+      Verificare che il Tenant Admin possa visualizzare la ripartizione dei costi di
+      storage e di banda disaggregata per singolo Gateway del Tenant
+    requirements:
+      - visualizzazione_costi_storage
+      - visualizzazione_costi_banda
+    status: passed
+  - id: t_sysadmin_register_and_verify_gateway_in_list
+    description:
+      Verificare che un Gateway appena registrato dall'Amministratore di Sistema
+      compaia immediatamente nella lista dei Gateway del Sistema e nella lista del
+      Tenant a cui è stato associato
+    requirements:
+      - registrazione_associazione_gateway
+      - visualizzazione_lista_gateway_sistema
+      - visualizzazione_lista_gateway_tenant
+    status: passed
