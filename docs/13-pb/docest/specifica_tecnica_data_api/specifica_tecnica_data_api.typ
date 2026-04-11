@@ -25,8 +25,8 @@
   i contratti esposti, model interni per la logica applicativa e servizi dedicati per orchestrazione, filtraggio e
   accesso ai dati.
 
-  = Dipendenze e Configurazione
-  == Variabili d'Ambiente
+  = Dipendenze e configurazione
+  == Variabili d'ambiente
   Tutte le variabili d’ambiente necessarie per il funzionamento del microservizio sono elencate di seguito, un'eventuale
   mancanza di una di queste variabili comporterà un errore all’avvio del microservizio:
 
@@ -55,7 +55,7 @@
     )
   ]
 
-  == Sequenza di Avvio
+  == Sequenza di avvio
   La sequenza di avvio è la seguente:
 
   #figure(
@@ -82,7 +82,7 @@
   ]
 
 
-  = Architettura Logica
+  = Architettura logica
 
   #figure(
     caption: [Architettura logica del microservizio `data-api`],
@@ -91,7 +91,7 @@
   ]
 
 
-  == Impostazione Architetturale
+  == Impostazione architetturale
 
   Il servizio adotta una Layered Architecture con organizzazione interna di tipo Modular Monolith. All'interno dei vari
   moduli è utilizzato prevalentemente il pattern Controller-Service-Persistence, che consente una chiara separazione
@@ -101,7 +101,7 @@
   dell’applicazione.
 
 
-  == Layout dei Moduli
+  == Layout dei moduli
 
   ```text
   notip-data-api/
@@ -147,7 +147,7 @@
   ```
 
 
-  == Strati Architetturali
+  == Strati architetturali
 
   #figure(
     caption: [Strati architetturali del microservizio `data-api`],
@@ -200,7 +200,7 @@
     )
   ]
 
-  = Design di Dettaglio
+  = Design di dettaglio
 
   == Moduli del microservizio
   #figure(
@@ -476,12 +476,12 @@
     di TypeORM ha permesso di implementare in modo rapido e robusto le operazioni di query paginata e non paginata sulle
     misure, garantendo al contempo una buona manutenibilità e scalabilità del codice di accesso ai dati.
   ]
-  == Flussi di Esecuzione
+  == Flussi di esecuzione
 
   Di seguito sono descritti i principali flussi di esecuzione del servizio `notip-data-api`, con particolare attenzione
   ai componenti applicativi coinvolti nell'elaborazione delle richieste e nell'accesso ai dati.
 
-  === Query Paginata delle Misure
+  === Query paginata delle misure
 
   Il client invia una richiesta `GET` all'endpoint `/measures/query`, specificando l'intervallo temporale di interesse
   ed eventuali filtri su `gatewayId`, `sensorId` e `sensorType`, ripetibili per supportare più valori. Il
@@ -495,7 +495,7 @@
   I dati ottenuti vengono poi trasformati tramite `MeasureMapper` in oggetti `QueryResponseDto`, comprensivi della lista
   delle misure, dell'eventuale `nextCursor` e dell'informazione `hasMore`, quindi restituiti al client.
 
-  === Export Completo delle Misure
+  === Export completo delle misure
 
   Il flusso di export viene attivato tramite una richiesta `GET` all'endpoint `/measures/export`. Anche in questo caso
   il `MeasureController` estrae i parametri di filtro, anch'essi ripetibili su più valori, e li inoltra al
@@ -507,7 +507,7 @@
 
   Il client riceve quindi l'elenco completo delle misure cifrate compatibili con i filtri indicati.
 
-  === Streaming delle Misure
+  === Streaming delle misure
 
   Il servizio espone l'endpoint `/measures/stream`, implementato come Server-Sent Events. Il `MeasureController`
   raccoglie gli eventuali filtri su gateway, sensore e tipo di sensore, anche in forma multi-valore, oltre al parametro
@@ -530,7 +530,7 @@
   Questo flusso consente al client di ricevere prima l'eventuale backlog storico richiesto e poi gli aggiornamenti
   continui senza dover effettuare polling esplicito sugli endpoint di query.
 
-  === Elenco dei Sensori Disponibili
+  === Elenco dei sensori disponibili
 
   Il client può richiedere l'elenco dei sensori osservati di recente tramite l'endpoint `GET /sensor`. Il
   `SensorController` costruisce l'input applicativo e lo inoltra al `SensorService`.
@@ -543,7 +543,7 @@
   Il risultato finale viene convertito in `SensorDto` e restituito come elenco dei sensori disponibili, eventualmente
   filtrato per `gatewayId`.
 
-  = Test e Verifica
+  = Test e verifica
 
   Il progetto include:
 
@@ -564,7 +564,7 @@
   Questa copertura consente di validare il comportamento funzionale principale del servizio, soprattutto per quanto
   riguarda i contratti esposti e la gestione dei casi di errore.
 
-  = Considerazioni Finali
+  = Considerazioni finali
 
   Il servizio `data-api` costituisce il punto di accesso applicativo ai dati telemetrici cifrati del sistema. La
   soluzione è costruita con una separazione chiara tra API, logica applicativa, mapping e accesso ai dati, ed è

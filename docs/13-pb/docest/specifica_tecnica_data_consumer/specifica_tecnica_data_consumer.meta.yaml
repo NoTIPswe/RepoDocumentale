@@ -1,5 +1,12 @@
-title: Specifica Tecnica - Data-Consumer
+title: Specifica tecnica - Data-Consumer
 changelog:
+  - version: "0.4.1"
+    date: "2026-04-08"
+    authors:
+      - Matteo Mantoan
+    verifier: Francesco Marcon
+    description: >
+      Uniformazione titoli e intestazioni: solo prima lettera maiuscola
   - version: "0.4.0"
     date: "2026-04-08"
     authors:

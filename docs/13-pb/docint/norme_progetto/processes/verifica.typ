@@ -1,6 +1,6 @@
 #import "lib.typ": ROLES, activity, cite-norm, norm
 
-== Processo di Verifica
+== Processo di verifica
 
 Il processo di *Verifica* ha lo scopo di confermare che ogni prodotto del ciclo di vita soddisfi i requisiti specificati
 e sia conforme agli standard di qualità interni fissati. L'obiettivo è quindi cercare di rispondere alla domanda:
@@ -12,7 +12,7 @@ Qualifica*.
 === Norme e strumenti di verifica
 
 #norm(
-  title: "Analisi Statica (Ispezione)",
+  title: "Analisi statica (ispezione)",
   label: <analisi-statica>,
   rationale: [
     *Perché l'Ispezione?* Rispetto al _Walkthrough_, l'Ispezione è un metodo più rigoroso che utilizza liste di
@@ -32,7 +32,7 @@ Qualifica*.
 ]
 
 #norm(
-  title: "Analisi Dinamica (Testing)",
+  title: "Analisi dinamica (testing)",
   label: <analisi-dinamica>,
 )[
   L'analisi dinamica richiede l'esecuzione del codice per rilevare malfunzionamenti (_failure_) causati da difetti
@@ -73,7 +73,7 @@ Qualifica*.
 ]
 
 #norm(
-  title: "Nomenclatura dei Test",
+  title: "Nomenclatura dei test",
   label: <nomenclatura-test>,
 )[
   Ogni test definito nel Piano di Qualifica deve essere identificato univocamente secondo la nomenclatura:
@@ -91,7 +91,7 @@ Qualifica*.
 === Attività del processo
 
 #activity(
-  title: "Esecuzione della Verifica Documentale",
+  title: "Esecuzione della verifica documentale",
   roles: (ROLES.ver,),
   norms: ("analisi-statica", "uso-notipdo"),
   input: [Documento in stato di "Verifica" (PR aperta)],

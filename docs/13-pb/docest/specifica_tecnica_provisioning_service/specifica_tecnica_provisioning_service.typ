@@ -24,9 +24,9 @@
   - infrastruttura NATS/PKI/crypto (`nats`, `ca`, `crypto`);
   - configurazione e osservabilità (`config`, `metrics`).
 
-  = Dipendenze e Configurazione
+  = Dipendenze e configurazione
 
-  == Stack Tecnologico
+  == Stack tecnologico
 
   Il microservizio è implementato in TypeScript su Node.js con framework NestJS e usa le dipendenze principali:
 
@@ -36,7 +36,7 @@
   - `prom-client` per metriche applicative Prometheus;
   - `class-validator` e `class-transformer` per validazione DTO di input.
 
-  == Variabili d'Ambiente
+  == Variabili d'ambiente
 
   Il caricamento configurazione avviene in `loadConfig()` (`src/config/provisioning.config.ts`). Le variabili richieste
   mancanti causano errore all'avvio.
@@ -57,7 +57,7 @@
     [`PORT`], [PORT], [`3004`], [No],
   )
 
-  == Sequenza di Avvio
+  == Sequenza di avvio
 
   #table(
     columns: (auto, auto, auto, auto),
@@ -69,13 +69,13 @@
     [5], [`app.listen(PORT)`], [Espone listener HTTP sulla porta configurata (default 3004)], [No],
   )
 
-  = Architettura Logica
+  = Architettura logica
 
   #align(center)[
     #image("./assets/provisioning_service.png", width: 100%)
   ]
 
-  == Impostazione Architetturale
+  == Impostazione architetturale
 
   Il servizio adotta un'architettura a layer con contratti espliciti tra componenti:
 
@@ -85,7 +85,7 @@
   - il controller invoca la use case solo tramite `OnboardGateway`;
   - i model nel dominio provisioning e CA non dipendono da NestJS o librerie esterne.
 
-  == Layout dei Package
+  == Layout dei package
 
   ```text
   notip-provisioning-service/
@@ -128,7 +128,7 @@
   └── test/
   ```
 
-  == Strati Architetturali
+  == Strati architetturali
 
   #table(
     columns: (1.2fr, 2fr, 3fr),
@@ -153,9 +153,9 @@
     [Accesso filesystem al volume `/certs` per `ca.key`, `ca.crt`, `nats.key`, `nats.crt`.],
   )
 
-  = Definizione dei Port
+  = Definizione dei port
 
-  == Driving Port
+  == Driving port
 
   #st.port-interface(
     name: "POST /provision/onboard",
@@ -184,7 +184,7 @@
     ),
   )
 
-  == Driven Port
+  == Driven port
 
   #st.port-interface(
     name: "FactoryValidator",
@@ -235,9 +235,9 @@
     ),
   )
 
-  = Design di Dettaglio
+  = Design di dettaglio
 
-  == Flusso di Provisioning (Use Case Onboard)
+  == Flusso di provisioning (Use Case Onboard)
 
   Il metodo `ProvisioningService.onboard(request)` esegue i seguenti step in sequenza:
 
@@ -258,7 +258,7 @@
     [6], [Mapping output], [Restituisce `certPem`, `aesKey` (base64), `identity` e `sendFrequencyMs` con status 201.],
   )
 
-  == Modello Dati del Dominio
+  == Modello dati del dominio
 
   #table(
     columns: (1.4fr, 2fr, 2.8fr),
@@ -294,7 +294,7 @@
     [Certificato server NATS generato e salvato su volume in fase init CA.],
   )
 
-  == Gestione Errori
+  == Gestione errori
 
   Il filtro `ProvisioningExceptionFilter` converte gli errori di dominio in risposte HTTP stabili e preserva gli
   `HttpException` già costruiti da NestJS:
@@ -310,7 +310,7 @@
     [`ProvisioningDomainError` o altri], [500], [`{ "error": "INTERNAL_ERROR" }`],
   )
 
-  == Audit Logging e Regole di Sicurezza
+  == Audit logging e regole di sicurezza
 
   L'interceptor `AuditLogInterceptor` produce un record JSON per ogni richiesta, con i campi:
 
@@ -348,7 +348,7 @@
   - `internal.mgmt.factory.validate`
   - `internal.mgmt.provisioning.complete`
 
-  == Gestione CA e Certificati
+  == Gestione CA e certificati
 
   La componente CA usa la directory configurata in `CA_CERTS_PATH` (default `/certs`).
 
@@ -365,7 +365,7 @@
   - certificato server NATS con validità 1 anno;
   - certificato foglia gateway con TTL `CERT_TTL_DAYS` (default 90).
 
-  = Osservabilità e Metriche
+  = Osservabilità e metriche
 
   Il servizio registra metriche applicative tramite `ProvisioningMetrics` e metriche HTTP/process tramite
   `MetricsService` (`prom-client` default metrics, oltre alle metriche HTTP custom):
@@ -385,7 +385,7 @@
     [`notip_provisioning_http_requests_in_flight`], [Gauge delle richieste HTTP in corso per metodo],
   )
 
-  = Strategia di Test
+  = Strategia di test
 
   La suite nella cartella `test/` copre i principali componenti:
 
@@ -401,7 +401,7 @@
   - `npm run lint:check`
   - `npm run typecheck`
 
-  = Relazioni tra Componenti
+  = Relazioni tra componenti
 
   #table(
     columns: (2fr, 2fr),

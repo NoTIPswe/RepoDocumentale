@@ -44,7 +44,7 @@
   )
 
   #base-report.report-point(
-    discussion_point: [Organizzazione delle Repository e Ambienti di Sviluppo],
+    discussion_point: [Organizzazione delle repository e ambienti di sviluppo],
 
     discussion: [
       Si è discussa la modalità più adatta per suddividere il codice del progetto nelle varie repository, prendendo in
@@ -75,7 +75,7 @@
   )
 
   #base-report.report-point(
-    discussion_point: [Gestione e Raggruppamento delle API],
+    discussion_point: [Gestione e raggruppamento delle API],
 
     discussion: [
       Sempre in relazione alla suddivisione del codice, il Team ha domandato se avesse senso, a livello logico e
@@ -99,7 +99,7 @@
     ],
   )
 
-  = Epilogo della Riunione
+  = Epilogo della riunione
   L'incontro si è concluso in maniera molto proficua. Il confronto ha permesso di:
   - Validare l'architettura C4 attualmente sviluppata.
   - Stabilire direttive chiare sull'isolamento dei servizi in repository singole e sull'utilizzo di Dev Container.
@@ -113,7 +113,7 @@
 
   #pagebreak()
 
-  = Approvazione Aziendale
+  = Approvazione aziendale
   La presente sezione certifica che il verbale è stato esaminato e approvato dai rappresentanti di _M31_. L’avvenuta
   approvazione è formalmente confermata dalle firme riportate di seguito dei referenti Aziendali.
 

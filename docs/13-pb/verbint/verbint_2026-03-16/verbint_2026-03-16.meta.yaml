@@ -1,5 +1,12 @@
 title: Verbale Interno 2026-03-16
 changelog:
+  - version: "0.0.2"
+    date: "2026-04-07"
+    authors:
+      - Matteo Mantoan
+    verifier: Francesco Marcon
+    description: >
+      Uniformazione titoli e intestazioni: solo prima lettera maiuscola
   - version: "0.0.1"
     date: "2026-03-16"
     authors:
