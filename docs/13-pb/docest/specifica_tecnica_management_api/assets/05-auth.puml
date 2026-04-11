@@ -1,0 +1,203 @@
+@startuml
+title Auth Module - Class Diagram
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 10
+skinparam defaultFontColor #000000
+skinparam class {
+  BackgroundColor #E8F4FD
+  BorderColor #2196F3
+  ArrowColor #1976D2
+}
+skinparam interface {
+  BackgroundColor #E8F4FD
+  BorderColor #2196F3
+}
+skinparam nodesep 10
+skinparam ranksep 10
+skinparam linetype ortho
+skinparam packageStyle rectangle
+
+package "auth" <<Rectangle>> {
+  class "AuthController" as AuthController {
+    -impersonationService: ImpersonationService
+    -dataSource?: DataSource
+    +getMe(req): AuthenticatedUser
+    +getTenantStatus(req): TenantStatusDto
+    +impersonate(body, req): {access_token, expires_in}
+    -isSuspensionExpired(tenant): boolean
+    -reactivateTenantIfExpired(tenant): Promise<TenantEntity>
+  }
+
+  class "JwtStrategy" as JwtStrategy {
+    -managementClientId: string
+    {strategy} validate(payload): AuthenticatedUser
+  }
+
+  class "JwtAuthGuard" as JwtAuthGuard {
+    -reflector: Reflector
+    +canActivate(context): boolean
+  }
+
+  class "RolesGuard" as RolesGuard {
+    -reflector: Reflector
+    +canActivate(context): boolean
+  }
+
+  class "AccessPolicyGuard" as AccessPolicyGuard {
+    -reflector: Reflector
+    -dataSource?: DataSource
+    +canActivate(context): boolean
+    -isSuspensionExpired(tenant): boolean
+    -reactivateTenantIfExpired(tenant): Promise<TenantEntity>
+    -getTenant(tenantId): Promise<TenantEntity>
+  }
+
+  class "BlockImpersonationGuard" as BlockImpersonationGuard {
+    -reflector: Reflector
+    -auditLog: AuditLogService
+    +canActivate(context): boolean
+    -getValidUuid(value): string
+  }
+
+  class "MockAuthGuard" as MockAuthGuard {
+    +canActivate(context): boolean
+  }
+
+  class "ImpersonationService" as ImpersonationService {
+    -config: ConfigService
+    +impersonateUser({adminAccessToken, targetUserId}): {access_token, expires_in}
+  }
+
+  interface "AuthenticatedUser" as AuthenticatedUser {
+    +actorUserId: string
+    +actorEmail: string
+    +actorName: string
+    +actorRole: UsersRole
+    +actorTenantId: string
+    +effectiveUserId: string
+    +effectiveEmail: string
+    +effectiveName: string
+    +effectiveRole: UsersRole
+    +effectiveTenantId: string
+    +isImpersonating: boolean
+  }
+
+  interface "JwtClaims" as JwtClaims {
+    +sub: string
+    +email: string
+    +name: string
+    +role?: string
+    +tenant_id?: string
+    +realm_access: {roles?}
+    +resource_access: Record<string, {roles?}>
+    +azp: string
+    +act?: {sub?, role?}
+  }
+
+  class "TenantStatusDto" as TenantStatusDto {
+    +tenant_id: string
+    +status: TenantStatus
+    +read_only: boolean
+  }
+
+  class "ImpersonateDto" as ImpersonateDto {
+    +user_id: string
+  }
+
+  class "TenantEntity" as TenantEntity {
+    +id: string
+    +name: string
+    +status: TenantStatus
+    +suspensionUntil: Date
+    +suspensionIntervalDays: number
+  }
+
+  enum "UsersRole" as UsersRole {
+    SYSTEM_ADMIN
+    TENANT_ADMIN
+    TENANT_USER
+  }
+
+  enum "TenantStatus" as TenantStatus {
+    ACTIVE
+    SUSPENDED
+  }
+
+  class "ConfigService" as ConfigService
+  class "Reflector" as Reflector
+  class "AuditLogService" as AuditLogService
+  class "DataSource" as DataSource
+
+  AuthController --> ImpersonationService : uses
+  AuthController --> TenantEntity : checks status
+  AuthController --> TenantStatusDto : returns
+  AuthController --> DataSource : optional injection
+
+  JwtStrategy --> ConfigService : reads env vars
+  JwtStrategy --> AuthenticatedUser : builds user object
+  JwtStrategy --> JwtClaims : validates payload
+
+  JwtAuthGuard --> Reflector : checks @AccessPolicy
+  JwtAuthGuard --> AuthenticatedUser : validates JWT
+
+  RolesGuard --> Reflector : checks @Roles
+  RolesGuard --> AuthenticatedUser : checks effectiveRole
+
+  AccessPolicyGuard --> Reflector : checks @AccessPolicy
+  AccessPolicyGuard --> DataSource : queries tenant
+  AccessPolicyGuard --> TenantEntity : checks suspension
+  AccessPolicyGuard --> UsersRole : checks SYSTEM_ADMIN
+
+  BlockImpersonationGuard --> Reflector : checks @BlockImpersonation
+  BlockImpersonationGuard --> AuditLogService : logs blocked attempts
+  BlockImpersonationGuard --> AuthenticatedUser : checks isImpersonating
+
+  MockAuthGuard --> UsersRole : parses MOCK_ROLE
+  MockAuthGuard --> AuthenticatedUser : creates mock user
+
+  ImpersonationService --> ConfigService : reads Keycloak config
+
+  AuthenticatedUser --> UsersRole
+  TenantStatusDto --> TenantStatus
+  TenantEntity --> TenantStatus
+}
+
+note top of AuthController
+  @Controller('auth')
+  Endpoints:
+  - GET /auth/me
+  - GET /auth/tenant-status
+  - POST /auth/impersonate (admin only)
+end note
+
+note top of JwtStrategy
+  Passport JWT Strategy
+  - Validates JWT tokens from Keycloak
+  - Extracts effective role from claims
+  - Detects impersonation sessions
+  - Returns AuthenticatedUser object
+end note
+
+note top of ImpersonationService
+  OAuth 2.0 Token Exchange
+  - Admin impersonates tenant user
+  - Calls Keycloak token exchange API
+  - Returns new access token
+end note
+
+note top of AccessPolicyGuard
+  Checks tenant-level access
+  - Blocks if tenant is SUSPENDED
+  - Auto-reactivates expired suspensions
+  - SYSTEM_ADMIN bypasses tenant checks
+end note
+
+note top of BlockImpersonationGuard
+  Selective endpoint protection
+  - Logs IMPERSONATION_BLOCKED audit events
+  - Validates UUID format for tenant IDs
+  - Throws ForbiddenException during impersonation
+end note
+
+@enduml

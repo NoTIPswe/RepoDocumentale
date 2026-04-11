@@ -1,0 +1,177 @@
+@startuml
+title Admin Module - Gateways Submodule
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 10
+skinparam defaultFontColor #000000
+skinparam class {
+  BackgroundColor #E8F4FD
+  BorderColor #2196F3
+  ArrowColor #1976D2
+}
+skinparam interface {
+  BackgroundColor #E8F4FD
+  BorderColor #2196F3
+}
+skinparam nodesep 10
+skinparam ranksep 10
+skinparam linetype ortho
+skinparam packageStyle rectangle
+
+package "admin/gateways" <<Rectangle>> {
+  class "GatewaysController" as AdminGatewaysController {
+    -gs: GatewaysService
+    +getAdminGateways(tenantId?): GatewayResponseDto[]
+    +addGateway(input): AddGatewayResponseDto
+  }
+
+  class "GatewaysService" as AdminGatewaysService {
+    -gps: GatewaysPersistenceService
+    +getGateways(input): GatewayModel[]
+    +addGateway(input): GatewayModel
+  }
+
+  class "GatewaysPersistenceService" as AdminGatewaysPersistenceService {
+    -gatewayRepo: Repository<GatewayEntity>
+    -metadataRepo: Repository<GatewayMetadataEntity>
+    +getGateways(input): GatewayEntity[]
+    +addGateway(input): GatewayEntity
+  }
+
+  class "GatewaysMapper" as AdminGatewaysMapper {
+    {static} toModel(entity): GatewayModel
+    {static} toResponseDto(model): GatewayResponseDto
+    {static} toAddGatewayInput(dto): AddGatewayInput
+    {static} toAddGatewayResponseDto(model): AddGatewayResponseDto
+  }
+
+  class "AddGatewayRequestDto" as AddGatewayRequestDto {
+    +factoryId: string
+    +tenantId: string
+    +factoryKey: string
+    +model: string
+  }
+
+  class "AddGatewayResponseDto" as AddGatewayResponseDto {
+    +id: string
+  }
+
+  class "GatewayResponseDto" as GatewayResponseDto {
+    +id: string
+    +tenantId: string
+    +factoryId: string
+    +model: string
+    +provisioned: boolean
+    +firmwareVersion?: string
+    +createdAt: string
+  }
+
+  class "GatewayModel" as GatewayModel {
+    +id: string
+    +factoryKeyHash: string
+    +factoryId: string
+    +createdAt: Date
+    +firmwareVersion: string
+    +model: string
+    +tenantId: string
+    +provisioned: boolean
+  }
+
+  class "GatewayEntity\n(gateways)" as GatewayEntity {
+    +id: string
+    +tenantId: string
+    +factoryId: string
+    +factoryKeyHash: string
+    +provisioned: boolean
+    +model: string
+    +firmwareVersion: string
+    +createdAt: Date
+    +updatedAt: Date
+    +tenant: TenantEntity
+    +metadata: GatewayMetadataEntity
+  }
+
+  class "GatewayMetadataEntity\n(gateways)" as GatewayMetadataEntity {
+    +gatewayId: string
+    +name: string
+    +status: GatewayStatus
+    +lastSeenAt: Date
+    +sendFrequencyMs: number
+    +gateway: GatewayEntity
+  }
+
+  interface "GetGatewaysInput" as GetGatewaysInput {
+    +tenantId?: string
+  }
+
+  interface "AddGatewayInput" as AddGatewayInput {
+    +factoryId: string
+    +tenantId: string
+    +factoryKey: string
+    +model: string
+    +firmwareVersion?: string
+  }
+
+  interface "AddGatewayPersistenceInput" as AddGatewayPersistenceInput {
+    +factoryId: string
+    +tenantId: string
+    +factoryKeyHash: string
+    +model: string
+    +firmwareVersion?: string
+  }
+
+  class "DEFAULT_GATEWAY_SEND_FREQUENCY_MS" as DefaultFreq {
+    {static} value: 30000
+  }
+
+  AdminGatewaysController --> AdminGatewaysService : uses
+  AdminGatewaysController --> AdminGatewaysMapper : maps to DTO
+
+  AdminGatewaysService --> AdminGatewaysPersistenceService : uses
+  AdminGatewaysService --> GatewayModel : returns
+  AdminGatewaysService ..> GetGatewaysInput : receives
+  AdminGatewaysService ..> AddGatewayInput : receives
+
+  AdminGatewaysPersistenceService --> GatewayEntity : CRUD
+  AdminGatewaysPersistenceService --> GatewayMetadataEntity : CRUD
+  AdminGatewaysPersistenceService --> DefaultFreq : uses constant
+
+  AdminGatewaysMapper --> GatewayEntity : from
+  AdminGatewaysMapper --> GatewayModel : to
+  AdminGatewaysMapper --> GatewayResponseDto : to
+  AdminGatewaysMapper --> AddGatewayResponseDto : to
+
+  AddGatewayRequestDto ..> AddGatewayInput
+
+  GatewayEntity --> GatewayMetadataEntity : OneToOne
+  GatewayEntity --> TenantEntity : ManyToOne
+}
+
+note top of AdminGatewaysController
+  @Controller('admin/gateways')
+  @AdminOnly()
+  Endpoints: GET (list), POST (add)
+  Optional tenant filtering
+end note
+
+note top of AdminGatewaysService
+  Business logic layer
+  - Hashes factoryKey with bcrypt
+  - Maps between DTOs and persistence
+end note
+
+note top of AdminGatewaysPersistenceService
+  Data access layer
+  - Creates GatewayEntity + MetadataEntity
+  - Filters by tenantId if provided
+  - Uses DEFAULT_GATEWAY_SEND_FREQUENCY_MS
+end note
+
+note top of GatewayEntity
+  Core gateway entity
+  - factoryKeyHash: select: false (security)
+  - OneToOne with metadata (cascade)
+  - ManyToOne with tenant (cascade delete)
+end note
+
+@enduml

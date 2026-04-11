@@ -1,0 +1,225 @@
+@startuml
+title Admin Module - Tenants Submodule
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 10
+skinparam defaultFontColor #000000
+skinparam class {
+  BackgroundColor #E8F4FD
+  BorderColor #2196F3
+  ArrowColor #1976D2
+}
+skinparam enum {
+  BackgroundColor #FFF3E0
+  BorderColor #FF9800
+}
+skinparam interface {
+  BackgroundColor #E8F4FD
+  BorderColor #2196F3
+}
+skinparam nodesep 10
+skinparam ranksep 10
+skinparam linetype ortho
+skinparam packageStyle rectangle
+skinparam note {
+  BackgroundColor #E8F4FD
+  BorderColor #FBC02D
+}
+skinparam nodesep 8
+skinparam ranksep 8
+
+package "admin/tenants" <<Rectangle>> {
+  class "TenantsController" as TenantsController {
+    -ts: TenantsService
+    +getTenants(): TenantsResponseDto[]
+    +getTenantUsers(id): {user_id, role}[]
+    +createTenant(dto): TenantsResponseDto
+    +updateTenant(id, dto): UpdateTenantsResponseDto
+    +deleteTenant(id): void
+  }
+
+  class "TenantsService" as TenantsService {
+    -tps: TenantsPersistenceService
+    -keycloakAdmin: KeycloakAdminService
+    -apiClientService: ApiClientService
+    +getTenants(): TenantsModel[]
+    +getTenantUsers(tenantId): UserEntity[]
+    +createTenant(input): TenantsModel
+    +updateTenant(input): TenantsModel
+    +deleteTenant(input): void
+    -isSuspensionExpired(tenant): boolean
+    -reactivateTenantIfExpired(tenant): void
+    -syncTenantUsersEnabledState(tenantId, status): void
+  }
+
+  class "KeycloakAdminService" as KeycloakAdminService {
+    -configService: ConfigService
+    +createApiClient(name, tenantId): ClientRepresentation
+    +deleteApiClient(clientUuid): void
+    +updateApiClient(clientUuid, name): void
+    +createTenantAdminUser(input): string
+    +createTenantUser(input): string
+    +getClientCredentialsToken(): string
+    +deleteUser(userId): void
+    +syncUserApplicationRole(userId, role): void
+    +updateUser(userId, updates): void
+    +setUserEnabled(userId, enabled): void
+    +updateTenantGroup(oldId, newId): void
+    +deleteTenantGroup(tenantId): void
+    -deleteUserWithToken(userId, token): void
+    -ensureExclusiveAppRole(token, userId, role): void
+    -ensureTenantGroup(token, tenantId): string
+    -assignUserToGroup(token, userId, groupId): void
+    -getAdminAccessToken(): string
+    -getRequiredEnv(key): string
+    -buildTenantGroupName(tenantId): string
+    -buildUserAttributes(input): Attributes
+  }
+
+  class "TenantsPersistenceService" as TenantsPersistenceService {
+    -tenantRepo: Repository<TenantEntity>
+    -userRepo: Repository<UserEntity>
+    +getTenants(): TenantEntity[]
+    +createTenant(input, manager?): TenantEntity
+    +updateTenant(input, manager?): TenantEntity
+    +deleteTenant(input, manager?): boolean
+    +createTenantAdminLocalUser(input, manager?): UserEntity
+    +getTenantAdminUsers(tenantId): UserEntity[]
+    +getUsersByTenant(tenantId): UserEntity[]
+    -getTenantRepo(manager?): Repository
+    -getUserRepo(manager?): Repository
+  }
+
+  class "TenantsMapper" as TenantsMapper {
+    {static} toModel(entity): TenantsModel
+    {static} toResponseDto(model): TenantsResponseDto
+    {static} toUpdateResponseDto(model): UpdateTenantsResponseDto
+    -toSuspensionIntervalDays(model): number
+  }
+
+  class "CreateTenantRequestDto" as CreateTenantRequestDto {
+    +name: string
+    +adminEmail: string
+    +adminUsername: string
+    +adminPassword: string
+  }
+
+  class "UpdateTenantRequestDto" as UpdateTenantRequestDto {
+    +name?: string
+    +status?: TenantStatus
+    +suspensionIntervalDays?: number
+  }
+
+  class "TenantsResponseDto" as TenantsResponseDto {
+    +id: string
+    +name: string
+    +status: TenantStatus
+    +createdAt: string
+    +suspensionIntervalDays: number
+  }
+
+  class "UpdateTenantsResponseDto" as UpdateTenantsResponseDto {
+    +id: string
+    +name: string
+    +status: TenantStatus
+    +updatedAt: string
+  }
+
+  class "DeleteTenantResponseDto" as DeleteTenantResponseDto {
+    +message: string
+  }
+
+  class "TenantsModel" as TenantsModel {
+    +id: string
+    +name: string
+    +status: TenantStatus
+    +suspensionIntervalDays: number
+    +suspensionUntil: Date
+    +createdAt: Date
+    +updatedAt: Date
+  }
+
+  class "TenantEntity\n(common)" as TenantEntity {
+    +id: string
+    +name: string
+    +status: TenantStatus
+    +suspensionIntervalDays: number
+    +suspensionUntil: Date
+    +createdAt: Date
+    +updatedAt: Date
+    +users: UserEntity[]
+    +gateways: GatewayEntity[]
+  }
+
+  class "UserEntity\n(users)" as UserEntity {
+    +id: string
+    +tenantId: string
+    +username: string
+    +email: string
+    +role: UsersRole
+    +permissions: string[]
+    +lastAccess: Date
+    +createdAt: Date
+  }
+
+  interface "CreateTenantInput" as CreateTenantInput {
+    +name: string
+    +adminEmail: string
+    +adminUsername: string
+    +adminPassword: string
+  }
+
+  interface "UpdateTenantInput" as UpdateTenantInput {
+    +id: string
+    +name?: string
+    +status?: TenantStatus
+    +suspensionIntervalDays?: number
+  }
+
+  interface "DeleteTenantInput" as DeleteTenantInput {
+    +id: string
+  }
+
+  enum "TenantStatus" as TenantStatus {
+    ACTIVE
+    SUSPENDED
+  }
+
+  enum "UsersRole" as UsersRole {
+    SYSTEM_ADMIN
+    TENANT_ADMIN
+    TENANT_USER
+  }
+
+  TenantsController --> TenantsService : uses
+  TenantsController --> TenantsMapper : maps to DTO
+  TenantsController --> DeleteTenantResponseDto
+
+  TenantsService --> TenantsPersistenceService : uses
+  TenantsService --> KeycloakAdminService : uses
+  TenantsService --> TenantsModel : returns
+  TenantsService --> TenantEntity : reads
+  TenantsService ..> CreateTenantInput : receives
+  TenantsService ..> UpdateTenantInput : receives
+  TenantsService ..> DeleteTenantInput : receives
+
+  TenantsPersistenceService --> TenantEntity : CRUD
+  TenantsPersistenceService --> UserEntity : CRUD
+
+  TenantsMapper --> TenantEntity : from
+  TenantsMapper --> TenantsModel : to
+  TenantsMapper --> TenantsResponseDto : to
+  TenantsMapper --> UpdateTenantsResponseDto : to
+
+  TenantsModel --> TenantStatus
+  TenantsModel --> UserEntity
+
+  CreateTenantRequestDto ..> CreateTenantInput
+  UpdateTenantRequestDto ..> UpdateTenantInput
+
+  KeycloakAdminService --> ConfigService : uses
+
+  TenantEntity "1" -right- "0..*" UserEntity
+}
+
+@enduml
