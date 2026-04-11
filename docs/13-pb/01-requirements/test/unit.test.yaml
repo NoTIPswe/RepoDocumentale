@@ -546,72 +546,28 @@ tests:
     service: Management API
     description: Verificare la validazione del JWT (sub mancante, ruolo invalid, normalizzazione ruolo, ruolo ambiguo, impersonation con claim incompleti o completi)
     requirements:
+      - login
       - sicurezza_autenticazione_accessi
     status: passed
 
   - id: t_u_mgmt_jwt_auth_guard
     service: Management API
-    description: Verificare che JwtAuthGuard attivi canActivate delegando a Passport e gestisca correttamente il context
-    requirements:
-      - sicurezza_autenticazione_accessi
-    status: passed
-
-  - id: t_u_mgmt_mock_auth_guard
-    service: Management API
-    description: Verificare che MockAuthGuard conceda l'accesso in modalità mock
-    requirements:
-      - sicurezza_autenticazione_accessi
-    status: passed
-
-  - id: t_u_mgmt_roles_guard
-    service: Management API
-    description: Verificare che RolesGuard consenta l'accesso per ruoli corrispondenti e lo neghi per ruoli non autorizzati
-    requirements:
-      - sicurezza_autenticazione_accessi
-    status: passed
-
-  - id: t_u_mgmt_access_policy_guard
-    service: Management API
-    description: Verificare che AccessPolicyGuard valuti le policy di accesso in base al ruolo e alla risorsa richiesta
+    description: Verificare che il sistema consenta l'accesso alla risorsa in base al ruolo dell'utente presente nel JWT
     requirements:
       - sicurezza_autenticazione_accessi
     status: passed
 
   - id: t_u_mgmt_block_impersonation_guard
     service: Management API
-    description: Verificare che BlockImpersonationGuard blocchi le richieste in caso di impersonificazione non consentita
+    description: Verificare che il Sistema gestisca correttamente l'impersonazione, offuscando eventuali dati sensibili e limitando l'accesso alle risorse in base al ruolo dell'utente impersonato
     requirements:
       - sicurezza_autenticazione_accessi
-    status: passed
-
-  - id: t_u_mgmt_auth_controller
-    service: Management API
-    description: Verificare che AuthController gestisca correttamente le richieste di autenticazione e restituisca i dati utente
-    requirements:
-      - login
-      - sicurezza_autenticazione_accessi
-    status: passed
-
-  - id: t_u_mgmt_impersonation_service
-    service: Management API
-    description: Verificare che ImpersonationService gestisca correttamente l'acquisizione e il rilascio dell'impersonificazione
-    requirements:
       - impersonificazione_utente_tenant
     status: passed
 
   - id: t_u_mgmt_gateways_service
     service: Management API
-    description: Verificare CRUD gateway con isolamento tenant
-    requirements:
-      - visualizzazione_lista_gateway_tenant
-      - visualizzazione_dettagli_gateway
-      - modifica_nome_gateway
-      - modifica_stato_gateway
-    status: passed
-
-  - id: t_u_mgmt_gateways_persistence_service
-    service: Management API
-    description: Verificare le operazioni di persistenza dei gateway (creazione, lettura, aggiornamento, cancellazione) tramite repository mock
+    description: Verificare che siano esposti endpoint CRUD gateway con isolamento tenant e con validazione input
     requirements:
       - visualizzazione_lista_gateway_tenant
       - visualizzazione_dettagli_gateway
@@ -625,29 +581,6 @@ tests:
     requirements:
       - invio_dati_crittografati_cloud
       - impostazione_configurazione_gateway
-    status: passed
-
-  - id: t_u_mgmt_gateway_status_nats_responder
-    service: Management API
-    description: Verificare che GatewayStatusNatsResponderService risponda correttamente alle richieste di stato gateway via NATS
-    requirements:
-      - modifica_stato_gateway
-    status: passed
-
-  - id: t_u_mgmt_gateways_controller
-    service: Management API
-    description: Verificare che GatewaysController esponga endpoint REST per CRUD gateway con validazione input
-    requirements:
-      - visualizzazione_lista_gateway_tenant
-      - visualizzazione_dettagli_gateway
-      - modifica_nome_gateway
-      - modifica_stato_gateway
-    status: passed
-
-  - id: t_u_mgmt_gateways_listener
-    service: Management API
-    description: Verificare che GatewaysListener reagisca correttamente agli eventi NATS relativi ai gateway
-    requirements:
       - modifica_stato_gateway
     status: passed
 
@@ -660,25 +593,17 @@ tests:
 
   - id: t_u_mgmt_users_service
     service: Management API
-    description: Verificare CRUD utenti (lista, ricerca per ID/email, aggiornamento ruolo, cancellazione) con isolamento tenant
+    description: Verificare che siano esposti endpoint REST per CRUD utenti (lista, ricerca per ID/email, aggiornamento ruolo, cancellazione) con isolamento tenant e validazione input
     requirements:
       - visualizzazione_lista_utenti_tenant
+      - creazione_utente_tenant
       - selezione_permessi_utente
       - eliminazione_utenti_tenant
     status: passed
 
   - id: t_u_mgmt_users_persistence_service
     service: Management API
-    description: Verificare le operazioni di persistenza utenti tramite Keycloak (creazione, aggiornamento, cancellazione)
-    requirements:
-      - visualizzazione_lista_utenti_tenant
-      - selezione_permessi_utente
-      - eliminazione_utenti_tenant
-    status: passed
-
-  - id: t_u_mgmt_users_controller
-    service: Management API
-    description: Verificare che UsersController esponga endpoint REST per CRUD utenti con validazione input
+    description: Verificare che le operazioni CRUD utenti siano sincronizzati correttamente con Keycloak
     requirements:
       - visualizzazione_lista_utenti_tenant
       - selezione_permessi_utente
@@ -694,30 +619,10 @@ tests:
 
   - id: t_u_mgmt_tenants_service
     service: Management API
-    description: Verificare CRUD tenant (creazione, lista, sospensione, riattivazione, eliminazione) con integrazione Keycloak
+    description: Verificare che siano esposti endpoint REST per CRUD tenant (creazione, lista, sospensione, riattivazione, eliminazione) con integrazione Keycloak, persistenza su DB e validazione input
     requirements:
       - visualizzazione_lista_tenant
-      - sospensione_tenant
-      - riattivazione_tenant
-      - eliminazione_tenant
       - creazione_tenant
-    status: passed
-
-  - id: t_u_mgmt_tenants_persistence_service
-    service: Management API
-    description: Verificare le operazioni di persistenza tenant su DB (creazione, lettura, aggiornamento stato, cancellazione)
-    requirements:
-      - visualizzazione_lista_tenant
-      - sospensione_tenant
-      - riattivazione_tenant
-      - eliminazione_tenant
-    status: passed
-
-  - id: t_u_mgmt_tenants_controller
-    service: Management API
-    description: Verificare che TenantsController esponga endpoint REST per CRUD tenant
-    requirements:
-      - visualizzazione_lista_tenant
       - sospensione_tenant
       - riattivazione_tenant
       - eliminazione_tenant
@@ -734,91 +639,32 @@ tests:
 
   - id: t_u_mgmt_alerts_service
     service: Management API
-    description: Verificare la gestione degli alert (lista per tenant, dettaglio, configurazione soglia)
-    requirements:
-      - visualizzazione_storico_alert
-      - visualizzazione_dettagli_alert_gateway_irraggiungibile
-      - visualizzazione_dettagli_singolo_alert
-    status: passed
-
-  - id: t_u_mgmt_alerts_persistence_service
-    service: Management API
-    description: Verificare le operazioni di persistenza degli alert su DB
-    requirements:
-      - visualizzazione_storico_alert
-    status: passed
-
-  - id: t_u_mgmt_alerts_nats_service
-    service: Management API
-    description: Verificare la pubblicazione e ricezione di alert via NATS
+    description: Verificare la gestione degli alert, endpoint REST, la loro persistenza su DB e la pubblicazione/ricezione via NATS
     requirements:
       - alert_gateway_irraggiungibile
+      - visualizzazione_storico_alert
+      - visualizzazione_dettagli_singolo_alert
+      - visualizzazione_dettagli_alert_gateway_irraggiungibile
     status: passed
 
   - id: t_u_mgmt_alert_config_nats_responder
     service: Management API
-    description: Verificare che AlertConfigNatsResponderService risponda alle richieste di configurazione alert via NATS
+    description: Verificare che il Sistema invii un alert in risposta alle richieste di configurazione alert via NATS
     requirements:
       - modifica_intervallo_alert_gateway
     status: passed
 
-  - id: t_u_mgmt_alerts_controller
-    service: Management API
-    description: Verificare che AlertsController esponga endpoint REST per lista e dettaglio alert
-    requirements:
-      - visualizzazione_storico_alert
-      - visualizzazione_dettagli_singolo_alert
-    status: passed
-
   - id: t_u_mgmt_audit_controller
     service: Management API
-    description: Verificare che AuditLogController esponga endpoint per consultare i log di audit
+    description: Verificare la gestione degli AuditLog, endpoint REST di consultazione, persistenza su DB e pubblicazione/ricezione via NATS
     requirements:
+      - sicurezza_log_attivita
       - visualizzazione_log_audit_tenant
-    status: passed
-
-  - id: t_u_mgmt_audit_service
-    service: Management API
-    description: Verificare che AuditLogService gestisca la scrittura e consultazione dei log di audit
-    requirements:
-      - sicurezza_log_attivita
-    status: passed
-
-  - id: t_u_mgmt_audit_persistence_service
-    service: Management API
-    description: Verificare le operazioni di persistenza dei log di audit su DB
-    requirements:
-      - sicurezza_log_attivita
-    status: passed
-
-  - id: t_u_mgmt_provisioning_audit_consumer
-    service: Management API
-    description: Verificare che ProvisioningAuditConsumer elabori correttamente i messaggi di audit da NATS e li persista
-    requirements:
-      - sicurezza_log_attivita
     status: passed
 
   - id: t_u_mgmt_api_client_service
     service: Management API
-    description: Verificare CRUD delle credenziali API client (creazione, lista, revoca, validazione)
-    requirements:
-      - creazione_credenziali_api
-      - visualizzazione_lista_api
-      - eliminazione_credenziali_api
-    status: passed
-
-  - id: t_u_mgmt_api_client_persistence_service
-    service: Management API
-    description: Verificare le operazioni di persistenza dei client API su DB
-    requirements:
-      - creazione_credenziali_api
-      - visualizzazione_lista_api
-      - eliminazione_credenziali_api
-    status: passed
-
-  - id: t_u_mgmt_api_client_controller
-    service: Management API
-    description: Verificare che ApiClientController esponga endpoint REST per CRUD client API
+    description: Verificare che siano esposti endpoint REST per CRUD di credenziali API client (creazione, lista, revoca, validazione) e che siano sincronizzati con Keycloak e persistiti su DB
     requirements:
       - creazione_credenziali_api
       - visualizzazione_lista_api
@@ -834,41 +680,18 @@ tests:
 
   - id: t_u_mgmt_command_service
     service: Management API
-    description: Verificare la gestione dei comandi (creazione, invio via NATS, tracciamento stato)
+    description: Verificare che siano esposti endpoint REST per la gestione dei comandi (creazione, invio via NATS, tracciamento stato) e persistenza su DB
     requirements:
       - impostazione_configurazione_gateway
       - modifica_frequenza_invio_gateway
       - modifica_stato_gateway
-    status: passed
-
-  - id: t_u_mgmt_command_persistence_service
-    service: Management API
-    description: Verificare le operazioni di persistenza dei comandi su DB
-    requirements:
-      - impostazione_configurazione_gateway
-    status: passed
-
-  - id: t_u_mgmt_command_writing_persistence_service
-    service: Management API
-    description: Verificare la scrittura dei comandi su DB con gestione conflitti e retry
-    requirements:
-      - impostazione_configurazione_gateway
     status: passed
 
   - id: t_u_mgmt_commands_ack_consumer
     service: Management API
-    description: Verificare che CommandsAckConsumer elabori correttamente gli ACK dei comandi da NATS
+    description: Verificare che il Sistema elabori correttamente gli ACK dei comandi da NATS
     requirements:
       - impostazione_configurazione_gateway
-    status: passed
-
-  - id: t_u_mgmt_command_controller
-    service: Management API
-    description: Verificare che CommandController esponga endpoint REST per invio e consultazione comandi
-    requirements:
-      - impostazione_configurazione_gateway
-      - modifica_frequenza_invio_gateway
-      - modifica_stato_gateway
     status: passed
 
   - id: t_u_mgmt_command_mapper
@@ -880,21 +703,7 @@ tests:
 
   - id: t_u_mgmt_costs_service
     service: Management API
-    description: Verificare il calcolo e la persistenza dei costi stimati del tenant
-    requirements:
-      - visualizzazione_costi_stimati
-    status: passed
-
-  - id: t_u_mgmt_costs_persistence_service
-    service: Management API
-    description: Verificare le operazioni di persistenza dei costi su DB
-    requirements:
-      - visualizzazione_costi_stimati
-    status: passed
-
-  - id: t_u_mgmt_costs_controller
-    service: Management API
-    description: Verificare che CostsController esponga endpoint REST per i costi stimati
+    description: Verificare che siano esposti endpoint REST per la visualizzazione dei costi stimati del tenant
     requirements:
       - visualizzazione_costi_stimati
     status: passed
@@ -908,48 +717,19 @@ tests:
 
   - id: t_u_mgmt_thresholds_service
     service: Management API
-    description: Verificare CRUD delle soglie per sensore (creazione, aggiornamento, cancellazione, validazione range)
+    description: Verificare che siano esposti endpoint REST per CRUD delle soglie per sensore (creazione, aggiornamento, cancellazione, validazione range), con persistenza su DB
     requirements:
       - modifica_range_sensore
       - modifica_range_default_tipo_sensore
       - selezione_range_numerico
     status: passed
 
-  - id: t_u_mgmt_thresholds_persistence_service
-    service: Management API
-    description: Verificare le operazioni di persistenza delle soglie su DB
-    requirements:
-      - modifica_range_sensore
-    status: passed
-
-  - id: t_u_mgmt_thresholds_controller
-    service: Management API
-    description: Verificare che ThresholdsController esponga endpoint REST per CRUD soglie
-    requirements:
-      - modifica_range_sensore
-      - selezione_range_numerico
-    status: passed
-
   - id: t_u_mgmt_keys_service
     service: Management API
-    description: Verificare la generazione, persistenza e recupero delle chiavi di fabbrica e AES
+    description: Verificare la generazione, persistenza su DB e recupero delle chiavi di fabbrica e AES
     requirements:
       - sicurezza_cifratura_dati
       - onboarding_gateway
-    status: passed
-
-  - id: t_u_mgmt_keys_persistence_service
-    service: Management API
-    description: Verificare le operazioni di persistenza delle chiavi su DB
-    requirements:
-      - sicurezza_cifratura_dati
-    status: passed
-
-  - id: t_u_mgmt_keys_controller
-    service: Management API
-    description: Verificare che KeysController esponga endpoint REST per la gestione chiavi
-    requirements:
-      - sicurezza_cifratura_dati
     status: passed
 
   - id: t_u_mgmt_keys_nats_service
@@ -962,7 +742,7 @@ tests:
 
   - id: t_u_mgmt_provisioning_nats_responder
     service: Management API
-    description: Verificare che ProvisioningNatsResponderService gestisca correttamente le richieste di provisioning via NATS
+    description: Verificare che il Sistema gestisca correttamente le richieste di provisioning via NATS
     requirements:
       - onboarding_gateway
     status: passed
@@ -990,28 +770,21 @@ tests:
 
   - id: t_u_mgmt_metrics_interceptor
     service: Management API
-    description: Verificare che MetricsInterceptor registri correttamente durata, conteggio e errori delle richieste HTTP
-    requirements:
-      - monitoraggio_performance_sistema
-    status: passed
-
-  - id: t_u_mgmt_metrics_controller
-    service: Management API
-    description: Verificare che MetricsController esponga l'endpoint per le metriche Prometheus
+    description: Verificare che il Sistema esponga l'endpoint per le metriche Prometheus e registri correttamente durata, conteggio ed errori delle richieste HTTP
     requirements:
       - monitoraggio_performance_sistema
     status: passed
 
   - id: t_u_mgmt_nats_jetstream_client
     service: Management API
-    description: Verificare il client NATS JetStream (connessione, publish, subscribe, gestione errori)
+    description: Verificare che il client NATS JetStream sia in buono stato (connessione, publish, subscribe, gestione errori)
     requirements:
       - invio_dati_crittografati_cloud
     status: passed
 
   - id: t_u_mgmt_data_source
     service: Management API
-    description: Verificare la configurazione e inizializzazione del data source TypeORM
+    description: Verificare che la configurazione e inizializzazione del data source TypeORM siano corrette, che le entità siano sincronizzate con il database e che le operazioni CRUD funzionino come previsto
     requirements:
       - qualita_durabilita_persistenza
     status: passed
@@ -1025,44 +798,30 @@ tests:
 
   - id: t_u_mgmt_tenant_interceptor
     service: Management API
-    description: Verificare che TenantInterceptor estragga e inietti il contesto tenant nelle richieste
+    description: Verificare che il Sistema estragga e inietti il contesto tenant nelle richieste correttamente, garantendo l'isolamento dei dati e delle operazioni tra tenant diversi
     requirements:
       - sicurezza_segregazione_tenant
     status: passed
 
-  - id: t_u_mgmt_audit_interceptor
-    service: Management API
-    description: Verificare che AuditInterceptor registri le azioni utente nei log di audit
-    requirements:
-      - sicurezza_log_attivita
-    status: passed
-
   - id: t_u_mgmt_last_access_interceptor
     service: Management API
-    description: Verificare che LastAccessInterceptor aggiorni il timestamp di ultimo accesso utente
+    description: Verificare che il Sistema aggiorni il timestamp di ultimo accesso utente
     requirements:
       - qualita_test_unita_coverage
     status: passed
 
   - id: t_u_mgmt_global_exception_filter
     service: Management API
-    description: Verificare che GlobalExceptionFilter gestisca le eccezioni non catturate e restituisca risposte HTTP strutturate
+    description: Verificare che il Sistema gestisca correttamente le eccezioni non catturate e restituisca risposte HTTP strutturate
     requirements:
       - qualita_test_unita_coverage
     status: passed
 
   - id: t_u_mgmt_database_exception_filter
     service: Management API
-    description: Verificare che DatabaseExceptionFilter traduca gli errori di database in risposte HTTP appropriate (duplicate key, foreign key, ecc.)
+    description: Verificare che il Sistema traduca correttamente gli errori di database in risposte HTTP appropriate (duplicate key, foreign key, ecc.)
     requirements:
       - qualita_durabilita_persistenza
-    status: passed
-
-  - id: t_u_mgmt_tenants_decorator
-    service: Management API
-    description: Verificare che il decorator @Tenants() associ correttamente i metadati tenant ai route handler
-    requirements:
-      - sicurezza_segregazione_tenant
     status: passed
 
   # Frontend Unit Tests

@@ -194,7 +194,7 @@ tests:
       - visualizzazione_singole_api
       - eliminazione_credenziali_api
       - selezione_credenziali_api
-    status: not_implemented
+    status: passed
   - id: t_view_export_audit_logs
     description:
       Verificare che un utente autorizzato possa consultare e filtrare per intervallo temporale,
@@ -285,7 +285,7 @@ tests:
       - autenticazione_client_api
       - err_dati_autenticazione_invalidi
       - err_auth_server_non_disponibile
-    status: not_implemented
+    status: passed
   - id: t_api_retrieve_historical_data
     description:
       Verificare che un Client API autenticato possa recuperare dati storici on-demand e ricevere
@@ -684,7 +684,7 @@ tests:
     requirements:
       - creazione_deploy_gateway_simulato
       - visualizzazione_configurazione_simulazione_gateway
-    status: not_implemented
+    status: passed
   - id: t_simulator_cli_displays_help
     description:
       Verificare che la CLI del simulatore mostri la lista dei comandi disponibili con
@@ -702,7 +702,7 @@ tests:
     requirements:
       - richiesta_dati_on_demand
       - err_id_gateway_invalido
-    status: not_implemented
+    status: passed
   - id: t_api_client_filter_data_by_sensor
     description:
       Verificare che un Client API autenticato possa recuperare dati storici
@@ -710,7 +710,7 @@ tests:
     requirements:
       - richiesta_dati_on_demand
       - err_id_sensore_invalido
-    status: not_implemented
+    status: passed
   - id: t_api_client_invalid_time_range_rejected
     description:
       Verificare che il Sistema rifiuti la richiesta di un Client API che specifica un
@@ -718,7 +718,7 @@ tests:
     requirements:
       - richiesta_dati_on_demand
       - err_intervallo_temporale_invalido
-    status: not_implemented
+    status: passed
   - id: t_api_streaming_graceful_disconnect
     description:
       Verificare che il Sistema gestisca correttamente la chiusura della connessione
@@ -734,7 +734,7 @@ tests:
     requirements:
       - visualizzazione_secret_api
       - creazione_credenziali_api
-    status: not_implemented
+    status: passed
 
   - id: t_user_view_own_account_info
     description:
