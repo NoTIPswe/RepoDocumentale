@@ -78,6 +78,10 @@ BASELINE_REPOS = {
         "branch": "main",
     },
     "13-pb": {
-        # need to update for MVP
+        "display_name": "MVP",
+        "description": "Product Baseline",
+        "repo_name": "notip-infra",
+        "icon": "rocket_launch",
+        "branch": "main",
     }
 }
