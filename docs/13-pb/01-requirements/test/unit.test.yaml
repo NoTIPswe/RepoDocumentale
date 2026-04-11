@@ -318,63 +318,63 @@ tests:
     service: Provisioning service
     description: Verificare l’orchestrazione del provisioning con validazione factory, firma CSR, generazione chiave AES e completamento finale
     requirements:
-    - onboarding_gateway
+      - onboarding_gateway
     status: passed
   - id: t_provisioning_factory_validation_error_propagation
     service: Provisioning service
     description: Verificare la propagazione degli errori di validazione factory e il tracciamento del motivo di fallimento
     requirements:
-    - err_auth_gateway_fabbrica
-    - err_autenticazione_gateway
+      - err_auth_gateway_fabbrica
+      - err_autenticazione_gateway
     status: passed
   - id: t_provisioning_csr_error_mapping_malformed
     service: Provisioning service
     description: Verificare la propagazione degli errori CSR e il mapping del fallimento malformed_CSR
     requirements:
-    - onboarding_gateway
+      - onboarding_gateway
     status: passed
   - id: t_provisioning_request_mapping_invalid_csr
     service: Provisioning service
     description: Verificare il mapping della request DTO in dominio e la gestione del CSR non valido
     requirements:
-    - onboarding_gateway
+      - onboarding_gateway
     status: passed
   - id: t_provisioning_factory_credentials_validation_mapping
     service: Provisioning service
     description: Verificare la validazione delle credenziali factory e il mapping delle risposte INVALID, ALREADY_PROVISIONED e payload non valido
     requirements:
-    - onboarding_gateway
-    - err_auth_gateway_fabbrica
-    - err_dati_autenticazione_invalidi
+      - onboarding_gateway
+      - err_auth_gateway_fabbrica
+      - err_dati_autenticazione_invalidi
     status: passed
   - id: t_provisioning_csr_signing_validation
     service: Provisioning service
     description: Verificare la firma di un CSR valido e il rifiuto di CSR malformati o con firma non valida
     requirements:
-    - onboarding_gateway
+      - onboarding_gateway
     status: passed
   - id: t_provisioning_aes256_key_generation_base64
     service: Provisioning service
     description: Verificare la generazione di una chiave AES-256 e la sua serializzazione base64
     requirements:
-    - sicurezza_cifratura_dati
-    - invio_dati_crittografati_cloud
+      - sicurezza_cifratura_dati
+      - invio_dati_crittografati_cloud
     status: passed
   - id: t_provisioning_exception_http_mapping
     service: Provisioning service
     description: Verificare il mapping delle eccezioni di provisioning verso i codici HTTP attesi
     requirements:
-    - err_auth_gateway_fabbrica
-    - err_dati_autenticazione_invalidi
-    - err_autenticazione_gateway
+      - err_auth_gateway_fabbrica
+      - err_dati_autenticazione_invalidi
+      - err_autenticazione_gateway
     status: passed
   - id: t_provisioning_completion_payload_error_handling
     service: Provisioning service
     description: Verificare l’invio del payload di completamento provisioning e la gestione delle risposte non di successo
     requirements:
-    - onboarding_gateway
-    - err_dati_autenticazione_invalidi
-    - err_autenticazione_gateway
+      - onboarding_gateway
+      - err_dati_autenticazione_invalidi
+      - err_autenticazione_gateway
     status: passed
 
   - id: t_u_cli_http_client_gateway_crud
@@ -488,34 +488,34 @@ tests:
     service: Provisioning service
     description: Verificare la resilienza del client NATS request-reply del provisioning (retry, riconnessione e gestione errori di connessione)
     requirements:
-    - onboarding_gateway
-    - err_autenticazione_gateway
+      - onboarding_gateway
+      - err_autenticazione_gateway
     status: passed
   - id: t_provisioning_ca_store_init_load_permissions
     service: Provisioning service
     description: Verificare inizializzazione, persistenza e ricarica del materiale CA/NATS nel file store con i permessi attesi
     requirements:
-    - instaurazione_connessione_sicura
-    - sicurezza_cifratura_dati
+      - instaurazione_connessione_sicura
+      - sicurezza_cifratura_dati
     status: passed
   - id: t_provisioning_ca_initializer_bootstrap
     service: Provisioning service
     description: Verificare il bootstrap del componente CA (load materiale esistente, initialize nuovo materiale e gestione errori repository)
     requirements:
-    - instaurazione_connessione_sicura
+      - instaurazione_connessione_sicura
     status: passed
   - id: t_provisioning_configuration_env_loading
     service: Provisioning service
     description: Verificare il caricamento della configurazione da variabili d’ambiente con validazione campi obbligatori, default e override
     requirements:
-    - onboarding_gateway
+      - onboarding_gateway
     status: passed
   - id: t_provisioning_aes_key_domain_validation
     service: Provisioning service
     description: Verificare la validazione del dominio AESKey (lunghezza 32 byte) e la serializzazione base64 del materiale
     requirements:
-    - sicurezza_cifratura_dati
-    - invio_dati_crittografati_cloud
+      - sicurezza_cifratura_dati
+      - invio_dati_crittografati_cloud
     status: passed
   - id: t_hystorical_measures
     service: Data API
@@ -541,10 +541,288 @@ tests:
     requirements:
       - visualizzazione_dettagli_gateway
     status: passed
-  
 
+  - id: t_u_mgmt_jwt_strategy_validation
+    service: Management API
+    description: Verificare la validazione del JWT (sub mancante, ruolo invalid, normalizzazione ruolo, ruolo ambiguo, impersonation con claim incompleti o completi)
+    requirements:
+      - login
+      - sicurezza_autenticazione_accessi
+    status: passed
 
-  
+  - id: t_u_mgmt_jwt_auth_guard
+    service: Management API
+    description: Verificare che il sistema consenta l'accesso alla risorsa in base al ruolo dell'utente presente nel JWT
+    requirements:
+      - sicurezza_autenticazione_accessi
+    status: passed
+
+  - id: t_u_mgmt_block_impersonation_guard
+    service: Management API
+    description: Verificare che il Sistema gestisca correttamente l'impersonazione, offuscando eventuali dati sensibili e limitando l'accesso alle risorse in base al ruolo dell'utente impersonato
+    requirements:
+      - sicurezza_autenticazione_accessi
+      - impersonificazione_utente_tenant
+    status: passed
+
+  - id: t_u_mgmt_gateways_service
+    service: Management API
+    description: Verificare che siano esposti endpoint CRUD gateway con isolamento tenant e con validazione input
+    requirements:
+      - visualizzazione_lista_gateway_tenant
+      - visualizzazione_dettagli_gateway
+      - modifica_nome_gateway
+      - modifica_stato_gateway
+    status: passed
+
+  - id: t_u_mgmt_gateways_nats_service
+    service: Management API
+    description: Verificare l'interazione NATS per i gateway (pubblicazione eventi, richiesta configurazione)
+    requirements:
+      - invio_dati_crittografati_cloud
+      - impostazione_configurazione_gateway
+      - modifica_stato_gateway
+    status: passed
+
+  - id: t_u_mgmt_gateways_mapper
+    service: Management API
+    description: Verificare il mapping da entità gateway a DTO di risposta (campi name, status, tenantId, ecc.)
+    requirements:
+      - visualizzazione_dettagli_gateway
+    status: passed
+
+  - id: t_u_mgmt_users_service
+    service: Management API
+    description: Verificare che siano esposti endpoint REST per CRUD utenti (lista, ricerca per ID/email, aggiornamento ruolo, cancellazione) con isolamento tenant e validazione input
+    requirements:
+      - visualizzazione_lista_utenti_tenant
+      - creazione_utente_tenant
+      - selezione_permessi_utente
+      - eliminazione_utenti_tenant
+    status: passed
+
+  - id: t_u_mgmt_users_persistence_service
+    service: Management API
+    description: Verificare che le operazioni CRUD utenti siano sincronizzati correttamente con Keycloak
+    requirements:
+      - visualizzazione_lista_utenti_tenant
+      - selezione_permessi_utente
+      - eliminazione_utenti_tenant
+    status: passed
+
+  - id: t_u_mgmt_users_mapper
+    service: Management API
+    description: Verificare il mapping da entità utente a DTO di risposta
+    requirements:
+      - visualizzazione_singolo_utente_tenant
+    status: passed
+
+  - id: t_u_mgmt_tenants_service
+    service: Management API
+    description: Verificare che siano esposti endpoint REST per CRUD tenant (creazione, lista, sospensione, riattivazione, eliminazione) con integrazione Keycloak, persistenza su DB e validazione input
+    requirements:
+      - visualizzazione_lista_tenant
+      - creazione_tenant
+      - sospensione_tenant
+      - riattivazione_tenant
+      - eliminazione_tenant
+    status: passed
+
+  - id: t_u_mgmt_keycloak_admin_service
+    service: Management API
+    description: Verificare l'integrazione con Keycloak Admin API (creazione realm, gestione utenti admin, sospensione/riattivazione)
+    requirements:
+      - creazione_tenant
+      - sospensione_tenant
+      - riattivazione_tenant
+    status: passed
+
+  - id: t_u_mgmt_alerts_service
+    service: Management API
+    description: Verificare la gestione degli alert, endpoint REST, la loro persistenza su DB e la pubblicazione/ricezione via NATS
+    requirements:
+      - alert_gateway_irraggiungibile
+      - visualizzazione_storico_alert
+      - visualizzazione_dettagli_singolo_alert
+      - visualizzazione_dettagli_alert_gateway_irraggiungibile
+    status: passed
+
+  - id: t_u_mgmt_alert_config_nats_responder
+    service: Management API
+    description: Verificare che il Sistema invii un alert in risposta alle richieste di configurazione alert via NATS
+    requirements:
+      - modifica_intervallo_alert_gateway
+    status: passed
+
+  - id: t_u_mgmt_audit_controller
+    service: Management API
+    description: Verificare la gestione degli AuditLog, endpoint REST di consultazione, persistenza su DB e pubblicazione/ricezione via NATS
+    requirements:
+      - sicurezza_log_attivita
+      - visualizzazione_log_audit_tenant
+    status: passed
+
+  - id: t_u_mgmt_api_client_service
+    service: Management API
+    description: Verificare che siano esposti endpoint REST per CRUD di credenziali API client (creazione, lista, revoca, validazione) e che siano sincronizzati con Keycloak e persistiti su DB
+    requirements:
+      - creazione_credenziali_api
+      - visualizzazione_lista_api
+      - eliminazione_credenziali_api
+    status: passed
+
+  - id: t_u_mgmt_api_client_mapper
+    service: Management API
+    description: Verificare il mapping da entità API client a DTO di risposta
+    requirements:
+      - visualizzazione_client_id
+    status: passed
+
+  - id: t_u_mgmt_command_service
+    service: Management API
+    description: Verificare che siano esposti endpoint REST per la gestione dei comandi (creazione, invio via NATS, tracciamento stato) e persistenza su DB
+    requirements:
+      - impostazione_configurazione_gateway
+      - modifica_frequenza_invio_gateway
+      - modifica_stato_gateway
+    status: passed
+
+  - id: t_u_mgmt_commands_ack_consumer
+    service: Management API
+    description: Verificare che il Sistema elabori correttamente gli ACK dei comandi da NATS
+    requirements:
+      - impostazione_configurazione_gateway
+    status: passed
+
+  - id: t_u_mgmt_command_mapper
+    service: Management API
+    description: Verificare il mapping da entità command a DTO di risposta
+    requirements:
+      - impostazione_configurazione_gateway
+    status: passed
+
+  - id: t_u_mgmt_costs_service
+    service: Management API
+    description: Verificare che siano esposti endpoint REST per la visualizzazione dei costi stimati del tenant
+    requirements:
+      - visualizzazione_costi_stimati
+    status: passed
+
+  - id: t_u_mgmt_costs_mapper
+    service: Management API
+    description: Verificare il mapping da entità costi a DTO di risposta
+    requirements:
+      - visualizzazione_costi_stimati
+    status: passed
+
+  - id: t_u_mgmt_thresholds_service
+    service: Management API
+    description: Verificare che siano esposti endpoint REST per CRUD delle soglie per sensore (creazione, aggiornamento, cancellazione, validazione range), con persistenza su DB
+    requirements:
+      - modifica_range_sensore
+      - modifica_range_default_tipo_sensore
+      - selezione_range_numerico
+    status: passed
+
+  - id: t_u_mgmt_keys_service
+    service: Management API
+    description: Verificare la generazione, persistenza su DB e recupero delle chiavi di fabbrica e AES
+    requirements:
+      - sicurezza_cifratura_dati
+      - onboarding_gateway
+    status: passed
+
+  - id: t_u_mgmt_keys_nats_service
+    service: Management API
+    description: Verificare l'interazione NATS per la distribuzione delle chiavi
+    requirements:
+      - sicurezza_cifratura_dati
+      - onboarding_gateway
+    status: passed
+
+  - id: t_u_mgmt_provisioning_nats_responder
+    service: Management API
+    description: Verificare che il Sistema gestisca correttamente le richieste di provisioning via NATS
+    requirements:
+      - onboarding_gateway
+    status: passed
+
+  - id: t_u_mgmt_keys_mapper
+    service: Management API
+    description: Verificare il mapping da entità chiavi a DTO di risposta
+    requirements:
+      - visualizzazione_id_fabbrica_simulazione
+    status: passed
+
+  - id: t_u_mgmt_key_material_encryption
+    service: Management API
+    description: Verificare cifratura e decifratura del materiale crittografico (chiavi AES, factory key)
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+
+  - id: t_u_mgmt_metrics_service
+    service: Management API
+    description: Verificare la raccolta e l'esposizione delle metriche Prometheus
+    requirements:
+      - monitoraggio_performance_sistema
+    status: passed
+
+  - id: t_u_mgmt_metrics_interceptor
+    service: Management API
+    description: Verificare che il Sistema esponga l'endpoint per le metriche Prometheus e registri correttamente durata, conteggio ed errori delle richieste HTTP
+    requirements:
+      - monitoraggio_performance_sistema
+    status: passed
+
+  - id: t_u_mgmt_nats_jetstream_client
+    service: Management API
+    description: Verificare che il client NATS JetStream sia in buono stato (connessione, publish, subscribe, gestione errori)
+    requirements:
+      - invio_dati_crittografati_cloud
+    status: passed
+
+  - id: t_u_mgmt_data_source
+    service: Management API
+    description: Verificare che la configurazione e inizializzazione del data source TypeORM siano corrette, che le entità siano sincronizzate con il database e che le operazioni CRUD funzionino come previsto
+    requirements:
+      - qualita_durabilita_persistenza
+    status: passed
+
+  - id: t_u_mgmt_env_validation
+    service: Management API
+    description: Verificare la validazione delle variabili d'ambiente all'avvio dell'applicazione
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+
+  - id: t_u_mgmt_tenant_interceptor
+    service: Management API
+    description: Verificare che il Sistema estragga e inietti il contesto tenant nelle richieste correttamente, garantendo l'isolamento dei dati e delle operazioni tra tenant diversi
+    requirements:
+      - sicurezza_segregazione_tenant
+    status: passed
+
+  - id: t_u_mgmt_last_access_interceptor
+    service: Management API
+    description: Verificare che il Sistema aggiorni il timestamp di ultimo accesso utente
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+
+  - id: t_u_mgmt_global_exception_filter
+    service: Management API
+    description: Verificare che il Sistema gestisca correttamente le eccezioni non catturate e restituisca risposte HTTP strutturate
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+
+  - id: t_u_mgmt_database_exception_filter
+    service: Management API
+    description: Verificare che il Sistema traduca correttamente gli errori di database in risposte HTTP appropriate (duplicate key, foreign key, ecc.)
+    requirements:
+      - qualita_durabilita_persistenza
+    status: passed
 
   # Frontend Unit Tests
   - id: t_u_fe_auth_service
