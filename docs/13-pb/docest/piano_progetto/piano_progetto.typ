@@ -29,7 +29,7 @@
       v1.1.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto v1.1.0]
   === Riferimenti informativi
-  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf")[T03 - Ciclo di via del Software] \ _Ultimo
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf")[T03 - Ciclo di vita del Software] \ _Ultimo
     accesso: 2026-03-09_
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf")[T04 - Gestione di Progetto] \ _Ultimo accesso:
     2026-03-09_
@@ -124,7 +124,7 @@
       [Probabilità], [Media - Bassa],
       [Impatto prestazionale], [Alto],
     ),
-    caption: [Mancato rispetto delle scadenza stabilite],
+    caption: [Mancato rispetto delle scadenze stabilite],
   )<tab:RO1>
   == Rischi personali
   === Rischio legato a problematiche personali o attività universitarie
@@ -594,7 +594,7 @@
   Il gruppo pensa sia possibile che possano presentarsi i seguenti rischi:
   - RP1: Rischio personale legato a problematiche personali o attività universitarie.
   - RT1: Rischio legato all'apprendimento delle tecnologie richieste.
-  - RO1: Mancato rispetto delle scadenza stabilite.
+  - RO1: Mancato rispetto delle scadenze stabilite.
 
   ==== Ore effettive
   #figure(
@@ -718,7 +718,7 @@
   Il gruppo pensa sia possibile che possano presentarsi i seguenti rischi:
   - RP1: Rischio personale legato a problematiche personali o attività universitarie.
   - RT1: Rischio legato all'apprendimento delle tecnologie richieste.
-  - RO1: Mancato rispetto delle scadenza stabilite.
+  - RO1: Mancato rispetto delle scadenze stabilite.
   ==== Ore effettive
   #figure(
     numbering: "1",
@@ -841,7 +841,7 @@
   Il gruppo pensa sia possibile che possano presentarsi i seguenti rischi:
   - RP1: Rischio personale legato a problematiche personali o attività universitarie.
   - RT1: Rischio legato all'apprendimento delle tecnologie richieste.
-  - RO1: Mancato rispetto delle scadenza stabilite.
+  - RO1: Mancato rispetto delle scadenze stabilite.
 
   ==== Ore effettive
   #figure(
@@ -965,7 +965,7 @@
   - RP1: Rischio personale legato a problematiche personali o attività universitarie.
   - RT1: Rischio legato all'apprendimento delle tecnologie richieste.
   - RT2: Rischio tecnologico legato ad errori di programmazione.
-  - RO1: Mancato rispetto delle scadenza stabilite.
+  - RO1: Mancato rispetto delle scadenze stabilite.
 
   ==== Ore effettive
   #figure(
@@ -1512,12 +1512,12 @@
   )<tab:Sprint9-ore-effettive>
 
   ==== Consuntivo del periodo
-  Durante lo Sprint corrente, il Team si é ritrovato ad affrontare la complessità notevole che il Sistema presentava
-  quindi il verificarsi di RT1 (Rischio tecnologico legato all'apprendimento delle tecnologie richieste), in particolare
-  nella fase di implementazione. La difficoltà principale è stata quella di riuscire ad adattare la tecnologia richiesta
-  alle esigenze del progetto, portando ad un aumento significativo del carico di lavoro di codifica. Durante le prime
-  fasi di rilascio del codice, sono state implementate regole per diminuire il verificarsi di RT2 (Rischio tecnologico
-  legato ad errori di programmazione), come ad esempio l'adozione di un sistema di code review automatico.
+  Durante lo Sprint corrente, il Team è ritrovato ad affrontare la complessità notevole che il Sistema presentava quindi
+  il verificarsi di RT1 (Rischio tecnologico legato all'apprendimento delle tecnologie richieste), in particolare nella
+  fase di implementazione. La difficoltà principale è stata quella di riuscire ad adattare la tecnologia richiesta alle
+  esigenze del progetto, portando ad un aumento significativo del carico di lavoro di codifica. Durante le prime fasi di
+  rilascio del codice, sono state implementate regole per diminuire il verificarsi di RT2 (Rischio tecnologico legato ad
+  errori di programmazione), come ad esempio l'adozione di un sistema di code review automatico.
   ==== Retrospettiva
   In conclusione, il Team afferma che il periodo ha portato un miglioramento della qualità del lavoro svolto, grazie
   alla maggiore frequenza degli Sprint, che ha permesso di aumentare l'efficienza. Il Team tuttavia ha deciso di
@@ -1951,6 +1951,6 @@
   )<tab:Sprint12-costi>
 
   A chiusura del progetto risulta pertanto un avanzo economico complessivo pari a *21,25 Euro* rispetto al budget
-  preventivato, dovuto alle riallocazioni effettuate nel corso degli sprint finali e al mancato utilizzo integrale
-  delle risorse monetarie inizialmente stimate.
+  preventivato, dovuto alle riallocazioni effettuate nel corso degli sprint finali e al mancato utilizzo integrale delle
+  risorse monetarie inizialmente stimate.
 ]
