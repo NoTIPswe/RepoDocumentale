@@ -69,7 +69,7 @@
 
   == Glossario
   I termini tecnici utilizzati sono definiti nel documento #link(
-    "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf",
+    "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/glossario.pdf",
   )[Glossario v3.0.0], identificati con pedice _G_.
 
   == Riferimenti
@@ -77,10 +77,10 @@
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato d'appalto C7 — Sistema di
       acquisizione dati da sensori] \
     _Ultimo accesso: 2026-04-11_
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto v2.0.0]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/norme_progetto.pdf")[Norme di Progetto v3.0.0]
 
   === Riferimenti Informativi
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti
       v2.0.0]
 
   #pagebreak()
@@ -105,14 +105,12 @@
   #super[\*] _La colonna "Risultato ottenuto" riporta l'esito effettivamente osservato durante l'esecuzione del test sul
   sistema in configurazione di collaudo._
 
-  // ═════════════════════════════════════════════════════════════════════════════
   = Test di Sistema (ST)
 
   I Test di Sistema validano il comportamento end-to-end del sistema dal punto di vista dell'utente, verificando scenari
   reali attraverso l'interfaccia UI e le API esposte. Ogni test è eseguito sul sistema integrato in configurazione di
   collaudo.
 
-  // ─────────────────────────────────────────────────────────────────────────────
   == Autenticazione e Gestione Sessione
 
   #test-entry(
@@ -419,6 +417,153 @@
     status: "PASS",
   )
 
+  #test-entry(
+    code: "ST-19",
+    name: "Modifica profilo utente con validazione",
+    service: "Sistema Cloud — UI",
+    actions: [
+      + Accedere al sistema con credenziali valide.
+      + Navigare nella sezione sul menù di sinistra cercando il link "Open Profile".
+      + Modificare username, con controllo di univocità.
+      + Modificare l'indirizzo email, con controllo di formato e univocità.
+      + Possibilità di inserire dei nuovi "First name" e "Last name".
+      + Salvare le modifiche.
+    ],
+    expected: [Il sistema impedisce il salvataggio in caso di formato non valido o duplicato, mostrando errori
+      specifici. Il salvataggio ha successo solo con dati validi e univoci.],
+    obtained: [Il sistema valida correttamente i formati, segnala i duplicati e aggiorna il profilo solo quando i
+      requisiti sono rispettati.],
+    status: "PASS",
+  )
+
+  #test-entry(
+    code: "ST-20",
+    name: "Modifica password con validazione e conferma",
+    service: "Sistema Cloud — UI",
+    actions: [
+      + Accedere al sistema con credenziali valide.
+      + Navigare nella sezione sul menù di sinistra cercando il link "Change password".
+      + Inserire una nuova password con formato non valido e verificare l'errore.
+      + Inserire una password già utilizzata nel sistema e verificare l'errore.
+      + Inserire una nuova password valida, quindi salvare.
+    ],
+    expected: [Il sistema impedisce il salvataggio in caso di formato non valido, mostrando errori specifici. Il
+      salvataggio ha successo solo con una password valida e univoca.],
+    obtained: [Il sistema valida correttamente i formati, segnala i duplicati e aggiorna la password solo quando i
+      requisiti sono rispettati.],
+    status: "PASS",
+  )
+
+  #test-entry(
+    code: "ST-21",
+    name: "Modifica alert sensore fuori range",
+    service: "Sistema Cloud — UI",
+    actions: [
+      + Autenticarsi come Tenant Admin.
+      + Navigare nella sezione "Thresholds settings" del menù.
+      + Creare una nuova regola per tipo di sensore o per sensore specifico.
+      + Modificare il range impostando valori limite.
+      + Iniettare tramite simulatore un valore (outlier) che supera il range appena configurato.
+      + Navigare nella tabella dati e verificare l'evidenziazione dei valori anomali.
+    ],
+    expected: [Il range viene modificato correttamente. I valori che superano il range configurato vengono evidenziati
+      in tabella e generano vengono evidenziati chiaramente.],
+    obtained: [Il range viene modificato correttamente. I valori che superano il range configurato vengono resi
+      chiaramente distinguibili dall'utilizzatore.],
+    status: "PASS",
+  )
+
+  #test-entry(
+    code: "ST-22",
+    name: "Modifica nome, stato e frequenza di invio del Gateway",
+    service: "Sistema Cloud — UI",
+    actions: [
+      + Autenticarsi come Tenant Admin.
+      + Navigare nel menù di sinistra nella sezione "Gateways" e selezionare un Gateway dalla lista.
+      + Cliccare su "Open details" per accedere alla pagina di dettaglio del Gateway.
+      + Modificare il nome del Gateway.
+      + Modificare lo stato operativo del Gateway (es. da Online a Sospeso).
+      + Modificare la frequenza di invio dati.
+      + Verificare nella sezione stream che la cadenza dei nuovi dati rispecchi la nuova frequenza.
+    ],
+    expected: [Il nome, lo stato e la frequenza del Gateway vengono aggiornati correttamente. La modifica della
+      frequenza viene recepita dal sistema e dal simulatore, riflettendosi immediatamente nella cadenza di aggiornamento
+      dei dati di stream.],
+    obtained: [Nome, stato e frequenza del Gateway modificati con successo. La frequenza di ricezione dei pacchetti si
+      adegua immediatamente al nuovo valore impostato.],
+    status: "PASS",
+  )
+
+  #test-entry(
+    code: "ST-23",
+    name: "Visualizzazione e filtraggio dei log di Audit",
+    service: "Sistema Cloud — UI",
+    actions: [
+      + Autenticarsi come utente autorizzato (e.g Tenant Admin).
+      + Navigare nel menù di sinistra nella sezione "Audit Logs".
+      + Impostare un filtro basato su uno specifico intervallo temporale.
+      + Impostare un filtro basato su uno specifico user ID.
+      + Impostare un filtro basato su una specifica azione.
+      + Cliccare sul pulsante per esportare i log filtrati.
+    ],
+    expected: [Il sistema mostra la lista dei log pertinenti ai filtri applicati indicando: timestamp, user ID, azione,
+      risorsa e dettaglio.],
+    obtained: [Il sistema dovrebbe visualizzare in formato tabellare i log filtrati, con colonne per ogni campo
+      indicato: timestamp, user ID, azione, risorsa e dettaglio.],
+    status: "PASS",
+  )
+
+  #test-entry(
+    code: "ST-24",
+    name: "Visualizzazione stima dei costi del Tenant",
+    service: "Sistema Cloud — UI",
+    actions: [
+      + Autenticarsi come Tenant Admin.
+      + Navigare nel menù di sinistra nella sezione "costs".
+      + Verificare i dettagli visualizzati relativi allo storage, alla banda e totale.
+    ],
+    expected: [Il pannello mostra una stima chiara dei costi, suddivisa per storage, banda e totale.],
+    obtained: [Il pannello dei costi mostra correttamente le stime per storage, banda e totale.],
+    status: "PASS",
+  )
+
+  #test-entry(
+    code: "ST-25",
+    name: "Flusso di onboarding completo di un nuovo Tenant",
+    service: "Sistema Cloud — UI",
+    actions: [
+      + Autenticarsi come Amministratore di Sistema.
+      + Creare un nuovo Tenant inserendo l'anagrafica richiesta, compresa di nome del Tenant, email, username e
+        password.
+      + Creare un utente con ruolo Amministratore per il Tenant appena creato.
+      + Registrare un nuovo Gateway, inserendo i dettagli richiesti (factory id, Tenant ID, factory key e model) a
+        questo nuovo Tenant.
+      + Verificare la presenza del Gateway nella vista del Tenant.
+    ],
+    expected: [Il sistema permette di completare l'intera catena di creazione. Il nuovo Tenant Admin può loggarsi e vede
+      il Gateway appena associato al suo Tenant.],
+    obtained: [Tenant creato con successo, utente amministratore configurato e Gateway associato in modo corretto e
+      visibile.],
+    status: "PASS",
+  )
+
+  #test-entry(
+    code: "ST-26",
+    name: "Sospensione Tenant e negazione accessi",
+    service: "Sistema Cloud — UI",
+    actions: [
+      + Autenticarsi come Amministratore di Sistema.
+      + Sospendere un Tenant specifico tramite il pannello di controllo.
+      + Disconnettersi dal sistema.
+      + Tentare il login utilizzando le credenziali di un utente appartenente al Tenant sospeso.
+    ],
+    expected: [L'Amministratore di sistema riesce a sospendere il Tenant. Qualsiasi tentativo di login da parte di un
+      utente del Tenant sospeso viene bloccato dal sistema con un messaggio di errore appropriato.],
+    obtained: [Il Tenant entra in stato di sospensione; gli utenti associati non riescono più ad accedere e ricevono
+      l'avviso di blocco.],
+    status: "PASS",
+  )
+
   #pagebreak()
 
   = Test di Integrazione (IT)
@@ -555,241 +700,21 @@
 
   #pagebreak()
 
-  = Test di Unità (UT)
+  = Riepilogo Esiti
 
-  I Test di Unità verificano il comportamento corretto dei singoli moduli e componenti
-  software in isolamento, utilizzando stub e mock per le dipendenze esterne.
+  La seguente tabella riporta il riepilogo degli esiti per categoria di test.
 
-  == Simulator Backend
+  #figure(
+    table(
+      columns: (auto, auto, auto, auto),
+      align: (left, center, center, center),
 
-  #test-entry(
-    code:         "UT-01",
-    name:         "Cifratura payload telemetrico e unicità IV",
-    service:      "Simulator Backend",
-    actions: [
-      + Invocare la funzione di cifratura del payload telemetrico con dati di input.
-      + Verificare che il payload venga cifrato correttamente.
-      + Cifrare lo stesso payload più volte e confrontare i vettori di inizializzazione (IV).
-      + Verificare che ogni cifratura produca un IV differente.
-    ],
-    expected: [Il payload è cifrato correttamente con l'algoritmo configurato. Ogni
-      invocazione della funzione di cifratura produce un IV univoco, garantendo che lo
-      stesso dato non produca mai lo stesso ciphertext.],
-    obtained: [La cifratura funziona correttamente e ogni IV generato è univoco.],
-    status: "PASS",
+      [*Categoria*], [*Test Totali*], [*PASS*], [*FAIL*],
+      [Test di Sistema (ST)], [26], [26], [0],
+      [Test di Integrazione (IT)], [7], [7], [0],
+      [*Totale*], [*33*], [*33*], [*0*],
+    ),
+    caption: "Riepilogo esiti del Test Book",
   )
-
-  // #test-entry(
-  //   code:         "UT-02",
-  //   id:           "t_buffer_resilience_overflow",
-  //   name:         "Resilienza buffer interno e gestione overflow",
-  //   service:      "Simulator Backend",
-  //   requirements: ("comando_anomalia_degrado_rete", "comando_anomalia_disconnessione_temporanea"),
-  //   actions: [
-  //     + Simulare una disconnessione dalla rete nel Gateway simulato.
-  //     + Verificare che i dati prodotti durante la disconnessione siano nel buffer locale.
-  //     + Riempire il buffer fino alla capacità massima e verificare il comportamento in
-  //       overflow.
-  //     + Ripristinare la connessione e verificare lo svuotamento del buffer.
-  //   ],
-  //   expected: [Il buffer locale accumula i dati durante la disconnessione. In overflow, i
-  //     dati vengono gestiti secondo la policy configurata. Al ripristino il buffer viene
-  //     svuotato correttamente.],
-  //   obtained: [Il buffer funziona correttamente in disconnessione, gestisce l'overflow e
-  //     si svuota al ripristino della connessione.],
-  //   status: "PASS",
-  // )
-
-  // #test-entry(
-  //   code:         "UT-03",
-  //   id:           "t_crud_simulated_gateways",
-  //   name:         "Operazioni CRUD sui Gateway simulati",
-  //   service:      "Simulator Backend",
-  //   requirements: ("visualizzazione_lista_gateway_simulati", "creazione_deploy_gateway_simulato",
-  //                  "eliminazione_gateway_simulato", "err_deploy_gateway_simulato"),
-  //   actions: [
-  //     + Creare un Gateway simulato tramite API e verificare il successo.
-  //     + Recuperare la lista dei Gateway e verificare la presenza del nuovo Gateway.
-  //     + Recuperare il dettaglio del singolo Gateway tramite ID.
-  //     + Eliminare il Gateway e verificare la rimozione dalla lista.
-  //     + Tentare operazioni con dati non validi e verificare la gestione degli errori.
-  //   ],
-  //   expected: [Tutte le operazioni CRUD vengono eseguite correttamente tramite API. Le
-  //     validazioni rifiutano configurazioni non valide con messaggi di errore appropriati.
-  //     Il deploy fallisce con errore descrittivo in caso di configurazione errata.],
-  //   obtained: [Tutte le operazioni CRUD e le validazioni funzionano correttamente.],
-  //   status: "PASS",
-  // )
-
-  // #test-entry(
-  //   code:         "UT-04",
-  //   id:           "t_inject_anomalies",
-  //   name:         "Iniezione anomalie: degrado rete, disconnessione, outlier",
-  //   service:      "Simulator Backend",
-  //   requirements: ("comando_anomalia_degrado_rete", "comando_anomalia_disconnessione_temporanea",
-  //                  "comando_anomalia_outliers_misurazioni"),
-  //   actions: [
-  //     + Invocare il comando di iniezione anomalia "degrado rete" con durata specificata.
-  //     + Invocare il comando di iniezione anomalia "disconnessione temporanea".
-  //     + Invocare il comando di iniezione di un outlier su un sensore specifico.
-  //     + Verificare che le anomalie vengano applicate e cessino alla scadenza configurata.
-  //   ],
-  //   expected: [Le tre tipologie di anomalia vengono elaborate e iniettate correttamente.
-  //     Gli effetti corrispondono alla specifica (packet loss per degrado, interruzione per
-  //     disconnessione, valore fuori range per outlier). Le anomalie cessano automaticamente.],
-  //   obtained: [Tutte e tre le anomalie vengono iniettate ed elaborate correttamente.],
-  //   status: "PASS",
-  // )
-
-  // #test-entry(
-  //   code:         "UT-05",
-  //   id:           "t_gateway_goroutine_lifecycle",
-  //   name:         "Ciclo di vita della goroutine del Gateway",
-  //   service:      "Simulator Backend",
-  //   requirements: ("eliminazione_gateway_simulato", "qualita_spegnimento_controllato"),
-  //   actions: [
-  //     + Avviare la goroutine del Gateway simulato.
-  //     + Verificare che la goroutine sia attiva e pubblichi telemetria.
-  //     + Inviare il segnale di terminazione (decommission).
-  //     + Verificare che la goroutine termini in modo controllato senza leak di risorse.
-  //   ],
-  //   expected: [La goroutine si avvia correttamente, pubblica dati e, alla ricezione del
-  //     segnale di terminazione, si chiude in modo ordinato rilasciando tutte le risorse
-  //     senza produrre errori o goroutine zombie.],
-  //   obtained: [La goroutine si avvia e termina correttamente con graceful shutdown.],
-  //   status: "PASS",
-  // )
-
-  // #test-entry(
-  //   code:         "UT-06",
-  //   id:           "t_operational_state_changes",
-  //   name:         "Cambi di stato operativo: Online, Offline, Paused",
-  //   service:      "Simulator Backend",
-  //   requirements: ("impostazione_configurazione_gateway",),
-  //   actions: [
-  //     + Portare il Gateway simulato allo stato Online e verificare la pubblicazione.
-  //     + Portare il Gateway allo stato Paused e verificare la sospensione della pubblicazione.
-  //     + Portare il Gateway allo stato Offline e verificare il comportamento.
-  //     + Ripristinare lo stato Online e verificare la ripresa della pubblicazione.
-  //   ],
-  //   expected: [I cambiamenti di stato vengono applicati correttamente: Online pubblica,
-  //     Paused sospende, Offline interrompe. Le transizioni avvengono senza perdita di
-  //     dati.],
-  //   obtained: [Tutti i cambi di stato funzionano correttamente con effetti coerenti sulla
-  //     telemetria.],
-  //   status: "PASS",
-  // )
-
-  // // ─────────────────────────────────────────────────────────────────────────────
-  // == Provisioning Service
-
-  // #test-entry(
-  //   code:         "UT-07",
-  //   id:           "t_validate_policy_permissions",
-  //   name:         "Validazione dei permessi secondo policy",
-  //   service:      "Provisioning Service",
-  //   requirements: ("sicurezza_autenticazione_accessi",),
-  //   actions: [
-  //     + Invocare la funzione di validazione permessi con un set conforme alla policy.
-  //     + Invocare la stessa funzione con permessi non consentiti dalla policy.
-  //     + Invocare con permessi parzialmente validi.
-  //     + Verificare la risposta in ciascun caso.
-  //   ],
-  //   expected: [La funzione approva solo i set di permessi conformi alla policy. I permessi
-  //     non consentiti vengono rifiutati con errore esplicito. I permessi parzialmente validi
-  //     vengono gestiti in modo deterministico.],
-  //   obtained: [La validazione dei permessi funziona correttamente per tutti i casi
-  //     verificati.],
-  //   status: "PASS",
-  // )
-
-  // #test-entry(
-  //   code:         "UT-08",
-  //   id:           "t_build_audit_entry",
-  //   name:         "Costruzione e mapping dell'entry di Audit",
-  //   service:      "Provisioning Service",
-  //   requirements: ("visualizzazione_singolo_log_audit",),
-  //   actions: [
-  //     + Invocare la funzione di costruzione entry di audit con i campi obbligatori valorizzati.
-  //     + Verificare che l'entry contenga tutti i campi richiesti (timestamp, utente,
-  //       operazione, esito).
-  //     + Invocare la funzione di mapping operazione → testo leggibile.
-  //     + Verificare la correttezza del testo prodotto per ciascun tipo di operazione.
-  //   ],
-  //   expected: [L'entry di audit viene costruita con tutti i campi obbligatori. Il mapping
-  //     verso testo produce una descrizione leggibile e coerente per ogni tipo di operazione
-  //     supportata.],
-  //   obtained: [L'entry di audit è costruita correttamente. Il mapping verso testo funziona
-  //     per tutti i tipi di operazione verificati.],
-  //   status: "PASS",
-  // )
-
-  // // ─────────────────────────────────────────────────────────────────────────────
-  // == Frontend
-
-  // #test-entry(
-  //   code:         "UT-09",
-  //   id:           "t_u_fe_clients_service",
-  //   name:         "Gestione credenziali API dal Frontend",
-  //   service:      "Frontend",
-  //   requirements: ("visualizzazione_client_id", "visualizzazione_secret_api"),
-  //   actions: [
-  //     + Accedere alla sezione gestione credenziali API come Tenant Admin.
-  //     + Generare una nuova coppia di credenziali (Client ID + Client Secret).
-  //     + Verificare che la Client Secret sia visibile solo al momento della creazione.
-  //     + Verificare la presenza del Client ID nella lista.
-  //     + Revocare le credenziali create e verificare la rimozione.
-  //   ],
-  //   expected: [Le credenziali API vengono create correttamente. La Client Secret è mostrata
-  //     una sola volta al momento della generazione. Il Client ID compare nella lista. La
-  //     revoca rimuove le credenziali.],
-  //   obtained: [Il ciclo di vita delle credenziali API funziona correttamente, inclusa la
-  //     visibilità della Secret una sola volta.],
-  //   status: "PASS",
-  // )
-
-  // #test-entry(
-  //   code:         "UT-10",
-  //   id:           "t_u_fe_user_service",
-  //   name:         "Gestione utenti Tenant dal Frontend",
-  //   service:      "Frontend",
-  //   requirements: ("selezione_permessi_utente",),
-  //   actions: [
-  //     + Accedere alla sezione gestione utenti come Tenant Admin.
-  //     + Creare un nuovo utente inserendo nome, email, password e ruolo.
-  //     + Modificare i permessi di un utente esistente.
-  //     + Eliminare un utente e verificarne la rimozione dalla lista.
-  //   ],
-  //   expected: [Il Tenant Admin può creare, modificare ed eliminare utenti. Il form di
-  //     creazione/modifica valida i dati inseriti. L'assegnazione di ruoli e permessi viene
-  //     salvata correttamente.],
-  //   obtained: [Tutte le operazioni di gestione utenti funzionano correttamente dal
-  //     Frontend.],
-  //   status: "PASS",
-  // )
-
-  // // ═════════════════════════════════════════════════════════════════════════════
-  // = Riepilogo Esiti
-
-  // La seguente tabella riporta il riepilogo degli esiti per categoria di test.
-
-  // #figure(
-  //   table(
-  //     columns: (auto, auto, auto, auto),
-  //     align: (left, center, center, center),
-
-  //     [*Categoria*],         [*Test Totali*], [*PASS*], [*FAIL*],
-  //     [Test di Sistema (ST)],    [17], [17], [0],
-  //     [Test di Integrazione (IT)], [10], [10], [0],
-  //     [Test di Unità (UT)],      [10], [10], [0],
-  //     [*Totale*],                [*37*], [*37*], [*0*],
-  //   ),
-  //   caption: "Riepilogo esiti del Test Book",
-  // )
-
-  // #v(1em)
-  // I test con stato `not_implemented` nei file sorgente non sono inclusi nel conteggio degli
-  // esiti del presente documento e saranno oggetto di esecuzione in una fase successiva,
-  // concordata con M31 S.r.l. secondo le modalità descritte al Capitolo 7 del capitolato.
 
 ]

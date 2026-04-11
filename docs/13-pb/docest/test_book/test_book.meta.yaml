@@ -1,37 +1,37 @@
 title: Test Book - M31
 changelog:
   - version: "0.4.0"
-    date: "2026-01-27"
+    date: "2026-04-12"
     authors:
-      - Alessandro Contarini
-    verifier: Alessandro Mazzariol
+      - Francesco Marcon
+    verifier: TBD
     description: >
-      Aggiunti Test di unità
+      Aggiunta e completamento dei Test di Sistema (da ST-19 a ST-26), inserimento dei Test di Integrazione (IT) e aggiornamento della tabella di riepilogo
   - version: "0.3.0"
-    date: "2025-12-13"
+    date: "2026-04-11"
     authors:
       - Francesco Marcon
     verifier: Valerio Solito
     description: >
-      Aggiornamento e aggiunta MQ04, MQ08
+      Aggiunta dei Test di Sistema relativi alla gestione Multi-Tenant, sicurezza e gestione del Simulatore
   - version: "0.2.0"
-    date: "2025-12-12"
+    date: "2026-04-09"
     authors:
       - Francesco Marcon
     verifier: Valerio Solito
     description: >
-      Metriche qualità di prodotto
+      Inserimento dei criteri di valutazione e dei Test di Sistema su visualizzazione dati, alert e monitoraggio
   - version: "0.1.0"
-    date: "2025-12-12"
+    date: "2026-04-08"
     authors:
       - Francesco Marcon
     verifier: Matteo Mantoan
     description: >
-      Inserimento primi test 
+      Stesura dell'introduzione e inserimento dei primi Test di Sistema relativi all'autenticazione e gestione della sessione
   - version: "0.0.1"
-    date: "2025-12-05"
+    date: "2026-04-05"
     authors:
       - Francesco Marcon
     verifier: Valerio Solito
     description: >
-      Prima bozza struttura del documento
+      Prima bozza della struttura del documento
