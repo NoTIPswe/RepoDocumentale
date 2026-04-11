@@ -440,7 +440,6 @@ tests:
     service: Provisioning service
     description: Verificare il mapping HTTP end-to-end degli errori di onboarding (credenziali factory invalide e CSR malformato)
     requirements:
-<<<<<<< Updated upstream
     - err_auth_gateway_fabbrica
     - err_dati_autenticazione_invalidi
     status: passed
@@ -486,9 +485,4 @@ tests:
     description: Verificare la risposta del servizio al subject interno di costo tenant
     requirements:
       - visualizzazione_costi_stimati
-    status: not_implemented
-=======
-      - err_auth_gateway_fabbrica
-      - err_dati_autenticazione_invalidi
     status: passed
->>>>>>> Stashed changes
