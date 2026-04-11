@@ -1,7 +1,29 @@
 title: Piano di progetto
 changelog:
+  - version: "1.4.0"
+    date: "2026-04-09"
+    authors:
+      - Alessandro Contarini
+    verifier: Alessandro Mazzariol
+    description: >
+      Ristrutturazione finale del documento
+  - version: "1.3.0"
+    date: "2026-04-05"
+    authors:
+      - Alessandro Contarini
+      - Mario De Pasquale
+    verifier: Alessandro Mazzariol
+    description: >
+      Sistemazione del documento in previsione PB
+  - version: "1.2.0"
+    date: "2026-03-30"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Alessandro Contarini
+    description: >
+      Aggiunti sprint 8, 9 e 10
   - version: "1.1.2"
-    date: "2026-04-07"
+    date: "2026-03-24"
     authors:
       - Matteo Mantoan
     verifier: Francesco Marcon
