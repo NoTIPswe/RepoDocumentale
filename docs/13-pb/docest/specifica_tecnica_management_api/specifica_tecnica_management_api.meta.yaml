@@ -1,4 +1,4 @@
-title: Specifica Tecnica - Management API
+title: Specifica tecnica - Management API
 changelog:
   - version: "0.2.0"
     date: "2026-04-10"
@@ -8,6 +8,13 @@ changelog:
     description: >
       Stesura finale del documento
 
+  - version: "0.1.1"
+    date: "2026-04-07"
+    authors:
+      - Matteo Mantoan
+    verifier: Francesco Marcon
+    description: >
+      Uniformazione titoli e intestazioni: solo prima lettera maiuscola
   - version: "0.1.0"
     date: "2026-03-31"
     authors:

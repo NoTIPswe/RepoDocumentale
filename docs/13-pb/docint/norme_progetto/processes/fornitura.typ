@@ -87,7 +87,7 @@
   - *Casi d'uso*: identificazione degli scenari d'uso e delle interazioni tra utenti e sistema. Ogni caso d'uso include
     una descrizione dettagliata degli scenari principali, permettendo ai progettisti di comprendere il comportamento
     atteso del software in ogni situazione.
-  - *Lista dei Requisiti*: rappresenta l'insieme dettagliato delle funzionalità, dei vincoli e delle qualità del
+  - *Lista dei requisiti*: rappresenta l'insieme dettagliato delle funzionalità, dei vincoli e delle qualità del
     sistema, derivanti dalle richieste del proponente o identificato dal gruppo durante l'attività di analisi.
 
   #figure(
@@ -256,7 +256,7 @@
   output: [Piano di Progetto],
   procedure: (
     (
-      name: "Stesura del Piano di Progetto",
+      name: "Stesura del piano di progetto",
       desc: [
         Stabiliti i requisiti finali, il fornitore pianifica l'organizzazione e un metodo di lavoro in grado di
         assicurare la qualità del sistema da realizzare. La pianificazione comprende la stesura del Piano di Progetto,

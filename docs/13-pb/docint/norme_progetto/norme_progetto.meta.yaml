@@ -1,5 +1,19 @@
-title: Norme di Progetto
+title: Norme di progetto
 changelog:
+  - version: "1.5.1"
+    date: "2026-04-07"
+    authors:
+      - Matteo Mantoan
+    verifier: Francesco Marcon
+    description: >
+      Uniformazione titoli e intestazioni: solo prima lettera maiuscola
+  - version: "1.5.0"
+    date: "2026-04-07"
+    authors:
+      - Matteo Mantoan
+    verifier: Francesco Marcon
+    description: >
+      Definizione stile titoli documentazione
   - version: "1.4.0"
     date: "2026-03-19"
     authors:
@@ -30,7 +44,7 @@ changelog:
     description: >
       Adozione struttura "Norme e Strumenti + Attività" per processi primari e di supporto
   - version: 1.0.0
-    date: '2026-02-12'
+    date: "2026-02-12"
     approver: Valerio Solito
     baseline: RTB
   - version: "0.15.2"
@@ -55,7 +69,7 @@ changelog:
     description: >
       Stesura metriche e standard per la qualità
   - version: "0.14.0"
-    date: "2026-02-07" 
+    date: "2026-02-07"
     authors:
       - Francesco Marcon
     verifier: Alessandro Contarini

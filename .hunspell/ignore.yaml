@@ -77,6 +77,7 @@ accepted_words:
 
   # --- Tecnologie e Formati ---
   - AES
+  - AESKey
   - AESKeyGenerator
   - CAProvider
   - CARepository
@@ -101,7 +102,9 @@ accepted_words:
   - PKI
   - ProvisioningCompleter
   - Typst
+  - EOF
   - TTL
+  - TTY
   - YAML
   - yaml
   - typ
@@ -188,6 +191,7 @@ accepted_words:
   - struct
   - DSN
   - stderr
+  - stdin
   - env
   - SIGTERM
   - SIGINT
@@ -209,6 +213,8 @@ accepted_words:
   - MeasurePersistenceServiceDRIVEN
   - NpQueryPersistenceServiceDRIVEN
   - StreamListenerServiceDRIVEN
+  - formatter
+  - pterm
   - paginata
   - paginato
   - rimappatura
@@ -218,12 +224,21 @@ accepted_words:
   - TestContainers
   - timestamptz
   - uuid
-  - Crypto
+  - crypto
   - RBAC
   - IAM
   - httptest
   - SSL
   - realtime
+  - AESGCMEncryptor
+  - PTerm
+  - Stdout
+  - stdout
+  - stdin
+  - NaN
+  - omitempty
+  - unparseable
+  - TTY
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
@@ -307,6 +322,10 @@ accepted_words:
   - lifecycle
   - unmarshal
   - Walkthrough
+  - REPL
+  - renderer
+  - EOF
+  - ciphertext
 
   # --- Terminologia Standard Progetto ---
   - req
@@ -424,7 +443,10 @@ accepted_words:
   - NATSGatewayLifecycleProvider
   - Configs
   - os
+  - mustMarkRequired
   - OpaqueBlob
+  - ProvisioningService
+  - WithContext
   - config
   - lifecycle
   - writeBatch
@@ -575,6 +597,37 @@ accepted_words:
   - ValidateFactoryKeyResponseDto
   - ImpersonationService
   - authTag
+  - sensorId
+  - ProvisioningUrl
+  - NATSCACertPath
+  - NATSTLSCertPath
+  - NATSTLSKeyPath
+  - SQLitePath
+  - HttpAddr
+  - DefaultSendFreq
+  - GatewayBufferSize
+  - RecoveryMode
+  - CertPool
+  - AESGCMEncryptor
+  - TenantID
+  - AuthTag
+  - NACK
+  - MetricsAddr
+  - TenantID
+  - GatewayRegistry
+  - MessageBuffer
+  - SQLiteStore
+  - RecoveryMode
+  - NATSDecommissionListener
+  - SimulatorURL
+  - CreateGatewayRequest
+  - BulkCreateGatewaysRequest
+  - BulkCreateResponse
+  - AddSensorRequest
+  - NetworkDegradationRequest
+  - DisconnectRequest
+  - OutlierRequest
+  - cmd
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
@@ -605,6 +658,7 @@ accepted_words:
   - yyyy
   - sottocasi
   - sottocaso
+  - sottocomandi
   - impersonificare
   - pre
   - Sez
@@ -619,6 +673,7 @@ accepted_words:
   - deployata
   - loggata
   - idempotente
+  - idempotenza
   - istanziazione
   - istanziata
   - containerizzazione
@@ -656,3 +711,18 @@ accepted_words:
   - versionata
   - versionati
   - debuggati
+  - WebApp
+  - opz
+  - sottocomandi
+  - sottocomando
+  - disconnette
+  - riconfigurabile
+  - iniettabilità
+  - sottoprocesso
+  - deserializzazione
+  - scansionabile
+  - istanziato
+  - parsando
+  - impersonabile
+  - configurativa
+  - popolabili

@@ -17,7 +17,7 @@
   frontend e servizi terzi come Keycloak e di salvare in Database le informazioni ricevute dagli altri microservizi
   attraverso NATS. Il microservizio espone molteplici endpoint divisi per ruolo e funzione principale.
 
-  = Dipendenze e Configurazione
+  = Dipendenze e configurazione
 
   == Variabili d'ambiente
 
@@ -118,7 +118,7 @@
     )
   ]
 
-  = Architettura Logica
+  = Architettura logica
 
   Il servizio adotta una Layered Architecture con organizzazione interna di tipo Modular Monolith. All'interno dei vari
   moduli è utilizzato prevalentemente il pattern Controller-Service-Persistence, che consente una chiara separazione
@@ -150,7 +150,7 @@
   ]
 
 
-  == Strati Architetturali
+  == Strati architetturali
   Di seguito è riportata la suddivisione in strati architetturali del microservizio, con l'indicazione delle cartelle e
   dei componenti principali:
 
@@ -290,7 +290,7 @@
     )
   ]
 
-  = Design di Dettaglio
+  = Design di dettaglio
   == Moduli del microservizio
 
   === AdminModule
@@ -2877,7 +2877,7 @@
 
 
 
-  == Flussi di Esecuzione
+  == Flussi di esecuzione
   Di seguito sono descritti i principali flussi di esecuzione del microservizio, con particolare attenzione ai
   componenti coinvolti e alle interazioni con i servizi esterni.
 
@@ -2889,7 +2889,7 @@
   impersonazione. Tali informazioni vengono poi utilizzate dai guard e dalle policy di accesso per autorizzare o negare
   l’accesso agli endpoint.
 
-  === Creazione di un Tenant
+  === Creazione di un tenant
   Un utente con ruolo _system_admin_ invia una richiesta di creazione di un tenant tramite l’endpoint amministrativo
   dedicato. Il controller delega l’operazione al service applicativo, che avvia una transazione sul database locale e
   crea l’entità del tenant. Successivamente il backend interagisce con Keycloak per creare l’utente amministratore del
@@ -2898,14 +2898,14 @@
   database applicativo. In caso di errore durante il flusso, vengono applicati meccanismi di rollback per ridurre il
   rischio di inconsistenze tra database locale e Keycloak.
 
-  === Creazione di un Utente Tenant
+  === Creazione di un utente tenant
   Un utente con ruolo _tenant_admin_ invia una richiesta di creazione di un nuovo utente appartenente al proprio tenant.
   Il controller inoltra i dati al service applicativo, che coordina la creazione dell’utente sia nel database locale sia
   su Keycloak. Dopo la creazione remota, il backend salva le informazioni dell’utente nel database applicativo,
   mantenendo allineati il sistema locale e il provider di identità. Il ruolo applicativo assegnato all’utente viene
   sincronizzato con i ruoli configurati in Keycloak.
 
-  === Impersonazione di un Utente
+  === Impersonazione di un utente
   Un utente con ruolo _system_admin_ invia una richiesta di impersonazione tramite l’endpoint `/auth/impersonate`,
   specificando l’identificativo dell’utente target. Il microservizio estrae il token amministrativo della richiesta e
   delega a Keycloak l’operazione di token exchange. Keycloak restituisce un nuovo access token che rappresenta l’utente
@@ -2914,7 +2914,7 @@
   bloccati tramite guard dedicati, così da impedire specifiche operazioni sensibili mentre si opera nel contesto di un
   altro utente.
 
-  === Provisioning di un Gateway
+  === Provisioning di un gateway
   Il flusso di provisioning è esposto tramite endpoint interni dedicati. In una prima fase il sistema chiamante invia
   `factory_id` e `factory_key` all’endpoint di validazione; il microservizio verifica che il gateway esista, che non sia
   già provisioned e che la factory key fornita corrisponda al valore atteso. In caso di esito positivo, il backend
@@ -2924,20 +2924,20 @@
   aggiorna lo stato del gateway come `provisioned`. A partire da questo momento il gateway viene considerato attivo dal
   punto di vista applicativo.
 
-  === Recupero delle Chiavi di un Gateway
+  === Recupero delle chiavi di un gateway
   Un utente autenticato del tenant richiede le chiavi associate a uno specifico gateway. Il controller inoltra
   l’identificativo del tenant e del gateway al service applicativo, che verifica preliminarmente che il gateway
   appartenga effettivamente al tenant chiamante. Dopo il controllo di autorizzazione, il layer di persistenza recupera
   le chiavi dal database. Il materiale crittografico viene decifrato automaticamente durante la lettura tramite il
   transformer associato all’entità, e i dati vengono infine convertiti nel formato di risposta esposto dall’API.
 
-  === Creazione di un API Client
+  === Creazione di un API client
   Un utente con ruolo _tenant_admin_ richiede la creazione di un nuovo API client associato al tenant. Il microservizio
   delega a Keycloak la creazione del client applicativo e del relativo secret, quindi persiste nel database locale le
   informazioni necessarie a rappresentarlo nel dominio applicativo. La risposta restituisce sia i dati del nuovo client
   sia, nel momento della creazione, il secret necessario per l’utilizzo da parte del chiamante.
 
-  === Invio di un Comando a un Gateway
+  === Invio di un comando a un gateway
   Un utente con ruolo _tenant_admin_ invia un comando verso un gateway, ad esempio per aggiornare la configurazione o
   avviare un aggiornamento firmware. Il controller raccoglie i dati della richiesta e li passa al service applicativo,
   che crea il record del comando nel database con stato iniziale coerente con il flusso di esecuzione. Successivamente
@@ -2945,7 +2945,7 @@
   destinatario. Lo stato del comando può poi essere interrogato tramite l’endpoint dedicato, che restituisce le
   informazioni persistite sul relativo avanzamento.
 
-  === Configurazione di Alert e Threshold
+  === Configurazione di alert e threshold
   Gli utenti del tenant possono consultare la configurazione degli alert e delle soglie, mentre le operazioni di
   modifica sono riservate agli utenti con privilegi amministrativi sul tenant. Le richieste vengono gestite dai
   rispettivi controller e inoltrate ai service applicativi, che verificano il contesto tenant e applicano le regole di
@@ -2953,14 +2953,14 @@
   d’uso, a livello specifico di gateway o sensore. Le modifiche vengono persistite nel database e restituite al
   chiamante in forma coerente con il contratto API.
 
-  === Consultazione dei Log di Audit
+  === Consultazione dei log di audit
   Un utente con ruolo _tenant_admin_ può interrogare i log di audit specificando almeno un intervallo temporale di
   interesse. Il controller valida la presenza dei parametri obbligatori e inoltra la richiesta al service dedicato, che
   recupera dal database gli eventi registrati per il tenant. I risultati vengono quindi trasformati nel formato di
   risposta previsto e restituiti al chiamante. Questo flusso consente di tracciare le operazioni rilevanti eseguite nel
   sistema da utenti reali o impersonati.
 
-  = Metodologie di Testing
+  = Metodologie di testing
 
   Il microservizio prevede test di unità e test di integrazione intra-service, con l’obiettivo di verificare la
   correttezza della logica applicativa, dei controlli di accesso, delle trasformazioni dei dati e delle interazioni con
