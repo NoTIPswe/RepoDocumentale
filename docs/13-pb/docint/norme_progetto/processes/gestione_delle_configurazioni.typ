@@ -73,6 +73,29 @@ progetto.
 ]
 
 #norm(
+  title: "Approccio GitOps per l'infrastruttura",
+  label: <gitops-infra>,
+)[
+  Il repository Git è l'unica fonte di verità per lo stato dell'infrastruttura. È vietata qualsiasi modifica manuale
+  tramite interfaccia grafica o CLI che non sia preceduta dal corrispondente commit nel repository:
+
+  - *Grafana*: Le dashboard non possono essere create o modificate esclusivamente dall'interfaccia grafica. Ogni
+    modifica deve essere esportata come file JSON e committata in `notip-infra/infra/monitoring/grafana/` tramite Pull
+    Request (vedi @osservabilita);
+  - *NATS JetStream*: Stream, consumer e policy di retention non possono essere modificati tramite CLI NATS. Ogni
+    modifica deve essere riflessa nei file JSON in `notip-infra/infra/nats/streams/` tramite Pull Request (vedi
+    @config-items);
+  - *Keycloak*: Le configurazioni di realm, client, ruoli e policy non possono essere modificate esclusivamente
+    dall'interfaccia di amministrazione. Il realm export aggiornato deve essere committato nella directory di
+    configurazione dedicata in `notip-infra/` tramite Pull Request;
+  - *Nginx*: Le regole di routing, la configurazione TLS e gli header di sicurezza non possono essere modificati
+    direttamente sui server. Ogni modifica deve essere applicata ai file in `notip-infra/infra/nginx/` tramite Pull
+    Request (vedi @nginx-gateway).
+
+  Ogni stato dell'infrastruttura non tracciato nel repository è considerato configurazione non autorizzata.
+]
+
+#norm(
   title: "Strategia dei repository",
   label: <repo-strategy>,
 )[

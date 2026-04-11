@@ -369,6 +369,25 @@ le norme relative a ciascuno.
   container registry si rimanda alla @ghcr.
 ]
 
+#norm(
+  title: "Gateway di rete (Nginx)",
+  label: <nginx-gateway>,
+)[
+  *Nginx* è l'unico punto d'ingresso autorizzato per il traffico esterno verso i microservizi. L'accesso diretto ai
+  servizi interni bypassando il gateway è vietato in qualsiasi ambiente (sviluppo, CI, produzione).
+
+  Le responsabilità di Nginx sono:
+  - *Routing*: smistamento delle richieste in ingresso verso il microservizio appropriato in base alle regole di
+    location configurate;
+  - *Terminazione TLS*: gestione del certificato SSL/TLS al bordo della rete, in modo che i servizi interni comunichino
+    in chiaro sulla rete privata del cluster;
+  - *Iniezione degli header di sicurezza*: applicazione delle direttive definite in `security-headers.conf` (es.
+    `Strict-Transport-Security`, `X-Frame-Options`, `Content-Security-Policy`) a tutte le risposte in uscita.
+
+  La configurazione è versionata in `notip-infra/infra/nginx/` ed è soggetta alle regole GitOps definite nella
+  @gitops-infra.
+]
+
 === Attività del processo
 
 #activity(
@@ -536,6 +555,43 @@ le norme relative a ciascuno.
       desc: [
         Installare e attivare gli hook locali eseguendo `pre-commit install` nella radice della repository. Per la norma
         di riferimento si rimanda alla @pre-commit-hooks.
+      ],
+    ),
+  ),
+)
+
+#activity(
+  title: "Bootstrapping dell'ambiente locale",
+  label: <bootstrapping-locale>,
+  roles: (ROLES.progr, ROLES.proge),
+  norms: ("devcontainers", "gitops-infra"),
+  input: [Nuova postazione di lavoro o primo avvio del cluster locale],
+  output: [Cluster di microservizi operativo in locale con stream NATS e database inizializzati],
+  rationale: [
+    I dettagli dei comandi specifici (es. `bootstrap.sh`, `nats-streams-init.sh`) sono documentati nel `README.md` di
+    `notip-infra` e non vengono duplicati qui.
+  ],
+  procedure: (
+    (
+      name: "Prerequisiti",
+      desc: [
+        Verificare che Docker sia installato e in esecuzione e che il DevContainer della repository sia operativo (vedi
+        @setup-devcontainer).
+      ],
+    ),
+    (
+      name: "Avvio del cluster",
+      desc: [
+        Eseguire gli script di bootstrapping forniti in `notip-infra` secondo le istruzioni del `README.md`. Gli script
+        avviano i container dei microservizi tramite Docker Compose, inizializzano gli stream NATS JetStream e applicano
+        le migrazioni del database.
+      ],
+    ),
+    (
+      name: "Verifica",
+      desc: [
+        Verificare che tutti i servizi siano raggiungibili e che gli stream NATS siano stati creati correttamente prima
+        di iniziare qualsiasi attività di sviluppo.
       ],
     ),
   ),
