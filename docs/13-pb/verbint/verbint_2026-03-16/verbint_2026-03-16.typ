@@ -34,7 +34,7 @@
 ][
 
   #base-report.report-point(
-    discussion_point: [Conclusione della fase di progettazione.],
+    discussion_point: [Conclusione della fase di progettazione],
     discussion: [
       Durante la riunione è stata ribadita l'importanza di mantenere un buon livello di progettazione, così da evitare
       criticità nelle fasi successive di sviluppo e integrazione. Allo stesso tempo, il gruppo ha rilevato la necessità
@@ -47,7 +47,7 @@
   )
 
   #base-report.report-point(
-    discussion_point: [Avvio dello sviluppo dei servizi backend.],
+    discussion_point: [Avvio dello sviluppo dei servizi backend],
     discussion: [
       È stato confermato l'avvio dello sviluppo dei servizi già progettati. Il gruppo ha discusso la necessità di
       procedere in parallelo, suddividendo l'implementazione tra i vari membri in base ai servizi assegnati e alle
@@ -82,7 +82,7 @@
   )
 
   #base-report.report-point(
-    discussion_point: [Avvio progettazione e sviluppo frontend.],
+    discussion_point: [Avvio progettazione e sviluppo frontend],
     discussion: [
       Parallelamente alle attività backend, è stata avviata la riflessione sulla componente frontend. La riunione ha
       evidenziato la necessità di iniziare dalla progettazione dell'interfaccia e dei flussi principali, così da poter
@@ -105,7 +105,7 @@
   )
 
   #base-report.report-point(
-    discussion_point: [Aggiornamento Norme di Progetto.],
+    discussion_point: [Aggiornamento norme di progetto],
     discussion: [
       Nel gruppo è emersa l'esigenza di formalizzare i processi di sviluppo finora decisi all'interno delle Norme di
       Progetto per garantire uniformità tra i membri.
@@ -123,7 +123,7 @@
   )
 
   #base-report.report-point(
-    discussion_point: [Setup infrastruttura di sviluppo e CI/CD.],
+    discussion_point: [Setup infrastruttura di sviluppo e CI/CD],
     discussion: [
       Per minimizzare i tempi di configurazione e garantire la coerenza tra i diversi sistemi operativi dei membri, è
       stata discussa l'adozione di Dev Containers. Inoltre, è stata sottolineata l'importanza di automatizzare i test e

@@ -178,7 +178,7 @@
 
   == Attività fissate per la Requirements and Technology Baseline (RTB)
 
-  === Redazione Analisi dei Requisiti (AdR)
+  === Redazione analisi dei requisiti (AdR)
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -200,7 +200,7 @@
     ],
     table.cell(colspan: 2, align: center)[*Completato per RTB*],
   )
-  === Redazione Norme di Progetto (NdP)
+  === Redazione norme di progetto (NdP)
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -224,7 +224,7 @@
   )
 
 
-  === Redazione Piano di Progetto (PdP)
+  === Redazione piano di progetto (PdP)
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -250,7 +250,7 @@
   )
 
 
-  === Redazione Piano di Qualifica (PdQ)
+  === Redazione piano di qualifica (PdQ)
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -276,7 +276,7 @@
   )
 
 
-  === Redazione Glossario
+  === Redazione glossario
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -292,7 +292,7 @@
     table.cell(colspan: 2, align: center)[*Completato per RTB*],
   )
 
-  === Realizzazione del Proof of Concept
+  === Realizzazione del proof of concept
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -345,7 +345,7 @@
     ),
   )<tab:Correzione-RTB>
 
-  === Redazione Manuale Test
+  === Redazione manuale test
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -367,7 +367,7 @@
     table.cell(colspan: 2, align: center)[*Completato per PB*],
   )
 
-  === Redazione Manuale Utente
+  === Redazione manuale utente
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(

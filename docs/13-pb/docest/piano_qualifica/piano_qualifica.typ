@@ -406,13 +406,13 @@
       di test.],
   )
 
-  === Gestione della Configurazione
+  === Gestione della configurazione
 
   #metrics-table(
     (
       (cod: [*MP17*], name: [Commit Message Quality Score], acceptable: [7/10], optimal: [9/10]),
     ),
-    caption: [Soglie metriche Gestione della Configurazione di processo],
+    caption: [Soglie metriche Gestione della configurazione di processo],
   )
   #metrics-description(
     [MP17],
@@ -427,14 +427,14 @@
       punteggi alti.],
   )
 
-  === Gestione della Qualità
+  === Gestione della qualità
 
   #metrics-table(
     (
       (cod: [*MP18*], name: [Quality Metrics Satisfied], acceptable: [≥ 80%], optimal: [≥ 100%]),
       (cod: [*MP19*], name: [Quality Gate Pass Rate], acceptable: [≥ 85%], optimal: [≥ 95%]),
     ),
-    caption: [Soglie metriche Gestione della Qualità],
+    caption: [Soglie metriche Gestione della qualità],
   )
 
   #heading(level: 4, outlined: false)[Motivazioni delle soglie]
@@ -466,7 +466,7 @@
 
   == Processi organizzativi
 
-  === Gestione dei Processi
+  === Gestione dei processi
 
   #metrics-table(
     (
@@ -862,7 +862,7 @@
 
   /* Legacy inline testing tables retained for historical reference.
 
-  == Test di Unità
+  == Test di unità
 
   #table(
     columns: (1fr, 3.5fr, 1.2fr, 0.8fr),
@@ -921,7 +921,7 @@
     [T-U-44], [Verificare il mapping dell’errore range invalido sensore], [R-S-15-F], [NI],
   )
 
-  == Test di Integrazione
+  == Test di integrazione
 
   #table(
     columns: (1fr, 3.5fr, 1.2fr, 0.8fr),
@@ -984,7 +984,7 @@
     [T-I-11], [Verificare l’isolamento dei dati tra Tenant tramite API e persistenza su database], [R-2-S], [NI],
   )
 
-  == Test di Sistema
+  == Test di sistema
 
   #table(
     columns: (1fr, 3.3fr, 1.4fr, 0.7fr),
@@ -1556,4 +1556,3 @@
   )
 
 ]
-

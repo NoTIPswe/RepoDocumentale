@@ -3,7 +3,7 @@
 === Norme e strumenti del processo di sviluppo
 
 #norm(
-  title: "Nomenclatura dei Casi d'Uso",
+  title: "Nomenclatura degli Use Case",
   label: <nomenclatura-uc>,
 )[
   Per garantire univocità e tracciabilità, i casi d'uso adottano la seguente nomenclatura:
@@ -19,7 +19,7 @@
 ]
 
 #norm(
-  title: "Struttura dei Casi d'Uso",
+  title: "Struttura degli Use Case",
   label: <struttura-uc>,
 )[
   Ogni caso d'uso viene dettagliato secondo la seguente struttura:
@@ -35,7 +35,7 @@
 ]
 
 #norm(
-  title: "Nomenclatura dei Requisiti",
+  title: "Nomenclatura dei requisiti",
   label: <nomenclatura-requisiti>,
 )[
   Ogni requisito è identificato dalla seguente nomenclatura:
@@ -57,7 +57,7 @@
 ]
 
 #norm(
-  title: "Stack Tecnologico",
+  title: "Stack tecnologico",
   label: <stack-tecnologico>,
 )[
   Le tecnologie adottate per lo sviluppo del progetto sono:
@@ -75,7 +75,7 @@
 ]
 
 #norm(
-  title: "Strumenti di Qualità del Codice",
+  title: "Strumenti di qualità del codice",
   label: <strumenti-qualita-codice>,
 )[
   È richiesta la configurazione dell'editor per l'applicazione automatica al salvataggio ("format on save") e i seguenti
@@ -103,7 +103,7 @@
 ]
 
 #norm(
-  title: "Pin delle Versioni delle Dipendenze",
+  title: "Pin delle versioni delle dipendenze",
   label: <pin-versioni>,
 )[
   È vietato l'uso del tag `latest` o di versioni non specificate per dipendenze, immagini base e tool. Per garantire
@@ -120,7 +120,7 @@
 ]
 
 #norm(
-  title: "Pre-commit Hooks",
+  title: "Pre-commit hooks",
   label: <pre-commit-hooks>,
 )[
   Il gruppo utilizza `pre-commit`, un framework Python per la gestione degli hook Git locali, installato in ogni
@@ -134,7 +134,7 @@
 ]
 
 #norm(
-  title: "Interfaccia di Automazione Locale",
+  title: "Interfaccia di automazione locale",
   label: <automazione-locale>,
 )[
   Per garantire coerenza nella Developer Experience, le operazioni comuni (build, test, lint, avvio) devono essere
@@ -149,7 +149,7 @@
 ]
 
 #norm(
-  title: "Convenzioni di Scrittura e Nomenclatura",
+  title: "Convenzioni di scrittura e nomenclatura",
   label: <convenzioni-scrittura>,
 )[
   Tutti i membri del gruppo sono tenuti a rispettare le seguenti convenzioni stilistiche:
@@ -164,7 +164,7 @@
 ]
 
 #norm(
-  title: "Branching e Conventional Commits nello Sviluppo",
+  title: "Branching e Conventional Commits nello sviluppo",
   label: <branching-conventional-commits>,
 )[
   Il Programmatore è tenuto a rispettare le seguenti norme durante lo sviluppo del codice.
@@ -190,7 +190,7 @@
 ]
 
 #norm(
-  title: "Interfacce Condivise (API Contracts)",
+  title: "Interfacce condivise (API contracts)",
   label: <api-contracts>,
 )[
   La gestione dei contratti per le interfacce condivise varia a seconda del paradigma di comunicazione adottato
@@ -245,7 +245,7 @@
 ]
 
 #norm(
-  title: "Database e Migrazioni",
+  title: "Database e migrazioni",
   label: <database-migrazioni>,
 )[
   La strategia di migrazione dipende dallo stack tecnologico del servizio:
@@ -264,7 +264,7 @@
 ]
 
 #norm(
-  title: "Sicurezza e Crittografia (Crypto Contract)",
+  title: "Sicurezza e crittografia (crypto contract)",
   label: <crypto-contract>,
 )[
   Qualsiasi dato sensibile (es. credenziali di Gateway, materiale crittografico) non deve mai essere trasmesso né
@@ -277,7 +277,7 @@
 ]
 
 #norm(
-  title: "Tracciabilità delle Operazioni (Audit Logging)",
+  title: "Tracciabilità delle operazioni (audit logging)",
   label: <audit-logging>,
 )[
   Ogni operazione di mutazione critica (creazione, modifica, eliminazione di risorse) esposta dalle API NestJS deve
@@ -287,7 +287,7 @@
 ]
 
 #norm(
-  title: "Protezione degli Endpoint (Multi-Tenancy e RBAC)",
+  title: "Protezione degli endpoint (multi-tenancy e RBAC)",
   label: <endpoint-security>,
 )[
   Il sistema è *Multi-Tenant*: ogni richiesta HTTP in entrata deve essere associata a un tenant specifico e non può
@@ -303,7 +303,7 @@
 ]
 
 #norm(
-  title: "Osservabilità del Sistema (Prometheus e Grafana)",
+  title: "Osservabilità del sistema (Prometheus e Grafana)",
   label: <osservabilita>,
 )[
   Ogni microservizio deve esporre un endpoint `/metrics` compatibile con il formato di scraping di *Prometheus*. Le
@@ -318,7 +318,7 @@
 ]
 
 #norm(
-  title: "Pattern Architetturale (Microservizi Go)",
+  title: "Pattern architetturale (servizi Go)",
   label: <architettura-go>,
 )[
   I microservizi sviluppati in Go adottano l'*Architettura Esagonale (Ports and Adapters)*. Il codice sorgente è
@@ -341,7 +341,7 @@
 === Attività del processo
 
 #activity(
-  title: "Analisi dei Requisiti di Sistema",
+  title: "Analisi dei requisiti di sistema",
   roles: (ROLES.anal,),
   norms: ("nomenclatura-uc", "struttura-uc", "nomenclatura-requisiti"),
   input: [Capitolato C7, verbali degli incontri con il committente],
@@ -366,7 +366,7 @@
 )
 
 #activity(
-  title: "Workflow di Sviluppo del Codice",
+  title: "Workflow di sviluppo del codice",
   roles: (ROLES.progr,),
   norms: ("stack-tecnologico", "strumenti-qualita-codice", "convenzioni-scrittura"),
   input: [Specifica architetturale, Task Jira assegnato],
@@ -395,7 +395,7 @@
 )
 
 #activity(
-  title: "Workflow di Aggiornamento delle Interfacce Condivise",
+  title: "Workflow di aggiornamento delle interfacce condivise",
   label: <workflow-api-contracts>,
   roles: (ROLES.progr,),
   norms: ("api-contracts", "config-items", "repo-strategy"),
