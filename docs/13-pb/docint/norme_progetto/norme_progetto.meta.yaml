@@ -4,7 +4,7 @@ changelog:
     date: "2026-04-11"
     authors:
       - Francesco Marcon
-    verifier: TBD
+    verifier: Alessandro Mazzariol
     description: >
       Aggiunta ultime norme di sviluppo riguardanti gestione degli errori, validazione degli input e separazione delle responsabilità tramite AOP
   - version: "1.5.1"
