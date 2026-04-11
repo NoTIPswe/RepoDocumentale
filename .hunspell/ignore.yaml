@@ -439,6 +439,7 @@ accepted_words:
   - AuditLogEntity
   - ApiClientEntity
   - CommandEntity
+  - AppModule
   - filesystem
   - init
   - cryptographically
@@ -486,6 +487,28 @@ accepted_words:
   - EventEmitter
   - ValidationPipe
   - lifecycle
+  - TelemetryStreamBridgeService
+  - CostNatsResponderService
+  - TenantAccessGuard
+  - TenantId
+  - MetricsModule
+  - MetricsService
+  - MetricsController
+  - MetricsInterceptor
+  - tenantId
+  - gatewayId
+  - sensorId
+  - sensorType
+  - Splitta
+  - wrappa
+  - deduplica
+  - Deduplica
+  - TenantAccessContext
+  - readonly
+  - getter
+  - DataSource
+  - authTag
+  - encryptedData
   - sensorId
   - ProvisioningUrl
   - NATSCACertPath
