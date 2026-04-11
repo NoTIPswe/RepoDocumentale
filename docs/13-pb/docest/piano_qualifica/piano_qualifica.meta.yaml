@@ -1,5 +1,12 @@
 title: Piano di qualifica
 changelog:
+  - version: "1.8.0"
+    date: "2026-04-10"
+    authors:
+      - Francesco Marcon
+    verifier: Matteo Mantoan
+    description: >
+      Aggiornamento test unità e integrazione per il servizio data-consumer e aggiunta test unità per il servizio di Simulator CLI
   - version: "1.7.0"
     date: "2026-04-10"
     authors:
