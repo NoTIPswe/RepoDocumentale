@@ -44,9 +44,9 @@
   #oggetto("Presentazione PB")
 
 
-  Con la presente il gruppo *NoTIP* comunica formalmente la propria intenzione di sostenere la revisione della
-  Product Baseline (PB), relativamente al progetto proposto dall'azienda M31, capitolato *C7*,
-  intitolato: *"Sistema di acquisizione dati da sensori"*.
+  Con la presente il gruppo *NoTIP* comunica formalmente la propria intenzione di sostenere la revisione della Product
+  Baseline (PB), relativamente al progetto proposto dall'azienda M31, capitolato *C7*, intitolato: *"Sistema di
+  acquisizione dati da sensori"*.
 
   La documentazione completa relativa alla revisione PB è disponibile sul #link(
     "https://notipswe.github.io/RepoDocumentale",
@@ -54,16 +54,13 @@
   In particolare, si sottopongono alla Vostra attenzione i seguenti documenti:
 
   - Lettera di presentazione (documento attuale)
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docint/norme_progetto.pdf")[Norme di Progetto 
-      v2.0.0]
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/piano_progetto.pdf")[Piano di Progetto 
-      v2.0.0]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docint/norme_progetto.pdf")[Norme di Progetto v2.0.0]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/piano_progetto.pdf")[Piano di Progetto v2.0.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti
-     v2.0.0]
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/piano_qualifica.pdf")[Piano di Qualifica
       v2.0.0]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/piano_qualifica.pdf")[Piano di Qualifica v2.0.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/glossario.pdf")[Glossario v3.0.0]
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica.pdf")[Specifica Tecnica 
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica.pdf")[Specifica Tecnica
       v1.0.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_data_api.pdf")[Specifica
       Tecnica - Data-API v1.0.0]
@@ -86,8 +83,7 @@
   Infine, vengono riconfermati gli impegni assunti nella #link(
     "https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/dichiarazione_impegni.pdf",
   )[Dichiarazione degli impegni v1.0.0], relativamente al preventivo di costo massimo stimato (*12.940 €*). La data di
-  consegna finale è confermata al *13 aprile 2026*, in accordo con il rinvio concordato con l'azienda
-  proponente M31.
+  consegna finale è confermata al *13 aprile 2026*, in accordo con il rinvio concordato con l'azienda proponente M31.
 
   #v(0.8cm)
 
