@@ -1,9 +1,9 @@
-#Per inserire i test nel sotto capitolo mettere sotto id "component: _vostro servizio_"
-#component e' opzionale, nel caso non venga messo il test verra' messo sotto il capitolo "test di unita"
-#il titolo del capitolo sara' come il nome del component, quindi deve essere uguale per tutti i test del singolo servizio
+#Per inserire i test nel sotto capitolo mettere sotto id "service: _vostro servizio_"
+#service NON e' opzionale, ho messo a i test pre-esistenti senza un service "-Placeholder"
+#il titolo del capitolo sara' come il nome del service, quindi deve essere uguale per tutti i test del singolo servizio
 #_esempio_
 #- id: t_u_x
-#  component: Provisioning service
+#  service: Provisioning service
 #  description: "des"
 #  requirements:
 #  - req
@@ -11,394 +11,928 @@
 
 type: unit
 tests:
-- id: t_u_1
-  description: Verificare la validazione del campo email nella richiesta di login (presenza e formato)
-  requirements:
-  - ins_mail
-  status: not_implemented
-- id: t_u_2
-  description: Verificare la validazione del campo password nella richiesta di login
-  requirements:
-  - ins_pw
-  status: not_implemented
-- id: t_u_3
-  description: Verificare il mapping dell’errore “credenziali errate”
-  requirements:
-  - err_cred_errate
-  status: not_implemented
-- id: t_u_4
-  description: Verificare la validazione della nuova password
-  requirements:
-  - impostazione_password
-  status: not_implemented
-- id: t_u_5
-  description: Verificare il mapping dell’errore “password non corrispondenti”
-  requirements:
-  - err_campi_diversi
-  status: not_implemented
-- id: t_u_6
-  description: Verificare il rispetto della policy di complessità password
-  requirements:
-  - err_password_invalida
-  status: not_implemented
-- id: t_u_7
-  description: Verificare il mapping dello stato gateway verso label testuale
-  requirements:
-  - visualizzazione_singolo_gateway_tenant
-  status: not_implemented
-- id: t_u_8
-  description: Verificare la formattazione del timestamp ultimo invio gateway
-  requirements:
-  - visualizzazione_dettagli_gateway
-  status: not_implemented
-- id: t_u_9
-  description: Verificare la formattazione del timestamp ultimo invio sensore
-  requirements:
-  - visualizzazione_singolo_sensore
-  status: not_implemented
-- id: t_u_10
-  description: Verificare la normalizzazione e serializzazione dello stream dati
-  requirements:
-  - visualizzazione_dati_stream
-  status: not_implemented
-- id: t_u_11
-  description: Verificare la trasformazione dello stream in struttura tabellare
-  requirements:
-  - visualizzazione_tabellare_dati_stream
-  status: not_implemented
-- id: t_u_12
-  description: Verificare la trasformazione dello stream in serie per grafico
-  requirements:
-  - visualizzazione_grafico_dati_stream
-  status: not_implemented
-- id: t_u_13
-  description: Verificare la validazione dell’intervallo temporale (start ≤ end)
-  requirements:
-  - filtraggio_intervallo_temporale
-  status: not_implemented
-- id: t_u_14
-  description: Verificare il mapping dello stato “dati non disponibili”
-  requirements:
-  - err_dati_non_disponibili
-  status: not_implemented
-- id: t_u_15
-  description: Verificare la serializzazione dei dati per export
-  requirements:
-  - esportazione_dati
-  status: not_implemented
-- id: t_u_16
-  description: Verificare il mapping del tipo di alert verso descrizione testuale
-  requirements:
-  - visualizzazione_singolo_alert
-  status: not_implemented
-- id: t_u_17
-  description: Verificare il mapping dell’hardware interessato da un alert
-  requirements:
-  - visualizzazione_singolo_alert
-  status: not_implemented
-- id: t_u_18
-  description: Verificare la formattazione del timestamp di emissione alert
-  requirements:
-  - visualizzazione_singolo_alert
-  status: not_implemented
-- id: t_u_19
-  description: Verificare la validazione del nome utente tenant
-  requirements:
-  - inserimento_nome_utente
-  status: not_implemented
-- id: t_u_20
-  description: Verificare la validazione dei ruoli assegnabili
-  requirements:
-  - selezione_permessi_utente
-  status: not_implemented
-- id: t_u_21
-  description: Verificare l’assenza di duplicati nella selezione utenti
-  requirements:
-  - selezione_lista_utenti
-  status: not_implemented
-- id: t_u_22
-  description: Verificare la generazione del Client ID
-  requirements:
-  - visualizzazione_client_id
-  status: not_implemented
-- id: t_u_23
-  description: Verificare la generazione del Client Secret
-  requirements:
-  - visualizzazione_secret_api
-  status: not_implemented
-- id: t_u_24
-  description: Verificare la costruzione di una entry di audit (campi obbligatori)
-  requirements:
-  - visualizzazione_singolo_log_audit
-  status: not_implemented
-- id: t_u_25
-  description: Verificare il mapping dell’operazione di audit verso testo
-  requirements:
-  - visualizzazione_singolo_log_audit
-  status: not_implemented
-- id: t_u_26
-  description: Verificare la validazione di un token JWT (scadenza e formato)
-  requirements:
-  - err_token_api_invalido
-  status: not_implemented
-- id: t_u_27
-  description: Verificare la validazione dei permessi secondo policy
-  requirements:
-  - sicurezza_autenticazione_accessi
-  status: not_implemented
-- id: t_u_28
-  component: Simulator Backend
-  description: Verificare il mapping della lista gateway simulati
-  requirements:
-  - visualizzazione_lista_gateway_simulati
-  status: passed
-- id: t_u_29
-  component: Simulator Backend
-  description: Verificare il mapping del gateway simulato
-  requirements:
-  - visualizzazione_singolo_gateway_simulato
-  status: passed
-- id: t_u_30
-  component: Simulator Backend
-  description: Verificare la validazione della configurazione gateway simulato
-  requirements:
-  - inserimento_dati_config_sim_gateway
-  status: passed
-- id: t_u_31
-  component: Simulator Backend
-  description: Verificare il mapping dell’errore di deploy gateway simulato
-  requirements:
-  - err_deploy_gateway_simulato
-  status: passed
-- id: t_u_32
-  component: Simulator Backend
-  description: Verificare la validazione della configurazione sensore simulato
-  requirements:
-  - inserimento_dati_config_sim_sensore
-  status: passed
-- id: t_u_33
-  component: Simulator Backend
-  description: Verificare il mapping dell’errore range invalido sensore
-  requirements:
-  - err_range_invalido_simulazione
-  status: passed
-- id: t_u_34
-  description: Verificare la corretta cifratura dei payload telemetrici e la generazione univoca dei vettori di inizializzazione (IV)
-  component: Simulator Backend
-  requirements:
-  - sicurezza_cifratura_dati
-  status: passed
-- id: t_u_35
-  component: Simulator Backend
-  description: Verificare la resilienza del buffer interno dei messaggi e la gestione dell'overflow in caso di disconnessioni
-  requirements:
-  - comando_anomalia_degrado_rete
-  - comando_anomalia_disconnessione_temporanea
-  status: passed
-- id: t_u_36
-  component: Simulator Backend
-  description: Verificare la corretta ricezione, validazione e scarto (per timeout o malformazione) dei comandi provenienti dal sistema Cloud
-  requirements:
-  - err_sintattico_config_gateway
-  - err_config_frequenza_fuori_range
-  status: passed
-- id: t_u_37
-  component: Simulator Backend
-  description: Verificare la robustezza della conversione dati (mapping) tra dominio e DTO, includendo la gestione di valori nulli e identificatori non validi
-  requirements:
-  - inserimento_dati_config_sim_gateway
-  - inserimento_dati_config_sim_sensore
-  - err_valore_numerico_invalido
-  status: passed
-- id: t_u_38
-  component: Simulator Backend
-  description: Verificare la corretta esecuzione delle operazioni CRUD e le relative validazioni per i Gateway simulati tramite API
-  requirements:
-  - visualizzazione_lista_gateway_simulati
-  - visualizzazione_singolo_gateway_simulato
-  - eliminazione_gateway_simulato
-  - creazione_deploy_gateway_simulato
-  - inserimento_dati_config_sim_gateway
-  - err_deploy_gateway_simulato
-  - creazione_gateway_multipli_default
-  status: passed
-- id: t_u_39
-  component: Simulator Backend
-  description: Verificare la corretta esecuzione delle operazioni CRUD e le relative validazioni sui range e configurazioni dei sensori simulati tramite API
-  requirements:
-  - visualizzazione_lista_sensori_gateway_simulato
-  - visualizzazione_singolo_sensore_simulato
-  - eliminazione_sensore_simulato
-  - creazione_sensore_gateway_simulato
-  - inserimento_dati_config_sim_sensore
-  - err_range_invalido_simulazione
-  - err_creazione_sensore_simulato
-  status: passed
-- id: t_u_40
-  component: Simulator Backend
-  description: Verificare la corretta elaborazione e iniezione di anomalie di rete (degrado, disconnessione) e valori anomali (outliers)
-  requirements:
-  - comando_anomalia_degrado_rete
-  - comando_anomalia_disconnessione_temporanea
-  - comando_anomalia_outliers_misurazioni
-  status: passed
-- id: t_u_41
-  component: Simulator Backend
-  description: Verificare il corretto ciclo di vita della goroutine del Gateway (avvio, terminazione pulita, e decommission)
-  requirements:
-  - eliminazione_gateway_simulato
-  - qualita_spegnimento_controllato
-  status: passed
-- id: t_u_42
-  component: Simulator Backend
-  description: Verificare la corretta applicazione dei cambi di stato operativi (Online, Offline, Paused) e il loro effetto sulla pubblicazione della telemetria
-  requirements:
-  - impostazione_configurazione_gateway
-  status: passed
-- id: t_u_43
-  component: Simulator Backend
-  description: Verificare la corretta inizializzazione dell'applicazione, del database locale e l'applicazione dei valori di configurazione di fallback
-  requirements:
-  - creazione_gateway_multipli_default
-  status: passed
-- id: t_u_44
-  component: Simulator Backend
-  description: Verificare le corrette operazioni di persistenza, lettura e gestione chiavi sul database locale SQLite
-  requirements:
-  - sicurezza_cifratura_dati
-  - qualita_durabilita_persistenza
-  status: passed
+  - id: t_map_invalid_credentials_error
+    service: Provisioning service
+    description: Verificare il mapping dell’errore “credenziali errate”
+    requirements:
+      - err_dati_autenticazione_invalidi
+    status: passed
+  - id: t_build_audit_entry
+    service: Provisioning service
+    description: Verificare la costruzione di una entry di audit (campi obbligatori)
+    requirements:
+      - visualizzazione_singolo_log_audit
+    status: passed
+  - id: t_map_audit_operation_text
+    service: Provisioning service
+    description: Verificare il mapping dell’operazione di audit verso testo
+    requirements:
+      - visualizzazione_singolo_log_audit
+    status: passed
+  - id: t_validate_policy_permissions
+    service: Provisioning service
+    description: Verificare la validazione dei permessi secondo policy
+    requirements:
+      - sicurezza_autenticazione_accessi
+    status: passed
+  - id: t_map_simulated_gateway_list
+    service: Simulator Backend
+    description: Verificare il mapping della lista gateway simulati
+    requirements:
+      - visualizzazione_lista_gateway_simulati
+    status: passed
+  - id: t_map_simulated_gateway
+    service: Simulator Backend
+    description: Verificare il mapping del gateway simulato
+    requirements:
+      - visualizzazione_singolo_gateway_simulato
+    status: passed
+  - id: t_validate_simulated_gateway_config
+    service: Simulator Backend
+    description: Verificare la validazione della configurazione gateway simulato
+    requirements:
+      - inserimento_dati_config_sim_gateway
+    status: passed
+  - id: t_map_deploy_error
+    service: Simulator Backend
+    description: Verificare il mapping dell’errore di deploy gateway simulato
+    requirements:
+      - err_deploy_gateway_simulato
+    status: passed
+  - id: t_validate_simulated_sensor_config
+    service: Simulator Backend
+    description: Verificare la validazione della configurazione sensore simulato
+    requirements:
+      - inserimento_dati_config_sim_sensore
+    status: passed
+  - id: t_map_invalid_range_error
+    service: Simulator Backend
+    description: Verificare il mapping dell’errore range invalido sensore
+    requirements:
+      - err_range_invalido_simulazione
+    status: passed
+  - id: t_encrypt_telemetry_unique_iv
+    description: Verificare la corretta cifratura dei payload telemetrici e la generazione univoca dei vettori di inizializzazione (IV)
+    service: Simulator Backend
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_buffer_resilience_overflow
+    service: Simulator Backend
+    description: Verificare la resilienza del buffer interno dei messaggi e la gestione dell'overflow in caso di disconnessioni
+    requirements:
+      - comando_anomalia_degrado_rete
+      - comando_anomalia_disconnessione_temporanea
+    status: passed
+  - id: t_validate_cloud_commands
+    service: Simulator Backend
+    description: Verificare la corretta ricezione, validazione e scarto (per timeout o malformazione) dei comandi provenienti dal sistema Cloud
+    requirements:
+      - err_sintattico_config_gateway
+      - err_config_frequenza_fuori_range
+    status: passed
+  - id: t_robust_dto_mapping
+    service: Simulator Backend
+    description: Verificare la robustezza della conversione dati (mapping) tra dominio e DTO, includendo la gestione di valori nulli e identificatori non validi
+    requirements:
+      - inserimento_dati_config_sim_gateway
+      - inserimento_dati_config_sim_sensore
+      - err_valore_numerico_invalido
+    status: passed
+  - id: t_crud_simulated_gateways
+    service: Simulator Backend
+    description: Verificare la corretta esecuzione delle operazioni CRUD e le relative validazioni per i Gateway simulati tramite API
+    requirements:
+      - visualizzazione_lista_gateway_simulati
+      - visualizzazione_singolo_gateway_simulato
+      - eliminazione_gateway_simulato
+      - creazione_deploy_gateway_simulato
+      - inserimento_dati_config_sim_gateway
+      - err_deploy_gateway_simulato
+      - creazione_gateway_multipli_default
+    status: passed
+  - id: t_crud_simulated_sensors
+    service: Simulator Backend
+    description: Verificare la corretta esecuzione delle operazioni CRUD e le relative validazioni sui range e configurazioni dei sensori simulati tramite API
+    requirements:
+      - visualizzazione_lista_sensori_gateway_simulato
+      - visualizzazione_singolo_sensore_simulato
+      - eliminazione_sensore_simulato
+      - creazione_sensore_gateway_simulato
+      - inserimento_dati_config_sim_sensore
+      - err_range_invalido_simulazione
+      - err_creazione_sensore_simulato
+    status: passed
+  - id: t_inject_anomalies
+    service: Simulator Backend
+    description: Verificare la corretta elaborazione e iniezione di anomalie di rete (degrado, disconnessione) e valori anomali (outliers)
+    requirements:
+      - comando_anomalia_degrado_rete
+      - comando_anomalia_disconnessione_temporanea
+      - comando_anomalia_outliers_misurazioni
+    status: passed
+  - id: t_gateway_goroutine_lifecycle
+    service: Simulator Backend
+    description: Verificare il corretto ciclo di vita della goroutine del Gateway (avvio, terminazione pulita, e decommission)
+    requirements:
+      - eliminazione_gateway_simulato
+      - qualita_spegnimento_controllato
+    status: passed
+  - id: t_operational_state_changes
+    service: Simulator Backend
+    description: Verificare la corretta applicazione dei cambi di stato operativi (Online, Offline, Paused) e il loro effetto sulla pubblicazione della telemetria
+    requirements:
+      - impostazione_configurazione_gateway
+    status: passed
+  - id: t_app_initialization
+    service: Simulator Backend
+    description: Verificare la corretta inizializzazione dell'applicazione, del database locale e l'applicazione dei valori di configurazione di fallback
+    requirements:
+      - creazione_gateway_multipli_default
+    status: passed
+  - id: t_sqlite_persistence_operations
+    service: Simulator Backend
+    description: Verificare le corrette operazioni di persistenza, lettura e gestione chiavi sul database locale SQLite
+    requirements:
+      - sicurezza_cifratura_dati
+      - qualita_durabilita_persistenza
+    status: passed
 
-- id: t_u_45
-  component: Data Consumer
-  description: Verificare che run() fallisca con variabili d'ambiente mancanti e che main() chiami
-    os.Exit(1) su errore di configurazione
-  requirements:
-  - qualita_test_unita_coverage
-  status: passed
-- id: t_u_46
-  component: Data Consumer
-  description: Verificare la configurazione del Data Consumer; valori di default, campi obbligatori
-    mancanti, override opzionali, valori non validi e generazione del DSN da file password
-  requirements:
-  - qualita_test_unita_coverage
-  status: passed
-- id: t_u_47
-  component: Data Consumer
-  description: Verificare che OpaqueBlob esegua marshal/unmarshal verbatim (Rule Zero) e che vengano
-    rifiutati valori non stringa
-  requirements:
-  - sicurezza_cifratura_dati
-  - sicurezza_rule_zero
-  - qualita_test_unita_coverage
-  status: passed
-- id: t_u_48
-  component: Data Consumer
-  description: Verificare che le metriche Prometheus si inizializzino senza panic, che i campi siano
-    non-nil, che la doppia registrazione produca panic e che le interfacce narrow siano soddisfatte
-  requirements:
-  - monitoraggio_performance_sistema
-  - qualita_osservabilita_servizi
-  - qualita_test_unita_coverage
-  status: passed
-- id: t_u_49
-  component: Data Consumer
-  description: Verificare il client NATS Request-Reply; fetch config (successo, errore NATS, JSON malformato),
-    aggiornamento stato, query lifecycle e logica di retry
-  requirements:
-  - alert_gateway_irraggiungibile
-  - qualita_resilienza_servizi
-  - qualita_test_unita_coverage
-  status: passed
-- id: t_u_50
-  component: Data Consumer
-  description: Verificare l'alert publisher NATS; formato del subject per tenant diversi, pubblicazione
-    corretta e incremento della metrica di errore su fallimento NATS
-  requirements:
-  - alert_gateway_irraggiungibile
-  - sicurezza_segregazione_tenant
-  - qualita_test_unita_coverage
-  status: passed
-- id: t_u_51
-  component: Data Consumer
-  description: Verificare la scrittura singola e in batch su TimescaleDB con DB mock; Rule Zero,
-    timestamp estratto dalla riga, gestione errori DB e no-op su batch vuoto
-  requirements:
-  - invio_dati_crittografati_cloud
-  - sicurezza_cifratura_dati
-  - sicurezza_rule_zero
-  - qualita_test_unita_coverage
-  status: passed
-- id: t_u_52
-  component: Data Consumer
-  description: Verificare la gerarchia di fallback della cache (gateway, tenant, system default),
-    il refresh atomico, che un errore di fetch non cancelli la cache e il backoff con max retry
-  requirements:
-  - modifica_intervallo_alert_gateway
-  - alert_gateway_irraggiungibile
-  - qualita_resilienza_servizi
-  - qualita_test_unita_coverage
-  status: passed
-- id: t_u_53
-  component: Data Consumer
-  description: Verificare il gateway lifecycle provider; successo, stato Online e gestione errore
-    NATS con mock
-  requirements:
-  - modifica_stato_gateway
-  - alert_gateway_irraggiungibile
-  - qualita_resilienza_servizi
-  - qualita_test_unita_coverage
-  status: passed
-- id: t_u_54
-  component: Data Consumer
-  description: Verificare che lo stato venga inoltrato verbatim al RR client, la gestione dello stato
-    Offline e l'incremento della metrica di errore su fallimento NATS
-  requirements:
-  - modifica_stato_gateway
-  - qualita_test_unita_coverage
-  status: passed
-- id: t_u_55
-  component: Data Consumer
-  description: Verificare che Now() ritorni un tempo nell'intervallo corretto
-  requirements:
-  - qualita_test_unita_coverage
-  status: passed
-- id: t_u_56
-  component: Data Consumer
-  description: Verificare il consumer di telemetria NATS; parsing del subject, classificazione degli
-    errori (permanenti vs. transitori), batching per dimensione/tick/cancel e writeBatch per ogni
-    combinazione di esito
-  requirements:
-  - invio_dati_crittografati_cloud
-  - qualita_test_unita_coverage
-  status: passed
-- id: t_u_57
-  component: Data Consumer
-  description: Verificare l'estrazione degli ID dal subject, il dispatch al service, il Term per
-    subject invalidi e il run loop con context cancel
-  requirements:
-  - alert_gateway_irraggiungibile
-  - decommission_gateway
-  - qualita_test_unita_coverage
-  status: passed
-- id: t_u_58
-  component: Data Consumer
-  description: Verificare che Tick() venga chiamato all'intervallo configurato e che Run() si fermi
-    su context cancel
-  requirements:
-  - alert_gateway_irraggiungibile
-  - qualita_test_unita_coverage
-  status: passed
-- id: t_u_59
-  component: Data Consumer
-  description: Verificare HandleTelemetry (registrazione Online, no duplicati, recovery),
-    HandleDecommission (rimozione, soppressione alert, no-op) e Tick (grace period, timeout verso
-    Offline, alert, lifecycle gate, fail-open)
-  requirements:
-  - alert_gateway_irraggiungibile
-  - invio_dati_crittografati_cloud
-  - decommission_gateway
-  - qualita_resilienza_servizi
-  - qualita_test_unita_coverage
-  status: passed
+  - id: t_dataconsumer_env_validation
+    service: Data Consumer
+    description:
+      Verificare che run() fallisca con variabili d'ambiente mancanti e che main() chiami
+      os.Exit(1) su errore di configurazione
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_dataconsumer_configuration
+    service: Data Consumer
+    description:
+      Verificare la configurazione del Data Consumer; valori di default, campi obbligatori
+      mancanti, override opzionali, valori non validi e generazione del DSN da file password
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_opaque_blob_rule_zero
+    service: Data Consumer
+    description:
+      Verificare che OpaqueBlob esegua marshal/unmarshal verbatim (Rule Zero) e che vengano
+      rifiutati valori non stringa
+    requirements:
+      - sicurezza_cifratura_dati
+      - sicurezza_rule_zero
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_prometheus_metrics_init
+    service: Data Consumer
+    description:
+      Verificare che le metriche Prometheus si inizializzino senza panic, che i campi siano
+      non-nil, che la doppia registrazione produca panic e che le interfacce narrow siano soddisfatte
+    requirements:
+      - monitoraggio_performance_sistema
+      - qualita_osservabilita_servizi
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_nats_request_reply_client
+    service: Data Consumer
+    description:
+      Verificare il client NATS Request-Reply; fetch config (successo, errore NATS, JSON malformato),
+      aggiornamento stato, query lifecycle e logica di retry
+    requirements:
+      - alert_gateway_irraggiungibile
+      - qualita_resilienza_servizi
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_nats_alert_publisher
+    service: Data Consumer
+    description:
+      Verificare l'alert publisher NATS; formato del subject per tenant diversi, pubblicazione
+      corretta e incremento della metrica di errore su fallimento NATS
+    requirements:
+      - alert_gateway_irraggiungibile
+      - sicurezza_segregazione_tenant
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_timescaledb_write
+    service: Data Consumer
+    description:
+      Verificare la scrittura singola e in batch su TimescaleDB con DB mock; Rule Zero,
+      timestamp estratto dalla riga, gestione errori DB e no-op su batch vuoto
+    requirements:
+      - invio_dati_crittografati_cloud
+      - sicurezza_cifratura_dati
+      - sicurezza_rule_zero
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_cache_fallback_hierarchy
+    service: Data Consumer
+    description:
+      Verificare la gerarchia di fallback della cache (gateway, tenant, system default),
+      il refresh atomico, che un errore di fetch non cancelli la cache e il backoff con max retry
+    requirements:
+      - modifica_intervallo_alert_gateway
+      - alert_gateway_irraggiungibile
+      - qualita_resilienza_servizi
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_gateway_lifecycle_provider
+    service: Data Consumer
+    description:
+      Verificare il gateway lifecycle provider; successo, stato Online e gestione errore
+      NATS con mock
+    requirements:
+      - modifica_stato_gateway
+      - alert_gateway_irraggiungibile
+      - qualita_resilienza_servizi
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_gateway_state_forwarding
+    service: Data Consumer
+    description:
+      Verificare che lo stato venga inoltrato verbatim al RR client, la gestione dello stato
+      Offline e l'incremento della metrica di errore su fallimento NATS
+    requirements:
+      - modifica_stato_gateway
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_clock_now_time
+    service: Data Consumer
+    description: Verificare che Now() ritorni un tempo nell'intervallo corretto
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_telemetry_consumer_batching
+    service: Data Consumer
+    description:
+      Verificare il consumer di telemetria NATS; parsing del subject, classificazione degli
+      errori (permanenti vs. transitori), batching per dimensione/tick/cancel e writeBatch per ogni
+      combinazione di esito
+    requirements:
+      - invio_dati_crittografati_cloud
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_telemetry_dispatcher_service
+    service: Data Consumer
+    description:
+      Verificare l'estrazione degli ID dal subject, il dispatch al service, il Term per
+      subject invalidi e il run loop con context cancel
+    requirements:
+      - alert_gateway_irraggiungibile
+      - decommission_gateway
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_ticker_interval_cancel
+    service: Data Consumer
+    description:
+      Verificare che Tick() venga chiamato all'intervallo configurato e che Run() si fermi
+      su context cancel
+    requirements:
+      - alert_gateway_irraggiungibile
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_heartbeat_tracker_lifecycle
+    service: Data Consumer
+    description:
+      Verificare HandleTelemetry (registrazione Online, no duplicati, recovery),
+      HandleDecommission (rimozione, soppressione alert, no-op) e Tick (grace period, timeout verso
+      Offline, alert, lifecycle gate, fail-open)
+    requirements:
+      - alert_gateway_irraggiungibile
+      - invio_dati_crittografati_cloud
+      - decommission_gateway
+      - qualita_resilienza_servizi
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_dataconsumer_db_migrations
+    service: Data Consumer
+    description:
+      Verificare il caricamento, il filtraggio, l'ordinamento e l'esecuzione delle
+      migrazioni SQL embedded; propagazione degli errori di listing, lettura ed
+      esecuzione
+    requirements:
+      - qualita_durabilita_persistenza
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_provisioning_orchestration_success
+    service: Provisioning service
+    description: Verificare l’orchestrazione del provisioning con validazione factory, firma CSR, generazione chiave AES e completamento finale
+    requirements:
+    - onboarding_gateway
+    status: passed
+  - id: t_provisioning_factory_validation_error_propagation
+    service: Provisioning service
+    description: Verificare la propagazione degli errori di validazione factory e il tracciamento del motivo di fallimento
+    requirements:
+    - err_auth_gateway_fabbrica
+    - err_autenticazione_gateway
+    status: passed
+  - id: t_provisioning_csr_error_mapping_malformed
+    service: Provisioning service
+    description: Verificare la propagazione degli errori CSR e il mapping del fallimento malformed_CSR
+    requirements:
+    - onboarding_gateway
+    status: passed
+  - id: t_provisioning_request_mapping_invalid_csr
+    service: Provisioning service
+    description: Verificare il mapping della request DTO in dominio e la gestione del CSR non valido
+    requirements:
+    - onboarding_gateway
+    status: passed
+  - id: t_provisioning_factory_credentials_validation_mapping
+    service: Provisioning service
+    description: Verificare la validazione delle credenziali factory e il mapping delle risposte INVALID, ALREADY_PROVISIONED e payload non valido
+    requirements:
+    - onboarding_gateway
+    - err_auth_gateway_fabbrica
+    - err_dati_autenticazione_invalidi
+    status: passed
+  - id: t_provisioning_csr_signing_validation
+    service: Provisioning service
+    description: Verificare la firma di un CSR valido e il rifiuto di CSR malformati o con firma non valida
+    requirements:
+    - onboarding_gateway
+    status: passed
+  - id: t_provisioning_aes256_key_generation_base64
+    service: Provisioning service
+    description: Verificare la generazione di una chiave AES-256 e la sua serializzazione base64
+    requirements:
+    - sicurezza_cifratura_dati
+    - invio_dati_crittografati_cloud
+    status: passed
+  - id: t_provisioning_exception_http_mapping
+    service: Provisioning service
+    description: Verificare il mapping delle eccezioni di provisioning verso i codici HTTP attesi
+    requirements:
+    - err_auth_gateway_fabbrica
+    - err_dati_autenticazione_invalidi
+    - err_autenticazione_gateway
+    status: passed
+  - id: t_provisioning_completion_payload_error_handling
+    service: Provisioning service
+    description: Verificare l’invio del payload di completamento provisioning e la gestione delle risposte non di successo
+    requirements:
+    - onboarding_gateway
+    - err_dati_autenticazione_invalidi
+    - err_autenticazione_gateway
+    status: passed
 
+  - id: t_u_cli_http_client_gateway_crud
+    service: Simulator CLI
+    description: Verificare le operazioni CRUD sui gateway tramite il client HTTP interno; successo, errori server, risposte JSON invalide, inclusione di status code/body e gestione URL base non valido
+    requirements:
+      - visualizzazione_lista_gateway_simulati
+      - visualizzazione_singolo_gateway_simulato
+      - creazione_deploy_gateway_simulato
+      - eliminazione_gateway_simulato
+      - err_deploy_gateway_simulato
+    status: passed
+
+  - id: t_u_cli_http_client_bulk
+    service: Simulator CLI
+    description: Verificare la creazione massiva di gateway tramite il client HTTP; successo totale, risposta parziale 207 con errori per singolo gateway e risposta JSON invalida
+    requirements:
+      - creazione_gateway_multipli_default
+      - err_deploy_gateway_simulato
+    status: passed
+
+  - id: t_u_cli_http_client_sensor_crud
+    service: Simulator CLI
+    description: Verificare le operazioni CRUD sui sensori tramite il client HTTP interno; successo, gateway non trovato, sensore non trovato, risposta JSON invalida ed errore di encoding payload
+    requirements:
+      - visualizzazione_lista_sensori_gateway_simulato
+      - creazione_sensore_gateway_simulato
+      - eliminazione_sensore_simulato
+      - err_creazione_sensore_simulato
+    status: passed
+
+  - id: t_u_cli_http_client_context
+    service: Simulator CLI
+    description: Verificare il comportamento di WithContext nel client HTTP; fallback a context.Background() su nil e propagazione di context cancellato
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+
+  - id: t_u_cli_http_client_anomalies
+    service: Simulator CLI
+    description: Verificare l’iniezione di anomalie tramite il client HTTP; disconnessione, degrado di rete con e senza packet loss, outlier con e senza valore, sensore non trovato
+    requirements:
+      - comando_anomalia_disconnessione_temporanea
+      - comando_anomalia_degrado_rete
+      - comando_anomalia_outliers_misurazioni
+    status: passed
+
+  - id: t_u_cli_request_construction_gateway
+    service: Simulator CLI
+    description: Verificare la corretta costruzione delle richieste HTTP per i gateway; metodo, path, corpo JSON, omissione dei campi opzionali a zero, assenza di body per GET/DELETE
+    requirements:
+      - creazione_deploy_gateway_simulato
+      - inserimento_dati_config_sim_gateway
+      - creazione_gateway_multipli_default
+      - impostazione_configurazione_gateway
+    status: passed
+
+  - id: t_u_cli_request_construction_sensor_anomaly
+    service: Simulator CLI
+    description: Verificare la corretta costruzione delle richieste HTTP per sensori e anomalie; path con ID, nomi dei campi JSON attesi, omissione dei campi opzionali (packet_loss, outlier value)
+    requirements:
+      - inserimento_dati_config_sim_sensore
+      - comando_anomalia_disconnessione_temporanea
+      - comando_anomalia_degrado_rete
+      - comando_anomalia_outliers_misurazioni
+    status: passed
+
+  - id: t_u_cli_default_url_config
+    service: Simulator CLI
+    description: Verificare che il client HTTP utilizzi il valore di default corretto per l’URL del simulatore quando la variabile d’ambiente non è impostata
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+
+  - id: t_u_cli_shell_rendering
+    service: Simulator CLI
+    description: Verificare il rendering del prompt interattivo e del banner di benvenuto sia in modalità raw (no TTY) sia in modalità styled (TTY presente), inclusa gestione errore di render
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+
+  - id: t_u_cli_shell_line_editor
+    service: Simulator CLI
+    description: Verificare il comportamento della shell con line-editor e fallback; EOF, errori di lettura/raw/restore, esecuzione con line-editor e fallback su reader classico
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+
+  - id: t_u_cli_spinner
+    service: Simulator CLI
+    description: Verificare che lo spinner restituisca un’implementazione no-op in assenza di TTY, che il pterm spinner sia nil-safe e che i metodi diretti del no-op siano sicuri da invocare
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+
+  - id: t_u_cli_must_mark_required
+    service: Simulator CLI
+    description: Verificare l’helper mustMarkRequired; successo su flag esistente e uscita controllata con codice di errore su flag inesistente
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+
+  - id: t_u_cli_main_exit_codes
+    service: Simulator CLI
+    description: Verificare il punto di ingresso dell’applicazione; nessuna uscita per il percorso help, nessuna uscita per comandi validi, uscita con codice 1 su errore del comando
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+
+  - id: t_provisioning_nats_rr_client_resilience
+    service: Provisioning service
+    description: Verificare la resilienza del client NATS request-reply del provisioning (retry, riconnessione e gestione errori di connessione)
+    requirements:
+    - onboarding_gateway
+    - err_autenticazione_gateway
+    status: passed
+  - id: t_provisioning_ca_store_init_load_permissions
+    service: Provisioning service
+    description: Verificare inizializzazione, persistenza e ricarica del materiale CA/NATS nel file store con i permessi attesi
+    requirements:
+    - instaurazione_connessione_sicura
+    - sicurezza_cifratura_dati
+    status: passed
+  - id: t_provisioning_ca_initializer_bootstrap
+    service: Provisioning service
+    description: Verificare il bootstrap del componente CA (load materiale esistente, initialize nuovo materiale e gestione errori repository)
+    requirements:
+    - instaurazione_connessione_sicura
+    status: passed
+  - id: t_provisioning_configuration_env_loading
+    service: Provisioning service
+    description: Verificare il caricamento della configurazione da variabili d’ambiente con validazione campi obbligatori, default e override
+    requirements:
+    - onboarding_gateway
+    status: passed
+  - id: t_provisioning_aes_key_domain_validation
+    service: Provisioning service
+    description: Verificare la validazione del dominio AESKey (lunghezza 32 byte) e la serializzazione base64 del materiale
+    requirements:
+    - sicurezza_cifratura_dati
+    - invio_dati_crittografati_cloud
+    status: passed
+  - id: t_hystorical_measures
+    service: Data API
+    description: Verificare la corretta gestione delle richieste di interrogazione storica delle misure
+    requirements:
+      - richiesta_dati_on_demand
+    status: passed
+  - id: t_export_measures
+    service: Data API
+    description: Verificare la corretta gestione delle richieste di esportazione delle misure
+    requirements:
+      - esportazione_dati
+    status: passed
+  - id: t_visualize_stream_data
+    service: Data API
+    description: Verificare la corretta gestione delle richieste di visualizzazione dei dati in streaming
+    requirements:
+      - richiesta_dati_streaming
+    status: passed
+  - id: t_visualize_elenco_sensori
+    service: Data API
+    description: Verificare la corretta gestione delle richieste di visualizzazione dell’elenco dei sensori
+    requirements:
+      - visualizzazione_dettagli_gateway
+    status: passed
+  
+
+
+  
+
+  # Frontend Unit Tests
+  - id: t_u_fe_auth_service
+    service: Frontend
+    description: "Verificare che l'applicazione gestisca correttamente l'accesso degli utenti, la sessione di autenticazione e la funzionalità di impersonificazione per gli amministratori di sistema"
+    requirements:
+      - qualita_test_unita_coverage
+      - ins_mail
+      - ins_pw
+    status: passed
+  - id: t_u_fe_threshold_service
+    service: Frontend
+    description: "Verificare che l'applicazione consenta la gestione delle soglie di allarme per sensori e tipologie di misura, con aggiornamento automatico dei valori"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_threshold_prefetch_service
+    service: Frontend
+    description: "Verificare che le soglie di allarme vengano ricaricate periodicamente per garantire una valutazione tempestiva delle misurazioni in arrivo"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_obfuscated_stream_manager_service
+    service: Frontend
+    description: "Verificare che l'applicazione possa ricevere e visualizzare i dati di telemetria in modalità offuscata durante la sessione di impersonificazione"
+    requirements:
+      - qualita_test_unita_coverage
+      - visualizzazione_dati_stream
+    status: passed
+  - id: t_u_fe_measure_bounds_evaluation_service
+    service: Frontend
+    description: "Verificare che l'applicazione valuti automaticamente se le misurazioni ricevute rientrano nelle soglie configurate, segnalando i valori fuori range"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_auth_guard
+    service: Frontend
+    description: "Verificare che l'accesso alle sezioni riservate dell'applicazione sia protetto e che gli utenti non autenticati vengano reindirizzati al login"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_role_guard
+    service: Frontend
+    description: "Verificare che gli utenti possano accedere solo alle funzionalità coerenti con il proprio ruolo e vengano instradati alla pagina predefinita appropriata"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_auth_interceptor
+    service: Frontend
+    description: "Verificare che ogni richiesta verso il server includa automaticamente le credenziali di autenticazione dell'utente"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_error_interceptor
+    service: Frontend
+    description: "Verificare che l'applicazione gestisca correttamente gli errori di autorizzazione reindirizzando l'utente alle pagine di errore appropriate"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_dashboard_resolver
+    service: Frontend
+    description: "Verificare che la dashboard visualizzi i dati in forma chiara o offuscata a seconda che l'utente stia operando in modalità impersonazione"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_tenant_service
+    service: Frontend
+    description: "Verificare che l'amministratore di sistema possa creare, modificare e sospendere i tenant, con la corretta gestione degli intervalli di sospensione"
+    requirements:
+      - qualita_test_unita_coverage
+      - inserimento_nome_utente
+    status: passed
+  - id: t_u_fe_admin_gateway_service
+    service: Frontend
+    description: "Verificare che l'amministratore di sistema possa consultare l'elenco dei gateway e registrarne di nuovi associandoli ai tenant"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_admin_user_service
+    service: Frontend
+    description: "Verificare che l'amministratore di sistema possa consultare gli utenti dei tenant e verificarne la corretta configurazione"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_tenant_table_component
+    service: Frontend
+    description: "Verificare che l'amministratore di sistema possa visualizzare l'elenco dei tenant, selezionarli e avviare le operazioni di modifica o eliminazione"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_tenant_form_component
+    service: Frontend
+    description: "Verificare che l'amministratore di sistema possa creare nuovi tenant fornendo i dati dell'amministratore e modificare le configurazioni dei tenant esistenti"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_tenant_user_list_component
+    service: Frontend
+    description: "Verificare che l'amministratore di sistema possa visualizzare gli utenti associati a un tenant e avviare la funzionalità di impersonazione"
+    requirements:
+      - qualita_test_unita_coverage
+      - selezione_lista_utenti
+    status: passed
+  - id: t_u_fe_impersonate_button_component
+    service: Frontend
+    description: "Verificare che l'amministratore di sistema possa avviare la sessione di impersonazione per operare per conto di un utente del tenant"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_admin_gateway_table_component
+    service: Frontend
+    description: "Verificare che l'amministratore di sistema possa visualizzare l'elenco dei gateway del sistema, con i relativi dettagli e stato operativo"
+    requirements:
+      - qualita_test_unita_coverage
+      - visualizzazione_singolo_gateway_tenant
+      - visualizzazione_dettagli_gateway
+    status: passed
+  - id: t_u_fe_admin_gateway_form_component
+    service: Frontend
+    description: "Verificare che l'amministratore di sistema possa registrare un nuovo gateway associandolo al tenant di destinazione"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_alert_service
+    service: Frontend
+    description: "Verificare che l'applicazione permetta di configurare le notifiche di allarme, consultare lo storico degli eventi e gestire le impostazioni per singolo gateway"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_alert_config_form_component
+    service: Frontend
+    description: "Verificare che l'utente possa configurare la soglia di tempo per le notifiche di allarme, sia a livello globale che per singolo gateway"
+    requirements:
+      - qualita_test_unita_coverage
+      - visualizzazione_singolo_alert
+    status: passed
+  - id: t_u_fe_alert_filter_panel_component
+    service: Frontend
+    description: "Verificare che l'utente possa applicare filtri per consultare lo storico degli allarme in base a criteri specifici"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_obfuscated_measure_service
+    service: Frontend
+    description: "Verificare che l'applicazione possa consultare e ricevere in streaming i dati di telemetria in forma offuscata durante la modalità impersonazione"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_decrypted_measure_service
+    service: Frontend
+    description: "Verificare che l'applicazione possa consultare e ricevere in streaming i dati di telemetria decriptati, con possibilità di esportazione"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_validated_measure_facade_service
+    service: Frontend
+    description: "Verificare che l'applicazione valuti automaticamente se le misurazioni visualizzate nella dashboard superano le soglie configurate"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_filter_panel_component
+    service: Frontend
+    description: "Verificare che l'utente possa filtrare i dati della dashboard per gateway, sensore e intervallo temporale"
+    requirements:
+      - qualita_test_unita_coverage
+      - filtraggio_intervallo_temporale
+    status: passed
+  - id: t_u_fe_telemetry_chart_component
+    service: Frontend
+    description: "Verificare che l'utente possa visualizzare l'andamento delle misurazioni attraverso grafici temporali nella dashboard"
+    requirements:
+      - qualita_test_unita_coverage
+      - visualizzazione_grafico_dati_stream
+    status: passed
+  - id: t_u_fe_telemetry_table_component
+    service: Frontend
+    description: "Verificare che l'utente possa consultare le misurazioni in formato tabellare, con evidenza dei valori fuori soglia"
+    requirements:
+      - qualita_test_unita_coverage
+      - visualizzazione_tabellare_dati_stream
+    status: passed
+  - id: t_u_fe_data_dashboard_page_component
+    service: Frontend
+    description: "Verificare che l'utente possa monitorare le misurazioni in tempo reale e consultare lo storico con navigazione paginata e funzionalità di esportazione"
+    requirements:
+      - qualita_test_unita_coverage
+      - err_dati_non_disponibili
+      - esportazione_dati
+    status: passed
+  - id: t_u_fe_gateway_service
+    service: Frontend
+    description: "Verificare che l'utente possa consultare l'elenco dei gateway del proprio tenant, visualizzarne i dettagli e modificarne il nome"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_command_service
+    service: Frontend
+    description: "Verificare che l'utente possa inviare comandi di configurazione e aggiornamento firmware ai gateway, monitorandone lo stato di esecuzione"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_gateway_card_component
+    service: Frontend
+    description: "Verificare che l'utente possa selezionare un gateway dalla lista per accedere ai dettagli operativi"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_gateway_rename_modal_component
+    service: Frontend
+    description: "Verificare che l'utente possa rinominare un gateway fornendo il nuovo nome attraverso un form dedicato"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_gateway_actions_component
+    service: Frontend
+    description: "Verificare che l'utente possa accedere alle operazioni di gestione del gateway: modifica nome, configurazione, aggiornamento firmware ed eliminazione"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_command_modal_component
+    service: Frontend
+    description: "Verificare che l'utente possa compilare e inviare comandi di configurazione e aggiornamento firmware ai gateway"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_sensor_service
+    service: Frontend
+    description: "Verificare che l'utente possa consultare l'elenco dei sensori associati ai propri gateway, con dettaglio dell'ultima attività rilevata"
+    requirements:
+      - qualita_test_unita_coverage
+      - visualizzazione_singolo_sensore
+    status: passed
+  - id: t_u_fe_user_service
+    service: Frontend
+    description: "Verificare che l'amministratore del tenant possa creare, modificare ed eliminare gli utenti, assegnando i ruoli appropriati"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_user_table_component
+    service: Frontend
+    description: "Verificare che l'amministratore del tenant possa visualizzare l'elenco degli utenti con le relative informazioni e timestamp di attività"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_user_form_component
+    service: Frontend
+    description: "Verificare che l'amministratore del tenant possa creare nuovi utenti o modificare quelli esistenti, assegnando il ruolo e i permessi appropriati"
+    requirements:
+      - qualita_test_unita_coverage
+      - selezione_permessi_utente
+    status: passed
+  - id: t_u_fe_threshold_form_component
+    service: Frontend
+    description: "Verificare che l'utente possa configurare nuove soglie di allarme per sensori specifici o per tipologie di misura"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_threshold_table_component
+    service: Frontend
+    description: "Verificare che l'utente possa consultare le soglie di allarme configurate, distinte per sensore e per tipologia, e avviare la relativa eliminazione"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_costs_service
+    service: Frontend
+    description: "Verificare che l'utente possa consultare i costi stimati per l'archiviazione dei dati e la banda di rete consumata"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_cost_card_component
+    service: Frontend
+    description: "Verificare che l'utente possa visualizzare in modo chiaro i costi di archiviazione, banda e il totale stimato"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_audit_service
+    service: Frontend
+    description: "Verificare che l'amministratore del tenant e di sistema possa consultare il registro delle operazioni eseguite, con possibilità di filtraggio ed esportazione"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_audit_log_table_component
+    service: Frontend
+    description: "Verificare che l'amministratore possa visualizzare il registro di audit con tutte le operazioni registrate e i relativi dettagli"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_audit_filter_panel_component
+    service: Frontend
+    description: "Verificare che l'amministratore possa filtrare il registro di audit per intervallo temporale, utente e tipo di operazione"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_clients_service
+    service: Frontend
+    description: "Verificare che l'utente possa generare credenziali API per l'accesso programmatico ai dati, consultarne l'elenco e revocarle quando necessario"
+    requirements:
+      - qualita_test_unita_coverage
+      - visualizzazione_client_id
+      - visualizzazione_secret_api
+    status: passed
+  - id: t_u_fe_api_client_table_component
+    service: Frontend
+    description: "Verificare che l'utente possa visualizzare i client API configurati e selezionarli per la revoca"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_error_page
+    service: Frontend
+    description: "Verificare che l'utente venga reindirizzato a pagine di errore informative in caso di problemi di accesso o autorizzazione, con possibilità di retry sicuro"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_sidebar_component
+    service: Frontend
+    description: "Verificare che l'utente possa navigare tra le sezioni dell'applicazione attraverso il menu laterale, con voci differenziate per ruolo, e accedere alle funzionalità del profilo"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_profile_section_component
+    service: Frontend
+    description: "Verificare che l'utente possa visualizzare le proprie informazioni di profilo e accedere alle funzionalità di modifica del profilo e della password"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_placeholder_page_component
+    service: Frontend
+    description: "Verificare che le pagine di sezione non ancora implementate mostrino un messaggio informativo all'utente"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_modal_layer_component
+    service: Frontend
+    description: "Verificare che le finestre modali dell'applicazione possano essere chiuse cliccando sullo sfondo quando la funzionalità è abilitata"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_impersonation_tag_component
+    service: Frontend
+    description: "Verificare che durante la modalità di impersonazione venga visualizzato un avviso all'utente per indicare che sta operando con dati offuscati"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_impersonation_banner_component
+    service: Frontend
+    description: "Verificare che durante la modalità di impersonazione venga visualizzato un banner con l'identificativo dell'utente per cui si sta operando"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_delete_confirm_modal_component
+    service: Frontend
+    description: "Verificare che l'utente debba confermare esplicitamente le operazioni di eliminazione per prevenire azioni accidentali"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_logout_button_component
+    service: Frontend
+    description: "Verificare che l'utente possa effettuare il logout dall'applicazione attraverso il pulsante dedicato"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_status_badge_component
+    service: Frontend
+    description: "Verificare che lo stato di gateway, sensori e tenant venga visualizzato con indicatori grafici differenziati per facilitare l'identificazione rapida"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_rome_date_time_pipe
+    service: Frontend
+    description: "Verificare che i timestamp vengano visualizzati nel fuso orario locale di riferimento con formato leggibile per l'utente"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_rome_timezone_util
+    service: Frontend
+    description: "Verificare che le date e gli orari nell'applicazione vengano convertiti correttamente nel fuso orario locale, considerando l'ora legale"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_u_fe_app
+    service: Frontend
+    description: "Verificare che l'applicazione si inizializzi correttamente all'avvio, gestisca il flusso di autenticazione e deleghi le azioni dell'utente ai componenti appropriati"
+    requirements:
+      - qualita_test_unita_coverage
+    status: passed
+  - id: t_validate_password_policy
+    service: Frontend
+    description: "Verificare che la creazione di nuovi tenant richieda password che rispettino la policy di complessità con lunghezza minima di 8 caratteri"
+    requirements:
+      - err_password_invalida
+    status: passed

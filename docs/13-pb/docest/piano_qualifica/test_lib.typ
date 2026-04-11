@@ -68,12 +68,12 @@
   )
 }
 
-#let render_test_table(path, component: none) = {
+#let render_test_table(path, service: none) = {
   let data = yaml(path)
-  let filtered_tests = if component == none {
-    data.tests.filter(test => test.at("component", default: none) == none)
+  let filtered_tests = if service == none {
+    data.tests
   } else {
-    data.tests.filter(test => test.at("component", default: none) == component)
+    data.tests.filter(test => test.at("service", default: none) == service)
   }
   table(
     columns: (1fr, 3.5fr, 1.2fr, 0.8fr),

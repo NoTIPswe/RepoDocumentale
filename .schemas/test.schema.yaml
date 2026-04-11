@@ -38,9 +38,33 @@ properties:
     type: array
     items:
       $ref: "#/$defs/test"
-    minItems: 1
+    minItems: 0
     description: >
       List of tests. Order determines the auto-assigned number.
+
+allOf:
+  - if:
+      properties:
+        type:
+          const: unit
+    then:
+      properties:
+        tests:
+          items:
+            allOf:
+              - $ref: "#/$defs/test"
+              - required: [service]
+  - if:
+      properties:
+        type:
+          const: integration
+    then:
+      properties:
+        tests:
+          items:
+            allOf:
+              - $ref: "#/$defs/test"
+              - required: [service]
 
 $defs:
   # ---------------------------------------------------------------------------
@@ -82,9 +106,9 @@ $defs:
             passed          → S   (superato)
             failed          → NS  (non superato)
 
-      component:
+      service:
         type: string
         description: >
-          Optional component/service this test belongs to.
+          Service this test belongs to.
           Used to create nested subsections in test documentation.
-          If not specified, test appears in the main section.
+          Required for unit and integration tests.

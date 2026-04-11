@@ -429,8 +429,10 @@ def assign_test_codes(bundle: DataBundle) -> dict[str, str]:
 
         prefix = TEST_TYPE_TO_CODE[test_type]
         for test in test_doc.get("tests", []) or []:
+            test_id = str(test.get("id"))
             counters[test_type] += 1
-            id_to_code[str(test.get("id"))] = f"{prefix}{counters[test_type]}"
+            code = f"{prefix}{counters[test_type]}"
+            id_to_code[test_id] = code
 
     return id_to_code
 
@@ -941,28 +943,27 @@ def generate_typst_indexes(
         t = str(test_doc.get("type"))
         rel = os.path.relpath(file_path, start=pq_dir).replace("\\", "/")
         test_section_lines.append(f"== {test_title.get(t, t)}")
+        tests = test_doc.get("tests", []) or []
 
-        # Raggruppa i test per 'component' (se presente)
-        components = defaultdict(list)
-        tests_without_component = []
-        for test in test_doc.get("tests", []) or []:
-            component = test.get("component")
-            if component:
-                components[component].append(test)
-            else:
-                tests_without_component.append(test)
+        if t in ("unit", "integration"):
+            services: set[str] = set()
+            for test in tests:
+                service = str(test.get("service", "")).strip()
+                test_id = str(test.get("id", "<missing-id>"))
+                if not service:
+                    raise ValueError(
+                        f"{file_path}: test {test_id} of type {t} is missing required 'service'"
+                    )
+                services.add(service)
 
-        # Renderizza prima i test senza component
-        if tests_without_component:
-            test_section_lines.append(f'#render_test_table("{rel}", component: none)')
-            test_section_lines.append("")
-
-        # Poi crea sottocapitoli per ogni component
-        for component in sorted(components.keys()):
-            test_section_lines.append(f"=== {component}")
-            test_section_lines.append(
-                f'#render_test_table("{rel}", component: "{component}")'
-            )
+            for service in sorted(services):
+                test_section_lines.append(f"=== {service}")
+                test_section_lines.append(
+                    f'#render_test_table("{rel}", service: {_to_typst_literal(service)})'
+                )
+                test_section_lines.append("")
+        else:
+            test_section_lines.append(f'#render_test_table("{rel}")')
             test_section_lines.append("")
 
     test_index_path = pq_dir / "generated" / "_yaml_test_index.typ"
