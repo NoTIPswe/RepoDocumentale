@@ -11,10 +11,11 @@
 )[
   = Introduzione
 
-  Il servizio `notip-provisioning-service` è un microservizio NestJS che espone un singolo endpoint HTTP per il
-  provisioning iniziale dei gateway. Durante la richiesta di onboarding, il servizio valida le credenziali di fabbrica
-  verso il Management API tramite NATS Request-Reply, firma il CSR del gateway con la CA interna, genera una chiave
-  AES-256 e completa il provisioning persistendo il materiale chiave nel dominio management.
+  Il servizio `notip-provisioning-service` è un microservizio NestJS che espone un endpoint HTTP per il provisioning
+  iniziale dei gateway e un endpoint HTTP per l'esposizione delle metriche Prometheus. Durante la richiesta di
+  onboarding, il servizio valida le credenziali di fabbrica verso il Management API tramite NATS Request-Reply, firma il
+  CSR del gateway con la CA interna, genera una chiave AES-256 e completa il provisioning persistendo il materiale
+  chiave nel dominio management.
 
   Il servizio è progettato con layering esplicito e dipendenze tramite interfacce, in modo da mantenere separati:
 
@@ -51,6 +52,7 @@
     [`NATS_REQUEST_TIMEOUT_MS`], [NATS_REQUEST_TIMEOUT_MS], [`5000`], [No],
     [`NATS_MAX_RETRIES`], [NATS_MAX_RETRIES], [`3`], [No],
     [`CA_CERTS_PATH`], [CA_CERTS_PATH], [`/certs`], [No],
+    [`CA_KEY_PATH`], [CA_KEY_PATH], [`CA_CERTS_PATH/ca.key`], [No],
     [`CERT_TTL_DAYS`], [CERT_TTL_DAYS], [`90`], [No],
     [`PORT`], [PORT], [`3004`], [No],
   )
@@ -119,6 +121,9 @@
   │   │   └── aes-key-generator.service.ts
   │   └── metrics/
   │       ├── metrics.module.ts
+  │       ├── metrics.controller.ts
+  │       ├── metrics.interceptor.ts
+  │       ├── metrics.service.ts
   │       └── provisioning.metrics.ts
   └── test/
   ```
@@ -131,8 +136,8 @@
 
     [Presentation],
     [`ProvisioningController`, `OnboardRequestDto`, `OnboardResponseDto`, `ProvisioningExceptionFilter`,
-      `AuditLogInterceptor`],
-    [Gestione endpoint `POST /provision/onboard`, validazione input e mapping errori HTTP.],
+      `AuditLogInterceptor`, `MetricsController`],
+    [Gestione endpoint `POST /provision/onboard` e `GET /metrics`, validazione input e mapping errori HTTP.],
 
     [Application],
     [`ProvisioningService`, `CAInitializerService`, interfacce in `provisioning/interfaces`],
@@ -157,10 +162,25 @@
     kind: "driving",
     description: [Endpoint pubblico di onboarding del gateway esposto dal controller di provisioning.],
     methods: (
-      ("request", [`factory_id`, `factory_key`, `csr`, `send_frequency_ms >= 1`]),
-      ("response", [`certificate`, `aeskey`, `send_frequency_ms`]),
+      (
+        "request",
+        [`credentials.factoryId`, `credentials.factoryKey`, `csr`, `sendFrequencyMs >= 1`, `firmwareVersion?`],
+      ),
+      ("response", [`certPem`, `aesKey`, `identity.gatewayId`, `identity.tenantId`, `sendFrequencyMs`]),
       ("status", [201 in caso di successo]),
       ("auth model", [Autenticazione con credenziali di fabbrica nel body, senza JWT]),
+    ),
+  )
+
+  #st.port-interface(
+    name: "GET /metrics",
+    kind: "driving",
+    description: [Endpoint operativo per scraping Prometheus esposto dal `MetricsController`.],
+    methods: (
+      ("request", [`nessun payload`]),
+      ("response", [`text/plain` Prometheus exposition format]),
+      ("status", [200 in caso di successo]),
+      ("auth model", [Nessuna autenticazione applicativa implementata nel servizio]),
     ),
   )
 
@@ -198,7 +218,10 @@
     kind: "driven",
     description: [Completa il provisioning nel Management API tramite `internal.mgmt.provisioning.complete`.],
     methods: (
-      ("complete(identity, aeskey, sendFrequencyMs)", [Persistenza key material, key version e frequenza invio]),
+      (
+        "complete(identity, aesKey, sendFrequencyMs, firmwareVersion)",
+        [Persistenza key material, key version, frequenza invio e versione firmware opzionale],
+      ),
     ),
   )
 
@@ -229,10 +252,10 @@
     [3], [Generazione chiave AES], [Chiama `AESKeyGenerator.generate`; produce 32 byte random e `version = 1`.],
     [4],
     [Completamento provisioning],
-    [Chiama `ProvisioningCompleter.complete` con identity, chiave e `send_frequency_ms`.],
+    [Chiama `ProvisioningCompleter.complete` con identity, chiave, `send_frequency_ms` e `firmware_version` opzionale.],
 
     [5], [Aggiornamento metriche], [Incrementa counter success/failure e osserva durate delle operazioni critiche.],
-    [6], [Mapping output], [Restituisce `certificate`, `aeskey` (base64) e `send_frequency_ms` con status 201.],
+    [6], [Mapping output], [Restituisce `certPem`, `aesKey` (base64), `identity` e `sendFrequencyMs` con status 201.],
   )
 
   == Modello dati del dominio
@@ -248,8 +271,9 @@
     [`GatewayCSR`], [`pemData: string`], [Valida header PEM `-----BEGIN CERTIFICATE REQUEST-----` in costruzione.],
 
     [`ProvisioningRequest`],
-    [`credentials`, `csr`, `sendFrequencyMs: number`],
-    [Input applicativo del flusso onboarding. `sendFrequencyMs` deve essere un intero positivo maggiore o uguale a 1.],
+    [`credentials`, `csr`, `sendFrequencyMs: number`, `firmwareVersion: string = ""`],
+    [Input applicativo del flusso onboarding. `sendFrequencyMs` deve essere un intero positivo maggiore o uguale a 1;
+      `firmwareVersion` è normalizzato a stringa vuota quando omesso nel DTO.],
 
     [`GatewayIdentity`],
     [`gatewayId: string`, `tenantId: string`],
@@ -260,7 +284,7 @@
     [`SignedCertificate`], [`pemData: string`], [Certificato foglia firmato dalla CA interna.],
 
     [`ProvisioningResult`],
-    [`certificate`, `aeskey`, `identity`, `sendFrequencyMs`],
+    [`certificate`, `aesKey`, `identity`, `sendFrequencyMs`],
     [Output applicativo consumato dal controller e dall'audit interceptor.],
 
     [`CAMaterial`], [`privateKeyPem`, `certificatePem`], [Materiale CA in memoria process-wide dopo bootstrap.],
@@ -272,11 +296,13 @@
 
   == Gestione errori
 
-  Il filtro `ProvisioningExceptionFilter` converte gli errori di dominio in risposte HTTP stabili:
+  Il filtro `ProvisioningExceptionFilter` converte gli errori di dominio in risposte HTTP stabili e preserva gli
+  `HttpException` già costruiti da NestJS:
 
   #table(
     columns: (2fr, 1fr, 2fr),
     [Errore], [HTTP], [Body],
+    [`HttpException` / validation error], [status originale], [body originale],
     [`MalformedCSRError`], [400], [`{ "error": "MALFORMED_CSR" }`],
     [`InvalidFactoryCredentialsError`], [401], [`{ "error": "INVALID_CREDENTIALS" }`],
     [`GatewayAlreadyProvisionedError`], [409], [`{ "error": "ALREADY_PROVISIONED" }`],
@@ -294,6 +320,10 @@
   - `outcome` (`success`, `invalid_credentials`, `already_provisioned`, `malformed_csr`, `service_unavailable`, `error`)
   - `gateway_id` e `tenant_id` solo nei casi di successo
 
+  Nei casi di successo con `tenant_id` disponibile, l'interceptor pubblica anche un evento audit su NATS nel subject
+  `log.audit.<tenant_id>`, con action `PROVISIONING_ONBOARD_<OUTCOME>` e dettagli contestuali (`factoryId`, `sourceIp`,
+  `gatewayId`, `tenantId`).
+
   Campi sensibili esclusi dai log:
 
   - `factory_key`
@@ -306,9 +336,12 @@
   Il client condiviso `NATSRRClient` implementa:
 
   - timeout per request (`NATS_REQUEST_TIMEOUT_MS`);
-  - retry con backoff esponenziale: 1s, 2s, 4s (in base a `NATS_MAX_RETRIES`);
+  - numero tentativi totali pari a `NATS_MAX_RETRIES` (include il primo tentativo);
+  - retry con backoff esponenziale `2^(attempt-1)` secondi tra un tentativo e il successivo (es. con
+    `NATS_MAX_RETRIES=3`: 1s, 2s);
   - riconnessione automatica in caso di `NatsError`;
-  - incremento metrica `nats_retries_total` ad ogni retry.
+  - incremento metrica `nats_retries_total` ad ogni retry;
+  - supporto retry sia per chiamate request-reply sia per publish.
 
   Subject usati dal servizio:
 
@@ -334,7 +367,8 @@
 
   = Osservabilità e metriche
 
-  Il servizio registra metriche applicative tramite `ProvisioningMetrics`:
+  Il servizio registra metriche applicative tramite `ProvisioningMetrics` e metriche HTTP/process tramite
+  `MetricsService` (`prom-client` default metrics, oltre alle metriche HTTP custom):
 
   #table(
     columns: (auto, auto),
@@ -345,7 +379,10 @@
     [`csr_signing_duration_ms`], [Istogramma durata firma CSR],
     [`nats_validate_duration_ms`], [Istogramma durata chiamata validate],
     [`nats_complete_duration_ms`], [Istogramma durata chiamata complete],
-    [`nats_retries_total`], [Numero totale retry NATS RR],
+    [`nats_retries_total`], [Numero totale retry NATS (request-reply e publish)],
+    [`notip_provisioning_http_requests_total`], [Counter HTTP per metodo, route e status code],
+    [`notip_provisioning_http_request_duration_seconds`], [Istogramma durata delle richieste HTTP],
+    [`notip_provisioning_http_requests_in_flight`], [Gauge delle richieste HTTP in corso per metodo],
   )
 
   = Strategia di test

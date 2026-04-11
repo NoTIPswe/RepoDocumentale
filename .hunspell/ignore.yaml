@@ -218,6 +218,9 @@ accepted_words:
   - paginata
   - paginato
   - rimappatura
+  - riallocare
+  - riallocato
+  - riallocazioni
   - deduplicare
   - deduplicazione
   - mockato
@@ -338,6 +341,9 @@ accepted_words:
   - healthcheck
   - Makefile
   - balancer
+  - AOP
+  - GitOps
+  - middleware
 
   # --- Terminologia Standard Progetto ---
   - req
@@ -445,6 +451,7 @@ accepted_words:
   - AuditLogEntity
   - ApiClientEntity
   - CommandEntity
+  - AppModule
   - filesystem
   - init
   - cryptographically
@@ -492,6 +499,28 @@ accepted_words:
   - EventEmitter
   - ValidationPipe
   - lifecycle
+  - TelemetryStreamBridgeService
+  - CostNatsResponderService
+  - TenantAccessGuard
+  - TenantId
+  - MetricsModule
+  - MetricsService
+  - MetricsController
+  - MetricsInterceptor
+  - tenantId
+  - gatewayId
+  - sensorId
+  - sensorType
+  - Splitta
+  - wrappa
+  - deduplica
+  - Deduplica
+  - TenantAccessContext
+  - readonly
+  - getter
+  - DataSource
+  - authTag
+  - encryptedData
   - sensorId
   - ProvisioningUrl
   - NATSCACertPath
@@ -523,6 +552,8 @@ accepted_words:
   - DisconnectRequest
   - OutlierRequest
   - cmd
+  - committare
+  - committata
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
@@ -623,3 +654,4 @@ accepted_words:
   - impersonabile
   - configurativa
   - popolabili
+  - retrocompatibilità
