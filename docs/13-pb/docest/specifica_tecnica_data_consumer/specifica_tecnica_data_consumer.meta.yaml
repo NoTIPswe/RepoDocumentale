@@ -1,5 +1,12 @@
 title: Specifica tecnica - Data-Consumer
 changelog:
+  - version: "0.4.1"
+    date: "2026-04-07"
+    authors:
+      - Matteo Mantoan
+    verifier: Francesco Marcon
+    description: >
+      Uniformazione titoli e intestazioni: solo prima lettera maiuscola
   - version: "0.4.0"
     date: "2026-04-08"
     authors:
@@ -7,13 +14,6 @@ changelog:
     verifier: Valerio Solito
     description: >
       Aggiunta di logging avanzato e monitoraggio per il servizio Data-Consumer per migliorare la tracciabilità e la diagnosi dei problemi
-  - version: "0.3.1"
-    date: "2026-04-07"
-    authors:
-      - Matteo Mantoan
-    verifier: Francesco Marcon
-    description: >
-      Uniformazione titoli e intestazioni: solo prima lettera maiuscola
   - version: "0.3.0"
     date: "2026-03-24"
     authors:
