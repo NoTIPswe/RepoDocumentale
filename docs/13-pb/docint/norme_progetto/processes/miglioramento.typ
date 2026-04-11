@@ -1,6 +1,6 @@
 #import "lib.typ": ROLES, activity, cite-norm, norm
 
-== Processo di Miglioramento
+== Processo di miglioramento
 In conformità alla norma *ISO/IEC 12207:1995*, il Processo di Miglioramento ha lo scopo di stabilire, valutare e
 ottimizzare i processi utilizzati durante l'intero ciclo di vita del software.
 
@@ -17,7 +17,7 @@ ottimizzare i processi utilizzati durante l'intero ciclo di vita del software.
 === Attività del processo
 
 #activity(
-  title: "Inizializzazione del Processo",
+  title: "Inizializzazione del processo",
   roles: (ROLES.resp, ROLES.amm),
   norms: (),
   input: [Necessità di definire i processi organizzativi],
@@ -35,7 +35,7 @@ ottimizzare i processi utilizzati durante l'intero ciclo di vita del software.
 )
 
 #activity(
-  title: "Valutazione del Processo",
+  title: "Valutazione del processo",
   roles: (ROLES.resp, ROLES.amm),
   norms: (),
   input: [Processi definiti],
@@ -53,7 +53,7 @@ ottimizzare i processi utilizzati durante l'intero ciclo di vita del software.
 )
 
 #activity(
-  title: "Miglioramento del Processo",
+  title: "Miglioramento del processo",
   roles: (ROLES.resp, ROLES.amm),
   norms: ("ciclo-pdca",),
   input: [Dati raccolti nella fase di Valutazione],

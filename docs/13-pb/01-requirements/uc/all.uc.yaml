@@ -409,6 +409,17 @@ use_cases:
   - L’Attore visualizza l’ID del sensore
   main_scenario:
   - description: L’Attore visualizza l’identificativo del sensore (UUID)
+- id: visualizzazione_tipo_sensore
+  title: Visualizzazione tipo sensore
+  actors:
+    primary:
+    - tenant-usr
+  preconditions:
+  - Il Sistema mostra i dettagli di un sensore o un alert riguardante un sensore
+  postconditions:
+  - L’Attore visualizza la tipologia del sensore (es. temperatura, umidità, pressione)
+  main_scenario:
+  - description: L’Attore visualizza il tipo del sensore indicato dal Sistema
 - id: visualizzazione_dati_stream
   title: Visualizzazione dati Stream
   actors:
@@ -2363,3 +2374,127 @@ use_cases:
   - Il Sistema mostra l'ID del Tenant associato al Gateway provisionato
   main_scenario:
   - description: L'Attore visualizza l'ID del Tenant associato al Gateway
+- id: ricezione_alert_sensore_fuori_range
+  title: Ricezione alert sensore fuori range
+  actors:
+    primary:
+    - tenant-usr
+  preconditions:
+  - Il sensore è associato a un Gateway attivo del Tenant dell'Attore
+  - La sessione è attiva
+  - Il valore misurato dal sensore supera il range di allarme configurato
+  postconditions:
+  - L'Attore viene notificato del dato anomalo rilevato
+  main_scenario:
+  - description: Il Sistema notifica l’Attore del valore fuori range
+  - description: L’Attore visualizza l'ID del sensore interessato
+    include: visualizzazione_id_sensore
+  - description: L’Attore visualizza il Tenant ID del Gateway a cui è associato il sensore
+    include: visualizzazione_id_tenant_gateway
+  - description: L’Attore visualizza il valore del dato registrato fuori range
+    include: visualizzazione_valore_dato_registrato
+  - description: L’Attore visualizza l'orario di registrazione del dato
+    include: visualizzazione_timestamp_dato
+  - description: L'Attore visualizza il range accettato previsto per il sensore
+    include: visualizzazione_range_accettato
+  - description: L'Attore visualizza il tipo del sensore
+    include: visualizzazione_tipo_sensore
+
+- id: scadenza_sessione
+  title: Scadenza sessione
+  actors:
+    primary:
+    - authd-usr
+  preconditions:
+  - L'Attore è autenticato nel Sistema
+  - Il token di sessione è scaduto per superamento del tempo massimo di validità o inattività
+  postconditions:
+  - La sessione dell'Attore viene invalidata dal Sistema
+  - L'Attore viene reindirizzato alla schermata di login
+  main_scenario:
+  - description: Il Sistema rileva la scadenza del token di sessione dell'Attore
+  - description: Il Sistema invalida la sessione corrente
+  - description: L'Attore viene reindirizzato automaticamente alla pagina di login
+
+- id: err_tenant_sospeso
+  title: Errore accesso Tenant sospeso
+  actors:
+    primary:
+    - non-authd-usr
+  preconditions:
+  - L'Attore ha fornito credenziali primarie valide in fase di autenticazione
+  - Il Tenant di appartenenza dell'account risulta in stato sospeso
+  postconditions:
+  - Viene negato l'accesso al Sistema
+  - L'Attore viene informato del blocco
+  main_scenario:
+  - description: L'Attore viene informato in fase di autenticazione che l'accesso non è stato consentito
+
+- id: ricezione_risoluzione_alert_gateway
+  title: Ricezione risoluzione alert Gateway raggiungibile
+  actors:
+    primary:
+    - tenant-usr
+  preconditions:
+  - Esiste un alert attivo di tipo Gateway non raggiungibile per un Gateway del Tenant
+  - Il Gateway ha ripreso la comunicazione con il Cloud entro i timeout configurati
+  - La sessione è attiva
+  postconditions:
+  - L'Attore vede che il Gateway è di nuovo raggiungibile
+  main_scenario:
+  - description: L’Attore visualizza il nome del Gateway interessato
+    include: visualizzazione_nome_gateway_tenant
+  - description: L’Attore visualizza il stato del Gateway come “Online"
+    include: visualizzazione_stato_gateway_tenant
+
+- id: visualizzazione_profilo_personale
+  title: Visualizzazione profilo personale
+  actors:
+    primary:
+    - authd-usr
+  preconditions:
+  - L'Attore è autenticato nel Sistema
+  - Il Sistema mostra la sezione dedicata alla gestione del proprio profilo
+  postconditions:
+  - L'Attore visualizza le informazioni anagrafiche e di ruolo del proprio account
+  main_scenario:
+  - description: L'Attore visualizza il proprio nome
+    include: visualizzazione_username_personale
+  - description: L'Attore visualizza la propria mail
+    include: visualizzazione_mail_personale
+  - description: L'Attore visualizza il proprio ruolo
+    include: visualizzazione_ruolo_personale
+  subcases:
+  - id: visualizzazione_username_personale
+    title: Visualizzazione username personale
+    actors:
+      primary:
+      - authd-usr
+    preconditions:
+    - Il Sistema mostra la pagina del profilo personale dell'Attore
+    postconditions:
+    - L'Attore visualizza il nome associato al proprio account
+    main_scenario:
+    - description: L'Attore visualizza il proprio nome registrato a sistema
+  - id: visualizzazione_mail_personale
+    title: Visualizzazione mail personale
+    actors:
+      primary:
+      - authd-usr
+    preconditions:
+    - Il Sistema mostra la pagina del profilo personale dell'Attore
+    postconditions:
+    - L'Attore visualizza l'indirizzo email associato al proprio account
+    main_scenario:
+    - description: L'Attore visualizza la propria mail di login
+  - id: visualizzazione_ruolo_personale
+    title: Visualizzazione ruolo personale
+    actors:
+      primary:
+      - authd-usr
+    preconditions:
+    - Il Sistema mostra la pagina del profilo personale dell'Attore
+    postconditions:
+    - L'Attore visualizza il ruolo assegnatogli all'interno del Tenant
+    main_scenario:
+    - description: L'Attore visualizza il proprio livello di autorizzazione (es. Utente o Amministratore Tenant)

@@ -14,12 +14,12 @@
   scope: base-document.EXTERNAL_SCOPE,
 )[
   = Introduzione
-  == Scopo del Documento
+  == Scopo del documento
   Il presente documento descrive i risultati del processo di analisi dei requisiti per il progetto "Sistema di
   Acquisizione Dati da Sensori BLE" proposto da M31 S.r.l. (capitolato C7). L'analisi è stata condotta attraverso lo
   studio approfondito del capitolato, il confronto con il proponente e la discussione tra gli analisti del gruppo.
 
-  == Scopo del Prodotto
+  == Scopo del prodotto
   Il sistema ha l'obiettivo di fornire un'infrastruttura cloud scalabile e sicura per la raccolta, gestione e
   distribuzione di dati provenienti da sensori Bluetooth Low Energy (BLE) distribuiti. \
   Il sistema deve garantire:
@@ -35,13 +35,13 @@
   )[Glossario v2.0.0], identificati con pedice _G_.
 
   == Riferimenti
-  === Riferimenti Normativi
+  === Riferimenti normativi
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato d'appalto C7 - Sistema di
       acquisizione dati da sensori] \
     _Ultimo accesso: 2026-03-09_
   - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto v1.1.0]
 
-  === Riferimenti Informativi
+  === Riferimenti informativi
   - #link("https://ieeexplore.ieee.org/document/720574")[Standard IEEE] \ _Ultimo accesso: 2026-03-09_
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf")[T05 - Analisi dei Requisiti] \ _Ultimo
     accesso: 2026-03-09_
@@ -58,8 +58,8 @@
     - Apache Kafka: #link("https://kafka.apache.org/documentation/")[Apache Kafka Official Documentation] \ _Ultimo
       accesso: 2026-03-09_
 
-  = Descrizione del Prodotto
-  == Obiettivi del Prodotto
+  = Descrizione del prodotto
+  == Obiettivi del prodotto
   Il sistema si propone di risolvere le sfide dell'acquisizione e gestione dati in contesti IoT distribuiti, fornendo:
   1. *Scalabilità*: gestione di decine/centinaia di gateway e migliaia di sensori
   2. *Sicurezza*: isolamento multi-tenant, cifratura end-to-end, autenticazione robusta
@@ -67,20 +67,20 @@
   4. *Flessibilità*: supporto sensori eterogenei, API estensibili, integrazioni esterne
   5. *Usabilità*: interfaccia intuitiva per configurazione e monitoraggio
 
-  == Architettura del Sistema
+  == Architettura del sistema
   Il sistema è organizzato su tre livelli logici: Field Layer (Sensori BLE), Edge Layer (Gateway) e Cloud Layer
   (Piattaforma Centrale).\
   Nel nostro caso si andrà a simulare i primi due livelli, attraverso un simulatore di Gateway, permettendo lo sviluppo
   ed il testing della piattaforma Cloud.
 
-  === Field Layer (Sensori BLE)
+  === Field layer (Sensori BLE)
   Dispositivi periferici non oggetto del progetto, utilizzati come riferimento per la simulazione. \
   Caratteristiche:
   - Sensori eterogenei (4-5 tipologie: temperatura, umidità, movimento, pressione, biometrici)
   - Comunicazione BLE tramite profili GATT standard o custom
   - Basso consumo energetico
 
-  === Edge Layer (Gateway Simulato)
+  === Edge layer (Gateway Simulato)
   Componente da sviluppare che simula il comportamento di gateway fisici BLE-WiFi:
   - Generazione dati realistici per sensori configurati
   - Formattazione dati in formato interno standardizzato
@@ -89,7 +89,7 @@
   - Ricezione comandi dal cloud
   - Persistenza configurazione (commissioning)
 
-  === Cloud Layer (Piattaforma Centrale)
+  === Cloud layer (piattaforma centrale)
   Cuore del sistema, include:
   - API Gateway: autenticazione, autorizzazione, rate limiting
   - Data Ingestion Service: ricezione e validazione dati da gateway
@@ -100,8 +100,8 @@
   - Event Management: alert configurabili e notifiche (opzionale)
   - Monitoring: Prometheus + Grafana per metriche sistema
 
-  == Caratteristiche degli Utenti
-  === Amministratore di Sistema (God User)
+  == Caratteristiche degli utenti
+  === Amministratore di sistema (God User)
   - Competenze tecniche avanzate
   - Gestisce configurazione globale, tenant, infrastruttura
   - Pre-configura gateway
@@ -117,8 +117,8 @@
   - Consulta dati via dashboard
   - Non richiede conoscenze infrastrutturali
 
-  == Vincoli e Assunzioni
-  === Vincoli Tecnologici
+  == Vincoli e assunzioni
+  === Vincoli tecnologici
   - Backend: Node.js con Nest.js (TypeScript) o Go per componenti critici
   - Message Broker: NATS o Apache Kafka
   - Database: MongoDB (dati non strutturati) e PostgreSQL (dati strutturati)
@@ -127,20 +127,20 @@
   - Frontend: Angular (SPA)
   - Version Control: Git/GitHub
 
-  === Vincoli di Sicurezza
+  === Vincoli di sicurezza
   - Comunicazione cifrata (TLS)
   - Autenticazione: JWT, OAuth2, mTLS
   - Segregazione dati tenant (logica e fisica)
   - Certificati digitali per gateway
 
-  === Vincoli di Progetto
+  === Vincoli di progetto
   - Sensori e gateway fisici non realizzati (solo simulazione)
   - PoC con infrastruttura locale (es: simulatore e comunicazione), MVP con deployment cloud
   - Test automatici (e non) con coverage minimo da concordare
   - Documentazione completa (tecnica, architetturale, utente)
 
-  = Casi d'Uso - Parte A: Sistema Cloud
-  == Attori del Sistema
+  = Casi d'uso - parte A: sistema cloud
+  == Attori del sistema
 
   #figure(
     image("assets/attori_cloud.png"),
@@ -175,14 +175,14 @@
       all'invio dei dati dai sensori verso la piattaforma.],
   )
 
-  == Diagrammi e Descrizioni Casi d'Uso
+  == Diagrammi e descrizioni casi d'uso
 
   // DON'T TOUCH - this gets injected by the build system
   #include "generated/_yaml_uc_index_cloud.typ"
 
-  = Casi d'Uso - Parte B: Simulatore Gateway
+  = Casi d'uso - parte B: simulatore gateway
 
-  == Attori del Sistema
+  == Attori del sistema
 
   #figure(
     image("assets/attori_sim.png", width: 50%),
@@ -201,7 +201,7 @@
       dati, testare il carico o iniettare anomalie.],
   )
 
-  == Diagrammi e Descrizioni Casi d'Uso
+  == Diagrammi e descrizioni casi d'uso
 
   // DON'T TOUCH - this gets injected by the build system
   #include "generated/_yaml_uc_index_sim.typ"
@@ -230,12 +230,12 @@
   // DON'T TOUCH - this gets injected by the build system
   #include "generated/_yaml_req_index.typ"
 
-  = Tracciamento Requisiti
+  = Tracciamento requisiti
 
   // DON'T TOUCH - this gets injected by the build system
   #include "generated/_yaml_traceability.typ"
 
-  == Riepilogo Requisiti per Categoria
+  == Riepilogo requisiti per categoria
 
   // DON'T TOUCH - this gets injected by the build system
   #include "generated/_yaml_req_summary.typ"

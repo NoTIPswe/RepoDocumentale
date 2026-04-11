@@ -1,5 +1,12 @@
-title: Piano di Progetto
+title: Piano di progetto
 changelog:
+  - version: "1.1.2"
+    date: "2026-04-07"
+    authors:
+      - Matteo Mantoan
+    verifier: Francesco Marcon
+    description: >
+      Uniformazione titoli e intestazioni: solo prima lettera maiuscola
   - version: "1.1.1"
     date: "2026-03-11"
     authors:

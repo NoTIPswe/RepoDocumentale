@@ -19,11 +19,11 @@
   consequences: [],
 ) = {
   [=== #name]
-  [==== Contesto e Problema]
+  [==== Contesto e problema]
   problem
   [==== Decisione]
   decision
-  [==== Alternative Considerate]
+  [==== Alternative considerate]
   alternatives
   [==== Conseguenze]
   consequences

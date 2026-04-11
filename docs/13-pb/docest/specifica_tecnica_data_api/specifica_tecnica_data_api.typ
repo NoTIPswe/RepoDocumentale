@@ -25,7 +25,10 @@
   i contratti esposti, model interni per la logica applicativa e servizi dedicati per orchestrazione, filtraggio e
   accesso ai dati.
 
-  = Dipendenze e Configurazione
+  = Dipendenze e configurazione
+  == Variabili d'ambiente
+  Tutte le variabili d’ambiente necessarie per il funzionamento del microservizio sono elencate di seguito, un'eventuale
+  mancanza di una di queste variabili comporterà un errore all’avvio del microservizio:
 
   == Variabili d'ambiente
 
@@ -141,7 +144,8 @@
     )
   ]
 
-  = Architettura Logica
+
+  = Architettura logica
 
   #align(center)[
     #figure(caption: "Architettura del microservizio")[
@@ -181,7 +185,8 @@
         query paginated e non-paginated su PostgreSQL e incapsulamento delle operazioni di persistenza.]],
     )
   ]
-  = Design di Dettaglio
+
+  = Design di dettaglio
 
   == Moduli del microservizio
 
@@ -801,12 +806,12 @@
     dalla consegna al client (SSE) permettendo filtri per-tenant e per-sensore.
   ]
 
-  == Flussi di Esecuzione
+  == Flussi di esecuzione
 
   Di seguito sono descritti i principali flussi di esecuzione del servizio `notip-data-api`, con particolare attenzione
   ai componenti applicativi coinvolti nell'elaborazione delle richieste e nell'accesso ai dati.
 
-  === Query Paginata delle Misure
+  === Query paginata delle misure
 
   Il client invia una richiesta `GET` all'endpoint `/measures/query`, specificando l'intervallo temporale di interesse
   ed eventuali filtri su `gatewayId`, `sensorId` e `sensorType`. Il `MeasureController` raccoglie i parametri di query,
@@ -821,7 +826,7 @@
   delle misure (con normalizzazione timestamp e conversione base64->hex), dell'eventuale `nextCursor` e
   dell'informazione `hasMore`, quindi restituiti al client.
 
-  === Export Completo delle Misure
+  === Export completo delle misure
 
   Il flusso di export viene attivato tramite una richiesta `GET` all'endpoint `/measures/export`. Il `MeasureController`
   estrae i parametri di filtro e li inoltra al `MeasureService`.
@@ -833,7 +838,11 @@
 
   Il client riceve quindi l'elenco completo delle misure cifrate compatibili con i filtri indicati.
 
-  === Streaming delle Misure (SSE)
+  === Streaming delle misure
+
+  Il servizio espone l'endpoint `/measures/stream`, implementato come Server-Sent Events. Il `MeasureController`
+  raccoglie gli eventuali filtri su gateway, sensore e tipo di sensore, anche in forma multi-valore, oltre al parametro
+  opzionale `since`, quindi delega la gestione dello stream a `StreamListenerService`.
 
   Il servizio espone un flusso continuo di eventi tramite l'endpoint `/measures/stream`, implementato come Server-Sent
   Events. Il `MeasureController` raccoglie gli eventuali filtri e il parametro `since`, quindi delega la gestione dello
@@ -850,7 +859,7 @@
   Ogni evento compatibile viene trasformato nel formato SSE e inviato al client. Questo flusso consente al client di
   ricevere aggiornamenti continui senza dover effettuare polling esplicito.
 
-  === Elenco dei Sensori Disponibili
+  === Elenco dei sensori disponibili
 
   Il client può richiedere l'elenco dei sensori osservati di recente tramite l'endpoint `GET /sensor`. Il
   `SensorController` costruisce l'input applicativo e lo inoltra al `SensorService`.
@@ -863,7 +872,7 @@
   Il risultato finale viene convertito in `SensorDto` e restituito come elenco dei sensori disponibili, eventualmente
   filtrato per `gatewayId`.
 
-  === Validazione Tenant (TenantAccessGuard)
+  === Validazione tenant (TenantAccessGuard)
 
   Ad ogni richiesta HTTP, il `TenantAccessGuard` globale intercetta il flusso:
   1. Salta la validazione per path pubblici (`/`, `/metrics`) e richieste `OPTIONS`.
@@ -885,7 +894,7 @@
 
   I client SSE connessi allo stream ricevono l'evento in tempo reale, filtrato per i parametri richiesti.
 
-  = Test e Verifica
+  = Test e verifica
 
   Il progetto include:
 
@@ -913,7 +922,7 @@
   Questa copertura consente di validare il comportamento funzionale principale del servizio, soprattutto per quanto
   riguarda i contratti esposti, la gestione dei casi di errore e l'integrazione con NATS.
 
-  = Considerazioni Finali
+  = Considerazioni finali
 
   Il servizio `data-api` costituisce il punto di accesso applicativo ai dati telemetrici cifrati del sistema. La
   soluzione è costruita con una separazione chiara tra API, logica applicativa, mapping e accesso ai dati.

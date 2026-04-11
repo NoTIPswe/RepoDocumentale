@@ -1,4 +1,4 @@
-title: Specifica Tecnica - Data-API
+title: Specifica tecnica - Data-API
 changelog:
   - version: "0.3.0"
     date: "2026-04-10"
@@ -7,6 +7,13 @@ changelog:
     verifier: TBD
     description: >
       Stesura finale del documento
+  - version: "0.2.3"
+    date: "2026-04-07"
+    authors:
+      - Matteo Mantoan
+    verifier: Francesco Marcon
+    description: >
+      Uniformazione titoli e intestazioni: solo prima lettera maiuscola
   - version: "0.2.2"
     date: "2026-04-01"
     authors:
