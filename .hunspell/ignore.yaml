@@ -408,6 +408,7 @@ accepted_words:
   - KeycloakClientId
   - MGMT
   - KeycloakClientSecret
+  - KeycloakIssuerUrl
   - NATSUrl
   - DBHost
   - DBPort

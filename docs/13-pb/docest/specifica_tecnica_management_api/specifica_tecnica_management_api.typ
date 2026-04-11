@@ -39,6 +39,8 @@
 
       [KeycloakUrl], [KEYCLOAK_URL], [-], [Si],
 
+      [KeycloakIssuerUrl], [KEYCLOAK_ISSUER_URL], [-], [Si],
+
       [NATSUrl], [NATS_URL], [-], [Si],
 
       [DBHost], [MGMT_DB_HOST], [—], [Sì],
@@ -807,7 +809,7 @@
 
   ===== Entità
 
-  _TenantEntity_ (schema `common`)
+  _TenantEntity_ (`common`)
 
   #figure(caption: [Campi del TenantEntity])[
     #table(
@@ -842,7 +844,7 @@
 
   Relazioni: OneToMany con `UserEntity` (tramite `tenantId`), OneToMany con `GatewayEntity` (tramite `tenantId`).
 
-  _UserEntity_ (schema `users`)
+  _UserEntity_ (`users`)
 
   #figure(caption: [Campi del UserEntity])[
     #table(
@@ -1154,7 +1156,7 @@
 
   ===== Entità
 
-  _GatewayEntity_ (schema `gateways`)
+  _GatewayEntity_ (`gateways`)
 
   #figure(caption: [Campi dell'GatewayEntity])[
     #table(
@@ -1198,7 +1200,7 @@
   Relazioni: ManyToOne con `TenantEntity` (tramite `tenantId`, cascade delete), OneToOne con `GatewayMetadataEntity`
   (cascade).
 
-  _GatewayMetadataEntity_ (schema `gateways`)
+  _GatewayMetadataEntity_ (`gateways`)
 
   #figure(caption: [Campi del GatewayMetadataEntity])[
     #table(
