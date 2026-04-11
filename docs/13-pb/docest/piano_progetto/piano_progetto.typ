@@ -1,6 +1,6 @@
 #import "../../00-templates/base_document.typ" as base-document
 
-#let metadata = yaml("piano_progetto.meta.yaml")
+#let metadata = yaml(sys.inputs.meta-path)
 #base-document.apply-base-document(
   title: metadata.title,
   abstract: "Documento relativo al Piano di Progetto realizzato dal Gruppo NoTIP per la realizzazione del progetto Sistema di Acquisizione Dati da Sensori BLE",
@@ -70,9 +70,9 @@
       [Mitigazione],
       [Una volta individuate le tecnologie da adottare, è opportuno prevedere un periodo di “palestra” per approfondirle
         e consolidare le competenze, considerando che situazioni simili potrebbero ripresentarsi anche in futuro. Se la
-        criticità dovesse coinvolgere l’intero gruppo, il team potrà organizzare un incontro con M31 per richiedere
+        criticità dovesse coinvolgere l’intero gruppo, il Team potrà organizzare un incontro con M31 per richiedere
         chiarimenti sulla tecnologia oggetto di analisi. Tuttavia, poiché il livello di conoscenza tra i membri potrebbe
-        non essere omogeneo, è verosimile che molte problematiche vengano risolte internamente al team.],
+        non essere omogeneo, è verosimile che molte problematiche vengano risolte internamente al Team.],
 
       [Probabilità], [Alta],
       [Impatto prestazionale], [Alto],
@@ -93,7 +93,7 @@
         esecuzione],
 
       [Mitigazione],
-      [Il team farà ampio ricorso ai test durante le fasi di sviluppo, così da assicurare il corretto funzionamento del
+      [Il Team farà ampio ricorso ai test durante le fasi di sviluppo, così da assicurare il corretto funzionamento del
         prodotto. Nel caso in cui dovessero emergere difficoltà tali da impedire l’avanzamento delle attività, verrà
         richiesto il supporto dell’Azienda proponente.],
 
@@ -884,7 +884,7 @@
   sicuramente frutto dell'inesperienza del gruppo nell'analizzare correttamente il capitolato (RT1). Inoltre, dato
   l'inizio della sessione d'esami invernale, il lavoro ha subito alcuni rallentamenti (RP1).
   ==== Retrospettiva
-  Nel corso di questo Sprint il team si è concentrato sugli obiettivi stabiliti. Sebbene diversi membri abbiano
+  Nel corso di questo Sprint il Team si è concentrato sugli obiettivi stabiliti. Sebbene diversi membri abbiano
   registrato un numero inferiore di ore, a causa dell’attenzione dedicata all’analisi dello stato dell’arte e al Proof
   of Concept (POC), gli obiettivi prefissati sono stati comunque raggiunti senza ritardi significativi.
   ==== Misure correttive e aggiornamento dei rischi
@@ -1250,7 +1250,7 @@
   )<tab:Sprint7-ore-effettive>
 
   ==== Consuntivo del periodo
-  Durante lo sprint corrente, il team ha riscontrato delle criticità nel rispettare le tempistiche previste per la
+  Durante lo sprint corrente, il Team ha riscontrato delle criticità nel rispettare le tempistiche previste per la
   revisione RTB. Tali ritardi sono stati causati da difficoltà operative nel completamento e nella successiva
   approvazione della documentazione necessaria, determinando il verificarsi del rischio RO1 (Ritardo Operativo). La
   situazione è stata ulteriormente influenzata dalla concomitanza di sessioni d’esame per diversi membri del gruppo; la
@@ -1382,7 +1382,7 @@
   )<tab:Sprint8-ore-effettive>
 
   ==== Consuntivo del periodo
-  Durante lo sprint corrente, il team si è ritrovato ad affrontare difficoltà nella progettazione del sistema, in
+  Durante lo sprint corrente, il Team si è ritrovato ad affrontare difficoltà nella progettazione del sistema, in
   particolare nella definizione dell'architettura dei singoli microservizi e nella stesura di un piano completo per la
   fase di implementazione. Queste sfide insieme ai ritardi accumulati nelle fasi precedenti hanno portato ad un mancato
   rispetto delle scadenze stabilite internamente, proiettando così il verificarsi del rischio RO1 (Ritardo Operativo).
@@ -1435,8 +1435,8 @@
 
   ==== Informazioni generali e attività pianificate
   Da questo sprint in poi, il Team ha deciso di passare da periodi di 2 settimane a periodi di 1 settimana, al fine di
-  aumentare il monte di lavoro svolto per periodo, permettendo il raggiungimento della quota ore nel tempo previsto.
-  Alcune parti del team in questo periodo sono passati dal progettare, alla codifica, iniziando con un periodo intenso
+  aumentare il monte ore di lavoro svolto per periodo, permettendo il raggiungimento della quota ore nel tempo previsto.
+  Alcune parti del Team in questo periodo sono passati dal progettare, alla codifica, iniziando con un periodo intenso
   di palestra.
 
   ==== Ore previste
