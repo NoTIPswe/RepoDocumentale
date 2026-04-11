@@ -11,6 +11,7 @@ normalizations:
 ignore_patterns:
   - '\b(UC|UCS)\d*\b' # UC/UCS
   - '\bv\d+\b' # versioni (v1, v2, ecc.)
+  - '(?<=[a-zA-ZÀ-ÿ])(PASS|FAIL)\b' # status badge concatenated to last word of test name (HTML rendering artifact)
 
 # 3. DIZIONARIO PERSONALIZZATO
 # Parole specifiche da considerare corrette.
@@ -738,6 +739,8 @@ accepted_words:
   - testabilità
   - deserializzate
   - riaccodamento
+  - riaccodato
+  - evidenziazione
   - concorrentemente
   - Riesecuzione
   - versionata
