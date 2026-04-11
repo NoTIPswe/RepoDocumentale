@@ -379,8 +379,8 @@ le norme relative a ciascuno.
   Le responsabilità di Nginx sono:
   - *Routing*: smistamento delle richieste in ingresso verso il microservizio appropriato in base alle regole di
     location configurate;
-  - *Terminazione TLS*: gestione del certificato SSL/TLS al bordo della rete, in modo che i servizi interni
-    comunichino in chiaro sulla rete privata del cluster;
+  - *Terminazione TLS*: gestione del certificato SSL/TLS al bordo della rete, in modo che i servizi interni comunichino
+    in chiaro sulla rete privata del cluster;
   - *Iniezione degli header di sicurezza*: applicazione delle direttive definite in `security-headers.conf` (es.
     `Strict-Transport-Security`, `X-Frame-Options`, `Content-Security-Policy`) a tutte le risposte in uscita.
 

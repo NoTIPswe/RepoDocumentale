@@ -269,11 +269,10 @@
   @config-items).
 
   Gli script di migrazione devono rispettare il principio di *retrocompatibilità*: ogni modifica allo schema deve poter
-  essere applicata senza perdita di dati preesistenti. 
-  
-  Qualora sia necessario introdurre una modifica distruttiva (es.
-  eliminazione di una colonna o cambio di tipo), essa deve essere suddivisa in passi successivi che mantengano la
-  compatibilità per almeno un ciclo di rilascio.
+  essere applicata senza perdita di dati preesistenti.
+
+  Qualora sia necessario introdurre una modifica distruttiva (es. eliminazione di una colonna o cambio di tipo), essa
+  deve essere suddivisa in passi successivi che mantengano la compatibilità per almeno un ciclo di rilascio.
 ]
 
 #norm(
@@ -337,22 +336,22 @@
   title: "Validazione e sanificazione degli input",
   label: <validazione-input>,
 )[
-  Ogni endpoint NestJS deve ricevere i dati in ingresso tramite una classe DTO decorata con i
-  vincoli di `class-validator`. L'uso del `ValidationPipe` globale garantisce il rifiuto automatico delle richieste
-  malformate prima che raggiungano il `Service`.
+  Ogni endpoint NestJS deve ricevere i dati in ingresso tramite una classe DTO decorata con i vincoli di
+  `class-validator`. L'uso del `ValidationPipe` globale garantisce il rifiuto automatico delle richieste malformate
+  prima che raggiungano il `Service`.
 
-  È vietato passare direttamente un DTO al layer di persistenza. Ogni DTO deve essere
-  convertito in un'entità di dominio tramite una classe *Mapper* dedicata, che costituisce l'unico punto di traduzione
-  tra i contratti di interfaccia e il modello interno.
+  È vietato passare direttamente un DTO al layer di persistenza. Ogni DTO deve essere convertito in un'entità di dominio
+  tramite una classe *Mapper* dedicata, che costituisce l'unico punto di traduzione tra i contratti di interfaccia e il
+  modello interno.
 ]
 
 #norm(
   title: "Gestione centralizzata degli errori",
   label: <gestione-errori>,
 )[
-  È vietata la gestione manuale delle eccezioni infrastrutturali
-  all'interno dei *Controller*. Tutte le eccezioni non gestite devono essere intercettate da un *Global Exception
-  Filter* (NestJS) o da un middleware equivalente (Go), che si occupa di:
+  È vietata la gestione manuale delle eccezioni infrastrutturali all'interno dei *Controller*. Tutte le eccezioni non
+  gestite devono essere intercettate da un *Global Exception Filter* (NestJS) o da un middleware equivalente (Go), che
+  si occupa di:
 
   - Classificare l'errore per tipologia;
   - Restituire al client una risposta HTTP standardizzata con un codice di stato appropriato e un messaggio generico;
@@ -507,8 +506,8 @@
   norms: ("api-contracts", "config-items", "repo-strategy"),
   input: [Modifica ai canali nel file centralizzato `notip-infra/api-contracts/async-api/nats-contracts.yaml`],
   output: [
-    Contratto NATS filtrato committato nella repository del servizio consumatore come lockfile; codice
-    TypeScript/Go rigenerato a partire dal lockfile aggiornato.
+    Contratto NATS filtrato committato nella repository del servizio consumatore come lockfile; codice TypeScript/Go
+    rigenerato a partire dal lockfile aggiornato.
   ],
   procedure: (
     (
