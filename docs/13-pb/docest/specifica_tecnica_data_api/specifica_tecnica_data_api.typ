@@ -32,9 +32,6 @@
 
   == Variabili d'ambiente
 
-  Tutte le variabili d'ambiente necessarie per il funzionamento del microservizio sono elencate di seguito, una
-  eventuale mancanza di una di queste variabili comporterà un errore all'avvio del microservizio:
-
   #figure(caption: "Variabili d'ambiente richieste da data-api")[
     #table(
       columns: (auto, auto, auto, auto),
@@ -196,7 +193,7 @@
   sull'entità `MeasureEntity`, responsabile dell'esposizione degli endpoint per la consultazione delle misure cifrate.
   Gestisce query paginate, export completo e streaming SSE.
 
-  ===== MeasureController
+  ==== MeasureController
 
   Controller NestJS esposto sotto il prefisso `/measures`. Gestisce tre endpoint principali.
   #figure(caption: "Endpoint esposti da MeasureController")[
@@ -236,7 +233,7 @@
       [#par(justify: false)[Decodifica il payload JWT e estrae il claim `exp` in millisecondi]],
     )
   ]
-  ===== MeasureService
+  ==== MeasureService
 
   Contiene la logica di business per query ed export. Coordina `MeasurePersistenceService`.
 
@@ -300,7 +297,7 @@
       [#par(justify: false)[Mappa errori: 400/BadRequest, 401/Unauthorized, 403/Forbidden]],
     )]
 
-  ===== MeasurePersistenceService
+  ==== MeasurePersistenceService
 
   Layer di accesso ai dati. Implementa `NpQueryPersistenceService`. Costruisce query TypeORM sull'entità `MeasureEntity`
   (tabella `telemetry`).
@@ -356,7 +353,7 @@
     )
   ]
 
-  ===== StreamListenerService
+  ==== StreamListenerService
 
   Gestisce lo streaming RxJS delle misure. Crea un `Subject` per tenant e gestisce il replay storico e gli eventi live.
 
@@ -414,7 +411,7 @@
     )
   ]
 
-  ===== TelemetryStreamBridgeService
+  ==== TelemetryStreamBridgeService
 
   Bridge tra NATS e lo streaming RxJS. Si sottoscrive a `telemetry.data.*.*` e pubblica le misure live sullo stream del
   tenant corrispondente.
@@ -481,7 +478,7 @@
     )
   ]
 
-  ===== CostNatsResponderService
+  ==== CostNatsResponderService
 
   Responder NATS per le richieste di costo. Risponde su `internal.cost` con la dimensione del database.
 
@@ -542,7 +539,7 @@
   `MeasurePersistenceService` come dipendenza di persistenza. Riusa `MeasurePersistenceService` come dipendenza di
   persistenza tramite il token `NP_QUERY_PERSISTENCE`.
 
-  ===== SensorController
+  ==== SensorController
 
   Controller NestJS esposto sotto il prefisso `/sensor`.
 
@@ -554,7 +551,7 @@
     [#par(justify: false)[Restituisce i sensori attivi negli ultimi 10 minuti; filtro opzionale per gatewayId]],
   )
 
-  ===== SensorService
+  ==== SensorService
 
   Contiene la logica di aggregazione dei sensori. Dipende dall'interfaccia `NpQueryPersistenceService`.
 
@@ -594,7 +591,7 @@
   Il modulo di autenticazione gestisce la validazione dello stato del tenant tramite chiamate al Management API. Applica
   un guard globale su tutte le richieste.
 
-  ===== TenantAccessGuard
+  ==== TenantAccessGuard
 
   Guard globale registrato come `APP_GUARD` in `AppModule`.
 
@@ -633,11 +630,11 @@
       valida payload]],
   )
 
-  ===== TenantId Decorator
+  ==== TenantId Decorator
 
   Decoratore `@TenantId()` che estrae il `tenantId` dal `TenantAccessContext` della richiesta.
 
-  ===== Interfacce
+  ==== Interfacce
 
   _TenantAccessContext_
 
@@ -661,7 +658,7 @@
 
   Modulo per l'esposizione di metriche Prometheus. Registrato come globale in `AppModule`.
 
-  ===== MetricsService
+  ==== MetricsService
 
   Servizio che gestisce il registry Prometheus e le metriche custom.
 
@@ -717,7 +714,7 @@
     [#par(justify: false)[Restituisce `${baseUrl}${routePath}` o `'_unmatched'`]],
   )
 
-  ===== MetricsController
+  ==== MetricsController
 
   Controller che espone l'endpoint `/metrics` per Prometheus.
 
@@ -729,7 +726,7 @@
     [#par(justify: false)[Imposta `Content-Type` dal registry e invia la stringa delle metriche]],
   )
 
-  ===== MetricsInterceptor
+  ==== MetricsInterceptor
 
   Intercettatore globale registrato come `APP_INTERCEPTOR` in `AppModule`.
 
