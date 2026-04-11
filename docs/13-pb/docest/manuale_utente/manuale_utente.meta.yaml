@@ -4,7 +4,7 @@ changelog:
     date: "2026-04-10"
     authors:
       - Alessandro Contarini
-    verifier: TBD
+    verifier: Alessandro Mazzariol
     description: >
       Aggiunta parte mancante API Client
   - version: "0.2.0"
