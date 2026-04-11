@@ -10,21 +10,18 @@
 )[
   = Introduzione
   == Scopo del documento
-  Il presente documento ha lo scopo di fornire una guida operativa completa per gli amministratori
-  dell'infrastruttura del Sistema NoTIP. Descrive l'architettura dei servizi, le procedure di avvio e
-  gestione, la configurazione della sicurezza e del monitoraggio, e le scelte compiute in ottica di
-  scalabilità. Il manuale è rivolto principalmente agli amministratori di sistema, ma può essere utile
-  anche durante lo sviluppo e il testing.
+  Il presente documento ha lo scopo di fornire una guida operativa completa per gli amministratori dell'infrastruttura
+  del Sistema NoTIP. Descrive l'architettura dei servizi, le procedure di avvio e gestione, la configurazione della
+  sicurezza e del monitoraggio, e le scelte compiute in ottica di scalabilità. Il manuale è rivolto principalmente agli
+  amministratori di sistema, ma può essere utile anche durante lo sviluppo e il testing.
 
   == Glossario
-  La realizzazione di un Sistema software richiede l'utilizzo di termini tecnici specifici che potrebbero
-  non essere immediatamente comprensibili a tutti gli utenti. Per facilitare la comprensione del manuale,
-  è stato realizzato un Glossario nel quale vengono elencate definizioni e spiegazioni relative ai termini
-  utilizzati. Tale documento è sempre in fase di sviluppo e aggiornamento e può essere consultato nella
-  sua versione attuale al seguente link: #link(
+  La realizzazione di un Sistema software richiede l'utilizzo di termini tecnici specifici che potrebbero non essere
+  immediatamente comprensibili a tutti gli utenti. Per facilitare la comprensione del manuale, è stato realizzato un
+  Glossario nel quale vengono elencate definizioni e spiegazioni relative ai termini utilizzati. Tale documento è sempre
+  in fase di sviluppo e aggiornamento e può essere consultato nella sua versione attuale al seguente link: #link(
     "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/glossario.pdf",
-  )[Glossario v2.0.0]. Le parole che possiedono un riferimento nel Glossario saranno identificate con
-  pedice _G_.
+  )[Glossario v2.0.0]. Le parole che possiedono un riferimento nel Glossario saranno identificate con pedice _G_.
 
   == Riferimenti
 
@@ -37,10 +34,9 @@
   = Panoramica dell'Architettura
 
   == Struttura generale
-  L'infrastruttura NoTIP è basata su container Docker orchestrati tramite Docker Compose. Tutti i
-  servizi comunicano su una rete interna (`internal`) e non sono esposti direttamente all'esterno:
-  il punto di ingresso unico per il traffico HTTP è *Nginx*, che funge da reverse proxy e API
-  gateway.
+  L'infrastruttura NoTIP è basata su container Docker orchestrati tramite Docker Compose. Tutti i servizi comunicano su
+  una rete interna (`internal`) e non sono esposti direttamente all'esterno: il punto di ingresso unico per il traffico
+  HTTP è *Nginx*, che funge da reverse proxy e API gateway.
 
   I servizi che compongono lo stack sono i seguenti:
 
@@ -48,23 +44,23 @@
     columns: (auto, 1fr),
     align: (left, left),
     table.header([*Servizio*], [*Ruolo*]),
-    [`nginx`],              [Reverse proxy e API gateway. Instrada il traffico verso i servizi interni.],
-    [`frontend`],           [Applicazione web Angular servita tramite Nginx interno al container.],
-    [`management-api`],     [API REST per la gestione di tenant, gateway e configurazioni (NestJS).],
-    [`data-api`],           [API REST e streaming SSE per l'accesso ai dati telemetrici (NestJS).],
-    [`data-consumer`],      [Consumatore NATS → TimescaleDB. Persiste la telemetria e monitora i gateway (Go).],
-    [`provisioning-service`],[Servizio di onboarding gateway: emette certificati TLS e chiavi AES (NestJS).],
-    [`nats`],               [Message broker con JetStream abilitato. Usa mTLS per autenticare i client.],
-    [`mgmt-db`],            [Database PostgreSQL per i dati gestionali (tenant, gateway, configurazioni).],
-    [`measures-db`],        [Database TimescaleDB (PostgreSQL + estensione time-series) per i dati telemetrici.],
-    [`keycloak-db`],        [Database PostgreSQL dedicato a Keycloak.],
-    [`keycloak`],           [Identity Provider OIDC. Gestisce autenticazione e autorizzazione degli utenti.],
-    [`simulator`],          [Simulatore di gateway IoT BLE (Go). Attivabile tramite profilo Docker Compose.],
-    [`sim-cli`],            [Interfaccia a riga di comando per controllare il simulatore.],
+    [`nginx`], [Reverse proxy e API gateway. Instrada il traffico verso i servizi interni.],
+    [`frontend`], [Applicazione web Angular servita tramite Nginx interno al container.],
+    [`management-api`], [API REST per la gestione di tenant, gateway e configurazioni (NestJS).],
+    [`data-api`], [API REST e streaming SSE per l'accesso ai dati telemetrici (NestJS).],
+    [`data-consumer`], [Consumatore NATS → TimescaleDB. Persiste la telemetria e monitora i gateway (Go).],
+    [`provisioning-service`], [Servizio di onboarding gateway: emette certificati TLS e chiavi AES (NestJS).],
+    [`nats`], [Message broker con JetStream abilitato. Usa mTLS per autenticare i client.],
+    [`mgmt-db`], [Database PostgreSQL per i dati gestionali (tenant, gateway, configurazioni).],
+    [`measures-db`], [Database TimescaleDB (PostgreSQL + estensione time-series) per i dati telemetrici.],
+    [`keycloak-db`], [Database PostgreSQL dedicato a Keycloak.],
+    [`keycloak`], [Identity Provider OIDC. Gestisce autenticazione e autorizzazione degli utenti.],
+    [`simulator`], [Simulatore di gateway IoT BLE (Go). Attivabile tramite profilo Docker Compose.],
+    [`sim-cli`], [Interfaccia a riga di comando per controllare il simulatore.],
   )
 
-  Oltre ai servizi applicativi, lo stack prevede tre servizi di *inizializzazione one-shot* che vengono
-  eseguiti una sola volta all'avvio e poi terminano:
+  Oltre ai servizi applicativi, lo stack prevede tre servizi di *inizializzazione one-shot* che vengono eseguiti una
+  sola volta all'avvio e poi terminano:
 
   - *`provisioning-init`*: genera la CA interna e i certificati mTLS per tutti i servizi.
   - *`nats-streams-init`*: crea gli stream JetStream su NATS (TELEMETRY, ALERTS, COMMANDS, ecc.).
@@ -77,30 +73,28 @@
     columns: (auto, 1fr),
     align: (left, left),
     table.header([*Percorso*], [*Destinazione*]),
-    [`/auth/`],         [Keycloak (`:8080`) — autenticazione OIDC.],
-    [`/api/mgmt/`],     [Management API (`:3000`) — gestione tenant e gateway.],
-    [`/api/data/`],     [Data API (`:3000`) — query e streaming dati telemetrici.],
+    [`/auth/`], [Keycloak (`:8080`) — autenticazione OIDC.],
+    [`/api/mgmt/`], [Management API (`:3000`) — gestione tenant e gateway.],
+    [`/api/data/`], [Data API (`:3000`) — query e streaming dati telemetrici.],
     [`/api/data/*/stream`], [Data API — endpoint SSE con buffering disabilitato per streaming in tempo reale.],
-    [`/api/provision/`],[Provisioning Service (`:3000`) — onboarding dei gateway.],
-    [`/`],              [Frontend Angular (`:8080`).],
-    [`/internal/`],     [Bloccato (404) — rotte interne mai esposte.],
+    [`/api/provision/`], [Provisioning Service (`:3000`) — onboarding dei gateway.],
+    [`/`], [Frontend Angular (`:8080`).],
+    [`/internal/`], [Bloccato (404) — rotte interne mai esposte.],
   )
 
   == Sicurezza
   L'infrastruttura implementa più livelli di sicurezza:
 
-  - *mTLS su NATS*: ogni servizio backend si autentica con un certificato firmato dalla CA interna.
-    NATS verifica il certificato del client (`verify_and_map`) e associa i permessi tramite il Distinguished
-    Name del certificato stesso.
-  - *Keycloak*: gestisce l'autenticazione degli utenti e dei client OAuth2 tramite token JWT.
-    I servizi backend validano i token prima di elaborare le richieste.
-  - *Docker Secrets*: le password più sensibili (ad esempio `measures_db_password`) vengono montate
-    come file segreti nei container, evitando l'esposizione tramite variabili d'ambiente.
-  - *Cifratura a riposo*: le chiavi AES dei gateway sono cifrate nel database con una chiave
-    `DB_ENCRYPTION_KEY` (AES-256). La perdita di questa chiave rende irrecuperabili tutte le chiavi
-    dei gateway.
-  - *Security headers HTTP*: Nginx aggiunge intestazioni di sicurezza (`X-Content-Type-Options`,
-    `Referrer-Policy`) a tutte le risposte.
+  - *mTLS su NATS*: ogni servizio backend si autentica con un certificato firmato dalla CA interna. NATS verifica il
+    certificato del client (`verify_and_map`) e associa i permessi tramite il Distinguished Name del certificato stesso.
+  - *Keycloak*: gestisce l'autenticazione degli utenti e dei client OAuth2 tramite token JWT. I servizi backend validano
+    i token prima di elaborare le richieste.
+  - *Docker Secrets*: le password più sensibili (ad esempio `measures_db_password`) vengono montate come file segreti
+    nei container, evitando l'esposizione tramite variabili d'ambiente.
+  - *Cifratura a riposo*: le chiavi AES dei gateway sono cifrate nel database con una chiave `DB_ENCRYPTION_KEY`
+    (AES-256). La perdita di questa chiave rende irrecuperabili tutte le chiavi dei gateway.
+  - *Security headers HTTP*: Nginx aggiunge intestazioni di sicurezza (`X-Content-Type-Options`, `Referrer-Policy`) a
+    tutte le risposte.
 
   = Prerequisiti
 
@@ -121,28 +115,28 @@
   make bootstrap
   ```
 
-  Questo comando copia `.env.example` in `.env` e genera automaticamente valori casuali per tutti i
-  segreti (password dei database, segreti OAuth2 Keycloak, chiave di cifratura AES). Al termine,
-  aprire il file `.env` e verificare i valori non-segreti (hostname, nomi dei database, ecc.).
+  Questo comando copia `.env.example` in `.env` e genera automaticamente valori casuali per tutti i segreti (password
+  dei database, segreti OAuth2 Keycloak, chiave di cifratura AES). Al termine, aprire il file `.env` e verificare i
+  valori non-segreti (hostname, nomi dei database, ecc.).
 
   #figure(caption: [Variabili generate da `make bootstrap`])[
     #table(
       columns: (auto, 1fr),
       align: (left, left),
       table.header([*Variabile*], [*Descrizione*]),
-      [`DB_ENCRYPTION_KEY`],              [Chiave AES-256 per cifrare le chiavi gateway a riposo.],
-      [`MGMT_DB_PASSWORD`],               [Password del database PostgreSQL gestionale.],
-      [`MEASURES_DB_PASSWORD`],           [Password di TimescaleDB. Scritta anche in `secrets/`.],
-      [`KEYCLOAK_ADMIN_PASSWORD`],        [Password dell'admin bootstrap di Keycloak.],
-      [`KEYCLOAK_MGMT_CLIENT_SECRET`],    [Segreto OAuth2 del client `notip-mgmt-backend`.],
-      [`KEYCLOAK_SIMULATOR_CLIENT_SECRET`],[Segreto OAuth2 del client del simulatore.],
-      [`KEYCLOAK_DB_PASSWORD`],           [Password del database PostgreSQL di Keycloak.],
+      [`DB_ENCRYPTION_KEY`], [Chiave AES-256 per cifrare le chiavi gateway a riposo.],
+      [`MGMT_DB_PASSWORD`], [Password del database PostgreSQL gestionale.],
+      [`MEASURES_DB_PASSWORD`], [Password di TimescaleDB. Scritta anche in `secrets/`.],
+      [`KEYCLOAK_ADMIN_PASSWORD`], [Password dell'admin bootstrap di Keycloak.],
+      [`KEYCLOAK_MGMT_CLIENT_SECRET`], [Segreto OAuth2 del client `notip-mgmt-backend`.],
+      [`KEYCLOAK_SIMULATOR_CLIENT_SECRET`], [Segreto OAuth2 del client del simulatore.],
+      [`KEYCLOAK_DB_PASSWORD`], [Password del database PostgreSQL di Keycloak.],
     )
   ]
 
-  *Attenzione*: eseguire di nuovo `make bootstrap` con i volumi Docker già presenti sovrascrive i
-  segreti nel `.env` ma *non* aggiorna i dati già scritti nei database, causando inconsistenze.
-  Eseguirlo solo su un ambiente pulito oppure dopo `make reset-all`.
+  *Attenzione*: eseguire di nuovo `make bootstrap` con i volumi Docker già presenti sovrascrive i segreti nel `.env` ma
+  *non* aggiorna i dati già scritti nei database, causando inconsistenze. Eseguirlo solo su un ambiente pulito oppure
+  dopo `make reset-all`.
 
   == Passo 2 — Avvio dello stack
 
@@ -150,9 +144,8 @@
   make up
   ```
 
-  Docker Compose scarica le immagini più recenti da `ghcr.io/notipswe` e avvia tutti i container
-  nell'ordine corretto, rispettando le dipendenze (healthcheck inclusi). L'avvio completo richiede
-  alcuni minuti, in particolare per Keycloak.
+  Docker Compose scarica le immagini più recenti da `ghcr.io/notipswe` e avvia tutti i container nell'ordine corretto,
+  rispettando le dipendenze (healthcheck inclusi). L'avvio completo richiede alcuni minuti, in particolare per Keycloak.
 
   Al termine, il frontend è raggiungibile all'indirizzo `http://localhost/`.
 
@@ -176,9 +169,9 @@
   make health
   ```
 
-  Lo script controlla lo stato di tutti i container: i servizi applicativi devono essere in stato
-  `running/healthy`, mentre i servizi one-shot (`provisioning-init`, `nats-streams-init`,
-  `keycloak-init`) devono risultare `exited` con codice di uscita `0`.
+  Lo script controlla lo stato di tutti i container: i servizi applicativi devono essere in stato `running/healthy`,
+  mentre i servizi one-shot (`provisioning-init`, `nats-streams-init`, `keycloak-init`) devono risultare `exited` con
+  codice di uscita `0`.
 
   = Operazioni Quotidiane
 
@@ -190,24 +183,24 @@
     columns: (auto, 1fr),
     align: (left, left),
     table.header([*Comando*], [*Effetto*]),
-    [`make up`],              [Avvia (o riavvia) tutti i container. Non tocca i volumi.],
-    [`make down`],            [Ferma e rimuove i container. I volumi (e i dati) vengono preservati.],
-    [`make ps`],              [Mostra lo stato di tutti i container.],
-    [`make logs`],            [Segue i log di tutti i servizi in tempo reale.],
+    [`make up`], [Avvia (o riavvia) tutti i container. Non tocca i volumi.],
+    [`make down`], [Ferma e rimuove i container. I volumi (e i dati) vengono preservati.],
+    [`make ps`], [Mostra lo stato di tutti i container.],
+    [`make logs`], [Segue i log di tutti i servizi in tempo reale.],
     [`make logs-svc SVC=<nome>`], [Segue i log di un singolo servizio, es. `SVC=data-api`.],
-    [`make health`],          [Controlla lo stato di salute di tutti i servizi.],
+    [`make health`], [Controlla lo stato di salute di tutti i servizi.],
     [`make keycloak-import`], [Reimporta la configurazione del realm Keycloak da `infra/keycloak/`.],
-    [`make lint`],            [Esegue i controlli di qualità del codice tramite `pre-commit`.],
+    [`make lint`], [Esegue i controlli di qualità del codice tramite `pre-commit`.],
   )
 
   == Reset dell'ambiente
 
   Quando è necessario ripartire da zero, esistono due livelli di reset:
 
-  - *`make reset`*: ferma i container, elimina tutti i volumi Docker tranne `ca_certs` (i certificati
-    gateway vengono preservati), e riavvia lo stack.
-  - *`make reset-all`*: elimina *tutto*, incluso il volume della CA interna. Questo invalida tutti i
-    certificati gateway precedentemente emessi. Richiede conferma esplicita.
+  - *`make reset`*: ferma i container, elimina tutti i volumi Docker tranne `ca_certs` (i certificati gateway vengono
+    preservati), e riavvia lo stack.
+  - *`make reset-all`*: elimina *tutto*, incluso il volume della CA interna. Questo invalida tutti i certificati gateway
+    precedentemente emessi. Richiede conferma esplicita.
 
   == Sviluppo con immagini locali
 
@@ -221,12 +214,11 @@
   make up-local LOCAL=management-api,data-api
   ```
 
-  Valori accettati: `management-api`, `data-api`, `data-consumer`, `provisioning-service`,
-  `frontend`, `simulator`, `sim-cli`.
+  Valori accettati: `management-api`, `data-api`, `data-consumer`, `provisioning-service`, `frontend`, `simulator`,
+  `sim-cli`.
 
-  Il Makefile compila l'immagine locale con `docker build --target prod` a partire dalla directory
-  del repository sibling corrispondente, quindi avvia lo stack con quell'immagine al posto di quella
-  remota.
+  Il Makefile compila l'immagine locale con `docker build --target prod` a partire dalla directory del repository
+  sibling corrispondente, quindi avvia lo stack con quell'immagine al posto di quella remota.
 
   == Gestione delle migrazioni del database
 
@@ -234,20 +226,20 @@
     columns: (auto, 1fr),
     align: (left, left),
     table.header([*Comando*], [*Effetto*]),
-    [`make migration-run-all`],           [Applica le migrazioni pending su tutti i database.],
-    [`make migration-revert-all`],        [Annulla l'ultima migrazione su tutti i database.],
-    [`make migration-run-management`],    [Applica le migrazioni solo al database gestionale.],
-    [`make migration-run-data`],          [Applica le migrazioni solo al database delle misure.],
+    [`make migration-run-all`], [Applica le migrazioni pending su tutti i database.],
+    [`make migration-revert-all`], [Annulla l'ultima migrazione su tutti i database.],
+    [`make migration-run-management`], [Applica le migrazioni solo al database gestionale.],
+    [`make migration-run-data`], [Applica le migrazioni solo al database delle misure.],
     [`make migration-revert-management`], [Annulla l'ultima migrazione del database gestionale.],
-    [`make migration-revert-data`],       [Annulla l'ultima migrazione del database delle misure.],
+    [`make migration-revert-data`], [Annulla l'ultima migrazione del database delle misure.],
   )
 
   = Autenticazione e Keycloak
 
   == Accesso al pannello di amministrazione
 
-  Per accedere all'area riservata di Keycloak, aprire l'URL `http://localhost/auth`. Inserire le
-  credenziali presenti nel file `.env` generato da `make bootstrap`:
+  Per accedere all'area riservata di Keycloak, aprire l'URL `http://localhost/auth`. Inserire le credenziali presenti
+  nel file `.env` generato da `make bootstrap`:
 
   - *Username*: valore di `KEYCLOAK_ADMIN_USER` (default: `admin`)
   - *Password*: valore di `KEYCLOAK_ADMIN_PASSWORD`
@@ -273,14 +265,13 @@
 
   == Realm `notip`
 
-  All'avvio del sistema, lo script `keycloak-init` importa automaticamente il realm `notip` con
-  client, ruoli e mappature preconfigurati. Per visualizzare i dettagli, accedere a
-  *Manage Realms* → `notip`.
+  All'avvio del sistema, lo script `keycloak-init` importa automaticamente il realm `notip` con client, ruoli e
+  mappature preconfigurati. Per visualizzare i dettagli, accedere a *Manage Realms* → `notip`.
 
   Per modificare la configurazione di Keycloak è possibile:
   - Usare l'interfaccia grafica di Keycloak (le modifiche vengono applicate immediatamente).
-  - Modificare il file JSON di esportazione in `infra/keycloak/realm-export.json` e reimportarlo
-    con `make keycloak-import`.
+  - Modificare il file JSON di esportazione in `infra/keycloak/realm-export.json` e reimportarlo con
+    `make keycloak-import`.
 
   == Accesso al Frontend
 
@@ -291,19 +282,18 @@
 
   = Simulatore di Gateway
 
-  Il simulatore è un componente opzionale che permette di simulare gateway IoT BLE senza
-  hardware fisico. Viene avviato tramite il profilo Docker Compose `simulator`.
+  Il simulatore è un componente opzionale che permette di simulare gateway IoT BLE senza hardware fisico. Viene avviato
+  tramite il profilo Docker Compose `simulator`.
 
   == Avvio del simulatore
 
-  Il simulatore è già incluso nello stack standard avviato con `make up` (il Makefile include il
-  profilo `--profile simulator` di default). Il servizio `simulator` è accessibile internamente
-  sulla porta `8090`, ma non è esposto tramite Nginx: vi si accede tramite il `sim-cli`.
+  Il simulatore è già incluso nello stack standard avviato con `make up` (il Makefile include il profilo
+  `--profile simulator` di default). Il servizio `simulator` è accessibile internamente sulla porta `8090`, ma non è
+  esposto tramite Nginx: vi si accede tramite il `sim-cli`.
 
   == Utilizzo del Simulator CLI
 
-  Il `sim-cli` permette di gestire il parco gateway simulati. Lo stack principale deve essere già
-  in esecuzione.
+  Il `sim-cli` permette di gestire il parco gateway simulati. Lo stack principale deve essere già in esecuzione.
 
   Aprire una sessione interattiva:
 
@@ -318,18 +308,16 @@
     columns: (1.5fr, 1fr),
     align: (left, left),
     table.header([*Comando*], [*Descrizione*]),
-    [`gateways list`],
-      [Elenca tutti i gateway simulati registrati.],
+    [`gateways list`], [Elenca tutti i gateway simulati registrati.],
     [`gateways create --factory-id ID --factory-key KEY --model M --firmware F --freq N`],
-      [Crea un singolo gateway simulato.],
-    [`gateways bulk --count N ...`],
-      [Crea N gateway simulati con i parametri specificati.],
-    [`gateways delete <uuid>`],
-      [Elimina un gateway simulato.],
+    [Crea un singolo gateway simulato.],
+
+    [`gateways bulk --count N ...`], [Crea N gateway simulati con i parametri specificati.],
+    [`gateways delete <uuid>`], [Elimina un gateway simulato.],
     [`sensors add <gateway-id> --type TYPE --min N --max N --algorithm ALG`],
-      [Aggiunge un sensore a un gateway esistente.],
-    [`anomalies disconnect <uuid> --duration N`],
-      [Simula una disconnessione del gateway per N secondi.],
+    [Aggiunge un sensore a un gateway esistente.],
+
+    [`anomalies disconnect <uuid> --duration N`], [Simula una disconnessione del gateway per N secondi.],
   )
 
   In alternativa, è possibile eseguire un singolo comando senza aprire la shell:
@@ -342,8 +330,7 @@
 
   == Avvio dello stack di monitoraggio
 
-  Il monitoraggio (Prometheus + Grafana) è separato dallo stack principale e va avviato
-  esplicitamente:
+  Il monitoraggio (Prometheus + Grafana) è separato dallo stack principale e va avviato esplicitamente:
 
   ```bash
   make up-monitoring
@@ -355,8 +342,8 @@
   make down-monitoring
   ```
 
-  Lo stack di monitoraggio si collega alla rete interna Docker del progetto principale per poter
-  raccogliere le metriche dai servizi.
+  Lo stack di monitoraggio si collega alla rete interna Docker del progetto principale per poter raccogliere le metriche
+  dai servizi.
 
   == Accesso a Grafana
 
@@ -417,8 +404,8 @@
   Le misure di monitoraggio presenti in questa dashboard sono:
   - *Provisioning Outcomes*: operazioni di provisioning tentate, riuscite e fallite ogni 5 secondi.
   - *NATS Retry Rate*: tentativi di retry per la connessione a NATS ogni 5 secondi.
-  - *Critical Operation Latency*: tempo medio di completamento delle operazioni critiche (firma CSR,
-    validazione NATS, completamento NATS) ogni 5 secondi.
+  - *Critical Operation Latency*: tempo medio di completamento delle operazioni critiche (firma CSR, validazione NATS,
+    completamento NATS) ogni 5 secondi.
   - *Process Health*: salute complessiva del processo basata su metriche di performance ed errori.
 
   === Dashboard Simulatore
@@ -444,14 +431,13 @@
 
   = Scalabilità dell'Infrastruttura
 
-  L'infrastruttura NoTIP è progettata per supportare una crescita graduale del numero di gateway,
-  tenant e volumi di dati. Di seguito vengono descritte le scelte architetturali che abilitano la
-  scalabilità.
+  L'infrastruttura NoTIP è progettata per supportare una crescita graduale del numero di gateway, tenant e volumi di
+  dati. Di seguito vengono descritte le scelte architetturali che abilitano la scalabilità.
 
   == Disaccoppiamento tramite NATS JetStream
 
-  Il cuore della pipeline di acquisizione dati è *NATS JetStream*, un message broker persistente che
-  disaccoppia i produttori di dati (gateway e simulatore) dai consumatori (Data Consumer, Data API).
+  Il cuore della pipeline di acquisizione dati è *NATS JetStream*, un message broker persistente che disaccoppia i
+  produttori di dati (gateway e simulatore) dai consumatori (Data Consumer, Data API).
 
   Gli stream JetStream sono configurati con politiche di retention basate su limiti temporali:
 
@@ -459,102 +445,99 @@
     columns: (auto, auto, 1fr),
     align: (left, left, left),
     table.header([*Stream*], [*Soggetti*], [*Retention / Note*]),
-    [`TELEMETRY`],   [`telemetry.data.>`],       [30 giorni. Storage su file. Dati telemetrici dai gateway.],
-    [`ALERTS`],      [`alert.>`],                [Illimitata. Alert generati dal Data Consumer.],
-    [`COMMANDS`],    [`command.gw.>`],           [75 secondi. Comandi inviati ai gateway (breve TTL).],
-    [`COMMAND_ACKS`],[`command.ack.>`],          [Acknowledgment dei comandi ricevuti dai gateway.],
-    [`AUDIT_LOG`],   [`log.audit.>`],            [90 giorni. Audit log delle operazioni.],
-    [`DECOMMISSION`],[`gateway.decommissioned.>`],[24 ore. Notifiche di decommissioning gateway.],
+    [`TELEMETRY`], [`telemetry.data.>`], [30 giorni. Storage su file. Dati telemetrici dai gateway.],
+    [`ALERTS`], [`alert.>`], [Illimitata. Alert generati dal Data Consumer.],
+    [`COMMANDS`], [`command.gw.>`], [75 secondi. Comandi inviati ai gateway (breve TTL).],
+    [`COMMAND_ACKS`], [`command.ack.>`], [Acknowledgment dei comandi ricevuti dai gateway.],
+    [`AUDIT_LOG`], [`log.audit.>`], [90 giorni. Audit log delle operazioni.],
+    [`DECOMMISSION`], [`gateway.decommissioned.>`], [24 ore. Notifiche di decommissioning gateway.],
   )
 
-  Grazie alla persistenza su file di JetStream, i messaggi non vengono persi in caso di riavvio
-  del Data Consumer. Il broker assorbe i picchi di carico e garantisce la consegna anche in caso
-  di temporanea indisponibilità dei consumer.
+  Grazie alla persistenza su file di JetStream, i messaggi non vengono persi in caso di riavvio del Data Consumer. Il
+  broker assorbe i picchi di carico e garantisce la consegna anche in caso di temporanea indisponibilità dei consumer.
 
   == TimescaleDB per i dati telemetrici
 
-  I dati telemetrici sono archiviati su *TimescaleDB*, un'estensione di PostgreSQL ottimizzata per
-  serie temporali. Le principali caratteristiche che abilitano la scalabilità sono:
-  - *Hypertables*: partizionamento automatico dei dati per intervalli temporali, che mantiene le
-    performance di query costanti all'aumentare del volume di dati.
-  - *Compressione nativa*: possibilità di comprimere automaticamente i chunk più vecchi, riducendo
-    lo spazio su disco.
-  - *Separazione del database delle misure*: TimescaleDB è un servizio indipendente da PostgreSQL
-    gestionale, permettendo di scalare i due database separatamente in base al carico.
+  I dati telemetrici sono archiviati su *TimescaleDB*, un'estensione di PostgreSQL ottimizzata per serie temporali. Le
+  principali caratteristiche che abilitano la scalabilità sono:
+  - *Hypertables*: partizionamento automatico dei dati per intervalli temporali, che mantiene le performance di query
+    costanti all'aumentare del volume di dati.
+  - *Compressione nativa*: possibilità di comprimere automaticamente i chunk più vecchi, riducendo lo spazio su disco.
+  - *Separazione del database delle misure*: TimescaleDB è un servizio indipendente da PostgreSQL gestionale,
+    permettendo di scalare i due database separatamente in base al carico.
 
   == Separazione dei database
 
   L'infrastruttura utilizza *tre database distinti*:
   - *`keycloak-db`*: esclusivamente per Keycloak. Isola i dati di autenticazione dal resto del sistema.
-  - *`mgmt-db`*: dati gestionali (tenant, gateway, configurazioni). Volume di dati moderato e a bassa
-    frequenza di scrittura.
-  - *`measures-db`*: dati telemetrici. Alto volume, alta frequenza di scrittura. Ottimizzato con
-    TimescaleDB.
+  - *`mgmt-db`*: dati gestionali (tenant, gateway, configurazioni). Volume di dati moderato e a bassa frequenza di
+    scrittura.
+  - *`measures-db`*: dati telemetrici. Alto volume, alta frequenza di scrittura. Ottimizzato con TimescaleDB.
 
-  Questa separazione consente di allocare risorse (CPU, RAM, storage) in modo indipendente e di
-  applicare policy di backup differenziate in base alla criticità e alla frequenza di aggiornamento.
+  Questa separazione consente di allocare risorse (CPU, RAM, storage) in modo indipendente e di applicare policy di
+  backup differenziate in base alla criticità e alla frequenza di aggiornamento.
 
   == Buffer e backpressure nel Data Consumer
 
-  Il Data Consumer gestisce il flusso di dati in ingresso da NATS con un meccanismo di buffering
-  configurabile tramite variabili d'ambiente:
+  Il Data Consumer gestisce il flusso di dati in ingresso da NATS con un meccanismo di buffering configurabile tramite
+  variabili d'ambiente:
 
-  - `GATEWAY_BUFFER_SIZE` (default: `1000`): dimensione del buffer per gateway. Aumentare questo
-    valore consente di assorbire picchi di telemetria senza perdita di dati.
-  - `HEARTBEAT_GRACE_PERIOD_MS` (default: `120000` ms): periodo di grazia prima di considerare un
-    gateway offline. Permette di tollerare temporanee interruzioni di connettività.
-  - `ALERT_CONFIG_MAX_RETRIES` e `ALERT_CONFIG_MAX_BACKOFF_MS`: configurano il comportamento di
-    retry per il recupero delle configurazioni di alerting, con backoff esponenziale.
+  - `GATEWAY_BUFFER_SIZE` (default: `1000`): dimensione del buffer per gateway. Aumentare questo valore consente di
+    assorbire picchi di telemetria senza perdita di dati.
+  - `HEARTBEAT_GRACE_PERIOD_MS` (default: `120000` ms): periodo di grazia prima di considerare un gateway offline.
+    Permette di tollerare temporanee interruzioni di connettività.
+  - `ALERT_CONFIG_MAX_RETRIES` e `ALERT_CONFIG_MAX_BACKOFF_MS`: configurano il comportamento di retry per il recupero
+    delle configurazioni di alerting, con backoff esponenziale.
 
-  La dashboard Grafana *Data Consumer* espone la metrica *Backpressure and Connectivity* per
-  rilevare situazioni di sovraccarico e intervenire tempestivamente.
+  La dashboard Grafana *Data Consumer* espone la metrica *Backpressure and Connectivity* per rilevare situazioni di
+  sovraccarico e intervenire tempestivamente.
 
   == Containerizzazione e portabilità
 
-  Tutti i servizi sono distribuiti come immagini Docker (`linux/amd64`) e pubblicati su GitHub Container Registry (`ghcr.io/notipswe`). Questa scelta
-  consente di:
-  - Spostare lo stack su qualsiasi host che esegua Docker, indipendentemente dall'architettura
-    hardware.
+  Tutti i servizi sono distribuiti come immagini Docker (`linux/amd64`) e pubblicati su GitHub Container Registry
+  (`ghcr.io/notipswe`). Questa scelta consente di:
+  - Spostare lo stack su qualsiasi host che esegua Docker, indipendentemente dall'architettura hardware.
   - Aggiornare singoli servizi sostituendo l'immagine senza interrompere gli altri.
   - Effettuare il pin di versioni specifiche tramite le variabili `*_IMAGE` nel file `.env`.
 
   == Limiti dello stack attuale e percorso di crescita
 
-  Lo stack Docker Compose attuale è ottimizzato per un singolo host. Per una crescita ulteriore
-  verso ambienti multi-nodo, i componenti che beneficerebbero maggiormente dello scaling orizzontale
-  sono:
+  Lo stack Docker Compose attuale è ottimizzato per un singolo host. Per una crescita ulteriore verso ambienti
+  multi-nodo, i componenti che beneficerebbero maggiormente dello scaling orizzontale sono:
 
   #table(
     columns: (auto, 1fr),
     align: (left, left),
     table.header([*Componente*], [*Percorso di scala*]),
-    [Management API / Data API],  [Istanze multiple dietro un load balancer (Nginx upstream group o un orchestratore come Kubernetes).],
-    [NATS JetStream],             [Cluster NATS con `num_replicas > 1` per alta disponibilità degli stream.],
-    [TimescaleDB],                [Replica in lettura per distribuire il carico delle query. Upgrade a Timescale Cloud per scaling gestito.],
-    [Data Consumer],              [Più istanze con partizionamento dei soggetti NATS per distribuire la pipeline di persistenza.],
+    [Management API / Data API],
+    [Istanze multiple dietro un load balancer (Nginx upstream group o un orchestratore come Kubernetes).],
+
+    [NATS JetStream], [Cluster NATS con `num_replicas > 1` per alta disponibilità degli stream.],
+    [TimescaleDB],
+    [Replica in lettura per distribuire il carico delle query. Upgrade a Timescale Cloud per scaling gestito.],
+
+    [Data Consumer], [Più istanze con partizionamento dei soggetti NATS per distribuire la pipeline di persistenza.],
   )
 
   = Troubleshooting
 
   == Container bloccato in attesa o in crash loop
 
-  *Sintomi*: `make ps` mostra un servizio in stato `restarting` oppure `make health` riporta un
-  errore.
+  *Sintomi*: `make ps` mostra un servizio in stato `restarting` oppure `make health` riporta un errore.
 
   *Soluzione*:
   + Eseguire `make logs-svc SVC=<nome-servizio>` per leggere i log del container problematico.
-  + Se il problema è una dipendenza non ancora pronta (es. database non healthy), attendere qualche
-    secondo e riprovare con `make health`.
+  + Se il problema è una dipendenza non ancora pronta (es. database non healthy), attendere qualche secondo e riprovare
+    con `make health`.
   + Se il problema persiste, eseguire `make down && make up` per riavviare lo stack.
-  + Se i volumi sono corrotti o i segreti sono cambiati, eseguire `make reset` per ripulire i volumi
-    (tranne i certificati CA) e ripartire.
+  + Se i volumi sono corrotti o i segreti sono cambiati, eseguire `make reset` per ripulire i volumi (tranne i
+    certificati CA) e ripartire.
 
   == HTTPS Required al momento dell'accesso a Keycloak (macOS)
 
   *Sintomi*: Il browser viene reindirizzato a una pagina HTTPS che non risponde.
 
-  *Soluzione*: Chiudere e riavviare Docker Desktop, quindi eseguire `make reset-all && make up` e
-  restartare il browser.
+  *Soluzione*: Chiudere e riavviare Docker Desktop, quindi eseguire `make reset-all && make up` e restartare il browser.
 
   Via terminale:
 
@@ -570,19 +553,18 @@
 
   == Segreti non allineati tra `.env` e database
 
-  *Sintomi*: I servizi si avviano ma falliscono la connessione al database o a Keycloak con errori
-  di autenticazione.
+  *Sintomi*: I servizi si avviano ma falliscono la connessione al database o a Keycloak con errori di autenticazione.
 
-  *Causa*: `make bootstrap` è stato rieseguito con volumi già presenti, sovrascrivendo le password
-  nel `.env` senza aggiornare quelle già scritte nei database.
+  *Causa*: `make bootstrap` è stato rieseguito con volumi già presenti, sovrascrivendo le password nel `.env` senza
+  aggiornare quelle già scritte nei database.
 
-  *Soluzione*: Eseguire `make reset-all` (che elimina tutti i volumi) e poi ricominciare dalla
-  procedura di installazione al Passo 1.
+  *Soluzione*: Eseguire `make reset-all` (che elimina tutti i volumi) e poi ricominciare dalla procedura di
+  installazione al Passo 1.
 
   == Importazione del realm Keycloak fallita
 
-  *Sintomi*: `make keycloak-import` termina con errori, oppure il realm `notip` non compare
-  nell'interfaccia di Keycloak.
+  *Sintomi*: `make keycloak-import` termina con errori, oppure il realm `notip` non compare nell'interfaccia di
+  Keycloak.
 
   *Soluzione*:
   + Verificare che Keycloak sia in stato `healthy` con `make ps`.
@@ -591,8 +573,7 @@
 
   == Il simulatore non invia dati
 
-  *Sintomi*: La dashboard Grafana *Simulatore* mostra `Gateways Running = 0` oppure
-  `Publish Throughput = 0`.
+  *Sintomi*: La dashboard Grafana *Simulatore* mostra `Gateways Running = 0` oppure `Publish Throughput = 0`.
 
   *Soluzione*:
   + Verificare che il servizio `simulator` sia in esecuzione con `make ps`.

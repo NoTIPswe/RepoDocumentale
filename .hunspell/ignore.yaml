@@ -333,6 +333,11 @@ accepted_words:
   - EOF
   - ciphertext
   - PowerShell
+  - macOS
+  - hostname
+  - healthcheck
+  - Makefile
+  - balancer
 
   # --- Terminologia Standard Progetto ---
   - req
