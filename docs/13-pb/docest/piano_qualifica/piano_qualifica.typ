@@ -1494,7 +1494,32 @@
 
   == MP13: Code Coverage
 
+  #figure(
+    grid(
+      columns: (1fr, 1fr),
+      gutter: 0.8em,
+      image("assets/code_coverage/crypto-sdk-codeCoverage.png", width: 100%),
+      image("assets/code_coverage/data-api-codeCoverage.png", width: 100%),
+      image("assets/code_coverage/data-consumer-codeCoverage.png", width: 100%),
+      image("assets/code_coverage/frontend-codeCoverage.png", width: 100%),
+      image("assets/code_coverage/mngm-api-codeCoverage.png", width: 100%),
+      image("assets/code_coverage/provisioning_codeCoverage.png", width: 100%),
+      image("assets/code_coverage/simulator-backend-codeCoverage.png", width: 100%),
+      image("assets/code_coverage/simulator-cli-codeCoverage.png", width: 100%),
+    ),
+    caption: [Collage dei report di Code Coverage dei servizi del progetto],
+  ) <MP13>
+
   === PB
+
+  La valutazione della metrica di Code Coverage per la PB è rappresentata nel collage precedente, che raccoglie i
+  report di copertura relativi ai diversi servizi del progetto, ottenuti tramite SonarQube. La figura consente di
+  osservare in modo unitario i risultati raccolti nelle varie componenti applicative considerate durante l’attività di
+  verifica, mantenendo una visione complessiva dello stato della copertura del codice nella fase finale del progetto.
+  Nel complesso, dai dati raccolti emerge un valore medio di copertura poco superiore al 90%, con differenze contenute
+  tra i vari servizi considerati. Tale risultato non solo soddisfa il valore accettabile definito in precedenza per la
+  metrica, ma risulta anche sostanzialmente in linea con il valore ottimale fissato al 90%, evidenziando un livello di
+  copertura complessivamente molto buono.
 
 
   == MP14: Test Success Rate (a parole)
