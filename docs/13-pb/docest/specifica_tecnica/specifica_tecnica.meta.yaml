@@ -3,11 +3,11 @@ changelog:
   - version: "1.0.0"
     approver: Leonardo Preo
     baseline: PB
-    date: "2026-04-11"
+    date: "2026-04-12"
   - version: "0.8.0"
     date: "2026-04-10"
     authors:
-      - Matteo Mantoan
+      - Francesco Marcon
     verifier: Alessandro Mazzariol
     description: >
       Aggiornata la sezione Metodologie di Testing
@@ -75,7 +75,7 @@ changelog:
     description: >
       Stesura della sezione Sicurezza e politiche multi-tenant
   - version: "0.2.1"
-    date: "2026-04-07"
+    date: "2026-03-25"
     authors:
       - Matteo Mantoan
     verifier: Francesco Marcon
