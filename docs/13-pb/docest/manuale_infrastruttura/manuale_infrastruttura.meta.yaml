@@ -4,7 +4,7 @@ changelog:
     date: "2026-03-15"
     authors:
       - Alessandro Mazzariol
-    verifier: TBD
+    verifier: Leonardo Preo
     description: >
       Aggiunta capitolo relativo a Metriche e Monitoraggio con la descrizione delle relative dashboard Grafana
   - version: "0.4.0"
