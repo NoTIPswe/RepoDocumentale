@@ -7,13 +7,13 @@
 
 #base-document.apply-base-document(
   title: metadata.title,
-  abstract: "Specifica tecnica della webapp frontend: architettura, gestione autenticazione, integrazione API tramite OpenAPI generator, streaming SSE per telemetria e gestione dell'impersonazione.",
+  abstract: "Specifica tecnica della WebApp frontend: architettura, gestione autenticazione, integrazione API tramite OpenAPI generator, streaming SSE per telemetria e gestione dell'impersonazione.",
   changelog: metadata.changelog,
   scope: base-document.EXTERNAL_SCOPE,
 )[
   = Introduzione
 
-  La webapp `notip-frontend` è l'interfaccia utente del sistema NoTIP, sviluppata in Angular 21 con architettura
+  La WebApp `notip-frontend` è l'interfaccia utente del sistema NoTIP, sviluppata in Angular 21 con architettura
   standalone. Il frontend ha il compito di presentare all'utente i dati di telemetria provenienti dai gateway IoT,
   consentire la gestione di tenant, utenti, gateway e sensori, configurare alert e soglie, consultare audit log e costi,
   e inviare comandi ai gateway. Supporta tre ruoli utente (system_admin, tenant_admin, tenant_user) con autorizzazione

@@ -1,4 +1,4 @@
-title: Specifica tecnica - Frontend Webapp
+title: Specifica tecnica - Frontend WebApp
 changelog:
   - version: "0.3.0"
     date: "2026-04-12"
@@ -23,7 +23,7 @@ changelog:
     verifier: Francesco Marcon
     description: >
       Prima stesura della specifica tecnica, con definizione dell'architettura
-      generale e delle funzionalità principali della webapp frontend
+      generale e delle funzionalità principali della WebApp frontend
   - version: "0.0.1"
     date: "2026-04-05"
     authors:
