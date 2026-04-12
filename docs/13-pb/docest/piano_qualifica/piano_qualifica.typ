@@ -1401,10 +1401,10 @@
 
 
   == MP11: Indice di Gulpease
-//  #figure(
-//    image(height: 30%, "assets/Gulpease.jpeg"),
-//    caption: [Grafico per Sprint di MP11],
-//  ) <MP11>
+ #figure(
+   image(height: 30%, "assets/gulpease.png"),
+   caption: [Grafico per Sprint di MP11],
+ ) <MP11>
   Dal grafico emerge che tutti i documenti mantengono un livello di avanzamento superiore alla soglia minima del 60%
   definita internamente dal gruppo. Nel complesso, l’andamento conferma una gestione della documentazione stabile e
   coerente con quanto fissato, senza scostamenti al di sotto del livello minimo previsto.
@@ -1452,10 +1452,10 @@
 
 
   == MP20: Time Efficiency
-//  #figure(
-//    image(height: 30%, "assets/TE.jpeg"),
-//    caption: [Grafico per Sprint di MP20],
-//  ) <MP20>
+ #figure(
+   image(height: 30%, "assets/TE.png"),
+   caption: [Grafico per Sprint di MP20],
+ ) <MP20>
   Dal grafico si osserva un progressivo incremento della Time Efficiency (TE) dallo sprint 1 allo sprint 6. Tuttavia,
   l’indicatore rimane costantemente al di sotto del valore ottimale, evidenziando un livello di efficienza temporale
   ancora migliorabile. Questo andamento è legato alla significativa incidenza delle “ore di palestra”, indispensabili al
@@ -1468,10 +1468,10 @@
 
 
   == MP21: Sprint Velocity Stability
-//  #figure(
-//    image(height: 30%, "assets/SVS.jpeg"),
-//    caption: [Grafico per Sprint di MP21],
-//  ) <MP21>
+ #figure(
+   image(height: 30%, "assets/SVS.png"),
+   caption: [Grafico per Sprint di MP21],
+ ) <MP21>
   Dal grafico si osserva un andamento progressivamente migliorativo nel corso degli sprint. Poiché la metrica misura lo
   scostamento percentuale tra velocity pianificata e velocity effettiva, valori più elevati indicano una maggiore
   instabilità, mentre valori più bassi rappresentano una migliore capacità di previsione e quindi una maggiore
