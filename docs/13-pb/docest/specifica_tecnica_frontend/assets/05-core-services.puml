@@ -1,0 +1,150 @@
+@startuml
+title NOTIP Frontend - Core Services Architecture
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 10
+skinparam defaultFontColor #000000
+skinparam nodesep 8
+skinparam ranksep 8
+skinparam linetype ortho
+
+package "Core Services" <<Rectangle>> {
+  class "AuthService" as AuthService {
+    --
+    -keycloak: Keycloak (via inject)
+    -keycloakEventSignal: Signal
+    -authApi: AuthApiService (via inject)
+    -logoutSubject: Subject<void>
+    -impersonatingSignal: Signal<boolean>
+    -impersonationTokenSignal: Signal<string | null>
+    -impersonationPayloadSignal: Signal<JwtPayload | null>
+    --
+    +init(): Promise<boolean>
+    +login(): void
+    +logout(): void
+    +getToken(): Promise<string>
+    +getRole(): UserRole
+    +getUserId(): string
+    +getUsername(): string
+    +getTenantId(): string
+    +startImpersonation(targetUserId): Observable<string>
+    +stopImpersonation(): void
+    +isImpersonating(): boolean
+    +setImpersonating(value): void
+  }
+
+  class "SessionLifeCycle" as SessionLifeCycle {
+    <<interface>>
+    +isSessionActive(): boolean
+  }
+
+  class "ImpersonationStatus" as ImpersonationStatus {
+    <<interface>>
+    +isImpersonating(): boolean
+    +getImpersonationToken(): string | null
+  }
+
+  class "ObfuscatedStreamManagerService" as ObfStreamMgr {
+    --
+    -abortController: AbortController | null
+    -channel: ObservableChannel<TelemetryEnvelope> | null
+    -streamSessionId: number
+    --
+    +openStream(sp: StreamParameters): Observable<TelemetryEnvelope>
+    +closeStream(): void
+    -startStream(...): void
+    -buildQuery(sp): string
+    -parseTelemetryEnvelope(raw): TelemetryEnvelope
+    -handleMalformedMessage(...): void
+    -isTokenExpiredEvent(value): boolean
+    -isTelemetryEnvelope(value): boolean
+  }
+
+  class "ThresholdPrefetchService" as ThresholdPrefetch {
+    --
+    -REFRESH_INTERVAL_MS: 5 * 60 * 1000
+    -refreshSub: Subscription | null
+    --
+    +start(): void
+    +stop(): void
+    -shouldStart(): boolean
+  }
+
+  class "ThresholdService" as ThresholdSvc {
+    --
+    -thresholdsApi: ThresholdsService (OpenAPI)
+    -cache: ThresholdConfig[]
+    --
+    +fetchThresholds(): Observable<ThresholdConfig[]>
+    +getCached(): ThresholdConfig[]
+    +invalidateCache(): void
+    +refreshThresholds(): Observable<ThresholdConfig[]>
+    +setDefaultThreshold(...): Observable<void>
+    +setSensorThreshold(...): Observable<void>
+    +deleteSensorThreshold(sensorId): Observable<void>
+    +deleteTypeThreshold(sensorType): Observable<void>
+    -resolveBounds(...): void
+    -toThresholds(rows): ThresholdConfig[]
+  }
+
+  class "MeasureBoundsEvaluationService" as BoundsEval {
+    --
+    +isOutOfBounds(\n  envelope: DecryptedEnvelope,\n  thresholds: Threshold | null\n): boolean
+  }
+
+  ' Relationships
+  SessionLifeCycle <|.. AuthService
+  ImpersonationStatus <|.. AuthService
+
+  AuthService --> UserRole
+
+  ThresholdPrefetch --> ThresholdSvc
+  ThresholdSvc --> ThresholdModel
+  BoundsEval --> DecryptedEnvelope
+  BoundsEval --> ThresholdModel
+
+  ObfStreamMgr --> ObfuscatedEnvelope
+  ObfStreamMgr --> TelemetryEnvelope
+}
+
+note top of AuthService
+  Implements both SessionLifeCycle and
+  ImpersonationStatus interfaces.
+  Provided as SESSION_LIFECYCLE and
+  IMPERSONATION_STATUS tokens in app.config.ts.
+  Uses Angular inject() pattern.
+  Signal-based state for impersonation.
+  sessionStorage for impersonation token
+  persistence.
+  startImpersonation() calls management-api
+  /auth/impersonate and returns Observable<string>.
+end note
+
+note right of ObfStreamMgr
+  Manages SSE connection lifecycle:
+  - Creates AbortController per session
+  - Tracks streamSessionId to prevent stale subs
+  - Parses SSE messages into TelemetryEnvelope
+  - Handles token expiry, malformed messages
+  - Emits envelopes via ObservableChannel
+  - Uses @microsoft/fetch-event-source
+  - Detects application 'token_expired' events
+end note
+
+note bottom of ThresholdPrefetch
+  Starts immediately after AuthGuard
+  validates user. Runs every 5 minutes.
+  Skips for system_admin or missing tenant.
+  Invalidates cache on logout.
+  Error-resilient: keeps scheduler alive.
+end note
+
+note left of BoundsEval
+  Evaluates telemetry values against
+  configured thresholds. Priority order:
+  1. Match by sensorId (exact)
+  2. Match by sensorType (fallback)
+  3. No match -> return false (in bounds)
+end note
+
+@enduml
