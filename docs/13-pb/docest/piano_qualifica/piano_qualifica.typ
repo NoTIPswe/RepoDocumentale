@@ -1432,12 +1432,27 @@
   giorni/uomo a poco più di 80 giorni/uomo nella parte finale del periodo considerato. Per tutto l’intervallo il burn
   rate rimane comunque nettamente al di sotto della soglia accettabile indicata nel grafico.
 
+  == MP10: Requirements Stability Index
+  #figure(
+    image(height: 30%, "assets/RSI.png"),
+    caption: [Grafico per Sprint di MP10],
+  ) <MP10>
+  === PB
+
+  Dal grafico si osserva che il Requirements Stability Index si mantiene complessivamente su valori elevati per tutto il
+  periodo considerato. Dopo un valore iniziale superiore alla soglia accettabile, si registra una flessione nello sprint
+  9, in cui l’indicatore si avvicina alla soglia minima del 70% e risulta leggermente inferiore ad essa. A partire dallo
+  sprint 10 il valore cresce in modo marcato, riportandosi su livelli molto alti e mantenendosi poi stabilmente vicino
+  al 100% negli sprint successivi. L’andamento evidenzia quindi una fase iniziale di lieve variabilità, seguita da una
+  chiara stabilizzazione dei requisiti nella parte finale del periodo osservato.
+
 
   == MP11: Indice di Gulpease
  #figure(
    image(height: 30%, "assets/gulpease.png"),
    caption: [Grafico per Sprint di MP11],
  ) <MP11>
+  === RTB
   Dal grafico emerge che tutti i documenti mantengono un livello di avanzamento superiore alla soglia minima del 60%
   definita internamente dal gruppo. Nel complesso, l’andamento conferma una gestione della documentazione stabile e
   coerente con quanto fissato, senza scostamenti al di sotto del livello minimo previsto.
@@ -1477,6 +1492,21 @@
   fase PB considerati, evidenziando una piena stabilità del risultato raggiunto già negli sprint precedenti.
 
 
+  == MP13: Code Coverage
+
+  === PB
+
+
+  == MP14: Test Success Rate (a parole)
+  === PB
+
+
+  == MP15: Test Automation Percentage (a parole)
+  === PB
+
+  == MP16: Defect Discovery Rate (a parole)
+  === PB
+
   == MP18: Quality Metrics Satisfied
 
   #figure(
@@ -1499,6 +1529,8 @@
   successivi, attestandosi stabilmente intorno al 95% nella parte finale del periodo considerato. Pur senza raggiungere
   il valore ottimo del 100%, il grafico mostra quindi un andamento positivo e stabile.
 
+  == MP19: Quality Gate Pass Rate ( a parole - SONARQUBE DICE 0)
+  === PB
 
   == MP20: Time Efficiency
  #figure(
@@ -1605,6 +1637,8 @@
   con un lieve aumento negli ultimi sprint che rimane comunque limitato. Il grafico mostra quindi una fase finale
   caratterizzata da continuità e stabilità nel tempo medio di risoluzione delle Pull Request.
 
+
+  = DA FARE QUELLE DI PRODOTTO 
 
   = Valutazioni per l'automiglioramento
   Al fine di perseguire un miglioramento continuo durante lo svolgimento del progetto, è opportuno effettuare
