@@ -1,5 +1,12 @@
 title: Piano di qualifica
 changelog:
+  - version: "1.9.0"
+    date: "2026-04-11"
+    authors:
+      - Valerio Solito
+    verifier: TBD
+    description: >
+      Aggiunta Metriche per PB
   - version: "1.8.0"
     date: "2026-04-10"
     authors:

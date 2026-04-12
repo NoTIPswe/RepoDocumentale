@@ -1284,32 +1284,51 @@
   definizione della Requirements and Technology Baseline (RTB).
 
   == MP01 e MP02: Earned Value e Planned Value
+
   #figure(
     image(height: 30%, "assets/EV_PV.jpeg"),
     caption: [Grafico per Sprint di MP01 e MP02],
   ) <MP01_MP02>
+
+  === RTB
+
   Dal grafico non emergono scostamenti rilevanti tra andamento pianificato e andamento reale. Sia l’Earned Value (EV)
   sia la Planned Value (PV) mostrano un incremento progressivo lungo i sei sprint considerati. La quasi sovrapposizione
   delle due curve indica che il valore effettivamente maturato segue con buona precisione quanto previsto in fase di
   pianificazione. Gli scostamenti risultano minimi e non evidenziano ritardi o anticipi significativi rispetto al piano
   iniziale.
 
+  === PB
+
+
   == MP03 e MP07: Actual Cost e Estimate To Complete
+
   #figure(
     image(height: 30%, "assets/AC_ETC.jpeg"),
     caption: [Grafico per Sprint di MP03 e MP07],
   ) <MP03_MP07>
+
+  === RTB
+
   Dal grafico non emergono particolari criticità nell’andamento dei costi. L’Actual Cost (AC) cresce progressivamente
   lungo i sei sprint, mostrando un incremento regolare e coerente con l’avanzamento delle attività. Questo andamento è
   spiegato dal naturale sviluppo del progetto: man mano che il lavoro viene completato, i costi effettivi aumentano.
   Parallelamente, l’Estimate To Complete (ETC) diminuisce in modo costante, indicando una progressiva riduzione del
   lavoro ancora da svolgere.
 
+  === PB
+
+
   == MP04 e MP05: Cost Performance Index e Schedule Performance Index
+
+
   #figure(
     image(height: 30%, "assets/CPI_SPI.jpeg"),
     caption: [Grafico per Sprint di MP04 e MP05],
   ) <MP04_MP05>
+
+  === RTB
+
   Dal grafico si osserva che nei primi sprint il Cost Performance Index (CPI) risulta superiore a 1 (indicando un
   utilizzo efficiente del budget) e lo Schedule Performance Index (SPI) è in linea con la pianificazione. Tuttavia, in
   seguito il diagramma mostra una lieve flessione; evidenzia infatti che nelle fasi conclusive del periodo analizzato,
@@ -1317,11 +1336,18 @@
   la situazione rimane complessivamente sotto controllo: gli scostamenti sono contenuti e non evidenziano criticità
   rilevanti.
 
+  === PB
+
+
   == MP06: Estimate At Completion
+
   #figure(
     image(height: 30%, "assets/EAC.jpeg"),
     caption: [Grafico per Sprint di MP06],
   ) <MP06>
+
+  === RTB
+
   Dal grafico si osserva che l’Estimate At Completion (EAC) tende progressivamente ad aumentare dallo Sprint 2 in poi,
   arrivando a superare il Budget At Completion (BAC) nella parte centrale e finale del periodo considerato. Tale
   incremento è riconducibile a una temporanea riduzione della produttività del gruppo, dovuta alla concomitanza con il
@@ -1331,11 +1357,18 @@
   segnale positivo, in quanto indica una maggiore attenzione nella gestione delle risorse e un impegno concreto da parte
   del gruppo nel contenimento dei costi.
 
+  === PB
+
+
   == MP08: Time Estimate At Completion
+
   #figure(
     image(height: 30%, "assets/TEAC.jpeg"),
     caption: [Grafico per Sprint di MP08],
   ) <MP08>
+
+  === RTB
+
   Dal grafico si osserva che il Time At Completion si mantiene sostanzialmente allineato al valore ottimale per i primi
   quattro sprint. Solo a partire dallo sprint 5 si registra un lieve aumento rispetto alla durata prevista, seguito da
   una leggera riduzione nello sprint 6, pur rimanendo leggermente sopra il valore ottimale. Lo scostamento registrato
@@ -1343,11 +1376,18 @@
   previsione complessiva della durata del progetto. Tuttavia, tale variazione risulta contenuta e non evidenzia un
   allungamento significativo dei tempi.
 
+  === PB
+
+
   == MP09: Budget Burn Rate
+
   #figure(
     image(height: 30%, "assets/BBR.jpeg"),
     caption: [Grafico per Sprint di MP09],
   ) <MP09>
+
+  === RTB
+
   Dal grafico si osserva che il consumo medio di budget per sprint mostra un andamento inizialmente crescente. In
   particolare, dal primo al quarto sprint il valore aumenta progressivamente, passando da circa 50 giorni/uomo a un
   picco intorno ai 70 giorni/uomo. Nel quinto sprint il valore si mantiene su livelli simili al precedente, evidenziando
@@ -1357,20 +1397,34 @@
   giorni/uomo), rappresentato dalla linea rossa nel grafico. Questo aspetto evidenzia che il progetto ha mantenuto un
   livello di consumo delle risorse coerente con quanto pianificato, senza superare i limiti stabiliti.
 
+  === PB
+
+
   == MP11: Indice di Gulpease
+
   #figure(
     image(height: 30%, "assets/Gulpease.jpeg"),
     caption: [Grafico per Sprint di MP11],
   ) <MP11>
+
+  === RTB
+
   Dal grafico emerge che tutti i documenti mantengono un livello di avanzamento superiore alla soglia minima del 60%
   definita internamente dal gruppo. Nel complesso, l’andamento conferma una gestione della documentazione stabile e
   coerente con quanto fissato, senza scostamenti al di sotto del livello minimo previsto.
 
+  === PB
+
   == MP12: Correttezza Ortografica
+
+
   #figure(
     image(height: 30%, "assets/CO.png"),
     caption: [Grafico per Sprint di MP12],
   ) <MP12>
+
+  === RTB
+
   Dal grafico si osserva un andamento complessivamente decrescente del numero di errori ortografici rilevati nei
   documenti prodotti durante gli sprint. Nel primo sprint il valore iniziale risulta piuttosto elevato (circa 35
   errori), segno di una fase iniziale in cui la revisione formale non era ancora pienamente strutturata. Nel secondo
@@ -1380,22 +1434,37 @@
   valore ottimo (e accettabile) dimostrano un miglioramento continuo nella qualità redazionale e una maggiore attenzione
   ai processi di revisione.
 
+  === PB
+
+
   == MP18: Quality Metrics Satisfied
+
   #figure(
     image(height: 30%, "assets/QMS.jpeg"),
     caption: [Grafico per Sprint di MP18],
   ) <MP18>
+
+  === RTB
+
   Il grafico evidenzia come la percentuale di Quality Metrics Satisfied si sia mantenuta costantemente al di sopra della
   soglia di minimo accettabile (80%) per tutti gli sprint considerati. Sebbene non sia stato raggiunto il target
   ottimale (100%), le lievi oscillazioni registrate non hanno compromesso gli standard qualitativi prefissati. Tali
   risultati riflettono una gestione efficace della qualità e una pronta capacità di reazione del Team nel monitorare e
   mantenere il controllo sulle metriche prestabilite.
 
+  === PB
+
+
   == MP20: Time Efficiency
+
+
   #figure(
     image(height: 30%, "assets/TE.jpeg"),
     caption: [Grafico per Sprint di MP20],
   ) <MP20>
+
+  === RTB
+
   Dal grafico si osserva un progressivo incremento della Time Efficiency (TE) dallo sprint 1 allo sprint 6. Tuttavia,
   l’indicatore rimane costantemente al di sotto del valore ottimale, evidenziando un livello di efficienza temporale
   ancora migliorabile. Questo andamento è legato alla significativa incidenza delle “ore di palestra”, indispensabili al
@@ -1404,11 +1473,18 @@
   diminuire, poiché il gruppo avrà ormai consolidato competenze e modalità operative. Questo comporterà un aumento delle
   ore effettivamente produttive e, di conseguenza, un incremento della Time Efficiency nei prossimi sprint.
 
+  === PB
+
+
   == MP21: Sprint Velocity Stability
+
   #figure(
     image(height: 30%, "assets/SVS.jpeg"),
     caption: [Grafico per Sprint di MP21],
   ) <MP21>
+
+  === RTB
+
   Dal grafico si osserva un andamento progressivamente migliorativo nel corso degli sprint. Poiché la metrica misura lo
   scostamento percentuale tra velocity pianificata e velocity effettiva, valori più elevati indicano una maggiore
   instabilità, mentre valori più bassi rappresentano una migliore capacità di previsione e quindi una maggiore
@@ -1420,12 +1496,18 @@
   decrescente rappresenta un segnale positivo: lo scostamento si sta progressivamente riducendo e la prevedibilità della
   velocity sta migliorando.
 
+  === PB
+
 
   == MP22: Meeting Efficiency Index
+
   #figure(
     image(height: 30%, "assets/MEI.jpeg"),
     caption: [Grafico per Sprint di MP22],
   ) <MP22>
+
+  === RTB
+
   Dal grafico si osserva un andamento variabile nel corso degli sprint, con valori che oscillano attorno al valore
   ottimo fissato a 5 decisioni/ora (linea gialla). Poiché la metrica misura il numero medio di decisioni prese per ora
   di riunione, valori più elevati indicano una maggiore efficienza, mentre valori più bassi riflettono un minor
@@ -1438,12 +1520,18 @@
   Nell’ultimo sprint si osserva una ripresa, con un ritorno a circa 6 decisioni/ora, riportando l’indicatore sopra il
   valore ottimo.
 
+  === PB
+
 
   == MP23: PR Resolution Time
+
   #figure(
     image(height: 30%, "assets/PRRT.jpeg"),
     caption: [Grafico per Sprint di MP23],
   ) <MP23>
+
+  === RTB
+
   Dal grafico si osserva un andamento complessivamente variabile nel tempo, con un picco significativo nella parte
   centrale del periodo considerato. La metrica misura il numero medio di giorni necessari per la risoluzione delle Pull
   Request: trattandosi di un indicatore temporale, valori più bassi sono preferibili, poiché indicano maggiore
@@ -1456,6 +1544,8 @@
   la soglia accettabile (circa 2 giorni) e nell’ultimo sprint si riporta in prossimità del valore ottimo. Questo
   andamento evidenzia la capacità del team di reagire a una criticità temporanea e di ristabilire un processo di
   revisione più efficiente.
+
+  === PB
 
 
   = Valutazioni per l'automiglioramento
