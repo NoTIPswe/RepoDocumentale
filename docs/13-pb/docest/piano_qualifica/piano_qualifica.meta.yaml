@@ -1,12 +1,16 @@
 title: Piano di qualifica
 changelog:
+  - version: 2.0.0
+    date: "2026-04-13"
+    approver: Leonardo Preo
+    baseline: PB
   - version: "1.9.0"
     date: "2026-04-12"
     authors:
       - Valerio Solito
       - Alessandro Contarini
       - Mario De Pasquale
-    verifier: TBD
+    verifier: Francesco Marcon
     description: >
       Aggiunta Metriche per PB
   - version: "1.8.0"

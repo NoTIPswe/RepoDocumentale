@@ -110,14 +110,14 @@
   Al fine di garantire un linguaggio univoco e prevenire possibili ambiguità, i termini tecnici, gli acronimi e i
   vocaboli con accezione specifica nel contesto del progetto sono stati definiti puntualmente nel documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf",
-  )[Glossario v2.0.0]. Si invita il lettore a fare riferimento a tale documento per chiarire qualsiasi dubbio. Le parole
+  )[Glossario v3.0.0]. Si invita il lettore a fare riferimento a tale documento per chiarire qualsiasi dubbio. Le parole
   che possiedono un riferimento nel Glossario saranno indicate nel modo che segue:
   #align(center)[#emph([parola#sub[G]])]
 
   == Riferimenti
   === Riferimenti normativi
 
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto v1.1.0]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto v2.0.0]
   - #link(
       "https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf",
     )[Capitolato d'appalto C7 - Sistema di acquisizione dati da sensori] \ _Ultimo accesso: 2026-03-09_
@@ -126,14 +126,14 @@
 
   - #link("https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf")[Standard ISO/IEC 12207:1995]
     \ _Ultimo accesso: 2026-03-09_
-  - #link("https://it.wikipedia.org/wiki/ISO/IEC_9126")[Standard ISO/IEC 9126] \ _Ultimo accesso: 2026-03-09_
+  - #link("https://it.wikipedia.org/wiki/ISO/IEC_9126")[Standard ISO/IEC 9126] \ _Ultimo accesso: 2026-03-17_
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T07.pdf")[T07 - Qualità di prodotto] \ _Ultimo accesso:
-    2026-03-09_
+    2026-03-26_
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T08.pdf")[T08 - Qualità di processo] \ _Ultimo accesso:
-    2026-03-09_
+    2026-03-28_
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T09.pdf")[T09 - Verifica e Validazione] \ _Ultimo
-    accesso: 2026-03-09_
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario v2.0.0]
+    accesso: 2026-04-03_
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario v3.0.0]
 
   = Qualità di processo
 
@@ -303,10 +303,6 @@
     note: [L'RSI diventa significativo solo dopo aver stabilito una baseline dei requisiti.],
   )
 
-  // - MP__: Code Coverage (durante sviluppo)
-  // - MP__: Complessità Ciclomatica Media per Modulo
-
-  == Processi di supporto
   === Documentazione
 
   #metrics-table(
@@ -1350,10 +1346,10 @@
 
   === PB
 
-  Nel periodo compreso tra gli sprint 8 e 12, lo Schedule Performance Index (SPI) si mantiene costantemente pari a 1,
-  indicando piena aderenza alla pianificazione temporale. Nello stesso intervallo, il Cost Performance Index (CPI), dopo
-  aver toccato il valore minimo attorno allo sprint 8, mostra una risalita progressiva. Pur restando leggermente
-  inferiore a 1 tra gli sprint 8 e 11, nel dodicesimo sprint il CPI torna ad allinearsi allo SPI, raggiungendo anch’esso
+  Nel periodo compreso tra gli sprint 8 e 12, lo Schedule Performance Index (SPI) si mantiene costantemente vicino ad 1,
+  indicando buona aderenza alla pianificazione temporale. Nello stesso intervallo, il Cost Performance Index (CPI), dopo
+  aver toccato il valore minimo attorno allo sprint 8 (periodo di alta intensità di impegni al di fuori del progetto), mostra una risalita progressiva. Pur restando leggermente
+  inferiore a 1 tra gli sprint 8 e 11, nel dodicesimo sprint il CPI torna ad allinearsi allo SPI, raggiungendo anch'esso
   il valore 1.
 
 
@@ -1401,9 +1397,8 @@
 
   === PB
 
-  Nel periodo compreso tra gli sprint 8 e 12, il Time At Completion presenta un andamento in diminuzione. Dopo il picco
-  osservato attorno allo sprint 8, il valore cala progressivamente negli sprint successivi, pur mantenendosi per gran
-  parte dell’intervallo leggermente superiore al valore ottimale. Nel dodicesimo sprint la curva torna ad allinearsi
+  Nel periodo compreso tra gli sprint 8 e 12, il Time At Completion presenta un andamento marcato di diminuzione. Dopo il picco
+  osservato attorno allo sprint 8, il valore procede a calare progressivamente negli sprint successivi, pur mantenendosi leggermente superiore al valore ottimale. Nel dodicesimo sprint la curva torna ad allinearsi
   alla soglia ottimale, mostrando un completo rientro rispetto allo scostamento registrato in precedenza.
 
 
@@ -1432,7 +1427,7 @@
   poco da uno sprint al successivo, passando da poco meno di 80 giorni/uomo a poco più di 80 giorni/uomo nella parte
   finale del periodo considerato. Per tutto l’intervallo il burn rate rimane comunque al di sotto della soglia
   accettabile indicata nel grafico. Questo aspetto evidenzia che il progetto ha mantenuto un livello di consumo delle
-  risorse coerente con quanto pianificato.
+  risorse costante.
 
   == MP10: Requirements Stability Index
   #figure(
@@ -1463,13 +1458,12 @@
 
   Nel periodo compreso tra gli sprint 8 e 12, tutti i documenti rappresentati nel grafico restano al di sopra della
   soglia minima del 60%. In questa fase finale si osserva una sostanziale stabilità generale, accompagnata da lievi
-  oscillazioni positive per la maggior parte dei documenti. In particolare, la *Specifica Tecnica* si mantiene attorno
-  alla soglia minima con un lieve miglioramento finale, mentre *Analisi dei Requisiti* e *Piano di Qualifica* mostrano
-  una crescita moderata verso lo sprint 12. *Norme di Progetto*, *Glossario* e *Piano di Progetto* rimangono invece su
+  oscillazioni positive per la maggior parte dei documenti. In particolare, la Specifica Tecnica si mantiene attorno
+  alla soglia minima con un lieve miglioramento finale, mentre Analisi dei Requisiti e Piano di Qualifica mostrano
+  una crescita moderata verso lo sprint 12. Norme di Progetto, Glossario e Piano di Progetto rimangono invece su
   valori più alti e sostanzialmente stabili.
 
   == MP12: Correttezza Ortografica
-
 
   #figure(
     image(height: 30%, "assets/ortografica.png"),
@@ -1497,60 +1491,72 @@
 
   == MP13: Code Coverage
 
-  #figure(
-    grid(
-      columns: (1fr, 1fr),
-      gutter: 0.8em,
-      image("assets/code_coverage/crypto-sdk-codeCoverage.png", width: 100%),
-      image("assets/code_coverage/data-api-codeCoverage.png", width: 100%),
+  #align(center)[
+    #box(width: 90%)[
+      #figure(
+        grid(
+          columns: (1fr, 1fr),
+          gutter: 0.8em,
+          image("assets/code_coverage/crypto-sdk-codeCoverage.png", width: 100%),
+          image("assets/code_coverage/data-api-codeCoverage.png", width: 100%),
 
-      image("assets/code_coverage/data-consumer-codeCoverage.png", width: 100%),
-      image("assets/code_coverage/frontend-codeCoverage.png", width: 100%),
+          image("assets/code_coverage/data-consumer-codeCoverage.png", width: 100%),
+          image("assets/code_coverage/frontend-codeCoverage.png", width: 100%),
 
-      image("assets/code_coverage/mngm-api-codeCoverage.png", width: 100%),
-      image("assets/code_coverage/provisioning_codeCoverage.png", width: 100%),
+          image("assets/code_coverage/mngm-api-codeCoverage.png", width: 100%),
+          image("assets/code_coverage/provisioning_codeCoverage.png", width: 100%),
 
-      image("assets/code_coverage/simulator-backend-codeCoverage.png", width: 100%),
-      image("assets/code_coverage/simulator-cli-codeCoverage.png", width: 100%),
-    ),
-    caption: [Collage dei report di Code Coverage dei servizi del progetto],
-  ) <MP13>
+          image("assets/code_coverage/simulator-backend-codeCoverage.png", width: 100%),
+          image("assets/code_coverage/simulator-cli-codeCoverage.png", width: 100%),
+        ),
+        caption: [Report di Code Coverage dei servizi del progetto],
+      ) <MP13>
+    ]
+  ]
 
   === PB
 
-  La valutazione della metrica di Code Coverage per la PB è rappresentata nel collage precedente, che raccoglie i report
-  di copertura relativi ai diversi servizi del progetto, ottenuti tramite SonarQube. La figura consente di osservare in
+  La valutazione della metrica di Code Coverage per la PB è rappresentata nell'insieme di foto precedente, che raccoglie i report
+  di copertura relativi ai diversi servizi del progetto, ottenuti tramite SonarQube. 
+  
+  La figura consente di osservare in
   modo unitario i risultati raccolti nelle varie componenti applicative considerate durante l’attività di verifica,
   mantenendo una visione complessiva dello stato della copertura del codice nella fase finale del progetto. Nel
   complesso, dai dati raccolti emerge un valore medio di copertura poco superiore al 90%, con differenze contenute tra i
   vari servizi considerati. Tale risultato non solo soddisfa il valore accettabile definito in precedenza per la
   metrica, ma risulta anche sostanzialmente in linea con il valore ottimale fissato al 90%, evidenziando un livello di
-  copertura complessivamente molto buono. Eventuali sezioni del codice a 0% sono in realtà elementi del codice che non
-  dovrebbero essere inseriti nella verifica di SonarQube e anche se inserite non fanno scendere il code coverage del
-  servizio al di sotto dell'80%.
+  copertura complessivamente molto elevato. Alcune sezioni del codice presentano copertura allo 0%, ma si trattano in realtà di elementi del codice non critici al funzionamento. Il gruppo ha implementato misure per garantire che tutti i componenti critici siano adeguatamente coperti dai test, perseguendo la correttezza del prodotto.
 
 
   == MP14: Test Success Rate
   === PB
-  Per quanto riguarda questa metrica, durante lo sviluppo abbiamo imposto un check bloccante per il codice. In questa
+  Per quanto riguarda questa metrica, durante lo sviluppo è stato imposto un check bloccante per il codice in fase di code review, che trova impiego nella PR. In questa
   maniera ogni test non passato bloccava completamente il commit fino a quando non venisse risolto l'errore in
-  questione. Così facendo è stato mantenuto il 100% in ogni servizio sviluppato.
+  questione. Così facendo è stato mantenuto il *100%* in ogni servizio sviluppato.
 
   == MP15: Test Automation Percentage
   === PB
   Nel periodo compreso tra gli sprint 8 e 12, la metrica Test Automation Percentage si è mantenuta stabilmente al suo
-  valore ottimo del 100%. Ogni suite di test (di unità e di integrazione) è stata scritta sfruttando i framework nativi
-  dei rispettivi linguaggi ed è stata agganciata direttamente alle pipeline di Continuous Integration (CI). Strumenti di
-  analisi come SonarQube vengono infatti alimentati dai report generati in automatico dai runner della CI ad ogni
-  singola Pull Request. Di conseguenza, l'intero parco test viene eseguito e validato senza alcun intervento umano,
+  valore ottimo del *100%* sui test di unità ed d'integrazione. 
+  
+  Ogni suite di test stata scritta sfruttando i framework nativi
+  dei rispettivi linguaggi ed è stata agganciata direttamente alle pipeline di Continuous Integration (CI). 
+  
+  Grazie a questa scelta, strumenti di
+  analisi come SonarQube vengono alimentati costantemente dai report generati in automatico dai runner della CI ad ogni
+  singola Pull Request. Di conseguenza, l'intero insieme di test, per ogni servizio, viene eseguito e validato senza alcun intervento umano,
   annullando la necessità di test manuali, azzerando il rischio di errore umano nella fase di verifica e confermando il
   pieno raggiungimento dell'obiettivo prefissato.
 
+  Per quanto riguarda i test di sistema, è stata adottata una strategia di test manuale che prevede l'esecuzione di test end-to-end con l'obiettivo di verificare il corretto funzionamento dell'intero sistema in condizioni realistiche. Nonostante la natura manuale di questi test, è stata implementata una rigorosa pianificazione e documentazione dei casi di test, al fine di garantire una copertura completa e una tracciabilità accurata dei risultati. Questa strategia ha permesso di bilanciare efficacemente l'automazione dei test a livello unitario e d'integrazione con un approccio manuale mirato per i test di sistema, assicurando così un elevato standard qualitativo complessivo.
+
   == MP16: Defect Discovery Rate
+
   === PB
-  Anche in questo caso grazie agli strumenti di SonarQube e alle sue automazioni è stato possibile monitorare
-  l'andamento dei bug. Il trend ha seguito un ambito decrescente fino a raggiungere lo 0 nella fase finale della
-  codifica.
+  Per quanto riguarda la metrica MP16, grazie agli strumenti di SonarQube e alle sue automazioni è stato possibile monitorare
+  l'andamento dei difetti del codice, in modo da correggerli tempestivamente, al momento dell'esecuzionede dei workflow stabiliti in repo. 
+  
+  Il trend dei difetti rilevati ha seguito un ambito decrescente durante il corso della codifica, fino a raggiungere lo *0* (rilevato) nella sua fase conclusiva.
 
   == MP18: Quality Metrics Satisfied
 
@@ -1575,10 +1581,11 @@
   il valore ottimo del 100%, il grafico mostra quindi un andamento positivo e stabile.
 
   == MP19: Quality Gate Pass Rate
+
   === PB
-  Per quanto riguarda la metrica MP19, SonarQube ha sempre evidenziato eventuali bug nel codice bloccando la codifica e
+  Per quanto riguarda la metrica MP19, SonarQube ci ha permesso sempre di evidenziare  eventuali bug nel codice bloccando, automaticamente in fase di code review, il processo di PR. Questo ha garantito un controllo costante sulla qualità del codice,
   costringendo il programmatore a porre rimedio istantaneamente ad eventuali errori. Questa politica ha portato infine a
-  raggiungere 0 vulnerabilità, garantendo così un valore ottimo.
+  raggiungere *0* vulnerabilità (security hotspots rilevate dal tool), garantendo così il raggiungimento del valore ottimo prefissato valore ottimo.
 
   == MP20: Time Efficiency
   #figure(
@@ -1586,7 +1593,7 @@
     caption: [Grafico per Sprint di MP20],
   ) <MP20>
 
-  == RTB
+  === RTB
 
   Dal grafico si osserva un progressivo incremento della Time Efficiency (TE) dallo sprint 1 allo sprint 6. Tuttavia,
   l’indicatore rimane costantemente al di sotto del valore ottimale, evidenziando un livello di efficienza temporale
@@ -1601,7 +1608,7 @@
   Nel periodo compreso tra gli sprint 8 e 12, la Time Efficiency continua a crescere in modo regolare. I valori
   risultano sempre superiori alla soglia accettabile e mostrano un incremento progressivo da poco più del 50% fino a
   circa il 65% nello sprint 12. Il grafico evidenzia quindi un miglioramento costante dell’indicatore nella fase PB, pur
-  rimanendo ancora distante dal valore ottimo.
+  rimanendo ancora distante dal valore ottimo, indicando ancora campo di miglioramento per la gestione del tempo in modo maggiormente efficiente.
 
 
   == MP21: Sprint Velocity Stability
@@ -1629,8 +1636,7 @@
   progressiva diminuzione. Dopo essere ancora sopra la soglia accettabile nello sprint 8, l’indicatore scende al di
   sotto di essa a partire dallo sprint 9 e rimane inferiore nei successivi sprint fino al termine del periodo
   considerato. Il valore minimo si osserva attorno allo sprint 11, seguito da un lieve incremento finale che però non
-  compromette il mantenimento entro la soglia accettabile.
-
+  compromette il mantenimento entro la soglia accettabile previsto dal documento stesso.
 
   == MP22: Meeting Efficiency Index
 
@@ -1659,7 +1665,6 @@
   e si colloca per quasi tutto l’intervallo attorno o leggermente sopra il valore ottimo. Dopo l’allineamento al valore
   ottimo nello sprint 8, il grafico mostra un picco positivo nello sprint 9, seguito da una lieve diminuzione e da una
   successiva stabilizzazione negli sprint conclusivi su valori poco superiori a 5 decisioni/ora.
-
 
   == MP23: PR Resolution Time
 
