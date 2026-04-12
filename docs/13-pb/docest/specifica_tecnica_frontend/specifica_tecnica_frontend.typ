@@ -38,17 +38,18 @@
       columns: (auto, auto, auto, auto),
       [Campo], [Variabile/Config], [Default], [Obbligatorio],
 
-      [KeycloakUrl], [Configurato in `app.config.ts` come `/auth`], [-], [Si],
-      [KeycloakRealm], [notip], [notip], [Si],
-      [KeycloakClientId], [notip-frontend], [notip-frontend], [Si],
-      [SessionTimeout], [30 \* 60 \* 1000 ms (30 min)], [30 min], [No],
+      [KeycloakUrl], [Configurato in `app.config.ts` come `/auth`], [`/auth`], [Si],
+      [KeycloakRealm], [Configurato in `app.config.ts`], [`notip`], [Si],
+      [KeycloakClientId], [Configurato in `app.config.ts`], [`notip-frontend`], [Si],
+      [SessionTimeout], [Configurato in `app.config.ts` come `10 * 60 * 1000`], [10 min], [No],
       [DataApiBasePath], [`/api/data`], [`/api/data`], [Si],
       [MgmtApiBasePath], [`/api/mgmt`], [`/api/mgmt`], [Si],
     )
   ]
 
   Il frontend è servito attraverso un reverse proxy (Nginx) che instrada le chiamate ai path `/api/data`, `/api/mgmt`
-  e `/auth` verso i rispettivi backend.
+  e `/auth` verso i rispettivi backend. Non esiste una directory `src/environments/`: la configurazione è interamente
+  gestita in `app.config.ts` e i path del reverse proxy sono iniettati a livello di infrastruttura Docker.
 
   == Sequenza di avvio
 
@@ -73,7 +74,7 @@
 
       [2],
       [AutoRefreshTokenService],
-      [Configura il rinnovo automatico del token con timeout di 30 minuti],
+      [Configura il rinnovo automatico del token con timeout di 10 minuti],
       [Si],
 
       [3],
@@ -156,11 +157,21 @@
   │   │       └── obfuscated-stream-manager.service.ts # Gestione SSE
   │   ├── features/
   │   │   ├── admin/
+  │   │   │   ├── components/
+  │   │   │   │   ├── admin-gateway-form/    # Form creazione gateway admin
+  │   │   │   │   ├── admin-gateway-table/   # Tabella gateway admin
+  │   │   │   │   ├── impersonate-button/    # Bottone impersonazione
+  │   │   │   │   ├── tenant-form/           # Form creazione/modifica tenant
+  │   │   │   │   ├── tenant-table/          # Tabella tenant
+  │   │   │   │   └── tenant-user-list/      # Lista utenti tenant
   │   │   │   ├── pages/
   │   │   │   │   ├── tenant-manager/    # Gestione tenant (system_admin)
   │   │   │   │   └── tenant-detail/     # Dettaglio tenant con utenti
   │   │   │   └── pages/admin-gateway-list/  # Gateway admin
   │   │   ├── alerts/
+  │   │   │   ├── components/
+  │   │   │   │   ├── alert-config-form/   # Form config timeout alert
+  │   │   │   │   └── alert-filter-panel/  # Pannello filtri alert
   │   │   │   ├── pages/
   │   │   │   │   ├── alert-list/        # Lista alert gateway offline
   │   │   │   │   └── alert-config/      # Configurazione timeout alert
@@ -189,11 +200,42 @@
   │   │   │       ├── gateway.service.ts
   │   │   │       └── command.service.ts
   │   │   ├── mgmt/
-  │   │   │   ├── api-clients/           # Gestione client API tenant
-  │   │   │   ├── audit/                 # Consultazione audit log
-  │   │   │   ├── costs/                 # Dashboard costi
-  │   │   │   ├── thresholds/            # Configurazione soglie
-  │   │   │   └── users/                 # Gestione utenti tenant
+  │   │   │   ├── api-clients/
+  │   │   │   │   ├── components/
+  │   │   │   │   │   └── api-client-table/    # Tabella client API
+  │   │   │   │   ├── pages/
+  │   │   │   │   │   └── api-client-list/     # Lista client API
+  │   │   │   │   └── services/
+  │   │   │   │       └── clients.service.ts
+  │   │   │   ├── audit/
+  │   │   │   │   ├── components/
+  │   │   │   │   │   ├── audit-filter-panel/  # Pannello filtri audit
+  │   │   │   │   │   └── audit-log-table/     # Tabella audit log
+  │   │   │   │   ├── pages/
+  │   │   │   │   │   └── audit-log/           # Pagina audit log
+  │   │   │   │   └── services/
+  │   │   │   │       └── audit.service.ts
+  │   │   │   ├── costs/
+  │   │   │   │   ├── components/
+  │   │   │   │   │   └── cost-card/           # Card costi tenant
+  │   │   │   │   ├── pages/
+  │   │   │   │   │   └── cost-dashboard/      # Dashboard costi
+  │   │   │   │   └── services/
+  │   │   │   │       └── costs.service.ts
+  │   │   │   ├── thresholds/
+  │   │   │   │   ├── components/
+  │   │   │   │   │   ├── threshold-form/      # Form soglie
+  │   │   │   │   │   └── threshold-table/     # Tabella soglie
+  │   │   │   │   └── pages/
+  │   │   │   │       └── threshold-settings/  # Configurazione soglie
+  │   │   │   └── users/
+  │   │   │       ├── components/
+  │   │   │       │   ├── user-form/           # Form utente
+  │   │   │       │   └── user-table/          # Tabella utenti
+  │   │   │       ├── pages/
+  │   │   │       │   └── user-list/           # Lista utenti tenant
+  │   │   │       └── services/
+  │   │   │           └── user.service.ts
   │   │   ├── sensors/
   │   │   │   ├── pages/
   │   │   │   │   ├── sensor-list/       # Lista sensori
@@ -219,13 +261,22 @@
   │       │   └── placeholder-page/      # Pagina scaffold generica
   │       ├── pipes/
   │       │   └── rome-date-time.pipe.ts  # Pipe per fuso orario Roma
+  │       ├── directives/                  # (directory vuota, riservata)
   │       └── utils/
   │           └── rome-timezone.util.ts  # Utility conversione fuso orario
-  ├── environments/
+  ├── api-contracts/
+  │   └── openapi/
+  │       ├── notip-data-api-openapi.yaml
+  │       └── notip-management-api-openapi.yaml
+  ├── scripts/
+  │   └── generate-openapi.sh
   ├── index.html
   ├── main.ts
   └── styles.css
   ```
+
+  > *Nota:* Non esiste una directory `src/environments/`. La configurazione runtime è gestita interamente
+  tramite `app.config.ts` e i path del reverse proxy Nginx (`/api/data`, `/api/mgmt`, `/auth`).
 
   == Strati architetturali
 
@@ -451,8 +502,11 @@
   - *PKCE method*: S256 (Proof Key for Code Exchange)
   - *OnLoad*: `login-required` (l'utente deve autenticarsi per accedere)
   - *Check login iframe*: disabilitato (`false`)
-  - *Auto-refresh token*: abilitato con timeout di sessione di 30 minuti
-  - *Inactivity timeout*: logout automatico al superamento del timeout
+  - *Auto-refresh token*: abilitato tramite `withAutoRefreshToken` con timeout di sessione di 10 minuti
+  - *Inactivity timeout*: logout automatico al superamento del timeout (gestito da `UserActivityService`)
+
+  I servizi `AutoRefreshTokenService` e `UserActivityService` sono registrati in `app.config.ts` come provider
+  Keycloak e gestiscono il rinnovo automatico del token e il monitoraggio dell'attività utente.
 
   == AuthService
 
@@ -463,8 +517,9 @@
     #table(
       columns: (auto, auto, auto),
       [Campo], [Tipo], [Note],
-      [`keycloak`], [`Keycloak`], [Client Keycloak iniettato],
-      [`authApi`], [`AuthApiService`], [Client OpenAPI per endpoint auth management-api],
+      [`keycloak`], [`Keycloak` (via `inject()`)], [Client Keycloak iniettato],
+      [`keycloakEventSignal`], [`Signal<KeycloakEvent>`], [Signal eventi Keycloak],
+      [`authApi`], [`AuthApiService` (via `inject()`)], [Client OpenAPI per endpoint auth management-api],
       [`logoutSubject`], [`Subject<void>`], [Canale interno per lifecycle di logout],
       [`impersonatingSignal`], [`Signal<boolean>`], [Stato impersonazione read-only verso i consumer],
       [`impersonationTokenSignal`], [`Signal<string | null>`], [Token impersonato corrente],
@@ -1066,6 +1121,10 @@
 
   Le funzionalità di amministrazione sistema sono accessibili esclusivamente ai `system_admin`.
 
+  La feature include anche componenti riutilizzabili sotto `admin/components/`:
+  `AdminGatewayFormComponent`, `AdminGatewayTableComponent`, `ImpersonateButtonComponent`,
+  `TenantFormComponent`, `TenantTableComponent`, `TenantUserListComponent`.
+
   == TenantManagerPageComponent
 
   #figure(caption: [Campi di TenantManagerPageComponent])[
@@ -1177,6 +1236,9 @@
   = Feature: Alerts
 
   La gestione degli alert consente di configurare e consultare gli alert di gateway offline.
+
+  La feature include componenti sotto `alerts/components/`: `AlertConfigFormComponent`,
+  `AlertFilterPanelComponent`.
 
   == AlertListPageComponent
 
@@ -1687,8 +1749,9 @@
       di authorization code interception.],
 
       [Auto-refresh token],
-      [Il token JWT viene rinnovato automaticamente ogni 30 minuti. Il rinnovo fallito innesca il logout e il
-      re-login.],
+      [Il token JWT viene rinnovato automaticamente ogni 10 minuti tramite `withAutoRefreshToken`
+      di `keycloak-angular`. I servizi `AutoRefreshTokenService` e `UserActivityService` monitorano
+      l'attività utente e gestiscono il rinnovo. Il rinnovo fallito innesca il logout e il re-login.],
 
       [SessionStorage per impersonazione],
       [Il token di impersonazione è memorizzato in `sessionStorage`, non `localStorage`. Viene cancellato alla

@@ -11,9 +11,13 @@ skinparam linetype ortho
 package "Core Services" <<Rectangle>> {
   class "AuthService" as AuthService {
     --
-    -keycloak: KeycloakService
-    -impersonationToken: string | null
-    -isImpersonating: boolean
+    -keycloak: Keycloak (via inject)
+    -keycloakEventSignal: Signal
+    -authApi: AuthApiService (via inject)
+    -logoutSubject: Subject<void>
+    -impersonatingSignal: Signal<boolean>
+    -impersonationTokenSignal: Signal<string | null>
+    -impersonationPayloadSignal: Signal<JwtPayload | null>
     --
     +init(): Promise<boolean>
     +login(): void
@@ -22,12 +26,11 @@ package "Core Services" <<Rectangle>> {
     +getRole(): UserRole
     +getUserId(): string
     +getUsername(): string
-    +getEmail(): string
     +getTenantId(): string
-    +startImpersonation(userId, username): void
+    +startImpersonation(targetUserId): Observable<string>
     +stopImpersonation(): void
     +isImpersonating(): boolean
-    +getImpersonationToken(): string | null
+    +setImpersonating(value): void
   }
 
   class "SessionLifeCycle" as SessionLifeCycle {
@@ -43,36 +46,45 @@ package "Core Services" <<Rectangle>> {
 
   class "ObfuscatedStreamManagerService" as ObfStreamMgr {
     --
-    -subject: Subject<ObfuscatedEnvelope>
     -abortController: AbortController | null
-    -sessionId: string | null
+    -channel: ObservableChannel<TelemetryEnvelope> | null
+    -streamSessionId: number
     --
-    +openStream(endpoint, params): void
+    +openStream(sp: StreamParameters): Observable<TelemetryEnvelope>
     +closeStream(): void
-    +getChannel(): Observable<ObfuscatedEnvelope>
-    -parseEvent(message): TelemetryEnvelope
-    -handleError(error): void
+    -startStream(...): void
+    -buildQuery(sp): string
+    -parseTelemetryEnvelope(raw): TelemetryEnvelope
+    -handleMalformedMessage(...): void
+    -isTokenExpiredEvent(value): boolean
+    -isTelemetryEnvelope(value): boolean
   }
 
   class "ThresholdPrefetchService" as ThresholdPrefetch {
     --
-    -subscription: Subscription | null
+    -REFRESH_INTERVAL_MS: 5 * 60 * 1000
+    -refreshSub: Subscription | null
     --
     +start(): void
-    -fetchThresholds(): void
-    +invalidate(): void
+    +stop(): void
+    -shouldStart(): boolean
   }
 
   class "ThresholdService" as ThresholdSvc {
     --
-    -sensorIdCache: Map<string, Threshold>
-    -sensorTypeCache: Map<string, Threshold>
+    -thresholdsApi: ThresholdsService (OpenAPI)
+    -cache: ThresholdConfig[]
     --
-    +fetch(tenantId): void
-    +set(thresholds): void
-    +getBounds(sensorId, sensorType): Threshold | null
-    +delete(sensorId): void
-    +refresh(): void
+    +fetchThresholds(): Observable<ThresholdConfig[]>
+    +getCached(): ThresholdConfig[]
+    +invalidateCache(): void
+    +refreshThresholds(): Observable<ThresholdConfig[]>
+    +setDefaultThreshold(...): Observable<void>
+    +setSensorThreshold(...): Observable<void>
+    +deleteSensorThreshold(sensorId): Observable<void>
+    +deleteTypeThreshold(sensorType): Observable<void>
+    -resolveBounds(...): void
+    -toThresholds(rows): ThresholdConfig[]
   }
 
   class "MeasureBoundsEvaluationService" as BoundsEval {
@@ -100,17 +112,23 @@ note top of AuthService
   ImpersonationStatus interfaces.
   Provided as SESSION_LIFECYCLE and
   IMPERSONATION_STATUS tokens in app.config.ts.
-  Uses sessionStorage for impersonation
-  token persistence.
+  Uses Angular inject() pattern.
+  Signal-based state for impersonation.
+  sessionStorage for impersonation token
+  persistence.
+  startImpersonation() calls management-api
+  /auth/impersonate and returns Observable<string>.
 end note
 
 note right of ObfStreamMgr
   Manages SSE connection lifecycle:
   - Creates AbortController per session
-  - Tracks sessionId to prevent stale subs
+  - Tracks streamSessionId to prevent stale subs
   - Parses SSE messages into TelemetryEnvelope
   - Handles token expiry, malformed messages
-  - Emits envelopes via RxJS Subject
+  - Emits envelopes via ObservableChannel
+  - Uses @microsoft/fetch-event-source
+  - Detects application 'token_expired' events
 end note
 
 note bottom of ThresholdPrefetch

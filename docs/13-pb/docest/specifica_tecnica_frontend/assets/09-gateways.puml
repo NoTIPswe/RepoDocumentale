@@ -130,7 +130,7 @@ package "Gateway Feature" <<Rectangle>> {
 
   GatewaySvc --> GatewaysApi
   CommandSvc --> CommandsApi
-  CommandSvc --> CommandEntity
+  CommandSvc --> CommandModel
 
   GatewaySvc --> GatewayModel
   CommandSvc --> CommandModel

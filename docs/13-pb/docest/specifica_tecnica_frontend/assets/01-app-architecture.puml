@@ -16,6 +16,8 @@ package "NOTIP Frontend (Angular 21 Standalone)" <<Rectangle>> {
     +provideRouter()
     +provideMgmtApi('/api/mgmt')
     +provideDataApi('/api/data')
+    +AutoRefreshTokenService
+    +UserActivityService
   }
 
   class "app.routes.ts" as AppRoutes {
@@ -224,12 +226,20 @@ package "NOTIP Frontend (Angular 21 Standalone)" <<Rectangle>> {
       class "TenantManagerPageComponent" as TenantManagerPage
       class "TenantDetailPageComponent" as TenantDetailPage
       class "AdminGatewayListPageComponent" as AdminGatewayListPage
+      class "AdminGatewayFormComponent" as AdminGwForm
+      class "AdminGatewayTableComponent" as AdminGwTable
+      class "ImpersonateButtonComponent" as ImpBtn
+      class "TenantFormComponent" as TenantForm
+      class "TenantTableComponent" as TenantTable
+      class "TenantUserListComponent" as TenantUserList
     }
 
     package "Alerts" as Alerts {
       class "AlertListPageComponent" as AlertListPage
       class "AlertConfigPageComponent" as AlertConfigPage
       class "AlertService" as AlertService
+      class "AlertConfigFormComponent" as AlertConfigForm
+      class "AlertFilterPanelComponent" as AlertFilterPanel
     }
 
     package "Sensors" as Sensors {
@@ -239,10 +249,18 @@ package "NOTIP Frontend (Angular 21 Standalone)" <<Rectangle>> {
 
     package "Management" as Mgmt {
       class "UserListPageComponent" as UserListPage
+      class "UserFormComponent" as UserForm
+      class "UserTableComponent" as UserTable
       class "ThresholdSettingsPageComponent" as ThresholdSettingsPage
+      class "ThresholdFormComponent" as ThresholdForm
+      class "ThresholdTableComponent" as ThresholdTable
       class "ApiClientListPageComponent" as ApiClientListPage
+      class "ApiClientTableComponent" as ApiClientTable
       class "AuditLogPageComponent" as AuditLogPage
+      class "AuditFilterPanelComponent" as AuditFilterPanel
+      class "AuditLogTableComponent" as AuditLogTable
       class "CostDashboardPageComponent" as CostDashboardPage
+      class "CostCardComponent" as CostCard
     }
   }
 
@@ -385,8 +403,11 @@ package "NOTIP Frontend (Angular 21 Standalone)" <<Rectangle>> {
 
 note top of AppConfig
   Application bootstrap configuration
-  Registers Keycloak, HTTP client,
-  router, OpenAPI providers
+  Registers Keycloak with PKCE S256,
+  AutoRefreshTokenService, UserActivityService,
+  HTTP client, router, OpenAPI providers.
+  Session timeout: 10 minutes.
+  No environment.ts files used.
 end note
 
 note top of AuthService
