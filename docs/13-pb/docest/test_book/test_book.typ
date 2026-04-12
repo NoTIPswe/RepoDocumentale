@@ -225,7 +225,7 @@
     name: "Visualizzazione dati stream in formato tabellare",
     service: "Sistema Cloud — UI",
     actions: [
-      + Accedere alla sezione dashboard di un Tenant..
+      + Accedere alla sezione dashboard di un Tenant.
       + Verificare che la tabella si aggiorni con i dati in ingresso di ogni singolo sensore attivo nei filtri.
     ],
     expected: [I dati di telemetria vengono visualizzati in forma di tabella aggiornata in tempo reale, mostrando i dati
@@ -467,7 +467,7 @@
       + Navigare nella tabella dati e verificare l'evidenziazione dei valori anomali.
     ],
     expected: [Il range viene modificato correttamente. I valori che superano il range configurato vengono evidenziati
-      in tabella e generano vengono evidenziati chiaramente.],
+      in tabella in modo chiaro.],
     obtained: [Il range viene modificato correttamente. I valori che superano il range configurato vengono resi
       chiaramente distinguibili dall'utilizzatore.],
     status: "PASS",

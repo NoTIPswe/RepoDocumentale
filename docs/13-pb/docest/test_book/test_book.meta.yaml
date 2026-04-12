@@ -4,7 +4,7 @@ changelog:
     date: "2026-04-12"
     authors:
       - Francesco Marcon
-    verifier: TBD
+    verifier: Alessandro Mazzariol
     description: >
       Aggiunta e completamento dei Test di Sistema (da ST-19 a ST-26), inserimento dei Test di Integrazione (IT) e aggiornamento della tabella di riepilogo
   - version: "0.3.0"
