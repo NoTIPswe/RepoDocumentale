@@ -1,0 +1,167 @@
+@startuml
+title NOTIP Frontend - Gateway Feature Architecture
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 10
+skinparam defaultFontColor #000000
+skinparam nodesep 8
+skinparam ranksep 8
+skinparam linetype ortho
+
+package "Gateway Feature" <<Rectangle>> {
+  class "GatewayListPageComponent" as GatewayListPage {
+    --
+    -gateways: Signal<Gateway[]>
+    -loading: Signal<boolean>
+    --
+    +ngOnInit(): void
+    +selectGateway(gw): void
+  }
+
+  class "GatewayDetailPageComponent" as GatewayDetailPage {
+    --
+    -gateway: Gateway
+    -sensors: Sensor[]
+    -liveMeasures: CheckedEnvelope[]
+    -canManage: boolean
+    -isBusy: boolean
+    --
+    +ngOnInit(): void
+    +handleRename(name): void
+    +handleConfigCommand(freq, status): void
+    +handleFirmwareCommand(ver, url): void
+    +handleDelete(): void
+  }
+
+  class "GatewayCardComponent" as GatewayCard {
+    --
+    -gateway: Gateway
+    -selected: boolean
+    --
+    +select(): void
+  }
+
+  class "GatewayActionsComponent" as GatewayActions {
+    --
+    -canManage: boolean
+    -isBusy: boolean
+    --
+    +rename(): void
+    +configure(): void
+    +firmware(): void
+    +delete(): void
+  }
+
+  class "GatewayRenameModalComponent" as RenameModal {
+    --
+    -currentName: string
+    -submittedName: string
+    --
+    +submit(): void
+    +close(): void
+  }
+
+  class "CommandModalComponent" as CommandModal {
+    --
+    -mode: 'config' | 'firmware'
+    -sendFrequency: number
+    -status: CmdGatewayStatus
+    -firmwareVersion: string
+    -firmwareUrl: string
+    --
+    +submit(): void
+    +close(): void
+  }
+
+  class "DeleteConfirmModalComponent" as DeleteModal {
+    --
+    -title: string
+    -message: string
+    -busy: boolean
+    --
+    +confirm(): void
+    +cancel(): void
+  }
+
+  package "Gateway Services" as Services {
+    class "GatewayService" as GatewaySvc {
+      --
+      -listSignal: Signal<Gateway[]>
+      -selectedGatewaySignal: Signal<Gateway>
+      -loadingSignal: Signal<boolean>
+      -gatewaysApi: GatewaysService (generated)
+      --
+      +loadList(): void
+      +loadDetail(id): void
+      +updateName(id, name): void
+      +delete(id): void
+      -normalizeStatus(status): GatewayStatus
+      -mapDtoToModel(dto): Gateway
+    }
+
+    class "CommandService" as CommandSvc {
+      --
+      -commandsApi: CommandsService (generated)
+      -pollingInterval: 2000ms
+      -timeout: 300000ms (5 min)
+      --
+      +sendConfigCommand(gwId, freq, status): Observable<CommandResult>
+      +sendFirmwareCommand(gwId, ver, url): Observable<CommandResult>
+      -pollCommandStatus(commandId): Observable<CommandStatus>
+      -mapStatusCode(code): CommandStatus
+    }
+  }
+
+  ' Relationships
+  GatewayListPage --> GatewayCard
+  GatewayListPage --> GatewaySvc
+  GatewayDetailPage --> GatewaySvc
+  GatewayDetailPage --> CommandSvc
+  GatewayDetailPage --> RenameModal
+  GatewayDetailPage --> CommandModal
+  GatewayDetailPage --> DeleteModal
+  GatewayDetailPage --> TelemetryTable
+  GatewayDetailPage --> GatewayActions
+  GatewayActions --> GatewayCard
+  GatewayCard --> StatusBadge
+  RenameModal --> ModalLayer
+  CommandModal --> ModalLayer
+  DeleteModal --> ModalLayer
+
+  GatewaySvc --> GatewaysApi
+  CommandSvc --> CommandsApi
+  CommandSvc --> CommandModel
+
+  GatewaySvc --> GatewayModel
+  CommandSvc --> CommandModel
+}
+
+note top of GatewaySvc
+  Maintains internal signals for list,
+  selected gateway, and loading state.
+  Exposes them as read-only Signal<T>
+  via .asReadonly(). Normalizes status
+  from API (handles uppercase, camelCase,
+  paused/offline variants).
+end note
+
+note right of CommandSvc
+  Sends config/firmware commands
+  then polls status every 2s with
+  5-minute timeout. Maps 304 to cache,
+  404/503 to timeout. Filters out
+  invalid fields from payload.
+  Rejects commands with disallowed status.
+end note
+
+note bottom of GatewayDetailPage
+  Most complex page in the application.
+  Combines: gateway summary, rename,
+  command sending (config + firmware),
+  delete confirmation, sensor list,
+  and live telemetry stream. Handles
+  impersonation checks and role-based
+  permissions.
+end note
+
+@enduml
