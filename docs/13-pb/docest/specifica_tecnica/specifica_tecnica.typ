@@ -497,7 +497,7 @@
   == Management API
 
   #align(center)[
-    #image("./assets/ManagementAPIComponents.svg", width: 50%)
+    #image("./assets/ManagementApiComponents.svg", width: 50%)
     Architettura Logica del Management API.
   ]
 
