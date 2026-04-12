@@ -301,6 +301,130 @@ accepted_words:
   - PdQ
   - Serverless
   - WebApp
+  - AuthGuard
+  - RoleGuard
+  - HomeRedirectGuard
+  - AuthService
+  - AuthInterceptor
+  - ErrorInterceptor
+  - ObfuscatedStreamManagerService
+  - ThresholdPrefetchService
+  - ThresholdService
+  - MeasureBoundsEvaluationService
+  - DataDashboardPageComponent
+  - FilterPanelComponent
+  - TelemetryChartComponent
+  - TelemetryTableComponent
+  - decrittografia
+  - GatewayListPageComponent
+  - GatewayDetailPageComponent
+  - GatewayService
+  - TenantManagerPageComponent
+  - TenantDetailPageComponent
+  - AdminGatewayListPageComponent
+  - AlertListPageComponent
+  - AlertConfigPageComponent
+  - SensorListPageComponent
+  - SensorDetailPageComponent
+  - UserListPageComponent
+  - ThresholdSettingsPageComponent
+  - ApiClientListPageComponent
+  - AuditLogPageComponent
+  - CostDashboardPageComponent
+  - AlertService
+  - UserService
+  - ClientsService
+  - AuditService
+  - SessionTimeout
+  - DataApiBasePath
+  - MgmtApiBasePath
+  - KeycloakModule
+  - RouterModule
+  - DashboardResolver
+  - provideMgmtApi
+  - provideDataApi
+  - prefetch
+  - NgModules
+  - authInterceptor
+  - errorInterceptor
+  - ObfuscatedGateway
+  - AddGatewayParameters
+  - TelemetryEnvelope
+  - DecryptedEnvelope
+  - CheckedEnvelope
+  - ObfuscatedEnvelope
+  - ViewUser
+  - retryUrl
+  - possieda
+  - precaricare
+  - Redirezione
+  - OnLoad
+  - url
+  - UserRole
+  - AlertsType
+  - CmdGatewayStatus
+  - modalita
+  - umidita
+  - observabile
+  - querystring
+  - camelCase
+  - Priorita
+  - gatewayIds
+  - sensorTypes
+  - sensorIds
+  - Dropdown
+  - datetime
+  - dropdown
+  - DecryptedMeasureService
+  - decrittografare
+  - ValidatedMeasureFacadeService
+  - GatewayRenameModalComponent
+  - CommandModalComponent
+  - DeleteConfirmModalComponent
+  - Accessor
+  - params
+  - dedup
+  - desc
+  - deduplicate
+  - SidebarComponent
+  - ProfileSection
+  - LogoutButton
+  - ModalLayerComponent
+  - MultiSelectDropdownComponent
+  - StatusBadgeComponent
+  - ImpersonationBannerComponent
+  - ImpersonationTagComponent
+  - ProfileSectionComponent
+  - LogoutButtonComponent
+  - PlaceholderPageComponent
+  - Vitest
+  - jsdom
+  - analogjs
+  - rethrow
+  - nextCursor
+  - closeStream
+  - withAlpha
+  - GatewayCard
+  - GatewayActions
+  - GatewayRenameModal
+  - CommandModal
+  - DeleteConfirmModal
+  - MultiSelectDropdown
+  - StatusBadge
+  - ImpersonationBanner
+  - DOM
+  - TestBed
+  - NgRx
+  - debuggare
+  - Decrittografia
+  - decrittografata
+  - decrittografati
+  - FilterPanel
+  - HMR
+  - bundler
+  - SessionStorage
+  - minlength
+  - maxlength
   - DdB
   - multitenant
   - multitenancy
@@ -673,6 +797,7 @@ accepted_words:
   - cmd
   - committare
   - committata
+  - ErrorPageComponent
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
@@ -760,7 +885,6 @@ accepted_words:
   - versionata
   - versionati
   - debuggati
-  - WebApp
   - opz
   - sottocomandi
   - sottocomando
