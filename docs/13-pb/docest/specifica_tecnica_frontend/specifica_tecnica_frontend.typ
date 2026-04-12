@@ -108,17 +108,14 @@
 
       [9],
       [Browser rendering],
-      [Rendering del componente pagina risolto dalla rotta],
+      [Rendering del componente pagina risolto dalla route],
       [No],
     )
   ]
 
   = Architettura logica
 
-  L'applicazione adotta un'architettura *feature-sliced* con componenti standalone Angular, senza NgModules.
-  La struttura segue una separazione chiara tra core (servizi singleton), features (pagine e componenti di dominio)
-  e shared (componenti riutilizzabili). Lo state management è basato su *segnali Angular* (`signal()`, `computed()`,
-  `effect()`) combinati con *RxJS* per flussi asincroni e comunicazione tra componenti.
+  L'applicazione adotta una *Layered Feature-Based Architecture* con componenti standalone Angular, senza NgModules. La struttura è organizzata in tre layer orizzontali con responsabilità distinte e non sovrapposte — Core, Features e Shared — combinati con una decomposizione verticale per dominio funzionale all'interno del layer Features. Le dipendenze scorrono in direzione unidirezionale: Features e Shared dipendono da Core, mentre nessun layer dipende da un layer superiore (Unidirectional Dependency Rule). Lo state management è basato su *segnali Angular* (signal(), computed(), effect()) per lo stato locale dei componenti e dei servizi di feature, combinati con *RxJS* per la gestione di flussi asincroni (SSE, HTTP) e la comunicazione inter-componente tramite Subject.
 
   == Layout delle cartelle
 
@@ -236,7 +233,7 @@
     caption: [Strati architetturali del frontend `notip-frontend`],
   )[
     #table(
-      columns: (auto, auto, auto, auto),
+      columns: (1fr, 1.5fr, 1.5fr, 2fr),
       [Strato],
       [Package],
       [Componenti],
