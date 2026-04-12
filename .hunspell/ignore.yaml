@@ -252,15 +252,22 @@ accepted_words:
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
+  - ACKS
   - Acknowledgement
   - API
   - BAC
   - backend
   - BLE
+  - CGo
+  - CJS
   - changelog
   - CMMI
+  - CQRS
   - cowork
   - Cyclomatic
+  - ECDSA
+  - ESM
+  - FAIL
   - DTO
   - EAC
   - EV
@@ -269,6 +276,7 @@ accepted_words:
   - IEC
   - IoT
   - KLOC
+  - Mgmt
   - MVP
   - BYOK
   - PDCA
@@ -288,6 +296,7 @@ accepted_words:
   - auth
   - Burndown
   - MVP
+  - Supertest
   - AdR
   - NdP
   - TOTP
@@ -469,6 +478,16 @@ accepted_words:
   - AOP
   - GitOps
   - middleware
+  - modernc
+  - npm
+  - pgx
+  - pgxpool
+  - postgres
+  - sdk
+  - sqlite
+  - testcontainers
+  - Vitest
+  - Zod
 
   # --- Terminologia Standard Progetto ---
   - req
@@ -801,6 +820,7 @@ accepted_words:
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
+  - avviabile
   - autoconsistente
   - autoconsistenza
   - automiglioramento
@@ -834,8 +854,12 @@ accepted_words:
   - Sez
   - impersonificato
   - istanziati
+  - istanziare
   - failover
   - provisionato
+  - provisionati
+  - scriptabile
+  - efimeri
   - messagging
   - decifratura
   - versionare

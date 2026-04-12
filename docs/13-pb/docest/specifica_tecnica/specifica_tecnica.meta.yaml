@@ -1,11 +1,81 @@
 title: Specifica tecnica
 changelog:
   - version: "1.0.0"
-    date: "2026-04-13"
     approver: Leonardo Preo
     baseline: PB
+    date: "2026-04-13"
+  - version: "0.8.0"
+    date: "2026-04-10"
+    authors:
+      - Francesco Marcon
+    verifier: Alessandro Mazzariol
+    description: >
+      Aggiornata la sezione Metodologie di Testing
+  - version: "0.7.1"
+    date: "2026-04-06"
+    authors:
+      - Francesco Marcon
+    verifier: Alessandro Contarini
+    description: >
+      Uniformata la nomenclatura tra le sezioni Tecnologie e Architettura
+  - version: "0.7.0"
+    date: "2026-04-05"
+    authors:
+      - Francesco Marcon
+    verifier: Alessandro Contarini
+    description: >
+      Correzioni imprecisioni su decisioni di sicurezza
+  - version: "0.6.0"
+    date: "2026-04-01"
+    authors:
+      - Valerio Solito
+    verifier: Leonardo Preo
+    description: >
+      Stesura della sezione Architettura di Deployment e definizione microservizi
+  - version: "0.5.1"
+    date: "2026-03-31"
+    authors:
+      - Alessandro Contarini
+    verifier: Francesco Marcon
+    description: >
+      Correzione imprecisioni sui design pattern e allineamento terminologico
+  - version: "0.5.0"
+    date: "2026-03-30"
+    authors:
+      - Alessandro Contarini
+    verifier: Francesco Marcon
+    description: >
+      Inserimento dei design pattern architetturali principali
+  - version: "0.4.2"
+    date: "2026-03-29"
+    authors:
+      - Leonardo Preo
+    verifier: Mario De Pasquale
+    description: >
+      Allineamento delle tecnologie con i requisiti e dettagli sui database
+  - version: "0.4.1"
+    date: "2026-03-28"
+    authors:
+      - Matteo Mantoan
+    verifier: Alessandro Mazzariol
+    description: >
+      Aggiunti vincoli e note nella sezione Tecnologie
+  - version: "0.4.0"
+    date: "2026-03-27"
+    authors:
+      - Matteo Mantoan
+    verifier: Valerio Solito
+    description: >
+      Aggiunto diagramma C4 di sistema
+  - version: "0.3.0"
+    date: "2026-03-26"
+    authors:
+      - Leonardo Preo
+    verifier: Mario De Pasquale
+    description: >
+      Stesura della sezione Sicurezza e politiche multi-tenant
   - version: "0.2.1"
-    date: "2026-04-07"
+    date: "2026-03-25"
     authors:
       - Matteo Mantoan
     verifier: Francesco Marcon
@@ -17,7 +87,7 @@ changelog:
       - Francesco Marcon
     verifier: Alessandro Contarini
     description: >
-      Aggiunta pattern, architettura logica, tecnologie di analisi statica e dinamica notip-data-consumer
+      Stesura iniziale delle sezioni Tecnologie e Architettura di Sistema
   - version: "0.1.0"
     date: "2026-03-09"
     authors:
@@ -28,7 +98,7 @@ changelog:
   - version: "0.0.1"
     date: "2026-03-09"
     authors:
-      - Leonardo Preo 
+      - Leonardo Preo
     verifier: Valerio Solito
     description: >
-      Creazione del documento
+      Creazione del documento e impostazione del template
