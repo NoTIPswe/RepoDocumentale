@@ -1,5 +1,9 @@
 title: Specifica tecnica
 changelog:
+  - version: "1.0.0"
+    date: "2026-04-13"
+    approver: Leonardo Preo
+    baseline: PB
   - version: "0.2.1"
     date: "2026-04-07"
     authors:
