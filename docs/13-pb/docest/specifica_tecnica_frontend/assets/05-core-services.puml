@@ -1,0 +1,132 @@
+@startuml
+title NOTIP Frontend - Core Services Architecture
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 10
+skinparam defaultFontColor #000000
+skinparam nodesep 8
+skinparam ranksep 8
+skinparam linetype ortho
+
+package "Core Services" <<Rectangle>> {
+  class "AuthService" as AuthService {
+    --
+    -keycloak: KeycloakService
+    -impersonationToken: string | null
+    -isImpersonating: boolean
+    --
+    +init(): Promise<boolean>
+    +login(): void
+    +logout(): void
+    +getToken(): Promise<string>
+    +getRole(): UserRole
+    +getUserId(): string
+    +getUsername(): string
+    +getEmail(): string
+    +getTenantId(): string
+    +startImpersonation(userId, username): void
+    +stopImpersonation(): void
+    +isImpersonating(): boolean
+    +getImpersonationToken(): string | null
+  }
+
+  class "SessionLifeCycle" as SessionLifeCycle {
+    <<interface>>
+    +isSessionActive(): boolean
+  }
+
+  class "ImpersonationStatus" as ImpersonationStatus {
+    <<interface>>
+    +isImpersonating(): boolean
+    +getImpersonationToken(): string | null
+  }
+
+  class "ObfuscatedStreamManagerService" as ObfStreamMgr {
+    --
+    -subject: Subject<ObfuscatedEnvelope>
+    -abortController: AbortController | null
+    -sessionId: string | null
+    --
+    +openStream(endpoint, params): void
+    +closeStream(): void
+    +getChannel(): Observable<ObfuscatedEnvelope>
+    -parseEvent(message): TelemetryEnvelope
+    -handleError(error): void
+  }
+
+  class "ThresholdPrefetchService" as ThresholdPrefetch {
+    --
+    -subscription: Subscription | null
+    --
+    +start(): void
+    -fetchThresholds(): void
+    +invalidate(): void
+  }
+
+  class "ThresholdService" as ThresholdSvc {
+    --
+    -sensorIdCache: Map<string, Threshold>
+    -sensorTypeCache: Map<string, Threshold>
+    --
+    +fetch(tenantId): void
+    +set(thresholds): void
+    +getBounds(sensorId, sensorType): Threshold | null
+    +delete(sensorId): void
+    +refresh(): void
+  }
+
+  class "MeasureBoundsEvaluationService" as BoundsEval {
+    --
+    +isOutOfBounds(\n  envelope: DecryptedEnvelope,\n  thresholds: Threshold | null\n): boolean
+  }
+
+  ' Relationships
+  SessionLifeCycle <|.. AuthService
+  ImpersonationStatus <|.. AuthService
+
+  AuthService --> UserRole
+
+  ThresholdPrefetch --> ThresholdSvc
+  ThresholdSvc --> ThresholdModel
+  BoundsEval --> DecryptedEnvelope
+  BoundsEval --> ThresholdModel
+
+  ObfStreamMgr --> ObfuscatedEnvelope
+  ObfStreamMgr --> TelemetryEnvelope
+}
+
+note top of AuthService
+  Implements both SessionLifeCycle and
+  ImpersonationStatus interfaces.
+  Provided as SESSION_LIFECYCLE and
+  IMPERSONATION_STATUS tokens in app.config.ts.
+  Uses sessionStorage for impersonation
+  token persistence.
+end note
+
+note right of ObfStreamMgr
+  Manages SSE connection lifecycle:
+  - Creates AbortController per session
+  - Tracks sessionId to prevent stale subs
+  - Parses SSE messages into TelemetryEnvelope
+  - Handles token expiry, malformed messages
+  - Emits envelopes via RxJS Subject
+end note
+
+note bottom of ThresholdPrefetch
+  Starts immediately after AuthGuard
+  validates user. Runs every 5 minutes.
+  Skips for system_admin or missing tenant.
+  Invalidates cache on logout.
+  Error-resilient: keeps scheduler alive.
+end note
+
+note left of BoundsEval
+  Evaluates telemetry values against
+  configured thresholds. Priority order:
+  1. Match by sensorId (exact)
+  2. Match by sensorType (fallback)
+  3. No match -> return false (in bounds)
+end note
+
+@enduml
