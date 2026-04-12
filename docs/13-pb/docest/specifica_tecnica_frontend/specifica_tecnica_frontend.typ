@@ -580,7 +580,7 @@
       columns: (auto, auto),
       [Caso], [Comportamento],
       [`Errore non HTTP`], [Propaga errore originale con `throwError()`],
-      [`401 Unauthorized`], [Redirect a `/error?reason=unauthorized&retryUrl=...` se non si e gia sulla rotta `/error`],
+      [`401 Unauthorized`], [Redirect a `/error?reason=unauthorized&retryUrl=...` se non si e già sulla rotta `/error`],
       [`403 Forbidden`], [Redirect a `/error?reason=forbidden`],
       [`Altri status`], [Propagazione errore senza redirect aggiuntivo],
     )

@@ -797,6 +797,7 @@ accepted_words:
   - cmd
   - committare
   - committata
+  - ErrorPageComponent
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
