@@ -183,8 +183,8 @@
     columns: (1fr, auto, 4fr),
     [Libreria], [Versione], [Descrizione],
 
-    [\@notip/crypto-sdk],
-    [2.0.0],
+    [#link("https://www.npmjs.com/package/@notip/crypto-sdk?activeTab=readme")[\@notip/crypto-sdk]],
+    [2.0.1],
     [Pacchetto npm interno che incapsula la logica di decifratura client-side della telemetria NoTIP. Importato dalla
       Web Application e utilizzabile da API client esterni. Distribuito in formato ESM e CJS con dichiarazioni
       TypeScript incluse.],
