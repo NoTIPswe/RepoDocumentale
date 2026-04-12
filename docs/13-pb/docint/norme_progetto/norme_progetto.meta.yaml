@@ -1,5 +1,12 @@
 title: Norme di progetto
 changelog:
+  - version: "1.7.0"
+    date: "2026-04-12"
+    authors:
+      - Valerio Solito
+    verifier: TBD
+    description: >
+      Mini fix alla metrica MQ17
   - version: "1.6.0"
     date: "2026-04-11"
     authors:
