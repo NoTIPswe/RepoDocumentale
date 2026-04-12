@@ -62,7 +62,7 @@ Durante la riunione sono stati affrontati il setup delle repository, la definizi
   )
 
   #base-report.report-point(
-    discussion_point: [Avvio Sviluppo],
+    discussion_point: [Avvio sviluppo],
 
     discussion: [
       Il Team ha confermato che, a partire dai due giorni successivi all’incontro, inizierà lo sviluppo effettivo del
@@ -93,7 +93,7 @@ Durante la riunione sono stati affrontati il setup delle repository, la definizi
   )
 
 
-  = Epilogo della Riunione
+  = Epilogo della riunione
   L’incontro si è concluso in maniera proficua e ha consentito di chiarire le priorità operative per il proseguimento
   del progetto. In particolare, ha permesso di:
   - definire le attività necessarie per l’avvio dello sviluppo;
@@ -106,7 +106,7 @@ Durante la riunione sono stati affrontati il setup delle repository, la definizi
 
   #pagebreak()
 
-  = Approvazione Aziendale
+  = Approvazione aziendale
   La presente sezione certifica che il verbale è stato esaminato e approvato dai rappresentanti di _M31_. L’avvenuta
   approvazione è formalmente confermata dalle firme riportate di seguito dei referenti Aziendali.
 

@@ -1,6 +1,6 @@
 #import "lib.typ": ROLES, activity, cite-norm, norm
 
-== Processo di Validazione
+== Processo di validazione
 
 Il processo di *Validazione* ha lo scopo di confermare che il sistema software realizzato soddisfi le esigenze
 specifiche dell'utente e sia idoneo all'utilizzo nel suo contesto operativo reale. L'obiettivo è rispondere alla
@@ -13,7 +13,7 @@ definiti nell'Analisi dei Requisiti.
 === Norme e strumenti di validazione
 
 #norm(
-  title: "Tracciamento dei Requisiti",
+  title: "Tracciamento dei requisiti",
   label: <tracciamento-requisiti>,
 )[
   Per garantire la completezza del prodotto, deve essere mantenuta una "tracciabilità bidirezionale" nella Matrice di
@@ -25,7 +25,7 @@ definiti nell'Analisi dei Requisiti.
 ]
 
 #norm(
-  title: "Test di Accettazione",
+  title: "Test di accettazione",
   label: <test-accettazione>,
 )[
   I Test di Accettazione verificano il comportamento del sistema completo simulando scenari d'uso reali. Possiamo
@@ -39,7 +39,7 @@ definiti nell'Analisi dei Requisiti.
 === Attività del processo
 
 #activity(
-  title: "Validazione dei Requisiti (Analisi)",
+  title: "Validazione dei requisiti (analisi)",
   roles: (ROLES.anal, ROLES.resp),
   norms: ("tracciamento-requisiti",),
   input: [Specifica dei Requisiti, Codice Testato],

@@ -1,6 +1,6 @@
 #import "lib.typ": ROLES, activity, cite-norm, norm
 
-== Gestione delle Configurazioni
+== Gestione delle configurazioni
 
 Il processo di *Gestione delle Configurazioni* ha lo scopo di identificare, definire e tracciare gli elementi che
 compongono il prodotto software e la documentazione, controllandone le modifiche e registrandone lo stato nel corso del
@@ -34,7 +34,7 @@ progetto.
 ]
 
 #norm(
-  title: "Elementi di Configurazione",
+  title: "Elementi di configurazione",
   label: <config-items>,
 )[
   Vengono sottoposti a controllo di versione e configurazione i seguenti elementi:
@@ -73,7 +73,30 @@ progetto.
 ]
 
 #norm(
-  title: "Strategia dei Repository",
+  title: "Approccio GitOps per l'infrastruttura",
+  label: <gitops-infra>,
+)[
+  Il repository Git è l'unica fonte di verità per lo stato dell'infrastruttura. È vietata qualsiasi modifica manuale
+  tramite interfaccia grafica o CLI che non sia preceduta dal corrispondente commit nel repository:
+
+  - *Grafana*: Le dashboard non possono essere create o modificate esclusivamente dall'interfaccia grafica. Ogni
+    modifica deve essere esportata come file JSON e committata in `notip-infra/infra/monitoring/grafana/` tramite Pull
+    Request (vedi @osservabilita);
+  - *NATS JetStream*: Stream, consumer e policy di retention non possono essere modificati tramite CLI NATS. Ogni
+    modifica deve essere riflessa nei file JSON in `notip-infra/infra/nats/streams/` tramite Pull Request (vedi
+    @config-items);
+  - *Keycloak*: Le configurazioni di realm, client, ruoli e policy non possono essere modificate esclusivamente
+    dall'interfaccia di amministrazione. Il realm export aggiornato deve essere committato nella directory di
+    configurazione dedicata in `notip-infra/` tramite Pull Request;
+  - *Nginx*: Le regole di routing, la configurazione TLS e gli header di sicurezza non possono essere modificati
+    direttamente sui server. Ogni modifica deve essere applicata ai file in `notip-infra/infra/nginx/` tramite Pull
+    Request (vedi @nginx-gateway).
+
+  Ogni stato dell'infrastruttura non tracciato nel repository è considerato configurazione non autorizzata.
+]
+
+#norm(
+  title: "Strategia dei repository",
   label: <repo-strategy>,
 )[
   Il gruppo adotta una strategia Multi-repo per garantire una netta separazione delle responsabilità e mantenere lineare
@@ -123,7 +146,7 @@ progetto.
 ]
 
 #norm(
-  title: "Configurazione Task Jira",
+  title: "Configurazione work items Jira",
   label: <jira-config>,
 )[
   Ogni modifica alla configurazione deve essere associata a un Task su Jira. È obbligatorio compilare i seguenti campi
@@ -136,7 +159,7 @@ progetto.
 ]
 
 #norm(
-  title: "Restrizioni e Check",
+  title: "Restrizioni e check",
   label: <restriction-check>,
 )[
   Per garantire che solo configurazioni verificate confluiscano nel ramo principale, vengono applicate le seguenti
@@ -156,7 +179,7 @@ progetto.
 ]
 
 #norm(
-  title: "Versionamento del Codice Sorgente",
+  title: "Versionamento del codice sorgente",
   label: <versionamento-codice>,
   rationale: [
     La logica di avanzamento automatico si applica allo stato del branch `main` al momento del merge. In presenza di più
@@ -178,7 +201,7 @@ progetto.
 ]
 
 #norm(
-  title: "Gestione dei Segreti e Configurazioni",
+  title: "Gestione dei segreti e configurazioni",
   label: <gestione-segreti>,
 )[
   Le configurazioni e i segreti di progetto sono gestiti tramite file `.env`. In fase di CI/deploy i valori vengono
@@ -195,7 +218,7 @@ progetto.
 ]
 
 #norm(
-  title: "Disciplina dei Commit",
+  title: "Disciplina dei commit",
   label: <disciplina-commit>,
 )[
   Per correzioni minori o aggiustamenti all'ultimo commit, è vietato produrre una sequenza di micro-commit correttivi
@@ -210,7 +233,7 @@ progetto.
 === Attività del processo
 
 #activity(
-  title: "Identificazione della Configurazione",
+  title: "Identificazione della configurazione",
   roles: (ROLES.amm, ROLES.resp),
   norms: ("config-items", "struttura-repo-docs", "uso-notipdo"),
   input: [Nuovi artefatti da produrre],
@@ -234,7 +257,7 @@ progetto.
 )
 
 #activity(
-  title: "Controllo della Configurazione",
+  title: "Controllo della configurazione",
   roles: (ROLES.aut, ROLES.ver),
   norms: ("jira-config", "branching-commit-docs", "uso-notipdo"),
   input: [Necessità di modifica (Task o Bug)],
@@ -277,7 +300,7 @@ progetto.
 )
 
 #activity(
-  title: "Registrazione dello Stato della Configurazione",
+  title: "Registrazione dello stato della configurazione",
   roles: (ROLES.amm,),
   norms: ("uso-notipdo", "baseline-def"),
   input: [Decisione di pubblicazione],
@@ -300,7 +323,7 @@ progetto.
 )
 
 #activity(
-  title: "Valutazione della Configurazione",
+  title: "Valutazione della configurazione",
   roles: (ROLES.resp, ROLES.anal),
   norms: ("baseline-def", "jira-config"),
   input: [Rilascio di Baseline imminente],

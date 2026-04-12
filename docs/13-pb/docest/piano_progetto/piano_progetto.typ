@@ -29,7 +29,7 @@
       v1.1.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto v1.1.0]
   === Riferimenti informativi
-  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf")[T03 - Ciclo di via del Software] \ _Ultimo
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf")[T03 - Ciclo di vita del Software] \ _Ultimo
     accesso: 2026-03-09_
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf")[T04 - Gestione di Progetto] \ _Ultimo accesso:
     2026-03-09_
@@ -70,9 +70,9 @@
       [Mitigazione],
       [Una volta individuate le tecnologie da adottare, è opportuno prevedere un periodo di “palestra” per approfondirle
         e consolidare le competenze, considerando che situazioni simili potrebbero ripresentarsi anche in futuro. Se la
-        criticità dovesse coinvolgere l’intero gruppo, il team potrà organizzare un incontro con M31 per richiedere
+        criticità dovesse coinvolgere l’intero gruppo, il Team potrà organizzare un incontro con M31 per richiedere
         chiarimenti sulla tecnologia oggetto di analisi. Tuttavia, poiché il livello di conoscenza tra i membri potrebbe
-        non essere omogeneo, è verosimile che molte problematiche vengano risolte internamente al team.],
+        non essere omogeneo, è verosimile che molte problematiche vengano risolte internamente al Team.],
 
       [Probabilità], [Alta],
       [Impatto prestazionale], [Alto],
@@ -93,7 +93,7 @@
         esecuzione],
 
       [Mitigazione],
-      [Il team farà ampio ricorso ai test durante le fasi di sviluppo, così da assicurare il corretto funzionamento del
+      [Il Team farà ampio ricorso ai test durante le fasi di sviluppo, così da assicurare il corretto funzionamento del
         prodotto. Nel caso in cui dovessero emergere difficoltà tali da impedire l’avanzamento delle attività, verrà
         richiesto il supporto dell’Azienda proponente.],
 
@@ -124,7 +124,7 @@
       [Probabilità], [Media - Bassa],
       [Impatto prestazionale], [Alto],
     ),
-    caption: [Mancato rispetto delle scadenza stabilite],
+    caption: [Mancato rispetto delle scadenze stabilite],
   )<tab:RO1>
   == Rischi personali
   === Rischio legato a problematiche personali o attività universitarie
@@ -155,8 +155,9 @@
 
   Come anticipato nella #link(
     "https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/dichiarazione_impegni.pdf",
-  )[Dichiarazione degli impegni v1.0.0], il gruppo prevede di terminare il progetto entro il giorno *21 Marzo 2026* con
-  un budget di spesa fissato a *12.940 Euro*.\
+  )[Dichiarazione degli impegni v1.0.0], e alla luce del ritardo accumulato durante la fase di RTB, il gruppo ha
+  aggiornato la pianificazione e prevede di terminare il progetto entro il giorno *13 Aprile 2026*, mantenendo un budget
+  di spesa fissato a *12.940 Euro*.\
   Al momento della candidatura si è teorizzato la seguente previsione dei costi: #figure(
     numbering: "1",
     table(
@@ -177,7 +178,7 @@
 
   == Attività fissate per la Requirements and Technology Baseline (RTB)
 
-  === Redazione Analisi dei Requisiti (AdR)
+  === Redazione analisi dei requisiti (AdR)
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -199,7 +200,7 @@
     ],
     table.cell(colspan: 2, align: center)[*Completato per RTB*],
   )
-  === Redazione Norme di Progetto (NdP)
+  === Redazione norme di progetto (NdP)
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -223,7 +224,7 @@
   )
 
 
-  === Redazione Piano di Progetto (PdP)
+  === Redazione piano di progetto (PdP)
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -249,7 +250,7 @@
   )
 
 
-  === Redazione Piano di Qualifica (PdQ)
+  === Redazione piano di qualifica (PdQ)
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -275,7 +276,7 @@
   )
 
 
-  === Redazione Glossario
+  === Redazione glossario
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -291,7 +292,7 @@
     table.cell(colspan: 2, align: center)[*Completato per RTB*],
   )
 
-  === Realizzazione del Proof of Concept
+  === Realizzazione del proof of concept
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -309,6 +310,7 @@
       - Sprint 4
       - Sprint 5
       - Sprint 6
+      - Sprint 7
 
     ],
     table.cell(colspan: 2, align: center)[*Completato per RTB*],
@@ -316,6 +318,9 @@
 
 
   == Attività fissate per la Product Baseline (PB)
+  Al termine della fase di RTB, preso atto del ritardo accumulato, il gruppo ha rivisto la pianificazione a lungo
+  termine della seconda parte, estendendola fino al dodicesimo sprint con l’obiettivo di portare a termine il progetto.
+  Di seguito sono riportate le attività previste per la fase di PB, suddivise per argomento.
   === Correzione errori nei documenti segnalati
   #figure(
     table(
@@ -334,13 +339,13 @@
           - Correzione requisiti.
       ],
       [
-        - Sprint 7
+        - Sprint 8
       ],
       table.cell(colspan: 2, align: center)[*Completato per PB*],
     ),
   )<tab:Correzione-RTB>
 
-  === Redazione Manuale Test
+  === Redazione manuale test
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -348,18 +353,21 @@
       table.cell(align: center)[*Periodo*],
     ),
     [
-      - Da Definire
+      - Definizione struttura del documento
+      - Descrizione ambiente di esecuzione dei test
+      - Elenco e descrizione dei test di unità, integrazione e sistema
+      - Procedura di esecuzione e verifica dei risultati
     ],
     [
-      - Sprint 7
-      - Sprint 8
       - Sprint 9
-
+      - Sprint 10
+      - Sprint 11
+      - Sprint 12
     ],
-    table.cell(colspan: 2, align: center)[*Non completato*],
+    table.cell(colspan: 2, align: center)[*Completato per PB*],
   )
 
-  === Redazione Manuale Utente
+  === Redazione manuale utente
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -367,15 +375,17 @@
       table.cell(align: center)[*Periodo*],
     ),
     [
-      - Da Definire
+      - Requisiti di installazione e avvio
+      - Configurazione del sistema
+      - Guida all'utilizzo delle funzionalità principali
+      - Gestione errori comuni e troubleshooting
     ],
     [
-      - Sprint 7
-      - Sprint 8
-      - Sprint 9
-
+      - Sprint 10
+      - Sprint 11
+      - Sprint 12
     ],
-    table.cell(colspan: 2, align: center)[*Non completato*],
+    table.cell(colspan: 2, align: center)[*Completato per PB*],
   )
 
   === Realizzazione Minimum Viable Product (MVP)
@@ -386,23 +396,30 @@
       table.cell(align: center)[*Periodo*],
     ),
     [
-      - Da Definire
+      - Correzione criticità emerse in RTB
+      - Definizione e consolidamento dell'architettura
+      - Implementazione dei componenti principali del sistema
+      - Integrazione tra i componenti
+      - Validazione del MVP
     ],
     [
       - Sprint 7
       - Sprint 8
       - Sprint 9
-
+      - Sprint 10
+      - Sprint 11
+      - Sprint 12
     ],
-    table.cell(colspan: 2, align: center)[*Non completato*],
+    table.cell(colspan: 2, align: center)[*Completato per PB*],
   )
 
   = Pianificazione nel breve termine
   == Introduzione
-  Il gruppo NoTIP ha deciso di adottare un approccio Agile per tutta la durata del progetto, suddividendo lo sviluppo in
-  sprint di due settimane. Il gruppo si impegna a definire, all'inizio di ogni periodo, la pianificazione delle
-  settimane successive e una rotazione dei ruoli coerente, mantenendo la flessibilità necessaria per eventuali
-  cambiamenti organizzativi.
+  Il gruppo NoTIP ha deciso di adottare un approccio Agile per tutta la durata del progetto, suddividendo inizialmente
+  lo sviluppo in sprint di due settimane. A partire dallo Sprint 9, la durata degli sprint è stata ridotta a una
+  settimana, al fine di aumentare la frequenza di pianificazione e monitoraggio delle attività. Il gruppo si impegna a
+  definire, all'inizio di ogni periodo, la pianificazione delle settimane successive e una rotazione dei ruoli coerente,
+  mantenendo la flessibilità necessaria per eventuali cambiamenti organizzativi.
 
   Il gruppo si impegna, inoltre, a concordare incontri settimanali con la proponente (M31) per ricevere feedback su
   quanto realizzato e favorire momenti di brainstorming collettivo, garantendo scelte di sviluppo ottimali.
@@ -478,13 +495,13 @@
         [Alessandro \ Mazzariol], [-], [2], [-], [-], [-], [3], [*5*],
         [Leonardo \ Preo], [-], [-], [2], [-], [-], [0,5], [*2,5*],
         [Valerio \ Solito], [-], [-], [-], [-], [-], [-], [*0*],
-        [Matteo \ Mantoan], [-], [4], [-], [-], [-], [1,25], [*5,5*],
+        [Matteo \ Mantoan], [-], [4], [-], [-], [-], [1,25], [*5,25*],
         [Mario De\ Pasquale], [-], [-], [1,5], [-], [-], [1], [*2,5*],
       )
     ],
   )<tab:Sprint1-ore-effettive>
 
-  ==== Rischi incontrati
+  ==== Consuntivo del periodo
   Durante questo sprint il gruppo ha avuto difficoltà nel capire come organizzare il lavoro tra i vari componenti e,
   come si può evincere dalla @tab:Sprint1-ore-effettive, ci sono componenti che non hanno impiegato più di un'ora nel
   fare le mansioni, questo sia a causa del rischio *RP1*, sia per l'inesperienza generale.
@@ -493,7 +510,17 @@
   Questo Sprint è stato dedicato nel risolvere questioni importanti come il trasferimento del workflow su Jira, e la
   prima stesura dei documenti più importanti. Tutte le attività previste sono state comunque eseguite senza ritardi.
 
-  ==== Aggiornamento risorse monetarie rimanenti
+  ==== Misure correttive e aggiornamento dei rischi
+  Per mitigare gli squilibri emersi nella distribuzione del lavoro, il Team ha deciso di definire con maggiore
+  precisione la suddivisione delle task e il monte ore individuale del successivo sprint. I rischi RP1 e RT1 rimangono
+  attivi e monitorati, poiché l'esperienza limitata del gruppo e gli impegni personali possono continuare a incidere
+  sull'andamento delle attività.
+
+  ==== Aggiornamento pianificazione futura
+  Nel prossimo sprint il gruppo prevede di consolidare il workflow adottato, migliorare la pianificazione delle ore e
+  proseguire con la stesura dei documenti avviati, così da rendere più regolare l'avanzamento complessivo del progetto.
+
+  ==== Preventivo a finire
   #figure(
     numbering: "1",
     caption: [Sprint 1 - Variazione risorse monetarie rimanenti],
@@ -567,7 +594,7 @@
   Il gruppo pensa sia possibile che possano presentarsi i seguenti rischi:
   - RP1: Rischio personale legato a problematiche personali o attività universitarie.
   - RT1: Rischio legato all'apprendimento delle tecnologie richieste.
-  - RO1: Mancato rispetto delle scadenza stabilite.
+  - RO1: Mancato rispetto delle scadenze stabilite.
 
   ==== Ore effettive
   #figure(
@@ -602,7 +629,7 @@
       )
     ],
   )<tab:Sprint2-ore-effettive>
-  ==== Rischi incontrati
+  ==== Consuntivo del periodo
   Rallentamento nello sviluppo dell'Analisi dei Requisiti (RT1).
 
   ==== Retrospettiva
@@ -612,7 +639,17 @@
   )[Analisi dei Requisiti v1.1.0] che hanno causato un rinvio al prossimo Sprint del raggiungimento della versione
   *0.3.0* e *0.4.0*.
 
-  ==== Aggiornamento risorse monetarie rimanenti
+  ==== Misure correttive e aggiornamento dei rischi
+  Per contenere gli effetti del rallentamento sull'Analisi dei Requisiti, il Team ha deciso di riallocare parte del
+  lavoro documentale sullo sprint successivo e di monitorare più da vicino le attività soggette a maggiore incertezza. I
+  rischi RP1, RT1 e RO1 rimangono quindi aperti, con particolare attenzione alle attività di analisi e al rispetto delle
+  scadenze interne.
+
+  ==== Aggiornamento pianificazione futura
+  La pianificazione futura prevede il completamento delle sezioni dell'Analisi dei Requisiti rinviate e il
+  consolidamento del workflow documentale introdotto in questo periodo, in modo da recuperare lo scostamento emerso.
+
+  ==== Preventivo a finire
   #figure(
     numbering: "1",
     caption: [Sprint 2 - Variazione risorse monetarie rimanenti],
@@ -681,7 +718,7 @@
   Il gruppo pensa sia possibile che possano presentarsi i seguenti rischi:
   - RP1: Rischio personale legato a problematiche personali o attività universitarie.
   - RT1: Rischio legato all'apprendimento delle tecnologie richieste.
-  - RO1: Mancato rispetto delle scadenza stabilite.
+  - RO1: Mancato rispetto delle scadenze stabilite.
   ==== Ore effettive
   #figure(
     numbering: "1",
@@ -715,7 +752,7 @@
       )
     ],
   )<tab:Sprint3-ore-effettive>
-  ==== Rischi incontrati
+  ==== Consuntivo del periodo
   A causa delle festività natalizie, si è deciso di estendere la durata dello sprint a tre settimane. Per questo motivo
   risultano 0 giorni di ritardo, nonostante la data di fine prevista differisca da quella effettiva (RO1). (RP1)
   L’Analisi dei Requisiti si è rivelata più complessa del previsto; di conseguenza, sono state dedicate numerose ore di
@@ -726,7 +763,16 @@
   di Progetto, le attività sono proseguite regolarmente; sono state inoltre sviluppate alcune sezioni delle Norme di
   Progetto e riviste le metriche del Piano di Qualifica. Non tutti gli obiettivi prefissati sono stati raggiunti, ma si
   prevede di completarli nei prossimi sprint.
-  ==== Aggiornamento risorse monetarie rimanenti
+  ==== Misure correttive e aggiornamento dei rischi
+  In risposta alle difficoltà emerse, il Team ha accettato una rimodulazione temporale dello sprint dovuta alle
+  festività e ha mantenuto alta l'attenzione sui rischi RP1, RT1 e RO1. Per il periodo successivo si è deciso di
+  concentrare l'impegno sul completamento dell'Analisi dei Requisiti, riducendo la dispersione su attività secondarie.
+
+  ==== Aggiornamento pianificazione futura
+  Lo sprint successivo sarà dedicato in via prioritaria alla chiusura delle parti ancora aperte dell'Analisi dei
+  Requisiti e all'avvio più strutturato delle attività progettuali, con aggiornamento continuo del Piano di Progetto.
+
+  ==== Preventivo a finire
   #figure(
     numbering: "1",
     caption: [Sprint 3 - Variazione risorse monetarie rimanenti],
@@ -795,7 +841,7 @@
   Il gruppo pensa sia possibile che possano presentarsi i seguenti rischi:
   - RP1: Rischio personale legato a problematiche personali o attività universitarie.
   - RT1: Rischio legato all'apprendimento delle tecnologie richieste.
-  - RO1: Mancato rispetto delle scadenza stabilite.
+  - RO1: Mancato rispetto delle scadenze stabilite.
 
   ==== Ore effettive
   #figure(
@@ -833,15 +879,25 @@
 
 
 
-  ==== Rischi incontrati
+  ==== Consuntivo del periodo
   In seguito ad un incontro con il Prof. Cardin e, successivamente con l'azienda, sono stati rivisti molti Use Case,
   sicuramente frutto dell'inesperienza del gruppo nell'analizzare correttamente il capitolato (RT1). Inoltre, dato
   l'inizio della sessione d'esami invernale, il lavoro ha subito alcuni rallentamenti (RP1).
   ==== Retrospettiva
-  Nel corso di questo Sprint il team si è concentrato sugli obiettivi stabiliti. Sebbene diversi membri abbiano
+  Nel corso di questo Sprint il Team si è concentrato sugli obiettivi stabiliti. Sebbene diversi membri abbiano
   registrato un numero inferiore di ore, a causa dell’attenzione dedicata all’analisi dello stato dell’arte e al Proof
   of Concept (POC), gli obiettivi prefissati sono stati comunque raggiunti senza ritardi significativi.
-  ==== Aggiornamento risorse monetarie rimanenti
+  ==== Misure correttive e aggiornamento dei rischi
+  A fronte delle revisioni apportate ai casi d'uso e dell'avvio della sessione d'esami, il Team ha deciso di mantenere
+  sotto osservazione i rischi RT1, RP1 e RO1, prevedendo maggiore confronto interno e momenti di riallineamento con i
+  riferimenti esterni quando necessario. Le attività di palestra continueranno a supportare la comprensione del dominio
+  e della soluzione progettuale.
+
+  ==== Aggiornamento pianificazione futura
+  Per lo sprint successivo è previsto il completamento dell'Analisi dei Requisiti e l'avanzamento del PoC, così da
+  arrivare con una base più solida alle attività preparatorie per la RTB.
+
+  ==== Preventivo a finire
   #figure(
     numbering: "1",
     caption: [Sprint 4 - Variazione risorse monetarie rimanenti],
@@ -850,13 +906,13 @@
       inset: 0.8em,
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
-      [Responsabile], [43,5], [1305],
+      [Responsabile], [43], [1290],
       [Amministratore], [20], [400],
       [Analista], [8], [200],
       [Progettista], [137], [3425],
       [Programmatore], [165], [2475],
       [Verificatore], [88], [1320],
-      [*Totale*], [*461,5*], [*9125*],
+      [*Totale*], [*461*], [*9110*],
     ),
   )<tab:Sprint4-costi>
 
@@ -871,7 +927,7 @@
   dell'Analisi dei Requisiti al fine di assicurarsi la piena completezza del documento per la revisione RTB. Inoltre, si
   porterà avanti il Piano di Qualifica, aggiungendo una sezione dedicata ai test, le Norme di Progetto e il Piano di
   Progetto, completando e aggiungendo la sezione dedicata allo Sprint 4 e 5.
-  ==== Ore Previste
+  ==== Ore previste
   #figure(
     numbering: "1",
     caption: [Sprint 5 - Ore previste per componente],
@@ -909,7 +965,7 @@
   - RP1: Rischio personale legato a problematiche personali o attività universitarie.
   - RT1: Rischio legato all'apprendimento delle tecnologie richieste.
   - RT2: Rischio tecnologico legato ad errori di programmazione.
-  - RO1: Mancato rispetto delle scadenza stabilite.
+  - RO1: Mancato rispetto delle scadenze stabilite.
 
   ==== Ore effettive
   #figure(
@@ -947,14 +1003,23 @@
 
 
 
-  ==== Rischi incontrati
+  ==== Consuntivo del periodo
   Il Team ha speso ore di palestra nel comprendere come svolgere al meglio la fase di Progettazione e Programmazione del
   PoC (RT1 e RT2). Inoltre, dati gli esami universitari svolti in questo periodo, ci sono stati lievi rallentamenti nel
   lavoro da svolgere (RP1).
   ==== Retrospettiva
   Nello Sprint 5 anche se il gruppo ha incontrato alcuni rallentamenti, i compiti assegnati sono stati svolti. Anche in
   questo caso alcuni membri hanno meno ore registrate, perché hanno ultimato la progettazione del PoC.
-  ==== Aggiornamento risorse monetarie rimanenti
+  ==== Misure correttive e aggiornamento dei rischi
+  Per ridurre l'impatto dei rallentamenti incontrati, il Team ha deciso di proseguire con attività di approfondimento
+  tecnico sul PoC e di rafforzare la verifica interna delle attività di programmazione. I rischi RP1, RT1, RT2 e RO1
+  restano monitorati, in quanto sia la fase tecnica sia il periodo universitario continuano a influenzare l'avanzamento.
+
+  ==== Aggiornamento pianificazione futura
+  Nel prossimo sprint il gruppo prevede di ultimare il PoC e di completare la documentazione necessaria alla RTB,
+  sfruttando l'esperienza accumulata in questa fase di progettazione e sviluppo iniziale.
+
+  ==== Preventivo a finire
   #figure(
     numbering: "1",
     caption: [Sprint 5 - Variazione risorse monetarie rimanenti],
@@ -1064,14 +1129,24 @@
 
 
 
-  ==== Rischi incontrati
+  ==== Consuntivo del periodo
   Come preventivato, a causa degli impegni universitari dei componenti del Team, è stato difficile incastrare le ore di
   lavoro (RP1); tuttavia, tutti gli obiettivi prefissati sono stati raggiunti con successo.
   ==== Retrospettiva
   Nello Sprint 6, il Team si è concentrato principalmente sull'ultimare il PoC e sull'aggiornare i documenti in vista
   della RTB. Nonostante le ore dedicate siano state inferiori alla media, sono stati raggiunti tutti gli obiettivi
   prefissati.
-  ==== Aggiornamento risorse monetarie rimanenti
+  ==== Misure correttive e aggiornamento dei rischi
+  Considerata la ridotta disponibilità oraria del periodo, il Team ha adottato una pianificazione più essenziale e
+  focalizzata sugli obiettivi indispensabili per la RTB. Il rischio RP1 rimane quello maggiormente rilevante, mentre i
+  rischi RT1 e RT2 risultano sotto controllo grazie al completamento delle attività previste e al consolidamento dei
+  documenti prodotti.
+
+  ==== Aggiornamento pianificazione futura
+  La pianificazione successiva si concentrerà sulla revisione finale, verifica e approvazione dei documenti, oltre
+  all'aggiornamento del Glossario, così da presentarsi alla RTB con una baseline documentale completa.
+
+  ==== Preventivo a finire
   #figure(
     numbering: "1",
     caption: [Sprint 6 - Variazione risorse monetarie rimanenti],
@@ -1125,13 +1200,13 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [0], [2], [0,75], [0], [0], [0], [*2,75*],
-        [Francesco \ Marcon], [5], [0,25], [2,5], [0], [0], [0], [*7,75*],
-        [Alessandro \ Mazzariol], [0], [1,5], [0], [0], [0], [3], [*4,5*],
-        [Leonardo \ Preo], [0], [1], [0], [0], [0], [4,5], [*5,5*],
-        [Valerio \ Solito], [0], [0], [0], [0], [5], [6], [*11*],
-        [Matteo \ Mantoan], [0], [0], [4,25], [0], [0], [0,25], [*4,5*],
-        [Mario De\ Pasquale], [0], [0,5], [0], [0], [4], [1,5], [*6*],
+        [Alessandro \ Contarini], [-], [2], [0,75], [-], [-], [0], [*2,75*],
+        [Francesco \ Marcon], [5], [0,25], [2,5], [-], [-], [-], [*7,75*],
+        [Alessandro \ Mazzariol], [-], [1,5], [-], [-], [-], [3], [*4,5*],
+        [Leonardo \ Preo], [-], [1], [-], [-], [-], [4,5], [*5,5*],
+        [Valerio \ Solito], [-], [-], [-], [-], [5], [6], [*11*],
+        [Matteo \ Mantoan], [-], [-], [4,25], [-], [-], [0,25], [*4,5*],
+        [Mario De\ Pasquale], [-], [0,5], [-], [-], [4], [1,5], [*6*],
       )
     ],
   )<tab:Sprint7-ore-previste>
@@ -1163,19 +1238,19 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [0], [2], [0,75], [0], [0], [0], [*2,75*],
-        [Francesco \ Marcon], [5], [0,25], [2,5], [0], [0], [0], [*7,75*],
-        [Alessandro \ Mazzariol], [0], [1,5], [0], [0], [0], [3], [*4,5*],
-        [Leonardo \ Preo], [0], [1], [0], [0], [0], [4,5], [*5,5*],
-        [Valerio \ Solito], [0], [0], [0], [0], [5], [6], [*11*],
-        [Matteo \ Mantoan], [0], [0], [4,25], [0], [0], [0,25], [*4,5*],
-        [Mario De\ Pasquale], [0], [0,5], [0], [0], [4], [1,5], [*6*],
+        [Alessandro \ Contarini], [-], [2], [0,75], [-], [-], [-], [*2,75*],
+        [Francesco \ Marcon], [5], [0,25], [2,5], [-], [-], [-], [*7,75*],
+        [Alessandro \ Mazzariol], [-], [1,5], [-], [-], [-], [3], [*4,5*],
+        [Leonardo \ Preo], [-], [1], [-], [-], [-], [4,5], [*5,5*],
+        [Valerio \ Solito], [-], [-], [-], [-], [5], [6], [*11*],
+        [Matteo \ Mantoan], [-], [-], [4,25], [-], [-], [0,25], [*4,5*],
+        [Mario De\ Pasquale], [-], [0,5], [-], [-], [4], [1,5], [*6*],
       )
     ],
   )<tab:Sprint7-ore-effettive>
 
-  ==== Rischi incontrati
-  Durante lo sprint corrente, il team ha riscontrato delle criticità nel rispettare le tempistiche previste per la
+  ==== Consuntivo del periodo
+  Durante lo sprint corrente, il Team ha riscontrato delle criticità nel rispettare le tempistiche previste per la
   revisione RTB. Tali ritardi sono stati causati da difficoltà operative nel completamento e nella successiva
   approvazione della documentazione necessaria, determinando il verificarsi del rischio RO1 (Ritardo Operativo). La
   situazione è stata ulteriormente influenzata dalla concomitanza di sessioni d’esame per diversi membri del gruppo; la
@@ -1184,11 +1259,25 @@
   ==== Retrospettiva
   Durante lo Sprint 7, l'attività si è concentrata sulla finalizzazione della documentazione per la RTB. Questa
   focalizzazione ha comportato l'esaurimento del monte ore allocato per il ruolo di Amministratore. Per sopperire alle
-  necessità residue nelle fasi successive, il Team ha deliberato di attingere alle ore eccedenti del ruolo di
-  Responsabile, garantendo così la copertura delle attività burocratiche e di coordinamento senza intaccare il budget
-  totale previsto per il progetto.
+  necessità residue nelle fasi successive, il Team ha deliberato di attingere progressivamente alle ore ancora
+  disponibili nei ruoli con maggiore margine residuo, a partire da quelle del Responsabile. La medesima logica verrà
+  applicata anche alle limitate attività di analisi ancora aperte, così da assorbirle già nello Sprint successivo e
+  garantire la copertura delle attività burocratiche, di coordinamento e di affinamento documentale senza intaccare il
+  budget totale previsto per il progetto.
 
-  ==== Aggiornamento risorse monetarie rimanenti
+  ==== Misure correttive e aggiornamento dei rischi
+  Per fronteggiare il verificarsi di RO1 e RP1, il Team ha riorganizzato il carico di lavoro e ha deliberato il
+  riutilizzo delle ore residue del ruolo di Responsabile per coprire le esigenze amministrative ancora aperte. In
+  continuità con questa decisione, dallo Sprint 8 le residue attività riconducibili al ruolo di Analista verranno
+  considerate assorbite tramite riallocazione puntuale di ore provenienti dai ruoli in avanzo, mantenendo esplicita la
+  tracciabilità del trasferimento da uno Sprint al successivo. I rischi legati alle scadenze e alla disponibilità dei
+  componenti restano pertanto monitorati fino alla chiusura delle attività collegate alla RTB.
+
+  ==== Aggiornamento pianificazione futura
+  Conclusa la fase di preparazione alla RTB, il gruppo prevede di spostare progressivamente il focus verso la correzione
+  delle osservazioni ricevute e l'avvio della progettazione tecnica del prodotto.
+
+  ==== Preventivo a finire
   #figure(
     numbering: "1",
     caption: [Sprint 7 - Variazione risorse monetarie rimanenti],
@@ -1198,21 +1287,21 @@
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
       [Responsabile], [21], [630],
-      [Amministratore], [0], [0],
+      [Amministratore], [-0,25], [-5],
       [Analista], [0,5], [12,5],
       [Progettista], [137], [3425],
       [Programmatore], [121], [1815],
       [Verificatore], [41,75], [626,25],
-      [*Totale*], [*321,25*], [*6508,75*],
+      [*Totale*], [*321*], [*6503,75*],
     ),
   )<tab:Sprint7-costi>
   #pagebreak()
 
   == Product Baseline (PB)
   === Sprint 8
-  Inizio: *2026* \
-  Fine prevista: *2026* \
-  Fine reale: *2026*\
+  Inizio: *2026-03-04* \
+  Fine prevista: *2026-03-15* \
+  Fine reale: *2026-03-15*\
   Giorni di ritardo: 0 \
 
   ==== Informazioni generali e attività pianificate
@@ -1243,18 +1332,20 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [-], [-], [-], [-], [-], [-], [*-*],
-        [Francesco \ Marcon], [-], [-], [-], [-], [-], [-], [*-*],
-        [Alessandro \ Mazzariol], [-], [-], [-], [-], [-], [-], [*-*],
-        [Leonardo \ Preo], [-], [-], [-], [-], [-], [-], [*-*],
-        [Valerio \ Solito], [-], [-], [-], [-], [-], [-], [*-*],
-        [Matteo \ Mantoan], [-], [-], [-], [-], [-], [-], [*-*],
-        [Mario De\ Pasquale], [-], [-], [-], [-], [-], [-], [*-*],
+        [Alessandro \ Contarini], [-], [-], [-], [4], [1], [1], [*6*],
+        [Francesco \ Marcon], [-], [-], [-], [4], [1], [1], [*6*],
+        [Alessandro \ Mazzariol], [-], [-], [-], [5], [1], [1], [*7*],
+        [Leonardo \ Preo], [-], [-], [-], [4,5], [1], [1], [*6,5*],
+        [Valerio \ Solito], [-], [-], [-], [2], [-], [1], [*3*],
+        [Matteo \ Mantoan], [5], [-], [-], [2], [1,5], [1], [*9,5*],
+        [Mario De\ Pasquale], [-], [-], [-], [6], [-], [-], [*6*],
       )
     ],
   )<tab:Sprint8-ore-previste>
   ==== Possibili rischi
-  Da Definire
+  Il gruppo pensa sia possibile che possano presentarsi i seguenti rischi:
+  - RO1: Rischio organizzativo legato al mancato rispetto delle scadenze stabilite;
+  - RT1: Rischio legato all'apprendimento delle tecnologie richieste.
 
   ==== Ore effettive
   #figure(
@@ -1279,24 +1370,45 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [-], [-], [-], [-], [-], [-], [*-*],
-        [Francesco \ Marcon], [-], [-], [-], [-], [-], [-], [*-*],
-        [Alessandro \ Mazzariol], [-], [-], [-], [-], [-], [-], [*-*],
-        [Leonardo \ Preo], [-], [-], [-], [-], [-], [-], [*-*],
-        [Valerio \ Solito], [-], [-], [-], [-], [-], [-], [*-*],
-        [Matteo \ Mantoan], [-], [-], [-], [-], [-], [-], [*-*],
-        [Mario De\ Pasquale], [-], [-], [-], [-], [-], [-], [*-*],
+        [Alessandro \ Contarini], [-], [-], [-], [4], [1], [1], [*6*],
+        [Francesco \ Marcon], [-], [-], [-], [4], [1], [1], [*6*],
+        [Alessandro \ Mazzariol], [-], [-], [-], [6], [1], [1], [*8*],
+        [Leonardo \ Preo], [-], [-], [-], [5], [1], [1], [*7*],
+        [Valerio \ Solito], [-], [-], [-], [3], [-], [1], [*4*],
+        [Matteo \ Mantoan], [5], [-], [-], [2], [2], [1], [*10*],
+        [Mario De\ Pasquale], [-], [-], [-], [7], [-], [-], [*7*],
       )
     ],
   )<tab:Sprint8-ore-effettive>
 
-
-
-  ==== Rischi incontrati
+  ==== Consuntivo del periodo
+  Durante lo sprint corrente, il Team si è ritrovato ad affrontare difficoltà nella progettazione del sistema, in
+  particolare nella definizione dell'architettura dei singoli microservizi e nella stesura di un piano completo per la
+  fase di implementazione. Queste sfide insieme ai ritardi accumulati nelle fasi precedenti hanno portato ad un mancato
+  rispetto delle scadenze stabilite internamente, proiettando così il verificarsi del rischio RO1 (Ritardo Operativo).
 
   ==== Retrospettiva
+  Al netto dei problemi descritti nella sezione precedente, lo Sprint 8 ha visto il Team immerso positivamente nella
+  progettazione, portando ad avere anche grazie alle ore di palestra una visione del Sistema uniforme per tutti i
+  membri. Tuttavia, è emersa la necessità di migliorare le ore produttive, al fine di rispettare le scadenze e
+  recuperare il ritardo accumulato.
 
-  ==== Aggiornamento risorse monetarie rimanenti
+  ==== Misure correttive e aggiornamento dei rischi
+  Per mitigare il rischio RO1 emerso durante la progettazione, il Team ha deciso di rafforzare il coordinamento interno
+  e di mantenere attive le attività di palestra, così da uniformare la comprensione architetturale tra tutti i membri.
+  Il rischio RT1 resta anch'esso monitorato, poiché la complessità progettuale del sistema richiede ulteriore
+  consolidamento tecnico. Alla luce dell'assorbimento delle ultime attività amministrative e analitiche residue, il Team
+  ha inoltre stabilito che, a partire dalla pianificazione dello Sprint 9, il carico di lavoro venga concentrato quasi
+  esclusivamente sui ruoli tecnici ancora capienti. In questo modo il residuo dei ruoli di Amministratore e Analista
+  potrà essere progressivamente assorbito negli sprint conclusivi, mantenendo la pianificazione complessiva coerente con
+  le ore ancora disponibili.
+
+  ==== Aggiornamento pianificazione futura
+  Nei prossimi sprint la pianificazione verrà orientata verso una transizione più rapida dalla progettazione
+  all'implementazione, includendo il recupero del ritardo accumulato e la definizione più precisa delle attività di
+  sviluppo del MVP.
+
+  ==== Preventivo a finire
   #figure(
     numbering: "1",
     caption: [Sprint 8 - Variazione risorse monetarie rimanenti],
@@ -1305,24 +1417,27 @@
       inset: 0.8em,
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
-      [Responsabile], [-], [-],
-      [Amministratore], [-], [-],
-      [Analista], [-], [-],
-      [Progettista], [-], [-],
-      [Programmatore], [-], [-],
-      [Verificatore], [-], [-],
-      [*Totale*], [*-*], [*-*],
+      [Responsabile], [16], [480],
+      [Amministratore], [-0,25], [-5],
+      [Analista], [0,5], [12,5],
+      [Progettista], [106], [2650],
+      [Programmatore], [115], [1725],
+      [Verificatore], [35,75], [536,25],
+      [*Totale*], [*273*], [*5398,75*],
     ),
   )<tab:Sprint8-costi>
 
   === Sprint 9
-  Inizio: *-* \
-  Fine prevista: *2026* \
-  Fine reale: *2026*\
+  Inizio: *2026-03-16* \
+  Fine prevista: *2026-03-22* \
+  Fine reale: *2026-03-22*\
   Giorni di ritardo: 0 \
 
   ==== Informazioni generali e attività pianificate
-
+  Da questo sprint in poi, il Team ha deciso di passare da periodi di 2 settimane a periodi di 1 settimana, al fine di
+  aumentare il monte ore di lavoro svolto per periodo, permettendo il raggiungimento della quota ore nel tempo previsto.
+  Alcune parti del Team in questo periodo sono passati dal progettare, alla codifica, iniziando con un periodo intenso
+  di palestra.
 
   ==== Ore previste
   #figure(
@@ -1347,18 +1462,20 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [-], [-], [-], [-], [-], [-], [*-*],
-        [Francesco \ Marcon], [-], [-], [-], [-], [-], [-], [*-*],
-        [Alessandro \ Mazzariol], [-], [-], [-], [-], [-], [-], [*-*],
-        [Leonardo \ Preo], [-], [-], [-], [-], [-], [-], [*-*],
-        [Valerio \ Solito], [-], [-], [-], [-], [-], [-], [*-*],
-        [Matteo \ Mantoan], [-], [-], [-], [-], [-], [-], [*-*],
-        [Mario De\ Pasquale], [-], [-], [-], [-], [-], [-], [*-*],
+        [Alessandro \ Contarini], [3], [-], [-], [6], [4], [2], [*15*],
+        [Francesco \ Marcon], [-], [-], [-], [4,5], [3,5], [1], [*9*],
+        [Alessandro \ Mazzariol], [-], [-], [-], [4,5], [4,5], [1], [*10*],
+        [Leonardo \ Preo], [-], [-], [-], [4,5], [3,5], [1], [*9*],
+        [Valerio \ Solito], [-], [-], [-], [4], [3], [1], [*4*],
+        [Matteo \ Mantoan], [-], [-], [-], [4], [4], [1], [*9*],
+        [Mario De\ Pasquale], [-], [-], [-], [4], [4], [1], [*9*],
       )
     ],
   )<tab:Sprint9-ore-previste>
   ==== Possibili rischi
-
+  - RP1: Rischio personale legato a problematiche personali o attività universitarie.
+  - RT1: Rischio legato all'apprendimento delle tecnologie richieste.
+  - RT2: Rischio tecnologico legato ad errori di programmazione.
 
   ==== Ore effettive
   #figure(
@@ -1383,24 +1500,42 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [-], [-], [-], [-], [-], [-], [*-*],
-        [Francesco \ Marcon], [-], [-], [-], [-], [-], [-], [*-*],
-        [Alessandro \ Mazzariol], [-], [-], [-], [-], [-], [-], [*-*],
-        [Leonardo \ Preo], [-], [-], [-], [-], [-], [-], [*-*],
-        [Valerio \ Solito], [-], [-], [-], [-], [-], [-], [*-*],
-        [Matteo \ Mantoan], [-], [-], [-], [-], [-], [-], [*-*],
-        [Mario De\ Pasquale], [-], [-], [-], [-], [-], [-], [*-*],
+        [Alessandro \ Contarini], [3], [-], [-], [6], [4], [2], [*15*],
+        [Francesco \ Marcon], [-], [-], [-], [6], [4], [1,25], [*11,25*],
+        [Alessandro \ Mazzariol], [-], [-], [-], [6], [5], [1], [*12*],
+        [Leonardo \ Preo], [-], [-], [-], [5], [4], [1], [*10*],
+        [Valerio \ Solito], [-], [-], [-], [4], [3], [1], [*8*],
+        [Matteo \ Mantoan], [-], [-], [-], [4], [4], [1], [*9*],
+        [Mario De\ Pasquale], [-], [-], [-], [4], [4], [1], [*9*],
       )
     ],
   )<tab:Sprint9-ore-effettive>
 
-
-
-  ==== Rischi incontrati
-
+  ==== Consuntivo del periodo
+  Durante lo Sprint corrente, il Team è ritrovato ad affrontare la complessità notevole che il Sistema presentava quindi
+  il verificarsi di RT1 (Rischio tecnologico legato all'apprendimento delle tecnologie richieste), in particolare nella
+  fase di implementazione. La difficoltà principale è stata quella di riuscire ad adattare la tecnologia richiesta alle
+  esigenze del progetto, portando ad un aumento significativo del carico di lavoro di codifica. Durante le prime fasi di
+  rilascio del codice, sono state implementate regole per diminuire il verificarsi di RT2 (Rischio tecnologico legato ad
+  errori di programmazione), come ad esempio l'adozione di un sistema di code review automatico.
   ==== Retrospettiva
+  In conclusione, il Team afferma che il periodo ha portato un miglioramento della qualità del lavoro svolto, grazie
+  alla maggiore frequenza degli Sprint, che ha permesso di aumentare l'efficienza. Il Team tuttavia ha deciso di
+  posticipare la consegna del MVP al 3 aprile 2026, al fine di poter avere il tempo necessario a completare le attività
+  fissate.
 
-  ==== Aggiornamento risorse monetarie rimanenti
+  ==== Misure correttive e aggiornamento dei rischi
+  Per rispondere alle difficoltà incontrate, il Team ha introdotto pratiche di verifica più strette durante il rilascio
+  del codice e ha confermato il monitoraggio dei rischi RT1 e RT2, entrambi risultati rilevanti in questa fase di
+  transizione verso l'implementazione. Il rischio RP1 rimane presente ma non ha compromesso in modo significativo il
+  completamento delle attività pianificate.
+
+  ==== Aggiornamento pianificazione futura
+  La pianificazione futura prevede sprint brevi e ravvicinati, con priorità al completamento del MVP, alla
+  stabilizzazione dell'infrastruttura e all'aumento della produttività complessiva del Team entro la nuova scadenza
+  interna fissata.
+
+  ==== Preventivo a finire
   #figure(
     numbering: "1",
     caption: [Sprint 9 - Variazione risorse monetarie rimanenti],
@@ -1409,14 +1544,413 @@
       inset: 0.8em,
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
-      [Responsabile], [-], [-],
-      [Amministratore], [-], [-],
-      [Analista], [-], [-],
-      [Progettista], [-], [-],
-      [Programmatore], [-], [-],
-      [Verificatore], [-], [-],
-      [*Totale*], [*-*], [*-*],
+      [Responsabile], [13], [390],
+      [Amministratore], [-0,25], [-5],
+      [Analista], [0,5], [12,5],
+      [Progettista], [71], [1775],
+      [Programmatore], [87], [1305],
+      [Verificatore], [27,5], [412,5],
+      [*Totale*], [*198,75*], [*3890*],
     ),
   )<tab:Sprint9-costi>
 
+
+
+  === Sprint 10
+  Inizio: *2026-03-23* \
+  Fine prevista: *2026-03-29* \
+  Fine reale: *2026-03-29*\
+  Giorni di ritardo: 0 \
+
+  ==== Informazioni generali e attività pianificate
+  In questo Sprint, il Team si è concentrato principalmente sulla fase di implementazione, con l'obiettivo di completare
+  l'infrastruttura del sistema e di implementare i test necessari per garantire una qualità conforme del MVP.
+  ==== Ore previste
+  #figure(
+    numbering: "1",
+    caption: [Sprint 10 - Ore previste per componente],
+    [
+      #set text(size: 9pt)
+
+      #table(
+        columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+        align: (left, center, center, center, center, center, center, center),
+        inset: 0.6em,
+
+        table.header(
+          [],
+          [*Responsabile*],
+          [*Amministratore*],
+          [*Analista*],
+          [*Progettista*],
+          [*Programmatore*],
+          [*Verificatore*],
+          [*Totale*],
+        ),
+
+        [Alessandro \ Contarini], [-], [-], [-], [5], [5], [2], [*12*],
+        [Francesco \ Marcon], [-], [-], [-], [5], [4], [1], [*10*],
+        [Alessandro \ Mazzariol], [-], [-], [-], [4], [6], [1], [*11*],
+        [Leonardo \ Preo], [-], [-], [-], [6], [4], [1], [*11*],
+        [Valerio \ Solito], [-], [-], [-], [3], [3], [1], [*7*],
+        [Matteo \ Mantoan], [3], [-], [-], [5], [3], [1], [*12*],
+        [Mario De\ Pasquale], [-], [-], [-], [4], [4], [-], [*8*],
+      )
+    ],
+  )<tab:Sprint10-ore-previste>
+  ==== Possibili rischi
+  - RP1: Rischio personale legato a problematiche personali o attività universitarie.
+  - RT1: Rischio legato all'apprendimento delle tecnologie richieste.
+  - RT2: Rischio tecnologico legato ad errori di programmazione.
+
+  ==== Ore effettive
+  #figure(
+    numbering: "1",
+    caption: [Sprint 10 - Ore effettive per componente],
+    [
+      #set text(size: 9pt)
+
+      #table(
+        columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+        align: (left, center, center, center, center, center, center, center),
+        inset: 0.6em,
+
+        table.header(
+          [],
+          [*Responsabile*],
+          [*Amministratore*],
+          [*Analista*],
+          [*Progettista*],
+          [*Programmatore*],
+          [*Verificatore*],
+          [*Totale*],
+        ),
+
+        [Alessandro \ Contarini], [-], [-], [-], [6], [5], [2], [*13*],
+        [Francesco \ Marcon], [-], [-], [-], [5], [4], [1,5], [*10,5*],
+        [Alessandro \ Mazzariol], [-], [-], [-], [4], [6], [1], [*11*],
+        [Leonardo \ Preo], [-], [-], [-], [6], [4], [1], [*11*],
+        [Valerio \ Solito], [-], [-], [-], [4], [3], [1], [*8*],
+        [Matteo \ Mantoan], [3], [-], [0,25], [5], [3], [1], [*12,25*],
+        [Mario De\ Pasquale], [-], [-], [-], [4], [5], [-], [*9*],
+      )
+    ],
+  )<tab:Sprint10-ore-effettive>
+
+  ==== Consuntivo del periodo
+  Nel corso dello Sprint 10, il Team ha portato avanti soprattutto le attività di implementazione e verifica del MVP,
+  concentrandosi sul completamento dell'infrastruttura di sistema e sull'avanzamento dei test. Le attività pianificate
+  sono state svolte con un impiego più mirato delle risorse rispetto al monte ore inizialmente previsto, privilegiando
+  gli interventi tecnici ritenuti più urgenti per il consolidamento del prodotto.
+
+  ==== Retrospettiva
+  Lo Sprint 10 ha permesso al Team di consolidare in modo significativo l'avanzamento del MVP, con una buona
+  progressione nella codifica e nella verifica dei microservizi di backend e con il proseguimento della progettazione
+  delle componenti frontend. È emerso però che la fase di implementazione ha reso evidenti alcune complessità tecniche e
+  infrastrutturali sottostimate in precedenza, in particolare nella comprensione operativa delle tecnologie adottate e
+  nella stabilizzazione dell'infrastruttura di supporto ai test.
+
+  ==== Misure correttive e aggiornamento dei rischi
+  A seguito delle criticità emerse, il Team ha confermato il verificarsi di RT1 (Rischio tecnologico legato
+  all'apprendimento delle tecnologie richieste), poiché alcune difficoltà si sono manifestate pienamente solo durante
+  l'implementazione concreta del sistema. Parallelamente, per mitigare RT2 (Rischio tecnologico legato ad errori di
+  programmazione), il gruppo ha intensificato le attività di verifica e consolidato il processo di integrazione tramite
+  pull request di dimensioni ridotte, così da individuare più rapidamente eventuali difetti e ridurre il rischio di
+  regressioni.
+
+  ==== Aggiornamento pianificazione futura
+  Alla luce di quanto osservato, il Team ha ricalibrato le priorità degli sprint successivi, assegnando maggiore
+  attenzione alla stabilizzazione dell'infrastruttura e al completamento dei test di integrazione e di sistema. La
+  pianificazione a breve termine mantiene quindi sprint brevi e un monitoraggio ravvicinato dell'avanzamento, così da
+  consentire un recupero più rapido delle criticità emerse e un migliore controllo sul completamento del MVP. Il monte
+  ore residuo viene pertanto conservato per gli sprint conclusivi e riallocato sui ruoli tecnici ancora aperti,
+  mantenendo come vincolo la convergenza a zero delle ore rimanenti entro lo Sprint 12.
+
+  ==== Preventivo a finire
+  #figure(
+    numbering: "1",
+    caption: [Sprint 10 - Variazione risorse monetarie rimanenti],
+    table(
+      columns: (2fr, 1fr, 1fr),
+      inset: 0.8em,
+      table.header([*Ruolo*], [*Ore*], [*Costo*]),
+
+      [Responsabile], [10], [300],
+      [Amministratore], [-0,25], [-5],
+      [Analista], [0,25], [6,25],
+      [Progettista], [37], [925],
+      [Programmatore], [57], [855],
+      [Verificatore], [20], [300],
+      [*Totale*], [*124*], [*2381,25*],
+    ),
+  )<tab:Sprint10-costi>
+
+
+  === Sprint 11
+  Inizio: *2026-03-30* \
+  Fine prevista: *2026-04-05* \
+  Fine reale: *2026-04-05*\
+  Giorni di ritardo: 0 \
+
+  ==== Informazioni generali e attività pianificate
+  In questo Sprint, il Team si è concentrato sul consolidamento finale del prodotto, proseguendo l'avanzamento della
+  documentazione di progetto, lo sviluppo delle componenti frontend e l'integrazione operativa dei microservizi. In
+  parallelo, sono state definite le principali attività di test di sistema, così da arrivare allo Sprint 12 con un
+  prodotto sostanzialmente completo e con le sole rifiniture finali ancora da svolgere.
+  ==== Ore previste
+  #figure(
+    numbering: "1",
+    caption: [Sprint 11 - Ore previste per componente],
+    [
+      #set text(size: 9pt)
+
+      #table(
+        columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+        align: (left, center, center, center, center, center, center, center),
+        inset: 0.6em,
+
+        table.header(
+          [],
+          [*Responsabile*],
+          [*Amministratore*],
+          [*Analista*],
+          [*Progettista*],
+          [*Programmatore*],
+          [*Verificatore*],
+          [*Totale*],
+        ),
+
+        [Alessandro \ Contarini], [-], [-], [-], [3], [3], [2], [*8*],
+        [Francesco \ Marcon], [-], [-], [-], [4], [3], [2], [*9*],
+        [Alessandro \ Mazzariol], [-], [-], [-], [4], [4], [1], [*9*],
+        [Leonardo \ Preo], [-], [-], [-], [5], [5], [1], [*11*],
+        [Valerio \ Solito], [4], [-], [-], [4], [4], [2], [*14*],
+        [Matteo \ Mantoan], [-], [-], [-], [5], [3], [2], [*10*],
+        [Mario De\ Pasquale], [-], [-], [-], [5], [5], [-], [*10*],
+      )
+    ],
+  )<tab:Sprint11-ore-previste>
+  ==== Possibili rischi
+  - RP1: Rischio personale legato a problematiche personali o attività universitarie.
+  - RT1: Rischio legato all'apprendimento delle tecnologie richieste.
+  - RT2: Rischio tecnologico legato ad errori di programmazione.
+
+  ==== Ore effettive
+  #figure(
+    numbering: "1",
+    caption: [Sprint 11 - Ore effettive per componente],
+    [
+      #set text(size: 9pt)
+
+      #table(
+        columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+        align: (left, center, center, center, center, center, center, center),
+        inset: 0.6em,
+
+        table.header(
+          [],
+          [*Responsabile*],
+          [*Amministratore*],
+          [*Analista*],
+          [*Progettista*],
+          [*Programmatore*],
+          [*Verificatore*],
+          [*Totale*],
+        ),
+
+        [Alessandro \ Contarini], [-], [-], [-], [3], [4], [2], [*9*],
+        [Francesco \ Marcon], [-], [-], [-], [4], [3], [2], [*9*],
+        [Alessandro \ Mazzariol], [-], [-], [-], [4], [5], [1], [*10*],
+        [Leonardo \ Preo], [-], [-], [-], [4], [6], [1], [*11*],
+        [Valerio \ Solito], [4], [-], [-], [4], [5], [2], [*15*],
+        [Matteo \ Mantoan], [-], [-], [-], [5], [3], [2], [*10*],
+        [Mario De\ Pasquale], [-], [-], [-], [5], [5], [-], [*10*],
+      )
+    ],
+  )<tab:Sprint11-ore-effettive>
+
+  ==== Consuntivo del periodo
+  Nel corso dello Sprint 11, il Team ha concentrato il lavoro sulle attività necessarie a portare il progetto in una
+  fase prossima alla conclusione. In particolare, è proseguita la redazione e l'aggiornamento della documentazione
+  tecnica, sono state completate ulteriori funzionalità lato frontend e si è lavorato all'integrazione dei microservizi,
+  verificando la correttezza del flusso complessivo del sistema. Parallelamente, sono stati definiti i principali
+  scenari e criteri di esecuzione dei test di sistema, in modo da predisporre una validazione finale più ordinata nello
+  Sprint successivo.
+
+  ==== Retrospettiva
+  Lo Sprint 11 ha rappresentato un passaggio decisivo verso la chiusura del progetto. Il Team è riuscito a ridurre in
+  modo significativo le attività aperte, migliorando il livello di integrazione tra le componenti sviluppate e
+  aumentando la maturità complessiva del prodotto. La scelta di dedicare spazio sia alla documentazione sia alla
+  definizione dei test di sistema si è rivelata utile per arrivare all'ultimo Sprint con una visione più chiara delle
+  ultime verifiche da completare.
+
+
+  ==== Misure correttive e aggiornamento dei rischi
+  Durante lo Sprint, il rischio RT2 (Rischio tecnologico legato ad errori di programmazione) è rimasto sotto
+  osservazione, in particolare nelle fasi di integrazione tra i microservizi e di verifica delle interazioni con il
+  frontend. Per contenerne l'impatto, il Team ha continuato ad adottare verifiche incrementali e revisioni puntuali
+  delle modifiche introdotte. Il rischio RT1 (Rischio legato all'apprendimento delle tecnologie richieste), pur ancora
+  presente, ha avuto un'incidenza più contenuta rispetto agli sprint precedenti, grazie alla maggiore familiarità
+  maturata dal gruppo con l'infrastruttura e con gli strumenti adottati.
+
+  ==== Aggiornamento pianificazione futura
+  Alla conclusione dello Sprint 11, la pianificazione futura è stata aggiornata prevedendo per lo Sprint 12 il solo
+  completamento delle ultime attività di rifinitura, la chiusura della documentazione rimanente e l'esecuzione finale
+  delle verifiche conclusive. In questa pianificazione conclusiva, le ore ancora disponibili risultano ormai
+  circoscritte ai soli ruoli tecnici e di coordinamento effettivamente necessari per la chiusura del progetto, così da
+  far confluire il monte ore complessivo verso un residuo nullo. Il progetto risulta quindi impostato per terminare
+  entro lo Sprint 12, senza la necessità di introdurre ulteriori sprint di sviluppo.
+
+  ==== Preventivo a finire
+  #figure(
+    numbering: "1",
+    caption: [Sprint 11 - Variazione risorse monetarie rimanenti],
+    table(
+      columns: (2fr, 1fr, 1fr),
+      inset: 0.8em,
+      table.header([*Ruolo*], [*Ore*], [*Costo*]),
+
+      [Responsabile], [6], [180],
+      [Amministratore], [-0,25], [-5],
+      [Analista], [0,25], [6,25],
+      [Progettista], [8], [200],
+      [Programmatore], [26], [390],
+      [Verificatore], [10], [150],
+      [*Totale*], [*50*], [*921,25*],
+    ),
+  )<tab:Sprint11-costi>
+
+
+
+  === Sprint 12
+  Inizio: *2026-04-06* \
+  Fine prevista: *2026-04-13* \
+  Fine reale: *2026-04-06*\
+  Giorni di ritardo: 0 \
+
+  ==== Informazioni generali e attività pianificate
+  In questo Sprint conclusivo, il Team ha pianificato il completamento delle attività residue emerse dallo Sprint 11,
+  concentrandosi sulle ultime rifiniture del frontend, sulla chiusura dell'integrazione tra i microservizi, sul
+  consolidamento dei test di sistema e sulla finalizzazione della documentazione necessaria alla consegna del prodotto.
+
+  ==== Ore previste
+  #figure(
+    numbering: "1",
+    caption: [Sprint 12 - Ore previste per componente],
+    [
+      #set text(size: 9pt)
+
+      #table(
+        columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+        align: (left, center, center, center, center, center, center, center),
+        inset: 0.6em,
+
+        table.header(
+          [],
+          [*Responsabile*],
+          [*Amministratore*],
+          [*Analista*],
+          [*Progettista*],
+          [*Programmatore*],
+          [*Verificatore*],
+          [*Totale*],
+        ),
+
+        [Alessandro \ Contarini], [-], [-], [-], [-], [5], [0,5], [*5,5*],
+        [Francesco \ Marcon], [-], [1], [1], [-], [2], [2,5], [*6,5*],
+        [Alessandro \ Mazzariol], [-], [-], [-], [-], [5], [-], [*5*],
+        [Leonardo \ Preo], [4], [-], [-], [-], [3], [1], [*8*],
+        [Valerio \ Solito], [-], [1], [-], [3], [5], [1], [*10*],
+        [Matteo \ Mantoan], [-], [-], [-], [4], [2], [2], [*8*],
+        [Mario De\ Pasquale], [-], [-], [-], [-], [4], [3], [*7*],
+      )
+    ],
+  )<tab:Sprint12-ore-previste>
+  ==== Possibili rischi
+  - RP1: Rischio personale legato a problematiche personali o attività universitarie.
+  - RT1: Rischio legato all'apprendimento delle tecnologie richieste.
+  - RT2: Rischio tecnologico legato ad errori di programmazione.
+
+  ==== Ore effettive
+  #figure(
+    numbering: "1",
+    caption: [Sprint 12 - Ore effettive per componente],
+    [
+      #set text(size: 9pt)
+
+      #table(
+        columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+        align: (left, center, center, center, center, center, center, center),
+        inset: 0.6em,
+
+        table.header(
+          [],
+          [*Responsabile*],
+          [*Amministratore*],
+          [*Analista*],
+          [*Progettista*],
+          [*Programmatore*],
+          [*Verificatore*],
+          [*Totale*],
+        ),
+
+        [Alessandro \ Contarini], [-], [-], [-], [-], [5], [0,5], [*5,5*],
+        [Francesco \ Marcon], [-], [1], [-], [-], [2], [3,5], [*6,5*],
+        [Alessandro \ Mazzariol], [-], [-], [-], [-], [5], [-], [*5*],
+        [Leonardo \ Preo], [4], [-], [-], [-], [3], [1], [*8*],
+        [Valerio \ Solito], [-], [1], [-], [3], [5], [1], [*10*],
+        [Matteo \ Mantoan], [-], [-], [-], [4], [2], [3,25], [*9,25*],
+        [Mario De\ Pasquale], [-], [-], [-], [-], [4], [2,75], [*6,75*],
+      )
+    ],
+  )<tab:Sprint12-ore-effettive>
+
+  ==== Consuntivo del periodo
+  Nel corso dello Sprint 12, il Team ha completato le attività residue lasciate aperte al termine dello Sprint 11,
+  portando a chiusura il prodotto e la documentazione collegata. Le ore sono state impiegate soprattutto per le ultime
+  rifiniture del frontend, per la verifica finale delle integrazioni tra i microservizi e per l'esecuzione conclusiva
+  dei test di sistema pianificati in precedenza. Questo ha permesso di confermare il raggiungimento dello stato finale
+  del progetto entro la data effettiva di conclusione.
+
+  ==== Retrospettiva
+  Lo Sprint 12 ha confermato la bontà della scelta di distribuire una parte delle attività finali su un periodo
+  conclusivo dedicato. La disponibilità di uno sprint breve ma focalizzato ha consentito di effettuare le ultime
+  verifiche con maggiore attenzione, riducendo il rischio di chiudere il progetto con attività ancora parzialmente
+  aperte. Il Team valuta quindi positivamente la gestione dell'ultima fase di lavoro.
+
+
+  ==== Misure correttive e aggiornamento dei rischi
+  Nel corso dello Sprint conclusivo, i rischi RT1 e RT2 sono rimasti monitorati ma non hanno prodotto impatti tali da
+  compromettere la consegna. Le verifiche finali e il completamento incrementale delle integrazioni hanno permesso di
+  contenere il rischio di difetti residui, mentre il rischio RP1 non ha inciso in modo significativo sulla conclusione
+  delle attività previste.
+
+  ==== Aggiornamento pianificazione futura
+  Con la chiusura dello Sprint 12, non risultano ulteriori attività pianificate all'interno del progetto. La
+  pianificazione futura si considera quindi conclusa, avendo il Team terminato lo sviluppo, le verifiche e la
+  documentazione entro l'orizzonte temporale stabilito. Le riallocazioni deliberate negli Sprint precedenti hanno
+  permesso di assorbire gli scostamenti tra ruoli e di chiudere il progetto con un residuo complessivo nullo.
+
+  ==== Preventivo a finire
+  #figure(
+    numbering: "1",
+    caption: [Sprint 12 - Variazione risorse monetarie rimanenti],
+    table(
+      columns: (2fr, 1fr, 1fr),
+      inset: 0.8em,
+      table.header([*Ruolo*], [*Ore*], [*Costo*]),
+
+      [Responsabile], [2], [60],
+      [Amministratore], [-2,25], [-45],
+      [Analista], [-0,75], [-18,75],
+      [Progettista], [1], [25],
+      [Programmatore], [0], [0],
+      [Verificatore], [0], [0],
+      [*Totale*], [*0*], [*21,25*],
+    ),
+  )<tab:Sprint12-costi>
+
+  A chiusura del progetto risulta pertanto un avanzo economico complessivo pari a *21,25 Euro* rispetto al budget
+  preventivato, dovuto alle riallocazioni effettuate nel corso degli sprint finali e al mancato utilizzo integrale delle
+  risorse monetarie inizialmente stimate.
 ]

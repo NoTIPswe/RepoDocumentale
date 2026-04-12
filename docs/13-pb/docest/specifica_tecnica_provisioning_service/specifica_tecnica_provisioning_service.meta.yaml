@@ -1,6 +1,20 @@
-title: Specifica Tecnica - Provisioning Service
+title: Specifica tecnica - Provisioning Service
 changelog:
-  - version: "0.0.2"
+  - version: "0.2.0"
+    date: "2026-04-07"
+    authors:
+      - Mario De Pasquale
+    verifier: Alessandro Mazzariol
+    description: >
+      Portata specifica up to date con le modifiche effettuate al codice
+  - version: "0.1.1"
+    date: "2026-04-07"
+    authors:
+      - Matteo Mantoan
+    verifier: Francesco Marcon
+    description: >
+      Uniformazione titoli e intestazioni: solo prima lettera maiuscola
+  - version: "0.1.0"
     date: "2026-04-01"
     authors:
       - Mario De Pasquale

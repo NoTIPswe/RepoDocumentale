@@ -91,7 +91,7 @@ le norme relative a ciascuno.
 ]
 
 #norm(
-  title: "Workflow e Ciclo di vita Jira",
+  title: "Workflow e ciclo di vita Jira",
   label: <workflow-jira>,
   rationale: [
     Sincronizzazione Automatica: L'evoluzione della Task Madre è guidata automaticamente dallo stato delle sue Sub-task
@@ -136,7 +136,7 @@ le norme relative a ciascuno.
 ]
 
 #norm(
-  title: "Gestione delle Risorse Jira",
+  title: "Gestione delle risorse Jira",
   label: <gestione-risorse>,
   rationale: [
     L'assegnazione singola e specifica del ruolo è indispensabile per la rendicontazione delle ore. Poiché ogni membro
@@ -172,7 +172,7 @@ le norme relative a ciascuno.
     )[*Conventional Commits*] e includere l'id del task.
 ]
 
-#norm(title: "Dashboard e Metriche Jira", label: <jira-metriche>)[
+#norm(title: "Dashboard e metriche Jira", label: <jira-metriche>)[
   Jira è configurato per tracciare automaticamente le metriche di processo attraverso una *Dashboard di Progetto*
   condivisa. I principali indicatori monitorati sono:
   - *Distribuzione delle Ore:* Grafici a torta e tabelle che mostrano le ore assegnate per persona e per ruolo e in
@@ -185,7 +185,7 @@ le norme relative a ciascuno.
 ]
 
 #norm(
-  title: "Configurazione dell'Ambiente Locale Git",
+  title: "Configurazione dell'ambiente Locale Git",
   label: <git-config-env>,
 )[
   Ogni membro del team è tenuto a configurare il proprio ambiente locale prima del primo commit, rispettando i seguenti
@@ -195,7 +195,7 @@ le norme relative a ciascuno.
 ]
 
 #norm(
-  title: "Politiche di Esclusione (.gitignore)",
+  title: "Politiche di esclusione (.gitignore)",
   label: <git-ignore-policy>,
   rationale: [
     Il versionamento di file binari generati, dipendenze scaricate o file di configurazione locali appesantisce il
@@ -213,7 +213,7 @@ le norme relative a ciascuno.
 ]
 
 #norm(
-  title: "Libreria dei Processi (lib.typ)",
+  title: "Libreria dei processi (lib.typ)",
   label: <lib-typ-standard>,
   rationale: [
     Standardizzazione: L'uso di funzioni dedicate per norme e attività vincola gli autori a definire tutti i metadati
@@ -235,7 +235,7 @@ le norme relative a ciascuno.
 ]
 
 #norm(
-  title: "Adozione dei Template Typst",
+  title: "Adozione dei template Typst",
   label: <templates-standard>,
   rationale: [
     I template astraggono la formattazione e la struttura obbligatoria (front-matter, changelog, indici), permettendo
@@ -252,14 +252,14 @@ le norme relative a ciascuno.
   - Presentazioni: Utilizzare `base_slides.typ` per le slide di avanzamento (SAL).
 ]
 
-#norm(title: "Specifica tecnica dei Casi d'Uso", label: <uc-lib-standard>)[
+#norm(title: "Specifica tecnica degli Use Case", label: <uc-lib-standard>)[
   La definizione dei Casi d'Uso è vincolata all'utilizzo della funzione `#uc` (libreria `uc_lib.typ`), che richiede
   obbligatoriamente `id` e `title` univoci, l'uso di costanti tipizzate per gli attori, la specifica degli scenari
   (`main-scen` e `alt-scen` con `cond`), il contratto (`preconds`/`postconds`) e l'importazione dei diagrammi UML
   tramite `#uml-schema`.
 ]
 
-#norm(title: "Organizzazione dei Canali Discord", label: <discord>)[
+#norm(title: "Organizzazione dei canali Discord", label: <discord>)[
   Il server è strutturato in diverse categorie:
   - *Discussions:* Categoria dedicata alle decisioni asincrone.
     - `tech`: Per dubbi su tecnologie, librerie e condivisione di snippet di codice;
@@ -321,7 +321,7 @@ le norme relative a ciascuno.
 ]
 
 #norm(
-  title: "Container Registry (GHCR)",
+  title: "Container registry (GHCR)",
   label: <ghcr>,
 )[
   Il gruppo utilizza *GitHub Container Registry (GHCR)* come registry per le immagini Docker dei servizi applicativi. La
@@ -337,7 +337,7 @@ le norme relative a ciascuno.
 ]
 
 #norm(
-  title: "Processo di Build e Rilascio dei Servizi",
+  title: "Processo di build e rilascio dei Servizi",
   label: <build-release-process>,
   rationale: [
     *Manutenzione Centralizzata (Single Source of Truth)*: Se è necessario aggiornare la versione di un linguaggio (es.
@@ -369,10 +369,29 @@ le norme relative a ciascuno.
   container registry si rimanda alla @ghcr.
 ]
 
+#norm(
+  title: "Gateway di rete (Nginx)",
+  label: <nginx-gateway>,
+)[
+  *Nginx* è l'unico punto d'ingresso autorizzato per il traffico esterno verso i microservizi. L'accesso diretto ai
+  servizi interni bypassando il gateway è vietato in qualsiasi ambiente (sviluppo, CI, produzione).
+
+  Le responsabilità di Nginx sono:
+  - *Routing*: smistamento delle richieste in ingresso verso il microservizio appropriato in base alle regole di
+    location configurate;
+  - *Terminazione TLS*: gestione del certificato SSL/TLS al bordo della rete, in modo che i servizi interni comunichino
+    in chiaro sulla rete privata del cluster;
+  - *Iniezione degli header di sicurezza*: applicazione delle direttive definite in `security-headers.conf` (es.
+    `Strict-Transport-Security`, `X-Frame-Options`, `Content-Security-Policy`) a tutte le risposte in uscita.
+
+  La configurazione è versionata in `notip-infra/infra/nginx/` ed è soggetta alle regole GitOps definite nella
+  @gitops-infra.
+]
+
 === Attività del processo
 
 #activity(
-  title: "Creazione e Pianificazione Task su Jira",
+  title: "Creazione e pianificazione task su Jira",
   roles: (ROLES.aut, ROLES.ver),
   norms: ("identificazione-jira", "gestione-risorse"),
   input: [Attività da svolgere da trasformare in Task],
@@ -417,7 +436,7 @@ le norme relative a ciascuno.
 )
 
 #activity(
-  title: "Ciclo di Avanzamento Task su Jira",
+  title: "Ciclo di avanzamento task su Jira",
   roles: (ROLES.aut, ROLES.ver),
   norms: ("workflow-jira", "integrazione-git"),
   input: [Task in stato *Da Completare*],
@@ -490,7 +509,7 @@ le norme relative a ciascuno.
 )
 
 #activity(
-  title: "Setup dell'Ambiente DevContainer",
+  title: "Setup dell'ambiente DevContainer",
   label: <setup-devcontainer>,
   roles: (ROLES.progr, ROLES.proge),
   norms: ("devcontainers", "gestione-segreti", "pre-commit-hooks"),
@@ -536,6 +555,43 @@ le norme relative a ciascuno.
       desc: [
         Installare e attivare gli hook locali eseguendo `pre-commit install` nella radice della repository. Per la norma
         di riferimento si rimanda alla @pre-commit-hooks.
+      ],
+    ),
+  ),
+)
+
+#activity(
+  title: "Bootstrapping dell'ambiente locale",
+  label: <bootstrapping-locale>,
+  roles: (ROLES.progr, ROLES.proge),
+  norms: ("devcontainers", "gitops-infra"),
+  input: [Nuova postazione di lavoro o primo avvio del cluster locale],
+  output: [Cluster di microservizi operativo in locale con stream NATS e database inizializzati],
+  rationale: [
+    I dettagli dei comandi specifici (es. `bootstrap.sh`, `nats-streams-init.sh`) sono documentati nel `README.md` di
+    `notip-infra` e non vengono duplicati qui.
+  ],
+  procedure: (
+    (
+      name: "Prerequisiti",
+      desc: [
+        Verificare che Docker sia installato e in esecuzione e che il DevContainer della repository sia operativo (vedi
+        @setup-devcontainer).
+      ],
+    ),
+    (
+      name: "Avvio del cluster",
+      desc: [
+        Eseguire gli script di bootstrapping forniti in `notip-infra` secondo le istruzioni del `README.md`. Gli script
+        avviano i container dei microservizi tramite Docker Compose, inizializzano gli stream NATS JetStream e applicano
+        le migrazioni del database.
+      ],
+    ),
+    (
+      name: "Verifica",
+      desc: [
+        Verificare che tutti i servizi siano raggiungibili e che gli stream NATS siano stati creati correttamente prima
+        di iniziare qualsiasi attività di sviluppo.
       ],
     ),
   ),

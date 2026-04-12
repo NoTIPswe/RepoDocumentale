@@ -1,4 +1,4 @@
-title: Specifica Tecnica
+title: Specifica tecnica
 changelog:
   - version: "1.0.0"
     approver: Leonardo Preo
@@ -75,12 +75,12 @@ changelog:
     description: >
       Stesura della sezione Sicurezza e politiche multi-tenant
   - version: "0.2.1"
-    date: "2026-03-25"
+    date: "2026-04-07"
     authors:
-      - Francesco Marcon
-    verifier: Alessandro Contarini
+      - Matteo Mantoan
+    verifier: Francesco Marcon
     description: >
-      Integrazioni all'Architettura di Sistema e layer di messaggistica
+      Uniformazione titoli e intestazioni: solo prima lettera maiuscola
   - version: "0.2.0"
     date: "2026-03-24"
     authors:

@@ -10,7 +10,7 @@
   scope: base-document.EXTERNAL_SCOPE,
 )[
   = Introduzione
-  == Scopo e Struttura della Documentazione
+  == Scopo e struttura della documentazione
   Il presente documento costituisce la Specifica Tecnica di Sistema e ha lo scopo di fornire una descrizione strutturata
   dell'architettura macroscopica, delle componenti che la compongono e delle policy globali (es. sicurezza e testing).
 
@@ -30,12 +30,12 @@
   #align(center)[#emph([parola#sub[G]])]
 
   == Riferimenti
-  === Riferimenti Normativi
+  === Riferimenti normativi
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato d'appalto C7 - Sistema di
       acquisizione dati da sensori]\ _Ultimo accesso: 2026-03-25_
   - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/norme_di_progetto.pdf")[Norme di Progetto
       v1.1.0]
-  === Riferimenti Informativi
+  === Riferimenti informativi
   - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/glossario.pdf")[Glossario v2.0.0]
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf")[PD1 - Regolamento del Progetto Didattico]\
     _Ultimo Accesso: 2026-03-09_
@@ -53,7 +53,7 @@
   Le tecnologie adottate sono state selezionate per supportare l'ingestione di flussi telemetrici ad alto throughput e
   l'isolamento multi-tenant, demandando i dettagli implementativi alle rispettive documentazioni di servizio.
 
-  == Linguaggi e Framework Principali
+  == Linguaggi e framework principali
   #table(
     columns: (1fr, auto, 4fr),
     [Tecnologia], [Versione], [Descrizione],
@@ -118,7 +118,7 @@
       applicative (tentativi di provisioning, durate operazioni PKI, retry NATS).],
   )
 
-  == Archiviazione Dati e Messaggistica
+  == Archiviazione dati e messaggistica
   #table(
     columns: (1fr, auto, 4fr),
     [Tecnologia], [Versione], [Descrizione],
@@ -167,7 +167,7 @@
       indicatori di liveness dei gateway.],
   )
 
-  == Infrastruttura e Sicurezza
+  == Infrastruttura e sicurezza
   #table(
     columns: (1fr, auto, 4fr),
     [Tecnologia], [Versione], [Descrizione],
@@ -199,9 +199,9 @@
 
   #pagebreak()
 
-  = Architettura di Sistema
+  = Architettura di sistema
 
-  == Architettura di Deployment e Single Source of Truth
+  == Architettura di deployment e Single Source of Truth
   L'architettura del sistema è basata su un modello a microservizi. Ogni microservizio ha la propria repository
   dedicata, con il proprio DB e le proprie migrations.
 
@@ -227,7 +227,7 @@
   - *Simulator Dashboard*: Frontend Angular dedicato alla creazione e monitoraggio dello stato dei simulatori e alla
     generazione di anomalie telemetriche ad hoc.
 
-  == Design Pattern Macro-Architetturali
+  == Design pattern macro-architetturali
 
   #st.design-pattern(
     name: "Pipeline Opaca (Zero-Knowledge Server-Side)",
@@ -402,7 +402,7 @@
 
   = Sicurezza
 
-  == Segregazione Multi-Tenant
+  == Segregazione multi-tenant
   Il sistema NoTIP gestisce l'isolamento dei tenant su molteplici livelli infrastrutturali e applicativi, garantendo che
   l'accesso alle risorse rimanga strettamente confinato:
   - *Identity & Access (Keycloak)*: Il provider IAM inietta il claim `tenant_id` all'interno di ogni JWT emesso,
@@ -414,7 +414,7 @@
     (es. `telemetry.data.{tenantId}.{gwId}`) combinate con liste di permessi statiche che confinano i gateway al proprio
     perimetro operativo.
 
-  == Gestione Certificati e Zero Touch Provisioning
+  == Gestione certificati e Zero Touch Provisioning
   L'autenticazione dei gateway fisici si basa su certificati mTLS rilasciati dinamicamente tramite un processo di
   provisioning automatizzato:
   + *Bootstrap:* Il gateway, configurato in fabbrica con credenziali monouso (`factory_id` e `factory_key`), invoca un
@@ -428,7 +428,7 @@
 
   #pagebreak()
 
-  = Metodologie di Testing
+  = Metodologie di testing
 
   Oltre alle metodologie unitarie demandate ai singoli servizi, la validazione globale dell'architettura distribuita
   segue specifiche direttrici strategiche:

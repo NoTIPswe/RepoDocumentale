@@ -1,0 +1,37 @@
+title: Test Book - M31
+changelog:
+  - version: "0.4.0"
+    date: "2026-04-12"
+    authors:
+      - Francesco Marcon
+    verifier: Alessandro Mazzariol
+    description: >
+      Aggiunta e completamento dei Test di Sistema (da ST-19 a ST-26), inserimento dei Test di Integrazione (IT) e aggiornamento della tabella di riepilogo
+  - version: "0.3.0"
+    date: "2026-04-11"
+    authors:
+      - Francesco Marcon
+    verifier: Valerio Solito
+    description: >
+      Aggiunta dei Test di Sistema relativi alla gestione Multi-Tenant, sicurezza e gestione del Simulatore
+  - version: "0.2.0"
+    date: "2026-04-09"
+    authors:
+      - Francesco Marcon
+    verifier: Valerio Solito
+    description: >
+      Inserimento dei criteri di valutazione e dei Test di Sistema su visualizzazione dati, alert e monitoraggio
+  - version: "0.1.0"
+    date: "2026-04-08"
+    authors:
+      - Francesco Marcon
+    verifier: Matteo Mantoan
+    description: >
+      Stesura dell'introduzione e inserimento dei primi Test di Sistema relativi all'autenticazione e gestione della sessione
+  - version: "0.0.1"
+    date: "2026-04-05"
+    authors:
+      - Francesco Marcon
+    verifier: Valerio Solito
+    description: >
+      Prima bozza della struttura del documento
