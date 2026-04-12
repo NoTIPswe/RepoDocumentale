@@ -1286,7 +1286,7 @@
   == MP01 e MP02: Earned Value e Planned Value
 
   #figure(
-    image(height: 30%, "assets/EV_PV.jpeg"),
+    image(height: 30%, "assets/EV.png"),
     caption: [Grafico per Sprint di MP01 e MP02],
   ) <MP01_MP02>
 
@@ -1304,7 +1304,7 @@
   == MP03 e MP07: Actual Cost e Estimate To Complete
 
   #figure(
-    image(height: 30%, "assets/AC_ETC.jpeg"),
+    image(height: 30%, "assets/ETC.png"),
     caption: [Grafico per Sprint di MP03 e MP07],
   ) <MP03_MP07>
 
@@ -1323,7 +1323,7 @@
 
 
   #figure(
-    image(height: 30%, "assets/CPI_SPI.jpeg"),
+    image(height: 30%, "assets/CPI.png"),
     caption: [Grafico per Sprint di MP04 e MP05],
   ) <MP04_MP05>
 
@@ -1342,7 +1342,7 @@
   == MP06: Estimate At Completion
 
   #figure(
-    image(height: 30%, "assets/EAC.jpeg"),
+    image(height: 30%, "assets/EAC.png"),
     caption: [Grafico per Sprint di MP06],
   ) <MP06>
 
@@ -1363,7 +1363,7 @@
   == MP08: Time Estimate At Completion
 
   #figure(
-    image(height: 30%, "assets/TEAC.jpeg"),
+    image(height: 30%, "assets/TAC.png"),
     caption: [Grafico per Sprint di MP08],
   ) <MP08>
 
@@ -1382,7 +1382,7 @@
   == MP09: Budget Burn Rate
 
   #figure(
-    image(height: 30%, "assets/BBR.jpeg"),
+    image(height: 30%, "assets/BBR.png"),
     caption: [Grafico per Sprint di MP09],
   ) <MP09>
 
@@ -1401,14 +1401,10 @@
 
 
   == MP11: Indice di Gulpease
-
-  #figure(
-    image(height: 30%, "assets/Gulpease.jpeg"),
-    caption: [Grafico per Sprint di MP11],
-  ) <MP11>
-
-  === RTB
-
+//  #figure(
+//    image(height: 30%, "assets/Gulpease.jpeg"),
+//    caption: [Grafico per Sprint di MP11],
+//  ) <MP11>
   Dal grafico emerge che tutti i documenti mantengono un livello di avanzamento superiore alla soglia minima del 60%
   definita internamente dal gruppo. Nel complesso, l’andamento conferma una gestione della documentazione stabile e
   coerente con quanto fissato, senza scostamenti al di sotto del livello minimo previsto.
@@ -1419,7 +1415,7 @@
 
 
   #figure(
-    image(height: 30%, "assets/CO.png"),
+    image(height: 30%, "assets/ortografica.png"),
     caption: [Grafico per Sprint di MP12],
   ) <MP12>
 
@@ -1440,7 +1436,7 @@
   == MP18: Quality Metrics Satisfied
 
   #figure(
-    image(height: 30%, "assets/QMS.jpeg"),
+    image(height: 30%, "assets/QMS.png"),
     caption: [Grafico per Sprint di MP18],
   ) <MP18>
 
@@ -1456,15 +1452,10 @@
 
 
   == MP20: Time Efficiency
-
-
-  #figure(
-    image(height: 30%, "assets/TE.jpeg"),
-    caption: [Grafico per Sprint di MP20],
-  ) <MP20>
-
-  === RTB
-
+//  #figure(
+//    image(height: 30%, "assets/TE.jpeg"),
+//    caption: [Grafico per Sprint di MP20],
+//  ) <MP20>
   Dal grafico si osserva un progressivo incremento della Time Efficiency (TE) dallo sprint 1 allo sprint 6. Tuttavia,
   l’indicatore rimane costantemente al di sotto del valore ottimale, evidenziando un livello di efficienza temporale
   ancora migliorabile. Questo andamento è legato alla significativa incidenza delle “ore di palestra”, indispensabili al
@@ -1477,14 +1468,10 @@
 
 
   == MP21: Sprint Velocity Stability
-
-  #figure(
-    image(height: 30%, "assets/SVS.jpeg"),
-    caption: [Grafico per Sprint di MP21],
-  ) <MP21>
-
-  === RTB
-
+//  #figure(
+//    image(height: 30%, "assets/SVS.jpeg"),
+//    caption: [Grafico per Sprint di MP21],
+//  ) <MP21>
   Dal grafico si osserva un andamento progressivamente migliorativo nel corso degli sprint. Poiché la metrica misura lo
   scostamento percentuale tra velocity pianificata e velocity effettiva, valori più elevati indicano una maggiore
   instabilità, mentre valori più bassi rappresentano una migliore capacità di previsione e quindi una maggiore
@@ -1502,7 +1489,7 @@
   == MP22: Meeting Efficiency Index
 
   #figure(
-    image(height: 30%, "assets/MEI.jpeg"),
+    image(height: 30%, "assets/MEI.png"),
     caption: [Grafico per Sprint di MP22],
   ) <MP22>
 
@@ -1526,7 +1513,7 @@
   == MP23: PR Resolution Time
 
   #figure(
-    image(height: 30%, "assets/PRRT.jpeg"),
+    image(height: 30%, "assets/PRRT.png"),
     caption: [Grafico per Sprint di MP23],
   ) <MP23>
 
