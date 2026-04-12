@@ -312,7 +312,7 @@
     [`gateways create --factory-id ID --factory-key KEY --model M --firmware F --freq N`],
     [Crea un singolo gateway simulato.],
 
-    [`gateways bulk --count N ...`], [Crea N gateway simulati con i parametri specificati.],
+    [`gateways bulk ...`], [Crea N, in base al numero di factory ids inseriti, gateway simulati con i parametri specificati.],
     [`gateways delete <uuid>`], [Elimina un gateway simulato.],
     [`sensors add <gateway-id> --type TYPE --min N --max N --algorithm ALG`],
     [Aggiunge un sensore a un gateway esistente.],
