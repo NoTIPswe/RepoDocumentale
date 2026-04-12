@@ -1300,6 +1300,12 @@
 
   === PB
 
+  Nel periodo compreso tra gli sprint 8 e 12, il grafico mostra un andamento complessivamente regolare e coerente tra
+  Earned Value (EV) e Planned Value (PV). Nei primi sprint considerati si osserva un lieve scostamento, con l’EV
+  leggermente inferiore al PV, ma a partire dallo sprint 10 le due curve tendono progressivamente a sovrapporsi. Nel
+  dodicesimo sprint i due valori coincidono, evidenziando un allineamento completo tra valore pianificato e valore
+  effettivamente maturato.
+
 
   == MP03 e MP07: Actual Cost e Estimate To Complete
 
@@ -1317,6 +1323,12 @@
   lavoro ancora da svolgere.
 
   === PB
+
+  Nel periodo compreso tra gli sprint 8 e 12, l’Actual Cost (AC) continua a crescere in modo graduale, mentre
+  l’Estimate To Complete (ETC) prosegue la propria diminuzione. L’andamento delle due curve risulta regolare anche
+  nella fase finale: l’AC aumenta con incrementi contenuti fino allo sprint 12, mentre l’ETC si riduce progressivamente
+  fino a raggiungere il valore minimo del periodo considerato. Il grafico evidenzia quindi una chiara prosecuzione del
+  lavoro svolto e una contestuale riduzione della parte residua da completare.
 
 
   == MP04 e MP05: Cost Performance Index e Schedule Performance Index
@@ -1337,6 +1349,12 @@
   rilevanti.
 
   === PB
+
+  Nel periodo compreso tra gli sprint 8 e 12, lo Schedule Performance Index (SPI) si mantiene costantemente pari a 1,
+  indicando piena aderenza alla pianificazione temporale. Nello stesso intervallo, il Cost Performance Index (CPI), dopo
+  aver toccato il valore minimo attorno allo sprint 8, mostra una risalita progressiva. Pur restando leggermente
+  inferiore a 1 tra gli sprint 8 e 11, nel dodicesimo sprint il CPI torna ad allinearsi allo SPI, raggiungendo anch’esso
+  il valore 1.
 
 
   == MP06: Estimate At Completion
@@ -1359,6 +1377,11 @@
 
   === PB
 
+  Nel periodo compreso tra gli sprint 8 e 12, l’Estimate At Completion (EAC) mostra una tendenza decrescente. Dopo il
+  valore massimo registrato attorno allo sprint 8, la curva scende progressivamente negli sprint successivi,
+  avvicinandosi sempre più alla linea del Budget At Completion (BAC). Nel dodicesimo sprint l’EAC torna a coincidere con
+  il BAC, evidenziando un riallineamento della stima finale rispetto al budget previsto.
+
 
   == MP08: Time Estimate At Completion
 
@@ -1377,6 +1400,11 @@
   allungamento significativo dei tempi.
 
   === PB
+
+  Nel periodo compreso tra gli sprint 8 e 12, il Time At Completion presenta un andamento in diminuzione. Dopo il picco
+  osservato attorno allo sprint 8, il valore cala progressivamente negli sprint successivi, pur mantenendosi per gran
+  parte dell’intervallo leggermente superiore al valore ottimale. Nel dodicesimo sprint la curva torna ad allinearsi
+  alla soglia ottimale, mostrando un completo rientro rispetto allo scostamento registrato in precedenza.
 
 
   == MP09: Budget Burn Rate
@@ -1399,6 +1427,11 @@
 
   === PB
 
+  Nel periodo compreso tra gli sprint 8 e 12, il Budget Burn Rate mostra un andamento sostanzialmente stabile con una
+  lieve crescita progressiva. I valori aumentano di poco da uno sprint al successivo, passando da poco meno di 80
+  giorni/uomo a poco più di 80 giorni/uomo nella parte finale del periodo considerato. Per tutto l’intervallo il burn
+  rate rimane comunque nettamente al di sotto della soglia accettabile indicata nel grafico.
+
 
   == MP11: Indice di Gulpease
  #figure(
@@ -1410,6 +1443,13 @@
   coerente con quanto fissato, senza scostamenti al di sotto del livello minimo previsto.
 
   === PB
+
+  Nel periodo compreso tra gli sprint 8 e 12, tutti i documenti rappresentati nel grafico restano al di sopra della
+  soglia minima del 60%. In questa fase finale si osserva una sostanziale stabilità generale, accompagnata da lievi
+  oscillazioni positive per la maggior parte dei documenti. In particolare, la *Specifica Tecnica* si mantiene attorno
+  alla soglia minima con un lieve miglioramento finale, mentre *Analisi dei Requisiti* e *Piano di Qualifica* mostrano
+  una crescita moderata verso lo sprint 12. *Norme di Progetto*, *Glossario* e *Piano di Progetto* rimangono invece su
+  valori più alti e sostanzialmente stabili.
 
   == MP12: Correttezza Ortografica
 
@@ -1432,6 +1472,10 @@
 
   === PB
 
+  Nel periodo compreso tra gli sprint 8 e 12, il numero di errori ortografici rilevati rimane costantemente pari a
+  zero. La curva si mantiene coincidente con il valore ottimo e con la soglia accettabile per tutti gli sprint della
+  fase PB considerati, evidenziando una piena stabilità del risultato raggiunto già negli sprint precedenti.
+
 
   == MP18: Quality Metrics Satisfied
 
@@ -1450,6 +1494,11 @@
 
   === PB
 
+  Nel periodo compreso tra gli sprint 8 e 12, la percentuale di Quality Metrics Satisfied si mantiene sempre al di sopra
+  della soglia di accettabilità. Dopo una lieve flessione attorno allo sprint 8, il valore torna a crescere negli sprint
+  successivi, attestandosi stabilmente intorno al 95% nella parte finale del periodo considerato. Pur senza raggiungere
+  il valore ottimo del 100%, il grafico mostra quindi un andamento positivo e stabile.
+
 
   == MP20: Time Efficiency
  #figure(
@@ -1465,6 +1514,11 @@
   ore effettivamente produttive e, di conseguenza, un incremento della Time Efficiency nei prossimi sprint.
 
   === PB
+
+  Nel periodo compreso tra gli sprint 8 e 12, la Time Efficiency continua a crescere in modo regolare. I valori
+  risultano sempre superiori alla soglia accettabile e mostrano un incremento progressivo da poco più del 50% fino a
+  circa il 65% nello sprint 12. Il grafico evidenzia quindi un miglioramento costante dell’indicatore nella fase PB,
+  pur rimanendo ancora distante dal valore ottimo.
 
 
   == MP21: Sprint Velocity Stability
@@ -1484,6 +1538,12 @@
   velocity sta migliorando.
 
   === PB
+
+  Nel periodo compreso tra gli sprint 8 e 12, la Sprint Velocity Stability continua a migliorare, con valori in
+  progressiva diminuzione. Dopo essere ancora sopra la soglia accettabile nello sprint 8, l’indicatore scende al di
+  sotto di essa a partire dallo sprint 9 e rimane inferiore nei successivi sprint fino al termine del periodo
+  considerato. Il valore minimo si osserva attorno allo sprint 11, seguito da un lieve incremento finale che però non
+  compromette il mantenimento entro la soglia accettabile.
 
 
   == MP22: Meeting Efficiency Index
@@ -1509,6 +1569,12 @@
 
   === PB
 
+  Nel periodo compreso tra gli sprint 8 e 12, il Meeting Efficiency Index si mantiene sempre sopra la soglia
+  accettabile e si colloca per quasi tutto l’intervallo attorno o leggermente sopra il valore ottimo. Dopo
+  l’allineamento al valore ottimo nello sprint 8, il grafico mostra un picco positivo nello sprint 9, seguito da una
+  lieve diminuzione e da una successiva stabilizzazione negli sprint conclusivi su valori poco superiori a 5
+  decisioni/ora.
+
 
   == MP23: PR Resolution Time
 
@@ -1533,6 +1599,11 @@
   revisione più efficiente.
 
   === PB
+
+  Nel periodo compreso tra gli sprint 8 e 12, il PR Resolution Time si mantiene stabilmente sotto la soglia accettabile
+  e molto vicino al valore ottimo. Dopo lo sprint 8 i valori oscillano in misura contenuta attorno a circa 1 giorno,
+  con un lieve aumento negli ultimi sprint che rimane comunque limitato. Il grafico mostra quindi una fase finale
+  caratterizzata da continuità e stabilità nel tempo medio di risoluzione delle Pull Request.
 
 
   = Valutazioni per l'automiglioramento
