@@ -2,57 +2,151 @@
 
 #let meta = yaml(sys.inputs.at("meta-path", default: "m31_2026-04-13.meta.yaml"));
 
+#let shot(path, width: 100%, caption: []) = figure(
+  image(path, width: width),
+  caption: caption,
+)
+
 #base-slides.apply-base-slides(
   title: meta.title,
   date: "2026-04-13",
 )[
-  == Obiettivo del MVP
+  == Cosa deve dimostrare il nostro MVP
 
-  - Realizzare una piattaforma cloud per acquisire, gestire e visualizzare dati provenienti da sensori IoT.
-  - Validare un flusso completo, dalla generazione della telemetria fino alla consultazione da parte degli utenti.
-  - Dimostrare la fattibilità di un sistema multi-tenant, sicuro e scalabile, aderente agli obiettivi del capitolato.
-  - Concentrarsi sul livello cloud del sistema, sostituendo l'hardware reale con una simulazione controllata dei
-    gateway.
-
-  #pagebreak()
-
-  == Cosa abbiamo sviluppato
-
-  - Un'architettura a microservizi composta da `Management API`, `Data API`, `Data Consumer` e `Provisioning Service`.
-  - Una Web Application per utenti tenant, tenant admin e system admin, con viste live e storiche dei dati raccolti e
-    funzionalita' di gestione dedicate.
-  - Un sottosistema di simulazione con `Simulator Backend`, `Simulator CLI` e dashboard dedicata al controllo dei
-    gateway virtuali.
-  - Un'infrastruttura di comunicazione interna event-driven basata su NATS, con persistenza dei dati telemetrici e
-    monitoraggio dello stato dei gateway.
+  - Il sistema realizza un flusso *end-to-end* completo: simulazione gateway, ingestione telemetria, persistenza,
+    visualizzazione e gestione operativa.
+  - La piattaforma è realmente *multi-tenant*: tenant, utenti e dispositivi sono isolati e governati da ruoli distinti.
+  - Le funzionalità principali non sono mockup, ma parti operative della Web Application e dei microservizi backend.
+  - Il focus del MVP è sulla porzione cloud del capitolato, con gateway fisici sostituiti da una simulazione controllata
+    ma credibile.
 
   #pagebreak()
 
-  == Funzionalita' mostrate dal MVP
+  == Dal gateway simulato all'utente finale
 
-  - Simulazione di piu' gateway in parallelo, con generazione di dati sensoriali realistici e invio sicuro della
-    telemetria al cloud.
-  - Consultazione dei dati in due modalita': `Live Stream` per il tempo reale e `Historical Analysis` per l'analisi
-    storica, con filtri ed esportazione CSV.
-  - Gestione operativa di tenant, utenti, gateway, soglie, alert di gateway offline e client API per integrazioni
-    esterne.
-  - Supporto a comandi verso i gateway, come configurazione operativa e aggiornamento firmware.
-  - Produzione della documentazione tecnica di progetto: una specifica tecnica generale di sistema e una specifica
-    tecnica dedicata per ciascun microservizio.
-  - Definizione di un `Test Book` per descrivere strategia di validazione, casi di test e criteri di verifica.
-  - Redazione dei manuali d'uso per utenti tenant e tenant admin, focalizzati sulle funzionalita' operative della
+  1. I gateway virtuali generano dati sensoriali realistici e li inviano in modo sicuro alla piattaforma.
+  2. La pipeline cloud riceve, instrada e persiste la telemetria attraverso microservizi dedicati.
+  3. Gli utenti tenant consultano i dati sia in *Live Stream* sia in *Historical Analysis*.
+  4. Tenant Admin e System Admin possono gestire gateway, utenti, soglie, alert e operazioni di supporto.
+
+  #v(0.6em)
+  *Valore per la valutazione*: il MVP non dimostra solo singoli componenti, ma un ciclo d'uso coerente e verificabile.
+
+  #pagebreak()
+
+  == Dashboard tenant: monitoraggio e controllo
+
+  #shot(
+    "../../docest/manuale_utente/assets/dashboard.png",
+    width: 72%,
+    caption: [Dashboard reale del tenant con vista operativa dei dati raccolti],
+  )
+
+  - Accesso immediato alle funzionalità di consultazione.
+  - Vista dati live con filtri per gateway, tipo sensore e sensori specifici.
+  - Interfaccia adatta sia al monitoraggio quotidiano sia alla diagnosi rapida.
+
+  #pagebreak()
+
+  == Analisi storica e consultazione del dato
+
+  #shot(
+    "../../docest/manuale_utente/assets/historical.png",
+    width: 72%,
+    caption: [Analisi storica con intervallo temporale, grafici e export CSV],
+  )
+
+  - Il sistema consente analisi retrospettiva, confronto temporale e navigazione paginata dei risultati.
+  - L'export CSV rende il dato riusabile anche fuori piattaforma.
+  - Questo rafforza il MVP come strumento operativo, non solo come vetrina tecnologica.
+
+  #pagebreak()
+
+  == Gestione operativa dei gateway
+
+  #grid(columns: (1fr, 1fr), gutter: 1.2cm)[
+    #shot(
+      "../../docest/manuale_utente/assets/gateway_admin.png",
+      width: 100%,
+      caption: [Azioni disponibili per il Tenant Admin],
+    )
+  ][
+    #shot(
+      "../../docest/manuale_utente/assets/gateway_detail.png",
+      width: 100%,
+      caption: [Dettaglio gateway con telemetria e controllo operativo],
+    )
+  ]
+
+  - Configurazione del gateway, aggiornamento firmware ed eliminazione sono già integrate nei flussi applicativi.
+  - La piattaforma non si limita a mostrare dati: consente intervento amministrativo e manutenzione.
+
+  #pagebreak()
+
+  == Multi-tenancy e supporto sicuro
+
+  #grid(columns: (1fr, 1fr), gutter: 1.2cm)[
+    #shot(
+      "../../docest/manuale_admin/assets/tenant_detail.png",
+      width: 100%,
+      caption: [Dettaglio tenant e avvio dell'impersonazione],
+    )
+  ][
+    #shot(
+      "../../docest/manuale_admin/assets/indicatore_ObfuscatedMode.png",
+      width: 78%,
+      caption: [Indicatore persistente di Obfuscated Mode],
+    )
+  ]
+
+  - Il System Admin può intervenire in contesto tenant senza esporre dati sensibili in chiaro.
+  - L'*Obfuscated Mode* è un elemento distintivo: abilita supporto tecnico preservando la privacy.
+  - La separazione tra ruoli rafforza la credibilità architetturale del MVP.
+
+  #pagebreak()
+
+  == Architettura MVP: servizi chiari, responsabilità separate
+
+  #shot(
+    "../../docest/specifica_tecnica_management_api/assets/01-app-architecture.png",
+    width: 86%,
+    caption: [Vista architetturale del sistema applicativo lato cloud],
+  )
+
+  - L'architettura è suddivisa in servizi con responsabilità definite: `Management API`, `Data API`, `Data Consumer`,
+    `Provisioning Service`, Web App e sottosistema di simulazione.
+  - La comunicazione interna event-driven e la separazione dei ruoli preparano il sistema alla scalabilità.
+  - La struttura implementata è coerente con l'obiettivo di un prodotto manutenibile oltre il solo MVP.
+
+  #pagebreak()
+
+  == Documentazione a supporto del MVP
+
+  - È stata prodotta una *specifica tecnica generale di sistema* che descrive l'architettura complessiva della
     piattaforma.
-  - Redazione del manuale operativo per il System Admin, dedicato alla gestione multi-tenant e al supporto
-    amministrativo.
+  - È stata redatta una *specifica tecnica dedicata per ciascun microservizio*, per documentarne responsabilità,
+    interfacce e scelte implementative.
+  - È stato prodotto un *manuale utente* per gli utenti del tenant e per il Tenant Admin, focalizzato sui flussi
+    operativi della Web Application.
+  - È stato prodotto un *manuale operativo per il System Admin*, dedicato alla gestione multi-tenant e alle attività di
+    supporto amministrativo.
+  - È stato redatto un *TestBook* che raccoglie strategia di validazione, casi di test e criteri di verifica.
+
+  #v(0.6em)
+  *Valore aggiunto*: il MVP è accompagnato da documentazione che ne supporta utilizzo, manutenzione e verifica.
 
   #pagebreak()
 
-  == Aspetti distintivi del progetto
+  == Perché questo MVP è pronto per essere accettato
 
-  - Multi-tenancy reale: ogni tenant accede solo alle proprie risorse e ai propri dati.
-  - Sicurezza by design: provisioning sicuro dei gateway, autenticazione centralizzata, audit log e cifratura della
-    telemetria.
-  - Pipeline dati opaca: il backend non decifra i payload sensibili, che vengono interpretati solo lato client.
-  - Supporto amministrativo avanzato: impersonazione controllata con `Obfuscated Mode`, che permette assistenza tecnica
-    senza esporre dati sensibili in chiaro.
+  - *Funzionalità dimostrabili*: viste live e storiche, gestione gateway, gestione tenant, alert, soglie e supporto
+    amministrativo.
+  - *Interfaccia reale*: le schermate mostrate provengono dall'applicazione effettiva e dai manuali utente.
+  - *Solidità tecnica*: microservizi separati, autenticazione centralizzata, audit log e provisioning sicuro.
+  - *Maturità progettuale*: sono stati prodotti specifica tecnica di sistema, specifiche dei servizi, manuali e
+    `TestBook`.
+
+  #v(0.8em)
+  *Messaggio finale*: il nostro MVP dimostra che la piattaforma richiesta è stata resa concreta, usabile e valutabile su
+  basi sia funzionali sia architetturali.
 ]

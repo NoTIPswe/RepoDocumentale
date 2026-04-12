@@ -1,5 +1,12 @@
 title: Presentazione MVP - m31
 changelog:
+  - version: "0.1.0"
+    date: "2026-04-12"
+    authors:
+      - Alessandro Contarini
+    verifier: TBD
+    description: >
+      Sviluppo del documento e presentazione del MVP
   - version: "0.0.1"
     date: "2026-04-11"
     authors:
