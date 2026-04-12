@@ -107,6 +107,11 @@
 
   == Architettura MVP: servizi chiari, responsabilità separate
 
+  #image("assets/c4.png", width: 100%, height: 82%, fit: "contain")
+
+  #pagebreak()
+
+  == Architettura MVP: lettura del diagramma
 
   - L'architettura è suddivisa in servizi con responsabilità definite: `Management API`, `Data API`, `Data Consumer`,
     `Provisioning Service`, Web App e sottosistema di simulazione.
