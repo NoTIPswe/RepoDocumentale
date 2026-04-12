@@ -1,0 +1,16 @@
+title: Manuale Client API
+changelog:
+  - version: "0.1.0"
+    date: "2026-04-12"
+    authors:
+      - Alessandro Mazzariol
+    verifier: TBD
+    description: >
+      Stesura finale documento
+  - version: "0.0.1"
+    date: "2026-04-12"
+    authors:
+      - Alessandro Mazzariol
+    verifier: TBD
+    description: >
+      Creazione del documento
