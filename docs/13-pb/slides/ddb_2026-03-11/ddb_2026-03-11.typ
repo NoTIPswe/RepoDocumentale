@@ -10,7 +10,7 @@
   - Ricevimento con Prof. Cardin per chiarimento su microservizi e Message-Broker.
 ][
   - Completare progettazione di dettaglio MVP.
-  - Iniziare la codifica delle prime componenti del Backend.
+  - Iniziare la codifica delle prime componenti del backend.
 ][
   - Investimento di molte ore in "palestra di progettazione".
   - Necessità di rinegoziazione requisiti minimi con proponente.
