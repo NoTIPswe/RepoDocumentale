@@ -11,6 +11,7 @@ normalizations:
 ignore_patterns:
   - '\b(UC|UCS)\d*\b' # UC/UCS
   - '\bv\d+\b' # versioni (v1, v2, ecc.)
+  - '(?<=[a-zA-ZÀ-ÿ])(PASS|FAIL)\b' # status badge concatenated to last word of test name (HTML rendering artifact)
 
 # 3. DIZIONARIO PERSONALIZZATO
 # Parole specifiche da considerare corrette.
@@ -225,6 +226,12 @@ accepted_words:
   - deduplicazione
   - mockato
   - TestContainers
+  - Grafana
+  - prometheus
+  - grafana
+  - powershell
+  - svc
+  - ps
   - timestamptz
   - uuid
   - crypto
@@ -329,6 +336,12 @@ accepted_words:
   - renderer
   - EOF
   - ciphertext
+  - PowerShell
+  - macOS
+  - hostname
+  - healthcheck
+  - Makefile
+  - balancer
   - AOP
   - GitOps
   - middleware
@@ -734,10 +747,14 @@ accepted_words:
   - impersonazione
   - impersonare
   - intra
+  - riconnessioni
+  - restartare
   - centralizzata
   - testabilità
   - deserializzate
   - riaccodamento
+  - riaccodato
+  - evidenziazione
   - concorrentemente
   - Riesecuzione
   - versionata
