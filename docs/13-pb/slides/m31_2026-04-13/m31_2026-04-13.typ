@@ -2,8 +2,8 @@
 
 #let meta = yaml(sys.inputs.at("meta-path", default: "m31_2026-04-13.meta.yaml"));
 
-#let shot(path, width: 100%, caption: []) = figure(
-  image(path, width: width),
+#let shot(path, width: 100%, height: auto, caption: []) = figure(
+  image(path, width: width, height: height, fit: "contain"),
   caption: caption,
 )
 
@@ -107,11 +107,6 @@
 
   == Architettura MVP: servizi chiari, responsabilità separate
 
-  #shot(
-    "../../docest/specifica_tecnica_management_api/assets/01-app-architecture.png",
-    width: 86%,
-    caption: [Vista architetturale del sistema applicativo lato cloud],
-  )
 
   - L'architettura è suddivisa in servizi con responsabilità definite: `Management API`, `Data API`, `Data Consumer`,
     `Provisioning Service`, Web App e sottosistema di simulazione.
