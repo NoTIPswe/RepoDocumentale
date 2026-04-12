@@ -603,7 +603,7 @@
   == Data API
 
   #align(center)[
-    #image("./assets/DataAPIComponents.svg", width: 100%)
+    #image("./assets/DataApiComponents.svg", width: 100%)
     Architettura Logica del Data API.
   ]
 
