@@ -325,8 +325,8 @@
     [WebCrypto API],
     [W3C — nativa],
     [API nativa dei browser moderni per operazioni crittografiche hardware-accelerate. Utilizzata dal
-      `@notip/crypto-sdk` per la decifratura AES-256-GCM dei payload telemetrici, senza richiedere dipendenze
-      JavaScript aggiuntive per le primitive crittografiche.],
+      `@notip/crypto-sdk` per la decifratura AES-256-GCM dei payload telemetrici, senza richiedere dipendenze JavaScript
+      aggiuntive per le primitive crittografiche.],
   )
 
   #pagebreak()
@@ -391,8 +391,8 @@
     Gestisce il monitoraggio di liveness dei gateway.
   - *Data API*: interfaccia di lettura per la telemetria cifrata. Espone endpoint REST paginati, bulk export e streaming
     real-time via SSE verso il frontend.
-  - *Web Application*: SPA Angular e unico punto di decifratura dell'intera pipeline. Integra il `@notip/crypto-sdk`
-    per eseguire la decifratura AES-256-GCM esclusivamente nel browser dell'utente.
+  - *Web Application*: SPA Angular e unico punto di decifratura dell'intera pipeline. Integra il `@notip/crypto-sdk` per
+    eseguire la decifratura AES-256-GCM esclusivamente nel browser dell'utente.
   - *\@notip/crypto-sdk*: libreria TypeScript che incapsula la logica di risoluzione delle chiavi, fetching dei dati
     cifrati e decifratura. Utilizzata dalla Web Application e disponibile per client esterni.
   - *Management DB* (PostgreSQL): archivia tutti i dati di gestione della piattaforma (tenant, utenti, gateway, chiavi
@@ -652,10 +652,11 @@
   fedelmente il comportamento di un gateway reale: provisioning via Provisioning Service, connessione mTLS a NATS,
   emissione periodica di payload cifrati e gestione dei comandi.
 
-  Il servizio interagisce con la piattaforma esattamente come farebbe un gateway fisico: esegue il provisioning automatico tramite chiamata all'endpoint 
-  `POST /api/provision/onboard`, ottiene un certificato mTLS firmato dalla CA interna e una chiave AES-256, si connette
-  a NATS tramite tale certificato e pubblica le telemetrie prodotte sullo stream `TELEMETRY`. Ogni gateway virtuale è gestito da
-  una goroutine dedicata, permettendo la simulazione parallela di intere flotte, rendendo l'utilizzo del simulatore più aderente alla realtà.
+  Il servizio interagisce con la piattaforma esattamente come farebbe un gateway fisico: esegue il provisioning
+  automatico tramite chiamata all'endpoint `POST /api/provision/onboard`, ottiene un certificato mTLS firmato dalla CA
+  interna e una chiave AES-256, si connette a NATS tramite tale certificato e pubblica le telemetrie prodotte sullo
+  stream `TELEMETRY`. Ogni gateway virtuale è gestito da una goroutine dedicata, permettendo la simulazione parallela di
+  intere flotte, rendendo l'utilizzo del simulatore più aderente alla realtà.
 
   Le responsabilità principali sono:
 
@@ -688,8 +689,9 @@
   Il `notip-frontend` è la Single Page Application Angular che costituisce l'interfaccia utente principale della
   piattaforma. Il suo ruolo nel sistema è duplice e inscindibile: da un lato è il punto di accesso visuale per tutte le
   operazioni di gestione e monitoraggio, dall'altro è — per design — l'unico punto dell'intera pipeline in cui la
-  *telemetria viene decifrata* (oltre ai Client API autorizzati). Questo secondo ruolo non è voluto architetturalmente: senza la Web Application (o un
-  API client che integri il `@notip/crypto-sdk`), i dati telemetrici rimarrebbero cifrati e inaccessibili.
+  *telemetria viene decifrata* (oltre ai Client API autorizzati). Questo secondo ruolo non è voluto architetturalmente:
+  senza la Web Application (o un API client che integri il `@notip/crypto-sdk`), i dati telemetrici rimarrebbero cifrati
+  e inaccessibili.
 
   L'autenticazione avviene tramite OIDC Authorization Code + PKCE con Keycloak; il token JWT ottenuto contiene i claim
   `tenant_id` e `role` che guidano il routing con guardie di ruolo e il comportamento di ogni componente
@@ -720,9 +722,9 @@
   simulati esposta dal Simulator Backend. Il suo scopo è fornire agli operatori uno strumento rapido e scriptabile per
   interagire con la simulazione senza dover invocare direttamente le API HTTP del Simulator Backend.
 
-  Il CLI è distribuito come container Docker effimero: viene avviato on-demand, esegue
-  il comando richiesto e viene immediatamente rimosso. Supporta sia l'esecuzione di singoli comandi (adatta a script e
-  CI) sia una modalità shell interattiva per sessioni operative prolungate.
+  Il CLI è distribuito come container Docker effimero: viene avviato on-demand, esegue il comando richiesto e viene
+  immediatamente rimosso. Supporta sia l'esecuzione di singoli comandi (adatta a script e CI) sia una modalità shell
+  interattiva per sessioni operative prolungate.
 
   Le responsabilità principali sono:
 
@@ -779,8 +781,7 @@
     browser (o del runtime), accettando i tre componenti crittografici del payload (`encrypted_data`, `iv`, `auth_tag`)
     e restituendo i dati in chiaro.
   - *`DataApiService`*: orchestratore dei due client di trasporto. Delega le operazioni di query ed export al
-    `DataApiRestClient` (HTTP `fetch`) e lo streaming al `DataApiSseClient` (basato su
-    `@microsoft/fetch-event-source`).
+    `DataApiRestClient` (HTTP `fetch`) e lo streaming al `DataApiSseClient` (basato su `@microsoft/fetch-event-source`).
   - *`ManagementApiService` + `ManagementApiClient`*: strato di accesso alla Management API per il recupero delle chiavi
     crittografiche.
 
@@ -1038,16 +1039,17 @@
   === Stream JetStream (persistenti, asincroni)
 
   #table(
-    columns: (2.5fr, 1.8fr, 1.5fr, 2fr),
+    columns: (auto, auto, auto, auto),
     [Subject], [Stream], [Publisher], [Consumer],
     [`telemetry.data.{tenantId}.{gatewayId}`], [TELEMETRY], [Gateway], [Data Consumer (durable)],
     [`command.gw.{tenantId}.{gatewayId}`], [COMMANDS], [Management API], [Gateway (push durable)],
     [`command.ack.{tenantId}.{gatewayId}`], [COMMAND\_ACKS], [Gateway], [Management API (durable)],
-    [`alert.{tenantId}.gw\_offline`], [ALERTS], [Data Consumer], [Management API (durable)],
+    [`alert.{tenantId}.gw_offline`], [ALERTS], [Data Consumer], [Management API (durable)],
     [`gateway.decommissioned.{tenantId}.{gatewayId}`],
     [DECOMMISSION],
     [Management API],
     [Data Consumer, Simulator Backend],
+
     [`log.audit.{tenantId}`], [AUDIT\_LOG], [Mgmt API, Provisioning], [Management API (durable)],
   )
 
@@ -1056,7 +1058,7 @@
   _Timeout 5 s. Retry 3× con backoff 1 s / 2 s / 4 s. Non accessibili dai gateway._
 
   #table(
-    columns: (3fr, 2fr, 2fr, 4fr),
+    columns: (auto, 2fr, 2fr, 4fr),
     [Subject], [Requester], [Responder], [Descrizione],
     [`internal.mgmt.factory.validate`],
     [Provisioning Service],
@@ -1144,9 +1146,9 @@
   le misurazioni.
 
   La decifratura avviene esclusivamente nel browser dell'utente tramite WebCrypto API, orchestrata dal
-  `@notip/crypto-sdk`. Le chiavi AES-256 vengono recuperate dalla Management API solo al momento della decifratura,
-  sono presenti in memoria nel browser per il tempo strettamente necessario, e non transitano mai in forma in chiaro su
-  rete (sono distribuite via HTTPS con cifratura di trasporto TLS).
+  `@notip/crypto-sdk`. Le chiavi AES-256 vengono recuperate dalla Management API solo al momento della decifratura, sono
+  presenti in memoria nel browser per il tempo strettamente necessario, e non transitano mai in forma in chiaro su rete
+  (sono distribuite via HTTPS con cifratura di trasporto TLS).
 
   Le chiavi AES-256 sono cifrate _at-rest_ nel Management DB tramite una chiave di cifratura applicativa
   (`DB_ENCRYPTION_KEY`) iniettata come Docker secret. In questo modo, un accesso diretto al database non consente di
@@ -1238,12 +1240,12 @@
 
   Oltre alle metodologie unitarie demandate ai singoli servizi, la validazione globale dell'architettura distribuita
   segue specifiche direttrici strategiche:
-  - *Test di Integrazione Inter-Service:* Per validare le interazioni di rete, l'infrastruttura di test si avvale
-    dell'orchestrazione programmatica di container effimeri a runtime. Questo approccio permette di testare i servizi
-    contro istanze reali dei database (TimescaleDB) e del broker (NATS), garantendo l'affidabilità dei contratti di
-    comunicazione ed evitando i falsi positivi tipici dei mock infrastrutturali.
-  - *Test End-to-End (E2E):* Mirano a validare la catena del valore completa nel rigoroso rispetto della Regola Zero
-    (Pipeline Opaca). Il flusso parte dall'iniezione di telemetria tramite gateway simulati (Simulator Backend),
-    attraversa il layer di persistenza e il fan-out SSE, per concludersi con la decifratura e il matching delle soglie
-    eseguiti con successo dal `@notip/crypto-sdk` all'interno della Single Page Application.
+  - *Test di Integrazione:* Per validare le interazioni di rete, l'infrastruttura di test si avvale dell'orchestrazione
+    programmatica di container effimeri a runtime. Questo approccio permette di testare i servizi contro istanze reali
+    dei database (TimescaleDB) e del broker (NATS), garantendo l'affidabilità dei contratti di comunicazione ed evitando
+    i falsi positivi tipici dei mock infrastrutturali.
+  - *Test End-to-End (E2E):* Mirano a validare l'intera catena del valore completa nel rispetto della Pipeline Opaca. Il
+    flusso parte dall'iniezione di telemetria tramite gateway simulati (Simulator Backend), attraversa il layer di
+    persistenza e il fan-out SSE, per concludersi con la decifratura e il matching delle soglie eseguiti con successo
+    dal `@notip/crypto-sdk` all'interno della Single Page Application.
 ]
