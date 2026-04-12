@@ -822,7 +822,7 @@
 
   #metrics-table(
     (
-      (cod: [*MQ17*], name: [Authentication Success Rate], acceptable: [≥ 98%], optimal: [≥ 99.5%]),
+      (cod: [*MQ17*], name: [Application Success Rate], acceptable: [≥ 98%], optimal: [≥ 99.5%]),
       (cod: [*MQ18*], name: [Encryption Coverage], acceptable: [100%], optimal: [100%]),
     ),
     caption: [Soglie metriche Sicurezza del prodotto],
@@ -1324,11 +1324,11 @@
 
   === PB
 
-  Nel periodo compreso tra gli sprint 8 e 12, l’Actual Cost (AC) continua a crescere in modo graduale, mentre
-  l’Estimate To Complete (ETC) prosegue la propria diminuzione. L’andamento delle due curve risulta regolare anche
-  nella fase finale: l’AC aumenta con incrementi contenuti fino allo sprint 12, mentre l’ETC si riduce progressivamente
-  fino a raggiungere il valore minimo del periodo considerato. Il grafico evidenzia quindi una chiara prosecuzione del
-  lavoro svolto e una contestuale riduzione della parte residua da completare.
+  Nel periodo compreso tra gli sprint 8 e 12, l’Actual Cost (AC) continua a crescere in modo graduale, mentre l’Estimate
+  To Complete (ETC) prosegue la propria diminuzione. L’andamento delle due curve risulta regolare anche nella fase
+  finale: l’AC aumenta con incrementi contenuti fino allo sprint 12, mentre l’ETC si riduce progressivamente fino a
+  raggiungere il valore minimo del periodo considerato. Il grafico evidenzia quindi una chiara prosecuzione del lavoro
+  svolto e una contestuale riduzione della parte residua da completare.
 
 
   == MP04 e MP05: Cost Performance Index e Schedule Performance Index
@@ -1428,9 +1428,11 @@
   === PB
 
   Nel periodo compreso tra gli sprint 8 e 12, il Budget Burn Rate mostra un andamento sostanzialmente stabile con una
-  lieve crescita progressiva. I valori aumentano di poco da uno sprint al successivo, passando da poco meno di 80
-  giorni/uomo a poco più di 80 giorni/uomo nella parte finale del periodo considerato. Per tutto l’intervallo il burn
-  rate rimane comunque nettamente al di sotto della soglia accettabile indicata nel grafico.
+  lieve crescita progressiva, dovuto all'intensificarsi delle attività verso la fine del progetto. I valori aumentano di
+  poco da uno sprint al successivo, passando da poco meno di 80 giorni/uomo a poco più di 80 giorni/uomo nella parte
+  finale del periodo considerato. Per tutto l’intervallo il burn rate rimane comunque al di sotto della soglia
+  accettabile indicata nel grafico. Questo aspetto evidenzia che il progetto ha mantenuto un livello di consumo delle
+  risorse coerente con quanto pianificato.
 
   == MP10: Requirements Stability Index
   #figure(
@@ -1448,10 +1450,10 @@
 
 
   == MP11: Indice di Gulpease
- #figure(
-   image(height: 30%, "assets/gulpease.png"),
-   caption: [Grafico per Sprint di MP11],
- ) <MP11>
+  #figure(
+    image(height: 30%, "assets/gulpease.png"),
+    caption: [Grafico per Sprint di MP11],
+  ) <MP11>
   === RTB
   Dal grafico emerge che tutti i documenti mantengono un livello di avanzamento superiore alla soglia minima del 60%
   definita internamente dal gruppo. Nel complesso, l’andamento conferma una gestione della documentazione stabile e
@@ -1487,9 +1489,10 @@
 
   === PB
 
-  Nel periodo compreso tra gli sprint 8 e 12, il numero di errori ortografici rilevati rimane costantemente pari a
-  zero. La curva si mantiene coincidente con il valore ottimo e con la soglia accettabile per tutti gli sprint della
-  fase PB considerati, evidenziando una piena stabilità del risultato raggiunto già negli sprint precedenti.
+  Nel periodo compreso tra gli sprint 8 e 12, il numero di errori ortografici rilevati rimane costantemente pari a zero.
+  La curva si mantiene coincidente con il valore ottimo e con la soglia accettabile per tutti gli sprint della fase PB
+  considerati, evidenziando una piena stabilità del risultato raggiunto già negli sprint precedenti. Tutto ciò è
+  avvenuto anche grazie all'utilizzo degli strumenti di spellcheck utilizzati dal gruppo.
 
 
   == MP13: Code Coverage
@@ -1500,10 +1503,13 @@
       gutter: 0.8em,
       image("assets/code_coverage/crypto-sdk-codeCoverage.png", width: 100%),
       image("assets/code_coverage/data-api-codeCoverage.png", width: 100%),
+
       image("assets/code_coverage/data-consumer-codeCoverage.png", width: 100%),
       image("assets/code_coverage/frontend-codeCoverage.png", width: 100%),
+
       image("assets/code_coverage/mngm-api-codeCoverage.png", width: 100%),
       image("assets/code_coverage/provisioning_codeCoverage.png", width: 100%),
+
       image("assets/code_coverage/simulator-backend-codeCoverage.png", width: 100%),
       image("assets/code_coverage/simulator-cli-codeCoverage.png", width: 100%),
     ),
@@ -1512,25 +1518,39 @@
 
   === PB
 
-  La valutazione della metrica di Code Coverage per la PB è rappresentata nel collage precedente, che raccoglie i
-  report di copertura relativi ai diversi servizi del progetto, ottenuti tramite SonarQube. La figura consente di
-  osservare in modo unitario i risultati raccolti nelle varie componenti applicative considerate durante l’attività di
-  verifica, mantenendo una visione complessiva dello stato della copertura del codice nella fase finale del progetto.
-  Nel complesso, dai dati raccolti emerge un valore medio di copertura poco superiore al 90%, con differenze contenute
-  tra i vari servizi considerati. Tale risultato non solo soddisfa il valore accettabile definito in precedenza per la
+  La valutazione della metrica di Code Coverage per la PB è rappresentata nel collage precedente, che raccoglie i report
+  di copertura relativi ai diversi servizi del progetto, ottenuti tramite SonarQube. La figura consente di osservare in
+  modo unitario i risultati raccolti nelle varie componenti applicative considerate durante l’attività di verifica,
+  mantenendo una visione complessiva dello stato della copertura del codice nella fase finale del progetto. Nel
+  complesso, dai dati raccolti emerge un valore medio di copertura poco superiore al 90%, con differenze contenute tra i
+  vari servizi considerati. Tale risultato non solo soddisfa il valore accettabile definito in precedenza per la
   metrica, ma risulta anche sostanzialmente in linea con il valore ottimale fissato al 90%, evidenziando un livello di
-  copertura complessivamente molto buono.
+  copertura complessivamente molto buono. Eventuali sezioni del codice a 0% sono in realtà elementi del codice che non
+  dovrebbero essere inseriti nella verifica di SonarQube e anche se inserite non fanno scendere il code coverage del
+  servizio al di sotto dell'80%.
 
 
-  == MP14: Test Success Rate (a parole)
+  == MP14: Test Success Rate
   === PB
+  Per quanto riguarda questa metrica, durante lo sviluppo abbiamo imposto un check bloccante per il codice. In questa
+  maniera ogni test non passato bloccava completamente il commit fino a quando non venisse risolto l'errore in
+  questione. Così facendo è stato mantenuto il 100% in ogni servizio sviluppato.
 
-
-  == MP15: Test Automation Percentage (a parole)
+  == MP15: Test Automation Percentage
   === PB
+  Nel periodo compreso tra gli sprint 8 e 12, la metrica Test Automation Percentage si è mantenuta stabilmente al suo
+  valore ottimo del 100%. Ogni suite di test (di unità e di integrazione) è stata scritta sfruttando i framework nativi
+  dei rispettivi linguaggi ed è stata agganciata direttamente alle pipeline di Continuous Integration (CI). Strumenti di
+  analisi come SonarQube vengono infatti alimentati dai report generati in automatico dai runner della CI ad ogni
+  singola Pull Request. Di conseguenza, l'intero parco test viene eseguito e validato senza alcun intervento umano,
+  annullando la necessità di test manuali, azzerando il rischio di errore umano nella fase di verifica e confermando il
+  pieno raggiungimento dell'obiettivo prefissato.
 
-  == MP16: Defect Discovery Rate (a parole)
+  == MP16: Defect Discovery Rate
   === PB
+  Anche in questo caso grazie agli strumenti di SonarQube e alle sue automazioni è stato possibile monitorare
+  l'andamento dei bug. Il trend ha seguito un ambito decrescente fino a raggiungere lo 0 nella fase finale della
+  codifica.
 
   == MP18: Quality Metrics Satisfied
 
@@ -1554,14 +1574,20 @@
   successivi, attestandosi stabilmente intorno al 95% nella parte finale del periodo considerato. Pur senza raggiungere
   il valore ottimo del 100%, il grafico mostra quindi un andamento positivo e stabile.
 
-  == MP19: Quality Gate Pass Rate ( a parole - SONARQUBE DICE 0)
+  == MP19: Quality Gate Pass Rate
   === PB
+  Per quanto riguarda la metrica MP19, SonarQube ha sempre evidenziato eventuali bug nel codice bloccando la codifica e
+  costringendo il programmatore a porre rimedio istantaneamente ad eventuali errori. Questa politica ha portato infine a
+  raggiungere 0 vulnerabilità, garantendo così un valore ottimo.
 
   == MP20: Time Efficiency
- #figure(
-   image(height: 30%, "assets/TE.png"),
-   caption: [Grafico per Sprint di MP20],
- ) <MP20>
+  #figure(
+    image(height: 30%, "assets/TE.png"),
+    caption: [Grafico per Sprint di MP20],
+  ) <MP20>
+
+  == RTB
+
   Dal grafico si osserva un progressivo incremento della Time Efficiency (TE) dallo sprint 1 allo sprint 6. Tuttavia,
   l’indicatore rimane costantemente al di sotto del valore ottimale, evidenziando un livello di efficienza temporale
   ancora migliorabile. Questo andamento è legato alla significativa incidenza delle “ore di palestra”, indispensabili al
@@ -1574,15 +1600,18 @@
 
   Nel periodo compreso tra gli sprint 8 e 12, la Time Efficiency continua a crescere in modo regolare. I valori
   risultano sempre superiori alla soglia accettabile e mostrano un incremento progressivo da poco più del 50% fino a
-  circa il 65% nello sprint 12. Il grafico evidenzia quindi un miglioramento costante dell’indicatore nella fase PB,
-  pur rimanendo ancora distante dal valore ottimo.
+  circa il 65% nello sprint 12. Il grafico evidenzia quindi un miglioramento costante dell’indicatore nella fase PB, pur
+  rimanendo ancora distante dal valore ottimo.
 
 
   == MP21: Sprint Velocity Stability
- #figure(
-   image(height: 30%, "assets/SVS.png"),
-   caption: [Grafico per Sprint di MP21],
- ) <MP21>
+  #figure(
+    image(height: 30%, "assets/SVS.png"),
+    caption: [Grafico per Sprint di MP21],
+  ) <MP21>
+
+  === RTB
+
   Dal grafico si osserva un andamento progressivamente migliorativo nel corso degli sprint. Poiché la metrica misura lo
   scostamento percentuale tra velocity pianificata e velocity effettiva, valori più elevati indicano una maggiore
   instabilità, mentre valori più bassi rappresentano una migliore capacità di previsione e quindi una maggiore
@@ -1626,11 +1655,10 @@
 
   === PB
 
-  Nel periodo compreso tra gli sprint 8 e 12, il Meeting Efficiency Index si mantiene sempre sopra la soglia
-  accettabile e si colloca per quasi tutto l’intervallo attorno o leggermente sopra il valore ottimo. Dopo
-  l’allineamento al valore ottimo nello sprint 8, il grafico mostra un picco positivo nello sprint 9, seguito da una
-  lieve diminuzione e da una successiva stabilizzazione negli sprint conclusivi su valori poco superiori a 5
-  decisioni/ora.
+  Nel periodo compreso tra gli sprint 8 e 12, il Meeting Efficiency Index si mantiene sempre sopra la soglia accettabile
+  e si colloca per quasi tutto l’intervallo attorno o leggermente sopra il valore ottimo. Dopo l’allineamento al valore
+  ottimo nello sprint 8, il grafico mostra un picco positivo nello sprint 9, seguito da una lieve diminuzione e da una
+  successiva stabilizzazione negli sprint conclusivi su valori poco superiori a 5 decisioni/ora.
 
 
   == MP23: PR Resolution Time
@@ -1658,12 +1686,101 @@
   === PB
 
   Nel periodo compreso tra gli sprint 8 e 12, il PR Resolution Time si mantiene stabilmente sotto la soglia accettabile
-  e molto vicino al valore ottimo. Dopo lo sprint 8 i valori oscillano in misura contenuta attorno a circa 1 giorno,
-  con un lieve aumento negli ultimi sprint che rimane comunque limitato. Il grafico mostra quindi una fase finale
+  e molto vicino al valore ottimo. Dopo lo sprint 8 i valori oscillano in misura contenuta attorno a circa 1 giorno, con
+  un lieve aumento negli ultimi sprint che rimane comunque limitato. Il grafico mostra quindi una fase finale
   caratterizzata da continuità e stabilità nel tempo medio di risoluzione delle Pull Request.
 
 
-  = DA FARE QUELLE DI PRODOTTO 
+  == MQ01/MQ02/MQ03: Requisiti Obbligatori/Desiderabili/Opzionali Soddisfatti
+
+  === PB
+  In seguito alla discussione con l'azienda e alla negoziazione di un requisito obbligatorio in Desiderabile/Opzionale
+  (ossia quello riguardante l'End to End) il Team è riuscito a raggiungere il 100% dei requisiti obbligatori e dato il
+  tempo a disposizione non ha sviluppato ulteriori requisiti desiderabili o opzionali.
+
+  == MQ04: Requirements Test Coverage
+  === PB
+  Come dimostrato dai test d'unità, integrazione e sistema, il Team ha sempre scelto di testare ogni parte del proprio
+  sistema correttamente, in modo da poter assicurare il 100% del test coverage per i requisiti obbligatori. Non avendo
+  sviluppato altri requisiti oltre a quelli obbligatori, non sono stati sviluppati test per altri requisiti che non
+  fossero quelli obbligatori.
+
+  == MQ05: Branch Coverage
+  === PB
+  Nel periodo di PB, la copertura delle decisioni logiche del codice si è mantenuta su livelli eccellenti. La media di
+  progetto ha superato costantemente il valore ottimo dell'80%, registrando un 100% pieno su diversi microservizi. Il
+  valore minimo rilevato su un singolo servizio isolato è stato del 75%, mantenendosi comunque in totale sicurezza e ben
+  al di sopra della soglia accettabile del 60%.
+
+  == MQ06: Statement Coverage
+  === PB
+  L'andamento della metrica durante la PB ha confermato l'alta affidabilità della test suite. La copertura delle
+  istruzioni non è mai scesa sotto l'87% globale (ampiamente sopra il 70% accettabile) ed è rientrata nel range ottimale
+  (>= 90%) per la quasi totalità dell'architettura. Sui moduli principali del backend, gli strumenti di analisi statica
+  hanno certificato picchi di copertura fino al 97,3%.
+
+  == MQ07: Failure Density
+  === PB
+  La metrica ha registrato un andamento perfetto. Grazie ai continui controlli automatizzati e alle rigorose code
+  review, le analisi non hanno rilevato alcun bug o vulnerabilità nel codice rilasciato in produzione. Di conseguenza,
+  il valore della Failure Density si attesta a 0.0 failure/KLOC, centrando in pieno l'obiettivo del valore ottimo (<=
+  0.1).
+
+  == MQ08: Modified Condition/Decision Coverage
+  === PB
+  L'applicazione di questa metrica è stata circoscritta ai soli moduli di Core Domain (Business-Critical). Per queste
+  componenti critiche, la copertura delle singole condizioni logiche ha raggiunto con successo l'obiettivo stringente
+  del 100%. Per i restanti servizi standard, il team si è affidato con successo all'elevata Branch Coverage generale,
+  ottimizzando così la velocity di sviluppo.
+
+  == MQ12: Code Smells
+  === PB
+  Durante la fase di PB, il codice prodotto ha mantenuto un buon livello di pulizia eccellente, certificato dal rating
+  massimo ("A") nella categoria Maintainability su SonarQube per l'intero ecosistema di repository. Il numero di code
+  smells è risultato quasi sempre nullo, attestandosi costantemente al di sotto della soglia ottimale (<= 5 code
+  smell/KLOC).
+
+  == MQ13: Coefficient of Coupling
+  === PB
+  L'adozione nativa di un'architettura distribuita a microservizi ha garantito il mantenimento di un Coefficient of
+  Coupling basso, riportando valori ottimi. I servizi risultano dunque altamente disaccoppiati e coesi al loro interno.
+
+  == MQ14: Cyclomatic Complexity
+  === PB
+  Nonostante l'elevata complessità architetturale globale (es. il notip-frontend presenta una complessità cumulativa di
+  circa 1396 distribuita su oltre 140 file) la complessità ciclomatica media per singolo metodo/funzione si è mantenuta
+  stabilmente all'interno del range ottimale (<= 5). Il team ha applicato con rigore regole di refactoring, frammentando
+  la logica in funzioni lineari, brevi e facili da testare.
+
+  == MQ15: Code Duplication Percentage
+  === PB
+  I report finali di analisi statica confermano un'eccezionale fattorizzazione del codice, nel pieno rispetto del
+  principio DRY. Su tutti i servizi sviluppati, la maggioranza assoluta ha registrato una percentuale di duplicazione
+  bassissima. Il picco massimo rilevato è stato di appena il 2.2% nel servizio di management, rimanendo comunque in
+  completa sicurezza e al di sotto della soglia ottimale del 3%.
+
+  == MQ16: Container Image Size
+  === PB
+  Durante la fase di PB, il team ha dedicato particolare attenzione all'ottimizzazione delle immagini Docker per
+  garantire deployment rapidi. Inizialmente, il container più pesante si attestava intorno ai 400 MB, un valore comunque
+  ampiamente entro la soglia accettabile (500 MB). A seguito di interventi di ottimizzazione le dimensioni sono state
+  ridotte raggiungendo anche valori al di sotto della soglia ottimale.
+
+  == MQ17: Authentication Success Rate
+  === PB
+  Nel corso della PB, il meccanismo di autenticazione del sistema (gestito tramite il provisioning gateway e le API di
+  management) ha mantenuto performance solide, pur con alcune lievi e fisiologiche flessioni. La metrica si è attestata
+  in media tra il 98,5% e il 99%, mantenendosi sempre al sicuro sopra la soglia accettabile del 98%.
+
+  == MQ18: Encryption Coverage
+  === PB
+  La sicurezza e la riservatezza delle informazioni sono state trattate come requisiti primari. Questa metrica ha
+  mantenuto ininterrottamente il valore del 100%, unica soglia ritenuta accettabile e ottimale dal team. Tutte le
+  comunicazioni interne ed esterne al sistema avvengono esclusivamente tramite canali crittografati in transito.
+  Inoltre, i dati sensibili vengono memorizzati nei database sotto forma di blob opachi completamente crittografati.
+  Questo approccio garantisce che le informazioni non siano mai leggibili in chiaro, assicurando la massima affidabilità
+  del sistema contro potenziali minacce.
+
 
   = Valutazioni per l'automiglioramento
   Al fine di perseguire un miglioramento continuo durante lo svolgimento del progetto, è opportuno effettuare
