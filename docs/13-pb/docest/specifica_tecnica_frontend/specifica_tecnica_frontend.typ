@@ -13,15 +13,15 @@
 )[
   = Introduzione
 
-  La webapp `notip-frontend` è l'interfaccia utente del sistema NoTIP, sviluppata in Angular 21 con architettura standalone.
-  Il frontend ha il compito di presentare all'utente i dati di telemetria provenienti dai gateway IoT, consentire la
-  gestione di tenant, utenti, gateway e sensori, configurare alert e soglie, consultare audit log e costi, e inviare
-  comandi ai gateway. Supporta tre ruoli utente (system_admin, tenant_admin, tenant_user) con autorizzazione basata su
-  rotte e meccanismi di impersonazione che permettono ai system admin di operare nel contesto di un tenant.
+  La webapp `notip-frontend` è l'interfaccia utente del sistema NoTIP, sviluppata in Angular 21 con architettura
+  standalone. Il frontend ha il compito di presentare all'utente i dati di telemetria provenienti dai gateway IoT,
+  consentire la gestione di tenant, utenti, gateway e sensori, configurare alert e soglie, consultare audit log e costi,
+  e inviare comandi ai gateway. Supporta tre ruoli utente (system_admin, tenant_admin, tenant_user) con autorizzazione
+  basata su rotte e meccanismi di impersonazione che permettono ai system admin di operare nel contesto di un tenant.
 
   Il frontend comunica con due backend distinti: `notip-management-api` per le operazioni di gestione e configurazione,
-  e `notip-data-api` per le query e lo streaming di telemetria. L'autenticazione è gestita da Keycloak tramite PKCE,
-  con supporto al rinnovo automatico del token e all'impersonazione.
+  e `notip-data-api` per le query e lo streaming di telemetria. L'autenticazione è gestita da Keycloak tramite PKCE, con
+  supporto al rinnovo automatico del token e all'impersonazione.
 
   = Dipendenze e configurazione
 
@@ -47,8 +47,8 @@
     )
   ]
 
-  Il frontend è servito attraverso un reverse proxy (Nginx) che instrada le chiamate ai path `/api/data`, `/api/mgmt`
-  e `/auth` verso i rispettivi backend. Non esiste una directory `src/environments/`: la configurazione è interamente
+  Il frontend è servito attraverso un reverse proxy (Nginx) che instrada le chiamate ai path `/api/data`, `/api/mgmt` e
+  `/auth` verso i rispettivi backend. Non esiste una directory `src/environments/`: la configurazione è interamente
   gestita in `app.config.ts` e i path del reverse proxy sono iniettati a livello di infrastruttura Docker.
 
   == Sequenza di avvio
@@ -62,61 +62,44 @@
       columns: (auto, auto, auto, auto),
       [Step], [Componente], [Azione], [Bloccante?],
 
-      [0],
-      [Bootstrap Angular],
-      [Avvio del runtime Angular e caricamento di `app.config.ts`],
-      [Si],
+      [0], [Bootstrap Angular], [Avvio del runtime Angular e caricamento di `app.config.ts`], [Si],
 
-      [1],
-      [KeycloakModule],
-      [Inizializza Keycloak con `onLoad: 'login-required'` e PKCE S256],
-      [Si],
+      [1], [KeycloakModule], [Inizializza Keycloak con `onLoad: 'login-required'` e PKCE S256], [Si],
 
-      [2],
-      [AutoRefreshTokenService],
-      [Configura il rinnovo automatico del token con timeout di 10 minuti],
-      [Si],
+      [2], [AutoRefreshTokenService], [Configura il rinnovo automatico del token con timeout di 10 minuti], [Si],
 
-      [3],
-      [HttpClientModule],
-      [Registra gli interceptor `authInterceptor` e `errorInterceptor`],
-      [Si],
+      [3], [HttpClientModule], [Registra gli interceptor `authInterceptor` e `errorInterceptor`], [Si],
 
       [4],
       [RouterModule],
       [Configura le rotte con guardie (AuthGuard, RoleGuard, HomeRedirectGuard) e resolver (DashboardResolver)],
       [Si],
 
-      [5],
-      [provideMgmtApi / provideDataApi],
-      [Registra i client OpenAPI generati con i base path configurati],
-      [Si],
+      [5], [provideMgmtApi / provideDataApi], [Registra i client OpenAPI generati con i base path configurati], [Si],
 
-      [6],
-      [AuthService],
-      [Registra i provider per `SESSION_LIFECYCLE` e `IMPERSONATION_STATUS`],
-      [Si],
+      [6], [AuthService], [Registra i provider per `SESSION_LIFECYCLE` e `IMPERSONATION_STATUS`], [Si],
 
       [7],
       [AuthGuard],
-      [Al primo accesso a una rotta protetta: verifica inizializzazione Keycloak e presenza token, avvia threshold prefetch],
+      [Al primo accesso a una rotta protetta: verifica inizializzazione Keycloak e presenza token, avvia threshold
+        prefetch],
       [Si],
 
-      [8],
-      [RoleGuard],
-      [Verifica il ruolo dell'utente rispetto ai ruoli richiesti dalla rotta],
-      [Si],
+      [8], [RoleGuard], [Verifica il ruolo dell'utente rispetto ai ruoli richiesti dalla rotta], [Si],
 
-      [9],
-      [Browser rendering],
-      [Rendering del componente pagina risolto dalla route],
-      [No],
+      [9], [Browser rendering], [Rendering del componente pagina risolto dalla route], [No],
     )
   ]
 
   = Architettura logica
 
-  L'applicazione adotta una *Layered Feature-Based Architecture* con componenti standalone Angular, senza NgModules. La struttura è organizzata in tre layer orizzontali con responsabilità distinte e non sovrapposte — Core, Features e Shared — combinati con una decomposizione verticale per dominio funzionale all'interno del layer Features. Le dipendenze scorrono in direzione unidirezionale: Features e Shared dipendono da Core, mentre nessun layer dipende da un layer superiore (Unidirectional Dependency Rule). Lo state management è basato su *segnali Angular* (signal(), computed(), effect()) per lo stato locale dei componenti e dei servizi di feature, combinati con *RxJS* per la gestione di flussi asincroni (SSE, HTTP) e la comunicazione inter-componente tramite Subject.
+  L'applicazione adotta una *Layered Feature-Based Architecture* con componenti standalone Angular, senza NgModules. La
+  struttura è organizzata in tre layer orizzontali con responsabilità distinte e non sovrapposte — Core, Features e
+  Shared — combinati con una decomposizione verticale per dominio funzionale all'interno del layer Features. Le
+  dipendenze scorrono in direzione unidirezionale: Features e Shared dipendono da Core, mentre nessun layer dipende da
+  un layer superiore (Unidirectional Dependency Rule). Lo state management è basato su *segnali Angular* (signal(),
+  computed(), effect()) per lo stato locale dei componenti e dei servizi di feature, combinati con *RxJS* per la
+  gestione di flussi asincroni (SSE, HTTP) e la comunicazione inter-componente tramite Subject.
 
   == Layout delle cartelle
 
@@ -261,7 +244,6 @@
   │       │   └── placeholder-page/      # Pagina scaffold generica
   │       ├── pipes/
   │       │   └── rome-date-time.pipe.ts  # Pipe per fuso orario Roma
-  │       ├── directives/                  # (directory vuota, riservata)
   │       └── utils/
   │           └── rome-timezone.util.ts  # Utility conversione fuso orario
   ├── api-contracts/
@@ -275,8 +257,8 @@
   └── styles.css
   ```
 
-  > *Nota:* Non esiste una directory `src/environments/`. La configurazione runtime è gestita interamente
-  tramite `app.config.ts` e i path del reverse proxy Nginx (`/api/data`, `/api/mgmt`, `/auth`).
+  > *Nota:* Non esiste una directory `src/environments/`. La configurazione runtime è gestita interamente tramite
+  `app.config.ts` e i path del reverse proxy Nginx (`/api/data`, `/api/mgmt`, `/auth`).
 
   == Strati architetturali
 
@@ -285,30 +267,40 @@
   )[
     #table(
       columns: (1fr, 1.5fr, 1.5fr, 2fr),
-      [Strato],
-      [Package],
-      [Componenti],
-      [Responsabilità],
+      [Strato], [Package], [Componenti], [Responsabilità],
 
       [Presentation],
-      [`src/app/features/*/pages/`, `src/app/features/*/components/`, `src/app/shared/components/`, `src/app/shared/pipes/`],
+      [`src/app/features/*/pages/`, `src/app/features/*/components/`, `src/app/shared/components/`,
+        `src/app/shared/pipes/`],
       [Componenti Angular standalone, Template HTML, CSS, Pipe custom],
-      [Rendering UI, gestione interazioni utente, composizione di componenti figli, binding con servizi tramite segnali e Observable. I componenti di pagina orchestrano la logica di feature, mentre i componenti shared sono riutilizzabili trasversalmente. Le pipe custom gestiscono la formattazione temporale con fuso orario Roma.],
+      [Rendering UI, gestione interazioni utente, composizione di componenti figli, binding con servizi tramite segnali
+        e Observable. I componenti di pagina orchestrano la logica di feature, mentre i componenti shared sono
+        riutilizzabili trasversalmente. Le pipe custom gestiscono la formattazione temporale con fuso orario Roma.],
 
       [Feature Services],
       [`src/app/features/*/services/`, `src/app/core/services/`],
       [Servizi Angular con stato locale (segnali), wrapper client API, gestione flussi di business logic di dominio],
-      [Astrazione sui client API generati, gestione stato locale con segnali (`signal()`, `asReadonly()`), orchestrazione chiamate HTTP, trasformazione DTO in modelli di dominio, caching, polling per stato comandi. Servizi come `GatewayService`, `CommandService`, `DecryptedMeasureService` incapsulano la logica specifica di dominio.],
+      [Astrazione sui client API generati, gestione stato locale con segnali (`signal()`, `asReadonly()`),
+        orchestrazione chiamate HTTP, trasformazione DTO in modelli di dominio, caching, polling per stato comandi.
+        Servizi come `GatewayService`, `CommandService`, `DecryptedMeasureService` incapsulano la logica specifica di
+        dominio.],
 
       [Generated API Clients],
       [`src/app/generated/openapi/notip-management-api-openapi/`, `src/app/generated/openapi/notip-data-api-openapi/`],
       [Client Angular auto-generati da OpenAPI Generator (`typescript-angular`)],
-      [Tipizzazione forte delle chiamate HTTP verso management-api e data-api. Generati automaticamente dagli specchi OpenAPI tramite script `generate-openapi.sh`. Forniscono classi come `GatewaysService`, `MeasuresService`, `AdminTenantsService`, ecc. con metodi tipizzati e gestione error integrata.],
+      [Tipizzazione forte delle chiamate HTTP verso management-api e data-api. Generati automaticamente dagli specchi
+        OpenAPI tramite script `generate-openapi.sh`. Forniscono classi come `GatewaysService`, `MeasuresService`,
+        `AdminTenantsService`, ecc. con metodi tipizzati e gestione error integrata.],
 
       [Core Infrastructure],
-      [`src/app/core/guards/`, `src/app/core/interceptors/`, `src/app/core/auth/`, `src/app/core/resolvers/`, `src/app/core/models/`],
-      [AuthGuard, RoleGuard, HomeRedirectGuard, authInterceptor, errorInterceptor, AuthService, DashboardResolver, modelli di dominio],
-      [Autenticazione Keycloak con PKCE, iniezione automatica del bearer token, gestione errori HTTP (401 -> redirect /error, 403 -> forbidden), controllo accesso basato sui ruoli, risoluzione rotte condizionale, definizione contratti typed per l'intero dominio (Gateway, Sensor, Measure, Tenant, User, Alert, Threshold, Command, Audit, Cost).],
+      [`src/app/core/guards/`, `src/app/core/interceptors/`, `src/app/core/auth/`, `src/app/core/resolvers/`,
+        `src/app/core/models/`],
+      [AuthGuard, RoleGuard, HomeRedirectGuard, authInterceptor, errorInterceptor, AuthService, DashboardResolver,
+        modelli di dominio],
+      [Autenticazione Keycloak con PKCE, iniezione automatica del bearer token, gestione errori HTTP (401 -> redirect
+        /error, 403 -> forbidden), controllo accesso basato sui ruoli, risoluzione rotte condizionale, definizione
+        contratti typed per l'intero dominio (Gateway, Sensor, Measure, Tenant, User, Alert, Threshold, Command, Audit,
+        Cost).],
     )
   ]
 
@@ -318,7 +310,7 @@
     caption: [Architettura del frontend `notip-frontend`],
   )[
     #align(center)[
-        #image("./assets/01-app-architecture.svg", width: 115%)
+      #image("./assets/01-app-architecture.svg", width: 115%)
     ]
   ]
 
@@ -336,91 +328,56 @@
       [`tenant_user`, `tenant_admin`],
       [Dashboard telemetria con modalità stream e query],
 
-      [`/gateways`],
-      [GatewayListPageComponent],
-      [`tenant_user`, `tenant_admin`],
-      [Lista gateway del tenant con card],
+      [`/gateways`], [GatewayListPageComponent], [`tenant_user`, `tenant_admin`], [Lista gateway del tenant con card],
 
       [`/gateways/:id`],
       [GatewayDetailPageComponent],
       [`tenant_user`, `tenant_admin`],
       [Dettaglio gateway, sensori, comandi, telemetria live],
 
-      [`/sensors`],
-      [SensorListPageComponent],
-      [`tenant_user`, `tenant_admin`],
-      [Lista sensori del tenant],
+      [`/sensors`], [SensorListPageComponent], [`tenant_user`, `tenant_admin`], [Lista sensori del tenant],
 
       [`/sensors/:id`],
       [SensorDetailPageComponent],
       [`tenant_user`, `tenant_admin`],
       [Dettaglio sensore con telemetria],
 
-      [`/alerts`],
-      [AlertListPageComponent],
-      [`tenant_user`, `tenant_admin`],
-      [Lista alert gateway offline],
+      [`/alerts`], [AlertListPageComponent], [`tenant_user`, `tenant_admin`], [Lista alert gateway offline],
 
       [`/alerts/config`],
       [AlertConfigPageComponent],
       [`tenant_user`, `tenant_admin`],
       [Configurazione timeout alert per gateway/tenant],
 
-      [`/mgmt/users`],
-      [UserListPageComponent],
-      [`tenant_admin`],
-      [Gestione utenti del tenant],
+      [`/mgmt/users`], [UserListPageComponent], [`tenant_admin`], [Gestione utenti del tenant],
 
       [`/mgmt/limits`],
       [ThresholdSettingsPageComponent],
       [`tenant_user`, `tenant_admin`],
       [Configurazione soglie min/max per sensori],
 
-      [`/mgmt/api`],
-      [ApiClientListPageComponent],
-      [`tenant_admin`],
-      [Gestione client API del tenant],
+      [`/mgmt/api`], [ApiClientListPageComponent], [`tenant_admin`], [Gestione client API del tenant],
 
-      [`/mgmt/logs`],
-      [AuditLogPageComponent],
-      [`tenant_admin`],
-      [Consultazione audit log tenant],
+      [`/mgmt/logs`], [AuditLogPageComponent], [`tenant_admin`], [Consultazione audit log tenant],
 
-      [`/mgmt/costs`],
-      [CostDashboardPageComponent],
-      [`tenant_admin`],
-      [Dashboard costi (storage e banda)],
+      [`/mgmt/costs`], [CostDashboardPageComponent], [`tenant_admin`], [Dashboard costi (storage e banda)],
 
-      [`/admin/tenants`],
-      [TenantManagerPageComponent],
-      [`system_admin`],
-      [Gestione tenant del sistema],
+      [`/admin/tenants`], [TenantManagerPageComponent], [`system_admin`], [Gestione tenant del sistema],
 
-      [`/admin/tenants/:id/users`],
-      [TenantDetailPageComponent],
-      [`system_admin`],
-      [Dettaglio tenant con lista utenti],
+      [`/admin/tenants/:id/users`], [TenantDetailPageComponent], [`system_admin`], [Dettaglio tenant con lista utenti],
 
-      [`/admin/gateways`],
-      [AdminGatewayListPageComponent],
-      [`system_admin`],
-      [Gestione gateway a livello sistema],
+      [`/admin/gateways`], [AdminGatewayListPageComponent], [`system_admin`], [Gestione gateway a livello sistema],
 
-      [`/error`],
-      [ErrorPageComponent],
-      [-],
-      [Pagina di errore con reason e retryUrl],
+      [`/error`], [ErrorPageComponent], [-], [Pagina di errore con reason e retryUrl],
 
-      [`**`],
-      [redirect],
-      [-],
-      [Redirect a `/error?reason=not-found`],
+      [`**`], [redirect], [-], [Redirect a `/error?reason=not-found`],
     )
   ]
 
   == Route Guards
 
-  L'applicazione definisce tre route guards principali per proteggere le rotte e gestire l'accesso in base all'autenticazione e ai ruoli:
+  L'applicazione definisce tre route guards principali per proteggere le rotte e gestire l'accesso in base
+  all'autenticazione e ai ruoli:
 
   #figure(
     caption: [Route guards del frontend],
@@ -432,19 +389,18 @@
       [AuthGuard],
       [`CanActivate`],
       [Verifica che Keycloak sia inizializzato e che l'utente possieda un token JWT valido. Se non autenticato,
-      reindirizza al login di Keycloak. Al primo accesso valido, avvia il `ThresholdPrefetchService` per precaricare
-      le soglie di validazione della telemetria.],
+        reindirizza al login di Keycloak. Al primo accesso valido, avvia il `ThresholdPrefetchService` per precaricare
+        le soglie di validazione della telemetria.],
 
       [RoleGuard],
       [`CanActivate`],
-      [Confronta il ruolo dell'utente (estratto dal JWT) con i ruoli richiesti dalla rotta (`data['roles']`).
-      Se il ruolo non è autorizzato, reindirizza: i `system_admin` verso `/admin/tenants`, gli altri verso
-      `/dashboard`.],
+      [Confronta il ruolo dell'utente (estratto dal JWT) con i ruoli richiesti dalla rotta (`data['roles']`). Se il
+        ruolo non è autorizzato, reindirizza: i `system_admin` verso `/admin/tenants`, gli altri verso `/dashboard`.],
 
       [HomeRedirectGuard],
       [`CanActivate`],
-      [Utilizzato sulla rotta vuota (`/`) per reindirizzare automaticamente in base al ruolo: `system_admin`
-      verso `/admin/tenants`, tutti gli altri verso `/dashboard`.],
+      [Utilizzato sulla rotta vuota (`/`) per reindirizzare automaticamente in base al ruolo: `system_admin` verso
+        `/admin/tenants`, tutti gli altri verso `/dashboard`.],
     )
   ]
 
@@ -463,8 +419,10 @@
     #table(
       columns: (auto, auto, auto),
       [Metodo], [Firma], [Comportamento],
-      [`canActivate()`], [`(): Promise<boolean>`],
-      [Verifica inizializzazione auth, richiede token valido e avvia `thresholdPrefetch.start()` al primo accesso valido. In caso di errore/autenticazione assente avvia `login()` e ritorna `false`.],
+      [`canActivate()`],
+      [`(): Promise<boolean>`],
+      [Verifica inizializzazione auth, richiede token valido e avvia `thresholdPrefetch.start()` al primo accesso
+        valido. In caso di errore/autenticazione assente avvia `login()` e ritorna `false`.],
     )
   ]
 
@@ -485,7 +443,8 @@
       [Metodo], [Firma], [Comportamento],
       [`RoleGuard.canActivate(route)`],
       [`(route: ActivatedRouteSnapshot): boolean | UrlTree`],
-      [Confronta `auth.getRole()` con `route.data['roles']`. Se il ruolo non e autorizzato, redirige `system_admin` a `/admin/tenants` e gli altri a `/dashboard`.],
+      [Confronta `auth.getRole()` con `route.data['roles']`. Se il ruolo non e autorizzato, redirige `system_admin` a
+        `/admin/tenants` e gli altri a `/dashboard`.],
 
       [`HomeRedirectGuard.canActivate()`],
       [`(): UrlTree`],
@@ -505,13 +464,13 @@
   - *Auto-refresh token*: abilitato tramite `withAutoRefreshToken` con timeout di sessione di 10 minuti
   - *Inactivity timeout*: logout automatico al superamento del timeout (gestito da `UserActivityService`)
 
-  I servizi `AutoRefreshTokenService` e `UserActivityService` sono registrati in `app.config.ts` come provider
-  Keycloak e gestiscono il rinnovo automatico del token e il monitoraggio dell'attività utente.
+  I servizi `AutoRefreshTokenService` e `UserActivityService` sono registrati in `app.config.ts` come provider Keycloak
+  e gestiscono il rinnovo automatico del token e il monitoraggio dell'attività utente.
 
   == AuthService
 
-  Il servizio `AuthService` (`src/app/core/services/auth.service.ts`) è il fulcro della gestione identitaria e implementa
-  le interfacce `SessionLifeCycle` e `ImpersonationStatus`. Le sue responsabilità includono:
+  Il servizio `AuthService` (`src/app/core/services/auth.service.ts`) è il fulcro della gestione identitaria e
+  implementa le interfacce `SessionLifeCycle` e `ImpersonationStatus`. Le sue responsabilità includono:
 
   #figure(caption: [Campi principali di AuthService])[
     #table(
@@ -535,14 +494,28 @@
       [`init()`], [`(): Promise<boolean>`], [Verifica stato `keycloak.authenticated`],
       [`login()`], [`(): void`], [Redirect verso login Keycloak],
       [`logout()`], [`(): void`], [Pulizia contesto impersonazione, emit su `logout$`, logout Keycloak],
-      [`getToken()`], [`(): Promise<string>`], [Ritorna token impersonato se presente, altrimenti token Keycloak con `updateToken(30)`],
-      [`getUsername()`], [`(): Promise<string>`], [Risoluzione nome utente da claims `preferred_username|username|name`],
-      [`getRole()`], [`(): UserRole`], [Mapping ruoli da JWT (`realm_access`, `resource_access`) con fallback `tenant_user`],
+      [`getToken()`],
+      [`(): Promise<string>`],
+      [Ritorna token impersonato se presente, altrimenti token Keycloak con `updateToken(30)`],
+
+      [`getUsername()`],
+      [`(): Promise<string>`],
+      [Risoluzione nome utente da claims `preferred_username|username|name`],
+
+      [`getRole()`],
+      [`(): UserRole`],
+      [Mapping ruoli da JWT (`realm_access`, `resource_access`) con fallback `tenant_user`],
+
       [`getTenantId()`], [`(): string`], [Estrae claim `tenant_id`],
       [`getUserId()`], [`(): string`], [Estrae claim `sub`],
-      [`setImpersonating(value)`], [`(value: boolean): void`], [Attiva/disattiva stato impersonazione e sincronizza storage],
+      [`setImpersonating(value)`],
+      [`(value: boolean): void`],
+      [Attiva/disattiva stato impersonazione e sincronizza storage],
+
       [`stopImpersonation()`], [`(): void`], [Disattiva impersonazione],
-      [`startImpersonation(targetUserId)`], [`(targetUserId: string): Observable<string>`], [Chiama `/auth/impersonate`, salva token/payload e attiva segnali],
+      [`startImpersonation(targetUserId)`],
+      [`(targetUserId: string): Observable<string>`],
+      [Chiama `/auth/impersonate`, salva token/payload e attiva segnali],
     )
   ]
 
@@ -564,13 +537,14 @@
 
   == Impersonazione
 
-  Il sistema supporta l'impersonazione: un `system_admin` può assumere l'identità di un utente tenant per operare
-  nel suo contesto. Il flusso è:
+  Il sistema supporta l'impersonazione: un `system_admin` può assumere l'identità di un utente tenant per operare nel
+  suo contesto. Il flusso è:
 
   1. Il system admin seleziona un utente tenant dalla pagina di dettaglio del tenant;
-  2. `AuthService.startImpersonation()` scambia il token (tramite OAuth2 Token Exchange lato management-api) e salva
-      il contesto impersonato in `sessionStorage`;
-    3. La pagina `TenantDetail` naviga verso `/dashboard`; `AuthService` ripristina lo stato da storage anche dopo refresh;
+  2. `AuthService.startImpersonation()` scambia il token (tramite OAuth2 Token Exchange lato management-api) e salva il
+    contesto impersonato in `sessionStorage`;
+    3. La pagina `TenantDetail` naviga verso `/dashboard`; `AuthService` ripristina lo stato da storage anche dopo
+      refresh;
   4. `DashboardResolver` rileva lo stato di impersonazione e imposta `dataMode: 'obfuscated'`;
   5. Tutti i componenti che consumano telemetria usano endpoint e modalità offuscate;
     6. Le azioni sensibili sono limitate: la rinomina gateway è nascosta in UI e gli endpoint backend con
@@ -626,23 +600,17 @@
       columns: (auto, auto),
       [Enum], [Valori],
 
-      [UserRole],
-      [`system_admin`, `tenant_admin`, `tenant_user`],
+      [UserRole], [`system_admin`, `tenant_admin`, `tenant_user`],
 
-      [TenantStatus],
-      [`active`, `suspended`],
+      [TenantStatus], [`active`, `suspended`],
 
-      [CommandStatus],
-      [`queued`, `ack`, `nack`, `expired`, `timeout`],
+      [CommandStatus], [`queued`, `ack`, `nack`, `expired`, `timeout`],
 
-      [AlertsType],
-      [`GATEWAY_OFFLINE`],
+      [AlertsType], [`GATEWAY_OFFLINE`],
 
-      [GatewayStatus],
-      [`online`, `paused`, `provisioning`, `offline`],
+      [GatewayStatus], [`online`, `paused`, `provisioning`, `offline`],
 
-      [CmdGatewayStatus],
-      [`online`, `paused`],
+      [CmdGatewayStatus], [`online`, `paused`],
     )
   ]
 
@@ -791,7 +759,10 @@
     #table(
       columns: (auto, auto, auto),
       [Metodo], [Firma], [Comportamento],
-      [`openStream(sp)`], [`(sp: StreamParameters): Observable<TelemetryEnvelope>`], [Apre stream SSE, crea canale observabile e avvia sessione],
+      [`openStream(sp)`],
+      [`(sp: StreamParameters): Observable<TelemetryEnvelope>`],
+      [Apre stream SSE, crea canale observabile e avvia sessione],
+
       [`closeStream()`], [`(): void`], [Chiude stream corrente, abortisce fetch e completa il canale],
     )
   ]
@@ -854,12 +825,21 @@
     #table(
       columns: (2fr, 2fr, 1.7fr),
       [Metodo], [Firma], [Comportamento],
-      [`fetchThresholds()`], [`(): Observable<ThresholdConfig[]>`], [Carica soglie da API, normalizza payload e aggiorna cache],
+      [`fetchThresholds()`],
+      [`(): Observable<ThresholdConfig[]>`],
+      [Carica soglie da API, normalizza payload e aggiorna cache],
+
       [`getCached()`], [`(): ThresholdConfig[]`], [Ritorna snapshot cache corrente],
       [`invalidateCache()`], [`(): void`], [Azzera cache],
       [`refreshThresholds()`], [`(): Observable<ThresholdConfig[]>`], [Invalidate + reload],
-      [`setDefaultThreshold(...)`], [`(sensorType, minValue?, maxValue?): Observable<void>`], [Upsert soglia di default per tipo sensore],
-      [`setSensorThreshold(...)`], [`(sensorId, sensorType, minValue?, maxValue?): Observable<void>`], [Upsert soglia specifica sensore],
+      [`setDefaultThreshold(...)`],
+      [`(sensorType, minValue?, maxValue?): Observable<void>`],
+      [Upsert soglia di default per tipo sensore],
+
+      [`setSensorThreshold(...)`],
+      [`(sensorId, sensorType, minValue?, maxValue?): Observable<void>`],
+      [Upsert soglia specifica sensore],
+
       [`deleteSensorThreshold(sensorId)`], [`(sensorId: string): Observable<void>`], [Delete soglia sensore],
       [`deleteTypeThreshold(sensorType)`], [`(sensorType: string): Observable<void>`], [Delete soglia per tipo],
     )
@@ -891,7 +871,9 @@
     #table(
       columns: (auto, auto, auto),
       [Metodo], [Firma], [Comportamento],
-      [`evaluate(envelope)`], [`(envelope: DecryptedEnvelope): boolean`], [Priorita match su `sensorId`, fallback `sensorType`, `true` solo se fuori bound],
+      [`evaluate(envelope)`],
+      [`(envelope: DecryptedEnvelope): boolean`],
+      [Priorita match su `sensorId`, fallback `sensorType`, `true` solo se fuori bound],
     )
   ]
 
@@ -899,7 +881,7 @@
     caption: [Diagramma dei servizi core],
   )[
     #align(center)[
-        #image("./assets/05-core-services.svg", width: 115%)
+      #image("./assets/05-core-services.svg", width: 115%)
     ]
   ]
 
@@ -939,17 +921,17 @@
 
   La pagina supporta due view mode:
 
-  - *Stream mode*: connessione SSE in tempo reale tramite `ObfuscatedStreamManagerService`. I dati vengono decrittati
-    da `DecryptedMeasureService` (che usa `@notip/crypto-sdk`) e validati da `ValidatedMeasureFacadeService` che aggiunge
+  - *Stream mode*: connessione SSE in tempo reale tramite `ObfuscatedStreamManagerService`. I dati vengono decrittati da
+    `DecryptedMeasureService` (che usa `@notip/crypto-sdk`) e validati da `ValidatedMeasureFacadeService` che aggiunge
     il flag `isOutofBounds`. Il grafico è aggiornato in tempo reale con un cap di 20 righe;
-  - *Query mode*: query paginata con cursore composito `(time, sensorId)`. Supporta filtri per gatewayIds,
-    sensorTypes, sensorIds, e range temporale (con limite finestra 24h).
+  - *Query mode*: query paginata con cursore composito `(time, sensorId)`. Supporta filtri per gatewayIds, sensorTypes,
+    sensorIds, e range temporale (con limite finestra 24h).
 
   #figure(
     caption: [Diagramma della dashboard],
   )[
     #align(center)[
-        #image("./assets/07-dashboard.svg", width: 115%)
+      #image("./assets/07-dashboard.svg", width: 115%)
     ]
   ]
 
@@ -994,16 +976,18 @@
   Il flusso di elaborazione della telemetria segue una pipeline a tre stadi:
 
   1. *ObfuscatedStreamManagerService*: riceve eventi SSE grezzi (`TelemetryEnvelope` con `encryptedData`, `iv`,
-     `authTag`);
+    `authTag`);
   2. *DecryptedMeasureService*: utilizza `@notip/crypto-sdk` (`DataApiService`) per decrittografare con AES-256-GCM,
-     producendo `DecryptedEnvelope` con `value` e `unit` in chiaro;
-  3. *ValidatedMeasureFacadeService*: valuta `isOutofBounds` tramite `MeasureBoundsEvaluationService` contro le
-     soglie cached, producendo `CheckedEnvelope`.
+    producendo `DecryptedEnvelope` con `value` e `unit` in chiaro;
+  3. *ValidatedMeasureFacadeService*: valuta `isOutofBounds` tramite `MeasureBoundsEvaluationService` contro le soglie
+    cached, producendo `CheckedEnvelope`.
 
   La pipeline opera in entrambe le modalità:
 
-  - *Stream (SSE)*: `ObfuscatedStreamManagerService.openStream()` -> `DecryptedMeasureService.openStream()` -> `ValidatedMeasureFacadeService.openStream()`;
-  - *Query (paginata)*: `ObfuscatedMeasureService.query()` oppure `ValidatedMeasureFacadeService.query()`, con cursore composito;
+  - *Stream (SSE)*: `ObfuscatedStreamManagerService.openStream()` -> `DecryptedMeasureService.openStream()` ->
+    `ValidatedMeasureFacadeService.openStream()`;
+  - *Query (paginata)*: `ObfuscatedMeasureService.query()` oppure `ValidatedMeasureFacadeService.query()`, con cursore
+    composito;
   - *Export*: `ValidatedMeasureFacadeService.export()` in modalità clear, con limite finestra 24h.
 
   = Feature: Gateway
@@ -1013,8 +997,8 @@
 
   == GatewayListPageComponent
 
-  `GatewayListPageComponent` carica la lista gateway tramite `GatewayService` e renderizza card per ciascun gateway.
-  La navigazione al dettaglio avviene tramite selezione della card.
+  `GatewayListPageComponent` carica la lista gateway tramite `GatewayService` e renderizza card per ciascun gateway. La
+  navigazione al dettaglio avviene tramite selezione della card.
 
   == GatewayDetailPageComponent
 
@@ -1052,9 +1036,18 @@
       columns: (auto, auto, auto),
       [Metodo], [Firma], [Comportamento],
       [`getGateways()`], [`(): Observable<Gateway[]>`], [Fetch lista gateway, mapping DTO->model e update `listSignal`],
-      [`getGatewayDetail(gatewayId)`], [`(gatewayId: string): Observable<Gateway>`], [Fetch dettaglio gateway e update `selectedGatewaySignal`],
-      [`updateGatewayName(gatewayId, name)`], [`(gatewayId: string, name: string): Observable<GatewayUpdateResult>`], [Patch nome gateway e mapping risposta],
-      [`deleteGateway(gatewayId)`], [`(gatewayId: string): Observable<string>`], [Delete gateway e ritorno id eliminato],
+      [`getGatewayDetail(gatewayId)`],
+      [`(gatewayId: string): Observable<Gateway>`],
+      [Fetch dettaglio gateway e update `selectedGatewaySignal`],
+
+      [`updateGatewayName(gatewayId, name)`],
+      [`(gatewayId: string, name: string): Observable<GatewayUpdateResult>`],
+      [Patch nome gateway e mapping risposta],
+
+      [`deleteGateway(gatewayId)`],
+      [`(gatewayId: string): Observable<string>`],
+      [Delete gateway e ritorno id eliminato],
+
       [`list()`], [`(): Signal<Gateway[]>`], [Accessor read-only lista],
       [`selectedGateway()`], [`(): Signal<Gateway | null>`], [Accessor read-only selezione],
       [`isLoading()`], [`(): Signal<boolean>`], [Accessor read-only loading],
@@ -1092,9 +1085,17 @@
     #table(
       columns: (1.7fr, 2fr, 1.7fr),
       [Metodo], [Firma], [Comportamento],
-      [`sendConfig(id, config)`], [`(id: string, config: GatewayConfig): Observable<CommandStatusUpdate>`], [Invio comando config con filtro campi non validi e chaining polling],
-      [`sendFirmware(id, firmware)`], [`(id: string, firmware: GatewayFirmware): Observable<CommandStatusUpdate>`], [Invio comando firmware e chaining polling],
-      [`pollStatus(gwId, cmdId, intervalMs?)`], [`(gwId: string, cmdId: string, intervalMs = 2000): Observable<CommandStatusUpdate>`], [Polling stato comando con timeout 5 minuti, gestione 304 e mapping 404/503 -> `timeout`],
+      [`sendConfig(id, config)`],
+      [`(id: string, config: GatewayConfig): Observable<CommandStatusUpdate>`],
+      [Invio comando config con filtro campi non validi e chaining polling],
+
+      [`sendFirmware(id, firmware)`],
+      [`(id: string, firmware: GatewayFirmware): Observable<CommandStatusUpdate>`],
+      [Invio comando firmware e chaining polling],
+
+      [`pollStatus(gwId, cmdId, intervalMs?)`],
+      [`(gwId: string, cmdId: string, intervalMs = 2000): Observable<CommandStatusUpdate>`],
+      [Polling stato comando con timeout 5 minuti, gestione 304 e mapping 404/503 -> `timeout`],
     )
   ]
 
@@ -1113,7 +1114,7 @@
     caption: [Diagramma della feature Gateway],
   )[
     #align(center)[
-        #image("./assets/09-gateways.svg", width: 115%)
+      #image("./assets/09-gateways.svg", width: 115%)
     ]
   ]
 
@@ -1121,9 +1122,9 @@
 
   Le funzionalità di amministrazione sistema sono accessibili esclusivamente ai `system_admin`.
 
-  La feature include anche componenti riutilizzabili sotto `admin/components/`:
-  `AdminGatewayFormComponent`, `AdminGatewayTableComponent`, `ImpersonateButtonComponent`,
-  `TenantFormComponent`, `TenantTableComponent`, `TenantUserListComponent`.
+  La feature include anche componenti riutilizzabili sotto `admin/components/`: `AdminGatewayFormComponent`,
+  `AdminGatewayTableComponent`, `ImpersonateButtonComponent`, `TenantFormComponent`, `TenantTableComponent`,
+  `TenantUserListComponent`.
 
   == TenantManagerPageComponent
 
@@ -1212,7 +1213,10 @@
       [`ngOnInit()`], [`(): void`], [Carica gateway e opzioni tenant],
       [`onApplyFilter(event)`], [`(event: Event): void`], [Applica bozza filtro ai tenant selezionati],
       [`onResetFilter()`], [`(): void`], [Reset filtro tenant],
-      [`onCreateGateway(payload)`], [`(payload: CreateAdminGatewayPayload): void`], [Crea gateway admin e ricarica lista],
+      [`onCreateGateway(payload)`],
+      [`(payload: CreateAdminGatewayPayload): void`],
+      [Crea gateway admin e ricarica lista],
+
       [`toggleCreateForm()`], [`(): void`], [Apre/chiude form creazione],
     )
   ]
@@ -1237,8 +1241,7 @@
 
   La gestione degli alert consente di configurare e consultare gli alert di gateway offline.
 
-  La feature include componenti sotto `alerts/components/`: `AlertConfigFormComponent`,
-  `AlertFilterPanelComponent`.
+  La feature include componenti sotto `alerts/components/`: `AlertConfigFormComponent`, `AlertFilterPanelComponent`.
 
   == AlertListPageComponent
 
@@ -1286,10 +1289,18 @@
       columns: (2fr, 2fr, 1.7fr),
       [Metodo], [Firma], [Comportamento],
       [`getAlertsConfig()`], [`(): Observable<AlertsConfig>`], [Carica default + gateway overrides],
-      [`setDefaultConfig(timeoutMs)`], [`(timeoutMs: number): Observable<DefaultAlertsConfig>`], [Aggiorna timeout default],
-      [`sendGatewayConfig(gatewayId, timeoutMs)`], [`(...): Observable<GatewayAlertsConfig>`], [Imposta override gateway],
+      [`setDefaultConfig(timeoutMs)`],
+      [`(timeoutMs: number): Observable<DefaultAlertsConfig>`],
+      [Aggiorna timeout default],
+
+      [`sendGatewayConfig(gatewayId, timeoutMs)`],
+      [`(...): Observable<GatewayAlertsConfig>`],
+      [Imposta override gateway],
+
       [`deleteGatewayConfig(gatewayId)`], [`(gatewayId: string): Observable<void>`], [Cancella override gateway],
-      [`getAlerts(filter)`], [`(af: AlertsFilter): Observable<Alerts[]>`], [Supporta multi-gateway con `forkJoin`, dedup e sort desc],
+      [`getAlerts(filter)`],
+      [`(af: AlertsFilter): Observable<Alerts[]>`],
+      [Supporta multi-gateway con `forkJoin`, dedup e sort desc],
     )
   ]
 
@@ -1326,8 +1337,13 @@
     #table(
       columns: (auto, auto, auto),
       [Metodo], [Firma], [Comportamento],
-      [`getAllSensors(refreshMs?)`], [`(refreshMs = 10000): Observable<Sensor[]>`], [Polling periodico sensori o fetch singolo],
-      [`getGatewaySensors(id, refreshMs?)`], [`(id: string, refreshMs = 10000): Observable<Sensor[]>`], [Polling/fetch sensori filtrati per gateway],
+      [`getAllSensors(refreshMs?)`],
+      [`(refreshMs = 10000): Observable<Sensor[]>`],
+      [Polling periodico sensori o fetch singolo],
+
+      [`getGatewaySensors(id, refreshMs?)`],
+      [`(id: string, refreshMs = 10000): Observable<Sensor[]>`],
+      [Polling/fetch sensori filtrati per gateway],
     )
   ]
 
@@ -1356,9 +1372,17 @@
       columns: (auto, auto, auto),
       [Metodo], [Firma], [Comportamento],
       [`getUsers()`], [`(): Observable<ViewUser[]>`], [Recupera utenti tenant e mappa `lastAccess`],
-      [`createUser(params)`], [`(up: UserParameters): Observable<CreatedUser>`], [Crea utente con normalizzazione username e ruolo],
-      [`updateUser(id, params)`], [`(userId: string, u: UpdateUserParameters): Observable<UpdatedUser>`], [Aggiorna utente],
-      [`deleteUsers(ids)`], [`(userIds: string[]): Observable<DeleteUserFeedback>`], [Delete bulk con feedback deleted/failed],
+      [`createUser(params)`],
+      [`(up: UserParameters): Observable<CreatedUser>`],
+      [Crea utente con normalizzazione username e ruolo],
+
+      [`updateUser(id, params)`],
+      [`(userId: string, u: UpdateUserParameters): Observable<UpdatedUser>`],
+      [Aggiorna utente],
+
+      [`deleteUsers(ids)`],
+      [`(userIds: string[]): Observable<DeleteUserFeedback>`],
+      [Delete bulk con feedback deleted/failed],
     )
   ]
 
@@ -1415,7 +1439,9 @@
     #table(
       columns: (auto, auto, auto),
       [Metodo], [Firma], [Comportamento],
-      [`getLogs(filter)`], [`(lf: LogsFilter): Observable<Logs[]>`], [Fetch audit log con join CSV di `userId/actions` e mapping payload],
+      [`getLogs(filter)`],
+      [`(lf: LogsFilter): Observable<Logs[]>`],
+      [Fetch audit log con join CSV di `userId/actions` e mapping payload],
     )
   ]
 
@@ -1427,7 +1453,9 @@
       [Elemento], [Firma], [Comportamento],
       [`CostDashboardPageComponent.ngOnInit()`], [`(): void`], [Carica costi tenant],
       [`CostDashboardPageComponent.loadCosts()`], [`private`], [Aggiorna `costs`, `isLoading`, `errorMessage`],
-      [`CostsService.getTenantCosts()`], [`(): Observable<Costs>`], [Recupera `storage_gb` e `bandwidth_gb` con coercion numerica],
+      [`CostsService.getTenantCosts()`],
+      [`(): Observable<Costs>`],
+      [Recupera `storage_gb` e `bandwidth_gb` con coercion numerica],
     )
   ]
 
@@ -1444,41 +1472,39 @@
 
       [SidebarComponent],
       [Navigazione laterale principale con voci di menu role-based. Mostra/rende disponibili le voci di menu in base al
-      ruolo dell'utente (`tenant_user`, `tenant_admin`, `system_admin`). Durante l'impersonazione, mostra il banner e
-      il bottone "Stop impersonation". Include ProfileSection e LogoutButton.],
+        ruolo dell'utente (`tenant_user`, `tenant_admin`, `system_admin`). Durante l'impersonazione, mostra il banner e
+        il bottone "Stop impersonation". Include ProfileSection e LogoutButton.],
 
       [ModalLayerComponent],
       [Overlay modale generico con backdrop. Utilizza elemento `<dialog>` HTML con proiezione `<ng-content>`. Supporta
-      chiusura su click backdrop con rilevamento del target (previene chiusura accidentale su click all'interno).],
+        chiusura su click backdrop con rilevamento del target (previene chiusura accidentale su click all'interno).],
 
       [MultiSelectDropdownComponent],
       [Dropdown multi-selezione con ricerca integrata. Supporta apertura/chiusura tramite click su documento e tasto
-      Escape. Opzioni filtrate per ricerca. Rimozione selezioni incompatibili. Stato disabled.],
+        Escape. Opzioni filtrate per ricerca. Rimozione selezioni incompatibili. Stato disabled.],
 
       [StatusBadgeComponent],
       [Badge colorato per indicazione stato. Mappa valori di stato a classi CSS: `is-good` (verde), `is-warn` (giallo),
-      `is-bad` (rosso), `is-neutral` (grigio).],
+        `is-bad` (rosso), `is-neutral` (grigio).],
 
       [DeleteConfirmModalComponent],
       [Modale di conferma cancellazione con titolo e messaggio personalizzabili. Bottone confirm (pericolo, rosso) e
-      cancel (ghost). Stato busy durante l'operazione.],
+        cancel (ghost). Stato busy durante l'operazione.],
 
       [ImpersonationBannerComponent],
       [Banner condizionale visualizzato durante l'impersonazione. Mostra ID utente target (fallback: "unknown").],
 
-      [ImpersonationTagComponent],
-      [Tag statico "OBFUSCATED MODE" visualizzato in contesti di dati offuscati.],
+      [ImpersonationTagComponent], [Tag statico "OBFUSCATED MODE" visualizzato in contesti di dati offuscati.],
 
       [ProfileSectionComponent],
-      [Sezione profilo utente con visualizzazione username e ruolo. Link opzionali per "Open profile" e
-      "Change password".],
+      [Sezione profilo utente con visualizzazione username e ruolo. Link opzionali per "Open profile" e "Change
+        password".],
 
-      [LogoutButtonComponent],
-      [Bottone logout che emette evento click. Delega il logout ad AuthService.],
+      [LogoutButtonComponent], [Bottone logout che emette evento click. Delega il logout ad AuthService.],
 
       [PlaceholderPageComponent],
-      [Pagina scaffold generica per feature in sviluppo. Legge il titolo dai `data['title']` della rotta, con fallback
-      a "NoTIP".],
+      [Pagina scaffold generica per feature in sviluppo. Legge il titolo dai `data['title']` della rotta, con fallback a
+        "NoTIP".],
     )
   ]
 
@@ -1486,7 +1512,7 @@
     caption: [Diagramma dei componenti shared],
   )[
     #align(center)[
-        #image("./assets/10-shared-components.svg", width: 115%)
+      #image("./assets/10-shared-components.svg", width: 115%)
     ]
   ]
 
@@ -1501,53 +1527,32 @@
       columns: (auto, auto, auto),
       [Voce], [Ruoli Visibili], [Path],
 
-      [Dashboard],
-      [`tenant_user`, `tenant_admin`],
-      [`/dashboard`],
+      [Dashboard], [`tenant_user`, `tenant_admin`], [`/dashboard`],
 
-      [Gateways],
-      [`tenant_user`, `tenant_admin`],
-      [`/gateways`],
+      [Gateways], [`tenant_user`, `tenant_admin`], [`/gateways`],
 
-      [Sensors],
-      [`tenant_user`, `tenant_admin`],
-      [`/sensors`],
+      [Sensors], [`tenant_user`, `tenant_admin`], [`/sensors`],
 
-      [Alerts],
-      [`tenant_user`, `tenant_admin`],
-      [`/alerts`],
+      [Alerts], [`tenant_user`, `tenant_admin`], [`/alerts`],
 
-      [Users],
-      [`tenant_admin`],
-      [`/mgmt/users`],
+      [Users], [`tenant_admin`], [`/mgmt/users`],
 
-      [Limits],
-      [`tenant_user`, `tenant_admin`],
-      [`/mgmt/limits`],
+      [Limits], [`tenant_user`, `tenant_admin`], [`/mgmt/limits`],
 
-      [API Clients],
-      [`tenant_admin`],
-      [`/mgmt/api`],
+      [API Clients], [`tenant_admin`], [`/mgmt/api`],
 
-      [Audit Log],
-      [`tenant_admin`],
-      [`/mgmt/logs`],
+      [Audit Log], [`tenant_admin`], [`/mgmt/logs`],
 
-      [Costs],
-      [`tenant_admin`],
-      [`/mgmt/costs`],
+      [Costs], [`tenant_admin`], [`/mgmt/costs`],
 
-      [Tenants],
-      [`system_admin`],
-      [`/admin/tenants`],
+      [Tenants], [`system_admin`], [`/admin/tenants`],
 
-      [Gateways (Admin)],
-      [`system_admin`],
-      [`/admin/gateways`],
+      [Gateways (Admin)], [`system_admin`], [`/admin/gateways`],
     )
   ]
 
-  La configurazione alert non è una voce di sidebar dedicata: è accessibile dal link inline presente nella pagina di lista alert.
+  La configurazione alert non è una voce di sidebar dedicata: è accessibile dal link inline presente nella pagina di
+  lista alert.
 
   = Testing
 
@@ -1559,15 +1564,15 @@
 
   - *Guards*: AuthGuard (inizializzazione Keycloak, token presence, login redirect, threshold prefetch trigger),
     RoleGuard (role matching, redirect per system_admin e altri ruoli, home redirect);
-  - *Interceptors*: authInterceptor (token injection, empty token passthrough), errorInterceptor (401 con retryUrl,
-    403, non-HTTP errors);
+  - *Interceptors*: authInterceptor (token injection, empty token passthrough), errorInterceptor (401 con retryUrl, 403,
+    non-HTTP errors);
   - *Core Services*:
     - `AuthService`: login/logout flows, token retrieval, JWT decoding, role mapping, impersonation start/stop,
       sessionStorage restoration;
     - `ThresholdPrefetchService`: immediate + periodic fetch, admin/tenant guards, error resilience, logout cleanup,
       duplicate start prevention;
-    - `ThresholdService`: fetch/map/cache thresholds, type inference, refresh, null bounds,
-      cached bound reuse, deletion;
+    - `ThresholdService`: fetch/map/cache thresholds, type inference, refresh, null bounds, cached bound reuse,
+      deletion;
     - `MeasureBoundsEvaluationService`: no match -> false, below-min -> true, above-max -> true, no bounds -> false,
       sensorId prioritized over sensorType;
     - `ObfuscatedStreamManagerService`: missing token -> login, valid envelopes emitted, malformed messages -> errors,
@@ -1577,8 +1582,8 @@
       paused/offline mapping, send frequency defaults, name update, deletion;
     - `CommandService`: config/firmware sending, disallowed status filtering, invalid field omission, polling until
       terminal status, 304 handling, 404/503 mapping, error rethrow, missing command ID rejection;
-    - `DecryptedMeasureService`: query mapping, stream emission, export, empty filters, SDK error propagation,
-      stream abortion, no-store fetch configuration, close safety;
+    - `DecryptedMeasureService`: query mapping, stream emission, export, empty filters, SDK error propagation, stream
+      abortion, no-store fetch configuration, close safety;
     - `ObfuscatedMeasureService`: stream mapping to obfuscated batches, query page mapping with/without nextCursor,
       array-wrapped response handling, closeStream delegation;
     - `ValidatedMeasureFacadeService`: stream/query/export mapping to checked envelopes, cursor preservation;
@@ -1619,61 +1624,61 @@
 
       [Architettura Standalone (no NgModules)],
       [Angular 14+ introduce il modello standalone che semplifica la struttura dell'applicazione. Ogni componente,
-      servizio e pipe è auto-contenuto con import espliciti. Questo riduce il boilerplate, migliora il tree-shaking
-      e rende il codice più leggibile e manutenibile.],
+        servizio e pipe è auto-contenuto con import espliciti. Questo riduce il boilerplate, migliora il tree-shaking e
+        rende il codice più leggibile e manutenibile.],
 
       [Signal-based state management (no NgRx)],
-      [I segnali Angular forniscono state management reattivo nativo senza librerie esterne. Per uno stato locale
-      di feature (es. lista gateway, gateway selezionato, loading state), i segnali sono sufficienti e più semplici
-      di NgRx. RxJS è mantenuto per flussi asincroni (SSE, HTTP) e Subject per comunicazione cross-componente.],
+      [I segnali Angular forniscono state management reattivo nativo senza librerie esterne. Per uno stato locale di
+        feature (es. lista gateway, gateway selezionato, loading state), i segnali sono sufficienti e più semplici di
+        NgRx. RxJS è mantenuto per flussi asincroni (SSE, HTTP) e Subject per comunicazione cross-componente.],
 
       [OpenAPI Generator per client API],
       [La generazione automatica dei client Angular da spec OpenAPI garantisce strong typing, consistenza con le API
-      backend, e aggiornamento automatico quando le API cambiano. Lo script `generate-openapi.sh` automatizza il
-      recupero delle specifiche e la generazione.],
+        backend, e aggiornamento automatico quando le API cambiano. Lo script `generate-openapi.sh` automatizza il
+        recupero delle specifiche e la generazione.],
 
       [SSE per streaming telemetria],
       [Server-Sent Events (SSE) è preferita a WebSocket per lo streaming di telemetria perché: è unidirezionale
-      (server -> client), adatta al caso d'uso; gestita nativamente dal browser; più semplice da implementare e
-      debuggare; compatibile con i proxy HTTP e i meccanismi di autenticazione basati su header.],
+        (server -> client), adatta al caso d'uso; gestita nativamente dal browser; più semplice da implementare e
+        debuggare; compatibile con i proxy HTTP e i meccanismi di autenticazione basati su header.],
 
       [Decrittografia telemetria lato client],
       [La telemetria viene crittografata AES-256-GCM lato gateway e decrittografata lato client tramite
-      `@notip/crypto-sdk`. Questo approccio (Rule Zero) garantisce che il server non veda mai i dati in chiaro,
-      preservando la privacy end-to-end. Il frontend riceve `encryptedData`, `iv`, `authTag` e li decodifica
-      localmente.],
+        `@notip/crypto-sdk`. Questo approccio (Rule Zero) garantisce che il server non veda mai i dati in chiaro,
+        preservando la privacy end-to-end. Il frontend riceve `encryptedData`, `iv`, `authTag` e li decodifica
+        localmente.],
 
       [Data mode: clear vs obfuscated],
       [Durante l'impersonazione, il frontend opera in modalità `obfuscated`: i dati non vengono decrittografati e
-      vengono mostrati solo metadati (gatewayId, sensorId, timestamp). Questo protegge la privacy dei dati del tenant
-      durante il debug e il supporto da parte dei system admin.],
+        vengono mostrati solo metadati (gatewayId, sensorId, timestamp). Questo protegge la privacy dei dati del tenant
+        durante il debug e il supporto da parte dei system admin.],
 
       [Impersonation via sessionStorage],
       [Il token di impersonazione è memorizzato in `sessionStorage` (non `localStorage`) per isolamento di sicurezza:
-      viene cancellato alla chiusura del tab/browser e non persiste tra sessioni. Lo stato viene ripristinato in modo
-      trasparente dal servizio auth leggendo il contesto salvato.],
+        viene cancellato alla chiusura del tab/browser e non persiste tra sessioni. Lo stato viene ripristinato in modo
+        trasparente dal servizio auth leggendo il contesto salvato.],
 
       [Cross-filter dependency nel FilterPanel],
       [I dropdown del filtro sono interdipendenti: la selezione di un gateway aggiorna i sensori disponibili. Questo
-      previene selezioni incompatibili e migliora l'esperienza utente. Le selezioni incompatibili vengono rimosse
-      automaticamente.],
+        previene selezioni incompatibili e migliora l'esperienza utente. Le selezioni incompatibili vengono rimosse
+        automaticamente.],
 
       [24h query window limit],
-      [Le query di telemetria sono limitate a una finestra temporale di 24 ore per prevenire query troppo onerose
-      sul database TimescaleDB. Il FilterPanel applica clamping automatico sia sul "from" che sul "to".],
+      [Le query di telemetria sono limitate a una finestra temporale di 24 ore per prevenire query troppo onerose sul
+        database TimescaleDB. Il FilterPanel applica clamping automatico sia sul "from" che sul "to".],
 
       [Rome timezone conversion],
-      [Tutti i timestamp sono convertiti nel fuso orario Europa/Roma tramite pipe custom (`RomeDateTimePipe`)
-      e utility dedicate. Questo assicura coerenza temporale per gli utenti italiani.],
+      [Tutti i timestamp sono convertiti nel fuso orario Europa/Roma tramite pipe custom (`RomeDateTimePipe`) e utility
+        dedicate. Questo assicura coerenza temporale per gli utenti italiani.],
 
       [Chart.js per visualizzazione dati],
       [Chart.js è leggero, ben mantenuto e sufficiente per i grafici lineari richiesti dalla dashboard. Un dataset per
-      sensore con colorazione distinta permette di distinguere facilmente le serie temporali. Il cap a 120 punti per
-      dataset previene degrado delle performance.],
+        sensore con colorazione distinta permette di distinguere facilmente le serie temporali. Il cap a 120 punti per
+        dataset previene degrado delle performance.],
 
       [Vitest over Karma/Jasmine],
       [Vitest è più veloce di Karma/Jasmine, supporta nativamente HMR, e si integra meglio con Vite (il bundler di
-      Angular). jsdom fornisce un ambiente DOM headless sufficiente per i test di componenti.],
+        Angular). jsdom fornisce un ambiente DOM headless sufficiente per i test di componenti.],
     )
   ]
 
@@ -1689,38 +1694,37 @@
       [Tipo Errore], [Gestione],
 
       [401 Unauthorized],
-      [L'errorInterceptor reindirizza a `/error?reason=unauthorized&retryUrl=<currentUrl>`. L'utente può effettuare
-      il re-login e tornare alla pagina precedente tramite il `retryUrl`. Il token Keycloak scaduto innesca il
-      rinnovo automatico prima della scadenza.],
+      [L'errorInterceptor reindirizza a `/error?reason=unauthorized&retryUrl=<currentUrl>`. L'utente può effettuare il
+        re-login e tornare alla pagina precedente tramite il `retryUrl`. Il token Keycloak scaduto innesca il rinnovo
+        automatico prima della scadenza.],
 
       [403 Forbidden],
-      [L'errorInterceptor reindirizza a `/error?reason=forbidden`. Indica che l'utente non ha i permessi necessari
-      per la risorsa richiesta.],
+      [L'errorInterceptor reindirizza a `/error?reason=forbidden`. Indica che l'utente non ha i permessi necessari per
+        la risorsa richiesta.],
 
       [Errori di rete / offline],
       [Propagati come `HttpErrorResponse` con `status: 0`. Gestiti dai componenti feature con visualizzazione di
-      messaggio di errore all'utente.],
+        messaggio di errore all'utente.],
 
       [Errori SSE (handshake, token expired)],
       [L'ObfuscatedStreamManagerService termina lo stream con errore esplicito e abort della sessione SSE. In caso di
-      token mancante all'apertura, viene richiesto il login.],
+        token mancante all'apertura, viene richiesto il login.],
 
       [Errori decrittografia SDK],
       [Propagati da `DecryptedMeasureService` come errori Observable. Il componente dashboard cattura l'errore e
-      visualizza un messaggio appropriato.],
+        visualizza un messaggio appropriato.],
 
       [Errori comando timeout (404, 503)],
-      [Il CommandService mappa `404` e `503` a `CommandStatus.timeout`. Il polling termina dopo 5 minuti di timeout
-      con notifica all'utente.],
+      [Il CommandService mappa `404` e `503` a `CommandStatus.timeout`. Il polling termina dopo 5 minuti di timeout con
+        notifica all'utente.],
 
       [Errori soglia cache fallback],
-      [Il `ThresholdPrefetchService` mantiene attivo lo scheduler anche in presenza di errori temporanei. La
-      validazione utilizza lo stato cache corrente; se non sono presenti soglie, restituisce `false` (nessun
-      out-of-bounds).],
+      [Il `ThresholdPrefetchService` mantiene attivo lo scheduler anche in presenza di errori temporanei. La validazione
+        utilizza lo stato cache corrente; se non sono presenti soglie, restituisce `false` (nessun out-of-bounds).],
 
       [Error page generica],
       [ErrorPageComponent visualizza messaggi di errore parametrizzati (`reason`, `retryUrl`). Supporta: `unauthorized`,
-      `forbidden`, `not-found`. La rotta wildcard `**` reindirizza a `/error?reason=not-found`.],
+        `forbidden`, `not-found`. La rotta wildcard `**` reindirizza a `/error?reason=not-found`.],
     )
   ]
 
@@ -1745,33 +1749,33 @@
       [Misure], [Dettaglio],
 
       [PKCE S256],
-      [L'autenticazione Keycloak utilizza PKCE (Proof Key for Code Exchange) con metodo S256 per prevenire attacchi
-      di authorization code interception.],
+      [L'autenticazione Keycloak utilizza PKCE (Proof Key for Code Exchange) con metodo S256 per prevenire attacchi di
+        authorization code interception.],
 
       [Auto-refresh token],
-      [Il token JWT viene rinnovato automaticamente ogni 10 minuti tramite `withAutoRefreshToken`
-      di `keycloak-angular`. I servizi `AutoRefreshTokenService` e `UserActivityService` monitorano
-      l'attività utente e gestiscono il rinnovo. Il rinnovo fallito innesca il logout e il re-login.],
+      [Il token JWT viene rinnovato automaticamente ogni 10 minuti tramite `withAutoRefreshToken` di `keycloak-angular`.
+        I servizi `AutoRefreshTokenService` e `UserActivityService` monitorano l'attività utente e gestiscono il
+        rinnovo. Il rinnovo fallito innesca il logout e il re-login.],
 
       [SessionStorage per impersonazione],
-      [Il token di impersonazione è memorizzato in `sessionStorage`, non `localStorage`. Viene cancellato alla
-      chiusura del tab e non persiste tra sessioni.],
+      [Il token di impersonazione è memorizzato in `sessionStorage`, non `localStorage`. Viene cancellato alla chiusura
+        del tab e non persiste tra sessioni.],
 
       [Role-based routing],
       [Le guardie AuthGuard e RoleGuard prevengono l'accesso a rotte non autorizzate. I system admin vengono
-      reindirizzati a `/admin/tenants`, gli altri a `/dashboard`.],
+        reindirizzati a `/admin/tenants`, gli altri a `/dashboard`.],
 
       [Bearer token injection],
-      [L'authInterceptor inietta il token JWT in ogni richiesta HTTP. Le chiamate senza token sono permesse solo
-      per endpoint pubblici.],
+      [L'authInterceptor inietta il token JWT in ogni richiesta HTTP. Le chiamate senza token sono permesse solo per
+        endpoint pubblici.],
 
       [Impersonation guardrails],
       [Durante l'impersonazione: la rinomina gateway è nascosta in UI, le chiamate protette con
-      `BlockImpersonationGuard` sono bloccate dal backend, la telemetria è offuscata.],
+        `BlockImpersonationGuard` sono bloccate dal backend, la telemetria è offuscata.],
 
       [Whitelist validation],
       [I client OpenAPI generati applicano validazione automatica sui payload in ingresso/uscita. I form Angular
-      utilizzano validazione built-in (required, minlength, maxlength, pattern).],
+        utilizzano validazione built-in (required, minlength, maxlength, pattern).],
 
       [CSP (Content Security Policy)],
       [Applicata dal reverse proxy Nginx che serve il frontend. Limita le sorgenti di script, stili e connessioni.],
@@ -1788,30 +1792,30 @@
       [Aspetto], [Strategia],
 
       [Streaming SSE cap],
-      [Lo stream SSE è limitato a 20 righe nella dashboard per prevenire accumulo di dati in memoria e degrado
-      del rendering.],
+      [Lo stream SSE è limitato a 20 righe nella dashboard per prevenire accumulo di dati in memoria e degrado del
+        rendering.],
 
       [Chart.js dataset cap],
       [I dataset Chart.js sono limitati a 120 punti per sensore per mantenere performance di rendering fluide.],
 
       [Cursor-based pagination],
-      [Le query di telemetria utilizzano pagination con cursore composito `(time, sensorId)` invece di offset per
-      query più efficienti su TimescaleDB.],
+      [Le query di telemetria utilizzano pagination con cursore composito `(time, sensorId)` invece di offset per query
+        più efficienti su TimescaleDB.],
 
       [Threshold caching],
       [Le soglie di validazione sono cached e aggiornate ogni 5 minuti dal ThresholdPrefetchService. In caso di errore
-      temporaneo, il ciclo di refresh resta attivo senza interrompere la UI.],
+        temporaneo, il ciclo di refresh resta attivo senza interrompere la UI.],
 
       [304 Not Modified caching],
       [Il CommandService gestisce risposte 304 durante il polling dei comandi per evitare elaborazioni ridondanti.],
 
       [Standalone tree-shaking],
-      [L'architettura standalone Angular permette migliore tree-shaking rispetto ai NgModules, riducendo il bundle
-      size finale.],
+      [L'architettura standalone Angular permette migliore tree-shaking rispetto ai NgModules, riducendo il bundle size
+        finale.],
 
       [Lazy loading rotte],
       [Le rotte sono attualmente caricate in modo eager. La struttura feature-sliced è compatibile con una futura
-      introduzione del lazy loading per ridurre ulteriormente il bundle iniziale.],
+        introduzione del lazy loading per ridurre ulteriormente il bundle iniziale.],
     )
   ]
 ]

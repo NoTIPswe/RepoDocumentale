@@ -4,7 +4,7 @@ changelog:
     date: "2026-04-12"
     authors:
       - Leonardo Preo
-    verifier: TBD
+    verifier: Francesco Marcon
     description: >
       Revisione generale della specifica tecnica del frontend, con allineamento
       della struttura del documento e consolidamento delle sezioni descrittive
