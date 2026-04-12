@@ -225,6 +225,12 @@ accepted_words:
   - deduplicazione
   - mockato
   - TestContainers
+  - Grafana
+  - prometheus
+  - grafana
+  - powershell
+  - svc
+  - ps
   - timestamptz
   - uuid
   - crypto
@@ -329,6 +335,12 @@ accepted_words:
   - renderer
   - EOF
   - ciphertext
+  - PowerShell
+  - macOS
+  - hostname
+  - healthcheck
+  - Makefile
+  - balancer
   - AOP
   - GitOps
   - middleware
@@ -734,6 +746,8 @@ accepted_words:
   - impersonazione
   - impersonare
   - intra
+  - riconnessioni
+  - restartare
   - centralizzata
   - testabilità
   - deserializzate
