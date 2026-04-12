@@ -130,6 +130,12 @@
   La configurazione degli hook attivi per ogni repository è definita nel file `.pre-commit-config.yaml` presente nella
   radice della repository stessa.
 
+  Tra gli hook attivi è incluso `gitleaks`, che analizza il diff di ogni commit alla ricerca di chiavi API, token,
+  password o altro materiale sensibile in chiaro. Il rilevamento di un segreto blocca immediatamente il commit. È
+  vietato committare certificati, chiavi private o qualsiasi materiale crittografico statico nel repository: per i test
+  di integrazione che richiedono mTLS i certificati devono essere generati dinamicamente a runtime e mai persistiti come
+  file versionati.
+
   Per il setup di `pre-commit` nell'ambiente locale si rimanda alla @setup-devcontainer.
 ]
 
@@ -261,6 +267,12 @@
 
   In entrambi i casi le migrazioni costituiscono elementi di configurazione soggetti a versionamento obbligatorio (vedi
   @config-items).
+
+  Gli script di migrazione devono rispettare il principio di *retrocompatibilità*: ogni modifica allo schema deve poter
+  essere applicata senza perdita di dati preesistenti.
+
+  Qualora sia necessario introdurre una modifica distruttiva (es. eliminazione di una colonna o cambio di tipo), essa
+  deve essere suddivisa in passi successivi che mantengano la compatibilità per almeno un ciclo di rilascio.
 ]
 
 #norm(
@@ -303,6 +315,53 @@
 ]
 
 #norm(
+  title: "Separazione delle responsabilità tramite AOP (NestJS)",
+  label: <aop-nestjs>,
+)[
+  Nei servizi NestJS le logiche trasversali non devono mai essere implementate all'interno dei file `Service`. Le
+  seguenti responsabilità devono essere gestite esclusivamente tramite i meccanismi AOP offerti dal framework:
+
+  - *Audit Logging*: tracciato tramite `Interceptor` dedicato che intercetta la risposta prima dell'invio al client
+    (vedi @audit-logging);
+  - *Estrazione e validazione del Tenant*: gestita tramite `Guard` o `Interceptor` che popola il contesto di richiesta
+    prima che il `Service` venga invocato;
+  - *Controllo RBAC*: delegato ai `Guard` (`roles.guard.ts`, `access-policy.guard.ts`) dichiarati tramite decoratori
+    sull'handler (vedi @endpoint-security).
+
+  L'introduzione di logica trasversale all'interno di un `Service` costituisce un difetto architetturale bloccante in
+  fase di Code Review.
+]
+
+#norm(
+  title: "Validazione e sanificazione degli input",
+  label: <validazione-input>,
+)[
+  Ogni endpoint NestJS deve ricevere i dati in ingresso tramite una classe DTO decorata con i vincoli di
+  `class-validator`. L'uso del `ValidationPipe` globale garantisce il rifiuto automatico delle richieste malformate
+  prima che raggiungano il `Service`.
+
+  È vietato passare direttamente un DTO al layer di persistenza. Ogni DTO deve essere convertito in un'entità di dominio
+  tramite una classe *Mapper* dedicata, che costituisce l'unico punto di traduzione tra i contratti di interfaccia e il
+  modello interno.
+]
+
+#norm(
+  title: "Gestione centralizzata degli errori",
+  label: <gestione-errori>,
+)[
+  È vietata la gestione manuale delle eccezioni infrastrutturali all'interno dei *Controller*. Tutte le eccezioni non
+  gestite devono essere intercettate da un *Global Exception Filter* (NestJS) o da un middleware equivalente (Go), che
+  si occupa di:
+
+  - Classificare l'errore per tipologia;
+  - Restituire al client una risposta HTTP standardizzata con un codice di stato appropriato e un messaggio generico;
+  - Mascherare i dettagli interni.
+
+  L'esposizione di dettagli infrastrutturali grezzi al client costituisce un difetto di sicurezza bloccante in fase di
+  Code Review.
+]
+
+#norm(
   title: "Osservabilità del sistema (Prometheus e Grafana)",
   label: <osservabilita>,
 )[
@@ -335,7 +394,8 @@
     sistemi esterni (es. PostgreSQL Writer, NATS Publisher, encryptor).
 
   È vietato inserire query SQL, chiamate di rete o logica di framework direttamente nei tipi o nelle funzioni del
-  `domain/`.
+  `domain/`. La violazione di questa regola costituisce un difetto architetturale bloccante in fase di revisione del
+  codice (Code Review) e deve essere corretta prima che la Pull Request possa essere approvata.
 ]
 
 === Attività del processo
@@ -434,6 +494,44 @@
       desc: [
         Il consumatore esegue il tool di generazione appropriato per autogenerare DTO, interfacce e client HTTP a
         partire dal lockfile aggiornato.
+      ],
+    ),
+  ),
+)
+
+#activity(
+  title: "Workflow di aggiornamento dei contratti NATS",
+  label: <workflow-nats-contracts>,
+  roles: (ROLES.progr,),
+  norms: ("api-contracts", "config-items", "repo-strategy"),
+  input: [Modifica ai canali nel file centralizzato `notip-infra/api-contracts/async-api/nats-contracts.yaml`],
+  output: [
+    Contratto NATS filtrato committato nella repository del servizio consumatore come lockfile; codice TypeScript/Go
+    rigenerato a partire dal lockfile aggiornato.
+  ],
+  procedure: (
+    (
+      name: "Aggiornamento del contratto centralizzato",
+      desc: [
+        Il produttore modifica `nats-contracts.yaml` in `notip-infra`, aggiungendo o aggiornando i canali di propria
+        competenza e dichiarando correttamente i tag `Publisher`/`Subscriber` per ciascun servizio coinvolto. La
+        modifica avviene tramite Pull Request su `notip-infra`.
+      ],
+    ),
+    (
+      name: "Esecuzione degli script di filtering",
+      desc: [
+        Lo sviluppatore del servizio consumatore lancia lo script `scripts/generate-asyncapi.sh` nella propria
+        repository. Lo script invoca `scripts/filter-asyncapi.mjs`, che legge il file centralizzato e produce i soli
+        canali e le relative interfacce di pertinenza del servizio.
+      ],
+    ),
+    (
+      name: "Commit del lockfile",
+      desc: [
+        Il file filtrato viene committato nella repository del consumatore. Esso funge da lockfile del contratto NATS:
+        traccia l'esatta versione dei canali contro cui il servizio è compilato ed è un elemento di configurazione
+        soggetto a versionamento (vedi @config-items).
       ],
     ),
   ),

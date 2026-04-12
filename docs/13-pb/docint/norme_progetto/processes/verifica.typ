@@ -73,6 +73,22 @@ Qualifica*.
 ]
 
 #norm(
+  title: "Infrastruttura effimera per i test di integrazione",
+  label: <infra-effimera>,
+)[
+  Per i test di integrazione è vietato affidarsi a istanze di database o broker NATS pre-esistenti, condivisi o gestiti
+  esternamente alla suite di test. Ogni test di integrazione (o suite) deve:
+
+  - Avviare la propria infrastruttura isolata tramite container Docker (es. tramite *Testcontainers* o un file
+    `docker-compose` dedicato alla suite);
+  - Eseguire le operazioni su uno stato noto e controllato, applicando le migrazioni necessarie prima dell'esecuzione;
+  - Distruggere l'infrastruttura al termine dell'esecuzione, indipendentemente dall'esito del test.
+
+  Questo approccio garantisce la totale riproducibilità dei test sia in locale che in CI, eliminando dipendenze da stato
+  condiviso. Si applica a tutti i test di integrazione collocati secondo la struttura definita nella @analisi-dinamica.
+]
+
+#norm(
   title: "Nomenclatura dei test",
   label: <nomenclatura-test>,
 )[

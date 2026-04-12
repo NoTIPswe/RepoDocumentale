@@ -1,5 +1,19 @@
 title: Specifica tecnica - Management API
 changelog:
+  - version: "0.2.1"
+    date: "2026-04-11"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Alessandro Contarini
+    description: >
+      Fix error
+  - version: "0.2.0"
+    date: "2026-04-10"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Alessandro Contarini
+    description: >
+      Stesura finale del documento
   - version: "0.1.1"
     date: "2026-04-07"
     authors:

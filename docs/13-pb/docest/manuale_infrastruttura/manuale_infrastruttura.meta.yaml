@@ -1,0 +1,44 @@
+title: Manuale Infrastruttura
+changelog:
+  - version: "0.5.0"
+    date: "2026-03-15"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Leonardo Preo
+    description: >
+      Aggiunta capitolo relativo a Metriche e Monitoraggio con la descrizione delle relative dashboard Grafana
+  - version: "0.4.0"
+    date: "2026-03-10"
+    authors:
+      - Francesco Marcon
+    verifier: Alessandro Mazzariol
+    description: >
+      Stesura delle sezioni Autenticazione e Keycloak e introduzione dell'utilizzo del Simulatore di Gateway (CLI)
+  - version: "0.3.0"
+    date: "2026-03-01"
+    authors:
+      - Leonardo Preo
+    verifier: Mario De Pasquale
+    description: >
+      Aggiunta sezione sulle Operazioni Quotidiane, comandi di gestione dell'ambiente e reset
+  - version: "0.2.0"
+    date: "2026-02-20"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Francesco Marcon
+    description: >
+      Integrazione Prerequisiti e Avvio del Sistema (Prima Installazione) con generazione dei segreti
+  - version: "0.1.0"
+    date: "2026-02-10"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Valerio Solito
+    description: >
+      Stesura della Panoramica dell'Architettura (struttura generale, Nginx, sicurezza)
+  - version: "0.0.1"
+    date: "2026-02-01"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Valerio Solito
+    description: >
+      Creazione del documento e prima bozza della struttura (Scopo del documento e Glossario)
