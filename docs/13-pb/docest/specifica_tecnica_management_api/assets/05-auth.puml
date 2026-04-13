@@ -4,21 +4,31 @@ title Auth Module - Class Diagram
 skinparam backgroundColor #FFFFFF
 skinparam defaultFontSize 10
 skinparam defaultFontColor #000000
+skinparam dpi 150
 skinparam class {
   BackgroundColor #E8F4FD
   BorderColor #2196F3
   ArrowColor #1976D2
+  Padding 15
 }
 skinparam interface {
   BackgroundColor #E8F4FD
   BorderColor #2196F3
+  Padding 15
 }
-skinparam nodesep 10
-skinparam ranksep 10
+skinparam enum {
+  Padding 15
+}
+skinparam note {
+  Padding 15
+}
 skinparam linetype ortho
 skinparam packageStyle rectangle
 
-package "auth" <<Rectangle>> {
+skinparam nodesep 100
+skinparam ranksep 100
+
+rectangle "auth" <<Rectangle>> {
   class "AuthController" as AuthController {
     -impersonationService: ImpersonationService
     -dataSource?: DataSource
@@ -141,7 +151,7 @@ package "auth" <<Rectangle>> {
   JwtAuthGuard --> Reflector : checks @AccessPolicy
   JwtAuthGuard --> AuthenticatedUser : validates JWT
 
-  RolesGuard --> Reflector : checks @Roles
+  RolesGuard -down-> Reflector : checks @Roles
   RolesGuard --> AuthenticatedUser : checks effectiveRole
 
   AccessPolicyGuard --> Reflector : checks @AccessPolicy
@@ -149,7 +159,7 @@ package "auth" <<Rectangle>> {
   AccessPolicyGuard --> TenantEntity : checks suspension
   AccessPolicyGuard --> UsersRole : checks SYSTEM_ADMIN
 
-  BlockImpersonationGuard --> Reflector : checks @BlockImpersonation
+  BlockImpersonationGuard -down-> Reflector : checks @BlockImpersonation
   BlockImpersonationGuard --> AuditLogService : logs blocked attempts
   BlockImpersonationGuard --> AuthenticatedUser : checks isImpersonating
 

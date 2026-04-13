@@ -13,7 +13,7 @@ skinparam interface {
   BackgroundColor #E8F4FD
   BorderColor #2196F3
 }
-skinparam nodesep 10
+skinparam nodesep 20
 skinparam ranksep 10
 skinparam linetype ortho
 skinparam packageStyle rectangle
@@ -157,7 +157,7 @@ package "keys" <<Rectangle>> {
 
   KeyEntity --> GatewayEntity : ManyToOne (CASCADE)
   KeyEntity ..> keyMaterialTransformer : uses on write/read
-  keyMaterialTransformer --> EncryptionModule : encrypt/decrypt
+  keyMaterialTransformer -right-> EncryptionModule : encrypt/decrypt
 }
 
 note top of KeysController

@@ -1,5 +1,9 @@
 title: Specifica Tecnica - Data-API
 changelog:
+  - version: "1.0.0"
+    date: "2026-04-13"
+    approver: Leonardo Preo
+    baseline: PB
   - version: "0.2.2"
     date: "2026-04-01"
     authors:

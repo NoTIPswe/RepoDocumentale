@@ -1227,7 +1227,7 @@
   ]
   #pagebreak()
   === AuthModule
-  #figure(caption: "Diagramma del modulo Auth")[#image("assets/05-auth.png", width: 110%)]
+  #figure(caption: "Diagramma del modulo Auth")[#image("assets/05-auth.svg", width: 110%)]
 
   Il modulo di autenticazione gestisce la validazione JWT tramite Keycloak, il controllo degli accessi basato sui ruoli,
   la politica di accesso per endpoint e il meccanismo di impersonificazione utente.
@@ -1670,7 +1670,8 @@
 
       [#par(justify: false)[`deleteUsers(tenantId, requesterId, requesterRole, dto)`]],
       [#par(justify: false)[`POST /users/bulk-delete`]],
-      [#par(justify: false)[Eliminazione bulk di utenti; previene auto-eliminazione e protezione TENANT_ADMIN]],
+      [#par(justify: false)[Eliminazione bulk di utenti; previene auto-eliminazione e protezione TENANT_ADMIN
+        (Deprecata)]],
     )
   ]
 
