@@ -241,7 +241,7 @@
     name: "Filtro dati per Gateway, per tipo di sensore e sensore specifico dati in streaming",
     service: "Sistema Cloud — UI",
     actions: [
-      + Accedere alla sezione dati del sistema.
+      + Accedere alla sezione "Live Stream" della Dashboard.
       + Selezionare un Gateway specifico dal filtro.
       + Selezionare un sensore specifico dal filtro.
       + Selezionare un tipo specifico di sensore.
@@ -259,7 +259,7 @@
     name: "Filtro dati per Gateway, sensore e intervallo temporale streaming dati analisi storica",
     service: "Sistema Cloud — UI",
     actions: [
-      + Accedere alla sezione dati del sistema.
+      + Accedere alla sezione "Historical Analysis" della Dashboard.
       + Selezionare un Gateway specifico dal filtro.
       + Selezionare un sensore specifico dal filtro.
       + Selezionare un tipo specifico di sensore.
