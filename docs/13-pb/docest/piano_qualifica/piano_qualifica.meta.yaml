@@ -1,9 +1,5 @@
 title: Piano di qualifica
 changelog:
-  - version: 2.0.0
-    date: "2026-04-13"
-    approver: Leonardo Preo
-    baseline: PB
   - version: "1.9.0"
     date: "2026-04-12"
     authors:
