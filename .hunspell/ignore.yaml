@@ -114,6 +114,7 @@ accepted_words:
   - NestJS
   - TypeScript
   - OpenAI
+  - OpenID
   - OpenAPI
   - Grafana
   - OTA

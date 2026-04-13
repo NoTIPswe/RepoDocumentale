@@ -1,5 +1,23 @@
 title: Glossario
 changelog:
+- version: 3.0.0
+  date: '2026-04-13'
+  approver: Leonardo Preo
+  baseline: PB
+- version: 2.3.0
+  date: '2026-04-12'
+  authors:
+  - Francesco Marcon
+  verifier: Matteo Mantoan
+  description: |
+    Aggiunta termini relativi alla gestione della persistenza con logica di aggregazione telemetrica
+- version: 2.2.0
+  date: '2026-04-05'
+  authors:
+  - Francesco Marcon
+  verifier: Leonardo Preo
+  description: |
+    Inserimento termini tecnici riguardanti l'integrazione frontend
 - version: 2.1.0
   date: '2026-03-29'
   authors:
