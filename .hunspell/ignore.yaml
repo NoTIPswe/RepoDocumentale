@@ -218,6 +218,21 @@ accepted_words:
   - pterm
   - paginata
   - paginato
+  - paginale
+  - decrittografia
+  - Decrittografia
+  - que
+  - npm
+  - async
+  - CryptoSdk
+  - PlaintextMeasure
+  - ESM
+  - CJS
+  - Deno
+  - Cloudflare
+  - Zod
+  - AsyncGenerator
+  - AbortSignal
   - rimappatura
   - riallocare
   - riallocato
@@ -489,6 +504,8 @@ accepted_words:
   - testcontainers
   - Vitest
   - Zod
+  - CommonJS
+  - AbortController
 
   # --- Terminologia Standard Progetto ---
   - req
