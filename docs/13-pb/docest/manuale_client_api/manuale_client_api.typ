@@ -22,15 +22,15 @@
 #show raw.where(lang: "json"): set text(size: 7pt)
 #base-document.apply-base-document(
   title: metadata.title,
-  abstract: "Manuale tecnico degli endpoint API esposti dalla piattaforma NOTIP, destinato a sviluppatori e integratori esterni.",
+  abstract: "Manuale tecnico degli endpoint API esposti dalla piattaforma NoTIP, destinato a sviluppatori e integratori esterni.",
   changelog: metadata.changelog,
   scope: base-document.EXTERNAL_SCOPE,
 )[
   = Introduzione
-  Il presente documento costituisce il manuale tecnico della piattaforma NOTIP dedicato alle funzionalità esposte
+  Il presente documento costituisce il manuale tecnico della piattaforma NoTIP dedicato alle funzionalità esposte
   tramite le interfacce API. L'obiettivo è descrivere in modo chiaro e puntuale le modalità di utilizzo e integrazione
   degli endpoint API messi a disposizione dalla piattaforma. I destinatari del presente manuale sono principalmente
-  sviluppatori e amministratori di infrastruttura che intendono integrare i servizi offerti da NOTIP nelle proprie
+  sviluppatori e amministratori di infrastruttura che intendono integrare i servizi offerti da NoTIP nelle proprie
   applicazioni o gestire l'infrastruttura del Tenant.
 
   Il documento è organizzato come segue: la sezione *Prerequisiti* illustra i passaggi necessari per ottenere l'accesso
@@ -39,7 +39,7 @@
   semplificato alle misure cifrate.
 
   == Glossario
-  Il #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/glossario.pdf")[Glossario v2.0.0] è un
+  Il #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/glossario.pdf")[Glossario v3.0.0] è un
   documento soggetto a continuo aggiornamento per l'intera durata del progetto; il suo scopo è definire la terminologia
   tecnica per garantire una comprensione chiara e univoca dei contenuti. I termini presenti nel Glossario sono
   contrassegnati nel testo da una lettera "G" posta a pedice (es. parola#sub[G]).
