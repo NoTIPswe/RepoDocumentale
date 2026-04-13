@@ -10,7 +10,7 @@ changelog:
   - version: 1.0.0
     date: "2026-02-28"
     approver: Valerio Solito
-    baseline: RTB
+    baseline: PB
   - version: "0.0.1"
     date: "2026-02-24"
     authors:
