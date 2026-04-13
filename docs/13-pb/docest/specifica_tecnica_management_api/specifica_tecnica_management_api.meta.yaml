@@ -1,5 +1,9 @@
 title: Specifica tecnica - Management API
 changelog:
+  - version: "1.0.0"
+    approver: Leonardo Preo
+    baseline: PB
+    date: "2026-04-13"
   - version: "0.2.1"
     date: "2026-04-11"
     authors:

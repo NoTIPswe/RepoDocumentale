@@ -212,7 +212,7 @@ note top of UsersController
   All endpoints require TENANT_ADMIN role
   Endpoints:
   - GET /:id, GET /, POST /, PATCH /:id
-  - POST /bulk-delete
+  - POST /bulk-delete (deprecated)
 end note
 
 note top of UsersService
