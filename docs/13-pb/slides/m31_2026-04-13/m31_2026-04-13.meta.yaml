@@ -1,16 +1,23 @@
-title: Presentazione MVP - m31
+title: Presentazione MVP - M31
 changelog:
+  - version: "0.2.0"
+    date: "2026-04-13"
+    authors:
+      - Leonardo Preo
+    verifier: TBD
+    description: >
+      Refactoring presentazione, riorganizzazione contenuti
   - version: "0.1.0"
     date: "2026-04-12"
     authors:
       - Alessandro Contarini
-    verifier: TBD
+    verifier: Leonardo Preo
     description: >
       Sviluppo del documento e presentazione del MVP
   - version: "0.0.1"
     date: "2026-04-11"
     authors:
       - Alessandro Contarini
-    verifier: TBD
+    verifier: Leonardo Preo
     description: >
       Stesura iniziale del documento

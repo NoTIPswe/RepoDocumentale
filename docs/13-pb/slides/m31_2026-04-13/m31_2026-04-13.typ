@@ -11,7 +11,7 @@
   title: meta.title,
   date: "2026-04-13",
 )[
-  == Cosa deve dimostrare il nostro MVP
+  = NoTIP MVP: sistema\ completo, multi-tenant e operativo
 
   - Il sistema realizza un flusso *end-to-end* completo: simulazione gateway, ingestione telemetria, persistenza,
     visualizzazione e gestione operativa.
@@ -29,12 +29,7 @@
   3. Gli utenti tenant consultano i dati sia in *Live Stream* sia in *Historical Analysis*.
   4. Tenant Admin e System Admin possono gestire gateway, utenti, soglie, alert e operazioni di supporto.
 
-  #v(0.6em)
-  *Valore per la valutazione*: il MVP non dimostra solo singoli componenti, ma un ciclo d'uso coerente e verificabile.
-
-  #pagebreak()
-
-  == Dashboard tenant: monitoraggio e controllo
+  = Dashboard tenant: monitoraggio e controllo
 
   #shot(
     "../../docest/manuale_utente/assets/dashboard.png",
@@ -46,9 +41,7 @@
   - Vista dati live con filtri per gateway, tipo sensore e sensori specifici.
   - Interfaccia adatta sia al monitoraggio quotidiano sia alla diagnosi rapida.
 
-  #pagebreak()
-
-  == Analisi storica e consultazione del dato
+  = Analisi storica e consultazione del dato
 
   #shot(
     "../../docest/manuale_utente/assets/historical.png",
@@ -60,11 +53,9 @@
   - L'export CSV rende il dato riusabile anche fuori piattaforma.
   - Questo rafforza il MVP come strumento operativo, non solo come vetrina tecnologica.
 
-  #pagebreak()
+  = Gestione operativa dei gateway
 
-  == Gestione operativa dei gateway
-
-  #grid(columns: (1fr, 1fr), gutter: 1.2cm)[
+  #grid(columns: (1fr, 1.8fr), gutter: 1.2cm)[
     #shot(
       "../../docest/manuale_utente/assets/gateway_admin.png",
       width: 100%,
@@ -77,15 +68,14 @@
       caption: [Dettaglio gateway con telemetria e controllo operativo],
     )
   ]
+  #pagebreak()
 
   - Configurazione del gateway, aggiornamento firmware ed eliminazione sono già integrate nei flussi applicativi.
   - La piattaforma non si limita a mostrare dati: consente intervento amministrativo e manutenzione.
 
-  #pagebreak()
+  = Multi-tenancy e supporto sicuro
 
-  == Multi-tenancy e supporto sicuro
-
-  #grid(columns: (1fr, 1fr), gutter: 1.2cm)[
+  #grid(columns: (1.8fr, 1fr), gutter: 1.2cm)[
     #shot(
       "../../docest/manuale_admin/assets/tenant_detail.png",
       width: 100%,
@@ -94,20 +84,19 @@
   ][
     #shot(
       "../../docest/manuale_admin/assets/indicatore_ObfuscatedMode.png",
-      width: 78%,
+      width: 100%,
       caption: [Indicatore persistente di Obfuscated Mode],
     )
   ]
+  #pagebreak()
 
   - Il System Admin può intervenire in contesto tenant senza esporre dati sensibili in chiaro.
   - L'*Obfuscated Mode* è un elemento distintivo: abilita supporto tecnico preservando la privacy.
   - La separazione tra ruoli rafforza la credibilità architetturale del MVP.
 
-  #pagebreak()
+  = Architettura MVP: servizi chiari,\ responsabilità separate
 
-  == Architettura MVP: servizi chiari, responsabilità separate
-
-  #image("assets/c4.png", width: 100%, height: 82%, fit: "contain")
+  #image("assets/c4.png", width: 100%, fit: "contain")
 
   #pagebreak()
 
@@ -118,35 +107,36 @@
   - La comunicazione interna event-driven e la separazione dei ruoli preparano il sistema alla scalabilità.
   - La struttura implementata è coerente con l'obiettivo di un prodotto manutenibile oltre il solo MVP.
 
-  #pagebreak()
-
-  == Documentazione a supporto del MVP
+  = Documentazione a supporto del MVP
 
   - È stata prodotta una *specifica tecnica generale di sistema* che descrive l'architettura complessiva della
     piattaforma.
   - È stata redatta una *specifica tecnica dedicata per ciascun microservizio*, per documentarne responsabilità,
     interfacce e scelte implementative.
-  - È stato prodotto un *manuale utente* per gli utenti del tenant e per il Tenant Admin, focalizzato sui flussi
+  - È stato prodotto un *manuale utente* per Tenant Users e per Tenant Admin, focalizzato sui flussi
     operativi della Web Application.
-  - È stato prodotto un *manuale operativo per il System Admin*, dedicato alla gestione multi-tenant e alle attività di
-    supporto amministrativo.
+  - È stato prodotto un *manuale operativo per il System Admin*, dedicato alla gestione multi-tenant, assegnazione gateway e alle attività di
+    supporto clienti tramite impersonazione.
+  #pagebreak()
+  - È stato prodotto un *manuale di gestione infrastruttura* che descrive la configurazione e il deployment dei microservizi, del database e della simulazione gateway.
+  - È stato prodotto un *manuale sull'utilizzo delle API* che descrive le interfacce REST esposte dai microservizi, per rendere possibile ai clienti lo sviluppo di un proprio client esterno.
   - È stato redatto un *TestBook* che raccoglie strategia di validazione, casi di test e criteri di verifica.
-
-  #v(0.6em)
-  *Valore aggiunto*: il MVP è accompagnato da documentazione che ne supporta utilizzo, manutenzione e verifica.
 
   #pagebreak()
 
-  == Perché questo MVP è pronto per essere accettato
+
+
+
+
+  == Traguardo raggiunto:\ un MVP concreto, usabile e valutabile
 
   - *Funzionalità dimostrabili*: viste live e storiche, gestione gateway, gestione tenant, alert, soglie e supporto
     amministrativo.
-  - *Interfaccia reale*: le schermate mostrate provengono dall'applicazione effettiva e dai manuali utente.
   - *Solidità tecnica*: microservizi separati, autenticazione centralizzata, audit log e provisioning sicuro.
   - *Maturità progettuale*: sono stati prodotti specifica tecnica di sistema, specifiche dei servizi, manuali e
     `TestBook`.
 
   #v(0.8em)
-  *Messaggio finale*: il nostro MVP dimostra che la piattaforma richiesta è stata resa concreta, usabile e valutabile su
+  Il MVP da noi sviluppato dimostra che la piattaforma richiesta è stata resa concreta, usabile e valutabile su
   basi sia funzionali sia architetturali.
 ]
