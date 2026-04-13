@@ -148,7 +148,7 @@ abilitare e supportare l'esecuzione di tutti gli altri processi di progetto.
 
 === Manutenzione
 A causa del continuo avanzamento del progetto, il gruppo è consapevole che l’infrastruttura subirà nel tempo cambiamenti
-e potrebbe causare possibili problemi. Per questo spetta all’Amministratore il compito della Manutenzione, aggiornando
+e potrebbe causare eventuali problemi. Per questo spetta all’amministratore il compito della manutenzione, aggiornando
 le funzionalità qualora errori o cambiamenti lo rendano necessario.
 
 #include "processes/miglioramento.typ"
@@ -162,22 +162,22 @@ le funzionalità qualora errori o cambiamenti lo rendano necessario.
 Le metriche e standard per la qualità fanno riferimento allo standard ISO/IEC 12207:1995. Attraverso un’operazione di
 tailoring, il team ha selezionato gli standard della qualità pertinenti al contesto del progetto, classificandoli in tre
 macro-categorie:
-1. Standard di Processo;
-2. Standard di Prodotto;
-3. Standard di Documentazione.
+1. Standard di processo;
+2. Standard di prodotto;
+3. Standard di documentazione.
 
 == Standard del processo
 Il gruppo adotta le norme dettate dallo standard ISO/IEC 12207:1995, ed in particolare la quality_assurance definita nel
-medesimo standard. In particolare il gruppo si impegna a rispettare:
+medesimo standard. In particolare, il gruppo si impegna a rispettare:
 
 === Pianificazione dell'assicurazione qualità
-Ogni attività di verifica deve essere definita nel documeto Piano di Qualifica, il quale specifica lo standard , le
+Ogni attività di verifica deve essere definita nel documeto Piano di Qualifica, il quale specifica lo standard, le
 procedure e gli strumenti da utilizzare.
 
 === Indipendenza e autorità
 Per garantire imparzialità nella verifica, chi svolge il ruolo di Verificatore deve essere libero di poter segnalare
 ogni tipo di anomalia senza subire conseguenze o influenza da altri membri del gruppo, per garantira imparzialità da
-esso. La persona che svolge l'attività di Verificatore per un determinato prodotto non può essere l'Autore dello stesso.
+esso. La persona che svolge l'attività di verificatore per un determinato prodotto non può essere l'autore dello stesso.
 
 === Product Assurance
 Il gruppo si impegna a controllare e verificare che ogni prodotto sviluppato e la relativa documentazione sia conforme

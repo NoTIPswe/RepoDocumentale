@@ -274,7 +274,7 @@ le norme relative a ciascuno.
 
 #norm(title: "Manutenzione dell'infrastruttura", label: <manutenzione-infrastruttura>)[
   A causa del continuo avanzamento del progetto, il gruppo è consapevole che l'infrastruttura subirà nel tempo
-  cambiamenti e potrebbe causare possibili problemi. Per questo spetta all'Amministratore il compito della Manutenzione,
+  cambiamenti e potrebbe causare possibili problemi. Per questo spetta all'amministratore il compito della manutenzione,
   aggiornando le funzionalità qualora errori o cambiamenti lo rendano necessario.
 ]
 
@@ -293,7 +293,7 @@ le norme relative a ciascuno.
 )[
   Il gruppo adotta DevContainers per garantire isolamento, portabilità e riproducibilità degli ambienti di sviluppo.
 
-  *Organizzazione (Centralizzazione e Specializzazione)*
+  *Organizzazione (centralizzazione e specializzazione)*
 
   In `notip-infra/devcontainers/` sono definiti i Dockerfile base per stack tecnologico: uno per NestJS, uno per
   Angular, uno per Go.
@@ -302,24 +302,23 @@ le norme relative a ciascuno.
   `.devcontainer/devcontainer.json`, che estende l'immagine base di `notip-infra` iniettando tool specifici, permessi
   utente e le estensioni IDE necessarie per quel particolare dominio.
 
-  I Dockerfile base e i file `devcontainer.json` sono elementi di configurazione soggetti a versionamento (vedi
-  @config-items). La manutenzione dei Dockerfile base in `notip-infra` è responsabilità dell'Amministratore, in coerenza
-  con quanto definito nella @manutenzione-infrastruttura.
+  I Dockerfile base e i file `devcontainer.json` sono elementi di configurazione soggetti a versionamento (vedi #link(<config-items>)[@config-items]). La manutenzione dei Dockerfile base in `notip-infra` è responsabilità dell'amministratore, in coerenza
+  con quanto definito nella #link(<manutenzione-infrastruttura>)[@manutenzione-infrastruttura].
 
-  *Architettura Multi-Stage dei Dockerfile Base*
+  *Architettura Multi-Stage dei Dockerfile base*
 
   I Dockerfile base sono strutturati a strati (multi-stage) per ottimizzare i pesi e separare le responsabilità:
   - `base`: fondamenta comuni, contenente il sistema operativo e il runtime del linguaggio (es. Node o Go);
-  - `dev`: utilizzato dallo Sviluppatore tramite DevContainer e dalla CI di validazione (test e linting). Contiene le
+  - `dev`: utilizzato dallo sviluppatore tramite DevContainer e dalla CI di validazione (test e linting). Contiene le
     devDependencies e i tool di sistema (git, curl). Il codice sorgente non fa parte dell'immagine, ma viene montato
     dinamicamente come volume;
-  - `builder`: utilizzato esclusivamente dalla CI di Rilascio. È l'ambiente in cui viene copiato il codice sorgente per
+  - `builder`: utilizzato esclusivamente dalla CI di rilascio. È l'ambiente in cui viene copiato il codice sorgente per
     essere compilato (es. transpile TypeScript → JavaScript o build binario Go);
   - `prod`: utilizzato dai server in produzione. È l'artefatto finale immutabile, privo dei tool di sviluppo del livello
     `dev` e del codice sorgente del livello `builder`. Contiene solo il compilato e le dipendenze di runtime
     strettamente necessarie.
 
-  Per il setup dell'ambiente DevContainer da parte di ogni sviluppatore si rimanda alla @setup-devcontainer.
+  Per il setup dell'ambiente DevContainer da parte di ogni sviluppatore si rimanda alla #link(<setup-devcontainer>)[@setup-devcontainer].
 ]
 
 #norm(
@@ -330,7 +329,7 @@ le norme relative a ciascuno.
   scelta è motivata dalla semplicità di integrazione con GitHub Actions e dall'assenza di quote sui pull, a differenza
   di Docker Hub.
 
-  I servizi applicativi eseguono il push automatico delle proprie immagini su GHCR ad ogni merge su `main`. La
+  I servizi applicativi eseguono il push automatico delle proprie immagini su GHCR ad ogni merge su `main`. Il
   repository `notip-infra` seleziona le versioni delle immagini da comporre e le avvia tramite le logiche di deploy e
   orchestrazione.
 
@@ -339,22 +338,22 @@ le norme relative a ciascuno.
 ]
 
 #norm(
-  title: "Processo di build e rilascio dei Servizi",
+  title: "Processo di build e rilascio dei servizi",
   label: <build-release-process>,
   rationale: [
-    *Manutenzione Centralizzata (Single Source of Truth)*: Se è necessario aggiornare la versione di un linguaggio (es.
+    *Manutenzione centralizzata (Single Source of Truth)*: se è necessario aggiornare la versione di un linguaggio (es.
     un aggiornamento di sicurezza di Node.js o Go), basta modificare un solo file in `notip-infra`. Tutti i microservizi
     erediteranno automaticamente il miglioramento alla loro successiva build, senza dover aggiornare decine di
     repository.
 
-    *Zero Duplicazioni (DRY)*: Le logiche infrastrutturali vivono esclusivamente nel repository dell'infrastruttura,
+    *Zero Duplicazioni (DRY)*: le logiche infrastrutturali vivono esclusivamente nel repository dell'infrastruttura,
     evitando la duplicazione delle istruzioni di compilazione in ogni servizio.
 
-    *Autonomia e Isolamento*: Il repository centrale non accede al codice né conosce la logica di business dei
+    *Autonomia e isolamento*: il repository centrale non accede al codice né conosce la logica di business dei
     microservizi. Ogni servizio rimane indipendente e decide autonomamente quando avviare la propria pipeline di
     rilascio.
 
-    *Consistenza Assoluta*: Tutti i servizi basati sulla stessa tecnologia vengono impacchettati, ottimizzati e messi in
+    *Consistenza assoluta*: tutti i servizi basati sulla stessa tecnologia vengono impacchettati, ottimizzati e messi in
     sicurezza nello stesso identico modo, azzerando discrepanze e comportamenti anomali in produzione.
   ],
 )[
@@ -363,12 +362,11 @@ le norme relative a ciascuno.
   singolo microservizio utilizza il Dockerfile centralizzato di `notip-infra` come ricetta, applicandola al proprio
   codice sorgente per generare l'artefatto finale pronto per la produzione.
 
-  I Dockerfile base in `notip-infra/containers/` sono elementi di configurazione soggetti a versionamento (vedi
-  @config-items). La manutenzione di questi Dockerfile è responsabilità dell'Amministratore, in coerenza con quanto
-  definito nella @manutenzione-infrastruttura.
+  I Dockerfile base in `notip-infra/containers/` sono elementi di configurazione soggetti a versionamento (vedi #link(<config-items>)[@config-items]). La manutenzione di questi Dockerfile è responsabilità dell'amministratore, in coerenza con quanto
+  definito nella #link(<manutenzione-infrastruttura>)[@manutenzione-infrastruttura].
 
-  Per la norma sul pin delle versioni dei tool e delle immagini base si rimanda alla @pin-versioni. Per la gestione del
-  container registry si rimanda alla @ghcr.
+  Per la norma sul pin delle versioni dei tool e delle immagini base si rimanda alla  #link(<pin-versioni>)[@pin-versioni]. Per la gestione del
+  container registry si rimanda alla #link(<ghcr>)[@ghcr].
 ]
 
 #norm(
@@ -386,8 +384,7 @@ le norme relative a ciascuno.
   - *Iniezione degli header di sicurezza*: applicazione delle direttive definite in `security-headers.conf` (es.
     `Strict-Transport-Security`, `X-Frame-Options`, `Content-Security-Policy`) a tutte le risposte in uscita.
 
-  La configurazione è versionata in `notip-infra/infra/nginx/` ed è soggetta alle regole GitOps definite nella
-  @gitops-infra.
+  La configurazione è versionata in `notip-infra/infra/nginx/` ed è soggetta alle regole GitOps definite nella #link(<gitops-infra>)[@gitops-infra].
 ]
 
 === Attività del processo
@@ -400,16 +397,16 @@ le norme relative a ciascuno.
   output: [Task correttamente realizzate e assegnate allo Sprint Backlog],
   procedure: (
     (
-      name: "Creazione Task Madre",
+      name: "Creazione task madre",
       desc: [
-        Chiunque debba svolgere una qualsiasi attività è tenuto a creare la relativa Task madre nel Backlog e assegnarla
-        allo Sprint corrente.
+        Chiunque debba svolgere una qualsiasi attività è tenuto a creare la relativa task madre nel Backlog e assegnarla
+        allo sprint corrente.
       ],
     ),
     (
-      name: "Sub-Task",
+      name: "Sub-task",
       desc: [
-        Immediatamente per ogni Task madre verranno create e associate in maniera automatica le Sub-Task di Esecuzione e
+        Immediatamente per ogni task madre verranno create e associate in maniera automatica le sub-task di Esecuzione e
         Verifica.
       ],
     ),
@@ -418,20 +415,20 @@ le norme relative a ciascuno.
       desc: [
         A questo punto l'autore della task deve assegnare a se stesso la sub-task di Esecuzione e un altro membro del
         team dovrà assegnarsi alla sub-task di Verifica. Tutto questo deve sempre essere fatto assegnando correttamente
-        la Label del ruolo che varia in base all'attività da svolgere.
+        la label del ruolo che varia in base all'attività da svolgere.
       ],
     ),
     (
       name: "Stima temporale",
       desc: [
         Bisogna anche inserire una stima realistica del tempo necessario per completare l'attività. La stima deve essere
-        fatta distintamente sia per la Sub-Task di Esecuzione che per quella di Verifica.
+        fatta distintamente sia per la sub-task di Esecuzione che per quella di Verifica.
       ],
     ),
     (
       name: "Avvio",
       desc: [
-        Adesso la Task sarà stata correttamente inizializzata e assegnata e nello stato *Da Completare*.
+        Adesso la Task sarà stata correttamente inizializzata, assegnata e nello stato *Da Completare*.
       ],
     ),
   ),
@@ -444,7 +441,7 @@ le norme relative a ciascuno.
   input: [Task in stato *Da Completare*],
   output: [Task in stato *Completata*],
   rationale: [
-    Le transizioni della Task Madre sono automatiche. È tuttavia necessario attendere il completamento dell'automazione
+    Le transizioni della task madre sono automatiche. È tuttavia necessario attendere il completamento dell'automazione
     (visibile dall'aggiornamento dell'interfaccia) prima di considerare conclusa l'operazione, per evitare problemi di
     allineamento dovuti alla latenza di Jira.
   ],
@@ -452,26 +449,26 @@ le norme relative a ciascuno.
     (
       name: "Sviluppo",
       desc: [
-        L'autore porta la Sub-Task di esecuzione nello stato *In Execution*, crea il branch ed effettua i commit secondo
-        le norme precedentemente descritte, fa avanzare la Sub-Task allo stato *In Verification* e apre una Pull-Request
-        su GitHub. Verifica che la Task Madre sia passata allo stato *To Verify* grazie alle automazioni.
+        L'autore porta la sub-task di esecuzione nello stato *In Execution*, crea il branch ed effettua i commit secondo
+        le norme precedentemente descritte, fa avanzare la sub-task allo stato *In Verification* e apre una Pull-Request
+        su GitHub. Verifica che la task madre sia passata allo stato *To Verify* grazie alle automazioni.
       ],
     ),
     (
       name: "Verifica",
       desc: [
-        Prende in carico la Sub-Task di Verifica e fa avanzare allo stato *In Corso*. Se la verifica va a buon fine,
-        anche su GitHub viene approvata la Pull-Request e questa Sub-Task viene fatta avanzare allo stato *Completata*.
+        Prende in carico la sub-task di Verifica e fa avanzare allo stato *In Corso*. Se la verifica va a buon fine,
+        anche su GitHub viene approvata la Pull-Request e questa sub-task viene fatta avanzare allo stato *Completata*.
         Nel caso in cui siano richieste delle modifiche, allora il verificatore farà la Reject del lavoro svolto,
-        mandando la Sub-Task di Esecuzione allo stato *Changes Requested*, e la Sub-Task di Verifica allo stato
+        mandando la sub-task di Esecuzione allo stato *Changes Requested*, e la sub-task di Verifica allo stato
         *Waiting*.
       ],
     ),
     (
       name: "Completamento",
       desc: [
-        Il verificatore completerà la Pull-Request su GitHub. La Sub-Task di Verifica è *Completata*, e quindi anche la
-        Sub-Task di Esecuzione passerà allo stesso stato, rendendo infine anche la Task madre completata.
+        Il verificatore completerà la Pull-Request su GitHub. La sub-task di Verifica è *Completata*, e quindi anche la
+        sub-task di Esecuzione passerà allo stesso stato, rendendo infine anche la task madre completata.
       ],
     ),
   ),
@@ -485,7 +482,7 @@ le norme relative a ciascuno.
   input: [Nuova postazione di lavoro o nuovo membro del team],
   output: [Ambiente Git configurato e repository clonato],
   rationale: [Per il setup dell'ambiente di sviluppo isolato tramite DevContainer, da eseguire contestualmente, si
-    rimanda alla @setup-devcontainer.],
+    rimanda alla #link(<setup-devcontainer>)[@setup-devcontainer].],
   procedure: (
     (
       name: "Installazione",
@@ -494,13 +491,13 @@ le norme relative a ciascuno.
       ],
     ),
     (
-      name: "Configurazione completa e Autenticazione",
+      name: "Configurazione completa e autenticazione",
       desc: [
         Eseguire in sequenza le configurazioni di identità, tecniche e di sicurezza:
-        - Impostare nome e mail (uguale a GitHub):
+        - impostare nome e mail (uguale a GitHub):
           `git config --global user.name "Nome Cognome"`
           `git config --global user.email "email@dominio.it"`;
-        - Generazione della chiave SSH.
+        - generazione della chiave SSH.
       ],
     ),
     (
@@ -528,7 +525,8 @@ le norme relative a ciascuno.
     (
       name: "Clone della repository",
       desc: [
-        Clonare la repository di riferimento secondo le istruzioni della @setup-ambiente-versionamento.
+        Clonare il repository di riferimento secondo le istruzioni della
+        #link(<setup-ambiente-versionamento>)[@setup-ambiente-versionamento]
       ],
     ),
     (
@@ -542,7 +540,7 @@ le norme relative a ciascuno.
       name: "Configurazione dell'ambiente",
       desc: [
         Copiare il file `.env.example` in `.env` e popolarlo con i valori locali di sviluppo. Per la politica di
-        gestione dei segreti si rimanda alla @gestione-segreti.
+        gestione dei segreti si rimanda alla #link(<gestione-segreti>)[@gestione-segreti].
       ],
     ),
     (
@@ -556,7 +554,7 @@ le norme relative a ciascuno.
       name: "Installazione Pre-commit Hooks",
       desc: [
         Installare e attivare gli hook locali eseguendo `pre-commit install` nella radice della repository. Per la norma
-        di riferimento si rimanda alla @pre-commit-hooks.
+        di riferimento si rimanda alla #link(<pre-commit-hooks>)[@pre-commit-hooks].
       ],
     ),
   ),
@@ -577,8 +575,7 @@ le norme relative a ciascuno.
     (
       name: "Prerequisiti",
       desc: [
-        Verificare che Docker sia installato e in esecuzione e che il DevContainer della repository sia operativo (vedi
-        @setup-devcontainer).
+        Verificare che Docker sia installato e in esecuzione e che il DevContainer della repository sia operativo (vedi #link(<setup-devcontainer>)[@setup-devcontainer]).
       ],
     ),
     (
