@@ -480,6 +480,7 @@ accepted_words:
   - AOP
   - GitOps
   - middleware
+  - AuditLog
   - modernc
   - npm
   - pgx
