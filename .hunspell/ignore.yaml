@@ -516,6 +516,31 @@ accepted_words:
   - KeyProvider
   - DataApiService
   - param
+  - plaintext
+  - DecryptionError
+  - clearCache
+  - DataApiRestClient
+  - ApiError
+  - ValidationError
+  - EncryptedEnvelopeDTO
+  - DataApiSseClient
+  - fetchEventSource
+  - SdkError
+  - ManagementApiClient
+  - getAllKeys
+  - KeyDTO
+  - ManagementApiService
+  - getKeysModel
+  - getKey
+  - getGatewayKey
+  - GatewayKeyFetcher
+  - KeyModel
+  - queryMeasures
+  - hasMore
+  - exportMeasures
+  - streamMeasures
+  - SSoT
+  - sonarqube
 
   # --- Terminologia Standard Progetto ---
   - req
