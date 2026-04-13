@@ -11,31 +11,31 @@
 
 type: integration
 tests:
-  - id: t_intra_simulator_cloud_ingestion
-    service: -Placeholder
+  - id: t_intra_bidirectional_control_flow
+    service: Management API
     description:
-      Verificare la corretta ricezione e validazione dei pacchetti JSON inviati dal Simulatore
-      al Cloud Ingestion Service
+      "Verificare il flusso di controllo bidirezionale: invio e corretta applicazione dei comandi
+      di configurazione dal Cloud al Simulatore"
     requirements:
-      - invio_dati_crittografati_cloud
-    status: not_implemented
+      - impostazione_configurazione_gateway
+    status: passed
   - id: t_intra_buffer_network_recovery
-    service: -Placeholder
+    service: Management API
     description:
       Verificare la gestione del buffer locale del Simulatore e della successiva integrazione
       con il Cloud dopo un ripristino di rete
     requirements:
       - comando_anomalia_disconnessione_temporanea
-    status: not_implemented
+    status: passed
   - id: t_intra_db_persistence_tenant_isolation
-    service: -Placeholder
+    service: Management API
     description:
       Verificare la persistenza dei dati nel database e dell’isolamento dei dati per ciascun
       Tenant
     requirements:
       - invio_dati_crittografati_cloud
       - sicurezza_segregazione_tenant
-    status: not_implemented
+    status: passed
   - id: t_intra_jwt_auth_integration
     service: Provisioning service
     description:
@@ -45,40 +45,32 @@ tests:
       - sicurezza_autenticazione_accessi
     status: passed
   - id: t_intra_gateway_config_errors
-    service: -Placeholder
+    service: Simulator Backend
     description:
       Verificare la gestione degli errori di configurazione del Gateway simulato in caso di payload
       invalido o frequenza fuori range
     requirements:
       - err_sintattico_config_gateway
       - err_config_frequenza_fuori_range
-    status: not_implemented
+    status: passed
   - id: t_intra_outlier_propagation
-    service: -Placeholder
+    service: Simulator Backend
     description: Verificare la propagazione e gestione di misure anomale (outlier) dal Simulatore al Cloud
     requirements:
       - comando_anomalia_outliers_misurazioni
-    status: not_implemented
+    status: passed
   - id: t_intra_multiple_gateways_parallel
-    service: -Placeholder
+    service: Simulator Backend
     description: Verificare l’integrazione del Sistema con più Gateway simulati attivi in parallelo
     requirements:
       - creazione_gateway_multipli_default
-    status: not_implemented
-  - id: t_intra_tls_encryption
-    service: -Placeholder
-    description:
-      Verificare che i dati scambiati tra le diverse componenti del Sistema distribuito siano
-      cifrati e trasmessi tramite protocollo TLS
-    requirements:
-      - sicurezza_cifratura_dati
-    status: not_implemented
+    status: passed
   - id: t_intra_tenant_isolation
     service: Data API
     description: Verificare l’isolamento dei dati tra Tenant tramite API e persistenza su database
     requirements:
       - sicurezza_segregazione_tenant
-    status: not_implemented
+    status: passed
   - id: t_intra_dataconsumer_e2e_flow
     service: Data Consumer
     description:
@@ -420,14 +412,14 @@ tests:
     description: Verificare il recupero delle misure storiche tramite endpoint di query
     requirements:
       - richiesta_dati_on_demand
-    status: not_implemented
+    status: passed
 
   - id: t_export_data_for_visualization
     service: Data API
     description: Verificare l’esportazione delle misure tramite endpoint dedicato
     requirements:
       - esportazione_dati
-    status: not_implemented
+    status: passed
 
   - id: t_visualize_lista_dati_sensori
     service: Data API
@@ -456,4 +448,4 @@ tests:
     description: Verificare la risposta del servizio al subject interno di costo tenant
     requirements:
       - visualizzazione_costi_stimati
-    status: not_implemented
+    status: passed

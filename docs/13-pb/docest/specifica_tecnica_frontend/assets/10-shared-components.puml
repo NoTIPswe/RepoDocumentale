@@ -1,0 +1,176 @@
+@startuml
+title NOTIP Frontend - Shared Components
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 10
+skinparam defaultFontColor #000000
+skinparam nodesep 8
+skinparam ranksep 8
+skinparam linetype ortho
+
+package "Shared Components" <<Rectangle>> {
+  class "SidebarComponent" as Sidebar {
+    --
+    -currentUser: {username, role}
+    -menuItems: MenuItem[]
+    -isImpersonating: boolean
+    --
+    +navigateTo(path): void
+    +stopImpersonation(): void
+    +logout(): void
+
+    [Menu Items by Role]
+    - tenant_user: Dashboard, Gateways, Sensors, Alerts, Limits
+    - tenant_admin: + Users, API Clients, Audit Log, Costs
+    - system_admin: Tenants, Gateways (Admin)
+  }
+
+  class "ModalLayerComponent" as ModalLayer {
+    --
+    -isOpen: boolean
+    -closeOnBackdropClick: boolean
+    -backdropElement: HTMLDivElement
+    -dialogElement: HTMLDialogElement
+    --
+    +open(): void
+    +close(): void
+    -handleBackdropClick(event): void
+    -isClickInsideDialog(event): boolean
+
+    [<ng-content>]
+    Projects child components inside modal overlay
+  }
+
+  class "MultiSelectDropdownComponent" as MultiSelect {
+    --
+    -options: SelectOption[]
+    -selected: string[]
+    -searchQuery: string
+    -isOpen: boolean
+    -disabled: boolean
+    --
+    +filteredOptions: SelectOption[] (computed)
+    +toggleOption(value): void
+    +open(): void
+    +close(): void
+    -handleDocumentClick(event): void
+    -handleEscapeKey(): void
+
+    [Features]
+    - Search filtering
+    - Open/close on document click/Escape
+    - Disabled state
+    - Incompatible selection removal
+  }
+
+  class "StatusBadgeComponent" as StatusBadge {
+    --
+    -status: string
+    -label: string
+    --
+    +cssClass: string (computed)
+    // Maps to: is-good, is-warn, is-bad, is-neutral
+  }
+
+  class "DeleteConfirmModalComponent" as DeleteModal {
+    --
+    -title: string
+    -message: string
+    -busy: boolean
+    --
+    +confirm(): void
+    +cancel(): void
+
+    [Emits]
+    - confirmed event
+    - cancelled event
+  }
+
+  class "ImpersonationBannerComponent" as ImpBanner {
+    --
+    -targetUserId: string | null
+    --
+    +displayText: string (computed)
+    // Falls back to "unknown" if userId is null
+  }
+
+  class "ImpersonationTagComponent" as ImpTag {
+    --
+    // Static component showing
+    // "OBFUSCATED MODE" warning
+  }
+
+  class "ProfileSectionComponent" as ProfileSection {
+    --
+    -username: string
+    -role: UserRole
+    -showProfileLink: boolean
+    -showPasswordLink: boolean
+    --
+    +openProfile(): void
+    +changePassword(): void
+  }
+
+  class "LogoutButtonComponent" as LogoutBtn {
+    --
+    +clicked: EventEmitter<void>
+    --
+    +triggerLogout(): void
+  }
+
+  class "PlaceholderPageComponent" as PlaceholderPage {
+    --
+    -title: string (from route data)
+    // Fallback to "NoTIP" if no title
+    // Scaffold page for features in development
+  }
+
+  ' Usage relationships
+  Sidebar --> ImpBanner
+  Sidebar --> ImpTag
+  Sidebar --> ProfileSection
+  Sidebar --> LogoutBtn
+
+  ModalLayer --> DeleteModal
+  ModalLayer --> RenameModal
+  ModalLayer --> CommandModal
+
+  MultiSelect --> FilterPanel
+  StatusBadge --> GatewayCard
+}
+
+note top of Sidebar
+  Main navigation sidebar. Shows/hides
+  menu items based on user role.
+  During impersonation: shows banner
+  and "Stop impersonation" button.
+  Includes profile section and logout.
+end note
+
+note right of ModalLayer
+  Generic modal overlay with backdrop.
+  Uses HTML <dialog> element with
+  <ng-content> projection. Supports
+  closing on backdrop click with
+  target detection to prevent
+  accidental closes.
+end note
+
+note left of MultiSelect
+  Reusable multi-select dropdown with
+  integrated search. Opens/closes via
+  document click and Escape key.
+  Options filtered by search query.
+  Used extensively in FilterPanel.
+end note
+
+note bottom of StatusBadge
+  Colored badge component mapping
+  status strings to CSS classes:
+  - is-good (green): online, active
+  - is-warn (yellow): paused, provisioning
+  - is-bad (red): offline, suspended, error
+  - is-neutral (gray): unknown
+end note
+
+@enduml

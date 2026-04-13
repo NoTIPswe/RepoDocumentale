@@ -1,0 +1,105 @@
+@startuml
+title NOTIP Management API - Architecture (3/3)
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 10
+skinparam defaultFontColor #000000
+skinparam nodesep 8
+skinparam ranksep 8
+skinparam linetype ortho
+skinparam packageStyle rectangle
+
+package "NOTIP Management API" <<Rectangle>> {
+  package "Keys Module" as KeysModule {
+    class "KeysController" as KeysController
+    class "ProvisioningController" as ProvisioningController
+    class "KeysService" as KeysService
+    class "GatewaysKeysPersistenceService" as GatewaysKeysPersistenceService
+    class "ProvisioningNatsResponderService" as ProvisioningNatsResponderService
+    class "KeyEntity" as KeyEntity
+  }
+
+  package "Users Module" as UsersModule {
+    class "UsersController" as UsersController
+    class "UsersService" as UsersService
+    class "UsersPersistenceService" as UsersPersistenceService
+    class "UserEntity" as UserEntity
+  }
+
+  package "Thresholds Module" as ThresholdsModule {
+    class "ThresholdsController" as ThresholdsController
+    class "ThresholdsService" as ThresholdsService
+    class "ThresholdsPersistenceService" as ThresholdsPersistenceService
+    class "ThresholdEntity" as ThresholdEntity
+  }
+
+  package "Audit-Log Module" as AuditLogModule {
+    class "AuditLogController" as AuditLogController
+    class "AuditLogService" as AuditLogService
+    class "AuditLogPersistenceService" as AuditLogPersistenceService
+    class "ProvisioningAuditConsumer" as ProvisioningAuditConsumer
+    class "AuditLogEntity" as AuditLogEntity
+  }
+
+  ' Keys relationships
+  KeysModule --> KeysController
+  KeysModule --> ProvisioningController
+  KeysController --> KeysService
+  ProvisioningController --> KeysService
+  KeysService --> GatewaysKeysPersistenceService
+  KeysService --> GatewaysService
+  GatewaysKeysPersistenceService --> KeyEntity
+  KeyEntity --> GatewayEntity
+
+  ' Users relationships
+  UsersModule --> UsersController
+  UsersController --> UsersService
+  UsersService --> UsersPersistenceService
+  UsersPersistenceService --> UserEntity
+  UserEntity --> TenantEntity
+
+  ' Thresholds relationships
+  ThresholdsModule --> ThresholdsController
+  ThresholdsController --> ThresholdsService
+  ThresholdsService --> ThresholdsPersistenceService
+  ThresholdsPersistenceService --> ThresholdEntity
+  ThresholdEntity --> TenantEntity
+
+  ' Audit-Log relationships
+  AuditLogModule --> AuditLogController
+  AuditLogController --> AuditLogService
+  AuditLogService --> AuditLogPersistenceService
+  AuditLogModule --> ProvisioningAuditConsumer
+  AuditLogPersistenceService --> AuditLogEntity
+  AuditLogEntity --> TenantEntity
+  ProvisioningAuditConsumer --> AuditLogService
+}
+
+note top of KeysModule
+  Handles AES-256 key management
+  Factory key validation (bcrypt)
+  Provisioning with transactions
+  Gateway key lifecycle
+end note
+
+note top of UsersModule
+  CRUD operations on tenant users
+  Sync with Keycloak IAM
+  Role management
+  Bulk delete support
+end note
+
+note top of ThresholdsModule
+  Manages sensor thresholds
+  Default and per-sensor overrides
+  Used for alert generation
+end note
+
+note top of AuditLogModule
+  Audit logging for operations
+  Provisioning audit consumer
+  Time-range queries
+  Tenant-scoped access
+end note
+
+@enduml

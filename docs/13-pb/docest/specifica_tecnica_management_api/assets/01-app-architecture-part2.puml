@@ -1,0 +1,112 @@
+@startuml
+title NOTIP Management API - Architecture (2/3)
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 10
+skinparam defaultFontColor #000000
+skinparam nodesep 8
+skinparam ranksep 8
+skinparam linetype ortho
+skinparam packageStyle rectangle
+
+package "NOTIP Management API" <<Rectangle>> {
+  package "Gateways Module" as GatewaysModule {
+    class "GatewaysController" as GatewaysController
+    class "GatewaysService" as GatewaysService
+    class "GatewaysPersistenceService" as GatewaysPersistenceService
+    class "GatewaysNatsService" as GatewaysNatsService
+    class "GatewayStatusNatsResponderService" as GatewayStatusNatsResponderService
+    class "GatewayEntity" as GatewayEntity
+    class "GatewayMetadataEntity" as GatewayMetadataEntity
+  }
+
+  package "Alerts Module" as AlertsModule {
+    class "AlertsController" as AlertsController
+    class "AlertsService" as AlertsService
+    class "AlertsPersistenceService" as AlertsPersistenceService
+    class "AlertConfigNatsResponderService" as AlertConfigNatsResponderService
+    class "AlertsEntity" as AlertsEntity
+    class "AlertsConfigEntity" as AlertsConfigEntity
+  }
+
+  package "Command Module" as CommandModule {
+    class "CommandController" as CommandController
+    class "CommandService" as CommandService
+    class "CommandPersistenceService" as CommandPersistenceService
+    class "CommandWritingPersistenceService" as CommandWritingPersistenceService
+    class "CommandsAckConsumer" as CommandsAckConsumer
+    class "CommandEntity" as CommandEntity
+  }
+
+  package "Costs Module" as CostsModule {
+    class "CostsController" as CostsController
+    class "CostsService" as CostsService
+    class "CostsPersistenceService" as CostsPersistenceService
+  }
+
+  ' Gateways relationships
+  GatewaysModule --> GatewaysController
+  GatewaysController --> GatewaysService
+  GatewaysService --> GatewaysPersistenceService
+  GatewaysPersistenceService --> GatewayEntity
+  GatewaysPersistenceService --> GatewayMetadataEntity
+  GatewayEntity --> TenantEntity
+  GatewayEntity --> GatewayMetadataEntity
+
+  ' Alerts relationships
+  AlertsModule --> AlertsController
+  AlertsController --> AlertsService
+  AlertsService --> AlertsPersistenceService
+  AlertsPersistenceService --> AlertsEntity
+  AlertsPersistenceService --> AlertsConfigEntity
+  AlertsConfigEntity --> TenantEntity
+  AlertsConfigEntity --> GatewayEntity
+
+  ' Command relationships
+  CommandModule --> CommandController
+  CommandController --> CommandService
+  CommandService --> CommandPersistenceService
+  CommandService --> CommandWritingPersistenceService
+  CommandService --> CommandsAckConsumer
+  CommandPersistenceService --> CommandEntity
+  CommandWritingPersistenceService --> CommandEntity
+  CommandWritingPersistenceService --> GatewayEntity
+  CommandEntity --> GatewayEntity
+  CommandEntity --> TenantEntity
+
+  ' Costs relationships
+  CostsModule --> CostsController
+  CostsController --> CostsService
+  CostsService --> CostsPersistenceService
+  CostsPersistenceService ..> AlertsPersistenceService
+  CostsPersistenceService ..> CommandPersistenceService
+}
+
+note top of GatewaysModule
+  Gateway CRUD operations
+  Runtime status updates
+  NATS integration for telemetry
+  Gateway decommissioning events
+end note
+
+note top of AlertsModule
+  Alert configuration management
+  Gateway offline detection
+  Default and per-gateway timeouts
+  NATS request-reply for configs
+end note
+
+note top of CommandModule
+  Command dispatch to gateways
+  Firmware updates
+  Configuration changes
+  NATS JetStream ack handling
+end note
+
+note top of CostsModule
+  Calculates storage and bandwidth costs
+  Integrates with Alerts and Commands
+  Used for tenant billing info
+end note
+
+@enduml

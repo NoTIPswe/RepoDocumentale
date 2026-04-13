@@ -11,6 +11,7 @@ normalizations:
 ignore_patterns:
   - '\b(UC|UCS)\d*\b' # UC/UCS
   - '\bv\d+\b' # versioni (v1, v2, ecc.)
+  - '(?<=[a-zA-ZÀ-ÿ])(PASS|FAIL)\b' # status badge concatenated to last word of test name (HTML rendering artifact)
 
 # 3. DIZIONARIO PERSONALIZZATO
 # Parole specifiche da considerare corrette.
@@ -113,12 +114,14 @@ accepted_words:
   - NestJS
   - TypeScript
   - OpenAI
+  - OpenID
   - OpenAPI
   - Grafana
   - OTA
   - OTP
   - TLS
   - mTLS
+  - mockup
   - OAuth
   - JWT
   - GC
@@ -134,6 +137,7 @@ accepted_words:
   - TimescaleDB
   - Hypertables
   - TCP
+  - TestBook
   - Nats
   - TimescaleDB
   - TypeORM
@@ -217,6 +221,21 @@ accepted_words:
   - pterm
   - paginata
   - paginato
+  - paginale
+  - decrittografia
+  - Decrittografia
+  - que
+  - npm
+  - async
+  - CryptoSdk
+  - PlaintextMeasure
+  - ESM
+  - CJS
+  - Deno
+  - Cloudflare
+  - Zod
+  - AsyncGenerator
+  - AbortSignal
   - rimappatura
   - riallocare
   - riallocato
@@ -225,6 +244,12 @@ accepted_words:
   - deduplicazione
   - mockato
   - TestContainers
+  - Grafana
+  - prometheus
+  - grafana
+  - powershell
+  - svc
+  - ps
   - timestamptz
   - uuid
   - crypto
@@ -245,15 +270,22 @@ accepted_words:
 
   # --- Terminologia Software Engineering (SWE) ---
   - ACK
+  - ACKS
   - Acknowledgement
   - API
   - BAC
   - backend
   - BLE
+  - CGo
+  - CJS
   - changelog
   - CMMI
+  - CQRS
   - cowork
   - Cyclomatic
+  - ECDSA
+  - ESM
+  - FAIL
   - DTO
   - EAC
   - EV
@@ -262,6 +294,7 @@ accepted_words:
   - IEC
   - IoT
   - KLOC
+  - Mgmt
   - MVP
   - BYOK
   - PDCA
@@ -281,6 +314,7 @@ accepted_words:
   - auth
   - Burndown
   - MVP
+  - Supertest
   - AdR
   - NdP
   - TOTP
@@ -294,6 +328,130 @@ accepted_words:
   - PdQ
   - Serverless
   - WebApp
+  - AuthGuard
+  - RoleGuard
+  - HomeRedirectGuard
+  - AuthService
+  - AuthInterceptor
+  - ErrorInterceptor
+  - ObfuscatedStreamManagerService
+  - ThresholdPrefetchService
+  - ThresholdService
+  - MeasureBoundsEvaluationService
+  - DataDashboardPageComponent
+  - FilterPanelComponent
+  - TelemetryChartComponent
+  - TelemetryTableComponent
+  - decrittografia
+  - GatewayListPageComponent
+  - GatewayDetailPageComponent
+  - GatewayService
+  - TenantManagerPageComponent
+  - TenantDetailPageComponent
+  - AdminGatewayListPageComponent
+  - AlertListPageComponent
+  - AlertConfigPageComponent
+  - SensorListPageComponent
+  - SensorDetailPageComponent
+  - UserListPageComponent
+  - ThresholdSettingsPageComponent
+  - ApiClientListPageComponent
+  - AuditLogPageComponent
+  - CostDashboardPageComponent
+  - AlertService
+  - UserService
+  - ClientsService
+  - AuditService
+  - SessionTimeout
+  - DataApiBasePath
+  - MgmtApiBasePath
+  - KeycloakModule
+  - RouterModule
+  - DashboardResolver
+  - provideMgmtApi
+  - provideDataApi
+  - prefetch
+  - NgModules
+  - authInterceptor
+  - errorInterceptor
+  - ObfuscatedGateway
+  - AddGatewayParameters
+  - TelemetryEnvelope
+  - DecryptedEnvelope
+  - CheckedEnvelope
+  - ObfuscatedEnvelope
+  - ViewUser
+  - retryUrl
+  - possieda
+  - precaricare
+  - Redirezione
+  - OnLoad
+  - url
+  - UserRole
+  - AlertsType
+  - CmdGatewayStatus
+  - modalita
+  - umidita
+  - observabile
+  - querystring
+  - camelCase
+  - Priorita
+  - gatewayIds
+  - sensorTypes
+  - sensorIds
+  - Dropdown
+  - datetime
+  - dropdown
+  - DecryptedMeasureService
+  - decrittografare
+  - ValidatedMeasureFacadeService
+  - GatewayRenameModalComponent
+  - CommandModalComponent
+  - DeleteConfirmModalComponent
+  - Accessor
+  - params
+  - dedup
+  - desc
+  - deduplicate
+  - SidebarComponent
+  - ProfileSection
+  - LogoutButton
+  - ModalLayerComponent
+  - MultiSelectDropdownComponent
+  - StatusBadgeComponent
+  - ImpersonationBannerComponent
+  - ImpersonationTagComponent
+  - ProfileSectionComponent
+  - LogoutButtonComponent
+  - PlaceholderPageComponent
+  - Vitest
+  - jsdom
+  - analogjs
+  - rethrow
+  - nextCursor
+  - closeStream
+  - withAlpha
+  - GatewayCard
+  - GatewayActions
+  - GatewayRenameModal
+  - CommandModal
+  - DeleteConfirmModal
+  - MultiSelectDropdown
+  - StatusBadge
+  - ImpersonationBanner
+  - DOM
+  - TestBed
+  - NgRx
+  - debuggare
+  - Decrittografia
+  - decrittografata
+  - decrittografati
+  - FilterPanel
+  - HMR
+  - bundler
+  - SessionStorage
+  - minlength
+  - maxlength
   - DdB
   - multitenant
   - multitenancy
@@ -329,9 +487,28 @@ accepted_words:
   - renderer
   - EOF
   - ciphertext
+  - PowerShell
+  - macOS
+  - hostname
+  - healthcheck
+  - Makefile
+  - balancer
   - AOP
   - GitOps
   - middleware
+  - AuditLog
+  - modernc
+  - npm
+  - pgx
+  - pgxpool
+  - postgres
+  - sdk
+  - sqlite
+  - testcontainers
+  - Vitest
+  - Zod
+  - CommonJS
+  - AbortController
 
   # --- Terminologia Standard Progetto ---
   - req
@@ -408,6 +585,7 @@ accepted_words:
   - KeycloakClientId
   - MGMT
   - KeycloakClientSecret
+  - KeycloakIssuerUrl
   - NATSUrl
   - DBHost
   - DBPort
@@ -439,6 +617,7 @@ accepted_words:
   - AuditLogEntity
   - ApiClientEntity
   - CommandEntity
+  - AppModule
   - filesystem
   - init
   - cryptographically
@@ -486,6 +665,145 @@ accepted_words:
   - EventEmitter
   - ValidationPipe
   - lifecycle
+  - TenantsController
+  - TenantsService
+  - KeycloakAdminService
+  - TenantsPersistenceService
+  - TenantsMapper
+  - GatewaysController
+  - GatewaysService
+  - GatewaysPersistenceService
+  - GatewaysMapper
+  - AccessPolicyGuard
+  - ack
+  - AddGatewayInput
+  - AddGatewayPersistenceInput
+  - AddGatewayRequestDto
+  - AddGatewayResponseDto
+  - AlertsConfigResponseDto
+  - AlertsController
+  - AlertsNatsService
+  - AlertsPersistenceService
+  - AlertsResponseDto
+  - AlertsService
+  - ApiClientController
+  - ApiClientPersistenceService
+  - ApiClientService
+  - AuditLogController
+  - AuditLogMapper
+  - AuditLogService
+  - AuthController
+  - AuthenticatedUser
+  - bcrypt
+  - BlockImpersonationGuard
+  - commandId
+  - CommandController
+  - CommandPersistenceService
+  - CommandResponseDto
+  - CommandsAckConsumer
+  - CommandService
+  - CommandStatusResponseDto
+  - CommandWritingPersistenceService
+  - CostData
+  - CostModel
+  - CostResponseDto
+  - CostsController
+  - CostsPersistenceService
+  - CostsService
+  - CreateTenantInput
+  - CreateTenantRequestDto
+  - CreateUserRequestDto
+  - CreateUserResponseDto
+  - DataSource
+  - DeleteTenantInput
+  - DeleteTenantResponseDto
+  - DeleteUserRequestDto
+  - DeleteUserResponseDto
+  - enum
+  - factoryId
+  - factoryKey
+  - factoryKeyHash
+  - FK
+  - GatewayMetadata
+  - GatewayResponseDto
+  - GatewaysController
+  - GatewaysKeysPersistenceService
+  - GatewaysMapper
+  - GatewaysPersistenceService
+  - GatewaysService
+  - GetGatewaysInput
+  - hashata
+  - JSONB
+  - JwtAuthGuard
+  - JwtStrategy
+  - keyMaterialTransformer
+  - KeycloakAdminService
+  - KeysController
+  - KeysResponseDto
+  - KeysService
+  - ManyToOne
+  - nextVersion
+  - OneToMany
+  - OneToOne
+  - ProvisioningAuditConsumer
+  - ProvisioningCompleteRequestDto
+  - ProvisioningCompleteResponseDto
+  - ProvisioningController
+  - RolesGuard
+  - SendConfigRequestDto
+  - SendFirmwareRequestDto
+  - SetAlertsConfigDefaultRequestDto
+  - SetAlertsConfigDefaultResponseDto
+  - SetGatewayAlertsConfigRequestDto
+  - SetGatewayAlertsConfigResponseDto
+  - tenantId
+  - TenantsController
+  - TenantsMapper
+  - TenantsPersistenceService
+  - TenantsResponseDto
+  - TenantsService
+  - ThresholdsController
+  - ThresholdsPersistenceService
+  - ThresholdsService
+  - UpdateTenantInput
+  - UpdateTenantRequestDto
+  - UpdateTenantsResponseDto
+  - UpdateUserRequestDto
+  - UpdateUserResponseDto
+  - Upsert
+  - upsert
+  - UserResponseDto
+  - UsersController
+  - UsersPersistenceService
+  - UsersService
+  - UTF
+  - userId
+  - ValidateFactoryKeyRequestDto
+  - ValidateFactoryKeyResponseDto
+  - ImpersonationService
+  - authTag
+  - TelemetryStreamBridgeService
+  - CostNatsResponderService
+  - TenantAccessGuard
+  - TenantId
+  - MetricsModule
+  - MetricsService
+  - MetricsController
+  - MetricsInterceptor
+  - tenantId
+  - gatewayId
+  - sensorId
+  - sensorType
+  - Splitta
+  - wrappa
+  - deduplica
+  - Deduplica
+  - TenantAccessContext
+  - readonly
+  - getter
+  - DataSource
+  - authTag
+  - encryptedData
   - sensorId
   - ProvisioningUrl
   - NATSCACertPath
@@ -519,9 +837,11 @@ accepted_words:
   - cmd
   - committare
   - committata
+  - ErrorPageComponent
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
+  - avviabile
   - autoconsistente
   - autoconsistenza
   - automiglioramento
@@ -555,8 +875,12 @@ accepted_words:
   - Sez
   - impersonificato
   - istanziati
+  - istanziare
   - failover
   - provisionato
+  - provisionati
+  - scriptabile
+  - efimeri
   - messagging
   - decifratura
   - versionare
@@ -593,16 +917,19 @@ accepted_words:
   - impersonazione
   - impersonare
   - intra
+  - riconnessioni
+  - restartare
   - centralizzata
   - testabilità
   - deserializzate
   - riaccodamento
+  - riaccodato
+  - evidenziazione
   - concorrentemente
   - Riesecuzione
   - versionata
   - versionati
   - debuggati
-  - WebApp
   - opz
   - sottocomandi
   - sottocomando
@@ -618,3 +945,4 @@ accepted_words:
   - configurativa
   - popolabili
   - retrocompatibilità
+  - impersonificata

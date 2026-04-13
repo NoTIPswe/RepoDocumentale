@@ -1,0 +1,199 @@
+@startuml
+title Thresholds Module - Class Diagram
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 10
+skinparam defaultFontColor #000000
+skinparam class {
+  BackgroundColor #E8F4FD
+  BorderColor #2196F3
+  ArrowColor #1976D2
+}
+skinparam interface {
+  BackgroundColor #E8F4FD
+  BorderColor #2196F3
+}
+skinparam nodesep 10
+skinparam ranksep 10
+skinparam linetype ortho
+skinparam packageStyle rectangle
+
+package "thresholds" <<Rectangle>> {
+  class "ThresholdsController" as ThresholdsController {
+    -ts: ThresholdsService
+    +getThresholds(tenantId): ThresholdResponseDto[]
+    +setDefaultThreshold(tenantId, input): SetThresholdDefaultTypeResponseDto
+    +setSensorThreshold(tenantId, sensorId, input): SetThresholdSensorResponseDto
+    +deleteSensorThreshold(tenantId, sensorId): void
+    +deleteThresholdType(tenantId, sensorType): void
+  }
+
+  class "ThresholdsService" as ThresholdsService {
+    -tps: ThresholdsPersistenceService
+    +getThresholds(input): ThresholdModel[]
+    +setThresholdDefaultType(input): ThresholdModel
+    +setThresholdSensor(input): ThresholdModel
+    +deleteSensorThreshold(input): void
+    +deleteThresholdType(input): void
+    -ensureSensorType(sensorType): string
+    -ensureSensorId(sensorId): string
+    -validateValueRange(minValue, maxValue): void
+  }
+
+  class "ThresholdsPersistenceService" as ThresholdsPersistenceService {
+    -r: Repository<ThresholdEntity>
+    +getThresholds(input): ThresholdEntity[]
+    +setThresholdDefaultType(input): ThresholdEntity
+    +setThresholdSensor(input): ThresholdEntity
+    +deleteSensorThreshold(input): boolean
+    +deleteThresholdType(input): boolean
+  }
+
+  class "ThresholdsMapper" as ThresholdsMapper {
+    {static} toModel(entity): ThresholdModel
+    {static} toThresholdResponseDto(model): ThresholdResponseDto
+    {static} toSetThresholdDefaultTypeResponseDto(model): SetThresholdDefaultTypeResponseDto
+    {static} toSetThresholdSensorResponseDto(model): SetThresholdSensorResponseDto
+  }
+
+  class "SetThresholdDefaultTypeRequestDto" as SetThresholdDefaultTypeRequestDto {
+    +sensorType: string
+    +minValue: number
+    +maxValue: number
+  }
+
+  class "SetThresholdSensorRequestDto" as SetThresholdSensorRequestDto {
+    +minValue: number
+    +maxValue: number
+    +sensorType?: string
+  }
+
+  class "ThresholdResponseDto" as ThresholdResponseDto {
+    +sensorType: string
+    +sensorId: string
+    +minValue: number
+    +maxValue: number
+    +updatedAt: string
+  }
+
+  class "SetThresholdDefaultTypeResponseDto" as SetThresholdDefaultTypeResponseDto {
+    +sensorType: string
+    +minValue: number
+    +maxValue: number
+    +updatedAt: string
+  }
+
+  class "SetThresholdSensorResponseDto" as SetThresholdSensorResponseDto {
+    +sensorId: string
+    +sensorType: string
+    +minValue: number
+    +maxValue: number
+    +updatedAt: string
+  }
+
+  class "ThresholdModel" as ThresholdModel {
+    +id: string
+    +tenantId: string
+    +sensorType: string
+    +sensorId: string
+    +minValue: number
+    +maxValue: number
+    +createdAt: Date
+    +updatedAt: Date
+  }
+
+  class "ThresholdEntity" as ThresholdEntity {
+    +id: string
+    +tenantId: string
+    +tenant: TenantEntity
+    +sensorType: string
+    +sensorId: string
+    +minValue: number
+    +maxValue: number
+    +createdAt: Date
+    +updatedAt: Date
+  }
+
+  interface "GetThresholdsInput" as GetThresholdsInput {
+    +tenantId: string
+  }
+
+  interface "SetThresholdDefaultTypeInput" as SetThresholdDefaultTypeInput {
+    +tenantId: string
+    +sensorType: string
+    +minValue: number
+    +maxValue: number
+  }
+
+  interface "SetThresholdSensorInput" as SetThresholdSensorInput {
+    +tenantId: string
+    +sensorId: string
+    +minValue: number
+    +maxValue: number
+    +sensorType?: string
+  }
+
+  class "TenantEntity" as TenantEntity
+
+  ThresholdsController --> ThresholdsService : uses
+  ThresholdsController --> ThresholdsMapper : maps to DTO
+
+  ThresholdsService --> ThresholdsPersistenceService : uses
+  ThresholdsService --> ThresholdModel : returns
+  ThresholdsService ..> GetThresholdsInput : receives
+  ThresholdsService ..> SetThresholdDefaultTypeInput : receives
+  ThresholdsService ..> SetThresholdSensorInput : receives
+
+  ThresholdsPersistenceService --> ThresholdEntity : CRUD
+
+  ThresholdsMapper --> ThresholdEntity : from
+  ThresholdsMapper --> ThresholdModel : to
+  ThresholdsMapper --> ThresholdResponseDto : to
+  ThresholdsMapper --> SetThresholdDefaultTypeResponseDto : to
+  ThresholdsMapper --> SetThresholdSensorResponseDto : to
+
+  ThresholdEntity --> TenantEntity : ManyToOne (CASCADE)
+}
+
+note top of ThresholdsController
+  @Controller('thresholds')
+  @TenantScoped()
+  Endpoints:
+  - GET / (list all thresholds)
+  - PUT /default (set type default)
+  - PUT /sensor/:sensorId (set sensor threshold)
+  - DELETE /sensor/:sensorId
+  - DELETE /type/:sensorType
+end note
+
+note top of ThresholdsService
+  Business logic layer
+  - Validates sensorType (non-empty, trimmed)
+  - Validates sensorId (non-empty, trimmed)
+  - Validates value range (minValue < maxValue)
+  - Throws BadRequestException on validation errors
+end note
+
+note top of ThresholdsPersistenceService
+  Data access layer
+  - Upsert logic for default type:
+    * Finds by (tenantId, sensorType, sensorId IS NULL)
+    * Updates if exists, creates if not
+  - Upsert logic for sensor:
+    * Finds by (tenantId, sensorId)
+    * Updates sensorType only if provided
+  - Returns affected count on delete
+end note
+
+note top of ThresholdEntity
+  Database entity with partial indexes:
+  - IDX_TENANT_SENSOR_ID_NULL:
+    UNIQUE (tenantId, sensorType) WHERE sensorId IS NULL
+  - IDX_TENANT_SENSOR_ID_NOT_NULL:
+    UNIQUE (tenantId, sensorId) WHERE sensorId IS NOT NULL
+
+  Allows either type-level OR sensor-level thresholds
+  ManyToOne to Tenant (cascade delete)
+end note
+
+@enduml

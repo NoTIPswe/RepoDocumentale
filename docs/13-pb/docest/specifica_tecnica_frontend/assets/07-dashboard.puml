@@ -1,0 +1,149 @@
+@startuml
+title NOTIP Frontend - Dashboard Architecture
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 10
+skinparam defaultFontColor #000000
+skinparam nodesep 8
+skinparam ranksep 8
+skinparam linetype ortho
+
+package "Dashboard Feature" <<Rectangle>> {
+  class "DataDashboardPageComponent" as DashboardPage {
+    --
+    -dataMode: 'clear' | 'obfuscated'
+    -viewMode: 'stream' | 'query'
+    -gatewayOptions: SelectOption[]
+    -sensorTypeOptions: SelectOption[]
+    -sensorIdOptions: SelectOption[]
+    -exportBusy: boolean
+    --
+    +ngOnInit(): void
+    +applyFilters(params): void
+    +clearFilters(): void
+    +switchViewMode(mode): void
+    +handleExport(): void
+    +loadNextPage(): void
+  }
+
+  class "FilterPanelComponent" as FilterPanel {
+    --
+    -catalog: FilterCatalog
+    -gatewayIds: string[]
+    -sensorTypes: string[]
+    -sensorIds: string[]
+    -from: string
+    -to: string
+    --
+    +applyFilters(): void
+    +clearFilters(): void
+    -clampTimeWindow(): void
+    -removeIncompatibleSelections(): void
+  }
+
+  class "TelemetryChartComponent" as TelemetryChart {
+    --
+    -chart: Chart<'line'>
+    -datasets: ChartDataset[]
+    --
+    +ngOnChanges(): void
+    -computeUniqueSensorIds(): Set<string>
+    -createDatasets(measures): Dataset[]
+    -formatTimestamp(ts): string
+  }
+
+  class "TelemetryTableComponent" as TelemetryTable {
+    --
+    -measures: CheckedEnvelope[]
+    --
+    +formatValue(envelope): string
+    +isAlertRow(envelope): boolean
+  }
+
+  package "Dashboard Services" as Services {
+    class "DecryptedMeasureService" as DecMeasure {
+      --
+      -sdk: DataApiService (@notip/crypto-sdk)
+      -abortController: AbortController | null
+      --
+      +query(params): Observable<CheckedQueryResPage>
+      +stream(params): Observable<CheckedEnvelope>
+      +export(params): Observable<Blob>
+      +closeStream(): void
+    }
+
+    class "ObfuscatedMeasureService" as ObfMeasure {
+      --
+      -streamMgr: ObfuscatedStreamManagerService
+      -measuresApi: MeasuresService
+      --
+      +query(params): Observable<ObfuscatedQueryResPage>
+      +stream(params): Observable<ObfuscatedEnvelope>
+      +closeStream(): void
+    }
+
+    class "ValidatedMeasureFacadeService" as ValMeasure {
+      --
+      -decryptedMeasure: DecryptedMeasureService
+      -boundsEval: MeasureBoundsEvaluationService
+      --
+      +query(params): Observable<CheckedQueryResPage>
+      +stream(params): Observable<CheckedEnvelope>
+      +export(params): Observable<Blob>
+      +closeStream(): void
+    }
+  }
+
+  ' Relationships
+  DashboardPage --> FilterPanel
+  DashboardPage --> TelemetryChart
+  DashboardPage --> TelemetryTable
+  DashboardPage --> DecMeasure
+  DashboardPage --> ObfMeasure
+  DashboardPage --> ValMeasure
+
+  ValMeasure --> DecMeasure
+  ValMeasure --> BoundsEval
+
+  FilterPanel --> MultiSelect
+  FilterPanel --> RomeDatePipe
+
+  TelemetryChart --> ChartJs
+  TelemetryTable --> RomeDatePipe
+  TelemetryTable --> StatusBadge
+}
+
+note top of DashboardPage
+  Main dashboard page. Resolver sets
+  dataMode based on impersonation status.
+  Stream mode: real-time SSE, 20-row cap
+  Query mode: paginated with cursor, 24h limit
+  Export: disabled in obfuscated mode
+end note
+
+note right of FilterPanel
+  Multi-select dropdowns with search.
+  Cross-filter dependency: gateway
+  selection updates sensor catalogs.
+  24h time window enforcement
+  with automatic clamping.
+  Rome timezone datetime conversion.
+end note
+
+note left of TelemetryChart
+  Chart.js line chart. One dataset per
+  sensor with distinct color.
+  Cap at 120 points per dataset.
+  Italian locale timestamp formatting.
+  Invalid timestamp fallback handling.
+end note
+
+note bottom of ValMeasure
+  Facade that wraps DecryptedMeasure
+  and adds isOutOfBounds evaluation.
+  Transforms DecryptedEnvelope into
+  CheckedEnvelope by evaluating value
+  against cached thresholds.
+end note
+
+@enduml
