@@ -4,7 +4,7 @@
 
 #base-document.apply-base-document(
   title: metadata.title,
-  abstract: "Documento contenente il manuale operativo per l'Amministratore di Sistema della piattaforma NoTIP, con focus sulle funzioni di gestione tenant, gateway e impersonazione in modalità offuscata.",
+  abstract: "Documento contenente il manuale operativo per l'Amministratore di Sistema della piattaforma NoTIP, con focus sulle funzioni di gestione tenant, gateway e impersonificazione in modalità offuscata.",
   changelog: metadata.changelog,
   scope: base-document.EXTERNAL_SCOPE,
 )[
@@ -16,16 +16,16 @@
 
   In particolare, il presente manuale descrive:
   - creazione e gestione dei tenant, con contestuale creazione dell'utente Tenant Admin;
-  - consultazione del dettaglio tenant e avvio dell'impersonazione controllata;
+  - consultazione del dettaglio tenant e avvio dell'impersonificazione controllata;
   - registrazione e monitoraggio dei gateway a livello di sistema;
   - accesso alle viste operative tenant (dashboard, live stream e historical analysis) in modalità offuscata;
-  - gestione del dettaglio gateway durante impersonazione, incluse azioni di configurazione, aggiornamento firmware ed
-    eliminazione;
+  - gestione del dettaglio gateway durante impersonificazione, incluse azioni di configurazione, aggiornamento firmware
+    ed eliminazione;
   - utilizzo dell'indicatore *Obfuscated Mode* per garantire la privacy dei tenant.
 
   == Obiettivo del documento
   Questo manuale fornisce una guida pratica all'utilizzo dell'area amministrativa; dalla creazione e gestione dei
-  tenant, alla gestione dei gateway, fino al controllo operativo attraverso impersonazione e consultazione dei dati
+  tenant, alla gestione dei gateway, fino al controllo operativo attraverso impersonificazione e consultazione dei dati
   telemetrici nel rispetto della privacy.
 
   == Destinatari
@@ -53,7 +53,7 @@
   tenant esistenti.
 
   == Panoramica Tenant Manager
-  Nel pannello *Tenant Manager* e visibile una tabella riepilogativa che include, per ciascun tenant:
+  Nel pannello *Tenant Manager* è visibile una tabella riepilogativa che include, per ciascun tenant:
   - *ID* tenant;
   - *Name*;
   - *Status*;
@@ -64,7 +64,7 @@
 
   == Creazione tenant e Tenant Admin
   #figure(
-    image("assets/create_tenant.png", width: 95%),
+    image("assets/create_tenant.png", width: 100%),
     caption: [Creazione di un nuovo tenant e dell'amministratore tenant associato],
   )
 
@@ -87,7 +87,7 @@
 
   == Modifica tenant
   #figure(
-    image("assets/edit_tenant.png", width: 95%),
+    image("assets/edit_tenant.png", width: 100%),
     caption: [Modifica dei parametri principali del tenant],
   )
 
@@ -105,7 +105,7 @@
   == Dettagli tenant e utente impersonabile
   #figure(
     image("assets/tenant_detail.png", width: 100%),
-    caption: [Dettaglio tenant con elenco utenti offuscati e azione di impersonazione],
+    caption: [Dettaglio tenant con elenco utenti offuscati e azione di impersonificazione],
   )
 
   Aprendo un tenant tramite *Open* si accede alla pagina *Tenant Details*, che mostra:
@@ -123,7 +123,7 @@
 
   == Aggiunta di un nuovo gateway
   #figure(
-    image("assets/add_gateway.png", width: 95%),
+    image("assets/add_gateway.png", width: 100%),
     caption: [Inserimento di un nuovo gateway dal pannello Admin Gateway],
   )
 
@@ -159,31 +159,32 @@
   con elevata numerosità di dispositivi.
 
   == Visibilità completa con nome offuscato
-  Quando l'amministratore opera in contesto tenant (tramite impersonazione), la piattaforma rende consultabili i gateway
-  preservando la privacy dei dati identificativi sensibili. In particolare, il nome logico del gateway viene offuscato,
-  pur mantenendo disponibili i metadati necessari all'operatività tecnica (ID, firmware, frequenza, stato).
+  Quando l'amministratore opera in contesto tenant (tramite impersonificazione), la piattaforma rende consultabili i
+  gateway preservando la privacy dei dati identificativi sensibili. In particolare, il nome logico del gateway viene
+  offuscato, pur mantenendo disponibili i metadati necessari all'operatività tecnica (ID, firmware, frequenza, stato).
 
-  = Impersonazione e modalità offuscata
-  L'impersonazione consente al System Admin di entrare nel contesto operativo di un tenant specifico per finalità di
+  = Impersonificazione e modalità offuscata
+  L'impersonificazione consente al System Admin di entrare nel contesto operativo di un tenant specifico per finalità di
   supporto, diagnostica e verifica configurativa, mantenendo un perimetro informativo limitato.
 
   == Indicatori visivi di sessione impersonata
   #figure(
     image("assets/indicatore_ObfuscatedMode.png", width: 45%),
-    caption: [Indicatore Obfuscated Mode e azione di uscita impersonazione nella sidebar],
+    caption: [Indicatore Obfuscated Mode e azione di uscita impersonificazione nella sidebar],
   )
 
-  Dopo l'avvio dell'impersonazione, la sidebar mostra un riquadro persistente *OBFUSCATED MODE* con messaggio esplicito
-  che segnala la natura della sessione corrente. Nello stesso blocco è disponibile il pulsante *Exit impersonation* per
-  il ritorno immediato al contesto amministrativo originale.
+  Dopo l'avvio dell'impersonificazione, la sidebar mostra un riquadro persistente *OBFUSCATED MODE* con messaggio
+  esplicito che segnala la natura della sessione corrente. Nello stesso blocco è disponibile il pulsante *Exit
+  impersonation* per il ritorno immediato al contesto amministrativo originale.
 
   Questo meccanismo riduce il rischio di operazioni eseguite nel contesto errato e rafforza la consapevolezza
   situazionale dell'operatore.
 
   == Gateway list in modalità offuscata
+
   #figure(
-    image("assets/impersonazione_tenant.png", width: 95%),
-    caption: [Elenco gateway visualizzato durante impersonazione con nome offuscato],
+    image("assets/impersonazione_tenant.png", width: 100%),
+    caption: [Elenco gateway visualizzato durante impersonificazione con nome offuscato],
   )
 
   In questa vista:
@@ -192,14 +193,14 @@
   - l'azione *Open details* permette di entrare nel dettaglio operativo del dispositivo.
 
   = Dashboard tenant impersonata
-  Dopo la lista tenant e l'attivazione dell'impersonazione, il System Admin può consultare la dashboard tenant nelle due
-  modalità *Live Stream* e *Historical Analysis*. In entrambe le viste, i valori sensibili della telemetria sono
+  Dopo la lista tenant e l'attivazione dell'impersonificazione, il System Admin può consultare la dashboard tenant nelle
+  due modalità *Live Stream* e *Historical Analysis*. In entrambe le viste, i valori sensibili della telemetria sono
   offuscati.
 
   == Live Stream con telemetria offuscata
   #figure(
     image("assets/telemetry_view.png", width: 100%),
-    caption: [Live Stream in sessione impersonata con valori telemetrici offuscati],
+    caption: [Live Stream in sessione impersonificata con valori telemetrici offuscati],
   )
 
   La modalità *Live Stream* consente monitoraggio in tempo reale con:
@@ -215,7 +216,7 @@
   == Historical Analysis con telemetria offuscata
   #figure(
     image("assets/historical_analysis.png", width: 100%),
-    caption: [Historical Analysis in sessione impersonata con filtri temporali e valori offuscati],
+    caption: [Historical Analysis in sessione impersonificata con filtri temporali e valori offuscati],
   )
 
   La modalità *Historical Analysis* aggiunge ai filtri standard:
@@ -227,13 +228,13 @@
   - confrontare finestre temporali;
   - individuare possibili gap di trasmissione o disallineamenti temporali.
 
-  = Gateway details durante impersonazione
+  = Gateway details durante impersonificazione
   #figure(
     image("assets/gateway_detail.png", width: 100%),
-    caption: [Dettaglio gateway impersonato con azioni di gestione e telemetria offuscata],
+    caption: [Dettaglio gateway impersonificato con azioni di gestione e telemetria offuscata],
   )
 
-  Aprendo il dettaglio gateway in sessione impersonata, il System Admin può consultare e operare su:
+  Aprendo il dettaglio gateway in sessione impersonificata, il System Admin può consultare e operare su:
   - dati principali del gateway (ID, nome offuscato, stato, firmware, frequenza);
   - sezione *Gateway actions*;
   - elenco dei sensori associati;
@@ -249,7 +250,7 @@
   - azione di aggiornamento firmware;
   - azione di eliminazione gateway.
 
-  *Nota operativa*: le modifiche applicate in questo contesto hanno effetto sul tenant impersonato. Si raccomanda
+  *Nota operativa*: le modifiche applicate in questo contesto hanno effetto sul tenant impersonificato. Si raccomanda
   pertanto di validare sempre il contesto di sessione tramite indicatore *OBFUSCATED MODE* prima di confermare
   operazioni distruttive o aggiornamenti in produzione.
 
@@ -263,12 +264,12 @@
   sensori-gateway) senza esporre il contenuto informativo proprietario del tenant.
 
   = Linee guida operative e buone pratiche
-  == Prima di impersonare
+  == Prima dell'impersonificazione
   - verificare di trovarsi nel tenant corretto dalla pagina *Tenant Details*;
   - assicurarsi che l'attività sia tracciata e autorizzata secondo le policy interne;
-  - limitare l'impersonazione al tempo strettamente necessario.
+  - limitare l'impersonificazione al tempo strettamente necessario.
 
-  == Durante impersonazione
+  == Durante l'impersonificazione
   - usare l'indicatore visivo in sidebar come controllo continuo di contesto;
   - privilegiare analisi non distruttive quando possibile;
   - documentare eventuali modifiche di configurazione (stato, frequenza, firmware).
@@ -294,13 +295,13 @@
   Questa condizione è prevista: il gateway è inizialmente registrato come *non provisionato* e *offline*. Procedere con
   i passaggi di provisioning previsti dal flusso tecnico interno e verificare successivamente la transizione di stato.
 
-  == Nessun dato in chiaro durante impersonazione
-  In modalità impersonata i valori telemetrici sono volutamente offuscati per privacy. La presenza di record, timestamp,
-  identificativi e volumi è comunque sufficiente per molte analisi di primo livello.
+  == Nessun dato in chiaro durante impersonificazione
+  I valori telemetrici sono volutamente offuscati per privacy. La presenza di record, timestamp, identificativi e volumi
+  è comunque sufficiente per molte analisi di primo livello.
 
   = Conclusioni
   Il pannello *System Admin* di NoTIP permette una gestione completa e centralizzata dell'ambiente multi-tenant,
   mantenendo allo stesso tempo un elevato standard di sicurezza informativa. La combinazione di funzioni di governance
-  (tenant e gateway), supporto operativo (impersonazione) e protezione privacy (offuscamento dati) consente di operare
-  in modo efficace, tracciabile e conforme alle esigenze dei diversi attori coinvolti.
+  (tenant e gateway), supporto operativo (impersonificazione) e protezione privacy (offuscamento dati) consente di
+  operare in modo efficace, tracciabile e conforme alle esigenze dei diversi attori coinvolti.
 ]
