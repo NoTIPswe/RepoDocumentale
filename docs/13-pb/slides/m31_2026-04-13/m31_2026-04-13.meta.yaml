@@ -8,7 +8,7 @@ changelog:
     date: "2026-04-13"
     authors:
       - Leonardo Preo
-    verifier: TBD
+    verifier: Francesco Marcon
     description: >
       Refactoring presentazione, riorganizzazione contenuti
   - version: "0.1.0"
