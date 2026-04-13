@@ -1,5 +1,9 @@
 title: Specifica tecnica - Provisioning Service
 changelog:
+  - version: "1.0.0"
+    approver: Leonardo Preo
+    baseline: PB
+    date: "2026-04-13"
   - version: "0.2.0"
     date: "2026-04-07"
     authors:

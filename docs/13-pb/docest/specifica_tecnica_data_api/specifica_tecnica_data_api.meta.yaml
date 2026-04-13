@@ -1,12 +1,9 @@
 title: Specifica tecnica - Data-API
 changelog:
-  - version: "0.3.0"
-    date: "2026-04-10"
-    authors:
-      - Alessandro Mazzariol
-    verifier: Mario De Pasquale
-    description: >
-      Stesura finale del documento
+  - version: "1.0.0"
+    approver: Leonardo Preo
+    baseline: PB
+    date: "2026-04-13"
   - version: "0.2.3"
     date: "2026-04-07"
     authors:

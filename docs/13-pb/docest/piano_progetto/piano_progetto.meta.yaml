@@ -1,5 +1,9 @@
 title: Piano di progetto
 changelog:
+  - version: 2.0.0
+    date: "2026-04-13"
+    approver: Leonardo Preo
+    baseline: PB
   - version: "1.4.0"
     date: "2026-04-09"
     authors:
@@ -21,7 +25,7 @@ changelog:
       - Alessandro Mazzariol
     verifier: Alessandro Contarini
     description: >
-      Aggiunti sprint 8, 9 e 10
+      Setup ed inizio scrittura sprint 8, 9 e 10
   - version: "1.1.2"
     date: "2026-03-24"
     authors:
