@@ -43,7 +43,7 @@
 
 #base-document.apply-base-document(
   title: metadata.title,
-  abstract: "Documento contenente il Test Book del progetto Sistema di Acquisizione Dati da Sensori BLE (capitolato C7 — M31 S.r.l.). Raccoglie i test di accettazione eseguiti sul sistema, organizzati per categoria: Test di Sistema, Test di Integrazione e Test di Unità, con le azioni da compiere, i risultati attesi e gli esiti ottenuti.",
+  abstract: "Documento contenente il Test Book del progetto Sistema di Acquisizione Dati da Sensori BLE (capitolato C7 — M31 S.r.l.). Raccoglie i test di accettazione eseguiti sul sistema, organizzati per categoria: Test di Sistema e Test di Integrazione, con le azioni da compiere, i risultati attesi e gli esiti ottenuti.",
   changelog: metadata.changelog,
   scope: base-document.EXTERNAL_SCOPE,
 )[

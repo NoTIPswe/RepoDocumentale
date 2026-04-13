@@ -504,6 +504,8 @@ accepted_words:
   - testcontainers
   - Vitest
   - Zod
+  - CommonJS
+  - AbortController
 
   # --- Terminologia Standard Progetto ---
   - req
