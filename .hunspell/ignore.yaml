@@ -121,6 +121,7 @@ accepted_words:
   - OTP
   - TLS
   - mTLS
+  - mockup
   - OAuth
   - JWT
   - GC
@@ -136,6 +137,7 @@ accepted_words:
   - TimescaleDB
   - Hypertables
   - TCP
+  - TestBook
   - Nats
   - TimescaleDB
   - TypeORM
