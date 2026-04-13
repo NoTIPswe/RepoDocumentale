@@ -365,7 +365,7 @@
 
   #align(center)[
     #image("./assets/Containers.svg", width: 100%)
-    Architettura Logica del Simulator Backend.
+    C4 Container Diagram del sistema NoTIP.
   ]
 
   == Componenti della piattaforma
@@ -683,7 +683,7 @@
 
   #align(center)[
     #image("./assets/WebAppComponents.svg", width: 100%)
-    Architettura Logica del Web Application.
+    Architettura Logica della Web Application.
   ]
 
   Il `notip-frontend` è la Single Page Application Angular che costituisce l'interfaccia utente principale della
@@ -769,38 +769,6 @@
   configurazione. Tutti i dettagli di trasporto, autenticazione e parsing sono incapsulati internamente; il chiamante
   interagisce esclusivamente con le interfacce di alto livello.
 
-  === Architettura interna
-
-  Il pacchetto è strutturato attorno a cinque componenti principali:
-
-  - *`CryptoSdk`*: entry point principale. Implementa tre interfacce (`MeasureQuerier`, `MeasureStreamer`,
-    `MeasureExporter`) e orchestra il pipeline completo: fetching dei dati cifrati, risoluzione della chiave,
-    decifratura e validazione del payload.
-  - *`KeyManager`*: cache per-gateway delle chiavi AES-256. Al primo accesso per un dato gateway recupera la chiave
-    dalla Management API tramite `ManagementApiService`; i successivi accessi vengono serviti dalla cache in memoria
-    senza ulteriori chiamate di rete. Supporta la gestione del `keyVersion` per gestire la rotazione delle chiavi.
-  - *`CryptoEngine`*: motore di decifratura stateless. Implementa AES-256-GCM tramite la WebCrypto API nativa del
-    browser (o del runtime), accettando i tre componenti crittografici del payload (`encrypted_data`, `iv`, `auth_tag`)
-    e restituendo i dati in chiaro.
-  - *`DataApiService`*: orchestratore dei due client di trasporto. Delega le operazioni di query ed export al
-    `DataApiRestClient` (HTTP `fetch`) e lo streaming al `DataApiSseClient` (basato su `@microsoft/fetch-event-source`).
-  - *`ManagementApiService` + `ManagementApiClient`*: strato di accesso alla Management API per il recupero delle chiavi
-    crittografiche.
-
-  === Flusso di decifratura
-
-  Per ogni `EncryptedEnvelopeDTO` ricevuto dalla Data API:
-  + Il `KeyManager` risolve la chiave AES-256 associata a `gatewayId` + `keyVersion` (dalla cache o dalla Management
-    API).
-  + Il `CryptoEngine` esegue la decifratura AES-256-GCM usando la chiave, l'`iv` e l'`auth_tag` presenti nell'envelope.
-  + Il payload decifrato viene validato con uno schema Zod prima di essere restituito come `PlaintextMeasure`.
-
-  In caso di fallimento in qualsiasi fase, viene sollevata una delle seguenti eccezioni tipizzate, tutte derivate da
-  `SdkError`:
-  - *`ApiError`*: risposta HTTP non-2xx dalla Management API o Data API.
-  - *`DecryptionError`*: fallimento della decifratura AES-GCM (chiave errata o payload corrotto).
-  - *`ValidationError`*: il payload decifrato non supera la validazione Zod (struttura inattesa).
-
   === Interfacce pubbliche
 
   Il pacchetto espone tre interfacce narrow che i consumer dovrebbero preferire rispetto alla dipendenza diretta dalla
@@ -815,6 +783,12 @@
 
   La separazione in interfacce narrow consente di iniettare sostituti nei test senza dover istanziare la classe
   concreta, che richiederebbe connessioni di rete funzionanti.
+
+  In caso di fallimento in qualsiasi fase, viene sollevata una delle seguenti eccezioni tipizzate, tutte derivate da
+  `SdkError`:
+  - *`ApiError`*: risposta HTTP non-2xx dalla Management API o Data API.
+  - *`DecryptionError`*: fallimento della decifratura AES-GCM (chiave errata o payload corrotto).
+  - *`ValidationError`*: il payload decifrato non supera la validazione Zod (struttura inattesa).
 
   #pagebreak()
 
