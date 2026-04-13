@@ -509,6 +509,13 @@ accepted_words:
   - Zod
   - CommonJS
   - AbortController
+  - orchestrator
+  - decrypt
+  - BYOF
+  - Nuxt
+  - KeyProvider
+  - DataApiService
+  - param
 
   # --- Terminologia Standard Progetto ---
   - req

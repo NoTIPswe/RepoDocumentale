@@ -40,20 +40,20 @@
     [`fetcher`], [`typeof fetch`], [`globalThis.fetch`], [No],
   )
 
-  - `baseUrl`: URL base dell'istanza NoTIP (es. `https://api.notip.example.com`).
-  - `tokenProvider`: funzione che restituisce (sincrona o asincrona) il Bearer token per l'autenticazione. Permette
-    l'integrazione con qualsiasi meccanismo di autenticazione (Keycloak, OAuth2, token statico).
-  - `fetcher`: implementazione di `fetch`. Utile per ambienti non-browser (Node.js < 18) o per iniettare mock nei test.
+  - `baseUrl`: URL base dell'istanza NoTIP (es. `https://api.notip.example.com`);
+  - `tokenProvider`: Funzione che restituisce (sincrona o asincrona) il Bearer token per l'autenticazione. Permette
+    l'integrazione con qualsiasi meccanismo di autenticazione (Keycloak, OAuth2, token statico);
+  - `fetcher`: Implementazione di `fetch`. Utile per ambienti non-browser (Node.js < 18) o per iniettare mock nei test.
 
   #pagebreak()
 
-  = Architettura Logica
+  = Architettura logica
 
   #align(center)[
     #image("./assets/arch_class_diagram.png", width: 100%)
   ]
 
-  == Pattern Architetturale: Architettura a Strati con Orchestrator
+  == Pattern architetturale: architettura a strati con Orchestrator
 
   La libreria adotta un'*architettura a strati* con il pattern *Orchestrator*. `CryptoSdk` coordina un workflow
   multi-step (conversione parametri → fetch dati cifrati → risoluzione chiavi → decrittazione → validazione → mapping a
@@ -62,7 +62,7 @@
   I consumer dipendono da tre interfacce ristrette (`MeasureQuerier`, `MeasureStreamer`, `MeasureExporter`) in
   applicazione del principio di Interface Segregation, e non dalla classe concreta `CryptoSdk`.
 
-  == Struttura dei Moduli
+  == Struttura dei moduli
 
   ```text
   src/
@@ -84,7 +84,7 @@
       └── notip-management-api-openapi.ts
   ```
 
-  == Strati Architetturali
+  == Strati architetturali
 
   #table(
     columns: (1.5fr, 2fr, 2.5fr),
@@ -119,9 +119,9 @@
 
   #pagebreak()
 
-  = Design di Dettaglio
+  = Design di dettaglio
 
-  == Gerarchia degli Errori (`errors.ts`)
+  == Gerarchia degli errori (`errors.ts`)
 
   #align(center)[
     #image("./assets/errors_class_diagram.png", width: 85%)
@@ -172,7 +172,7 @@
     [`cryptoEngine`], [`CryptoEngine`], [Decrittazione AES-GCM],
   )
 
-  === Metodi Pubblici
+  === Metodi pubblici
 
   #table(
     columns: (2.5fr, 3fr),
@@ -190,12 +190,12 @@
     [Converte `ExportModel` in search params, delega a `DataApiService.export`, produce le misure decifrate.],
   )
 
-  === Metodo Privato: `decryptEnvelope`
+  === Metodo privato: `decryptEnvelope`
 
   Pipeline di decrittazione di una singola `EncryptedEnvelopeDTO`:
-  + Recupera la `CryptoKey` dal `KeyManager` (cache hit o fetch tramite `KeyProvider` + import).
-  + Invoca `CryptoEngine.decrypt` con ciphertext, IV e auth tag (tutti in formato hex).
-  + Valida il payload decifrato con lo schema Zod `zSensorData` (validazione di dominio, non di DTO).
+  + Recupera la `CryptoKey` dal `KeyManager` (cache hit o fetch tramite `KeyProvider` + import);
+  + Invoca `CryptoEngine.decrypt` con ciphertext, IV e auth tag (tutti in formato hex);
+  + Valida il payload decifrato con lo schema Zod `zSensorData` (validazione di dominio, non di DTO);
   + Compone e restituisce un `PlaintextMeasure` combinando i metadati dell'envelope con i dati decifrati.
 
   == `DataApiService`: Adapter (`data-api.service.ts`)
@@ -224,10 +224,10 @@
   ): Promise<unknown>
   ```
 
-  + Converte ciphertext, IV e auth tag da hex a `Uint8Array`.
-  + Concatena ciphertext e auth tag (`ciphertext || authTag`) come richiesto da Web Crypto per AES-GCM.
-  + Invoca `crypto.subtle.decrypt` con algoritmo `AES-GCM`.
-  + Decodifica il buffer risultante come UTF-8 e interpreta il JSON.
+  + Converte ciphertext, IV e auth tag da hex a `Uint8Array`;
+  + Concatena ciphertext e auth tag (`ciphertext || authTag`) come richiesto da Web Crypto per AES-GCM;
+  + Invoca `crypto.subtle.decrypt` con algoritmo `AES-GCM`;
+  + Decodifica il buffer risultante come UTF-8 e interpreta il JSON;
   + Qualsiasi errore è incapsulato in `DecryptionError`.
 
   La funzione helper `hexToBytes` è privata al modulo.
@@ -236,7 +236,7 @@
 
   Gestisce il fetching e il caching delle chiavi crittografiche.
 
-  === Pattern: Cache-Aside
+  === Pattern: cache-aside
 
   Le `CryptoKey` sono memorizzate in una `Map<string, CryptoKey>` con chiave composita `"{gatewayId}-{version}"`. Al
   primo accesso per una coppia `(gatewayId, version)`, il `KeyModel` viene recuperato tramite l'interfaccia
@@ -277,7 +277,7 @@
 
   Client SSE per lo streaming real-time delle misure cifrate.
 
-  === Pattern: Channel (Producer-Consumer)
+  === Pattern: channel (producer-consumer)
 
   L'API `fetchEventSource` è callback-based. Per esporla come `AsyncGenerator`, il client usa un channel interno con
   coda: la callback `onmessage` inserisce le envelope validate nella coda (producer), il generatore le consuma
@@ -289,9 +289,9 @@
     AsyncGenerator<EncryptedEnvelopeDTO>
   ```
 
-  - Crea un `AbortController` interno collegato all'eventuale `signal` esterno.
-  - Apre la connessione SSE con `fetchEventSource`.
-  - Ogni evento SSE ricevuto è validato con `zEncryptedEnvelopeDto` prima di essere inserito nella coda.
+  - Crea un `AbortController` interno collegato all'eventuale `signal` esterno;
+  - Apre la connessione SSE con `fetchEventSource`;
+  - Ogni evento SSE ricevuto è validato con `zEncryptedEnvelopeDto` prima di essere inserito nella coda;
   - Il blocco `finally` del generatore invoca `abort()` e attende la terminazione del fetch, garantendo il cleanup della
     connessione.
 
@@ -336,9 +336,9 @@
   Funzione helper che decora `fetch` aggiungendo l'header `Authorization: Bearer {token}`. In caso di risposta non-ok,
   tenta di leggere il body JSON per estrarre `code` e `message`, e lancia un `ApiError`.
 
-  == Modelli di Dominio (`models.ts`)
+  == Modelli di dominio (`models.ts`)
 
-  === Modelli di Input (Query)
+  === Modelli di input (query)
 
   #table(
     columns: (1.5fr, 3fr),
@@ -353,7 +353,7 @@
       `sensorType?: string[]`],
   )
 
-  === Modelli di Output
+  === Modelli di output
 
   #table(
     columns: (1.5fr, 3fr),
@@ -391,7 +391,7 @@
 
   #pagebreak()
 
-  == Decisioni Implementative
+  == Decisioni implementative
 
   #st.design-rationale(title: "Validazione Zod a ogni boundary")[
     Tutte le risposte HTTP e tutti i payload SSE sono validati con schemi Zod prima dell'uso. Anche il payload decifrato
@@ -463,13 +463,13 @@
 
   #pagebreak()
 
-  = Metodologie di Testing
+  = Metodologie di testing
 
   I test usano Vitest con coverage V8. Le dipendenze esterne (HTTP, SSE) sono sostituite tramite il campo
   `Config.fetcher` (mock) o `vi.mock` (per `fetchEventSource`). Le operazioni crittografiche usano la Web Crypto API
   reale per garantire la correttezza end-to-end della pipeline di cifratura/decifratura.
 
-  == Test di Unità
+  == Test di unità
 
   *`CryptoEngine`*
 
@@ -602,7 +602,7 @@
     [`streamMeasures`: propagazione `AbortSignal`], [`AbortSignal` passato al client SSE sottostante],
   )
 
-  == Test di Integrazione
+  == Test di integrazione
 
   I test di integrazione (`tests/integration.spec.ts`) esercitano `CryptoSdk` come black-box con un fetcher mock basato
   su routing URL. Le operazioni crittografiche sono reali (Web Crypto API): ogni test cifra un payload con AES-GCM e

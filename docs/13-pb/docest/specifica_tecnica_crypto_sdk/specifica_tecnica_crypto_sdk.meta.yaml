@@ -2,10 +2,14 @@
 
 title: Specifica Tecnica - Crypto SDK
 changelog:
+  - version: "1.0.0"
+    date: "2026-04-13"
+    baseline: PB
+    approver: Leonardo Preo
   - version: "0.0.1"
     date: "2026-04-07"
     authors:
       - Matteo Mantoan
-    verifier: TBD
+    verifier: Francesco Marcon
     description: >
       Creazione del documento
