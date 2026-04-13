@@ -85,7 +85,9 @@ Qualifica*.
   - distruggere l'infrastruttura al termine dell'esecuzione, indipendentemente dall'esito del test.
 
   Questo approccio garantisce la totale riproducibilità dei test sia in locale che in CI, eliminando dipendenze da stato
-  condiviso. Si applica a tutti i test di integrazione collocati secondo la struttura definita nella #link(<analisi-dinamica>)[@analisi-dinamica].
+  condiviso. Si applica a tutti i test di integrazione collocati secondo la struttura definita nella #link(
+    <analisi-dinamica>,
+  )[@analisi-dinamica].
 ]
 
 #norm(

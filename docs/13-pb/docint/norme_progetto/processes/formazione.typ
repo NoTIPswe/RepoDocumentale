@@ -21,7 +21,9 @@ all'interno del progetto. Il gruppo ha individuato le seguenti tecnologie come o
 )[
   La fonte primaria di formazione per le procedure è il presente documento (*Norme di Progetto*). \
   Ogni membro è tenuto a:
-  - studiare autonomamente la documentazione ufficiale degli strumenti adottati (vedi #link(<tabella-risorse>)[@tabella-risorse]);
+  - studiare autonomamente la documentazione ufficiale degli strumenti adottati (vedi #link(
+      <tabella-risorse>,
+    )[@tabella-risorse]);
   - consultare le guide interne (es. `README.md` dei repository);
   - consolidare le competenze tramite prove pratiche in ambiente locale prima di operare sul repository remoto.
 ]
@@ -92,7 +94,8 @@ all'interno del progetto. Il gruppo ha individuato le seguenti tecnologie come o
 
       [Jira],
       [
-        - #link("https://www.atlassian.com/software/jira/guides/getting-started/introduction")[Atlassian Jira Software Guide]
+        - #link("https://www.atlassian.com/software/jira/guides/getting-started/introduction")[Atlassian Jira Software
+            Guide]
       ],
     ),
     caption: [Risorse per la formazione tecnica],

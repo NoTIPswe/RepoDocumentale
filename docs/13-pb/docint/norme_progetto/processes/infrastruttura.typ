@@ -10,9 +10,8 @@ le norme relative a ciascuno.
   Il gruppo adotta i seguenti strumenti per la comunicazione:
   - *Telegram*: programma di messaggistica utilizzato per aggiornarsi giornalmente sui progressi del progetto e per
     qualsiasi tipo di comunicazione, nel quale è anche possibile fissare i messaggi più importanti in un determinato
-    periodo. Il gruppo Telegram è stato inoltre suddiviso in sottocanali dedicati ai diversi ruoli di progetto
-    (ad esempio *Progettisti*, *Programmatori* e *Verificatori*), così da organizzare meglio le comunicazioni
-    operative;
+    periodo. Il gruppo Telegram è stato inoltre suddiviso in sotto-canali dedicati ai diversi ruoli di progetto (ad
+    esempio *Progettisti*, *Programmatori* e *Verificatori*), così da organizzare meglio le comunicazioni operative;
   - *Google Mail*: servizio di posta elettronica utilizzato per gestire le comunicazioni esterne al gruppo. A tal
     proposito è stata creata una mail dedicata al team chiamata #link("mailto:notip.swe@gmail.com")[#raw(
       "notip.swe@gmail.com",
@@ -50,8 +49,9 @@ le norme relative a ciascuno.
   - *Organizzazione degli Artefatti:* La struttura delle directory ospitate sulla piattaforma non è arbitraria, ma deve
     rispecchiare fedelmente l'architettura informativa definita in #link(<struttura-repo-docs>)[@struttura-repo-docs];
   - *Gestione della Configurazione:* Le politiche di interazione con il repository remoto, incluse le strategie di
-    *branching* e la sintassi dei *commit messages*, devono conformarsi rigorosamente a quanto stabilito in
-    #link(<branching-commit-docs>)[@branching-commit-docs] e nella norma di integrazione #cite-norm("integrazione-git").
+    *branching* e la sintassi dei *commit messages*, devono conformarsi rigorosamente a quanto stabilito in #link(
+      <branching-commit-docs>,
+    )[@branching-commit-docs] e nella norma di integrazione #cite-norm("integrazione-git").
 ]
 
 #norm(title: "Strumenti di documentazione", label: <strumenti-documentazione>)[
@@ -104,7 +104,9 @@ le norme relative a ciascuno.
   ],
 )[
   Il ciclo di vita di ogni attività (*task madre*) è governato da una macchina a stati finiti che ne traccia
-  l'evoluzione dalla presa in carico fino al rilascio. Il diagramma di riferimento è riportato in #link(<fig-workflow>)[@fig-workflow].
+  l'evoluzione dalla presa in carico fino al rilascio. Il diagramma di riferimento è riportato in #link(
+    <fig-workflow>,
+  )[@fig-workflow].
 
   #figure(
     image(height: 14%, "../assets/workflow.png"),
@@ -302,8 +304,10 @@ le norme relative a ciascuno.
   `.devcontainer/devcontainer.json`, che estende l'immagine base di `notip-infra` iniettando tool specifici, permessi
   utente e le estensioni IDE necessarie per quel particolare dominio.
 
-  I Dockerfile base e i file `devcontainer.json` sono elementi di configurazione soggetti a versionamento (vedi #link(<config-items>)[@config-items]). La manutenzione dei Dockerfile base in `notip-infra` è responsabilità dell'amministratore, in coerenza
-  con quanto definito nella #link(<manutenzione-infrastruttura>)[@manutenzione-infrastruttura].
+  I Dockerfile base e i file `devcontainer.json` sono elementi di configurazione soggetti a versionamento (vedi #link(
+    <config-items>,
+  )[@config-items]). La manutenzione dei Dockerfile base in `notip-infra` è responsabilità dell'amministratore, in
+  coerenza con quanto definito nella #link(<manutenzione-infrastruttura>)[@manutenzione-infrastruttura].
 
   *Architettura Multi-Stage dei Dockerfile base*
 
@@ -318,7 +322,9 @@ le norme relative a ciascuno.
     `dev` e del codice sorgente del livello `builder`. Contiene solo il compilato e le dipendenze di runtime
     strettamente necessarie.
 
-  Per il setup dell'ambiente DevContainer da parte di ogni sviluppatore si rimanda alla #link(<setup-devcontainer>)[@setup-devcontainer].
+  Per il setup dell'ambiente DevContainer da parte di ogni sviluppatore si rimanda alla #link(
+    <setup-devcontainer>,
+  )[@setup-devcontainer].
 ]
 
 #norm(
@@ -362,11 +368,14 @@ le norme relative a ciascuno.
   singolo microservizio utilizza il Dockerfile centralizzato di `notip-infra` come ricetta, applicandola al proprio
   codice sorgente per generare l'artefatto finale pronto per la produzione.
 
-  I Dockerfile base in `notip-infra/containers/` sono elementi di configurazione soggetti a versionamento (vedi #link(<config-items>)[@config-items]). La manutenzione di questi Dockerfile è responsabilità dell'amministratore, in coerenza con quanto
+  I Dockerfile base in `notip-infra/containers/` sono elementi di configurazione soggetti a versionamento (vedi #link(
+    <config-items>,
+  )[@config-items]). La manutenzione di questi Dockerfile è responsabilità dell'amministratore, in coerenza con quanto
   definito nella #link(<manutenzione-infrastruttura>)[@manutenzione-infrastruttura].
 
-  Per la norma sul pin delle versioni dei tool e delle immagini base si rimanda alla  #link(<pin-versioni>)[@pin-versioni]. Per la gestione del
-  container registry si rimanda alla #link(<ghcr>)[@ghcr].
+  Per la norma sul pin delle versioni dei tool e delle immagini base si rimanda alla #link(
+    <pin-versioni>,
+  )[@pin-versioni]. Per la gestione del container registry si rimanda alla #link(<ghcr>)[@ghcr].
 ]
 
 #norm(
@@ -384,7 +393,9 @@ le norme relative a ciascuno.
   - *Iniezione degli header di sicurezza*: applicazione delle direttive definite in `security-headers.conf` (es.
     `Strict-Transport-Security`, `X-Frame-Options`, `Content-Security-Policy`) a tutte le risposte in uscita.
 
-  La configurazione è versionata in `notip-infra/infra/nginx/` ed è soggetta alle regole GitOps definite nella #link(<gitops-infra>)[@gitops-infra].
+  La configurazione è versionata in `notip-infra/infra/nginx/` ed è soggetta alle regole GitOps definite nella #link(
+    <gitops-infra>,
+  )[@gitops-infra].
 ]
 
 === Attività del processo
@@ -575,7 +586,8 @@ le norme relative a ciascuno.
     (
       name: "Prerequisiti",
       desc: [
-        Verificare che Docker sia installato e in esecuzione e che il DevContainer della repository sia operativo (vedi #link(<setup-devcontainer>)[@setup-devcontainer]).
+        Verificare che Docker sia installato e in esecuzione e che il DevContainer della repository sia operativo (vedi
+        #link(<setup-devcontainer>)[@setup-devcontainer]).
       ],
     ),
     (

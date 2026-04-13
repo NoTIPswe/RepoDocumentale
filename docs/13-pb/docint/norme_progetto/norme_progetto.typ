@@ -32,8 +32,8 @@ Poiché i dispositivi fisici (sensori e gateway) non sono oggetto di fornitura, 
 comunicazione.
 
 L'obiettivo inizialmente posto dal gruppo era di sviluppare questo progetto entro il *21 marzo 2026*, rispettando il
-costo previsto per la realizzazione pari a *12.940 Euro*. A seguito del ritardo accumulato in fase di *RTB*,
-si è successivamente previsto di posticipare la conclusione al *13 aprile 2026*, mantenendo invariato il budget.
+costo previsto per la realizzazione pari a *12.940 Euro*. A seguito del ritardo accumulato in fase di *RTB*, si è
+successivamente previsto di posticipare la conclusione al *13 aprile 2026*, mantenendo invariato il budget.
 
 == Riferimenti e Tailoring
 Tutti i processi descritti fanno riferimento allo standard *ISO/IEC 12207:1995*. Attraverso un'operazione di
@@ -49,14 +49,12 @@ Il documento è strutturato per processi. Per distinguere chiaramente le norme d
 regole lavoriamo") dalle procedure operative ("come eseguiamo i compiti"), ogni sezione di Processo è suddivisa
 sistematicamente in due parti fondamentali:
 
-+ *Norme e strumenti*:
-  raccoglie le specifiche tecniche, le convenzioni e gli standard che regolano il processo. Definisce sia
-  l'infrastruttura da utilizzare, sia le norme che il team deve rispettare. Costituisce la base di conoscenza normativa
-  necessaria prima di avviare qualsiasi operazione.
++ *Norme e strumenti*: raccoglie le specifiche tecniche, le convenzioni e gli standard che regolano il processo.
+  Definisce sia l'infrastruttura da utilizzare, sia le norme che il team deve rispettare. Costituisce la base di
+  conoscenza normativa necessaria prima di avviare qualsiasi operazione.
 
-+ *Attività*:
-  descrive il workflow operativo vero e proprio. Dettaglia la sequenza temporale di azioni necessarie per raggiungere
-  gli obiettivi del processo.
++ *Attività*: descrive il workflow operativo vero e proprio. Dettaglia la sequenza temporale di azioni necessarie per
+  raggiungere gli obiettivi del processo.
   - _Nota:_ Ogni attività indica esplicitamente in apertura quali elementi della sezione "Norme e strumenti" sono
     prerequisiti per la sua esecuzione.
 

@@ -137,7 +137,7 @@
   file versionati.
 
   Per il setup di `pre-commit` nell'ambiente locale si rimanda alla #link(<setup-devcontainer>)[
-  @setup-devcontainer].
+    @setup-devcontainer].
 ]
 
 #norm(
@@ -223,7 +223,9 @@
   - `openapi-generator-cli` per i consumer TypeScript (Angular);
   - `oapi-codegen` per i consumer Go.
 
-  Per il workflow operativo di aggiornamento del contratto API si rimanda alla #link(<workflow-api-contracts>)[@workflow-api-contracts].
+  Per il workflow operativo di aggiornamento del contratto API si rimanda alla #link(
+    <workflow-api-contracts>,
+  )[@workflow-api-contracts].
 
   *API asincrone (NATS / AsyncAPI)*
 

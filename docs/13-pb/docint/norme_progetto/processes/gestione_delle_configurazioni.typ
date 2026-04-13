@@ -83,8 +83,9 @@ progetto.
     modifica deve essere esportata come file JSON e committata in `notip-infra/infra/monitoring/grafana/` tramite Pull
     Request (vedi #link(<osservabilita>)[@osservabilita]);
   - *NATS JetStream*: stream, consumer e policy di retention non possono essere modificati tramite CLI NATS. Ogni
-    modifica deve essere riflessa nei file JSON in `notip-infra/infra/nats/streams/` tramite Pull Request (vedi
-    #link(<config-items>)[@config-items]);
+    modifica deve essere riflessa nei file JSON in `notip-infra/infra/nats/streams/` tramite Pull Request (vedi #link(
+      <config-items>,
+    )[@config-items]);
   - *Keycloak*: le configurazioni di realm, client, ruoli e policy non possono essere modificate esclusivamente
     dall'interfaccia di amministrazione. Il realm export aggiornato deve essere committato nella directory di
     configurazione dedicata in `notip-infra/` tramite Pull Request;
@@ -120,8 +121,9 @@ progetto.
   Il repository `notip-infra` è strutturato come monorepo, contenendo più componenti con cicli di vita distinti.
 
   *Versionamento*: Per `notip-infra` non si traccia una versione globale, in quanto funge da contenitore di
-  infrastruttura condivisa. Per la politica di versionamento automatico tramite CI/CD si rimanda alla
-  #link(<versionamento-codice>)[@versionamento-codice].
+  infrastruttura condivisa. Per la politica di versionamento automatico tramite CI/CD si rimanda alla #link(
+    <versionamento-codice>,
+  )[@versionamento-codice].
 
   *Struttura delle directory di test in `notip-infra`*
 
@@ -129,8 +131,9 @@ progetto.
   - `notip-infra/tests/integration/`: test di integrazione multi-servizio;
   - `notip-infra/tests/system/`: test di sistema (e2e), se automatizzati.
 
-  Per la classificazione completa dei test e la norma sulla loro collocazione si rimanda alla
-  #link(<analisi-dinamica>)[@analisi-dinamica].
+  Per la classificazione completa dei test e la norma sulla loro collocazione si rimanda alla #link(
+    <analisi-dinamica>,
+  )[@analisi-dinamica].
 ]
 
 #norm(
@@ -196,8 +199,9 @@ progetto.
   prodotto), che legge i prefissi dei commit secondo lo standard Conventional Commits. Ogni repository di prodotto
   avanza di versione in modo indipendente.
 
-  Per i prefissi dei commit e il loro peso nella determinazione della versione si rimanda alla
-  #link(<branching-conventional-commits>)[@branching-conventional-commits]. Per le norme sulla strategia dei repository e la gestione dei monorepo si rimanda
+  Per i prefissi dei commit e il loro peso nella determinazione della versione si rimanda alla #link(
+    <branching-conventional-commits>,
+  )[@branching-conventional-commits]. Per le norme sulla strategia dei repository e la gestione dei monorepo si rimanda
   alla #link(<repo-strategy>)[@repo-strategy].
 ]
 
@@ -209,13 +213,17 @@ progetto.
   iniettati tramite GitHub Secrets.
 
   I file `.env` reali non vengono mai committati nel repository, in quanto esclusi tramite `.gitignore` come definito
-  nella #link(<git-ignore-policy>)[@git-ignore-policy]. Ogni repository deve invece contenere un file `.env.example` committato, che documenta tutte
-  le variabili necessarie all'esecuzione senza esporre valori reali (vedi #link(<config-items>)[@config-items]).
+  nella #link(<git-ignore-policy>)[@git-ignore-policy]. Ogni repository deve invece contenere un file `.env.example`
+  committato, che documenta tutte le variabili necessarie all'esecuzione senza esporre valori reali (vedi #link(
+    <config-items>,
+  )[@config-items]).
 
   I file `.env` locali rappresentano sempre la configurazione di sviluppo (dev), mentre la configurazione generata da
   GitHub Secrets è quella di produzione (prod).
 
-  Per il setup del file `.env` locale da parte di ogni sviluppatore si rimanda alla #link(<setup-devcontainer>)[@setup-devcontainer].
+  Per il setup del file `.env` locale da parte di ogni sviluppatore si rimanda alla #link(
+    <setup-devcontainer>,
+  )[@setup-devcontainer].
 ]
 
 #norm(

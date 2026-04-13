@@ -208,7 +208,8 @@ svolgimento del progetto.
 
   #heading(level: 5, numbering: none, outlined: false)[Nomenclatura Branch]
   È obbligatorio mantenere la nomenclatura generata automaticamente dal Work Item, rimuovendo la sezione
-  ` - {Breve descrizione}` dallo schema definito in #link(<work-items-docs>)[@work-items-docs]. Esempio: `NT-67-norme_progetto-v0-6-0`.
+  ` - {Breve descrizione}` dallo schema definito in #link(<work-items-docs>)[@work-items-docs]. Esempio:
+  `NT-67-norme_progetto-v0-6-0`.
 
   #heading(level: 5, numbering: none, outlined: false)[Messaggi di Commit]
   I messaggi devono seguire tassativamente lo standard #link(
@@ -229,7 +230,9 @@ svolgimento del progetto.
   Il co-authoring di un documento deve sempre essere guidato da un Work Item per ogni attività assegnata ad un
   componente.
 
-  Il titolo dei work items differisce solo per la parte di `{Breve descrizione}` (vedi #link(<work-items-docs>)[@work-items-docs]). Esempio:
+  Il titolo dei work items differisce solo per la parte di `{Breve descrizione}` (vedi #link(
+    <work-items-docs>,
+  )[@work-items-docs]). Esempio:
   - \"analisi_requisiti-v0.14.0 - aggiunta UC45-UC53\", assegnato alla persona A;
   - \"analisi_requisiti-v0.14.0 - aggiunta UC54-57\", assegnato alla persona B.
 
@@ -244,8 +247,8 @@ svolgimento del progetto.
   branch per la versione (e.g. `NT-67-analisi_requisiti-v0-14-0`), slegato da qualunque work item, a partire da `main`.
   I feature branch relativi ai work item di Jira partono e vengono chiusi da e su quel branch di versione con delle Pull
   Request. Il nome di tali branch è quello generato da Jira comprensivo della parte di ` - {Breve descrizione}`
-  illustrata in #link(<work-items-docs>)[@work-items-docs]. Una volta completata la stesura collaborativa, viene eseguito il merge del branch di
-  versione in `main` ed eliminato, preservando la pulizia del trunk.
+  illustrata in #link(<work-items-docs>)[@work-items-docs]. Una volta completata la stesura collaborativa, viene
+  eseguito il merge del branch di versione in `main` ed eliminato, preservando la pulizia del trunk.
 
   #heading(level: 5, numbering: none, outlined: false)[Verifica]
   Una volta terminati tutti i work items relativi alla versione, _un_ (solo) verificatore può procedere a verificare
