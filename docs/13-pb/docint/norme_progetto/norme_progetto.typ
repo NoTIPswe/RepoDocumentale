@@ -141,7 +141,7 @@ All'interno del presente progetto, si individuano i seguenti processi organizzat
 
 == Processo di infrastruttura <infrastruttura>
 
-Il processo di Infrastruttura ha lo scopo di definire, predisporre e mantenere l'ambiente tecnico necessario per
+Il processo di *infrastruttura* ha lo scopo di definire, predisporre e mantenere l'ambiente tecnico necessario per
 abilitare e supportare l'esecuzione di tutti gli altri processi di progetto.
 
 #include "processes/infrastruttura.typ"

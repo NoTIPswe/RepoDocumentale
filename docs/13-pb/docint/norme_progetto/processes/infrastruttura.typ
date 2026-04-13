@@ -43,15 +43,15 @@ le norme relative a ciascuno.
 #norm(title: "Utilizzo di GitHub", label: <github-platform>)[
   L'adozione di GitHub è trasversale a diversi processi di supporto. Di seguito si riporta la mappatura delle
   funzionalità della piattaforma sulle norme di progetto:
-  - *Collaborazione e Verifica (Pull Request):* GitHub abilita il lavoro asincrono tramite il meccanismo delle *Pull
+  - *Collaborazione e verifica (Pull Request):* GitHub abilita il lavoro asincrono tramite il meccanismo delle *Pull
     Request* (PR). Le PR costituiscono il punto di controllo obbligatorio (Quality Gate) per la revisione del codice e
     la risoluzione dei conflitti prima dell'integrazione nel ramo stabile. Il processo operativo di verifica tramite PR
-    è dettagliato nella sezione @verifica-doc;
+    è dettagliato nella sezione #link(<verifica-doc>)[@verifica-doc];
   - *Organizzazione degli Artefatti:* La struttura delle directory ospitate sulla piattaforma non è arbitraria, ma deve
-    rispecchiare fedelmente l'architettura informativa definita in @struttura-repo-docs;
+    rispecchiare fedelmente l'architettura informativa definita in #link(<struttura-repo-docs>)[@struttura-repo-docs];
   - *Gestione della Configurazione:* Le politiche di interazione con il repository remoto, incluse le strategie di
     *branching* e la sintassi dei *commit messages*, devono conformarsi rigorosamente a quanto stabilito in
-    @branching-commit-docs e nella norma di integrazione #cite-norm("integrazione-git").
+    #link(<branching-commit-docs>)[@branching-commit-docs] e nella norma di integrazione #cite-norm("integrazione-git").
 ]
 
 #norm(title: "Strumenti di documentazione", label: <strumenti-documentazione>)[
@@ -62,13 +62,13 @@ le norme relative a ciascuno.
 #norm(title: "Strumenti per la raccolta e l'analisi delle metriche", label: <strumenti-metriche>)[
   Gli strumenti di raccolta e analisi delle metriche si dividono in due livelli distinti:
 
-  *Metriche di Processo e di Prodotto* (pianificazione, qualità documentale, avanzamento Sprint):
+  *Metriche di processo e di prodotto* (pianificazione, qualità documentale, avanzamento Sprint):
   - *Google Sheets*: centro di inserimento, classificazione e storicizzazione delle metriche di processo e di prodotto.
     I dati vengono elaborati tramite script automatici e aggregati in grafici per i report di qualità;
   - *Git e GitHub*: interrogati per estrarre metriche di sviluppo (es. qualità dei commit, tempi di risoluzione delle
     Pull Request), i cui risultati vengono aggregati su Google Sheets.
 
-  *Metriche Applicative e di Sistema* (osservabilità del prodotto a runtime):
+  *Metriche applicative e di sistema* (osservabilità del prodotto a runtime):
   - *Prometheus*: raccoglie in modalità pull le metriche esposte dai singoli microservizi e dall'infrastruttura NATS. La
     configurazione dei target di scraping è versionata in `notip-infra/infra/monitoring/prometheus/`;
   - *Grafana*: visualizza le metriche raccolte da Prometheus tramite dashboard pre-configurate e versionare in
@@ -88,51 +88,51 @@ le norme relative a ciascuno.
   Ogni attività censita su Jira è rappresentata da una *Issue* dotata di una chiave univoca assegnata automaticamente
   dal sistema (es. `NT-XXX`). Al fine di garantire una corretta rendicontazione temporale e la qualità del prodotto,
   ogni Task Madre deve essere scomposta in due sub-task distinte:
-  - *Sub-task di Esecuzione:* Utilizzata per tracciare le ore produttive impiegate nello svolgimento dell'attività;
-  - *Sub-task di Verifica:* Utilizzata per tracciare le ore impiegate nelle attività di controllo.
+  - *Sub-task di Esecuzione:* utilizzata per tracciare le ore produttive impiegate nello svolgimento dell'attività;
+  - *Sub-task di Verifica:* utilizzata per tracciare le ore impiegate nelle attività di controllo.
 ]
 
 #norm(
   title: "Workflow e ciclo di vita Jira",
   label: <workflow-jira>,
   rationale: [
-    Sincronizzazione Automatica: L'evoluzione della Task Madre è guidata automaticamente dallo stato delle sue Sub-task
+    Sincronizzazione automatica: l'evoluzione della task madre è guidata automaticamente dallo stato delle sue sub-task
     (Esecuzione e Verifica), garantendo l'allineamento tra il lavoro svolto e lo stato riportato nel Project Management.
 
-    Quality Gate: Il workflow impone un vincolo bloccante: nessuna attività può raggiungere lo stato _Completata_ senza
+    Quality Gate: il workflow impone un vincolo bloccante: nessuna attività può raggiungere lo stato _Completata_ senza
     aver superato con successo la fase di verifica formale, garantendo la qualità del prodotto in uscita.
   ],
 )[
-  Il ciclo di vita di ogni attività (*Task Madre*) è governato da una macchina a stati finiti che ne traccia
-  l'evoluzione dalla presa in carico fino al rilascio. Il diagramma di riferimento è riportato in @fig-workflow.
+  Il ciclo di vita di ogni attività (*task madre*) è governato da una macchina a stati finiti che ne traccia
+  l'evoluzione dalla presa in carico fino al rilascio. Il diagramma di riferimento è riportato in #link(<fig-workflow>)[@fig-workflow].
 
   #figure(
     image(height: 14%, "../assets/workflow.png"),
-    caption: [Workflow operativo della Task Madre],
+    caption: [Workflow operativo della task madre],
   ) <fig-workflow>
   #v(0.5em)
 
   Il percorso da seguire prevede le seguenti fasi:
-  - *Da Completare*: Dove la task è stata creata ma non ancora avviata;
-  - *In Execution*: La task è in fase di sviluppo;
-  - *To Verify*: L'attività attende di essere verificata;
-  - *In Verification*: L'attività è stata presa in carico dal verificatore;
-  - *Completata*: L'attività ha superato la verifica e può considerarsi conclusa;
-  - *Waiting*: Stato iniziale della Sub-Task di Verifica, che passa allo stato *Da Completare* solo quando la Sub-Task
+  - *Da Completare*: dove la task è stata creata ma non ancora avviata;
+  - *In Execution*: la task è in fase di sviluppo;
+  - *To Verify*: l'attività attende di essere verificata;
+  - *In Verification*: l'attività è stata presa in carico dal verificatore;
+  - *Completata*: l'attività ha superato la verifica e può considerarsi conclusa;
+  - *Waiting*: stato iniziale della sub-task di Verifica, che passa allo stato *Da Completare* solo quando la sub-task
     di Esecuzione passa allo stato *In Verification*;
-  - *Changes requested*: Stato della Sub-Task di Esecuzione raggiungibile soltanto se il Verificatore ha richiesto dei
-    cambiamenti al lavoro svolto selezionando *Reject* nella Sub-Task di Verifica quando essa era nello stato *In
-    Verification*. Richiede che l'Autore del documento ritorni alla fase *In Execution* per poter così apportare le
+  - *Changes requested*: stato della sub-task di Esecuzione raggiungibile soltanto se il Verificatore ha richiesto dei
+    cambiamenti al lavoro svolto selezionando *Reject* nella sub-task di Verifica quando essa era nello stato *In
+    Verification*. Richiede che l'autore del documento ritorni alla fase *In Execution* per poter così apportare le
     modifiche richieste.
 
   Le transizioni invece sono:
-  - *Create*: La task viene creata;
-  - *Start Execution*: Inizia lo sviluppo della task;
-  - *Discard Execution*: Regressione dallo stato 'In Execution' allo stato 'Da Completare';
-  - *Submit*: Passaggio dalla fase esecutiva a quella di verifica;
-  - *Start Verification*: Inizia l'attività di verifica del lavoro svolto;
-  - *Discard Verification*: Regressione dallo stato 'In Verification' allo stato 'To Verify';
-  - *Reject*: In caso di modifiche da apportare al lavoro svolto, la task retrocede dallo stato 'In Verification' allo
+  - *Create*: la task viene creata;
+  - *Start Execution*: inizia lo sviluppo della task;
+  - *Discard Execution*: regressione dallo stato 'In Execution' allo stato 'Da Completare';
+  - *Submit*: passaggio dalla fase esecutiva a quella di verifica;
+  - *Start Verification*: inizia l'attività di verifica del lavoro svolto;
+  - *Discard Verification*: regressione dallo stato 'In Verification' allo stato 'To Verify';
+  - *Reject*: in caso di modifiche da apportare al lavoro svolto, la task retrocede dallo stato 'In Verification' allo
     stato 'Changes Requested', richiedendo un intervento da parte dell'autore prima di poter ritornare alla fase di
     verifica.
 ]
@@ -148,9 +148,9 @@ le norme relative a ciascuno.
   ],
 )[
   Per la gestione delle risorse su Jira abbiamo deciso di avere:
-  - *Assegnazione Singola:* Ogni entità (Task Madre o Sub-task) deve avere sempre un solo assegnatario. Non è corretto
+  - *Assegnazione singola:* ogni entità (task madre o sub-task) deve avere sempre un solo assegnatario. Non è corretto
     lasciare task in lavorazione (stati attivi diversi da 'Da Completare') senza un responsabile assegnato;
-  - *Specifica del Ruolo:* È obbligatorio indicare il ruolo che il membro del gruppo ricopre durante lo svolgimento di
+  - *Specifica del ruolo:* è obbligatorio indicare il ruolo che il membro del gruppo ricopre durante lo svolgimento di
     quella specifica attività (es. `Programmatore`, `Verificatore`, `Analista`).
 ]
 
@@ -163,26 +163,26 @@ le norme relative a ciascuno.
     che lo soddisfa, e dal codice è possibile risalire alla task che lo ha generato. Per ulteriori informazioni o esempi
     sui Conventional Commits si consiglia di visionare la seguente pagina #link(
       "https://www.conventionalcommits.org/en/v1.0.0/",
-    )[*Conventional Commits*] o di rileggere la @branching-commit-docs.
+    )[*Conventional Commits*] o di rileggere la #link(<branching-commit-docs>)[@branching-commit-docs].
   ],
 )[
   Jira riceve aggiornamenti diretti dal repository remoto. Per garantire il funzionamento del tracciamento, è necessario
   rispettare rigorosamente la nomenclatura:
-  - *Branching:* Il nome di ogni branch deve contenere l'id del Task (es. `NT-67-norme-di-progetto-v-1-0-0`);
-  - *Commit Message:* I messaggi devono seguire lo standard #link(
+  - *Branching:* il nome di ogni branch deve contenere l'id del task (es. `NT-67-norme-di-progetto-v-1-0-0`);
+  - *Commit Message:* i messaggi devono seguire lo standard #link(
       "https://www.conventionalcommits.org/en/v1.0.0/",
     )[*Conventional Commits*] e includere l'id del task.
 ]
 
 #norm(title: "Dashboard e metriche Jira", label: <jira-metriche>)[
-  Jira è configurato per tracciare automaticamente le metriche di processo attraverso una *Dashboard di Progetto*
+  Jira è configurato per tracciare automaticamente le metriche di processo attraverso una *Dashboard di progetto*
   condivisa. I principali indicatori monitorati sono:
-  - *Distribuzione delle Ore:* Grafici a torta e tabelle che mostrano le ore assegnate per persona e per ruolo e in
+  - *Distribuzione delle ore:* grafici a torta e tabelle che mostrano le ore assegnate per persona e per ruolo e in
     quali sprint sono state svolte. Questo permette di verificare il rispetto della rotazione dei ruoli e anche per
     capire quali sprint sono stati i più produttivi;
-  - *Velocity Chart e Burndown Chart:* Il *Burndown Chart* confronta visivamente l'andamento ideale di consumo delle ore
+  - *Velocity Chart e Burndown Chart:* il *Burndown Chart* confronta visivamente l'andamento ideale di consumo delle ore
     rispetto alle ore effettivamente consumate dal team, permettendo di identificare ritardi o anticipi rispetto alla
-    scadenza. Il *Velocity Chart*, invece, storicizza la quantità di lavoro completata in ogni Sprint precedente,
+    scadenza. Il *Velocity Chart*, invece, storicizza la quantità di lavoro completata in ogni sprint precedente,
     fornendo un dato medio fondamentale per stimare con precisione la capacità produttiva futura del team.
 ]
 
@@ -206,34 +206,34 @@ le norme relative a ciascuno.
 )[
   È severamente vietato effettuare commit di file derivati o specifici dell'ambiente locale. Il repository deve
   contenere nella radice un file `.gitignore` condiviso che escluda tassativamente:
-  - Cartelle di build e dist (es. `bin/`, `build/`, `dist/`);
-  - Dipendenze esterne (es. `node_modules/`, `venv/`, `target/`);
-  - File di configurazione (es. `.vscode/`, `.idea/`);
-  - Credenziali o file `.env`.
+  - cartelle di build e dist (es. `bin/`, `build/`, `dist/`);
+  - dipendenze esterne (es. `node_modules/`, `venv/`, `target/`);
+  - file di configurazione (es. `.vscode/`, `.idea/`);
+  - credenziali o file `.env`.
 
-  _Nota:_ Non utilizzare mai `git add --force` per aggirare queste regole senza previa approvazione del Responsabile.
+  _Nota:_ non utilizzare mai `git add --force` per aggirare queste regole senza previa approvazione del Responsabile.
 ]
 
 #norm(
   title: "Libreria dei processi (lib.typ)",
   label: <lib-typ-standard>,
   rationale: [
-    Standardizzazione: L'uso di funzioni dedicate per norme e attività vincola gli autori a definire tutti i metadati
+    Standardizzazione: l'uso di funzioni dedicate per norme e attività vincola gli autori a definire tutti i metadati
     necessari (ruoli, input/output, tracciabilità), rendendo la documentazione conforme agli standard di qualità.
   ],
 )[
   Il file `lib.typ` espone le primitive fondamentali per la stesura delle Norme di Progetto. È obbligatorio utilizzare
   le seguenti funzioni:
-  - `#norm`: Definisce regole statiche o vincoli di progetto.
-    - `title`: Identificativo univoco della norma;
-    - `label`: Etichetta per i riferimenti incrociati (es. `<etichetta>`);
-    - `rationale`: (Opzionale) Giustificazione o note esplicative che appariranno in un blocco "Note".
-  - `#activity`: Definisce procedure operative e flussi di lavoro.
-    - `roles`: Elenco dei ruoli coinvolti, da selezionare esclusivamente dal dizionario `ROLES` (es. `ROLES.anal`,
+  - `#norm`: definisce regole statiche o vincoli di progetto.
+    - `title`: identificativo univoco della norma;
+    - `label`: etichetta per i riferimenti incrociati (es. `<etichetta>`);
+    - `rationale`: (opzionale) giustificazione o note esplicative che appariranno in un blocco "Note".
+  - `#activity`: definisce procedure operative e flussi di lavoro.
+    - `roles`: elenco dei ruoli coinvolti, da selezionare esclusivamente dal dizionario `ROLES` (es. `ROLES.anal`,
       `ROLES.ver`);
-    - `input` / `output`: Descrizione degli artefatti in ingresso e uscita;
-    - `norms`: Lista delle label delle norme citate (es. `("norma-1", "norma-2")`);
-    - `procedure`: Array di oggetti contenenti `name` (nome del passo) e `desc` (descrizione operativa).
+    - `input` / `output`: descrizione degli artefatti in ingresso e uscita;
+    - `norms`: lista delle label delle norme citate (es. `("norma-1", "norma-2")`);
+    - `procedure`: array di oggetti contenenti `name` (nome del passo) e `desc` (descrizione operativa).
 ]
 
 #norm(
@@ -246,12 +246,12 @@ le norme relative a ciascuno.
 )[
   Ogni tipologia di documento deve estendere il relativo *base template* per garantire la presenza delle sezioni
   obbligatorie:
-  - Documenti generici: Utilizzare `base_document.typ` per Analisi, Piani e Norme;
-  - Verbali: Utilizzare `apply-base-verbale` da `base_verbale.typ`. La discussione deve essere strutturata tramite la
+  - Documenti generici: utilizzare `base_document.typ` per Analisi, Piani e Norme;
+  - Verbali: utilizzare `apply-base-verbale` da `base_verbale.typ`. La discussione deve essere strutturata tramite la
     funzione `report-point`, definendo esplicitamente `discussion`, `decisions` e `actions`;
-  - Diari di Bordo: Utilizzare `apply-base-ddb` da `base_ddb.typ`, compilando le sezioni di risultati, obiettivi e
+  - Diari di Bordo: utilizzare `apply-base-ddb` da `base_ddb.typ`, compilando le sezioni di risultati, obiettivi e
     difficoltà;
-  - Presentazioni: Utilizzare `base_slides.typ` per le slide di avanzamento (SAL).
+  - Presentazioni: utilizzare `base_slides.typ` per le slide di avanzamento (SAL).
 ]
 
 #norm(title: "Specifica tecnica degli Use Case", label: <uc-lib-standard>)[
@@ -263,13 +263,13 @@ le norme relative a ciascuno.
 
 #norm(title: "Organizzazione dei canali Discord", label: <discord>)[
   Il server è strutturato in diverse categorie:
-  - *Discussions:* Categoria dedicata alle decisioni asincrone.
-    - `tech`: Per dubbi su tecnologie, librerie e condivisione di snippet di codice;
-    - `management`: Per scadenze, organizzazione informale o per raggruppare in un unico luogo considerazioni su unico
+  - *Discussions:* categoria dedicata alle decisioni asincrone.
+    - `tech`: per dubbi su tecnologie, librerie e condivisione di snippet di codice;
+    - `management`: per scadenze, organizzazione informale o per raggruppare in un unico luogo considerazioni su unico
       argomento.
-  - *Meetings:* Categoria per le riunioni.
+  - *Meetings:* categoria per le riunioni.
     - Il canale testuale `meeting-notes` è riservato a brevi appunti o link condivisi durante la call.
-  - *Cowork:* Canali vocali dedicati al lavoro di gruppo informale.
+  - *Cowork:* canali vocali dedicati al lavoro di gruppo informale.
 ]
 
 #norm(title: "Manutenzione dell'infrastruttura", label: <manutenzione-infrastruttura>)[

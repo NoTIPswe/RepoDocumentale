@@ -50,7 +50,7 @@ definizione dei ruoli, la pianificazione delle attività e il monitoraggio dell'
   - *Riunioni straordinarie*: convocate qualora emergano necessità impreviste o urgenza di chiarimenti immediati.
 
   A garanzia della tracciabilità, i temi trattati e le decisioni assunte devono essere documentati tramite appositi
-  verbali (interni o esterni). Per gli strumenti utilizzati si rimanda alla sezione @infrastruttura.
+  verbali (interni o esterni). Per gli strumenti utilizzati si rimanda alla #link(<infrastruttura>)[@infrastruttura].
 ]
 
 #norm(title: "Comunicazioni", label: <norme-comunicazioni>)[
@@ -68,7 +68,7 @@ definizione dei ruoli, la pianificazione delle attività e il monitoraggio dell'
     "mailto:notip.swe@gmail.com",
   )[#raw("notip.swe@gmail.com")].
 
-  Per le specifiche tecniche relative agli strumenti citati si rimanda alla sezione @infrastruttura.
+  Per le specifiche tecniche relative agli strumenti citati si rimanda alla #link(<infrastruttura>)[@infrastruttura].
 ]
 
 === Attività del processo
@@ -108,8 +108,8 @@ definizione dei ruoli, la pianificazione delle attività e il monitoraggio dell'
   title: "Gestione delle riunioni",
   roles: (ROLES.resp,),
   norms: ("norme-riunioni",),
-  input: [Necessità di sincronizzazione o scadenza di Sprint],
-  output: [Verbale interno o esterno],
+  input: [Necessità di sincronizzazione o scadenza di sprint],
+  output: [Verbale Interno o Esterno],
   procedure: (
     (
       name: "Convocazione",
