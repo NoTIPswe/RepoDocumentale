@@ -430,7 +430,7 @@
       - Redazione specifica tecnica management-api
       - Redazione specifica tecnica data-consumer
       - Redazione specifica tecnica simulator-backend e sim-cli
-      - Redazione specifica tecnica \@notip/cryptp-sdk
+      - Redazione specifica tecnica \@notip/crypto-sdk
       - Redazione specifica tecnica WebApp Frontend
       - Redazione specifica tecnica provisioning-service
       - Redazione specifica tecnica generale
