@@ -12,6 +12,7 @@
       [
         Valerio Solito \
         Leonardo Preo \
+        Francesco Marcon \
         Alessandro Mazzariol \
         Matteo Mantoan \
         Alessandro Contarini \
@@ -26,10 +27,10 @@
   In data *23 febbraio 2026* si è svolta una riunione interna del gruppo in modalità telematica.
 
   L'ordine del giorno prevede:
-  - Presentazione dei nuovi task e revisione delle regole di tracciamento ore su Jira;
-  - Organizzazione della "palestra di progettazione" e assegnazione studio diagrammi C4;
-  - Discussione e riassegnazione sui ruoli di progetto;
-  - Pianificazione attività di correzione per Analisi dei Requisiti (AdR), Piano di Qualifica (PdQ) e Norme di Progetto
+  - presentazione dei nuovi task e revisione delle regole di tracciamento ore su Jira;
+  - organizzazione della "palestra di progettazione" e assegnazione studio diagrammi C4;
+  - discussione e riassegnazione sui ruoli di progetto;
+  - pianificazione attività di correzione per Analisi dei Requisiti (AdR), Piano di Qualifica (PdQ) e Norme di Progetto
     (NdP) a seguito della risposta dell'esito ricevuto dal Prof. Cardin.
 
 ][
@@ -85,13 +86,13 @@
     ],
     decisions: [
       I ruoli sono stati così assegnati per lo Sprint corrente:
-      - *Matteo*: Responsabile, Progettista
-      - *Alessandro C.*: Amministratore, Progettista
-      - *Alessandro M.*: Progettista
-      - *Mario*: Progettista
-      - *Leo*: Amministratore, Progettista
-      - *Valerio*: Verificatore, Progettista
-      - *Francesco*: Progettista
+      - *Matteo*: Responsabile, Progettista.
+      - *Alessandro C.*: Amministratore, Progettista.
+      - *Alessandro M.*: Progettista.
+      - *Mario*: Progettista.
+      - *Leo*: Amministratore, Progettista.
+      - *Valerio*: Verificatore, Progettista.
+      - *Francesco*: Progettista.
     ],
   )
 

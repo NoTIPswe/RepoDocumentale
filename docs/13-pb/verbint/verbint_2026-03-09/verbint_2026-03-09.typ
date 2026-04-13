@@ -20,7 +20,7 @@
       ],
     ),
   ),
-  abstract: "Meeting interno tenutosi in seguito all'attività di sportello con il prof. Cardin per chiarimenti di natura tecnica riguardanti progettazione e sviluppo dell'MVP.",
+  abstract: "Meeting interno tenutosi in seguito all'attività di sportello con il Prof. Cardin per chiarimenti di natura tecnica riguardanti progettazione e sviluppo dell'MVP.",
   changelog: metadata.changelog,
 )[
 
@@ -28,10 +28,10 @@
   10:00.
 
   L'ordine del giorno prevede quattro questioni di natura tecnica:
-  - Suddivisione microservizi e comunicazione interna/esterna (API REST vs NATS Request-Reply e/o a eventi);
-  - Strategia di separazione delle repository;
-  - Approccio alla documentazione architetturale per la PB;
-  - Struttura del Manuale Utente.
+  - suddivisione microservizi e comunicazione interna/esterna (API REST vs NATS Request-Reply e/o a eventi);
+  - strategia di separazione delle repository;
+  - approccio alla documentazione architetturale per la PB;
+  - struttura del manuale utente.
 
 ][
 
@@ -39,25 +39,25 @@
     discussion_point: [Suddivisione microservizi e comunicazione interna/esterna],
     discussion: [
 
-      - *Accoppiamento e Granularità:* La comunicazione sincrona genera forti dipendenze (disponibilità simultanea,
+      - *Accoppiamento e Granularità:* la comunicazione sincrona genera forti dipendenze (disponibilità simultanea,
         necessità di retry/circuit breaker).
-        - *Accorpamento:* Valutare l'unificazione se il servizio A dipende strettamente da B.
-        - *Separazione:* Mantenere distinti i servizi con volumi di carico differenti per garantire lo scaling
+        - *Accorpamento:* valutare l'unificazione se il servizio A dipende strettamente da B.
+        - *Separazione:* mantenere distinti i servizi con volumi di carico differenti per garantire lo scaling
           indipendente.
-        - *Approccio prof. Cardin:* Prediligere una suddivisione iniziale granulare per poi unificare solo se
+        - *Approccio Prof. Cardin:* prediligere una suddivisione iniziale granulare per poi unificare solo se
           necessario.
 
-      - *Persistenza:* Confermato l'#strong[anti-pattern] del database condiviso; ogni microservizio deve possedere il
+      - *Persistenza:* confermato l'#strong[anti-pattern] del database condiviso; ogni microservizio deve possedere il
         proprio strato di persistenza dedicato.
 
       - *Comunicazione e Pattern:*
-        - *Modello Ibrido:* Adottare un approccio sincrono verso l'esterno (richiesta-risposta) e asincrono internamente
+        - *Modello Ibrido:* adottare un approccio sincrono verso l'esterno (richiesta-risposta) e asincrono internamente
           (event-driven).
-        - *Resilienza:* Implementazione obbligatoria di timeout, throttling, circuit breaker e logiche di retry.
-        - *Transazionalità:* Deve essere circoscritta a un singolo microservizio per evitare la complessità delle
+        - *Resilienza:* implementazione obbligatoria di timeout, throttling, circuit breaker e logiche di retry.
+        - *Transazionalità:* deve essere circoscritta a un singolo microservizio per evitare la complessità delle
           transazioni distribuite.
 
-      - *API Gateway:* Le API esterne possono fungere da aggregatori per più microservizi interni (es. gestione tenant e
+      - *API Gateway:* le API esterne possono fungere da aggregatori per più microservizi interni (es. gestione tenant e
         logica applicativa).
     ],
     decisions: [
