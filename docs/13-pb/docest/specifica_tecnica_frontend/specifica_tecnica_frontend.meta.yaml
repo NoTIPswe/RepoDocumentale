@@ -1,0 +1,38 @@
+title: Specifica tecnica - Frontend WebApp
+changelog:
+  - version: "1.0.0"
+    date: "2026-04-13"
+    approver: Leonardo Preo
+    baseline: PB
+  - version: "0.3.0"
+    date: "2026-04-12"
+    authors:
+      - Leonardo Preo
+    verifier: Francesco Marcon
+    description: >
+      Revisione generale della specifica tecnica del frontend, con allineamento
+      della struttura del documento e consolidamento delle sezioni descrittive
+  - version: "0.2.0"
+    date: "2026-04-10"
+    authors:
+      - Leonardo Preo
+    verifier: Alessandro Contarini
+    description: >
+      Integrazione delle informazioni su autenticazione, gestione degli errori e
+      interazione con le API esposte dai servizi backend
+  - version: "0.1.0"
+    date: "2026-04-09"
+    authors:
+      - Leonardo Preo
+    verifier: Francesco Marcon
+    description: >
+      Prima stesura della specifica tecnica, con definizione dell'architettura
+      generale e delle funzionalità principali della WebApp frontend
+  - version: "0.0.1"
+    date: "2026-04-05"
+    authors:
+      - Leonardo Preo
+    verifier: Alessandro Mazzariol
+    description: >
+      Creazione della prima bozza del documento e impostazione iniziale della
+      specifica tecnica del frontend
