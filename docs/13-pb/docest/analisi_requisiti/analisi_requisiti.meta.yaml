@@ -1,5 +1,9 @@
 title: Analisi dei requisiti
 changelog:
+  - version: "2.0.0"
+    approver: Leonardo Preo
+    baseline: PB
+    date: "2026-04-13"
   - version: "1.4.1"
     date: "2026-04-07"
     authors:
