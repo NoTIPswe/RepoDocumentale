@@ -465,8 +465,8 @@
   - *Hypertables*: partizionamento automatico dei dati per intervalli temporali, che mantiene le performance di query
     costanti all'aumentare del volume di dati.
   - *Compressione nativa*: possibilità di comprimere automaticamente i chunk più vecchi, riducendo lo spazio su disco.
-  - *Separazione del database delle misure*: TimescaleDB è un servizio indipendente da PostgreSQL gestionale,
-    che permette di scalare i due database separatamente in base al carico.
+  - *Separazione del database delle misure*: TimescaleDB è un servizio indipendente da PostgreSQL gestionale, che
+    permette di scalare i due database separatamente in base al carico.
 
   == Separazione dei database
 
