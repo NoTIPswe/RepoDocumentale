@@ -22,17 +22,17 @@
   == Riferimenti
   === Riferimenti normativi
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato d'appalto C7 - Sistema di
-      acquisizione dati da sensori]\ _Ultimo accesso: 2026-03-09_
+      acquisizione dati da sensori]\ _Ultimo accesso: 2026-04-13_
   - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_qualifica.pdf")[Piano di Qualifica
       v1.1.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti
-      v1.1.0]
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto v1.1.0]
+      v2.0.0]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto v2.0.0]
   === Riferimenti informativi
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf")[T03 - Ciclo di vita del Software] \ _Ultimo
-    accesso: 2026-03-09_
+    accesso: 2026-04-13_
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf")[T04 - Gestione di Progetto] \ _Ultimo accesso:
-    2026-03-09_
+    2026-04-13_
 
   = Analisi e gestione dei rischi
   == Introduzione
@@ -151,7 +151,7 @@
     caption: [Problematiche personali o attività universitarie],
   )<tab:RP1>
 
-  = Pianificazione nel lungo termine
+  = Pianificazione nel lungo termine <pianificazione_lungo_termine>
 
   Come anticipato nella #link(
     "https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/dichiarazione_impegni.pdf",
@@ -173,8 +173,32 @@
       [Verificatore], [134], [2010],
       [*Totale*], [*637*], [*12940*],
     ),
-    caption: [Ore e costo per ciascun ruolo, e preventivo finale],
+    caption: [Ore e costo per ciascun ruolo, e preventivo finale alla candidatura],
   )<tab:costi>
+
+  La revisione per la Requirements and Technology Baseline (RTB) è avvenuta il 2 Marzo
+  2026.
+  Superata la Requirements and Technology Baseline (RTB), all’avvio della Product Baseline (PB), il gruppo ha deciso di
+  ridistribuire le ore disponibili per ottimizzare l’allocazione delle risorse in vista delle attività previste. La
+  nuova ripartizione è riportata nella tabella seguente:
+
+  #figure(
+    numbering: "1",
+    table(
+      columns: (2fr, 1fr, 1fr),
+      inset: 0.8em,
+      table.header([*Ruolo*], [*Ore*], [*Costo*]),
+
+      [Responsabile], [51], [1530],
+      [Amministratore], [64], [1280],
+      [Analista], [80], [2000],
+      [Progettista], [141], [3525],
+      [Programmatore], [167], [2505],
+      [Verificatore], [140], [2100],
+      [*Totale*], [*643*], [*12940*],
+    ),
+    caption: [Ore e costo per ciascun ruolo, e preventivo finale post ridistribuzione per la PB],
+  )<tab:costi-ridistribuzione>
 
   == Attività fissate per la Requirements and Technology Baseline (RTB)
 
@@ -323,29 +347,32 @@
   Di seguito sono riportate le attività previste per la fase di PB, suddivise per argomento.
   === Correzione errori nei documenti segnalati
   #figure(
-    table(
-      columns: (0.25fr, 0.25fr),
-      table.header(
-        table.cell(align: center)[*Attività*],
-        table.cell(align: center)[*Periodo*],
-      ),
-      [
-        - Correzione posizione lettera di presentazione.
-        - Eliminazione changelog dai verbali nella versione ufficiale.
-        - Correzione AdR:
-          - Correzione documenti normativi e informativi;
-          - Correzione Use-case;
-          - Correzione Piano di Progetto;
-          - Correzione requisiti.
-      ],
-      [
-        - Sprint 8
-      ],
-      table.cell(colspan: 2, align: center)[*Completato per PB*],
-    ),
+    align(left)[
+      #table(
+        columns: (0.25fr, 0.25fr),
+        align: (left, left),
+        table.header(
+          table.cell(align: center)[*Attività*],
+          table.cell(align: center)[*Periodo*],
+        ),
+        [
+          - Correzione posizione lettera di presentazione.
+          - Eliminazione changelog dai verbali nella versione ufficiale.
+          - Correzione AdR:
+            - Correzione documenti normativi e informativi;
+            - Correzione Use-case;
+            - Correzione Piano di Progetto;
+            - Correzione requisiti.
+        ],
+        [
+          - Sprint 8
+        ],
+        table.cell(colspan: 2, align: center)[*Completato per PB*],
+      )
+    ],
   )<tab:Correzione-RTB>
 
-  === Redazione manuale test
+  === Redazione TestBook
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -355,19 +382,16 @@
     [
       - Definizione struttura del documento
       - Descrizione ambiente di esecuzione dei test
-      - Elenco e descrizione dei test di unità, integrazione e sistema
+      - Elenco e descrizione dei test di integrazione e sistema
       - Procedura di esecuzione e verifica dei risultati
     ],
     [
-      - Sprint 9
-      - Sprint 10
-      - Sprint 11
       - Sprint 12
     ],
     table.cell(colspan: 2, align: center)[*Completato per PB*],
   )
 
-  === Redazione manuale utente
+  === Redazione manuali
   #table(
     columns: (0.25fr, 0.25fr),
     table.header(
@@ -375,15 +399,141 @@
       table.cell(align: center)[*Periodo*],
     ),
     [
-      - Requisiti di installazione e avvio
-      - Configurazione del sistema
-      - Guida all'utilizzo delle funzionalità principali
-      - Gestione errori comuni e troubleshooting
+      - Redazione manuale utente
+        - Descrizione funzionalità del sistema
+      - Redazione manuale admin
+        - Descrizione funzionalità del sistema
+      - Redazione manuale client api
+        - Descrizione API esposte dal sistema
+        - Descrizione procedura di implementazione libreria dedicata a decrittazione dati
+      - Redazione manuale infrastruttura
+        - Descrizione procedura di deploy del sistema
+        - Inserimento sezione di monitoring tramite Grafana
     ],
     [
       - Sprint 10
       - Sprint 11
       - Sprint 12
+    ],
+    table.cell(colspan: 2, align: center)[*Completato per PB*],
+  )
+
+  === Redazione specifiche tecniche
+  #table(
+    columns: (0.25fr, 0.25fr),
+    table.header(
+      table.cell(align: center)[*Attività*],
+      table.cell(align: center)[*Periodo*],
+    ),
+    [
+      - Redazione specifica tecnica data-api
+      - Redazione specifica tecnica management-api
+      - Redazione specifica tecnica data-consumer
+      - Redazione specifica tecnica simulator-backend e sim-cli
+      - Redazione specifica tecnica \@notip/crypto-sdk
+      - Redazione specifica tecnica WebApp Frontend
+      - Redazione specifica tecnica provisioning-service
+      - Redazione specifica tecnica generale
+
+    ],
+    [
+      - Sprint 10
+      - Sprint 11
+      - Sprint 12
+    ],
+    table.cell(colspan: 2, align: center)[*Completato per PB*],
+  )
+
+  === Aggiornamento analisi dei requisiti (AdR)
+  #table(
+    columns: (0.25fr, 0.25fr),
+    table.header(
+      table.cell(align: center)[*Attività*],
+      table.cell(align: center)[*Periodo*],
+    ),
+    [
+      - Aggiornamento Casi d'Uso effettivamente realizzati
+      - Aggiornamento requisiti funzionali e non funzionali
+      - Automatizzazione tracciamento requisiti, creazione e numerazione Casi d'Uso
+    ],
+    [
+      - Sprint 10
+      - Sprint 12
+    ],
+    table.cell(colspan: 2, align: center)[*Completato per PB*],
+  )
+  === Redazione norme di progetto (NdP)
+  #table(
+    columns: (0.25fr, 0.25fr),
+    table.header(
+      table.cell(align: center)[*Attività*],
+      table.cell(align: center)[*Periodo*],
+    ),
+    [
+      - Parte introduttiva
+      - Processi primari, di supporto e organizzativi
+      - Metriche di qualità utilizzate
+    ],
+    [
+      - Sprint 7
+      - Sprint 8
+      - Sprint 10
+      - Sprint 11
+      - Sprint 12
+    ],
+    table.cell(colspan: 2, align: center)[*Completato per PB*],
+  )
+
+
+  === Redazione piano di progetto (PdP)
+  #table(
+    columns: (0.25fr, 0.25fr),
+    table.header(
+      table.cell(align: center)[*Attività*],
+      table.cell(align: center)[*Periodo*],
+    ),
+    [
+      - Descrizione degli Sprint
+    ],
+    [
+
+      -Tutti gli sprint
+    ],
+    table.cell(colspan: 2, align: center)[*Completato per PB*],
+  )
+
+
+  === Redazione piano di qualifica (PdQ)
+  #table(
+    columns: (0.25fr, 0.25fr),
+    table.header(
+      table.cell(align: center)[*Attività*],
+      table.cell(align: center)[*Periodo*],
+    ),
+    [
+      - Inserimento metriche di qualità di processo e di prodotto
+      - Inserimento test di unità, integrazione e sistema
+    ],
+    [
+      - Sprint 10
+      - Sprint 11
+      - Sprint 12
+    ],
+    table.cell(colspan: 2, align: center)[*Completato per PB*],
+  )
+
+  === Redazione glossario
+  #table(
+    columns: (0.25fr, 0.25fr),
+    table.header(
+      table.cell(align: center)[*Attività*],
+      table.cell(align: center)[*Periodo*],
+    ),
+    [
+      - Termini
+    ],
+    [
+      - Tutti gli sprint
     ],
     table.cell(colspan: 2, align: center)[*Completato per PB*],
   )
@@ -396,7 +546,6 @@
       table.cell(align: center)[*Periodo*],
     ),
     [
-      - Correzione criticità emerse in RTB
       - Definizione e consolidamento dell'architettura
       - Implementazione dei componenti principali del sistema
       - Integrazione tra i componenti
@@ -624,7 +773,7 @@
         [Alessandro \ Mazzariol], [6], [-], [-], [-], [-], [1], [*7*],
         [Leonardo \ Preo], [-], [-], [4,5], [-], [-], [3], [*7,5*],
         [Valerio \ Solito], [-], [-], [3], [-], [-], [4], [*7*],
-        [Matteo \ Mantoan], [-], [5,25], [-], [-], [-], [2,5], [*7,75*],
+        [Matteo \ Mantoan], [-], [5], [-], [-], [-], [2,5], [*7,5*],
         [Mario De\ Pasquale], [-], [3,5], [1,5], [-], [-], [-], [*5*],
       )
     ],
@@ -659,12 +808,12 @@
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
       [Responsabile], [51], [1530],
-      [Amministratore], [33,5], [670],
+      [Amministratore], [33,75], [675],
       [Analista], [63], [1575],
       [Progettista], [137], [3425],
       [Programmatore], [165], [2475],
       [Verificatore], [111], [1665],
-      [*Totale*], [*560,5*], [*11340*],
+      [*Totale*], [*560,75*], [*11345*],
     ),
   )<tab:Sprint2-costi>
   === Sprint 3
@@ -782,12 +931,12 @@
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
       [Responsabile], [47], [1410],
-      [Amministratore], [23], [460],
+      [Amministratore], [23,25], [465],
       [Analista], [31], [775],
       [Progettista], [137], [3425],
       [Programmatore], [165], [2475],
       [Verificatore], [99], [1485],
-      [*Totale*], [*502*], [*10030*],
+      [*Totale*], [*502,25*], [*10035*],
     ),
   )<tab:Sprint3-costi>
 
@@ -907,12 +1056,12 @@
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
       [Responsabile], [43], [1290],
-      [Amministratore], [20], [400],
+      [Amministratore], [20,25], [405],
       [Analista], [8], [200],
       [Progettista], [137], [3425],
       [Programmatore], [165], [2475],
       [Verificatore], [88], [1320],
-      [*Totale*], [*461*], [*9110*],
+      [*Totale*], [*461,25*], [*9115*],
     ),
   )<tab:Sprint4-costi>
 
@@ -1029,12 +1178,12 @@
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
       [Responsabile], [36], [1080],
-      [Amministratore], [9], [180],
+      [Amministratore], [9,25], [185],
       [Analista], [8], [200],
       [Progettista], [137], [3425],
       [Programmatore], [134], [2010],
       [Verificatore], [75], [1125],
-      [*Totale*], [*399*], [*8020*],
+      [*Totale*], [*399,25*], [*8025*],
     ),
   )<tab:Sprint5-costi>
 
@@ -1156,12 +1305,12 @@
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
       [Responsabile], [26], [780],
-      [Amministratore], [5], [100],
+      [Amministratore], [5,25], [105],
       [Analista], [8], [200],
       [Progettista], [137], [3425],
       [Programmatore], [130], [1950],
       [Verificatore], [57], [855],
-      [*Totale*], [*363*], [*7310*],
+      [*Totale*], [*363,25*], [*7315*],
     ),
   )<tab:Sprint6-costi>
 
@@ -1200,7 +1349,7 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [-], [2], [0,75], [-], [-], [0], [*2,75*],
+        [Alessandro \ Contarini], [-], [2], [0,75], [-], [-], [-], [*2,75*],
         [Francesco \ Marcon], [5], [0,25], [2,5], [-], [-], [-], [*7,75*],
         [Alessandro \ Mazzariol], [-], [1,5], [-], [-], [-], [3], [*4,5*],
         [Leonardo \ Preo], [-], [1], [-], [-], [-], [4,5], [*5,5*],
@@ -1239,7 +1388,7 @@
         ),
 
         [Alessandro \ Contarini], [-], [2], [0,75], [-], [-], [-], [*2,75*],
-        [Francesco \ Marcon], [5], [0,25], [2,5], [-], [-], [-], [*7,75*],
+        [Francesco \ Marcon], [4], [0,25], [2,5], [-], [-], [-], [*6,75*],
         [Alessandro \ Mazzariol], [-], [1,5], [-], [-], [-], [3], [*4,5*],
         [Leonardo \ Preo], [-], [1], [-], [-], [-], [4,5], [*5,5*],
         [Valerio \ Solito], [-], [-], [-], [-], [5], [6], [*11*],
@@ -1286,18 +1435,40 @@
       inset: 0.8em,
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
-      [Responsabile], [21], [630],
-      [Amministratore], [-0,25], [-5],
+      [Responsabile], [22], [660],
+      [Amministratore], [0], [0],
       [Analista], [0,5], [12,5],
       [Progettista], [137], [3425],
       [Programmatore], [121], [1815],
       [Verificatore], [41,75], [626,25],
-      [*Totale*], [*321*], [*6503,75*],
+      [*Totale*], [*322,25*], [*6538,75*],
     ),
   )<tab:Sprint7-costi>
   #pagebreak()
 
   == Product Baseline (PB)
+  Con la scelta di ridistribuire alcune ore residue del ruolo di Responsabile per aumentare il tempo dedicato alle
+  attività di Amministrazione, Progettazione, Programmazione e Verifica, si è arrivati alla seguente distribuzione delle
+  risorse rimanenti:
+
+  #figure(
+    numbering: "1",
+    caption: [Sprint 7 - Variazione risorse monetarie rimanenti post ridistribuzione],
+    table(
+      columns: (2fr, 1fr, 1fr),
+      inset: 0.8em,
+      table.header([*Ruolo*], [*Ore*], [*Costo*]),
+
+      [Responsabile], [12], [360],
+      [Amministratore], [4], [80],
+      [Analista], [0,5], [12,50],
+      [Progettista], [141], [3525],
+      [Programmatore], [123], [1845],
+      [Verificatore], [47,75], [716,25],
+      [*Totale*], [*328,25*], [*6538,75*],
+    ),
+  )<tab:Sprint7-costi-post-ridistribuzione>
+
   === Sprint 8
   Inizio: *2026-03-04* \
   Fine prevista: *2026-03-15* \
@@ -1375,7 +1546,7 @@
         [Alessandro \ Mazzariol], [-], [-], [-], [6], [1], [1], [*8*],
         [Leonardo \ Preo], [-], [-], [-], [5], [1], [1], [*7*],
         [Valerio \ Solito], [-], [-], [-], [3], [-], [1], [*4*],
-        [Matteo \ Mantoan], [5], [-], [-], [2], [2], [1], [*10*],
+        [Matteo \ Mantoan], [4], [-], [-], [2], [2], [1], [*9*],
         [Mario De\ Pasquale], [-], [-], [-], [7], [-], [-], [*7*],
       )
     ],
@@ -1417,13 +1588,13 @@
       inset: 0.8em,
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
-      [Responsabile], [16], [480],
-      [Amministratore], [-0,25], [-5],
-      [Analista], [0,5], [12,5],
-      [Progettista], [106], [2650],
-      [Programmatore], [115], [1725],
-      [Verificatore], [35,75], [536,25],
-      [*Totale*], [*273*], [*5398,75*],
+      [Responsabile], [8], [240],
+      [Amministratore], [4], [80],
+      [Analista], [0,5], [12,50],
+      [Progettista], [110], [2750],
+      [Programmatore], [117], [1755],
+      [Verificatore], [41,75], [626,25],
+      [*Totale*], [*281,25*], [*5463,75*],
     ),
   )<tab:Sprint8-costi>
 
@@ -1462,12 +1633,12 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [3], [-], [-], [6], [4], [2], [*15*],
-        [Francesco \ Marcon], [-], [-], [-], [4,5], [3,5], [1], [*9*],
-        [Alessandro \ Mazzariol], [-], [-], [-], [4,5], [4,5], [1], [*10*],
-        [Leonardo \ Preo], [-], [-], [-], [4,5], [3,5], [1], [*9*],
-        [Valerio \ Solito], [-], [-], [-], [4], [3], [1], [*4*],
-        [Matteo \ Mantoan], [-], [-], [-], [4], [4], [1], [*9*],
+        [Alessandro \ Contarini], [1], [-], [-], [5], [3], [2], [*11*],
+        [Francesco \ Marcon], [-], [-], [-], [6], [4], [1,25], [*11,25*],
+        [Alessandro \ Mazzariol], [-], [-], [-], [6], [5], [-], [*11*],
+        [Leonardo \ Preo], [-], [-], [-], [5], [4], [1], [*10*],
+        [Valerio \ Solito], [-], [-], [-], [4], [5], [1], [*10*],
+        [Matteo \ Mantoan], [-], [-], [-], [4], [5], [1], [*10*],
         [Mario De\ Pasquale], [-], [-], [-], [4], [4], [1], [*9*],
       )
     ],
@@ -1500,12 +1671,12 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [3], [-], [-], [6], [4], [2], [*15*],
+        [Alessandro \ Contarini], [1], [-], [-], [6], [5], [2], [*14*],
         [Francesco \ Marcon], [-], [-], [-], [6], [4], [1,25], [*11,25*],
         [Alessandro \ Mazzariol], [-], [-], [-], [6], [5], [1], [*12*],
-        [Leonardo \ Preo], [-], [-], [-], [5], [4], [1], [*10*],
+        [Leonardo \ Preo], [-], [-], [-], [7], [4], [1], [*12*],
         [Valerio \ Solito], [-], [-], [-], [4], [3], [1], [*8*],
-        [Matteo \ Mantoan], [-], [-], [-], [4], [4], [1], [*9*],
+        [Matteo \ Mantoan], [-], [-], [-], [4], [5], [1], [*10*],
         [Mario De\ Pasquale], [-], [-], [-], [4], [4], [1], [*9*],
       )
     ],
@@ -1544,13 +1715,13 @@
       inset: 0.8em,
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
-      [Responsabile], [13], [390],
-      [Amministratore], [-0,25], [-5],
-      [Analista], [0,5], [12,5],
-      [Progettista], [71], [1775],
+      [Responsabile], [7], [210],
+      [Amministratore], [4], [80],
+      [Analista], [0,5], [12,50],
+      [Progettista], [73], [1825],
       [Programmatore], [87], [1305],
-      [Verificatore], [27,5], [412,5],
-      [*Totale*], [*198,75*], [*3890*],
+      [Verificatore], [33,5], [502,50],
+      [*Totale*], [*205*], [*3935*],
     ),
   )<tab:Sprint9-costi>
 
@@ -1588,13 +1759,13 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [-], [-], [-], [5], [5], [2], [*12*],
-        [Francesco \ Marcon], [-], [-], [-], [5], [4], [1], [*10*],
+        [Alessandro \ Contarini], [-], [-], [-], [5], [3], [2], [*10*],
+        [Francesco \ Marcon], [-], [-], [-], [5], [4], [1,5], [*10,5*],
         [Alessandro \ Mazzariol], [-], [-], [-], [4], [6], [1], [*11*],
         [Leonardo \ Preo], [-], [-], [-], [6], [4], [1], [*11*],
-        [Valerio \ Solito], [-], [-], [-], [3], [3], [1], [*7*],
-        [Matteo \ Mantoan], [3], [-], [-], [5], [3], [1], [*12*],
-        [Mario De\ Pasquale], [-], [-], [-], [4], [4], [-], [*8*],
+        [Valerio \ Solito], [-], [-], [-], [6], [3], [1], [*10*],
+        [Matteo \ Mantoan], [2], [-], [-], [5], [3], [1], [*11*],
+        [Mario De\ Pasquale], [-], [-], [-], [5], [5], [-], [*10*],
       )
     ],
   )<tab:Sprint10-ore-previste>
@@ -1626,12 +1797,12 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [-], [-], [-], [6], [5], [2], [*13*],
+        [Alessandro \ Contarini], [-], [-], [-], [6], [3], [2], [*11*],
         [Francesco \ Marcon], [-], [-], [-], [5], [4], [1,5], [*10,5*],
         [Alessandro \ Mazzariol], [-], [-], [-], [4], [6], [1], [*11*],
         [Leonardo \ Preo], [-], [-], [-], [6], [4], [1], [*11*],
-        [Valerio \ Solito], [-], [-], [-], [4], [3], [1], [*8*],
-        [Matteo \ Mantoan], [3], [-], [0,25], [5], [3], [1], [*12,25*],
+        [Valerio \ Solito], [-], [-], [-], [6], [3], [1], [*10*],
+        [Matteo \ Mantoan], [2], [-], [0,25], [5], [3], [1], [*11,25*],
         [Mario De\ Pasquale], [-], [-], [-], [4], [5], [-], [*9*],
       )
     ],
@@ -1675,13 +1846,13 @@
       inset: 0.8em,
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
-      [Responsabile], [10], [300],
-      [Amministratore], [-0,25], [-5],
+      [Responsabile], [5], [150],
+      [Amministratore], [4], [80],
       [Analista], [0,25], [6,25],
       [Progettista], [37], [925],
-      [Programmatore], [57], [855],
-      [Verificatore], [20], [300],
-      [*Totale*], [*124*], [*2381,25*],
+      [Programmatore], [59], [885],
+      [Verificatore], [26], [390],
+      [*Totale*], [*131,25*], [*2436,25*],
     ),
   )<tab:Sprint10-costi>
 
@@ -1720,11 +1891,11 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [-], [-], [-], [3], [3], [2], [*8*],
+        [Alessandro \ Contarini], [-], [-], [-], [3], [3,5], [2], [*8,5*],
         [Francesco \ Marcon], [-], [-], [-], [4], [3], [2], [*9*],
         [Alessandro \ Mazzariol], [-], [-], [-], [4], [4], [1], [*9*],
         [Leonardo \ Preo], [-], [-], [-], [5], [5], [1], [*11*],
-        [Valerio \ Solito], [4], [-], [-], [4], [4], [2], [*14*],
+        [Valerio \ Solito], [2], [-], [-], [4], [4], [2], [*12*],
         [Matteo \ Mantoan], [-], [-], [-], [5], [3], [2], [*10*],
         [Mario De\ Pasquale], [-], [-], [-], [5], [5], [-], [*10*],
       )
@@ -1758,11 +1929,11 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [-], [-], [-], [3], [4], [2], [*9*],
-        [Francesco \ Marcon], [-], [-], [-], [4], [3], [2], [*9*],
+        [Alessandro \ Contarini], [-], [-], [-], [3], [4], [2,5], [*9,5*],
+        [Francesco \ Marcon], [-], [-], [-], [4], [4], [2], [*10*],
         [Alessandro \ Mazzariol], [-], [-], [-], [4], [5], [1], [*10*],
         [Leonardo \ Preo], [-], [-], [-], [4], [6], [1], [*11*],
-        [Valerio \ Solito], [4], [-], [-], [4], [5], [2], [*15*],
+        [Valerio \ Solito], [2], [-], [-], [4], [5], [2], [*13*],
         [Matteo \ Mantoan], [-], [-], [-], [5], [3], [2], [*10*],
         [Mario De\ Pasquale], [-], [-], [-], [5], [5], [-], [*10*],
       )
@@ -1810,13 +1981,13 @@
       inset: 0.8em,
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
-      [Responsabile], [6], [180],
-      [Amministratore], [-0,25], [-5],
+      [Responsabile], [3], [90],
+      [Amministratore], [4], [80],
       [Analista], [0,25], [6,25],
       [Progettista], [8], [200],
-      [Programmatore], [26], [390],
-      [Verificatore], [10], [150],
-      [*Totale*], [*50*], [*921,25*],
+      [Programmatore], [27], [405],
+      [Verificatore], [15,50], [232,50],
+      [*Totale*], [*57,75*], [*1013,75*],
     ),
   )<tab:Sprint11-costi>
 
@@ -1856,12 +2027,12 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [-], [-], [-], [-], [5], [0,5], [*5,5*],
-        [Francesco \ Marcon], [-], [1], [1], [-], [2], [2,5], [*6,5*],
-        [Alessandro \ Mazzariol], [-], [-], [-], [-], [5], [-], [*5*],
-        [Leonardo \ Preo], [4], [-], [-], [-], [3], [1], [*8*],
+        [Alessandro \ Contarini], [-], [2], [-], [-], [3], [3], [*8*],
+        [Francesco \ Marcon], [-], [1], [-], [1], [3], [3,5], [*8,5*],
+        [Alessandro \ Mazzariol], [-], [-], [-], [-], [6], [1], [*7*],
+        [Leonardo \ Preo], [3], [-], [-], [-], [4], [1], [*8*],
         [Valerio \ Solito], [-], [1], [-], [3], [5], [1], [*10*],
-        [Matteo \ Mantoan], [-], [-], [-], [4], [2], [2], [*8*],
+        [Matteo \ Mantoan], [-], [-], [-], [4], [2], [3], [*9*],
         [Mario De\ Pasquale], [-], [-], [-], [-], [4], [3], [*7*],
       )
     ],
@@ -1894,13 +2065,13 @@
           [*Totale*],
         ),
 
-        [Alessandro \ Contarini], [-], [-], [-], [-], [5], [0,5], [*5,5*],
-        [Francesco \ Marcon], [-], [1], [-], [-], [2], [3,5], [*6,5*],
-        [Alessandro \ Mazzariol], [-], [-], [-], [-], [5], [-], [*5*],
-        [Leonardo \ Preo], [4], [-], [-], [-], [3], [1], [*8*],
+        [Alessandro \ Contarini], [-], [2], [-], [-], [3], [3], [*8*],
+        [Francesco \ Marcon], [-], [1], [-], [1], [3], [3,5], [*8,5*],
+        [Alessandro \ Mazzariol], [-], [-], [-], [-], [6], [1], [*7*],
+        [Leonardo \ Preo], [3], [-], [-], [-], [4], [1], [*8*],
         [Valerio \ Solito], [-], [1], [-], [3], [5], [1], [*10*],
         [Matteo \ Mantoan], [-], [-], [-], [4], [2], [3,25], [*9,25*],
-        [Mario De\ Pasquale], [-], [-], [-], [-], [4], [2,75], [*6,75*],
+        [Mario De\ Pasquale], [-], [-], [-], [-], [4], [3], [*7*],
       )
     ],
   )<tab:Sprint12-ore-effettive>
@@ -1940,17 +2111,67 @@
       inset: 0.8em,
       table.header([*Ruolo*], [*Ore*], [*Costo*]),
 
-      [Responsabile], [2], [60],
-      [Amministratore], [-2,25], [-45],
-      [Analista], [-0,75], [-18,75],
-      [Progettista], [1], [25],
+      [Responsabile], [0], [0],
+      [Amministratore], [0], [0],
+      [Analista], [0,25], [6,25],
+      [Progettista], [0], [0],
       [Programmatore], [0], [0],
-      [Verificatore], [0], [0],
-      [*Totale*], [*0*], [*21,25*],
+      [Verificatore], [-0,25], [-3,75],
+      [*Totale*], [*0*], [*2,50*],
     ),
   )<tab:Sprint12-costi>
 
-  A chiusura del progetto risulta pertanto un avanzo economico complessivo pari a *21,25 Euro* rispetto al budget
-  preventivato, dovuto alle riallocazioni effettuate nel corso degli sprint finali e al mancato utilizzo integrale delle
-  risorse monetarie inizialmente stimate.
+  #pagebreak()
+
+  = Riassunto delle risorse utilizzate durante il progetto
+  #figure(
+    numbering: "1",
+    caption: [Ore utilizzate da ogni componente per ciascun ruolo],
+    [
+      #set text(size: 9pt)
+
+      #table(
+        columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+        align: (left, center, center, center, center, center, center, center),
+        inset: 0.6em,
+
+        table.header(
+          [],
+          [*Responsabile*],
+          [*Amministratore*],
+          [*Analista*],
+          [*Progettista*],
+          [*Programmatore*],
+          [*Verificatore*],
+          [*Totale*],
+        ),
+
+        [Alessandro \ Contarini], [7], [10], [11], [19], [22], [22], [*91*],
+        [Francesco \ Marcon], [8], [9], [11], [20], [25], [20], [*93*],
+        [Alessandro \ Mazzariol], [7], [9], [9], [20], [28], [20], [*93*],
+        [Leonardo \ Preo], [7], [8], [12], [22], [25], [19], [*93*],
+        [Valerio \ Solito], [7], [8], [14], [20], [22], [20], [*91*],
+        [Matteo \ Mantoan], [6], [12], [11,75], [20], [21], [20,25], [*91*],
+        [Mario De\ Pasquale], [9], [8], [11], [20], [24], [19], [*91*],
+        [*Totale*], [*51*], [*64*], [*79,75*], [*141*], [*167*], [*140,25*], [*643*],
+      )
+    ],
+  )<tab:Progetto-ore-effettive>
+
+  Come si evidenzia dalla @tab:Sprint12-costi, ovvero le risorse rimanenti alla fine dell’ultimo sprint, il gruppo
+  termina la realizzazione di quanto necessario per affrontare la PB con un saldo rimanente di *2,50€*, spendendo dunque
+  un totale di *12.937,50€*, al sotto del saldo inizialmente a disposizione pari a *12.940€*.
+
+  Dalla @tab:Progetto-ore-effettive si evidenzia invece l’impegno concreto e uniforme apportato al progetto da parte di
+  tutti i componenti del gruppo, con un un numero di ore consumate totale in linea con la pianificazione.
+
+  Come analizzato nella @pianificazione_lungo_termine, tra RTB e PB è stato necessario modificare il quantitativo di ore
+  previsto a ciascun ruolo: il consumo percentuale di ciascun ruolo è esposto qui di seguito:
+
+  #figure(
+    caption: "Percentuale utilizzo ore di ciascun ruolo sul totale",
+  )[
+    #image("assets/chart.svg", width: 75%)
+  ]
+
 ]
