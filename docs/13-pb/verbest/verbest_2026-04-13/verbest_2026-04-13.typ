@@ -110,4 +110,6 @@
   La presente sezione funge da certificato di validazione formale. Le firme in calce attestano che i contenuti di questo
   verbale sono stati letti, verificati e approvati in ogni loro parte dai referenti autorizzati dell'azienda proponente
   _M31_.
+  #align(right)[
+    #image("assets/firma.png")]
 ]
