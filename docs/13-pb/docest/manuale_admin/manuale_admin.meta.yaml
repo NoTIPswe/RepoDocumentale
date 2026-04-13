@@ -1,5 +1,9 @@
 title: Manuale Admin
 changelog:
+  - version: 1.0.0
+    date: '2026-04-13'
+    approver: Leonardo Preo
+    baseline: PB
   - version: "0.0.1"
     date: "2026-04-10"
     authors:
