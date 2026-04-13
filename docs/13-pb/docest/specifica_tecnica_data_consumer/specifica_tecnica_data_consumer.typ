@@ -332,7 +332,7 @@
       (partition key dell'ipertabella) a `TelemetryEnvelope`. I tre `OpaqueBlob` sono passati invariati.],
 
     [`AlertPayload`],
-    [Payload pubblicato su `alert.gw_offline.{tenantId}`. Campi con JSON tag: `GatewayID string` (`gatewayId`),
+    [Payload pubblicato su `alert.{tenantId}.gw_offline`. Campi con JSON tag: `GatewayID string` (`gatewayId`),
       `LastSeen time.Time` (`lastSeen`), `TimeoutMs int64` (`timeoutMs`), `Timestamp time.Time` (`timestamp`).],
 
     [`AlertConfig`], [`TenantID string`; `GatewayID *string` (nil = default tenant); `TimeoutMs int64`.],
@@ -550,7 +550,7 @@
 
   === NATSAlertPublisher
 
-  Implementa `AlertPublisher`. Serializza `AlertPayload` in JSON e pubblica su `alert.gw_offline.{tenantId}` via
+  Implementa `AlertPublisher`. Serializza `AlertPayload` in JSON e pubblica su `alert.{tenantId}.gw_offline` via
   JetStream. Il subject è assemblato al momento della pubblicazione. Dipende dall'interfaccia `natsJSPublisher`
   (soddisfatta da `nats.JetStreamContext`).
 
@@ -1278,7 +1278,7 @@
     [Caso di test], [Infrastruttura], [Verifica],
     [Publish su subject corretto],
     [NATS],
-    [Messaggio ricevuto su `alert.gw_offline.{tenantId}`; payload JSON corrispondente all'input],
+    [Messaggio ricevuto su `alert.{tenantId}.gw_offline`; payload JSON corrispondente all'input],
 
     [Isolamento multi-tenant], [NATS], [Subscriber del tenant A non riceve l'alert del tenant B e viceversa],
   )
