@@ -1,5 +1,9 @@
 title: Lettera di presentazione
 changelog:
+  - version: "1.0.0"
+    approver: Valerio Solito
+    baseline: PB
+    date: "2026-04-13"
   - version: "0.0.1"
     date: "2026-04-11"
     authors:
