@@ -46,7 +46,9 @@
 
   Con la presente il gruppo *NoTIP* comunica formalmente la propria intenzione di sostenere la revisione della Product
   Baseline (PB), relativamente al progetto proposto dall'azienda M31, capitolato *C7*, intitolato: *"Sistema di
-  acquisizione dati da sensori"*, a seguito dell'approvazione formale ricevuta durante il #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/verbest/verbest_2026-04-13.pdf")[colloquio] con l'azienda proponente, avvenuto in data 13 aprile 2026. \
+  acquisizione dati da sensori"*, a seguito dell'approvazione formale ricevuta durante il #link(
+    "https://notipswe.github.io/RepoDocumentale/docs/13-pb/verbest/verbest_2026-04-13.pdf",
+  )[colloquio] con l'azienda proponente, avvenuto in data 13 aprile 2026. \
 
   La documentazione completa relativa alla revisione PB è disponibile sul #link(
     "https://notipswe.github.io/RepoDocumentale",
@@ -77,7 +79,7 @@
   - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_frontend.pdf")[Specifica
       Tecnica - Frontend v1.0.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_crypto_sdk.pdf")[Specifica
-      Tecnica - Crypto SDK v1.0.0] 
+      Tecnica - Crypto SDK v1.0.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/manuale_utente.pdf")[Manuale Utente v1.0.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/manuale_admin.pdf")[Manuale Amministratore
       v1.0.0]

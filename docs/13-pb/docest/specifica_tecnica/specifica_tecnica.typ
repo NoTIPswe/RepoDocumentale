@@ -528,7 +528,7 @@
 
   Per la specifica tecnica dettagliata si rimanda al documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_management_api.pdf",
-  )[Specifica Tecnica — Management API].
+  )[Specifica Tecnica — Management API v1.0.0].
 
   == Provisioning service
 
@@ -565,7 +565,7 @@
 
   Per la specifica tecnica dettagliata si rimanda al documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_provisioning_service.pdf",
-  )[Specifica Tecnica — Provisioning Service].
+  )[Specifica Tecnica — Provisioning Service v1.0.0].
 
   == Data consumer
 
@@ -598,7 +598,7 @@
 
   Per la specifica tecnica dettagliata si rimanda al documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_data_consumer.pdf",
-  )[Specifica Tecnica — Data Consumer].
+  )[Specifica Tecnica — Data Consumer v1.0.0].
 
   == Data API
 
@@ -635,7 +635,7 @@
 
   Per la specifica tecnica dettagliata si rimanda al documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_data_api.pdf",
-  )[Specifica Tecnica — Data API].
+  )[Specifica Tecnica — Data API v1.0.0].
 
   == Simulator backend
 
@@ -677,7 +677,7 @@
 
   Per la specifica tecnica dettagliata si rimanda al documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_simulator_backend_cli.pdf",
-  )[Specifica Tecnica — Simulator Backend].
+  )[Specifica Tecnica — Simulator Backend v1.0.0].
 
   == Web application (Frontend)
 
@@ -714,7 +714,7 @@
 
   Per la specifica tecnica dettagliata si rimanda al documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_frontend.pdf",
-  )[Specifica Tecnica — Frontend].
+  )[Specifica Tecnica — Frontend v1.0.0].
 
   == Simulator CLI
 
@@ -738,13 +738,13 @@
 
   Per la specifica tecnica dettagliata si rimanda al documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_simulator_backend_cli.pdf",
-  )[Specifica Tecnica — Simulator CLI].
+  )[Specifica Tecnica — Simulator CLI v1.0.0].
 
   == \@notip/crypto-sdk
 
   Il `@notip/crypto-sdk` è una libreria TypeScript pubblicata come pacchetto npm (#link(
     "https://www.npmjs.com/package/@notip/crypto-sdk?activeTab=readme",
-  )[`@notip/crypto-sdk`, versione 2.0.1]_Ultimo Accesso: 2026-04-13_) che incapsula l'intera logica di decifratura
+  )[`@notip/crypto-sdk`, versione 2.0.1] _Ultimo Accesso: 2026-04-13_) che incapsula l'intera logica di decifratura
   client-side della telemetria NoTIP. A differenza degli altri componenti del sistema, non è un microservizio ma una
   libreria riutilizzabile: viene importata dalla Web Application e può essere integrata da qualsiasi API client esterno
   che necessiti di accedere ai dati telemetrici in chiaro.
@@ -756,6 +756,11 @@
   un'implementazione equivalente), i dati resterebbero opachi. Il pacchetto centralizza questa logica in un modulo
   testato, versionato e con interfacce chiare, evitando che la complessità del processo di decifratura (risoluzione
   delle chiavi, caching, gestione degli errori, parsing e validazione del payload) venga replicata in ogni consumer.
+
+  Per la specifica tecnica dettagliata si rimanda al documento #link(
+    "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_crypto_sdk.pdf",
+    [Specifica Tecnica - Crypto SDK v.1.0.0],
+  ).
 
   === Integrazione nel sistema
 
