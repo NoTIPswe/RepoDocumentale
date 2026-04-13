@@ -25,7 +25,28 @@
   abstract: "Manuale tecnico degli endpoint API esposti dalla piattaforma NoTIP, destinato a sviluppatori e integratori esterni.",
   changelog: metadata.changelog,
   scope: base-document.EXTERNAL_SCOPE,
+  glossary-highlighted: false,
 )[
+  
+  #let _terms = (
+    "AES-256": "Algoritmo di cifratura simmetrica a 256 bit utilizzato per proteggere i payload telemetrici con decifratura esclusivamente client-side.",
+    "Bearer Token": "Token di autorizzazione trasmesso nelle richieste HTTP, di solito nell'header Authorization, per dimostrare che il client ha il diritto di accedere a una risorsa.",
+    "Endpoint": "URL o percorso specifico di un'API che rappresenta una risorsa o un'azione disponibile per i client, identificato univocamente nel sistema.",
+    "Gateway": "Dispositivo fisico o software che funge da punto di accesso e intermediario per la comunicazione tra reti, sensori o sistemi diversi.",
+    "JWT": "Acronimo di JSON Web Token, standard aperto per la creazione di token di accesso che consentono l'autenticazione e lo scambio sicuro di informazioni tra parti.",
+    "KeyCloak": "Piattaforma Open Source che permette di centralizzare l'autenticazione e l'autorizzazione per applicazioni e servizi moderni.",
+    "OAuth2": "Standard di autorizzazione che consente l'accesso delegato ai servizi, permettendo l'autenticazione tramite provider terzi senza esporre le credenziali.",
+    "Provisioning": "Processo di registrazione e configurazione iniziale di un gateway nella piattaforma.",
+    "REST": "Acronimo di Representational State Transfer, stile architetturale per la progettazione di API basato su HTTP e rappresentazioni di risorse.",
+    "SDK": "Acronimo di Software Development Kit, insieme di librerie, strumenti e documentazione che aiuta a integrare o sviluppare un software in modo più rapido e coerente.",
+    "SSE": "Protocollo HTTP unidirezionale (Server-Sent Events) che permette al server di inviare aggiornamenti in tempo reale al client attraverso una connessione persistente.",
+    "Telemetria": "Raccolta e trasmissione automatica di dati di misurazione e diagnostica da dispositivi remoti a un sistema centrale per monitoraggio e analisi.",
+    "Tenant": "Entità cliente in un'architettura multi-tenancy che condivide l'infrastruttura ma con segregazione completa dei dati e delle risorse.",
+  )
+  #let _term-keys = _terms.keys().sorted(key: k => -k.len())
+  #let _term-regex = regex("(?i)" + _term-keys.map(k => "\b" + k.replace(".", "\\.") + "\b").join("|"))
+  #show _term-regex: it => [_#it#sub[G]_]
+
   = Introduzione
   Il presente documento costituisce il manuale tecnico della piattaforma NoTIP dedicato alle funzionalità esposte
   tramite le interfacce API. L'obiettivo è descrivere in modo chiaro e puntuale le modalità di utilizzo e integrazione
@@ -39,10 +60,9 @@
   semplificato alle misure cifrate.
 
   == Glossario
-  Il #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/glossario.pdf")[Glossario v3.0.0] è un
-  documento soggetto a continuo aggiornamento per l'intera durata del progetto; il suo scopo è definire la terminologia
-  tecnica per garantire una comprensione chiara e univoca dei contenuti. I termini presenti nel Glossario sono
-  contrassegnati nel testo da una lettera "G" posta a pedice (es. parola#sub[G]).
+  I termini tecnici rilevanti per la comprensione del manuale sono definiti nella sezione *Glossario* a fondo documento;
+  nel testo tali termini sono contrassegnati con pedice _G_. Per il glossario completo del progetto, si rimanda al
+  #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/glossario.pdf")[Glossario v3.0.0].
 
   = Prerequisiti
   - Ottenere le credenziali di accesso: per poter utilizzare le API è necessario richiedere le credenziali di accesso a
@@ -1085,4 +1105,16 @@
   Per ulteriori informazioni sulla piattaforma, sul modello di sicurezza adottato o sulle procedure di registrazione di
   un Client, si raccomanda di consultare la documentazione di progetto disponibile sul sito ufficiale del gruppo o di
   contattare l'amministratore del proprio Tenant di riferimento.
+
+  #[
+    #show _term-regex: it => it
+
+    #pagebreak()
+
+    = Glossario
+
+    #for (term, def) in _terms.pairs().sorted(key: p => p.first()) [
+      / #term: #def
+    ]
+  ]
 ]
