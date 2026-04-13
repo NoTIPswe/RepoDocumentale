@@ -1672,7 +1672,8 @@
 
       [#par(justify: false)[`deleteUsers(tenantId, requesterId, requesterRole, dto)`]],
       [#par(justify: false)[`POST /users/bulk-delete`]],
-      [#par(justify: false)[Eliminazione bulk di utenti; previene auto-eliminazione e protezione TENANT_ADMIN]],
+      [#par(justify: false)[Eliminazione bulk di utenti; previene auto-eliminazione e protezione TENANT_ADMIN
+        (deprecata)]],
     )
   ]
 
