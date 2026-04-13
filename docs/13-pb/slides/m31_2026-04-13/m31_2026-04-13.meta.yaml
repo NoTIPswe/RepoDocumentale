@@ -1,5 +1,9 @@
 title: Presentazione MVP - M31
 changelog:
+  - version: 1.0.0
+    date: '2026-04-13'
+    approver: Leonardo Preo
+    baseline: PB
   - version: "0.2.0"
     date: "2026-04-13"
     authors:
