@@ -113,13 +113,15 @@
     piattaforma.
   - È stata redatta una *specifica tecnica dedicata per ciascun microservizio*, per documentarne responsabilità,
     interfacce e scelte implementative.
-  - È stato prodotto un *manuale utente* per Tenant Users e per Tenant Admin, focalizzato sui flussi
-    operativi della Web Application.
-  - È stato prodotto un *manuale operativo per il System Admin*, dedicato alla gestione multi-tenant, assegnazione gateway e alle attività di
-    supporto clienti tramite impersonazione.
+  - È stato prodotto un *manuale utente* per Tenant Users e per Tenant Admin, focalizzato sui flussi operativi della Web
+    Application.
+  - È stato prodotto un *manuale operativo per il System Admin*, dedicato alla gestione multi-tenant, assegnazione
+    gateway e alle attività di supporto clienti tramite impersonazione.
   #pagebreak()
-  - È stato prodotto un *manuale di gestione infrastruttura* che descrive la configurazione e il deployment dei microservizi, del database e della simulazione gateway.
-  - È stato prodotto un *manuale sull'utilizzo delle API* che descrive le interfacce REST esposte dai microservizi, per rendere possibile ai clienti lo sviluppo di un proprio client esterno.
+  - È stato prodotto un *manuale di gestione infrastruttura* che descrive la configurazione e il deployment dei
+    microservizi, del database e della simulazione gateway.
+  - È stato prodotto un *manuale sull'utilizzo delle API* che descrive le interfacce REST esposte dai microservizi, per
+    rendere possibile ai clienti lo sviluppo di un proprio client esterno.
   - È stato redatto un *TestBook* che raccoglie strategia di validazione, casi di test e criteri di verifica.
 
   #pagebreak()
@@ -137,6 +139,6 @@
     `TestBook`.
 
   #v(0.8em)
-  Il MVP da noi sviluppato dimostra che la piattaforma richiesta è stata resa concreta, usabile e valutabile su
-  basi sia funzionali sia architetturali.
+  Il MVP da noi sviluppato dimostra che la piattaforma richiesta è stata resa concreta, usabile e valutabile su basi sia
+  funzionali sia architetturali.
 ]
