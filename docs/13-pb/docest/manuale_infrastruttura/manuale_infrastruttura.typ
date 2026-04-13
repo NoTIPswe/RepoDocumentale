@@ -7,7 +7,34 @@
   abstract: "Documento relativo al Manuale Infrastruttura realizzato dal Gruppo NoTIP per il progetto Sistema di Acquisizione Dati da Sensori BLE",
   changelog: metadata.changelog,
   scope: base-document.EXTERNAL_SCOPE,
+  glossary-highlighted: false,
 )[
+  
+  #let _terms = (
+    "API Gateway": "Componente architetturale che funge da punto di accesso centralizzato per le API, gestendo autenticazione, autorizzazione e rate limiting delle richieste.",
+    "Docker": "Tecnologia di containerizzazione che consente di confezionare applicazioni e le loro dipendenze in container portabili, facilitando deployment coerente su diverse piattaforme.",
+    "Docker Compose": "Strumento che facilita la definizione e l'esecuzione di applicazioni multi-contenitore Docker attraverso file di configurazione YAML.",
+    "Gateway": "Dispositivo fisico o software che funge da punto di accesso e intermediario per la comunicazione tra reti, sensori o sistemi diversi.",
+    "JetStream": "Estensione nativa di NATS che aggiunge persistenza dei dati e consegna garantita, permettendo l'archiviazione dei messaggi e il loro recupero successivo.",
+    "JWT": "Acronimo di JSON Web Token, standard aperto per la creazione di token di accesso che consentono l'autenticazione e lo scambio sicuro di informazioni tra parti.",
+    "KeyCloak": "Piattaforma Open Source che permette di centralizzare l'autenticazione e l'autorizzazione per applicazioni e servizi moderni.",
+    "Message Broker": "Componente architetturale che gestisce l'ingestione, buffering e distribuzione di messaggi tra produttori e consumatori.",
+    "mTLS": "Acronimo di mutual TLS, estensione del protocollo TLS in cui sia il client sia il server si autenticano reciprocamente tramite certificati digitali.",
+    "Multi-tenancy": "Architettura in cui una singola istanza dell'applicazione serve molteplici tenant con segregazione completa dei dati e delle risorse.",
+    "NATS": "Sistema di messaggistica Open Source sviluppato da Cloud Native Computing Foundation.",
+    "NestJS": "Framework Node.js basato su TypeScript per la costruzione di applicazioni server-side scalabili con architettura modulare e dependency injection.",
+    "OAuth2": "Standard di autorizzazione che consente l'accesso delegato ai servizi, permettendo l'autenticazione tramite provider terzi senza esporre le credenziali.",
+    "OIDC": "Acronimo di OpenID Connect, livello di identità costruito sopra OAuth2 che consente di autenticare un utente e ottenere informazioni standard sulla sua identità.",
+    "PostgreSQL": "Database relazionale open source caratterizzato da robustezza, conformità SQL avanzata e supporto di estensioni per casi d'uso specializzati.",
+    "Provisioning": "Processo di allocazione e configurazione di risorse necessarie per il funzionamento di un sistema.",
+    "Tenant": "Entità cliente in un'architettura multi-tenancy che condivide l'infrastruttura ma con segregazione completa dei dati e delle risorse.",
+    "TimescaleDB": "Estensione PostgreSQL specializzata per dati time-series, ottimizzata per archiviazione efficiente e query ad alte prestazioni su dati temporali.",
+    "TLS": "Acronimo di Transport Layer Security, protocollo crittografico che garantisce comunicazione sicura su rete proteggendo dati in transito.",
+  )
+  #let _term-keys = _terms.keys().sorted(key: k => -k.len())
+  #let _term-regex = regex("(?i)" + _term-keys.map(k => "\b" + k.replace(".", "\\.") + "\b").join("|"))
+  #show _term-regex: it => [_#it#sub[G]_]
+
   = Introduzione
   == Scopo del documento
   Il presente documento ha lo scopo di fornire una guida operativa completa per gli amministratori dell'infrastruttura
@@ -16,12 +43,9 @@
   amministratori di sistema, ma può essere utile anche durante lo sviluppo e il testing.
 
   == Glossario
-  La realizzazione di un sistema software richiede l'utilizzo di termini tecnici specifici che potrebbero non essere
-  immediatamente comprensibili a tutti gli utenti. Per facilitare la comprensione del manuale, è stato realizzato un
-  Glossario nel quale vengono elencate definizioni e spiegazioni relative ai termini utilizzati. Tale documento è sempre
-  in fase di sviluppo e aggiornamento e può essere consultato nella sua versione attuale al seguente link: #link(
-    "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/glossario.pdf",
-  )[Glossario v3.0.0]. Le parole che possiedono un riferimento nel Glossario saranno identificate con pedice _G_.
+  I termini tecnici rilevanti per la comprensione del manuale sono definiti nella sezione *Glossario* a fondo documento;
+  nel testo tali termini sono contrassegnati con pedice _G_. Per il glossario completo del progetto, si rimanda al
+  #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/glossario.pdf")[Glossario v3.0.0].
 
   == Riferimenti
 
@@ -582,4 +606,16 @@
   + Controllare i log con `make logs-svc SVC=simulator`.
   + Usare `sim-cli` per verificare che esistano gateway registrati: `gateways list`.
   + Se non ci sono gateway, crearne uno con `gateways create`.
+
+  #[
+    #show _term-regex: it => it
+
+    #pagebreak()
+
+    = Glossario
+
+    #for (term, def) in _terms.pairs().sorted(key: p => p.first()) [
+      / #term: #def
+    ]
+  ]
 ]

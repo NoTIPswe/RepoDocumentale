@@ -2,7 +2,7 @@
 
 == Gestione delle configurazioni
 
-Il processo di *Gestione delle Configurazioni* ha lo scopo di identificare, definire e tracciare gli elementi che
+Il processo di *Gestione delle configurazioni* ha lo scopo di identificare, definire e tracciare gli elementi che
 compongono il prodotto software e la documentazione, controllandone le modifiche e registrandone lo stato nel corso del
 progetto.
 
@@ -17,7 +17,7 @@ progetto.
   #table(
     columns: (auto, 1fr),
     align: (center, left),
-    table.header([Strumento], [Descrizione e Utilizzo]),
+    table.header([Strumento], [Descrizione e utilizzo]),
     [Git],
     [Sistema di controllo di versione, utilizzato per tracciare la storia delle modifiche di documenti, codice sorgente
       e script di automazione.],
@@ -38,34 +38,34 @@ progetto.
   label: <config-items>,
 )[
   Vengono sottoposti a controllo di versione e configurazione i seguenti elementi:
-  - *Documentazione*: Tutti i file sorgente `.typ` e gli asset contenuti nella directory `docs/`;
-  - *Sito Web*: I template e gli script per la generazione del sito statico contenuti nella directory `site/`;
-  - *Dizionari*: I file di dizionario personalizzati (es. `.hunspell/it_IT.dic`) utilizzati per il controllo
+  - *Documentazione*: tutti i file sorgente `.typ` e gli asset contenuti nella directory `docs/`;
+  - *Sito web*: i template e gli script per la generazione del sito statico contenuti nella directory `site/`;
+  - *Dizionari*: i file di dizionario personalizzati (es. `.hunspell/it_IT.dic`) utilizzati per il controllo
     ortografico;
-  - *Schemi di validazione*: File contenuti all'interno della directory `.schemas/`;
-  - *Automazione*: Il codice sorgente del tool `notipdo` e i workflow di GitHub (`.github/workflows/`) utilizzati nella
+  - *Schemi di validazione*: file contenuti all'interno della directory `.schemas/`;
+  - *Automazione*: il codice sorgente del tool `notipdo` e i workflow di GitHub (`.github/workflows/`) utilizzati nella
     chiusura delle PR e rilascio del sito web;
-  - *File di configurazione degli ambienti* (`.env.example`): Ogni repository deve contenere il file `.env.example`
+  - *File di configurazione degli ambienti* (`.env.example`): ogni repository deve contenere il file `.env.example`
     committato, che documenta tutte le variabili d'ambiente necessarie all'esecuzione del servizio senza esporre valori
-    reali. Per la politica di gestione dei segreti si rimanda alla @gestione-segreti;
-  - *Migrazioni del database*: I file di migrazione (generati da TypeORM per i servizi NestJS, o file SQL puri per i
+    reali. Per la politica di gestione dei segreti si rimanda alla #link(<gestione-segreti>)[@gestione-segreti];
+  - *Migrazioni del database*: i file di migrazione (generati da TypeORM per i servizi NestJS, o file SQL puri per i
     servizi Go) sono elementi di configurazione soggetti a versionamento obbligatorio. Per le norme di utilizzo si
-    rimanda alla @database-migrazioni;
-  - *Contratti OpenAPI (produttore)*: Il file `openapi.yaml` generato dai decoratori NestJS è committato nella
+    rimanda alla #link(<database-migrazioni>)[@database-migrazioni];
+  - *Contratti OpenAPI (produttore)*: il file `openapi.yaml` generato dai decoratori NestJS è committato nella
     repository del servizio backend produttore (es. `api-contracts/openapi/openapi.yaml`) ed è un elemento di
     configurazione soggetto a versionamento;
-  - *Lockfile delle API (consumatore)*: Il file `{service}-openapi.yaml` scaricato dalla repository del servizio
+  - *Lockfile delle API (consumatore)*: il file `{service}-openapi.yaml` scaricato dalla repository del servizio
     produttore e committato nella repository del consumatore costituisce un lockfile. Esso rappresenta la fotografia
     dell'esatta versione dell'API contro cui il consumer è compilato (es. `management-api-openapi.yaml`). Per il
-    workflow di aggiornamento si rimanda alla @workflow-api-contracts;
-  - *Definizioni degli ambienti di sviluppo* (DevContainers): I Dockerfile base contenuti in
+    workflow di aggiornamento si rimanda alla #link(<workflow-api-contracts>)[@workflow-api-contracts];
+  - *Definizioni degli ambienti di sviluppo* (DevContainers): i Dockerfile base contenuti in
     `notip-infra/devcontainers/` e i file `.devcontainer/devcontainer.json` presenti in ogni repository sono elementi di
     configurazione soggetti a versionamento. Essi garantiscono la riproducibilità degli ambienti di sviluppo. Per la
-    struttura e l'architettura si rimanda alla @devcontainers.
-  - *Immagini Docker di build e rilascio* (`notip-infra/containers/`): I Dockerfile base per la build e il rilascio in
+    struttura e l'architettura si rimanda alla #link(<devcontainers>)[@devcontainers].
+  - *Immagini Docker di build e rilascio* (`notip-infra/containers/`): i Dockerfile base per la build e il rilascio in
     produzione dei servizi applicativi sono elementi di configurazione soggetti a versionamento. Per la policy di
-    utilizzo si rimanda alla @build-release-process;
-  - *Topologia Event-Driven (NATS JetStream Streams)*: I file JSON che definiscono i flussi JetStream, le loro policy di
+    utilizzo si rimanda alla #link(<build-release-process>)[@build-release-process];
+  - *Topologia Event-Driven (NATS JetStream Streams)*: i file JSON che definiscono i flussi JetStream, le loro policy di
     retention e le configurazioni dei consumer (es. `TELEMETRY.json`, `AUDIT_LOG.json`, `COMMANDS.json`) devono essere
     versionati in `notip-infra/infra/nats/streams/`. È vietato creare o modificare stream direttamente sull'istanza NATS
     senza prima di eseguire il commit della definizione corrispondente; ogni modifica alla topologia del message broker
@@ -79,18 +79,19 @@ progetto.
   Il repository Git è l'unica fonte di verità per lo stato dell'infrastruttura. È vietata qualsiasi modifica manuale
   tramite interfaccia grafica o CLI che non sia preceduta dal corrispondente commit nel repository:
 
-  - *Grafana*: Le dashboard non possono essere create o modificate esclusivamente dall'interfaccia grafica. Ogni
+  - *Grafana*: le dashboard non possono essere create o modificate esclusivamente dall'interfaccia grafica. Ogni
     modifica deve essere esportata come file JSON e committata in `notip-infra/infra/monitoring/grafana/` tramite Pull
-    Request (vedi @osservabilita);
-  - *NATS JetStream*: Stream, consumer e policy di retention non possono essere modificati tramite CLI NATS. Ogni
-    modifica deve essere riflessa nei file JSON in `notip-infra/infra/nats/streams/` tramite Pull Request (vedi
-    @config-items);
-  - *Keycloak*: Le configurazioni di realm, client, ruoli e policy non possono essere modificate esclusivamente
+    Request (vedi #link(<osservabilita>)[@osservabilita]);
+  - *NATS JetStream*: stream, consumer e policy di retention non possono essere modificati tramite CLI NATS. Ogni
+    modifica deve essere riflessa nei file JSON in `notip-infra/infra/nats/streams/` tramite Pull Request (vedi #link(
+      <config-items>,
+    )[@config-items]);
+  - *Keycloak*: le configurazioni di realm, client, ruoli e policy non possono essere modificate esclusivamente
     dall'interfaccia di amministrazione. Il realm export aggiornato deve essere committato nella directory di
     configurazione dedicata in `notip-infra/` tramite Pull Request;
-  - *Nginx*: Le regole di routing, la configurazione TLS e gli header di sicurezza non possono essere modificati
+  - *Nginx*: le regole di routing, la configurazione TLS e gli header di sicurezza non possono essere modificati
     direttamente sui server. Ogni modifica deve essere applicata ai file in `notip-infra/infra/nginx/` tramite Pull
-    Request (vedi @nginx-gateway).
+    Request (vedi #link(<nginx-gateway>)[@nginx-gateway]).
 
   Ogni stato dell'infrastruttura non tracciato nel repository è considerato configurazione non autorizzata.
 ]
@@ -101,9 +102,9 @@ progetto.
 )[
   Il gruppo adotta una strategia Multi-repo per garantire una netta separazione delle responsabilità e mantenere lineare
   la cronologia dei contributi. La struttura è così suddivisa:
-  - *Repository Documentale*: Contiene la documentazione di progetto, il sito web e il tool `notipdo`;
-  - *Repository PoC*: Contiene il codice sorgente per la Technology Baseline (Proof of Concept);
-  - *Repository di Prodotto*: Il prodotto è sviluppato attraverso le seguenti repository distinte, una per servizio,
+  - *Repository Documentale*: contiene la documentazione di progetto, il sito web e il tool `notipdo`;
+  - *Repository PoC*: contiene il codice sorgente per la Technology Baseline (Proof of Concept);
+  - *Repository di Prodotto*: il prodotto è sviluppato attraverso le seguenti repository distinte, una per servizio,
     secondo un'architettura a microservizi:
     - `notip-infra`: infrastruttura, configurazione di monitoring (Prometheus+Grafana), NATS, Nginx, devcontainer base,
       api-contracts e test di sistema e integrazione multi-servizio. È un monorepo;
@@ -117,11 +118,12 @@ progetto.
 
   *Gestione dei Monorepo*
 
-  Il repository `notip-infra`è strutturato come monorepo, contenendo più componenti con cicli di vita distinti.
+  Il repository `notip-infra` è strutturato come monorepo, contenendo più componenti con cicli di vita distinti.
 
   *Versionamento*: Per `notip-infra` non si traccia una versione globale, in quanto funge da contenitore di
-  infrastruttura condivisa. Per la politica di versionamento automatico tramite CI/CD si rimanda alla
-  @versionamento-codice.
+  infrastruttura condivisa. Per la politica di versionamento automatico tramite CI/CD si rimanda alla #link(
+    <versionamento-codice>,
+  )[@versionamento-codice].
 
   *Struttura delle directory di test in `notip-infra`*
 
@@ -129,7 +131,9 @@ progetto.
   - `notip-infra/tests/integration/`: test di integrazione multi-servizio;
   - `notip-infra/tests/system/`: test di sistema (e2e), se automatizzati.
 
-  Per la classificazione completa dei test e la norma sulla loro collocazione si rimanda alla @analisi-dinamica.
+  Per la classificazione completa dei test e la norma sulla loro collocazione si rimanda alla #link(
+    <analisi-dinamica>,
+  )[@analisi-dinamica].
 ]
 
 #norm(
@@ -151,11 +155,11 @@ progetto.
 )[
   Ogni modifica alla configurazione deve essere associata a un Task su Jira. È obbligatorio compilare i seguenti campi
   per garantire un tracciamento delle risorse corretto:
-  - *Autore*: Chi esegue la modifica;
-  - *Ruolo*: Il ruolo ricoperto durante l'attività (es. Analista, Verificatore, ...);
+  - *Autore*: chi esegue la modifica;
+  - *Ruolo*: il ruolo ricoperto durante l'attività (es. Analista, Verificatore, ...);
   - *Time Tracking*:
-    - _Original Estimate_: Tempo stimato prima di iniziare l'attività;
-    - _Time Spent_: Tempo effettivamente impiegato (da aggiornare a fine attività).
+    - _Original Estimate_: tempo stimato prima di iniziare l'attività;
+    - _Time Spent_: tempo effettivamente impiegato (da aggiornare a fine attività).
 ]
 
 #norm(
@@ -164,17 +168,17 @@ progetto.
 )[
   Per garantire che solo configurazioni verificate confluiscano nel ramo principale, vengono applicate le seguenti
   regole su GitHub):
-  - *Merge Restriction*: Il merge è consentito solo tramite Pull Request approvata da almeno un membro del team che in
+  - *Merge Restriction*: il merge è consentito solo tramite Pull Request approvata da almeno un membro del team che in
     quel momento sta ricoprendo il ruolo di *Verificatore*.
-  - *Status Check*: Il merge è bloccato se i check automatici della pipeline CI/CD falliscono, indicando cosa correggere
+  - *Status Check*: il merge è bloccato se i check automatici della pipeline CI/CD falliscono, indicando cosa correggere
     per allinearsi alle norme finora descritte. La struttura dei workflow varia per tipologia di repository:
-    - *Repository Documentale*: Il workflow `pr-check-n-build` esegue `notipdo check pr` (validazione sintattica,
+    - *Repository Documentale*: il workflow `pr-check-n-build` esegue `notipdo check pr` (validazione sintattica,
       controllo ortografico e schemi) e `notipdo build changes` (compilazione di anteprima degli artefatti modificati);
-    - *Repository di Prodotto*: La pipeline è articolata in tre workflow distinti:
-      - `pr-check.yml`: Validazioni rapide (linting, build, test di unità) eseguite ad ogni aggiornamento di PR;
-      - `quality-checks.yml`: Analisi approfondita tramite SonarQube/SonarCloud (Code Coverage, Code Smells,
+    - *Repository di Prodotto*: la pipeline è articolata in tre workflow distinti:
+      - `pr-check.yml`: validazioni rapide (linting, build, test di unità) eseguite ad ogni aggiornamento di PR;
+      - `quality-checks.yml`: analisi approfondita tramite SonarQube/SonarCloud (Code Coverage, Code Smells,
         Vulnerabilità);
-      - `release.yml`: Calcolo automatico della versione semantica tramite *Semantic Release* e pubblicazione
+      - `release.yml`: calcolo automatico della versione semantica tramite *Semantic Release* e pubblicazione
         dell'immagine Docker sul GitHub Container Registry (GHCR), eseguito al merge su `main`.
 ]
 
@@ -195,9 +199,10 @@ progetto.
   prodotto), che legge i prefissi dei commit secondo lo standard Conventional Commits. Ogni repository di prodotto
   avanza di versione in modo indipendente.
 
-  Per i prefissi dei commit e il loro peso nella determinazione della versione si rimanda alla
-  @branching-conventional-commits. Per le norme sulla strategia dei repository e la gestione dei monorepo si rimanda
-  alla @repo-strategy.
+  Per i prefissi dei commit e il loro peso nella determinazione della versione si rimanda alla #link(
+    <branching-conventional-commits>,
+  )[@branching-conventional-commits]. Per le norme sulla strategia dei repository e la gestione dei monorepo si rimanda
+  alla #link(<repo-strategy>)[@repo-strategy].
 ]
 
 #norm(
@@ -208,13 +213,17 @@ progetto.
   iniettati tramite GitHub Secrets.
 
   I file `.env` reali non vengono mai committati nel repository, in quanto esclusi tramite `.gitignore` come definito
-  nella @git-ignore-policy. Ogni repository deve invece contenere un file `.env.example` committato, che documenta tutte
-  le variabili necessarie all'esecuzione senza esporre valori reali (vedi @config-items).
+  nella #link(<git-ignore-policy>)[@git-ignore-policy]. Ogni repository deve invece contenere un file `.env.example`
+  committato, che documenta tutte le variabili necessarie all'esecuzione senza esporre valori reali (vedi #link(
+    <config-items>,
+  )[@config-items]).
 
   I file `.env` locali rappresentano sempre la configurazione di sviluppo (dev), mentre la configurazione generata da
   GitHub Secrets è quella di produzione (prod).
 
-  Per il setup del file `.env` locale da parte di ogni sviluppatore si rimanda alla @setup-devcontainer.
+  Per il setup del file `.env` locale da parte di ogni sviluppatore si rimanda alla #link(
+    <setup-devcontainer>,
+  )[@setup-devcontainer].
 ]
 
 #norm(
@@ -227,7 +236,7 @@ progetto.
   - `git reset`: per ricomporre più commit locali in uno solo prima del push.
 
   Questa norma vale sia per il codice sorgente sia per la documentazione. Per la documentazione il rimando operativo è
-  alla @branching-commit-docs.
+  alla #link(<branching-commit-docs>)[@branching-commit-docs].
 ]
 
 === Attività del processo
@@ -277,8 +286,8 @@ progetto.
       name: "Verifica Automatica",
       desc: [
         All'apertura della Pull Request, il workflow `pr-check-n-build` esegue automaticamente:
-        - `notipdo check pr`: Validazione sintattica, controllo ortografico (Hunspell) e validazione schemi;
-        - `notipdo build changes`: Compilazione di anteprima dei soli artefatti modificati.
+        - `notipdo check pr`: validazione sintattica, controllo ortografico (Hunspell) e validazione schemi;
+        - `notipdo build changes`: compilazione di anteprima dei soli artefatti modificati.
       ],
     ),
     (

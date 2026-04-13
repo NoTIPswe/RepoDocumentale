@@ -26,13 +26,13 @@ svolgimento del progetto.
 
   Il ciclo di vita di un documento prevede tre stati fondamentali mappati sul branch in cui si trova il file:
 
-  - *In lavorazione* (Branch di feature): Il documento è in fase di stesura o modifica. La versione è provvisoria;
-  - *Verificato* (Branch `main`): Il documento ha superato la revisione tecnica (PR) ed è stato integrato. È stabile ma
+  - *In lavorazione* (Branch di feature): il documento è in fase di stesura o modifica. La versione è provvisoria;
+  - *Verificato* (Branch `main`): il documento ha superato la revisione tecnica (PR) ed è stato integrato. È stabile ma
     non necessariamente rilasciato;
-  - *Approvato* (Branch `main`): Il documento corrisponde a una Baseline ufficiale. Richiede l'approvazione esplicita
+  - *Approvato* (Branch `main`): il documento corrisponde a una Baseline ufficiale. Richiede l'approvazione esplicita
     del Responsabile.
 
-  @ciclo_vita_docs raffigura un diagramma del ciclo di vita dei documenti.
+  La #link(<ciclo_vita_docs>)[@ciclo_vita_docs] raffigura un diagramma del ciclo di vita dei documenti.
 
   #heading(level: 5, numbering: none, outlined: false)[Standard di versionamento (SemVer)]
   L'avanzamento di versione segue lo standard `X.Y.Z` in base alla natura delle modifiche:
@@ -82,21 +82,21 @@ svolgimento del progetto.
   ```
 
   #heading(level: 5, numbering: none, outlined: false)[Dettaglio directory `docs`]
-  - `00-common_assets/`: Asset condivisi (es. font, loghi). Vietato duplicare questi file nelle cartelle locali.
-  - *Livello Milestone (`docs/xx-nome`)*: Le directory sono numerate progressivamente (`xx >= 11`) per mantenere
+  - `00-common_assets/`: asset condivisi (es. font, loghi). Vietato duplicare questi file nelle cartelle locali.
+  - *Livello Milestone (`docs/xx-nome`)*: le directory sono numerate progressivamente (`xx >= 11`) per mantenere
     l'ordine cronologico delle Baseline. Questo livello è anche chiamato _group_ all'interno della documentazione;
-  - *Livello Subgroup*: Classificazione funzionale dei documenti:
-    - `docint/`: Documentazione interna (e.g. Norme di Progetto);
-    - `docest/`: Documentazione esterna (e.g. Analisi dei Requisiti, Piano di Progetto);
-    - `verbint/` / `verbest/`: Verbali interni ed esterni;
+  - *Livello Subgroup*: classificazione funzionale dei documenti:
+    - `docint/`: documentazione interna (e.g. Norme di Progetto);
+    - `docest/`: documentazione esterna (e.g. Analisi dei Requisiti, Piano di Progetto);
+    - `verbint/` / `verbest/`: Verbali Interni ed Esterni;
     - `slides/`: Presentazioni e Diari di Bordo.
-  - *Livello Documento*: Ogni documento deve risiedere nella propria cartella `{nome_documento}` in `snake_case`:
-    - `{nome_documento}.typ`: File "master". Non scrivere contenuto qui se il documento è lungo; in tal caso, deve
+  - *Livello Documento*: ogni documento deve risiedere nella propria cartella `{nome_documento}` in `snake_case`:
+    - `{nome_documento}.typ`: file "master". Non scrivere contenuto qui se il documento è lungo; in tal caso, deve
       contenere solo gli `include` dei moduli e la configurazione del template;
-    - `{subfiles}/`: Directory che contiene i file `.typ` parziali (es. `cap1_intro.typ`), Obbligatorio per documenti
+    - `{subfiles}/`: directory che contiene i file `.typ` parziali (es. `cap1_intro.typ`), obbligatorio per documenti
       lunghi e/o collaborativi per limitare i conflitti di merge;
-    - `{nome_documento}.meta.yaml`: Metadati (titolo, changelog) conformi allo schema;
-    - _Nota_: Per i documenti periodici (`ddb`, `verbint`, `verbest`), è obbligatorio suffissare il nome con la data in
+    - `{nome_documento}.meta.yaml`: metadati (titolo, changelog) conformi allo schema;
+    - _Nota_: per i documenti periodici (`ddb`, `verbint`, `verbest`), è obbligatorio suffissare il nome con la data in
       formato ISO (`yyyy-mm-dd`) per garantire l'ordinamento cronologico (es. verbint_2025-11-21).
 
   #heading(level: 5, numbering: none, outlined: false)[Integrità storica delle baseline]
@@ -141,8 +141,8 @@ svolgimento del progetto.
     [I titoli dei documenti e delle sezioni devono seguire il criterio \"Solo prima lettera maiuscola\". Eccezione: sono
       ammesse maiuscole per nomi propri e prodotti specifici.],
     [
-      - \"Processo di documentazione\" (standard);
-      - \"Integrazione con SonarQube\" (nome proprio);
+      - \"Processo di documentazione\" (standard).
+      - \"Integrazione con SonarQube\" (nome proprio).
       - \"Analisi dei requisiti\" (standard).
     ],
 
@@ -150,31 +150,31 @@ svolgimento del progetto.
     [Ogni punto elenco inizia con lettera maiuscola e termina con un punto e virgola (;), eccetto l'ultimo che termina
       con il punto (.). Se il punto contiene più frasi, usare la punteggiatura standard interna.],
     [
-      - Fase di planning;
-      - Fase di azione;
+      - Fase di planning.
+      - Fase di azione.
       - Fase di retrospettiva.
     ],
   )
 
-  #heading(level: 5, numbering: none, outlined: false)[Stile e Linguaggio]
+  #heading(level: 5, numbering: none, outlined: false)[Stile e linguaggio]
   Il registro linguistico deve adattarsi al destinatario del documento secondo lo schema seguente:
 
   #table(
     columns: (auto, 1fr),
     align: (left, left),
-    table.header([Destinatario], [Registro e Caratteristiche]),
+    table.header([Destinatario], [Registro e caratteristiche]),
 
     [*Interno* \ (Team)],
-    [*Tecnico e Sintetico.* È ammesso l'uso di gergo tecnico condiviso e una struttura schematica per massimizzare la
+    [*Tecnico e sintetico*. È ammesso l'uso di gergo tecnico condiviso e una struttura schematica per massimizzare la
       velocità di lettura. L'obiettivo è l'efficienza operativa.],
 
     [*Esterno - Tecnico* \ (Committente/Professori)],
-    [*Formale e Professionale.* Uso rigoroso della terminologia standard. Le frasi devono essere complete, oggettive e
+    [*Formale e professionale*. Uso rigoroso della terminologia standard. Le frasi devono essere complete, oggettive e
       non ambigue. In caso di ambiguità, porre i termini nel Glossario. Privilegiare la forma impersonale (es. "Si è
       scelto di...") o la prima persona plurale ("Abbiamo analizzato...").],
 
     [*Esterno - Utente* \ (Manuali utente)],
-    [*Semplice e Accessibile.* Evitare tecnicismi. Spiegare i concetti complessi con esempi pratici. Il tono deve essere
+    [*Semplice e accessibile.* Evitare tecnicismi. Spiegare i concetti complessi con esempi pratici. Il tono deve essere
       guidato e rassicurante.],
   )
 ]
@@ -208,7 +208,8 @@ svolgimento del progetto.
 
   #heading(level: 5, numbering: none, outlined: false)[Nomenclatura Branch]
   È obbligatorio mantenere la nomenclatura generata automaticamente dal Work Item, rimuovendo la sezione
-  ` - {Breve descrizione}` dallo schema definito in @work-items-docs. Esempio: `NT-67-norme_progetto-v0-6-0`.
+  ` - {Breve descrizione}` dallo schema definito in #link(<work-items-docs>)[@work-items-docs]. Esempio:
+  `NT-67-norme_progetto-v0-6-0`.
 
   #heading(level: 5, numbering: none, outlined: false)[Messaggi di Commit]
   I messaggi devono seguire tassativamente lo standard #link(
@@ -222,14 +223,16 @@ svolgimento del progetto.
     - `chore: inserimento font Noto Sans`
 
   Per la disciplina generale sui commit (amend/reset), valida sia per la documentazione che per il codice sorgente, si
-  rimanda alla @disciplina-commit.
+  rimanda alla #link(<disciplina-commit>)[@disciplina-commit].
 ]
 
 #norm(title: "Co-authoring singole versioni di documento", label: <co-authoring-docs>)[
   Il co-authoring di un documento deve sempre essere guidato da un Work Item per ogni attività assegnata ad un
   componente.
 
-  Il titolo dei work items differisce solo per la parte di `{Breve descrizione}` (vedi @work-items-docs). Esempio:
+  Il titolo dei work items differisce solo per la parte di `{Breve descrizione}` (vedi #link(
+    <work-items-docs>,
+  )[@work-items-docs]). Esempio:
   - \"analisi_requisiti-v0.14.0 - aggiunta UC45-UC53\", assegnato alla persona A;
   - \"analisi_requisiti-v0.14.0 - aggiunta UC54-57\", assegnato alla persona B.
 
@@ -244,8 +247,8 @@ svolgimento del progetto.
   branch per la versione (e.g. `NT-67-analisi_requisiti-v0-14-0`), slegato da qualunque work item, a partire da `main`.
   I feature branch relativi ai work item di Jira partono e vengono chiusi da e su quel branch di versione con delle Pull
   Request. Il nome di tali branch è quello generato da Jira comprensivo della parte di ` - {Breve descrizione}`
-  illustrata in @work-items-docs. Una volta completata la stesura collaborativa, viene eseguito il merge del branch di
-  versione in `main` ed eliminato, preservando la pulizia del trunk.
+  illustrata in #link(<work-items-docs>)[@work-items-docs]. Una volta completata la stesura collaborativa, viene
+  eseguito il merge del branch di versione in `main` ed eliminato, preservando la pulizia del trunk.
 
   #heading(level: 5, numbering: none, outlined: false)[Verifica]
   Una volta terminati tutti i work items relativi alla versione, _un_ (solo) verificatore può procedere a verificare
@@ -256,14 +259,13 @@ svolgimento del progetto.
   Il tool di automazione interno alla repository di documentazione si chiama `notipdo`.
 
   Esso permette di
-  - _Validare_ la struttura della repository e la correttezza sintattica dei file;
-  - _Compilare_ i documenti;
-  - Compilare i documenti in modalità _hot reload_;
-  - _Generare il sito_ web del team contenente tutti i documenti;
-  - _Formattare i file Typst_ secondo le regole di formattazione del team;
-  - _Verificare_ che un set di modifiche rispetti le norme del progetto. Ad esempio:
-    - Verificare che non siano stati modificati documenti di vecchie baseline;
-    - Verificare
+  - _validare_ la struttura della repository e la correttezza sintattica dei file;
+  - _compilare_ i documenti;
+  - compilare i documenti in modalità _hot reload_;
+  - _generare il sito_ web del team contenente tutti i documenti;
+  - _formattare i file Typst_ secondo le regole di formattazione del team;
+  - _verificare_ che un set di modifiche rispetti le norme del progetto. Ad esempio:
+    - verificare che non siano stati modificati documenti di vecchie baseline.
 
   Il tool è accompagnato dalla sua documentazione d'uso e da messaggi di errore chiari. Per iniziare ad utilizzarlo,
   seguire le istruzioni presenti in `README.md` e digitare `notipdo --help` sulla propria shell. `notipdo` supporta
@@ -309,28 +311,28 @@ svolgimento del progetto.
 
   #heading(level: 5, numbering: none, outlined: false)[Verbali (Interni ed Esterni)]
   I verbali devono essere redatti tramite il template `base_verbale.typ` e includere i seguenti elementi:
-  - *Informazioni di base (`front-info`):* Elenco dettagliato di tutti i presenti;
-  - *Dettagli logistici:* Indicazione esplicita della data, della piattaforma di comunicazione (es. Microsoft Teams,
+  - *Informazioni di base (`front-info`):* elenco dettagliato di tutti i presenti;
+  - *Dettagli logistici:* indicazione esplicita della data, della piattaforma di comunicazione (es. Microsoft Teams,
     Discord) e della fascia oraria dell'incontro;
-  - *Ordine del Giorno (`odg`):* Sintesi dei punti previsti per la trattazione durante la riunione;
-  - *Svolgimento (`discussion`):* Il contenuto deve essere organizzato in blocchi tramite la funzione `report-point`,
+  - *Ordine del Giorno (`odg`):* sintesi dei punti previsti per la trattazione durante la riunione;
+  - *Svolgimento (`discussion`):* il contenuto deve essere organizzato in blocchi tramite la funzione `report-point`,
     assicurando che ogni sezione contenga:
-    - Un titolo chiaro per il punto di discussione (`discussion_point`);
-    - La sintesi del dibattito intercorso (`discussion`);
-    - Il riepilogo delle decisioni prese (`decisions`);
-    - Eventuali azioni da intraprendere (`actions`), corredate da descrizione e URL diretto al relativo work item su
-      Jira;
-  - *Approvazione aziendale:* Per i verbali esterni, è obbligatorio includere la sezione finale dedicata alla firma dei
+    - un titolo chiaro per il punto di discussione (`discussion_point`);
+    - la sintesi del dibattito intercorso (`discussion`);
+    - il riepilogo delle decisioni prese (`decisions`);
+    - eventuali azioni da intraprendere (`actions`), corredate da descrizione e URL diretto al relativo work item su
+      Jira.
+  - *Approvazione aziendale:* per i Verbali Esterni, è obbligatorio includere la sezione finale dedicata alla firma dei
     referenti per la validazione formale dei contenuti.
 
   #heading(level: 5, numbering: none, outlined: false)[Diari di Bordo (DdB)]
   Ogni Diario di Bordo deve essere redatto tramite la funzione `apply-base-ddb` , indicando il numero dello Sprint di
   riferimento. I contenuti devono seguire rigorosamente la suddivisione in tre blocchi posizionali:
-  + *Risultati raggiunti:* Elenco puntato delle attività completate e dei traguardi raggiunti rispetto a quanto
+  + *Risultati raggiunti:* elenco puntato delle attività completate e dei traguardi raggiunti rispetto a quanto
     pianificato;
-  + *Obiettivi per il periodo successivo:* Pianificazione dei task previsti per lo sprint seguente, inclusi avanzamenti
+  + *Obiettivi per il periodo successivo:* pianificazione dei task previsti per lo sprint seguente, inclusi avanzamenti
     documentali o tecnici;
-  + *Criticità:* Esposizione di dubbi, difficoltà organizzative incontrate (es. durante le festività) o rischi occorsi
+  + *Criticità:* esposizione di dubbi, difficoltà organizzative incontrate (es. durante le festività) o rischi occorsi
     durante lo svolgimento delle attività.
 
   Per garantire l'integrità dei dati, ogni documento deve caricare il proprio registro delle modifiche tramite il file
@@ -349,18 +351,18 @@ svolgimento del progetto.
     (
       name: "Creazione Work Item",
       desc: [Chi individua la necessità del nuovo documento apre un work-item su Jira:
-        - Il titolo deve seguire rigorosamente la nomenclatura definita nelle norme (es. `doc-v0.1.0 - Stesura`);
-        - Nella descrizione vanno specificati gli obiettivi della nuova versione del documento.
-        - Il Work Item deve contenere stime del tempo richiesto dai task di esecuzione e verifica.
+        - il titolo deve seguire rigorosamente la nomenclatura definita nelle norme (es. `doc-v0.1.0 - Stesura`);
+        - nella descrizione vanno specificati gli obiettivi della nuova versione del documento;
+        - il Work Item deve contenere stime del tempo richiesto dai task di esecuzione e verifica.
       ],
     ),
     (
       name: "Setup (Solo nuovi documenti)",
       desc: [
         Se il documento non esiste:
-        - Creare la cartella e i file iniziali utilizzando il *Template* corretto (vedi _Standard dei Template_);
-        - Inizializzare il Changelog con la prima entry in versione `0.0.1` e descrizione \"Creazione documento\";
-        - Aprire una PR verso `main`.
+        - creare la cartella e i file iniziali utilizzando il *Template* corretto (vedi _Standard dei Template_);
+        - inizializzare il Changelog con la prima entry in versione `0.0.1` e descrizione \"Creazione documento\";
+        - aprire una PR verso `main`.
       ],
     ),
   ),
@@ -391,8 +393,8 @@ svolgimento del progetto.
       desc: [
         Creare un branch locale a partire da `main` aggiornato.
         - Nome branch: deve rispettare rigorosamente la nomenclatura definita (es. `NT-67-norme_progetto-v0-6-0`);
-        - È severamente vietato lavorare direttamente su main (azione tecnicamente inibita dalle policy del repository);
-        - In caso di _co-authoring_, vedi #cite-norm("co-authoring-docs").
+        - è severamente vietato lavorare direttamente su main (azione tecnicamente inibita dalle policy del repository);
+        - in caso di _co-authoring_, vedi #cite-norm("co-authoring-docs").
       ],
     ),
     (
@@ -406,7 +408,7 @@ svolgimento del progetto.
       name: "Redazione",
       desc: [
         Scrivere i contenuti nel file `.typ` (o nei subfiles).
-        - Consultare le _Norme tipografiche e stilistiche_ per formattazione e registro linguistico;
+        - Consultare le _Norme tipografiche e stilistiche_ per formattazione e registro linguistico.
         - Utilizzare `notipdo watch doc {doc_dir}` per lavorare al documento in modalità hot-reload.
       ],
     ),
@@ -419,7 +421,7 @@ svolgimento del progetto.
     (
       name: "Check delle modifiche",
       desc: [
-        - Assicurarsi che il documento compili correttamente;
+        - Assicurarsi che il documento compili correttamente.
         - Utilizzare `notipdo check pr` e assicurarsi che le modifiche passino i controlli di formattazione e
           spellcheck.
       ],
@@ -427,7 +429,7 @@ svolgimento del progetto.
     (
       name: "Commit e Push (loop)",
       desc: [
-        - Eseguire commit atomici usando i _Conventional Commits_ (es. `docs(norme_progetto): stesura introduzione`);
+        - Eseguire commit atomici usando i _Conventional Commits_ (es. `docs(norme_progetto): stesura introduzione`).
         - Eseguire il push sul repository remoto.
       ],
     ),
@@ -451,38 +453,38 @@ svolgimento del progetto.
   output: [Documento verificato (su `main`) o richiesta modifiche],
   procedure: (
     (
-      name: "Presa in Carico",
+      name: "Presa in carico",
       desc: [
         Auto-assegnarsi al Work Item di verifica relativo alla nuova versione del documento.
         - In caso di versione realizzata in co-authoring, vedi #cite-norm("co-authoring-docs").
       ],
     ),
     (
-      name: "Controlli Automatici",
+      name: "Controlli automatici",
       desc: [
         Attendere l'esito della pipeline di CI.
         - Se fallisce: La verifica è bloccata. L'autore deve risolvere gli errori tecnici.
       ],
     ),
     (
-      name: "Revisione Umana",
+      name: "Revisione umana",
       desc: [
         Scaricare il PDF di anteprima (artifact), controllare il codice e verificare:
-        - Rispetto delle norme tipografiche e stilistiche;
-        - Completezza e correttezza del contenuto rispetto al Work Item.
+        - rispetto delle norme tipografiche e stilistiche;
+        - completezza e correttezza del contenuto rispetto al Work Item.
       ],
     ),
     (
-      name: "Feedback (Loop)",
+      name: "Feedback (loop)",
       desc: [
-        - Se ci sono errori: Richiedere modifiche tramite commenti sulla PR. L'autore corregge e si riparte dal punto 1;
-        - Se è tutto corretto: Procedere al punto successivo.
+        - Se ci sono errori: richiedere modifiche tramite commenti sulla PR. L'autore corregge e si riparte dal punto 1.
+        - Se è tutto corretto: procedere al punto successivo.
       ],
     ),
     (
-      name: "Firma (Approvazione Tecnica)",
+      name: "Firma (approvazione tecnica)",
       desc: [
-        Modificare il Changelog: sostituire il placeholder `TBD` (To Be Done) con il proprio Nome e Cognome. Questo
+        Modificare il changelog: sostituire il placeholder `TBD` (To Be Done) con il proprio Nome e Cognome. Questo
         sancisce la responsabilità della verifica.
       ],
     ),
@@ -510,7 +512,7 @@ svolgimento del progetto.
   title: "Approvazione del documento",
   roles: (ROLES.resp,),
   norms: ("ciclo-vita-docs", "work-items-docs", "branching-commit-docs"),
-  input: [Documento in stato _Verificato_ (su `main`), Rilascio di Baseline imminente],
+  input: [Documento in stato _Verificato_ (su `main`), rilascio di Baseline imminente],
   output: [Nuova Major Version],
   rationale: [Questa attività sancisce il passaggio ufficiale da una versione di sviluppo a una versione stabile
     (Baseline).],
@@ -537,12 +539,12 @@ svolgimento del progetto.
       name: "Version Bump",
       desc: [
         - Incrementare la versione da `X.Y.Z` a `X+1.0.0`;
-        - Aggiornare la data del Changelog alla data di rilascio corrente.
-        - Verificatore: TBD
+        - Aggiornare la data del changelog alla data di rilascio corrente.
+        - Verificatore: TBD.
       ],
     ),
     (
-      name: "Submission, PR, Verifica, Chiusura",
+      name: "Submission, PR, verifica, chiusura",
       desc: [
         La chiusura del task avviene esattamente come ogni altra versione.\
         Unica differenza: il verificatore è tenuto solo a controllare la spunta verde dei check automatici, non a

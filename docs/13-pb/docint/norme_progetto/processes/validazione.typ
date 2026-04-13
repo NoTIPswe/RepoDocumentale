@@ -2,11 +2,11 @@
 
 == Processo di validazione
 
-Il processo di *Validazione* ha lo scopo di confermare che il sistema software realizzato soddisfi le esigenze
+Il processo di *validazione* ha lo scopo di confermare che il sistema software realizzato soddisfi le esigenze
 specifiche dell'utente e sia idoneo all'utilizzo nel suo contesto operativo reale. L'obiettivo è rispondere alla
 domanda: _"Stiamo costruendo il prodotto giusto?"_ ("Did we build the right system?").
 
-Mentre la Verifica si concentrava sulla correttezza tecnica cercando di assicurare l'assenza di errori, la Validazione
+Mentre la verifica si concentrava sulla correttezza tecnica cercando di assicurare l'assenza di errori, la validazione
 si concentra sulla corrispondenza con le aspettative del proponente (M31) e sui requisiti funzionali e qualitativi
 definiti nell'Analisi dei Requisiti.
 
@@ -17,10 +17,10 @@ definiti nell'Analisi dei Requisiti.
   label: <tracciamento-requisiti>,
 )[
   Per garantire la completezza del prodotto, deve essere mantenuta una "tracciabilità bidirezionale" nella Matrice di
-  Tracciamento:
-  - *Fonte - Requisito*: Ogni esigenza espressa nel capitolato o nei verbali esterni deve essere mappata su uno o più
+  tracciamento:
+  - *Fonte - Requisito*: ogni esigenza espressa nel capitolato o nei verbali esterni deve essere mappata su uno o più
     requisiti formali.
-  - *Requisito - Test*: Ogni Requisito implementato (sia esso Obbligatorio, Desiderabile o Opzionale) deve essere
+  - *Requisito - Test*: ogni requisito implementato (sia esso Obbligatorio, Desiderabile o Opzionale) deve essere
     collegato a uno specifico Test di Sistema o di Accettazione che ne certifichi il soddisfacimento.
 ]
 
@@ -42,11 +42,11 @@ definiti nell'Analisi dei Requisiti.
   title: "Validazione dei requisiti (analisi)",
   roles: (ROLES.anal, ROLES.resp),
   norms: ("tracciamento-requisiti",),
-  input: [Specifica dei Requisiti, Codice Testato],
-  output: [Matrice di Tracciamento aggiornata],
+  input: [Specifica dei requisiti, Codice testato],
+  output: [Matrice di tracciamento aggiornata],
   procedure: (
     (
-      name: "Verifica Copertura",
+      name: "Verifica copertura",
       desc: [Controllare che tutti i requisiti previsti per la Baseline corrente siano marcati come "Soddisfatti" nella
         matrice di tracciamento e che non vi siano funzionalità richieste mancanti.],
     ),

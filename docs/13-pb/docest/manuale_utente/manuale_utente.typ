@@ -7,7 +7,22 @@
   abstract: "Documento contenente il manuale utente della piattaforma, con attenzione focalizzata alle funzionalità offerte al Tenant User e Admin.",
   changelog: metadata.changelog,
   scope: base-document.EXTERNAL_SCOPE,
+  glossary-highlighted: false,
 )[
+  
+  #let _terms = (
+    "Dashboard": "Interfaccia grafica che visualizza in forma sintetica dati e metriche del sistema, permettendo monitoraggio e amministrazione.",
+    "Firmware": "Software incorporato nei dispositivi hardware (es. un gateway) che ne controlla le funzioni operative di base; aggiornabile da remoto tramite procedure OTA.",
+    "Gateway": "Dispositivo fisico o software che funge da punto di accesso e intermediario per la comunicazione tra reti, sensori o sistemi diversi.",
+    "IoT": "Acronimo di Internet of Things, ecosistema di dispositivi connessi a rete che raccolgono, elaborano e scambiano dati senza intervento umano diretto.",
+    "Multi-tenancy": "Architettura in cui una singola istanza dell'applicazione serve molteplici tenant con segregazione completa dei dati e delle risorse.",
+    "Tenant": "Entità cliente in un'architettura multi-tenancy che condivide l'infrastruttura ma con segregazione completa dei dati e delle risorse.",
+    "Telemetria": "Raccolta e trasmissione automatica di dati di misurazione e diagnostica da dispositivi remoti a un sistema centrale per monitoraggio e analisi.",
+  )
+  #let _term-keys = _terms.keys().sorted(key: k => -k.len())
+  #let _term-regex = regex("(?i)" + _term-keys.map(k => "\b" + k.replace(".", "\\.") + "\b").join("|"))
+  #show _term-regex: it => [_#it#sub[G]_]
+
   = Introduzione
   La piattaforma NoTIP è un sistema di monitoraggio progettato per raccogliere, visualizzare e analizzare dati
   provenienti da sensori IoT collegati a gateway.
@@ -378,4 +393,16 @@
   Questa sezione è particolarmente utile per monitorare i costi associati all'utilizzo della piattaforma, consentendo al
   Tenant Admin di gestire in modo efficiente le risorse e di pianificare eventuali espansioni o riduzioni in base alle
   esigenze operative del tenant.
+
+  #[
+    #show _term-regex: it => it
+
+    #pagebreak()
+
+    = Glossario
+
+    #for (term, def) in _terms.pairs().sorted(key: p => p.first()) [
+      / #term: #def
+    ]
+  ]
 ]
