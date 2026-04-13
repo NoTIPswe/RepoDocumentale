@@ -1214,3 +1214,237 @@ tests:
     requirements:
       - err_password_invalida
     status: passed
+
+  # Crypto SDK Unit Tests
+  - id: t_u_crypto_sdk_engine_decrypt
+    service: Crypto SDK
+    description: Verificare la decrittazione AES-GCM di un payload JSON cifrato; il risultato corrisponde al plaintext originale
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_u_crypto_sdk_engine_wrong_key
+    service: Crypto SDK
+    description: Verificare che la decrittazione con chiave errata lanci DecryptionError
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_u_crypto_sdk_engine_tampered_tag
+    service: Crypto SDK
+    description: Verificare che la decrittazione con auth tag manomesso lanci DecryptionError
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_u_crypto_sdk_engine_empty_json
+    service: Crypto SDK
+    description: "Verificare la decrittazione corretta di un oggetto JSON vuoto; risultato atteso {}"
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_u_crypto_sdk_key_manager_cache_miss
+    service: Crypto SDK
+    description: Verificare che alla prima richiesta per una coppia (gatewayId, version) il KeyProvider venga invocato e la CryptoKey restituita abbia algoritmo AES-GCM e usage decrypt
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_u_crypto_sdk_key_manager_cache_hit
+    service: Crypto SDK
+    description: Verificare che una seconda richiesta per la stessa coppia (gatewayId, version) restituisca la stessa istanza CryptoKey senza richiamare KeyProvider
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_u_crypto_sdk_key_manager_multiple_versions
+    service: Crypto SDK
+    description: Verificare che versioni diverse dello stesso gateway producano CryptoKey distinte e che KeyProvider venga invocato due volte
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_u_crypto_sdk_key_manager_clear_cache
+    service: Crypto SDK
+    description: Verificare che dopo clearCache una nuova richiesta causi un nuovo fetch dal KeyProvider
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_u_crypto_sdk_rest_client_query_valid
+    service: Crypto SDK
+    description: Verificare che DataApiRestClient.query invii URL e header Authorization corretti e validi la risposta
+    requirements:
+      - richiesta_dati_on_demand
+    status: passed
+  - id: t_u_crypto_sdk_rest_client_query_http_error
+    service: Crypto SDK
+    description: Verificare che DataApiRestClient.query lanci ApiError in caso di risposta HTTP non-ok
+    requirements:
+      - richiesta_dati_on_demand
+    status: passed
+  - id: t_u_crypto_sdk_rest_client_query_invalid_dto
+    service: Crypto SDK
+    description: Verificare che DataApiRestClient.query lanci ValidationError in caso di DTO di risposta non valido
+    requirements:
+      - richiesta_dati_on_demand
+    status: passed
+  - id: t_u_crypto_sdk_rest_client_export_valid
+    service: Crypto SDK
+    description: Verificare che DataApiRestClient.export restituisca un array di EncryptedEnvelopeDTO con URL corretto
+    requirements:
+      - esportazione_dati
+    status: passed
+  - id: t_u_crypto_sdk_rest_client_export_invalid_dto
+    service: Crypto SDK
+    description: Verificare che DataApiRestClient.export lanci ValidationError in caso di DTO non valido
+    requirements:
+      - esportazione_dati
+    status: passed
+  - id: t_u_crypto_sdk_sse_client_stream_valid
+    service: Crypto SDK
+    description: Verificare che DataApiSseClient.stream produca entrambe le envelope valide nell'ordine corretto
+    requirements:
+      - richiesta_dati_streaming
+    status: passed
+  - id: t_u_crypto_sdk_sse_client_headers
+    service: Crypto SDK
+    description: Verificare che DataApiSseClient.stream invochi fetchEventSource con URL completo, header Authorization e fetcher custom
+    requirements:
+      - richiesta_dati_streaming
+    status: passed
+  - id: t_u_crypto_sdk_sse_client_error
+    service: Crypto SDK
+    description: Verificare che un errore SSE causi il lancio di SdkError con messaggio "SSE stream error"
+    requirements:
+      - richiesta_dati_streaming
+    status: passed
+  - id: t_u_crypto_sdk_sse_client_empty_line
+    service: Crypto SDK
+    description: Verificare che le data line vuote siano ignorate e solo le envelope valide vengano prodotte
+    requirements:
+      - richiesta_dati_streaming
+    status: passed
+  - id: t_u_crypto_sdk_sse_client_invalid_dto
+    service: Crypto SDK
+    description: Verificare che un DTO envelope invalido causi il lancio di ValidationError
+    requirements:
+      - richiesta_dati_streaming
+    status: passed
+  - id: t_u_crypto_sdk_sse_client_abort
+    service: Crypto SDK
+    description: Verificare che l'abort signal esterno venga propagato all'AbortController interno terminando la connessione SSE
+    requirements:
+      - richiesta_dati_streaming
+    status: passed
+  - id: t_u_crypto_sdk_mgmt_client_get_all_keys
+    service: Crypto SDK
+    description: Verificare che ManagementApiClient.getAllKeys restituisca un array di KeyDTO con header Authorization presente
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_u_crypto_sdk_mgmt_client_get_all_keys_http_error
+    service: Crypto SDK
+    description: Verificare che ManagementApiClient.getAllKeys lanci ApiError in caso di risposta HTTP non-ok
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_u_crypto_sdk_mgmt_client_get_all_keys_invalid_dto
+    service: Crypto SDK
+    description: Verificare che ManagementApiClient.getAllKeys lanci ValidationError in caso di DTO non valido
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_u_crypto_sdk_mgmt_client_get_gateway_key_found
+    service: Crypto SDK
+    description: Verificare che ManagementApiClient.getGatewayKey restituisca il KeyDTO corretto con URL contenente il query param id
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_u_crypto_sdk_mgmt_client_get_gateway_key_not_found
+    service: Crypto SDK
+    description: Verificare che ManagementApiClient.getGatewayKey lanci SdkError quando la versione richiesta non è trovata
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_u_crypto_sdk_mgmt_client_async_token
+    service: Crypto SDK
+    description: Verificare che ManagementApiClient.getGatewayKey risolva correttamente un token provider asincrono e lo inserisca nell'header Authorization
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_u_crypto_sdk_mgmt_service_get_keys_model
+    service: Crypto SDK
+    description: Verificare che ManagementApiService.getKeysModel mappi correttamente i campi DTO da snake_case a camelCase
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_u_crypto_sdk_mgmt_service_get_key
+    service: Crypto SDK
+    description: Verificare che ManagementApiService.getKey invochi GatewayKeyFetcher con i parametri corretti e restituisca un KeyModel con campi camelCase
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_u_crypto_sdk_mgmt_service_error_propagation
+    service: Crypto SDK
+    description: Verificare che ManagementApiService.getKey propaghi correttamente gli errori SdkError provenienti dal client
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_u_crypto_sdk_data_service_query_delegation
+    service: Crypto SDK
+    description: Verificare che DataApiService.query deleghi al rest client restituendo la risposta invariata con i parametri propagati
+    requirements:
+      - richiesta_dati_on_demand
+    status: passed
+  - id: t_u_crypto_sdk_data_service_stream_delegation
+    service: Crypto SDK
+    description: Verificare che DataApiService.stream deleghi al SSE client producendo le envelope e propagando il signal
+    requirements:
+      - richiesta_dati_streaming
+    status: passed
+  - id: t_u_crypto_sdk_data_service_export_delegation
+    service: Crypto SDK
+    description: Verificare che DataApiService.export deleghi al rest client restituendo l'array di envelope invariato
+    requirements:
+      - esportazione_dati
+    status: passed
+  - id: t_u_crypto_sdk_query_measures_e2e
+    service: Crypto SDK
+    description: Verificare la decrittazione end-to-end di queryMeasures; le misure in chiaro corrispondono al payload originale cifrato con paginazione (hasMore, nextCursor) esposta correttamente
+    requirements:
+      - richiesta_dati_on_demand
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_u_crypto_sdk_query_measures_invalid_response
+    service: Crypto SDK
+    description: Verificare che queryMeasures lanci ValidationError in caso di risposta query non valida
+    requirements:
+      - richiesta_dati_on_demand
+    status: passed
+  - id: t_u_crypto_sdk_query_measures_invalid_decrypted_payload
+    service: Crypto SDK
+    description: Verificare che queryMeasures lanci ValidationError se il payload post-decrittazione non supera la validazione di dominio
+    requirements:
+      - richiesta_dati_on_demand
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_u_crypto_sdk_query_measures_pagination
+    service: Crypto SDK
+    description: Verificare che queryMeasures propaghi correttamente cursore e flag hasMore nella risposta paginata
+    requirements:
+      - richiesta_dati_on_demand
+    status: passed
+  - id: t_u_crypto_sdk_export_measures_e2e
+    service: Crypto SDK
+    description: Verificare la decrittazione end-to-end di exportMeasures; il generatore produce misure decifrate con valori corrispondenti all'originale
+    requirements:
+      - esportazione_dati
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_u_crypto_sdk_stream_measures_e2e
+    service: Crypto SDK
+    description: Verificare la decrittazione end-to-end di streamMeasures via SSE; il generatore produce misure decifrate dallo stream SSE simulato
+    requirements:
+      - richiesta_dati_streaming
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_u_crypto_sdk_stream_measures_abort_signal
+    service: Crypto SDK
+    description: Verificare che streamMeasures propaghi l'AbortSignal al client SSE sottostante
+    requirements:
+      - richiesta_dati_streaming
+    status: passed

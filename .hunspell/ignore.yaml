@@ -509,6 +509,38 @@ accepted_words:
   - Zod
   - CommonJS
   - AbortController
+  - orchestrator
+  - decrypt
+  - BYOF
+  - Nuxt
+  - KeyProvider
+  - DataApiService
+  - param
+  - plaintext
+  - DecryptionError
+  - clearCache
+  - DataApiRestClient
+  - ApiError
+  - ValidationError
+  - EncryptedEnvelopeDTO
+  - DataApiSseClient
+  - fetchEventSource
+  - SdkError
+  - ManagementApiClient
+  - getAllKeys
+  - KeyDTO
+  - ManagementApiService
+  - getKeysModel
+  - getKey
+  - getGatewayKey
+  - GatewayKeyFetcher
+  - KeyModel
+  - queryMeasures
+  - hasMore
+  - exportMeasures
+  - streamMeasures
+  - SSoT
+  - sonarqube
 
   # --- Terminologia Standard Progetto ---
   - req

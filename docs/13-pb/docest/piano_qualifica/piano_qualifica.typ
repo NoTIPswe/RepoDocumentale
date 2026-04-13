@@ -778,428 +778,18 @@
   #include "generated/_yaml_test_index.typ"
   #include "generated/_yaml_traceability.typ"
 
-  /* Legacy inline testing tables retained for historical reference.
-
-  == Test di unità
-
-  #table(
-    columns: (1fr, 3.5fr, 1.2fr, 0.8fr),
-    stroke: 0.5pt,
-    inset: 6pt,
-
-    table.header([*Codice*], [*Descrizione (unitaria)*], [*Requisiti di riferimento*], [*Stato*]),
-    [T-U-1], [Verificare la validazione del campo email nella richiesta di login (presenza e formato)], [R-117-F], [NI],
-    [T-U-2], [Verificare la validazione del campo password nella richiesta di login], [R-2-F], [NI],
-    [T-U-3], [Verificare il mapping dell’errore “credenziali errate”], [R-3-F], [NI],
-    [T-U-4], [Verificare la generazione del segreto TOTP (formato e lunghezza)], [R-4-F], [NI],
-    [T-U-5], [Verificare la serializzazione del segreto TOTP], [R-4-F], [NI],
-    [T-U-6], [Verificare la valutazione della condizione “2FA richiesto”], [R-5-F], [NI],
-    [T-U-7], [Verificare la validazione dell’input OTP (solo cifre, lunghezza)], [R-6-F], [NI],
-    [T-U-8], [Verificare il mapping dell’errore “OTP errato”], [R-7-F], [NI],
-    [T-U-9], [Verificare la validazione della richiesta di recupero password], [R-8-F], [NI],
-    [T-U-10], [Verificare il mapping dell’errore “account non esistente”], [R-10-F], [NI],
-    [T-U-11], [Verificare la validazione della nuova password], [R-11-F], [NI],
-    [T-U-12], [Verificare il mapping dell’errore “password non corrispondenti”], [R-12-F], [NI],
-    [T-U-13], [Verificare il rispetto della policy di complessità password], [R-13-F], [NI],
-
-    [T-U-14], [Verificare il mapping dello stato gateway verso label testuale], [R-21-F], [NI],
-    [T-U-15], [Verificare la formattazione del timestamp ultimo invio gateway], [R-22-F], [NI],
-    [T-U-16], [Verificare la formattazione del timestamp ultimo invio sensore], [R-23-F], [NI],
-    [T-U-17], [Verificare la normalizzazione e serializzazione dello stream dati], [R-24-F], [NI],
-    [T-U-18], [Verificare la trasformazione dello stream in struttura tabellare], [R-25-F], [NI],
-    [T-U-19], [Verificare la trasformazione dello stream in serie per grafico], [R-26-F], [NI],
-    [T-U-20], [Verificare la validazione dell’intervallo temporale (start ≤ end)], [R-29-F], [NI],
-    [T-U-21], [Verificare il mapping dello stato “dati non disponibili”], [R-30-F], [NI],
-    [T-U-22], [Verificare la serializzazione dei dati per export], [R-31-F], [NI],
-    [T-U-23], [Verificare la formattazione del valore fuori range], [R-33-F], [NI],
-    [T-U-24], [Verificare la formattazione del range accettato], [R-33-F], [NI],
-    [T-U-25], [Verificare la formattazione del timestamp di un dato irregolare], [R-33-F], [NI],
-
-    [T-U-26], [Verificare il mapping del tipo di alert verso descrizione testuale], [R-35-F], [NI],
-    [T-U-27], [Verificare il mapping dell’hardware interessato da un alert], [R-35-F], [NI],
-    [T-U-28], [Verificare la formattazione del timestamp di emissione alert], [R-35-F], [NI],
-    [T-U-29], [Verificare la validazione delle impostazioni di notifica], [R-39-F, R-40-F], [NI],
-
-    [T-U-30], [Verificare la validazione del nome utente tenant], [R-58-F], [NI],
-    [T-U-31], [Verificare la validazione dei ruoli assegnabili], [R-60-F], [NI],
-    [T-U-32], [Verificare l’assenza di duplicati nella selezione utenti], [R-64-F], [NI],
-    [T-U-33], [Verificare la generazione del Client ID], [R-66-F], [NI],
-    [T-U-34], [Verificare la generazione del Client Secret], [R-67-F], [NI],
-
-    [T-U-35], [Verificare la costruzione di una entry di audit (campi obbligatori)], [R-74-F], [NI],
-    [T-U-36], [Verificare il mapping dell’operazione di audit verso testo], [R-74-F], [NI],
-    [T-U-37], [Verificare la validazione di un token JWT (scadenza e formato)], [R-86-F], [NI],
-    [T-U-38], [Verificare la validazione dei permessi secondo policy], [R-6-S], [NI],
-
-    [T-U-39], [Verificare il mapping della lista gateway simulati], [R-S-1-F], [NI],
-    [T-U-40], [Verificare il mapping del gateway simulato], [R-S-2-F], [NI],
-    [T-U-41], [Verificare la validazione della configurazione gateway simulato], [R-S-11-F], [NI],
-    [T-U-42], [Verificare il mapping dell’errore di deploy gateway simulato], [R-S-12-F], [NI],
-    [T-U-43], [Verificare la validazione della configurazione sensore simulato], [R-S-14-F], [NI],
-    [T-U-44], [Verificare il mapping dell’errore range invalido sensore], [R-S-15-F], [NI],
-  )
-
-  == Test di integrazione
-
-  #table(
-    columns: (1fr, 3.5fr, 1.2fr, 0.8fr),
-    stroke: 0.5pt,
-    inset: 6pt,
-
-    table.header([*Codice*], [*Descrizione*], [*Requisiti di riferimento*], [*Stato*]),
-    [T-I-1],
-    [Verificare la corretta ricezione e validazione dei pacchetti JSON inviati dal Simulatore al Cloud Ingestion
-      Service],
-    [R-113-F],
-    [NI],
-
-    [T-I-2],
-    [Verificare il flusso di controllo bidirezionale: invio e corretta applicazione dei comandi di configurazione dal
-      Cloud al Simulatore],
-    [R-S-22-F],
-    [NI],
-
-    [T-I-3],
-    [Verificare la gestione del buffer locale del Simulatore e della successiva integrazione con il Cloud dopo un
-      ripristino di rete],
-    [R-S-20-F],
-    [NI],
-
-    [T-I-4],
-    [Verificare la persistenza dei dati nel database e dell’isolamento dei dati per ciascun Tenant],
-    [R-113-F, R-2-S],
-    [NI],
-
-    [T-I-5],
-    [Verificare l’attivazione dei trigger di allerta tra il modulo di analisi dati e il servizio notifiche al
-      superamento delle soglie],
-    [R-33-F],
-    [NI],
-
-    [T-I-6],
-    [Verificare l’integrazione del Sistema di autenticazione (JWT) tra l’API Gateway e i microservizi interni],
-    [R-6-S],
-    [NI],
-
-    [T-I-7],
-    [Verificare la gestione degli errori di configurazione del Gateway simulato in caso di payload invalido o frequenza
-      fuori range],
-    [R-S-23-F, R-S-24-F],
-    [NI],
-
-    [T-I-8],
-    [Verificare la propagazione e gestione di misure anomale (outlier) dal Simulatore al Cloud],
-    [R-S-21-F],
-    [NI],
-
-    [T-I-9], [Verificare l’integrazione del Sistema con più Gateway simulati attivi in parallelo], [R-S-17-F], [NI],
-    [T-I-10],
-    [Verificare che i dati scambiati tra le diverse componenti del Sistema distribuito siano cifrati e trasmessi tramite
-      protocollo TLS.],
-    [R-1-S],
-    [NI],
-
-    [T-I-11], [Verificare l’isolamento dei dati tra Tenant tramite API e persistenza su database], [R-2-S], [NI],
-  )
-
-  == Test di sistema
-
-  #table(
-    columns: (1fr, 3.3fr, 1.4fr, 0.7fr),
-    stroke: 0.5pt,
-    inset: 6pt,
-
-    table.header([*Codice*], [*Descrizione*], [*Requisiti di riferimento*], [*Stato*]),
-    //Autenticazione e Autorizzazione
-    [T-S-001],
-    [Verificare che un utente non autenticato possa accedere al Sistema inserendo credenziali valide tramite interfaccia
-      UI.],
-    [R-1-F, R-2-F, R-117-F],
-    [NI],
-
-    [T-S-002],
-    [Verificare che il Sistema neghi l’accesso e mostri un messaggio di errore in caso di credenziali errate.],
-    [R-3-F],
-    [NI],
-
-    [T-S-003],
-    [Verificare che un utente possa configurare correttamente il meccanismo 2FA durante il primo accesso.],
-    [R-4-F, R-3-S],
-    [NI],
-
-    [T-S-004],
-    [Verificare che un utente possa effettuare il login tramite codice OTP valido.],
-    [R-5-F, R-6-F, R-3-S],
-    [NI],
-
-    [T-S-005],
-    [Verificare che il Sistema notifichi un errore in caso di inserimento di codice OTP errato.],
-    [R-7-F],
-    [NI],
-
-    [T-S-006],
-    [Verificare che tutti gli endpoint UI e API rifiutino richieste provenienti da utenti non autenticati.],
-    [R-6-S],
-    [NI],
-
-    //Recupero e Gestione Credenziali Account
-    [T-S-007],
-    [Verificare che un utente non autenticato possa avviare la procedura di recupero password inserendo una mail
-      valida.],
-    [R-8-F],
-    [NI],
-
-    [T-S-008],
-    [Verificare che il Sistema permetta la modifica della password tramite procedura di recupero.],
-    [R-9-F, R-11-F],
-    [NI],
-
-    [T-S-009],
-    [Verificare che il Sistema notifichi un errore in caso di email non associata ad alcun account.],
-    [R-10-F],
-    [NI],
-
-    [T-S-010],
-    [Verificare che il sistema notifichi un errore in caso di password inserite non corrispondenti o non valide.],
-    [R-12-F, R-13-F],
-    [NI],
-
-    [T-S-011],
-    [Verificare che un utente autenticato possa modificare la propria email, con corretta validazione del formato,
-      segnalazione di duplicati e richiesta di conferma.],
-    [R-14-F, R-15-F, R-16-F, R-17-F],
-    [NI],
-
-    [T-S-012], [Verificare che un utente autenticato possa modificare la password del proprio account.], [R-18-F], [NI],
-
-    [T-S-013], [Verificare che un utente autenticato possa effettuare il logout dal Sistema.], [R-19-F], [NI],
-
-    //Gateway e Sensori
-    [T-S-014],
-    [Verificare che un utente autenticato possa visualizzare la lista dei Gateway associati al proprio Tenant.],
-    [R-20-F],
-    [NI],
-
-    [T-S-015],
-    [Verificare che il sistema mostri correttamente nome, stato, timestamp dell’ultimo invio dati e lista sensori di un
-      Gateway selezionato.],
-    [R-21-F, R-22-F],
-    [NI],
-
-    [T-S-016], [Verificare che il sistema mostri la lista dei sensori associati a un Gateway.], [R-23-F], [NI],
-    [T-S-017],
-    [Verificare che il sistema mostri correttamente l’ID e l’ultimo timestamp di invio dati di ciascun sensore.],
-    [R-23-F],
-    [NI],
-
-    //Dati, Filtri e Esportazione
-    [T-S-018], [Verificare che il sistema visualizzi i dati di stream in formato tabellare.], [R-24-F, R-25-F], [NI],
-    [T-S-019], [Verificare che il sistema visualizzi i dati di stream in formato grafico.], [R-24-F, R-26-F], [NI],
-    [T-S-020],
-    [Verificare che l’utente possa filtrare i dati per Gateway, sensore e intervallo temporale.],
-    [R-27-F, R-28-F, R-29-F],
-    [NI],
-
-    [T-S-021],
-    [Verificare che il sistema notifichi l’utente quando non sono disponibili dati per i filtri selezionati.],
-    [R-30-F],
-    [NI],
-
-    [T-S-022], [Verificare che l’utente possa esportare i dati visualizzati in formato supportato.], [R-31-F], [NI],
-
-    //Alert e Notifiche
-    [T-S-023], [Verificare che il sistema generi un alert in caso di Gateway non raggiungibile.], [R-32-F], [NI],
-    [T-S-024], [Verificare che il sistema generi un alert in caso di valore sensore fuori range.], [R-33-F], [NI],
-    [T-S-025], [Verificare che l’utente possa visualizzare lo storico degli alert generati.], [R-34-F], [NI],
-    [T-S-026],
-    [Verificare che il sistema mostri i dettagli completi di un alert selezionato.],
-    [R-35-F, R-36-F, R-37-F, R-38-F],
-    [NI],
-
-    [T-S-027],
-    [Verificare che l’utente possa attivare e disattivare la ricezione di notifiche alert via email e dashboard.],
-    [R-39-F, R-40-F],
-    [NI],
-
-    [T-S-028],
-    [Verificare che il Tenant Admin possa modificare il nome di un Gateway e ricevere errore in caso di nome
-      duplicato.],
-    [R-41-F, R-42-F],
-    [NI],
-
-    [T-S-029],
-    [Verificare che il Tenant Admin possa modificare lo stato operativo di un Gateway selezionato.],
-    [R-43-F, R-44-F],
-    [NI],
-
-    [T-S-030],
-    [Verificare che il Tenant Admin possa modificare il range di allarme per un sensore specifico e per un tipo di
-      sensore, ricevendo errore in caso di range invalido.],
-    [R-45-F, R-46-F, R-47-F, R-48-F, R-49-F, R-50-F, R-116-F],
-    [NI],
-
-    [T-S-031],
-    [Verificare che il Tenant Admin possa modificare il timeout che determina l’irraggiungibilità di un Gateway.],
-    [R-51-F],
-    [NI],
-
-    [T-S-032],
-    [Verificare che il Tenant Admin possa modificare la frequenza di invio dati di un Gateway.],
-    [R-81-F],
-    [NI],
-
-    [T-S-033],
-    [Verificare che il Tenant Admin possa visualizzare i costi stimati del Tenant, inclusi costi di storage e banda.],
-    [R-52-F, R-53-F, R-54-F],
-    [NI],
-
-    //Gestione Utenti del Tenant (Tenant Admin)
-    [T-S-034],
-    [Verificare che il Tenant Admin possa visualizzare la lista degli utenti del Tenant e i dettagli di un singolo
-      utente.],
-    [R-55-F, R-56-F],
-    [NI],
-
-    [T-S-035],
-    [Verificare che il Tenant Admin possa creare, modificare ed eliminare uno o più utenti del Tenant.],
-    [R-57-F, R-58-F, R-59-F, R-60-F, R-61-F, R-62-F, R-63-F, R-64-F],
-    [NI],
-
-    [T-S-036],
-    [Verificare che il Tenant Admin possa creare, visualizzare e revocare credenziali API per il Tenant.],
-    [R-65-F, R-66-F, R-67-F, R-68-F, R-69-F, R-70-F, R-71-F],
-    [NI],
-
-    [T-S-037],
-    [Verificare che il Tenant Admin possa modificare le impostazioni del login 2FA per il Tenant.],
-    [R-72-F],
-    [NI],
-
-    [T-S-039],
-    [Verificare che un utente autorizzato possa consultare, filtrare per intervallo temporale, esportare e scaricare i
-      log di Audit del Tenant.],
-    [R-73-F, R-74-F, R-75-F, R-76-F, R-77-F],
-    [NI],
-
-    [T-S-038],
-    [Verificare che il Tenant Admin e l’Amministratore di Sistema possano configurare le impostazioni di
-      impersonificazione del Tenant.],
-    [R-78-F],
-    [NI],
-
-    [T-S-040],
-    [Verificare che il sistema registri correttamente tutte le operazioni rilevanti nei log di Audit.],
-    [R-4-S],
-    [NI],
-
-    [T-S-041],
-    [Verificare che l’Amministratore di Sistema possa visualizzare metriche di latenza, volume di traffico e utilizzo
-      storage.],
-    [R-110-F],
-    [NI],
-
-    [T-S-042],
-    [Verificare che il Tenant Admin e l’Amministratore di Sistema possano selezionare uno o più Gateway e installare un
-      aggiornamento firmware.],
-    [R-79-F, R-80-F],
-    [NI],
-
-    [T-S-043],
-    [Verificare che l’Amministratore di Sistema possa visualizzare la lista dei Tenant e i dettagli di un singolo
-      Tenant, inclusi nome, stato, ID e intervallo di sospensione.],
-    [R-91-F, R-92-F, R-93-F, R-94-F, R-95-F, R-96-F, R-97-F],
-    [NI],
-
-    [T-S-044],
-    [Verificare che l’Amministratore di Sistema possa creare, sospendere, riattivare, modificare ed eliminare un Tenant,
-      con corretta gestione di errori interni durante la creazione.],
-    [R-98-F, R-99-F, R-100-F, R-101-F, R-102-F, R-103-F, R-104-F, R-105-F, R-106-F],
-    [NI],
-
-    [T-S-045],
-    [Verificare che l’Amministratore di Sistema possa avviare una sessione di impersonificazione di un utente Tenant.],
-    [R-107-F],
-    [NI],
-
-    [T-S-046],
-    [Verificare che l’Amministratore di Sistema possa registrare un Gateway e associarlo a un Tenant di interesse.],
-    [R-108-F],
-    [NI],
-
-    [T-S-047],
-    [Verificare che l’Amministratore di Sistema possa creare un utente con ruolo Amministratore Tenant per un Tenant di
-      interesse.],
-    [R-109-F],
-    [NI],
-
-    [T-S-048],
-    [Verificare che un Client API possa autenticarsi tramite le credenziali ottenute e ricevere notifica di errore in
-      caso di credenziali invalide o server non disponibile.],
-    [R-82-F, R-83-F, R-84-F],
-    [NI],
-
-    [T-S-049],
-    [Verificare che un Client API autenticato possa recuperare dati storici on-demand e ricevere notifiche di errore per
-      token, ID Gateway, ID sensore o intervallo temporale non validi.],
-    [R-85-F, R-86-F, R-87-F, R-88-F, R-89-F],
-    [NI],
-
-    [T-S-050],
-    [Verificare che un Client API autenticato possa ricevere dati real-time tramite endpoint di streaming.],
-    [R-90-F],
-    [NI],
-
-    [T-S-051],
-    [Verificare che un Gateway non provisioned possa completare correttamente il processo di onboarding e connettersi al
-      Sistema.],
-    [R-111-F],
-    [NI],
-
-    [T-S-052],
-    [Verificare che il sistema notifichi errori di autenticazione per Gateway con credenziali di fabbrica non valide o
-      con processo di autenticazione fallito.],
-    [R-112-F, R-115-F],
-    [NI],
-
-    [T-S-053],
-    [Verificare che il Gateway invii dati al Cloud tramite canale sicuro cifrato e che il Cloud li accetti
-      correttamente.],
-    [R-113-F, R-114-F, R-1-S],
-    [NI],
-
-    //Simulatore Gateway
-    [T-S-054],
-    [Verificare che l’utente del simulatore possa visualizzare la lista dei Gateway simulati, i dettagli di ciascuno e
-      gestire creazione, deploy ed eliminazione.],
-    [R-S-1-F, R-S-2-F, R-S-3-F, R-S-4-F, R-S-8-F, R-S-10-F, R-S-11-F, R-S-12-F],
-    [NI],
-
-    [T-S-055],
-    [Verificare che l’utente del simulatore possa configurare e simulare sensori associati a un Gateway simulato,
-      inclusa la gestione degli errori di range e creazione.],
-    [R-S-5-F, R-S-6-F, R-S-7-F, R-S-9-F, R-S-13-F, R-S-14-F, R-S-15-F, R-S-16-F],
-    [NI],
-
-    [T-S-056],
-    [Verificare che il simulatore permetta di creare più istanze Gateway in parallelo e di iniettare anomalie di rete e
-      valori sensore anomali.],
-    [R-S-17-F, R-S-18-F, R-S-19-F, R-S-20-F, R-S-21-F],
-    [NI],
-
-    [T-S-057],
-    [Verificare che il Cloud possa inviare comandi di configurazione al Gateway simulato e ricevere notifiche di errore
-      per payload o frequenza non validi.],
-    [R-S-22-F, R-S-23-F, R-S-24-F],
-    [NI],
-
-    [T-S-058], [Verificare la corretta trasmissione del flusso di dati tra sensore e relativo gateway], [R-113-F], [NI],
-  )
-
-  */
-
   = Cruscotto di valutazione
   Di seguito vengono presentate le misurazioni raccolte nel periodo compreso tra l’aggiudicazione del capitolato e la
   definizione della Requirements and Technology Baseline (RTB).
+
+  In ottica di Continuous Integration e nel rispetto delle Norme di Progetto, il tracciamento manuale delle metriche di
+  processo riguardanti lo sviluppo tramite screenshot è stato sostituito dall’automazione. Si dichiara ufficialmente che
+  la dashboard pubblica di SonarQube (#link("https://sonarcloud.io/organizations/notipswe/projects"), ultimo accesso
+  2026-04-13) costituisce la Single Source of Truth (SSoT) per tutte le metriche di qualità riguardanti lo sviluppo del
+  codice sorgente. Il rispetto di tali metriche è garantito dai Quality Gate bloccanti impostati sulle pipeline di
+  CI/CD, che impediscono il merge di codice non conforme. Nelle sezioni seguenti sono riportati i valori di Baseline
+  registrati al momento del rilascio di questo documento. Per la consultazione di SonarQube, si rimanda alla
+  documentazione ufficiale (#link("https://docs.sonarsource.com/sonarqube-cloud"), ultimo accesso 2026-04-13).
 
   == MP01 e MP02: Earned Value e Planned Value
 
@@ -1269,9 +859,9 @@
 
   Nel periodo compreso tra gli sprint 8 e 12, lo Schedule Performance Index (SPI) si mantiene costantemente prossimo a
   1, confermando una buona aderenza alla pianificazione temporale. Nello stesso intervallo, il Cost Performance Index
-  (CPI), dopo aver raggiunto il valore minimo attorno allo sprint 8 — corrispondente a una fase di elevato carico di
-  impegni esterni al progetto — mostra una progressiva risalita. Pur rimanendo leggermente inferiore a 1 tra gli sprint
-  8 e 11, nel dodicesimo sprint il CPI torna ad allinearsi allo SPI, raggiungendo anch'esso il valore unitario.
+  (CPI), dopo aver raggiunto il valore minimo attorno allo sprint 8, corrispondente a una fase di elevato carico di
+  impegni esterni al progetto, mostra una progressiva risalita. Pur rimanendo leggermente inferiore a 1 tra gli sprint 8
+  e 11, nel dodicesimo sprint il CPI torna ad allinearsi allo SPI, raggiungendo anch'esso il valore unitario.
 
 
   == MP06: Estimate At Completion
@@ -1411,43 +1001,36 @@
   processo redazionale.
 
 
+
   == MP13: Code Coverage
 
-  #align(center)[
-    #box(width: 90%)[
-      #figure(
-        grid(
-          columns: (1fr, 1fr),
-          gutter: 0.8em,
-          image("assets/code_coverage/crypto-sdk-codeCoverage.png", width: 100%),
-          image("assets/code_coverage/data-api-codeCoverage.png", width: 100%),
-
-          image("assets/code_coverage/data-consumer-codeCoverage.png", width: 100%),
-          image("assets/code_coverage/frontend-codeCoverage.png", width: 100%),
-
-          image("assets/code_coverage/mngm-api-codeCoverage.png", width: 100%),
-          image("assets/code_coverage/provisioning_codeCoverage.png", width: 100%),
-
-          image("assets/code_coverage/simulator-backend-codeCoverage.png", width: 100%),
-          image("assets/code_coverage/simulator-cli-codeCoverage.png", width: 100%),
-        ),
-        caption: [Report di Code Coverage dei servizi del progetto],
-      ) <MP13>
-    ]
-  ]
+  #figure(
+    table(
+      columns: (1fr, auto, auto),
+      stroke: 0.5pt,
+      inset: 6pt,
+      table.header([*Repository*], [*Valore registrato*], [*Quality Gate*]),
+      [notip-crypto-sdk], [91,7%], [Passed],
+      [notip-data-api], [97,1%], [Passed],
+      [notip-data-consumer], [97,3%], [Passed],
+      [notip-frontend], [94,9%], [Passed],
+      [notip-management-api], [87,1%], [Passed],
+      [notip-provisioning-service], [94,4%], [Passed],
+      [notip-simulator-backend], [94,6%], [Passed],
+      [notip-simulator-cli], [95,2%], [Passed],
+    ),
+    caption: [Valori di Baseline: code coverage per servizio. Fonte: SonarQube],
+    kind: table,
+  ) <MP13>
 
   === PB
 
-  I risultati della metrica di Code Coverage nella fase PB sono illustrati nelle figure precedenti, che raccolgono i
-  report di copertura relativi ai diversi servizi del progetto, ottenuti tramite SonarQube. Le figure consentono di
-  esaminare in modo unitario i risultati conseguiti nelle varie componenti applicative considerate durante l’attività di
-  verifica, offrendo una visione complessiva dello stato della copertura del codice nella fase finale del progetto. Dai
-  dati raccolti emerge un valore medio di copertura di poco superiore al 90%, con differenze contenute tra i vari
-  servizi. Tale risultato soddisfa il valore accettabile definito per la metrica e si allinea sostanzialmente al valore
-  ottimale fissato al 90%, attestando un livello di copertura complessivamente molto elevato. Alcune sezioni del codice
-  presentano una copertura pari allo 0%, trattandosi tuttavia di elementi non critici per il funzionamento del sistema.
-  Il gruppo ha adottato opportune misure per garantire che tutti i componenti critici siano adeguatamente coperti dai
-  test, assicurando la correttezza del prodotto.
+  I valori di Baseline della metrica di Code Coverage nella fase PB sono riportati nella tabella precedente, ottenuti
+  tramite SonarQube. Dai dati raccolti emerge un valore medio di copertura superiore al 90%, con differenze contenute
+  tra i vari servizi. Tale risultato soddisfa il valore accettabile definito per la metrica e si allinea sostanzialmente
+  al valore ottimale fissato al 90%, attestando un livello di copertura complessivamente molto elevato. Il gruppo ha
+  adottato opportune misure per garantire che tutti i componenti critici siano adeguatamente coperti dai test,
+  assicurando la correttezza del prodotto.
 
 
   == MP14: Test Success Rate
@@ -1510,21 +1093,32 @@
   == MP19: Quality Gate Pass Rate
 
   #figure(
-    image(height: 30%, "assets/quality_gate_1.png"),
-  )
-
-  #figure(
-    image(height: 30%, "assets/quality_gate_2.png"),
-    caption: [Grafico per Sprint di MP19],
+    table(
+      columns: (1fr, auto),
+      stroke: 0.5pt,
+      inset: 6pt,
+      table.header([*Repository*], [*Quality Gate*]),
+      [notip-crypto-sdk], [Passed],
+      [notip-data-api], [Passed],
+      [notip-data-consumer], [Passed],
+      [notip-frontend], [Passed],
+      [notip-management-api], [Passed],
+      [notip-provisioning-service], [Passed],
+      [notip-simulator-backend], [Passed],
+      [notip-simulator-cli], [Passed],
+    ),
+    caption: [Stato Quality Gate per servizio (Baseline al rilascio di questo documento). Fonte: SonarQube],
+    kind: table,
   ) <MP19>
 
   === PB
   In merito alla metrica MP19, l'integrazione di SonarQube nel processo di code review ha consentito il rilevamento
   automatico di eventuali difetti nel codice, bloccando il flusso di Pull Request in presenza di violazioni. Tale
   meccanismo ha garantito un controllo sistematico e continuo sulla qualità del codice, imponendo la risoluzione
-  immediata di qualsiasi anomalia rilevata. Questa politica ha condotto al raggiungimento di *0* vulnerabilità — i
-  security hotspot rilevati dallo strumento — confermando il pieno conseguimento del valore ottimo prefissato per la
-  metrica.
+  immediata di qualsiasi anomalia rilevata. Come riportato nella tabella precedente, tutti i servizi hanno superato il
+  Quality Gate al momento del rilascio di questo documento. Questa politica ha condotto al raggiungimento di *0*
+  vulnerabilità (i security hotspot rilevati dallo strumento), confermando il pieno conseguimento del valore ottimo
+  prefissato per la metrica.
 
   == MP20: Time Efficiency
   #figure(
@@ -1642,8 +1236,8 @@
 
   === PB
   A seguito della negoziazione con l'azienda proponente, in cui un requisito originariamente classificato come
-  obbligatorio — quello relativo alla funzionalità End-to-End — è stato ridefinito come desiderabile/opzionale, il
-  gruppo ha conseguito il soddisfacimento del *100%* dei requisiti obbligatori.
+  obbligatorio, quello relativo alla funzionalità End-to-End, è stato ridefinito come desiderabile/opzionale, il gruppo
+  ha conseguito il soddisfacimento del *100%* dei requisiti obbligatori.
 
   == MQ04: Branch Coverage
   === PB
@@ -1652,12 +1246,51 @@
   copertura del 100%. Il valore minimo rilevato su un singolo servizio è stato del 75%, risultato comunque ampiamente al
   di sopra della soglia accettabile del 60%.
 
+  #figure(
+    table(
+      columns: (1fr, auto, auto),
+      stroke: 0.5pt,
+      inset: 6pt,
+      table.header([*Repository*], [*Branch coverage*], [*Quality Gate*]),
+      [notip-crypto-sdk], [79,2%], [Passed],
+      [notip-data-api], [92,8%], [Passed],
+      [notip-data-consumer], [N/D], [Passed],
+      [notip-frontend], [91,3%], [Passed],
+      [notip-management-api], [77,5%], [Passed],
+      [notip-provisioning-service], [85,6%], [Passed],
+      [notip-simulator-backend], [N/D], [Passed],
+      [notip-simulator-cli], [N/D], [Passed],
+    ),
+    caption: [Valori di Baseline: branch coverage per servizio. Fonte: SonarQube (N/D: metrica non esposta dallo
+      strumento per il linguaggio del servizio)],
+    kind: table,
+  )
+
   == MQ05: Statement Coverage
   === PB
   L'andamento della metrica durante la PB ha confermato l'alta affidabilità della test suite. La copertura delle
   istruzioni non è mai scesa sotto l'87% globale (ampiamente sopra il 70% accettabile) ed è rientrata nel range ottimale
   (>= 90%) per la quasi totalità dell'architettura. Sui moduli principali del backend, gli strumenti di analisi statica
   hanno certificato picchi di copertura fino al 97,3%.
+
+  #figure(
+    table(
+      columns: (1fr, auto, auto),
+      stroke: 0.5pt,
+      inset: 6pt,
+      table.header([*Repository*], [*Statement coverage*], [*Quality Gate*]),
+      [notip-crypto-sdk], [95,3%], [Passed],
+      [notip-data-api], [99,4%], [Passed],
+      [notip-data-consumer], [97,3%], [Passed],
+      [notip-frontend], [96,8%], [Passed],
+      [notip-management-api], [92,8%], [Passed],
+      [notip-provisioning-service], [97,5%], [Passed],
+      [notip-simulator-backend], [94,6%], [Passed],
+      [notip-simulator-cli], [95,2%], [Passed],
+    ),
+    caption: [Valori di Baseline: statement coverage per servizio. Fonte: SonarQube],
+    kind: table,
+  )
 
   == MQ06: Failure Density
   === PB
@@ -1666,18 +1299,75 @@
   nel codice rilasciato. Il valore della Failure Density si è attestato a 0,0 failure/KLOC, centrando il valore ottimo
   definito (≤ 0,1).
 
+  #figure(
+    table(
+      columns: (1fr, auto, auto, auto),
+      stroke: 0.5pt,
+      inset: 6pt,
+      table.header([*Repository*], [*Bug*], [*Vulnerabilità*], [*Quality Gate*]),
+      [notip-crypto-sdk], [0], [0], [Passed],
+      [notip-data-api], [0], [0], [Passed],
+      [notip-data-consumer], [0], [0], [Passed],
+      [notip-frontend], [0], [0], [Passed],
+      [notip-management-api], [0], [0], [Passed],
+      [notip-provisioning-service], [0], [0], [Passed],
+      [notip-simulator-backend], [0], [0], [Passed],
+      [notip-simulator-cli], [0], [0], [Passed],
+    ),
+    caption: [Valori di Baseline: bug e vulnerabilità per servizio. Fonte: SonarQube],
+    kind: table,
+  )
+
   == MQ10: Code Smells
   === PB
   Durante la fase di PB, il codice prodotto ha evidenziato un elevato livello di manutenibilità, certificato dal rating
   massimo ("A") nella categoria Maintainability su SonarQube per l'intero ecosistema di repository. Il numero di code
   smell è risultato pressoché nullo, mantenendosi costantemente al di sotto della soglia ottimale (≤ 5 code smell/KLOC).
 
+  #figure(
+    table(
+      columns: (1fr, auto, auto),
+      stroke: 0.5pt,
+      inset: 6pt,
+      table.header([*Repository*], [*Code smells*], [*Quality Gate*]),
+      [notip-crypto-sdk], [0], [Passed],
+      [notip-data-api], [1], [Passed],
+      [notip-data-consumer], [0], [Passed],
+      [notip-frontend], [0], [Passed],
+      [notip-management-api], [1], [Passed],
+      [notip-provisioning-service], [8], [Passed],
+      [notip-simulator-backend], [0], [Passed],
+      [notip-simulator-cli], [1], [Passed],
+    ),
+    caption: [Valori di Baseline: code smells per servizio. Fonte: SonarQube],
+    kind: table,
+  )
+
   == MQ11: Cyclomatic Complexity
   === PB
-  Nonostante l'elevata complessità architetturale complessiva — a titolo esemplificativo, il frontend presenta una
-  complessità cumulativa di circa 1.396 distribuita su oltre 140 file — la complessità ciclomatica media per singolo
+  Nonostante l'elevata complessità architetturale complessiva (a titolo esemplificativo, il frontend presenta una
+  complessità cumulativa di circa 1.396 distribuita su oltre 140 file), la complessità ciclomatica media per singolo
   metodo o funzione si è mantenuta stabilmente all'interno del range ottimale (≤ 5). Il gruppo ha applicato con rigore
   principi di refactoring, scomponendo la logica in funzioni lineari, concise e facilmente verificabili.
+
+  #figure(
+    table(
+      columns: (1fr, auto, auto, auto),
+      stroke: 0.5pt,
+      inset: 6pt,
+      table.header([*Repository*], [*Complessità totale*], [*Funzioni*], [*Media per funzione*]),
+      [notip-crypto-sdk], [80], [48], [1,67],
+      [notip-data-api], [309], [137], [2,26],
+      [notip-data-consumer], [194], [82], [2,37],
+      [notip-frontend], [1497], [788], [1,90],
+      [notip-management-api], [1105], [513], [2,15],
+      [notip-provisioning-service], [163], [82], [1,99],
+      [notip-simulator-backend], [558], [192], [2,91],
+      [notip-simulator-cli], [146], [43], [3,40],
+    ),
+    caption: [Valori di Baseline: complessità ciclomatica per servizio. Fonte: SonarQube],
+    kind: table,
+  )
 
   == MQ12: Code Duplication Percentage
   === PB
@@ -1685,6 +1375,25 @@
   principio DRY. Per la quasi totalità dei servizi sviluppati è stata registrata una percentuale di duplicazione
   estremamente contenuta. Il picco massimo rilevato è stato del 2,2% nel servizio di management, valore comunque
   inferiore alla soglia ottimale del 3%.
+
+  #figure(
+    table(
+      columns: (1fr, auto, auto),
+      stroke: 0.5pt,
+      inset: 6pt,
+      table.header([*Repository*], [*Duplicazione*], [*Quality Gate*]),
+      [notip-crypto-sdk], [0,0%], [Passed],
+      [notip-data-api], [1,7%], [Passed],
+      [notip-data-consumer], [0,0%], [Passed],
+      [notip-frontend], [1,5%], [Passed],
+      [notip-management-api], [2,2%], [Passed],
+      [notip-provisioning-service], [0,0%], [Passed],
+      [notip-simulator-backend], [0,0%], [Passed],
+      [notip-simulator-cli], [0,0%], [Passed],
+    ),
+    caption: [Valori di Baseline: percentuale di duplicazione per servizio. Fonte: SonarQube],
+    kind: table,
+  )
 
   == MQ13: Container Image Size
   === PB

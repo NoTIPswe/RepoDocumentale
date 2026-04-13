@@ -365,7 +365,7 @@
 
   #align(center)[
     #image("./assets/Containers.svg", width: 100%)
-    Architettura Logica del Simulator Backend.
+    C4 Container Diagram del sistema NoTIP.
   ]
 
   == Componenti della piattaforma
@@ -528,7 +528,7 @@
 
   Per la specifica tecnica dettagliata si rimanda al documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_management_api.pdf",
-  )[Specifica Tecnica — Management API].
+  )[Specifica Tecnica — Management API v1.0.0].
 
   == Provisioning service
 
@@ -565,7 +565,7 @@
 
   Per la specifica tecnica dettagliata si rimanda al documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_provisioning_service.pdf",
-  )[Specifica Tecnica — Provisioning Service].
+  )[Specifica Tecnica — Provisioning Service v1.0.0].
 
   == Data consumer
 
@@ -598,7 +598,7 @@
 
   Per la specifica tecnica dettagliata si rimanda al documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_data_consumer.pdf",
-  )[Specifica Tecnica — Data Consumer].
+  )[Specifica Tecnica — Data Consumer v1.0.0].
 
   == Data API
 
@@ -635,7 +635,7 @@
 
   Per la specifica tecnica dettagliata si rimanda al documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_data_api.pdf",
-  )[Specifica Tecnica — Data API].
+  )[Specifica Tecnica — Data API v1.0.0].
 
   == Simulator backend
 
@@ -677,13 +677,13 @@
 
   Per la specifica tecnica dettagliata si rimanda al documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_simulator_backend_cli.pdf",
-  )[Specifica Tecnica — Simulator Backend].
+  )[Specifica Tecnica — Simulator Backend v1.0.0].
 
   == Web application (Frontend)
 
   #align(center)[
     #image("./assets/WebAppComponents.svg", width: 100%)
-    Architettura Logica del Web Application.
+    Architettura Logica della Web Application.
   ]
 
   Il `notip-frontend` è la Single Page Application Angular che costituisce l'interfaccia utente principale della
@@ -714,7 +714,7 @@
 
   Per la specifica tecnica dettagliata si rimanda al documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_frontend.pdf",
-  )[Specifica Tecnica — Frontend].
+  )[Specifica Tecnica — Frontend v1.0.0].
 
   == Simulator CLI
 
@@ -738,13 +738,13 @@
 
   Per la specifica tecnica dettagliata si rimanda al documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_simulator_backend_cli.pdf",
-  )[Specifica Tecnica — Simulator CLI].
+  )[Specifica Tecnica — Simulator CLI v1.0.0].
 
   == \@notip/crypto-sdk
 
   Il `@notip/crypto-sdk` è una libreria TypeScript pubblicata come pacchetto npm (#link(
     "https://www.npmjs.com/package/@notip/crypto-sdk?activeTab=readme",
-  )[`@notip/crypto-sdk`, versione 2.0.1]_Ultimo Accesso: 2026-04-13_) che incapsula l'intera logica di decifratura
+  )[`@notip/crypto-sdk`, versione 2.0.1] _Ultimo Accesso: 2026-04-13_) che incapsula l'intera logica di decifratura
   client-side della telemetria NoTIP. A differenza degli altri componenti del sistema, non è un microservizio ma una
   libreria riutilizzabile: viene importata dalla Web Application e può essere integrata da qualsiasi API client esterno
   che necessiti di accedere ai dati telemetrici in chiaro.
@@ -757,6 +757,11 @@
   testato, versionato e con interfacce chiare, evitando che la complessità del processo di decifratura (risoluzione
   delle chiavi, caching, gestione degli errori, parsing e validazione del payload) venga replicata in ogni consumer.
 
+  Per la specifica tecnica dettagliata si rimanda al documento #link(
+    "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_crypto_sdk.pdf",
+    [Specifica Tecnica - Crypto SDK v.1.0.0],
+  ).
+
   === Integrazione nel sistema
 
   L'SDK interagisce con due endpoint della piattaforma:
@@ -768,38 +773,6 @@
   L'SDK riceve un `baseUrl` e un `tokenProvider` (callback che restituisce il token JWT corrente) come parametri di
   configurazione. Tutti i dettagli di trasporto, autenticazione e parsing sono incapsulati internamente; il chiamante
   interagisce esclusivamente con le interfacce di alto livello.
-
-  === Architettura interna
-
-  Il pacchetto è strutturato attorno a cinque componenti principali:
-
-  - *`CryptoSdk`*: entry point principale. Implementa tre interfacce (`MeasureQuerier`, `MeasureStreamer`,
-    `MeasureExporter`) e orchestra il pipeline completo: fetching dei dati cifrati, risoluzione della chiave,
-    decifratura e validazione del payload.
-  - *`KeyManager`*: cache per-gateway delle chiavi AES-256. Al primo accesso per un dato gateway recupera la chiave
-    dalla Management API tramite `ManagementApiService`; i successivi accessi vengono serviti dalla cache in memoria
-    senza ulteriori chiamate di rete. Supporta la gestione del `keyVersion` per gestire la rotazione delle chiavi.
-  - *`CryptoEngine`*: motore di decifratura stateless. Implementa AES-256-GCM tramite la WebCrypto API nativa del
-    browser (o del runtime), accettando i tre componenti crittografici del payload (`encrypted_data`, `iv`, `auth_tag`)
-    e restituendo i dati in chiaro.
-  - *`DataApiService`*: orchestratore dei due client di trasporto. Delega le operazioni di query ed export al
-    `DataApiRestClient` (HTTP `fetch`) e lo streaming al `DataApiSseClient` (basato su `@microsoft/fetch-event-source`).
-  - *`ManagementApiService` + `ManagementApiClient`*: strato di accesso alla Management API per il recupero delle chiavi
-    crittografiche.
-
-  === Flusso di decifratura
-
-  Per ogni `EncryptedEnvelopeDTO` ricevuto dalla Data API:
-  + Il `KeyManager` risolve la chiave AES-256 associata a `gatewayId` + `keyVersion` (dalla cache o dalla Management
-    API).
-  + Il `CryptoEngine` esegue la decifratura AES-256-GCM usando la chiave, l'`iv` e l'`auth_tag` presenti nell'envelope.
-  + Il payload decifrato viene validato con uno schema Zod prima di essere restituito come `PlaintextMeasure`.
-
-  In caso di fallimento in qualsiasi fase, viene sollevata una delle seguenti eccezioni tipizzate, tutte derivate da
-  `SdkError`:
-  - *`ApiError`*: risposta HTTP non-2xx dalla Management API o Data API.
-  - *`DecryptionError`*: fallimento della decifratura AES-GCM (chiave errata o payload corrotto).
-  - *`ValidationError`*: il payload decifrato non supera la validazione Zod (struttura inattesa).
 
   === Interfacce pubbliche
 
@@ -815,6 +788,12 @@
 
   La separazione in interfacce narrow consente di iniettare sostituti nei test senza dover istanziare la classe
   concreta, che richiederebbe connessioni di rete funzionanti.
+
+  In caso di fallimento in qualsiasi fase, viene sollevata una delle seguenti eccezioni tipizzate, tutte derivate da
+  `SdkError`:
+  - *`ApiError`*: risposta HTTP non-2xx dalla Management API o Data API.
+  - *`DecryptionError`*: fallimento della decifratura AES-GCM (chiave errata o payload corrotto).
+  - *`ValidationError`*: il payload decifrato non supera la validazione Zod (struttura inattesa).
 
   #pagebreak()
 
