@@ -4,7 +4,7 @@
 
 #base-document.apply-base-document(
   title: metadata.title,
-  abstract: "Documento relativo al Manuale Amministratore di Sistema realizzato dal Gruppo NoTIP per la realizzazione del progetto Sistema di Acquisizione Dati da Sensori BLE",
+  abstract: "Documento relativo al Manuale Infrastruttura realizzato dal Gruppo NoTIP per il progetto Sistema di Acquisizione Dati da Sensori BLE",
   changelog: metadata.changelog,
   scope: base-document.EXTERNAL_SCOPE,
 )[
@@ -16,17 +16,17 @@
   amministratori di sistema, ma può essere utile anche durante lo sviluppo e il testing.
 
   == Glossario
-  La realizzazione di un Sistema software richiede l'utilizzo di termini tecnici specifici che potrebbero non essere
+  La realizzazione di un sistema software richiede l'utilizzo di termini tecnici specifici che potrebbero non essere
   immediatamente comprensibili a tutti gli utenti. Per facilitare la comprensione del manuale, è stato realizzato un
   Glossario nel quale vengono elencate definizioni e spiegazioni relative ai termini utilizzati. Tale documento è sempre
   in fase di sviluppo e aggiornamento e può essere consultato nella sua versione attuale al seguente link: #link(
     "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/glossario.pdf",
-  )[Glossario v2.0.0]. Le parole che possiedono un riferimento nel Glossario saranno identificate con pedice _G_.
+  )[Glossario v3.0.0]. Le parole che possiedono un riferimento nel Glossario saranno identificate con pedice _G_.
 
   == Riferimenti
 
   === Riferimenti Informativi
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/glossario.pdf")[Glossario v2.0.0]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/glossario.pdf")[Glossario v3.0.0]
   - #link("https://github.com/NoTIPswe/notip-infra")[Repository Notip-infra]
   - #link("https://docs.docker.com/")[Docker Documentation]
   - #link("https://docs.nats.io/")[NATS JetStream Documentation]
@@ -241,8 +241,8 @@
   Per accedere all'area riservata di Keycloak, aprire l'URL `http://localhost/auth`. Inserire le credenziali presenti
   nel file `.env` generato da `make bootstrap`:
 
-  - *Username*: valore di `KEYCLOAK_ADMIN_USER` (default: `admin`)
-  - *Password*: valore di `KEYCLOAK_ADMIN_PASSWORD`
+  - *Username*: valore di `KEYCLOAK_ADMIN_USER` (default: `admin`).
+  - *Password*: valore di `KEYCLOAK_ADMIN_PASSWORD`.
 
   #figure(caption: "Keycloak Login")[
     #image("assets/admin-login.png")]
@@ -252,9 +252,9 @@
   Al primo accesso è necessario creare un utente amministratore definitivo:
 
   + Cliccare su *Users* → *Add user* e creare un nuovo utente con:
-    - *Username*: `administrator`
-    - *Email*: una email valida (es. con dominio `notip.it`)
-    - *Password*: una nuova password sicura (oppure la stessa di `KEYCLOAK_ADMIN_PASSWORD`)
+    - *Username*: `administrator`.
+    - *Email*: una email valida (es. con dominio `notip.it`).
+    - *Password*: una nuova password sicura (oppure la stessa di `KEYCLOAK_ADMIN_PASSWORD`).
   + Fare logout e accedere con l'account appena creato.
   + Eliminare l'utente temporaneo di default.
 
@@ -277,8 +277,8 @@
 
   Per accedere all'applicazione web, navigare su `http://localhost/` e autenticarsi con:
 
-  - *Username*: `admin`
-  - *Password*: valore di `KEYCLOAK_ADMIN_PASSWORD` dal file `.env`
+  - *Username*: `admin`.
+  - *Password*: valore di `KEYCLOAK_ADMIN_PASSWORD` dal file `.env`.
 
   = Simulatore di Gateway
 
@@ -313,7 +313,7 @@
     [Crea un singolo gateway simulato.],
 
     [`gateways bulk ...`],
-    [Crea N, in base al numero di factory ids inseriti, gateway simulati con i parametri specificati.],
+    [Crea N gateway simulati, in base al numero di factory ids inseriti, con i parametri specificati.],
 
     [`gateways delete <uuid>`], [Elimina un gateway simulato.],
     [`sensors add <gateway-id> --type TYPE --min N --max N --algorithm ALG`],
@@ -351,8 +351,8 @@
 
   Navigare su `http://localhost:13000/` e autenticarsi con:
 
-  - *Username*: `admin`
-  - *Password*: `admin`
+  - *Username*: `admin`.
+  - *Password*: `admin`.
 
   Al primo accesso verrà richiesto di cambiare la password.
 
@@ -366,7 +366,7 @@
 
   Una volta effettuato l'accesso, navigare nella sezione *Dashboards*:
 
-  #figure(caption: "Grafana Dashboard")[
+  #figure(caption: "Grafana Dashboards")[
     #image("assets/gf_dashboard.png")
   ]
 
@@ -466,7 +466,7 @@
     costanti all'aumentare del volume di dati.
   - *Compressione nativa*: possibilità di comprimere automaticamente i chunk più vecchi, riducendo lo spazio su disco.
   - *Separazione del database delle misure*: TimescaleDB è un servizio indipendente da PostgreSQL gestionale,
-    permettendo di scalare i due database separatamente in base al carico.
+    che permette di scalare i due database separatamente in base al carico.
 
   == Separazione dei database
 
