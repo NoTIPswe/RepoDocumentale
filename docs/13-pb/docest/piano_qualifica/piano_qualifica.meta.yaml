@@ -1,5 +1,12 @@
 title: Piano di qualifica
 changelog:
+  - version: "1.10.0"
+    date: "2026-04-13"
+    authors:
+      - Matteo Mantoan
+    verifier: Francesco Marcon
+    description: >
+      Aggiunta test per Crypto-SDK
   - version: "1.9.0"
     date: "2026-04-12"
     authors:
@@ -15,7 +22,7 @@ changelog:
       - Francesco Marcon
     verifier: Matteo Mantoan
     description: >
-      Aggiornamento test unità e integrazione (servizio data-consumer) e aggiunta test unità (servizio di Simulator CLI), e altri test 
+      Aggiornamento test unità e integrazione (servizio data-consumer) e aggiunta test unità (servizio di Simulator CLI), e altri test
   - version: "1.7.0"
     date: "2026-04-10"
     authors:

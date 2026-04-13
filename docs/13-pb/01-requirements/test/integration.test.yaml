@@ -470,3 +470,68 @@ tests:
     requirements:
       - visualizzazione_costi_stimati
     status: passed
+
+  # Crypto SDK Integration Tests
+  - id: t_intra_crypto_sdk_key_caching_same_version
+    service: Crypto SDK
+    description: Verificare che la chiave venga recuperata una sola volta per tre envelope con la stessa coppia (gatewayId, version)
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_intra_crypto_sdk_key_caching_different_versions
+    service: Crypto SDK
+    description: Verificare che versioni diverse dello stesso gateway generino fetch separati e che entrambe le misure vengano decifrate correttamente
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_intra_crypto_sdk_key_caching_independent_gateways
+    service: Crypto SDK
+    description: Verificare che gateway indipendenti abbiano cache separate con un solo fetch per ciascuno
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_intra_crypto_sdk_async_token_provider
+    service: Crypto SDK
+    description: Verificare che l'header Authorization contenga il token correttamente risolto da un token provider asincrono (Promise)
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_intra_crypto_sdk_query_measures_single_page
+    service: Crypto SDK
+    description: "Verificare queryMeasures con pagina singola; dati decifrati, hasMore false e nextCursor assente"
+    requirements:
+      - richiesta_dati_on_demand
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_intra_crypto_sdk_query_measures_pagination
+    service: Crypto SDK
+    description: Verificare queryMeasures con paginazione; hasMore true e nextCursor propagato correttamente
+    requirements:
+      - richiesta_dati_on_demand
+    status: passed
+  - id: t_intra_crypto_sdk_export_measures_order
+    service: Crypto SDK
+    description: Verificare che exportMeasures produca le misure nell'ordine originale
+    requirements:
+      - esportazione_dati
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_intra_crypto_sdk_stream_measures_decrypt_cache
+    service: Crypto SDK
+    description: Verificare streamMeasures; le misure vengono decifrate correttamente e la chiave viene recuperata una sola volta
+    requirements:
+      - richiesta_dati_streaming
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_intra_crypto_sdk_key_version_not_found
+    service: Crypto SDK
+    description: Verificare che una versione chiave inesistente causi il lancio di SdkError
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
+  - id: t_intra_crypto_sdk_wrong_key_for_envelope
+    service: Crypto SDK
+    description: Verificare che una chiave errata per un'envelope causi il lancio di DecryptionError
+    requirements:
+      - sicurezza_cifratura_dati
+    status: passed
