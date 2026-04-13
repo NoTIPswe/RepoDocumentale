@@ -63,9 +63,9 @@
   - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica.pdf")[Specifica Tecnica
       v1.0.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_data_api.pdf")[Specifica
-      Tecnica - Data-API v1.0.0]
+      Tecnica - Data API v1.0.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_data_consumer.pdf")[Specifica
-      Tecnica - Data-Consumer v1.0.0]
+      Tecnica - Data Consumer v1.0.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_management_api.pdf")[Specifica
       Tecnica - Management API v1.0.0]
   - #link(
@@ -74,8 +74,14 @@
   - #link(
       "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_simulator_backend_cli.pdf",
     )[Specifica Tecnica - Simulator Backend & CLI v1.0.0]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_frontend.pdf")[Specifica
+      Tecnica - Frontend v1.0.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/manuale_utente.pdf")[Manuale Utente v1.0.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/manuale_admin.pdf")[Manuale Amministratore
+      v1.0.0]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/manuale_infrastruttura.pdf")[Manuale di
+      Infrastruttura v1.0.0]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/manuale_client_api.pdf")[Manuale Client API
       v1.0.0]
 
   Il gruppo mette inoltre a disposizione tutti i verbali delle riunioni interne e dei colloqui intercorsi con l'azienda
