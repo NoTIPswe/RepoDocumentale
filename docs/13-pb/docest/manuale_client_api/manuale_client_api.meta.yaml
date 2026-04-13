@@ -1,5 +1,9 @@
 title: Manuale Client API
 changelog:
+  - version: "1.0.0"
+    date: "2026-04-13"
+    approver: Leonardo Preo
+    baseline: PB
   - version: "0.3.0"
     date: "2026-04-13"
     authors:
