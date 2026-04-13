@@ -2,7 +2,7 @@
 
 == Processo di formazione
 
-Il *Processo di Formazione* ha lo scopo di mantenere i membri del gruppo aggiornati sulle tecnologie adottate e sulle
+Il *processo di formazione* ha lo scopo di mantenere i membri del gruppo aggiornati sulle tecnologie adottate e sulle
 procedure interne, facendo in modo che ogni componente acquisisca le competenze necessarie per operare efficacemente
 all'interno del progetto. Il gruppo ha individuato le seguenti tecnologie come oggetto di formazione:
 
@@ -21,9 +21,9 @@ all'interno del progetto. Il gruppo ha individuato le seguenti tecnologie come o
 )[
   La fonte primaria di formazione per le procedure è il presente documento (*Norme di Progetto*). \
   Ogni membro è tenuto a:
-  - Studiare autonomamente la documentazione ufficiale degli strumenti adottati (vedi Tabella Risorse);
-  - Consultare le guide interne (es. `README.md` dei repository);
-  - Consolidare le competenze tramite prove pratiche in ambiente locale prima di operare sul repository remoto.
+  - studiare autonomamente la documentazione ufficiale degli strumenti adottati (vedi #link(<tabella-risorse>)[@tabella-risorse]);
+  - consultare le guide interne (es. `README.md` dei repository);
+  - consolidare le competenze tramite prove pratiche in ambiente locale prima di operare sul repository remoto.
 ]
 
 #norm(
@@ -32,9 +32,9 @@ all'interno del progetto. Il gruppo ha individuato le seguenti tecnologie come o
 )[
   Per favorire la condivisione della conoscenza e gestire al meglio la rotazione dei ruoli, il gruppo adotta il
   confronto diretto:
-  - *Sessioni di spiegazione*: Quando viene introdotta una nuova tecnologia o procedura, il membro più esperto organizza
+  - *Sessioni di spiegazione*: quando viene introdotta una nuova tecnologia o procedura, il membro più esperto organizza
     una breve sessione di spiegazione sincrona (su Discord) per il resto del team;
-  - *Supporto alla rotazione*: Chi subentra in un ruolo deve confrontarsi con chi lo ha ricoperto precedentemente per
+  - *Supporto alla rotazione*: chi subentra in un ruolo deve confrontarsi con chi lo ha ricoperto precedentemente per
     ricevere consigli e "best practices" non codificabili formalmente.
 ]
 
@@ -49,7 +49,7 @@ all'interno del progetto. Il gruppo ha individuato le seguenti tecnologie come o
       columns: (1fr, 1fr),
       fill: (_, row) => if calc.odd(row) { luma(240) } else { white },
       align: (left, left),
-      [*Ambito*], [*Risorse Selezionate*],
+      [*Ambito*], [*Risorse selezionate*],
 
       [Go],
       [
@@ -92,11 +92,11 @@ all'interno del progetto. Il gruppo ha individuato le seguenti tecnologie come o
 
       [Jira],
       [
-        - Atlassian Jira Software Guide
+        - #link("https://www.atlassian.com/software/jira/guides/getting-started/introduction")[Atlassian Jira Software Guide]
       ],
     ),
     caption: [Risorse per la formazione tecnica],
-  )
+  ) <tabella-risorse>
 ]
 
 === Attività del processo
@@ -106,7 +106,7 @@ all'interno del progetto. Il gruppo ha individuato le seguenti tecnologie come o
   roles: (ROLES.amm,),
   norms: ("auto-formazione",),
   input: [Adozione di un nuovo strumento o necessità operativa],
-  output: [Materiale didattico o Lista risorse aggiornata],
+  output: [Materiale didattico o lista risorse aggiornata],
   rationale: [
     Attività necessaria per centralizzare la conoscenza e ridurre il tempo di ricerca delle informazioni per i singoli
     membri.
@@ -114,7 +114,7 @@ all'interno del progetto. Il gruppo ha individuato le seguenti tecnologie come o
   procedure: (
     (
       name: "Selezione delle fonti",
-      desc: [L'Amministratore o un delegato identifica la documentazione ufficiale più pertinente per lo strumento
+      desc: [L'amministratore o un delegato identifica la documentazione ufficiale più pertinente per lo strumento
         scelto (es. Tutorial Angular o Go).],
     ),
     (
@@ -133,11 +133,11 @@ all'interno del progetto. Il gruppo ha individuato le seguenti tecnologie come o
   title: "Implementazione del piano per la formazione",
   roles: ([Tutto il Team],),
   norms: ("auto-formazione", "peer-learning"),
-  input: [Necessità di formazione (Nuovo strumento o Rotazione Ruolo)],
+  input: [Necessità di formazione (nuovo strumento o rotazione ruolo)],
   output: [Membro/Team competente],
   procedure: (
     (
-      name: "Studio Individuale",
+      name: "Studio individuale",
       desc: [Il membro studia le risorse per lo sviluppo materiale delle attività o rilegge le sezioni pertinenti delle
         Norme di Progetto.],
     ),

@@ -41,9 +41,9 @@
   La Lettera di presentazione è il documento con il quale il gruppo conferma la volontà di candidarsi per una
   determinata Baseline. Il gruppo durante lo sviluppo del progetto presenterà ai proponenti tre lettere di
   presentazione:
-  - La Lettera di presentazione per la *Candidatura all'appalto del capitolato C7*;
-  - La Lettera di presentazione per la *Requirements and Technology Baseline (RTB)*;
-  - La lettera di presentazione per la *Product Baseline (PB)*.
+  - Lettera di presentazione per la *Candidatura all'appalto del capitolato C7*;
+  - Lettera di presentazione per la *Requirements and Technology Baseline (RTB)*;
+  - Lettera di presentazione per la *Product Baseline (PB)*.
 
   #figure(table(
     columns: (auto, 2fr),
@@ -59,8 +59,7 @@
   L'#link("https://notipswe.github.io/RepoDocumentale/docs/11-candidatura/docest/analisi_capitolati.pdf")[Analisi dei
     capitolati v1.0.1] è il documento in cui il gruppo fornisce un analisi dettagliata di ogni capitolato evidenziando
   diversi punti, in particolare l'analisi suddivide ogni capitolato in diverse sezioni:
-  - *Panoramica*: che indica l’azienda proponente, il nome del capitolato e delle
-  informazioni generali sul prodotto da realizzare;
+  - *Panoramica*: indica l’azienda proponente, il nome del capitolato e le informazioni generali sul prodotto da realizzare;
   - *Pro*;
   - *Contro*;
   - *Considerazione finale*: motivazioni sull'eventuale scelta o non di candidarsi al capitolato
@@ -78,8 +77,8 @@
   )
 
   #heading(level: 5, numbering: none, outlined: false)[Analisi dei Requisiti]
-  L'#link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti
-    v1.1.0] definisce nel dettaglio i requisiti obbligatori, desiderabili e opzionali del progetto. Il documento mira a
+  L'#link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti
+    v2.0.0] definisce nel dettaglio i requisiti obbligatori, desiderabili e opzionali del progetto. Il documento mira a
   risolvere le ambiguità derivanti dalla lettura del #link(
     "https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf",
   )[Capitolato C7], fornendo una base solida per la progettazione attraverso:
@@ -106,13 +105,13 @@
   #cite-norm("struttura-uc") e #cite-norm("nomenclatura-requisiti") del processo di sviluppo.
 
   #heading(level: 5, numbering: none, outlined: false)[Piano di Progetto]
-  Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_progetto.pdf")[Piano di Progetto v1.0.0]
+  Il #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/piano_progetto.pdf")[Piano di Progetto v2.0.0]
   definisce e organizza la pianificazione strategica e operativa del gruppo, fornendo una roadmap dettagliata delle
   attività e gestione delle risorse. Il documento si compone delle seguenti sezioni:
   - *Analisi dei rischi*: identifica e qualifica le criticità che potrebbero manifestarsi durante il ciclo di vita del
     progetto. A ogni rischio è associata una strategia di mitigazione, volta a ridurne l'impatto o la probabilità che
     accada.
-  - *Pianificazione*: definisce la sequenza temporale dei periodi di lavoro (Sprint). Per ogni Sprint sono riportate le
+  - *Pianificazione*: definisce la sequenza temporale dei periodi di lavoro (sprint). Per ogni sprint sono riportate le
     attività da completare, il preventivo orario per componente e il consuntivo delle ore effettivamente impiegate, con
     il relativo aggiornamento del budget residuo.
 
@@ -177,7 +176,7 @@
   )
 
   #heading(level: 5, numbering: none, outlined: false)[Glossario]
-  Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario v2.0.0] raccoglie e
+  Il #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/glossario.pdf")[Glossario v3.0.0] raccoglie e
   definisce in modo univoco i termini tecnici e gli acronimi utilizzati nella documentazione. Il suo scopo è eliminare
   le ambiguità linguistiche, garantendo una comunicazione uniforme sia tra i membri del gruppo sia verso gli stakeholder
   esterni.
@@ -256,7 +255,7 @@
   output: [Piano di Progetto],
   procedure: (
     (
-      name: "Stesura del piano di progetto",
+      name: "Stesura del Piano di Progetto",
       desc: [
         Stabiliti i requisiti finali, il fornitore pianifica l'organizzazione e un metodo di lavoro in grado di
         assicurare la qualità del sistema da realizzare. La pianificazione comprende la stesura del Piano di Progetto,
