@@ -19,12 +19,12 @@
       ],
     ),
   ),
-  abstract: "Il presente documento costituisce il verbale formale dell'incontro telematico tenutosi con l'azienda proponente M31, finalizzato alla presentazione ufficiale del Minimum Viable Product (MVP). Nel corso della sessione, il gruppo ha presentato le funzionalità implementate, illustrando l'architettura del sistema e alcuni dei processi implementativi adoperati.",
+  abstract: "Il presente documento costituisce il verbale formale dell'incontro in presenza tenutosi con l'azienda proponente M31, finalizzato alla presentazione ufficiale del Minimum Viable Product (MVP). Nel corso della sessione, il gruppo ha presentato le funzionalità implementate, illustrando l'architettura del sistema e alcuni dei processi implementativi adoperati.",
   changelog: metadata.changelog,
 )[
-  Il presente documento attesta formalmente che, in data *13 aprile 2026*, si è tenuto un incontro di allineamento e
-  validazione in modalità telematica, attraverso la piattaforma Microsoft Teams, con i referenti dell'azienda proponente
-  _M31_. La riunione ha avuto inizio alle ore 12:30 e si è conclusa alle ore 13:30.
+  Il presente documento attesta formalmente che, in data *13 aprile 2026*, si è tenuto l'incontro di approvazione del
+  prodotto finale, con i referenti dell'azienda proponente _M31_. La riunione ha avuto inizio alle ore 12:30 e si è
+  conclusa alle ore 13:30.
 
   In rappresentanza della Committente hanno preso parte ai lavori i referenti Cristian Pirlog, Moones Mobaraki e Luca
   Cossaro.
@@ -38,7 +38,7 @@
 
   Il gruppo ha iniziato l'incontro procedendo all'esposizione di un set di #link(
     "https://notipswe.github.io/RepoDocumentale/docs/13-pb/slides/m31_2026-04-13.pdf",
-  )[diapositive di presentazione] diapositive strutturate per l'occasione, consultabili sul sito del gruppo.
+  )[diapositive di presentazione] strutturate per l'occasione, consultabili sul sito del gruppo.
 
   Il materiale proiettato ha offerto una sintesi del prodotto e una panoramica ad alto livello del funzionamento, nonché
   dell'architettura di sistema e dello stack tecnologico scelto, delineando in modo chiaro il flusso dei dati e le
@@ -63,11 +63,11 @@
   garantiscano un controllo sulla salute dell'applicativo.
 
   Sono stati esaminati nel dettaglio gli indicatori di performance (metriche di consumo risorse), l'aggregazione dei log
-  e lo gestione degli alert.
+  e la gestione degli alert.
 
   = Analisi delle metodologie di sviluppo e delle policy di validazione
 
-  L'ultima fase tecnica della riunione si è tradotta in una tavola rotonda aperta sulle alcune delle _best practices_
+  L'ultima fase tecnica della riunione si è tradotta in una tavola rotonda aperta su alcune delle _best practices_
   ingegneristiche adottate dal gruppo _NoTIP_ per garantire il controllo qualità del ciclo di vita del software. Nello
   specifico, sono state argomentate e approvate le seguenti policy:
 
@@ -101,7 +101,7 @@
   )[Lettera di presentazione per la candidatura alla PB].
 
   Il gruppo _NoTIP_ rinnova i propri ringraziamenti a _M31_ per il costante supporto, per i preziosi feedback forniti
-  durante il processo progettazione e codifica.
+  durante il processo di progettazione e codifica.
 
   #pagebreak()
 
