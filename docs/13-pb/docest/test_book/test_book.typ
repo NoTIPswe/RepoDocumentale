@@ -43,7 +43,7 @@
 
 #base-document.apply-base-document(
   title: metadata.title,
-  abstract: "Documento contenente il Test Book del progetto Sistema di Acquisizione Dati da Sensori BLE (capitolato C7 — M31 S.r.l.). Raccoglie i test di accettazione eseguiti sul sistema, organizzati per categoria: Test di Sistema, Test di Integrazione e Test di Unità, con le azioni da compiere, i risultati attesi e gli esiti ottenuti.",
+  abstract: "Documento contenente il Test Book del progetto Sistema di Acquisizione Dati da Sensori BLE (capitolato C7 — M31 S.r.l.). Raccoglie i test di accettazione eseguiti sul sistema, organizzati per categoria: Test di Sistema e Test di Integrazione, con le azioni da compiere, i risultati attesi e gli esiti ottenuti.",
   changelog: metadata.changelog,
   scope: base-document.EXTERNAL_SCOPE,
 )[
@@ -61,11 +61,11 @@
   == Scopo del Prodotto
   Il sistema ha l'obiettivo di fornire un'infrastruttura cloud scalabile e sicura per la raccolta, gestione e
   distribuzione di dati provenienti da sensori Bluetooth Low Energy (BLE). Il sistema garantisce:
-  - Acquisizione dati da sensori eterogenei tramite gateway simulati;
-  - Gestione multi-tenant con segregazione completa dei dati;
-  - Esposizione di API sicure per accesso on-demand e streaming real-time;
-  - Interfaccia utente per configurazione, monitoraggio e visualizzazione;
-  - Sicurezza end-to-end e autenticazione robusta.
+  - acquisizione dati da sensori eterogenei tramite gateway simulati;
+  - gestione multi-tenant con segregazione completa dei dati;
+  - esposizione di API sicure per accesso on-demand e streaming real-time;
+  - interfaccia utente per configurazione, monitoraggio e visualizzazione;
+  - sicurezza end-to-end e autenticazione robusta.
 
   == Glossario
   I termini tecnici utilizzati sono definiti nel documento #link(
@@ -211,7 +211,7 @@
     name: "Visualizzazione dati stream in formato grafico",
     service: "Sistema Cloud — UI",
     actions: [
-      + Accedere alla sezione dashboard di un Tenant.
+      + Accedere alla sezione Dashboard di un Tenant.
       + Verificare che il grafico si aggiorni con i dati in ingresso di ogni singolo sensore attivo nei filtri.
     ],
     expected: [I dati di telemetria vengono visualizzati in forma di grafico aggiornato in tempo reale, mostrando
@@ -225,7 +225,7 @@
     name: "Visualizzazione dati stream in formato tabellare",
     service: "Sistema Cloud — UI",
     actions: [
-      + Accedere alla sezione dashboard di un Tenant.
+      + Accedere alla sezione Dashboard di un Tenant.
       + Verificare che la tabella si aggiorni con i dati in ingresso di ogni singolo sensore attivo nei filtri.
     ],
     expected: [I dati di telemetria vengono visualizzati in forma di tabella aggiornata in tempo reale, mostrando i dati
@@ -241,7 +241,7 @@
     name: "Filtro dati per Gateway, per tipo di sensore e sensore specifico dati in streaming",
     service: "Sistema Cloud — UI",
     actions: [
-      + Accedere alla sezione dati del sistema.
+      + Accedere alla sezione "Live Stream" della Dashboard.
       + Selezionare un Gateway specifico dal filtro.
       + Selezionare un sensore specifico dal filtro.
       + Selezionare un tipo specifico di sensore.
@@ -259,7 +259,7 @@
     name: "Filtro dati per Gateway, sensore e intervallo temporale streaming dati analisi storica",
     service: "Sistema Cloud — UI",
     actions: [
-      + Accedere alla sezione dati del sistema.
+      + Accedere alla sezione "Historical Analysis" della Dashboard.
       + Selezionare un Gateway specifico dal filtro.
       + Selezionare un sensore specifico dal filtro.
       + Selezionare un tipo specifico di sensore.
@@ -500,7 +500,7 @@
     service: "Sistema Cloud — UI",
     actions: [
       + Autenticarsi come utente autorizzato (e.g Tenant Admin).
-      + Navigare nel menù di sinistra nella sezione "Audit Logs".
+      + Navigare nel menù di sinistra nella sezione "Audit Log".
       + Impostare un filtro basato su uno specifico intervallo temporale.
       + Impostare un filtro basato su uno specifico user ID.
       + Impostare un filtro basato su una specifica azione.
@@ -519,7 +519,7 @@
     service: "Sistema Cloud — UI",
     actions: [
       + Autenticarsi come Tenant Admin.
-      + Navigare nel menù di sinistra nella sezione "costs".
+      + Navigare nel menù di sinistra nella sezione "Costs".
       + Verificare i dettagli visualizzati relativi allo storage, alla banda e totale.
     ],
     expected: [Il pannello mostra una stima chiara dei costi, suddivisa per storage, banda e totale.],
