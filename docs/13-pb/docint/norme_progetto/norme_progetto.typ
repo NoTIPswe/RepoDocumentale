@@ -599,12 +599,14 @@ $
 
 \
 
-=== MQ17 - Application Success Rate
-*Descrizione*: Misura la percentuale di distribuzioni del software che sono state esegute con successo senza errori.
+=== MQ17 - Authentication Success Rate
+*Descrizione*: Misura la percentuale di tentativi di autenticazione al sistema (tramite gateway o API) completati con
+successo rispetto al totale dei tentativi effettuati, al fine di valutare l'affidabilità e la robustezza del meccanismo
+di accesso.
 
 *Formula:*
 $
-  text("Application Success Rate") = frac(text("Distribuzioni riuscite"), text("Distribuzioni totali")) times 100
+  text("Authentication Success Rate") = frac(text("Autenticazioni riuscite"), text("Tentativi di accesso totali")) times 100
 $
 
 \

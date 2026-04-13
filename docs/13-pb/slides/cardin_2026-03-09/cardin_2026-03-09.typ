@@ -9,14 +9,14 @@
   == Progettazione
 
   === Confine tra microservizi
-  - Componente logica vs microservizio: fattori da considerare
+  - Componente logica vs microservizio: fattori da considerare.
   - Separazione API: sì o no?
 
   === Comunicazione interna
-  - NATS vs RESTful API HTTP
+  - NATS vs RESTful API HTTP.
   - Fattori:
-    - NATS supporta anche API sincrone (Req/Rep)
-    - NATS aiuta con scalabilità e observability
+    - NATS supporta anche API sincrone (Req/Rep).
+    - NATS aiuta con scalabilità e observability.
     - Complessità?
 
   #pagebreak()
@@ -24,14 +24,14 @@
   == Sviluppo
 
   === Separazione repo servizi
-  - No monorepo
+  - No monorepo.
   - Fattori:
-    - Complessità setup (+ repo => + CI workflow)
-    - Complessità manutenzione
-    - Adozione devcontainers
+    - Complessità setup (+ repo => + CI workflow).
+    - Complessità manutenzione.
+    - Adozione devcontainers.
   - Idee:
-    - Separazione repo per tecnologia
-    - Una repo per servizio + repo `infra`
+    - Separazione repo per tecnologia.
+    - Una repo per servizio + repo `infra`.
 
   #pagebreak()
 
@@ -39,10 +39,10 @@
 
   === In generale...
   - Descrizione testuale del codice? Confine _architettura_?
-  - Sistemi di generazione automatica documentazione? (e.g. JavaDoc, Swagger, ...)
+  - Sistemi di generazione automatica documentazione? (e.g. JavaDoc, Swagger, ...).
 
   === Manuale Utente
-  - Utenti: sia programmatori che utilizzatori
+  - Utenti: sia programmatori che utilizzatori.
   - Interfacce API?
 
 ]

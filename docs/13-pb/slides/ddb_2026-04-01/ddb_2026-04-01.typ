@@ -5,12 +5,12 @@
   date: "2026-04-01",
 )[
   - Microservizi del backend completati.
-  - Specifica Tecnica portata avanti.
-  - Finita Progettazione del Frontend e inizio della sua codifica.
+  - Specifica tecnica portata avanti.
+  - Finita progettazione del frontend e inizio della sua codifica.
 ][
   - Completare la verifica di tutti i microservizi.
   - Test Book Completo.
-  - Manuali Utente Completati.
+  - Manuali utente completati.
 ][
   - Difficoltà nel codificare correttamente i microservizi.
 
