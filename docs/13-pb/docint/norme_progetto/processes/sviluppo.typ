@@ -28,8 +28,8 @@
   - *Precondizioni*: stato del sistema o condizioni necessarie per l'attivazione del caso d'uso;
   - *Postcondizioni*: stato garantito del sistema a seguito del completamento con successo;
   - *Scenario Principale*: sequenza di azioni atomiche in linguaggio naturale, inclusi eventuali:
-    - Punti di Inclusione (`Include: UC[ID] - Titolo`);
-    - Punti di Estensione (`Descrizione passo. [EP: NOME]`).
+    - punti di inclusione (`Include: UC[ID] - Titolo`);
+    - punti di estensione (`Descrizione passo. [EP: NOME]`).
   - *Estensioni*: gestione di scenari alternativi o eccezioni, definiti da una condizione di guardia e dal relativo caso
     d'uso esteso.
 ]
@@ -61,8 +61,8 @@
   label: <stack-tecnologico>,
 )[
   Le tecnologie adottate per lo sviluppo del progetto sono:
-  - *Backend*: Linguaggio *Go* (Golang) e framework *NestJS* (TypeScript);
-  - *Frontend*: Framework *Angular* con linguaggio *TypeScript*;
+  - *Backend*: linguaggio *Go* (Golang) e framework *NestJS* (TypeScript);
+  - *Frontend*: framework *Angular* con linguaggio *TypeScript*;
   - *Identity and Access Management (IAM)*: *Keycloak* per la gestione centralizzata di autenticazione, autorizzazione
     (RBAC) e multi-tenancy;
   - *Reverse Proxy / API Gateway*: *Nginx*, unico punto di ingresso del traffico di rete verso i microservizi. È
@@ -71,7 +71,7 @@
     `notip-infra/infra/nginx/`;
   - *Osservabilità*: *Prometheus* per la raccolta delle metriche applicative a runtime, *Grafana* per la loro
     visualizzazione tramite dashboard versionata in `notip-infra/infra/monitoring/`;
-  - *Automazione/Scripting*: Linguaggio *Python* per la gestione della documentazione.
+  - *Automazione/Scripting*: linguaggio *Python* per la gestione della documentazione.
 ]
 
 #norm(
@@ -108,14 +108,14 @@
 )[
   È vietato l'uso del tag `latest` o di versioni non specificate per dipendenze, immagini base e tool. Per garantire
   riproducibilità e stabilità degli ambienti, il gruppo adotta le seguenti regole:
-  - *Sistema operativo*: Mantenere l'ultima versione stabile di Debian o Alpine come base delle immagini Docker;
-  - *Tool e runtime* (es. Node.js, Go, Nginx): Pinnare ad una specifica versione *Minor* (es. `node:24.14-trixie-slim`).
+  - *Sistema operativo*: mantenere l'ultima versione stabile di Debian o Alpine come base delle immagini Docker;
+  - *Tool e runtime* (es. Node.js, Go, Nginx): pinnare ad una specifica versione *Minor* (es. `node:24.14-trixie-slim`).
     In questo modo si ricevono automaticamente gli aggiornamenti di sicurezza (patch) senza introdurre nuove feature non
     necessarie;
-  - *Aggiornamento manuale*: Se una nuova feature del tool è necessaria, la versione Minor va aggiornata esplicitamente
+  - *Aggiornamento manuale*: se una nuova feature del tool è necessaria, la versione Minor va aggiornata esplicitamente
     con una modifica deliberata al Dockerfile o al file di dipendenze.
 
-  _Nota_: Il pin fino alla revisione Git specifica non viene adottato per semplicità, pur essendo la pratica
+  _Nota_: il pin fino alla revisione Git specifica non viene adottato per semplicità, pur essendo la pratica
   raccomandata in ambienti di produzione ad alta criticità.
 ]
 
@@ -136,7 +136,8 @@
   di integrazione che richiedono mTLS i certificati devono essere generati dinamicamente a runtime e mai persistiti come
   file versionati.
 
-  Per il setup di `pre-commit` nell'ambiente locale si rimanda alla @setup-devcontainer.
+  Per il setup di `pre-commit` nell'ambiente locale si rimanda alla #link(<setup-devcontainer>)[
+  @setup-devcontainer].
 ]
 
 #norm(
@@ -146,11 +147,11 @@
   Per garantire coerenza nella Developer Experience, le operazioni comuni (build, test, lint, avvio) devono essere
   esposte tramite un'interfaccia standard che varia in base allo stack del servizio:
 
-  - *Servizi Go* e repository `notip-infra`: Adottano un `Makefile` nella root del progetto come unico punto di accesso,
+  - *Servizi Go* e repository `notip-infra`: adottano un `Makefile` nella root del progetto come unico punto di accesso,
     in quanto non dispongono di un package manager con script integrati. Ogni nuovo servizio Go deve includere un
     `Makefile` conforme a questi target.
 
-  - *Servizi NestJS e Angular*: Espongono le stesse operazioni tramite script nel `package.json`, sfruttando il package
+  - *Servizi NestJS e Angular*: espongono le stesse operazioni tramite script nel `package.json`, sfruttando il package
     manager come interfaccia nativa dello stack.
 ]
 
@@ -159,14 +160,14 @@
   label: <convenzioni-scrittura>,
 )[
   Tutti i membri del gruppo sono tenuti a rispettare le seguenti convenzioni stilistiche:
-  - *Lingua*: Il codice, inclusi i nomi di variabili, funzioni e i commenti, deve essere scritto interamente in
-    *Inglese*;
-  - *File*: Mantenere i file snelli con responsabilità singola. Se un file cresce eccessivamente, deve essere
+  - *Lingua*: il codice, inclusi i nomi di variabili, funzioni e i commenti, deve essere scritto interamente in
+    *inglese*;
+  - *File*: mantenere i file snelli con responsabilità singola. Se un file cresce eccessivamente, deve essere
     rifattorizzato;
   - *Nomenclatura*:
-    - *Variabili*: Utilizzare la notazione `PascalCase` (es. `MyVariable`);
-    - *Funzioni/Metodi*: Utilizzare la notazione `camelCase` (es. `myFunction`);
-    - *Costanti*: Evitare costanti globali; prediligere configurazioni o variabili contestualizzate.
+    - *Variabili*: utilizzare la notazione `PascalCase` (es. `MyVariable`);
+    - *Funzioni/Metodi*: utilizzare la notazione `camelCase` (es. `myFunction`);
+    - *Costanti*: evitare costanti globali; prediligere configurazioni o variabili contestualizzate.
 ]
 
 #norm(
@@ -177,10 +178,10 @@
 
   *Branching*: Per ogni Task Jira deve essere creato un feature branch dedicato a partire dal branch `main` aggiornato.
   È severamente vietato lavorare direttamente su `main`. La nomenclatura del branch deve includere l'identificativo del
-  Task come definito nella @integrazione-git.
+  Task come definito nella #link(<integrazione-git>)[@integrazione-git].
 
-  *Peso dei Conventional Commits*: I prefissi dei commit determinano l'avanzamento automatico della versione da parte
-  della CI/CD (vedi @versionamento-codice) secondo le seguenti regole:
+  *Peso dei Conventional Commits*: i prefissi dei commit determinano l'avanzamento automatico della versione da parte
+  della CI/CD (vedi #link(<versionamento-codice>)[@versionamento-codice]) secondo le seguenti regole:
   - `fix:` → avanzamento di versione Patch;
   - `docs:` → avanzamento di versione Patch (utilizzato per aggiungere documentazione di qualsiasi tipo al codice);
   - `feat:` → avanzamento di versione Minor;
@@ -192,7 +193,7 @@
   - `main` v0.6.9 + merge con `fix:`, `fix:`, `feat:` → vince `feat:` → `main` passa a v0.7.0;
   - `main` v1.0.0 + merge con `fix:`, `fix:`, `docs:` → vince `fix:` → `main` passa a v1.0.1.
 
-  Per la disciplina generale sui commit (amend/reset) si rimanda alla @disciplina-commit.
+  Per la disciplina generale sui commit (amend/reset) si rimanda alla #link(<disciplina-commit>)[@disciplina-commit].
 ]
 
 #norm(
@@ -202,7 +203,8 @@
   La gestione dei contratti per le interfacce condivise varia a seconda del paradigma di comunicazione adottato
   (sincrono o asincrono).
 
-  *API Sincrone (REST / OpenAPI)*
+  *API sincrone (REST / OpenAPI)*
+
   L'approccio adottato è *code-first*: i servizi che espongono API (tutti sviluppati in NestJS) definiscono le
   interfacce direttamente nel codice sorgente tramite decoratori Swagger/OpenAPI.
 
@@ -214,16 +216,17 @@
   del servizio produttore tramite uno script dedicato. Il file scaricato viene rinominato (manualmente) con il prefisso
   del servizio di provenienza (es. `management-api-openapi.yaml`, `data-api-openapi.yaml`) e committato nella repository
   del consumatore, dove funge da *lockfile dell'API*: traccia l'esatta versione dell'interfaccia contro cui il consumer
-  è compilato ed è un elemento di configurazione soggetto a versionamento (vedi @config-items).
+  è compilato ed è un elemento di configurazione soggetto a versionamento (vedi #link(<config-items>)[@config-items]).
 
   I servizi consumatori utilizzano tool standard per la generazione automatica di DTO, interfacce e client HTTP a
   partire dal file scaricato:
   - `openapi-generator-cli` per i consumer TypeScript (Angular);
   - `oapi-codegen` per i consumer Go.
 
-  Per il workflow operativo di aggiornamento del contratto API si rimanda alla @workflow-api-contracts.
+  Per il workflow operativo di aggiornamento del contratto API si rimanda alla #link(<workflow-api-contracts>)[@workflow-api-contracts].
 
-  *API Asincrone (NATS / AsyncAPI)*
+  *API asincrone (NATS / AsyncAPI)*
+
   Per le comunicazioni asincrone tramite message broker (NATS), il gruppo adotta lo standard AsyncAPI. A differenza
   delle API sincrone, la definizione degli endpoint (canali) avviene in modo manuale ed è centralizzata all'interno del
   file nats-contracts.yaml situato nella directory `notip-infra/api-contracts/async-api/`.
@@ -256,17 +259,17 @@
 )[
   La strategia di migrazione dipende dallo stack tecnologico del servizio:
 
-  - *Servizi NestJS*: Le migrazioni devono essere create e applicate esclusivamente tramite gli strumenti offerti da
+  - *Servizi NestJS*: le migrazioni devono essere create e applicate esclusivamente tramite gli strumenti offerti da
     *TypeORM*. È vietato applicare modifiche agli schemi in modo manuale o tramite strumenti alternativi. Le migrazioni
     vengono generate, committate e versionate nella repository del servizio.
 
-  - *Servizi Go*: Le migrazioni utilizzano *file SQL puri* con numerazione progressiva (es.
+  - *Servizi Go*: le migrazioni utilizzano *file SQL puri* con numerazione progressiva (es.
     `001_create_telemetry_hypertable.sql`). La loro applicazione è gestita tramite tool idiomatici Go (es.
     `golang-migrate`) o script interni al servizio. Anche questi file sono committati e versionati nella repository del
     servizio.
 
   In entrambi i casi le migrazioni costituiscono elementi di configurazione soggetti a versionamento obbligatorio (vedi
-  @config-items).
+  #link(<config-items>)[@config-items]).
 
   Gli script di migrazione devono rispettare il principio di *retrocompatibilità*: ogni modifica allo schema deve poter
   essere applicata senza perdita di dati preesistenti.
@@ -279,7 +282,7 @@
   title: "Sicurezza e crittografia (crypto contract)",
   label: <crypto-contract>,
 )[
-  Qualsiasi dato sensibile (es. credenziali di Gateway, materiale crittografico) non deve mai essere trasmesso né
+  Qualsiasi dato sensibile (es. credenziali di gateway, materiale crittografico) non deve mai essere trasmesso né
   persistito in chiaro. Il documento `notip-infra/api-contracts/crypto-contract.md` costituisce la *Single Source of
   Truth* per gli algoritmi, i parametri (es. IV, salt) e i formati di scambio adottati.
 
@@ -302,7 +305,7 @@
   title: "Protezione degli endpoint (multi-tenancy e RBAC)",
   label: <endpoint-security>,
 )[
-  Il sistema è *Multi-Tenant*: ogni richiesta HTTP in entrata deve essere associata a un tenant specifico e non può
+  Il sistema è *multi-tenant*: ogni richiesta HTTP in entrata deve essere associata a un tenant specifico e non può
   accedere a risorse appartenenti ad altri tenant.
 
   Il controllo degli accessi basato sui ruoli è implementato tramite le guard NestJS:
@@ -322,11 +325,11 @@
   seguenti responsabilità devono essere gestite esclusivamente tramite i meccanismi AOP offerti dal framework:
 
   - *Audit Logging*: tracciato tramite `Interceptor` dedicato che intercetta la risposta prima dell'invio al client
-    (vedi @audit-logging);
-  - *Estrazione e validazione del Tenant*: gestita tramite `Guard` o `Interceptor` che popola il contesto di richiesta
+    (vedi #link(<audit-logging>)[@audit-logging]);
+  - *Estrazione e validazione del tenant*: gestita tramite `Guard` o `Interceptor` che popola il contesto di richiesta
     prima che il `Service` venga invocato;
   - *Controllo RBAC*: delegato ai `Guard` (`roles.guard.ts`, `access-policy.guard.ts`) dichiarati tramite decoratori
-    sull'handler (vedi @endpoint-security).
+    sull'handler (vedi #link(<endpoint-security>)[@endpoint-security]).
 
   L'introduzione di logica trasversale all'interno di un `Service` costituisce un difetto architetturale bloccante in
   fase di Code Review.
@@ -353,9 +356,9 @@
   gestite devono essere intercettate da un *Global Exception Filter* (NestJS) o da un middleware equivalente (Go), che
   si occupa di:
 
-  - Classificare l'errore per tipologia;
-  - Restituire al client una risposta HTTP standardizzata con un codice di stato appropriato e un messaggio generico;
-  - Mascherare i dettagli interni.
+  - classificare l'errore per tipologia;
+  - restituire al client una risposta HTTP standardizzata con un codice di stato appropriato e un messaggio generico;
+  - mascherare i dettagli interni.
 
   L'esposizione di dettagli infrastrutturali grezzi al client costituisce un difetto di sicurezza bloccante in fase di
   Code Review.
@@ -370,7 +373,7 @@
   connessioni NATS).
 
   La configurazione dei target di scraping e le regole di alerting sono versionate in
-  `notip-infra/infra/monitoring/prometheus/`. Le dashboard *Grafana* che visualizzano tali metriche sono versionate in
+  `notip-infra/infra/monitoring/prometheus/`. Le dashboards *Grafana* che visualizzano tali metriche sono versionate in
   `notip-infra/infra/monitoring/grafana/` e devono essere aggiornate contestualmente a ogni modifica architetturale
   rilevante (es. aggiunta di un nuovo servizio o stream NATS). È vietato creare o modificare dashboard esclusivamente
   dall'interfaccia grafica di Grafana senza prima eseguire il commit del corrispondente file JSON.
@@ -383,14 +386,14 @@
   I microservizi sviluppati in Go adottano l'*Architettura Esagonale (Ports and Adapters)*. Il codice sorgente è
   organizzato all'interno della cartella `internal/` secondo la seguente separazione delle responsabilità:
 
-  - `internal/domain/`: Logica di business pura. Non contiene dipendenze verso infrastruttura esterna (database, rete,
+  - `internal/domain/`: logica di business pura. Non contiene dipendenze verso infrastruttura esterna (database, rete,
     framework). Qualsiasi dipendenza esterna che porti alla violazione di questo principio costituisce un difetto
     architetturale bloccante;
-  - `internal/ports/`: Interfacce (contratti Go) che definiscono i comportamenti richiesti o offerti dal dominio.
+  - `internal/ports/`: interfacce (contratti Go) che definiscono i comportamenti richiesti o offerti dal dominio.
     Separano il dominio dagli adapter senza accoppiare le implementazioni;
-  - `internal/adapters/driving/` (*primary adapters*): Adapter che ricevono input esterno e invocano il dominio (es.
+  - `internal/adapters/driving/` (*primary adapters*): adapter che ricevono input esterno e invocano il dominio (es.
     NATS Consumer, HTTP Handler). Dipendono dai `ports`, non dal `domain` direttamente;
-  - `internal/adapters/driven/` (*secondary adapters*): Adapter che implementano i port outbound per comunicare con
+  - `internal/adapters/driven/` (*secondary adapters*): adapter che implementano i port outbound per comunicare con
     sistemi esterni (es. PostgreSQL Writer, NATS Publisher, encryptor).
 
   È vietato inserire query SQL, chiamate di rete o logica di framework direttamente nei tipi o nelle funzioni del
@@ -401,12 +404,12 @@
 === Attività del processo
 
 #activity(
-  title: "Analisi dei requisiti di sistema",
+  title: "Analisi dei Requisiti di sistema",
   roles: (ROLES.anal,),
   norms: ("nomenclatura-uc", "struttura-uc", "nomenclatura-requisiti"),
   input: [Capitolato C7, verbali degli incontri con il committente],
-  output: [#link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei
-      Requisiti v1.1.0] (casi d'uso e lista requisiti)],
+  output: [#link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/analisi_requisiti.pdf")[Analisi dei
+      Requisiti v2.0.0] (casi d'uso e lista requisiti)],
   procedure: (
     (
       name: "Modellazione dei Casi d'Uso",
@@ -416,7 +419,7 @@
       ],
     ),
     (
-      name: "Individuazione dei Requisiti",
+      name: "Individuazione dei requisiti",
       desc: [
         Derivazione dei requisiti dal capitolato e dagli incontri con il committente. Ogni requisito viene classificato
         per tipologia e priorità secondo la nomenclatura definita nelle norme.
@@ -466,7 +469,7 @@
   ],
   procedure: (
     (
-      name: "Generazione e Commit (Backend Produttore)",
+      name: "Generazione e Commit (backend produttore)",
       desc: [
         Uno script NestJS genera offline il file `openapi.yaml` direttamente dai decoratori del codice. Il file viene
         committato nella repository del backend produttore (es. `api-contracts/openapi/openapi.yaml`), rendendolo la
@@ -474,7 +477,7 @@
       ],
     ),
     (
-      name: "Download (Servizio Consumatore)",
+      name: "Download (servizio consumatore)",
       desc: [
         Lo sviluppatore del servizio consumatore lancia lo script dedicato che scarica il file `openapi.yaml` dalla
         repository del backend produttore, puntando a un commit SHA specifico per garantire la riproducibilità. Il file
@@ -486,11 +489,11 @@
       name: "Lockfile",
       desc: [
         Il file rinominato viene committato nella repository del consumatore. Esso funge da lockfile e traccia l'esatta
-        versione dell'API contro cui il consumer è compilato (vedi @config-items).
+        versione dell'API contro cui il consumer è compilato (vedi #link(<config-items>)[@config-items]).
       ],
     ),
     (
-      name: "Generazione Codice",
+      name: "Generazione codice",
       desc: [
         Il consumatore esegue il tool di generazione appropriato per autogenerare DTO, interfacce e client HTTP a
         partire dal lockfile aggiornato.
@@ -531,7 +534,7 @@
       desc: [
         Il file filtrato viene committato nella repository del consumatore. Esso funge da lockfile del contratto NATS:
         traccia l'esatta versione dei canali contro cui il servizio è compilato ed è un elemento di configurazione
-        soggetto a versionamento (vedi @config-items).
+        soggetto a versionamento (vedi #link(<config-items>)[@config-items]).
       ],
     ),
   ),

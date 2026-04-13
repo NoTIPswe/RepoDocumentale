@@ -4,7 +4,7 @@
 
 #show: base-document.apply-base-document.with(
   title: metadata.title,
-  abstract: "Raccolta delle norme atte a regolare lo sviluppo del progetto affidato a NoTIP",
+  abstract: "Raccolta delle norme atte a regolare lo sviluppo del progetto affidato a NoTIP.",
   changelog: metadata.changelog,
   scope: base-document.INTERNAL_SCOPE,
 )
@@ -13,7 +13,7 @@
 Questo documento descrive il _Way of Working_ adottato dal gruppo NoTIP per il progetto didattico, definendo le
 procedure, gli strumenti e le responsabilità che guidano il team.
 
-Il testo è da considerarsi un *Living Document*: la sua stesura è incrementale e seguirà l'evoluzione del metodo di
+Il testo è da considerarsi un *living document*: la sua stesura è incrementale e seguirà l'evoluzione del metodo di
 lavoro, perfezionandosi iterativamente. Ogni membro del gruppo è tenuto a visionare ogni nuova versione e a rispettare
 quanto descritto, per garantire uniformità e professionalità.
 
@@ -22,8 +22,8 @@ quanto descritto, per garantire uniformità e professionalità.
 Il progetto ha l'obiettivo di realizzare il sistema oggetto del capitolato *C7*, proposto dall'azienda *M31 S.r.l.*.
 
 Il contesto applicativo riguarda il contesto IoT, dove l'acquisizione e la gestione centralizzata di dati provenienti da
-sensori distribuiti è fondamentale. L'obiettivo primario è sviluppare una piattaforma *Cloud* distribuita, scalabile e
-sicura, in grado di acquisire dati provenienti da sensori *BLE* tramite Gateway. È inoltre fondamentale andare a
+sensori distribuiti è fondamentale. L'obiettivo primario è sviluppare una piattaforma *cloud* distribuita, scalabile e
+sicura, in grado di acquisire dati provenienti da sensori *BLE* tramite gateway. È inoltre fondamentale andare a
 garantire la segregazione dei dati in modalità *multi-tenant* ed esporre API per la consultazione storica e lo streaming
 in tempo reale dei dati.
 
@@ -31,8 +31,9 @@ Poiché i dispositivi fisici (sensori e gateway) non sono oggetto di fornitura, 
 *simulatore di gateway* capace di generare traffico dati verosimile per validare l'infrastruttura e i flussi di
 comunicazione.
 
-L'obiettivo che si è posto il gruppo è andare a sviluppare questo progetto entro il *21 marzo 2026* rispettando il costo
-previsto per la realizzazione del progetto di *12.940 Euro*.
+L'obiettivo inizialmente posto dal gruppo era di sviluppare questo progetto entro il *21 marzo 2026*, rispettando il
+costo previsto per la realizzazione pari a *12.940 Euro*. A seguito del ritardo accumulato in fase di *RTB*,
+si è successivamente previsto di posticipare la conclusione al *13 aprile 2026*, mantenendo invariato il budget.
 
 == Riferimenti e Tailoring
 Tutti i processi descritti fanno riferimento allo standard *ISO/IEC 12207:1995*. Attraverso un'operazione di
@@ -44,17 +45,17 @@ tre macro-categorie previste dallo standard:
 - *Processi Organizzativi*: attività di gestione, infrastruttura e miglioramento del progetto.
 
 == Organizzazione dei contenuti
-Il documento è strutturato per Processi. Per distinguere chiaramente le norme di riferimento ("con cosa e secondo quali
+Il documento è strutturato per processi. Per distinguere chiaramente le norme di riferimento ("con cosa e secondo quali
 regole lavoriamo") dalle procedure operative ("come eseguiamo i compiti"), ogni sezione di Processo è suddivisa
 sistematicamente in due parti fondamentali:
 
-+ *Norme e strumenti*
-  Raccoglie le specifiche tecniche, le convenzioni e gli standard che regolano il processo. Definisce sia
++ *Norme e strumenti*:
+  raccoglie le specifiche tecniche, le convenzioni e gli standard che regolano il processo. Definisce sia
   l'infrastruttura da utilizzare, sia le norme che il team deve rispettare. Costituisce la base di conoscenza normativa
   necessaria prima di avviare qualsiasi operazione.
 
-+ *Attività*
-  Descrive il workflow operativo vero e proprio. Dettaglia la sequenza temporale di azioni necessarie per raggiungere
++ *Attività*:
+  descrive il workflow operativo vero e proprio. Dettaglia la sequenza temporale di azioni necessarie per raggiungere
   gli obiettivi del processo.
   - _Nota:_ Ogni attività indica esplicitamente in apertura quali elementi della sezione "Norme e strumenti" sono
     prerequisiti per la sua esecuzione.
@@ -80,9 +81,9 @@ che definiscono il ciclo di vita del software. Essi comprendono, in generale, i 
 *esercizio* e *manutenzione*.
 
 Nel contesto del progetto, risultano rilevanti esclusivamente i processi di fornitura e sviluppo:
-- Il *processo di fornitura* disciplina le attività relative alla pianificazione, definizione e gestione dell'impegno
+- il *processo di fornitura* disciplina le attività relative alla pianificazione, definizione e gestione dell'impegno
   tra il fornitore e il committente;
-- Il *processo di sviluppo* comprende le attività di analisi, progettazione, implementazione, verifica e validazione del
+- il *processo di sviluppo* comprende le attività di analisi, progettazione, implementazione, verifica e validazione del
   prodotto software.
 
 == Fornitura
@@ -96,7 +97,7 @@ da svolgere con probabile data di consegna prevista.
 
 == Sviluppo
 Il *Processo di Sviluppo* prevede di definire le attività che hanno come scopo quello di Analisi dei Requisiti, la
-progettazione, la codifica del Software, l’installazione e l’accettazione di quanto prodotto.
+progettazione, la codifica del software, l’installazione e l’accettazione di quanto prodotto.
 
 #include "processes/sviluppo.typ"
 

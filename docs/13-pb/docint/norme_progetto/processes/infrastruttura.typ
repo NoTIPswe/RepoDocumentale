@@ -10,7 +10,9 @@ le norme relative a ciascuno.
   Il gruppo adotta i seguenti strumenti per la comunicazione:
   - *Telegram*: programma di messaggistica utilizzato per aggiornarsi giornalmente sui progressi del progetto e per
     qualsiasi tipo di comunicazione, nel quale è anche possibile fissare i messaggi più importanti in un determinato
-    periodo;
+    periodo. Il gruppo Telegram è stato inoltre suddiviso in sottocanali dedicati ai diversi ruoli di progetto
+    (ad esempio *Progettisti*, *Programmatori* e *Verificatori*), così da organizzare meglio le comunicazioni
+    operative;
   - *Google Mail*: servizio di posta elettronica utilizzato per gestire le comunicazioni esterne al gruppo. A tal
     proposito è stata creata una mail dedicata al team chiamata #link("mailto:notip.swe@gmail.com")[#raw(
       "notip.swe@gmail.com",
