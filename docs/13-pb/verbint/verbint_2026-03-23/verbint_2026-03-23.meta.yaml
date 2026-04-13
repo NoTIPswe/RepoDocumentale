@@ -1,5 +1,9 @@
 title: Verbale Interno 2026-03-23
 changelog:
+  - version: 1.0.0
+    date: '2026-04-12'
+    approver: Leonardo Preo
+    baseline: PB
   - version: "0.0.2"
     date: "2026-04-07"
     authors:

@@ -1,16 +1,27 @@
 title: Verbale Interno 2026-03-09
 changelog:
-  - version: "0.0.2"
+  - version: 1.0.0
+    date: '2026-04-13'
+    approver: Leonardo Preo
+    baseline: PB
+  - version: "0.1.1"
     date: "2026-04-07"
     authors:
       - Matteo Mantoan
     verifier: Francesco Marcon
     description: >
       Uniformazione titoli e intestazioni: solo prima lettera maiuscola
-  - version: "0.0.1"
+  - version: "0.1.0"
     date: "2026-03-09"
     authors:
       - Matteo Mantoan
     verifier: Valerio Solito
     description: >
       Stesura del verbale
+  - version: "0.0.1"
+    date: "2026-03-09"
+    authors:
+      - Matteo Mantoan
+    verifier: Valerio Solito
+    description: >
+      Creazione del verbale

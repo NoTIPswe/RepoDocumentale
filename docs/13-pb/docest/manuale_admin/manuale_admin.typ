@@ -7,7 +7,24 @@
   abstract: "Documento contenente il manuale operativo per l'Amministratore di Sistema della piattaforma NoTIP, con focus sulle funzioni di gestione tenant, gateway e impersonificazione in modalità offuscata.",
   changelog: metadata.changelog,
   scope: base-document.EXTERNAL_SCOPE,
+  glossary-highlighted: false,
 )[
+  
+  #let _terms = (
+    "Dashboard": "Interfaccia grafica che visualizza in forma sintetica dati e metriche del sistema, permettendo monitoraggio e amministrazione.",
+    "Firmware": "Software incorporato nei dispositivi hardware (es. un gateway) che ne controlla le funzioni operative di base; aggiornabile da remoto tramite procedure OTA.",
+    "Gateway": "Dispositivo fisico o software che funge da punto di accesso e intermediario per la comunicazione tra reti, sensori o sistemi diversi.",
+    "Impersonificazione": "Funzionalità di sicurezza che consente a un utente amministratore di agire temporaneamente con i privilegi di un altro utente, con logging tracciato.",
+    "Multi-tenancy": "Architettura in cui una singola istanza dell'applicazione serve molteplici tenant con segregazione completa dei dati e delle risorse.",
+    "Offuscamento": "Tecnica che rende meno leggibile un contenuto pur mantenendone la funzionalità, usata per ridurre l'esposizione di dati sensibili.",
+    "Onboarding": "Processo di registrazione e configurazione iniziale di un gateway nella piattaforma.",
+    "Provisioning": "Processo di allocazione e configurazione di risorse necessarie per il funzionamento di un sistema, nel caso specifico di un gateway, include la registrazione, configurazione e attivazione operativa.",
+    "Tenant": "Entità cliente in un'architettura multi-tenancy che condivide l'infrastruttura ma con segregazione completa dei dati e delle risorse.",
+  )
+  #let _term-keys = _terms.keys().sorted(key: k => -k.len())
+  #let _term-regex = regex("(?i)" + _term-keys.map(k => "\b" + k.replace(".", "\\.") + "\b").join("|"))
+  #show _term-regex: it => [_#it#sub[G]_]
+
   = Introduzione
   La piattaforma NoTIP mette a disposizione un pannello di amministrazione dedicato al ruolo *System Admin*, progettato
   per governare l'intero ecosistema multi-tenant. Questo ruolo può intervenire sia sulla configurazione organizzativa
@@ -304,4 +321,16 @@
   mantenendo allo stesso tempo un elevato standard di sicurezza informativa. La combinazione di funzioni di governance
   (tenant e gateway), supporto operativo (impersonificazione) e protezione privacy (offuscamento dati) consente di
   operare in modo efficace, tracciabile e conforme alle esigenze dei diversi attori coinvolti.
+
+  #[
+    #show _term-regex: it => it
+
+    #pagebreak() 
+
+    = Glossario
+
+    #for (term, def) in _terms.pairs().sorted(key: p => p.first()) [
+      / #term: #def
+    ]
+  ]
 ]

@@ -1,5 +1,9 @@
 title: Verbale Esterno 2026-03-03 (M31)
 changelog:
+  - version: 1.0.0
+    date: '2026-04-12'
+    approver: Leonardo Preo
+    baseline: PB
   - version: "0.1.1"
     date: "2026-04-07"
     authors:

@@ -1,5 +1,12 @@
 title: Verbale Esterno 2026-02-24 (M31)
 changelog:
+  - version: "1.0.2"
+    date: "2026-04-07"
+    authors:
+      - Francesco Marcon
+    verifier: Valerio Solito
+    description: >
+      Correzione errori di battitura
   - version: "1.0.1"
     date: "2026-04-07"
     authors:
