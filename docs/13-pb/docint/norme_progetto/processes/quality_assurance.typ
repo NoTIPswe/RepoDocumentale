@@ -14,11 +14,11 @@ difetti, ponendo maggiore attenzione nei confronti del processo rispetto al prod
   label: <modello-pdca>,
 )[
   Il gruppo adotta il modello iterativo *Plan-Do-Check-Act* per la gestione della qualità:
-  - *Plan*: Pianificare gli obiettivi di qualità e i processi per raggiungerli (es. definizione delle metriche nel Piano
+  - *Plan*: pianificare gli obiettivi di qualità e i processi per raggiungerli (es. definizione delle metriche nel Piano
     di Qualifica);
-  - *Do*: Eseguire i processi secondo le norme stabilite;
-  - *Check*: Monitorare e misurare i processi e i prodotti rispetto agli obiettivi tramite l'ausilio di Dashboard;
-  - *Act*: Adottare azioni correttive per colmare i gap rilevati e migliorare le prestazioni future.
+  - *Do*: eseguire i processi secondo le norme stabilite;
+  - *Check*: monitorare e misurare i processi e i prodotti rispetto agli obiettivi tramite l'ausilio di Dashboard;
+  - *Act*: adottare azioni correttive per colmare i gap rilevati e migliorare le prestazioni future.
 ]
 
 #norm(
@@ -27,10 +27,10 @@ difetti, ponendo maggiore attenzione nei confronti del processo rispetto al prod
 )[
   La qualità viene valutata quantitativamente tramite metriche definite nel *Piano di Qualifica*. Le metriche si
   dividono in:
-  - *Metriche di Processo*: Misurano l'efficienza del metodo di lavoro in utilizzo in un dato momento (es. Earned
+  - *Metriche di Processo*: misurano l'efficienza del metodo di lavoro in utilizzo in un dato momento (es. Earned
     Value). La fonte dati principale risulta essere *Jira*;
-  - *Metriche di Prodotto*: Misurano la qualità degli artefatti (es. Indice Gulpease). Le metriche vengono raccolte e
-    storicizzate al termine di ogni Sprint.
+  - *Metriche di Prodotto*: misurano la qualità degli artefatti (es. Indice Gulpease). Le metriche vengono raccolte e
+    storicizzate al termine di ogni sprint.
 ]
 
 #norm(
@@ -38,23 +38,23 @@ difetti, ponendo maggiore attenzione nei confronti del processo rispetto al prod
   label: <strumenti-monitoraggio>,
 )[
   Il monitoraggio della qualità è supportato dai seguenti strumenti:
-  - *Jira Dashboard*: Per la visualizzazione in tempo reale delle metriche di processo che permettono di avere un'idea
+  - *Jira Dashboard*: per la visualizzazione in tempo reale delle metriche di processo che permettono di avere un'idea
     precisa di come il gruppo stia procedendo. In particolare tramite l'utilizzo di: Burndown Chart, Velocity Chart,
     distribuzione del carico di lavoro;
-  - *GitHub Actions & `notipdo`*: Per la raccolta automatica delle metriche di prodotto. I log delle pipeline
+  - *GitHub Actions & `notipdo`*: per la raccolta automatica delle metriche di prodotto. I log delle pipeline
     costituiscono la prova oggettiva del superamento dei controlli implementati fino a quel momento;
-  - *SonarQube/SonarCloud*: Strumento di analisi statica continua del codice sorgente. Integrato nella pipeline CI
+  - *SonarQube/SonarCloud*: strumento di analisi statica continua del codice sorgente. Integrato nella pipeline CI
     tramite il workflow `quality-checks.yml`, funge da *Quality Gate* automatizzato: il merge delle Pull Request è
     bloccato se le metriche di prodotto (es. Code Coverage, _Code Smells_) non soddisfano le soglie minime definite nel
     Piano di Qualifica;
-  - *`org-metrics`*: Repository dell'organizzazione contenente automazioni che aggiornano costantemente le metriche di
+  - *`org-metrics`*: repository dell'organizzazione contenente automazioni che aggiornano costantemente le metriche di
     prodotto nel cruscotto di valutazione dell'organizzazione.
 ]
 
 === Attività del processo
 
 #activity(
-  title: "Definizione e evoluzione del sistema di qualità",
+  title: "Definizione ed evoluzione del sistema di qualità",
   roles: (ROLES.amm,),
   norms: ("modello-pdca", "gestione-metriche"),
   input: [Avvio progetto, esiti delle Retrospective, non conformità rilevate],
@@ -77,8 +77,8 @@ difetti, ponendo maggiore attenzione nei confronti del processo rispetto al prod
   title: "Accertamento della qualità del prodotto",
   roles: (ROLES.ver,),
   norms: ("gestione-metriche", "strumenti-monitoraggio"),
-  input: [Prodotti in rilascio (Codice, Documenti), Report di Verifica],
-  output: [Report di Qualità del Prodotto, Non conformità rilevate],
+  input: [Prodotti in rilascio (Codice, Documenti), Report di verifica],
+  output: [Report di qualità del prodotto, Non conformità rilevate],
   procedure: (
     (
       name: "Verifica delle metriche",
@@ -96,7 +96,7 @@ difetti, ponendo maggiore attenzione nei confronti del processo rispetto al prod
     (
       name: "Controllo di conformità",
       desc: [
-        Accertarsi che tutti gli artefatti siano stati sottoposti alle attività di Verifica obbligatorie e che non vi
+        Accertarsi che tutti gli artefatti siano stati sottoposti alle attività di verifica obbligatorie e che non vi
         siano difetti bloccanti aperti.
       ],
     ),
@@ -108,7 +108,7 @@ difetti, ponendo maggiore attenzione nei confronti del processo rispetto al prod
   roles: (ROLES.resp, ROLES.amm),
   norms: ("modello-pdca", "gestione-metriche"),
   input: [Dati di processo (Jira, Git logs), Svolgimento delle attività],
-  output: [Report di Qualità del Processo, Azioni correttive],
+  output: [Report di qualità del processo, Azioni correttive],
   rationale: [
     Attività prevista dallo standard. Si assicura che il team stia lavorando secondo le regole definite nelle Norme di
     Progetto.

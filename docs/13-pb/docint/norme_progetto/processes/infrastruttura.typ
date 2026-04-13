@@ -10,7 +10,8 @@ le norme relative a ciascuno.
   Il gruppo adotta i seguenti strumenti per la comunicazione:
   - *Telegram*: programma di messaggistica utilizzato per aggiornarsi giornalmente sui progressi del progetto e per
     qualsiasi tipo di comunicazione, nel quale è anche possibile fissare i messaggi più importanti in un determinato
-    periodo;
+    periodo. Il gruppo Telegram è stato inoltre suddiviso in sotto-canali dedicati ai diversi ruoli di progetto (ad
+    esempio *Progettisti*, *Programmatori* e *Verificatori*), così da organizzare meglio le comunicazioni operative;
   - *Google Mail*: servizio di posta elettronica utilizzato per gestire le comunicazioni esterne al gruppo. A tal
     proposito è stata creata una mail dedicata al team chiamata #link("mailto:notip.swe@gmail.com")[#raw(
       "notip.swe@gmail.com",
@@ -41,15 +42,16 @@ le norme relative a ciascuno.
 #norm(title: "Utilizzo di GitHub", label: <github-platform>)[
   L'adozione di GitHub è trasversale a diversi processi di supporto. Di seguito si riporta la mappatura delle
   funzionalità della piattaforma sulle norme di progetto:
-  - *Collaborazione e Verifica (Pull Request):* GitHub abilita il lavoro asincrono tramite il meccanismo delle *Pull
+  - *Collaborazione e verifica (Pull Request):* GitHub abilita il lavoro asincrono tramite il meccanismo delle *Pull
     Request* (PR). Le PR costituiscono il punto di controllo obbligatorio (Quality Gate) per la revisione del codice e
     la risoluzione dei conflitti prima dell'integrazione nel ramo stabile. Il processo operativo di verifica tramite PR
-    è dettagliato nella sezione @verifica-doc;
+    è dettagliato nella sezione #link(<verifica-doc>)[@verifica-doc];
   - *Organizzazione degli Artefatti:* La struttura delle directory ospitate sulla piattaforma non è arbitraria, ma deve
-    rispecchiare fedelmente l'architettura informativa definita in @struttura-repo-docs;
+    rispecchiare fedelmente l'architettura informativa definita in #link(<struttura-repo-docs>)[@struttura-repo-docs];
   - *Gestione della Configurazione:* Le politiche di interazione con il repository remoto, incluse le strategie di
-    *branching* e la sintassi dei *commit messages*, devono conformarsi rigorosamente a quanto stabilito in
-    @branching-commit-docs e nella norma di integrazione #cite-norm("integrazione-git").
+    *branching* e la sintassi dei *commit messages*, devono conformarsi rigorosamente a quanto stabilito in #link(
+      <branching-commit-docs>,
+    )[@branching-commit-docs] e nella norma di integrazione #cite-norm("integrazione-git").
 ]
 
 #norm(title: "Strumenti di documentazione", label: <strumenti-documentazione>)[
@@ -60,13 +62,13 @@ le norme relative a ciascuno.
 #norm(title: "Strumenti per la raccolta e l'analisi delle metriche", label: <strumenti-metriche>)[
   Gli strumenti di raccolta e analisi delle metriche si dividono in due livelli distinti:
 
-  *Metriche di Processo e di Prodotto* (pianificazione, qualità documentale, avanzamento Sprint):
+  *Metriche di processo e di prodotto* (pianificazione, qualità documentale, avanzamento Sprint):
   - *Google Sheets*: centro di inserimento, classificazione e storicizzazione delle metriche di processo e di prodotto.
     I dati vengono elaborati tramite script automatici e aggregati in grafici per i report di qualità;
   - *Git e GitHub*: interrogati per estrarre metriche di sviluppo (es. qualità dei commit, tempi di risoluzione delle
     Pull Request), i cui risultati vengono aggregati su Google Sheets.
 
-  *Metriche Applicative e di Sistema* (osservabilità del prodotto a runtime):
+  *Metriche applicative e di sistema* (osservabilità del prodotto a runtime):
   - *Prometheus*: raccoglie in modalità pull le metriche esposte dai singoli microservizi e dall'infrastruttura NATS. La
     configurazione dei target di scraping è versionata in `notip-infra/infra/monitoring/prometheus/`;
   - *Grafana*: visualizza le metriche raccolte da Prometheus tramite dashboard pre-configurate e versionare in
@@ -86,51 +88,53 @@ le norme relative a ciascuno.
   Ogni attività censita su Jira è rappresentata da una *Issue* dotata di una chiave univoca assegnata automaticamente
   dal sistema (es. `NT-XXX`). Al fine di garantire una corretta rendicontazione temporale e la qualità del prodotto,
   ogni Task Madre deve essere scomposta in due sub-task distinte:
-  - *Sub-task di Esecuzione:* Utilizzata per tracciare le ore produttive impiegate nello svolgimento dell'attività;
-  - *Sub-task di Verifica:* Utilizzata per tracciare le ore impiegate nelle attività di controllo.
+  - *Sub-task di Esecuzione:* utilizzata per tracciare le ore produttive impiegate nello svolgimento dell'attività;
+  - *Sub-task di Verifica:* utilizzata per tracciare le ore impiegate nelle attività di controllo.
 ]
 
 #norm(
   title: "Workflow e ciclo di vita Jira",
   label: <workflow-jira>,
   rationale: [
-    Sincronizzazione Automatica: L'evoluzione della Task Madre è guidata automaticamente dallo stato delle sue Sub-task
+    Sincronizzazione automatica: l'evoluzione della task madre è guidata automaticamente dallo stato delle sue sub-task
     (Esecuzione e Verifica), garantendo l'allineamento tra il lavoro svolto e lo stato riportato nel Project Management.
 
-    Quality Gate: Il workflow impone un vincolo bloccante: nessuna attività può raggiungere lo stato _Completata_ senza
+    Quality Gate: il workflow impone un vincolo bloccante: nessuna attività può raggiungere lo stato _Completata_ senza
     aver superato con successo la fase di verifica formale, garantendo la qualità del prodotto in uscita.
   ],
 )[
-  Il ciclo di vita di ogni attività (*Task Madre*) è governato da una macchina a stati finiti che ne traccia
-  l'evoluzione dalla presa in carico fino al rilascio. Il diagramma di riferimento è riportato in @fig-workflow.
+  Il ciclo di vita di ogni attività (*task madre*) è governato da una macchina a stati finiti che ne traccia
+  l'evoluzione dalla presa in carico fino al rilascio. Il diagramma di riferimento è riportato in #link(
+    <fig-workflow>,
+  )[@fig-workflow].
 
   #figure(
     image(height: 14%, "../assets/workflow.png"),
-    caption: [Workflow operativo della Task Madre],
+    caption: [Workflow operativo della task madre],
   ) <fig-workflow>
   #v(0.5em)
 
   Il percorso da seguire prevede le seguenti fasi:
-  - *Da Completare*: Dove la task è stata creata ma non ancora avviata;
-  - *In Execution*: La task è in fase di sviluppo;
-  - *To Verify*: L'attività attende di essere verificata;
-  - *In Verification*: L'attività è stata presa in carico dal verificatore;
-  - *Completata*: L'attività ha superato la verifica e può considerarsi conclusa;
-  - *Waiting*: Stato iniziale della Sub-Task di Verifica, che passa allo stato *Da Completare* solo quando la Sub-Task
+  - *Da Completare*: dove la task è stata creata ma non ancora avviata;
+  - *In Execution*: la task è in fase di sviluppo;
+  - *To Verify*: l'attività attende di essere verificata;
+  - *In Verification*: l'attività è stata presa in carico dal verificatore;
+  - *Completata*: l'attività ha superato la verifica e può considerarsi conclusa;
+  - *Waiting*: stato iniziale della sub-task di Verifica, che passa allo stato *Da Completare* solo quando la sub-task
     di Esecuzione passa allo stato *In Verification*;
-  - *Changes requested*: Stato della Sub-Task di Esecuzione raggiungibile soltanto se il Verificatore ha richiesto dei
-    cambiamenti al lavoro svolto selezionando *Reject* nella Sub-Task di Verifica quando essa era nello stato *In
-    Verification*. Richiede che l'Autore del documento ritorni alla fase *In Execution* per poter così apportare le
+  - *Changes requested*: stato della sub-task di Esecuzione raggiungibile soltanto se il Verificatore ha richiesto dei
+    cambiamenti al lavoro svolto selezionando *Reject* nella sub-task di Verifica quando essa era nello stato *In
+    Verification*. Richiede che l'autore del documento ritorni alla fase *In Execution* per poter così apportare le
     modifiche richieste.
 
   Le transizioni invece sono:
-  - *Create*: La task viene creata;
-  - *Start Execution*: Inizia lo sviluppo della task;
-  - *Discard Execution*: Regressione dallo stato 'In Execution' allo stato 'Da Completare';
-  - *Submit*: Passaggio dalla fase esecutiva a quella di verifica;
-  - *Start Verification*: Inizia l'attività di verifica del lavoro svolto;
-  - *Discard Verification*: Regressione dallo stato 'In Verification' allo stato 'To Verify';
-  - *Reject*: In caso di modifiche da apportare al lavoro svolto, la task retrocede dallo stato 'In Verification' allo
+  - *Create*: la task viene creata;
+  - *Start Execution*: inizia lo sviluppo della task;
+  - *Discard Execution*: regressione dallo stato 'In Execution' allo stato 'Da Completare';
+  - *Submit*: passaggio dalla fase esecutiva a quella di verifica;
+  - *Start Verification*: inizia l'attività di verifica del lavoro svolto;
+  - *Discard Verification*: regressione dallo stato 'In Verification' allo stato 'To Verify';
+  - *Reject*: in caso di modifiche da apportare al lavoro svolto, la task retrocede dallo stato 'In Verification' allo
     stato 'Changes Requested', richiedendo un intervento da parte dell'autore prima di poter ritornare alla fase di
     verifica.
 ]
@@ -146,9 +150,9 @@ le norme relative a ciascuno.
   ],
 )[
   Per la gestione delle risorse su Jira abbiamo deciso di avere:
-  - *Assegnazione Singola:* Ogni entità (Task Madre o Sub-task) deve avere sempre un solo assegnatario. Non è corretto
+  - *Assegnazione singola:* ogni entità (task madre o sub-task) deve avere sempre un solo assegnatario. Non è corretto
     lasciare task in lavorazione (stati attivi diversi da 'Da Completare') senza un responsabile assegnato;
-  - *Specifica del Ruolo:* È obbligatorio indicare il ruolo che il membro del gruppo ricopre durante lo svolgimento di
+  - *Specifica del ruolo:* è obbligatorio indicare il ruolo che il membro del gruppo ricopre durante lo svolgimento di
     quella specifica attività (es. `Programmatore`, `Verificatore`, `Analista`).
 ]
 
@@ -161,26 +165,26 @@ le norme relative a ciascuno.
     che lo soddisfa, e dal codice è possibile risalire alla task che lo ha generato. Per ulteriori informazioni o esempi
     sui Conventional Commits si consiglia di visionare la seguente pagina #link(
       "https://www.conventionalcommits.org/en/v1.0.0/",
-    )[*Conventional Commits*] o di rileggere la @branching-commit-docs.
+    )[*Conventional Commits*] o di rileggere la #link(<branching-commit-docs>)[@branching-commit-docs].
   ],
 )[
   Jira riceve aggiornamenti diretti dal repository remoto. Per garantire il funzionamento del tracciamento, è necessario
   rispettare rigorosamente la nomenclatura:
-  - *Branching:* Il nome di ogni branch deve contenere l'id del Task (es. `NT-67-norme-di-progetto-v-1-0-0`);
-  - *Commit Message:* I messaggi devono seguire lo standard #link(
+  - *Branching:* il nome di ogni branch deve contenere l'id del task (es. `NT-67-norme-di-progetto-v-1-0-0`);
+  - *Commit Message:* i messaggi devono seguire lo standard #link(
       "https://www.conventionalcommits.org/en/v1.0.0/",
     )[*Conventional Commits*] e includere l'id del task.
 ]
 
 #norm(title: "Dashboard e metriche Jira", label: <jira-metriche>)[
-  Jira è configurato per tracciare automaticamente le metriche di processo attraverso una *Dashboard di Progetto*
+  Jira è configurato per tracciare automaticamente le metriche di processo attraverso una *Dashboard di progetto*
   condivisa. I principali indicatori monitorati sono:
-  - *Distribuzione delle Ore:* Grafici a torta e tabelle che mostrano le ore assegnate per persona e per ruolo e in
+  - *Distribuzione delle ore:* grafici a torta e tabelle che mostrano le ore assegnate per persona e per ruolo e in
     quali sprint sono state svolte. Questo permette di verificare il rispetto della rotazione dei ruoli e anche per
     capire quali sprint sono stati i più produttivi;
-  - *Velocity Chart e Burndown Chart:* Il *Burndown Chart* confronta visivamente l'andamento ideale di consumo delle ore
+  - *Velocity Chart e Burndown Chart:* il *Burndown Chart* confronta visivamente l'andamento ideale di consumo delle ore
     rispetto alle ore effettivamente consumate dal team, permettendo di identificare ritardi o anticipi rispetto alla
-    scadenza. Il *Velocity Chart*, invece, storicizza la quantità di lavoro completata in ogni Sprint precedente,
+    scadenza. Il *Velocity Chart*, invece, storicizza la quantità di lavoro completata in ogni sprint precedente,
     fornendo un dato medio fondamentale per stimare con precisione la capacità produttiva futura del team.
 ]
 
@@ -204,34 +208,34 @@ le norme relative a ciascuno.
 )[
   È severamente vietato effettuare commit di file derivati o specifici dell'ambiente locale. Il repository deve
   contenere nella radice un file `.gitignore` condiviso che escluda tassativamente:
-  - Cartelle di build e dist (es. `bin/`, `build/`, `dist/`);
-  - Dipendenze esterne (es. `node_modules/`, `venv/`, `target/`);
-  - File di configurazione (es. `.vscode/`, `.idea/`);
-  - Credenziali o file `.env`.
+  - cartelle di build e dist (es. `bin/`, `build/`, `dist/`);
+  - dipendenze esterne (es. `node_modules/`, `venv/`, `target/`);
+  - file di configurazione (es. `.vscode/`, `.idea/`);
+  - credenziali o file `.env`.
 
-  _Nota:_ Non utilizzare mai `git add --force` per aggirare queste regole senza previa approvazione del Responsabile.
+  _Nota:_ non utilizzare mai `git add --force` per aggirare queste regole senza previa approvazione del Responsabile.
 ]
 
 #norm(
   title: "Libreria dei processi (lib.typ)",
   label: <lib-typ-standard>,
   rationale: [
-    Standardizzazione: L'uso di funzioni dedicate per norme e attività vincola gli autori a definire tutti i metadati
+    Standardizzazione: l'uso di funzioni dedicate per norme e attività vincola gli autori a definire tutti i metadati
     necessari (ruoli, input/output, tracciabilità), rendendo la documentazione conforme agli standard di qualità.
   ],
 )[
   Il file `lib.typ` espone le primitive fondamentali per la stesura delle Norme di Progetto. È obbligatorio utilizzare
   le seguenti funzioni:
-  - `#norm`: Definisce regole statiche o vincoli di progetto.
-    - `title`: Identificativo univoco della norma;
-    - `label`: Etichetta per i riferimenti incrociati (es. `<etichetta>`);
-    - `rationale`: (Opzionale) Giustificazione o note esplicative che appariranno in un blocco "Note".
-  - `#activity`: Definisce procedure operative e flussi di lavoro.
-    - `roles`: Elenco dei ruoli coinvolti, da selezionare esclusivamente dal dizionario `ROLES` (es. `ROLES.anal`,
+  - `#norm`: definisce regole statiche o vincoli di progetto.
+    - `title`: identificativo univoco della norma;
+    - `label`: etichetta per i riferimenti incrociati (es. `<etichetta>`);
+    - `rationale`: (opzionale) giustificazione o note esplicative che appariranno in un blocco "Note".
+  - `#activity`: definisce procedure operative e flussi di lavoro.
+    - `roles`: elenco dei ruoli coinvolti, da selezionare esclusivamente dal dizionario `ROLES` (es. `ROLES.anal`,
       `ROLES.ver`);
-    - `input` / `output`: Descrizione degli artefatti in ingresso e uscita;
-    - `norms`: Lista delle label delle norme citate (es. `("norma-1", "norma-2")`);
-    - `procedure`: Array di oggetti contenenti `name` (nome del passo) e `desc` (descrizione operativa).
+    - `input` / `output`: descrizione degli artefatti in ingresso e uscita;
+    - `norms`: lista delle label delle norme citate (es. `("norma-1", "norma-2")`);
+    - `procedure`: array di oggetti contenenti `name` (nome del passo) e `desc` (descrizione operativa).
 ]
 
 #norm(
@@ -244,12 +248,12 @@ le norme relative a ciascuno.
 )[
   Ogni tipologia di documento deve estendere il relativo *base template* per garantire la presenza delle sezioni
   obbligatorie:
-  - Documenti generici: Utilizzare `base_document.typ` per Analisi, Piani e Norme;
-  - Verbali: Utilizzare `apply-base-verbale` da `base_verbale.typ`. La discussione deve essere strutturata tramite la
+  - Documenti generici: utilizzare `base_document.typ` per Analisi, Piani e Norme;
+  - Verbali: utilizzare `apply-base-verbale` da `base_verbale.typ`. La discussione deve essere strutturata tramite la
     funzione `report-point`, definendo esplicitamente `discussion`, `decisions` e `actions`;
-  - Diari di Bordo: Utilizzare `apply-base-ddb` da `base_ddb.typ`, compilando le sezioni di risultati, obiettivi e
+  - Diari di Bordo: utilizzare `apply-base-ddb` da `base_ddb.typ`, compilando le sezioni di risultati, obiettivi e
     difficoltà;
-  - Presentazioni: Utilizzare `base_slides.typ` per le slide di avanzamento (SAL).
+  - Presentazioni: utilizzare `base_slides.typ` per le slide di avanzamento (SAL).
 ]
 
 #norm(title: "Specifica tecnica degli Use Case", label: <uc-lib-standard>)[
@@ -261,18 +265,18 @@ le norme relative a ciascuno.
 
 #norm(title: "Organizzazione dei canali Discord", label: <discord>)[
   Il server è strutturato in diverse categorie:
-  - *Discussions:* Categoria dedicata alle decisioni asincrone.
-    - `tech`: Per dubbi su tecnologie, librerie e condivisione di snippet di codice;
-    - `management`: Per scadenze, organizzazione informale o per raggruppare in un unico luogo considerazioni su unico
+  - *Discussions:* categoria dedicata alle decisioni asincrone.
+    - `tech`: per dubbi su tecnologie, librerie e condivisione di snippet di codice;
+    - `management`: per scadenze, organizzazione informale o per raggruppare in un unico luogo considerazioni su unico
       argomento.
-  - *Meetings:* Categoria per le riunioni.
+  - *Meetings:* categoria per le riunioni.
     - Il canale testuale `meeting-notes` è riservato a brevi appunti o link condivisi durante la call.
-  - *Cowork:* Canali vocali dedicati al lavoro di gruppo informale.
+  - *Cowork:* canali vocali dedicati al lavoro di gruppo informale.
 ]
 
 #norm(title: "Manutenzione dell'infrastruttura", label: <manutenzione-infrastruttura>)[
   A causa del continuo avanzamento del progetto, il gruppo è consapevole che l'infrastruttura subirà nel tempo
-  cambiamenti e potrebbe causare possibili problemi. Per questo spetta all'Amministratore il compito della Manutenzione,
+  cambiamenti e potrebbe causare possibili problemi. Per questo spetta all'amministratore il compito della manutenzione,
   aggiornando le funzionalità qualora errori o cambiamenti lo rendano necessario.
 ]
 
@@ -291,7 +295,7 @@ le norme relative a ciascuno.
 )[
   Il gruppo adotta DevContainers per garantire isolamento, portabilità e riproducibilità degli ambienti di sviluppo.
 
-  *Organizzazione (Centralizzazione e Specializzazione)*
+  *Organizzazione (centralizzazione e specializzazione)*
 
   In `notip-infra/devcontainers/` sono definiti i Dockerfile base per stack tecnologico: uno per NestJS, uno per
   Angular, uno per Go.
@@ -300,24 +304,27 @@ le norme relative a ciascuno.
   `.devcontainer/devcontainer.json`, che estende l'immagine base di `notip-infra` iniettando tool specifici, permessi
   utente e le estensioni IDE necessarie per quel particolare dominio.
 
-  I Dockerfile base e i file `devcontainer.json` sono elementi di configurazione soggetti a versionamento (vedi
-  @config-items). La manutenzione dei Dockerfile base in `notip-infra` è responsabilità dell'Amministratore, in coerenza
-  con quanto definito nella @manutenzione-infrastruttura.
+  I Dockerfile base e i file `devcontainer.json` sono elementi di configurazione soggetti a versionamento (vedi #link(
+    <config-items>,
+  )[@config-items]). La manutenzione dei Dockerfile base in `notip-infra` è responsabilità dell'amministratore, in
+  coerenza con quanto definito nella #link(<manutenzione-infrastruttura>)[@manutenzione-infrastruttura].
 
-  *Architettura Multi-Stage dei Dockerfile Base*
+  *Architettura Multi-Stage dei Dockerfile base*
 
   I Dockerfile base sono strutturati a strati (multi-stage) per ottimizzare i pesi e separare le responsabilità:
   - `base`: fondamenta comuni, contenente il sistema operativo e il runtime del linguaggio (es. Node o Go);
-  - `dev`: utilizzato dallo Sviluppatore tramite DevContainer e dalla CI di validazione (test e linting). Contiene le
+  - `dev`: utilizzato dallo sviluppatore tramite DevContainer e dalla CI di validazione (test e linting). Contiene le
     devDependencies e i tool di sistema (git, curl). Il codice sorgente non fa parte dell'immagine, ma viene montato
     dinamicamente come volume;
-  - `builder`: utilizzato esclusivamente dalla CI di Rilascio. È l'ambiente in cui viene copiato il codice sorgente per
+  - `builder`: utilizzato esclusivamente dalla CI di rilascio. È l'ambiente in cui viene copiato il codice sorgente per
     essere compilato (es. transpile TypeScript → JavaScript o build binario Go);
   - `prod`: utilizzato dai server in produzione. È l'artefatto finale immutabile, privo dei tool di sviluppo del livello
     `dev` e del codice sorgente del livello `builder`. Contiene solo il compilato e le dipendenze di runtime
     strettamente necessarie.
 
-  Per il setup dell'ambiente DevContainer da parte di ogni sviluppatore si rimanda alla @setup-devcontainer.
+  Per il setup dell'ambiente DevContainer da parte di ogni sviluppatore si rimanda alla #link(
+    <setup-devcontainer>,
+  )[@setup-devcontainer].
 ]
 
 #norm(
@@ -328,7 +335,7 @@ le norme relative a ciascuno.
   scelta è motivata dalla semplicità di integrazione con GitHub Actions e dall'assenza di quote sui pull, a differenza
   di Docker Hub.
 
-  I servizi applicativi eseguono il push automatico delle proprie immagini su GHCR ad ogni merge su `main`. La
+  I servizi applicativi eseguono il push automatico delle proprie immagini su GHCR ad ogni merge su `main`. Il
   repository `notip-infra` seleziona le versioni delle immagini da comporre e le avvia tramite le logiche di deploy e
   orchestrazione.
 
@@ -337,22 +344,22 @@ le norme relative a ciascuno.
 ]
 
 #norm(
-  title: "Processo di build e rilascio dei Servizi",
+  title: "Processo di build e rilascio dei servizi",
   label: <build-release-process>,
   rationale: [
-    *Manutenzione Centralizzata (Single Source of Truth)*: Se è necessario aggiornare la versione di un linguaggio (es.
+    *Manutenzione centralizzata (Single Source of Truth)*: se è necessario aggiornare la versione di un linguaggio (es.
     un aggiornamento di sicurezza di Node.js o Go), basta modificare un solo file in `notip-infra`. Tutti i microservizi
     erediteranno automaticamente il miglioramento alla loro successiva build, senza dover aggiornare decine di
     repository.
 
-    *Zero Duplicazioni (DRY)*: Le logiche infrastrutturali vivono esclusivamente nel repository dell'infrastruttura,
+    *Zero Duplicazioni (DRY)*: le logiche infrastrutturali vivono esclusivamente nel repository dell'infrastruttura,
     evitando la duplicazione delle istruzioni di compilazione in ogni servizio.
 
-    *Autonomia e Isolamento*: Il repository centrale non accede al codice né conosce la logica di business dei
+    *Autonomia e isolamento*: il repository centrale non accede al codice né conosce la logica di business dei
     microservizi. Ogni servizio rimane indipendente e decide autonomamente quando avviare la propria pipeline di
     rilascio.
 
-    *Consistenza Assoluta*: Tutti i servizi basati sulla stessa tecnologia vengono impacchettati, ottimizzati e messi in
+    *Consistenza assoluta*: tutti i servizi basati sulla stessa tecnologia vengono impacchettati, ottimizzati e messi in
     sicurezza nello stesso identico modo, azzerando discrepanze e comportamenti anomali in produzione.
   ],
 )[
@@ -361,12 +368,14 @@ le norme relative a ciascuno.
   singolo microservizio utilizza il Dockerfile centralizzato di `notip-infra` come ricetta, applicandola al proprio
   codice sorgente per generare l'artefatto finale pronto per la produzione.
 
-  I Dockerfile base in `notip-infra/containers/` sono elementi di configurazione soggetti a versionamento (vedi
-  @config-items). La manutenzione di questi Dockerfile è responsabilità dell'Amministratore, in coerenza con quanto
-  definito nella @manutenzione-infrastruttura.
+  I Dockerfile base in `notip-infra/containers/` sono elementi di configurazione soggetti a versionamento (vedi #link(
+    <config-items>,
+  )[@config-items]). La manutenzione di questi Dockerfile è responsabilità dell'amministratore, in coerenza con quanto
+  definito nella #link(<manutenzione-infrastruttura>)[@manutenzione-infrastruttura].
 
-  Per la norma sul pin delle versioni dei tool e delle immagini base si rimanda alla @pin-versioni. Per la gestione del
-  container registry si rimanda alla @ghcr.
+  Per la norma sul pin delle versioni dei tool e delle immagini base si rimanda alla #link(
+    <pin-versioni>,
+  )[@pin-versioni]. Per la gestione del container registry si rimanda alla #link(<ghcr>)[@ghcr].
 ]
 
 #norm(
@@ -384,8 +393,9 @@ le norme relative a ciascuno.
   - *Iniezione degli header di sicurezza*: applicazione delle direttive definite in `security-headers.conf` (es.
     `Strict-Transport-Security`, `X-Frame-Options`, `Content-Security-Policy`) a tutte le risposte in uscita.
 
-  La configurazione è versionata in `notip-infra/infra/nginx/` ed è soggetta alle regole GitOps definite nella
-  @gitops-infra.
+  La configurazione è versionata in `notip-infra/infra/nginx/` ed è soggetta alle regole GitOps definite nella #link(
+    <gitops-infra>,
+  )[@gitops-infra].
 ]
 
 === Attività del processo
@@ -398,16 +408,16 @@ le norme relative a ciascuno.
   output: [Task correttamente realizzate e assegnate allo Sprint Backlog],
   procedure: (
     (
-      name: "Creazione Task Madre",
+      name: "Creazione task madre",
       desc: [
-        Chiunque debba svolgere una qualsiasi attività è tenuto a creare la relativa Task madre nel Backlog e assegnarla
-        allo Sprint corrente.
+        Chiunque debba svolgere una qualsiasi attività è tenuto a creare la relativa task madre nel Backlog e assegnarla
+        allo sprint corrente.
       ],
     ),
     (
-      name: "Sub-Task",
+      name: "Sub-task",
       desc: [
-        Immediatamente per ogni Task madre verranno create e associate in maniera automatica le Sub-Task di Esecuzione e
+        Immediatamente per ogni task madre verranno create e associate in maniera automatica le sub-task di Esecuzione e
         Verifica.
       ],
     ),
@@ -416,20 +426,20 @@ le norme relative a ciascuno.
       desc: [
         A questo punto l'autore della task deve assegnare a se stesso la sub-task di Esecuzione e un altro membro del
         team dovrà assegnarsi alla sub-task di Verifica. Tutto questo deve sempre essere fatto assegnando correttamente
-        la Label del ruolo che varia in base all'attività da svolgere.
+        la label del ruolo che varia in base all'attività da svolgere.
       ],
     ),
     (
       name: "Stima temporale",
       desc: [
         Bisogna anche inserire una stima realistica del tempo necessario per completare l'attività. La stima deve essere
-        fatta distintamente sia per la Sub-Task di Esecuzione che per quella di Verifica.
+        fatta distintamente sia per la sub-task di Esecuzione che per quella di Verifica.
       ],
     ),
     (
       name: "Avvio",
       desc: [
-        Adesso la Task sarà stata correttamente inizializzata e assegnata e nello stato *Da Completare*.
+        Adesso la Task sarà stata correttamente inizializzata, assegnata e nello stato *Da Completare*.
       ],
     ),
   ),
@@ -442,7 +452,7 @@ le norme relative a ciascuno.
   input: [Task in stato *Da Completare*],
   output: [Task in stato *Completata*],
   rationale: [
-    Le transizioni della Task Madre sono automatiche. È tuttavia necessario attendere il completamento dell'automazione
+    Le transizioni della task madre sono automatiche. È tuttavia necessario attendere il completamento dell'automazione
     (visibile dall'aggiornamento dell'interfaccia) prima di considerare conclusa l'operazione, per evitare problemi di
     allineamento dovuti alla latenza di Jira.
   ],
@@ -450,26 +460,26 @@ le norme relative a ciascuno.
     (
       name: "Sviluppo",
       desc: [
-        L'autore porta la Sub-Task di esecuzione nello stato *In Execution*, crea il branch ed effettua i commit secondo
-        le norme precedentemente descritte, fa avanzare la Sub-Task allo stato *In Verification* e apre una Pull-Request
-        su GitHub. Verifica che la Task Madre sia passata allo stato *To Verify* grazie alle automazioni.
+        L'autore porta la sub-task di esecuzione nello stato *In Execution*, crea il branch ed effettua i commit secondo
+        le norme precedentemente descritte, fa avanzare la sub-task allo stato *In Verification* e apre una Pull-Request
+        su GitHub. Verifica che la task madre sia passata allo stato *To Verify* grazie alle automazioni.
       ],
     ),
     (
       name: "Verifica",
       desc: [
-        Prende in carico la Sub-Task di Verifica e fa avanzare allo stato *In Corso*. Se la verifica va a buon fine,
-        anche su GitHub viene approvata la Pull-Request e questa Sub-Task viene fatta avanzare allo stato *Completata*.
+        Prende in carico la sub-task di Verifica e fa avanzare allo stato *In Corso*. Se la verifica va a buon fine,
+        anche su GitHub viene approvata la Pull-Request e questa sub-task viene fatta avanzare allo stato *Completata*.
         Nel caso in cui siano richieste delle modifiche, allora il verificatore farà la Reject del lavoro svolto,
-        mandando la Sub-Task di Esecuzione allo stato *Changes Requested*, e la Sub-Task di Verifica allo stato
+        mandando la sub-task di Esecuzione allo stato *Changes Requested*, e la sub-task di Verifica allo stato
         *Waiting*.
       ],
     ),
     (
       name: "Completamento",
       desc: [
-        Il verificatore completerà la Pull-Request su GitHub. La Sub-Task di Verifica è *Completata*, e quindi anche la
-        Sub-Task di Esecuzione passerà allo stesso stato, rendendo infine anche la Task madre completata.
+        Il verificatore completerà la Pull-Request su GitHub. La sub-task di Verifica è *Completata*, e quindi anche la
+        sub-task di Esecuzione passerà allo stesso stato, rendendo infine anche la task madre completata.
       ],
     ),
   ),
@@ -483,7 +493,7 @@ le norme relative a ciascuno.
   input: [Nuova postazione di lavoro o nuovo membro del team],
   output: [Ambiente Git configurato e repository clonato],
   rationale: [Per il setup dell'ambiente di sviluppo isolato tramite DevContainer, da eseguire contestualmente, si
-    rimanda alla @setup-devcontainer.],
+    rimanda alla #link(<setup-devcontainer>)[@setup-devcontainer].],
   procedure: (
     (
       name: "Installazione",
@@ -492,13 +502,13 @@ le norme relative a ciascuno.
       ],
     ),
     (
-      name: "Configurazione completa e Autenticazione",
+      name: "Configurazione completa e autenticazione",
       desc: [
         Eseguire in sequenza le configurazioni di identità, tecniche e di sicurezza:
-        - Impostare nome e mail (uguale a GitHub):
+        - impostare nome e mail (uguale a GitHub):
           `git config --global user.name "Nome Cognome"`
           `git config --global user.email "email@dominio.it"`;
-        - Generazione della chiave SSH.
+        - generazione della chiave SSH.
       ],
     ),
     (
@@ -526,7 +536,8 @@ le norme relative a ciascuno.
     (
       name: "Clone della repository",
       desc: [
-        Clonare la repository di riferimento secondo le istruzioni della @setup-ambiente-versionamento.
+        Clonare il repository di riferimento secondo le istruzioni della
+        #link(<setup-ambiente-versionamento>)[@setup-ambiente-versionamento]
       ],
     ),
     (
@@ -540,7 +551,7 @@ le norme relative a ciascuno.
       name: "Configurazione dell'ambiente",
       desc: [
         Copiare il file `.env.example` in `.env` e popolarlo con i valori locali di sviluppo. Per la politica di
-        gestione dei segreti si rimanda alla @gestione-segreti.
+        gestione dei segreti si rimanda alla #link(<gestione-segreti>)[@gestione-segreti].
       ],
     ),
     (
@@ -554,7 +565,7 @@ le norme relative a ciascuno.
       name: "Installazione Pre-commit Hooks",
       desc: [
         Installare e attivare gli hook locali eseguendo `pre-commit install` nella radice della repository. Per la norma
-        di riferimento si rimanda alla @pre-commit-hooks.
+        di riferimento si rimanda alla #link(<pre-commit-hooks>)[@pre-commit-hooks].
       ],
     ),
   ),
@@ -576,7 +587,7 @@ le norme relative a ciascuno.
       name: "Prerequisiti",
       desc: [
         Verificare che Docker sia installato e in esecuzione e che il DevContainer della repository sia operativo (vedi
-        @setup-devcontainer).
+        #link(<setup-devcontainer>)[@setup-devcontainer]).
       ],
     ),
     (

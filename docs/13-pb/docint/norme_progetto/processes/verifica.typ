@@ -2,7 +2,7 @@
 
 == Processo di verifica
 
-Il processo di *Verifica* ha lo scopo di confermare che ogni prodotto del ciclo di vita soddisfi i requisiti specificati
+Il processo di *verifica* ha lo scopo di confermare che ogni prodotto del ciclo di vita soddisfi i requisiti specificati
 e sia conforme agli standard di qualità interni fissati. L'obiettivo è quindi cercare di rispondere alla domanda:
 _"Stiamo costruendo il prodotto nel modo giusto?"_ ("Did we build the system right?").
 
@@ -20,12 +20,12 @@ Qualifica*.
   ],
 )[
   L'analisi statica viene effettuata senza l'esecuzione del prodotto software. Il metodo adottato è l'*Ispezione*:
-  - *Documentazione*: Verifica della correttezza ortografica, sintattica e contenutistica. Per la parte maggiormente
+  - *Documentazione*: verifica della correttezza ortografica, sintattica e contenutistica. Per la parte maggiormente
     strutturale e ortografica, l'ispezione è supportata dal tool `notipdo`.
-  - *Codice*: La verifica statica del codice avviene su due livelli:
-    - *Revisione manuale tramite Pull Request*: Il verificatore controlla l'aderenza agli standard di codifica e
+  - *Codice*: la verifica statica del codice avviene su due livelli:
+    - *Revisione manuale tramite Pull Request*: il verificatore controlla l'aderenza agli standard di codifica e
       l'assenza di difetti logici evidenti.
-    - *Analisi automatizzata tramite SonarQube/SonarCloud*: Strumento primario per l'ispezione continua del codice,
+    - *Analisi automatizzata tramite SonarQube/SonarCloud*: strumento primario per l'ispezione continua del codice,
       eseguito nella pipeline CI (`quality-checks.yml`) ad ogni Pull Request. Rileva automaticamente _Code Smells_,
       _Bug_ e _Vulnerabilità_. Funge da *Quality Gate*: il merge è bloccato se le metriche critiche (es. Code Coverage)
       non soddisfano i criteri stabiliti.
@@ -39,17 +39,17 @@ Qualifica*.
   (_fault_). I test devono essere *ripetibili* e, ove possibile, *automatizzati*. Il gruppo adotta la classificazione
   dei test definita nel Piano di Qualifica:
   - *Test di Unità (Unit Testing)*: Verifica delle singole unità di codice in isolamento. Si suddividono in:
-    - _Funzionali (Black-box)_: Verifica input/output senza dare alcun peso alla struttura interna del codice.
-    - _Strutturali (White-box)_: Verifica della logica interna e copertura dei percorsi da esso intrapresi.
-  - *Test di Integrazione*: Verifica il modo in cui collaborano le unità del nostro sistema.
-  - *Test di Sistema*: Verifica del comportamento dell'intero sistema rispetto ai requisiti funzionali e non funzionali.
-  - *Test di Regressione*: Riesecuzione dei test esistenti dopo delle modifiche per garantire che non siano stati
+    - _Funzionali (Black-box)_: verifica input/output senza dare alcun peso alla struttura interna del codice.
+    - _Strutturali (White-box)_: verifica della logica interna e copertura dei percorsi da esso intrapresi.
+  - *Test di Integrazione*: verifica il modo in cui collaborano le unità del nostro sistema.
+  - *Test di Sistema*: verifica del comportamento dell'intero sistema rispetto ai requisiti funzionali e non funzionali.
+  - *Test di Regressione*: riesecuzione dei test esistenti dopo delle modifiche per garantire che non siano stati
     introdotti nuovi difetti non previsti.
 
   *Collocazione dei test nelle repository*
 
   La posizione fisica dei test segue la seguente classificazione, coerente con la struttura delle repository definita
-  nella @repo-strategy:
+  nella #link(<repo-strategy>)[@repo-strategy]:
   - *Test di unità*: risiedono nella repository del servizio di riferimento;
   - *Test di integrazione interna* (es. tra un servizio e il proprio database): risiedono nella repository del servizio
     di riferimento;
@@ -61,14 +61,14 @@ Qualifica*.
   La collocazione fisica dei file di test all'interno delle singole repository di servizio segue le convenzioni
   idiomatiche del linguaggio adottato:
   - *NestJS (TypeScript)*:
-    - I test di unità sono collocati nelle stesse cartelle dei file sorgenti e seguiti dal suffisso `.spec.ts` (es.
+    - i test di unità sono collocati nelle stesse cartelle dei file sorgenti e seguiti dal suffisso `.spec.ts` (es.
       `src/service/foo.service.spec.ts`);
-    - I test di sistema (e2e) risiedono nella cartella radice `test/` e sono seguiti dal suffisso `.e2e-spec.ts` (es.
+    - i test di sistema (e2e) risiedono nella cartella radice `test/` e sono seguiti dal suffisso `.e2e-spec.ts` (es.
       `test/app.e2e-spec.ts`).
   - *Go*:
-    - I test di unità risiedono all'interno del package `internal/` e sono seguiti dal suffisso `_test.go`, convenzione
+    - i test di unità risiedono all'interno del package `internal/` e sono seguiti dal suffisso `_test.go`, convenzione
       idiomatica del linguaggio;
-    - I test di integrazione interni (es. tra il servizio e il proprio database) risiedono nella cartella
+    - i test di integrazione interni (es. tra il servizio e il proprio database) risiedono nella cartella
       `tests/integration/` della repository del servizio.
 ]
 
@@ -79,13 +79,15 @@ Qualifica*.
   Per i test di integrazione è vietato affidarsi a istanze di database o broker NATS pre-esistenti, condivisi o gestiti
   esternamente alla suite di test. Ogni test di integrazione (o suite) deve:
 
-  - Avviare la propria infrastruttura isolata tramite container Docker (es. tramite *Testcontainers* o un file
+  - avviare la propria infrastruttura isolata tramite container Docker (es. tramite *Testcontainers* o un file
     `docker-compose` dedicato alla suite);
-  - Eseguire le operazioni su uno stato noto e controllato, applicando le migrazioni necessarie prima dell'esecuzione;
-  - Distruggere l'infrastruttura al termine dell'esecuzione, indipendentemente dall'esito del test.
+  - eseguire le operazioni su uno stato noto e controllato, applicando le migrazioni necessarie prima dell'esecuzione;
+  - distruggere l'infrastruttura al termine dell'esecuzione, indipendentemente dall'esito del test.
 
   Questo approccio garantisce la totale riproducibilità dei test sia in locale che in CI, eliminando dipendenze da stato
-  condiviso. Si applica a tutti i test di integrazione collocati secondo la struttura definita nella @analisi-dinamica.
+  condiviso. Si applica a tutti i test di integrazione collocati secondo la struttura definita nella #link(
+    <analisi-dinamica>,
+  )[@analisi-dinamica].
 ]
 
 #norm(
@@ -121,11 +123,11 @@ Qualifica*.
     (
       name: "Ispezione",
       desc: [Il Verificatore effettua una lettura completa del documento (o delle differenze nella PR) verificando:
-        - Chiarezza espositiva;
-        - Coerenza con quanto riportato all'interno del changelog della modifica;
-        - Integrità dei riferimenti: tutti i link a documenti esterni o interni sono funzionanti, puntano a versioni
+        - chiarezza espositiva;
+        - coerenza con quanto riportato all'interno del changelog della modifica;
+        - integrità dei riferimenti: tutti i link a documenti esterni o interni sono funzionanti, puntano a versioni
           appropriate e contengono effettivamente l'informazione a cui il testo rimanda;
-        - Assenza di errori residui non rilevati dagli strumenti automatici.
+        - assenza di errori residui non rilevati dagli strumenti automatici.
       ],
     ),
   ),
