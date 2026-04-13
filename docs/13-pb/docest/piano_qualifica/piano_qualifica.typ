@@ -1271,7 +1271,7 @@
   Nel periodo compreso tra gli sprint 8 e 12, lo Schedule Performance Index (SPI) si mantiene costantemente prossimo
   a 1, confermando una buona aderenza alla pianificazione temporale. Nello stesso intervallo, il Cost Performance Index
   (CPI), dopo aver raggiunto il valore minimo attorno allo sprint 8 — corrispondente a una fase di elevato carico di
-  impegni extraprogettuale — mostra una progressiva risalita. Pur rimanendo leggermente inferiore a 1 tra gli sprint 8
+  impegni esterni al progetto — mostra una progressiva risalita. Pur rimanendo leggermente inferiore a 1 tra gli sprint 8
   e 11, nel dodicesimo sprint il CPI torna ad allinearsi allo SPI, raggiungendo anch'esso il valore unitario.
 
 
