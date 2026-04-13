@@ -1,5 +1,10 @@
 title: Analisi dei requisiti
 changelog:
+  - version: "2.0.0"
+    date: "2026-04-13"
+    authors:
+      - Alessandro Mazzariol
+    approver: Leonardo Preo
   - version: "1.5.1"
     date: "2026-04-12"
     authors:
