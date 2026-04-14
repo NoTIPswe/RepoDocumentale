@@ -353,7 +353,10 @@
   docker compose --project-directory . -f compose/docker-compose.yml run --rm -it sim-cli gateways list
   ```
 
-  *NB:* per la creazione dei gateway nella `sim-cli` è prima necessario che questi vengano creati ed assegnati ad un Tenant dal System Admin lato Frontend. In caso contrario, all'invio del comando nella `sim-cli` per la creazione dei gateway, si otterrà un errore di validazione da parte del Provisioning Service, in quanto il `factory_id` e `factory_key` non saranno riconosciuti.
+  *NB:* per la creazione dei gateway nella `sim-cli` è prima necessario che questi vengano creati ed assegnati ad un
+  Tenant dal System Admin lato Frontend. In caso contrario, all'invio del comando nella `sim-cli` per la creazione dei
+  gateway, si otterrà un errore di validazione da parte del Provisioning Service, in quanto il `factory_id` e
+  `factory_key` non saranno riconosciuti.
 
   ```bash
   ERROR   Failed to create gateway
