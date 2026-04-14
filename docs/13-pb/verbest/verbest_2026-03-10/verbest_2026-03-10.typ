@@ -95,7 +95,7 @@
       In particolare, è stato consigliato l'utilizzo di Copilot e la sperimentazione di modelli differenti, soprattutto
       per attività di *review*. È stato anche suggerito di predisporre un file AGENTS.md in ciascuna repository per
       guidare in maniera più efficace tali strumenti. A supporto di questa attività è stata segnalata anche la raccolta
-      di risorse disponibile su #link("https://github.com/github/awesome-copilot")[GitHub Awesome Copilot].
+      di risorse disponibile su #link("https://github.com/github/awesome-copilot")[GitHub Awesome Copilot]  (_ultimo accesso: 2026-03-10_).
     ],
 
     decisions: [

@@ -56,7 +56,7 @@
   In particolare, si sottopongono alla Vostra attenzione i seguenti documenti:
 
   - Lettera di presentazione (documento attuale)
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docint/norme_progetto.pdf")[Norme di Progetto v2.0.0]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docint/norme_progetto.pdf")[Norme di Progetto v2.0.1]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/piano_progetto.pdf")[Piano di Progetto v2.0.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti
       v2.0.0]

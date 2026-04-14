@@ -409,7 +409,7 @@ all'integrazione con la libreria notip/crypto-sdk per la decifratura client-side
 )
 
 #heading(level: 5, numbering: none, outlined: false)[Test Book]
-Il #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/test_book.pdf")[Test Book v1.0.0] cataloga i test
+Il #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/test_book.pdf")[Test Book v1.0.1] cataloga i test
 di accettazione eseguiti sul sistema. Organizza i test in categorie di Sistema e Integrazione, descrivendo per ogni
 scenario le azioni compiute, i risultati attesi e gli esiti ottenuti. Il documento funge da prova tangibile della
 conformità del prodotto ai requisiti e della stabilità delle comunicazioni tra i microservizi della piattaforma.

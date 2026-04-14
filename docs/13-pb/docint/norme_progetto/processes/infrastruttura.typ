@@ -165,7 +165,7 @@ le norme relative a ciascuno.
     che lo soddisfa, e dal codice è possibile risalire alla task che lo ha generato. Per ulteriori informazioni o esempi
     sui Conventional Commits si consiglia di visionare la seguente pagina #link(
       "https://www.conventionalcommits.org/en/v1.0.0/",
-    )[*Conventional Commits*] o di rileggere la #link(<branching-commit-docs>)[@branching-commit-docs].
+    )[*Conventional Commits*] ( _ultimo accesso: 2026-03-02_) o di rileggere la #link(<branching-commit-docs>)[@branching-commit-docs].
   ],
 )[
   Jira riceve aggiornamenti diretti dal repository remoto. Per garantire il funzionamento del tracciamento, è necessario
@@ -173,7 +173,7 @@ le norme relative a ciascuno.
   - *Branching:* il nome di ogni branch deve contenere l'id del task (es. `NT-67-norme-di-progetto-v-1-0-0`);
   - *Commit Message:* i messaggi devono seguire lo standard #link(
       "https://www.conventionalcommits.org/en/v1.0.0/",
-    )[*Conventional Commits*] e includere l'id del task.
+    )[*Conventional Commits*] ( _ultimo accesso: 2026-03-02_) e includere l'id del task.
 ]
 
 #norm(title: "Dashboard e metriche Jira", label: <jira-metriche>)[

@@ -51,9 +51,9 @@
 
   === Riferimenti Informativi
   - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/glossario.pdf")[Glossario v3.0.0]
-  - #link("https://github.com/NoTIPswe/notip-infra")[Repository Notip-infra]
-  - #link("https://docs.docker.com/")[Docker Documentation]
-  - #link("https://docs.nats.io/")[NATS JetStream Documentation]
+  - #link("https://github.com/NoTIPswe/notip-infra")[Repository Notip-infra] _Ultimo accesso: 2026-04-09_
+  - #link("https://docs.docker.com/")[Docker Documentation] _Ultimo accesso: 2026-03-27_
+  - #link("https://docs.nats.io/")[NATS JetStream Documentation] _Ultimo accesso: 2026-03-06_
 
   = Panoramica dell'Architettura
 
@@ -124,8 +124,8 @@
 
   Prima di avviare il sistema, assicurarsi di avere installato:
 
-  - *Docker* (con Docker Compose v2): #link("https://docs.docker.com/get-docker/")[Installazione Docker]
-  - *Make*: #link("https://www.gnu.org/software/make/")[Installazione Make]
+  - *Docker* (con Docker Compose v2): #link("https://docs.docker.com/get-docker/")[Installazione Docker] (_Ultimo accesso: 2026-03-26_)
+  - *Make*: #link("https://www.gnu.org/software/make/")[Installazione Make] (_Ultimo accesso: 2026-03-20_)
   - Terminale *Bash* o *PowerShell* >= *7.0*
   - Accesso al repository: #link("https://github.com/NoTIPswe/notip-infra")[Notip-infra Repository]
 

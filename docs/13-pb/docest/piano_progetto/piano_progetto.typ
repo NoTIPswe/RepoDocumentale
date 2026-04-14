@@ -15,7 +15,7 @@
   effettivo, oltre ai potenziali rischi che il gruppo potrebbe affrontare.
 
   == Glossario
-  Il #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario v2.0.0] è un
+  Il #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/glossario.pdf")[Glossario v3.0.0] è un
   documento soggetto a continuo aggiornamento per l'intera durata del progetto; il suo scopo è definire la terminologia
   tecnica per garantire una comprensione chiara e univoca dei contenuti. I termini presenti nel Glossario sono
   contrassegnati nel testo da una lettera "G" posta a pedice (es. parola#sub[G]).
@@ -23,11 +23,11 @@
   === Riferimenti normativi
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato d'appalto C7 - Sistema di
       acquisizione dati da sensori]\ _Ultimo accesso: 2026-04-13_
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_qualifica.pdf")[Piano di Qualifica
-      v1.1.0]
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/piano_qualifica.pdf")[Piano di Qualifica
       v2.0.0]
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto v2.0.0]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti
+      v2.0.0]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docint/norme_progetto.pdf")[Norme di Progetto v2.0.1]
   === Riferimenti informativi
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T03.pdf")[T03 - Ciclo di vita del Software] \ _Ultimo
     accesso: 2026-04-13_
@@ -784,8 +784,8 @@
   ==== Retrospettiva
   Questo Sprint è servito al gruppo per attuare in maniera concreta il workflow idealizzato. Il Gruppo tuttavia ha
   dovuto affrontare modifiche importanti per quanto riguarda l'#link(
-    "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/analisi_requisiti.pdf",
-  )[Analisi dei Requisiti v1.1.0] che hanno causato un rinvio al prossimo Sprint del raggiungimento della versione
+    "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/analisi_requisiti.pdf",
+  )[Analisi dei Requisiti v2.0.0] che hanno causato un rinvio al prossimo Sprint del raggiungimento della versione
   *0.3.0* e *0.4.0*.
 
   ==== Misure correttive e aggiornamento dei rischi

@@ -62,12 +62,12 @@
 
       - *Adozione di #link("https://asdf-vm.com/")[asdf]:* È stata consigliata la valutazione di #link(
           "https://asdf-vm.com/",
-        )[asdf], un tool da riga di comando in grado di gestire i runtime di progetto attraverso vari plugin.
+        )[asdf]  (_ultimo accesso: 2026-03-03_), un tool da riga di comando in grado di gestire i runtime di progetto attraverso vari plugin.
 
     ],
 
     decisions: [
-      Il Team terrà in considerazione l'utilizzo di #link("https://asdf-vm.com/")[*asdf*] per uniformare gli ambienti di
+      Il Team terrà in considerazione l'utilizzo di #link("https://asdf-vm.com/")[*asdf*]  (_ultimo accesso: 2026-03-03_), per uniformare gli ambienti di
       sviluppo e seguirà i consigli della proponente. Nello specifico cercherà di separare correttamente nelle
       repository tutti i microservizi implementati. È stato anche stabilito che il Provisioning Service e la WebApp
       dovranno sicuramente risiedere in repository separate.

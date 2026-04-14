@@ -33,8 +33,8 @@
   === Riferimenti normativi
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato d'appalto C7 - Sistema di
       acquisizione dati da sensori]\ _Ultimo accesso: 2026-03-25_
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/norme_di_progetto.pdf")[Norme di Progetto
-      v2.0.0]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docint/norme_progetto.pdf")[Norme di Progetto
+      v2.0.1]
   === Riferimenti informativi
   - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/glossario.pdf")[Glossario v3.0.0]
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf")[PD1 - Regolamento del Progetto Didattico]\
@@ -677,7 +677,7 @@
 
   Per la specifica tecnica dettagliata si rimanda al documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_simulator_backend_cli.pdf",
-  )[Specifica Tecnica — Simulator Backend v1.0.0].
+  )[Specifica Tecnica — Simulator Backend & CLI v1.0.0].
 
   == Web application (Frontend)
 
@@ -738,7 +738,7 @@
 
   Per la specifica tecnica dettagliata si rimanda al documento #link(
     "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/specifica_tecnica_simulator_backend_cli.pdf",
-  )[Specifica Tecnica — Simulator CLI v1.0.0].
+  )[Specifica Tecnica — Simulator Backend & CLI v1.0.0].
 
   == \@notip/crypto-sdk
 

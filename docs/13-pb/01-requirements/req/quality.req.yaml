@@ -11,8 +11,8 @@ requirements:
 - id: qualita_testbook
   priority: mandatory
   description: 'È necessario produrre una documentazione dettagliata riguardante i test previsti ed eseguiti
-    (contenuta nel documento #link( "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/piano_qualifica.pdf",
-    )[Piano di Qualifica v1.1.0])'
+    (contenuta nel documento #link( "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/piano_qualifica.pdf",
+    )[Piano di Qualifica v2.0.0])'
   sources:
   - text: Capitolato C7
     url: https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf

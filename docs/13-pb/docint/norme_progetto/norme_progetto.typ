@@ -542,12 +542,12 @@ $
 
 == Riferimenti informativi
 - *Standard ISO/IEC 12207:1995 - Processi del ciclo di vita del software* (versione 1995)
-  - #link("https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf") — ultimo accesso: 2026-03-06
+  - #link("https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf") — ultimo accesso: 2026-03-03
 - *Documentazione Git*
-  - #link("https://git-scm.com/docs") — ultimo accesso: 2026-03-06
+  - #link("https://git-scm.com/docs") — ultimo accesso: 2026-03-08
 - *Documentazione GitHub*
-  - #link("http://docs.github.com/en") — ultimo accesso: 2026-03-06
+  - #link("http://docs.github.com/en") — ultimo accesso: 2026-03-17
 - *Documentazione Typst*
-  - #link("https://typst.app/docs/reference") — ultimo accesso: 2026-03-06
+  - #link("https://typst.app/docs/reference") — ultimo accesso: 2026-03-16
 - *Conventional Commits v1.0.0*
-  - #link("https://www.conventionalcommits.org/en/v1.0.0/")
+  - #link("https://www.conventionalcommits.org/en/v1.0.0/") — ultimo accesso: 2026-03-09

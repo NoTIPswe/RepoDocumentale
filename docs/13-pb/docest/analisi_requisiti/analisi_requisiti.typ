@@ -31,32 +31,33 @@
 
   == Glossario
   I termini tecnici utilizzati sono definiti nel documento #link(
-    "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf",
-  )[Glossario v2.0.0], identificati con pedice _G_.
+    "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/glossario.pdf",
+  )[Glossario v3.0.0], identificati con pedice _G_.
 
   == Riferimenti
   === Riferimenti normativi
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato d'appalto C7 - Sistema di
       acquisizione dati da sensori] \
-    _Ultimo accesso: 2026-03-09_
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto v1.1.0]
+    _Ultimo accesso: 2026-03-19_
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docint/norme_progetto.pdf")[Norme di Progetto v2.0.1] \
+    _Ultimo accesso: 2026-03-23_
 
   === Riferimenti informativi
-  - #link("https://ieeexplore.ieee.org/document/720574")[Standard IEEE] \ _Ultimo accesso: 2026-03-09_
+  - #link("https://ieeexplore.ieee.org/document/720574")[Standard IEEE] \ _Ultimo accesso: 2026-03-26_
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf")[T05 - Analisi dei Requisiti] \ _Ultimo
     accesso: 2026-03-09_
   - *Documentazione tecnologie di riferimento* \
     Di seguito i riferimenti alla documentazione ufficiale delle tecnologie impiegate:
     - Node.js: #link("https://nodejs.org/en/docs/")[Node.js Official Documentation] \ _Ultimo accesso: 2026-03-09_
-    - NestJS: #link("https://docs.nestjs.com/")[NestJS Official Documentation] \ _Ultimo accesso: 2026-03-09_
-    - Go: #link("https://go.dev/doc/")[Go Official Documentation] \ _Ultimo accesso: 2026-03-09_
+    - NestJS: #link("https://docs.nestjs.com/")[NestJS Official Documentation] \ _Ultimo accesso: 2026-03-18_
+    - Go: #link("https://go.dev/doc/")[Go Official Documentation] \ _Ultimo accesso: 2026-03-16_
     - Kubernetes: #link("https://kubernetes.io/docs/home/")[Kubernetes Official Documentation] \ _Ultimo accesso:
-      2026-03-09_
-    - MongoDB: #link("https://www.mongodb.com/docs/")[MongoDB Official Documentation] \ _Ultimo accesso: 2026-03-09_
-    - PostgreSQL: #link("https://www.postgresql.org/docs/")[PostgreSQL Official Manuals] \ _Ultimo accesso: 2026-03-09_
-    - NATS: #link("https://docs.nats.io/")[NATS Official Documentation] \ _Ultimo accesso: 2026-03-09_
+      2026-03-16_
+    - MongoDB: #link("https://www.mongodb.com/docs/")[MongoDB Official Documentation] \ _Ultimo accesso: 2026-03-21_
+    - PostgreSQL: #link("https://www.postgresql.org/docs/")[PostgreSQL Official Manuals] \ _Ultimo accesso: 2026-03-21_
+    - NATS: #link("https://docs.nats.io/")[NATS Official Documentation] \ _Ultimo accesso: 2026-03-21_
     - Apache Kafka: #link("https://kafka.apache.org/documentation/")[Apache Kafka Official Documentation] \ _Ultimo
-      accesso: 2026-03-09_
+      accesso: 2026-03-12_
 
   = Descrizione del prodotto
   == Obiettivi del prodotto
@@ -223,8 +224,8 @@
     riservatezza e la disponibilità dei dati del sistema;
 
   Per la nomenclatura usata di seguito si faccia riferimento alla sezione relativa all'interno del documento #link(
-    "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf",
-  )[Norme di Progetto v1.1.0].
+    "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docint/norme_progetto.pdf",
+  )[Norme di Progetto v2.0.1].
 
 
   // DON'T TOUCH - this gets injected by the build system
