@@ -1,5 +1,12 @@
 title: Test Book - M31
 changelog:
+  - version: "1.0.1"
+    date: "2026-04-14"
+    authors:
+      - Alessandro Contarini
+    verifier: Alessandro Mazzariol
+    description: >
+      Fix collegamento errato alla versione 3.0.0 delle Norme di Progetto
   - version: 1.0.0
     date: '2026-04-13'
     approver: Leonardo Preo
