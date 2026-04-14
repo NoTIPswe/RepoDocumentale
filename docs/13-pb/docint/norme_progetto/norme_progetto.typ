@@ -366,15 +366,6 @@ $
   text("Defect Discovery Rate") = frac(text("Difetti scoperti"), text("Tempo di verifica")) times 100
 $
 
-=== Gestione della configurazione
-==== MP17 - Commit Message Quality Score
-*Descrizione*: Valuta la qualità dei messaggi di commit in base a criteri predefiniti.
-
-*Formula:*
-$
-  text("Commit Message Quality Score") = frac(text("Commit con messaggi conformi"), text("Commit totali")) times 100
-$
-
 === Gestione della qualità
 ==== MP18 - Quality Metrics Satisfied
 *Descrizione*: Misura la percentuale di metriche di qualità soddisfatte rispetto al totale delle metriche definite.
@@ -470,16 +461,8 @@ $
 
 \
 
-=== MQ04 - Requirements Test Coverage
-*Descrizione*: Misura la percentuale di requisiti coperti da test rispetto al totale dei requisiti definiti.
-
-*Formula:*
-$
-  text("Requirements Test Coverage") = frac(text("Requisiti coperti da test"), text("Requisiti totali")) times 100
-$
-
 == Affidabilità
-=== MQ05 - Branch Coverage
+=== MQ04 - Branch Coverage
 *Descrizione*: Misura la percentuale di rami del codice sorgente coperti dai test.
 
 *Formula:*
@@ -488,7 +471,7 @@ $
 $
 \
 
-=== MQ06 - Statement Coverage
+=== MQ05 - Statement Coverage
 *Descrizione*: Misura la percentuale di istruzioni del codice sorgente coperti dai test.
 
 *Formula:*
@@ -498,7 +481,7 @@ $
 
 \
 
-=== MQ07 - Failure Density
+=== MQ06 - Failure Density
 *Descrizione*: Misura la densità di difetti rilevati durante la fase di verifica rispetto alla dimensione del software.
 
 *Formula:*
@@ -507,47 +490,8 @@ $
 $
 \
 
-=== MQ08 - Modified Condition/Decision Coverage (MC/DC)
-*Descrizione*: Misura la copertura dei test in base alla combinazione di condizioni e decisioni nel codice.
-
-*Formula:*
-$
-  text("MC/DC Coverage") = frac(text("Condizioni/Decisioni coperte da test"), text("Condizioni/Decisioni totali")) times 100
-$
-
-== Usabilità
-=== MQ09 - Time On Task
-*Descrizione*: Misura il tempo medio impiegato dagli utenti per completare un'attività specifica utilizzando il
-software.
-
-*Formula:*
-$
-  text("Time On Task") = frac(text("Tempo totale per completare l'attività"), text("Numero di utenti che hanno completato l'attività"))
-$
-
-\
-
-=== MQ10 - Error Rate
-*Descrizione*: Misura la percentuale di errori commessi dagli utenti durante l'utilizzo del software.
-
-*Formula:*
-$
-  text("Error Rate") = frac(text("Errori commessi dagli utenti"), text("Interazioni totali degli utenti")) times 100
-$
-
-\
-
-== Efficienza
-=== MQ11 - Response Time
-*Descrizione*: Misura il tempo medio di risposta del software a una richiesta dell'utente.
-
-*Formula:*
-$
-  text("Response Time") = frac(text("Tempo totale di risposta"), text("Numero di richieste"))
-$
-
 == Manutenibilità
-=== MQ12 - Code Smells
+=== MQ10 - Code Smells
 *Descrizione*: Misura la presenza di "code smells" nel codice sorgente, che indicano potenziali problemi di
 manutenibilità.
 
@@ -557,17 +501,7 @@ $
 $
 \
 
-=== MQ13 - Coefficient of Coupling
-*Descrizione*: Misura il grado di accoppiamento tra i moduli del software, indicando la dipendenza tra di essi.
-
-*Formula:*
-$
-  text("Coefficient of Coupling") = frac(text("Numero di dipendenze tra moduli"), text("Numero totale di moduli"))
-$
-
-\
-
-=== MQ14 - Cyclomatic Complexity
+=== MQ11 - Cyclomatic Complexity
 *Descrizione*: Misura la complessità del codice sorgente in base al numero di percorsi indipendenti attraverso il
 codice.
 
@@ -578,7 +512,7 @@ $
 
 \
 
-=== MQ15 - Code Duplication Percentage
+=== MQ12 - Code Duplication Percentage
 *Descrizione*: Misura la percentuale di codice duplicato rispetto al totale del codice sorgente.
 
 *Formula:*
@@ -587,7 +521,7 @@ $
 $
 
 == Portabilità
-=== MQ16 - Container Image Size
+=== MQ13 - Container Image Size
 *Descrizione*: Misura la dimensione dell'immagine del container utilizzato per distribuire il software, indicando
 l'efficienza della distribuzione.
 
@@ -596,28 +530,6 @@ $
   text("Container Image Size") = text("Dimensione dell'immagine del container in MB")
 $
 
-\
-
-=== MQ17 - Authentication Success Rate
-*Descrizione*: Misura la percentuale di tentativi di autenticazione al sistema (tramite gateway o API) completati con
-successo rispetto al totale dei tentativi effettuati, al fine di valutare l'affidabilità e la robustezza del meccanismo
-di accesso.
-
-*Formula:*
-$
-  text("Authentication Success Rate") = frac(text("Autenticazioni riuscite"), text("Tentativi di accesso totali")) times 100
-$
-
-\
-
-=== MQ18 - Encryption Coverage
-*Descrizione*: Misura la percentuale di dati sensibili protetti da crittografia rispetto al totale dei dati sensibili
-gestiti dal software.
-
-*Formula:*
-$
-  text("Encryption Coverage") = frac(text("Dati sensibili crittografati"), text("Dati sensibili totali")) times 100
-$
 
 #pagebreak()
 

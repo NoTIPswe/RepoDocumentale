@@ -70,7 +70,7 @@
   Il presente Piano di Qualifica definisce le strategie, le metodologie e le metriche adottate dal gruppo per garantire
   la qualità del prodotto software e l'efficienza dei processi del progetto. Esso costituisce il riferimento principale
   per le attività di:
-  - Verifica: accertarsi che il prodotto stia venendo costruito a regola d'arte.
+  - Verifica: accertarsi che il prodotto stia venendo costruito a regola d'arte;
   - Validazione: accertarsi che si stia costruendo il prodotto giusto rispetto alle attese del proponente.
 
   Il documento nasce all'inizio del progetto, ma è concepito come uno strumento dinamico che accompagna l'intero ciclo
@@ -87,7 +87,7 @@
     sprint successivi.
 
   L'obiettivo finale è assicurare che il rilascio soddisfi pienamente i requisiti del capitolato, minimizzando i difetti
-  e garantendo alti livelli di manutenibilità e usabilità.
+  e garantendo alti livelli di manutenibilità e affidabilità.
 
   == Scopo del prodotto
   Il progetto ha l'obiettivo di realizzare una piattaforma Cloud multi-tenant e scalabile, dedicata all'acquisizione e
@@ -109,7 +109,7 @@
   == Glossario
   Al fine di garantire un linguaggio univoco e prevenire possibili ambiguità, i termini tecnici, gli acronimi e i
   vocaboli con accezione specifica nel contesto del progetto sono stati definiti puntualmente nel documento #link(
-    "https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf",
+    "https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/glossario.pdf",
   )[Glossario v3.0.0]. Si invita il lettore a fare riferimento a tale documento per chiarire qualsiasi dubbio. Le parole
   che possiedono un riferimento nel Glossario saranno indicate nel modo che segue:
   #align(center)[#emph([parola#sub[G]])]
@@ -117,7 +117,7 @@
   == Riferimenti
   === Riferimenti normativi
 
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docint/norme_progetto.pdf")[Norme di Progetto v2.0.0]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docint/norme_progetto.pdf")[Norme di Progetto v2.0.0]
   - #link(
       "https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf",
     )[Capitolato d'appalto C7 - Sistema di acquisizione dati da sensori] \ _Ultimo accesso: 2026-03-09_
@@ -133,7 +133,7 @@
     2026-03-28_
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T09.pdf")[T09 - Verifica e Validazione] \ _Ultimo
     accesso: 2026-04-03_
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/12-rtb/docest/glossario.pdf")[Glossario v3.0.0]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/glossario.pdf")[Glossario v3.0.0]
 
   = Qualità di processo
 
@@ -384,7 +384,7 @@
     [È importante che una parte considerevole dei test da eseguire sul sistema siano automatizzati, così da garantire
       automaticamente che la parte più importante di tutto il codice sia stata testata in maniera veloce ed efficace.],
     [L'85% è un valore ottimo ragionevole, permettendo esecuzioni frequenti senza costi significativi. Il restante 15%
-      per test di usabilità per l'eventuale interfaccia grafica e per altre verifiche che potrebbero essere
+      è riservato a test manuali end-to-end e ad altre verifiche non automatizzabili che potrebbero rendersi
       necessarie.],
     note: [Il 100% di automazione non è considerato un obiettivo perché potrebbe anche introdurre dei test instabili o
       avere una fase di test eccessivamente lunga.],
@@ -400,27 +400,6 @@
       Integrazione, per poi crollare drasticamente verso lo zero nell'imminenza del rilascio.],
     note: [Se la curva rimane piatta (pochi bug trovati) durante lo sviluppo intenso, è necessario rivedere la strategia
       di test.],
-  )
-
-  === Gestione della configurazione
-
-  #metrics-table(
-    (
-      (cod: [*MP17*], name: [Commit Message Quality Score], acceptable: [7/10], optimal: [9/10]),
-    ),
-    caption: [Soglie metriche Gestione della configurazione di processo],
-  )
-  #metrics-description(
-    [MP17],
-    [Commit Message Quality Score],
-    [Abbiamo optato per un valore accettabile 7/10, perché la qualità del commit deve essere almeno sopra la sufficienza
-      per garantire chiarezza del messaggio, oltre a permettere in alcuni casi di risalire ad errori introdotti con
-      recenti commit.],
-    [Un punteggio ≥ 9/10 è ottimale, indicando commit messages esemplari che documentano completamente sia il "cosa" che
-      il "perché" delle modifiche. Questo facilita enormemente debugging futuro, code review, e inserimento di nuovi
-      sviluppatori.],
-    note: [Template di commit messages e linee guida chiare nelle Norme di Progetto sono essenziali per raggiungere
-      punteggi alti.],
   )
 
   === Gestione della qualità
@@ -537,15 +516,13 @@
   diretta conseguenza del rigore metodologico applicato ai processi.
 
   Per garantire una valutazione oggettiva e strutturata, il gruppo ha adottato come framework di riferimento lo standard
-  ISO/IEC 9126. Secondo tale modello, l'eccellenza del software si misura attraverso il soddisfacimento delle seguenti
-  caratteristiche:
+  ISO/IEC 9126, scegliendo di presidiare le seguenti caratteristiche in base alla loro rilevanza per il contesto del
+  progetto:
 
   - *Funzionalità*, per coprire integralmente i requisiti espressi;
   - *Affidabilità*, per assicurare continuità di servizio senza malfunzionamenti;
-  - *Usabilità*, per garantire un'interazione intuitiva;
-  - *Efficienza*, per ottimizzare l'uso delle risorse;
   - *Manutenibilità*, per facilitare l'evoluzione futura del codice;
-  - *Portabilità*, per permettere l'esecuzione in ambienti diversi
+  - *Portabilità*, per permettere l'esecuzione in ambienti diversi.
 
   == Funzionalità
 
@@ -641,62 +618,6 @@
       uno cosmetico (typo in UI).],
   )
 
-  == Usabilità
-  #metrics-table(
-    (
-      (cod: [*MQ07*], name: [Time on Task], acceptable: [≤ 60 sec], optimal: [≤ 30 sec]),
-      (cod: [*MQ08*], name: [Error Rate], acceptable: [≤ 5%], optimal: [≤ 2%]),
-    ),
-    caption: [Soglie metriche Usabilità del prodotto],
-  )
-
-  #heading(level: 4, numbering: none, outlined: false)[Motivazioni delle soglie]
-
-  #metrics-description(
-    [MQ07],
-    [Time on Task],
-    [Dal momento in cui l'utente impiega un tempo ≤ 60 secondi per eseguire task standard, viene considerato
-      accettabile. Oltre questo tempo, l'utente può percepire il sistema come lento o inefficiente.
-    ],
-    [≤ 30 secondi è ottimale e indica un'interfaccia altamente efficiente e intuitiva.],
-    note: [Misurare con utenti reali o rappresentativi del target. Definire task specifici e misurabili (es. "creare un
-      nuovo gateway e associare 3 sensori"). Task complesse possono giustificare tempi maggiori. Questa metrica diventa
-      rilevante solo quando l'interfaccia è sufficientemente sviluppata.],
-  )
-
-  #metrics-description(
-    [MQ08],
-    [Error Rate],
-    [≤ 5% è accettabile, riconoscendo che alcuni errori utente sono inevitabili. Questo margine tollera una certa curva
-      di apprendimento e situazioni ambigue nell'interfaccia.],
-    [≤ 2% è ottimale e indica un'interfaccia estremamente intuitiva dove gli errori sono rari. Si raggiunge con: design
-      patterns consolidati, validazione input efficace, feedback chiari e prevenzione degli errori.],
-    note: [Errori frequenti in task specifici indicano problemi di design localizzati. È quindi utile andare ad
-      analizzare quali task generano più errori e perché.],
-  )
-
-  == Efficienza
-
-  #metrics-table(
-    (
-      (cod: [*MQ09*], name: [Response Time], acceptable: [≤ 2 sec], optimal: [≤ 1 sec]),
-    ),
-    caption: [Soglie metriche Efficienza del prodotto],
-  )
-
-  #heading(level: 4, numbering: none, outlined: false)[Motivazioni delle soglie]
-
-  #metrics-description(
-    [MQ09],
-    [Response Time],
-    [≤ 2 secondi è il limite accettabile secondo standard di usabilità (Nielsen). Oltre questo tempo, l'utente
-      percepisce attesa significativa.],
-    [Un valore ≤ 1 secondo è ottimale e fornisce un'esperienza fluida senza attese percepite. Mantiene il flusso di
-      lavoro dell'utente ininterrotto.],
-    note: [Operazioni complesse possono giustificare tempi > 2s. Potrebbe aiutare aggiungere degli indicatori di
-      progresso, per dare un feedback diretto all'utilizzatore.],
-  )
-
   == Manutenibilità
 
   #metrics-table(
@@ -771,8 +692,8 @@
 
   = Metodi di testing
   I seguenti metodi di testing verranno adottati per garantire la qualità minima del prodotto:
-  - *Unit Testing*: test automatici per singole unità di codice, garantendo correttezza funzionale isolata.
-  - *Integration Testing*: verifica delle interazioni tra unità, assicurando che collaborino correttamente.
+  - *Unit Testing*: test automatici per singole unità di codice, garantendo correttezza funzionale isolata;
+  - *Integration Testing*: verifica delle interazioni tra unità, assicurando che collaborino correttamente;
   - *System Testing*: test end-to-end del Sistema completo in ambiente simulato.
 
   #include "generated/_yaml_test_index.typ"
@@ -780,7 +701,7 @@
 
   = Cruscotto di valutazione
   Di seguito vengono presentate le misurazioni raccolte nel periodo compreso tra l’aggiudicazione del capitolato e la
-  definizione della Requirements and Technology Baseline (RTB).
+  definizione della Product Baseline (PB).
 
   In ottica di Continuous Integration e nel rispetto delle Norme di Progetto, il tracciamento manuale delle metriche di
   processo riguardanti lo sviluppo tramite screenshot è stato sostituito dall’automazione. Si dichiara ufficialmente che
@@ -1318,6 +1239,14 @@
     kind: table,
   )
 
+  #v(1em)
+
+  #block(stroke: (left: 3pt + gray), inset: (left: 10pt, y: 4pt), width: 100%)[
+    _Nota: le metriche MQ07, MQ08 e MQ09, originariamente previste per le dimensioni di Usabilità ed Efficienza, sono
+    state rimosse dal documento in quanto il gruppo ha reputato che il costo di acquisizione dei relativi dati fosse
+    eccessivo rispetto al beneficio che avrebbero apportato alla valutazione della qualità del prodotto._
+  ]
+
   == MQ10: Code Smells
   === PB
   Durante la fase di PB, il codice prodotto ha evidenziato un elevato livello di manutenibilità, certificato dal rating
@@ -1410,7 +1339,7 @@
   valutazioni periodiche. Tali valutazioni hanno l’obiettivo di individuare le criticità emerse e le relative soluzioni
   adottate per affrontarle, consentendo al gruppo di acquisire una maggiore consapevolezza e di ridurre il rischio di
   ripetere gli stessi errori in futuro. Le analisi effettuate si basano sulle tre categorie di rischio definite nel
-  _Piano di Progetto_ v1.0.0, ovvero:
+  _Piano di Progetto_ v2.0.0, ovvero:
   - Rischi connessi alle tecnologie adottate (*RT1*);
   - Rischi connessi all'organizzazione del team (*RO1*);
   - Rischi connessi ai singoli componenti del gruppo (*RP1*).
