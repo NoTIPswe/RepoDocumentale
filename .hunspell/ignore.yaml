@@ -871,6 +871,7 @@ accepted_words:
   - committare
   - committata
   - ErrorPageComponent
+  - anomalyCommandBuffer
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori

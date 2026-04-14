@@ -208,6 +208,12 @@
     l'`AESGCMEncryptor` locale per sigillare i dati prima dell'invio. La `EncryptionKey` è gestita come un _Value
     Object_ immutabile che impedisce l'accesso diretto ai byte della chiave, garantendo che i campi `EncryptedData`,
     `IV` e `AuthTag` viaggino come blob Base64 totalmente opachi.
+  - *Buffer Comandi durante Anomalie (Defer-and-Flush):* Quando un `GatewayWorker` è in stato di anomalia attiva (es.
+    disconnessione totale), i comandi JetStream in ingresso non vengono né scartati né elaborati immediatamente.
+    L'`anomalyCommandBuffer` — uno slice in memoria locale al worker — li accoda preservando l'ordine di arrivo. Al
+    termine dell'anomalia, `flushBufferedCommands` li processa sequenzialmente, inviando l'ACK per ciascuno. Questo
+    approccio replica il comportamento reale di un dispositivo che riprende l'attività dopo un'interruzione, evitando
+    sia la perdita silenziosa dei comandi sia elaborazioni concorrenti non sicure.
 
   === Relazioni tra Componenti
 
@@ -585,6 +591,19 @@
     suo socket NATS.
   5. I dati persistenti vengono eliminati dallo `Store` locale in SQLite in via definitiva.
 
+  ==== Flusso di Buffering e Flush dei Comandi durante Anomalia
+
+  1. Il `NATSGatewaySubscriber` riceve un comando cloud e lo consegna al `GatewayWorker` tramite il canale `commandCh`.
+  2. `handleIncomingCommand` verifica se `activeAnomaly != nil`.
+  3. Se un'anomalia è attiva, il comando viene accodato nell'`anomalyCommandBuffer` (slice locale al worker) senza
+    essere elaborato e senza inviare alcun ACK al broker.
+  4. Ad ogni tick del `time.Ticker`, `checkAnomalyExpiry` confronta il timestamp corrente con la scadenza dell'anomalia.
+  5. Allo scadere dell'anomalia, `activeAnomaly` viene azzerato e `flushBufferedCommands` viene invocato.
+  6. Per ciascun comando nel buffer, nell'ordine originale di arrivo, viene eseguita l'elaborazione completa e inviato
+    il corrispondente ACK sul subject `command.ack.{tenantId}.{gwId}`.
+  7. Il buffer viene svuotato tramite re-slice a lunghezza zero, conservando la capacità allocata per ottimizzare le
+    future accodamenti.
+
   == Metodologie di Testing
 
   Il microservizio adotta una strategia di testing multi-livello progettata per validare il corretto coordinamento dei
@@ -641,6 +660,10 @@
 
     [Comandi JetStream — elaborazione valida],
     [Un comando recente viene applicato al worker corretto e l'ACK viene inviato al broker],
+
+    [Comandi JetStream — buffering durante anomalia e flush],
+    [Un comando ricevuto mentre è attiva un'anomalia viene accodato nell'`anomalyCommandBuffer` senza generare ACK; al
+      termine dell'anomalia il comando viene elaborato e il corrispondente ACK viene emesso],
   )
 
   *Handler HTTP e Configurazione*
