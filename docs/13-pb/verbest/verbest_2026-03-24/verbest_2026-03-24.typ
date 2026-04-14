@@ -84,6 +84,5 @@
   approvazione è formalmente confermata dalle firme riportate di seguito dei referenti Aziendali.
 
   #align(right)[
-    #image("assets/sign.png", width: 30%)
-  ]
+    #image("assets/sign.png")]
 ]
