@@ -54,7 +54,7 @@
     [`GatewayBufferSize`], [`GATEWAY_BUFFER_SIZE`], [`1000`], [No],
     [`HeartbeatTickMs`], [`HEARTBEAT_TICK_MS`], [`10000`], [No],
     [`HeartbeatGracePeriodMs`], [`HEARTBEAT_GRACE_PERIOD_MS`], [`120000`], [No],
-    [`AlertConfigRefreshMs`], [`ALERT_CONFIG_REFRESH_MS`], [`120000`], [No],
+    [`AlertConfigRefreshMs`], [`ALERT_CONFIG_REFRESH_MS`], [`30000`], [No],
     [`AlertConfigDefaultTimeoutMs`], [`ALERT_CONFIG_DEFAULT_TIMEOUT_MS`], [`60000`], [No],
     [`AlertConfigMaxRetries`], [`ALERT_CONFIG_MAX_RETRIES`], [`10`], [No],
     [`AlertConfigInitialBackoffMs`], [`ALERT_CONFIG_INITIAL_BACKOFF_MS`], [`1000`], [No],
