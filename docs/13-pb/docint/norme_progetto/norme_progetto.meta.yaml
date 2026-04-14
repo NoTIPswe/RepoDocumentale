@@ -1,5 +1,12 @@
 title: Norme di Progetto
 changelog:
+  - version: "2.0.1"
+    date: "2026-04-14"
+    authors:
+      - Alessandro Contarini
+    verifier: Valerio Solito
+    description: >
+      Fix ambiente locale Git
   - version: 2.0.0
     date: '2026-04-14'
     approver: Leonardo Preo
