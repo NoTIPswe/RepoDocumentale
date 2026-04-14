@@ -9,7 +9,7 @@
   scope: base-document.EXTERNAL_SCOPE,
   glossary-highlighted: false,
 )[
-  
+
   #let _terms = (
     "Dashboard": "Interfaccia grafica che visualizza in forma sintetica dati e metriche del sistema, permettendo monitoraggio e amministrazione.",
     "Firmware": "Software incorporato nei dispositivi hardware (es. un gateway) che ne controlla le funzioni operative di base; aggiornabile da remoto tramite procedure OTA.",

@@ -9,7 +9,7 @@
   scope: base-document.EXTERNAL_SCOPE,
   glossary-highlighted: false,
 )[
-  
+
   #let _terms = (
     "API Gateway": "Componente architetturale che funge da punto di accesso centralizzato per le API, gestendo autenticazione, autorizzazione e rate limiting delle richieste.",
     "Docker": "Tecnologia di containerizzazione che consente di confezionare applicazioni e le loro dipendenze in container portabili, facilitando deployment coerente su diverse piattaforme.",

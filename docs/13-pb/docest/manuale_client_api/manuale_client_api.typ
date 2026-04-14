@@ -27,7 +27,7 @@
   scope: base-document.EXTERNAL_SCOPE,
   glossary-highlighted: false,
 )[
-  
+
   #let _terms = (
     "AES-256": "Algoritmo di cifratura simmetrica a 256 bit utilizzato per proteggere i payload telemetrici con decifratura esclusivamente client-side.",
     "Bearer Token": "Token di autorizzazione trasmesso nelle richieste HTTP, di solito nell'header Authorization, per dimostrare che il client ha il diritto di accedere a una risorsa.",
