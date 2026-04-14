@@ -383,9 +383,8 @@
     [Test Automation Percentage],
     [È importante che una parte considerevole dei test da eseguire sul sistema siano automatizzati, così da garantire
       automaticamente che la parte più importante di tutto il codice sia stata testata in maniera veloce ed efficace.],
-    [L'85% è un valore ottimo ragionevole, permettendo esecuzioni frequenti senza costi significativi. Il restante 15%
-      è riservato a test manuali end-to-end e ad altre verifiche non automatizzabili che potrebbero rendersi
-      necessarie.],
+    [L'85% è un valore ottimo ragionevole, permettendo esecuzioni frequenti senza costi significativi. Il restante 15% è
+      riservato a test manuali end-to-end e ad altre verifiche non automatizzabili che potrebbero rendersi necessarie.],
     note: [Il 100% di automazione non è considerato un obiettivo perché potrebbe anche introdurre dei test instabili o
       avere una fase di test eccessivamente lunga.],
   )
