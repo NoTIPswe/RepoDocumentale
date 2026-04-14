@@ -189,13 +189,10 @@ le norme relative a ciascuno.
 ]
 
 #norm(
-  title: "Configurazione dell'ambiente Locale Git",
+  title: "Configurazione dell'ambiente locale Git",
   label: <git-config-env>,
 )[
-  Ogni membro del team è tenuto a configurare il proprio ambiente locale prima del primo commit, rispettando i seguenti
-  vincoli:
-
-  Il ramo principale deve essere denominato `main` (e non `master`) per conformità con le policy del repository remoto.
+  Ogni membro del team è tenuto a configurare il proprio ambiente locale prima del primo commit; il ramo principale deve essere denominato `main` (e non `master`) per conformità con le policy del repository remoto.
 ]
 
 #norm(
