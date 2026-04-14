@@ -202,9 +202,9 @@ svolgimento del progetto.
 
 
 #norm(title: "Gestione Git: branching e commit", label: <branching-commit-docs>)[
-  Il repository documentale segue una strategia di branching #link("https://trunkbaseddevelopment.com/")[Trunk-Based] (_ultimo accesso: 2026-03-08_),
-  dove l'unica fonte di verità persistente è il branch `main`. Ogni feature branch è effimero e deve essere collegato
-  univocamente a un Work Item registrato su Jira.
+  Il repository documentale segue una strategia di branching #link("https://trunkbaseddevelopment.com/")[Trunk-Based]
+  (_ultimo accesso: 2026-03-08_), dove l'unica fonte di verità persistente è il branch `main`. Ogni feature branch è
+  effimero e deve essere collegato univocamente a un Work Item registrato su Jira.
 
   #heading(level: 5, numbering: none, outlined: false)[Nomenclatura Branch]
   È obbligatorio mantenere la nomenclatura generata automaticamente dal Work Item, rimuovendo la sezione

@@ -165,7 +165,9 @@ le norme relative a ciascuno.
     che lo soddisfa, e dal codice è possibile risalire alla task che lo ha generato. Per ulteriori informazioni o esempi
     sui Conventional Commits si consiglia di visionare la seguente pagina #link(
       "https://www.conventionalcommits.org/en/v1.0.0/",
-    )[*Conventional Commits*] ( _ultimo accesso: 2026-03-02_) o di rileggere la #link(<branching-commit-docs>)[@branching-commit-docs].
+    )[*Conventional Commits*] ( _ultimo accesso: 2026-03-02_) o di rileggere la #link(
+      <branching-commit-docs>,
+    )[@branching-commit-docs].
   ],
 )[
   Jira riceve aggiornamenti diretti dal repository remoto. Per garantire il funzionamento del tracciamento, è necessario

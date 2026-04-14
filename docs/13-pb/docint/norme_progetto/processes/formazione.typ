@@ -56,46 +56,48 @@ all'interno del progetto. Il gruppo ha individuato le seguenti tecnologie come o
       [Go],
       [
         - #link("https://gobyexample.com/")[Go by Example], _ultimo accesso: 2026-03-06_
-        - #link("https://go.dev/doc/effective_go")[Effective Go],  _ultimo accesso: 2026-03-02_
+        - #link("https://go.dev/doc/effective_go")[Effective Go], _ultimo accesso: 2026-03-02_
       ],
 
       [NestJS],
       [
-        - #link("https://docs.nestjs.com/")[NestJS Documentation],  _ultimo accesso: 2026-03-07_
-        - #link("https://www.youtube.com/watch?v=GHTA143_b-s&t=8261s")[NestJs Course for Beginners],  _ultimo accesso: 2026-03-09_
+        - #link("https://docs.nestjs.com/")[NestJS Documentation], _ultimo accesso: 2026-03-07_
+        - #link("https://www.youtube.com/watch?v=GHTA143_b-s&t=8261s")[NestJs Course for Beginners], _ultimo accesso:
+          2026-03-09_
       ],
 
       [NATS],
       [
-        - #link("https://nbyone.io/")[NATS by Example],  _ultimo accesso: 2026-03-06_
-        - #link("https://docs.nats.io/nats-concepts/jetstream")[JetStream Documentation],  _ultimo accesso: 2026-03-01_
+        - #link("https://nbyone.io/")[NATS by Example], _ultimo accesso: 2026-03-06_
+        - #link("https://docs.nats.io/nats-concepts/jetstream")[JetStream Documentation], _ultimo accesso: 2026-03-01_
       ],
 
       [Angular],
       [
-        - #link("https://angular.dev/")[Angular Docs],  _ultimo accesso: 2026-03-18_
-        - #link("https://angular.dev/playground?templateId=0-hello-world")[Angular Playground],  _ultimo accesso: 2026-03-18_
+        - #link("https://angular.dev/")[Angular Docs], _ultimo accesso: 2026-03-18_
+        - #link("https://angular.dev/playground?templateId=0-hello-world")[Angular Playground], _ultimo accesso:
+          2026-03-18_
       ],
 
       [Docker],
       [
-        - #link("https://docs.docker.com/get-started/")[Docker Get Started],  _ultimo accesso: 2026-03-28_
+        - #link("https://docs.docker.com/get-started/")[Docker Get Started], _ultimo accesso: 2026-03-28_
       ],
 
       [Typst],
       [
-        - #link("https://typst.app/docs/reference/")[Reference Guide],  _ultimo accesso: 2026-03-18_
+        - #link("https://typst.app/docs/reference/")[Reference Guide], _ultimo accesso: 2026-03-18_
       ],
 
       [Git & GitHub],
       [
-        - #link("https://docs.github.com/en")[GitHub Docs],  _ultimo accesso: 2026-02-06_
+        - #link("https://docs.github.com/en")[GitHub Docs], _ultimo accesso: 2026-02-06_
       ],
 
       [Jira],
       [
         - #link("https://www.atlassian.com/software/jira/guides/getting-started/introduction")[Atlassian Jira Software
-            Guide],  _ultimo accesso: 2026-02-16_
+            Guide], _ultimo accesso: 2026-02-16_
       ],
     ),
     caption: [Risorse per la formazione tecnica],

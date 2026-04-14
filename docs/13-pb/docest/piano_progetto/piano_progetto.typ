@@ -23,8 +23,7 @@
   === Riferimenti normativi
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato d'appalto C7 - Sistema di
       acquisizione dati da sensori]\ _Ultimo accesso: 2026-04-13_
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/piano_qualifica.pdf")[Piano di Qualifica
-      v2.0.0]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/piano_qualifica.pdf")[Piano di Qualifica v2.0.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/analisi_requisiti.pdf")[Analisi dei Requisiti
       v2.0.0]
   - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docint/norme_progetto.pdf")[Norme di Progetto v2.0.1]

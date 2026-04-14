@@ -33,8 +33,7 @@
   === Riferimenti normativi
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C7.pdf")[Capitolato d'appalto C7 - Sistema di
       acquisizione dati da sensori]\ _Ultimo accesso: 2026-03-25_
-  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docint/norme_progetto.pdf")[Norme di Progetto
-      v2.0.1]
+  - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docint/norme_progetto.pdf")[Norme di Progetto v2.0.1]
   === Riferimenti informativi
   - #link("https://notipswe.github.io/RepoDocumentale/docs/13-pb/docest/glossario.pdf")[Glossario v3.0.0]
   - #link("https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/PD1.pdf")[PD1 - Regolamento del Progetto Didattico]\

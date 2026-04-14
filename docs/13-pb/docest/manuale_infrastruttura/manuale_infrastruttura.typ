@@ -124,7 +124,8 @@
 
   Prima di avviare il sistema, assicurarsi di avere installato:
 
-  - *Docker* (con Docker Compose v2): #link("https://docs.docker.com/get-docker/")[Installazione Docker] (_Ultimo accesso: 2026-03-26_)
+  - *Docker* (con Docker Compose v2): #link("https://docs.docker.com/get-docker/")[Installazione Docker] (_Ultimo
+    accesso: 2026-03-26_)
   - *Make*: #link("https://www.gnu.org/software/make/")[Installazione Make] (_Ultimo accesso: 2026-03-20_)
   - Terminale *Bash* o *PowerShell* >= *7.0*
   - Accesso al repository: #link("https://github.com/NoTIPswe/notip-infra")[Notip-infra Repository]

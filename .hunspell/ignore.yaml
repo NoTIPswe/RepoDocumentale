@@ -543,6 +543,7 @@ accepted_words:
   - sonarqube
 
   # --- Terminologia Standard Progetto ---
+  - pb
   - req
   - docest
   - docint
