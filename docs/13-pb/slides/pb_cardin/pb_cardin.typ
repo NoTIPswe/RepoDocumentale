@@ -3,7 +3,7 @@
 #base-slides.apply-base-slides(
   title: "Colloquio tecnico - PB",
   subtitle: "Gruppo 12 - A.A. 2025/2026",
-  date: "2026-04-xx",
+  date: "2026-04-17",
 )[
 
   = C7: Sistema di Acquisizione Dati da Sensori
@@ -17,93 +17,164 @@
   #pagebreak()
 
   == Tecnologie
-  - *NATS JetStream* (Message Broker)
-  - *PostgreSQL + TimescaleDB* (Database)
-  - *Go* (Simulatore e Consumer)
-  - *NestJS* (API e servizi non critici)
-  - *Angular + TypeScript SDK* (Frontend)
-  - *Prometheus + Grafana* (Monitoraggio)
-  - *Keycloak* (Autenticazione)
-  - *Nginx* (Reverse proxy)
-  - *SQLite* (Database)
-  - *Docker* (Containerizzazione)
+  #grid(
+    columns: (1.3fr, 1fr),
+    column-gutter: 30pt,
 
-  // add immages
+    // LEFT COLUMN: technology list
+    [
+      - *NATS JetStream* (Message Broker)
+      - *PostgreSQL + TimescaleDB* (Database)
+      - *Go* (Simulatore e Consumer)
+      - *NestJS* (API e servizi non critici)
+      - *Angular + TypeScript SDK* (Frontend)
+      - *Prometheus + Grafana* (Monitoraggio)
+      - *Keycloak* (Autenticazione)
+      - *Nginx* (Reverse proxy)
+      - *SQLite* (Database)
+      - *Docker* (Containerizzazione)
+    ],
 
-  #pagebreak()
+    // RIGHT COLUMN: logos scattered
+    [
+      #grid(
+        columns: (1fr, 2fr),
+        column-gutter: 15pt,
+        row-gutter: 20pt,
+        align: center,
 
-  == Architettura di Deployment: microservizi
-
-  - #link(<webapp_c4>)[*WebApp*]
-  - #link(<dataAPI>)[*Data API*]
-  - #link(<managementAPI_c4>)[*Management API*]
-  - #link(<provisioningService>)[*Provisioning Service*]
-  - #link(<dataConsumer>)[*Data Consumer*]
-  - #link(<simulatorBackend>)[*Simulator Backend*]
-  - #link(<simulatorCLI>)[*Simulator CLI*]
-  - #link(<cryptoSDK>)[*Crypto SDK*] 
+        image("assets/docker.png", height: 40pt), image("assets/angular.png", height: 40pt),
+        image("assets/postgreSQL.png", height: 40pt), image("assets/nats.png", height: 40pt),
+        image("assets/prometheus.png", height: 40pt), image("assets/keycloak.svg", height: 40pt),
+        image("assets/grafana.png", height: 40pt), image("assets/go.png", height: 40pt),
+        image("assets/nestjs.svg", height: 40pt), image("assets/timescaledb.png", height: 40pt),
+      )
+    ],
+  )
 
   = MVP
   #align(center)[
     #figure[
-      #image("assets/Containers.svg", height: 110%)
+      #image("assets/Containers.svg")
     ]
   ]
 
-  = WebApp 
-  #align(center)[
-    #figure[
-      #image("../../docest/specifica_tecnica_frontend/assets/01-app-architecture.svg")
-    ]<webapp_c4>
-  ]
+  #pagebreak()
 
-  = Management API 
-  #align(center)[
-    #figure[
-      #image("../../docest/specifica_tecnica_management_api/assets/01-app-architecture.svg")
-    ]<managementAPI_c4>
-  ]
+  == Architettura di Deployment: microservizi <home>
 
-  = Data Consumer 
-  #align(center)[
-    #figure[
-      #image("../../docest/specifica_tecnica_data_consumer/assets/data-consumer.png")
-    ]<dataConsumer>
-  ] 
+  #v(20pt)
 
-  = Provisioning Service 
-  #align(center)[
-    #figure[
-      #image("../../docest/specifica_tecnica_provisioning_service/assets/provisioning_service.png")
-    ]<provisioningService>
-  ]
+  #grid(
+    columns: (1fr, 1fr, 1fr),
+    rows: (auto, auto, auto),
+    column-gutter: 40pt,
+    row-gutter: 50pt,
+    align: center,
 
-  = Data API 
-  #align(center)[
-    #figure[
-      #image("../../docest/specifica_tecnica_data_api/assets/01-app-architecture.svg")
-    ]<dataAPI>
-  ]
+    link(<webapp_c4>)[*WebApp*], [],
 
-  = Simulator Backend 
-  #align(center)[
-    #figure[
-      #image("../../docest/specifica_tecnica_simulator_backend_cli/assets/notip-simulator-backend.svg")
-    ]<simulatorBackend>
-  ]
+    link(<simulatorBackend>)[*Simulator Backend*], [], link(<dataConsumer>)[*Data Consumer*],
+    [], link(<managementAPI_c4>)[*Management API*], [],
+    link(<simulatorCLI>)[*Simulator CLI*], [], link(<provisioningService>)[*Provisioning Service*],
+    [], link(<dataAPI>)[*Data API*], [],
+    link(<cryptoSDK>)[*Crypto SDK*],
+  )
 
-  = Simulator CLI 
-  #align(center)[
-    #figure[
-      #image("../../docest/specifica_tecnica_simulator_backend_cli/assets/simulator_cli.png")
-    ]<simulatorCLI>
-  ]
+  = WebApp
+  #grid(
+    columns: (1fr, 4fr, 7fr),
+    align(top)[#link(<home>)[<]],
+    [],
+    align(center)[
+      #figure[
+        #image("assets/WebAppComponents.svg")
+      ]<webapp_c4>
+    ],
+  )
 
-  = Crypto SDK 
-  #align(center)[
-    #figure[
-      #image("../../docest/specifica_tecnica_crypto_sdk/assets/arch_class_diagram.png")
-    ]<cryptoSDK>
-  ]
+  = Management API
+  #grid(
+    columns: (1fr, 4fr, 7fr),
+    align(top)[#link(<home>)[<]],
+    [],
+    align(center)[
+      #figure[
+        #image("assets/ManagementApiComponents.svg")
+      ]<managementAPI_c4>
+    ],
+  )
+
+  = Data Consumer
+  #grid(
+    columns: (1fr, 4fr, 7fr),
+    align(top)[#link(<home>)[<]],
+    [],
+    align(center)[
+      #figure[
+        #image("../../docest/specifica_tecnica_data_consumer/assets/data-consumer.png")
+      ]<dataConsumer>
+    ],
+  )
+
+  = Provisioning Service
+  #grid(
+    columns: (1fr, 4fr, 7fr),
+    align(top)[#link(<home>)[<]],
+    [],
+    align(center)[
+      #figure[
+        #image("../../docest/specifica_tecnica_provisioning_service/assets/provisioning_service.png")
+      ]<provisioningService>
+    ],
+  )
+
+  = Data API
+  #grid(
+    columns: (1fr, 4fr, 7fr),
+    align(top)[#link(<home>)[<]],
+    [],
+    align(center)[
+      #figure[
+        #image("../../docest/specifica_tecnica_data_api/assets/01-app-architecture.svg")
+      ]<dataAPI>
+    ],
+  )
+
+  = Simulator Backend
+  #grid(
+    columns: (1fr, 4fr, 7fr),
+    align(top)[#link(<home>)[<]],
+    [],
+    align(center)[
+      #figure[
+        #image("../../docest/specifica_tecnica_simulator_backend_cli/assets/notip-simulator-backend.svg")
+      ]<simulatorBackend>
+    ],
+  )
+
+  = Simulator CLI
+  #grid(
+    columns: (1fr, 4fr, 7fr),
+    align(top)[#link(<home>)[<]],
+    [],
+    align(center)[
+      #figure[
+        #image("../../docest/specifica_tecnica_simulator_backend_cli/assets/simulator_cli.png")
+      ]<simulatorCLI>
+    ],
+  )
+
+  = Crypto SDK
+  #grid(
+    columns: (1fr, 4fr, 7fr),
+    align(top)[#link(<home>)[<]],
+    [],
+    align(center)[
+      #figure[
+        #image("../../docest/specifica_tecnica_crypto_sdk/assets/arch_class_diagram.png")
+      ]<cryptoSDK>
+    ],
+  )
 
 ]
