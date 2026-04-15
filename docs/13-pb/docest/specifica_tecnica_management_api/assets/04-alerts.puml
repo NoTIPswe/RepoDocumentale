@@ -17,8 +17,7 @@ skinparam interface {
   BackgroundColor #E8F4FD
   BorderColor #2196F3
 }
-skinparam nodesep 10
-skinparam ranksep 10
+
 skinparam linetype ortho
 skinparam packageStyle rectangle
 
@@ -167,13 +166,17 @@ package "alerts" <<Rectangle>> {
 
   AlertsController --> AlertsService : uses
   AlertsController --> AlertsMapper : maps to DTO
+  AlertsController --> SetAlertsConfigDefaultRequestDto
+  AlertsController --> SetAlertsConfigDefaultResponseDto
+  AlertsController --> AlertsDetailsDto
+  AlertsController --> SetAlertsConfigDefaultRequestDto
 
   AlertsService --> AlertsPersistenceService : uses
   AlertsService --> AlertsModel : returns
   AlertsService --> AlertsConfigModel : returns
 
-  AlertsPersistenceService --> AlertsEntity : CRUD
-  AlertsPersistenceService --> AlertsConfigEntity : CRUD
+  AlertsPersistenceService --> AlertsEntity 
+  AlertsPersistenceService --> AlertsConfigEntity
 
   AlertConfigNatsResponderService --> AlertsPersistenceService : reads configs
 

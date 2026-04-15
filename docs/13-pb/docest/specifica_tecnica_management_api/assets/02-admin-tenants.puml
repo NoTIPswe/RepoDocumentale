@@ -17,16 +17,15 @@ skinparam interface {
   BackgroundColor #E8F4FD
   BorderColor #2196F3
 }
-skinparam nodesep 10
-skinparam ranksep 10
+skinparam nodesep 40
+skinparam ranksep 40
 skinparam linetype ortho
 skinparam packageStyle rectangle
 skinparam note {
   BackgroundColor #E8F4FD
   BorderColor #FBC02D
 }
-skinparam nodesep 8
-skinparam ranksep 8
+
 
 package "admin/tenants" <<Rectangle>> {
   class "TenantsController" as TenantsController {

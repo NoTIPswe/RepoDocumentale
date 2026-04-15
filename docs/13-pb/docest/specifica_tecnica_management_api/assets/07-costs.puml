@@ -9,8 +9,6 @@ skinparam class {
   BorderColor #2196F3
   ArrowColor #1976D2
 }
-skinparam nodesep 10
-skinparam ranksep 10
 skinparam linetype ortho
 skinparam packageStyle rectangle
 
