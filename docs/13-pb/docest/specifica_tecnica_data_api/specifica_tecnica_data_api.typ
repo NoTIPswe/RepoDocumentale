@@ -30,7 +30,6 @@
   Tutte le variabili d’ambiente necessarie per il funzionamento del microservizio sono elencate di seguito, un'eventuale
   mancanza di una di queste variabili comporterà un errore all’avvio del microservizio:
 
-  == Variabili d'ambiente
 
   #figure(caption: "Variabili d'ambiente richieste da data-api")[
     #table(
