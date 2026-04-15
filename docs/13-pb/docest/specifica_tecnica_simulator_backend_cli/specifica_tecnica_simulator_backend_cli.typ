@@ -129,6 +129,13 @@
   Il servizio adotta un'architettura *Ports and Adapters (Architettura Esagonale)*. La logica di business (generazione
   dati, gestione anomalie e ciclo di vita) è isolata al centro (Domain/App) e non dipende da framework infrastrutturali.
   Le comunicazioni verso l'esterno avvengono tramite interfacce (Ports) implementate dagli adapter (SQLite, NATS, HTTP).
+  L’interazione tra il Core applicativo e il sistema di persistenza (SQLite) è mediata dal Repository Pattern tramite
+  l’interfaccia GatewayStore. Questa scelta è stata presa per evitare di accoppiare ulteriormente la logica di business
+  allo schema del database. A tal proposito il Repository Pattern ci ha permesso di trattare la persistenza come un
+  dettaglio implementativo. In questo modo, se si dovesse cambiare e scegliere di migrare a PostgreSQL o a un database
+  NoSQL, sarà sufficiente scrivere un nuovo Adapter che implementi l'interfaccia GatewayStore, lasciando il Core del
+  simulatore intatto. Questo isolamento è anche fondamentale per iniettare mock durante i test d'unità per la logica di
+  dominio.
 
   === Layout dei moduli
   Essendo il microservizio strutturato per isolare la logica applicativa dalle dipendenze infrastrutturali, di seguito è
@@ -214,6 +221,34 @@
     termine dell'anomalia, `flushBufferedCommands` li processa sequenzialmente, inviando l'ACK per ciascuno. Questo
     approccio replica il comportamento reale di un dispositivo che riprende l'attività dopo un'interruzione, evitando
     sia la perdita silenziosa dei comandi sia elaborazioni concorrenti non sicure.
+
+  - *Motore di Generazione (Strategy & Factory Pattern):* Per la produzione delle misure, il sistema adotta una
+    combinazione di Strategy e Factory Pattern. La necessità era gestire diversi algoritmi (Seno, Spike, ecc.) in modo
+    estensibile. Senza questi pattern, avremmo dovuto usare dei cicli if/else o switch pesanti nel loop di invio,
+    rendendo difficile l'aggiunta di nuovi sensori. Lo Strategy Pattern rende gli algoritmi intercambiabili come 'spine'
+    (Generator), mentre la Factory centralizza la loro creazione. Questa scelta è superiore a una semplice istanziazione
+    manuale perché rispetta l'Open/Closed Principle: possiamo aggiungere nuovi tipi di sensori creando nuovi file, senza
+    mai dover modificare il codice del motore di simulazione.
+
+  - *Gestione Ciclo di Vita (Observer Pattern):* Il coordinamento della terminazione dei gateway è affidato all'Observer
+    Pattern (DecommissionListener). Il problema era come notificare a più componenti (Worker, Database, Tickers) che un
+    gateway è stato rimosso dal cloud senza che il client NATS dovesse conoscere tutti i moduli del sistema. Un
+    approccio procedurale (chiamate dirette) avrebbe creato un accoppiamento stretto e fragile. L'Observer risolve
+    questo problema permettendo ai moduli di iscriversi all'evento di terminazione in modo indipendente. Questo
+    garantisce che il sistema sia facilmente estensibile: se in futuro si volesse aggiungere un nuovo modulo che
+    reagisce alla cancellazione, basterà registrarlo come Observer senza modificare il gestore dei messaggi.
+
+  - *Protezione del Materiale Crittografico (Value Object Pattern):* La chiave crittografica viene incapsulata in
+    un’entità immutabile (`EncryptionKey`) che ne impedisce l'accesso diretto ai byte. Il problema era evitare la fuga
+    accidentale del materiale sensibile durante operazioni di routine come il logging di sistema o la serializzazione
+    dei dati. Gestire la chiave come un semplice tipo primitivo (stringa o `[]byte`) avrebbe reso il sistema vulnerabile
+    ad esposizioni involontarie nei log di debug o nelle risposte API in caso di disattenzione. Il Value Object risolve
+    questa criticità applicando un principio di *defensive design*: il segreto è protetto all'interno di una struttura
+    che sovrascrive i metodi per trasformare in stringa, rendendo la chiave accessibile solo tramite chiamate esplicite
+    e controllate. Questo garantisce che la sicurezza non dipenda dalla costante attenzione dello sviluppatore, ma sia
+    integrata nativamente nella struttura del codice.
+
+
 
   === Relazioni tra Componenti
 
