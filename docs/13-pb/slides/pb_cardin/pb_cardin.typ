@@ -52,7 +52,8 @@
     ],
   )
 
-  = MVP
+  = MVP \ Architettura e Design Pattern
+
   #align(center)[
     #figure[
       #image("assets/Containers.svg")
@@ -85,10 +86,18 @@
   #grid(
     columns: (1fr, 4fr, 7fr),
     align(top)[#link(<home>)[<]],
-    [],
+    [
+      #set text(size: 0.8em)
+      - *Layered Feature-Based Architecture*
+      - *Unidirectional Dependency Rule*, no dipendenze da strati superiori
+      - *Signal-based State Management*
+      - *Interceptor Pattern*
+      - *Guard Pattern*
+      - *Generazione del codice*
+    ],
     align(center)[
       #figure[
-        #image("assets/WebAppComponents.svg")
+        #image("../../docest/specifica_tecnica_frontend/assets/05-core-services.svg")
       ]<webapp_c4>
     ],
   )
@@ -97,10 +106,17 @@
   #grid(
     columns: (1fr, 4fr, 7fr),
     align(top)[#link(<home>)[<]],
-    [],
-    align(center)[
+    align(left + horizon)[
+      #set text(size: 0.8em)
+      - *Layered Architecture* + *Modular Monolith*
+      - *Controller-Service-Persistence*
+      - *Mapper Pattern* 
+      - *Event-Driven Pattern* 
+      - *Guard & Decorator Pattern* 
+    ],
+    align(center + horizon)[
       #figure[
-        #image("assets/ManagementApiComponents.svg")
+        #image("../../docest/specifica_tecnica_management_api/assets/01-app-architecture-part3.svg")
       ]<managementAPI_c4>
     ],
   )
@@ -109,8 +125,13 @@
   #grid(
     columns: (1fr, 4fr, 7fr),
     align(top)[#link(<home>)[<]],
-    [],
-    align(center)[
+    align(left + horizon)[
+      #set text(size: 0.8em)
+      - *Architettura Esagonale* (Ports & Adapters)
+      - *Value Object Pattern*
+      - *Background Dispatch*
+    ],
+    align(center + horizon)[
       #figure[
         #image("../../docest/specifica_tecnica_data_consumer/assets/data-consumer.png")
       ]<dataConsumer>
@@ -121,8 +142,16 @@
   #grid(
     columns: (1fr, 4fr, 7fr),
     align(top)[#link(<home>)[<]],
-    [],
-    align(center)[
+    align(left + horizon)[
+      #set text(size: 0.8em)
+      - *Layered Architecture* 
+      - *Definizione tramite Port*
+      - *Adapter Pattern* 
+      - *Interceptor Pattern*
+      - *Dependency Injection*
+      - *PKI interna*: firma CSR gateway con CA
+    ],
+    align(center + horizon)[
       #figure[
         #image("../../docest/specifica_tecnica_provisioning_service/assets/provisioning_service.png")
       ]<provisioningService>
@@ -133,8 +162,15 @@
   #grid(
     columns: (1fr, 4fr, 7fr),
     align(top)[#link(<home>)[<]],
-    [],
-    align(center)[
+    align(left + horizon)[
+      #set text(size: 0.8em)
+      - *Layered Architecture* + *Modular Monolith*
+      - *Interfacce tra livelli* 
+      - *Controller-Service-Persistence*
+      - *Mapper Pattern* 
+      - *Guard Pattern*
+    ],
+    align(center + horizon)[
       #figure[
         #image("../../docest/specifica_tecnica_data_api/assets/01-app-architecture.svg")
       ]<dataAPI>
@@ -145,23 +181,18 @@
   #grid(
     columns: (1fr, 4fr, 7fr),
     align(top)[#link(<home>)[<]],
-    [],
-    align(center)[
+    align(left + horizon)[
+      #set text(size: 0.8em)
+      - *Architettura Esagonale* (Ports & Adapters)
+      - *Worker Pattern*
+      - *Factory Pattern*
+      - *Repository Pattern* 
+      - *Strategy Pattern* 
+    ],
+    align(center + horizon)[
       #figure[
         #image("../../docest/specifica_tecnica_simulator_backend_cli/assets/notip-simulator-backend.svg")
       ]<simulatorBackend>
-    ],
-  )
-
-  = Simulator CLI
-  #grid(
-    columns: (1fr, 4fr, 7fr),
-    align(top)[#link(<home>)[<]],
-    [],
-    align(center)[
-      #figure[
-        #image("../../docest/specifica_tecnica_simulator_backend_cli/assets/simulator_cli.png")
-      ]<simulatorCLI>
     ],
   )
 
@@ -169,11 +200,34 @@
   #grid(
     columns: (1fr, 4fr, 7fr),
     align(top)[#link(<home>)[<]],
-    [],
-    align(center)[
+    align(left + horizon)[
+      #set text(size: 0.8em)
+      - *Layered Architecture*
+      - *Orchestrator pattern*
+      - *Interface Segregation*: tre interfacce ristrette
+      - *Adapter Pattern* (unifica REST e SSE)
+      - *Cache-aside* per `CryptoKey`
+    ],
+    align(center + horizon)[
       #figure[
         #image("../../docest/specifica_tecnica_crypto_sdk/assets/arch_class_diagram.png")
       ]<cryptoSDK>
+    ],
+  )
+  = Simulator CLI
+  #grid(
+    columns: (1fr, 4fr, 7fr),
+    align(top)[#link(<home>)[<]],
+    align(left + horizon)[
+      #set text(size: 0.8em)
+      - *Stateless Request Mapper* 
+      - *Builder Pattern*
+      - *Thin client*: nessuna logica di business, nessuno stato, solo chiamate HTTP al backend
+    ],
+    align(center + horizon)[
+      #figure[
+        #image("../../docest/specifica_tecnica_simulator_backend_cli/assets/simulator_cli.png")
+      ]<simulatorCLI>
     ],
   )
 
