@@ -4,27 +4,10 @@ title NOTIP Management API - Architecture (1/3)
 skinparam backgroundColor #FFFFFF
 skinparam defaultFontSize 10
 skinparam defaultFontColor #000000
-skinparam nodesep 8
-skinparam ranksep 8
 skinparam linetype ortho
 skinparam packageStyle rectangle
 
 package "NOTIP Management API" <<Rectangle>> {
-  class "AppModule" as AppModule {
-    +imports: ConfigModule, EventEmitterModule, MetricsModule, TypeOrmModule
-    +imports: AuthModule, AdminModule, GatewaysModule, AlertsModule
-    +imports: ThresholdsModule, AuditLogModule, ApiClientModule, CostsModule
-    +imports: KeysModule, UsersModule, CommandModule
-  }
-
-  class "AppController" as AppController {
-    +getHello(): string
-    +getHealth(): {status}
-  }
-
-  class "AppService" as AppService {
-    +getHello(): string
-  }
 
   class "TenantEntity" as TenantEntity {
     +id: string
@@ -72,51 +55,27 @@ package "NOTIP Management API" <<Rectangle>> {
   }
 
   ' Core relationships
-  AppController --> AppService
-  AppModule --> AppController
-  AppModule --> AppService
-  AppModule --> MetricsInterceptor
-  AppModule --> LastAccessInterceptor
-  AppModule --> AuditInterceptor
   MetricsInterceptor --> MetricsService
   LastAccessInterceptor ..> UserEntity
   AuditInterceptor --> AuditLogService
 
   ' Auth relationships
-  AppModule --> AuthModule
-  AuthModule --> JwtStrategy
-  AuthModule --> JwtAuthGuard
-  AuthModule --> RolesGuard
-  AuthModule --> AccessPolicyGuard
-  AuthModule --> BlockImpersonationGuard
+  AuthController ..> ImpersonationService
   BlockImpersonationGuard --> AuditLogService
   AccessPolicyGuard ..> TenantEntity
 
   ' Admin relationships
-  AppModule --> AdminModule
-  AdminModule --> TenantsController
   TenantsController --> TenantsService
   TenantsService --> TenantsPersistenceService
   TenantsService --> KeycloakAdminService
   TenantsPersistenceService --> TenantEntity
   TenantsPersistenceService --> UserEntity
-  AdminModule --> AdminGatewaysController
   AdminGatewaysController --> AdminGatewaysService
   AdminGatewaysService --> AdminGatewaysPersistenceService
 
   ' Metrics relationships
-  AppModule --> MetricsModule
-  MetricsModule --> MetricsController
-  MetricsModule --> MetricsService
   MetricsController --> MetricsService
 }
-
-note top of AppModule
-  Main application module
-  Orchestrates all feature modules
-  Configures global interceptors
-  Sets up TypeORM database connection
-end note
 
 note top of TenantEntity
   Core entity shared across modules

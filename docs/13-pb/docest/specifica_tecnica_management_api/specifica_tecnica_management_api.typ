@@ -11,7 +11,6 @@
   scope: base-document.EXTERNAL_SCOPE,
 )[
   = Introduzione
-
   Questo documento illustra l'architettura interna e le scelte implementative del microservizio `notip-management-api`.
   Sviluppato in NestJS, questo componente è il fulcro del backend e ha la duplice funzione di fare da tramite tra
   frontend e servizi terzi come Keycloak e di salvare in Database le informazioni ricevute dagli altri microservizi
@@ -122,12 +121,11 @@
 
   = Architettura logica
 
-  Il servizio adotta una Layered Architecture con organizzazione interna di tipo Modular Monolith. All'interno dei vari
-  moduli è utilizzato prevalentemente il pattern Controller-Service-Persistence, che consente una chiara separazione
-  delle responsabilità tra esposizione API, logica di business e accesso ai dati. I componenti collaborano tramite
-  Dependency Injection e, dove opportuno, tramite interfacce e contratti applicativi. La presenza di Business Models,
-  DTO ed Entities ha portato all’introduzione di Mappers per la conversione dei dati tra i diversi livelli
-  dell’applicazione.
+  Il servizio adotta una Layered Architecture con organizzazione interna di tipo modulare. All'interno dei vari moduli è
+  utilizzato prevalentemente il pattern Controller-Service-Persistence, che consente una chiara separazione delle
+  responsabilità tra esposizione API, logica di business e accesso ai dati. I componenti collaborano tramite Dependency
+  Injection e, dove opportuno, tramite interfacce e contratti applicativi. La presenza di Business Models, DTO ed
+  Entities ha portato all'introduzione di Mappers per la conversione dei dati tra i diversi livelli dell'applicazione.
 
   == Layout dei moduli
   Essendo il microservizio troppo grande per essere contenuto in un unico diagramma, di seguito è riportata la struttura
@@ -1229,7 +1227,7 @@
   ]
   #pagebreak()
   === AuthModule
-  #figure(caption: "Diagramma del modulo Auth")[#image("assets/05-auth.png", width: 110%)]
+  #figure(caption: "Diagramma del modulo Auth")[#image("assets/05-auth.svg", width: 110%)]
 
   Il modulo di autenticazione gestisce la validazione JWT tramite Keycloak, il controllo degli accessi basato sui ruoli,
   la politica di accesso per endpoint e il meccanismo di impersonificazione utente.
