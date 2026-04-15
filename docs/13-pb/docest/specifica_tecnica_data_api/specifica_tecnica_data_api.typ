@@ -151,11 +151,11 @@
 
   ]
 
-  Il servizio adotta una Layered Architecture con organizzazione interna suddivisa per moduli logici. All'interno dei vari
-  moduli è utilizzato prevalentemente il pattern Controller-Service-Persistence, che consente una chiara separazione
-  delle responsabilità tra esposizione API, logica di business e accesso ai dati. I componenti collaborano tramite
-  Dependency Injection e, dove opportuno, tramite interfacce e contratti applicativi. La presenza di Business Models,
-  DTO ed Entities ha portato all'introduzione di Mappers per la conversione dei dati tra i diversi livelli
+  Il servizio adotta una Layered Architecture con organizzazione interna suddivisa per moduli logici. All'interno dei
+  vari moduli è utilizzato prevalentemente il pattern Controller-Service-Persistence, che consente una chiara
+  separazione delle responsabilità tra esposizione API, logica di business e accesso ai dati. I componenti collaborano
+  tramite Dependency Injection e, dove opportuno, tramite interfacce e contratti applicativi. La presenza di Business
+  Models, DTO ed Entities ha portato all'introduzione di Mappers per la conversione dei dati tra i diversi livelli
   dell'applicazione.
 
   == Strati Architetturali
