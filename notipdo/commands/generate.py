@@ -1,8 +1,10 @@
-import typer
 from pathlib import Path
-from . import defaults
-from lib import site_generator, requirements_data
 
+import typer
+
+from lib import requirements_data, site_generator
+
+from . import defaults
 
 app = typer.Typer(help="Statically generate the repo's site.")
 
@@ -100,6 +102,11 @@ def site(
         "--ephemeral-generated/--keep-generated",
         help="If enabled, remove YAML-generated Typst/diagram artifacts after site generation.",
     ),
+    build_all_docs: bool = typer.Option(
+        True,
+        "--build-all-docs/--build-last-baseline-only",
+        help="Build documents from all baselines, or only the latest one.",
+    ),
 ):
     """Builds all docs and statically generates the site."""
 
@@ -113,6 +120,7 @@ def site(
             site_output_dir_path=output_dir_path,
             docs_output_dir_path=output_dir_path / defaults.DOCS_OUTPUT_DIR_NAME,
             meta_schema_path=meta_schema_path,
+            build_all_docs=build_all_docs,
         )
     finally:
         _run_yaml_postbuild_cleanup(enabled=ephemeral_generated)
