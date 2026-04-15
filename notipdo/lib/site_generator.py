@@ -16,12 +16,18 @@ def generate_site(
     docs_dir_path: Path,
     fonts_dir_path: Path,
     meta_schema_path: Path,
+    build_all_docs: bool = True,
 ) -> None:
-    logging.debug("Building all documents.")
-
     scanner = local_scanner.LocalScanner(meta_schema_path)
     raw_docs = scanner.discover_all_docs(docs_dir_path)
     docs_model = docs_factory.create_documents(raw_docs)
+
+    if not build_all_docs:
+        latest_group = configs.VALID_GROUPS_ORDERED[-1]
+        docs_model = [d for d in docs_model if d.group == latest_group]
+        logging.debug(f"Building documents from latest baseline only ({latest_group}).")
+    else:
+        logging.debug("Building documents from all baselines.")
 
     builder.build_from_docs_model(docs_model, docs_output_dir_path, fonts_dir_path)
 
@@ -213,7 +219,7 @@ def _generate_subgroup_table(
 
     table_rows = ""
     for doc in sorted(
-        docs,
+        sorted(docs, key=lambda d: d.title),
         key=configs.SUBGROUP_TO_SORTING_KEY[subgroup],
         reverse=True,
     ):
