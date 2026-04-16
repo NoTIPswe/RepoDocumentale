@@ -7,7 +7,57 @@
   date: "2026-04-17",
 )[
 
-  = MVP (Capitolato C7) \ Architettura e Design Pattern
+  = High Level Design
+  #grid(
+    columns: (1fr, 2fr),
+    gutter: 1.2em,
+    align(left + horizon)[
+      == Persistenza
+      #set text(size: 0.9em)
+      - Database-per-Service
+
+      - *CQRS*: Command-Query-Responsibility-Segregation
+    ],
+    align(center + horizon)[
+      #grid(
+        columns: (2fr, 3fr),
+        gutter: 2em,
+        image("assets/db-per-service.png", width: 70%),
+        image("assets/cqrs-pattern.png", width: 100%),
+      )
+    ],
+  )
+
+  #pagebreak()
+
+  #grid(
+    columns: (1fr, 1fr),
+    gutter: 1.2em,
+    align(left + horizon)[
+      == Comunicazione
+      #set text(size: 0.9em)
+      - Async API inter-service via NATS (+ RR pattern)
+      - API REST HTTP pubbliche (+ SSE)
+    ],
+    align(center + horizon)[
+        #image("assets/async-api.png")
+        #image("assets/http-rest-api.png")
+    ],
+  )
+
+  #grid(
+    columns: (1fr, 1fr),
+    gutter: 1.2em,
+    align(left + horizon)[
+      == SDK
+      #set text(size: 0.9em)
+      - Problema: semplificare integrazione e sviluppo per clienti
+      - *CryptoSDK library*, pacchetto NPM
+    ],
+    align(center + horizon)[
+      #image("assets/crypto-sdk.png", width: 100%)
+    ],
+  )
 
   = Management API
   #grid(
@@ -37,10 +87,10 @@
       #set text(size: 0.8em)
       - Microservizio di backend in *NestJS* con architettura *Layered* orientata a *ports e adapters*.
       _*Design patterns:*_ \
-      - Scelta architetturale: *Layered*: 
-        - Presentation \ 
-        - Application \ 
-        - Infrastructure \ 
+      - Scelta architetturale: *Layered*:
+        - Presentation \
+        - Application \
+        - Infrastructure \
         - Persistence \ con *driving ports* e *driven ports*.
       - *Adapter Pattern*
       - *Dependency Injection*
@@ -59,13 +109,13 @@
     align(left + horizon)[
       #set text(size: 0.8em)
       *Hexagonal Architecture*
-      
+
       _*Design patterns:*_ \
       - *Adapter Pattern*
       - *Repository Pattern*
       - *Strategy + Factory* per i gateway simulati
       - *Observer Pattern* per il decommissioning dei gateway
-      *Scelte implementative*: 
+      *Scelte implementative*:
         - concorrenza `1 goroutine = 1 gateway`
         - Heartbeat tracking dei gateway e cache lock-free di configurazione
         - Batch processing e buffering
