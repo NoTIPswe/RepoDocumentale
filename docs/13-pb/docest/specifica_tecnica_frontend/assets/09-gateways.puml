@@ -8,139 +8,161 @@ skinparam nodesep 8
 skinparam ranksep 8
 skinparam linetype ortho
 
+package "Shared Components" <<Rectangle>> {
+  class "DeleteConfirmModalComponent" as DeleteModal {
+    --
+    -open: input<boolean>
+    -title: input<string>
+    -message: input<string>
+    -busy: input<boolean>
+    --
+    +onConfirm(): void
+    +onCancel(): void
+  }
+  
+  class "ModalLayerComponent" as ModalLayer
+  class "StatusBadgeComponent" as StatusBadge
+}
+
+package "Core & Other Features" <<Rectangle>> {
+  class "AuthService" as AuthSvc
+  class "SensorService" as SensorSvc
+  class "ObfuscatedMeasureService" as ObfMeasureSvc
+  class "ValidatedMeasureFacadeService" as ValMeasureSvc
+  class "TelemetryTableComponent" as TelemetryTable
+}
+
 package "Gateway Feature" <<Rectangle>> {
   class "GatewayListPageComponent" as GatewayListPage {
     --
     -gateways: Signal<Gateway[]>
-    -loading: Signal<boolean>
+    -isLoading: Signal<boolean>
+    -selectedGatewayId: Signal<string | null>
+    -errorMessage: Signal<string | null>
     --
     +ngOnInit(): void
-    +selectGateway(gw): void
+    +onGatewaySelected(gatewayId: string): void
+    -loadGateways(): void
   }
 
   class "GatewayDetailPageComponent" as GatewayDetailPage {
     --
-    -gateway: Gateway
-    -sensors: Sensor[]
-    -liveMeasures: CheckedEnvelope[]
+    -gateway: Signal<Gateway | null>
+    -sensors: Signal<Sensor[]>
+    -telemetry: Signal<Array<CheckedEnvelope | ObfuscatedEnvelope>>
     -canManage: boolean
-    -isBusy: boolean
+    -isBusy: Signal<boolean>
     --
     +ngOnInit(): void
-    +handleRename(name): void
-    +handleConfigCommand(freq, status): void
-    +handleFirmwareCommand(ver, url): void
-    +handleDelete(): void
+    +ngOnDestroy(): void
+    +submitRename(nextNameRaw: string): void
+    +submitConfigCommand(config: GatewayConfig): void
+    +submitFirmwareCommand(firmware: GatewayFirmware): void
+    +confirmDeleteGateway(): void
   }
 
   class "GatewayCardComponent" as GatewayCard {
     --
-    -gateway: Gateway
-    -selected: boolean
+    -gateway: input<Gateway>
+    -selected: input<boolean>
+    -canOpenDetail: input<boolean>
     --
-    +select(): void
+    +onOpenDetail(): void
   }
 
   class "GatewayActionsComponent" as GatewayActions {
     --
-    -canManage: boolean
-    -isBusy: boolean
+    -canManage: input<boolean>
+    -showRename: input<boolean>
+    -isBusy: input<boolean>
     --
-    +rename(): void
-    +configure(): void
-    +firmware(): void
-    +delete(): void
+    +onRename(): void
+    +onConfigure(): void
+    +onFirmware(): void
+    +onDelete(): void
   }
 
   class "GatewayRenameModalComponent" as RenameModal {
     --
-    -currentName: string
-    -submittedName: string
+    -open: input<boolean>
+    -currentName: input<string>
+    -busy: input<boolean>
     --
-    +submit(): void
+    +submit(event: Event, nextNameRaw: string): void
     +close(): void
   }
 
   class "CommandModalComponent" as CommandModal {
     --
-    -mode: 'config' | 'firmware'
-    -sendFrequency: number
-    -status: CmdGatewayStatus
-    -firmwareVersion: string
-    -firmwareUrl: string
+    -open: input<boolean>
+    -mode: input<CommandModalMode>
+    -busy: input<boolean>
+    -initialSendFrequencyMs: input<number | null>
+    -initialStatus: input<CmdGatewayStatus | null>
     --
-    +submit(): void
+    +submitConfig(event: Event, frequencyRaw: string, statusRaw: string): void
+    +submitFirmware(event: Event, version: string, downloadUrl: string): void
     +close(): void
-  }
-
-  class "DeleteConfirmModalComponent" as DeleteModal {
-    --
-    -title: string
-    -message: string
-    -busy: boolean
-    --
-    +confirm(): void
-    +cancel(): void
   }
 
   package "Gateway Services" as Services {
     class "GatewayService" as GatewaySvc {
       --
       -listSignal: Signal<Gateway[]>
-      -selectedGatewaySignal: Signal<Gateway>
+      -selectedGatewaySignal: Signal<Gateway | null>
       -loadingSignal: Signal<boolean>
       -gatewaysApi: GatewaysService (generated)
       --
-      +loadList(): void
-      +loadDetail(id): void
-      +updateName(id, name): void
-      +delete(id): void
-      -normalizeStatus(status): GatewayStatus
-      -mapDtoToModel(dto): Gateway
+      +getGateways(): Observable<Gateway[]>
+      +getGatewayDetail(gatewayId: string): Observable<Gateway>
+      +updateGatewayName(gatewayId: string, name: string): Observable<GatewayUpdateResult>
+      +deleteGateway(gatewayId: string): Observable<string>
+      +list(): Signal<Gateway[]>
+      +selectedGateway(): Signal<Gateway | null>
+      +isLoading(): Signal<boolean>
+      -toGatewayStatus(status: unknown): GatewayStatus
+      -toGateway(dto: GatewayResponseDto): Gateway
     }
 
     class "CommandService" as CommandSvc {
       --
       -commandsApi: CommandsService (generated)
-      -pollingInterval: 2000ms
-      -timeout: 300000ms (5 min)
       --
-      +sendConfigCommand(gwId, freq, status): Observable<CommandResult>
-      +sendFirmwareCommand(gwId, ver, url): Observable<CommandResult>
-      -pollCommandStatus(commandId): Observable<CommandStatus>
-      -mapStatusCode(code): CommandStatus
+      +sendConfig(id: string, config: GatewayConfig): Observable<CommandStatusUpdate>
+      +sendFirmware(id: string, firmware: GatewayFirmware): Observable<CommandStatusUpdate>
+      +pollStatus(gwId: string, cmdId: string, intervalMs: number): Observable<CommandStatusUpdate>
+      -toCommandStatus(status: string): CommandStatus
     }
   }
 
-  ' Relationships
+  ' Internal Relationships
   GatewayListPage --> GatewayCard
   GatewayListPage --> GatewaySvc
   GatewayDetailPage --> GatewaySvc
   GatewayDetailPage --> CommandSvc
   GatewayDetailPage --> RenameModal
   GatewayDetailPage --> CommandModal
-  GatewayDetailPage --> DeleteModal
-  GatewayDetailPage --> TelemetryTable
   GatewayDetailPage --> GatewayActions
-  GatewayActions --> GatewayCard
+  
+  ' External Dependencies Relationships
+  GatewayDetailPage --> DeleteModal
+  GatewayDetailPage --> AuthSvc
+  GatewayDetailPage --> SensorSvc
+  GatewayDetailPage --> ObfMeasureSvc
+  GatewayDetailPage --> ValMeasureSvc
+  GatewayDetailPage --> TelemetryTable
+  
   GatewayCard --> StatusBadge
   RenameModal --> ModalLayer
   CommandModal --> ModalLayer
   DeleteModal --> ModalLayer
-
-  GatewaySvc --> GatewaysApi
-  CommandSvc --> CommandsApi
-  CommandSvc --> CommandModel
-
-  GatewaySvc --> GatewayModel
-  CommandSvc --> CommandModel
 }
 
 note top of GatewaySvc
   Maintains internal signals for list,
   selected gateway, and loading state.
   Exposes them as read-only Signal<T>
-  via .asReadonly(). Normalizes status
+  via public getters. Normalizes status
   from API (handles uppercase, camelCase,
   paused/offline variants).
 end note
@@ -159,9 +181,9 @@ note bottom of GatewayDetailPage
   Combines: gateway summary, rename,
   command sending (config + firmware),
   delete confirmation, sensor list,
-  and live telemetry stream. Handles
-  impersonation checks and role-based
-  permissions.
+  and live telemetry stream. 
+  Relies on external core services for 
+  impersonation checks and telemetry.
 end note
 
 @enduml
