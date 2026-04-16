@@ -56,21 +56,22 @@
     ],
   )
 
-  = Simulator Backend
+  = Simulator Backend & Data Consumer
   #grid(
     columns: (5fr, 7fr),
     align(left + horizon)[
       #set text(size: 0.8em)
-      - *Servizio rappresentativo*: simulazione *Go*, rappresenta anche l'accoppiata *Backend + CLI*.
-      - *Scelta architetturale*: *Ports & Adapters* con core isolato e adapter HTTP, NATS e SQLite.
+      *Hexagonal Architecture*
+      
       *Design patterns:* \
-      - *Repository Pattern* tramite `GatewayStore`.
-      - *Strategy + Factory* per i generatori `sine`, `spike`, ...
-      - *Observer Pattern* per il decommissioning dei gateway.
-      - *Value Object Pattern* per `EncryptionKey`.
+      - *Adapter Pattern*
+      - *Repository Pattern*
+      - *Strategy + Factory* per i gateway simulati
+      - *Observer Pattern* per il decommissioning dei gateway
       *Scelte implementative*: 
-        - concorrenza `1 goroutine = 1 gateway`.
-        - buffer *drop-oldest* e *defer-and-flush* durante anomalie.
+        - concorrenza `1 goroutine = 1 gateway`
+        - Heartbeat tracking dei gateway e cache lock-free di configurazione
+        - Batch processing e buffering
     ],
     align(center + horizon)[
       #figure[
