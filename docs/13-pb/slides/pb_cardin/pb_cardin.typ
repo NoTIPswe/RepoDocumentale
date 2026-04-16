@@ -7,53 +7,7 @@
   date: "2026-04-17",
 )[
 
-  = C7: Sistema di Acquisizione Dati da Sensori
-
-  == Obiettivo del progetto
-  Realizzare un sistema distribuito di acquisizione e smistamento dati, strutturato su 3 livelli:
-  - *Sensori:* raccolta dati dal campo (simulati).
-  - *Gateway:* normalizzazione ed invio sicuro (simulati).
-  - *Cloud:* piattaforma centrale di gestione.
-
-  #pagebreak()
-
-  == Tecnologie
-  #grid(
-    columns: (1.3fr, 1fr),
-    column-gutter: 30pt,
-
-    // LEFT COLUMN: technology list
-    [
-      - *NATS JetStream* (Message Broker).
-      - *PostgreSQL + TimescaleDB* (Database).
-      - *Go* (Simulatore e Consumer).
-      - *NestJS* (API e servizi non critici).
-      - *Angular + TypeScript SDK* (Frontend).
-      - *Prometheus + Grafana* (Monitoraggio).
-      - *Keycloak* (Autenticazione).
-      - *Nginx* (Reverse proxy).
-      - *SQLite* (Database).
-      - *Docker* (Containerizzazione).
-    ],
-
-    // RIGHT COLUMN: logos scattered
-    [
-      #grid(
-        columns: (1fr, 2fr),
-        column-gutter: 15pt,
-        row-gutter: 20pt,
-        align: center,
-
-        image("assets/docker.png", height: 40pt), image("assets/angular.png", height: 40pt),
-        image("assets/postgreSQL.png", height: 40pt), image("assets/nats.png", height: 40pt),
-        image("assets/prometheus.png", height: 40pt), image("assets/keycloak.svg", height: 40pt),
-        image("assets/grafana.png", height: 40pt), image("assets/go.png", height: 40pt),
-        image("assets/nestjs.svg", height: 40pt), image("assets/timescaledb.png", height: 40pt),
-      )
-    ],
-  )
-
-  = MVP \ Architettura e Design Pattern
+  = MVP (Capitolato C7) \ Architettura e Design Pattern
 
   #align(center)[
     #figure[
@@ -158,8 +112,9 @@
         - *Strategy + Factory* per i generatori `sine`, `spike`, ...
         - *Observer Pattern* per il decommissioning dei gateway.
         - *Value Object Pattern* per `EncryptionKey`.
-        - *Scelta implementativa*: concorrenza `1 goroutine = 1 gateway`.
-        - *Scelta implementativa*: buffer *drop-oldest* e *defer-and-flush* durante anomalie.
+        *Scelte implementative*: 
+          - concorrenza `1 goroutine = 1 gateway`.
+          - buffer *drop-oldest* e *defer-and-flush* durante anomalie.
       ],
       align(center + horizon)[
         #figure[
