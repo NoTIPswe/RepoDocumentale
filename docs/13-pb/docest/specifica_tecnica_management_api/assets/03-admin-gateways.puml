@@ -30,8 +30,8 @@ package "admin/gateways" <<Rectangle>> {
   }
 
   class "GatewaysPersistenceService" as AdminGatewaysPersistenceService {
-    -gatewayRepo: Repository<GatewayEntity>
-    -metadataRepo: Repository<GatewayMetadataEntity>
+    -r: Repository<GatewayEntity>
+    -metadataRepository: Repository<GatewayMetadataEntity>
     +getGateways(input): GatewayEntity[]
     +addGateway(input): GatewayEntity
   }
@@ -39,7 +39,6 @@ package "admin/gateways" <<Rectangle>> {
   class "GatewaysMapper" as AdminGatewaysMapper {
     {static} toModel(entity): GatewayModel
     {static} toResponseDto(model): GatewayResponseDto
-    {static} toAddGatewayInput(dto): AddGatewayInput
     {static} toAddGatewayResponseDto(model): AddGatewayResponseDto
   }
 
@@ -69,7 +68,7 @@ package "admin/gateways" <<Rectangle>> {
     +factoryKeyHash: string
     +factoryId: string
     +createdAt: Date
-    +firmwareVersion: string
+    +firmwareVersion?: string
     +model: string
     +tenantId: string
     +provisioned: boolean
@@ -82,7 +81,7 @@ package "admin/gateways" <<Rectangle>> {
     +factoryKeyHash: string
     +provisioned: boolean
     +model: string
-    +firmwareVersion: string
+    +firmwareVersion?: string
     +createdAt: Date
     +updatedAt: Date
     +tenant: TenantEntity
@@ -110,6 +109,10 @@ package "admin/gateways" <<Rectangle>> {
     +firmwareVersion?: string
   }
 
+  interface "GetGatewaysPersistenceInput" as GetGatewaysPersistenceInput {
+    +tenantId?: string
+  }
+
   interface "AddGatewayPersistenceInput" as AddGatewayPersistenceInput {
     +factoryId: string
     +tenantId: string
@@ -123,23 +126,31 @@ package "admin/gateways" <<Rectangle>> {
   }
 
   AdminGatewaysController --> AdminGatewaysService : uses
-  AdminGatewaysController --> AdminGatewaysMapper : maps to DTO
+  AdminGatewaysController --> AdminGatewaysMapper : maps response DTO
+  AdminGatewaysController ..> AddGatewayRequestDto
+  AdminGatewaysController ..> GatewayResponseDto
+  AdminGatewaysController ..> AddGatewayResponseDto
+  AdminGatewaysController ..> GetGatewaysInput
+  AdminGatewaysController ..> AddGatewayInput
 
   AdminGatewaysService --> AdminGatewaysPersistenceService : uses
   AdminGatewaysService --> GatewayModel : returns
+  AdminGatewaysService --> AdminGatewaysMapper : maps entities
   AdminGatewaysService ..> GetGatewaysInput : receives
   AdminGatewaysService ..> AddGatewayInput : receives
+  AdminGatewaysService ..> GetGatewaysPersistenceInput : builds
+  AdminGatewaysService ..> AddGatewayPersistenceInput : builds
 
   AdminGatewaysPersistenceService --> GatewayEntity : CRUD
   AdminGatewaysPersistenceService --> GatewayMetadataEntity : CRUD
   AdminGatewaysPersistenceService --> DefaultFreq : uses constant
+  AdminGatewaysPersistenceService ..> GetGatewaysPersistenceInput
+  AdminGatewaysPersistenceService ..> AddGatewayPersistenceInput
 
   AdminGatewaysMapper --> GatewayEntity : from
   AdminGatewaysMapper --> GatewayModel : to
   AdminGatewaysMapper --> GatewayResponseDto : to
   AdminGatewaysMapper --> AddGatewayResponseDto : to
-
-  AddGatewayRequestDto ..> AddGatewayInput
 
   GatewayEntity --> GatewayMetadataEntity : OneToOne
   GatewayEntity --> TenantEntity : ManyToOne
@@ -148,28 +159,30 @@ package "admin/gateways" <<Rectangle>> {
 note top of AdminGatewaysController
   @Controller('admin/gateways')
   @AdminOnly()
-  Endpoints: GET (list), POST (add)
-  Optional tenant filtering
+  Endpoints: GET, POST
+  Optional filter by tenant_id
+  Passes AddGatewayRequestDto directly to service
 end note
 
 note top of AdminGatewaysService
   Business logic layer
   - Hashes factoryKey with bcrypt
-  - Maps between DTOs and persistence
+  - Translates input into persistence input
+  - Maps GatewayEntity to GatewayModel
 end note
 
 note top of AdminGatewaysPersistenceService
   Data access layer
-  - Creates GatewayEntity + MetadataEntity
   - Filters by tenantId if provided
+  - Creates GatewayEntity + GatewayMetadataEntity
   - Uses DEFAULT_GATEWAY_SEND_FREQUENCY_MS
 end note
 
 note top of GatewayEntity
   Core gateway entity
-  - factoryKeyHash: select: false (security)
-  - OneToOne with metadata (cascade)
-  - ManyToOne with tenant (cascade delete)
+  - factoryKeyHash is stored hashed
+  - Linked to metadata
+  - Linked to tenant
 end note
 
 @enduml

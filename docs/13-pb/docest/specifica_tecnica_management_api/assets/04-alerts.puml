@@ -52,7 +52,6 @@ package "alerts" <<Rectangle>> {
     +getAlerts(input): AlertsEntity[]
     +countAlerts(tenantId): number
     +saveAlert(alert): AlertsEntity
-    +findAllAlertsConfigs(): AlertsConfigEntity[]
   }
 
   class "AlertConfigNatsResponderService" as AlertConfigNatsResponderService {
@@ -69,6 +68,13 @@ package "alerts" <<Rectangle>> {
     -applyTlsOptions(options): boolean
   }
 
+  class "AlertsNatsService" as AlertsNatsService {
+    -nats: JetStreamClient
+    -persistence: AlertsPersistenceService
+    -logger: Logger
+    +onModuleInit(): void
+  }
+
   class "AlertsMapper" as AlertsMapper {
     {static} toAlertsModel(entity): AlertsModel
     {static} toAlertsConfigModel(entities[]): AlertsConfigModel
@@ -76,6 +82,7 @@ package "alerts" <<Rectangle>> {
     {static} toSetAlertsConfigDefaultResponseDto(entity): SetAlertsConfigDefaultResponseDto
     {static} toSetGatewayAlertsConfigResponseDto(entity): SetGatewayAlertsConfigResponseDto
     {static} toAlertsConfigResponseDto(model): AlertsConfigResponseDto
+    -toIsoDateString(value, fallback): string
   }
 
   class "SetGatewayAlertsConfigRequestDto" as SetGatewayAlertsConfigRequestDto {
@@ -134,8 +141,8 @@ package "alerts" <<Rectangle>> {
 
   class "AlertsConfigModel" as AlertsConfigModel {
     +defaultTimeoutMs: number
-    +defaultUpdatedAt?: string
-    +gatewayOverrides: GatewayOverride[]
+    +defaultUpdatedAt?: Date
+    +gatewayOverrides: { gatewayId, gatewayTimeoutMs, updatedAt? }[]
   }
 
   class "AlertsEntity" as AlertsEntity {
@@ -143,20 +150,16 @@ package "alerts" <<Rectangle>> {
     +tenantId: string
     +type: AlertType
     +gatewayId: string
-    +details: Record<string, unknown>
+    +details: Record<string, unknown> & AlertsDetails
     +createdAt: Date
   }
 
   class "AlertsConfigEntity" as AlertsConfigEntity {
     +id: string
     +tenantId: string
-    +gatewayId: string
+    +gatewayId: string | null
     +gatewayTimeoutMs: number
     +updatedAt: Date
-  }
-
-  enum "AlertType" as AlertType {
-    GATEWAY_OFFLINE
   }
 
   interface "AlertsDetails" as AlertsDetails {
@@ -164,21 +167,89 @@ package "alerts" <<Rectangle>> {
     +timeoutConfigured: number
   }
 
+  interface "GetAlertsConfigInput" as GetAlertsConfigInput {
+    +tenantId: string
+  }
+
+  interface "GetAlertsInput" as GetAlertsInput {
+    +tenantId: string
+    +from?: string
+    +to?: string
+    +gatewayId?: string
+  }
+
+  interface "SetAlertsConfigDefaultInput" as SetAlertsConfigDefaultInput {
+    +tenantId: string
+    +defaultTimeoutMs: number
+  }
+
+  interface "SetGatewayAlertsConfigInput" as SetGatewayAlertsConfigInput {
+    +tenantId: string
+    +gatewayId: string
+    +gatewayTimeoutMs: number
+  }
+
+  interface "GetAlertsPersistenceInput" as GetAlertsPersistenceInput {
+    +tenantId: string
+    +from?: string
+    +to?: string
+    +gatewayId?: string
+  }
+
+  interface "SetAlertsConfigDefaultPersistenceInput" as SetAlertsConfigDefaultPersistenceInput {
+    +tenantId: string
+    +defaultTimeoutMs: number
+  }
+
+  interface "SetGatewayAlertsConfigPersistenceInput" as SetGatewayAlertsConfigPersistenceInput {
+    +tenantId: string
+    +gatewayId: string
+    +gatewayTimeoutMs: number
+  }
+
+  enum "AlertType" as AlertType {
+    GATEWAY_OFFLINE
+  }
+
+  class "TenantEntity" as TenantEntity
+  class "GatewayEntity" as GatewayEntity
+  class "GatewaysService" as GatewaysService
+  class "JetStreamClient" as JetStreamClient
+
   AlertsController --> AlertsService : uses
   AlertsController --> AlertsMapper : maps to DTO
-  AlertsController --> SetAlertsConfigDefaultRequestDto
-  AlertsController --> SetAlertsConfigDefaultResponseDto
-  AlertsController --> AlertsDetailsDto
-  AlertsController --> SetAlertsConfigDefaultRequestDto
+  AlertsController ..> SetAlertsConfigDefaultRequestDto
+  AlertsController ..> SetAlertsConfigDefaultResponseDto
+  AlertsController ..> SetGatewayAlertsConfigRequestDto
+  AlertsController ..> SetGatewayAlertsConfigResponseDto
+  AlertsController ..> AlertsResponseDto
+  AlertsController ..> AlertsConfigResponseDto
+  AlertsController ..> GetAlertsInput
+  AlertsController ..> GetAlertsConfigInput
+  AlertsController ..> SetAlertsConfigDefaultInput
+  AlertsController ..> SetGatewayAlertsConfigInput
 
   AlertsService --> AlertsPersistenceService : uses
+  AlertsService --> GatewaysService : uses
   AlertsService --> AlertsModel : returns
   AlertsService --> AlertsConfigModel : returns
+  AlertsService ..> GetAlertsInput : receives
+  AlertsService ..> GetAlertsConfigInput : receives
+  AlertsService ..> SetAlertsConfigDefaultInput : receives
+  AlertsService ..> SetGatewayAlertsConfigInput : receives
+  AlertsService ..> GetAlertsPersistenceInput : builds
+  AlertsService ..> SetAlertsConfigDefaultPersistenceInput : builds
+  AlertsService ..> SetGatewayAlertsConfigPersistenceInput : builds
 
-  AlertsPersistenceService --> AlertsEntity 
+  AlertsPersistenceService --> AlertsEntity
   AlertsPersistenceService --> AlertsConfigEntity
+  AlertsPersistenceService ..> GetAlertsPersistenceInput
+  AlertsPersistenceService ..> SetAlertsConfigDefaultPersistenceInput
+  AlertsPersistenceService ..> SetGatewayAlertsConfigPersistenceInput
 
   AlertConfigNatsResponderService --> AlertsPersistenceService : reads configs
+  AlertsNatsService --> AlertsPersistenceService : persists/reads
+  AlertsNatsService --> JetStreamClient : uses
 
   AlertsMapper --> AlertsEntity : from
   AlertsMapper --> AlertsConfigEntity : from
@@ -186,6 +257,8 @@ package "alerts" <<Rectangle>> {
   AlertsMapper --> AlertsConfigModel : to
   AlertsMapper --> AlertsResponseDto : to
   AlertsMapper --> AlertsConfigResponseDto : to
+  AlertsMapper --> SetAlertsConfigDefaultResponseDto : to
+  AlertsMapper --> SetGatewayAlertsConfigResponseDto : to
 
   AlertsConfigEntity --> TenantEntity : ManyToOne
   AlertsConfigEntity --> GatewayEntity : ManyToOne
@@ -193,29 +266,27 @@ package "alerts" <<Rectangle>> {
   AlertsModel --> AlertType
   AlertsEntity --> AlertType
   AlertsResponseDto --> AlertType
-  
-  class "TenantEntity" as TenantEntity
-  class "GatewayEntity" as GatewayEntity
 }
 
 note top of AlertsController
   @Controller('alerts')
   @TenantScoped()
-  Endpoints: GET alerts, GET/PUT/DELETE config
+  Endpoints: GET alerts, GET config, PUT default config,
+  PUT gateway config, DELETE gateway config
 end note
 
 note top of AlertsService
   Business logic layer
   - Validates gateway ownership
-  - Maps entities to models
-  - Delegates config ops to persistence
+  - Maps alert entities to models
+  - Translates service input to persistence input
 end note
 
 note top of AlertsPersistenceService
   Data access layer
   - Upserts config on [tenantId, gatewayId]
   - Handles default config deduplication
-  - Time-range queries with Between operator
+  - Time-range queries with Between/MoreThanOrEqual/LessThanOrEqual
 end note
 
 note top of AlertConfigNatsResponderService
@@ -223,6 +294,13 @@ note top of AlertConfigNatsResponderService
   - Conditional on MOCK_NATS env
   - Full TLS/mTLS support
   - Responds to config list requests
+end note
+
+note top of AlertsNatsService
+  Internal NATS integration
+  - Core NATS request-reply for config listing
+  - JetStream subscription for gateway offline alerts
+  - Persists GATEWAY_OFFLINE alerts
 end note
 
 @enduml

@@ -59,6 +59,7 @@ package "costs" <<Rectangle>> {
   CostsController --> CostResponseDto : returns
 
   CostsService --> CostsPersistenceService : uses
+  CostsService --> CostsMapper : maps to model
   CostsService --> CostModel : returns
 
   CostsPersistenceService --> JetStreamClient : requests data size
@@ -80,23 +81,35 @@ end note
 
 note top of CostsService
   Business logic layer
+  - Requests tenant cost aggregation
   - Validates cost data presence
   - Maps CostData to CostModel
-  - Error handling:
+  - Translates known upstream status codes:
     * 401 -> UnauthorizedException
     * 403 -> ForbiddenException
     * 405 -> MethodNotAllowedException
+  - Rethrows unknown errors
 end note
 
 note top of CostsPersistenceService
   Data aggregation layer
-  1. Requests dataSizeAtRest from NATS
+  1. Sends request to NATS
      subject: internal.cost
-  2. Counts alerts via AlertsPersistenceService
-  3. Counts commands via CommandPersistenceService
-  4. Calculates:
-     - storageGb = dataSizeAtRest / 1024³
-     - bandwidthGb = ((alerts + commands) * 1024) / 1024³
+     payload: { tenant_id: <tenantId> }
+  2. Reads dataSizeAtRest from NATS response
+  3. Falls back to 0 if response parsing fails
+  4. Counts alerts via AlertsPersistenceService
+  5. Counts commands via CommandPersistenceService
+  6. Calculates:
+     - storageGb = dataSizeAtRest / 1024^3
+     - bandwidthGb = ((alerts + commands) * 1024) / 1024^3
+  7. Rounds both values to 4 decimal places
+end note
+
+note top of CostsMapper
+  Mapping layer
+  - CostData -> CostModel
+  - CostModel -> CostResponseDto
 end note
 
 @enduml
