@@ -41,13 +41,16 @@
     columns: (5fr, 7fr),
     align(left + horizon)[
       #set text(size: 0.8em)
-      - *Servizio rappresentativo*: backend *NestJS* con architettura a *port e adapter*.
-      - *Scelta architetturale*: strati *Presentation / Application / Infrastructure / Persistence*.
-      *Design patterns:* \
-      - *Ports & Adapters* con *driving* e *driven port* espliciti.
-      - *Dependency Injection* per comporre use case e componenti infrastrutturali.
-      - *Adapter Pattern* per NATS, PKI, AES generator e file store della CA.
-      - *Interceptor Pattern* per audit log e metriche sul boundary HTTP.
+      - Microservizio di backend in *NestJS* con architettura *Layered* orientata a *ports e adapters*.
+      *Design patterns*: \
+      - Scelta architetturale: *Layered*: 
+        - Presentation \ 
+        - Application \ 
+        - Infrastructure \ 
+        - Persistence \ con *driving ports* e *driven ports*.
+      - *Adapter Pattern*
+      - *Dependency Injection*
+      - *Interceptor Pattern* e *Exception Filter*
     ],
     align(center + horizon)[
       #figure[
