@@ -76,11 +76,11 @@
 
     [*WebApp*], [],
 
-    [*Simulator Backend*], [], link(<dataConsumer>)[#underline(stroke: 1.2pt)[*Data Consumer*]],
+    link(<simulatorBackend>)[#underline(stroke: 1.2pt)[*Simulator Backend*]], [], [*Data Consumer*],
     [], link(<managementAPI_c4>)[#underline(stroke: 1.2pt)[*Management API*]], [],
     [*Simulator CLI*], [], link(<provisioningService>)[#underline(stroke: 1.2pt)[*Provisioning Service*]],
     [], [*Data API*], [],
-    link(<cryptoSDK>)[#underline(stroke: 1.2pt)[*Crypto SDK*]],
+    [*Crypto SDK*],
   )
 
   #let inline-slide(title, body) = [
@@ -103,34 +103,20 @@
       align(top)[#link(<home>)[<]],
       align(left + horizon)[
         #set text(size: 0.8em)
-        - *Layered Architecture* + *logic modules*.
+        - *Servizio rappresentativo*: backend *NestJS* layerizzato, rappresenta anche *Data API*.
+        - *Scelta architetturale*: *Layered Architecture* + *logic modules*.
+        *Design patterns:* \
         - *Controller-Service-Persistence*.
-        - *Mapper Pattern*.
-        - *Event-Driven Pattern*.
-        - *Guard & Decorator Pattern*. 
+        - *Dependency Injection* tramite provider NestJS e constructor injection.
+        - *Mapper Pattern* per `Entity -> Model -> DTO`.
+        - *Guard + Decorator Pattern* per policy e metadati endpoint.
+        - *Event-Driven* con `EventEmitter2` e listener verso NATS.
+        - *Integration pattern*: *NATS Request-Reply* per API interne tra microservizi.
       ],
       align(center + horizon)[
         #figure[
           #image("../../docest/specifica_tecnica_management_api/assets/01-app-architecture-part3.svg")
         ]<managementAPI_c4>
-      ],
-    )
-  ])
-
-  #inline-slide([Data Consumer], [
-    #grid(
-      columns: (1fr, 4fr, 7fr),
-      align(top)[#link(<home>)[<]],
-      align(left + horizon)[
-        #set text(size: 0.8em)
-        - *Exhagonal Architecture* (Ports & Adapters).
-        - *Value Object Pattern*.
-        - *Background Dispatch*.
-      ],
-      align(center + horizon)[
-        #figure[
-          #image("../../docest/specifica_tecnica_data_consumer/assets/data-consumer.png")
-        ]<dataConsumer>
       ],
     )
   ])
@@ -141,12 +127,15 @@
       align(top)[#link(<home>)[<]],
       align(left + horizon)[
         #set text(size: 0.8em)
-        - *Layered Architecture*.
-        - *Definizione tramite Port*.
-        - *Adapter Pattern*.
-        - *Interceptor Pattern*.
-        - *Dependency Injection*.
-        - *PKI interna*: firma CSR gateway con CA.
+        - *Servizio rappresentativo*: backend *NestJS* con architettura a *port e adapter*.
+        - *Scelta architetturale*: strati *Presentation / Application / Infrastructure / Persistence*.
+        *Design patterns:* \
+        - *Ports & Adapters* con *driving* e *driven port* espliciti.
+        - *Dependency Injection* per comporre use case e componenti infrastrutturali.
+        - *Adapter Pattern* per NATS, PKI, AES generator e file store della CA.
+        - *Interceptor Pattern* per audit log e metriche sul boundary HTTP.
+        - *Exception Filter* per tradurre errori di dominio in risposte HTTP stabili.
+        - *Integration pattern*: workflow di onboarding orchestrato via *NATS Request-Reply*.
       ],
       align(center + horizon)[
         #figure[
@@ -156,24 +145,26 @@
     )
   ])
 
- 
-
-  #inline-slide([Crypto SDK], [
+  #inline-slide([Simulator Backend], [
     #grid(
       columns: (1fr, 4fr, 7fr),
       align(top)[#link(<home>)[<]],
       align(left + horizon)[
         #set text(size: 0.8em)
-        - *Layered Architecture*.
-        - *Orchestrator pattern*.
-        - *Interface Segregation*: tre interfacce ristrette.
-        - *Adapter Pattern* (unifica REST e SSE).
-        - *Cache-aside* per `CryptoKey`.
+        - *Servizio rappresentativo*: simulazione *Go*, rappresenta anche l'accoppiata *Backend + CLI*.
+        - *Scelta architetturale*: *Ports & Adapters* con core isolato e adapter HTTP, NATS e SQLite.
+        *Design patterns:* \
+        - *Repository Pattern* tramite `GatewayStore`.
+        - *Strategy + Factory* per i generatori `sine`, `spike`, ...
+        - *Observer Pattern* per il decommissioning dei gateway.
+        - *Value Object Pattern* per `EncryptionKey`.
+        - *Scelta implementativa*: concorrenza `1 goroutine = 1 gateway`.
+        - *Scelta implementativa*: buffer *drop-oldest* e *defer-and-flush* durante anomalie.
       ],
       align(center + horizon)[
         #figure[
-          #image("../../docest/specifica_tecnica_crypto_sdk/assets/arch_class_diagram.png")
-        ]<cryptoSDK>
+          #image("../../docest/specifica_tecnica_simulator_backend_cli/assets/notip-simulator-backend.svg")
+        ]<simulatorBackend>
       ],
     )
   ])
