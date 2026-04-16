@@ -48,14 +48,14 @@ package "auth" <<Rectangle>> {
     +canActivate(context): boolean
     -isSuspensionExpired(tenant): boolean
     -reactivateTenantIfExpired(tenant): Promise<TenantEntity>
-    -getTenant(tenantId): Promise<TenantEntity>
+    -getTenant(tenantId): Promise<TenantEntity | null>
   }
 
   class "BlockImpersonationGuard" as BlockImpersonationGuard {
     -reflector: Reflector
     -auditLog: AuditLogService
     +canActivate(context): boolean
-    -getValidUuid(value): string
+    -getValidUuid(value): string | undefined
   }
 
   class "MockAuthGuard" as MockAuthGuard {
@@ -69,37 +69,43 @@ package "auth" <<Rectangle>> {
 
   interface "AuthenticatedUser" as AuthenticatedUser {
     +actorUserId: string
-    +actorEmail: string
-    +actorName: string
+    +actorEmail?: string
+    +actorName?: string
     +actorRole: UsersRole
-    +actorTenantId: string
+    +actorTenantId?: string
     +effectiveUserId: string
-    +effectiveEmail: string
-    +effectiveName: string
+    +effectiveEmail?: string
+    +effectiveName?: string
     +effectiveRole: UsersRole
-    +effectiveTenantId: string
+    +effectiveTenantId?: string
     +isImpersonating: boolean
   }
 
-  interface "JwtClaims" as JwtClaims {
-    +sub: string
-    +email: string
-    +name: string
+  interface "JwtClaims\n(local to JwtStrategy)" as JwtClaims {
+    +sub?: string
+    +email?: string
+    +name?: string
     +role?: string
     +tenant_id?: string
-    +realm_access: {roles?}
-    +resource_access: Record<string, {roles?}>
-    +azp: string
+    +realm_access?: {roles?}
+    +resource_access?: Record<string, {roles?}>
+    +azp?: string
     +act?: {sub?, role?}
+    +is_impersonating?: boolean
+    +actor_user_id?: string
+    +actor_email?: string
+    +actor_name?: string
+    +actor_role?: string
+    +actor_tenant_id?: string
   }
 
- Interface "TenantStatusDto" as TenantStatusDto {
+  class "TenantStatusDto\n(local to AuthController)" as TenantStatusDto {
     +tenant_id: string
     +status: TenantStatus
     +read_only: boolean
   }
 
-  Interface "ImpersonateDto" as ImpersonateDto {
+  class "ImpersonateDto\n(local to AuthController)" as ImpersonateDto {
     +user_id: string
   }
 
@@ -108,7 +114,7 @@ package "auth" <<Rectangle>> {
     +name: string
     +status: TenantStatus
     +suspensionUntil: Date
-    +suspensionIntervalDays: number
+    +suspensionIntervalDays: number | null
   }
 
   enum "UsersRole" as UsersRole {
@@ -130,22 +136,24 @@ package "auth" <<Rectangle>> {
   AuthController --> ImpersonationService : uses
   AuthController --> TenantEntity : checks status
   AuthController --> TenantStatusDto : returns
+  AuthController --> ImpersonateDto : receives
   AuthController --> DataSource : optional injection
 
   JwtStrategy --> ConfigService : reads env vars
   JwtStrategy --> AuthenticatedUser : builds user object
   JwtStrategy --> JwtClaims : validates payload
+  JwtStrategy --> UsersRole : resolves effectiveRole
 
   JwtAuthGuard --> Reflector : checks @AccessPolicy
-  JwtAuthGuard --> AuthenticatedUser : validates JWT
+  JwtAuthGuard --> JwtStrategy : delegates JWT auth via passport
 
   RolesGuard --> Reflector : checks @Roles
   RolesGuard --> AuthenticatedUser : checks effectiveRole
 
   AccessPolicyGuard --> Reflector : checks @AccessPolicy
   AccessPolicyGuard --> DataSource : queries tenant
-  AccessPolicyGuard --> TenantEntity : checks suspension
-  AccessPolicyGuard --> UsersRole : checks SYSTEM_ADMIN
+  AccessPolicyGuard --> TenantEntity : checks suspension/reactivation
+  AccessPolicyGuard --> AuthenticatedUser : checks tenant context
 
   BlockImpersonationGuard --> Reflector : checks @BlockImpersonation
   BlockImpersonationGuard --> AuditLogService : logs blocked attempts
@@ -188,13 +196,13 @@ note top of AccessPolicyGuard
   Checks tenant-level access
   - Blocks if tenant is SUSPENDED
   - Auto-reactivates expired suspensions
-  - SYSTEM_ADMIN bypasses tenant checks
+  - Requires effectiveTenantId on tenant-scoped routes
 end note
 
 note top of BlockImpersonationGuard
   Selective endpoint protection
   - Logs IMPERSONATION_BLOCKED audit events
-  - Validates UUID format for tenant IDs
+  - Validates UUID only for audit tenantId
   - Throws ForbiddenException during impersonation
 end note
 

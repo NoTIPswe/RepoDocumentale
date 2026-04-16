@@ -43,16 +43,19 @@ package "command" <<Rectangle>> {
   class "CommandPersistenceService" as CommandPersistenceService {
     -r: Repository<CommandEntity>
     +queueCommand(input): CommandEntity
-    +findCommand(input): CommandEntity
+    +findCommand(input): CommandEntity | null
     +countCommands(tenantId): number
   }
 
   class "CommandWritingPersistenceService" as CommandWritingPersistenceService {
     -r: Repository<CommandEntity>
     -gatewaysRepository: Repository<GatewayEntity>
-    +updateStatus(input): CommandEntity
+    +updateStatus(input): CommandEntity | null
     +applyAckedCommandEffects(command): void
-    -mapCommandGatewayStatus(status): GatewayStatus
+    -ensureMetadataExists(gateway): void
+    -applyConfigCommand(command, gateway): boolean
+    -applyFirmwareCommand(command, gateway): boolean
+    -mapCommandGatewayStatus(status): GatewayStatus | null
   }
 
   class "CommandsAckConsumer" as CommandsAckConsumer {
@@ -62,8 +65,8 @@ package "command" <<Rectangle>> {
     +onModuleInit(): void
     -processMessage(message): void
     -parsePayload(buffer): CommandAckPayload
-    -resolveCommandId(payload): string
-    -normalizeStatus(value): CommandStatus
+    -resolveCommandId(payload): string | null
+    -normalizeStatus(value): CommandStatus | null
   }
 
   class "CommandMapper" as CommandMapper {
@@ -71,6 +74,7 @@ package "command" <<Rectangle>> {
     {static} toCommandResponseDto(model): CommandResponseDto
     {static} toCommandStatusResponseDto(model): CommandStatusResponseDto
   }
+
 
   class "SendConfigRequestDto" as SendConfigRequestDto {
     +sendFrequencyMs?: number
@@ -101,7 +105,7 @@ package "command" <<Rectangle>> {
     +type: CommandType
     +status: CommandStatus
     +issuedAt: Date
-    +ackReceivedAt: Date
+    +ackReceivedAt: Date | null
     +createdAt: Date
   }
 
@@ -114,10 +118,10 @@ package "command" <<Rectangle>> {
     +type: CommandType
     +status: CommandStatus
     +issuedAt: Date
-    +ackReceivedAt: Date
-    +requestedSendFrequencyMs: number
-    +requestedStatus: string
-    +requestedFirmwareVersion: string
+    +ackReceivedAt: Date | null
+    +requestedSendFrequencyMs: number | null
+    +requestedStatus: string | null
+    +requestedFirmwareVersion: string | null
     +createdAt: Date
   }
 
@@ -155,37 +159,78 @@ package "command" <<Rectangle>> {
     +commandId: string
   }
 
+  interface "QueueCommandPersistenceInput" as QueueCommandPersistenceInput {
+    +tenantId: string
+    +gatewayId: string
+    +type: CommandType
+    +status: CommandStatus
+    +issuedAt: Date
+    +requestedSendFrequencyMs?: number
+    +requestedStatus?: string
+    +requestedFirmwareVersion?: string
+  }
+
+  interface "GetCommandPersistenceInput" as GetCommandPersistenceInput {
+    +tenantId: string
+    +gatewayId: string
+    +commandId: string
+  }
+
+  interface "UpdateCommandStatusPersistenceInput" as UpdateCommandStatusPersistenceInput {
+    +commandId: string
+    +status: CommandStatus
+    +timestamp: Date
+  }
+
   interface "CommandAckPayload" as CommandAckPayload {
     +command_id?: string
     +commandId?: string
-    +status: CommandStatus
+    +status: CommandStatus | string
     +timestamp: string
   }
 
   class "GatewayEntity" as GatewayEntity
   class "TenantEntity" as TenantEntity
   class "GatewaysService" as GatewaysService
+  class "JetStreamClient" as JetStreamClient
 
   CommandController --> CommandService : uses
   CommandController --> CommandMapper : maps to DTO
+  CommandController ..> SendConfigRequestDto
+  CommandController ..> SendFirmwareRequestDto
+  CommandController ..> CommandResponseDto
+  CommandController ..> CommandStatusResponseDto
+  CommandController ..> SendConfigCommandInput
+  CommandController ..> SendFirmwareCommandInput
+  CommandController ..> GetCommandStatusInput
 
   CommandService --> CommandPersistenceService : uses
   CommandService --> GatewaysService : validates ownership
   CommandService --> JetStreamClient : publishes commands
   CommandService --> CommandModel : returns
+  CommandService ..> SendConfigCommandInput : receives
+  CommandService ..> SendFirmwareCommandInput : receives
+  CommandService ..> GetCommandStatusInput : receives
+  CommandService ..> QueueCommandPersistenceInput : builds
+  CommandService ..> GetCommandPersistenceInput : builds
 
   CommandPersistenceService --> CommandEntity : CRUD
+  CommandPersistenceService ..> QueueCommandPersistenceInput
+  CommandPersistenceService ..> GetCommandPersistenceInput
 
   CommandWritingPersistenceService --> CommandEntity : updates status
   CommandWritingPersistenceService --> GatewayEntity : updates effects
+  CommandWritingPersistenceService ..> UpdateCommandStatusPersistenceInput
 
   CommandsAckConsumer --> JetStreamClient : subscribes to acks
   CommandsAckConsumer --> CommandWritingPersistenceService : updates status
+  CommandsAckConsumer ..> CommandAckPayload
 
   CommandMapper --> CommandEntity : from
   CommandMapper --> CommandModel : to
   CommandMapper --> CommandResponseDto : to
   CommandMapper --> CommandStatusResponseDto : to
+
 
   CommandEntity --> GatewayEntity : ManyToOne
   CommandEntity --> TenantEntity : ManyToOne
@@ -225,6 +270,7 @@ end note
 note top of CommandsAckConsumer
   JetStream consumer
   - Subject: command.ack.>
+  - Stream: COMMAND_ACKS
   - Normalizes status values
   - Updates command in DB
   - Triggers gateway effects on ACK
