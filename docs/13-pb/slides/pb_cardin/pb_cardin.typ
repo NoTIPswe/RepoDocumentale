@@ -122,7 +122,7 @@
     ],
     align(center + horizon)[
       #figure[
-        #image("assets/notip-simulator-backend.jpg")
+        #image("assets/simulator-backend.png")
       ]
     ],
   )
