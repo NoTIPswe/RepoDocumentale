@@ -5,7 +5,7 @@
 
 #base-document.apply-base-document(
   title: metadata.title,
-  abstract: "Specifica tecnica del microservizio notip-provisioning-service: architettura interna, endpoint di onboarding gateway, contratti NATS, gestione CA e metriche operative.",
+  abstract: "Specifica tecnica del microservizio notip-provisioning-service: architettura esagonale (Ports and Adapters), endpoint di onboarding gateway, contratti NATS, gestione CA e metriche operative.",
   changelog: metadata.changelog,
   scope: base-document.EXTERNAL_SCOPE,
 )[
@@ -17,11 +17,11 @@
   CSR del gateway con la CA interna, genera una chiave AES-256 e completa il provisioning persistendo il materiale
   chiave nel dominio management.
 
-  Il servizio è progettato con layering esplicito e dipendenze tramite interfacce, in modo da mantenere separati:
+  Il servizio adotta un'architettura esagonale (Ports and Adapters) con il core di business logic isolato da interfacce (`ports`), implementate da adapter infrastrutturali. Questa architettura mantiene separati:
 
-  - livello di presentazione HTTP (`provisioning.controller.ts`);
-  - orchestrazione applicativa (`provisioning.service.ts`);
-  - infrastruttura NATS/PKI/crypto (`nats`, `ca`, `crypto`);
+  - il core di business logic (`provisioning.service`, model di dominio);
+  - i driving port / primary adapter (endpoint HTTP di onboarding e metriche);
+  - i driven port / secondary adapter (NATS client, CA signer, generatore chiavi, persistence su filesystem);
   - configurazione e osservabilità (`config`, `metrics`).
 
   = Dipendenze e configurazione
@@ -69,7 +69,7 @@
     [5], [`app.listen(PORT)`], [Espone listener HTTP sulla porta configurata (default 3004)], [No],
   )
 
-  = Architettura logica
+  = Architettura esagonale
 
   #align(center)[
     #image("./assets/provisioning_service.png", width: 100%)
@@ -77,13 +77,13 @@
 
   == Impostazione architetturale
 
-  Il servizio adotta un'architettura a layer con contratti espliciti tra componenti:
+  Il servizio applica il pattern esagonale con una chiara separazione tra core di dominio e infrastruttura:
 
-  - le interfacce in `src/provisioning/interfaces` definiscono i port applicativi;
-  - gli adapter infrastrutturali implementano i port (`NATSFactoryValidator`, `NATSProvisioningCompleter`,
-    `ForgeCSRSignerService`, `AESKeyGeneratorService`);
-  - il controller invoca la use case solo tramite `OnboardGateway`;
-  - i model nel dominio provisioning e CA non dipendono da NestJS o librerie esterne.
+  - il *core* contiene la business logic pura in `ProvisioningService` e i modelli di dominio senza dipendenze esterne;
+  - i *port* sono interfacce astratte (`OnboardGateway`, `FactoryValidator`, `CSRSigner`, `AESKeyGenerator`, `ProvisioningCompleter`) che definiscono i contratti tra il core e l'esterno;
+  - i *driving adapter* (lato cliente) includono il controller HTTP e gli interceptor di audit/metriche;
+  - i *driven adapter* (lato fornitore) implementano i port per NATS, CA, crypto, e persistence su filesystem;
+  - le dipendenze alle framework e librerie esterne fluiscono *verso il core*, non dall'interno del core verso l'esterno.
 
   == Layout dei package
 
@@ -128,29 +128,31 @@
   └── test/
   ```
 
-  == Strati architetturali
+  == Struttura esagonale
 
   #table(
-    columns: (1.2fr, 2fr, 3fr),
-    [Strato], [Componenti], [Responsabilità],
+    columns: (1.5fr, 2fr, 2.8fr),
+    [Componente], [Sotto-componenti], [Responsabilità],
 
-    [Presentation],
-    [`ProvisioningController`, `OnboardRequestDto`, `OnboardResponseDto`, `ProvisioningExceptionFilter`,
-      `AuditLogInterceptor`, `MetricsController`],
-    [Gestione endpoint `POST /provision/onboard` e `GET /metrics`, validazione input e mapping errori HTTP.],
+    [*Core di business logic*],
+    [`ProvisioningService`, model di dominio (`ProvisioningRequest`, `ProvisioningResult`, `GatewayIdentity`, `AESKey`, ecc.)],
+    [Definisce le regole di business e orchestrazione del provisioning iniziale dei gateway. Indipendente da NestJS e librerie esterne (dipende solo da port).],
 
-    [Application],
-    [`ProvisioningService`, `CAInitializerService`, interfacce in `provisioning/interfaces`],
-    [Orchestrazione del flusso onboarding e regole di sequencing delle operazioni.],
+    [*Port (Interfacce)*],
+    [`OnboardGateway`, `FactoryValidator`, `CSRSigner`, `AESKeyGenerator`, `ProvisioningCompleter`, `CARepository`, `CAProvider`],
+    [Contratti astratti tra il core e gli adapter esterni. Definiscono input/output attesi senza dettagli implementativi.],
 
-    [Infrastructure],
-    [`NATSRRClient`, `NATSFactoryValidator`, `NATSProvisioningCompleter`, `ForgeCSRSignerService`,
-      `AESKeyGeneratorService`],
-    [Integrazione verso NATS, PKI X.509 e generazione crittografica della chiave.],
+    [*Driving Adapter (Primary / Inbound)*],
+    [`ProvisioningController`, `OnboardRequestDto`, `OnboardResponseDto`, `ProvisioningExceptionFilter`, `AuditLogInterceptor`, `MetricsController`],
+    [Espongono i port del core verso il mondo esterno. Ricevono richieste HTTP e le convertono in chiamate al core. Convertono risposte del core in HTTP e registrano audit/metriche.],
 
-    [Persistence],
-    [`CAFileStoreService`],
-    [Accesso filesystem al volume `/certs` per `ca.key`, `ca.crt`, `nats.key`, `nats.crt`.],
+    [*Driven Adapter (Secondary / Outbound)*],
+    [`NATSRRClient`, `NATSFactoryValidator`, `NATSProvisioningCompleter`, `ForgeCSRSignerService`, `AESKeyGeneratorService`, `CAFileStoreService`, `CAInitializerService`],
+    [Implementano i port del core per integrarsi con l'infrastruttura esterna (NATS, PKI, filesystem). Isolano il core dalle specifiche tecnologie.],
+
+    [*Configurazione e osservabilità*],
+    [`ConfigModule`, `MetricsService`, `MetricsInterceptor`, `ProvisioningMetrics`],
+    [Caricano configurazione all'avvio e forniscono metriche Prometheus osservabili senza accoppiamento al core.],
   )
 
   = Definizione dei port
