@@ -9,29 +9,17 @@ skinparam packageStyle rectangle
 
 package "NOTIP Management API" <<Rectangle>> {
 
-  class "TenantEntity" as TenantEntity {
-    +id: string
-    +name: string
-    +status: TenantStatus
-    +suspensionIntervalDays: number
-    +suspensionUntil: Date
-    +createdAt: Date
-    +updatedAt: Date
-    +users: UserEntity[]
-    +gateways: GatewayEntity[]
+  package "Common Module" as CommonModule {
+    class "EnvValidation" as EnvValidation
+    class "TenantEntity" as TenantEntity 
+    class "MetricsInterceptor" as MetricsInterceptor
+    class "LastAccessInterceptor" as LastAccessInterceptor
+    class "AuditInterceptor" as AuditInterceptor
   }
-
-  class "EnvValidation" as EnvValidation {
-    +validate(config): AppConfig
-  }
-
-  class "MetricsInterceptor" as MetricsInterceptor
-  class "LastAccessInterceptor" as LastAccessInterceptor
-  class "AuditInterceptor" as AuditInterceptor
 
   package "Auth Module" as AuthModule {
-    class "JwtStrategy" as JwtStrategy
     class "AuthController" as AuthController
+    class "JwtStrategy" as JwtStrategy
     class "ImpersonationService" as ImpersonationService
     class "JwtAuthGuard" as JwtAuthGuard
     class "RolesGuard" as RolesGuard
@@ -44,14 +32,21 @@ package "NOTIP Management API" <<Rectangle>> {
     class "TenantsService" as TenantsService
     class "TenantsPersistenceService" as TenantsPersistenceService
     class "KeycloakAdminService" as KeycloakAdminService
-    class "AdminGatewaysController" as AdminGatewaysController
-    class "AdminGatewaysService" as AdminGatewaysService
-    class "AdminGatewaysPersistenceService" as AdminGatewaysPersistenceService
+    class "GatewaysController" as AdminGatewaysController
+    class "GatewaysService" as AdminGatewaysService
+    class "GatewaysPersistenceService" as AdminGatewaysPersistenceService
   }
 
   package "Metrics Module" as MetricsModule {
     class "MetricsController" as MetricsController
     class "MetricsService" as MetricsService
+  }
+
+  package "Api-Client Module" as ApiClientModule {
+    class "ApiClientController" as ApiClientController
+    class "ApiClientService" as ApiClientService
+    class "ApiClientPersistenceService" as ApiClientPersistenceService
+    class "ApiClientEntity" as ApiClientEntity
   }
 
   ' Core relationships
@@ -69,12 +64,17 @@ package "NOTIP Management API" <<Rectangle>> {
   TenantsService --> TenantsPersistenceService
   TenantsService --> KeycloakAdminService
   TenantsPersistenceService --> TenantEntity
-  TenantsPersistenceService --> UserEntity
   AdminGatewaysController --> AdminGatewaysService
   AdminGatewaysService --> AdminGatewaysPersistenceService
 
   ' Metrics relationships
   MetricsController --> MetricsService
+
+  ' Api-Client relationships
+  ApiClientController --> ApiClientService
+  ApiClientService --> ApiClientPersistenceService
+  ApiClientService --> KeycloakAdminService
+  ApiClientPersistenceService --> ApiClientEntity
 }
 
 note top of TenantEntity
@@ -88,6 +88,12 @@ note top of AuthModule
   Role-based access control
   Tenant suspension checks
   User impersonation support
+end note
+
+note top of ApiClientModule
+  Manages OAuth2 API clients
+  Sync with Keycloak for client credentials
+  Client secret management
 end note
 
 @enduml

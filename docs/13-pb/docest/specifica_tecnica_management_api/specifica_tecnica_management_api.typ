@@ -121,11 +121,12 @@
 
   = Architettura logica
 
-  Il servizio adotta una Layered Architecture con organizzazione interna di tipo modulare. All'interno dei vari moduli è
-  utilizzato prevalentemente il pattern Controller-Service-Persistence, che consente una chiara separazione delle
-  responsabilità tra esposizione API, logica di business e accesso ai dati. I componenti collaborano tramite Dependency
-  Injection e, dove opportuno, tramite interfacce e contratti applicativi. La presenza di Business Models, DTO ed
-  Entities ha portato all'introduzione di Mappers per la conversione dei dati tra i diversi livelli dell'applicazione.
+  Il microservizio adotta una Layered Architecture con organizzazione interna di tipo modulare. All'interno dei vari
+  moduli è utilizzato prevalentemente il pattern Controller-Service-Persistence, che consente una chiara separazione
+  delle responsabilità tra esposizione API, logica di business e accesso ai dati. I componenti collaborano tramite
+  Dependency Injection e, dove opportuno, tramite interfacce e contratti applicativi. La presenza di Business Models,
+  DTO ed Entities ha portato all'introduzione di Mappers per la conversione dei dati tra i diversi livelli
+  dell'applicazione.
 
   == Layout dei moduli
   Essendo il microservizio troppo grande per essere contenuto in un unico diagramma, di seguito è riportata la struttura
@@ -3013,5 +3014,5 @@
   - gestione alert e threshold;
   - invio e tracciamento dei comandi;
   - audit delle operazioni rilevanti;
-  - corretto caricamento della configurazione e bootstrap del servizio.
+  - corretto caricamento della configurazione e bootstrap del microservizio.
 ]

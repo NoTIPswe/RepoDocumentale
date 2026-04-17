@@ -12,7 +12,8 @@ package "NOTIP Management API" <<Rectangle>> {
     class "KeysController" as KeysController
     class "ProvisioningController" as ProvisioningController
     class "KeysService" as KeysService
-    class "GatewaysKeysPersistenceService" as GatewaysKeysPersistenceService
+    class "KeysNatsService" as KeysNatsService
+    class "KeysPersistenceService" as KeysPersistenceService
     class "ProvisioningNatsResponderService" as ProvisioningNatsResponderService
     class "KeyEntity" as KeyEntity
   }
@@ -42,9 +43,11 @@ package "NOTIP Management API" <<Rectangle>> {
   ' Keys relationships
   KeysController --> KeysService
   ProvisioningController --> KeysService
-  KeysService --> GatewaysKeysPersistenceService
+  KeysService --> KeysPersistenceService
+  KeysService --> KeysNatsService
+  KeysService --> ProvisioningNatsResponderService
   KeysService --> GatewaysService
-  GatewaysKeysPersistenceService --> KeyEntity
+  KeysPersistenceService --> KeyEntity
   KeyEntity --> GatewayEntity
 
   ' Users relationships
@@ -72,6 +75,7 @@ note top of KeysModule
   Factory key validation (bcrypt)
   Provisioning with transactions
   Gateway key lifecycle
+  NATS integration for key events
 end note
 
 note top of UsersModule
@@ -90,6 +94,7 @@ end note
 note top of AuditLogModule
   Audit logging for operations
   Provisioning audit consumer
+  NATS consumer for provisioning events
   Time-range queries
   Tenant-scoped access
 end note
