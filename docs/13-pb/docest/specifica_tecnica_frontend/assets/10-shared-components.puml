@@ -1,5 +1,5 @@
 @startuml
-title NOTIP Frontend - Shared Components
+title NoTIP Frontend - Shared Components
 
 skinparam backgroundColor #FFFFFF
 skinparam defaultFontSize 10
@@ -7,6 +7,7 @@ skinparam defaultFontColor #000000
 skinparam nodesep 8
 skinparam ranksep 8
 skinparam linetype ortho
+skinparam classAttributeIconSize 0
 
 package "Shared Components" <<Rectangle>> {
   
@@ -110,21 +111,6 @@ package "Shared Components" <<Rectangle>> {
     +clicked: OutputEmitterRef<void>
     --
     +onClick(): void
-  }
-
-  class "ImpersonationBannerComponent" as ImpBanner {
-    -- Inputs (Signals) --
-    +active: Signal<boolean>
-    +impersonatedUserId: Signal<string | null>
-    --
-    // Defined in shared, but not used by Sidebar
-  }
-
-  class "PlaceholderPageComponent" as PlaceholderPage {
-    -- Properties --
-    +title: string
-    --
-    // Scaffold page for features in development
   }
 
   ' Usage relationships derived from imports

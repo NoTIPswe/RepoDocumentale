@@ -1,433 +1,94 @@
 @startuml
-top to bottom direction
-title NOTIP Frontend - Application Architecture
+title NoTIP Frontend - Package Dependencies Architecture
 
 skinparam backgroundColor #FFFFFF
-skinparam defaultFontSize 10
+skinparam defaultFontSize 11
 skinparam defaultFontColor #000000
-skinparam nodesep 8
-skinparam ranksep 8
-skinparam linetype ortho
+skinparam nodesep 40
+skinparam ranksep 50
 skinparam packageStyle rectangle
+left to right direction
 
-package "NOTIP Frontend (Angular 21 Standalone)" <<Rectangle>> {
-  class "app.config.ts" as AppConfig {
-    +provideKeycloak()
-    +provideHttpClient()
-    +provideRouter()
-    +provideMgmtApi('/api/mgmt')
-    +provideDataApi('/api/data')
-    +AutoRefreshTokenService
-    +UserActivityService
+package "NoTIP Frontend (Angular 21)" {
+
+  ' --- Root / Bootstrap Level ---
+  package "App Bootstrap" as AppBoot {
+    note "Global Configuration\n(Router, HTTP, Keycloak)" as BootNote
   }
 
-  class "app.routes.ts" as AppRoutes {
-    +routes: Routes[]
-  }
-
-  class "AppComponent" as AppComponent {
-    +<router-outlet>
-  }
-
-  package "Core Infrastructure" as Core {
-    package "Guards" as Guards {
-      class "AuthGuard" as AuthGuard {
-        +canActivate(): Promise<boolean>
-      }
-      class "RoleGuard" as RoleGuard {
-        +canActivate(): boolean | UrlTree
-      }
-      class "HomeRedirectGuard" as HomeRedirectGuard {
-        +canActivate(): UrlTree
-      }
-    }
-
-    package "Interceptors" as Interceptors {
-      class "authInterceptor" as AuthInterceptor {
-        +HttpInterceptorFn
-      }
-      class "errorInterceptor" as ErrorInterceptor {
-        +HttpInterceptorFn
-      }
-    }
-
-    package "Models" as Models {
-      class "enums.ts" as Enums {
-        UserRole
-        TenantStatus
-        GatewayStatus
-        CommandStatus
-        AlertsType
-      }
-      class "gateway.ts" as GatewayModel {
-        Gateway
-        ObfuscatedGateway
-        AddGatewayParameters
-      }
-      class "measure.ts" as MeasureModel {
-        TelemetryEnvelope
-        DecryptedEnvelope
-        CheckedEnvelope
-        ObfuscatedEnvelope
-      }
-      class "tenant.ts" as TenantModel {
-        Tenant
-        CreateTenantParameters
-      }
-      class "user.ts" as UserModel {
-        ViewUser
-        CreatedUser
-        UserParameters
-      }
-      class "alert.ts" as AlertModel {
-        Alerts
-        AlertsConfig
-        AlertsFilter
-      }
-      class "threshold.ts" as ThresholdModel {
-        Threshold
-        SensorThreshold
-        TypeThreshold
-      }
-    }
-
-    package "Services" as CoreServices {
-      class "AuthService" as AuthService {
-        -keycloak: KeycloakService
-        +init(): Promise<boolean>
-        +login(): void
-        +logout(): void
-        +getToken(): Promise<string>
-        +getRole(): UserRole
-        +startImpersonation(): void
-        +stopImpersonation(): void
-        +isImpersonating(): boolean
-      }
-      class "ObfuscatedStreamManagerService" as ObfuscatedStreamManager {
-        -fetchEventSource
-        -subject: Subject<ObfuscatedEnvelope>
-        +openStream(): void
-        +closeStream(): void
-        +getChannel(): Observable
-      }
-      class "ThresholdPrefetchService" as ThresholdPrefetch {
-        -timer: Observable
-        +start(): void
-        +invalidate(): void
-      }
-      class "ThresholdService" as ThresholdService {
-        -cache: Map
-        +fetch(): void
-        +set(): void
-        +getBounds(): Threshold
-      }
-      class "MeasureBoundsEvaluationService" as MeasureBoundsEval {
-        +isOutOfBounds(value, thresholds): boolean
-      }
-    }
-
-    package "Resolvers" as Resolvers {
-      class "DashboardResolver" as DashboardResolver {
-        +resolve(): {dataMode: 'clear' | 'obfuscated'}
-      }
-    }
-  }
-
+  ' --- API Level ---
   package "Generated API Clients" as GeneratedAPI {
-    class "notip-management-api-openapi" as MgmtApi {
-      GatewaysService
-      AdminTenantsService
-      AdminGatewaysService
-      AlertsService
-      AuditLogService
-      ApiClientService
-      CommandsService
-      CostsService
-      KeysService
-      ThresholdsService
-      UsersService
-      AuthService
-    }
-
-    class "notip-data-api-openapi" as DataApi {
-      MeasuresService
-      SensorsService
-      AppService
-    }
+    package "Mgmt API Client" as MgmtApi
+    package "Data API Client" as DataApi
   }
 
-  package "Features" as Features {
-    package "Dashboard" as Dashboard {
-      class "DataDashboardPageComponent" as DashboardPage {
-        -dataMode: 'clear' | 'obfuscated'
-        -viewMode: 'stream' | 'query'
-      }
-      class "FilterPanelComponent" as FilterPanel {
-        -gatewayIds: string[]
-        -sensorTypes: string[]
-        -sensorIds: string[]
-        -from: string
-        -to: string
-      }
-      class "TelemetryChartComponent" as TelemetryChart {
-        -chart: Chart
-        -datasets: Dataset[]
-      }
-      class "TelemetryTableComponent" as TelemetryTable {
-        -measures: CheckedEnvelope[]
-      }
-      class "DecryptedMeasureService" as DecryptedMeasure {
-        -cryptoSdk: DataApiService
-        +query(): Observable<CheckedQueryResPage>
-        +stream(): Observable<CheckedEnvelope>
-        +export(): Observable<Blob>
-      }
-      class "ObfuscatedMeasureService" as ObfuscatedMeasure {
-        +query(): Observable<ObfuscatedQueryResPage>
-        +stream(): Observable<ObfuscatedEnvelope>
-      }
-      class "ValidatedMeasureFacadeService" as ValidatedMeasure {
-        +query(): Observable<CheckedQueryResPage>
-        +stream(): Observable<CheckedEnvelope>
-      }
-    }
-
-    package "Gateways" as Gateways {
-      class "GatewayListPageComponent" as GatewayListPage
-      class "GatewayDetailPageComponent" as GatewayDetailPage {
-        -gateway: Gateway
-        -sensors: Sensor[]
-        -rename modal
-        -command modal
-        -delete modal
-      }
-      class "GatewayCardComponent" as GatewayCard
-      class "GatewayActionsComponent" as GatewayActions
-      class "GatewayRenameModalComponent" as RenameModal
-      class "CommandModalComponent" as CommandModal {
-        mode: 'config' | 'firmware'
-      }
-      class "GatewayService" as GatewayService {
-        -listSignal: Signal<Gateway[]>
-        -selectedGatewaySignal: Signal<Gateway>
-        -loadingSignal: Signal<boolean>
-        +loadList(): void
-        +loadDetail(id): void
-        +updateName(id, name): void
-        +delete(id): void
-      }
-      class "CommandService" as CommandService {
-        +sendConfigCommand(gwId, freq, status): void
-        +sendFirmwareCommand(gwId, ver, url): void
-        -pollCommandStatus(commandId): Observable
-      }
-    }
-
-    package "Admin" as Admin {
-      class "TenantManagerPageComponent" as TenantManagerPage
-      class "TenantDetailPageComponent" as TenantDetailPage
-      class "AdminGatewayListPageComponent" as AdminGatewayListPage
-      class "AdminGatewayFormComponent" as AdminGwForm
-      class "AdminGatewayTableComponent" as AdminGwTable
-      class "ImpersonateButtonComponent" as ImpBtn
-      class "TenantFormComponent" as TenantForm
-      class "TenantTableComponent" as TenantTable
-      class "TenantUserListComponent" as TenantUserList
-    }
-
-    package "Alerts" as Alerts {
-      class "AlertListPageComponent" as AlertListPage
-      class "AlertConfigPageComponent" as AlertConfigPage
-      class "AlertService" as AlertService
-      class "AlertConfigFormComponent" as AlertConfigForm
-      class "AlertFilterPanelComponent" as AlertFilterPanel
-    }
-
-    package "Sensors" as Sensors {
-      class "SensorListPageComponent" as SensorListPage
-      class "SensorDetailPageComponent" as SensorDetailPage
-    }
-
-    package "Management" as Mgmt {
-      class "UserListPageComponent" as UserListPage
-      class "UserFormComponent" as UserForm
-      class "UserTableComponent" as UserTable
-      class "ThresholdSettingsPageComponent" as ThresholdSettingsPage
-      class "ThresholdFormComponent" as ThresholdForm
-      class "ThresholdTableComponent" as ThresholdTable
-      class "ApiClientListPageComponent" as ApiClientListPage
-      class "ApiClientTableComponent" as ApiClientTable
-      class "AuditLogPageComponent" as AuditLogPage
-      class "AuditFilterPanelComponent" as AuditFilterPanel
-      class "AuditLogTableComponent" as AuditLogTable
-      class "CostDashboardPageComponent" as CostDashboardPage
-      class "CostCardComponent" as CostCard
-    }
+  ' --- Core Level (Global State and Security) ---
+  package "Core Infrastructure" as Core {
+    package "Services (Auth, Streams, Bounds)" as CoreServices
+    package "Security (Guards, Interceptors)" as CoreSecurity
+    package "Models & Enums" as CoreModels
   }
 
-  package "Shared Components" as Shared {
-    class "SidebarComponent" as Sidebar {
-      -role-based menu items
-      -impersonation banner
-      -profile section
-      -logout button
-    }
-    class "ModalLayerComponent" as ModalLayer {
-      -backdrop
-      -<ng-content>
-      -closeOnBackdropClick
-    }
-    class "MultiSelectDropdownComponent" as MultiSelect {
-      -options: SelectOption[]
-      -selected: string[]
-      -searchQuery: string
-      -filteredOptions: SelectOption[]
-    }
-    class "StatusBadgeComponent" as StatusBadge {
-      -status: string
-      -cssClass: 'is-good' | 'is-warn' | 'is-bad' | 'is-neutral'
-    }
-    class "DeleteConfirmModalComponent" as DeleteConfirmModal
-    class "ImpersonationBannerComponent" as ImpersonationBanner
-    class "ImpersonationTagComponent" as ImpersonationTag
-    class "ProfileSectionComponent" as ProfileSection
-    class "LogoutButtonComponent" as LogoutButton
-    class "PlaceholderPageComponent" as PlaceholderPage
+  ' --- Utility and Shared UI Level ---
+  package "Shared Components & Utils" as Shared {
+    package "UI Components (Modals, Badges, Sidebar)" as SharedUI
+    package "Pipes & Utils (Timezone)" as SharedUtils
   }
 
-  package "Pipes & Utils" as Pipes {
-    class "RomeTimezoneDatePipe" as RomeDatePipe {
-      +transform(date: string): string
-      // Europe/Rome timezone conversion
-    }
-    class "rome-timezone.ts" as RomeUtils {
-      +convertToRomeTimezone(date): string
-      +formatDateTime(date): string
-    }
+  ' --- Features Level (Business Domains) ---
+  package "Feature Modules" as Features {
+    package "Dashboard" as FeatDashboard
+    package "Gateways" as FeatGateways
+    package "Sensors" as FeatSensors
+    package "Alerts" as FeatAlerts
+    package "System Admin" as FeatAdmin
+    package "Management" as FeatMgmt
   }
 
-  ' Core relationships
-  AppConfig --> AppRoutes
-  AppConfig --> AppComponent
-  AppConfig --> AuthInterceptor
-  AppConfig --> ErrorInterceptor
-  AppConfig --> MgmtApi
-  AppConfig --> DataApi
-  AppConfig --> AuthService
+  ' ==========================================
+  ' RELATIONSHIPS AND DEPENDENCIES BETWEEN PACKAGES
+  ' ==========================================
 
-  AppRoutes --> AuthGuard
-  AppRoutes --> RoleGuard
-  AppRoutes --> HomeRedirectGuard
-  AppRoutes --> DashboardResolver
-  AppRoutes --> DashboardPage
-  AppRoutes --> GatewayListPage
-  AppRoutes --> GatewayDetailPage
-  AppRoutes --> SensorListPage
-  AppRoutes --> SensorDetailPage
-  AppRoutes --> AlertListPage
-  AppRoutes --> AlertConfigPage
-  AppRoutes --> UserListPage
-  AppRoutes --> ThresholdSettingsPage
-  AppRoutes --> ApiClientListPage
-  AppRoutes --> AuditLogPage
-  AppRoutes --> CostDashboardPage
-  AppRoutes --> TenantManagerPage
-  AppRoutes --> TenantDetailPage
-  AppRoutes --> AdminGatewayListPage
+  ' The App bootstraps the Core and APIs
+  AppBoot --> CoreSecurity : "Injects"
+  AppBoot --> GeneratedAPI : "Provides (Provider)"
 
-  ' Core services relationships
-  AuthService --> Enums
-  AuthService --> Models
-  AuthGuard --> AuthService
-  AuthGuard --> ThresholdPrefetch
-  RoleGuard --> AuthService
-  HomeRedirectGuard --> AuthService
-  AuthInterceptor --> AuthService
-  DashboardResolver --> AuthService
+  ' The Core defines the base models
+  CoreServices ..> CoreModels : "Uses"
 
-  ObfuscatedStreamManager --> MeasureModel
-  ThresholdPrefetch --> ThresholdService
-  ThresholdService --> ThresholdModel
-  MeasureBoundsEval --> MeasureModel
-  MeasureBoundsEval --> ThresholdModel
+  ' Security and Interceptors use Services (e.g., AuthService)
+  CoreSecurity --> CoreServices : "Verifies Permissions"
 
-  ' Generated API relationships
-  GatewayService --> MgmtApi
-  AlertService --> MgmtApi
-  CommandService --> MgmtApi
-  DecryptedMeasure --> DataApi
-  DecryptedMeasure --> DataApi
-  ObfuscatedMeasure --> DataApi
-  ObfuscatedMeasure --> ObfuscatedStreamManager
+  ' Core services communicate with generated APIs
+  CoreServices --> GeneratedAPI : "Manages Token / SSE"
 
-  ' Dashboard relationships
-  DashboardPage --> FilterPanel
-  DashboardPage --> TelemetryChart
-  DashboardPage --> TelemetryTable
-  DashboardPage --> DecryptedMeasure
-  DashboardPage --> ObfuscatedMeasure
-  DashboardPage --> ValidatedMeasure
-  ValidatedMeasure --> DecryptedMeasure
-  ValidatedMeasure --> MeasureBoundsEval
-  FilterPanel --> MultiSelect
-  FilterPanel --> RomeDatePipe
+  ' Feature modules rely on Core for state and APIs for data
+  Features --> CoreServices : "Uses global business logic"
+  Features --> GeneratedAPI : "Executes queries / commands"
+  Features ..> CoreModels : "Types data"
 
-  ' Gateways relationships
-  GatewayListPage --> GatewayCard
-  GatewayListPage --> GatewayService
-  GatewayDetailPage --> GatewayService
-  GatewayDetailPage --> CommandService
-  GatewayDetailPage --> RenameModal
-  GatewayDetailPage --> CommandModal
-  GatewayDetailPage --> DeleteConfirmModal
-  GatewayDetailPage --> TelemetryTable
-  GatewayCard --> StatusBadge
-  GatewayActions --> GatewayCard
-  GatewayService --> MgmtApi
-  CommandService --> MgmtApi
+  ' Feature modules use shared components and pipes
+  Features --> SharedUI : "Composes Views"
+  Features --> SharedUtils : "Formats dates/data"
 
-  ' Admin relationships
-  TenantManagerPage --> MgmtApi
-  TenantDetailPage --> MgmtApi
-  TenantDetailPage --> AuthService
+  ' Cross-dependencies (logical) between Features (optional for context)
+  FeatDashboard ..> FeatGateways : "Uses data for filters"
+  FeatDashboard ..> FeatSensors : "Uses data for filters"
 
-  ' Shared relationships
-  Sidebar --> ImpersonationBanner
-  Sidebar --> ImpersonationTag
-  Sidebar --> ProfileSection
-  Sidebar --> LogoutButton
-  ModalLayer --> DeleteConfirmModal
-  ModalLayer --> RenameModal
-  ModalLayer --> CommandModal
-  MultiSelect --> FilterPanel
 }
 
-note top of AppConfig
-  Application bootstrap configuration
-  Registers Keycloak with PKCE S256,
-  AutoRefreshTokenService, UserActivityService,
-  HTTP client, router, OpenAPI providers.
-  Session timeout: 10 minutes.
-  No environment.ts files used.
+note right of Core
+  The "Core" contains the app's Singleton logic:
+  Authentication (Keycloak), Impersonation,
+  SSE (Server-Sent Events) streams, and global
+  Threshold management.
 end note
 
-note top of AuthService
-  Central authentication service
-  Implements SessionLifeCycle and
-  ImpersonationStatus interfaces
-  Manages Keycloak lifecycle
-end note
-
-note top of ValidatedMeasure
-  Facade that wraps DecryptedMeasure
-  and adds bounds checking via
-  MeasureBoundsEvaluationService
-end note
-
-note top of ObfuscatedStreamManager
-  Manages SSE connection to data-api
-  Uses @microsoft/fetch-event-source
-  Emits telemetry envelopes
+note left of Features
+  "Features" are highly cohesive modules.
+  They contain the page logic (Smart Components)
+  and domain-specific services that orchestrate
+  calls to the generated APIs.
 end note
 
 @enduml

@@ -252,11 +252,9 @@
   │       │   ├── multi-select-dropdown/ # Dropdown multi-selezione con ricerca
   │       │   ├── status-badge/          # Badge colorati per stato
   │       │   ├── delete-confirm-modal/  # Modale conferma cancellazione
-  │       │   ├── impersonation-banner/  # Banner modalità impersonazione
   │       │   ├── impersonation-tag/     # Tag "OBFUSCATED MODE"
   │       │   ├── logout-button/         # Bottone logout
   │       │   ├── profile-section/       # Sezione profilo utente
-  │       │   └── placeholder-page/      # Pagina scaffold generica
   │       ├── pipes/
   │       │   └── rome-date-time.pipe.ts  # Pipe per fuso orario Roma
   │       └── utils/
@@ -325,7 +323,7 @@
     caption: [Architettura del frontend `notip-frontend`],
   )[
     #align(center)[
-      #image("./assets/01-app-architecture.svg", width: 115%)
+      #image("assets/01-app-architecture.svg")
     ]
   ]
 
@@ -896,7 +894,7 @@
     caption: [Diagramma dei servizi core],
   )[
     #align(center)[
-      #image("./assets/05-core-services.svg", width: 115%)
+      #image("assets/05-core-services.svg")
     ]
   ]
 
@@ -941,14 +939,6 @@
     il flag `isOutofBounds`. Il grafico è aggiornato in tempo reale con un cap di 20 righe;
   - *Query mode*: query paginata con cursore composito `(time, sensorId)`. Supporta filtri per gatewayIds, sensorTypes,
     sensorIds, e range temporale (con limite finestra 24h).
-
-  #figure(
-    caption: [Diagramma della dashboard],
-  )[
-    #align(center)[
-      #image("./assets/07-dashboard.svg", width: 115%)
-    ]
-  ]
 
   == FilterPanelComponent
 
@@ -1004,6 +994,14 @@
   - *Query (paginata)*: `ObfuscatedMeasureService.query()` oppure `ValidatedMeasureFacadeService.query()`, con cursore
     composito;
   - *Export*: `ValidatedMeasureFacadeService.export()` in modalità clear, con limite finestra 24h.
+
+  #figure(
+    caption: [Diagramma della dashboard],
+  )[
+    #align(center)[
+      #image("./assets/07-dashboard.svg")
+    ]
+  ]
 
   = Feature: Gateway
 
@@ -1129,7 +1127,7 @@
     caption: [Diagramma della feature Gateway],
   )[
     #align(center)[
-      #image("./assets/09-gateways.svg", width: 115%)
+      #image("assets/09-gateways.svg")
     ]
   ]
 
@@ -1252,6 +1250,14 @@
     )
   ]
 
+  #figure(
+    caption: [Diagramma della feature Admin],
+  )[
+    #align(center)[
+      #image("assets/03-admin.svg")
+    ]
+  ]
+
   = Feature: Alerts
 
   La gestione degli alert consente di configurare e consultare gli alert di gateway offline.
@@ -1319,6 +1325,14 @@
     )
   ]
 
+  #figure(
+    caption: [Diagramma della feature Alerts],
+  )[
+    #align(center)[
+      #image("assets/04-alerts.svg")
+    ]
+  ]
+
   = Feature: Sensors
 
   == SensorListPageComponent
@@ -1360,6 +1374,14 @@
       [`(id: string, refreshMs = 10000): Observable<Sensor[]>`],
       [Polling/fetch sensori filtrati per gateway],
     )
+  ]
+
+  #figure(
+    caption: [Diagramma della feature Sensors],
+  )[
+    #align(center)[
+      #image("assets/06-sensors.svg")
+    ]
   ]
 
   = Feature: Management (Tenant Admin)
@@ -1474,6 +1496,14 @@
     )
   ]
 
+  #figure(
+    caption: [Diagramma della feature Management],
+  )[
+    #align(center)[
+      #image("assets/02-management.svg")
+    ]
+  ]
+
   = Componenti shared
 
   I componenti shared sono riutilizzati trasversalmente nell'applicazione.
@@ -1506,9 +1536,6 @@
       [Modale di conferma cancellazione con titolo e messaggio personalizzabili. Bottone confirm (pericolo, rosso) e
         cancel (ghost). Stato busy durante l'operazione.],
 
-      [ImpersonationBannerComponent],
-      [Banner condizionale visualizzato durante l'impersonazione. Mostra ID utente target (fallback: "unknown").],
-
       [ImpersonationTagComponent], [Tag statico "OBFUSCATED MODE" visualizzato in contesti di dati offuscati.],
 
       [ProfileSectionComponent],
@@ -1516,10 +1543,6 @@
         password".],
 
       [LogoutButtonComponent], [Bottone logout che emette evento click. Delega il logout ad AuthService.],
-
-      [PlaceholderPageComponent],
-      [Pagina scaffold generica per feature in sviluppo. Legge il titolo dai `data['title']` della rotta, con fallback a
-        "NoTIP".],
     )
   ]
 
@@ -1527,7 +1550,7 @@
     caption: [Diagramma dei componenti shared],
   )[
     #align(center)[
-      #image("./assets/10-shared-components.svg", width: 115%)
+      #image("./assets/10-shared-components.svg")
     ]
   ]
 
