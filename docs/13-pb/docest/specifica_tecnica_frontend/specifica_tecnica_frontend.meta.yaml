@@ -1,5 +1,12 @@
 title: Specifica tecnica - Frontend WebApp
 changelog:
+  - version: "1.1.0"
+    date: "2026-04-17"
+    authors:
+      - Leonardo Preo
+    verifier: TBD
+    description: >
+      Aggiustamenti post meeting con Prof. Cardin: modifica descrizione architettura
   - version: "1.0.0"
     date: "2026-04-13"
     approver: Leonardo Preo

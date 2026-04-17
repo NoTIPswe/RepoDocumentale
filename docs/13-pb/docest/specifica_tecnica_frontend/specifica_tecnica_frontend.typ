@@ -93,13 +93,28 @@
 
   = Architettura logica
 
-  L'applicazione adotta una *Layered Feature-Based Architecture* con componenti standalone Angular, senza NgModules. La
-  struttura è organizzata in tre layer orizzontali con responsabilità distinte e non sovrapposte — Core, Features e
-  Shared — combinati con una decomposizione verticale per dominio funzionale all'interno del layer Features. Le
-  dipendenze scorrono in direzione unidirezionale: Features e Shared dipendono da Core, mentre nessun layer dipende da
-  un layer superiore (Unidirectional Dependency Rule). Lo state management è basato su *segnali Angular* (signal(),
-  computed(), effect()) per lo stato locale dei componenti e dei servizi di feature, combinati con *RxJS* per la
-  gestione di flussi asincroni (SSE, HTTP) e la comunicazione inter-componente tramite Subject.
+  L’applicazione adotta un'architettura *Model-View* (nello specifico Model-View-ViewModel), tipica dell'ecosistema
+  Angular, implementata attraverso componenti standalone senza l'uso di NgModules. Questo paradigma architetturale
+  separa nettamente la logica di business dalla presentazione, assegnando responsabilità precise:
+  
+  - *Model:* Rappresenta i dati di dominio e la logica applicativa. È implementato attraverso i Service, le interfacce e
+    le classi. Il Model è responsabile della gestione dei flussi di dati asincroni e della comunicazione con il backend
+    (es. chiamate HTTP e connessioni SSE), avvalendosi in modo massiccio della libreria RxJS.
+  - *View:* Costituisce l'interfaccia utente (template HTML e fogli di stile CSS). È un layer puramente presentazionale,
+    reattivo e completamente disaccoppiato dalla logica complessa di recupero o manipolazione dei dati.
+  - *ViewModel / Controller:* I componenti standalone agiscono da ponte (intermediari) tra il Model e la View.
+    Interrogano i servizi per ottenere i dati e gestiscono lo stato locale avvalendosi dello state management basato sui
+    segnali di Angular (signal(), computed(), effect()). Questo permette di esporre alla View uno stato reattivo
+    facilmente consumabile e di gestire l'interazione dell'utente (Subject e comunicazioni inter-componente).
+
+  A livello organizzativo e di file system, l'applicazione supporta questa architettura Model-View suddividendo il
+  codice in tre aree orizzontali principali (Core, Features e Shared). Questo garantisce che la logica di business
+  (Model, contenuta soprattutto nel Core e nei servizi Feature) sia ben isolata dalla presentazione, mantenendo
+  dipendenze unidirezionali e impedendo che la View conosca i dettagli di implementazione dei dati.
+
+  Lo state management è basato su *segnali Angular* (signal(), computed(), effect()) per lo stato locale dei componenti
+  e dei servizi di feature, combinati con *RxJS* per la gestione di flussi asincroni (SSE, HTTP) e la comunicazione
+  inter-componente tramite Subject.
 
   == Layout delle cartelle
 

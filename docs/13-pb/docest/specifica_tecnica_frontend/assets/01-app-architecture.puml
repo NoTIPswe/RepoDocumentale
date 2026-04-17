@@ -1,4 +1,5 @@
 @startuml
+top to bottom direction
 title NOTIP Frontend - Application Architecture
 
 skinparam backgroundColor #FFFFFF
