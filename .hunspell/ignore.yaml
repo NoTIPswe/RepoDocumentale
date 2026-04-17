@@ -875,6 +875,8 @@ accepted_words:
   - committata
   - ErrorPageComponent
   - anomalyCommandBuffer
+  - lastSeen
+  - ctx
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori

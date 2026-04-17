@@ -30,7 +30,7 @@
   successive senza ulteriori branch.
 
   #table(
-    columns: (2fr, 2.2fr, 1.2fr, auto),
+    columns: (2fr, 2.3fr, 1fr, auto),
     [Campo], [Variabile d'ambiente], [Default], [Obbligatorio],
     [`NATSUrl`], [`NATS_URL`], [—], [Sì],
     [`NATSTlsCa`], [`NATS_TLS_CA`], [—], [Sì],
@@ -240,16 +240,6 @@
   )
 
   #st.port-interface(
-    name: "ClockProvider",
-    kind: "driven",
-    description: [Astrazione del clock di sistema. Consente l'iniezione di un clock deterministico nei test, eliminando
-      la dipendenza diretta da `time.Now()` nella logica di dominio e di servizio.],
-    methods: (
-      ("Now", [Restituisce il timestamp corrente]),
-    ),
-  )
-
-  #st.port-interface(
     name: "GatewayLifecycleProvider",
     kind: "driven",
     description: [Interrogato da `HeartbeatTracker.Tick` immediatamente prima di emettere un alert offline,
@@ -258,6 +248,16 @@
       raggiungibile.],
     methods: (
       ("GetGatewayLifecycle", [Restituisce lo stato amministrativo corrente di un gateway]),
+    ),
+  )
+
+  #st.port-interface(
+    name: "ClockProvider",
+    kind: "driven",
+    description: [Astrazione del clock di sistema. Consente l'iniezione di un clock deterministico nei test, eliminando
+      la dipendenza diretta da `time.Now()` nella logica di dominio e di servizio.],
+    methods: (
+      ("Now", [Restituisce il timestamp corrente]),
     ),
   )
 
@@ -478,7 +478,8 @@
   Acquisisce write-lock. Cancella l'entry per `gatewayKey{tenantID, gatewayID}`. Aggiorna la metrica della dimensione
   della mappa. Nessun altro side effect.
 
-  *`Tick` — approccio a tre fasi*
+  *`Tick`* \
+  Approccio a tre fasi:
   + *Grace period check:* se `clock.Now()` è prima di `startTime + gracePeriod`, ritorna immediatamente.
   + *Fase 1 — RLock snapshot:* acquisisce read-lock, copia tutte le entry in uno slice locale (value copy), rilascia
     read-lock.
@@ -488,9 +489,11 @@
     update); in caso di errore procede _fail-open_ (logga `slog.Warn` e continua) per evitare di mascherare offline
     reali quando il Management API non è raggiungibile; pubblica alert via `alertPublisher.Publish`; esegue dispatch
     `Offline` via il canale asincrono.
-  + *Fase 3 — WLock con re-validazione:* acquisisce write-lock; rilegge l'entry reale dalla mappa; se `lastSeen` è
-    avanzato rispetto allo snapshot (telemetria arrivata durante la Fase 2), annulla la transizione. Altrimenti imposta
-    `knownStatus = Offline`.
+  + *Fase 3 — WLock*: acquisisce write-lock; rilegge l'entry reale dalla mappa; imposta `knownStatus = Offline`
+    incondizionatamente. La re-validazione su lastSeen è stata rimossa: confrontare con lo snapshot lasciava
+    `knownStatus = Online` mentre il sistema esterno era già stato notificato Offline, causando la mancata rilevazione
+    dell'evento offline successivo. Se una telemetria è arrivata durante la Fase 2, il prossimo `HandleTelemetry` rileva
+    la transizione`Offline→Online` e gestisce il recovery
 
   *`Close`*\
   Chiude `dispatchCh` (idempotente via `sync.Once`). Attende che `dispatchWorker` termini di drenare la coda e chiuda
@@ -635,7 +638,7 @@
   Dipende dall'interfaccia `alertConfigFetcher` (soddisfatta da `NATSRRClient`).
 
   #table(
-    columns: (1.5fr, 2fr, 2.5fr),
+    columns: (0.9fr, 2fr, 1.5fr),
     [Campo], [Tipo], [Note],
     [`snapshot`], [`atomic.Pointer[alertConfigSnapshot]`], [Sostituito atomicamente ad ogni refresh],
     [`rrClient`], [`alertConfigFetcher`], [Fetch configurazioni dal Management API],
@@ -644,10 +647,10 @@
     [`defaultTimeoutMs`], [`int64`], [Fallback in assenza di configurazione],
     [`refreshInterval`], [`time.Duration`], [Default: 2 minuti],
     [`maxRetries`], [`int`], [Default: 10; con backoff esponenziale],
-    [`initialBackoff`], [`time.Duration`], [Default: 1 s; configurabile via `ALERT_CONFIG_INITIAL_BACKOFF_MS`],
+    [`initialBackoff`], [`time.Duration`], [Default: 1 s; configurabile via \ `ALERT_CONFIG_INITIAL_BACKOFF_MS`],
     [`maxBackoff`],
     [`time.Duration`],
-    [Cap del backoff; configurabile via `ALERT_CONFIG_MAX_BACKOFF_MS` (default 30 s)],
+    [Cap del backoff; configurabile via \ `ALERT_CONFIG_MAX_BACKOFF_MS` (default 30 s)],
 
     [`wait`],
     [`func(ctx context.Context, d time.Duration) error`],
@@ -683,6 +686,10 @@
     [`fetchWithBackoff`],
     [`(ctx context.Context) error`],
     [Retry con backoff esponenziale; incrementa metrica ad ogni tentativo fallito],
+
+    [`snapshotCounts`],
+    [`() (int, int)`],
+    [Ritorna `(len(byGateway), len(byTenant));` usato per logging dopo ogni refresh riuscito],
   )
 
   *Snapshot interno `alertConfigSnapshot`* (immutabile dopo la costruzione):
@@ -732,15 +739,18 @@
 
     [`GetGatewayLifecycle`],
     [`(ctx context.Context, tenantID string, gatewayID string) (GatewayLifecycleState, error)`],
-    [Serializza `GatewayLifecycleRequest` in JSON, invia verso `internal.mgmt.gateway.get-status`; deserializza
-      `GatewayLifecycleResponse`; valida la risposta tramite `validateGatewayLifecycleResponse` (verifica che
+    [Serializza \ `GatewayLifecycleRequest` in JSON, invia verso `internal.mgmt.gateway.get-status`; deserializza
+      `GatewayLifecycleResponse`; valida la risposta tramite \ `validateGatewayLifecycleResponse` (verifica che
       `gateway_id` non sia vuoto, che corrisponda all'ID atteso, e che `state` sia uno dei valori ammessi); ritorna
       `LifecycleUnknown` + errore in caso di risposta non valida],
   )
 
   Ogni metodo delega a `requestWithRetry`: 1 tentativo iniziale più fino a `maxRetries` retry aggiuntivi (totale
   `maxRetries + 1` tentativi), timeout per-tentativo derivato da `timeout`, backoff esponenziale dalla slice `backoff`,
-  con verifica della cancellazione del context tra un tentativo e l'altro.
+  con verifica della cancellazione del context tra un tentativo e l'altro. Su ogni tentativo fallito (eccetto l'ultimo)
+  emette `slog.Warn` con subject, numero tentativo, delay ed errore. All'esaurimento ritorna un errore aggregato che
+  concatena tutti gli errori individuali separati da `"; "` nella forma `"exhausted retries (N): err1; err2; ..."`.
+
 
   === SystemClock
 
@@ -826,6 +836,15 @@
   + Dopo `WriteBatch`: ACK su successo; NAK con delay 5s per errori transitori; Term per errori permanenti di parsing
     (NATS non invia nuovamente).
 
+  *Interfaccia `natsJSSubscriber`:*
+
+  #table(
+    columns: (1fr, 3fr),
+    [Metodo], [Firma],
+    [`Subscribe`], [`(subj string, cb nats.MsgHandler, opts ...nats.SubOpt) (*nats.Subscription, error)`],
+  )
+
+
   #table(
     columns: (1.2fr, 1.8fr),
     [Campo], [Tipo],
@@ -872,6 +891,10 @@
 
     [`extractTenantID`], [`(subject string) (string, error)`], [Parsing del subject NATS],
     [`buildRow`], [`(tenantID string, envelope TelemetryEnvelope) TelemetryRow`], [Mapping envelope + tenantID → row],
+
+    [`enqueuePending`],
+    [`(ctx context.Context, pending chan<- pendingMsg, pm pendingMsg)`],
+    [Se ctx è cancellato prima dell'enqueue: Term per `permanentError`, `NakWithDelay(5s)` per errori transienti],
   )
 
   *Tipi interni:* `permanentError` — arricchisce un error per segnalare fallimenti non eseguibili nuovamente.

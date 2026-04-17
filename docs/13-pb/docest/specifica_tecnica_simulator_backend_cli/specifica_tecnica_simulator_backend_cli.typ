@@ -235,13 +235,11 @@
     manuale perché rispetta l'Open/Closed Principle: possiamo aggiungere nuovi tipi di sensori creando nuovi file, senza
     mai dover modificare il codice del motore di simulazione.
 
-  - *Gestione Ciclo di Vita (Observer Pattern):* Il coordinamento della terminazione dei gateway è affidato all'Observer
-    Pattern (DecommissionListener). Il problema era come notificare a più componenti (Worker, Database, Tickers) che un
-    gateway è stato rimosso dal cloud senza che il client NATS dovesse conoscere tutti i moduli del sistema. Un
-    approccio procedurale (chiamate dirette) avrebbe creato un accoppiamento stretto e fragile. L'Observer risolve
-    questo problema permettendo ai moduli di iscriversi all'evento di terminazione in modo indipendente. Questo
-    garantisce che il sistema sia facilmente estensibile: se in futuro si volesse aggiungere un nuovo modulo che
-    reagisce alla cancellazione, basterà registrarlo come Observer senza modificare il gestore dei messaggi.
+  - *Gestione Ciclo di Vita:* Il coordinamento della terminazione dei gateway è affidato all'`DecommissionListener`. Il
+    problema era come notificare a più componenti (Worker, Database, Tickers) che un gateway è stato rimosso dal cloud
+    senza che il client NATS dovesse conoscere tutti i moduli del sistema. Un approccio procedurale (chiamate dirette)
+    avrebbe creato un accoppiamento stretto e fragile. La realizzazione di interfacce dedicate risolve questo problema
+    permettendo ai moduli di iscriversi all'evento di terminazione in modo indipendente.
 
   - *Protezione del Materiale Crittografico (Value Object Pattern):* La chiave crittografica viene incapsulata in
     un’entità immutabile (`EncryptionKey`) che ne impedisce l'accesso diretto ai byte. Il problema era evitare la fuga
@@ -360,7 +358,11 @@
       columns: (1fr, 3fr),
       [ *Rotta* ], [ `POST /sim/gateways` ],
       [ *Descrizione* ], [ Crea un gateway locale, esegue l'onboarding crittografico con il Cloud e avvia il worker. ],
-      [ *Body Request* ], [ `{"factoryId": "...", "factoryKey": "...", "model": "...", "sendFrequencyMs": 5000}` ],
+      [ *Body Request* ],
+      [
+        `{"factoryId": "...", "factoryKey": "...", "model": "...", "firmwareVersion": "...", "sendFrequencyMs": 5000}`
+      ],
+
       [ *Response* ], [ `GatewayResponse` JSON. HTTP 201 Created. ],
     ),
   )
@@ -371,7 +373,11 @@
       columns: (1fr, 3fr),
       [ *Rotta* ], [ `POST /sim/gateways/bulk` ],
       [ *Descrizione* ], [ Creazione massiva di N gateway. Utile per test di carico. ],
-      [ *Body Request* ], [ `{"baseFactoryIds": "sim-", "factoryKey": "...", "model": "..."}` ],
+      [ *Body Request* ],
+      [
+        `{"factoryIds": ["sim-001", "sim-002", ...], "factoryKey": "...", "model": "...", "firmwareVersion": "...", "sendFrequencyMs": 5000}`
+      ],
+
       [ *Response* ],
       [
         Oggetto JSON contenente gli array `gateways` ed `errors`. HTTP 201 Created in caso di successo totale; HTTP 207
@@ -380,9 +386,8 @@
     ),
   )
 
-  _Nota: L'operazione di creazione massiva è limitata internamente a un massimo di 10 esecuzioni concorrenti
-  (`bulkCreateConcurrency = 10`) tramite semaforo a canale, per prevenire l'esaurimento dei socket e del rate-limiting
-  verso il Provisioning Service Cloud._
+  _Nota: L'operazione di creazione massiva è limitata internamente a un massimo di 10 esecuzioni concorrenti tramite
+  semaforo a canale, per prevenire l'esaurimento delle risorse._
 
   #figure(
     caption: [Endpoint GET /sim/gateways],
@@ -673,8 +678,8 @@
     ricevuto dal subject NATS corrisponda esattamente a quello salvato localmente per il gateway bersaglio; in caso di
     mismatch, l'evento viene ignorato loggando un warning (slog.Warn).
   4. Il `GatewayRegistry`, che implementa tale interfaccia, riceve la chiamata. Acquisisce un lock di scrittura
-    (`RWMutex`), cerca il worker corrispondente, lo arresta inviando un segnale al `context.CancelFunc` e disconnette il
-    suo socket NATS.
+    (`RWMutex`), cerca il worker corrispondente, lo arresta inviando un segnale al `context.CancelFunc` e lo disconnette
+    da NATS.
   5. I dati persistenti vengono eliminati dallo `Store` locale in SQLite in via definitiva.
 
   ==== Flusso di Buffering e Flush dei Comandi durante Anomalia
@@ -1043,7 +1048,7 @@
     table(
       columns: (1.2fr, 0.8fr, 2fr, 0.6fr, 1.2fr),
       [ *Campo* ], [ *Tipo* ], [ *Tag JSON* ], [ *Req.* ], [ *Note* ],
-      [ `FactoryIDs` ], [ `[]string` ], [ `factoryId` ], [ Sì ], [ ],
+      [ `FactoryIDs` ], [ `[]string` ], [ `factoryIds` ], [ Sì ], [ ],
       [ `FactoryKey` ], [ `string` ], [ `factoryKey` ], [ Sì ], [ ],
       [ `Model` ], [ `string` ], [ `model,omitempty` ], [ No ], [ ],
       [ `FirmwareVersion` ], [ `string` ], [ `firmwareVersion,omitempty` ], [ No ], [ ],
@@ -1280,8 +1285,8 @@
 
       [ `gateways bulk` ],
       [
-        `--count` int default 1 (req.), `--factory-id` (req.), `--factory-key` (req.), `--model` (req.), `--firmware`
-        (req.), `--freq` int default 1000 (req.).
+        `--factory-id` (req., ripetibile — un'occorrenza per gateway), `--factory-key` (req.), `--model` (req.),
+        `--firmware` (req.), `--freq` int default 1000 (req.).
       ],
       [
         HTTP 207 (parziale) non è un errore a livello comando: viene mostrato uno stato `Warning` con il conteggio dei
@@ -1531,10 +1536,11 @@
     [Il comando letto dal line-editor viene eseguito correttamente da Cobra],
 
     [`shell` — fallback a reader classico se line-editor non disponibile],
-    [Se il costruttore del line-editor fallisce, la shell passa automaticamente alla modalità `bufio.Scanner`],
+    [Se `MakeRaw` fallisce (modalità raw non disponibile), `runShellWithLineEditor` restituisce un errore e la shell
+      passa automaticamente alla modalità `bufio.Reader`],
 
-    [`shell` — copertura hook di default (`DefaultHooks`)],
-    [La funzione `DefaultHooks` restituisce i callback `BeforeCommand` e `AfterCommand` senza errori],
+    [`shell` — copertura delle funzioni iniettabili di default],
+    [Le funzioni iniettabili di default (`shellStdout`, `shellNewEditor`) restituiscono valori non nil senza errori],
   )
 
   *Client HTTP e Costruzione Richieste (`internal/client`)*
@@ -1674,7 +1680,7 @@
     [Locale],
     [Se la slice dei sensori è vuota, la funzione di rendering non produce righe su stdout],
 
-    [Risoluzione UUID gateway (`GetGatewayUUID`)],
+    [Risoluzione UUID gateway (`gatewayUUID`)],
     [`httptest`],
     [Dato un identificativo numerico, il helper risolve e restituisce l'UUID corretto del gateway tramite GET],
   )
