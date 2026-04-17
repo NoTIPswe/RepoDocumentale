@@ -22,6 +22,7 @@ package "NOTIP Management API" <<Rectangle>> {
     class "AlertsController" as AlertsController
     class "AlertsService" as AlertsService
     class "AlertsPersistenceService" as AlertsPersistenceService
+    class "AlertsNatsService" as AlertsNatsService
     class "AlertConfigNatsResponderService" as AlertConfigNatsResponderService
     class "AlertsEntity" as AlertsEntity
     class "AlertsConfigEntity" as AlertsConfigEntity
@@ -53,10 +54,14 @@ package "NOTIP Management API" <<Rectangle>> {
   ' Alerts relationships
   AlertsController --> AlertsService
   AlertsService --> AlertsPersistenceService
+  AlertsService --> AlertsNatsService
   AlertsPersistenceService --> AlertsEntity
   AlertsPersistenceService --> AlertsConfigEntity
   AlertsConfigEntity --> TenantEntity
+  TenantEntity -[hidden]-> GatewayMetadataEntity 
   AlertsConfigEntity --> GatewayEntity
+  AlertsEntity --> TenantEntity
+  AlertsEntity --> GatewayEntity
 
   ' Command relationships
   CommandController --> CommandService
@@ -88,6 +93,7 @@ note top of AlertsModule
   Gateway offline detection
   Default and per-gateway timeouts
   NATS request-reply for configs
+  NATS JetStream consumer for alert events
 end note
 
 note top of CommandModule

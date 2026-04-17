@@ -1,0 +1,211 @@
+@startuml
+title NoTIP Frontend - Admin Architecture
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 10
+skinparam defaultFontColor #000000
+skinparam nodesep 8
+skinparam ranksep 8
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+left to right direction
+
+package "Admin" <<Rectangle>> {
+    class "TenantManagerPageComponent" as TenantManagerPage {
+      --
+      +tenants: Signal<Tenant[]>
+      +showCreateForm: Signal<boolean>
+      +isLoading: Signal<boolean>
+      +isSaving: Signal<boolean>
+      +editingTenantId: Signal<string | null>
+      +deletingTenantId: Signal<string | null>
+      +editingTenant: Computed<Tenant | null>
+      --
+      +ngOnInit(): void
+      +requestEdit(tenantId: string): void
+      +openCreateForm(): void
+      +requestDelete(tenantId: string): void
+      +cancelDelete(): void
+      +confirmDelete(): void
+      +saveTenant(payload: CreateTenantParameters): void
+      +cancelEdit(): void
+      -loadTenants(): void
+    }
+
+    class "TenantDetailPageComponent" as TenantDetailPage {
+      --
+      +tenant: Signal<Tenant | null>
+      +isLoading: Signal<boolean>
+      +activeTab: Signal<'users' | 'gateways'>
+      --
+      +ngOnInit(): void
+      +setActiveTab(tab: 'users' | 'gateways'): void
+      -loadTenant(id: string): void
+    }
+
+    class "AdminGatewayListPageComponent" as AdminGatewayListPage {
+      --
+      +tenantId: InputSignal<string>
+      +gateways: Signal<ObfuscatedGateway[]>
+      +isLoading: Signal<boolean>
+      +showCreateForm: Signal<boolean>
+      +isSaving: Signal<boolean>
+      +editingGatewayId: Signal<string | null>
+      +deletingGatewayId: Signal<string | null>
+      +editingGateway: Computed<ObfuscatedGateway | null>
+      --
+      +ngOnInit(): void
+      +ngOnChanges(): void
+      +requestEdit(gatewayId: string): void
+      +openCreateForm(): void
+      +requestDelete(gatewayId: string): void
+      +cancelDelete(): void
+      +confirmDelete(): void
+      +saveGateway(payload: AddGatewayParameters): void
+      +cancelEdit(): void
+      -loadGateways(): void
+    }
+
+    class "TenantTableComponent" as TenantTable {
+      --
+      +tenants: InputSignal<Tenant[]>
+      --
+      +editRequest: OutputEmitterRef<string>
+      +deleteRequest: OutputEmitterRef<string>
+      +getStatusBadgeClass(status: string): string
+    }
+
+    class "TenantFormComponent" as TenantForm {
+      --
+      +tenant: InputSignal<Tenant | null>
+      +isSubmitting: InputSignal<boolean>
+      --
+      +save: OutputEmitterRef<CreateTenantParameters>
+      +cancel: OutputEmitterRef<void>
+      +onSubmit(): void
+    }
+
+    class "TenantUserListComponent" as TenantUserList {
+      --
+      +tenantId: InputSignal<string>
+      +users: Signal<ViewUser[]>
+      +isLoading: Signal<boolean>
+      --
+      +ngOnInit(): void
+      +ngOnChanges(): void
+      -loadUsers(): void
+    }
+
+    class "ImpersonateButtonComponent" as ImpersonateButton {
+      --
+      +targetUserId: InputSignal<string>
+      +disabled: InputSignal<boolean>
+      +isImpersonating: Computed<boolean>
+      +isActionLoading: Signal<boolean>
+      --
+      +onImpersonateClick(): void
+    }
+
+    class "AdminGatewayTableComponent" as AdminGatewayTable {
+      --
+      +gateways: InputSignal<ObfuscatedGateway[]>
+      +tenantId: InputSignal<string>
+      --
+      +editRequest: OutputEmitterRef<string>
+      +deleteRequest: OutputEmitterRef<string>
+      +getStatusBadgeClass(status: string): string
+    }
+
+    class "AdminGatewayFormComponent" as AdminGatewayForm {
+      --
+      +gateway: InputSignal<ObfuscatedGateway | null>
+      +isSubmitting: InputSignal<boolean>
+      --
+      +save: OutputEmitterRef<AddGatewayParameters>
+      +cancel: OutputEmitterRef<void>
+      +onSubmit(): void
+    }
+
+  package "Services" as Services {
+    class "TenantService" as TenantService {
+      --
+      -mgmtApi: AdminTenantsService
+      --
+      +getTenants(): Observable<Tenant[]>
+      +getTenant(id: string): Observable<Tenant>
+      +createTenant(payload: CreateTenantParameters): Observable<Tenant>
+      +updateTenant(id: string, payload: CreateTenantParameters): Observable<Tenant>
+      +deleteTenant(id: string): Observable<void>
+    }
+
+    class "AdminUserService" as AdminUserService {
+      --
+      -mgmtApi: AdminTenantsService
+      --
+      +getTenantUsers(tenantId: string): Observable<ViewUser[]>
+    }
+
+    class "AdminGatewayService" as AdminGatewayService {
+      --
+      -mgmtApi: AdminGatewaysService
+      --
+      +getGateways(tenantId: string): Observable<ObfuscatedGateway[]>
+      +addGateway(tenantId: string, payload: AddGatewayParameters): Observable<ObfuscatedGateway>
+      +updateGateway(gatewayId: string, payload: AddGatewayParameters): Observable<ObfuscatedGateway>
+      +deleteGateway(gatewayId: string): Observable<void>
+    }
+  }
+
+  ' Core external dependencies (Mocked for context)
+  class "AuthService (Core)" as AuthService
+
+  ' Relationships - Tenant Manager
+  TenantManagerPage --> TenantTable
+  TenantManagerPage --> TenantForm
+  TenantManagerPage --> TenantService
+
+  ' Relationships - Tenant Detail
+  TenantDetailPage --> TenantService
+  TenantDetailPage --> TenantUserList
+  TenantDetailPage --> AdminGatewayListPage
+
+  ' Relationships - Subcomponents of Detail
+  TenantUserList --> AdminUserService
+  TenantUserList --> ImpersonateButton
+  ImpersonateButton --> AuthService : Injects AuthService\nto trigger startImpersonation()
+
+  ' Relationships - Admin Gateways
+  AdminGatewayListPage --> AdminGatewayTable
+  AdminGatewayListPage --> AdminGatewayForm
+  AdminGatewayListPage --> AdminGatewayService
+}
+
+note top of TenantManagerPage
+  Entry point for System Admins.
+  Handles CRUD operations for Tenants.
+  Relies on computed 'editingTenant' to switch 
+  the TenantFormComponent mode.
+end note
+
+note right of TenantDetailPage
+  Displays specific Tenant details.
+  Manages UI state via tabs to show
+  either the list of Users or the
+  list of Admin Gateways assigned.
+end note
+
+note bottom of ImpersonateButton
+  Allows System Admins to impersonate
+  Tenant Users. Disables itself and shows
+  loading state while AuthService handles
+  the management-api PKCE exchange.
+end note
+
+note bottom of AdminGatewayListPage
+  Embedded page component used within
+  TenantDetail via InputSignal 'tenantId'.
+  Handles the creation, assignment, and 
+  deletion of gateways for a specific tenant.
+end note
+
+@enduml

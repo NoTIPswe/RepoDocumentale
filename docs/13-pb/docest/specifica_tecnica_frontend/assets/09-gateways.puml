@@ -1,5 +1,5 @@
 @startuml
-title NOTIP Frontend - Gateway Feature Architecture
+title NoTIP Frontend - Gateway Feature Architecture
 
 skinparam backgroundColor #FFFFFF
 skinparam defaultFontSize 10
@@ -7,6 +7,9 @@ skinparam defaultFontColor #000000
 skinparam nodesep 8
 skinparam ranksep 8
 skinparam linetype ortho
+skinparam classAttributeIconSize 0
+left to right direction
+
 
 package "Shared Components" <<Rectangle>> {
   class "DeleteConfirmModalComponent" as DeleteModal {
