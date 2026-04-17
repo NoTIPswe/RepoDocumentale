@@ -17,7 +17,8 @@
   CSR del gateway con la CA interna, genera una chiave AES-256 e completa il provisioning persistendo il materiale
   chiave nel dominio management.
 
-  Il servizio adotta un'architettura esagonale (Ports and Adapters) con il core di business logic isolato da interfacce (`ports`), implementate da adapter infrastrutturali. Questa architettura mantiene separati:
+  Il servizio adotta un'architettura esagonale (Ports and Adapters) con il core di business logic isolato da interfacce
+  (`ports`), implementate da adapter infrastrutturali. Questa architettura mantiene separati:
 
   - il core di business logic (`provisioning.service`, model di dominio);
   - i driving port / primary adapter (endpoint HTTP di onboarding e metriche);
@@ -80,10 +81,12 @@
   Il servizio applica il pattern esagonale con una chiara separazione tra core di dominio e infrastruttura:
 
   - il *core* contiene la business logic pura in `ProvisioningService` e i modelli di dominio senza dipendenze esterne;
-  - i *port* sono interfacce astratte (`OnboardGateway`, `FactoryValidator`, `CSRSigner`, `AESKeyGenerator`, `ProvisioningCompleter`) che definiscono i contratti tra il core e l'esterno;
+  - i *port* sono interfacce astratte (`OnboardGateway`, `FactoryValidator`, `CSRSigner`, `AESKeyGenerator`,
+    `ProvisioningCompleter`) che definiscono i contratti tra il core e l'esterno;
   - i *driving adapter* (lato cliente) includono il controller HTTP e gli interceptor di audit/metriche;
   - i *driven adapter* (lato fornitore) implementano i port per NATS, CA, crypto, e persistence su filesystem;
-  - le dipendenze alle framework e librerie esterne fluiscono *verso il core*, non dall'interno del core verso l'esterno.
+  - le dipendenze alle framework e librerie esterne fluiscono *verso il core*, non dall'interno del core verso
+    l'esterno.
 
   == Layout dei package
 
@@ -135,20 +138,28 @@
     [Componente], [Sotto-componenti], [Responsabilità],
 
     [*Core di business logic*],
-    [`ProvisioningService`, model di dominio (`ProvisioningRequest`, `ProvisioningResult`, `GatewayIdentity`, `AESKey`, ecc.)],
-    [Definisce le regole di business e orchestrazione del provisioning iniziale dei gateway. Indipendente da NestJS e librerie esterne (dipende solo da port).],
+    [`ProvisioningService`, model di dominio (`ProvisioningRequest`, `ProvisioningResult`, `GatewayIdentity`, `AESKey`,
+      ecc.)],
+    [Definisce le regole di business e orchestrazione del provisioning iniziale dei gateway. Indipendente da NestJS e
+      librerie esterne (dipende solo da port).],
 
     [*Port (Interfacce)*],
-    [`OnboardGateway`, `FactoryValidator`, `CSRSigner`, `AESKeyGenerator`, `ProvisioningCompleter`, `CARepository`, `CAProvider`],
-    [Contratti astratti tra il core e gli adapter esterni. Definiscono input/output attesi senza dettagli implementativi.],
+    [`OnboardGateway`, `FactoryValidator`, `CSRSigner`, `AESKeyGenerator`, `ProvisioningCompleter`, `CARepository`,
+      `CAProvider`],
+    [Contratti astratti tra il core e gli adapter esterni. Definiscono input/output attesi senza dettagli
+      implementativi.],
 
     [*Driving Adapter (Primary / Inbound)*],
-    [`ProvisioningController`, `OnboardRequestDto`, `OnboardResponseDto`, `ProvisioningExceptionFilter`, `AuditLogInterceptor`, `MetricsController`],
-    [Espongono i port del core verso il mondo esterno. Ricevono richieste HTTP e le convertono in chiamate al core. Convertono risposte del core in HTTP e registrano audit/metriche.],
+    [`ProvisioningController`, `OnboardRequestDto`, `OnboardResponseDto`, `ProvisioningExceptionFilter`,
+      `AuditLogInterceptor`, `MetricsController`],
+    [Espongono i port del core verso il mondo esterno. Ricevono richieste HTTP e le convertono in chiamate al core.
+      Convertono risposte del core in HTTP e registrano audit/metriche.],
 
     [*Driven Adapter (Secondary / Outbound)*],
-    [`NATSRRClient`, `NATSFactoryValidator`, `NATSProvisioningCompleter`, `ForgeCSRSignerService`, `AESKeyGeneratorService`, `CAFileStoreService`, `CAInitializerService`],
-    [Implementano i port del core per integrarsi con l'infrastruttura esterna (NATS, PKI, filesystem). Isolano il core dalle specifiche tecnologie.],
+    [`NATSRRClient`, `NATSFactoryValidator`, `NATSProvisioningCompleter`, `ForgeCSRSignerService`,
+      `AESKeyGeneratorService`, `CAFileStoreService`, `CAInitializerService`],
+    [Implementano i port del core per integrarsi con l'infrastruttura esterna (NATS, PKI, filesystem). Isolano il core
+      dalle specifiche tecnologie.],
 
     [*Configurazione e osservabilità*],
     [`ConfigModule`, `MetricsService`, `MetricsInterceptor`, `ProvisioningMetrics`],
