@@ -4,7 +4,7 @@ changelog:
     date: "2026-04-17"
     authors:
       - Alessandro Mazzariol
-    verifier: TBD
+    verifier: Leonardo Preo
     description: >
       Correzione immagini diagrammi
   - version: "1.0.0"
