@@ -22,8 +22,7 @@
       #grid(
         columns: (2fr, 3fr),
         gutter: 2em,
-        image("assets/db-per-service.png", width: 70%),
-        image("assets/cqrs-pattern.png", width: 100%),
+        image("assets/db-per-service.png", width: 70%), image("assets/cqrs-pattern.png", width: 100%),
       )
     ],
   )
@@ -40,8 +39,8 @@
       - API REST HTTP pubbliche (+ SSE)
     ],
     align(center + horizon)[
-        #image("assets/async-api.png")
-        #image("assets/http-rest-api.png")
+      #image("assets/async-api.png")
+      #image("assets/http-rest-api.png")
     ],
   )
 
@@ -116,9 +115,9 @@
       - *Strategy + Factory* per i gateway simulati
       - *Observer Pattern* per il decommissioning dei gateway
       *Scelte implementative*:
-        - concorrenza `1 goroutine = 1 gateway`
-        - Heartbeat tracking dei gateway e cache lock-free di configurazione
-        - Batch processing e buffering
+      - concorrenza `1 goroutine = 1 gateway`
+      - Heartbeat tracking dei gateway e cache lock-free di configurazione
+      - Batch processing e buffering
     ],
     align(center + horizon)[
       #figure[
@@ -135,10 +134,9 @@
       *Layered Feature-Based Architecture*
 
       _*Design patterns:*_ \
-        - *Interceptor Pattern* HTTP
+      - *Interceptor Pattern* HTTP
       _*Scelte implementative*:_ \
-        *RouteGuards* per protezione rotte
-        *State Management ibrido*: Signal Angular + RxJS
+      *RouteGuards* per protezione rotte *State Management ibrido*: Signal Angular + RxJS
     ],
     align(center + horizon)[
       #figure[
@@ -146,5 +144,5 @@
         #image("assets/GatewayDetailComponent.png")
       ]
     ],
-   )
+  )
 ]
