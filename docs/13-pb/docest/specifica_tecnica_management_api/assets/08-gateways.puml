@@ -17,8 +17,6 @@ skinparam interface {
   BackgroundColor #E8F4FD
   BorderColor #2196F3
 }
-skinparam nodesep 10
-skinparam ranksep 10
 skinparam linetype ortho
 skinparam packageStyle rectangle
 
@@ -38,8 +36,8 @@ package "gateways" <<Rectangle>> {
     +getAlertsForGateway(gatewayId): []
     +getGateways(input): GatewayModel[]
     +findById(input): GatewayModel
-    +findByIdUnscoped(gatewayId): GatewayModel
-    +findByFactoryId(factoryId): GatewayModel
+    +findByIdUnscoped(gatewayId): GatewayModel | null
+    +findByFactoryId(factoryId): GatewayModel | null
     +updateGateway(input): GatewayModel
     +deleteGateway(input): void
     +updateGatewayRuntimeStatus(gatewayId, status, lastSeenAt): boolean
@@ -49,12 +47,12 @@ package "gateways" <<Rectangle>> {
     -r: Repository<GatewayEntity>
     -metadataRepo: Repository<GatewayMetadataEntity>
     +getGateways(input): GatewayEntity[]
-    +findById(input): GatewayEntity
-    +findByIdUnscoped(gatewayId): GatewayEntity
-    +findByFactoryId(factoryId): GatewayEntity
-    +updateGatewayRuntimeStatus(input): GatewayEntity
-    +updateGateway(input): GatewayEntity
-    +deleteGateway(input): GatewayEntity
+    +findById(input): GatewayEntity | null
+    +findByIdUnscoped(gatewayId): GatewayEntity | null
+    +findByFactoryId(factoryId): GatewayEntity | null
+    +updateGatewayRuntimeStatus(input): GatewayEntity | null
+    +updateGateway(input): GatewayEntity | null
+    +deleteGateway(input): GatewayEntity | null
   }
 
   class "GatewayStatusNatsResponderService" as GatewayStatusNatsResponderService {
@@ -62,17 +60,29 @@ package "gateways" <<Rectangle>> {
     -logger: Logger
     -codec: JSONCodec
     -connection: NatsConnection
-    -subscription: Subscription
+    -subscriptions: Subscription[]
     +onModuleInit(): void
     +onModuleDestroy(): void
-    -consumeRequests(subscription): void
+    -consumeRequests(subscription, handler): void
     -handleUpdate(msg): GatewayStatusUpdateResponse
-    -decodeRecord(msg): Record
-    -normalizeStatus(value): GatewayStatus
-    -parseTimestamp(value): Date
+    -handleGetStatus(msg): GatewayGetStatusResponse
+    -decodeRecord(msg): Record | null
+    -readNonEmptyString(value, key): string | null
+    -normalizeStatus(value): GatewayStatus | null
+    -toLifecycleState(status): 'online' | 'offline' | 'paused' | 'provisioning'
+    -parseTimestamp(value): Date | null
+    -isNonEmptyString(value): boolean
     -resolveServers(): string[]
     -buildConnectionOptions(servers): ConnectionOptions
     -applyTlsOptions(options): boolean
+  }
+
+  class "GatewaysNatsService" as GatewaysNatsService {
+    -nats: JetStreamClient
+    -persistence: GatewaysPersistenceService
+    -logger: Logger
+    +onModuleInit(): void
+    -toLifecycleState(status): string
   }
 
   class "GatewaysListener" as GatewaysListener {
@@ -91,7 +101,7 @@ package "gateways" <<Rectangle>> {
     +id: string
     +name: string
     +status: GatewayStatus
-    +lastSeenAt: string
+    +lastSeenAt: string | null
     +provisioned: boolean
     +firmwareVersion?: string
     +sendFrequencyMs: number
@@ -112,7 +122,7 @@ package "gateways" <<Rectangle>> {
     +id: string
     +name: string
     +status: GatewayStatus
-    +lastSeenAt: Date
+    +lastSeenAt: Date | null
     +sendFrequencyMs: number
     +factoryKey: string
     +factoryId: string
@@ -121,7 +131,7 @@ package "gateways" <<Rectangle>> {
     +model: string
     +tenantId: string
     +provisioned: boolean
-    +updatedAt: Date
+    +updatedAt?: Date
   }
 
   class "GatewayEntity" as GatewayEntity {
@@ -129,7 +139,7 @@ package "gateways" <<Rectangle>> {
     +tenantId: string
     +tenant: TenantEntity
     +factoryId: string
-    +factoryKeyHash: string
+    +factoryKeyHash: string | null
     +provisioned: boolean
     +model: string
     +firmwareVersion: string
@@ -140,9 +150,9 @@ package "gateways" <<Rectangle>> {
 
   class "GatewayMetadataEntity" as GatewayMetadataEntity {
     +gatewayId: string
-    +name: string
+    +name: string | null
     +status: GatewayStatus
-    +lastSeenAt: Date
+    +lastSeenAt: Date | null
     +sendFrequencyMs: number
     +gateway: GatewayEntity
   }
@@ -178,26 +188,63 @@ package "gateways" <<Rectangle>> {
     +gatewayId: string
   }
 
+  interface "GetGatewaysPersistenceInput" as GetGatewaysPersistenceInput {
+    +tenantId: string
+  }
+
+  interface "GetGatewayByIdPersistenceInput" as GetGatewayByIdPersistenceInput {
+    +tenantId: string
+    +gatewayId: string
+  }
+
+  interface "UpdateGatewayPersistenceInput" as UpdateGatewayPersistenceInput {
+    +tenantId: string
+    +gatewayId: string
+    +name?: string
+  }
+
+  interface "DeleteGatewayPersistenceInput" as DeleteGatewayPersistenceInput {
+    +tenantId: string
+    +gatewayId: string
+  }
+
   class "TenantEntity" as TenantEntity
   class "EventEmitter2" as EventEmitter2
   class "JetStreamClient" as JetStreamClient
 
   GatewaysController --> GatewaysService : uses
   GatewaysController --> GatewaysMapper : maps to DTO
+  GatewaysController ..> GetGatewaysInput
+  GatewaysController ..> GetGatewayByIdInput
+  GatewaysController ..> UpdateGatewayInput
+  GatewaysController ..> DeleteGatewayInput
+  GatewaysController ..> GatewayResponseDto
+  GatewaysController ..> UpdateGatewayResponseDto
 
   GatewaysService --> GatewaysPersistenceService : uses
   GatewaysService --> GatewayModel : returns
   GatewaysService --> EventEmitter2 : emits events
   GatewaysService ..> GetGatewaysInput : receives
+  GatewaysService ..> GetGatewayByIdInput : receives
   GatewaysService ..> UpdateGatewayInput : receives
+  GatewaysService ..> DeleteGatewayInput : receives
+  GatewaysService ..> GetGatewaysPersistenceInput : builds
+  GatewaysService ..> GetGatewayByIdPersistenceInput : builds
+  GatewaysService ..> UpdateGatewayPersistenceInput : builds
+  GatewaysService ..> DeleteGatewayPersistenceInput : builds
 
   GatewaysPersistenceService --> GatewayEntity : CRUD
   GatewaysPersistenceService --> GatewayMetadataEntity : CRUD
   GatewaysPersistenceService --> DefaultFreq : uses constant
+  GatewaysPersistenceService ..> GetGatewaysPersistenceInput
+  GatewaysPersistenceService ..> GetGatewayByIdPersistenceInput
+  GatewaysPersistenceService ..> UpdateGatewayPersistenceInput
+  GatewaysPersistenceService ..> DeleteGatewayPersistenceInput
 
-  GatewayStatusNatsResponderService --> GatewaysService : updates status
-
-  GatewaysListener --> JetStreamClient : publishes events
+  GatewayStatusNatsResponderService --> GatewaysService : updates status / reads status
+  GatewaysNatsService --> JetStreamClient : subscribes core subjects
+  GatewaysNatsService --> GatewaysPersistenceService : updates / validates / reads
+  GatewaysListener --> JetStreamClient : publishes decommission event
 
   GatewaysMapper --> GatewayEntity : from
   GatewaysMapper --> GatewayModel : to
@@ -207,6 +254,9 @@ package "gateways" <<Rectangle>> {
   GatewayEntity --> TenantEntity : ManyToOne (CASCADE)
   GatewayEntity --> GatewayMetadataEntity : OneToOne (cascade)
   GatewayMetadataEntity --> GatewayStatus : enum
+  GatewayModel --> GatewayStatus
+  GatewayResponseDto --> GatewayStatus
+  UpdateGatewayResponseDto --> GatewayStatus
 }
 
 note top of GatewaysController
@@ -232,15 +282,25 @@ note top of GatewaysPersistenceService
   - Filters by tenantId
   - Joins with metadata relation
   - Auto-creates metadata if missing
-  - Excludes factoryKeyHash by default
+  - factoryKeyHash is excluded by default unless explicitly selected
 end note
 
 note top of GatewayStatusNatsResponderService
   Direct NATS responder
   - Conditional on MOCK_NATS env
   - Full TLS/mTLS support
-  - Updates gateway runtime status
+  - Handles:
+    * internal.mgmt.gateway.update-status
+    * internal.mgmt.gateway.get-status
   - Normalizes status strings
+end note
+
+note top of GatewaysNatsService
+  Internal Core NATS listeners
+  - internal.mgmt.gateway.update-status
+  - internal.mgmt.factory.validate
+  - internal.mgmt.gateway.get-status
+  - Validates factory credentials with bcrypt
 end note
 
 note top of GatewaysListener
@@ -248,7 +308,7 @@ note top of GatewaysListener
   - @OnEvent('gateway.decommissioned')
   - Publishes to NATS:
     gateway.decommissioned.{tenantId}.{gatewayId}
-  - Bridges EventEmitter2 to NATS
+  - Payload contains gatewayId and timestamp
 end note
 
 @enduml

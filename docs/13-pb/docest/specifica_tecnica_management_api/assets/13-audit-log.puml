@@ -13,8 +13,6 @@ skinparam interface {
   BackgroundColor #E8F4FD
   BorderColor #2196F3
 }
-skinparam nodesep 10
-skinparam ranksep 10
 skinparam linetype ortho
 skinparam packageStyle rectangle
 
@@ -43,13 +41,13 @@ package "audit-log" <<Rectangle>> {
     -logger: Logger
     +onModuleInit(): void
     -processMessage(message): void
-    -parsePayload(buffer): AuditPayload
-    -resolveTenantId(subject, details): string
-    -extractTenantFromSubject(subject): string
+    -parsePayload(buffer): AuditPayload | null
+    -resolveTenantId(subject, details): string | undefined
+    -extractTenantFromSubject(subject): string | undefined
     -resolveUserId(value): string
-    -parseTimestamp(value): Date
-    -toDetailsObject(value, subject): Record
-    -asNonEmptyString(value): string
+    -parseTimestamp(value): Date | undefined
+    -toDetailsObject(value, subject): Record<string, unknown>
+    -asNonEmptyString(value): string | undefined
     -isUuid(value): boolean
   }
 
@@ -94,11 +92,23 @@ package "audit-log" <<Rectangle>> {
     {static} value: 'log.audit.>'
   }
 
+  class "PROVISIONING_AUDIT_STREAM" as ProvisioningStream {
+    {static} value: 'AUDIT_LOG'
+  }
+
   class "SYSTEM_USER_ID" as SystemUserId {
     {static} value: '00000000-0000-0000-0000-000000000000'
   }
 
   interface "GetAuditLogsInput" as GetAuditLogsInput {
+    +tenantId: string
+    +from: Date
+    +to: Date
+    +userId?: string
+    +action?: string
+  }
+
+  interface "GetAuditLogsPersistenceInput" as GetAuditLogsPersistenceInput {
     +tenantId: string
     +from: Date
     +to: Date
@@ -117,20 +127,25 @@ package "audit-log" <<Rectangle>> {
   class "TenantEntity" as TenantEntity
   class "JetStreamClient" as JetStreamClient
 
-  AuditLogController --> AuditLogService : uses
+  AuditLogController -right-> AuditLogService : uses
   AuditLogController --> AuditLogMapper : maps to DTO
-  AuditLogController --> AuditLogResponseDto : returns
+  AuditLogController ..> AuditLogResponseDto : returns
+  AuditLogController ..> GetAuditLogsInput : builds
 
   AuditLogService --> AuditLogPersistenceService : uses
   AuditLogService --> AuditLogModel : returns
   AuditLogService ..> GetAuditLogsInput : receives
+  AuditLogService ..> GetAuditLogsPersistenceInput : builds
 
   AuditLogPersistenceService --> AuditLogEntity : CRUD
+  AuditLogPersistenceService ..> GetAuditLogsPersistenceInput : receives
 
   ProvisioningAuditConsumer --> JetStreamClient : subscribes
   ProvisioningAuditConsumer --> AuditLogService : logs events
   ProvisioningAuditConsumer --> ProvisioningSubject : constant
+  ProvisioningAuditConsumer --> ProvisioningStream : constant
   ProvisioningAuditConsumer --> SystemUserId : constant
+  ProvisioningAuditConsumer ..> AuditPayload : parses
 
   AuditLogMapper --> AuditLogEntity : from
   AuditLogMapper --> AuditLogModel : to
@@ -147,15 +162,15 @@ note top of AuditLogController
   Required params: tenantId, from, to
   Optional: userId, action
 
-  Obfuscation: If impersonating
+  Obfuscation: if impersonating
   and action='UPDATE_GATEWAY',
-  obfuscates name in details
+  obfuscates name fields in details
 end note
 
 note top of AuditLogService
   Service layer with dual purpose:
-  1. Read audit logs (query builder)
-  2. Log audit events (programmatic)
+  1. Read audit logs
+  2. Log audit events programmatically
 
   Used by @Audit() decorator
   via AuditInterceptor
@@ -167,17 +182,19 @@ note top of AuditLogPersistenceService
     * Mandatory: tenantId, from, to
     * Optional: userId, action
   - Ordering: timestamp DESC, id DESC
-  - Deterministic ordering for pagination
+  - Deterministic ordering for API consumers
 end note
 
 note top of ProvisioningAuditConsumer
   JetStream consumer
   - Subject: log.audit.>
+  - Stream: AUDIT_LOG
   - Listens to provisioning audit events
   - Extracts tenant ID from subject or details
   - Falls back to SYSTEM_USER_ID for userId
   - Validates UUID format
-  - Does NOT ack on error (allows redelivery)
+  - Acks invalid payloads
+  - Does NOT ack on persistence error
 end note
 
 note top of AuditLogMapper

@@ -13,8 +13,6 @@ skinparam interface {
   BackgroundColor #E8F4FD
   BorderColor #2196F3
 }
-skinparam nodesep 10
-skinparam ranksep 10
 skinparam linetype ortho
 skinparam packageStyle rectangle
 
@@ -58,12 +56,23 @@ package "keys" <<Rectangle>> {
     -startResponder(subject, handler): void
     -handleValidate(msg): ValidateFactoryResponse
     -handleComplete(msg): CompleteProvisioningResponse
-    -decodeRecord(msg): Record
+    -decodeRecord(msg): Record | null
     -internalErrorResponse(subject): unknown
+    -isNonEmptyString(value): boolean
+    -isFiniteNumber(value): boolean
+    -isOptionalString(value): boolean
     -resolveServers(): string[]
     -buildConnectionOptions(servers): ConnectionOptions
     -applyTlsOptions(options): boolean
     -closeConnection(): void
+  }
+
+  class "KeysNatsService" as KeysNatsService {
+    -nats: JetStreamClient
+    -keysService: KeysService
+    -logger: Logger
+    +onModuleInit(): void
+    -parseProvisioningCompletePayload(raw): ProvisioningCompletePayload
   }
 
   class "KeyMapper" as KeyMapper {
@@ -105,7 +114,7 @@ package "keys" <<Rectangle>> {
     +keyMaterial: Buffer
     +keyVersion: number
     +createdAt: Date
-    +revokedAt: Date
+    +revokedAt: Date | null
   }
 
   class "KeyEntity" as KeyEntity {
@@ -115,7 +124,7 @@ package "keys" <<Rectangle>> {
     +keyMaterial: Buffer
     +keyVersion: number
     +createdAt: Date
-    +revokedAt: Date
+    +revokedAt: Date | null
   }
 
   class "Encryption Module" as EncryptionModule {
@@ -133,6 +142,7 @@ package "keys" <<Rectangle>> {
   class "GatewayEntity" as GatewayEntity
   class "GatewaysService" as GatewaysService
   class "DataSource" as DataSource
+  class "JetStreamClient" as JetStreamClient
 
   KeysController --> KeysService : uses
   KeysController --> KeyMapper : maps to DTO
@@ -141,6 +151,8 @@ package "keys" <<Rectangle>> {
   ProvisioningController --> KeysService : uses
   ProvisioningController --> ValidateFactoryKeyResponseDto : returns
   ProvisioningController --> ProvisioningCompleteResponseDto : returns
+  ProvisioningController --> ProvisioningCompleteRequestDto : receives
+  ProvisioningController --> ValidateFactoryKeyRequestDto
 
   KeysService --> GatewaysKeysPersistenceService : uses
   KeysService --> GatewaysService : validates gateway
@@ -150,6 +162,8 @@ package "keys" <<Rectangle>> {
   GatewaysKeysPersistenceService --> KeyEntity : CRUD
 
   ProvisioningNatsResponderService --> KeysService : calls methods
+  KeysNatsService --> JetStreamClient : subscribes core subjects
+  KeysNatsService --> KeysService : completes provisioning
 
   KeyMapper --> KeyEntity : from
   KeyMapper --> KeyModel : to
@@ -171,19 +185,17 @@ note top of ProvisioningController
   @Controller('internal/provisioning')
   @Public()
   Endpoints:
-  - POST /validate (factory key)
-  - POST /complete (provisioning)
+  - POST /validate
+  - POST /complete
 end note
 
 note top of KeysService
   Business logic layer
   - Gateway key management
-  - Factory key validation (bcrypt)
-  - Provisioning with transactions:
-    1. Creates KeyEntity
-    2. Upserts GatewayMetadataEntity
-    3. Updates GatewayEntity
-    4. Clears factoryKeyHash
+  - Factory key validation with bcrypt
+  - Provisioning with transactions
+  - Checks tenant ownership for key lookup
+  - Clears factoryKeyHash after provisioning
 end note
 
 note top of ProvisioningNatsResponderService
@@ -192,7 +204,14 @@ note top of ProvisioningNatsResponderService
     * internal.mgmt.factory.validate
     * internal.mgmt.provisioning.complete
   - Full TLS/mTLS support
-  - Maps exceptions to protocol errors
+  - Maps HTTP exceptions to protocol responses
+end note
+
+note top of KeysNatsService
+  Internal Core NATS listener
+  - Subject:
+    * internal.mgmt.provisioning.complete
+  - Validates payload shape before completing provisioning
 end note
 
 note top of EncryptionModule

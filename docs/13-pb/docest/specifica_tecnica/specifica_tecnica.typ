@@ -183,7 +183,7 @@
     [Libreria], [Versione], [Descrizione],
 
     [#link("https://www.npmjs.com/package/@notip/crypto-sdk?activeTab=readme")[\@notip/crypto-sdk]],
-    [2.0.1],
+    [2.0.2],
     [Pacchetto npm interno che incapsula la logica di decifratura client-side della telemetria NoTIP. Importato dalla
       Web Application e utilizzabile da API client esterni. Distribuito in formato ESM e CJS con dichiarazioni
       TypeScript incluse.],
@@ -743,7 +743,7 @@
 
   Il `@notip/crypto-sdk` è una libreria TypeScript pubblicata come pacchetto npm (#link(
     "https://www.npmjs.com/package/@notip/crypto-sdk?activeTab=readme",
-  )[`@notip/crypto-sdk`, versione 2.0.1] _Ultimo Accesso: 2026-04-13_) che incapsula l'intera logica di decifratura
+  )[`@notip/crypto-sdk`, versione 2.0.2] _Ultimo Accesso: 2026-04-11_) che incapsula l'intera logica di decifratura
   client-side della telemetria NoTIP. A differenza degli altri componenti del sistema, non è un microservizio ma una
   libreria riutilizzabile: viene importata dalla Web Application e può essere integrata da qualsiasi API client esterno
   che necessiti di accedere ai dati telemetrici in chiaro.

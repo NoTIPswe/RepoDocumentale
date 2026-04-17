@@ -1330,24 +1330,6 @@ tests:
     requirements:
       - richiesta_dati_streaming
     status: passed
-  - id: t_u_crypto_sdk_mgmt_client_get_all_keys
-    service: Crypto SDK
-    description: Verificare che ManagementApiClient.getAllKeys restituisca un array di KeyDTO con header Authorization presente
-    requirements:
-      - sicurezza_cifratura_dati
-    status: passed
-  - id: t_u_crypto_sdk_mgmt_client_get_all_keys_http_error
-    service: Crypto SDK
-    description: Verificare che ManagementApiClient.getAllKeys lanci ApiError in caso di risposta HTTP non-ok
-    requirements:
-      - sicurezza_cifratura_dati
-    status: passed
-  - id: t_u_crypto_sdk_mgmt_client_get_all_keys_invalid_dto
-    service: Crypto SDK
-    description: Verificare che ManagementApiClient.getAllKeys lanci ValidationError in caso di DTO non valido
-    requirements:
-      - sicurezza_cifratura_dati
-    status: passed
   - id: t_u_crypto_sdk_mgmt_client_get_gateway_key_found
     service: Crypto SDK
     description: Verificare che ManagementApiClient.getGatewayKey restituisca il KeyDTO corretto con URL contenente il query param id
@@ -1363,12 +1345,6 @@ tests:
   - id: t_u_crypto_sdk_mgmt_client_async_token
     service: Crypto SDK
     description: Verificare che ManagementApiClient.getGatewayKey risolva correttamente un token provider asincrono e lo inserisca nell'header Authorization
-    requirements:
-      - sicurezza_cifratura_dati
-    status: passed
-  - id: t_u_crypto_sdk_mgmt_service_get_keys_model
-    service: Crypto SDK
-    description: Verificare che ManagementApiService.getKeysModel mappi correttamente i campi DTO da snake_case a camelCase
     requirements:
       - sicurezza_cifratura_dati
     status: passed

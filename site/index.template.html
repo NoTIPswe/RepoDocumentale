@@ -1,113 +1,122 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NoTIP Group Project Documentation</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-  </head>
-  <body>
-    <header>
-      <div class="logo">
-        <h2>NoTIP Docs</h2>
-      </div>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="aboutus.html">About</a>
-      </nav>
-    </header>
-    <section class="hero">
-      <div class="hero-content">
-        <h1>NoTIP</h1>
-        <div>
-          <span class="typed-text"></span
-          ><span class="cursor blink">&nbsp;</span>
-        </div>
-        <p>
-          Questo è il sito per tutta la documentazione riguardante il progetto
-          affidato a NoTIP
-        </p>
-      </div>
-      <img src="assets/avatarUpdated.jpg" alt="logo NoTIP" id="hero-image" />
-    </section>
-    <section class="groups">
-      <h2>Categorie di Documenti</h2>
-      <p>Accedi velocemente in base alla categoria.</p>
-      <div class="group-grid">
-        <!--GROUP_LIST_MARKER-->
-      </div>
-    </section>
-    <footer>
-      <div class="footer-container">
-        <div>
-          <h4>Dove Trovarci</h4>
-          <div class="socials">
-            <a
-              href="https://github.com/NoTipSwe"
-              data-icon="github"
-              aria-label="vai su GitHub"
-            ></a>
-            <a
-              href="mailto:Notip.swe@gmail.com"
-              data-icon="email"
-              aria-label="manda Email"
-            ></a>
-          </div>
-        </div>
-      </div>
-      <p style="text-align: center; margin-top: 2rem">© 2025 NoTIP Group.</p>
-    </footer>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const typedText = document.querySelector(".typed-text");
-        const cursor = document.querySelector(".cursor");
-        const textArray = ["No Tests in Production", "Tips are not accepted"];
-        let textArrayIndex = 0;
-        let charIndex = 0;
-        const erase = () => {
-          if (charIndex > 0) {
-            cursor.classList.remove("blink");
-            typedText.textContent = textArray[textArrayIndex].slice(
-              0,
-              charIndex - 1
-            );
-            charIndex--;
-            setTimeout(erase, 80);
-          } else {
-            cursor.classList.add("blink");
-            textArrayIndex++;
-            if (textArrayIndex > textArray.length - 1) {
-              textArrayIndex = 0;
-            }
-            setTimeout(type, 1000);
-          }
-        };
-        const type = () => {
-          if (charIndex <= textArray[textArrayIndex].length - 1) {
-            cursor.classList.remove("blink");
-            typedText.textContent +=
-              textArray[textArrayIndex].charAt(charIndex);
-            charIndex++;
-            setTimeout(type, 120);
-          } else {
-            cursor.classList.add("blink");
-            setTimeout(erase, 1000);
-          }
-        };
-        type();
-      });
-    </script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>NoTIP Group Project Documentation</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style/style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        />
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <h2>NoTIP Docs</h2>
+            </div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="aboutus.html">About</a>
+            </nav>
+        </header>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>NoTIP</h1>
+                <div>
+                    <span class="typed-text"></span
+                    ><span class="cursor blink">&nbsp;</span>
+                </div>
+                <p>
+                    Questo è il sito per tutta la documentazione riguardante il
+                    progetto affidato a NoTIP
+                </p>
+            </div>
+            <img
+                src="assets/avatarUpdated.jpg"
+                alt="logo NoTIP"
+                id="hero-image"
+            />
+        </section>
+        <section class="groups">
+            <h2>Categorie di Documenti</h2>
+            <p>Accedi velocemente in base alla categoria.</p>
+            <div class="group-grid">
+                <!--GROUP_LIST_MARKER-->
+            </div>
+        </section>
+        <footer>
+            <div class="footer-container">
+                <div>
+                    <h4>Dove Trovarci</h4>
+                    <div class="socials">
+                        <a
+                            href="https://github.com/NoTipSwe"
+                            data-icon="github"
+                            aria-label="vai su GitHub"
+                        ></a>
+                        <a
+                            href="mailto:Notip.swe@gmail.com"
+                            data-icon="email"
+                            aria-label="manda Email"
+                        ></a>
+                    </div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 2rem">
+                © 2026 NoTIP Group.
+            </p>
+        </footer>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const typedText = document.querySelector(".typed-text");
+                const cursor = document.querySelector(".cursor");
+                const textArray = [
+                    "No Tests in Production",
+                    "Tips are not accepted",
+                ];
+                let textArrayIndex = 0;
+                let charIndex = 0;
+                const erase = () => {
+                    if (charIndex > 0) {
+                        cursor.classList.remove("blink");
+                        typedText.textContent = textArray[textArrayIndex].slice(
+                            0,
+                            charIndex - 1,
+                        );
+                        charIndex--;
+                        setTimeout(erase, 80);
+                    } else {
+                        cursor.classList.add("blink");
+                        textArrayIndex++;
+                        if (textArrayIndex > textArray.length - 1) {
+                            textArrayIndex = 0;
+                        }
+                        setTimeout(type, 1000);
+                    }
+                };
+                const type = () => {
+                    if (charIndex <= textArray[textArrayIndex].length - 1) {
+                        cursor.classList.remove("blink");
+                        typedText.textContent +=
+                            textArray[textArrayIndex].charAt(charIndex);
+                        charIndex++;
+                        setTimeout(type, 120);
+                    } else {
+                        cursor.classList.add("blink");
+                        setTimeout(erase, 1000);
+                    }
+                };
+                type();
+            });
+        </script>
+    </body>
 </html>

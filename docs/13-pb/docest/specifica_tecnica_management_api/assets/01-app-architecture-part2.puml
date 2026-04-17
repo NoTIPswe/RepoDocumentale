@@ -4,8 +4,6 @@ title NOTIP Management API - Architecture (2/3)
 skinparam backgroundColor #FFFFFF
 skinparam defaultFontSize 10
 skinparam defaultFontColor #000000
-skinparam nodesep 8
-skinparam ranksep 8
 skinparam linetype ortho
 skinparam packageStyle rectangle
 
@@ -45,7 +43,6 @@ package "NOTIP Management API" <<Rectangle>> {
   }
 
   ' Gateways relationships
-  GatewaysModule --> GatewaysController
   GatewaysController --> GatewaysService
   GatewaysService --> GatewaysPersistenceService
   GatewaysPersistenceService --> GatewayEntity
@@ -54,7 +51,6 @@ package "NOTIP Management API" <<Rectangle>> {
   GatewayEntity --> GatewayMetadataEntity
 
   ' Alerts relationships
-  AlertsModule --> AlertsController
   AlertsController --> AlertsService
   AlertsService --> AlertsPersistenceService
   AlertsPersistenceService --> AlertsEntity
@@ -63,7 +59,6 @@ package "NOTIP Management API" <<Rectangle>> {
   AlertsConfigEntity --> GatewayEntity
 
   ' Command relationships
-  CommandModule --> CommandController
   CommandController --> CommandService
   CommandService --> CommandPersistenceService
   CommandService --> CommandWritingPersistenceService
@@ -75,7 +70,6 @@ package "NOTIP Management API" <<Rectangle>> {
   CommandEntity --> TenantEntity
 
   ' Costs relationships
-  CostsModule --> CostsController
   CostsController --> CostsService
   CostsService --> CostsPersistenceService
   CostsPersistenceService ..> AlertsPersistenceService
