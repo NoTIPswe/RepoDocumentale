@@ -11,6 +11,7 @@ skinparam linetype ortho
 package "Core Services" <<Rectangle>> {
   class "AuthService" as AuthService {
     --
+    -{static} STORAGE_KEY: string
     -keycloak: Keycloak (via inject)
     -keycloakEventSignal: Signal
     -authApi: AuthApiService (via inject)
@@ -18,51 +19,70 @@ package "Core Services" <<Rectangle>> {
     -impersonatingSignal: Signal<boolean>
     -impersonationTokenSignal: Signal<string | null>
     -impersonationPayloadSignal: Signal<JwtPayload | null>
+    +logout$: Observable<void>
+    +isImpersonating: Signal<boolean>
     --
     +init(): Promise<boolean>
     +login(): void
+    +openProfile(): void
+    +openPasswordChange(): void
     +logout(): void
     +getToken(): Promise<string>
+    +getUsername(): Promise<string>
     +getRole(): UserRole
-    +getUserId(): string
-    +getUsername(): string
     +getTenantId(): string
-    +startImpersonation(targetUserId): Observable<string>
+    +getUserId(): string
+    +setImpersonating(value: boolean): void
+    +startImpersonation(targetUserId: string): Observable<string>
     +stopImpersonation(): void
-    +isImpersonating(): boolean
-    +setImpersonating(value): void
+    -saveImpersonationContext(...): void
+    -clearImpersonationStorage(): void
+    -parseStoredImpersonation(raw: string): StoredImpersonation | null
+    -loadImpersonating(): boolean
+    -loadImpersonationToken(): string | null
+    -loadImpersonationPayload(): JwtPayload | null
+    -collectRoles(payload: JwtPayload): Set<string>
+    -clearImpersonationContext(): void
+    -decodeTokenPayload(token: string): JwtPayload | null
+    -normalizeBase64(value: string): string
+    -asJwtPayload(value: unknown): JwtPayload | null
+    -decodeJwtPayload(): JwtPayload
+    -formatDisplayName(value: string): string
   }
 
-  class "SessionLifeCycle" as SessionLifeCycle {
-    <<interface>>
-    +isSessionActive(): boolean
+  interface "SessionLifeCycle" as SessionLifeCycle {
+    +logout$: Observable<void>
+    +logout(): void
   }
 
-  class "ImpersonationStatus" as ImpersonationStatus {
-    <<interface>>
-    +isImpersonating(): boolean
-    +getImpersonationToken(): string | null
+  interface "ImpersonationStatus" as ImpersonationStatus {
+    +isImpersonating: Signal<boolean>
   }
 
   class "ObfuscatedStreamManagerService" as ObfStreamMgr {
     --
+    -auth: AuthService (via inject)
     -abortController: AbortController | null
     -channel: ObservableChannel<TelemetryEnvelope> | null
     -streamSessionId: number
     --
     +openStream(sp: StreamParameters): Observable<TelemetryEnvelope>
     +closeStream(): void
-    -startStream(...): void
-    -buildQuery(sp): string
+    -startStream(...): Promise<void>
+    -buildQuery(sp): URLSearchParams
     -parseTelemetryEnvelope(raw): TelemetryEnvelope
     -handleMalformedMessage(...): void
+    -isActiveSession(...): boolean
+    -toError(value: unknown, fallbackMessage: string): Error
     -isTokenExpiredEvent(value): boolean
     -isTelemetryEnvelope(value): boolean
   }
 
   class "ThresholdPrefetchService" as ThresholdPrefetch {
     --
-    -REFRESH_INTERVAL_MS: 5 * 60 * 1000
+    -{static} REFRESH_INTERVAL_MS: number
+    -thresholdService: ThresholdService (via inject)
+    -authService: AuthService (via inject)
     -refreshSub: Subscription | null
     --
     +start(): void
@@ -72,7 +92,7 @@ package "Core Services" <<Rectangle>> {
 
   class "ThresholdService" as ThresholdSvc {
     --
-    -thresholdsApi: ThresholdsService (OpenAPI)
+    -thresholdsApi: ThresholdsService (via inject)
     -cache: ThresholdConfig[]
     --
     +fetchThresholds(): Observable<ThresholdConfig[]>
@@ -81,15 +101,22 @@ package "Core Services" <<Rectangle>> {
     +refreshThresholds(): Observable<ThresholdConfig[]>
     +setDefaultThreshold(...): Observable<void>
     +setSensorThreshold(...): Observable<void>
-    +deleteSensorThreshold(sensorId): Observable<void>
-    +deleteTypeThreshold(sensorType): Observable<void>
-    -resolveBounds(...): void
+    +deleteSensorThreshold(sensorId: string): Observable<void>
+    +deleteTypeThreshold(sensorType: string): Observable<void>
+    -getSensorThreshold(sensorId: string): ThresholdConfig | undefined
+    -getTypeThreshold(sensorType: string): ThresholdConfig | undefined
+    -resolveBounds(...): { min, max }
     -toThresholds(rows): ThresholdConfig[]
+    -normalizeType(type: unknown): 'sensorId' | 'sensorType' | null
+    -toNullableNumber(value: unknown): number | null
+    -toNonEmptyString(value: unknown): string | null
   }
 
   class "MeasureBoundsEvaluationService" as BoundsEval {
     --
-    +isOutOfBounds(\n  envelope: DecryptedEnvelope,\n  thresholds: Threshold | null\n): boolean
+    -thresholds: ThresholdService (via inject)
+    --
+    +evaluate(envelope: DecryptedEnvelope): boolean
   }
 
   ' Relationships
@@ -99,12 +126,13 @@ package "Core Services" <<Rectangle>> {
   AuthService --> UserRole
 
   ThresholdPrefetch --> ThresholdSvc
-  ThresholdSvc --> ThresholdModel
+  ThresholdPrefetch --> AuthService
+  ThresholdSvc --> ThresholdConfig
   BoundsEval --> DecryptedEnvelope
-  BoundsEval --> ThresholdModel
+  BoundsEval --> ThresholdSvc
 
-  ObfStreamMgr --> ObfuscatedEnvelope
   ObfStreamMgr --> TelemetryEnvelope
+  ObfStreamMgr --> AuthService
 }
 
 note top of AuthService
@@ -114,8 +142,7 @@ note top of AuthService
   IMPERSONATION_STATUS tokens in app.config.ts.
   Uses Angular inject() pattern.
   Signal-based state for impersonation.
-  sessionStorage for impersonation token
-  persistence.
+  sessionStorage for impersonation token persistence.
   startImpersonation() calls management-api
   /auth/impersonate and returns Observable<string>.
 end note

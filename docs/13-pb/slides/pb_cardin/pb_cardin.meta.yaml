@@ -1,0 +1,15 @@
+title: PB - Colloquio Tecnico
+changelog:
+  - version: 1.0.0
+    date: '2026-04-16'
+    approver: Leonardo Preo
+    baseline: PB
+  - version: "0.0.1"
+    date: "2026-04-14"
+    authors:
+      - Francesco Marcon
+      - Leonardo Preo
+      - Alessandro Mazzariol
+    verifier: TBD
+    description: >
+      Stesura del documento

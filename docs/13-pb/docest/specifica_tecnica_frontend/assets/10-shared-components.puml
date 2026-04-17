@@ -9,89 +9,94 @@ skinparam ranksep 8
 skinparam linetype ortho
 
 package "Shared Components" <<Rectangle>> {
+  
   class "SidebarComponent" as Sidebar {
+    -- Inputs (Signals) --
+    +isImpersonating: Signal<boolean>
+    +username: Signal<string>
+    +role: Signal<UserRole>
+    -- Outputs --
+    +logoutRequested: OutputEmitterRef<void>
+    +impersonationStopRequested: OutputEmitterRef<void>
+    +profileRequested: OutputEmitterRef<void>
+    +passwordChangeRequested: OutputEmitterRef<void>
     --
-    -currentUser: {username, role}
-    -menuItems: MenuItem[]
-    -isImpersonating: boolean
-    --
-    +navigateTo(path): void
-    +stopImpersonation(): void
-    +logout(): void
-
-    [Menu Items by Role]
-    - tenant_user: Dashboard, Gateways, Sensors, Alerts, Limits
-    - tenant_admin: + Users, API Clients, Audit Log, Costs
-    - system_admin: Tenants, Gateways (Admin)
+    +menuItems(): MenuItem[]
+    +emitLogout(): void
+    +emitImpersonationStopRequested(): void
+    +emitProfileRequested(): void
+    +emitPasswordChangeRequested(): void
+    -currentRole(): UserRole
   }
 
   class "ModalLayerComponent" as ModalLayer {
+    -- Inputs (Signals) --
+    +open: Signal<boolean>
+    +closeOnBackdrop: Signal<boolean>
+    -- Outputs --
+    +backdropClosed: OutputEmitterRef<void>
     --
-    -isOpen: boolean
-    -closeOnBackdropClick: boolean
-    -backdropElement: HTMLDivElement
-    -dialogElement: HTMLDialogElement
-    --
-    +open(): void
-    +close(): void
-    -handleBackdropClick(event): void
-    -isClickInsideDialog(event): boolean
-
-    [<ng-content>]
-    Projects child components inside modal overlay
+    +onHostClick(event: MouseEvent): void
   }
 
   class "MultiSelectDropdownComponent" as MultiSelect {
+    -- Inputs (Signals) --
+    +options: Signal<string[]>
+    +selected: Signal<string[]>
+    +placeholder: Signal<string>
+    +searchPlaceholder: Signal<string>
+    +noResultsLabel: Signal<string>
+    +disabled: Signal<boolean>
+    -- Outputs --
+    +selectedChange: OutputEmitterRef<string[]>
+    -- State (Signals) --
+    +isOpen: WritableSignal<boolean>
+    +searchTerm: WritableSignal<string>
     --
-    -options: SelectOption[]
-    -selected: string[]
-    -searchQuery: string
-    -isOpen: boolean
-    -disabled: boolean
-    --
-    +filteredOptions: SelectOption[] (computed)
-    +toggleOption(value): void
-    +open(): void
-    +close(): void
-    -handleDocumentClick(event): void
-    -handleEscapeKey(): void
-
-    [Features]
-    - Search filtering
-    - Open/close on document click/Escape
-    - Disabled state
-    - Incompatible selection removal
+    +onDocumentClick(event: MouseEvent): void
+    +onEscape(): void
+    +toggleMenu(): void
+    +updateSearch(value: string): void
+    +toggleOption(value: string): void
+    +isSelected(value: string): boolean
+    +selectionLabel(): string
+    +filteredOptions(): string[]
+    -normalizedOptions(): string[]
+    -closeMenu(): void
   }
 
   class "StatusBadgeComponent" as StatusBadge {
+    -- Inputs (Signals) --
+    +status: Signal<string>
     --
-    -status: string
-    -label: string
-    --
-    +cssClass: string (computed)
-    // Maps to: is-good, is-warn, is-bad, is-neutral
+    +badgeClass(): string
   }
 
   class "DeleteConfirmModalComponent" as DeleteModal {
+    -- Inputs (Signals) --
+    +open: Signal<boolean>
+    +title: Signal<string>
+    +message: Signal<string>
+    +busy: Signal<boolean>
+    -- Outputs --
+    +confirmed: OutputEmitterRef<void>
+    +cancelled: OutputEmitterRef<void>
     --
-    -title: string
-    -message: string
-    -busy: boolean
-    --
-    +confirm(): void
-    +cancel(): void
-
-    [Emits]
-    - confirmed event
-    - cancelled event
+    +onConfirm(): void
+    +onCancel(): void
   }
 
-  class "ImpersonationBannerComponent" as ImpBanner {
+  class "ProfileSectionComponent" as ProfileSection {
+    -- Inputs (Signals) --
+    +username: Signal<string> <<required>>
+    +role: Signal<string> <<required>>
+    +showProfileLink: Signal<boolean>
+    -- Outputs --
+    +profileRequested: OutputEmitterRef<void>
+    +passwordChangeRequested: OutputEmitterRef<void>
     --
-    -targetUserId: string | null
-    --
-    +displayText: string (computed)
-    // Falls back to "unknown" if userId is null
+    +emitProfileRequested(event: Event): void
+    +emitPasswordChangeRequested(event: Event): void
   }
 
   class "ImpersonationTagComponent" as ImpTag {
@@ -100,77 +105,65 @@ package "Shared Components" <<Rectangle>> {
     // "OBFUSCATED MODE" warning
   }
 
-  class "ProfileSectionComponent" as ProfileSection {
+  class "LogoutButtonComponent" as LogoutBtn {
+    -- Outputs --
+    +clicked: OutputEmitterRef<void>
     --
-    -username: string
-    -role: UserRole
-    -showProfileLink: boolean
-    -showPasswordLink: boolean
-    --
-    +openProfile(): void
-    +changePassword(): void
+    +onClick(): void
   }
 
-  class "LogoutButtonComponent" as LogoutBtn {
+  class "ImpersonationBannerComponent" as ImpBanner {
+    -- Inputs (Signals) --
+    +active: Signal<boolean>
+    +impersonatedUserId: Signal<string | null>
     --
-    +clicked: EventEmitter<void>
-    --
-    +triggerLogout(): void
+    // Defined in shared, but not used by Sidebar
   }
 
   class "PlaceholderPageComponent" as PlaceholderPage {
+    -- Properties --
+    +title: string
     --
-    -title: string (from route data)
-    // Fallback to "NoTIP" if no title
     // Scaffold page for features in development
   }
 
-  ' Usage relationships
-  Sidebar --> ImpBanner
+  ' Usage relationships derived from imports
   Sidebar --> ImpTag
   Sidebar --> ProfileSection
   Sidebar --> LogoutBtn
 
-  ModalLayer --> DeleteModal
-  ModalLayer --> RenameModal
-  ModalLayer --> CommandModal
-
-  MultiSelect --> FilterPanel
-  StatusBadge --> GatewayCard
+  DeleteModal --> ModalLayer
 }
 
 note top of Sidebar
   Main navigation sidebar. Shows/hides
-  menu items based on user role.
-  During impersonation: shows banner
-  and "Stop impersonation" button.
-  Includes profile section and logout.
+  menu items based on user role 
+  (tenant_user, tenant_admin, system_admin).
+  During impersonation: shows ImpersonationTag
+  and "Exit impersonation" button.
 end note
 
 note right of ModalLayer
   Generic modal overlay with backdrop.
-  Uses HTML <dialog> element with
-  <ng-content> projection. Supports
-  closing on backdrop click with
-  target detection to prevent
-  accidental closes.
+  Uses HTML <dialog> element.
+  Listens to @HostListener clicks to detect
+  when the dialog backdrop is clicked.
 end note
 
 note left of MultiSelect
   Reusable multi-select dropdown with
   integrated search. Opens/closes via
   document click and Escape key.
-  Options filtered by search query.
-  Used extensively in FilterPanel.
+  Fully driven by Angular Signals.
 end note
 
 note bottom of StatusBadge
   Colored badge component mapping
   status strings to CSS classes:
-  - is-good (green): online, active
-  - is-warn (yellow): paused, provisioning
-  - is-bad (red): offline, suspended, error
-  - is-neutral (gray): unknown
+  - is-good: online, ack
+  - is-warn: paused, provisioning, queued
+  - is-bad: offline, nack, expired, timeout, error
+  - is-neutral: default
 end note
 
 @enduml

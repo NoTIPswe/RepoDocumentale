@@ -541,6 +541,9 @@ accepted_words:
   - streamMeasures
   - SSoT
   - sonarqube
+  - GaugeVec
+  - CounterVec
+  - biometric
 
   # --- Terminologia Standard Progetto ---
   - pb
@@ -981,3 +984,4 @@ accepted_words:
   - popolabili
   - retrocompatibilità
   - impersonificata
+  - loggando
