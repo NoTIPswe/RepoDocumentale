@@ -70,7 +70,7 @@
       - *Controller-Service-Persistence*.
       - *Dependency Injection* tramite provider NestJS e constructor injection.
       - *Mapper Pattern* per `Entity -> Model -> DTO`.
-      - *Guard* per policy e metadati endpoint.
+      - *Guard* per policy e meccanismo *RBAC*.
       - *Integration pattern*: *NATS Request-Reply* per API interne tra microservizi.
     ],
     align(center + horizon)[
@@ -122,7 +122,7 @@
     ],
     align(center + horizon)[
       #figure[
-        #image("assets/simulator-backend.png")
+        #image("assets/notip-simulator-backend.png")
       ]
     ],
   )
