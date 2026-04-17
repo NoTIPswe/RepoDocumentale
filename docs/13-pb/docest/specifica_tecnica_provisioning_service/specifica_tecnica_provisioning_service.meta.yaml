@@ -4,7 +4,7 @@ changelog:
     date: "2026-04-17"
     authors:
       - Mario De Pasquale
-    verifier: TBD
+    verifier: Leonardo Preo
     description: >
       Patch specifica post revisione PB
   - version: "1.0.0"
