@@ -1,0 +1,164 @@
+@startuml
+title NoTIP Frontend - Alerts Architecture
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 10
+skinparam defaultFontColor #000000
+skinparam nodesep 8
+skinparam ranksep 8
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+
+package "Alerts Feature" <<Rectangle>> {
+
+  class "AlertListPageComponent" as AlertListPage {
+    --
+    +alerts: Signal<Alerts[]>
+    +gatewayOptions: Signal<string[]>
+    +isLoading: Signal<boolean>
+    +errorMessage: Signal<string | null>
+    +canEditAlertsConfig: boolean
+    +from: Signal<string>
+    +to: Signal<string>
+    +gatewayIds: Signal<string[]>
+    --
+    +ngOnInit(): void
+    +applyFilter(form: AlertFilterFormValue): void
+    +resetFilter(): void
+    -loadAlerts(): void
+    -loadGatewayOptions(): void
+    -normalizeList(values: string[]): string[]
+    -toIsoOrNow(value: string): string
+    -toDatetimeLocal(value: Date): string
+  }
+
+  class "AlertConfigPageComponent" as AlertConfigPage {
+    --
+    +config: Signal<AlertsConfig | null>
+    +availableGatewayIds: Signal<string[]>
+    +showForm: Signal<boolean>
+    +isLoading: Signal<boolean>
+    +isSaving: Signal<boolean>
+    +errorMessage: Signal<string | null>
+    +infoMessage: Signal<string | null>
+    +canEditConfig: boolean
+    --
+    +ngOnInit(): void
+    +toggleForm(): void
+    +closeForm(): void
+    +saveDefault(payload: DefaultTimeoutPayload): void
+    +saveGateway(payload: GatewayTimeoutPayload): void
+    +deleteGateway(gatewayId: string): void
+    -loadConfig(): void
+    -loadAvailableGatewayIds(): void
+  }
+
+  class "AlertFilterPanelComponent" as AlertFilterPanel {
+    --
+    +from: InputSignal<string>
+    +to: InputSignal<string>
+    +gatewayIds: InputSignal<string[]>
+    +gatewayOptions: InputSignal<string[]>
+    +isLoading: InputSignal<boolean>
+    +selectedGatewayIds: Signal<string[]>
+    --
+    +filterSubmitted: OutputEmitterRef<AlertFilterFormValue>
+    +resetRequested: OutputEmitterRef<void>
+    --
+    <<constructor>> (uses effect)
+    +submit(event: Event, from: string, to: string): void
+    +onGatewaySelectionChanged(gatewayIds: string[]): void
+    +reset(): void
+    -normalizeList(values: string[]): string[]
+  }
+
+  class "AlertConfigFormComponent" as AlertConfigForm {
+    --
+    +defaultTimeoutMs: InputSignal<number>
+    +gatewayOverrides: InputSignal<GatewayOverride[]>
+    +availableGatewayIds: InputSignal<string[]>
+    +isSaving: InputSignal<boolean>
+    +selectedGatewayCurrentTimeoutMs: Signal<number | null>
+    --
+    +defaultSubmitted: OutputEmitterRef<DefaultTimeoutPayload>
+    +gatewaySubmitted: OutputEmitterRef<GatewayTimeoutPayload>
+    +gatewayDeleteRequested: OutputEmitterRef<string>
+    +cancelRequested: OutputEmitterRef<void>
+    --
+    +submitDefault(event: Event, timeoutRaw: string): void
+    +submitGateway(event: Event, gatewayId: string, timeoutRaw: string): void
+    +onGatewaySelectionChanged(gatewayId: string, timeoutInput: HTMLInputElement): void
+    +deleteGatewayOverride(gatewayId: string): void
+    +cancel(): void
+    -resolveCurrentTimeout(gatewayId: string): number
+  }
+
+  package "Alerts Services" as Services {
+    class "AlertService" as AlertService {
+      --
+      -alertsApi: AlertsApiService
+      --
+      +getAlertsConfig(): Observable<AlertsConfig>
+      +setDefaultConfig(timeoutMs: number): Observable<DefaultAlertsConfig>
+      +sendGatewayConfig(gatewayId: string, timeoutMs: number): Observable<GatewayAlertsConfig>
+      +getAlerts(af: AlertsFilter): Observable<Alerts[]>
+      +deleteGatewayConfig(gatewayId: string): Observable<void>
+      -fetchAlerts(from: string, to: string, gatewayId?: string): Observable<Alerts[]>
+      -normalizeGatewayIds(values?: string[]): string[]
+      -mergeAlerts(rows: Alerts[]): Alerts[]
+      -toAlerts(rows: Record<string, unknown>[]): Alerts[]
+      -toAlertsType(value: unknown): AlertsType
+      -asRecord(value: unknown): Record<string, unknown>
+      -asNumber(value: unknown, fallback: number): number
+      -asString(value: unknown): string
+      -toAlertDetails(details: unknown, message: unknown): AlertDetails
+    }
+  }
+
+  ' Internal Feature Relationships
+  AlertListPage --> AlertFilterPanel
+  AlertListPage --> AlertService
+  
+  AlertConfigPage --> AlertConfigForm
+  AlertConfigPage --> AlertService
+}
+
+package "External Dependencies" <<Rectangle>> {
+  class "GatewayService" as GatewayService
+  class "AuthService" as AuthService
+  class "MultiSelectDropdownComponent" as MultiSelectDropdown
+  class "ModalLayerComponent" as ModalLayer
+}
+
+' External Links
+AlertListPage --> GatewayService
+AlertListPage --> AuthService
+
+AlertConfigPage --> GatewayService
+AlertConfigPage --> AuthService
+AlertConfigPage --> ModalLayer
+
+AlertFilterPanel --> MultiSelectDropdown
+
+note top of AlertListPage
+  Main view for displaying offline gateway alerts.
+  Manages date range and multi-gateway filtering.
+  Uses Rome timezone utilities for input values.
+end note
+
+note left of AlertConfigPage
+  Manages default and per-gateway timeout configs.
+  Uses `canEditConfig` based on the user's role 
+  (tenant_admin) to guard UI interaction.
+end note
+
+note bottom of AlertService
+  Handles API communication for Alerts and Configs.
+  If multiple gateways are selected in getAlerts(),
+  it uses forkJoin to fetch them in parallel and
+  merges/sorts the results via mergeAlerts().
+  Contains robust JSON parsing logic for parsing
+  both CamelCase and SnakeCase AlertDetails.
+end note
+
+@enduml

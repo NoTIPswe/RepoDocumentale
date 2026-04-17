@@ -544,6 +544,7 @@ accepted_words:
   - GaugeVec
   - CounterVec
   - biometric
+  - ViewModel
 
   # --- Terminologia Standard Progetto ---
   - pb
@@ -985,3 +986,4 @@ accepted_words:
   - retrocompatibilità
   - impersonificata
   - loggando
+  - presentazionale

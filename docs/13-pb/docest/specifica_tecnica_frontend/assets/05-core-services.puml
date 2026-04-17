@@ -1,5 +1,5 @@
 @startuml
-title NOTIP Frontend - Core Services Architecture
+title NoTIP Frontend - Core Services Architecture
 
 skinparam backgroundColor #FFFFFF
 skinparam defaultFontSize 10
@@ -7,6 +7,7 @@ skinparam defaultFontColor #000000
 skinparam nodesep 8
 skinparam ranksep 8
 skinparam linetype ortho
+skinparam classAttributeIconSize 0
 
 package "Core Services" <<Rectangle>> {
   class "AuthService" as AuthService {

@@ -1,0 +1,123 @@
+@startuml
+title NoTIP Frontend - Sensors Architecture
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 10
+skinparam defaultFontColor #000000
+skinparam nodesep 8
+skinparam ranksep 8
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+left to right direction
+
+package "Sensors Feature" <<Rectangle>> {
+  class "SensorListPageComponent" as SensorListPage {
+    --
+    +sensors: Signal<Sensor[]>
+    +isLoading: Signal<boolean>
+    +errorMessage: Signal<string | null>
+    +gatewayFilters: Signal<string[]>
+    +typeFilters: Signal<string[]>
+    +gatewayOptions: Computed<string[]>
+    +sensorTypeOptions: Computed<string[]>
+    +filteredSensors: Computed<Sensor[]>
+    --
+    +ngOnInit(): void
+    +onGatewayFilterChanged(gatewayIds: string[]): void
+    +onTypeFilterChanged(sensorTypes: string[]): void
+    +onClearFilters(): void
+    +openSensorDetail(sensorId: string): void
+    -loadSensors(): void
+    -normalizeList(values: string[]): string[]
+    -uniqueSorted(values: string[]): string[]
+  }
+
+  class "SensorDetailPageComponent" as SensorDetailPage {
+    --
+    -{static} QUERY_PAGE_SIZE = 20
+    -{static} STREAM_PAGE_SIZE = 20
+    -{static} DEFAULT_QUERY_WINDOW_HOURS = 24
+    -streamSubscription: Subscription | null
+    -telemetryRunId: number
+    +sensorId: Signal<string>
+    +sensor: Signal<Sensor | null>
+    +errorMessage: Signal<string | null>
+    +telemetry: Signal<Array<CheckedEnvelope | ObfuscatedEnvelope>>
+    +isTelemetryLoading: Signal<boolean>
+    --
+    +ngOnInit(): void
+    +ngOnDestroy(): void
+    -loadSensor(sensorId: string): void
+    -startTelemetryStream(sensorId: string): void
+    -loadHistoryAndAttachStream(queryFilters, streamFilters, runId): Promise<void>
+    -openObfuscatedStream(filters: StreamParameters, runId: number): void
+    -openValidatedStream(filters: StreamParameters, runId: number): void
+    -stopTelemetryStream(): void
+    -defaultQueryWindow(): Pick<QueryParameters, 'from' | 'to'>
+    -takeLastRows(rows: Array): Array<CheckedEnvelope | ObfuscatedEnvelope>
+    -isCurrentTelemetryRun(runId: number): boolean
+  }
+
+  package "Sensors Services" as Services {
+    class "SensorService" as SensorService {
+      --
+      -sensorApi: DataApiSensorsService
+      --
+      +getAllSensors(refreshMs?: number): Observable<Sensor[]>
+      +getGatewaySensors(id: string, refreshMs?: number): Observable<Sensor[]>
+      -withRefresh(refreshMs: number, fetchFn: () => Observable<Sensor[]>): Observable<Sensor[]>
+      -fetchSensors(gatewayId?: string): Observable<Sensor[]>
+      -toSensor(row: SensorDto): Sensor
+    }
+  }
+
+  ' Internal Feature Relationships
+  SensorListPage --> SensorService
+  SensorDetailPage --> SensorService
+}
+
+package "External Dependencies" <<Rectangle>> {
+  class "AuthService" as AuthService
+  class "ObfuscatedMeasureService" as ObfMeasureService
+  class "ValidatedMeasureFacadeService" as ValMeasureFacade
+  class "TelemetryChartComponent" as TelemetryChart
+  class "TelemetryTableComponent" as TelemetryTable
+  class "MultiSelectDropdownComponent" as MultiSelectDropdown
+  class "RomeDateTimePipe" as RomeDatePipe
+}
+
+' External Links
+SensorListPage --> MultiSelectDropdown
+SensorListPage --> RomeDatePipe
+
+SensorDetailPage --> AuthService
+SensorDetailPage --> ObfMeasureService
+SensorDetailPage --> ValMeasureFacade
+SensorDetailPage --> TelemetryChart
+SensorDetailPage --> TelemetryTable
+SensorDetailPage --> RomeDatePipe
+
+note top of SensorListPage
+  Displays all sensors for the current tenant.
+  Uses frontend-computed signals to derive 
+  unique 'gatewayOptions' and 'sensorTypeOptions' 
+  for the MultiSelectDropdowns and applies 
+  local filtering via 'filteredSensors'.
+end note
+
+note right of SensorDetailPage
+  Displays sensor metadata and real-time telemetry.
+  Depending on AuthService.isImpersonating(),
+  fetches history (query) and starts SSE stream 
+  via Obfuscated or Validated measure services.
+  Safeguards overlapping requests with 'telemetryRunId'.
+end note
+
+note bottom of SensorService
+  Communicates with the Data API.
+  Supports automatic data polling using RxJS
+  'timer(0, refreshMs).pipe(switchMap(...))'.
+  Default refresh rate is 10 seconds.
+end note
+
+@enduml
