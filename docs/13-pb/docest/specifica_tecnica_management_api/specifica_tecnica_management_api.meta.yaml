@@ -1,5 +1,12 @@
 title: Specifica tecnica - Management API
 changelog:
+  - version: "1.1.0"
+    date: "2026-04-17"
+    authors:
+      - Alessandro Mazzariol
+    verifier: Leonardo Preo
+    description: >
+      Correzione immagini diagrammi
   - version: "1.0.0"
     approver: Leonardo Preo
     baseline: PB
@@ -10,7 +17,7 @@ changelog:
       - Alessandro Mazzariol
     verifier: Alessandro Contarini
     description: >
-      Fix error
+      Correzione errori di battitura e refusi
   - version: "0.2.0"
     date: "2026-04-10"
     authors:
