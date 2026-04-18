@@ -55,9 +55,9 @@
 
   == Pattern architetturale: architettura a strati con Orchestrator
 
-  La libreria adotta un'*architettura a strati* con il pattern *Orchestrator*. `CryptoSdk` coordina un workflow
-  multi-step (conversione parametri → fetch dati cifrati → risoluzione chiavi → decrittazione → validazione → mapping a
-  modelli di dominio).
+  La libreria adotta un'architettura a strati, divisa in Business Logic e Api Clients, con il pattern *Orchestrator*.
+  `CryptoSdk` coordina un workflow multi-step (conversione parametri → fetch dati cifrati → risoluzione chiavi →
+  decrittazione → validazione → mapping a modelli di dominio).
 
   I consumer dipendono da tre interfacce ristrette (`MeasureQuerier`, `MeasureStreamer`, `MeasureExporter`) in
   applicazione del principio di Interface Segregation, e non dalla classe concreta `CryptoSdk`.
@@ -71,20 +71,23 @@
   ├── crypto-sdk.ts             Orchestrator: wiring, conversione parametri, pipeline di decrittazione
   ├── errors.ts                 Gerarchia errori (SdkError, ApiError, ValidationError, DecryptionError)
   ├── http.ts                   authorizedFetch, HTTP helper con autenticazione
-  ├── models.ts                 Modelli di dominio, schemi Zod, interfaccia KeyProvider
+  ├── models.ts                 Modelli di dominio (plain TypeScript interfaces, no Zod)
+  ├── dto.ts                    DTO type alias inferiti dagli schemi Zod auto-generati
+  ├── validation.ts             Funzioni di validazione Zod con signature clean (es. parseSensorData)
+  ├── key-provider.ts           Interfaccia interna KeyProvider
   ├── crypto-engine.ts          Motore decrittazione AES-GCM
   ├── key-manager.ts            Caching delle CryptoKey (dipende da KeyProvider)
   ├── data-api-rest.client.ts   Client REST (query, export)
   ├── data-api-sse.client.ts    Client SSE (stream real-time)
-  ├── data-api.service.ts       Adapter: interfaccia unificata su REST + SSE client
-  ├── management-api.client.ts  Client Management API (chiavi), implementa AllKeysFetcher e GatewayKeyFetcher
+  ├── data-api.service.ts       Confine DTO → modello di dominio; interfaccia unificata su REST + SSE client
+  ├── management-api.client.ts  Client Management API (chiavi), implementa GatewayKeyFetcher
   ├── management-api.service.ts Implementa KeyProvider, mapping DTO → KeyModel
   └── generated/                Schemi Zod auto-generati da OpenAPI
       ├── notip-data-api-openapi.ts
       └── notip-management-api-openapi.ts
   ```
 
-  == Strati architetturali
+  == Componenti logiche
 
   #table(
     columns: (1.5fr, 2fr, 2.5fr),
@@ -92,29 +95,32 @@
     [API Pubblica],
     [`index.ts`],
     [Re-export selettivo: `CryptoSdk`, le tre interfacce ISP (`MeasureQuerier`, `MeasureStreamer`, `MeasureExporter`),
-      `Config`, i modelli di dominio e le classi di errore.],
+      `Config`, i modelli di dominio e le classi di errore. `KeyProvider` è esclusa dall'esportazione pubblica.],
 
     [Orchestrator],
     [`crypto-sdk.ts`],
     [Costruisce il grafo di dipendenze da `Config`. Converte i modelli di query in parametri, orchestra la pipeline
       fetch → decrypt → validate → map.],
 
-    [Servizio (Adapter)],
+    [Servizi (Adapter)],
     [`data-api.service.ts`\ `management-api.service.ts`],
-    [`DataApiService`: interfaccia unificata su REST e SSE client, restituisce DTO validati senza trasformazione.
-      `ManagementApiService`: implementa `KeyProvider`, mappa `KeyDTO` → `KeyModel`.],
+    [`DataApiService`: confine DTO → modello di dominio per i dati cifrati; restituisce `EncryptedQueryResponse` e
+      `EncryptedEnvelope`. `ManagementApiService`: implementa `KeyProvider`, mappa `KeyDTO` → `KeyModel`.],
 
-    [Client],
+    [Client API],
     [`data-api-rest.client.ts`\ `data-api-sse.client.ts`\ `management-api.client.ts`],
-    [Comunicazione HTTP verso le API NoTIP. Validazione delle risposte con schemi Zod generati.],
+    [Comunicazione HTTP verso le API NoTIP. Validazione delle risposte con schemi Zod generati. Restituiscono DTO al
+      layer Servizio.],
 
     [Infrastruttura],
     [`http.ts`\ `crypto-engine.ts`\ `key-manager.ts`],
     [Helper HTTP con autenticazione, decrittazione AES-GCM via Web Crypto API, caching delle chiavi.],
 
     [Modelli],
-    [`models.ts`\ `config.ts`\ `errors.ts`\ `generated/*`],
-    [Tipi di dominio, schemi di validazione Zod, gerarchia errori, interfaccia `KeyProvider`. Nessuna logica.],
+    [`models.ts`\ `dto.ts`\ `validation.ts`\ `key-provider.ts`\ `config.ts`\ `errors.ts`\ `generated/*`],
+    [`models.ts`: plain TypeScript interfaces per i modelli di dominio (no Zod). `dto.ts`: DTO type alias, importati
+      solo da Client e Service. `validation.ts`: funzioni di validazione Zod con signature clean. `key-provider.ts`:
+      interfaccia interna `KeyProvider`. Nessuna logica di business.],
   )
 
   #pagebreak()
@@ -152,7 +158,7 @@
 
   Implementa le tre interfacce ISP: `MeasureQuerier`, `MeasureStreamer`, `MeasureExporter`.
 
-  === Interfacce ISP
+  === Interfacce
 
   #table(
     columns: (2fr, 3fr),
@@ -192,23 +198,24 @@
 
   === Metodo privato: `decryptEnvelope`
 
-  Pipeline di decrittazione di una singola `EncryptedEnvelopeDTO`:
+  Pipeline di decrittazione di una singola `EncryptedEnvelope`:
   + Recupera la `CryptoKey` dal `KeyManager` (cache hit o fetch tramite `KeyProvider` + import);
   + Invoca `CryptoEngine.decrypt` con ciphertext, IV e auth tag (tutti in formato hex);
-  + Valida il payload decifrato con lo schema Zod `zSensorData` (validazione di dominio, non di DTO);
+  + Valida il payload decifrato tramite `parseSensorData()` da `validation.ts` (validazione di dominio, non di DTO);
   + Compone e restituisce un `PlaintextMeasure` combinando i metadati dell'envelope con i dati decifrati.
 
   == `DataApiService`: Adapter (`data-api.service.ts`)
 
-  Interfaccia unificata sopra `DataApiRestClient` e `DataApiSseClient`, ricevuti via constructor injection. Restituisce
-  i DTO validati senza alcuna trasformazione. Non decifra, non converte modelli di query in parametri.
+  Costituisce il confine tra il layer Client (che restituisce DTO) e il layer Business Logic (che opera su modelli di
+  dominio). Riceve `DataApiRestClient` e `DataApiSseClient` via constructor injection ed espone le envelope cifrate come
+  modelli di dominio. Non decifra, non converte modelli di query in parametri.
 
   #table(
     columns: (2.5fr, 3fr),
     [Metodo], [Responsabilità],
-    [`query(params: string): Promise<QueryResponseDTO>`], [Delega a `DataApiRestClient.query`.],
-    [`stream(params, signal?): AsyncGenerator<EncryptedEnvelopeDTO>`], [Delega a `DataApiSseClient.stream`.],
-    [`export(params: string): Promise<EncryptedEnvelopeDTO[]>`], [Delega a `DataApiRestClient.export`.],
+    [`query(params: string): Promise<EncryptedQueryResponse>`], [Delega a `DataApiRestClient.query`.],
+    [`stream(params, signal?): AsyncGenerator<EncryptedEnvelope>`], [Delega a `DataApiSseClient.stream`.],
+    [`export(params: string): Promise<EncryptedEnvelope[]>`], [Delega a `DataApiRestClient.export`.],
   )
 
   == `CryptoEngine` (`crypto-engine.ts`)
@@ -297,38 +304,33 @@
 
   == `ManagementApiClient` (`management-api.client.ts`)
 
-  Client HTTP per l'endpoint chiavi del Management API. Implementa due interfacce estratte per consentire la dependency
-  injection nei servizi che lo consumano:
+  Client HTTP per l'endpoint chiavi del Management API. Implementa l'interfaccia `GatewayKeyFetcher` per consentire la
+  dependency injection nel servizio che lo consuma:
 
   #table(
     columns: (2fr, 3fr),
     [Interfaccia], [Metodo],
-    [`AllKeysFetcher`], [`getAllKeys(): Promise<KeyDTO[]>`],
     [`GatewayKeyFetcher`], [`getGatewayKey(gatewayId: string, version: number): Promise<KeyDTO>`],
   )
 
   #table(
     columns: (2.5fr, 3fr),
     [Metodo], [Responsabilità],
-    [`getAllKeys()`], [GET su `/mgmt/keys`. Valida la risposta con `zKeysControllerGetKeysResponse`.],
-
     [`getGatewayKey(gatewayId, version)`],
     [GET su `/mgmt/keys?id={gatewayId}`. Filtra per versione. Lancia `SdkError` se la versione non è trovata.],
   )
 
   == `ManagementApiService` (`management-api.service.ts`)
 
-  Implementa l'interfaccia `KeyProvider` (definita in `models.ts`). Riceve `AllKeysFetcher & GatewayKeyFetcher` via
-  constructor injection e mappa i DTO (`KeyDTO`, formato snake_case) in modelli di dominio (`KeyModel`, formato
-  camelCase). La responsabilità del mapping DTO → modello è concentrata in questo servizio.
+  Implementa l'interfaccia `KeyProvider` (definita in `key-provider.ts`). Riceve `GatewayKeyFetcher` via constructor
+  injection e mappa i DTO (`KeyDTO`, formato snake_case) in modelli di dominio (`KeyModel`, formato camelCase). La
+  responsabilità del mapping DTO → modello è concentrata in questo servizio.
 
   #table(
     columns: (2.5fr, 3fr),
     [Metodo], [Responsabilità],
     [`getKey(gatewayId, version): Promise<KeyModel>`],
     [Recupera una chiave specifica tramite `GatewayKeyFetcher` e la mappa in `KeyModel`.],
-
-    [`getKeysModel(): Promise<KeyModel[]>`], [Recupera tutte le chiavi e le mappa in `KeyModel`.],
   )
 
   == `authorizedFetch` (`http.ts`)
@@ -358,23 +360,32 @@
   #table(
     columns: (1.5fr, 3fr),
     [Tipo], [Descrizione e campi],
+    [`EncryptedEnvelope`],
+    [Envelope cifrata restituita dal layer Servizio. Campi: `gatewayId`, `sensorId`, `sensorType`, `timestamp`,
+      `encryptedData`, `iv`, `authTag` (tutti `string`), `keyVersion: number`.],
+
+    [`EncryptedQueryResponse`],
+    [Risposta paginata di envelope cifrate. Campi: `data: EncryptedEnvelope[]`, `nextCursor?: string`,
+      `hasMore: boolean`.],
+
     [`PlaintextMeasure`],
     [Misura decifrata. Campi: `gatewayId`, `sensorId`, `sensorType`, `timestamp` (tutti `string`), `value:
-      number`, `unit: string`. Validato con schema Zod `zPlaintextMeasure`.],
+      number`, `unit: string`.],
 
     [`QueryResponsePage`],
     [Pagina di risultati paginata. Campi: `data: PlaintextMeasure[]`, `nextCursor?: string`, `hasMore: boolean`.],
 
-    [`SensorData`], [Payload decifrato grezzo. Campi: `value: number`, `unit: string`. Validato con `zSensorData`.],
+    [`SensorData`],
+    [Payload decifrato grezzo. Campi: `value: number`, `unit: string`. Validato tramite `parseSensorData()` da
+      `validation.ts`.],
+
     [`KeyModel`], [Chiave crittografica. Campi: `gatewayId: string`, `keyVersion: number`, `keyMaterial: string`.],
-    [`KeyProvider`],
-    [Interfaccia di dominio per il recupero delle chiavi. Metodo: `getKey(gatewayId: string, version: number):
-      Promise<KeyModel>`. Implementata da `ManagementApiService`, consumata da `KeyManager`.],
   )
 
-  === DTO (da schemi OpenAPI generati)
+  === DTO (da schemi OpenAPI generati, definiti in `dto.ts`)
 
-  I DTO sono type alias inferiti dagli schemi Zod auto-generati da `@hey-api/openapi-ts`:
+  I DTO sono type alias inferiti dagli schemi Zod auto-generati da `@hey-api/openapi-ts`. Sono definiti in `dto.ts` e
+  importati esclusivamente dai Client e dai Service. Il layer Business Logic non li vede:
 
   #table(
     columns: (1.5fr, 3fr),
@@ -436,17 +447,11 @@
     dipendere esclusivamente dalla capability che utilizza. `CryptoSdk` implementa tutte e tre.
   ]
 
-  #st.design-rationale(title: "KeyProvider come interfaccia di dominio")[
-    `KeyManager` dipende dall'interfaccia `KeyProvider` (modello di dominio, `KeyModel` con campi camelCase) e non
-    direttamente dal client HTTP (`ManagementApiClient`, che restituisce `KeyDTO` con campi snake_case). Questo
-    disaccoppia il dominio dalla rappresentazione di trasporto. Il mapping DTO → modello è responsabilità esclusiva di
-    `ManagementApiService`, che implementa `KeyProvider`.
-  ]
-
-  #st.design-rationale(title: "DataApiService come adapter puro")[
-    `DataApiService` fornisce un'interfaccia unificata su `DataApiRestClient` e `DataApiSseClient`, ricevuti via
-    constructor injection. Restituisce i DTO validati senza trasformazione. La decrittazione, la validazione di dominio
-    e la conversione dei modelli di query in parametri sono responsabilità dell'orchestrator (`CryptoSdk`).
+  #st.design-rationale(title: "Service come confine DTO/modello")[
+    I services come `DataApiService` costituiscono il confine formale tra il layer API Client (DTO) e il layer Business
+    Logic (modelli di dominio). Riceve `DataApiRestClient` e `DataApiSseClient` via constructor injection e dichiara i
+    tipi di ritorno come modelli di dominio (`EncryptedQueryResponse`, `EncryptedEnvelope`), sfruttando la compatibilità
+    strutturale tra DTO e modello di dominio (stessi campi, tipi diversi nel sistema di tipi).
   ]
 
   #st.design-rationale(title: "Cache-aside per le CryptoKey")[
@@ -540,12 +545,6 @@
   #table(
     columns: (3fr, 2fr),
     [Caso di test], [Postcondizione verificata],
-    [`getAllKeys`: risposta valida], [Array di `KeyDTO` restituito; header `Authorization` presente],
-
-    [`getAllKeys`: risposta HTTP non-ok], [Lancio di `ApiError`],
-
-    [`getAllKeys`: DTO invalido], [Lancio di `ValidationError`],
-
     [`getGatewayKey`: versione trovata], [`KeyDTO` corretto restituito; URL con query param `id`],
 
     [`getGatewayKey`: versione non trovata], [Lancio di `SdkError`],
@@ -558,8 +557,6 @@
   #table(
     columns: (3fr, 2fr),
     [Caso di test], [Postcondizione verificata],
-    [`getKeysModel`: mapping DTO → modello], [Campi mappati da snake_case a camelCase correttamente],
-
     [`getKey`: fetch e mapping singola chiave],
     [`GatewayKeyFetcher.getGatewayKey` invocato con parametri corretti; `KeyModel` restituito con campi camelCase],
 

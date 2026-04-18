@@ -541,6 +541,10 @@ accepted_words:
   - streamMeasures
   - SSoT
   - sonarqube
+  - GaugeVec
+  - CounterVec
+  - biometric
+  - ViewModel
 
   # --- Terminologia Standard Progetto ---
   - pb
@@ -872,6 +876,8 @@ accepted_words:
   - committata
   - ErrorPageComponent
   - anomalyCommandBuffer
+  - lastSeen
+  - ctx
 
   # --- Parole Italiane mancanti / Neologismi ---
   - aggregatori
@@ -981,3 +987,5 @@ accepted_words:
   - popolabili
   - retrocompatibilità
   - impersonificata
+  - loggando
+  - presentazionale

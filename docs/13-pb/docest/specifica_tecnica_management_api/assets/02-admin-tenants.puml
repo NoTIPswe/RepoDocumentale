@@ -17,16 +17,12 @@ skinparam interface {
   BackgroundColor #E8F4FD
   BorderColor #2196F3
 }
-skinparam nodesep 10
-skinparam ranksep 10
 skinparam linetype ortho
 skinparam packageStyle rectangle
 skinparam note {
   BackgroundColor #E8F4FD
   BorderColor #FBC02D
 }
-skinparam nodesep 8
-skinparam ranksep 8
 
 package "admin/tenants" <<Rectangle>> {
   class "TenantsController" as TenantsController {
@@ -39,17 +35,32 @@ package "admin/tenants" <<Rectangle>> {
   }
 
   class "TenantsService" as TenantsService {
+    -dataSource: DataSource
     -tps: TenantsPersistenceService
-    -keycloakAdmin: KeycloakAdminService
+    -keycloakAdminService: KeycloakAdminService
     -apiClientService: ApiClientService
     +getTenants(): TenantsModel[]
-    +getTenantUsers(tenantId): UserEntity[]
+    +getTenantUsers(tenantId): {user_id, role}[]
     +createTenant(input): TenantsModel
     +updateTenant(input): TenantsModel
     +deleteTenant(input): void
     -isSuspensionExpired(tenant): boolean
-    -reactivateTenantIfExpired(tenant): void
+    -reactivateTenantIfExpired(tenant): T
     -syncTenantUsersEnabledState(tenantId, status): void
+  }
+
+  class "TenantsPersistenceService" as TenantsPersistenceService {
+    -r: Repository<TenantEntity>
+    -ur: Repository<UserEntity>
+    +getTenants(): TenantEntity[]
+    +createTenant(input, manager?): TenantEntity
+    +updateTenant(input, manager?): TenantEntity
+    +deleteTenant(input, manager?): boolean
+    +createTenantAdminLocalUser(input, manager?): UserEntity
+    +getTenantAdminUsers(tenantId): UserEntity[]
+    +getUsersByTenant(tenantId): UserEntity[]
+    -getTenantRepo(manager?): Repository<TenantEntity>
+    -getUserRepo(manager?): Repository<UserEntity>
   }
 
   class "KeycloakAdminService" as KeycloakAdminService {
@@ -76,25 +87,11 @@ package "admin/tenants" <<Rectangle>> {
     -buildUserAttributes(input): Attributes
   }
 
-  class "TenantsPersistenceService" as TenantsPersistenceService {
-    -tenantRepo: Repository<TenantEntity>
-    -userRepo: Repository<UserEntity>
-    +getTenants(): TenantEntity[]
-    +createTenant(input, manager?): TenantEntity
-    +updateTenant(input, manager?): TenantEntity
-    +deleteTenant(input, manager?): boolean
-    +createTenantAdminLocalUser(input, manager?): UserEntity
-    +getTenantAdminUsers(tenantId): UserEntity[]
-    +getUsersByTenant(tenantId): UserEntity[]
-    -getTenantRepo(manager?): Repository
-    -getUserRepo(manager?): Repository
-  }
-
   class "TenantsMapper" as TenantsMapper {
     {static} toModel(entity): TenantsModel
     {static} toResponseDto(model): TenantsResponseDto
     {static} toUpdateResponseDto(model): UpdateTenantsResponseDto
-    -toSuspensionIntervalDays(model): number
+    -toSuspensionIntervalDays(model): number | null
   }
 
   class "CreateTenantRequestDto" as CreateTenantRequestDto {
@@ -107,7 +104,7 @@ package "admin/tenants" <<Rectangle>> {
   class "UpdateTenantRequestDto" as UpdateTenantRequestDto {
     +name?: string
     +status?: TenantStatus
-    +suspensionIntervalDays?: number
+    +suspensionIntervalDays?: number | null
   }
 
   class "TenantsResponseDto" as TenantsResponseDto {
@@ -115,7 +112,7 @@ package "admin/tenants" <<Rectangle>> {
     +name: string
     +status: TenantStatus
     +createdAt: string
-    +suspensionIntervalDays: number
+    +suspensionIntervalDays: number | null
   }
 
   class "UpdateTenantsResponseDto" as UpdateTenantsResponseDto {
@@ -133,8 +130,8 @@ package "admin/tenants" <<Rectangle>> {
     +id: string
     +name: string
     +status: TenantStatus
-    +suspensionIntervalDays: number
-    +suspensionUntil: Date
+    +suspensionIntervalDays: number | null
+    +suspensionUntil: Date | null
     +createdAt: Date
     +updatedAt: Date
   }
@@ -143,8 +140,8 @@ package "admin/tenants" <<Rectangle>> {
     +id: string
     +name: string
     +status: TenantStatus
-    +suspensionIntervalDays: number
-    +suspensionUntil: Date
+    +suspensionIntervalDays: number | null
+    +suspensionUntil: Date | null
     +createdAt: Date
     +updatedAt: Date
     +users: UserEntity[]
@@ -173,11 +170,34 @@ package "admin/tenants" <<Rectangle>> {
     +id: string
     +name?: string
     +status?: TenantStatus
-    +suspensionIntervalDays?: number
+    +suspensionIntervalDays?: number | null
   }
 
   interface "DeleteTenantInput" as DeleteTenantInput {
     +id: string
+  }
+
+  interface "CreateTenantPersistenceInput" as CreateTenantPersistenceInput {
+    +name: string
+  }
+
+  interface "UpdateTenantPersistenceInput" as UpdateTenantPersistenceInput {
+    +id: string
+    +name?: string
+    +status?: string
+    +suspensionIntervalDays?: number | null
+  }
+
+  interface "DeleteTenantPersistenceInput" as DeleteTenantPersistenceInput {
+    +id: string
+  }
+
+  interface "CreateTenantAdminLocalUserInput" as CreateTenantAdminLocalUserInput {
+    +tenantId: string
+    +id: string
+    +email: string
+    +username: string
+    +role: UsersRole
   }
 
   enum "TenantStatus" as TenantStatus {
@@ -193,18 +213,34 @@ package "admin/tenants" <<Rectangle>> {
 
   TenantsController --> TenantsService : uses
   TenantsController --> TenantsMapper : maps to DTO
-  TenantsController --> DeleteTenantResponseDto
+  TenantsController ..> CreateTenantRequestDto
+  TenantsController ..> UpdateTenantRequestDto
+  TenantsController ..> TenantsResponseDto
+  TenantsController ..> UpdateTenantsResponseDto
+  TenantsController ..> DeleteTenantResponseDto
+  TenantsController ..> CreateTenantInput
+  TenantsController ..> UpdateTenantInput
+  TenantsController ..> DeleteTenantInput
 
+  TenantsService --> DataSource : uses
   TenantsService --> TenantsPersistenceService : uses
   TenantsService --> KeycloakAdminService : uses
+  TenantsService --> ApiClientService : uses
+  TenantsService --> TenantsMapper : maps
   TenantsService --> TenantsModel : returns
-  TenantsService --> TenantEntity : reads
   TenantsService ..> CreateTenantInput : receives
   TenantsService ..> UpdateTenantInput : receives
   TenantsService ..> DeleteTenantInput : receives
+  TenantsService ..> CreateTenantPersistenceInput : builds
+  TenantsService ..> UpdateTenantPersistenceInput : builds
+  TenantsService ..> DeleteTenantPersistenceInput : builds
 
   TenantsPersistenceService --> TenantEntity : CRUD
   TenantsPersistenceService --> UserEntity : CRUD
+  TenantsPersistenceService ..> CreateTenantPersistenceInput
+  TenantsPersistenceService ..> UpdateTenantPersistenceInput
+  TenantsPersistenceService ..> DeleteTenantPersistenceInput
+  TenantsPersistenceService ..> CreateTenantAdminLocalUserInput
 
   TenantsMapper --> TenantEntity : from
   TenantsMapper --> TenantsModel : to
@@ -212,14 +248,11 @@ package "admin/tenants" <<Rectangle>> {
   TenantsMapper --> UpdateTenantsResponseDto : to
 
   TenantsModel --> TenantStatus
-  TenantsModel --> UserEntity
-
-  CreateTenantRequestDto ..> CreateTenantInput
-  UpdateTenantRequestDto ..> UpdateTenantInput
+  TenantEntity --> TenantStatus
+  UserEntity --> UsersRole
 
   KeycloakAdminService --> ConfigService : uses
 
-  TenantEntity "1" -right- "0..*" UserEntity
+  TenantEntity "1" -- "0..*" UserEntity
 }
-
 @enduml

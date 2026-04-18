@@ -4,8 +4,6 @@ title NOTIP Management API - Architecture (2/3)
 skinparam backgroundColor #FFFFFF
 skinparam defaultFontSize 10
 skinparam defaultFontColor #000000
-skinparam nodesep 8
-skinparam ranksep 8
 skinparam linetype ortho
 skinparam packageStyle rectangle
 
@@ -24,6 +22,7 @@ package "NOTIP Management API" <<Rectangle>> {
     class "AlertsController" as AlertsController
     class "AlertsService" as AlertsService
     class "AlertsPersistenceService" as AlertsPersistenceService
+    class "AlertsNatsService" as AlertsNatsService
     class "AlertConfigNatsResponderService" as AlertConfigNatsResponderService
     class "AlertsEntity" as AlertsEntity
     class "AlertsConfigEntity" as AlertsConfigEntity
@@ -45,7 +44,6 @@ package "NOTIP Management API" <<Rectangle>> {
   }
 
   ' Gateways relationships
-  GatewaysModule --> GatewaysController
   GatewaysController --> GatewaysService
   GatewaysService --> GatewaysPersistenceService
   GatewaysPersistenceService --> GatewayEntity
@@ -54,16 +52,18 @@ package "NOTIP Management API" <<Rectangle>> {
   GatewayEntity --> GatewayMetadataEntity
 
   ' Alerts relationships
-  AlertsModule --> AlertsController
   AlertsController --> AlertsService
   AlertsService --> AlertsPersistenceService
+  AlertsService --> AlertsNatsService
   AlertsPersistenceService --> AlertsEntity
   AlertsPersistenceService --> AlertsConfigEntity
   AlertsConfigEntity --> TenantEntity
+  TenantEntity -[hidden]-> GatewayMetadataEntity 
   AlertsConfigEntity --> GatewayEntity
+  AlertsEntity --> TenantEntity
+  AlertsEntity --> GatewayEntity
 
   ' Command relationships
-  CommandModule --> CommandController
   CommandController --> CommandService
   CommandService --> CommandPersistenceService
   CommandService --> CommandWritingPersistenceService
@@ -75,7 +75,6 @@ package "NOTIP Management API" <<Rectangle>> {
   CommandEntity --> TenantEntity
 
   ' Costs relationships
-  CostsModule --> CostsController
   CostsController --> CostsService
   CostsService --> CostsPersistenceService
   CostsPersistenceService ..> AlertsPersistenceService
@@ -94,6 +93,7 @@ note top of AlertsModule
   Gateway offline detection
   Default and per-gateway timeouts
   NATS request-reply for configs
+  NATS JetStream consumer for alert events
 end note
 
 note top of CommandModule

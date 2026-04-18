@@ -69,7 +69,9 @@
   )
 
   _Nota: `NATS_TLS_CERT` e `NATS_TLS_KEY` non sono obbligatori in assoluto, ma sono vincolati tra loro: devono essere
-  entrambi valorizzati o entrambi vuoti._
+  entrambi valorizzati o entrambi vuoti. Se le variabili `DEFAULT_SEND_FREQUENCY_MS` o `GATEWAY_BUFFER_SIZE` vengono
+  omesse o impostate a valori invalidi, il sistema `config` non va in panico ma applica automaticamente i fallback
+  hardcoded di 5000 e 1000._
 
   === Sequenza di avvio
 
@@ -129,6 +131,13 @@
   Il servizio adotta un'architettura *Ports and Adapters (Architettura Esagonale)*. La logica di business (generazione
   dati, gestione anomalie e ciclo di vita) è isolata al centro (Domain/App) e non dipende da framework infrastrutturali.
   Le comunicazioni verso l'esterno avvengono tramite interfacce (Ports) implementate dagli adapter (SQLite, NATS, HTTP).
+  L’interazione tra il Core applicativo e il sistema di persistenza (SQLite) è mediata dal Repository Pattern tramite
+  l’interfaccia GatewayStore. Questa scelta è stata presa per evitare di accoppiare ulteriormente la logica di business
+  allo schema del database. A tal proposito il Repository Pattern ci ha permesso di trattare la persistenza come un
+  dettaglio implementativo. In questo modo, se si dovesse cambiare e scegliere di migrare a PostgreSQL o a un database
+  NoSQL, sarà sufficiente scrivere un nuovo Adapter che implementi l'interfaccia GatewayStore, lasciando il Core del
+  simulatore intatto. Questo isolamento è anche fondamentale per iniettare mock durante i test d'unità per la logica di
+  dominio.
 
   === Layout dei moduli
   Essendo il microservizio strutturato per isolare la logica applicativa dalle dipendenze infrastrutturali, di seguito è
@@ -201,8 +210,11 @@
     `MessageBuffer`. Questo canale a capacità limitata adotta una politica "Drop-Oldest": in caso di saturazione,
     espelle silenziosamente il pacchetto telemetrico più vecchio per fare spazio al nuovo, privilegiando sempre il dato
     più recente.
-  - *Persistenza Locale:* L'utilizzo di SQLite (`modernc.org/sqlite` cross-platform) garantisce sufficiente persistenza
-    per la funzionalità di riavvio a caldo (`RecoveryMode`), mantenendo il microservizio completamente *self-contained*.
+  - *Persistenza Locale e Serializzazione:* L'utilizzo di SQLite (`modernc.org/sqlite`) garantisce la persistenza per la
+    funzionalità di riavvio a caldo (`RecoveryMode`). Per prevenire corruzioni o errori di `database is locked`
+    derivanti dalle decine di worker goroutine concorrenti, l'adapter impone un vincolo ferreo di una singola
+    connessione attiva (`SetMaxOpenConns(1)`) e serializza programmaticamente tutte le operazioni di mutazione tramite
+    un lock esclusivo (`writeMu sync.Mutex`).
   - *Pipeline Crittografica Opaca (AES-GCM):* Rispettando il vincolo architetturale della piattaforma NoTIP, il payload
     telemetrico non viene mai esposto in chiaro sul broker di messaggistica. Il `GatewayWorker` utilizza
     l'`AESGCMEncryptor` locale per sigillare i dati prima dell'invio. La `EncryptionKey` è gestita come un _Value
@@ -214,6 +226,32 @@
     termine dell'anomalia, `flushBufferedCommands` li processa sequenzialmente, inviando l'ACK per ciascuno. Questo
     approccio replica il comportamento reale di un dispositivo che riprende l'attività dopo un'interruzione, evitando
     sia la perdita silenziosa dei comandi sia elaborazioni concorrenti non sicure.
+
+  - *Motore di Generazione (Strategy & Factory Pattern):* Per la produzione delle misure, il sistema adotta una
+    combinazione di Strategy e Factory Pattern. La necessità era gestire diversi algoritmi (Seno, Spike, ecc.) in modo
+    estensibile. Senza questi pattern, avremmo dovuto usare dei cicli if/else o switch pesanti nel loop di invio,
+    rendendo difficile l'aggiunta di nuovi sensori. Lo Strategy Pattern rende gli algoritmi intercambiabili come 'spine'
+    (Generator), mentre la Factory centralizza la loro creazione. Questa scelta è superiore a una semplice istanziazione
+    manuale perché rispetta l'Open/Closed Principle: possiamo aggiungere nuovi tipi di sensori creando nuovi file, senza
+    mai dover modificare il codice del motore di simulazione.
+
+  - *Gestione Ciclo di Vita:* Il coordinamento della terminazione dei gateway è affidato all'`DecommissionListener`. Il
+    problema era come notificare a più componenti (Worker, Database, Tickers) che un gateway è stato rimosso dal cloud
+    senza che il client NATS dovesse conoscere tutti i moduli del sistema. Un approccio procedurale (chiamate dirette)
+    avrebbe creato un accoppiamento stretto e fragile. La realizzazione di interfacce dedicate risolve questo problema
+    permettendo ai moduli di iscriversi all'evento di terminazione in modo indipendente.
+
+  - *Protezione del Materiale Crittografico (Value Object Pattern):* La chiave crittografica viene incapsulata in
+    un’entità immutabile (`EncryptionKey`) che ne impedisce l'accesso diretto ai byte. Il problema era evitare la fuga
+    accidentale del materiale sensibile durante operazioni di routine come il logging di sistema o la serializzazione
+    dei dati. Gestire la chiave come un semplice tipo primitivo (stringa o `[]byte`) avrebbe reso il sistema vulnerabile
+    ad esposizioni involontarie nei log di debug o nelle risposte API in caso di disattenzione. Il Value Object risolve
+    questa criticità applicando un principio di *defensive design*: il segreto è protetto all'interno di una struttura
+    che sovrascrive i metodi per trasformare in stringa, rendendo la chiave accessibile solo tramite chiamate esplicite
+    e controllate. Questo garantisce che la sicurezza non dipenda dalla costante attenzione dello sviluppatore, ma sia
+    integrata nativamente nella struttura del codice.
+
+
 
   === Relazioni tra Componenti
 
@@ -296,8 +334,11 @@
 
   === Endpoint API HTTP
 
-  L'API server (configurato nel file `server.go`) espone gli endpoint per pilotare la simulazione. Di seguito il
-  dettaglio completo delle rotte.
+  L'API server (configurato nel file `server.go`) espone gli endpoint per pilotare la simulazione. Le risposte JSON
+  (`GatewayResponse`) omettono sempre per sicurezza il materiale crittografico sensibile (chiavi AES, chiavi private
+  PEM). Inoltre, grazie a `PRAGMA foreign_keys(1)`, le operazioni di `DELETE` su un gateway innescano un
+  `ON DELETE CASCADE` su SQLite, rimuovendo automaticamente i sensori associati. Di seguito il dettaglio completo delle
+  rotte.
 
   ==== Health
   #figure(
@@ -317,8 +358,12 @@
       columns: (1fr, 3fr),
       [ *Rotta* ], [ `POST /sim/gateways` ],
       [ *Descrizione* ], [ Crea un gateway locale, esegue l'onboarding crittografico con il Cloud e avvia il worker. ],
-      [ *Body Request* ], [ `{"factoryId": "...", "factoryKey": "...", "model": "...", "sendFrequencyMs": 5000}` ],
-      [ *Response* ], [ `GatewayResponse` JSON. HTTP 200. ],
+      [ *Body Request* ],
+      [
+        `{"factoryId": "...", "factoryKey": "...", "model": "...", "firmwareVersion": "...", "sendFrequencyMs": 5000}`
+      ],
+
+      [ *Response* ], [ `GatewayResponse` JSON. HTTP 201 Created. ],
     ),
   )
 
@@ -328,10 +373,21 @@
       columns: (1fr, 3fr),
       [ *Rotta* ], [ `POST /sim/gateways/bulk` ],
       [ *Descrizione* ], [ Creazione massiva di N gateway. Utile per test di carico. ],
-      [ *Body Request* ], [ `{"baseFactoryIds": "sim-", "factoryKey": "...", "model": "..."}` ],
-      [ *Response* ], [ Array combinato di successi e fallimenti. HTTP 200. ],
+      [ *Body Request* ],
+      [
+        `{"factoryIds": ["sim-001", "sim-002", ...], "factoryKey": "...", "model": "...", "firmwareVersion": "...", "sendFrequencyMs": 5000}`
+      ],
+
+      [ *Response* ],
+      [
+        Oggetto JSON contenente gli array `gateways` ed `errors`. HTTP 201 Created in caso di successo totale; HTTP 207
+        Multi-Status in caso di fallimenti parziali.
+      ],
     ),
   )
+
+  _Nota: L'operazione di creazione massiva è limitata internamente a un massimo di 10 esecuzioni concorrenti tramite
+  semaforo a canale, per prevenire l'esaurimento delle risorse._
 
   #figure(
     caption: [Endpoint GET /sim/gateways],
@@ -383,7 +439,8 @@
       [ *Rotta* ], [ `POST /sim/gateways/{id}/sensors` ],
       [ *Descrizione* ], [ Aggiunge un nuovo sensore (generatore dati) a un gateway esistente. ],
       [ *Body Request* ], [ `{"type": "temperature", "minRange": 20.0, "maxRange": 25.0, "algorithm": "sine_wave"}` ],
-      [ *Response* ], [ `SensorResponse` JSON. HTTP 201 Created. ],
+      [ *Response* ],
+      [ `SensorResponse` JSON contenente l'`id` (UUID v4 generato localmente dal backend). HTTP 201 Created. ],
     ),
   )
 
@@ -415,8 +472,9 @@
       [ *Rotta* ], [ `POST /sim/gateways/{id}/anomaly/network-degradation` ],
       [ *Descrizione* ],
       [
-        Inietta una perdita pacchetti temporanea. Il worker applicherà la `packet_loss_pct` (es. 0.3 = 30%) prima
-        dell'invio.
+        Inietta una perdita pacchetti temporanea. Il worker applicherà la `packet_loss_pct` prima dell'invio. Se
+        `packet_loss_pct` non è fornito dal client, l'handler applica un default di 0.3 (30%). Se il valore in ingresso
+        è > 1.0, il worker lo normalizza automaticamente dividendolo per 100.
       ],
 
       [ *Body Request* ], [ `{"duration_seconds": 30, "packet_loss_pct": 0.5}` ],
@@ -485,6 +543,15 @@
     ),
   )
 
+  ==== Struttura dei Payload JetStream
+  I messaggi scambiati sul broker NATS seguono queste strutture JSON esatte definite nel dominio:
+  - *Telemetria (`TelemetryEnvelope`)*:
+    `{"gatewayId": "...", "sensorId": "...", "sensorType": "...", "timestamp": "...", "keyVersion": 1, "encryptedData": "...", "iv": "...", "authTag": "..."}`.
+  - *Comandi in ingresso (`IncomingCommand`)*: Il campo `payload` dipende dal `type`. Per `config_update` accetta
+    `send_frequency_ms` e `status`. Per `firmware_push` accetta `firmware_version` e `download_url`.
+  - *Esito Comandi (`CommandACK`)*:
+    `{"command_id": "...", "status": "ack|nack|expired", "message": "...", "timestamp": "..."}`.
+
   === Metriche Operative
 
   Il microservizio espone internamente le proprie metriche in formato Prometheus sulla porta configurata
@@ -540,9 +607,16 @@
       columns: (2fr, 1fr, 2fr),
       [ *Errore Dominio* ], [ *Status HTTP* ], [ *Causa* ],
       [ `ErrGatewayNotFound` ], [ 404 ], [ Il gateway richiesto non esiste nel DB locale o nel registro. ],
+      [ `ErrSensorNotFound` ],
+      [ 404 ],
+      [ L'UUID del sensore fornito per l'iniezione dell'anomalia o per l'eliminazione non esiste nel DB locale. ],
+
       [ `ErrInvalidFactoryCredentials` ], [ 401 ], [ Le credenziali fornite sono rifiutate dal Provisioning Service. ],
       [ `ErrGatewayAlreadyProvisioned` ], [ 409 ], [ Tentativo di onboard su un gateway già attivo nel cloud. ],
       [ `ErrInvalidSensorRange` ], [ 400 ], [ Configurazione sensore errata (`MinRange >= MaxRange`). ],
+      [ `ErrGatewayAlreadyRunning` ],
+      [ 409 ],
+      [ Tentativo di avviare (`/start`) un gateway il cui worker è già in esecuzione. ],
     ),
   )
 
@@ -564,7 +638,20 @@
   8. Il Registry crea un nuovo `GatewayWorker`, istanzia una connessione NATS isolata con i nuovi certificati, e avvia
     la goroutine di background.
 
+  ==== Flusso di Bootstrap e Recovery
 
+  1. All'avvio del microservizio, l'applicazione inizializza il `GatewayStore` (SQLite) e il `GatewayRegistry`.
+  2. Il sistema verifica la variabile di configurazione `RecoveryMode`. Se è `false` (es. in ambienti CI/CD o di test
+    effimeri), il processo di ripristino viene saltato.
+  3. Se `RecoveryMode` è `true`, il Registry invoca il metodo `RestoreAll`, interrogando il database locale per estrarre
+    tutti i `Gateway` con stato `Provisioned == true` (incluse le chiavi crittografiche e i certificati PEM).
+  4. Per ogni gateway recuperato, viene interpellata la tabella per estrarre la configurazione dei sensori logici
+    associati.
+  5. Il Registry ristabilisce una connessione NATS mTLS dedicata per il dispositivo e istanzia nuovamente il relativo
+    `GatewayWorker`.
+  6. Invocando il metodo `Start`, le goroutine del worker (`sensorLoop` e il flush del `MessageBuffer`) vengono
+    riavviate. Questo garantisce la resilienza ai crash, permettendo al simulatore di riprendere l'emissione telemetrica
+    in totale isolamento.
 
   ==== Flusso di Pubblicazione Telemetria
 
@@ -572,7 +659,9 @@
     configurata.
   2. Per ogni `SimSensor` associato, viene invocata l'interfaccia `Generator.Next()` (es. onda sinusoidale o outlier
     forzato).
-  3. Il payload JSON interno viene passato all'`AESGCMEncryptor`.
+  3. Il valore generato viene arricchito con l'unità di misura specifica del sensore (`°C` per temperature, `%` per
+    humidity, `hPa` per pressure, `m/s` per movement, `bpm` per biometric). Questo oggetto JSON interno (es.
+    `{"value": 25.5, "unit": "°C"}`) viene poi passato all'`AESGCMEncryptor`.
   4. L'Encryptor genera un *IV univoco di 12 byte*, cifra i dati utilizzando il materiale crittografico locale e appende
     l'AuthTag di validazione.
   5. La `TelemetryEnvelope` finale (con campi offuscati in Base64) viene spinta nel `MessageBuffer`.
@@ -585,24 +674,39 @@
   1. L'adapter `NATSDecommissionListener` rimane in perenne ascolto sul subject wildcard `gateway.decommissioned.>`.
   2. Ricevuto l'evento, estrae UUID e TenantID dalla rotta NATS.
   3. Tramite l'interfaccia (Porta) `DecommissionEventReceiver`, inoltra la richiesta al Core applicativo chiamando il
-    metodo `HandleDecommission`.
+    metodo `HandleDecommission`. Il `GatewayRegistry` effettua una validazione di sicurezza: verifica che il `TenantID`
+    ricevuto dal subject NATS corrisponda esattamente a quello salvato localmente per il gateway bersaglio; in caso di
+    mismatch, l'evento viene ignorato loggando un warning (slog.Warn).
   4. Il `GatewayRegistry`, che implementa tale interfaccia, riceve la chiamata. Acquisisce un lock di scrittura
-    (`RWMutex`), cerca il worker corrispondente, lo arresta inviando un segnale al `context.CancelFunc` e disconnette il
-    suo socket NATS.
+    (`RWMutex`), cerca il worker corrispondente, lo arresta inviando un segnale al `context.CancelFunc` e lo disconnette
+    da NATS.
   5. I dati persistenti vengono eliminati dallo `Store` locale in SQLite in via definitiva.
 
   ==== Flusso di Buffering e Flush dei Comandi durante Anomalia
 
-  1. Il `NATSGatewaySubscriber` riceve un comando cloud e lo consegna al `GatewayWorker` tramite il canale `commandCh`.
-  2. `handleIncomingCommand` verifica se `activeAnomaly != nil`.
-  3. Se un'anomalia è attiva, il comando viene accodato nell'`anomalyCommandBuffer` (slice locale al worker) senza
+  1. Il `NATSGatewaySubscriber` stabilisce una sottoscrizione JetStream sul subject `command.gw.{tenantId}.{gwId}`. Per
+    garantire che nessun comando venga perso durante disconnessioni fisiche o riavvii, la sottoscrizione è configurata
+    come *durable push consumer* utilizzando il `durable_name` univoco `gw-{gwId}`, come prescritto dai contratti
+    AsyncAPI. I comandi ricevuti vengono consegnati al `GatewayWorker` tramite il canale `commandCh`.
+  2. La sottoscrizione JetStream è configurata con un limite massimo di riconsegna (`MaxDeliver(3)`). Se il canale
+    interno di smistamento verso il `GatewayWorker` risulta saturo, il subscriber esegue esplicitamente un `msg.Nak()`
+    (Negative Acknowledgement). Questo istruisce il broker NATS a ritentare la consegna in un secondo momento,
+    realizzando un pattern di backpressure nativo senza perdita di comandi.
+  3. `handleIncomingCommand` verifica se `activeAnomaly != nil`.
+  4. Se un'anomalia è attiva, il comando viene accodato nell'`anomalyCommandBuffer` (slice locale al worker) senza
     essere elaborato e senza inviare alcun ACK al broker.
-  4. Ad ogni tick del `time.Ticker`, `checkAnomalyExpiry` confronta il timestamp corrente con la scadenza dell'anomalia.
-  5. Allo scadere dell'anomalia, `activeAnomaly` viene azzerato e `flushBufferedCommands` viene invocato.
-  6. Per ciascun comando nel buffer, nell'ordine originale di arrivo, viene eseguita l'elaborazione completa e inviato
+  5. Ad ogni tick del `time.Ticker`, `checkAnomalyExpiry` confronta il timestamp corrente con la scadenza dell'anomalia.
+  6. Allo scadere dell'anomalia, `activeAnomaly` viene azzerato e `flushBufferedCommands` viene invocato.
+  7. Per ciascun comando nel buffer, nell'ordine originale di arrivo, viene eseguita l'elaborazione completa e inviato
     il corrispondente ACK sul subject `command.ack.{tenantId}.{gwId}`.
-  7. Il buffer viene svuotato tramite re-slice a lunghezza zero, conservando la capacità allocata per ottimizzare le
+  8. Il buffer viene svuotato tramite re-slice a lunghezza zero, conservando la capacità allocata per ottimizzare le
     future accodamenti.
+
+  === Ciclo di Vita e Graceful Shutdown
+  L'applicativo gestisce i segnali del sistema operativo (es. `SIGTERM`) per orchestrare uno spegnimento controllato. Il
+  coordinatore (`app.go`) impone un timeout di *10 secondi* per lo svuotamento delle connessioni in volo dei server HTTP
+  (API e Metriche) e concede un ulteriore timeout di *5 secondi* ai `GatewayWorker` concorrenti per inviare l'ultimo
+  pacchetto telemetrico prima della chiusura definitiva dei socket NATS.
 
   == Metodologie di Testing
 
@@ -944,7 +1048,7 @@
     table(
       columns: (1.2fr, 0.8fr, 2fr, 0.6fr, 1.2fr),
       [ *Campo* ], [ *Tipo* ], [ *Tag JSON* ], [ *Req.* ], [ *Note* ],
-      [ `FactoryIDs` ], [ `[]string` ], [ `factoryId` ], [ Sì ], [ ],
+      [ `FactoryIDs` ], [ `[]string` ], [ `factoryIds` ], [ Sì ], [ ],
       [ `FactoryKey` ], [ `string` ], [ `factoryKey` ], [ Sì ], [ ],
       [ `Model` ], [ `string` ], [ `model,omitempty` ], [ No ], [ ],
       [ `FirmwareVersion` ], [ `string` ], [ `firmwareVersion,omitempty` ], [ No ], [ ],
@@ -1181,8 +1285,8 @@
 
       [ `gateways bulk` ],
       [
-        `--count` int default 1 (req.), `--factory-id` (req.), `--factory-key` (req.), `--model` (req.), `--firmware`
-        (req.), `--freq` int default 1000 (req.).
+        `--factory-id` (req., ripetibile — un'occorrenza per gateway), `--factory-key` (req.), `--model` (req.),
+        `--firmware` (req.), `--freq` int default 1000 (req.).
       ],
       [
         HTTP 207 (parziale) non è un errore a livello comando: viene mostrato uno stato `Warning` con il conteggio dei
@@ -1432,10 +1536,11 @@
     [Il comando letto dal line-editor viene eseguito correttamente da Cobra],
 
     [`shell` — fallback a reader classico se line-editor non disponibile],
-    [Se il costruttore del line-editor fallisce, la shell passa automaticamente alla modalità `bufio.Scanner`],
+    [Se `MakeRaw` fallisce (modalità raw non disponibile), `runShellWithLineEditor` restituisce un errore e la shell
+      passa automaticamente alla modalità `bufio.Reader`],
 
-    [`shell` — copertura hook di default (`DefaultHooks`)],
-    [La funzione `DefaultHooks` restituisce i callback `BeforeCommand` e `AfterCommand` senza errori],
+    [`shell` — copertura delle funzioni iniettabili di default],
+    [Le funzioni iniettabili di default (`shellStdout`, `shellNewEditor`) restituiscono valori non nil senza errori],
   )
 
   *Client HTTP e Costruzione Richieste (`internal/client`)*
@@ -1575,7 +1680,7 @@
     [Locale],
     [Se la slice dei sensori è vuota, la funzione di rendering non produce righe su stdout],
 
-    [Risoluzione UUID gateway (`GetGatewayUUID`)],
+    [Risoluzione UUID gateway (`gatewayUUID`)],
     [`httptest`],
     [Dato un identificativo numerico, il helper risolve e restituisce l'UUID corretto del gateway tramite GET],
   )

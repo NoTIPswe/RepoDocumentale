@@ -10,14 +10,14 @@ changelog:
       - Alessandro Mazzariol
     verifier: Leonardo Preo
     description: >
-      Prima stesura manuale admin
+      Redazione glossario interno
   - version: "0.1.0"
     date: "2026-04-12"
     authors:
       - Mario De Pasquale
     verifier: Francesco Marcon
     description: >
-      Prima stesura manuale admin
+      Approfondimento modalità offuscata autenticazione
   - version: "0.0.1"
     date: "2026-04-10"
     authors:

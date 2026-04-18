@@ -1,5 +1,12 @@
 title: Specifica tecnica - Provisioning Service
 changelog:
+  - version: "1.1.0"
+    date: "2026-04-17"
+    authors:
+      - Mario De Pasquale
+    verifier: Leonardo Preo
+    description: >
+      Patch specifica post revisione PB
   - version: "1.0.0"
     approver: Leonardo Preo
     baseline: PB

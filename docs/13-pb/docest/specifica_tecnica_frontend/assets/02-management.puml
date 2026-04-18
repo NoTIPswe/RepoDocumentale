@@ -1,0 +1,182 @@
+@startuml
+title NoTIP Frontend - Management Architecture (Accurate)
+
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontSize 10
+skinparam defaultFontColor #000000
+skinparam nodesep 8
+skinparam ranksep 8
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+
+package "Management Feature" <<Rectangle>> {
+
+  package "Users Management" {
+    class "UserListPageComponent" as UserListPage {
+      --
+      +users: Signal<ViewUser[]>
+      +showCreateForm: Signal<boolean>
+      +isLoading: Signal<boolean>
+      +isSaving: Signal<boolean>
+      +editingUserId: Signal<string | null>
+      +deletingUserId: Signal<string | null>
+      +editingUser: Computed<ViewUser | null>
+      --
+      +ngOnInit(): void
+      +requestEdit(userId: string): void
+      +openCreateUserForm(): void
+      +requestDelete(userId: string): void
+      +cancelDelete(): void
+      +confirmDelete(): void
+      +createUser(payload: CreateUserPayload): void
+      +updateUser(payload: UpdateUserPayload): void
+      +cancelEdit(): void
+      -loadUsers(): void
+    }
+
+    class "UserService" as UserService {
+      --
+      +getUsers(): Observable<ViewUser[]>
+      +createUser(payload): Observable<CreatedUser>
+      +updateUser(id, payload): Observable<ViewUser>
+      +deleteUsers(ids: string[]): Observable<{deleted: number}>
+    }
+  }
+
+  package "Thresholds" {
+    class "ThresholdSettingsPageComponent" as ThresholdPage {
+      --
+      +thresholds: Signal<ThresholdConfig[]>
+      +sensorTypeOptions: Signal<string[]>
+      +sensorIdOptions: Signal<string[]>
+      +showForm: Signal<boolean>
+      +deletingThreshold: Signal<ThresholdDeletePayload | null>
+      +isLoading: Signal<boolean>
+      +isSaving: Signal<boolean>
+      +canEditThresholds: boolean
+      --
+      +ngOnInit(): void
+      +toggleForm(): void
+      +closeForm(): void
+      +saveTypeThreshold(payload: TypeThresholdPayload): void
+      +saveSensorThreshold(payload: SensorThresholdPayload): void
+      +deleteThreshold(payload: ThresholdDeletePayload): void
+      +cancelDeleteThreshold(): void
+      +confirmDeleteThreshold(): void
+      -loadThresholds(): void
+      -loadSensorOptions(): void
+    }
+
+    class "ThresholdService" as ThresholdService {
+      --
+      +fetchThresholds(): Observable<ThresholdConfig[]>
+      +setDefaultThreshold(type, min, max): Observable<void>
+      +setSensorThreshold(id, type, min, max): Observable<void>
+      +deleteSensorThreshold(id): Observable<void>
+      +deleteTypeThreshold(type): Observable<void>
+    }
+  }
+
+  package "Audit Logs" {
+    class "AuditLogPageComponent" as AuditPage {
+      --
+      +logs: Signal<Logs[]>
+      +userIdOptions: Signal<string[]>
+      +actionOptions: Signal<string[]>
+      +from: Signal<string>
+      +to: Signal<string>
+      +userIds: Signal<string[]>
+      +actions: Signal<string[]>
+      +isLoading: Signal<boolean>
+      +isExporting: Signal<boolean>
+      --
+      +ngOnInit(): void
+      +applyFilters(form: AuditFilterFormValue): void
+      +resetFilters(): void
+      +canExportLogs(): boolean
+      +onExportLogs(): void
+      -loadLogs(): void
+      -refreshFilterOptions(rows: Logs[]): void
+      -downloadAsCsv(rows: Logs[]): void
+    }
+
+    class "AuditService" as AuditService {
+      --
+      +getLogs(filters): Observable<Logs[]>
+    }
+  }
+
+  package "Costs" {
+    class "CostDashboardPageComponent" as CostPage {
+      --
+      +costs: Signal<Costs | null>
+      +isLoading: Signal<boolean>
+      --
+      +ngOnInit(): void
+      -loadCosts(): void
+    }
+
+    class "CostsService" as CostsService {
+      --
+      +getTenantCosts(): Observable<Costs>
+    }
+  }
+  
+  package "API Clients" {
+    class "ApiClientListPageComponent" as ApiClientPage {
+      --
+      +clients: Signal<SecretClient[]>
+      +lastCreated: Signal<SecretClient | null>
+      +showCreateForm: Signal<boolean>
+      +isLoading: Signal<boolean>
+      +isSaving: Signal<boolean>
+      +deletingClientId: Signal<string | null>
+      --
+      +ngOnInit(): void
+      +toggleCreateForm(): void
+      +closeCreateForm(): void
+      +submitCreateForm(event, input): void
+      +createClient(name: string, input?): void
+      +requestDelete(clientId: string): void
+      +cancelDelete(): void
+      +confirmDelete(): void
+      -loadClients(): void
+      -resolveCreateClientErrorMessage(error): string
+    }
+
+    class "ClientsService" as ClientService {
+      --
+      +getClients(): Observable<SecretClient[]>
+      +createClient(name: string): Observable<SecretClient>
+      +deleteClient(id: string): Observable<void>
+    }
+  }
+
+  ' Relationships
+  UserListPage --> UserService
+  ThresholdPage --> ThresholdService
+  AuditPage --> AuditService
+  CostPage --> CostsService
+  ApiClientPage --> ClientService
+}
+
+note top of UserListPage
+  Handles creation, update, and deletion of users.
+  Uses computed signal 'editingUser' to
+  determine if the form is in edit or create mode.
+end note
+
+note right of ThresholdPage
+  Manages thresholds via distinct methods
+  for Type (global) and Sensor (specific).
+  Checks 'canEditThresholds' via AuthService
+  to prevent unauthorized modifications.
+end note
+
+note bottom of AuditPage
+  Downloads logs directly in CSV format.
+  Extracts unique User IDs and Actions from
+  the fetched logs to populate the filter dropdowns.
+end note
+
+@enduml

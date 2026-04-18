@@ -1,5 +1,5 @@
 @startuml
-title NOTIP Frontend - Dashboard Architecture
+title NoTIP Frontend - Dashboard Architecture
 
 skinparam backgroundColor #FFFFFF
 skinparam defaultFontSize 10
@@ -7,89 +7,89 @@ skinparam defaultFontColor #000000
 skinparam nodesep 8
 skinparam ranksep 8
 skinparam linetype ortho
+skinparam classAttributeIconSize 0
+left to right direction
 
 package "Dashboard Feature" <<Rectangle>> {
   class "DataDashboardPageComponent" as DashboardPage {
     --
-    -dataMode: 'clear' | 'obfuscated'
-    -viewMode: 'stream' | 'query'
-    -gatewayOptions: SelectOption[]
-    -sensorTypeOptions: SelectOption[]
-    -sensorIdOptions: SelectOption[]
-    -exportBusy: boolean
+    +dataMode: Signal<'clear' | 'obfuscated'>
+    +activeView: Signal<'stream' | 'query'>
+    +gatewayOptions: Signal<string[]>
+    +sensorTypeOptions: Signal<string[]>
+    +sensorOptions: Signal<string[]>
+    +isExporting: Signal<boolean>
     --
     +ngOnInit(): void
-    +applyFilters(params): void
-    +clearFilters(): void
-    +switchViewMode(mode): void
-    +handleExport(): void
-    +loadNextPage(): void
+    +onFiltersApplied(filters): void
+    +onFiltersCleared(): void
+    +setActiveView(view): void
+    +onExportQuery(): Promise<void>
+    +onNextQueryPage(): void
+    -downloadAsCsv(rows): void
   }
 
   class "FilterPanelComponent" as FilterPanel {
     --
-    -catalog: FilterCatalog
-    -gatewayIds: string[]
-    -sensorTypes: string[]
-    -sensorIds: string[]
-    -from: string
-    -to: string
+    +sensorCatalog: InputSignal<DashboardSensorCatalogEntry[]>
+    +selectedFilters: Signal<MultiSelectState>
+    +queryFromRaw: Signal<string>
+    +queryToRaw: Signal<string>
     --
-    +applyFilters(): void
+    +applyFilters(event): void
     +clearFilters(): void
-    -clampTimeWindow(): void
-    -removeIncompatibleSelections(): void
+    -enforceMaxQueryWindow(): void
+    -normalizeSelection(state): MultiSelectState
   }
 
   class "TelemetryChartComponent" as TelemetryChart {
     --
-    -chart: Chart<'line'>
-    -datasets: ChartDataset[]
+    -chartInstance: Chart | undefined
+    +uniqueCheckedSensorIds: Computed<string[]>
     --
-    +ngOnChanges(): void
-    -computeUniqueSensorIds(): Set<string>
-    -createDatasets(measures): Dataset[]
-    -formatTimestamp(ts): string
+    <<constructor>> (uses effect)
+    -toChartData(rows): { labels, datasets }
+    -formatTimestamp(value): string
   }
 
   class "TelemetryTableComponent" as TelemetryTable {
     --
-    -measures: CheckedEnvelope[]
+    +measures: InputSignal<Array<CheckedEnvelope | ObfuscatedEnvelope>>
     --
-    +formatValue(envelope): string
-    +isAlertRow(envelope): boolean
+    +formatValue(row): string
+    +rowClass(row): string
   }
 
   package "Dashboard Services" as Services {
     class "DecryptedMeasureService" as DecMeasure {
       --
-      -sdk: DataApiService (@notip/crypto-sdk)
-      -abortController: AbortController | null
+      -sdk: CryptoSdk
+      -activeStreamAbortController: AbortController | null
       --
-      +query(params): Observable<CheckedQueryResPage>
-      +stream(params): Observable<CheckedEnvelope>
-      +export(params): Observable<Blob>
+      +query(params): Observable<QueryResPage>
+      +openStream(params): Observable<DecryptedEnvelope>
+      +export(params): Observable<DecryptedEnvelope>
       +closeStream(): void
     }
 
     class "ObfuscatedMeasureService" as ObfMeasure {
       --
-      -streamMgr: ObfuscatedStreamManagerService
+      -msm: ObfuscatedStreamManagerService
       -measuresApi: MeasuresService
       --
-      +query(params): Observable<ObfuscatedQueryResPage>
-      +stream(params): Observable<ObfuscatedEnvelope>
+      +query(qp): Observable<ObfuscatedQueryResPage>
+      +openStream(sp): Observable<ObfuscatedEnvelope[]>
       +closeStream(): void
     }
 
     class "ValidatedMeasureFacadeService" as ValMeasure {
       --
-      -decryptedMeasure: DecryptedMeasureService
-      -boundsEval: MeasureBoundsEvaluationService
+      -decryptedMeasureService: DecryptedMeasureService
+      -measureBoundsEvaluationService: MeasureBoundsEvaluationService
       --
       +query(params): Observable<CheckedQueryResPage>
-      +stream(params): Observable<CheckedEnvelope>
-      +export(params): Observable<Blob>
+      +openStream(params): Observable<CheckedEnvelope>
+      +export(params): Observable<CheckedEnvelope>
       +closeStream(): void
     }
   }
@@ -98,19 +98,17 @@ package "Dashboard Feature" <<Rectangle>> {
   DashboardPage --> FilterPanel
   DashboardPage --> TelemetryChart
   DashboardPage --> TelemetryTable
-  DashboardPage --> DecMeasure
   DashboardPage --> ObfMeasure
   DashboardPage --> ValMeasure
 
   ValMeasure --> DecMeasure
-  ValMeasure --> BoundsEval
+  ValMeasure --> BoundsEval : injects MeasureBoundsEvaluationService
 
-  FilterPanel --> MultiSelect
-  FilterPanel --> RomeDatePipe
+  FilterPanel --> RomeDatePipe : toRomeDateTimeInput\nfromRomeDateTimeInputToIso
 
   TelemetryChart --> ChartJs
   TelemetryTable --> RomeDatePipe
-  TelemetryTable --> StatusBadge
+
 }
 
 note top of DashboardPage
@@ -135,7 +133,7 @@ note left of TelemetryChart
   sensor with distinct color.
   Cap at 120 points per dataset.
   Italian locale timestamp formatting.
-  Invalid timestamp fallback handling.
+  Responsive update via Angular effect().
 end note
 
 note bottom of ValMeasure
