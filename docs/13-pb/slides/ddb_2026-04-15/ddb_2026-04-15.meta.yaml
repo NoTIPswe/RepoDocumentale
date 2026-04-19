@@ -1,0 +1,13 @@
+title: Diario di Bordo 2026-04-15
+changelog:
+  - version: 1.0.0
+    date: '2026-04-15'
+    approver: Leonardo Preo
+    baseline: PB
+  - version: "0.0.1"
+    date: "2026-04-15"
+    authors:
+      - Leonardo Preo
+    verifier: Francesco Marcon
+    description: >
+      Creazione del diario di Bordo
