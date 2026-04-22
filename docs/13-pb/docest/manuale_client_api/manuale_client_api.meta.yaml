@@ -1,4 +1,4 @@
-title: Manuale Client API
+title: Manuale client API
 changelog:
   - version: "1.0.0"
     date: "2026-04-13"
@@ -17,7 +17,7 @@ changelog:
       - Alessandro Mazzariol
     verifier: Francesco Marcon
     description: >
-      Aggiunta della sezione dettagliata sull'integrazione con la CryptoSdk, 
+      Aggiunta della sezione dettagliata sull'integrazione con la CryptoSdk,
       esempi di codice TypeScript e gestione degli errori
   - version: "0.1.1"
     date: "2026-04-11"
@@ -25,7 +25,7 @@ changelog:
       - Alessandro Mazzariol
     verifier: Alessandro Contarini
     description: >
-      Documentazione degli endpoint Management API (Gateways, Users, Alerts, 
+      Documentazione degli endpoint Management API (Gateways, Users, Alerts,
       Thresholds, Commands, Costs e Audit)
   - version: "0.1.0"
     date: "2026-04-10"
@@ -33,7 +33,7 @@ changelog:
       - Alessandro Mazzariol
     verifier: Valerio Solito
     description: >
-      Prima stesura delle sezioni Prerequisiti (autenticazione JWT) e 
+      Prima stesura delle sezioni Prerequisiti (autenticazione JWT) e
       Data API (Measures e Sensors)
   - version: "0.0.1"
     date: "2026-04-09"

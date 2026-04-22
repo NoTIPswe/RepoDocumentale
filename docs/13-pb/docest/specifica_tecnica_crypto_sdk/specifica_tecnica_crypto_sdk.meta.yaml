@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=../../../../.schemas/meta.schema.json
 
-title: Specifica Tecnica - Crypto SDK
+title: Specifica tecnica - Crypto SDK
 changelog:
   - version: "1.0.0"
     date: "2026-04-13"

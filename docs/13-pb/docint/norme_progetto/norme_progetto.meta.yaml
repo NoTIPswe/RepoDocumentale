@@ -1,4 +1,4 @@
-title: Norme di Progetto
+title: Norme di progetto
 changelog:
   - version: "2.0.1"
     date: "2026-04-14"
@@ -8,7 +8,7 @@ changelog:
     description: >
       Fix ambiente locale Git
   - version: 2.0.0
-    date: '2026-04-14'
+    date: "2026-04-14"
     approver: Leonardo Preo
     baseline: PB
   - version: "1.7.1"
