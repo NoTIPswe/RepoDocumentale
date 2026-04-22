@@ -1,4 +1,4 @@
-title: Specifica tecnica - Data-Consumer
+title: Specifica tecnica - Data Consumer
 changelog:
   - version: "1.1.0"
     date: "2026-04-17"
@@ -52,4 +52,4 @@ changelog:
       - Francesco Marcon
     verifier: Alessandro Contarini
     description: >
-      Creazione del documento prima bozza del documento 
+      Creazione del documento prima bozza del documento
