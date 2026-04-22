@@ -1,9 +1,13 @@
-title: PB - Colloquio 
+title: PB - Colloquio
 changelog:
+  - version: 1.0.0
+    date: "2026-04-22"
+    approver: Leonardo Preo
+    baseline: PB
   - version: "0.0.1"
-    date: "2026-04-14"
+    date: "2026-04-22"
     authors:
       - Alessandro Contarini
-    verifier: TBD
+    verifier: Francesco Marcon
     description: >
       Stesura del documento
